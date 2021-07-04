@@ -136,6 +136,9 @@ void Feed::refresh()
     m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
+    if (!m_icon || !m_icon->exists()) // icon not available, try to redownload it
+        downloadIcon();
+
     m_isLoading = true;
     emit stateChanged(this);
 }
