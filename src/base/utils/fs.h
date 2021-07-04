@@ -32,7 +32,12 @@
  * Utility functions related to file system.
  */
 
+#include <memory>
+
 #include <QString>
+
+class QByteArray;
+class QTemporaryFile;
 
 namespace Utils::Fs
 {
@@ -70,6 +75,7 @@ namespace Utils::Fs
     void removeDirRecursive(const QString &path);
 
     QString tempPath();
+    std::unique_ptr<QTemporaryFile> tempFile(const QByteArray &data);
 
 #if !defined Q_OS_HAIKU
     bool isNetworkFileSystem(const QString &path);
