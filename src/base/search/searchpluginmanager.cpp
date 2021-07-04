@@ -38,6 +38,7 @@
 #include <QDomNode>
 #include <QPointer>
 #include <QProcess>
+#include <QTemporaryFile>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -205,7 +206,7 @@ void SearchPluginManager::installPlugin(const QString &source)
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         using namespace Net;
-        DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true)
+        DownloadManager::instance()->download(DownloadRequest(source)
                                               , this, &SearchPluginManager::pluginDownloadFinished);
     }
     else
@@ -385,27 +386,31 @@ void SearchPluginManager::versionInfoDownloadFinished(const Net::DownloadResult 
 }
 
 void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &result)
+try
 {
-    if (result.status == Net::DownloadStatus::Success)
-    {
-        const QString filePath = Utils::Fs::toUniformPath(result.filePath);
+    if (result.status != Net::DownloadStatus::Success)
+        throw RuntimeError(result.errorString);
 
-        QString pluginName = Utils::Fs::fileName(result.url);
-        pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.')); // Remove extension
-        installPlugin_impl(pluginName, filePath);
-        Utils::Fs::forceRemove(filePath);
-    }
+    auto pluginTempFile = Utils::Fs::tempFile(result.data);
+    if (!pluginTempFile || !pluginTempFile->exists())
+        throw RuntimeError(tr("I/O error"));
+
+    const QString filePath = Utils::Fs::toUniformPath(pluginTempFile->fileName());
+
+    QString pluginName = Utils::Fs::fileName(result.url);
+    pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.')); // Remove extension
+    installPlugin_impl(pluginName, filePath);
+}
+catch (const RuntimeError &error)
+{
+    const QString url = result.url;
+    QString pluginName = url.mid(url.lastIndexOf('/') + 1);
+    pluginName.replace(".py", "", Qt::CaseInsensitive);
+
+    if (pluginInfo(pluginName))
+        emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(error.message()));
     else
-    {
-        const QString url = result.url;
-        QString pluginName = url.mid(url.lastIndexOf('/') + 1);
-        pluginName.replace(".py", "", Qt::CaseInsensitive);
-
-        if (pluginInfo(pluginName))
-            emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
-        else
-            emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
-    }
+        emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(error.message()));
 }
 
 // Update nova.py search plugin if necessary
