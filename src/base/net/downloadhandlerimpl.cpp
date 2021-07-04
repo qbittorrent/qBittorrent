@@ -38,23 +38,6 @@
 
 const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
-namespace
-{
-    bool saveToFile(const QByteArray &replyData, QString &filePath)
-    {
-        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
-        tmpfile.setAutoRemove(false);
-
-        if (!tmpfile.open())
-            return false;
-
-        filePath = tmpfile.fileName();
-
-        tmpfile.write(replyData);
-        return true;
-    }
-}
-
 DownloadHandlerImpl::DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest)
     : DownloadHandler {manager}
     , m_manager {manager}
@@ -126,15 +109,6 @@ void DownloadHandlerImpl::processFinishedDownload()
     m_result.data = (m_reply->rawHeader("Content-Encoding") == "gzip")
                     ? Utils::Gzip::decompress(m_reply->readAll())
                     : m_reply->readAll();
-
-    if (m_downloadRequest.saveToFile())
-    {
-        QString filePath;
-        if (saveToFile(m_result.data, filePath))
-            m_result.filePath = filePath;
-        else
-            setError(tr("I/O Error"));
-    }
 
     finish();
 }
