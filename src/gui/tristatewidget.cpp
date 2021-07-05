@@ -38,7 +38,7 @@
 
 TriStateWidget::TriStateWidget(const QString &text, QWidget *parent)
     : QWidget {parent}
-    , m_closeOnTriggered {true}
+    , m_closeOnInteraction {true}
     , m_checkState {Qt::Unchecked}
     , m_text {text}
 {
@@ -51,9 +51,9 @@ void TriStateWidget::setCheckState(const Qt::CheckState checkState)
     m_checkState = checkState;
 }
 
-void TriStateWidget::setCloseOnTriggered(const bool enabled)
+void TriStateWidget::setCloseOnInteraction(const bool enabled)
 {
-    m_closeOnTriggered = enabled;
+    m_closeOnInteraction = enabled;
 }
 
 QSize TriStateWidget::minimumSizeHint() const
@@ -104,7 +104,7 @@ void TriStateWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     toggleCheckState();
 
-    if (m_closeOnTriggered)
+    if (m_closeOnInteraction)
     {
         // parent `triggered` signal will be emitted
         QWidget::mouseReleaseEvent(event);
@@ -112,7 +112,7 @@ void TriStateWidget::mouseReleaseEvent(QMouseEvent *event)
     else
     {
         update();
-        // need to emit parent `triggered` signal manually
+        // need to emit `triggered` signal manually
         emit triggered(m_checkState == Qt::Checked);
     }
 }
@@ -124,7 +124,7 @@ void TriStateWidget::keyPressEvent(QKeyEvent *event)
         {
         toggleCheckState();
 
-        if (!m_closeOnTriggered)
+        if (!m_closeOnInteraction)
         {
             update();
             // need to emit parent `triggered` signal manually

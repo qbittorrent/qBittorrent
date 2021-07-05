@@ -33,11 +33,13 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
+#include <libtorrent/socket.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
 
 #include <QDateTime>
 #include <QHash>
+#include <QMap>
 #include <QObject>
 #include <QQueue>
 #include <QSet>
@@ -170,7 +172,6 @@ namespace BitTorrent
         bool hasFilteredPieces() const override;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
-        QHash<QString, TrackerInfo> trackerInfos() const override;
         QVector<QUrl> urlSeeds() const override;
         QString error() const override;
         qlonglong totalDownload() const override;
@@ -321,8 +322,8 @@ namespace BitTorrent
         // we will rely on this workaround to remove empty leftover folders
         QHash<lt::file_index_t, QVector<QString>> m_oldPath;
 
-        QHash<QString, TrackerInfo> m_trackerInfos;
         FileErrorInfo m_lastFileError;
+        QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;
 
         // Persistent data
         QString m_name;
