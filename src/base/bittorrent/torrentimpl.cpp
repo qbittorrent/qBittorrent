@@ -84,7 +84,7 @@ namespace
                        , std::back_inserter(out), [](const DownloadPriority priority)
         {
             return static_cast<lt::download_priority_t>(
-                        static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
+                        static_cast<lt::download_priority_t::underlying_type>(priority));
         });
         return out;
     }
@@ -799,7 +799,7 @@ QVector<DownloadPriority> TorrentImpl::filePriorities() const
     QVector<DownloadPriority> ret;
     std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](lt::download_priority_t priority)
     {
-        return static_cast<DownloadPriority>(static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
+        return static_cast<DownloadPriority>(toLTUnderlyingType(priority));
     });
     return ret;
 }
@@ -1250,7 +1250,7 @@ QBitArray TorrentImpl::downloadingPieces() const
     m_nativeHandle.get_download_queue(queue);
 
     for (const lt::partial_piece_info &info : queue)
-        result.setBit(static_cast<LTUnderlyingType<lt::piece_index_t>>(info.piece_index));
+        result.setBit(toLTUnderlyingType(info.piece_index));
 
     return result;
 }
@@ -1900,7 +1900,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
-        .arg(name(), filePath(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index))
+        .arg(name(), filePath(toLTUnderlyingType(p->index))
              , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
     m_oldPath[p->index].removeFirst();
@@ -1919,13 +1919,13 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
-        QString name = filePath(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index));
+        QString name = filePath(toLTUnderlyingType(p->index));
         if (name.endsWith(QB_EXT))
         {
             const QString oldName = name;
             name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
-            renameFile(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index), name);
+            renameFile(toLTUnderlyingType(p->index), name);
         }
     }
 }

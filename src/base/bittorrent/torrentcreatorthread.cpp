@@ -188,7 +188,7 @@ void TorrentCreatorThread::run()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
             checkInterruptionRequested();
-            sendProgressSignal(static_cast<LTUnderlyingType<lt::piece_index_t>>(n), newTorrent.num_pieces());
+            sendProgressSignal(toLTUnderlyingType(n), newTorrent.num_pieces());
         });
 
         // Set qBittorrent as creator and add user comment to
