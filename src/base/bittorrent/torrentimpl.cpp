@@ -797,7 +797,8 @@ QVector<DownloadPriority> TorrentImpl::filePriorities() const
     const std::vector<lt::download_priority_t> fp = m_nativeHandle.get_file_priorities();
 
     QVector<DownloadPriority> ret;
-    std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](lt::download_priority_t priority)
+    ret.reserve(fp.size());
+    std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](const lt::download_priority_t priority)
     {
         return static_cast<DownloadPriority>(toLTUnderlyingType(priority));
     });
