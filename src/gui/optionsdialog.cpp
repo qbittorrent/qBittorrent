@@ -681,7 +681,7 @@ void OptionsDialog::initializeSchedulerTables()
             [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
 
         connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
-            [this, day](QPoint pos) { showScheduleDayContextMenu(day); });
+            [this, day]() { showScheduleDayContextMenu(day); });
 
         connect(addButton, &QPushButton::clicked, this,
             [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
@@ -689,15 +689,18 @@ void OptionsDialog::initializeSchedulerTables()
         connect(removeButton, &QPushButton::clicked, this,
             [this, day]() { OptionsDialog::removeSelectedTimeRanges(day); });
 
-        if (day == today)
-            scheduleTable->selectRow(scheduleDay->getNowIndex());
-
         auto *hLayout = new QHBoxLayout();
         hLayout->addWidget(addButton);
         hLayout->addWidget(removeButton);
         vLayout->addWidget(scheduleTable);
         vLayout->addLayout(hLayout);
         m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[day]);
+
+        if (day == today)
+        {
+            m_ui->tabSchedule->setCurrentIndex(i);
+            scheduleTable->selectRow(scheduleDay->getNowIndex());
+        }
     }
 
     const auto &tables = asConst(m_scheduleDayTables);
@@ -706,8 +709,6 @@ void OptionsDialog::initializeSchedulerTables()
         auto *scheduleDay = BandwidthScheduler::instance()->scheduleDay(day);
         OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
     });
-
-    m_ui->tabSchedule->setCurrentIndex(today);
 }
 
 void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
