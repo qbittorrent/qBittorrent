@@ -223,11 +223,10 @@ bool BandwidthScheduler::importLegacyScheduler()
     for (int day = 0; day < 7; ++day)
     {
         bool addToScheduleDay = (schedulerDays == EVERY_DAY)
-            || (schedulerDays == WEEK_DAYS && (day == 5 || day == 6))
-            || (schedulerDays == WEEK_ENDS && (day != 5 && day != 6))
+            || (schedulerDays == WEEK_DAYS && (day != 5 && day != 6))
+            || (schedulerDays == WEEK_ENDS && (day == 5 || day == 6))
             || (day == schedulerDays - 3);
 
-        // ScheduleDay scheduleDay(day);
         ScheduleDay *scheduleDay = new ScheduleDay(day);
 
         if (addToScheduleDay)

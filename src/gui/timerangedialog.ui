@@ -23,21 +23,21 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="1">
-      <widget class="QLabel" name="label1">
+      <widget class="QLabel">
        <property name="text">
         <string>Download</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="label2">
+      <widget class="QLabel">
        <property name="text">
         <string>Upload</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label3">
+      <widget class="QLabel">
        <property name="text">
         <string>Speed limit</string>
        </property>
@@ -70,7 +70,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label4">
+      <widget class="QLabel">
        <property name="text">
         <string>In between</string>
        </property>
