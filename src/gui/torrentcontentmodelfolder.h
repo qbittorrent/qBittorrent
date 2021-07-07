@@ -49,8 +49,7 @@ public:
     ItemType itemType() const override;
 
     void increaseSize(qulonglong delta);
-    void recalculateProgress();
-    void recalculateAvailability();
+    void recalculateProperties(bool progress, bool availability);
     void updatePriority();
 
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
