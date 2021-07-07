@@ -96,11 +96,13 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_contentFilterLine->setPlaceholderText(tr("Filter files..."));
     m_contentFilterLine->setFixedWidth(Utils::Gui::scaledSize(this, 300));
     connect(m_contentFilterLine, &LineEdit::textChanged, this, &PropertiesWidget::filterText);
-    m_ui->contentFilterLayout->insertWidget(3, m_contentFilterLine);
+    m_ui->contentFilterLayout->insertWidget(5, m_contentFilterLine);
 
     // SIGNAL/SLOTS
     connect(m_ui->selectAllButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectAll);
     connect(m_ui->selectNoneButton, &QPushButton::clicked, m_propListModel, &TorrentContentFilterModel::selectNone);
+    connect(m_ui->expandAllButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentTreeView::expandAll);
+    connect(m_ui->collapseAllButton, &QPushButton::clicked, m_ui->filesList, &TorrentContentTreeView::collapseAll);
     connect(m_propListModel, &TorrentContentFilterModel::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
     connect(m_ui->listWebSeeds, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayWebSeedListMenu);
     connect(m_propListDelegate, &PropListDelegate::filteredFilesChanged, this, &PropertiesWidget::filteredFilesChanged);
