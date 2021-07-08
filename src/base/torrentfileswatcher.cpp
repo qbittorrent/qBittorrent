@@ -267,11 +267,10 @@ QString TorrentFilesWatcher::makeCleanPath(const QString &path)
     if (path.isEmpty())
         throw InvalidArgument(tr("Watched folder path cannot be empty."));
 
-    const QDir dir {path};
-    if (dir.isRelative())
+    if (QDir::isRelativePath(path))
         throw InvalidArgument(tr("Watched folder path cannot be relative."));
 
-    return dir.canonicalPath();
+    return QDir::cleanPath(path);
 }
 
 void TorrentFilesWatcher::load()

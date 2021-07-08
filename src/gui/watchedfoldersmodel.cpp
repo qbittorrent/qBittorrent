@@ -102,23 +102,21 @@ bool WatchedFoldersModel::removeRows(const int row, const int count, const QMode
 
 void WatchedFoldersModel::addFolder(const QString &path, const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
-    if (path.isEmpty())
-        throw InvalidArgument(tr("Watched folder path cannot be empty."));
-
-    const QDir watchDir {path};
-    const QString canonicalWatchPath = watchDir.canonicalPath();
-    if (m_watchedFoldersOptions.contains(canonicalWatchPath))
+    const QString cleanWatchPath = m_fsWatcher->makeCleanPath(path);
+    if (m_watchedFoldersOptions.contains(cleanWatchPath))
         throw RuntimeError(tr("Folder '%1' is already in watch list.").arg(path));
+
+    const QDir watchDir {cleanWatchPath};
     if (!watchDir.exists())
         throw RuntimeError(tr("Folder '%1' doesn't exist.").arg(path));
     if (!watchDir.isReadable())
         throw RuntimeError(tr("Folder '%1' isn't readable.").arg(path));
 
-    m_deletedFolders.remove(canonicalWatchPath);
+    m_deletedFolders.remove(cleanWatchPath);
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
-    m_watchedFolders.append(canonicalWatchPath);
-    m_watchedFoldersOptions[canonicalWatchPath] = options;
+    m_watchedFolders.append(cleanWatchPath);
+    m_watchedFoldersOptions[cleanWatchPath] = options;
     endInsertRows();
 }
 
