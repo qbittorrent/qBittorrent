@@ -36,6 +36,13 @@
        </property>
       </widget>
      </item>
+     <item row="0" column="3">
+      <widget class="QLabel">
+       <property name="text">
+        <string>Pause?</string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="0">
       <widget class="QLabel">
        <property name="text">
@@ -68,6 +75,9 @@
         <number>1000000</number>
        </property>
       </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QCheckBox" name="pauseCheckBox"/>
      </item>
      <item row="2" column="0">
       <widget class="QLabel">
@@ -127,8 +137,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>193</x>
-     <y>106</y>
+     <x>202</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
      <x>193</x>
@@ -143,12 +153,44 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>193</x>
-     <y>106</y>
+     <x>202</x>
+     <y>140</y>
     </hint>
     <hint type="destinationlabel">
      <x>193</x>
      <y>65</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pauseCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>downloadSpinBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>177</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pauseCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>uploadSpinBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>312</x>
+     <y>58</y>
     </hint>
    </hints>
   </connection>

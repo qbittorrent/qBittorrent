@@ -99,6 +99,12 @@ void ScheduleDay::editUploadSpeedAt(int index, int speed)
     emit dayUpdated(m_dayOfWeek);
 }
 
+void ScheduleDay::editPauseAt(int index, bool pause)
+{
+    m_timeRanges[index].setPause(pause);
+    emit dayUpdated(m_dayOfWeek);
+}
+
 int ScheduleDay::getNowIndex()
 {
     QDateTime now = QDateTime::currentDateTime();

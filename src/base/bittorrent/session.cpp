@@ -1014,6 +1014,14 @@ void Session::adjustLimits()
 
 void Session::applyBandwidthLimits()
 {
+    ScheduleDay *today = m_bwScheduler->today();
+    int index = today->getNowIndex();
+
+    if (index > -1 && today->timeRanges()[index].pause)
+        m_nativeSession->pause();
+    else
+        m_nativeSession->resume();
+
     lt::settings_pack settingsPack = m_nativeSession->get_settings();
     applyBandwidthLimitsToSettingsPack(settingsPack);
     m_nativeSession->apply_settings(settingsPack);

@@ -46,7 +46,7 @@ void TimeRangeDialog::timesUpdated()
 bool TimeRangeDialog::isValid() const
 {
     bool timeRangesValid = timeFrom().secsTo(timeTo()) > 0;
-    TimeRange timeRange = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed()};
+    TimeRange timeRange = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed(), pause()};
     TimeRangeConflict conflict = m_scheduleDay->conflicts(timeRange);
 
     const QString borderStyle = "border: 1px solid %1";
@@ -76,4 +76,9 @@ QTime TimeRangeDialog::timeFrom() const
 QTime TimeRangeDialog::timeTo() const
 {
     return m_ui->timeEditTo->time();
+}
+
+bool TimeRangeDialog::pause() const
+{
+    return m_ui->pauseCheckBox->isChecked();
 }

@@ -26,6 +26,7 @@ public:
     void editEndTimeAt(int index, QTime time);
     void editDownloadSpeedAt(int index, int speed);
     void editUploadSpeedAt(int index, int speed);
+    void editPauseAt(int index, bool pause);
 
     int getNowIndex();
     TimeRangeConflict conflicts(const TimeRange &timeRange);

@@ -235,19 +235,19 @@ bool BandwidthScheduler::importLegacyScheduler()
             {
                 scheduleDay->addTimeRange({
                     QTime(0, 0), end,
-                    altDownloadLimit, altUploadLimit
+                    altDownloadLimit, altUploadLimit, false
                 });
 
                 scheduleDay->addTimeRange({
                     start, QTime(23, 59, 59, 999),
-                    altDownloadLimit, altUploadLimit
+                    altDownloadLimit, altUploadLimit, false
                 });
             }
             else
             {
                 scheduleDay->addTimeRange({
                     start, end,
-                    altDownloadLimit, altUploadLimit
+                    altDownloadLimit, altUploadLimit, false
                 });
             }
         }

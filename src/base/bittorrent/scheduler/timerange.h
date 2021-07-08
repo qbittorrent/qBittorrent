@@ -17,11 +17,13 @@ struct TimeRange
     QTime endTime;
     int downloadSpeed;
     int uploadSpeed;
+    bool pause;
 
     void setStartTime(QTime time);
     void setEndTime(QTime time);
     void setDownloadSpeed(int speed);
     void setUploadSpeed(int speed);
+    void setPause(bool pause);
 
     bool isValid() const;
 

@@ -1,5 +1,6 @@
 #include "timerangeitemdelegate.h"
 
+#include <QCheckBox>
 #include <QSpinBox>
 #include <QTimeEdit>
 
@@ -29,6 +30,9 @@ QWidget *TimeRangeItemDelegate::createEditor(QWidget *parent, const QStyleOption
         return timeEdit;
     }
 
+    if (col == PAUSE)
+        return new QCheckBox(parent);
+
     if (col == DOWNLOAD || col == UPLOAD)
     {
         auto *spinBox = new QSpinBox(parent);
@@ -47,7 +51,7 @@ void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &in
 
     if (col == FROM || col == TO)
     {
-        auto *timeEdit = static_cast<QTimeEdit*>(editor);
+        auto *timeEdit = qobject_cast<QTimeEdit*>(editor);
         timeEdit->setTime(index.data(Qt::UserRole).toTime());
         connect(timeEdit, &QTimeEdit::timeChanged, this, [this, timeEdit, index](const QTime time)
         {
@@ -58,9 +62,14 @@ void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &in
             timeEdit->setStyleSheet("border: 1px solid " + color);
         });
     }
+    else if (col == PAUSE)
+    {
+        auto *checkBox = qobject_cast<QCheckBox*>(editor);
+        checkBox->setChecked(index.data(Qt::UserRole).toBool());
+    }
     else if (col == DOWNLOAD || col == UPLOAD)
     {
-        auto *spinBox = static_cast<QSpinBox*>(editor);
+        auto *spinBox = qobject_cast<QSpinBox*>(editor);
         spinBox->setValue(index.data(Qt::UserRole).toInt());
     }
 }
@@ -73,16 +82,21 @@ void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *op
 
     if (col == FROM || col == TO)
     {
-        QTime time = static_cast<QTimeEdit*>(editor)->time();
+        QTime time = qobject_cast<QTimeEdit*>(editor)->time();
 
         if (col == FROM)
             m_scheduleDay.editStartTimeAt(row, time);
         else
             m_scheduleDay.editEndTimeAt(row, time);
     }
+    else if (col == PAUSE)
+    {
+        bool pause = qobject_cast<QCheckBox*>(editor)->isChecked();
+        m_scheduleDay.editPauseAt(row, pause);
+    }
     else if (col == DOWNLOAD || col == UPLOAD)
     {
-        int value = static_cast<QSpinBox*>(editor)->value();
+        int value = qobject_cast<QSpinBox*>(editor)->value();
 
         if (col == DOWNLOAD)
             m_scheduleDay.editDownloadSpeedAt(row, value);

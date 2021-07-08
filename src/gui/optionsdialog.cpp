@@ -34,6 +34,7 @@
 #include <QAbstractItemModel>
 #include <QAction>
 #include <QApplication>
+#include <QCheckBox>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
@@ -656,6 +657,7 @@ void OptionsDialog::initializeSchedulerTables()
         {
             tr("From", "i.e.: Beginning of time range"),
             tr("To", "i.e.: End of time range"),
+            tr("Pause?", "i.e.: Pause the torrent session"),
             tr("Download", "i.e.: Download speed limit"),
             tr("Upload", "i.e.: Upload speed limit")
         });
@@ -730,24 +732,24 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
         auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
         auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
-        auto *dl = new QTableWidgetItem(dlText);
-        auto *ul = new QTableWidgetItem(ulText);
+        auto *pause = new QTableWidgetItem(timeRange.pause ? "Yes" : "No");
+        auto *dl = new QTableWidgetItem(timeRange.pause ? tr("Paused") : dlText);
+        auto *ul = new QTableWidgetItem(timeRange.pause ? tr("Paused") : ulText);
 
         start->setData(Qt::UserRole, timeRange.startTime);
         end->setData(Qt::UserRole, timeRange.endTime);
+        pause->setData(Qt::UserRole, timeRange.pause);
         dl->setData(Qt::UserRole, timeRange.downloadSpeed);
         ul->setData(Qt::UserRole, timeRange.uploadSpeed);
 
         scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
         scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
+        scheduleTable->setItem(i, Gui::ScheduleColumn::PAUSE, pause);
         scheduleTable->setItem(i, Gui::ScheduleColumn::DOWNLOAD, dl);
         scheduleTable->setItem(i, Gui::ScheduleColumn::UPLOAD, ul);
     }
 
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::FROM, 76);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::TO, 76);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::DOWNLOAD, 112);
-    scheduleTable->setColumnWidth(Gui::ScheduleColumn::UPLOAD, 112);
+    scheduleTable->resizeColumnsToContents();
 }
 
 void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
@@ -759,7 +761,8 @@ void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
             dialog->timeFrom(),
             dialog->timeTo(),
             dialog->downloadSpeed(),
-            dialog->uploadSpeed()
+            dialog->uploadSpeed(),
+            dialog->pause()
         });
     });
 

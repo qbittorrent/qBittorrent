@@ -24,6 +24,11 @@ void TimeRange::setUploadSpeed(int speed)
     uploadSpeed = speed;
 }
 
+void TimeRange::setPause(bool pause)
+{
+    this->pause = pause;
+}
+
 bool TimeRange::isValid() const
 {
     return startTime.isValid() && endTime.isValid() && (startTime < endTime);
@@ -37,7 +42,8 @@ QJsonObject TimeRange::toJsonObject() const
         {"start", startTime.hour() * 100 + startTime.minute()},
         {"end", endTime.hour() * 100 + endTime.minute()},
         {"dl", downloadSpeed},
-        {"ul", uploadSpeed}
+        {"ul", uploadSpeed},
+        {"pause", pause}
     };
 }
 
@@ -45,6 +51,7 @@ TimeRange TimeRange::fromJsonObject(const QJsonObject jsonObject)
 {
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
+    bool pause = jsonObject["pause"].toBool();
 
     QTime startTime = QTime(start / 100, start % 100);
     QTime endTime = QTime(end / 100, end % 100, 59, 999);
@@ -57,7 +64,8 @@ TimeRange TimeRange::fromJsonObject(const QJsonObject jsonObject)
         startTime,
         endTime,
         jsonObject["dl"].toInt(0),
-        jsonObject["ul"].toInt(0)
+        jsonObject["ul"].toInt(0),
+        pause
     };
 }
 

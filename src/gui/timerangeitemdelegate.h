@@ -10,6 +10,7 @@ namespace Gui
     {
         FROM,
         TO,
+        PAUSE,
         DOWNLOAD,
         UPLOAD,
         COL_COUNT

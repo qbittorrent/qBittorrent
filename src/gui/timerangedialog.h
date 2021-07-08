@@ -21,6 +21,7 @@ public:
     QTime timeTo() const;
     int downloadSpeed() const;
     int uploadSpeed() const;
+    bool pause() const;
 
 private slots:
     void timesUpdated();
