@@ -69,7 +69,7 @@ bool ScheduleDay::canSetEndTime(int index, QTime time)
         || (index < last && time < m_timeRanges[index + 1].startTime));
 }
 
-void ScheduleDay::editStartTimeAt(int index, const QTime time)
+void ScheduleDay::setStartTimeAt(int index, const QTime time)
 {
     if (canSetStartTime(index, time))
     {
@@ -78,7 +78,7 @@ void ScheduleDay::editStartTimeAt(int index, const QTime time)
     }
 }
 
-void ScheduleDay::editEndTimeAt(int index, const QTime time)
+void ScheduleDay::setEndTimeAt(int index, const QTime time)
 {
     if (canSetEndTime(index, time))
     {
@@ -87,21 +87,21 @@ void ScheduleDay::editEndTimeAt(int index, const QTime time)
     }
 }
 
-void ScheduleDay::editDownloadSpeedAt(int index, int speed)
+void ScheduleDay::setDownloadSpeedAt(int index, int value)
 {
-    m_timeRanges[index].setDownloadSpeed(speed);
+    m_timeRanges[index].setDownloadSpeed(value);
     emit dayUpdated(m_dayOfWeek);
 }
 
-void ScheduleDay::editUploadSpeedAt(int index, int speed)
+void ScheduleDay::setUploadSpeedAt(int index, int value)
 {
-    m_timeRanges[index].setUploadSpeed(speed);
+    m_timeRanges[index].setUploadSpeed(value);
     emit dayUpdated(m_dayOfWeek);
 }
 
-void ScheduleDay::editPauseAt(int index, bool pause)
+void ScheduleDay::setPauseAt(int index, bool value)
 {
-    m_timeRanges[index].setPause(pause);
+    m_timeRanges[index].setPause(value);
     emit dayUpdated(m_dayOfWeek);
 }
 

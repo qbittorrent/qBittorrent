@@ -459,6 +459,7 @@ namespace BitTorrent
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
         bool isListening() const;
+        bool isPaused() const;
 
         MaxRatioAction maxRatioAction() const;
         void setMaxRatioAction(MaxRatioAction act);

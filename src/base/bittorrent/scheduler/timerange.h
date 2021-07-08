@@ -21,9 +21,9 @@ struct TimeRange
 
     void setStartTime(QTime time);
     void setEndTime(QTime time);
-    void setDownloadSpeed(int speed);
-    void setUploadSpeed(int speed);
-    void setPause(bool pause);
+    void setDownloadSpeed(int value);
+    void setUploadSpeed(int value);
+    void setPause(bool value);
 
     bool isValid() const;
 

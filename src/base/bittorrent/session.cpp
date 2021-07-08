@@ -3820,6 +3820,11 @@ bool Session::isListening() const
     return m_nativeSession->is_listening();
 }
 
+bool Session::isPaused() const
+{
+    return m_nativeSession->is_paused();
+}
+
 MaxRatioAction Session::maxRatioAction() const
 {
     return static_cast<MaxRatioAction>(m_maxRatioAction.get());

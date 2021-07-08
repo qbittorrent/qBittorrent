@@ -22,11 +22,11 @@ public:
 
     bool canSetStartTime(int index, QTime time);
     bool canSetEndTime(int index, QTime time);
-    void editStartTimeAt(int index, QTime time);
-    void editEndTimeAt(int index, QTime time);
-    void editDownloadSpeedAt(int index, int speed);
-    void editUploadSpeedAt(int index, int speed);
-    void editPauseAt(int index, bool pause);
+    void setStartTimeAt(int index, QTime time);
+    void setEndTimeAt(int index, QTime time);
+    void setDownloadSpeedAt(int index, int value);
+    void setUploadSpeedAt(int index, int value);
+    void setPauseAt(int index, bool value);
 
     int getNowIndex();
     TimeRangeConflict conflicts(const TimeRange &timeRange);

@@ -85,23 +85,23 @@ void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *op
         QTime time = qobject_cast<QTimeEdit*>(editor)->time();
 
         if (col == FROM)
-            m_scheduleDay.editStartTimeAt(row, time);
+            m_scheduleDay.setStartTimeAt(row, time);
         else
-            m_scheduleDay.editEndTimeAt(row, time);
+            m_scheduleDay.setEndTimeAt(row, time);
     }
     else if (col == PAUSE)
     {
         bool pause = qobject_cast<QCheckBox*>(editor)->isChecked();
-        m_scheduleDay.editPauseAt(row, pause);
+        m_scheduleDay.setPauseAt(row, pause);
     }
     else if (col == DOWNLOAD || col == UPLOAD)
     {
         int value = qobject_cast<QSpinBox*>(editor)->value();
 
         if (col == DOWNLOAD)
-            m_scheduleDay.editDownloadSpeedAt(row, value);
+            m_scheduleDay.setDownloadSpeedAt(row, value);
         else
-            m_scheduleDay.editUploadSpeedAt(row, value);
+            m_scheduleDay.setUploadSpeedAt(row, value);
     }
 }
 

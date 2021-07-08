@@ -14,19 +14,19 @@ void TimeRange::setEndTime(const QTime time)
         endTime = time;
 }
 
-void TimeRange::setDownloadSpeed(int speed)
+void TimeRange::setDownloadSpeed(int value)
 {
-    downloadSpeed = speed;
+    downloadSpeed = value;
 }
 
-void TimeRange::setUploadSpeed(int speed)
+void TimeRange::setUploadSpeed(int value)
 {
-    uploadSpeed = speed;
+    uploadSpeed = value;
 }
 
-void TimeRange::setPause(bool pause)
+void TimeRange::setPause(bool value)
 {
-    this->pause = pause;
+    pause = value;
 }
 
 bool TimeRange::isValid() const
