@@ -621,16 +621,16 @@ window.qBittorrent.DynamicTable = (function() {
             let row;
 
             if (!this.rows.has(rowId)) {
-                row = {};
+                row = {
+                    'full_data': {},
+                    'rowId': rowId
+                };
                 this.rows.set(rowId, row);
-                row['full_data'] = {};
-                row['rowId'] = rowId;
             }
             else
                 row = this.rows.get(rowId);
 
             row['data'] = data;
-
             for (const x in data)
                 row['full_data'][x] = data[x];
         },
