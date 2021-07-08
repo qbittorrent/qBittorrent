@@ -339,7 +339,7 @@ int TorrentContentModel::getFileIndex(const QModelIndex &index)
     return -1;
 }
 
-QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
+QVariant TorrentContentModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid())
         return {};
@@ -375,6 +375,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, int role) const
         return {};
 
     case Qt::DisplayRole:
+    case Qt::ToolTipRole:
         return item->displayData(index.column());
 
     case Roles::UnderlyingDataRole:
