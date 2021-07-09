@@ -122,12 +122,7 @@ Smtp::Smtp(QObject *parent)
 
     connect(m_socket, &QIODevice::readyRead, this, &Smtp::readyRead);
     connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     connect(m_socket, &QAbstractSocket::errorOccurred, this, &Smtp::error);
-#else
-    connect(m_socket, qOverload<QAbstractSocket::SocketError>(&QAbstractSocket::error)
-            , this, &Smtp::error);
-#endif
 
     // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()
