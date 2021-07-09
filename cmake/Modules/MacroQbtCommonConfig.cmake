@@ -17,7 +17,7 @@ macro(qbt_common_config)
     )
 
     target_compile_definitions(qbt_common_cfg INTERFACE
-        QT_DISABLE_DEPRECATED_BEFORE=0x050e00
+        QT_DISABLE_DEPRECATED_BEFORE=0x050f02
         QT_NO_CAST_TO_ASCII
         QT_NO_CAST_FROM_BYTEARRAY
         QT_USE_QSTRINGBUILDER
