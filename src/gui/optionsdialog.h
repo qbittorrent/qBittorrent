@@ -150,8 +150,8 @@ private:
     // Speed options
     void initializeSchedulerTables();
     static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
-    void openTimeRangeDialog(ScheduleDay *scheduleDay);
-    void removeSelectedTimeRanges(int day);
+    void openScheduleEntryDialog(ScheduleDay *scheduleDay);
+    void removeSelectedScheduleEntries(int day);
     void showScheduleDayContextMenu(int day);
     // Bittorrent options
     int getMaxConnecs() const;

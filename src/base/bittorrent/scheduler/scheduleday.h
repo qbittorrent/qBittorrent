@@ -2,7 +2,7 @@
 
 #include <QObject>
 
-#include "timerange.h"
+#include "scheduleentry.h"
 
 class ScheduleDay final : public QObject
 {
@@ -10,15 +10,15 @@ class ScheduleDay final : public QObject
 
     friend class OptionsDialog;
 
-    ScheduleDay(QList<TimeRange> &timeRanges, int dayOfWeek = -1);
+    ScheduleDay(QList<ScheduleEntry> &entries, int dayOfWeek = -1);
 
 public:
     ScheduleDay(int dayOfWeek);
 
-    QList<TimeRange> timeRanges() const;
-    bool addTimeRange(const TimeRange &timeRange);
-    bool removeTimeRangeAt(const int index);
-    void clearTimeRanges();
+    QList<ScheduleEntry> entries() const;
+    bool addEntry(const ScheduleEntry &entry);
+    bool removeEntryAt(const int index);
+    void clearEntries();
 
     bool canSetStartTime(int index, QTime time);
     bool canSetEndTime(int index, QTime time);
@@ -29,7 +29,7 @@ public:
     void setPauseAt(int index, bool value);
 
     int getNowIndex();
-    TimeRangeConflict conflicts(const TimeRange &timeRange);
+    TimeRangeConflict conflicts(const ScheduleEntry &scheduleEntry);
 
     QJsonArray toJsonArray() const;
     static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored);
@@ -39,5 +39,5 @@ signals:
 
 private:
     int m_dayOfWeek;
-    QList<TimeRange> m_timeRanges;
+    QList<ScheduleEntry> m_entries;
 };

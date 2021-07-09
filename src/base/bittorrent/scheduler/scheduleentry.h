@@ -11,7 +11,7 @@ enum TimeRangeConflict
     Both
 };
 
-struct TimeRange
+struct ScheduleEntry
 {
     QTime startTime;
     QTime endTime;
@@ -28,6 +28,6 @@ struct TimeRange
     bool isValid() const;
 
     QJsonObject toJsonObject() const;
-    static TimeRange fromJsonObject(QJsonObject jsonObject);
+    static ScheduleEntry fromJsonObject(QJsonObject jsonObject);
     static bool validateJsonObject(QJsonObject jsonObject);
 };

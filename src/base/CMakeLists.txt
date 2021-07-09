@@ -25,7 +25,7 @@ add_library(qbt_base STATIC
     bittorrent/resumedatastorage.h
     bittorrent/scheduler/bandwidthscheduler.h
     bittorrent/scheduler/scheduleday.h
-    bittorrent/scheduler/timerange.h
+    bittorrent/scheduler/scheduleentry.h
     bittorrent/session.h
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
@@ -114,7 +114,7 @@ add_library(qbt_base STATIC
     bittorrent/portforwarderimpl.cpp
     bittorrent/scheduler/bandwidthscheduler.cpp
     bittorrent/scheduler/scheduleday.cpp
-    bittorrent/scheduler/timerange.cpp
+    bittorrent/scheduler/scheduleentry.cpp
     bittorrent/session.cpp
     bittorrent/speedmonitor.cpp
     bittorrent/statistics.cpp

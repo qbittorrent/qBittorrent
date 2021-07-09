@@ -61,7 +61,7 @@
 #include "banlistoptionsdialog.h"
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/scheduler/scheduleday.h"
-#include "base/bittorrent/scheduler/timerange.h"
+#include "base/bittorrent/scheduler/scheduleentry.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -79,10 +79,10 @@
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
-#include "gui/timerangeitemdelegate.h"
+#include "gui/scheduleentryitemdelegate.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
-#include "timerangedialog.h"
+#include "scheduleentrydialog.h"
 #include "ui_optionsdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -669,7 +669,7 @@ void OptionsDialog::initializeSchedulerTables()
         scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
         ScheduleDay *scheduleDay = schedule->scheduleDay(day);
-        scheduleTable->setItemDelegate(new TimeRangeItemDelegate(*scheduleDay, scheduleTable));
+        scheduleTable->setItemDelegate(new ScheduleEntryItemDelegate(*scheduleDay, scheduleTable));
 
         m_scheduleDayTables.insert(day, scheduleTable);
         populateScheduleDayTable(scheduleTable, scheduleDay);
@@ -686,10 +686,10 @@ void OptionsDialog::initializeSchedulerTables()
             [this, day]() { showScheduleDayContextMenu(day); });
 
         connect(addButton, &QPushButton::clicked, this,
-            [this, scheduleDay]() { OptionsDialog::openTimeRangeDialog(scheduleDay); });
+            [this, scheduleDay]() { OptionsDialog::openScheduleEntryDialog(scheduleDay); });
 
         connect(removeButton, &QPushButton::clicked, this,
-            [this, day]() { OptionsDialog::removeSelectedTimeRanges(day); });
+            [this, day]() { OptionsDialog::removeSelectedScheduleEntries(day); });
 
         auto *hLayout = new QHBoxLayout();
         hLayout->addWidget(addButton);
@@ -715,32 +715,32 @@ void OptionsDialog::initializeSchedulerTables()
 
 void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay)
 {
-    auto timeRanges = scheduleDay->timeRanges();
-    int rowCount = timeRanges.count();
+    auto scheduleEntries = scheduleDay->entries();
+    int rowCount = scheduleEntries.count();
     scheduleTable->setRowCount(rowCount);
 
     const QLocale locale{Preferences::instance()->getLocale()};
 
     for (int i = 0; i < rowCount; ++i)
     {
-        TimeRange timeRange = timeRanges[i];
+        ScheduleEntry scheduleEntry = scheduleEntries[i];
 
-        QString dlText = (timeRange.downloadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.downloadSpeed * 1024, true);
-        QString ulText = (timeRange.uploadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
-                       : Utils::Misc::friendlyUnit(timeRange.uploadSpeed * 1024, true);
+        QString dlText = (scheduleEntry.downloadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(scheduleEntry.downloadSpeed * 1024, true);
+        QString ulText = (scheduleEntry.uploadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+                       : Utils::Misc::friendlyUnit(scheduleEntry.uploadSpeed * 1024, true);
 
-        auto *start = new QTableWidgetItem(locale.toString(timeRange.startTime, QLocale::ShortFormat));
-        auto *end = new QTableWidgetItem(locale.toString(timeRange.endTime, QLocale::ShortFormat));
-        auto *pause = new QTableWidgetItem(timeRange.pause ? "Yes" : "No");
-        auto *dl = new QTableWidgetItem(timeRange.pause ? tr("Paused") : dlText);
-        auto *ul = new QTableWidgetItem(timeRange.pause ? tr("Paused") : ulText);
+        auto *start = new QTableWidgetItem(locale.toString(scheduleEntry.startTime, QLocale::ShortFormat));
+        auto *end = new QTableWidgetItem(locale.toString(scheduleEntry.endTime, QLocale::ShortFormat));
+        auto *pause = new QTableWidgetItem(scheduleEntry.pause ? "Yes" : "No");
+        auto *dl = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : dlText);
+        auto *ul = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : ulText);
 
-        start->setData(Qt::UserRole, timeRange.startTime);
-        end->setData(Qt::UserRole, timeRange.endTime);
-        pause->setData(Qt::UserRole, timeRange.pause);
-        dl->setData(Qt::UserRole, timeRange.downloadSpeed);
-        ul->setData(Qt::UserRole, timeRange.uploadSpeed);
+        start->setData(Qt::UserRole, scheduleEntry.startTime);
+        end->setData(Qt::UserRole, scheduleEntry.endTime);
+        pause->setData(Qt::UserRole, scheduleEntry.pause);
+        dl->setData(Qt::UserRole, scheduleEntry.downloadSpeed);
+        ul->setData(Qt::UserRole, scheduleEntry.uploadSpeed);
 
         scheduleTable->setItem(i, Gui::ScheduleColumn::FROM, start);
         scheduleTable->setItem(i, Gui::ScheduleColumn::TO, end);
@@ -752,12 +752,12 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     scheduleTable->resizeColumnsToContents();
 }
 
-void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
+void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
 {
-    auto *dialog = new TimeRangeDialog(this, scheduleDay);
+    auto *dialog = new ScheduleEntryDialog(this, scheduleDay);
     connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]()
     {
-        scheduleDay->addTimeRange({
+        scheduleDay->addEntry({
             dialog->timeFrom(),
             dialog->timeTo(),
             dialog->downloadSpeed(),
@@ -770,7 +770,7 @@ void OptionsDialog::openTimeRangeDialog(ScheduleDay *scheduleDay)
     dialog->open();
 }
 
-void OptionsDialog::removeSelectedTimeRanges(const int day)
+void OptionsDialog::removeSelectedScheduleEntries(const int day)
 {
     QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
     QList<QModelIndex> selection = selectionModel->selectedRows();
@@ -781,7 +781,7 @@ void OptionsDialog::removeSelectedTimeRanges(const int day)
             [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
 
         for (const QModelIndex &i : selection)
-            BandwidthScheduler::instance()->scheduleDay(day)->removeTimeRangeAt(i.row());
+            BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(i.row());
 
         selectionModel->clearSelection();
     }
@@ -803,19 +803,19 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     QAction *actionCopyAll = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
     QAction *actionClear = menu->addAction(theme->getIcon("edit-clear"), tr("Clear all"));
 
-    const QList<TimeRange> allRanges = scheduleDay->timeRanges();
+    const QList<ScheduleEntry> allEntries = scheduleDay->entries();
     const QList<QModelIndex> selectedRows = scheduleTable->selectionModel()->selectedRows();
 
     actionCopy->setDisabled(selectedRows.empty());
     actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat("application/json"));
     actionCopyAll->setDisabled(selectedRows.empty());
-    actionClear->setDisabled(allRanges.empty());
+    actionClear->setDisabled(allEntries.empty());
 
-    connect(actionCopy, &QAction::triggered, scheduleDay, [allRanges, selectedRows]()
+    connect(actionCopy, &QAction::triggered, scheduleDay, [allEntries, selectedRows]()
     {
-        auto selectedRanges = allRanges.mid(selectedRows[0].row(), selectedRows.count());
+        auto selectedEntries = allEntries.mid(selectedRows[0].row(), selectedRows.count());
         auto *mimeData = new QMimeData;
-        mimeData->setData("application/json", QJsonDocument(ScheduleDay(selectedRanges).toJsonArray()).toJson());
+        mimeData->setData("application/json", QJsonDocument(ScheduleDay(selectedEntries).toJsonArray()).toJson());
         QApplication::clipboard()->setMimeData(mimeData);
     });
 
@@ -826,24 +826,24 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
         const auto *day = ScheduleDay::fromJsonArray(QJsonDocument::fromJson(json).array(), -1, &errored);
         if (errored) return;
 
-        for (const TimeRange tr : day->timeRanges())
-            scheduleDay->addTimeRange(tr);
+        for (const ScheduleEntry tr : day->entries())
+            scheduleDay->addEntry(tr);
     });
 
-    connect(actionCopyAll, &QAction::triggered, scheduleDay, [schedule, day, allRanges, selectedRows]()
+    connect(actionCopyAll, &QAction::triggered, scheduleDay, [schedule, day, allEntries, selectedRows]()
     {
         for (QModelIndex index : selectedRows)
         {
-            TimeRange timeRange = allRanges[index.row()];
+            ScheduleEntry entry = allEntries[index.row()];
             for (int i = 0; i < 7; ++i)
             {
                 if (i == day) continue;
-                schedule->scheduleDay(i)->addTimeRange(timeRange);
+                schedule->scheduleDay(i)->addEntry(entry);
             }
         }
     });
 
-    connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearTimeRanges);
+    connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearEntries);
 
     menu->popup(QCursor::pos());
 }

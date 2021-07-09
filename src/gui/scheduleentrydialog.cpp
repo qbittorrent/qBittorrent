@@ -1,15 +1,15 @@
-#include "timerangedialog.h"
+#include "scheduleentrydialog.h"
 
 #include <QPushButton>
 
-#include "base/bittorrent/scheduler/timerange.h"
+#include "base/bittorrent/scheduler/scheduleentry.h"
 #include "base/preferences.h"
-#include "ui_timerangedialog.h"
+#include "ui_scheduleentrydialog.h"
 #include "utils.h"
 
-TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed, int maxSpeed)
+ScheduleEntryDialog::ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed, int maxSpeed)
     : QDialog {parent}
-    , m_ui {new Ui::TimeRangeDialog}
+    , m_ui {new Ui::ScheduleEntryDialog}
     , m_scheduleDay {scheduleDay}
 {
     m_ui->setupUi(this);
@@ -27,27 +27,27 @@ TimeRangeDialog::TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int 
     m_ui->timeEditTo->setTime(QTime(23, 59, 59, 999));
 
     emit timesUpdated();
-    connect(m_ui->timeEditFrom, &QTimeEdit::timeChanged, this, &TimeRangeDialog::timesUpdated);
-    connect(m_ui->timeEditTo, &QTimeEdit::timeChanged, this, &TimeRangeDialog::timesUpdated);
+    connect(m_ui->timeEditFrom, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
+    connect(m_ui->timeEditTo, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
 
     Utils::Gui::resize(this);
 }
 
-TimeRangeDialog::~TimeRangeDialog()
+ScheduleEntryDialog::~ScheduleEntryDialog()
 {
     delete m_ui;
 }
 
-void TimeRangeDialog::timesUpdated()
+void ScheduleEntryDialog::timesUpdated()
 {
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(isValid());
 }
 
-bool TimeRangeDialog::isValid() const
+bool ScheduleEntryDialog::isValid() const
 {
-    bool timeRangesValid = timeFrom().secsTo(timeTo()) > 0;
-    TimeRange timeRange = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed(), pause()};
-    TimeRangeConflict conflict = m_scheduleDay->conflicts(timeRange);
+    bool timeRangeIsValid = timeFrom().secsTo(timeTo()) > 0;
+    ScheduleEntry scheduleEntry = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed(), pause()};
+    TimeRangeConflict conflict = m_scheduleDay->conflicts(scheduleEntry);
 
     const QString borderStyle = "border: 1px solid %1";
     QString startTimeColor = ((conflict & StartTime) == StartTime) ? "red" : "green";
@@ -55,30 +55,30 @@ bool TimeRangeDialog::isValid() const
     m_ui->timeEditFrom->setStyleSheet(borderStyle.arg(startTimeColor));
     m_ui->timeEditTo->setStyleSheet(borderStyle.arg(endTimeColor));
 
-    return timeRangesValid && (conflict == NoConflict);
+    return timeRangeIsValid && (conflict == NoConflict);
 }
 
-int TimeRangeDialog::downloadSpeed() const
+int ScheduleEntryDialog::downloadSpeed() const
 {
     return m_ui->downloadSpinBox->value();
 }
 
-int TimeRangeDialog::uploadSpeed() const
+int ScheduleEntryDialog::uploadSpeed() const
 {
     return m_ui->uploadSpinBox->value();
 }
 
-QTime TimeRangeDialog::timeFrom() const
+QTime ScheduleEntryDialog::timeFrom() const
 {
     return m_ui->timeEditFrom->time();
 }
 
-QTime TimeRangeDialog::timeTo() const
+QTime ScheduleEntryDialog::timeTo() const
 {
     return m_ui->timeEditTo->time();
 }
 
-bool TimeRangeDialog::pause() const
+bool ScheduleEntryDialog::pause() const
 {
     return m_ui->pauseCheckBox->isChecked();
 }

@@ -1,4 +1,4 @@
-#include "timerangeitemdelegate.h"
+#include "scheduleentryitemdelegate.h"
 
 #include <QCheckBox>
 #include <QSpinBox>
@@ -10,13 +10,13 @@
 
 using namespace Gui;
 
-TimeRangeItemDelegate::TimeRangeItemDelegate(ScheduleDay &scheduleDay, QObject *parent)
+ScheduleEntryItemDelegate::ScheduleEntryItemDelegate(ScheduleDay &scheduleDay, QObject *parent)
     : QStyledItemDelegate {parent}
     , m_scheduleDay {scheduleDay}
 {
 }
 
-QWidget *TimeRangeItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
+QWidget *ScheduleEntryItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(option)
     int col = index.column();
@@ -45,7 +45,7 @@ QWidget *TimeRangeItemDelegate::createEditor(QWidget *parent, const QStyleOption
     return nullptr;
 }
 
-void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     int col = index.column();
 
@@ -74,7 +74,7 @@ void TimeRangeItemDelegate::setEditorData(QWidget *editor, const QModelIndex &in
     }
 }
 
-void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *option, const QModelIndex &index) const
+void ScheduleEntryItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *option, const QModelIndex &index) const
 {
     Q_UNUSED(option)
     int col = index.column();
@@ -105,7 +105,7 @@ void TimeRangeItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *op
     }
 }
 
-void TimeRangeItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void ScheduleEntryItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     Q_UNUSED(index)
     editor->setGeometry(option.rect);

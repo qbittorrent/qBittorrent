@@ -10,28 +10,28 @@ ScheduleDay::ScheduleDay(int dayOfWeek)
 {
 }
 
-ScheduleDay::ScheduleDay(QList<TimeRange> &timeRanges, int dayOfWeek)
+ScheduleDay::ScheduleDay(QList<ScheduleEntry> &entries, int dayOfWeek)
     : m_dayOfWeek(dayOfWeek)
-    , m_timeRanges(timeRanges)
+    , m_entries(entries)
 {
 }
 
-QList<TimeRange> ScheduleDay::timeRanges() const
+QList<ScheduleEntry> ScheduleDay::entries() const
 {
-    return m_timeRanges;
+    return m_entries;
 }
 
-bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
+bool ScheduleDay::addEntry(const ScheduleEntry &entry)
 {
-    if (conflicts(timeRange))
+    if (conflicts(entry))
         return false;
 
-    m_timeRanges.append(timeRange);
-    for (int i = 0; i < m_timeRanges.count(); ++i)
+    m_entries.append(entry);
+    for (int i = 0; i < m_entries.count(); ++i)
     {
-        if (m_timeRanges[i].startTime > timeRange.startTime)
+        if (m_entries[i].startTime > entry.startTime)
         {
-            m_timeRanges.move(m_timeRanges.count() - 1, i);
+            m_entries.move(m_entries.count() - 1, i);
             break;
         }
     }
@@ -40,40 +40,40 @@ bool ScheduleDay::addTimeRange(const TimeRange &timeRange)
     return true;
 }
 
-bool ScheduleDay::removeTimeRangeAt(const int index)
+bool ScheduleDay::removeEntryAt(const int index)
 {
-    if (index >= m_timeRanges.count())
+    if (index >= m_entries.count())
         return false;
 
-    m_timeRanges.removeAt(index);
+    m_entries.removeAt(index);
     emit dayUpdated(m_dayOfWeek);
     return true;
 }
 
-void ScheduleDay::clearTimeRanges()
+void ScheduleDay::clearEntries()
 {
-    m_timeRanges.clear();
+    m_entries.clear();
     emit dayUpdated(m_dayOfWeek);
 }
 
 bool ScheduleDay::canSetStartTime(int index, QTime time)
 {
-    return (time < m_timeRanges[index].endTime) && ((index == 0)
-        || (index > 0 && time > m_timeRanges[index - 1].endTime));
+    return (time < m_entries[index].endTime) && ((index == 0)
+        || (index > 0 && time > m_entries[index - 1].endTime));
 }
 
 bool ScheduleDay::canSetEndTime(int index, QTime time)
 {
-    int last = m_timeRanges.count() - 1;
-    return (time > m_timeRanges[index].startTime) && ((index == last)
-        || (index < last && time < m_timeRanges[index + 1].startTime));
+    int last = m_entries.count() - 1;
+    return (time > m_entries[index].startTime) && ((index == last)
+        || (index < last && time < m_entries[index + 1].startTime));
 }
 
 void ScheduleDay::setStartTimeAt(int index, const QTime time)
 {
     if (canSetStartTime(index, time))
     {
-        m_timeRanges[index].setStartTime(time);
+        m_entries[index].setStartTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
 }
@@ -82,50 +82,50 @@ void ScheduleDay::setEndTimeAt(int index, const QTime time)
 {
     if (canSetEndTime(index, time))
     {
-        m_timeRanges[index].setEndTime(time);
+        m_entries[index].setEndTime(time);
         emit dayUpdated(m_dayOfWeek);
     }
 }
 
 void ScheduleDay::setDownloadSpeedAt(int index, int value)
 {
-    m_timeRanges[index].setDownloadSpeed(value);
+    m_entries[index].setDownloadSpeed(value);
     emit dayUpdated(m_dayOfWeek);
 }
 
 void ScheduleDay::setUploadSpeedAt(int index, int value)
 {
-    m_timeRanges[index].setUploadSpeed(value);
+    m_entries[index].setUploadSpeed(value);
     emit dayUpdated(m_dayOfWeek);
 }
 
 void ScheduleDay::setPauseAt(int index, bool value)
 {
-    m_timeRanges[index].setPause(value);
+    m_entries[index].setPause(value);
     emit dayUpdated(m_dayOfWeek);
 }
 
 int ScheduleDay::getNowIndex()
 {
     QDateTime now = QDateTime::currentDateTime();
-    for (int i = 0; i < m_timeRanges.count(); ++i)
+    for (int i = 0; i < m_entries.count(); ++i)
     {
-        bool afterStart = now.time() >= m_timeRanges[i].startTime;
-        bool beforeEnd = now.time() < m_timeRanges[i].endTime;
+        bool afterStart = now.time() >= m_entries[i].startTime;
+        bool beforeEnd = now.time() < m_entries[i].endTime;
         if (afterStart && beforeEnd)
             return i;
     }
     return -1;
 }
 
-TimeRangeConflict ScheduleDay::conflicts(const TimeRange &timeRange)
+TimeRangeConflict ScheduleDay::conflicts(const ScheduleEntry &scheduleEntry)
 {
     TimeRangeConflict conflict = NoConflict;
-    for (TimeRange other : m_timeRanges)
+    for (ScheduleEntry other : m_entries)
     {
-        bool startOverlaps = (timeRange.startTime >= other.startTime) && (timeRange.startTime <= other.endTime);
-        bool endOverlaps = (timeRange.endTime >= other.startTime) && (timeRange.endTime <= other.endTime);
-        bool encompasses = (timeRange.startTime <= other.startTime) && (timeRange.endTime >= other.endTime);
+        bool startOverlaps = (scheduleEntry.startTime >= other.startTime) && (scheduleEntry.startTime <= other.endTime);
+        bool endOverlaps = (scheduleEntry.endTime >= other.startTime) && (scheduleEntry.endTime <= other.endTime);
+        bool encompasses = (scheduleEntry.startTime <= other.startTime) && (scheduleEntry.endTime >= other.endTime);
 
         if (encompasses || (startOverlaps && endOverlaps))
             return Both;
@@ -145,8 +145,8 @@ TimeRangeConflict ScheduleDay::conflicts(const TimeRange &timeRange)
 QJsonArray ScheduleDay::toJsonArray() const
 {
     QJsonArray jsonArr;
-    for (TimeRange timeRange : asConst(m_timeRanges))
-        jsonArr.append(timeRange.toJsonObject());
+    for (ScheduleEntry entry : asConst(m_entries))
+        jsonArr.append(entry.toJsonObject());
 
     return jsonArr;
 }
@@ -159,18 +159,18 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
     {
         if (!jValue.isObject())
         {
-            LogMsg(tr("Ignoring invalid value for a time range in day %1 (expected a time range object)")
+            LogMsg(tr("Ignoring invalid value for a entry in day %1.")
                     .arg(QString::number(dayOfWeek)), Log::WARNING);
             *errored = true;
             continue;
         }
 
         QJsonObject jObject = jValue.toObject();
-        if (!TimeRange::validateJsonObject(jObject))
+        if (!ScheduleEntry::validateJsonObject(jObject))
             *errored = true;
 
-        TimeRange timeRange = TimeRange::fromJsonObject(jObject);
-        scheduleDay->addTimeRange(timeRange);
+        ScheduleEntry entry = ScheduleEntry::fromJsonObject(jObject);
+        scheduleDay->addEntry(entry);
     }
 
     return scheduleDay;

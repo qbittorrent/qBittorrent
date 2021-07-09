@@ -6,16 +6,16 @@
 
 namespace Ui
 {
-    class TimeRangeDialog;
+    class ScheduleEntryDialog;
 }
 
-class TimeRangeDialog final : public QDialog
+class ScheduleEntryDialog final : public QDialog
 {
     Q_OBJECT
 
 public:
-    TimeRangeDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed = 100, int maxSpeed = 1000000);
-    ~TimeRangeDialog() override;
+    ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed = 100, int maxSpeed = 1000000);
+    ~ScheduleEntryDialog() override;
 
     QTime timeFrom() const;
     QTime timeTo() const;
@@ -29,6 +29,6 @@ private slots:
 private:
     bool isValid() const;
 
-    Ui::TimeRangeDialog *m_ui;
+    Ui::ScheduleEntryDialog *m_ui;
     ScheduleDay *m_scheduleDay;
 };

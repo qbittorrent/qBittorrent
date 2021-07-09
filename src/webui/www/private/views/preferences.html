@@ -1463,7 +1463,7 @@
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
-                const timeRanges = schedule[dayShorts[day]];
+                const scheduleEntries = schedule[dayShorts[day]];
 
                 let listItem = document.createElement('li');
                 listItem.id = 'scheduleDay' + day.toString();
@@ -1488,15 +1488,15 @@
                 headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
 
                 let tableBody = table.createTBody();
-                timeRanges.forEach(timeRange => {
-                    let start = new Date(0, 0, 0, Math.floor(timeRange.start / 100), timeRange.start % 100);
-                    let end = new Date(0, 0, 0, Math.floor(timeRange.end / 100), timeRange.end % 100);
+                scheduleEntries.forEach(entry => {
+                    let start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
+                    let end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
 
                     let row = tableBody.insertRow();
                     row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = timeRange['dl'] + ' KiB/s';
-                    row.insertCell().textContent = timeRange['ul'] + ' KiB/s';
+                    row.insertCell().textContent = entry['dl'] + ' KiB/s';
+                    row.insertCell().textContent = entry['ul'] + ' KiB/s';
                 });
 
                 dayTab.append(tabContent);

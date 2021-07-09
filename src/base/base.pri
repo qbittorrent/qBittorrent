@@ -24,7 +24,7 @@ HEADERS += \
     $$PWD/bittorrent/resumedatastorage.h \
     $$PWD/bittorrent/scheduler/bandwidthscheduler.h \
     $$PWD/bittorrent/scheduler/scheduleday.h \
-    $$PWD/bittorrent/scheduler/timerange.h \
+    $$PWD/bittorrent/scheduler/scheduleentry.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
@@ -114,7 +114,7 @@ SOURCES += \
     $$PWD/bittorrent/portforwarderimpl.cpp \
     $$PWD/bittorrent/scheduler/bandwidthscheduler.cpp \
     $$PWD/bittorrent/scheduler/scheduleday.cpp \
-    $$PWD/bittorrent/scheduler/timerange.cpp \
+    $$PWD/bittorrent/scheduler/scheduleentry.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \

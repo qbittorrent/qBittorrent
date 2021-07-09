@@ -1017,7 +1017,7 @@ void Session::applyBandwidthLimits()
     ScheduleDay *today = m_bwScheduler->today();
     int index = today->getNowIndex();
 
-    if (index > -1 && today->timeRanges()[index].pause)
+    if (index > -1 && today->entries()[index].pause)
         m_nativeSession->pause();
     else
         m_nativeSession->resume();
@@ -2671,7 +2671,7 @@ int Session::downloadSpeedLimit() const
         int index = today->getNowIndex();
         if (index > -1)
         {
-            int dl = today->timeRanges()[index].downloadSpeed * 1024;
+            int dl = today->entries()[index].downloadSpeed * 1024;
             return (globalDownloadSpeedLimit() == 0) ? dl
                 : std::min(globalDownloadSpeedLimit(), dl);
         }
@@ -2699,7 +2699,7 @@ int Session::uploadSpeedLimit() const
         int index = today->getNowIndex();
         if (index > -1)
         {
-            int ul = today->timeRanges()[index].uploadSpeed * 1024;
+            int ul = today->entries()[index].uploadSpeed * 1024;
             return (globalUploadSpeedLimit() == 0) ? ul
                 : std::min(globalUploadSpeedLimit(), ul);
         }

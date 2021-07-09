@@ -17,12 +17,12 @@ namespace Gui
     };
 }
 
-class TimeRangeItemDelegate final : public QStyledItemDelegate
+class ScheduleEntryItemDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
 
 public:
-    TimeRangeItemDelegate(ScheduleDay &scheduleDay, QObject *parent);
+    ScheduleEntryItemDelegate(ScheduleDay &scheduleDay, QObject *parent);
 
 private:
     QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;

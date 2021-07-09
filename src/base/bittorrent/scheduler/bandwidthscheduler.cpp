@@ -222,30 +222,30 @@ bool BandwidthScheduler::importLegacyScheduler()
 
     for (int day = 0; day < 7; ++day)
     {
-        bool addToScheduleDay = (schedulerDays == EVERY_DAY)
+        bool shouldAdd = (schedulerDays == EVERY_DAY)
             || (schedulerDays == WEEK_DAYS && (day != 5 && day != 6))
             || (schedulerDays == WEEK_ENDS && (day == 5 || day == 6))
             || (day == schedulerDays - 3);
 
         ScheduleDay *scheduleDay = new ScheduleDay(day);
 
-        if (addToScheduleDay)
+        if (shouldAdd)
         {
             if (start > end)
             {
-                scheduleDay->addTimeRange({
+                scheduleDay->addEntry({
                     QTime(0, 0), end,
                     altDownloadLimit, altUploadLimit, false
                 });
 
-                scheduleDay->addTimeRange({
+                scheduleDay->addEntry({
                     start, QTime(23, 59, 59, 999),
                     altDownloadLimit, altUploadLimit, false
                 });
             }
             else
             {
-                scheduleDay->addTimeRange({
+                scheduleDay->addEntry({
                     start, end,
                     altDownloadLimit, altUploadLimit, false
                 });

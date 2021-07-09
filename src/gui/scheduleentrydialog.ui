@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>TimeRangeDialog</class>
- <widget class="QDialog" name="TimeRangeDialog">
+ <class>ScheduleEntryDialog</class>
+ <widget class="QDialog" name="ScheduleEntryDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -133,7 +133,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>TimeRangeDialog</receiver>
+   <receiver>ScheduleEntryDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -149,7 +149,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>TimeRangeDialog</receiver>
+   <receiver>ScheduleEntryDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

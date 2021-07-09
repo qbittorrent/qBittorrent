@@ -1,40 +1,40 @@
-#include "timerange.h"
+#include "scheduleentry.h"
 
 #include "base/logger.h"
 
-void TimeRange::setStartTime(const QTime time)
+void ScheduleEntry::setStartTime(const QTime time)
 {
     if (time.isValid() && time < endTime)
         startTime = time;
 }
 
-void TimeRange::setEndTime(const QTime time)
+void ScheduleEntry::setEndTime(const QTime time)
 {
     if (time.isValid() && time > startTime)
         endTime = time;
 }
 
-void TimeRange::setDownloadSpeed(int value)
+void ScheduleEntry::setDownloadSpeed(int value)
 {
     downloadSpeed = value;
 }
 
-void TimeRange::setUploadSpeed(int value)
+void ScheduleEntry::setUploadSpeed(int value)
 {
     uploadSpeed = value;
 }
 
-void TimeRange::setPause(bool value)
+void ScheduleEntry::setPause(bool value)
 {
     pause = value;
 }
 
-bool TimeRange::isValid() const
+bool ScheduleEntry::isValid() const
 {
     return startTime.isValid() && endTime.isValid() && (startTime < endTime);
 }
 
-QJsonObject TimeRange::toJsonObject() const
+QJsonObject ScheduleEntry::toJsonObject() const
 {
     // Hour*100 for readability (2100 = 9pm, 100 = 1am, and so on)
     return
@@ -47,7 +47,7 @@ QJsonObject TimeRange::toJsonObject() const
     };
 }
 
-TimeRange TimeRange::fromJsonObject(const QJsonObject jsonObject)
+ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject jsonObject)
 {
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
@@ -69,13 +69,13 @@ TimeRange TimeRange::fromJsonObject(const QJsonObject jsonObject)
     };
 }
 
-bool TimeRange::validateJsonObject(const QJsonObject jsonObject)
+bool ScheduleEntry::validateJsonObject(const QJsonObject jsonObject)
 {
     for (const auto &name : {"start", "end"})
     {
         int value = jsonObject[name].toInt(-1);
         if (value < 0 || value > 2359) {
-            LogMsg(QObject::tr("Ignoring invalid %1 time for a time range: %2 (expected number between 0-2359)")
+            LogMsg(QObject::tr("Ignoring invalid %1 time for a schedule entry: %2 (expected number between 0-2359)")
                             .arg(name, QString::number(value)), Log::WARNING);
             return false;
         }
