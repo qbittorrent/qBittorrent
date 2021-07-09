@@ -71,7 +71,7 @@ bool ScheduleDay::canSetEndTime(int index, QTime time)
 
 void ScheduleDay::setStartTimeAt(int index, const QTime time)
 {
-    if (canSetStartTime(index, time))
+    if (m_entries[index].startTime != time && canSetStartTime(index, time))
     {
         m_entries[index].setStartTime(time);
         emit dayUpdated(m_dayOfWeek);
@@ -80,7 +80,7 @@ void ScheduleDay::setStartTimeAt(int index, const QTime time)
 
 void ScheduleDay::setEndTimeAt(int index, const QTime time)
 {
-    if (canSetEndTime(index, time))
+    if (m_entries[index].endTime != time && canSetEndTime(index, time))
     {
         m_entries[index].setEndTime(time);
         emit dayUpdated(m_dayOfWeek);
@@ -89,20 +89,29 @@ void ScheduleDay::setEndTimeAt(int index, const QTime time)
 
 void ScheduleDay::setDownloadSpeedAt(int index, int value)
 {
-    m_entries[index].setDownloadSpeed(value);
-    emit dayUpdated(m_dayOfWeek);
+    if (m_entries[index].downloadSpeed != value)
+    {
+        m_entries[index].setDownloadSpeed(value);
+        emit dayUpdated(m_dayOfWeek);
+    }
 }
 
 void ScheduleDay::setUploadSpeedAt(int index, int value)
 {
-    m_entries[index].setUploadSpeed(value);
-    emit dayUpdated(m_dayOfWeek);
+    if (m_entries[index].uploadSpeed != value)
+    {
+        m_entries[index].setUploadSpeed(value);
+        emit dayUpdated(m_dayOfWeek);
+    }
 }
 
 void ScheduleDay::setPauseAt(int index, bool value)
 {
-    m_entries[index].setPause(value);
-    emit dayUpdated(m_dayOfWeek);
+    if (m_entries[index].pause != value)
+    {
+        m_entries[index].setPause(value);
+        emit dayUpdated(m_dayOfWeek);
+    }
 }
 
 int ScheduleDay::getNowIndex()

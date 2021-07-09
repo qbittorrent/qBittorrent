@@ -55,17 +55,33 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
         timeEdit->setTime(index.data(Qt::UserRole).toTime());
         connect(timeEdit, &QTimeEdit::timeChanged, this, [this, timeEdit, index](const QTime time)
         {
-            bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTime(index.row(), time))
-                || (index.column() == TO && m_scheduleDay.canSetEndTime(index.row(), time));
+            bool hasChanged = (index.column() == FROM && time != m_scheduleDay.entries()[index.row()].startTime)
+                || (index.column() == TO && time != m_scheduleDay.entries()[index.row()].endTime);
 
-            QString color = ok ? "green" : "red";
-            timeEdit->setStyleSheet("border: 1px solid " + color);
+            if (!hasChanged)
+                timeEdit->setStyleSheet("border: none");
+            else
+            {
+                bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTime(index.row(), time))
+                    || (index.column() == TO && m_scheduleDay.canSetEndTime(index.row(), time));
+
+                QString color = ok ? "green" : "red";
+                timeEdit->setStyleSheet("border: 1px solid " + color);
+            }
         });
     }
     else if (col == PAUSE)
     {
         auto *checkBox = qobject_cast<QCheckBox*>(editor);
         checkBox->setChecked(index.data(Qt::UserRole).toBool());
+        connect(checkBox, &QCheckBox::stateChanged, this, [this, checkBox, index](const int value)
+        {
+            bool hasChanged = m_scheduleDay.entries()[index.row()].pause != (value == 2);
+            if (!hasChanged)
+                checkBox->setStyleSheet("border: none");
+            else
+                checkBox->setStyleSheet("border: 2px solid green");
+        });
     }
     else if (col == DOWNLOAD || col == UPLOAD)
     {
