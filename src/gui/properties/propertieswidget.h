@@ -81,6 +81,7 @@ public slots:
     void readSettings();
     void saveSettings();
     void reloadPreferences();
+    void displayFileListHeaderMenu();
     void openItem(const QModelIndex &index) const;
     void loadTrackers(BitTorrent::Torrent *const torrent);
 
