@@ -115,6 +115,7 @@ QString TorrentContentModelItem::displayData(const int column) const
         switch (m_priority)
         {
         case BitTorrent::DownloadPriority::Mixed:
+        case BitTorrent::DownloadPriority::MixedChecked:
             return tr("Mixed", "Mixed (priorities");
         case BitTorrent::DownloadPriority::Ignored:
             return tr("Not downloaded");
