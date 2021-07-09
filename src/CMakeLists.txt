@@ -35,11 +35,11 @@ set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
 find_package(Boost ${minBoostVersion} REQUIRED)
 find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
 find_package(ZLIB ${minZlibVersion} REQUIRED)
-find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
+find_package(Qt6 ${minQtVersion} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
 if (DBUS)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS DBus)
-    set_package_properties(Qt5DBus PROPERTIES
-        DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
+    find_package(Qt6 ${minQtVersion} REQUIRED COMPONENTS DBus)
+    set_package_properties(Qt6DBus PROPERTIES
+        DESCRIPTION "Qt6 module for inter-process communication over the D-Bus protocol"
         PURPOSE "Required by the DBUS feature"
     )
 endif()
@@ -60,10 +60,7 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(base)
 
 if (GUI)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
-    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS WinExtras)
-    endif()
+    find_package(Qt6 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
     add_subdirectory(gui)
 endif()
 

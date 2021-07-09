@@ -60,16 +60,16 @@ int Utils::Compare::naturalCompare(const QString &left, const QString &right, co
         {
             // Both are digits, compare the numbers
 
-            const auto numberView = [](const QString &str, int &pos) -> QStringRef
+            const auto numberView = [](const QStringView str, int &pos) -> QStringView
             {
                 const int start = pos;
                 while ((pos < str.size()) && str[pos].isDigit())
                     ++pos;
-                return str.midRef(start, (pos - start));
+                return str.mid(start, (pos - start));
             };
 
-            const QStringRef numViewL = numberView(left, posL);
-            const QStringRef numViewR = numberView(right, posR);
+            const QStringView numViewL = numberView(left, posL);
+            const QStringView numViewR = numberView(right, posR);
 
             if (numViewL.length() != numViewR.length())
                 return (numViewL.length() - numViewR.length());
