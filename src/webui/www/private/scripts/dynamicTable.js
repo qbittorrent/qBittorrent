@@ -2066,6 +2066,19 @@ window.qBittorrent.DynamicTable = (function() {
                 row.full_data.remaining = 0;
             else
                 row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+        },
+
+        setupTr: function(tr) {
+            tr.addEvent('keydown', function(event) {
+                switch (event.key) {
+                    case "left":
+                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        return false;
+                    case "right":
+                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        return false;
+                }
+            });
         }
     });
 

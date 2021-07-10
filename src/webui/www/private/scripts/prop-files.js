@@ -43,7 +43,9 @@ window.qBittorrent.PropFiles = (function() {
             createPriorityCombo: createPriorityCombo,
             updatePriorityCombo: updatePriorityCombo,
             updateData: updateData,
-            collapseIconClicked: collapseIconClicked
+            collapseIconClicked: collapseIconClicked,
+            expandFolder: expandFolder,
+            collapseFolder: collapseFolder
         };
     };
 
@@ -493,6 +495,20 @@ window.qBittorrent.PropFiles = (function() {
             expandNode(node);
         else
             collapseNode(node);
+    };
+
+    const expandFolder = function(id) {
+        const node = torrentFilesTable.getNode(id);
+        if (node.isFolder) {
+            expandNode(node);
+        }
+    };
+
+    const collapseFolder = function(id) {
+        const node = torrentFilesTable.getNode(id);
+        if (node.isFolder) {
+            collapseNode(node);
+        }
     };
 
     const filesPriorityMenuClicked = function(priority) {
