@@ -52,10 +52,12 @@ protected:
     void run() override;
 
 private:
-    int findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse = false);
-    int trim(char *const data, int start, int end);
-    int parseDATFilterFile();
-    int parseP2PFilterFile();
+    enum class Format
+    {
+        DAT,
+        P2P
+    };
+    template <Format format> int parseTxtFilterFile();
     int getlineInStream(QDataStream &stream, std::string &name, char delim);
     int parseP2BFilterFile();
 
