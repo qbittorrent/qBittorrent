@@ -617,7 +617,8 @@ window.qBittorrent.DynamicTable = (function() {
         onSelectedRowChanged: function() {},
 
         updateRowData: function(data) {
-            const rowId = data['rowId'];
+            // ensure rowId is a string
+            const rowId = `${data['rowId']}`;
             let row;
 
             if (!this.rows.has(rowId)) {
