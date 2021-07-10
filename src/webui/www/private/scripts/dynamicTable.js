@@ -870,6 +870,7 @@ window.qBittorrent.DynamicTable = (function() {
                 switch (state) {
                     case "forcedDL":
                     case "metaDL":
+                    case "forcedMetaDL":
                         state = "downloading";
                         break;
                     case "forcedUP":
@@ -933,6 +934,9 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "metaDL":
                         status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "forcedMetaDL":
+                        status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
@@ -1250,7 +1254,7 @@ window.qBittorrent.DynamicTable = (function() {
                     if (state == 'stalledDL')
                         r = (row['full_data'].upspeed > 0);
                     else
-                        r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
+                        r = state == 'metaDL' || state == 'forcedMetaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
                     if (r == inactive)
                         return false;
                     break;

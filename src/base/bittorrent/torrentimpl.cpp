@@ -833,6 +833,7 @@ bool TorrentImpl::isDownloading() const
 {
     return m_state == TorrentState::Downloading
             || m_state == TorrentState::DownloadingMetadata
+            || m_state == TorrentState::ForcedDownloadingMetadata
             || m_state == TorrentState::StalledDownloading
             || m_state == TorrentState::CheckingDownloading
             || m_state == TorrentState::PausedDownloading
@@ -865,6 +866,7 @@ bool TorrentImpl::isActive() const
         return (uploadPayloadRate() > 0);
 
     return m_state == TorrentState::DownloadingMetadata
+            || m_state == TorrentState::ForcedDownloadingMetadata
             || m_state == TorrentState::Downloading
             || m_state == TorrentState::ForcedDownloading
             || m_state == TorrentState::Uploading
@@ -934,7 +936,7 @@ void TorrentImpl::updateState()
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
-            m_state = TorrentState::DownloadingMetadata;
+            m_state = isForced() ? TorrentState::ForcedDownloadingMetadata : TorrentState::DownloadingMetadata;
     }
     else if ((m_nativeStatus.state == lt::torrent_status::checking_files)
              && (!isPaused() || (m_nativeStatus.flags & lt::torrent_flags::auto_managed)
