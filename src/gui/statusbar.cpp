@@ -66,7 +66,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
     m_connecStatusLblIcon->setToolTip(
         QString::fromLatin1("<b>%1</b><br><i>%2</i>").arg(tr("Connection status:")
-            , tr("No direct connections. This may indicate network configuration problems.")));
+            , tr("No incoming connections.\nIf you have a dedicated IP address, this may indicate a problem with your network configuration.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
@@ -189,7 +189,7 @@ void StatusBar::updateConnectionStatus()
         else
         {
             m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
-            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
+            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No incoming connections.\nIf you have a dedicated IP address, this may indicate a problem with your network configuration.") + QLatin1String("</i>"));
         }
     }
 }
