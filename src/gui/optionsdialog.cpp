@@ -732,7 +732,7 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 
         auto *start = new QTableWidgetItem(locale.toString(scheduleEntry.startTime, QLocale::ShortFormat));
         auto *end = new QTableWidgetItem(locale.toString(scheduleEntry.endTime, QLocale::ShortFormat));
-        auto *pause = new QTableWidgetItem(scheduleEntry.pause ? "Yes" : "No");
+        auto *pause = new QTableWidgetItem(scheduleEntry.pause ? tr("Yes") : tr("No"));
         auto *dl = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : dlText);
         auto *ul = new QTableWidgetItem(scheduleEntry.pause ? tr("Paused") : ulText);
 

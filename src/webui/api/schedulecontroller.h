@@ -1,0 +1,15 @@
+#pragma once
+
+#include "apicontroller.h"
+
+class ScheduleController : public APIController
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ScheduleController)
+
+public:
+    using APIController::APIController;
+
+private slots:
+    void removeScheduleEntryAction();
+};

@@ -7,6 +7,7 @@ HEADERS += \
     $$PWD/api/isessionmanager.h \
     $$PWD/api/logcontroller.h \
     $$PWD/api/rsscontroller.h \
+    $$PWD/api/schedulecontroller.h \
     $$PWD/api/searchcontroller.h \
     $$PWD/api/synccontroller.h \
     $$PWD/api/torrentscontroller.h \
@@ -23,6 +24,7 @@ SOURCES += \
     $$PWD/api/freediskspacechecker.cpp \
     $$PWD/api/logcontroller.cpp \
     $$PWD/api/rsscontroller.cpp \
+    $$PWD/api/schedulecontroller.cpp \
     $$PWD/api/searchcontroller.cpp \
     $$PWD/api/synccontroller.cpp \
     $$PWD/api/torrentscontroller.cpp \

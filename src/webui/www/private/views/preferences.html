@@ -1456,6 +1456,7 @@
                 'QBT_TR(Saturday)QBT_TR[CONTEXT=HttpServer]',
                 'QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]'
             ];
+
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             const schedule = JSON.parse(scheduleJson);
 
@@ -1476,6 +1477,7 @@
                 let dayTab = document.createElement('div');
                 dayTab.id = 'scheduleDayTab' + day.toString();
                 dayTab.className = 'scheduleDayTab';
+                dayTab.setAttribute('data-day', i);
 
                 let tabContent = document.createElement('div');
                 tabContent.className = 'formRow';
@@ -1484,19 +1486,27 @@
                 let headerRow = table.createTHead().insertRow();
                 headerRow.insertCell().textContent = 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]';
+                headerRow.insertCell().textContent = 'QBT_TR(Pause)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
 
                 let tableBody = table.createTBody();
-                scheduleEntries.forEach(entry => {
+                scheduleEntries.forEach((entry, index) => {
                     let start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
                     let end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
 
                     let row = tableBody.insertRow();
                     row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = entry['dl'] + ' KiB/s';
-                    row.insertCell().textContent = entry['ul'] + ' KiB/s';
+                    row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
+                    row.insertCell().textContent = entry.dl + ' KiB/s';
+                    row.insertCell().textContent = entry.ul + ' KiB/s';
+
+                    let removeButton = document.createElement('button');
+                    removeButton.textContent = 'X';
+                    row.insertCell().appendChild(removeButton);
+
+                    removeButton.addEventListener('click', handleScheduleEntryRemove);
                 });
 
                 dayTab.append(tabContent);
@@ -1517,6 +1527,21 @@
             }
 
             MochaUI.initializeTabs('schedulerTabsList');
+        };
+
+        const handleScheduleEntryRemove = (ev) => {
+            const tr = ev.originalTarget.closest('tr');
+            new Request({
+                url: 'api/v2/schedule/removeScheduleEntry',
+                method: 'post',
+                noCache: true,
+                data: {
+                    day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
+                    index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
+                },
+                onSuccess: () => tr.remove(),
+                onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+            }).send();
         };
 
         // Bittorrent tab
