@@ -1067,6 +1067,20 @@
           </widget>
          </item>
          <item>
+          <widget class="QPushButton" name="expandAllButton">
+           <property name="text">
+            <string>Expand All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="collapseAllButton">
+           <property name="text">
+            <string>Collapse All</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
