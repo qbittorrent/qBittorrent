@@ -696,6 +696,32 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
                     , static_cast<int>(priority));
             }
         });
+
+        menu->addSeparator();
+    }
+
+    const bool canExpandOrCollapse = std::any_of(selectedRows.cbegin(), selectedRows.cend(), [this](const QModelIndex &index)
+    {
+        return m_propListModel->hasChildren(index);
+    });
+
+    if (canExpandOrCollapse)
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("expand"), tr("Expand"), this, [this]()
+        {
+            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
+
+            for (qsizetype i = 0; i < selectedRows.length(); ++i)
+                m_ui->filesList->expandRecursively(selectedRows[i]);
+        });
+        menu->addAction(UIThemeManager::instance()->getIcon("collapse"), tr("Collapse"), this, [this]()
+        {
+            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
+
+            for (qsizetype i = 0; i < selectedRows.length(); ++i)
+                m_ui->filesList->collapse(selectedRows[i]);
+        });
+        menu->addSeparator();
     }
 
     // The selected torrent might have disappeared during exec()
