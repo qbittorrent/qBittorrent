@@ -77,6 +77,7 @@ add_library(qbt_gui STATIC
     tristatewidget.h
     uithememanager.h
     utils.h
+    notificationutils.h
     watchedfolderoptionsdialog.h
     watchedfoldersmodel.h
 
@@ -158,6 +159,7 @@ add_library(qbt_gui STATIC
     tristatewidget.cpp
     uithememanager.cpp
     utils.cpp
+    notificationutils.cpp
     watchedfolderoptionsdialog.cpp
     watchedfoldersmodel.cpp
 
