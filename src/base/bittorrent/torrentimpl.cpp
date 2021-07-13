@@ -669,6 +669,11 @@ int TorrentImpl::piecesHave() const
     return m_nativeStatus.num_pieces;
 }
 
+bool TorrentImpl::hasPieceFinished(int index) const
+{
+    return m_nativeHandle.have_piece(static_cast<lt::piece_index_t>(index));
+}
+
 qreal TorrentImpl::progress() const
 {
     if (isChecking())

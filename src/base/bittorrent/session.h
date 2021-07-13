@@ -539,6 +539,7 @@ namespace BitTorrent
         void trackersRemoved(Torrent *torrent, const QVector<TrackerEntry> &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
+        void pieceFinished(Torrent *torrent);
 
     private slots:
         void configureDeferred();
@@ -631,6 +632,7 @@ namespace BitTorrent
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleSocks5Alert(const lt::socks5_alert *p) const;
+        void handlePieceFinishedAlert(const lt::piece_finished_alert *p);
 
         void createTorrent(const lt::torrent_handle &nativeHandle);
 

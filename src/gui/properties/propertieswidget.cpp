@@ -59,6 +59,7 @@
 #include "gui/utils.h"
 #include "downloadedpiecesbar.h"
 #include "peerlistwidget.h"
+#include "piecesmapwidget.h"
 #include "pieceavailabilitybar.h"
 #include "proplistdelegate.h"
 #include "proptabbar.h"
@@ -145,6 +146,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     // Peers list
     m_peerList = new PeerListWidget(this);
     m_ui->vBoxLayoutPeerPage->addWidget(m_peerList);
+    // Pieces map
+    m_piecesMap = new PiecesMapWidget(m_ui->scrollAreaPiecesPage);
+    m_ui->vBoxLayoutPiecesPage->addWidget(m_piecesMap);
     // Tab bar
     m_tabBar = new PropTabBar(nullptr);
     m_tabBar->setContentsMargins(0, 5, 0, 5);
@@ -292,6 +296,7 @@ void PropertiesWidget::clear()
     m_downloadedPieces->clear();
     m_piecesAvailability->clear();
     m_peerList->clear();
+    m_piecesMap->clear();
     m_contentFilterLine->clear();
     m_propListModel->model()->clear();
 }
@@ -529,6 +534,10 @@ void PropertiesWidget::loadDynamicData()
     case PropTabBar::PeersTab:
         // Load peers
         m_peerList->loadPeers(m_torrent);
+        break;
+    case PropTabBar::PiecesTab:
+        // Load pieces
+        m_piecesMap->loadTorrent(m_torrent);
         break;
     case PropTabBar::FilesTab:
         // Files progress
