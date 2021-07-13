@@ -617,7 +617,8 @@ window.qBittorrent.DynamicTable = (function() {
         onSelectedRowChanged: function() {},
 
         updateRowData: function(data) {
-            const rowId = data['rowId'];
+            // ensure rowId is a string
+            const rowId = `${data['rowId']}`;
             let row;
 
             if (!this.rows.has(rowId)) {
@@ -696,8 +697,13 @@ window.qBittorrent.DynamicTable = (function() {
                     this.updateRow(trs[rowPos], fullUpdate);
                 else { // else create a new row in the table
                     const tr = new Element('tr');
+                    // set tabindex so element receives keydown events
+                    // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
+                    tr.setProperty("tabindex", "-1");
 
-                    tr['rowId'] = rows[rowPos]['rowId'];
+                    const rowId = rows[rowPos]['rowId'];
+                    tr.setProperty("data-row-id", rowId);
+                    tr['rowId'] = rowId;
 
                     tr._this = this;
                     tr.addEvent('contextmenu', function(e) {
@@ -733,6 +739,16 @@ window.qBittorrent.DynamicTable = (function() {
                             this._this.selectRow(this.rowId);
                         }
                         return false;
+                    });
+                    tr.addEvent('keydown', function(event) {
+                        switch (event.key) {
+                            case "up":
+                                this._this.selectPreviousRow();
+                                return false;
+                            case "down":
+                                this._this.selectNextRow();
+                                return false;
+                        }
                     });
 
                     this.setupTr(tr);
@@ -811,6 +827,50 @@ window.qBittorrent.DynamicTable = (function() {
 
         getRowIds: function() {
             return this.rows.getKeys();
+        },
+
+        selectNextRow: function() {
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const selectedRowId = this.getSelectedRowId();
+
+            let selectedIndex = -1;
+            for (let i = 0; i < visibleRows.length; ++i) {
+                const row = visibleRows[i];
+                if (row.getProperty("data-row-id") === selectedRowId) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+
+            const isLastRowSelected = (selectedIndex >= (visibleRows.length - 1));
+            if (!isLastRowSelected) {
+                this.deselectAll();
+
+                const newRow = visibleRows[selectedIndex + 1];
+                this.selectRow(newRow.getProperty("data-row-id"));
+            }
+        },
+
+        selectPreviousRow: function() {
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const selectedRowId = this.getSelectedRowId();
+
+            let selectedIndex = -1;
+            for (let i = 0; i < visibleRows.length; ++i) {
+                const row = visibleRows[i];
+                if (row.getProperty("data-row-id") === selectedRowId) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+
+            const isFirstRowSelected = selectedIndex <= 0;
+            if (!isFirstRowSelected) {
+                this.deselectAll();
+
+                const newRow = visibleRows[selectedIndex - 1];
+                this.selectRow(newRow.getProperty("data-row-id"));
+            }
         },
     });
 
@@ -2006,6 +2066,19 @@ window.qBittorrent.DynamicTable = (function() {
                 row.full_data.remaining = 0;
             else
                 row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+        },
+
+        setupTr: function(tr) {
+            tr.addEvent('keydown', function(event) {
+                switch (event.key) {
+                    case "left":
+                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        return false;
+                    case "right":
+                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        return false;
+                }
+            });
         }
     });
 
