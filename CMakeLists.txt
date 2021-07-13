@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default to NEW
+cmake_minimum_required(VERSION 3.20 FATAL_ERROR) # Configurable policies: up to and including CMP0120
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules")
 
 project(qBittorrent
     DESCRIPTION "The qBittorrent BitTorrent client"
@@ -18,7 +18,7 @@ set(minLibtorrentVersion 1.2.14)
 set(minZlibVersion 1.2.11)
 
 # features (some are platform-specific)
-include(CheckCXXSourceCompiles) # TODO: migrate to CheckSourceCompiles in CMake >= 3.19
+include(CheckSourceCompiles)
 include(FeatureSummary)
 include(FeatureOptionsSetup)
 feature_option(STACKTRACE "Enable stacktraces" ON)
@@ -35,7 +35,8 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         OFF "NOT GUI" OFF
     )
     if (STACKTRACE)
-        check_cxx_source_compiles(
+        check_source_compiles(
+            CXX
             "#include <execinfo.h>
             int main(){return 0;}"
             QBITTORRENT_HAS_EXECINFO_H
@@ -48,6 +49,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
     endif()
 elseif (MSVC)
     feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
+    feature_option(COPY_RUNTIME_DEPS_TO_BUILDIR "Copy dynamic build runtime dependencies to the build directory (e.g. DLLs), so that fully dynamic builds can be executed from there directly without requiring PATH setup or installing first." OFF)
 endif()
 
 include(GNUInstallDirs)

@@ -186,9 +186,9 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     find_library(AppKit_LIBRARY AppKit)
 
     target_link_libraries(qbt_base PRIVATE
-        ${AppKit_LIBRARY}
-        ${Carbon_LIBRARY}
-        ${IOKit_LIBRARY}
+        "${AppKit_LIBRARY}"
+        "${Carbon_LIBRARY}"
+        "${IOKit_LIBRARY}"
     )
 elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_link_libraries(qbt_base PRIVATE Iphlpapi)
