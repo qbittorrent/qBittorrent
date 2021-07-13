@@ -35,6 +35,7 @@
 #include <QPainter>
 #include <QScrollArea>
 #include <QStyleOptionButton>
+#include <QTemporaryFile>
 #include <QUrl>
 #include <QVBoxLayout>
 
@@ -315,12 +316,6 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
     toggleFilter(Preferences::instance()->getTrackerFilterState());
 }
 
-TrackerFiltersList::~TrackerFiltersList()
-{
-    for (const QString &iconPath : asConst(m_iconPaths))
-        Utils::Fs::forceRemove(iconPath);
-}
-
 void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::TorrentID &id)
 {
     const QString host {getHost(tracker)};
@@ -512,45 +507,49 @@ void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(url).saveToFile(true)
+                Net::DownloadRequest(url)
                 , this, &TrackerFiltersList::handleFavicoDownloadFinished);
 }
 
 void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult &result)
 {
-    if (result.status != Net::DownloadStatus::Success)
+    const auto tryDownloadPNGIcon = [this, &result]()
     {
         if (result.url.endsWith(".ico", Qt::CaseInsensitive))
             downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
+    };
+
+    if (result.status != Net::DownloadStatus::Success)
+    {
+        tryDownloadPNGIcon();
         return;
     }
 
     const QString host = getHost(result.url);
 
     if (!m_trackers.contains(host))
+        return;
+
+    QListWidgetItem *trackerItem = item(rowFromTracker(host));
+    if (!trackerItem)
+        return;
+
+    auto iconTempFile = Utils::Fs::tempFile(result.data);
+    if (!iconTempFile || !iconTempFile->exists())
     {
-        Utils::Fs::forceRemove(result.filePath);
+        tryDownloadPNGIcon();
         return;
     }
 
-    QListWidgetItem *trackerItem = item(rowFromTracker(host));
-    if (!trackerItem) return;
-
-    QIcon icon(result.filePath);
+    QString iconFilePath = Utils::Fs::toUniformPath(iconTempFile->fileName());
+    QIcon icon(iconFilePath);
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid)
-    {
-        if (result.url.endsWith(".ico", Qt::CaseInsensitive))
-            downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
-        Utils::Fs::forceRemove(result.filePath);
-    }
+        tryDownloadPNGIcon();
     else
-    {
-        trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath));
-        m_iconPaths.append(result.filePath);
-    }
+        trackerItem->setData(Qt::DecorationRole, icon);
 }
 
 void TrackerFiltersList::showMenu(const QPoint &)

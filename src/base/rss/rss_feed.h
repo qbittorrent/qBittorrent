@@ -38,6 +38,7 @@
 #include "rss_item.h"
 
 class AsyncFileStorage;
+class QTemporaryFile;
 
 namespace Net
 {
@@ -122,10 +123,10 @@ namespace RSS
         QHash<QString, Article *> m_articles;
         QList<Article *> m_articlesByDate;
         int m_unreadCount = 0;
-        QString m_iconPath;
         QString m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
         Net::DownloadHandler *m_downloadHandler = nullptr;
+        QTemporaryFile *m_icon = nullptr;
     };
 }

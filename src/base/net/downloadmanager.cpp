@@ -337,17 +337,6 @@ Net::DownloadRequest &Net::DownloadRequest::limit(const qint64 value)
     return *this;
 }
 
-bool Net::DownloadRequest::saveToFile() const
-{
-    return m_saveToFile;
-}
-
-Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
-{
-    m_saveToFile = value;
-    return *this;
-}
-
 Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
 {
     return {url.host(), url.port(80)};

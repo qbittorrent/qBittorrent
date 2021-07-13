@@ -34,6 +34,7 @@
 #include <vector>
 
 #include <QDir>
+#include <QTemporaryFile>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -96,7 +97,6 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
 Feed::~Feed()
 {
     emit aboutToBeDestroyed(this);
-    Utils::Fs::forceRemove(m_iconPath);
 }
 
 QList<Article *> Feed::articles() const
@@ -135,6 +135,9 @@ void Feed::refresh()
 
     m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
+
+    if (!m_icon || !m_icon->exists()) // icon not available, try to redownload it
+        downloadIcon();
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -186,7 +189,20 @@ void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success)
     {
-        m_iconPath = Utils::Fs::toUniformPath(result.filePath);
+        if (m_icon)
+            delete m_icon;
+
+        m_icon = new QTemporaryFile {Utils::Fs::tempPath(), this};
+        if (!m_icon->open())
+        {
+            delete m_icon;
+            m_icon = nullptr;
+            return;
+        }
+
+        m_icon->write(result.data);
+        m_icon->close(); // flush data
+
         emit iconLoaded(this);
     }
 }
@@ -423,7 +439,7 @@ void Feed::downloadIcon()
     const QUrl url(m_url);
     const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(iconUrl).saveToFile(true)
+            Net::DownloadRequest(iconUrl)
                 , this, &Feed::handleIconDownloadFinished);
 }
 
@@ -497,7 +513,7 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
 
 QString Feed::iconPath() const
 {
-    return m_iconPath;
+    return m_icon ? Utils::Fs::toUniformPath(m_icon->fileName()) : QString {};
 }
 
 QJsonValue Feed::toJsonValue(const bool withData) const

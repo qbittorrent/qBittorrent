@@ -45,6 +45,7 @@
 #include <QShortcut>
 #include <QSplitter>
 #include <QStatusBar>
+#include <QTemporaryFile>
 #include <QtGlobal>
 #include <QTimer>
 
@@ -2164,28 +2165,27 @@ void MainWindow::installPython()
     const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe";
 #endif
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(installerURL).saveToFile(true)
+                Net::DownloadRequest(installerURL)
                 , this, &MainWindow::pythonDownloadFinished);
 }
 
 void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
+try
 {
     if (result.status != Net::DownloadStatus::Success)
-    {
-        setCursor(QCursor(Qt::ArrowCursor));
-        QMessageBox::warning(
-                    this, tr("Download error")
-                    , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
-                    .arg(result.errorString));
-        return;
-    }
+        throw RuntimeError {result.errorString};
+
+    auto exeTempFile = Utils::Fs::tempFile(result.data);
+    if (!exeTempFile || !exeTempFile->exists())
+        throw RuntimeError {tr("Failed to save installer. I/O error")};
+
+    auto exeFileName = Utils::Fs::toUniformPath(exeTempFile->fileName()) + ".exe";
+    exeTempFile->rename(exeFileName);
 
     setCursor(QCursor(Qt::ArrowCursor));
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
-
-    QFile::rename(result.filePath, result.filePath + ".exe");
-    installer.start('"' + Utils::Fs::toNativePath(result.filePath) + ".exe\" /passive");
+    installer.start('"' + Utils::Fs::toNativePath(exeFileName) + "\" /passive");
 
     // Wait for setup to complete
     installer.waitForFinished(10 * 60 * 1000);
@@ -2194,9 +2194,6 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     qDebug("Installer stderr: %s", installer.readAllStandardError().data());
     qDebug("Setup should be complete!");
 
-    // Delete temp file
-    Utils::Fs::forceRemove(result.filePath + ".exe");
-
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion())
     {
@@ -2204,4 +2201,13 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
         displaySearchTab(true);
     }
 }
+catch (const RuntimeError &error)
+{
+    setCursor(QCursor(Qt::ArrowCursor));
+    QMessageBox::warning(
+        this, tr("Download error")
+                  , tr("Python setup could not be downloaded, reason: %1.\nPlease install it manually.")
+            .arg(error.message()));
+}
+
 #endif // Q_OS_WIN

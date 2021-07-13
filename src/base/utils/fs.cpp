@@ -56,8 +56,9 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QMimeDatabase>
-#include <QStorageInfo>
 #include <QRegularExpression>
+#include <QStorageInfo>
+#include <QTemporaryFile>
 
 #include "base/bittorrent/common.h"
 #include "base/global.h"
@@ -382,3 +383,14 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
 #endif // Q_OS_WIN
 }
 #endif // Q_OS_HAIKU
+
+std::unique_ptr<QTemporaryFile> Utils::Fs::tempFile(const QByteArray &data)
+{
+    auto tmpFile = std::make_unique<QTemporaryFile>(tempPath());
+    if (!tmpFile->open())
+        return nullptr;
+
+    tmpFile->write(data);
+    tmpFile->close(); // flush data
+    return tmpFile;
+}

@@ -75,14 +75,10 @@ namespace Net
         qint64 limit() const;
         DownloadRequest &limit(qint64 value);
 
-        bool saveToFile() const;
-        DownloadRequest &saveToFile(bool value);
-
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
-        bool m_saveToFile = false;
     };
 
     struct DownloadResult
@@ -91,7 +87,6 @@ namespace Net
         DownloadStatus status;
         QString errorString;
         QByteArray data;
-        QString filePath;
         QString magnet;
     };
 
