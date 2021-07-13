@@ -30,7 +30,11 @@ put an "x" between the square brackets to mark each task as done, like so: [x]
 - [ ] (optional but recommended) I have verified that the **issue is not fixed and is reproducible** in the **[latest CI build](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci.yaml?query=branch%3Amaster+event%3Apush)**
 - [ ] I have **checked the [frequent/common issues list](https://github.com/qbittorrent/qBittorrent/projects/2)** and **searched** the issue tracker for similar bug reports (including closed ones) **to avoid posting a duplicate**
 - [ ] This report is **not a support request or question**, both of which are better suited for either the [discussions section](https://github.com/qbittorrent/qBittorrent/discussions), [forum](https://qbforums.shiki.hu/), or [subreddit](https://www.reddit.com/r/qBittorrent/). The [wiki](https://github.com/qbittorrent/qBittorrent/wiki) did not contain a suitable solution either
-- [ ] I have **pasted/attached the settings file and relevant log(s)** in the **Attachments** section at the bottom of the report. Mandatory: the settings file and at least the most recent log. See [this wiki page](https://github.com/qbittorrent/qBittorrent/wiki/Frequently-Asked-Questions#Where_does_qBittorrent_save_its_settings) if you're not sure where to find them.
+- [ ] I have **pasted/attached all of the following mandatory files** in the **Attachments** section at the bottom of the report (see [this wiki page](https://github.com/qbittorrent/qBittorrent/wiki/Frequently-Asked-Questions#Where_does_qBittorrent_save_its_settings) if you're not sure where to find them):
+
+  - the settings file (e.g. `qBittorrent.ini` on Windows)
+  - log files (at least the most recent one)
+  - the `watched_folders.json` file (if you use the "Watched Folders" feature)
 
 ## Description
 
