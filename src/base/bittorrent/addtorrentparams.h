@@ -35,13 +35,12 @@
 #include <QVector>
 
 #include "base/tagset.h"
+#include "downloadpriority.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 
 namespace BitTorrent
 {
-    enum class DownloadPriority;
-
     struct AddTorrentParams
     {
         QString name;

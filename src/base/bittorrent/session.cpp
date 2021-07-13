@@ -2146,12 +2146,21 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         }
 
         Q_ASSERT(p.file_priorities.empty());
-        std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
-                       , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
+        if (addTorrentParams.filePriorities.size() == 0)
         {
-            return static_cast<lt::download_priority_t>(
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities.resize(metadata.filesCount(), static_cast<lt::download_priority_t>(
+                    static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
+        }
+        else
+        {
+            std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
+                           , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
+            {
+                return static_cast<lt::download_priority_t>(
                         static_cast<lt::download_priority_t::underlying_type>(priority));
-        });
+            });
+        }
 
         p.ti = metadata.nativeInfo();
     }
