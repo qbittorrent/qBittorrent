@@ -453,6 +453,7 @@ namespace BitTorrent
         quint64 getAlltimeDL() const;
         quint64 getAlltimeUL() const;
         bool isListening() const;
+        bool isPaused() const;
 
         MaxRatioAction maxRatioAction() const;
         void setMaxRatioAction(MaxRatioAction act);
@@ -586,7 +587,7 @@ namespace BitTorrent
         void configureNetworkInterfaces(lt::settings_pack &settingsPack);
         void configurePeerClasses();
         void adjustLimits(lt::settings_pack &settingsPack) const;
-        void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
+        void applyBandwidthLimitsToSettingsPack(lt::settings_pack &settingsPack) const;
         void initMetrics();
         void adjustLimits();
         void applyBandwidthLimits();
@@ -594,7 +595,7 @@ namespace BitTorrent
         QStringList getListeningIPs() const;
         void configureListeningInterface();
         void enableTracker(bool enable);
-        void enableBandwidthScheduler();
+        void initializeBandwidthScheduler();
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();

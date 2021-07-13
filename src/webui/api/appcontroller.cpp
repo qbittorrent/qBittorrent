@@ -33,6 +33,7 @@
 #include <algorithm>
 
 #include <QCoreApplication>
+#include <QDateTime>
 #include <QDebug>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -43,6 +44,7 @@
 #include <QTimer>
 #include <QTranslator>
 
+#include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/net/portforwarder.h"
@@ -192,13 +194,10 @@ void AppController::preferencesAction()
     data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
-    const QTime start_time = pref->getSchedulerStartTime();
-    data["schedule_from_hour"] = start_time.hour();
-    data["schedule_from_min"] = start_time.minute();
-    const QTime end_time = pref->getSchedulerEndTime();
-    data["schedule_to_hour"] = end_time.hour();
-    data["schedule_to_min"] = end_time.minute();
-    data["scheduler_days"] = pref->getSchedulerDays();
+    data["scheduler_json"] = QString(BandwidthScheduler::instance()->getJson());
+    const QLocale locale{pref->getLocale()};
+    data["locale_first_day"] = locale.firstDayOfWeek() - 1;
+    data["current_day_of_week"] = QDate::currentDate().dayOfWeek() - 1;
 
     // Bittorrent
     // Privacy
@@ -228,7 +227,7 @@ void AppController::preferencesAction()
 
     // Web UI
     // Language
-    data["locale"] = pref->getLocale();
+    data["locale"] = locale.name();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
     data["web_ui_address"] = pref->getWebUiAddress();
@@ -546,15 +545,10 @@ void AppController::setPreferencesAction()
         session->setIncludeOverheadInLimits(it.value().toBool());
     if (hasKey("limit_lan_peers"))
         session->setIgnoreLimitsOnLAN(!it.value().toBool());
+
     // Scheduling
     if (hasKey("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(it.value().toBool());
-    if (m.contains("schedule_from_hour") && m.contains("schedule_from_min"))
-        pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(), m["schedule_from_min"].toInt()));
-    if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
-        pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
-    if (hasKey("scheduler_days"))
-        pref->setSchedulerDays(SchedulerDays(it.value().toInt()));
 
     // Bittorrent
     // Privacy

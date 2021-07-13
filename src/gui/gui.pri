@@ -47,6 +47,8 @@ HEADERS += \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/rss/rsswidget.h \
+    $$PWD/scheduleentrydialog.h \
+    $$PWD/scheduleentryitemdelegate.h \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
@@ -128,6 +130,8 @@ SOURCES += \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/rss/rsswidget.cpp \
+    $$PWD/scheduleentrydialog.cpp \
+    $$PWD/scheduleentryitemdelegate.cpp \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
@@ -200,6 +204,7 @@ FORMS += \
     $$PWD/properties/trackersadditiondialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
+    $$PWD/scheduleentrydialog.ui \
     $$PWD/search/pluginselectdialog.ui \
     $$PWD/search/pluginsourcedialog.ui \
     $$PWD/search/searchjobwidget.ui \

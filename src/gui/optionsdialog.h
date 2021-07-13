@@ -30,10 +30,13 @@
 
 #include <QDialog>
 
+#include "base/bittorrent/scheduler/scheduleday.h"
 #include "base/settingvalue.h"
 
 class QCloseEvent;
 class QListWidgetItem;
+class QPoint;
+class QTableWidget;
 
 class AdvancedSettings;
 
@@ -119,6 +122,7 @@ private:
     void saveOptions();
     void loadOptions();
     void initializeLanguageCombo();
+
     // General options
     QString getLocale() const;
 #ifndef Q_OS_MACOS
@@ -143,6 +147,12 @@ private:
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;
+    // Speed options
+    void initializeSchedulerTables();
+    static void populateScheduleDayTable(QTableWidget *scheduleTable, const ScheduleDay *scheduleDay);
+    void openScheduleEntryDialog(ScheduleDay *scheduleDay);
+    void removeSelectedScheduleEntries(int day);
+    void showScheduleDayContextMenu(int day);
     // Bittorrent options
     int getMaxConnecs() const;
     int getMaxConnecsPerTorrent() const;
@@ -176,8 +186,6 @@ private:
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 
-    bool schedTimesOk();
-
     Ui::OptionsDialog *m_ui;
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
@@ -185,6 +193,8 @@ private:
     QPushButton *m_applyButton;
 
     AdvancedSettings *m_advancedSettings;
+
+    QList<QTableWidget*> m_scheduleDayTables;
 
     bool m_refreshingIpFilter = false;
 };

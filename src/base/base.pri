@@ -3,7 +3,6 @@ HEADERS += \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h \
-    $$PWD/bittorrent/bandwidthscheduler.h \
     $$PWD/bittorrent/bencoderesumedatastorage.h \
     $$PWD/bittorrent/cachestatus.h \
     $$PWD/bittorrent/common.h \
@@ -23,6 +22,9 @@ HEADERS += \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/portforwarderimpl.h \
     $$PWD/bittorrent/resumedatastorage.h \
+    $$PWD/bittorrent/scheduler/bandwidthscheduler.h \
+    $$PWD/bittorrent/scheduler/scheduleday.h \
+    $$PWD/bittorrent/scheduler/scheduleentry.h \
     $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
@@ -97,7 +99,6 @@ HEADERS += \
 SOURCES += \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
-    $$PWD/bittorrent/bandwidthscheduler.cpp \
     $$PWD/bittorrent/bencoderesumedatastorage.cpp \
     $$PWD/bittorrent/customstorage.cpp \
     $$PWD/bittorrent/dbresumedatastorage.cpp \
@@ -111,6 +112,9 @@ SOURCES += \
     $$PWD/bittorrent/peeraddress.cpp \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/portforwarderimpl.cpp \
+    $$PWD/bittorrent/scheduler/bandwidthscheduler.cpp \
+    $$PWD/bittorrent/scheduler/scheduleday.cpp \
+    $$PWD/bittorrent/scheduler/scheduleentry.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \

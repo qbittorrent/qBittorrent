@@ -46,6 +46,8 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.h
     rss/htmlbrowser.h
     rss/rsswidget.h
+    scheduleentrydialog.h
+    scheduleentryitemdelegate.h
     search/pluginselectdialog.h
     search/pluginsourcedialog.h
     search/searchjobwidget.h
@@ -127,6 +129,8 @@ add_library(qbt_gui STATIC
     rss/feedlistwidget.cpp
     rss/htmlbrowser.cpp
     rss/rsswidget.cpp
+    scheduleentrydialog.cpp
+    scheduleentryitemdelegate.cpp
     search/pluginselectdialog.cpp
     search/pluginsourcedialog.cpp
     search/searchjobwidget.cpp
@@ -179,6 +183,7 @@ add_library(qbt_gui STATIC
     properties/trackersadditiondialog.ui
     rss/automatedrssdownloader.ui
     rss/rsswidget.ui
+    scheduleentrydialog.ui
     search/pluginselectdialog.ui
     search/pluginsourcedialog.ui
     search/searchjobwidget.ui
