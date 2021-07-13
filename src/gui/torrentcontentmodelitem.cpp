@@ -37,6 +37,7 @@
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
     : m_parentItem(parent)
+    , m_wanted(0)
     , m_size(0)
     , m_remaining(0)
     , m_priority(BitTorrent::DownloadPriority::Normal)
@@ -71,11 +72,24 @@ qulonglong TorrentContentModelItem::size() const
     return m_size;
 }
 
+qulonglong TorrentContentModelItem::wanted() const
+{
+    Q_ASSERT(!isRootItem());
+
+    return m_wanted;
+}
+
 qreal TorrentContentModelItem::progress() const
 {
     Q_ASSERT(!isRootItem());
 
     return (m_size > 0) ? m_progress : 1;
+}
+
+qulonglong TorrentContentModelItem::done() const
+{
+    Q_ASSERT(!isRootItem());
+    return (m_priority == BitTorrent::DownloadPriority::Ignored) ? 0 : m_wanted - m_remaining;
 }
 
 qulonglong TorrentContentModelItem::remaining() const
@@ -129,8 +143,12 @@ QString TorrentContentModelItem::displayData(const int column) const
         return (m_progress >= 1)
                ? QString::fromLatin1("100%")
                : (Utils::String::fromDouble((m_progress * 100), 1) + QLatin1Char('%'));
+    case COL_WANTED:
+        return Utils::Misc::friendlyUnit(m_wanted);
     case COL_SIZE:
         return Utils::Misc::friendlyUnit(m_size);
+    case COL_DONE:
+        return Utils::Misc::friendlyUnit(done());
     case COL_REMAINING:
         return Utils::Misc::friendlyUnit(remaining());
     case COL_AVAILABILITY:
@@ -163,8 +181,12 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
         return static_cast<int>(m_priority);
     case COL_PROGRESS:
         return progress() * 100;
+    case COL_WANTED:
+        return m_wanted;
     case COL_SIZE:
         return m_size;
+    case COL_DONE:
+        return done();
     case COL_REMAINING:
         return remaining();
     case COL_AVAILABILITY:

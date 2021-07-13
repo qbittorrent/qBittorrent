@@ -42,9 +42,11 @@ class PropertiesWidget;
 enum PropColumn
 {
     NAME,
-    PCSIZE,
     PROGRESS,
     PRIORITY,
+    PCSIZE,
+    WANTED,
+    DONE,
     REMAINING,
     AVAILABILITY
 };

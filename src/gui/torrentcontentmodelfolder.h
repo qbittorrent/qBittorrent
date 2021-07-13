@@ -49,6 +49,7 @@ public:
     ItemType itemType() const override;
 
     void increaseSize(qulonglong delta);
+    void updateWanted(qulonglong delta);
     void recalculateProgress();
     void recalculateAvailability();
     void updatePriority();

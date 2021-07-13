@@ -44,7 +44,7 @@ TorrentContentModelFile::TorrentContentModelFile(const QString &fileName, qulong
     if (m_name.endsWith(QB_EXT))
         m_name.chop(4);
 
-    m_size = fileSize;
+    m_wanted = m_size = fileSize;
 }
 
 int TorrentContentModelFile::fileIndex() const
@@ -59,7 +59,13 @@ void TorrentContentModelFile::setPriority(BitTorrent::DownloadPriority newPriori
     if (m_priority == newPriority)
         return;
 
+    if (m_priority != BitTorrent::DownloadPriority::Ignored && newPriority == BitTorrent::DownloadPriority::Ignored)
+      m_parentItem->updateWanted(-m_size);
+    else if (m_priority == BitTorrent::DownloadPriority::Ignored && newPriority != BitTorrent::DownloadPriority::Ignored)
+      m_parentItem->updateWanted(m_size);
+
     m_priority = newPriority;
+    m_wanted = m_priority == BitTorrent::DownloadPriority::Ignored ? 0 : m_size;
 
     // Update parent
     if (updateParent)
