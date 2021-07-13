@@ -7,10 +7,9 @@ name: GitHub Actions CI
 on: [pull_request, push]
 
 env:
-  VCPKG_COMMIT: c5ac711fefa6cacbd6bb6335349e36a765babf87
+  VCPKG_COMMIT: b361c2eefa3966cb7cec45275aff32e90430aaa6
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: v1.2.14
 
 jobs:
 
@@ -21,6 +20,7 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
+        libtorrent_version: ["v1.2.14", "RC_1_2", "v2.0.4", "RC_2_0"]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -49,10 +49,20 @@ jobs:
         sudo add-apt-repository ppa:beineri/opt-qt-5.14.2-focal
         sudo apt install qt514base qt514svg qt514tools
 
-    - name: install libtorrent from source
+    - name: get libtorrent source code
       run: |
         git clone https://github.com/arvidn/libtorrent && cd libtorrent
-        git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
+        git checkout ${{ matrix.libtorrent_version }}
+
+    - name: checkout libtorrent 2.x submodules
+      if: ${{ startsWith(matrix.libtorrent_version, 'RC_2_') || startsWith(matrix.libtorrent_version, 'v2.') }}
+      run: |
+        cd libtorrent
+        git submodule update --init --recursive
+
+    - name: build and install libtorrent from source
+      run: |
+        cd libtorrent
         cmake -B cmake-build-dir -G "Ninja" \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo \
           -Ddeprecated-functions=OFF \
@@ -75,7 +85,7 @@ jobs:
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}-libtorrent_${{ matrix.libtorrent_version }}
         path: |
           build/compile_commands.json
           build/install_manifest.txt
