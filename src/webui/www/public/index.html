@@ -2,6 +2,14 @@
 <html lang="${LANG}">
 
 <head>
+    <script>
+        let path = window.location.pathname;
+        if (path) {
+            let lastChar = path.substr(path.length - 1);
+            if (lastChar != '/')
+                window.location.replace(window.location.href + '/');
+        }
+    </script>
     <meta charset="UTF-8" />
     <title>qBittorrent QBT_TR(Web UI)QBT_TR[CONTEXT=OptionsDialog]</title>
     <link rel="icon" type="image/png" href="images/qbittorrent32.png" />
