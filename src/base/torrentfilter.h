@@ -56,6 +56,7 @@ public:
         Stalled,
         StalledUploading,
         StalledDownloading,
+        Checking,
         Errored
     };
 
@@ -74,6 +75,7 @@ public:
     static const TorrentFilter StalledTorrent;
     static const TorrentFilter StalledUploadingTorrent;
     static const TorrentFilter StalledDownloadingTorrent;
+    static const TorrentFilter CheckingTorrent;
     static const TorrentFilter ErroredTorrent;
 
     TorrentFilter() = default;
