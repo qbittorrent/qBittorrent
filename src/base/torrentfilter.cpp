@@ -45,6 +45,7 @@ const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
 const TorrentFilter TorrentFilter::StalledTorrent(TorrentFilter::Stalled);
 const TorrentFilter TorrentFilter::StalledUploadingTorrent(TorrentFilter::StalledUploading);
 const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::StalledDownloading);
+const TorrentFilter TorrentFilter::CheckingTorrent(TorrentFilter::Checking);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::Torrent;
@@ -101,6 +102,8 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = StalledUploading;
     else if (filter == "stalled_downloading")
         type = StalledDownloading;
+    else if (filter == "checking")
+        type = Checking;
     else if (filter == "errored")
         type = Errored;
 
@@ -180,6 +183,10 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
         return torrent->state() ==  BitTorrent::TorrentState::StalledUploading;
     case StalledDownloading:
         return torrent->state() ==  BitTorrent::TorrentState::StalledDownloading;
+    case Checking:
+        return (torrent->state() == BitTorrent::TorrentState::CheckingUploading)
+                || (torrent->state() == BitTorrent::TorrentState::CheckingDownloading)
+                || (torrent->state() == BitTorrent::TorrentState::CheckingResumeData);
     case Errored:
         return torrent->isErrored();
     default: // All
