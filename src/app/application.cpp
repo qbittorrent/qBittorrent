@@ -435,16 +435,12 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     // enable command injection via torrent name and other arguments
     // (especially when some automated download mechanism has been setup).
     // See: https://github.com/qbittorrent/qBittorrent/issues/10925
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     QStringList args = QProcess::splitCommand(program);
     if (args.isEmpty())
         return;
 
     const QString command = args.takeFirst();
     QProcess::startDetached(command, args);
-#else
-    QProcess::startDetached(program);
-#endif
 #endif
 }
 
@@ -565,7 +561,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@addPaused=")))
         {
-            torrentParams.addPaused = (param.midRef(11).toInt() != 0);
+            torrentParams.addPaused = (QStringView(param).mid(11).toInt() != 0);
             continue;
         }
 
@@ -595,7 +591,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@skipDialog=")))
         {
-            skipTorrentDialog = (param.midRef(12).toInt() != 0);
+            skipTorrentDialog = (QStringView(param).mid(12).toInt() != 0);
             continue;
         }
 

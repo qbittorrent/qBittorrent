@@ -325,7 +325,7 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
 
                 if (episode.endsWith('-'))
                 { // Infinite range
-                    const int episodeOurs {episode.leftRef(episode.size() - 1).toInt()};
+                    const int episodeOurs {QStringView(episode).left(episode.size() - 1).toInt()};
                     if (((seasonTheirs == seasonOurs) && (episodeTheirs >= episodeOurs)) || (seasonTheirs > seasonOurs))
                         return true;
                 }

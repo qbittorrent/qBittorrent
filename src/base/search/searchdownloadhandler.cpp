@@ -59,7 +59,7 @@ void SearchDownloadHandler::downloadProcessFinished(int exitcode)
     if ((exitcode == 0) && (m_downloadProcess->exitStatus() == QProcess::NormalExit))
     {
         const QString line = QString::fromUtf8(m_downloadProcess->readAllStandardOutput()).trimmed();
-        const QVector<QStringRef> parts = line.splitRef(' ');
+        const QList<QStringView> parts = QStringView(line).split(u' ');
         if (parts.size() == 2)
             path = parts[0].toString();
     }

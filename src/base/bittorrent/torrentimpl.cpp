@@ -1866,9 +1866,9 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
 
-    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', Qt::SkipEmptyParts);
+    QList<QStringView> oldPathParts = QStringView(oldFilePath).split('/', Qt::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
-    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', Qt::SkipEmptyParts);
+    QList<QStringView> newPathParts = QStringView(newFilePath).split('/', Qt::SkipEmptyParts);
     newPathParts.removeLast();  // drop file name part
 
 #if defined(Q_OS_WIN)
@@ -1887,7 +1887,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 
     for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i)
     {
-        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QLatin1String("/")));
+        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QString::fromLatin1("/")));
         oldPathParts.removeLast();
     }
 

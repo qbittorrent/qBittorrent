@@ -37,8 +37,6 @@
 #include <Qt>
 #include <QtContainerFwd>
 
-class QStringRef;
-
 namespace Utils::String
 {
     QString wildcardToRegexPattern(const QString &pattern);
@@ -61,7 +59,7 @@ namespace Utils::String
     std::optional<int> parseInt(const QString &string);
     std::optional<double> parseDouble(const QString &string);
 
-    QString join(const QVector<QStringRef> &strings, const QString &separator);
+    QString join(const QList<QStringView> &strings, QStringView separator);
 
     QString fromDouble(double n, int precision);
 

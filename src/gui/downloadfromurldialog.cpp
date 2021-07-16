@@ -71,10 +71,10 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
 
     // Paste clipboard if there is an URL in it
     const QString clipboardText = qApp->clipboard()->text();
-    const QVector<QStringRef> clipboardList = clipboardText.splitRef('\n');
+    const QList<QStringView> clipboardList = QStringView(clipboardText).split(u'\n');
 
     QSet<QString> uniqueURLs;
-    for (QStringRef strRef : clipboardList)
+    for (QStringView strRef : clipboardList)
     {
         strRef = strRef.trimmed();
         if (strRef.isEmpty()) continue;
@@ -103,10 +103,10 @@ DownloadFromURLDialog::~DownloadFromURLDialog()
 void DownloadFromURLDialog::downloadButtonClicked()
 {
     const QString plainText = m_ui->textUrls->toPlainText();
-    const QVector<QStringRef> urls = plainText.splitRef('\n');
+    const QList<QStringView> urls = QStringView(plainText).split(u'\n');
 
     QSet<QString> uniqueURLs;
-    for (QStringRef url : urls)
+    for (QStringView url : urls)
     {
         url = url.trimmed();
         if (url.isEmpty()) continue;
