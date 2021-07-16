@@ -423,6 +423,7 @@ Session::Session(QObject *parent)
     , m_defaultSavePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads), normalizePath)
     , m_tempPath(BITTORRENT_SESSION_KEY("TempPath"), defaultSavePath() + "temp/", normalizePath)
     , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
+    , m_isSubcategoriesAsSubMenusEnabled(BITTORRENT_SESSION_KEY("SubcategoriesAsSubMenusEnabled"), false)
     , m_isTempPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
     , m_isAutoTMMDisabledByDefault(BITTORRENT_SESSION_KEY("DisableAutoTMMByDefault"), true)
     , m_isDisableAutoTMMWhenCategoryChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategoryChanged"), false)
@@ -819,6 +820,16 @@ void Session::setSubcategoriesEnabled(const bool value)
 
     m_isSubcategoriesEnabled = value;
     emit subcategoriesSupportChanged();
+}
+
+bool Session::isSubcategoriesAsSubMenusEnabled() const
+{
+    return m_isSubcategoriesAsSubMenusEnabled;
+}
+
+void Session::setSubcategoriesAsSubMenusEnabled(const bool value)
+{
+    m_isSubcategoriesAsSubMenusEnabled = value;
 }
 
 QSet<QString> Session::tags() const

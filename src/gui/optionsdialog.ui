@@ -1089,6 +1089,13 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkSubcategoriesAsSubMenus">
+                 <property name="text">
+                  <string>Use Sub-Menus for Subcategories</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QGridLayout" name="gridLayout_4">
                  <item row="1" column="1">
                   <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
