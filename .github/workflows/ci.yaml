@@ -171,10 +171,11 @@ jobs:
 
     strategy:
       matrix:
+        os: [macos-11, macos-10.15]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
       fail-fast: false
 
-    runs-on: macos-10.15
+    runs-on: ${{ matrix.os }}
 
     defaults:
       run:
@@ -246,7 +247,7 @@ jobs:
     - name: upload artifact as zip
       uses: actions/upload-artifact@v2
       with:
-        name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}
+        name: qBittorrent-CI_${{ matrix.os }}_${{ matrix.qbt_gui }}
         path: |
           build/compile_commands.json
           build/target_graph.dot
