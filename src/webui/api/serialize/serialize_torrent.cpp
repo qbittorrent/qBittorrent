@@ -63,6 +63,8 @@ namespace
             return QLatin1String("downloading");
         case BitTorrent::TorrentState::DownloadingMetadata:
             return QLatin1String("metaDL");
+        case BitTorrent::TorrentState::ForcedDownloadingMetadata:
+            return QLatin1String("forcedMetaDL");
         case BitTorrent::TorrentState::PausedDownloading:
             return QLatin1String("pausedDL");
         case BitTorrent::TorrentState::QueuedDownloading:

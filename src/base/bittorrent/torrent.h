@@ -72,6 +72,7 @@ namespace BitTorrent
 
         ForcedDownloading,
         Downloading,
+        ForcedDownloadingMetadata,
         DownloadingMetadata,
         StalledDownloading,
 
