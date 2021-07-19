@@ -1065,7 +1065,7 @@ void Session::initializeNativeSession()
     lt::settings_pack pack;
     pack.set_int(lt::settings_pack::alert_mask, alertMask);
     pack.set_str(lt::settings_pack::peer_fingerprint, peerId);
-    pack.set_bool(lt::settings_pack::listen_system_port_fallback, false);
+    pack.set_bool(lt::settings_pack::listen_system_port_fallback, true);
     pack.set_str(lt::settings_pack::user_agent, USER_AGENT);
     pack.set_bool(lt::settings_pack::use_dht_as_fallback, false);
     // Speed up exit
