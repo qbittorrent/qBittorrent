@@ -264,12 +264,19 @@ window.qBittorrent.DynamicTable = (function() {
                 this.setSortedColumn(el.columnName);
             }.bind(this);
 
+            const onTouch = function(e) {
+                const column = e.target.columnName;
+                this.currentHeaderAction = '';
+                this.setSortedColumn(column);
+            }.bind(this);
+
             const ths = this.fixedTableHeader.getElements('th');
 
             for (let i = 0; i < ths.length; ++i) {
                 const th = ths[i];
                 th.addEvent('mousemove', mouseMoveFn);
                 th.addEvent('mouseout', mouseOutFn);
+                th.addEvent('touchend', onTouch);
                 th.makeResizable({
                     modifiers: {
                         x: '',
