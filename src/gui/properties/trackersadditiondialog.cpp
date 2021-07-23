@@ -59,7 +59,7 @@ QStringList TrackersAdditionDialog::newTrackers() const
     const QString plainText = m_ui->textEditTrackersList->toPlainText();
 
     QStringList cleanTrackers;
-    for (QStringRef url : asConst(plainText.splitRef('\n')))
+    for (QStringView url : asConst(QStringView(plainText).split(u'\n')))
     {
         url = url.trimmed();
         if (!url.isEmpty())

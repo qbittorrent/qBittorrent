@@ -61,7 +61,7 @@ namespace
         {
             if (QDir::isAbsolutePath(filePath)) continue;
 
-            const auto filePathElements = filePath.splitRef('/');
+            const auto filePathElements = QStringView(filePath).split(u'/');
             // if at least one file has no root folder, no common root folder exists
             if (filePathElements.count() <= 1) return {};
 

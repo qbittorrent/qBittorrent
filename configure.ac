@@ -1,3 +1,4 @@
+
 AC_INIT([qbittorrent], [v4.4.0alpha], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -141,7 +142,7 @@ AS_IF([test "x$QT_QMAKE" = "x"],
       [AC_MSG_ERROR([Could not find qmake])
       ])
 AS_IF([test "x$enable_gui" = "xyes"],
-      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.14])
+      [PKG_CHECK_MODULES(Qt5Svg, [Qt5Svg >= 5.15.2])
       ])
 AC_MSG_CHECKING([whether QtDBus should be enabled])
 AS_CASE(["x$enable_qt_dbus"],
