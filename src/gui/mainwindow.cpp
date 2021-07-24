@@ -55,7 +55,6 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"

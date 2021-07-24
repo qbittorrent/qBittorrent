@@ -44,7 +44,6 @@
 #include <QWheelEvent>
 
 #include "base/bittorrent/common.h"
-#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"

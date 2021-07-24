@@ -38,10 +38,8 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
-#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
