@@ -180,6 +180,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY("Size")}
     , m_storeHSplitterSize {SETTINGS_KEY("HorizontalSplitterSizes")}
+    , m_storeLastViewedPage {SETTINGS_KEY("LastViewedPage")}
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);
@@ -570,6 +571,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
         widget->installEventFilter(wheelEventEater);
 
+    m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
+
     Utils::Gui::resize(this, m_storeDialogSize);
     show();
     // Have to be called after show(), because splitter width needed
@@ -618,6 +621,8 @@ OptionsDialog::~OptionsDialog()
     for (const int size : asConst(m_ui->hsplitter->sizes()))
         hSplitterSizes.append(QString::number(size));
     m_storeHSplitterSize = hSplitterSizes;
+
+    m_storeLastViewedPage = m_ui->tabSelection->currentRow();
 
     delete m_ui;
 }
