@@ -306,8 +306,8 @@ namespace BitTorrent
         void setSaveResumeDataInterval(int value);
         int port() const;
         void setPort(int port);
-        bool useRandomPort() const;
-        void setUseRandomPort(bool value);
+        bool useAnyAvailablePort() const;
+        void setUseAnyAvailablePort(bool value);
         QString networkInterface() const;
         void setNetworkInterface(const QString &iface);
         QString networkInterfaceName() const;
@@ -722,7 +722,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
-        CachedSettingValue<bool> m_useRandomPort;
+        CachedSettingValue<bool> m_useAnyAvailablePort;
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;

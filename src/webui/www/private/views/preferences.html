@@ -235,12 +235,12 @@
             <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="upnp_checkbox" />
-            <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="useAnyPortCheckbox" onclick="qBittorrent.Preferences.updatePortValueEnabled();" />
+            <label for="useAnyPortCheckbox">QBT_TR(Use any available port)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="random_port_checkbox" onclick="qBittorrent.Preferences.updatePortValueEnabled();" />
-            <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="upnp_checkbox" />
+            <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
 
@@ -1405,7 +1405,7 @@
 
         // Connection tab
         const updatePortValueEnabled = function() {
-            const checked = $('random_port_checkbox').getProperty('checked');
+            const checked = $('useAnyPortCheckbox').getProperty('checked');
             $('port_value').setProperty('disabled', checked);
         };
 
@@ -1708,7 +1708,7 @@
                         // Listening Port
                         $('port_value').setProperty('value', pref.listen_port.toInt());
                         $('upnp_checkbox').setProperty('checked', pref.upnp);
-                        $('random_port_checkbox').setProperty('checked', pref.random_port);
+                        $('useAnyPortCheckbox').setProperty('checked', pref.random_port);
                         updatePortValueEnabled();
 
                         // Connections Limits
@@ -2024,7 +2024,7 @@
             }
             settings.set('listen_port', listen_port);
             settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
-            settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
+            settings.set('random_port', $('useAnyPortCheckbox').getProperty('checked'));
 
             // Connections Limits
             let max_connec = -1;

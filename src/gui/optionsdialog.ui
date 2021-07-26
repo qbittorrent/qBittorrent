@@ -1491,19 +1491,19 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="useAnyPort">
+                 <property name="text">
+                  <string>Use any available port</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkUPnP">
                  <property name="text">
                   <string>Use UPnP / NAT-PMP port forwarding from my router</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkRandomPort">
-                 <property name="text">
-                  <string>Use different port on each startup</string>
                  </property>
                 </widget>
                </item>
@@ -3281,7 +3281,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  </layout>
                 </widget>
                </item>
-			   <item>
+               <item>
                 <widget class="QGroupBox" name="groupEnableReverseProxySupport">
                  <property name="title">
                   <string>Enable reverse proxy support</string>
@@ -3469,6 +3469,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
+  <tabstop>useAnyPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>textWebUiUsername</tabstop>
   <tabstop>checkWebUi</tabstop>
@@ -3520,7 +3521,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>lineEditAutoRun</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
-  <tabstop>checkRandomPort</tabstop>
   <tabstop>checkMaxConnecs</tabstop>
   <tabstop>spinMaxConnec</tabstop>
   <tabstop>checkMaxConnecsPerTorrent</tabstop>
