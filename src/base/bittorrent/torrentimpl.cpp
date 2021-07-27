@@ -1512,6 +1512,10 @@ void TorrentImpl::endReceivedMetadataHandling(const QString &savePath, const QSt
         p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
 
+    // Use qBittorrent default priority rather than libtorrent's (4)
+    p.file_priorities = std::vector(fileNames.size(), static_cast<lt::download_priority_t>(
+            static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
+
     reload();
 
     // If first/last piece priority was specified when adding this torrent,
