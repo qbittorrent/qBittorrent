@@ -3891,7 +3891,7 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#if (LIBTORRENT_VERSION_NUM >= 20003)
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
@@ -3949,7 +3949,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#if (LIBTORRENT_VERSION_NUM >= 20003)
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
