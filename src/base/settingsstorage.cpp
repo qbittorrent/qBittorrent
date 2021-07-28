@@ -234,6 +234,13 @@ void SettingsStorage::removeValue(const QString &key)
     }
 }
 
+bool SettingsStorage::hasKey(const QString &key) const
+{
+    const QString realKey = mapKey(key);
+    const QReadLocker locker {&m_lock};
+    return m_data.contains(realKey);
+}
+
 QVariantHash TransactionalSettings::read() const
 {
     QVariantHash res;

@@ -153,8 +153,8 @@ void AppController::preferencesAction()
     // Connection
     // Listening Port
     data["listen_port"] = session->port();
+    data["random_port"] = (session->port() == 0);  // deprecated
     data["upnp"] = Net::PortForwarder::instance()->isEnabled();
-    data["random_port"] = session->useAnyAvailablePort();
     // Connections Limits
     data["max_connec"] = session->maxConnections();
     data["max_connec_per_torrent"] = session->maxConnectionsPerTorrent();
@@ -482,12 +482,16 @@ void AppController::setPreferencesAction()
 
     // Connection
     // Listening Port
-    if (hasKey("listen_port"))
+    if (hasKey("random_port") && it.value().toBool())  // deprecated
+    {
+        session->setPort(0);
+    }
+    else if (hasKey("listen_port"))
+    {
         session->setPort(it.value().toInt());
+    }
     if (hasKey("upnp"))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
-    if (hasKey("random_port"))
-        session->setUseAnyAvailablePort(it.value().toBool());
     // Connections Limits
     if (hasKey("max_connec"))
         session->setMaxConnections(it.value().toInt());

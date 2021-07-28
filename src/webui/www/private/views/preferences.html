@@ -235,10 +235,6 @@
             <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="useAnyPortCheckbox" onclick="qBittorrent.Preferences.updatePortValueEnabled();" />
-            <label for="useAnyPortCheckbox">QBT_TR(Use any available port)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
             <input type="checkbox" id="upnp_checkbox" />
             <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -1275,7 +1271,6 @@
                 updateMailAuthSettings: updateMailAuthSettings,
                 updateAutoRun: updateAutoRun,
                 generateRandomPort: generateRandomPort,
-                updatePortValueEnabled: updatePortValueEnabled,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -1404,10 +1399,6 @@
         };
 
         // Connection tab
-        const updatePortValueEnabled = function() {
-            const checked = $('useAnyPortCheckbox').getProperty('checked');
-            $('port_value').setProperty('disabled', checked);
-        };
 
         const updateMaxConnecEnabled = function() {
             const isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
@@ -1708,8 +1699,6 @@
                         // Listening Port
                         $('port_value').setProperty('value', pref.listen_port.toInt());
                         $('upnp_checkbox').setProperty('checked', pref.upnp);
-                        $('useAnyPortCheckbox').setProperty('checked', pref.random_port);
-                        updatePortValueEnabled();
 
                         // Connections Limits
                         const max_connec = pref.max_connec.toInt();
@@ -2018,13 +2007,12 @@
             // Connection tab
             // Listening Port
             const listen_port = $('port_value').getProperty('value').toInt();
-            if (isNaN(listen_port) || listen_port < 1 || listen_port > 65535) {
-                alert("QBT_TR(The port used for incoming connections must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+            if (isNaN(listen_port) || (listen_port < 0) || (listen_port > 65535)) {
+                alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings.set('listen_port', listen_port);
             settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
-            settings.set('random_port', $('useAnyPortCheckbox').getProperty('checked'));
 
             // Connections Limits
             let max_connec = -1;

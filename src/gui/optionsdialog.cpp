@@ -300,7 +300,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
 
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableProxy);
-    connect(m_ui->useAnyPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
     // Apply button is activated when a value is changed
     // Behavior tab
@@ -408,7 +407,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Connection tab
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->useAnyPort, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinDownloadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -770,7 +768,6 @@ void OptionsDialog::saveOptions()
     // Connection preferences
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
-    session->setUseAnyAvailablePort(m_ui->useAnyPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
     session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024);
     session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
@@ -1067,10 +1064,8 @@ void OptionsDialog::loadOptions()
 
     // Connection preferences
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
-    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
-    m_ui->useAnyPort->setChecked(session->useAnyAvailablePort());
     m_ui->spinPort->setValue(session->port());
-    m_ui->spinPort->setDisabled(m_ui->useAnyPort->isChecked());
+    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
     intValue = session->maxConnections();
     if (intValue > 0)

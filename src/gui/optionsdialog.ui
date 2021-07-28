@@ -1457,14 +1457,11 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinPort">
-                   <property name="minimum">
-                    <number>1</number>
+                   <property name="specialValueText">
+                    <string>Any</string>
                    </property>
                    <property name="maximum">
                     <number>65535</number>
-                   </property>
-                   <property name="value">
-                    <number>8999</number>
                    </property>
                   </widget>
                  </item>
@@ -1489,13 +1486,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   </spacer>
                  </item>
                 </layout>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="useAnyPort">
-                 <property name="text">
-                  <string>Use any available port</string>
-                 </property>
-                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkUPnP">
@@ -3469,7 +3459,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkStartPaused</tabstop>
   <tabstop>spinPort</tabstop>
-  <tabstop>useAnyPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>textWebUiUsername</tabstop>
   <tabstop>checkWebUi</tabstop>

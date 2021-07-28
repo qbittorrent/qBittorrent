@@ -79,6 +79,7 @@ public:
     }
 
     void removeValue(const QString &key);
+    bool hasKey(const QString &key) const;
 
 public slots:
     bool save();
