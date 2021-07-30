@@ -1457,14 +1457,11 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinPort">
-                   <property name="minimum">
-                    <number>1</number>
+                   <property name="specialValueText">
+                    <string>Any</string>
                    </property>
                    <property name="maximum">
                     <number>65535</number>
-                   </property>
-                   <property name="value">
-                    <number>8999</number>
                    </property>
                   </widget>
                  </item>
@@ -1497,13 +1494,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  </property>
                  <property name="checked">
                   <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="checkRandomPort">
-                 <property name="text">
-                  <string>Use different port on each startup</string>
                  </property>
                 </widget>
                </item>
@@ -2673,14 +2663,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
                <item row="0" column="0">
-                <widget class="QPlainTextEdit" name="textTrackers">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="focusPolicy">
-                  <enum>Qt::StrongFocus</enum>
-                 </property>
-                </widget>
+                <widget class="QPlainTextEdit" name="textTrackers"/>
                </item>
               </layout>
              </widget>
@@ -3288,7 +3271,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                  </layout>
                 </widget>
                </item>
-			   <item>
+               <item>
                 <widget class="QGroupBox" name="groupEnableReverseProxySupport">
                  <property name="title">
                   <string>Enable reverse proxy support</string>
@@ -3527,7 +3510,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>lineEditAutoRun</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
-  <tabstop>checkRandomPort</tabstop>
   <tabstop>checkMaxConnecs</tabstop>
   <tabstop>spinMaxConnec</tabstop>
   <tabstop>checkMaxConnecsPerTorrent</tabstop>

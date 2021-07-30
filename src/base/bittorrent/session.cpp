@@ -408,7 +408,6 @@ Session::Session(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
-    , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
@@ -1422,13 +1421,12 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
     if (m_listenInterfaceConfigured)
         return;
 
-    const int port = useRandomPort() ? 0 : this->port();
-    if (port > 0)  // user specified port
+    if (port() > 0)  // user has specified port number
         settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = ':' + QString::number(port);
+    const QString portString = ':' + QString::number(port());
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -2759,16 +2757,6 @@ void Session::setPort(const int port)
         if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
     }
-}
-
-bool Session::useRandomPort() const
-{
-    return m_useRandomPort;
-}
-
-void Session::setUseRandomPort(const bool value)
-{
-    m_useRandomPort = value;
 }
 
 QString Session::networkInterface() const
