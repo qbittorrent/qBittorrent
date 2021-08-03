@@ -71,7 +71,7 @@ private:
               m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxBlockPeersOnPrivilegedPorts, m_checkBoxPieceExtentAffinity,
               m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
-              m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage;
+              m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage, m_comboBoxTransferSpeedUnits, m_comboBoxFileSizeUnits;
     QLineEdit m_lineEditAnnounceIP;
 
 #if (LIBTORRENT_VERSION_NUM < 20000)

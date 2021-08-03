@@ -1197,6 +1197,26 @@ void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 }
 #endif
 
+Utils::Misc::unitType Preferences::transferSpeedUnitsPrefix() const
+{
+    return Utils::Misc::unitType(value("Preferences/Advanced/TransferSpeedUnitsPrefix", static_cast<int>(Utils::Misc::unitType::decimalPrefixBits)).toInt());
+}
+
+void Preferences::setTransferSpeedUnitsPrefix(const Utils::Misc::unitType ut)
+{
+    setValue("Preferences/Advanced/TransferSpeedUnitsPrefix", static_cast<int>(ut));
+}
+
+Utils::Misc::unitType Preferences::fileSizeUnitsPrefix() const
+{
+    return Utils::Misc::unitType(value("Preferences/Advanced/FileSizeSpeedUnitsPrefix", static_cast<int>(Utils::Misc::unitType::decimalPrefixBytes)).toInt());
+}
+
+void Preferences::setFileSizeUnitsPrefix(const Utils::Misc::unitType ut)
+{
+    setValue("Preferences/Advanced/FileSizeSpeedUnitsPrefix", static_cast<int>(ut));
+}
+
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.
 

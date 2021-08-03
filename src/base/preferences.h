@@ -32,6 +32,7 @@
 #include <QtContainerFwd>
 #include <QVariant>
 
+#include "base/utils/misc.h"
 #include "base/utils/net.h"
 
 class QDateTime;
@@ -320,6 +321,10 @@ public:
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
 #endif // Q_OS_MACOS
+    Utils::Misc::unitType transferSpeedUnitsPrefix() const;
+    void setTransferSpeedUnitsPrefix(Utils::Misc::unitType ut);
+    Utils::Misc::unitType fileSizeUnitsPrefix() const;
+    void setFileSizeUnitsPrefix(Utils::Misc::unitType ut);
 
     // Stuff that don't appear in the Options GUI but are saved
     // in the same file.

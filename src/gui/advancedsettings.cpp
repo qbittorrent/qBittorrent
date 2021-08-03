@@ -93,6 +93,9 @@ namespace
         // embedded tracker
         TRACKER_STATUS,
         TRACKER_PORT,
+        // units
+        TRANSFER_SPEED_UNITS,
+        FILE_SIZE_UNITS,
         // libtorrent section
         LIBTORRENT_HEADER,
         ASYNC_IO_THREADS,
@@ -313,9 +316,16 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
     session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
 
+    session->setAnnounceToAllTrackers(m_checkBoxAnnounceAllTrackers.isChecked());
+    session->setAnnounceToAllTiers(m_checkBoxAnnounceAllTiers.isChecked());
+
     session->setPeerTurnover(m_spinBoxPeerTurnover.value());
     session->setPeerTurnoverCutoff(m_spinBoxPeerTurnoverCutoff.value());
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
+
+    // Units
+    pref->setTransferSpeedUnitsPrefix(static_cast<Utils::Misc::unitType>(m_comboBoxTransferSpeedUnits.currentIndex()));
+    pref->setFileSizeUnitsPrefix(static_cast<Utils::Misc::unitType>(m_comboBoxFileSizeUnits.currentIndex()));
 }
 
 #if (LIBTORRENT_VERSION_NUM < 20000)
@@ -751,6 +761,15 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxPeerTurnoverInterval.setValue(session->peerTurnoverInterval());
     addRow(PEER_TURNOVER_INTERVAL, (tr("Peer turnover disconnect interval") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#peer_turnover", "(?)"))
             , &m_spinBoxPeerTurnoverInterval);
+
+    // Units
+    m_comboBoxTransferSpeedUnits.addItems({tr("Bytes with decimal prefix (kB/s, MB/s, GB/s...)"), tr("Bits with decimal prefix (kb/s, Mb/s, Gb/s...)"), tr("Bytes with binary prefix (kiB/s, MiB/s, GiB/s...)"), tr("Bits with binary prefix (kib/s, Mib/s, Gib/s...)")});
+    m_comboBoxTransferSpeedUnits.setCurrentIndex(static_cast<int>(pref->transferSpeedUnitsPrefix()));
+    addRow(TRANSFER_SPEED_UNITS, tr("Transfer speed units"), &m_comboBoxTransferSpeedUnits);
+
+    m_comboBoxFileSizeUnits.addItems({tr("Bytes with decimal prefix (kB, MB, GB...)"), tr("Bits with decimal prefix (kb, Mb, Gb...)"), tr("Bytes with binary prefix (kiB, MiB, GiB...)"), tr("Bits with binary prefix (kib, Mib, Gib...)")});
+    m_comboBoxFileSizeUnits.setCurrentIndex(static_cast<int>(pref->fileSizeUnitsPrefix()));
+    addRow(FILE_SIZE_UNITS, tr("File size units"), &m_comboBoxFileSizeUnits);
 }
 
 template <typename T>

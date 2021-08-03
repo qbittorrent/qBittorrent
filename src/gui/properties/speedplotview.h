@@ -40,6 +40,8 @@
 #include <QGraphicsView>
 #include <QMap>
 
+#include "base/utils/misc.h"
+
 class QPen;
 
 using std::chrono::milliseconds;
@@ -127,7 +129,7 @@ private:
         bool enable;
     };
 
-    quint64 maxYValue() const;
+    quint64 maxYValue(Utils::Misc::unitType prefix) const;
     const DataCircularBuffer &currentData() const;
 
     Averager m_averager5Min {5min, 1s};

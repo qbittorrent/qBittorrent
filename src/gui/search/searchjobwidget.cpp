@@ -58,6 +58,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::SearchJobWidget)
     , m_searchHandler(searchHandler)
+    , m_prefix(Preferences::instance()->fileSizeUnitsPrefix())
 {
     m_ui->setupUi(this);
 
@@ -318,9 +319,20 @@ void SearchJobWidget::updateFilter()
     m_proxyModel->enableNameFilter(filteringMode() == NameFilteringMode::OnlyNames);
     // we update size and seeds filter parameters in the model even if they are disabled
     m_proxyModel->setSeedsFilter(m_ui->minSeeds->value(), m_ui->maxSeeds->value());
-    m_proxyModel->setSizeFilter(
-        sizeInBytes(m_ui->minSize->value(), static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex())),
-        sizeInBytes(m_ui->maxSize->value(), static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex())));
+    if (prefixIsInBits(m_prefix))
+    {
+        // At the spinbox we are showing bits but for the search we use bytes
+        m_proxyModel->setSizeFilter(
+            sizeInBytes(m_ui->minSize->value() / 8, static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex()), m_prefix),
+            sizeInBytes(m_ui->maxSize->value() / 8, static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex()), m_prefix));
+
+    }
+    else
+    {
+        m_proxyModel->setSizeFilter(
+            sizeInBytes(m_ui->minSize->value(), static_cast<SizeUnit>(m_ui->minSizeUnit->currentIndex()), m_prefix),
+            sizeInBytes(m_ui->maxSize->value(), static_cast<SizeUnit>(m_ui->maxSizeUnit->currentIndex()), m_prefix));
+    }
 
     nameFilteringModeSetting() = filteringMode();
 
@@ -334,13 +346,13 @@ void SearchJobWidget::fillFilterComboBoxes()
     using Utils::Misc::unitString;
 
     QStringList unitStrings;
-    unitStrings.append(unitString(SizeUnit::Byte));
-    unitStrings.append(unitString(SizeUnit::KibiByte));
-    unitStrings.append(unitString(SizeUnit::MebiByte));
-    unitStrings.append(unitString(SizeUnit::GibiByte));
-    unitStrings.append(unitString(SizeUnit::TebiByte));
-    unitStrings.append(unitString(SizeUnit::PebiByte));
-    unitStrings.append(unitString(SizeUnit::ExbiByte));
+    unitStrings.append(unitString(SizeUnit::B, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Ki, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Me, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Gi, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Te, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Pe, m_prefix));
+    unitStrings.append(unitString(SizeUnit::Ex, m_prefix));
 
     m_ui->minSizeUnit->clear();
     m_ui->maxSizeUnit->clear();
@@ -348,10 +360,10 @@ void SearchJobWidget::fillFilterComboBoxes()
     m_ui->maxSizeUnit->addItems(unitStrings);
 
     m_ui->minSize->setValue(0);
-    m_ui->minSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::MebiByte));
+    m_ui->minSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::Me));
 
     m_ui->maxSize->setValue(-1);
-    m_ui->maxSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::GibiByte));
+    m_ui->maxSizeUnit->setCurrentIndex(static_cast<int>(SizeUnit::Gi));
 
     m_ui->filterMode->clear();
 

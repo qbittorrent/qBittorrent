@@ -37,6 +37,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
 
@@ -49,23 +50,24 @@ namespace
     {
         double arg;
         Utils::Misc::SizeUnit unit;
-        qint64 sizeInBytes() const
+        qint64 sizeInBytes(Utils::Misc::unitType prefix) const
         {
-            return Utils::Misc::sizeInBytes(arg, unit);
+            return Utils::Misc::sizeInBytes(arg, unit, prefix);
         }
     };
 
-    SplittedValue getRoundedYScale(double value)
+    SplittedValue getRoundedYScale(double value, Utils::Misc::unitType prefix)
     {
         using Utils::Misc::SizeUnit;
 
-        if (value == 0.0) return {0, SizeUnit::Byte};
-        if (value <= 12.0) return {12, SizeUnit::Byte};
+        if (value == 0.0) return {0, SizeUnit::B};
+        if (value <= 12.0) return {12, SizeUnit::B};
 
-        SizeUnit calculatedUnit = SizeUnit::Byte;
-        while (value > 1024)
+        int divisor = prefixIsDecimal(prefix) ? 1000 : 1024;
+        SizeUnit calculatedUnit = SizeUnit::B;
+        while (value > divisor)
         {
-            value /= 1024;
+            value /= divisor;
             calculatedUnit = static_cast<SizeUnit>(static_cast<int>(calculatedUnit) + 1);
         }
 
@@ -89,13 +91,13 @@ namespace
         return {10.0, calculatedUnit};
     }
 
-    QString formatLabel(const double argValue, const Utils::Misc::SizeUnit unit)
+    QString formatLabel(const double argValue, const Utils::Misc::SizeUnit unit, const Utils::Misc::unitType prefix)
     {
         // check is there need for digits after decimal separator
         const int precision = (argValue < 10) ? friendlyUnitPrecision(unit) : 0;
         return QLocale::system().toString(argValue, 'f', precision)
                + QString::fromUtf8(C_NON_BREAKING_SPACE)
-               + unitString(unit, true);
+               + unitString(unit, prefix, true);
     }
 }
 
@@ -256,7 +258,7 @@ const SpeedPlotView::DataCircularBuffer &SpeedPlotView::currentData() const
     return m_currentAverager->data();
 }
 
-quint64 SpeedPlotView::maxYValue() const
+quint64 SpeedPlotView::maxYValue(Utils::Misc::unitType prefix) const
 {
     const DataCircularBuffer &queue = currentData();
 
@@ -277,7 +279,10 @@ quint64 SpeedPlotView::maxYValue() const
         }
     }
 
-    return maxYValue;
+    if (Utils::Misc::prefixIsInBits(prefix))
+        return maxYValue * 8;
+    else
+        return maxYValue;
 }
 
 void SpeedPlotView::paintEvent(QPaintEvent *)
@@ -288,18 +293,20 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     QRect rect = viewport()->rect();
     QFontMetrics fontMetrics = painter.fontMetrics();
 
+    Utils::Misc::unitType prefix = Preferences::instance()->transferSpeedUnitsPrefix();
+
     rect.adjust(4, 4, 0, -4); // Add padding
-    const SplittedValue niceScale = getRoundedYScale(maxYValue());
+    const SplittedValue niceScale = getRoundedYScale(maxYValue(prefix), prefix);
     rect.adjust(0, fontMetrics.height(), 0, 0); // Add top padding for top speed text
 
     // draw Y axis speed labels
     const QVector<QString> speedLabels =
     {
-        formatLabel(niceScale.arg, niceScale.unit),
-        formatLabel((0.75 * niceScale.arg), niceScale.unit),
-        formatLabel((0.50 * niceScale.arg), niceScale.unit),
-        formatLabel((0.25 * niceScale.arg), niceScale.unit),
-        formatLabel(0.0, niceScale.unit),
+        formatLabel(niceScale.arg, niceScale.unit, prefix),
+        formatLabel((0.75 * niceScale.arg), niceScale.unit, prefix),
+        formatLabel((0.50 * niceScale.arg), niceScale.unit, prefix),
+        formatLabel((0.25 * niceScale.arg), niceScale.unit, prefix),
+        formatLabel(0.0, niceScale.unit, prefix),
     };
 
     int yAxisWidth = 0;
@@ -352,7 +359,9 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
     // last point will be drawn at x=0, so we don't need it in the calculation of xTickSize
     const milliseconds lastDuration {queue.empty() ? 0ms : queue.back().duration};
     const double xTickSize = static_cast<double>(rect.width()) / (m_currentMaxDuration - lastDuration).count();
-    const double yMultiplier = (niceScale.arg == 0) ? 0 : (static_cast<double>(rect.height()) / niceScale.sizeInBytes());
+    const double yMultiplier = (niceScale.arg == 0) ? 0 :
+                                                      Utils::Misc::prefixIsInBits(prefix) ? (static_cast<double>(rect.height()) / niceScale.sizeInBytes(prefix) * 8):
+                                                                                            (static_cast<double>(rect.height()) / niceScale.sizeInBytes(prefix));
 
     for (int id = UP; id < NB_GRAPHS; ++id)
     {

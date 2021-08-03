@@ -43,20 +43,33 @@ enum class ShutdownDialogAction;
 
 namespace Utils::Misc
 {
-    // use binary prefix standards from IEC 60027-2
-    // see http://en.wikipedia.org/wiki/Kilobyte
+    // Allow the user to choose between bit or bytes and:
+    // IEC 60027-2 prefix names: kibi, mebi, gibi...
+    // SI prefix names: kilo, mega, giga...
+    //
+    // References:
+    // https://en.wikipedia.org/wiki/Kilobyte
+    // https://wiki.ubuntu.com/UnitsPolicy
+    enum class unitType
+    {
+        decimalPrefixBytes = 0, // kilobytes, megabytes, gigabytes...
+        decimalPrefixBits,      // kilobits, megabits, gigabits...
+        binaryPrefixBytes,      // kibibytes, mebibytes, gibibytes...
+        binaryPrefixBits        // kibibits, mebibits, gibibits...
+    };
+
     enum class SizeUnit
     {
-        Byte,       // 1024^0,
-        KibiByte,   // 1024^1,
-        MebiByte,   // 1024^2,
-        GibiByte,   // 1024^3,
-        TebiByte,   // 1024^4,
-        PebiByte,   // 1024^5,
-        ExbiByte    // 1024^6,
+        B,    // 1024^0 or 1000^0 depending on unitType,
+        Ki,   // 1024^1 or 1000^1 depending on unitType,
+        Me,   // 1024^2 or 1000^2 depending on unitType,
+        Gi,   // 1024^3 or 1000^3 depending on unitType,
+        Te,   // 1024^4 or 1000^4 depending on unitType,
+        Pe,   // 1024^5 or 1000^5 depending on unitType,
+        Ex    // 1024^6 or 1000^6 depending on unitType
         // int64 is used for sizes and thus the next units can not be handled
-        // ZebiByte,   // 1024^7,
-        // YobiByte,   // 1024^8
+        // Ze,   // 1024^7 or 1000^7 depending on unitType
+        // Yo,   // 1024^8 or 1000^8 depending on unitType
     };
 
     QString parseHtmlLinks(const QString &rawText);
@@ -69,13 +82,16 @@ namespace Utils::Misc
     QString opensslVersionString();
     QString zlibVersionString();
 
-    QString unitString(SizeUnit unit, bool isSpeed = false);
+    QString unitString(SizeUnit unit, const unitType prefix, const bool isSpeed = false);
 
-    // return the best user friendly storage unit (B, KiB, MiB, GiB, TiB)
-    // value must be given in bytes
+    // return the best user friendly unit (B, KiB, MiB, GiB, kB, MB, GB, kb, Mb, Gb...)
+    // value must be given in bytes but the output string can be bits or bytes
+    // depending on the user preferences
     QString friendlyUnit(qint64 bytes, bool isSpeed = false);
     int friendlyUnitPrecision(SizeUnit unit);
-    qint64 sizeInBytes(qreal size, SizeUnit unit);
+    qint64 sizeInBytes(qreal size, SizeUnit unit, unitType prefix);
+    bool prefixIsInBits(const unitType prefix);
+    bool prefixIsDecimal(const unitType prefix);
 
     bool isPreviewable(const QString &filename);
 

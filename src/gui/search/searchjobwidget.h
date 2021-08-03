@@ -31,6 +31,8 @@
 
 #include <QWidget>
 
+#include "base/utils/misc.h"
+
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
 
@@ -126,6 +128,7 @@ private:
     LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;
+    Utils::Misc::unitType m_prefix;
 };
 
 Q_DECLARE_METATYPE(SearchJobWidget::NameFilteringMode)
