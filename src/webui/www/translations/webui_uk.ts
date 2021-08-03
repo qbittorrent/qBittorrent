@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Тип вмісту:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Порт, який використовується для вхідних підключень, повинен бути між 1 і 65535.</translation>
+        <translation type="vanished">Порт, який використовується для вхідних підключень, повинен бути між 1 і 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation>Гаразд</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -569,7 +573,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Читач RSS</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Використовувати щоразу інший порт</translation>
+        <translation type="vanished">Використовувати щоразу інший порт</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Поточний трекер</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Інформаційний хеш</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1350,7 +1350,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1358,7 +1358,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Читач RSS</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1370,7 +1370,7 @@
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Інтервал оновлення подач:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation> хв</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1394,7 +1394,7 @@
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation>Обрана IP-адреса для прив'язки:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -1466,7 +1466,7 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Список довірених проксі:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
@@ -1709,10 +1709,6 @@
         <translation>Створено:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Хеш торрента:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Шлях збереження:</translation>
     </message>
@@ -1805,7 +1801,7 @@
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Введіть тут назву теки</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Простоюють (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2347,7 +2355,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Трекери</translation>
     </message>
 </context>
 <context>
@@ -2505,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation>Magnet-посилання</translation>
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">Хеш:</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2672,7 +2676,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2769,11 +2773,11 @@
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Розгорнути, щоб показати додаткові фільтри</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>до</translation>
     </message>
 </context>
 <context>
@@ -3114,7 +3118,7 @@
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation>Відкрити URL новини</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3138,7 +3142,7 @@
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Назва теки:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3154,11 +3158,11 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Ви дійсно бажаєте видалити вибрані RSS стрічки?</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>Нова підписка...</translation>
     </message>
     <message>
         <source>Download torrent</source>
@@ -3193,7 +3197,7 @@
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Визначення правила</translation>
     </message>
     <message>
         <source>Save to:</source>
@@ -3245,7 +3249,7 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Приклад:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3265,7 +3269,7 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Зберегти в інший каталог</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
@@ -3277,15 +3281,15 @@
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Підтримуються три типи діапазонів для серій: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Ви дійсно хочете видалити вибрані правила завантаження?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Використовувати глобальні налаштування</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
@@ -3297,7 +3301,7 @@
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Перейменування правила</translation>
     </message>
     <message>
         <source>Always</source>
@@ -3317,7 +3321,7 @@
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Останній збіг: %1 днів тому</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
@@ -3325,7 +3329,7 @@
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>Завантажувач RSS</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3373,7 +3377,7 @@
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Ігнорувати подальші збіги протягом (0, щоб вимкнути)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3385,12 +3389,13 @@
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>Очистити завантажені серії...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Розумний фільтр серій перевірятиме кількість серій для запобігання завантаження дублікатів.
+Підтримуються формати назв: S01E01, 1x1, 2017.12.31 та 31.12.2017 (формати дат теж підтримуються – як розділювач)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3402,7 +3407,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Оригінал</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3440,7 +3445,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Непрочитані</translation>
     </message>
 </context>
 </TS>

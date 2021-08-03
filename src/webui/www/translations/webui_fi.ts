@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Sisääntuleville yhteyksille tarkoitetun portin numero pitää olla väliltä 1-65535.</translation>
+        <translation type="vanished">Sisääntuleville yhteyksille tarkoitetun portin numero pitää olla väliltä 1-65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Käytä eri porttia joka käynnistyksen yhteydessä</translation>
+        <translation type="vanished">Käytä eri porttia joka käynnistyksen yhteydessä</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -1705,10 +1709,6 @@
         <translation>Luotu:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrentin tarkistussumma:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Tallennussijainti:</translation>
     </message>
@@ -1983,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Pysähtynyt (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2326,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2501,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation>Magnet-linkki</translation>
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">Tarkistussumma</translation>
     </message>
     <message>
         <source>Remove All</source>

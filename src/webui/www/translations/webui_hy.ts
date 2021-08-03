@@ -160,10 +160,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
         <translation type="unfinished" />
     </message>
@@ -366,6 +362,10 @@
     <message>
         <source>OK</source>
         <translation>ԼԱՎ</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -720,10 +720,6 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1980,6 +1976,14 @@
         <source>Stalled (%1)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2320,6 +2324,10 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>

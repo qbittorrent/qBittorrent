@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Gelen bağlantılar için kullanılan bağlantı noktası 1 ve 65535 arasında olmak zorundadır.</translation>
+        <translation type="vanished">Gelen bağlantılar için kullanılan bağlantı noktası 1 ve 65535 arasında olmak zorundadır.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>TAMAM</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Her başlangıçta farklı bağlantı noktası kullan</translation>
+        <translation type="vanished">Her başlangıçta farklı bağlantı noktası kullan</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Şu anki izleyici</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Bilgi adreslemesi</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1450,35 +1450,35 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Saniyede giden bağlantı:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Rastgele</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrent Kimliği</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>IP veya bağlantı noktası değiştiğinde tüm izleyicilere yeniden duyur:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Güvenilen proksiler listesi:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Ters proksi desteğini etkinleştir</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Bilgi adreslemesi v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Bilgi adreslemesi v1</translation>
     </message>
 </context>
 <context>
@@ -1709,10 +1709,6 @@
         <translation>Oluşturma:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrent Adreslemesi:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Kaydetme Yolu:</translation>
     </message>
@@ -1770,15 +1766,15 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Bilgi Adreslemesi v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Bilgi Adreslemesi v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Yok</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Durduruldu (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (gönderilme %2)</translation>
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2507,10 +2515,6 @@
         <translation>Magnet bağlantısı</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">Adresleme</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>Tümünü Kaldır</translation>
     </message>
@@ -2532,15 +2536,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Bilgi adreslemesi v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Bilgi adreslemesi v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrent Kimliği</translation>
     </message>
 </context>
 <context>
@@ -2773,7 +2777,7 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>&gt;</translation>
     </message>
 </context>
 <context>
@@ -3441,7 +3445,7 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Okunmadı</translation>
     </message>
 </context>
 </TS>

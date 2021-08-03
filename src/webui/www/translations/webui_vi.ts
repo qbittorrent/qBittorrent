@@ -5,7 +5,7 @@
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">Thông tin về</translation>
+        <translation type="vanished">Thông tin</translation>
     </message>
 </context>
 <context>
@@ -20,7 +20,7 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>Bỏ qua kiểm tra hash</translation>
+        <translation>Bỏ qua kiểm tra băm</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
@@ -28,15 +28,15 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Bố cục nội dung:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Gốc</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Tạo thư mục con</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -58,35 +58,35 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation type="unfinished" />
+        <translation>Thêm danh mục...</translation>
     </message>
     <message>
         <source>Remove category</source>
-        <translation type="unfinished" />
+        <translation>Xóa danh mục</translation>
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation type="unfinished" />
+        <translation>Xóa danh mục không dùng</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Tiếp tục torrent</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Tạm dừng torrent</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Danh Mục Mới</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation type="unfinished" />
+        <translation>Sửa danh mục...</translation>
     </message>
 </context>
 <context>
@@ -97,23 +97,23 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>Mỗi dòng chỉ chứa một liên kết</translation>
+        <translation>Chỉ một liên kết mỗi dòng</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tốc độ tải lên chung phải lớn hơn 0 hoặc bị vô hiệu hóa.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tốc độ tải xuống chung phải lớn hơn 0 hoặc bị tắt.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tốc độ tải lên thay thế phải lớn hơn 0 hoặc bị vô hiệu hóa.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tốc độ tải xuống thay thế phải lớn hơn 0 hoặc bị vô hiệu hóa.</translation>
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
@@ -133,7 +133,7 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Giới hạn số lượng tối đa các kết nối của mỗi torrent phải lớn hơn 0 nếu không sẽ bị vô hiệu hóa.</translation>
+        <translation>Số lượng kết nối tối đa cho mỗi giới hạn torrent phải lớn hơn 0 hoặc bị vô hiệu hóa.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
@@ -141,15 +141,15 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Không thể lưu các tùy biến của chương trình, qBittorrent có thể không thể được điều khiển theo mong muốn.</translation>
+        <translation>Không thể lưu tùy chọn chương trình, qBittorrent có thể không truy cập được.</translation>
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished" />
+        <translation>IRC: #qbittorrent trên Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Không rõ</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -161,43 +161,43 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Cổng được sử dụng cho các kết nối đến phải nằm trong khoảng từ 1 đến 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Cổng được sử dụng cho giao diện người dùng Web phải từ 1 đến 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation type="unfinished" />
+        <translation>Không thể đăng nhập, qBittorrent có thể không truy cập được.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation type="unfinished" />
+        <translation>Tên tài khoản hoặc Mật khẩu không hợp lệ</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation type="unfinished" />
+        <translation>Tên tài khoản</translation>
     </message>
     <message>
         <source>Password</source>
-        <translation type="unfinished" />
+        <translation>Mật khẩu</translation>
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Đăng nhập</translation>
     </message>
     <message>
         <source>Original authors</source>
-        <translation type="unfinished" />
+        <translation>Tác giả gốc</translation>
     </message>
     <message>
         <source>Apply</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished" />
+        <translation>Thêm</translation>
     </message>
     <message>
         <source>Upload Torrents</source>
@@ -206,7 +206,7 @@
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Lưu tệp vào vị trí:</translation>
     </message>
     <message>
         <source>Cookie:</source>
@@ -214,19 +214,19 @@
     </message>
     <message>
         <source>More information</source>
-        <translation type="unfinished" />
+        <translation>Thêm thông tin</translation>
     </message>
     <message>
         <source>Information about certificates</source>
-        <translation type="unfinished" />
+        <translation>Thông tin chứng chỉ</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Đặt vị trí</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tỷ lệ tải lên</translation>
     </message>
     <message>
         <source>Limit download rate</source>
@@ -239,45 +239,45 @@
     <message>
         <source>Monday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ hai</translation>
     </message>
     <message>
         <source>Tuesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ ba</translation>
     </message>
     <message>
         <source>Wednesday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ tư</translation>
     </message>
     <message>
         <source>Thursday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ năm</translation>
     </message>
     <message>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ sáu</translation>
     </message>
     <message>
         <source>Saturday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Thứ bảy</translation>
     </message>
     <message>
         <source>Sunday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation type="unfinished" />
+        <translation>Chủ nhật</translation>
     </message>
     <message>
         <source>Logout</source>
-        <translation type="unfinished" />
+        <translation>Đăng xuất</translation>
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation type="unfinished" />
+        <translation>Tải xuống Torrent từ các URL hoặc liên kết Nam châm của họ</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -285,7 +285,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn xóa các torrent đã chọn khỏi danh sách chuyển không?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -297,31 +297,31 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn số lượng các vị trí tải lên chung phải lớn hơn 0 hoặc bị vô hiệu hóa.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation type="unfinished" />
+        <translation>Tên danh mục không hợp lệ: \nVui lòng không sử dụng bất kỳ ký tự đặc biệt nào trong tên danh mục.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
-        <translation type="unfinished" />
+        <translation>Không thể tạo danh mục</translation>
     </message>
     <message>
         <source>Upload rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Ngưỡng tốc độ tải lên phải lớn hơn 0.</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Sửa</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Dung lượng trống: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Bộ hẹn giờ không hoạt động torrent phải lớn hơn 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -329,7 +329,7 @@
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
-        <translation type="unfinished" />
+        <translation>Ngưỡng tỉ lệ tải xuống phải lớn hơn 0.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
@@ -337,15 +337,15 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Mở tài liệu</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Đăng ký để xử lý các liên kết nam châm...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Không thể thêm máy ngang hàng. Hãy đảm bảo đúng định dạng IP:cổng.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -353,11 +353,11 @@
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Tên không được để trống</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Tên không thay đổi</translation>
     </message>
     <message>
         <source>Failed to update name</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation>Đồng ý</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -400,7 +404,7 @@
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation type="unfinished" />
+        <translation>Thanh Công Cụ Trên Cùng</translation>
     </message>
     <message>
         <source>Status Bar</source>
@@ -416,11 +420,11 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Đưa tất cả hoạt động trở lại</translation>
+        <translation>Tiếp tục tất cả</translation>
     </message>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>Thống kê</translation>
     </message>
     <message>
         <source>About</source>
@@ -448,7 +452,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation type="unfinished" />
+        <translation>Thêm Liên Kết Torrent...</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -468,12 +472,12 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn thoát khỏi qBittorrent không?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
-        <translation type="unfinished" />
+        <translation>[D: %1, U: %2] qBittorrent %3</translation>
     </message>
     <message>
         <source>Alternative speed limits</source>
@@ -485,7 +489,7 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Lọc danh sách torrent...</translation>
     </message>
     <message>
         <source>Search</source>
@@ -493,39 +497,39 @@
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Trao đổi</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển lên trong hàng đợi</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển lên hàng đợi</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>Cuối hàng đợi</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển đến cuối hàng đợi</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>Trên cùng của Hàng đợi</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển xuống hàng đợi</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển xuống hàng đợi</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển lên đầu hàng đợi</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -569,7 +573,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Trình Đọc RSS</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -580,7 +584,7 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished" />
+        <translation>Tùy chọn</translation>
     </message>
     <message>
         <source>Downloads</source>
@@ -588,7 +592,7 @@
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished" />
+        <translation>Kết nối</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -604,47 +608,47 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished" />
+        <translation>Ngôn ngữ</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished" />
+        <translation>Ngôn ngữ giao diện người dùng:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished" />
+        <translation>Thông báo qua email khi hoàn tất quá trình tải xuống</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation type="unfinished" />
+        <translation>Chạy chương trình bên ngoài khi hoàn thành torrent</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished" />
+        <translation>Lọc IP</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished" />
+        <translation>Lên lịch sử dụng các giới hạn tỷ lệ thay thế</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished" />
+        <translation>Xếp hàng Torrent</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Tự động thêm các máy theo dõi này vào các bản tải xuống mới:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation type="unfinished" />
+        <translation>Giao diện người dùng web (Điều khiển từ xa)</translation>
     </message>
     <message>
         <source>IP address:</source>
-        <translation type="unfinished" />
+        <translation>Địa chỉ IP:</translation>
     </message>
     <message>
         <source>Server domains:</source>
-        <translation type="unfinished" />
+        <translation>Tên miền máy chủ:</translation>
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
@@ -652,11 +656,11 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation type="unfinished" />
+        <translation>Bỏ qua xác thực máy khách trên máy chủ cục bộ.</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation type="unfinished" />
+        <translation>Bỏ qua xác thực cho các máy khách trong mạng con IP được liệt kê trong danh sách trắng</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -664,51 +668,51 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished" />
+        <translation>Giữ các tệp torrent chưa hoàn chỉnh trong:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished" />
+        <translation>Sao chép tập tin .torrent đến:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation type="unfinished" />
+        <translation>Sao chép các tệp .torrent để tải xuống hoàn tất đến:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
-        <translation type="unfinished" />
+        <translation>Phân bổ trước dung lượng đĩa cho tất cả các tệp</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished" />
+        <translation>Nối phần mở rộng .!QB vào các tệp chưa hoàn chỉnh</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished" />
+        <translation>Tự động thêm torrent từ:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished" />
+        <translation>Máy chủ SMTP:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation type="unfinished" />
+        <translation>Máy chủ này yêu cầu kết nối an toàn (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished" />
+        <translation>Xác thực</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished" />
+        <translation>Tên tài khoản:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished" />
+        <translation>Mật khẩu:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
-        <translation type="unfinished" />
+        <translation>TCP và μTP</translation>
     </message>
     <message>
         <source>Listening Port</source>
@@ -716,27 +720,27 @@
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished" />
+        <translation>Cổng được sử dụng cho các kết nối đến:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng UPnP / NAT-PMP để chuyển tiếp cổng từ bộ định tuyến của tôi</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Sử dụng các cổng khác nhau mỗi lần khởi động</translation>
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn kết nối</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished" />
+        <translation>Số lượng kết nối tối đa cho mỗi torrent:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished" />
+        <translation>Số lượng kết nối tối đa chung:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
@@ -744,19 +748,19 @@
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished" />
+        <translation>Số lượng máy tải lên tối đa chung:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished" />
+        <translation>Máy Chủ Proxy</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished" />
+        <translation>Loại:</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="unfinished" />
+        <translation>(Trống)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -772,7 +776,7 @@
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished" />
+        <translation>Máy chủ lưu trữ:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -780,15 +784,15 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng proxy cho các kết nối ngang hàng</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="unfinished" />
+        <translation>Chỉ sử dụng proxy cho torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn bộ lọc (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
@@ -796,15 +800,15 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng cho máy theo dõi</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn Tỉ lệ Chung</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Tải lên:</translation>
     </message>
     <message>
         <source>Download:</source>
@@ -812,37 +816,37 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tỷ lệ thay thế</translation>
     </message>
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished" />
+        <translation>Từ:</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished" />
+        <translation>Đến:</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>Khi:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>Hằng ngày</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>Ngày trong tuần‎</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>Cuối tuần</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished" />
+        <translation>Cài đặt giới hạn tỷ lệ</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -850,39 +854,39 @@
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng giới hạn tốc độ cho giao thức µTP</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished" />
+        <translation>Riêng tư</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Bật DHT (mạng phi tập trung) để tìm thêm máy ngang hàng</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Bật Trao Đổi Máy Ngang Hàng (PeX) để tìm thêm máy ngang hàng</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Bật tính năng Khám phá ngang hàng cục bộ để tìm thêm máy ngang hàng khác</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished" />
+        <translation>Chế độ mã hóa:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished" />
+        <translation>Yêu cầu mã hóa</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished" />
+        <translation>Tắt mã hóa</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished" />
+        <translation>Bật chế độ ẩn danh</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -898,7 +902,7 @@
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished" />
+        <translation>Không tính các torrent chậm trong các giới hạn này</translation>
     </message>
     <message>
         <source>then</source>
@@ -910,27 +914,27 @@
     </message>
     <message>
         <source>Certificate:</source>
-        <translation type="unfinished" />
+        <translation>Chứng chỉ:</translation>
     </message>
     <message>
         <source>Key:</source>
-        <translation type="unfinished" />
+        <translation>Chìa khóa:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished" />
+        <translation>Đăng ký</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished" />
+        <translation>Tên miền:</translation>
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
-        <translation type="unfinished" />
+        <translation>Các thông số được hỗ trợ (phân biệt chữ hoa chữ thường):</translation>
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation type="unfinished" />
+        <translation>%N: Tên Torrent</translation>
     </message>
     <message>
         <source>%L: Category</source>
@@ -938,23 +942,23 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished" />
+        <translation>%F: Đường dẫn nội dung (giống như đường dẫn gốc cho torrent đa tệp)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation type="unfinished" />
+        <translation>%R: Đường dẫn gốc (đường dẫn thư mục con torrent đầu tiên)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation type="unfinished" />
+        <translation>%D: Đường dẫn lưu</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: Số lượng tệp</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: Kích thước torrent (byte)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
@@ -962,7 +966,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation type="unfinished" />
+        <translation>Mẹo: Bao bọc tham số bằng ngoặc kép để tránh văn bản bị cắt tại khoảng trắng (v.d., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -974,7 +978,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>phút</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -982,31 +986,31 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Bật tính năng bảo vệ chống tấn công bằng nhấp chuột</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Bật tính năng bảo vệ Truy vấn Yêu cầu Trên Trang web (CSRF)</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Xóa các tệp .torrent sau đó</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Ngưỡng tỉ lệ tải xuống:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Ngưỡng tốc độ tải lên:</translation>
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>Đổi mật khẩu hiện tại</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Tự động</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1014,7 +1018,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn Lưu Mặc định:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1022,7 +1026,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Không bắt đầu tải xuống tự động</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1030,43 +1034,43 @@
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>Khi Danh mục Torrent bị thay đổi:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished" />
+        <translation>Đổi vị trí các torrent bị ảnh hưởng</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng giới hạn tốc độ cho các ứng dụng ngang hàng trên mạng LAN</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 nghĩa là không giới hạn</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>Đổi vị trí torrent</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Khi Đường dẫn Lưu Mặc định thay đổi:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation>Bật xác thực tiêu đề máy chủ lưu trữ</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished" />
+        <translation>Bảo vệ</translation>
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Khi Đường dẫn Lưu Danh mục thay đổi:</translation>
     </message>
     <message>
         <source>seconds</source>
-        <translation type="unfinished" />
+        <translation>giây</translation>
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
@@ -1074,7 +1078,7 @@
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>Vị trí tập tin:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1082,7 +1086,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished" />
+        <translation>Bộ đếm thời gian torrent không hoạt động:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
@@ -1090,19 +1094,19 @@
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished" />
+        <translation>Khi thêm một torrent</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Thông tin: Mật khẩu đã lưu không mã hóa</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Thuật toán chế độ hỗn hợp μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Tỷ lệ tải lên dựa trên</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
@@ -1110,7 +1114,7 @@
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước tồn đọng socket</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
@@ -1122,7 +1126,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Bộ nhớ vượt trội khi kiểm tra torrent:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1130,7 +1134,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation>Bật bộ đệm hệ điều hành:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1142,19 +1146,19 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Cho phép nhiều kết nối từ cùng một địa chỉ IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước nhóm tệp</translation>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Mọi giao diện</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation>Luôn thông báo cho tất cả các cấp:</translation>
     </message>
     <message>
         <source>Embedded tracker port:</source>
@@ -1162,19 +1166,19 @@
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>Tải lên nhanh nhất</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>Tạm dừng torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>Xóa torrent và các tệp của nó</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Phần qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1182,7 +1186,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Phần libtorrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
@@ -1194,23 +1198,23 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Kiểm tra lại torrent khi hoàn thành:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>Cho phép mã hóa</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation>Gửi đề xuất phần tải lên:</translation>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Bật máy theo dõi đã nhúng:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1218,7 +1222,7 @@
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation>Luồng I/O không đồng bộ:</translation>
     </message>
     <message>
         <source>s</source>
@@ -1230,23 +1234,23 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Tỷ lệ ngang hàng (điều chỉnh TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Vị trí cố định</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Nâng cao</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>phút</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Thuật toán làm nghẽn tải lên:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1262,7 +1266,7 @@
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Tải lên hành vi vị trí:</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1270,31 +1274,31 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation>Gửi hình mờ thấp của bộ đệm</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation>Lưu khoảng thời gian dữ liệu tiếp tục:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation>Luôn thông báo cho tất cả những máy theo dõi trong một cấp:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>Thời gian chờ phiên:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Giải quyết các quốc gia ngang hàng:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>cấm:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng mối quan hệ ở mức độ mảnh (yêu cầu libtorrent&gt; = 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1302,7 +1306,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Cấm máy khách sau những lần thất bại liên tiếp:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1314,7 +1318,7 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation>Phần đầu: các cặp giá trị, một cặp trên mỗi dòng</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1326,23 +1330,23 @@
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>Bật tìm nạp nguồn cấp RSS</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Băm chuỗi (yêu cầu libtorrent&gt; = 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Liên kết lại đọc và ghi (yêu cầu libtorrent &lt;2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation>Tỷ lệ phần trăm ngưỡng doanh thu ngang hàng:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation type="unfinished" />
+        <translation>Trình Tải Về Tự Động Torrent Rss</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -1350,23 +1354,23 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Giao diện mạng:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>Trình Đọc RSS</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished" />
+        <translation>Sửa quy tắc tải xuống tự động...</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation>Tải về các tập REPACK / PROPER</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Khoảng thời gian làm mới nguồn cấp dữ liệu:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1374,7 +1378,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>Số bài viết tối đa cho mỗi luồng dữ liệu:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1382,7 +1386,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>phút</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1398,7 +1402,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished" />
+        <translation>Bật tự động tải xuống các torrent RSS</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1406,7 +1410,7 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Bộ nhớ cache trên đĩa (yêu cầu libtorrent &lt;2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
@@ -1418,7 +1422,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Giao thức kết nối ngang hàng:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1426,15 +1430,15 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Bố cục nội dung torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Tạo thư mục con</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Gốc</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1442,15 +1446,15 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Loại dịch vụ (ToS) cho các kết nối với máy ngang hàng</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Kết nối đi mỗi giây:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Ngẫu nhiên</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1458,23 +1462,23 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Thông báo lại với tất cả các trình theo dõi khi IP hoặc cổng thay đổi:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Danh sách proxy tin cậy:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Bật hỗ trợ proxy ngược</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Băm thông tin v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Băm thông tin v1</translation>
     </message>
 </context>
 <context>
@@ -1528,20 +1532,20 @@
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>Liên quan</translation>
     </message>
     <message>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished" />
+        <translation>Tập tin</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Cấm máy ngang hàng vĩnh viễn</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn cấm vĩnh viễn máy ngang hàng đã chọn không?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1549,7 +1553,7 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Thêm máy ngang hàng mới...</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -1571,15 +1575,15 @@
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Ưu tiên tối đa</translation>
+        <translation>Tối đa</translation>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Trộn</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Không tải về</translation>
     </message>
 </context>
 <context>
@@ -1642,7 +1646,7 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation type="unfinished" />
+        <translation>Máy ngang hàng:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -1650,7 +1654,7 @@
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tải lên:</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -1674,11 +1678,11 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation type="unfinished" />
+        <translation>Thông báo lại Trong:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation type="unfinished" />
+        <translation>Lần Xem Cuối Hoàn Thành:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -1690,11 +1694,11 @@
     </message>
     <message>
         <source>Created By:</source>
-        <translation type="unfinished" />
+        <translation>Được tạo bởi:</translation>
     </message>
     <message>
         <source>Added On:</source>
-        <translation>Đã Thêm Vào:</translation>
+        <translation>Thêm Lúc:</translation>
     </message>
     <message>
         <source>Completed On:</source>
@@ -1702,11 +1706,11 @@
     </message>
     <message>
         <source>Created On:</source>
-        <translation type="unfinished" />
+        <translation>Được tạo lúc:</translation>
     </message>
     <message>
         <source>Save Path:</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn Lưu:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -1715,16 +1719,16 @@
     <message>
         <source>%1 x %2 (have %3)</source>
         <comment>(torrent pieces) eg 152 x 4MB (have 25)</comment>
-        <translation type="unfinished" />
+        <translation>%1 x %2 (có %3)</translation>
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation type="unfinished" />
+        <translation>%1 (%2 phiên này)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 max)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (%2 tối đa)</translation>
     </message>
     <message>
         <source>%1 (%2 total)</source>
@@ -1734,7 +1738,7 @@
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (%2 trung bình)</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -1742,15 +1746,15 @@
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn tải lên:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Ưu tiên</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Bộ lọc tệp...</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -1762,11 +1766,11 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Băm Thông Tin v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Băm Thông Tin v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1777,27 +1781,27 @@
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation type="unfinished" />
+        <translation>Thư mục được giám sát</translation>
     </message>
     <message>
         <source>Override Save Location</source>
-        <translation type="unfinished" />
+        <translation>Ghi Đè Vị Trí Lưu</translation>
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation type="unfinished" />
+        <translation>Thư mục được giám sát</translation>
     </message>
     <message>
         <source>Default save location</source>
-        <translation type="unfinished" />
+        <translation>Vị trí lưu mặc định</translation>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Khác...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Gõ thư mục vào đây</translation>
     </message>
 </context>
 <context>
@@ -1823,15 +1827,15 @@
     </message>
     <message>
         <source>Read cache hits:</source>
-        <translation type="unfinished" />
+        <translation>Đọc lần truy cập bộ nhớ cache:</translation>
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation type="unfinished" />
+        <translation>Thời gian trung bình trong hàng đợi:</translation>
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation type="unfinished" />
+        <translation>Máy ngang hàng đã kết nối:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -1839,15 +1843,15 @@
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished" />
+        <translation>Tải xuống mọi lúc:</translation>
     </message>
     <message>
         <source>Session waste:</source>
-        <translation type="unfinished" />
+        <translation>Phiên lãng phí:</translation>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>Tải lên mọi lúc:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -1867,7 +1871,7 @@
     </message>
     <message>
         <source>Read cache overload:</source>
-        <translation>Đọc dữ liệu từ bộ nhớ đệm bị tràn:</translation>
+        <translation>Đọc quá tải bộ nhớ đệm:</translation>
     </message>
     <message>
         <source>Total queued size:</source>
@@ -1902,11 +1906,11 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation type="unfinished" />
+        <translation>Đã tiếp tục (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation type="unfinished" />
+        <translation>Tạm dừng (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -1938,11 +1942,11 @@
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation type="unfinished" />
+        <translation>Bị tạm dừng (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation type="unfinished" />
+        <translation>Đã tiếp tục (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -1958,7 +1962,7 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Tải Lên Bị Đình Trệ (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
@@ -1980,6 +1984,14 @@
         <source>Stalled (%1)</source>
         <translation>Bị đình trệ (%1)</translation>
     </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -1999,7 +2011,7 @@
     <message>
         <source>Done</source>
         <comment>% Done</comment>
-        <translation>Đã hoàn tất</translation>
+        <translation>Xong</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2047,7 +2059,7 @@
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Đã Thêm Vào</translation>
+        <translation>Thêm Lúc</translation>
     </message>
     <message>
         <source>Completed On</source>
@@ -2081,12 +2093,12 @@
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Phiên Tải Về</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Phiên Tải Lên</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2101,7 +2113,7 @@
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Lưu đường dẫn</translation>
+        <translation>Đường dẫn lưu</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2116,12 +2128,12 @@
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished" />
+        <translation>Lần xem cuối cùng hoàn thành</translation>
     </message>
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished" />
+        <translation>Hoạt động cuối</translation>
     </message>
     <message>
         <source>Total Size</source>
@@ -2169,7 +2181,7 @@
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Đã tắt</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2193,7 +2205,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation type="unfinished" />
+        <translation>Thêm trình máy dõi mới...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2221,7 +2233,7 @@
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Hạng</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -2233,22 +2245,22 @@
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Tiến độ</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Kích cỡ</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Hộp thoại bổ sung của tracker</translation>
+        <translation>Hộp thoại bổ sung máy theo dõi</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Danh sách các tracker để thêm vào (từng dòng một):</translation>
+        <translation>Danh sách máy theo dõi cần thêm (từng dòng một):</translation>
     </message>
 </context>
 <context>
@@ -2256,11 +2268,11 @@
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished" />
+        <translation>%1 trước</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Bị tạm dừng</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2268,7 +2280,7 @@
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Di chuyển</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
@@ -2280,7 +2292,7 @@
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Xếp hàng</translation>
     </message>
     <message>
         <source>Errored</source>
@@ -2288,23 +2300,23 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] Đang tải về</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Tải về dữ liệu mô tả</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Kiểm tra</translation>
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>Thiếu tệp</translation>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>Đã xếp hàng để kiểm tra</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2312,7 +2324,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Kiểm tra dữ liệu tiếp tục</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2321,6 +2333,10 @@
     <message>
         <source>%1 (seeded for %2)</source>
         <translation>%1 (đã chia sẻ cho %2)</translation>
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2364,7 +2380,7 @@
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation>Buộc tiếp tục</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -2401,7 +2417,7 @@
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation>Di chuyển lên trên cùng</translation>
+        <translation>Di chuyển lên đầu</translation>
     </message>
     <message>
         <source>Move to bottom</source>
@@ -2414,7 +2430,7 @@
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>Tải về phần đầu và cuối trước tiên</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -2427,12 +2443,12 @@
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>Mới...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
+        <translation>Cài lại</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -2452,23 +2468,23 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation type="unfinished" />
+        <translation>Buộc kiểm tra lại</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Danh Mục Mới</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Vị trí</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Tên mới</translation>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Đặt vị trí</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2476,11 +2492,11 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Sửa Danh Mục</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn lưu</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2496,11 +2512,11 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Liên kết nam châm</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Xóa Hết</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2508,23 +2524,23 @@
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Sao chép</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Xếp hàng</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Thêm...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Băm thông tin v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Băm thông tin v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -2539,15 +2555,15 @@
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng giới hạn chia sẻ chung</translation>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>Không đặt giới hạn chia sẻ</translation>
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation type="unfinished" />
+        <translation>Đặt giới hạn chia sẻ thành</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -2555,7 +2571,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>phút</translation>
     </message>
 </context>
 <context>
@@ -2565,7 +2581,7 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa</translation>
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
@@ -2573,14 +2589,14 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa - qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation type="unfinished" />
+        <translation>Tải về từ URL</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2588,7 +2604,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Thêm Liên Kết Torrent</translation>
     </message>
 </context>
 <context>
@@ -2667,30 +2683,30 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn lưu trống</translation>
     </message>
 </context>
 <context>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hủy bỏ</translation>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn plugin:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL hoặc thư mục cục bộ</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Cài đặt plugin</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Đồng ý</translation>
     </message>
 </context>
 <context>
@@ -2701,15 +2717,15 @@
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>Tất cả các plugin</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Kích thước:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Dừng</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2721,7 +2737,7 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Tất cả danh mục</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -2729,7 +2745,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation type="unfinished" />
+        <translation>Kết quả (đang hiển thị</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2737,11 +2753,11 @@
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation type="unfinished" />
+        <translation>Chỉ tên Torrent</translation>
     </message>
     <message>
         <source>Only enabled</source>
-        <translation type="unfinished" />
+        <translation>Chỉ được bật</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2749,7 +2765,7 @@
     </message>
     <message>
         <source>Everywhere</source>
-        <translation type="unfinished" />
+        <translation>Mọi nơi</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2761,14 +2777,14 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>đến</translation>
     </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Gỡ bỏ</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -2776,19 +2792,19 @@
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>Bạn có thể tải các plugin công cụ tìm kiếm mới tại đây:</translation>
+        <translation>Bạn có thể tải plugin công cụ tìm kiếm mới ở đây:</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Đóng</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation>Các plugin tìm kiếm đã cài đặt:</translation>
+        <translation>Đã cài đặt plugin tìm kiếm :</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Đã bật</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2811,7 +2827,7 @@
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Kích cỡ</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2838,38 +2854,38 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Đã bật</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Phiên bản</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Đúng</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Không</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hủy bỏ</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Thêm Máy Ngang Hàng</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Danh sách các máy ngang hàng để thêm (một IP một dòng):</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Đồng ý</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2880,31 +2896,31 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Thẻ mới</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Thêm thẻ...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Thẻ:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Tạm dừng torrent</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Tiếp tục torrent</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation>Xóa các thẻ không sử dụng</translation>
+        <translation>Xóa thẻ không dùng</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
@@ -2912,7 +2928,7 @@
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Xóa thẻ</translation>
     </message>
 </context>
 <context>
@@ -2930,15 +2946,15 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Theo dõi lỗi:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Thông tin</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Diễn đàn:</translation>
     </message>
     <message>
         <source>E-mail:</source>
@@ -2946,15 +2962,15 @@
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Người bảo trì hiện tại</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Trang Chủ:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Hy Lạp</translation>
     </message>
     <message>
         <source>Special Thanks</source>
@@ -2962,7 +2978,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Một ứng dụng khách BitTorrent nâng cao được lập trình bằng C ++, dựa trên bộ công cụ Qt và libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -2970,61 +2986,61 @@
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Thông tin qBittorrent</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Giấy phép</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Người dịch</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent được xây dựng với các thư viện sau:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Quốc tịch:</translation>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation>Tác giả</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Phần mềm được sử dụng</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Cơ sở dữ liệu IP đến Country Lite miễn phí của DB-IP được sử dụng để giải quyết các quốc gia ngang hàng. Cơ sở dữ liệu được cấp phép theo Giấy phép Quốc tế Creative Commons Attribution 4.0</translation>
+        <translation>Cơ sở dữ liệu IP đến Country Lite miễn phí của DB-IP được sử dụng để giải quyết các quốc gia ngang hàng. Cơ sở dữ liệu được cấp phép theo Giấy phép Quốc tế Ghi Công Sáng Tạo Công Cộng 4.0</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Tất cả các địa chỉ</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Tất cả địa chỉ IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Tất cả địa chỉ IPv4</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Sao chép</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Tải về</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3032,45 +3048,45 @@
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL trang mô tả</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>Mở trang mô tả</translation>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Liên kết tải xuống</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Đổi tên</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Tên mới:</translation>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>Ngày:</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished" />
+        <translation>Vui lòng chọn một tên mới cho nguồn cấp dữ liệu RSS này</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished" />
+        <translation>Vui lòng chọn tên thư mục</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation>Tên nguồn cấp dữ liệu mới:</translation>
     </message>
     <message>
         <source>Update all</source>
@@ -3078,15 +3094,15 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Xóa</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished" />
+        <translation>Trình Tải Về RSS...</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished" />
+        <translation>Đánh dấu các mục đã đọc</translation>
     </message>
     <message>
         <source>Update all feeds</source>
@@ -3094,15 +3110,15 @@
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished" />
+        <translation>Sao chép luồng URL</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished" />
+        <translation>Torrent: (nhấp đúp để tải về)</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation>Mở URL tin tức</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3110,15 +3126,15 @@
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL nguồn cấp dữ liệu:</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation>Thư mục mới...</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation>Đăng ký mới</translation>
     </message>
     <message>
         <source>Update</source>
@@ -3126,50 +3142,50 @@
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Tên thư mục:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished" />
+        <translation>Vui lòng nhập URL nguồn cấp RSS</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Tìm nạp nguồn cấp RSS hiện đã bị vô hiệu hóa! Bạn có thể bật nó trong cài đặt ứng dụng.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn xóa các nguồn cấp RSS đã chọn không?</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>Đăng ký mới...</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>Tải về torrent</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Quy Tắc Tải Về</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp với các bài báo RSS</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>* để khớp với không hoặc nhiều hơn bất kỳ ký tự nào</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation>sẽ phù hợp với tất cả các bài báo.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
@@ -3177,15 +3193,15 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Tự động tải về các torrent RSS đã bị tắt ngay bây giờ! Bạn có thể bật nó trong cài đặt ứng dụng.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Định nghĩa quy tắc</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Lưu vào:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
@@ -3193,7 +3209,7 @@
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Tên quy tắc mới</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
@@ -3201,7 +3217,7 @@
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>? để khớp với bất kỳ ký tự đơn lẻ nào</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
@@ -3217,15 +3233,15 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished" />
+        <translation>| được sử dụng làm toán tử OR</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>Xóa các tập đã tải xuống</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation>Khoảng trắng được tính là toán tử AND (tất cả các từ, bất kỳ thứ tự nào)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3233,7 +3249,7 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Ví dụ:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3241,27 +3257,27 @@
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn xóa danh sách các tập đã tải xuống cho quy tắc đã chọn không?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Phải Chứa:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation>Phạm vi vô hạn: &lt;b&gt;1x25-;&lt;/b&gt; khớp với các tập từ 25 trở lên của phần một và tất cả các tập của các phần sau</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Lưu vào một thư mục khác</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Không Được Chứa:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Số đơn: &lt;b&gt;1x25;&lt;/b&gt; phù hợp với tập 25 của phần một</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
@@ -3269,67 +3285,67 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc chắn muốn xóa các quy tắc tải xuống đã chọn không?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Dùng Cài Đặt Chung</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Khoảng thông thường: &lt;b&gt;1x25-40;&lt;/b&gt; phù hợp với các tập từ 25 đến 40 của phần một</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Vui lòng nhập tên quy tắc mới</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Đổi tên quy tắc</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Luôn luôn</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation>Số tập là một giá trị dương bắt buộc</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation>sẽ khớp với các tập 2, 5, 8 đến 15, 30 và các tập tiếp theo của phần một</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Xác nhận xóa quy tắc</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp gần đây: %1 ngày trước</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Bộ lọc Tập:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>Trình Tải Về Rss</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Số phần là một giá trị khác 0 bắt buộc</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Không bao giờ</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng Quy tắc cho Nguồn cấp dữ liệu:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation> ngày</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3337,31 +3353,31 @@
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Nếu thứ tự từ là quan trọng, hãy sử dụng * thay vì khoảng trắng.</translation>
+        <translation>Nếu thứ tự từ là quan trọng, hãy dùng * thay vì khoảng trắng.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Thêm Bị Tạm Dừng:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Vui lòng nhập tên của quy tắc tải xuống mới.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>Chế độ ký tự đại diện: bạn có thể sử dụng</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation>sẽ loại trừ tất cả các bài báo.</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Xóa quy tắc</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Bỏ qua các phù hợp Tiếp theo cho (0 để Tắt)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3369,11 +3385,11 @@
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp gần đây: Không rõ</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>Xóa các tập đã tải xuống...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -3383,15 +3399,15 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Bố cục nội dung torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Tạo thư mục con</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Gốc</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3402,11 +3418,11 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Xóa torrent</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Tiếp tục torrent</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3418,18 +3434,18 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Tạm dừng torrent</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>Nguồn cấp dữ liệu RSS</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Chưa đọc</translation>
     </message>
 </context>
 </TS>

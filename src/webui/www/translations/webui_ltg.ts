@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Portam priekš atīmūšim salaidumim juoir nu 1 da 65535.</translation>
+        <translation type="vanished">Portam priekš atīmūšim salaidumim juoir nu 1 da 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>Lobi</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -723,10 +727,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Salaidumu skaita rūbežas</translation>
     </message>
@@ -959,10 +959,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Niulejais trakeris</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Maiseituojkods</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1434,7 +1430,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Radeit zamapvuoci</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1442,7 +1438,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Naradeit zamapvuoci</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1454,11 +1450,11 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Navuošai</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrenta ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1474,11 +1470,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Maiseituojkods v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%J: Maiseituojkods v1</translation>
     </message>
 </context>
 <context>
@@ -1709,10 +1705,6 @@
         <translation>Darynuots:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrenta maiseituojkods:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Izglobuošonas vīta:</translation>
     </message>
@@ -1766,19 +1758,19 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (daleits %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Maiseituojkods v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Maiseituojkods v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Navā zynoms</translation>
     </message>
 </context>
 <context>
@@ -1801,11 +1793,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Cytuo...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Īvoduot apvuoci</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1979,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Nūstuojūšīs (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,6 +2328,10 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation>%1 (daleits %2)</translation>
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2507,10 +2511,6 @@
         <translation>Magnetsaita</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">Maiseituojkods</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>Nūjimt vysys</translation>
     </message>
@@ -2532,15 +2532,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Maiseituojkods v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Maiseituojkods v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrenta ID</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2672,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1g %2d</translation>
     </message>
 </context>
 <context>
@@ -2773,7 +2773,7 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>leidz</translation>
     </message>
 </context>
 <context>

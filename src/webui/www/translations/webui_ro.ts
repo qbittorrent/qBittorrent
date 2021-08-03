@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Portul folosit pentru conexiunile de intrare trebuie să fie între 1 și 65535.</translation>
+        <translation type="vanished">Portul folosit pentru conexiunile de intrare trebuie să fie între 1 și 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Utilizează port diferit la fiecare pornire</translation>
+        <translation type="vanished">Utilizează port diferit la fiecare pornire</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Urmăritor actual</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Informații indexare</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1709,10 +1709,6 @@
         <translation>Creat la:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Index torrent:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Cale de salvare:</translation>
     </message>
@@ -1986,6 +1982,14 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2328,6 +2332,10 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>

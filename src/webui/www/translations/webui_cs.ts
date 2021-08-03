@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Port příchozích spojení musí být mezi 1 a 65535.</translation>
+        <translation type="vanished">Port příchozích spojení musí být mezi 1 a 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Při každém spuštění použít náhodné porty</translation>
+        <translation type="vanished">Při každém spuštění použít náhodné porty</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Současný tracker</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1450,35 +1450,35 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Odchozích spojení za sekundu:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Náhodný</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrent ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Znovu oznámit všem trackerům při změne IP nebo portu</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Seznam důvěryhodných proxy:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Zapnout podporu reverzní proxy</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Info hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Info hash v1</translation>
     </message>
 </context>
 <context>
@@ -1709,10 +1709,6 @@
         <translation>Vytvořeno:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Kontrolní součet:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Uložit do:</translation>
     </message>
@@ -1770,15 +1766,15 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Pozastaveno (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (sdíleno %2)</translation>
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2507,10 +2515,6 @@
         <translation>Magnet link</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">Hash</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>Odstranit vše</translation>
     </message>
@@ -2532,15 +2536,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrent ID</translation>
     </message>
 </context>
 <context>
@@ -2773,7 +2777,7 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>do</translation>
     </message>
 </context>
 <context>
@@ -3441,7 +3445,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Nepřečtené</translation>
     </message>
 </context>
 </TS>
