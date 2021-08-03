@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>La porta usata per le connessioni in entrata deve essere compresa tra 1 e 65535.</translation>
+        <translation type="vanished">La porta usata per le connessioni in entrata deve essere compresa tra 1 e 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -367,6 +367,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -725,7 +729,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Usa porte diverse ad ogni avvio</translation>
+        <translation type="vanished">Usa porte diverse ad ogni avvio</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -960,10 +964,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Server traccia attuale</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1451,35 +1451,35 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Connessioni in uscita per secondo:</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Casuale</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: ID torrent</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Riannuncia a tutti i tracker quando l'IP o la porta sono cambiati:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Elenco proxy affidabili:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Abilita supporto proxy inverso</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Info hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%J: Info hash v1</translation>
     </message>
 </context>
 <context>
@@ -1710,10 +1710,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Creato il:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Hash torrent:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Percorso salvataggio:</translation>
     </message>
@@ -1771,15 +1767,15 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/D</translation>
     </message>
 </context>
 <context>
@@ -1988,6 +1984,14 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Stalled (%1)</source>
         <translation>In stallo (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2331,6 +2335,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <source>%1 (seeded for %2)</source>
         <translation>%1 (condiviso per %2)</translation>
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2508,10 +2516,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Collegamento magnet</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">Hash</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>Rimuovi tutto</translation>
     </message>
@@ -2533,15 +2537,15 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>ID torrent</translation>
     </message>
 </context>
 <context>
@@ -2774,7 +2778,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>in</translation>
     </message>
 </context>
 <context>
@@ -3445,7 +3449,7 @@ Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data suppo
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Non letto</translation>
     </message>
 </context>
 </TS>

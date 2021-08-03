@@ -28,19 +28,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Turinio išdėstymas</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Pradinis</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Sukurti poaplankį</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Nesukurti poaplankio</translation>
     </message>
 </context>
 <context>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Įeinančių susijungimų prievadas privalo būti tarp 1 ir 65535.</translation>
+        <translation type="vanished">Įeinančių susijungimų prievadas privalo būti tarp 1 ir 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation>Gerai</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -537,15 +541,15 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Ryšio būsena: Už užkardos</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Ryšio būsena: Prisijungta</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Alternatyvūs greičio apribojimai: Išjungti</translation>
     </message>
     <message>
         <source>Download speed icon</source>
@@ -557,7 +561,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Alternatyvūs greičio apribojimai: Įjungti</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -565,15 +569,15 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Ryšio būsena: Atsijungta</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS skaitytuvė</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Kiekvieno paleidimo metu naudoti skirtingą prievadą</translation>
+        <translation type="vanished">Kiekvieno paleidimo metu naudoti skirtingą prievadą</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Esamas seklys</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Informacijos maiša</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1350,15 +1350,15 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Tinklo sąsaja:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS skaitytuvė</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1434,15 +1434,15 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Sukurti poaplankį</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Pradinis</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Nesukurti poaplankio</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1707,10 +1707,6 @@
     <message>
         <source>Created On:</source>
         <translation>Sukurtas:</translation>
-    </message>
-    <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torento maiša:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1986,6 +1982,14 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2505,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation>Magnet nuoroda</translation>
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">Maiša</translation>
     </message>
     <message>
         <source>Remove All</source>

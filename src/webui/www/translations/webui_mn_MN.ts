@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Ирж буй холболтуудад хэрэглэгдэх оролт нь 1, 65535 хооронд байх ёстой.</translation>
+        <translation type="vanished">Ирж буй холболтуудад хэрэглэгдэх оролт нь 1, 65535 хооронд байх ёстой.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>ЗА</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Шинээр ачааллах бүрт өөр оролт хэрэглэх</translation>
+        <translation type="vanished">Шинээр ачааллах бүрт өөр оролт хэрэглэх</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -1980,6 +1984,14 @@
         <source>Stalled (%1)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TorrentContentModel</name>
@@ -2320,6 +2332,10 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>

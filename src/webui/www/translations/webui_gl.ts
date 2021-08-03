@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>O porto usado para as conexións entrantes debe estar entre 1 e 65535.</translation>
+        <translation type="vanished">O porto usado para as conexións entrantes debe estar entre 1 e 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>OK</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -725,7 +729,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Usar un porto distinto en cada inicio</translation>
+        <translation type="vanished">Usar un porto distinto en cada inicio</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -960,10 +964,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Localizador actual</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Info hash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1710,10 +1710,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Creado o:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Hash do torrent:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Ruta:</translation>
     </message>
@@ -1987,6 +1983,14 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2329,6 +2333,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>
