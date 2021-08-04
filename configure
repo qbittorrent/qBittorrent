@@ -5522,8 +5522,8 @@ if test "x$enable_gui" = "xyes"
 then :
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5Svg" >&5
-printf %s "checking for Qt5Svg... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for Qt5Svg >= 5.15.2" >&5
+printf %s "checking for Qt5Svg >= 5.15.2... " >&6; }
 
 if test -n "$Qt5Svg_CFLAGS"; then
     pkg_cv_Qt5Svg_CFLAGS="$Qt5Svg_CFLAGS"
@@ -5563,7 +5563,7 @@ fi
 
 
 if test $pkg_failed = yes; then
-   	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 
 if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
@@ -5590,7 +5590,7 @@ Alternatively, you may set the environment variables Qt5Svg_CFLAGS
 and Qt5Svg_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
-     	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -6032,19 +6032,19 @@ rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
 
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent" >&5
-printf %s "checking for libtorrent... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 2.0.4" >&5
+printf %s "checking for libtorrent-rasterbar >= 2.0.4... " >&6; }
 
 if test -n "$libtorrent_CFLAGS"; then
     pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.4") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.14" 2>/dev/null`
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 2.0.4" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6056,12 +6056,12 @@ if test -n "$libtorrent_LIBS"; then
     pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.4\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.4") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.14" 2>/dev/null`
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 2.0.4" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6073,7 +6073,7 @@ fi
 
 
 if test $pkg_failed = yes; then
-   	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 
 if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
@@ -6082,14 +6082,73 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.4" 2>&1`
         else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.4" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$libtorrent_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.14) were not met:
+
+pkg_failed=no
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" >&5
+printf %s "checking for libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2... " >&6; }
+
+if test -n "$libtorrent_CFLAGS"; then
+    pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$libtorrent_LIBS"; then
+    pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>&1`
+        else
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$libtorrent_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2) were not met:
 
 $libtorrent_PKG_ERRORS
 
@@ -6100,7 +6159,7 @@ Alternatively, you may set the environment variables libtorrent_CFLAGS
 and libtorrent_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
-     	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -6119,14 +6178,114 @@ else
 	libtorrent_LIBS=$pkg_cv_libtorrent_LIBS
         { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-	CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS"
-                  LIBS="$libtorrent_LIBS $LIBS"
+	CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS"
+fi
+elif test $pkg_failed = untried; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+
+pkg_failed=no
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" >&5
+printf %s "checking for libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2... " >&6; }
+
+if test -n "$libtorrent_CFLAGS"; then
+    pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$libtorrent_LIBS"; then
+    pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2") 2>&5
+  ac_status=$?
+  printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>&1`
+        else
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$libtorrent_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2) were not met:
+
+$libtorrent_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables libtorrent_CFLAGS
+and libtorrent_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5
+elif test $pkg_failed = untried; then
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables libtorrent_CFLAGS
+and libtorrent_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }
+else
+	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
+	libtorrent_LIBS=$pkg_cv_libtorrent_LIBS
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS"
+fi
+else
+	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
+	libtorrent_LIBS=$pkg_cv_libtorrent_LIBS
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+	CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS"
 fi
 
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for openssl" >&5
-printf %s "checking for openssl... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for openssl >= 1.1.1" >&5
+printf %s "checking for openssl >= 1.1.1... " >&6; }
 
 if test -n "$openssl_CFLAGS"; then
     pkg_cv_openssl_CFLAGS="$openssl_CFLAGS"
@@ -6166,7 +6325,7 @@ fi
 
 
 if test $pkg_failed = yes; then
-   	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 
 if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
@@ -6193,7 +6352,7 @@ Alternatively, you may set the environment variables openssl_CFLAGS
 and openssl_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
-     	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -6218,8 +6377,8 @@ fi
 
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for zlib" >&5
-printf %s "checking for zlib... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for zlib >= 1.2.11" >&5
+printf %s "checking for zlib >= 1.2.11... " >&6; }
 
 if test -n "$zlib_CFLAGS"; then
     pkg_cv_zlib_CFLAGS="$zlib_CFLAGS"
@@ -6259,7 +6418,7 @@ fi
 
 
 if test $pkg_failed = yes; then
-   	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 
 if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
@@ -6286,7 +6445,7 @@ Alternatively, you may set the environment variables zlib_CFLAGS
 and zlib_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details." "$LINENO" 5
 elif test $pkg_failed = untried; then
-     	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
 	{ { printf "%s\n" "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
 printf "%s\n" "$as_me: error: in \`$ac_pwd':" >&2;}
@@ -7845,3 +8004,4 @@ fi
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Good, the configure finished." >&5
 printf "%s\n" "$as_me: Good, the configure finished." >&6;}
 printf "%s\n"
+
