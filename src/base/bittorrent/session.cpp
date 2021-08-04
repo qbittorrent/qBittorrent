@@ -362,7 +362,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 10)
     , m_hashingThreads(BITTORRENT_SESSION_KEY("HashingThreadsCount"), 2)
-    , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 40)
+    , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 5000)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
@@ -5101,7 +5101,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
     QVector<Torrent *> updatedTorrents;
-    updatedTorrents.reserve(p->status.size());
+    updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(p->status.size()));
 
     for (const lt::torrent_status &status : p->status)
     {

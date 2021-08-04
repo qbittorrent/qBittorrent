@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Barrurako elkarketetarako erabilitzeko ataka 1 eta 65535 artekoa izan behar da.</translation>
+        <translation type="vanished">Barrurako elkarketetarako erabilitzeko ataka 1 eta 65535 artekoa izan behar da.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Erabili ataka ezberdina abiarazte bakoitzean</translation>
+        <translation type="vanished">Erabili ataka ezberdina abiarazte bakoitzean</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Oraingo aztarnaria</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Info hasha</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1709,10 +1709,6 @@
         <translation>Sortua:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrent Hasha:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Gordetze Helburua:</translation>
     </message>
@@ -1986,6 +1982,14 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2328,6 +2332,10 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>[F] Downloading metadata</source>
         <translation type="unfinished" />
     </message>
 </context>

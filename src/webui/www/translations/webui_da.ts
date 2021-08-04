@@ -36,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret undermappe</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret ikke undermappe</translation>
     </message>
 </context>
 <context>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Porten der bruges til indgående forbindelser skal være mellem 1 og 65535.</translation>
+        <translation type="vanished">Porten der bruges til indgående forbindelser skal være mellem 1 og 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Brug en anden port ved hver opstart</translation>
+        <translation type="vanished">Brug en anden port ved hver opstart</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Nuværende tracker</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Infohash</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret undermappe</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1442,7 +1442,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret ikke undermappe</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1707,10 +1707,6 @@
     <message>
         <source>Created On:</source>
         <translation>Oprettet den:</translation>
-    </message>
-    <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrent-hash:</translation>
     </message>
     <message>
         <source>Save Path:</source>
@@ -1986,6 +1982,14 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2505,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation>Magnet-link</translation>
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">Hash</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -3398,7 +3402,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret undermappe</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3406,7 +3410,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Opret ikke undermappe</translation>
     </message>
 </context>
 <context>
