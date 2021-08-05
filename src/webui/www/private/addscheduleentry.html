@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Add scheduled speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]</title>
+    <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
+    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
+    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        const closeThis = () => window.parent.MochaUI.closeWindow(window.parent.$('scheduleentrydialog'));
+        new Keyboard({
+            defaultEventType: 'keydown',
+            events: {
+                'Enter': (event) => {
+                    $('addButton').click();
+                    event.preventDefault();
+                },
+                'Escape': (event) => {
+                    closeThis();
+                    event.preventDefault();
+                },
+                'Esc': (event) => {
+                    closeThis();
+                    event.preventDefault();
+                }
+            }
+        }).activate();
+
+        const validateTimes = (dayIndex) => {
+            let start = $('startTimeInput').value;
+            let end = $('endTimeInput').value;
+            if (start == '' || end == '') return;
+
+            new Request({
+                url: 'api/v2/schedule/isEntryValid',
+                method: 'post',
+                noCache: true,
+                data: {
+                    day: dayIndex,
+                    startTime: start,
+                    endTime: end,
+                },
+                onSuccess: (jsonResponse) => {
+                    const json = JSON.parse(jsonResponse);
+                    const valid = json['timesValid'];
+                    const conflict = json['conflict'];
+
+                    $('addButton').disabled = !valid || (conflict != 0);
+                    $('startTimeInput').toggleClass('invalid', !valid || (conflict & 1));
+                    $('endTimeInput').toggleClass('invalid', !valid || (conflict & 2));
+                },
+                onFailure: () => $('addButton').disabled = true
+            }).send();
+        };
+
+        window.addEvent('domready', () => {
+            const dayIndex = new URI().getData('day');
+            validateTimes(dayIndex);
+
+            $('startTimeInput').addEvent('change', (e) => validateTimes(dayIndex));
+            $('endTimeInput').addEvent('change', (e) => validateTimes(dayIndex));
+            $('pauseCheck').addEvent('change', (e) => {
+                $('downloadLimitInput').disabled = e.target.checked;
+                $('uploadLimitInput').disabled = e.target.checked;
+            });
+
+            $('addButton').addEvent('click', (e) => {
+                new Event(e).stop();
+
+                const startTime = $('startTimeInput').value;
+                const endTime = $('endTimeInput').value;
+                const download = $('downloadLimitInput').value;
+                const upload = $('uploadLimitInput').value;
+                const pause = $('pauseCheck').checked;
+
+                $('addButton').disabled = true;
+
+                new Request({
+                    url: 'api/v2/schedule/addEntry',
+                    method: 'post',
+                    noCache: true,
+                    data: {
+                        day: dayIndex,
+                        startTime: startTime,
+                        endTime: endTime,
+                        download: download,
+                        upload: upload,
+                        pause: pause,
+                    },
+                    onSuccess: closeThis,
+                    onFailure: (error) => console.log(error)
+                }).send();
+            });
+
+            $('cancelButton').addEvent('click', (e) => {
+                new Event(e).stop();
+                closeThis();
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <style>
+        input[type=number], input[type=time] {
+            width: 6em;
+        }
+        input.invalid {
+            border: .2em solid red;
+        }
+    </style>
+    <div>
+        <table>
+            <thead>
+                <th></th>
+                <th>QBT_TR(Download)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
+                <th>QBT_TR(Upload)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
+                <th>QBT_TR(Pause)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>QBT_TR(Speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
+                    <td><input type="number" id="downloadLimitInput" value="0"> KiB/s</td>
+                    <td><input type="number" id="uploadLimitInput" value="0"> KiB/s</td>
+                    <td><input type="checkbox" id="pauseCheck"></td>
+                </tr>
+                <tr>
+                    <th>QBT_TR(In between)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
+                    <td><input type="time" id="startTimeInput" value="00:00"></td>
+                    <td><input type="time" id="endTimeInput" value="23:59"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align: center; padding-top: 10px;">
+            <input type="button" id="addButton" value="QBT_TR(Add)QBT_TR[CONTEXT=ScheduleEntryDialog]">
+            <input type="button" id="cancelButton" value="QBT_TR(Cancel)QBT_TR[CONTEXT=ScheduleEntryDialog]">
+        </div>
+    </div>
+</body>
+
+</html>

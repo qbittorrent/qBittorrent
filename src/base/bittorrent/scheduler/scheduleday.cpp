@@ -23,7 +23,7 @@ QList<ScheduleEntry> ScheduleDay::entries() const
 
 bool ScheduleDay::addEntry(const ScheduleEntry &entry)
 {
-    if (conflicts(entry))
+    if (!entry.isValid() || conflicts(entry) != NoConflict)
         return false;
 
     m_entries.append(entry);

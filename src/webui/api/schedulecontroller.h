@@ -11,5 +11,7 @@ public:
     using APIController::APIController;
 
 private slots:
-    void removeScheduleEntryAction();
+    void isEntryValidAction();
+    void addEntryAction();
+    void removeEntryAction();
 };

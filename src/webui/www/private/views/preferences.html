@@ -410,8 +410,6 @@
         </legend>
         <div id="schedulerTable" class="toolbarTabs">
             <ul id="schedulerTabsList" class="tab-menu"></ul>
-            <i>QBT_TR(0 means unlimited)QBT_TR[CONTEXT=OptionsDialog]</i>
-            <div class="clear"></div>
         </div>
     </fieldset>
 
@@ -430,6 +428,13 @@
             <label for="limit_lan_peers_checkbox">QBT_TR(Apply rate limit to peers on LAN)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
+
+    <style>
+        #schedulerTable thead td {
+            background-color: whitesmoke;
+            font-weight: bold;
+        }
+    </style>
 </div>
 
 <div id="BittorrentTab" class="PrefTab invisible">
@@ -1457,82 +1462,96 @@
                 'QBT_TR(Sunday)QBT_TR[CONTEXT=HttpServer]'
             ];
 
+            locale = locale.replace('_', '-');
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             const schedule = JSON.parse(scheduleJson);
-
-            locale = locale.replace('_', '-');
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
                 const scheduleEntries = schedule[dayShorts[day]];
 
-                let listItem = document.createElement('li');
-                listItem.id = 'scheduleDay' + day.toString();
-                let link = document.createElement('a');
-                link.innerText = dayTranslations[day];
-                listItem.append(link);
+                // Create the day tab
+                const listItem = new Element('li', { id: '#scheduleDay' + day });
+                listItem.append(new Element('a', { text: dayTranslations[day]}));
                 $('schedulerTabsList').append(listItem);
 
-                // Create the table and its contents
-                let dayTab = document.createElement('div');
-                dayTab.id = 'scheduleDayTab' + day.toString();
-                dayTab.className = 'scheduleDayTab';
-                dayTab.setAttribute('data-day', i);
+                const dayTab = new Element('div.scheduleDayTab', {
+                    id: '#scheduleDayTab' + day,
+                    'data-day': i
+                });
+                const tabContent = new Element('div.formRow');
+                dayTab.append(tabContent);
+                $('schedulerTable').append(dayTab);
 
-                let tabContent = document.createElement('div');
-                tabContent.className = 'formRow';
-                let table = document.createElement('table');
+                if (day == today)
+                    listItem.addClass('selected');
+                else
+                    dayTab.addClass('invisible');
 
-                let headerRow = table.createTHead().insertRow();
+                listItem.addEvent('click', (e) => {
+                    $$('.scheduleDayTab').addClass('invisible');
+                    dayTab.removeClass('invisible');
+                });
+
+                // Create the table
+                const table = new Element('table');
+                const tableBody = table.createTBody();
+                tabContent.append(table);
+
+                const headerRow = table.createTHead().insertRow();
                 headerRow.insertCell().textContent = 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(Pause)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]';
                 headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
 
-                let tableBody = table.createTBody();
+                // Populate the list
                 scheduleEntries.forEach((entry, index) => {
-                    let start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
-                    let end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
+                    const start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
+                    const end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
+                    const dlText = entry.dl == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.dl * 1024, true);
+                    const ulText = entry.ul == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.ul * 1024, true);
 
-                    let row = tableBody.insertRow();
+                    const row = tableBody.insertRow();
                     row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
-                    row.insertCell().textContent = entry.dl + ' KiB/s';
-                    row.insertCell().textContent = entry.ul + ' KiB/s';
+                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]': dlText;
+                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
 
-                    let removeButton = document.createElement('button');
-                    removeButton.textContent = 'X';
+                    const removeButton = new Element('button', { text: 'X' });
+                    removeButton.addEvent('click', handleScheduleEntryRemove);
                     row.insertCell().appendChild(removeButton);
-
-                    removeButton.addEventListener('click', handleScheduleEntryRemove);
                 });
 
-                dayTab.append(tabContent);
+                const addButton = new Element('button', { text: 'QBT_TR(Add)QBT_TR[CONTEXT=OptionsDialog]' });
+                addButton.addEvent('click', (ev) => {
+                    new Event(ev).stop();
+                    new MochaUI.Window({
+                        id: 'scheduleentrydialog',
+                        title: 'QBT_TR(Add scheduled speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]',
+                        loadMethod: 'iframe',
+                        contentURL: new URI('addscheduleentry.html').setData('day', day).toString(),
+                        padding: 8,
+                        maximizable: false,
+                        scrollbars: false,
+                        width: 370,
+                        height: 120
+                    });
+                });
+
                 tabContent.append(table);
-                $('schedulerTabsList').after(dayTab);
-
-                // Highlight today
-                if (day == today)
-                    listItem.className = 'selected';
-                else
-                    dayTab.addClass('invisible');
-
-                // Set up events
-                listItem.addEvent('click', (e) => {
-                    $$('.scheduleDayTab').addClass('invisible');
-                    dayTab.removeClass('invisible');
-                });
+                tabContent.append(addButton);
             }
 
             MochaUI.initializeTabs('schedulerTabsList');
         };
 
         const handleScheduleEntryRemove = (ev) => {
-            const tr = ev.originalTarget.closest('tr');
+            console.log(ev);
+            const tr = ev.target.closest('tr');
             new Request({
-                url: 'api/v2/schedule/removeScheduleEntry',
+                url: 'api/v2/schedule/removeEntry',
                 method: 'post',
                 noCache: true,
                 data: {
