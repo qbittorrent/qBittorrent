@@ -90,6 +90,7 @@
 #include "common.h"
 #include "customstorage.h"
 #include "dbresumedatastorage.h"
+#include "downloadpriority.h"
 #include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
@@ -388,6 +389,7 @@ Session::Session(QObject *parent)
     , m_IDNSupportEnabled(BITTORRENT_SESSION_KEY("IDNSupportEnabled"), false)
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY("ValidateHTTPSTrackerCertificate"), true)
+    , m_SSRFMitigationEnabled(BITTORRENT_SESSION_KEY("SSRFMitigation"), true)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY("BlockPeersOnPrivilegedPorts"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
@@ -408,7 +410,6 @@ Session::Session(QObject *parent)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
-    , m_useRandomPort(BITTORRENT_SESSION_KEY("UseRandomPort"), false)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
@@ -1391,6 +1392,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
 
     settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
 
+    settingsPack.set_bool(lt::settings_pack::ssrf_mitigation, isSSRFMitigationEnabled());
+
     settingsPack.set_bool(lt::settings_pack::no_connect_privileged_ports, blockPeersOnPrivilegedPorts());
 
     settingsPack.set_bool(lt::settings_pack::apply_ip_filter_to_trackers, isTrackerFilteringEnabled());
@@ -1431,13 +1434,12 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
     if (m_listenInterfaceConfigured)
         return;
 
-    const int port = useRandomPort() ? 0 : this->port();
-    if (port > 0)  // user specified port
+    if (port() > 0)  // user has specified port number
         settingsPack.set_int(lt::settings_pack::max_retry_port_bind, 0);
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = ':' + QString::number(port);
+    const QString portString = ':' + QString::number(port());
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -1499,7 +1501,7 @@ void Session::configurePeerClasses()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
                , lt::address_v4::broadcast()
-               , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::global_peer_class_id));
+               , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
 
     // IPv6 may not be available on OS and the parsing
     // would result in an exception -> abnormal program termination
@@ -1508,7 +1510,7 @@ void Session::configurePeerClasses()
     {
         f.add_rule(lt::address_v6::any()
                    , lt::make_address("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::global_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 
@@ -1517,21 +1519,21 @@ void Session::configurePeerClasses()
         // local networks
         f.add_rule(lt::make_address("10.0.0.0")
                    , lt::make_address("10.255.255.255")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("172.16.0.0")
                    , lt::make_address("172.31.255.255")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("192.168.0.0")
                    , lt::make_address("192.168.255.255")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
         // link local
         f.add_rule(lt::make_address("169.254.0.0")
                    , lt::make_address("169.254.255.255")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
         // loopback
         f.add_rule(lt::make_address("127.0.0.0")
                    , lt::make_address("127.255.255.255")
-                   , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
 
         // IPv6 may not be available on OS and the parsing
         // would result in an exception -> abnormal program termination
@@ -1541,15 +1543,15 @@ void Session::configurePeerClasses()
             // link local
             f.add_rule(lt::make_address("fe80::")
                        , lt::make_address("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
             // unique local addresses
             f.add_rule(lt::make_address("fc00::")
                        , lt::make_address("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
                        , lt::address_v6::loopback()
-                       , 1 << static_cast<LTUnderlyingType<lt::peer_class_t>>(lt::session::local_peer_class_id));
+                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
         }
         catch (const std::exception &) {}
     }
@@ -1599,7 +1601,7 @@ void Session::populateAdditionalTrackers()
     m_additionalTrackerList.clear();
 
     const QString trackers = additionalTrackers();
-    for (QStringRef tracker : asConst(trackers.splitRef('\n')))
+    for (QStringView tracker : asConst(QStringView(trackers).split(u'\n')))
     {
         tracker = tracker.trimmed();
         if (!tracker.isEmpty())
@@ -2155,12 +2157,21 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         }
 
         Q_ASSERT(p.file_priorities.empty());
-        std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
-                       , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
+        if (addTorrentParams.filePriorities.empty())
         {
-            return static_cast<lt::download_priority_t>(
+            // Use qBittorrent default priority rather than libtorrent's (4)
+            p.file_priorities = std::vector(metadata.filesCount(), static_cast<lt::download_priority_t>(
+                    static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
+        }
+        else
+        {
+            std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
+                           , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
+            {
+                return static_cast<lt::download_priority_t>(
                         static_cast<lt::download_priority_t::underlying_type>(priority));
-        });
+            });
+        }
 
         p.ti = metadata.nativeInfo();
     }
@@ -2305,28 +2316,25 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     return true;
 }
 
-void Session::exportTorrentFile(const Torrent *torrent, TorrentExportFolder folder)
+void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const QString &folderPath, const QString &baseName)
 {
-    Q_ASSERT(((folder == TorrentExportFolder::Regular) && !torrentExportDirectory().isEmpty()) ||
-             ((folder == TorrentExportFolder::Finished) && !finishedTorrentExportDirectory().isEmpty()));
-
-    const QString validName = Utils::Fs::toValidFileSystemName(torrent->name());
+    const QString validName = Utils::Fs::toValidFileSystemName(baseName);
     QString torrentExportFilename = QString::fromLatin1("%1.torrent").arg(validName);
-    const QDir exportPath(folder == TorrentExportFolder::Regular ? torrentExportDirectory() : finishedTorrentExportDirectory());
-    if (exportPath.exists() || exportPath.mkpath(exportPath.absolutePath()))
+    const QDir exportDir {folderPath};
+    if (exportDir.exists() || exportDir.mkpath(exportDir.absolutePath()))
     {
-        QString newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
+        QString newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         int counter = 0;
         while (QFile::exists(newTorrentPath))
         {
             // Append number to torrent name to make it unique
             torrentExportFilename = QString::fromLatin1("%1 %2.torrent").arg(validName).arg(++counter);
-            newTorrentPath = exportPath.absoluteFilePath(torrentExportFilename);
+            newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         }
 
         try
         {
-            torrent->info().saveToFile(newTorrentPath);
+            torrentInfo.saveToFile(newTorrentPath);
         }
         catch (const RuntimeError &err)
         {
@@ -2389,7 +2397,7 @@ void Session::saveTorrentsQueue() const
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
         // We require actual (non-cached) queue position here!
-        const int queuePos = static_cast<LTUnderlyingType<lt::queue_position_t>>(torrent->nativeHandle().queue_position());
+        const int queuePos = toLTUnderlyingType(torrent->nativeHandle().queue_position());
         if (queuePos >= 0)
         {
             if (queuePos >= queue.size())
@@ -2787,16 +2795,6 @@ void Session::setPort(const int port)
         if (isReannounceWhenAddressChangedEnabled())
             reannounceToAllTrackers();
     }
-}
-
-bool Session::useRandomPort() const
-{
-    return m_useRandomPort;
-}
-
-void Session::setUseRandomPort(const bool value)
-{
-    m_useRandomPort = value;
 }
 
 QString Session::networkInterface() const
@@ -3788,6 +3786,19 @@ void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
     configureDeferred();
 }
 
+bool Session::isSSRFMitigationEnabled() const
+{
+    return m_SSRFMitigationEnabled;
+}
+
+void Session::setSSRFMitigationEnabled(const bool enabled)
+{
+    if (enabled == m_SSRFMitigationEnabled) return;
+
+    m_SSRFMitigationEnabled = enabled;
+    configureDeferred();
+}
+
 bool Session::blockPeersOnPrivilegedPorts() const
 {
     return m_blockPeersOnPrivilegedPorts;
@@ -3933,7 +3944,14 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
     // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
-        exportTorrentFile(torrent);
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+#else
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+#endif
+        exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
+    }
 
     emit torrentMetadataReceived(torrent);
 }
@@ -3984,7 +4002,14 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
 
     // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
-        exportTorrentFile(torrent, TorrentExportFolder::Finished);
+    {
+#if (LIBTORRENT_VERSION_NUM >= 20000)
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+#else
+        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+#endif
+        exportTorrentFile(torrentInfo, finishedTorrentExportDirectory(), torrent->name());
+    }
 
     if (!hasUnfinishedTorrents())
         emit allTorrentsFinished();
@@ -4492,7 +4517,10 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
         {
             // Copy the torrent file to the export folder
             if (!torrentExportDirectory().isEmpty())
-                exportTorrentFile(torrent);
+            {
+                const TorrentInfo torrentInfo {params.ltAddTorrentParams.ti};
+                exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
+            }
         }
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
@@ -4619,7 +4647,7 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
     if (downloadedMetadataIter != m_downloadedMetadata.end())
     {
-        TorrentInfo metadata {p->handle.torrent_file()};
+        const TorrentInfo metadata {p->handle.torrent_file()};
 
         m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;

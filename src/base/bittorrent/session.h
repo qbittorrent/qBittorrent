@@ -82,12 +82,6 @@ enum DeleteOption
     DeleteTorrentAndFiles
 };
 
-enum TorrentExportFolder
-{
-    Regular,
-    Finished
-};
-
 namespace Net
 {
     struct DownloadResult;
@@ -312,8 +306,6 @@ namespace BitTorrent
         void setSaveResumeDataInterval(int value);
         int port() const;
         void setPort(int port);
-        bool useRandomPort() const;
-        void setUseRandomPort(bool value);
         QString networkInterface() const;
         void setNetworkInterface(const QString &iface);
         QString networkInterfaceName() const;
@@ -435,6 +427,8 @@ namespace BitTorrent
         void setMultiConnectionsPerIpEnabled(bool enabled);
         bool validateHTTPSTrackerCertificate() const;
         void setValidateHTTPSTrackerCertificate(bool enabled);
+        bool isSSRFMitigationEnabled() const;
+        void setSSRFMitigationEnabled(bool enabled);
         bool blockPeersOnPrivilegedPorts() const;
         void setBlockPeersOnPrivilegedPorts(bool enabled);
         bool isTrackerFilteringEnabled() const;
@@ -614,7 +608,7 @@ namespace BitTorrent
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
-        void exportTorrentFile(const Torrent *torrent, TorrentExportFolder folder = TorrentExportFolder::Regular);
+        void exportTorrentFile(const TorrentInfo &torrentInfo, const QString &folderPath, const QString &baseName);
 
         void handleAlert(const lt::alert *a);
         void dispatchTorrentAlert(const lt::alert *a);
@@ -709,6 +703,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_IDNSupportEnabled;
         CachedSettingValue<bool> m_multiConnectionsPerIpEnabled;
         CachedSettingValue<bool> m_validateHTTPSTrackerCertificate;
+        CachedSettingValue<bool> m_SSRFMitigationEnabled;
         CachedSettingValue<bool> m_blockPeersOnPrivilegedPorts;
         CachedSettingValue<bool> m_isAddTrackersEnabled;
         CachedSettingValue<QString> m_additionalTrackers;
@@ -729,7 +724,6 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
-        CachedSettingValue<bool> m_useRandomPort;
         CachedSettingValue<QString> m_networkInterface;
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;

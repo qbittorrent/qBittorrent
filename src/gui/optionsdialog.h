@@ -189,6 +189,7 @@ private:
     Ui::OptionsDialog *m_ui;
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
+    SettingValue<int> m_storeLastViewedPage;
 
     QPushButton *m_applyButton;
 

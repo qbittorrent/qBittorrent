@@ -39,20 +39,33 @@
 
 namespace
 {
-    bool isSHA1Hash(const QString &string)
+    // BEP9 Extension for Peers to Send Metadata Files
+
+    bool isV1Hash(const QString &string)
     {
-        // There are 2 representations for BitTorrent info hash:
+        // There are 2 representations for BitTorrent v1 info hash:
         // 1. 40 chars hex-encoded string
         //      == 20 (SHA-1 length in bytes) * 2 (each byte maps to 2 hex characters)
         // 2. 32 chars Base32 encoded string
         //      == 20 (SHA-1 length in bytes) * 1.6 (the efficiency of Base32 encoding)
-        const int SHA1_HEX_SIZE = SHA1Hash::length() * 2;
-        const int SHA1_BASE32_SIZE = SHA1Hash::length() * 1.6;
+        const int V1_HEX_SIZE = SHA1Hash::length() * 2;
+        const int V1_BASE32_SIZE = SHA1Hash::length() * 1.6;
 
-        return ((((string.size() == SHA1_HEX_SIZE))
+        return ((((string.size() == V1_HEX_SIZE))
                 && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]"))))
-            || ((string.size() == SHA1_BASE32_SIZE)
+            || ((string.size() == V1_BASE32_SIZE)
                 && !string.contains(QRegularExpression(QLatin1String("[^2-7A-Za-z]")))));
+    }
+
+    bool isV2Hash(const QString &string)
+    {
+        // There are 1 representation for BitTorrent v2 info hash:
+        // 1. 64 chars hex-encoded string
+        //      == 32 (SHA-2 256 length in bytes) * 2 (each byte maps to 2 hex characters)
+        const int V2_HEX_SIZE = SHA256Hash::length() * 2;
+
+        return (string.size() == V2_HEX_SIZE)
+                && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]")));
     }
 }
 
@@ -66,8 +79,10 @@ MagnetUri::MagnetUri(const QString &source)
 {
     if (source.isEmpty()) return;
 
-    if (isSHA1Hash(source))
-        m_url = QLatin1String("magnet:?xt=urn:btih:") + source;
+    if (isV2Hash(source))
+        m_url = QString::fromLatin1("magnet:?xt=urn:btmh:") + source;
+    else if (isV1Hash(source))
+        m_url = QString::fromLatin1("magnet:?xt=urn:btih:") + source;
 
     lt::error_code ec;
     lt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);

@@ -199,6 +199,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY("Size")}
     , m_storeHSplitterSize {SETTINGS_KEY("HorizontalSplitterSizes")}
+    , m_storeLastViewedPage {SETTINGS_KEY("LastViewedPage")}
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);
@@ -318,7 +319,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     void (QSpinBox::*qSpinBoxValueChanged)(int) = &QSpinBox::valueChanged;
 
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableProxy);
-    connect(m_ui->checkRandomPort, &QAbstractButton::toggled, m_ui->spinPort, &ThisType::setDisabled);
 
     // Apply button is activated when a value is changed
     // Behavior tab
@@ -426,7 +426,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Connection tab
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkRandomPort, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     // Speed Tab
     connect(m_ui->spinUploadLimit, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -586,6 +585,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     for (QSpinBox *widget : asConst(findChildren<QSpinBox *>()))
         widget->installEventFilter(wheelEventEater);
 
+    m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
+
     Utils::Gui::resize(this, m_storeDialogSize);
     show();
     // Have to be called after show(), because splitter width needed
@@ -634,6 +635,8 @@ OptionsDialog::~OptionsDialog()
     for (const int size : asConst(m_ui->hsplitter->sizes()))
         hSplitterSizes.append(QString::number(size));
     m_storeHSplitterSize = hSplitterSizes;
+
+    m_storeLastViewedPage = m_ui->tabSelection->currentRow();
 
     delete m_ui;
 }
@@ -996,8 +999,6 @@ void OptionsDialog::saveOptions()
     // Connection preferences
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
-
-    session->setUseRandomPort(m_ui->checkRandomPort->isChecked());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
     session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024);
     session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
@@ -1291,10 +1292,8 @@ void OptionsDialog::loadOptions()
 
     // Connection preferences
     m_ui->comboProtocol->setCurrentIndex(static_cast<int>(session->btProtocol()));
-    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
-    m_ui->checkRandomPort->setChecked(session->useRandomPort());
     m_ui->spinPort->setValue(session->port());
-    m_ui->spinPort->setDisabled(m_ui->checkRandomPort->isChecked());
+    m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
     intValue = session->maxConnections();
     if (intValue > 0)

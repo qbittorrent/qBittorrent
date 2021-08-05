@@ -30,9 +30,9 @@
 
 #include <libtorrent/bdecode.hpp>
 #include <libtorrent/bencode.hpp>
-#include <libtorrent/create_torrent.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/read_resume_data.hpp>
+#include <libtorrent/torrent_info.hpp>
 #include <libtorrent/write_resume_data.hpp>
 
 #include <QByteArray>
@@ -52,7 +52,6 @@
 #include "base/utils/string.h"
 #include "infohash.h"
 #include "loadtorrentparams.h"
-#include "torrentinfo.h"
 
 namespace
 {
@@ -290,19 +289,18 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
     resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
 
     const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
+    const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray();
+    const QByteArray allData = ((bencodedMetadata.isEmpty() || bencodedResumeData.isEmpty())
+                                ? bencodedResumeData
+                                : (bencodedResumeData.chopped(1) + bencodedMetadata.mid(1)));
 
     lt::error_code ec;
-    const lt::bdecode_node root = lt::bdecode(bencodedResumeData, ec);
+    const lt::bdecode_node root = lt::bdecode(allData, ec);
 
     lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
     p = lt::read_resume_data(root, ec);
     p.save_path = Profile::instance()->fromPortablePath(fromLTString(p.save_path)).toStdString();
-
-    const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray();
-    auto metadata = TorrentInfo::load(bencodedMetadata);
-    if (metadata.isValid())
-        p.ti = metadata.nativeInfo();
 
     return resumeData;
 }
@@ -453,16 +451,23 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         DB_COLUMN_RESUMEDATA
     };
 
+    lt::entry data = lt::write_resume_data(p);
+
     // metadata is stored in separate column
     QByteArray bencodedMetadata;
-    bencodedMetadata.reserve(512 * 1024);
-    const std::shared_ptr<lt::torrent_info> torrentInfo = std::move(p.ti);
-    if (torrentInfo)
+    if (p.ti)
     {
+        lt::entry::dictionary_type &dataDict = data.dict();
+        lt::entry metadata {lt::entry::dictionary_t};
+        lt::entry::dictionary_type &metadataDict = metadata.dict();
+        metadataDict.insert(dataDict.extract("info"));
+        metadataDict.insert(dataDict.extract("creation date"));
+        metadataDict.insert(dataDict.extract("created by"));
+        metadataDict.insert(dataDict.extract("comment"));
+
         try
         {
-            const auto torrentCreator = lt::create_torrent(*torrentInfo);
-            const lt::entry metadata = torrentCreator.generate();
+            bencodedMetadata.reserve(512 * 1024);
             lt::bencode(std::back_inserter(bencodedMetadata), metadata);
         }
         catch (const std::exception &err)
@@ -477,7 +482,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
 
     QByteArray bencodedResumeData;
     bencodedResumeData.reserve(256 * 1024);
-    lt::bencode(std::back_inserter(bencodedResumeData), lt::write_resume_data(p));
+    lt::bencode(std::back_inserter(bencodedResumeData), data);
 
     const QString insertTorrentStatement = makeInsertStatement(DB_TABLE_TORRENTS, columns)
             + makeOnConflictUpdateStatement(DB_COLUMN_TORRENT_ID, columns);
@@ -503,7 +508,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(resumeData.operatingMode));
         query.bindValue(DB_COLUMN_STOPPED.placeholder, resumeData.stopped);
         query.bindValue(DB_COLUMN_RESUMEDATA.placeholder, bencodedResumeData);
-        if (torrentInfo)
+        if (!bencodedMetadata.isEmpty())
             query.bindValue(DB_COLUMN_METADATA.placeholder, bencodedMetadata);
 
         if (!query.exec())

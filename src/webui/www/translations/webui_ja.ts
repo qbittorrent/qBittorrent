@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>着信接続に使用するポートは 1 から 65535 の間でなくてはなりません。</translation>
+        <translation type="vanished">着信接続に使用するポートは 1 から 65535 の間でなくてはなりません。</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>OK</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>起動時に毎回異なるポートを使用する</translation>
+        <translation type="vanished">起動時に毎回異なるポートを使用する</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: 現在のトラッカー</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: 情報ハッシュ</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1709,10 +1709,6 @@
         <translation>作成日時:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">トレントのハッシュ:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>保存パス:</translation>
     </message>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>停止中 (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2505,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation>マグネットリンク</translation>
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">ハッシュ</translation>
     </message>
     <message>
         <source>Remove All</source>

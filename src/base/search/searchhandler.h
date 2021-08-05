@@ -78,7 +78,7 @@ private:
     void readSearchOutput();
     void processFailed();
     void processFinished(int exitcode);
-    bool parseSearchResult(const QString &line, SearchResult &searchResult);
+    bool parseSearchResult(QStringView line, SearchResult &searchResult);
 
     const QString m_pattern;
     const QString m_category;

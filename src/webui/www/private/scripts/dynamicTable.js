@@ -264,12 +264,19 @@ window.qBittorrent.DynamicTable = (function() {
                 this.setSortedColumn(el.columnName);
             }.bind(this);
 
+            const onTouch = function(e) {
+                const column = e.target.columnName;
+                this.currentHeaderAction = '';
+                this.setSortedColumn(column);
+            }.bind(this);
+
             const ths = this.fixedTableHeader.getElements('th');
 
             for (let i = 0; i < ths.length; ++i) {
                 const th = ths[i];
                 th.addEvent('mousemove', mouseMoveFn);
                 th.addEvent('mouseout', mouseOutFn);
+                th.addEvent('touchend', onTouch);
                 th.makeResizable({
                     modifiers: {
                         x: '',
@@ -617,20 +624,21 @@ window.qBittorrent.DynamicTable = (function() {
         onSelectedRowChanged: function() {},
 
         updateRowData: function(data) {
-            const rowId = data['rowId'];
+            // ensure rowId is a string
+            const rowId = `${data['rowId']}`;
             let row;
 
             if (!this.rows.has(rowId)) {
-                row = {};
+                row = {
+                    'full_data': {},
+                    'rowId': rowId
+                };
                 this.rows.set(rowId, row);
-                row['full_data'] = {};
-                row['rowId'] = rowId;
             }
             else
                 row = this.rows.get(rowId);
 
             row['data'] = data;
-
             for (const x in data)
                 row['full_data'][x] = data[x];
         },
@@ -696,8 +704,13 @@ window.qBittorrent.DynamicTable = (function() {
                     this.updateRow(trs[rowPos], fullUpdate);
                 else { // else create a new row in the table
                     const tr = new Element('tr');
+                    // set tabindex so element receives keydown events
+                    // more info: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
+                    tr.setProperty("tabindex", "-1");
 
-                    tr['rowId'] = rows[rowPos]['rowId'];
+                    const rowId = rows[rowPos]['rowId'];
+                    tr.setProperty("data-row-id", rowId);
+                    tr['rowId'] = rowId;
 
                     tr._this = this;
                     tr.addEvent('contextmenu', function(e) {
@@ -733,6 +746,16 @@ window.qBittorrent.DynamicTable = (function() {
                             this._this.selectRow(this.rowId);
                         }
                         return false;
+                    });
+                    tr.addEvent('keydown', function(event) {
+                        switch (event.key) {
+                            case "up":
+                                this._this.selectPreviousRow();
+                                return false;
+                            case "down":
+                                this._this.selectNextRow();
+                                return false;
+                        }
                     });
 
                     this.setupTr(tr);
@@ -812,6 +835,50 @@ window.qBittorrent.DynamicTable = (function() {
         getRowIds: function() {
             return this.rows.getKeys();
         },
+
+        selectNextRow: function() {
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const selectedRowId = this.getSelectedRowId();
+
+            let selectedIndex = -1;
+            for (let i = 0; i < visibleRows.length; ++i) {
+                const row = visibleRows[i];
+                if (row.getProperty("data-row-id") === selectedRowId) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+
+            const isLastRowSelected = (selectedIndex >= (visibleRows.length - 1));
+            if (!isLastRowSelected) {
+                this.deselectAll();
+
+                const newRow = visibleRows[selectedIndex + 1];
+                this.selectRow(newRow.getProperty("data-row-id"));
+            }
+        },
+
+        selectPreviousRow: function() {
+            const visibleRows = $(this.dynamicTableDivId).getElements("tbody tr").filter(e => e.getStyle("display") !== "none");
+            const selectedRowId = this.getSelectedRowId();
+
+            let selectedIndex = -1;
+            for (let i = 0; i < visibleRows.length; ++i) {
+                const row = visibleRows[i];
+                if (row.getProperty("data-row-id") === selectedRowId) {
+                    selectedIndex = i;
+                    break;
+                }
+            }
+
+            const isFirstRowSelected = selectedIndex <= 0;
+            if (!isFirstRowSelected) {
+                this.deselectAll();
+
+                const newRow = visibleRows[selectedIndex - 1];
+                this.selectRow(newRow.getProperty("data-row-id"));
+            }
+        },
     });
 
     const TorrentsTable = new Class({
@@ -870,6 +937,7 @@ window.qBittorrent.DynamicTable = (function() {
                 switch (state) {
                     case "forcedDL":
                     case "metaDL":
+                    case "forcedMetaDL":
                         state = "downloading";
                         break;
                     case "forcedUP":
@@ -933,6 +1001,9 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "metaDL":
                         status = "QBT_TR(Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "forcedMetaDL":
+                        status = "QBT_TR([F] Downloading metadata)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
@@ -1250,8 +1321,12 @@ window.qBittorrent.DynamicTable = (function() {
                     if (state == 'stalledDL')
                         r = (row['full_data'].upspeed > 0);
                     else
-                        r = state == 'metaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
+                        r = state == 'metaDL' || state == 'forcedMetaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
                     if (r == inactive)
+                        return false;
+                    break;
+                case 'checking':
+                    if (state !== 'checkingUP' && state !== 'checkingDL' && state !== 'checkingResumeData')
                         return false;
                     break;
                 case 'errored':
@@ -2006,6 +2081,19 @@ window.qBittorrent.DynamicTable = (function() {
                 row.full_data.remaining = 0;
             else
                 row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+        },
+
+        setupTr: function(tr) {
+            tr.addEvent('keydown', function(event) {
+                switch (event.key) {
+                    case "left":
+                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        return false;
+                    case "right":
+                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        return false;
+                }
+            });
         }
     });
 

@@ -238,10 +238,6 @@
             <input type="checkbox" id="upnp_checkbox" />
             <label for="upnp_checkbox">QBT_TR(Use UPnP / NAT-PMP port forwarding from my router)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
-        <div class="formRow">
-            <input type="checkbox" id="random_port_checkbox" onclick="qBittorrent.Preferences.updatePortValueEnabled();" />
-            <label for="random_port_checkbox">QBT_TR(Use different port on each startup)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1147,6 +1143,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="mitigateSSRF">QBT_TR(Server-side request forgery (SSRF) mitigation:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#ssrf_mitigation" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="checkbox" id="mitigateSSRF" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="blockPeersOnPrivilegedPorts">QBT_TR(Disallow connection to peers on privileged ports:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/single-page-ref.html#no_connect_privileged_ports" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1265,7 +1269,6 @@
                 updateMailAuthSettings: updateMailAuthSettings,
                 updateAutoRun: updateAutoRun,
                 generateRandomPort: generateRandomPort,
-                updatePortValueEnabled: updatePortValueEnabled,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
                 updateMaxUploadsEnabled: updateMaxUploadsEnabled,
@@ -1394,10 +1397,6 @@
         };
 
         // Connection tab
-        const updatePortValueEnabled = function() {
-            const checked = $('random_port_checkbox').getProperty('checked');
-            $('port_value').setProperty('disabled', checked);
-        };
 
         const updateMaxConnecEnabled = function() {
             const isMaxConnecEnabled = $('max_connec_checkbox').getProperty('checked');
@@ -1805,8 +1804,6 @@
                         // Listening Port
                         $('port_value').setProperty('value', pref.listen_port.toInt());
                         $('upnp_checkbox').setProperty('checked', pref.upnp);
-                        $('random_port_checkbox').setProperty('checked', pref.random_port);
-                        updatePortValueEnabled();
 
                         // Connections Limits
                         const max_connec = pref.max_connec.toInt();
@@ -2044,6 +2041,7 @@
                         $('IDNSupportCheckbox').setProperty('checked', pref.idn_support_enabled);
                         $('allowMultipleConnectionsFromTheSameIPAddress').setProperty('checked', pref.enable_multi_connections_from_same_ip);
                         $('validateHTTPSTrackerCertificate').setProperty('checked', pref.validate_https_tracker_certificate);
+                        $('mitigateSSRF').setProperty('checked', pref.ssrf_mitigation);
                         $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.block_peers_on_privileged_ports);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
@@ -2111,13 +2109,12 @@
             // Connection tab
             // Listening Port
             const listen_port = $('port_value').getProperty('value').toInt();
-            if (isNaN(listen_port) || listen_port < 1 || listen_port > 65535) {
-                alert("QBT_TR(The port used for incoming connections must be between 1 and 65535.)QBT_TR[CONTEXT=HttpServer]");
+            if (isNaN(listen_port) || (listen_port < 0) || (listen_port > 65535)) {
+                alert("QBT_TR(The port used for incoming connections must be between 0 and 65535.)QBT_TR[CONTEXT=HttpServer]");
                 return;
             }
             settings.set('listen_port', listen_port);
             settings.set('upnp', $('upnp_checkbox').getProperty('checked'));
-            settings.set('random_port', $('random_port_checkbox').getProperty('checked'));
 
             // Connections Limits
             let max_connec = -1;
@@ -2432,6 +2429,7 @@
             settings.set('idn_support_enabled', $('IDNSupportCheckbox').getProperty('checked'));
             settings.set('enable_multi_connections_from_same_ip', $('allowMultipleConnectionsFromTheSameIPAddress').getProperty('checked'));
             settings.set('validate_https_tracker_certificate', $('validateHTTPSTrackerCertificate').getProperty('checked'));
+            settings.set('ssrf_mitigation', $('mitigateSSRF').getProperty('checked'));
             settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));

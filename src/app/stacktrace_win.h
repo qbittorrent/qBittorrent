@@ -73,7 +73,7 @@ void straceWin::loadHelpStackFrame(IMAGEHLP_STACK_FRAME& ihsf, const STACKFRAME6
 BOOL CALLBACK straceWin::EnumSymbolsCB(PSYMBOL_INFO symInfo, ULONG size, PVOID user)
 {
     Q_UNUSED(size)
-    QStringList* params = (QStringList*)user;
+    auto params = static_cast<QStringList *>(user);
     if (symInfo->Flags & SYMFLAG_PARAMETER)
         params->append(symInfo->Name);
     return TRUE;
@@ -91,7 +91,7 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
 {
     Q_UNUSED(ModuleName)
     IMAGEHLP_MODULE64 mod;
-    EnumModulesContext* context = (EnumModulesContext*)UserContext;
+    auto context = static_cast<EnumModulesContext *>(UserContext);
     mod.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
     if(SymGetModuleInfo64(context->hProcess, BaseOfDll, &mod))
     {
@@ -264,7 +264,7 @@ const QString straceWin::getBacktrace()
     ULONG64 buffer[(sizeof(SYMBOL_INFO) +
                     MAX_SYM_NAME * sizeof(TCHAR) +
                     sizeof(ULONG64) - 1) /  sizeof(ULONG64)];
-    PSYMBOL_INFO pSymbol = (PSYMBOL_INFO)buffer;
+    auto pSymbol = reinterpret_cast<PSYMBOL_INFO>(buffer);
     pSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     pSymbol->MaxNameLen = MAX_SYM_NAME;
 

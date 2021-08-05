@@ -263,12 +263,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     connect(m_ui->checkMaxRatio, &QCheckBox::toggled, m_ui->spinRatioLimit, &QDoubleSpinBox::setEnabled);
     connect(m_ui->checkMaxTime, &QCheckBox::toggled, m_ui->spinTimeLimit, &QSpinBox::setEnabled);
 
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
     connect(m_ui->buttonGroup, &QButtonGroup::idClicked, this, &TorrentOptionsDialog::handleRatioTypeChanged);
-#else
-    connect(m_ui->buttonGroup, qOverload<int>(&QButtonGroup::buttonClicked)
-            , this, &TorrentOptionsDialog::handleRatioTypeChanged);
-#endif
 
     Utils::Gui::resize(this, m_storeDialogSize);
 }

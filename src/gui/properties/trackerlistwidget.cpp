@@ -373,6 +373,7 @@ void TrackerListWidget::loadTrackers()
         {
             item = new QTreeWidgetItem();
             item->setText(COL_URL, trackerURL);
+            item->setToolTip(COL_URL, trackerURL);
             addTopLevelItem(item);
             m_trackerItems[trackerURL] = item;
         }
@@ -400,6 +401,7 @@ void TrackerListWidget::loadTrackers()
         }
 
         item->setText(COL_MSG, entry.message);
+        item->setToolTip(COL_MSG, entry.message);
         item->setText(COL_PEERS, ((entry.numPeers > -1)
             ? QString::number(entry.numPeers)
             : tr("N/A")));

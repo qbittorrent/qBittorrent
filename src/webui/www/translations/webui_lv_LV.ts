@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Ienākošo savienojumu portam ir jābūt starp 1 un 65535.</translation>
+        <translation type="vanished">Ienākošo savienojumu portam ir jābūt starp 1 un 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>Labi</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Automātiski izvēlēties un nomainīt portu pie qBittorrent ieslēgšanas</translation>
+        <translation type="vanished">Automātiski izvēlēties un nomainīt portu pie qBittorrent ieslēgšanas</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Pašreizējais trakeris</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Jaucējkods</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1450,35 +1450,35 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Izejošo savienojumu skaits sekundē</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Nejaušs</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrenta ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Atjaunināt datus ar trakeriem, ja tiek mainīti IP vai porti</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Uzticamo starpniekserveru saraksts:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Atļaut reversos starptniekserverus</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Jaucējkods v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Jaucējkods v1</translation>
     </message>
 </context>
 <context>
@@ -1709,10 +1709,6 @@
         <translation>Izveidots:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrenta jaucējkods:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Saglabāšanas vieta:</translation>
     </message>
@@ -1770,15 +1766,15 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Jaucējkods v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Jaucējkods v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Nav zināms</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>Apstājušies (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (augšupielādē jau %2)</translation>
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2507,10 +2515,6 @@
         <translation>Magnētsaite</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">Jaucējkods:</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>Noņemt visas</translation>
     </message>
@@ -2532,15 +2536,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Jaucējkods v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Jaucējkods v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrenta ID</translation>
     </message>
 </context>
 <context>
@@ -2773,7 +2777,7 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>līdz</translation>
     </message>
 </context>
 <context>
@@ -3441,7 +3445,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Neskatīti</translation>
     </message>
 </context>
 </TS>

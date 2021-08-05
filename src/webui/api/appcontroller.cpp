@@ -155,8 +155,8 @@ void AppController::preferencesAction()
     // Connection
     // Listening Port
     data["listen_port"] = session->port();
+    data["random_port"] = (session->port() == 0);  // deprecated
     data["upnp"] = Net::PortForwarder::instance()->isEnabled();
-    data["random_port"] = session->useRandomPort();
     // Connections Limits
     data["max_connec"] = session->maxConnections();
     data["max_connec_per_torrent"] = session->maxConnectionsPerTorrent();
@@ -334,6 +334,8 @@ void AppController::preferencesAction()
     data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
     data["validate_https_tracker_certificate"] = session->validateHTTPSTrackerCertificate();
+    // SSRF mitigation
+    data["ssrf_mitigation"] = session->isSSRFMitigationEnabled();
     // Disallow connection to peers on privileged ports
     data["block_peers_on_privileged_ports"] = session->blockPeersOnPrivilegedPorts();
     // Embedded tracker
@@ -481,12 +483,16 @@ void AppController::setPreferencesAction()
 
     // Connection
     // Listening Port
-    if (hasKey("listen_port"))
+    if (hasKey("random_port") && it.value().toBool())  // deprecated
+    {
+        session->setPort(0);
+    }
+    else if (hasKey("listen_port"))
+    {
         session->setPort(it.value().toInt());
+    }
     if (hasKey("upnp"))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
-    if (hasKey("random_port"))
-        session->setUseRandomPort(it.value().toBool());
     // Connections Limits
     if (hasKey("max_connec"))
         session->setMaxConnections(it.value().toInt());
@@ -809,6 +815,9 @@ void AppController::setPreferencesAction()
     // Validate HTTPS tracker certificate
     if (hasKey("validate_https_tracker_certificate"))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
+    // SSRF mitigation
+    if (hasKey("ssrf_mitigation"))
+        session->setSSRFMitigationEnabled(it.value().toBool());
     // Disallow connection to peers on privileged ports
     if (hasKey("block_peers_on_privileged_ports"))
         session->setBlockPeersOnPrivilegedPorts(it.value().toBool());

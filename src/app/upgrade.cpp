@@ -102,12 +102,28 @@ namespace
         settingsStorage->storeValue(newKey, Utils::String::fromEnum(torrentContentLayout));
         settingsStorage->removeValue(oldKey);
     }
+
+    void upgradeListenPortSettings()
+    {
+        const auto oldKey = QString::fromLatin1("BitTorrent/Session/UseRandomPort");
+        const auto newKey = QString::fromLatin1("Preferences/Connection/PortRangeMin");
+        auto *settingsStorage = SettingsStorage::instance();
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            if (settingsStorage->loadValue<bool>(oldKey))
+                settingsStorage->storeValue(newKey, 0);
+
+            settingsStorage->removeValue(oldKey);
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
 {
     exportWebUIHttpsFiles();
     upgradeTorrentContentLayout();
+    upgradeListenPortSettings();
     return true;
 }
 

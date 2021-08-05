@@ -84,7 +84,7 @@ namespace
                        , std::back_inserter(out), [](const DownloadPriority priority)
         {
             return static_cast<lt::download_priority_t>(
-                        static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
+                        static_cast<lt::download_priority_t::underlying_type>(priority));
         });
         return out;
     }
@@ -797,9 +797,10 @@ QVector<DownloadPriority> TorrentImpl::filePriorities() const
     const std::vector<lt::download_priority_t> fp = m_nativeHandle.get_file_priorities();
 
     QVector<DownloadPriority> ret;
-    std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](lt::download_priority_t priority)
+    ret.reserve(static_cast<decltype(ret)::size_type>(fp.size()));
+    std::transform(fp.cbegin(), fp.cend(), std::back_inserter(ret), [](const lt::download_priority_t priority)
     {
-        return static_cast<DownloadPriority>(static_cast<LTUnderlyingType<lt::download_priority_t>>(priority));
+        return static_cast<DownloadPriority>(toLTUnderlyingType(priority));
     });
     return ret;
 }
@@ -832,6 +833,7 @@ bool TorrentImpl::isDownloading() const
 {
     return m_state == TorrentState::Downloading
             || m_state == TorrentState::DownloadingMetadata
+            || m_state == TorrentState::ForcedDownloadingMetadata
             || m_state == TorrentState::StalledDownloading
             || m_state == TorrentState::CheckingDownloading
             || m_state == TorrentState::PausedDownloading
@@ -864,6 +866,7 @@ bool TorrentImpl::isActive() const
         return (uploadPayloadRate() > 0);
 
     return m_state == TorrentState::DownloadingMetadata
+            || m_state == TorrentState::ForcedDownloadingMetadata
             || m_state == TorrentState::Downloading
             || m_state == TorrentState::ForcedDownloading
             || m_state == TorrentState::Uploading
@@ -933,7 +936,7 @@ void TorrentImpl::updateState()
         else if (m_session->isQueueingSystemEnabled() && isQueued())
             m_state = TorrentState::QueuedDownloading;
         else
-            m_state = TorrentState::DownloadingMetadata;
+            m_state = isForced() ? TorrentState::ForcedDownloadingMetadata : TorrentState::DownloadingMetadata;
     }
     else if ((m_nativeStatus.state == lt::torrent_status::checking_files)
              && (!isPaused() || (m_nativeStatus.flags & lt::torrent_flags::auto_managed)
@@ -1250,7 +1253,7 @@ QBitArray TorrentImpl::downloadingPieces() const
     m_nativeHandle.get_download_queue(queue);
 
     for (const lt::partial_piece_info &info : queue)
-        result.setBit(static_cast<LTUnderlyingType<lt::piece_index_t>>(info.piece_index));
+        result.setBit(toLTUnderlyingType(info.piece_index));
 
     return result;
 }
@@ -1508,6 +1511,10 @@ void TorrentImpl::endReceivedMetadataHandling(const QString &savePath, const QSt
     for (int i = 0; i < fileNames.size(); ++i)
         p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+
+    // Use qBittorrent default priority rather than libtorrent's (4)
+    p.file_priorities = std::vector(fileNames.size(), static_cast<lt::download_priority_t>(
+            static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
 
     reload();
 
@@ -1865,9 +1872,9 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
 
-    QVector<QStringRef> oldPathParts = oldFilePath.splitRef('/', Qt::SkipEmptyParts);
+    QList<QStringView> oldPathParts = QStringView(oldFilePath).split('/', Qt::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
-    QVector<QStringRef> newPathParts = newFilePath.splitRef('/', Qt::SkipEmptyParts);
+    QList<QStringView> newPathParts = QStringView(newFilePath).split('/', Qt::SkipEmptyParts);
     newPathParts.removeLast();  // drop file name part
 
 #if defined(Q_OS_WIN)
@@ -1886,7 +1893,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 
     for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i)
     {
-        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QLatin1String("/")));
+        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QString::fromLatin1("/")));
         oldPathParts.removeLast();
     }
 
@@ -1900,7 +1907,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
 void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert *p)
 {
     LogMsg(tr("File rename failed. Torrent: \"%1\", file: \"%2\", reason: \"%3\"")
-        .arg(name(), filePath(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index))
+        .arg(name(), filePath(toLTUnderlyingType(p->index))
              , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
     m_oldPath[p->index].removeFirst();
@@ -1919,13 +1926,13 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
-        QString name = filePath(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index));
+        QString name = filePath(toLTUnderlyingType(p->index));
         if (name.endsWith(QB_EXT))
         {
             const QString oldName = name;
             name.chop(QB_EXT.size());
             qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
-            renameFile(static_cast<LTUnderlyingType<lt::file_index_t>>(p->index), name);
+            renameFile(toLTUnderlyingType(p->index), name);
         }
     }
 }

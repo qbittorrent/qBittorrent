@@ -12,9 +12,10 @@ project(qBittorrent
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 # version requirements - older vesions may work, but you are on your own
 set(minBoostVersion 1.65)
-set(minQtVersion 5.14)
+set(minQtVersion 5.15.2)
 set(minOpenSSLVersion 1.1.1)
-set(minLibtorrentVersion 1.2.14)
+set(minLibtorrent1Version 1.2.14)
+set(minLibtorrentVersion 2.0.4)
 set(minZlibVersion 1.2.11)
 
 # features (some are platform-specific)

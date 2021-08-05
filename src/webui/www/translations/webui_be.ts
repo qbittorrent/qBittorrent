@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>Порт для ўваходных злучэнняў мусіць быць паміж 1 і 65535.</translation>
+        <translation type="vanished">Порт для ўваходных злучэнняў мусіць быць паміж 1 і 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -365,6 +365,10 @@
     </message>
     <message>
         <source>OK</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>Выкарыстоўваць выпадковы порт пры запуску</translation>
+        <translation type="vanished">Выкарыстоўваць выпадковы порт пры запуску</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T: Бягучы трэкер</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I: Хэш-сума</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1709,10 +1709,6 @@
         <translation>Створаны:</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Хэш торэнта:</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>Шлях захавання:</translation>
     </message>
@@ -1986,6 +1982,14 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2505,10 +2513,6 @@
     <message>
         <source>Magnet link</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Hash</source>
-        <translation type="vanished">Хэш</translation>
     </message>
     <message>
         <source>Remove All</source>

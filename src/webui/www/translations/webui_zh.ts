@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation>用于传入连接的端口必须大于 1 且小于 65535。</translation>
+        <translation type="vanished">用于传入连接的端口必须大于 1 且小于 65535。</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -366,6 +366,10 @@
     <message>
         <source>OK</source>
         <translation>确定</translation>
+    </message>
+    <message>
+        <source>The port used for incoming connections must be between 0 and 65535.</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Use different port on each startup</source>
-        <translation>在每次启动时使用不同的端口</translation>
+        <translation type="vanished">在每次启动时使用不同的端口</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -959,10 +963,6 @@
     <message>
         <source>%T: Current tracker</source>
         <translation>%T：当前 tracker</translation>
-    </message>
-    <message>
-        <source>%I: Info hash</source>
-        <translation type="vanished">%I：哈希值</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1450,35 +1450,35 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>每秒传出连接数：</translation>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>随机</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrent ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>当 IP 或端口更改时，重新通知所有 trackers：</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>受信任的代理列表：</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>启用反向代理支持</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J：信息哈希值 v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: 信息哈希值 v1</translation>
     </message>
 </context>
 <context>
@@ -1709,10 +1709,6 @@
         <translation>创建于：</translation>
     </message>
     <message>
-        <source>Torrent Hash:</source>
-        <translation type="vanished">Torrent 哈希值：</translation>
-    </message>
-    <message>
         <source>Save Path:</source>
         <translation>保存路径：</translation>
     </message>
@@ -1770,15 +1766,15 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>信息哈希值 v2：</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>信息哈希值 v1：</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
 </context>
 <context>
@@ -1987,6 +1983,14 @@
     <message>
         <source>Stalled (%1)</source>
         <translation>暂停 (%1)</translation>
+    </message>
+    <message>
+        <source>Checking (%1)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Checking (0)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2330,6 +2334,10 @@
         <source>%1 (seeded for %2)</source>
         <translation>%1 (已做种 %2)</translation>
     </message>
+    <message>
+        <source>[F] Downloading metadata</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TransferListFiltersWidget</name>
@@ -2507,10 +2515,6 @@
         <translation>磁力链接</translation>
     </message>
     <message>
-        <source>Hash</source>
-        <translation type="vanished">哈希值</translation>
-    </message>
-    <message>
         <source>Remove All</source>
         <translation>删除全部</translation>
     </message>
@@ -2532,15 +2536,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>信息哈希值 v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>信息哈希值 v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>Torrent ID</translation>
     </message>
 </context>
 <context>
@@ -2773,7 +2777,7 @@
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>到</translation>
     </message>
 </context>
 <context>
@@ -3441,7 +3445,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>未读</translation>
     </message>
 </context>
 </TS>
