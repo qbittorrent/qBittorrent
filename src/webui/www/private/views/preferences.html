@@ -1464,11 +1464,57 @@
 
             locale = locale.replace('_', '-');
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-            const schedule = JSON.parse(scheduleJson);
+            let schedule = JSON.parse(scheduleJson);
+
+            const updateSchedule = (then) => {
+                new Request({
+                    url: 'api/v2/schedule/getJson',
+                    method: 'get',
+                    noCache: true,
+                    onSuccess: (responseJson) => {
+                        schedule = JSON.parse(responseJson);
+                        then();
+                    },
+                    onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                }).send();
+            };
+
+            const populateScheduleTable = (dayIndex, tableBody) => {
+                tableBody.textContent = '';
+                updateSchedule(() => schedule[dayShorts[dayIndex]].forEach((entry) => {
+                    const start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
+                    const end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
+                    const dlText = entry.dl == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.dl * 1024, true);
+                    const ulText = entry.ul == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.ul * 1024, true);
+
+                    const row = tableBody.insertRow();
+                    row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
+                    row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
+                    row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
+                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : dlText;
+                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
+
+                    const removeButton = new Element('button', { text: 'X'});
+                    removeButton.addEvent('click', (ev) => {
+                        const tr = ev.target.closest('tr');
+                        new Request({
+                            url: 'api/v2/schedule/removeEntry',
+                            method: 'post',
+                            noCache: true,
+                            data: {
+                                day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
+                                index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
+                            },
+                            onSuccess: () => tr.remove(),
+                            onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                        }).send();
+                    });
+                    row.insertCell().appendChild(removeButton);
+                }));
+            }
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
-                const scheduleEntries = schedule[dayShorts[day]];
 
                 // Create the day tab
                 const listItem = new Element('li', { id: '#scheduleDay' + day });
@@ -1496,7 +1542,6 @@
                 // Create the table
                 const table = new Element('table');
                 const tableBody = table.createTBody();
-                tabContent.append(table);
 
                 const headerRow = table.createTHead().insertRow();
                 headerRow.insertCell().textContent = 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]';
@@ -1506,23 +1551,7 @@
                 headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
 
                 // Populate the list
-                scheduleEntries.forEach((entry, index) => {
-                    const start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
-                    const end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
-                    const dlText = entry.dl == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.dl * 1024, true);
-                    const ulText = entry.ul == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.ul * 1024, true);
-
-                    const row = tableBody.insertRow();
-                    row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
-                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : dlText;
-                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
-
-                    const removeButton = new Element('button', { text: 'X' });
-                    removeButton.addEvent('click', handleScheduleEntryRemove);
-                    row.insertCell().appendChild(removeButton);
-                });
+                populateScheduleTable(day, tableBody);
 
                 const addButton = new Element('button', { text: 'QBT_TR(Add)QBT_TR[CONTEXT=OptionsDialog]' });
                 addButton.addEvent('click', (ev) => {
@@ -1536,7 +1565,8 @@
                         maximizable: false,
                         scrollbars: false,
                         width: 370,
-                        height: 120
+                        height: 120,
+                        onClose: (e) => populateScheduleTable(day, tableBody)
                     });
                 });
 
@@ -1545,22 +1575,6 @@
             }
 
             MochaUI.initializeTabs('schedulerTabsList');
-        };
-
-        const handleScheduleEntryRemove = (ev) => {
-            console.log(ev);
-            const tr = ev.target.closest('tr');
-            new Request({
-                url: 'api/v2/schedule/removeEntry',
-                method: 'post',
-                noCache: true,
-                data: {
-                    day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
-                    index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
-                },
-                onSuccess: () => tr.remove(),
-                onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
-            }).send();
         };
 
         // Bittorrent tab

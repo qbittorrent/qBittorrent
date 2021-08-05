@@ -78,3 +78,8 @@ void ScheduleController::removeEntryAction()
     if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(index))
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry index"));
 }
+
+void ScheduleController::getJsonAction()
+{
+    setResult(BandwidthScheduler::instance()->getJson());
+}

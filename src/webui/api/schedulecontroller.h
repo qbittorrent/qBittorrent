@@ -14,4 +14,5 @@ private slots:
     void isEntryValidAction();
     void addEntryAction();
     void removeEntryAction();
+    void getJsonAction();
 };
