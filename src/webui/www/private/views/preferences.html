@@ -430,6 +430,7 @@
             background-color: whitesmoke;
             font-weight: bold;
         }
+
     </style>
 </div>
 
@@ -1471,7 +1472,7 @@
 
                 // Create the day tab
                 const listItem = new Element('li', { id: '#scheduleDay' + day });
-                listItem.append(new Element('a', { text: dayTranslations[day]}));
+                listItem.append(new Element('a', { text: dayTranslations[day] }));
                 $('schedulerTabsList').append(listItem);
 
                 const dayTab = new Element('div.scheduleDayTab', {
@@ -1515,7 +1516,7 @@
                     row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
                     row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
-                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]': dlText;
+                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : dlText;
                     row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
 
                     const removeButton = new Element('button', { text: 'X' });
