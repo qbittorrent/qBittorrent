@@ -1494,7 +1494,7 @@
                     row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : dlText;
                     row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
 
-                    const removeButton = new Element('button', { text: 'X'});
+                    const removeButton = new Element('button', { text: 'X' });
                     removeButton.addEvent('click', (ev) => {
                         const tr = ev.target.closest('tr');
                         new Request({
