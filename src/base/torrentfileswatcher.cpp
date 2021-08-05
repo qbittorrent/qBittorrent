@@ -207,6 +207,7 @@ signals:
 
 private:
     void onTimeout();
+    void scheduleWatchedFolderProcessing(const QString &path);
     void processWatchedFolder(const QString &path);
     void processFolder(const QString &path, const QString &watchedFolderPath, const TorrentFilesWatcher::WatchedFolderOptions &options);
     void processFailedTorrents();
@@ -436,7 +437,7 @@ TorrentFilesWatcher::Worker::Worker()
     , m_watchTimer {new QTimer(this)}
     , m_retryTorrentTimer {new QTimer(this)}
 {
-    connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &Worker::processWatchedFolder);
+    connect(m_watcher, &QFileSystemWatcher::directoryChanged, this, &Worker::scheduleWatchedFolderProcessing);
     connect(m_watchTimer, &QTimer::timeout, this, &Worker::onTimeout);
 
     connect(m_retryTorrentTimer, &QTimer::timeout, this, &Worker::processFailedTorrents);
@@ -468,6 +469,14 @@ void TorrentFilesWatcher::Worker::removeWatchedFolder(const QString &path)
     m_failedTorrents.remove(path);
     if (m_failedTorrents.isEmpty())
         m_retryTorrentTimer->stop();
+}
+
+void TorrentFilesWatcher::Worker::scheduleWatchedFolderProcessing(const QString &path)
+{
+    QTimer::singleShot(2000, this, [this, path]()
+    {
+        processWatchedFolder(path);
+    });
 }
 
 void TorrentFilesWatcher::Worker::processWatchedFolder(const QString &path)
@@ -612,7 +621,7 @@ void TorrentFilesWatcher::Worker::addWatchedFolder(const QString &path, const To
     else
     {
         m_watcher->addPath(path);
-        QTimer::singleShot(2000, this, [this, path]() { processWatchedFolder(path); });
+        scheduleWatchedFolderProcessing(path);
     }
 
     m_watchedFolders[path] = options;
@@ -644,7 +653,7 @@ void TorrentFilesWatcher::Worker::updateWatchedFolder(const QString &path, const
                 m_watchTimer->stop();
 
             m_watcher->addPath(path);
-            QTimer::singleShot(2000, this, [this, path]() { processWatchedFolder(path); });
+            scheduleWatchedFolderProcessing(path);
         }
     }
 
