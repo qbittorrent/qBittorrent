@@ -50,10 +50,10 @@
         <file>private/scripts/dynamicTable.js</file>
         <file>private/scripts/file-tree.js</file>
         <file>private/scripts/filesystem.js</file>
-        <file>private/scripts/lib/clipboard-2.0.0.min.js</file>
-        <file>private/scripts/lib/mocha-0.9.6-yc.js</file>
-        <file>private/scripts/lib/mootools-1.2-core-yc.js</file>
-        <file>private/scripts/lib/mootools-1.2-more.js</file>
+        <file>private/scripts/lib/clipboard.min.js</file>
+        <file>private/scripts/lib/mocha.min.js</file>
+        <file>private/scripts/lib/MooTools-Core-1.6.0-compat-compressed.js</file>
+        <file>private/scripts/lib/MooTools-More-1.6.0-compat-compressed.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
         <file>private/scripts/preferences.js</file>
