@@ -88,6 +88,7 @@ namespace
     const char KEY_TRANSFER_UPDATA[] = "up_info_data";
     const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
     const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
+    const char KEY_TRANSFER_PAUSED[] = "is_transfer_paused";
 
     // Statistics keys
     const char KEY_TRANSFER_ALLTIME_DL[] = "alltime_dl";
@@ -125,6 +126,7 @@ namespace
         map[KEY_TRANSFER_UPDATA] = sessionStatus.totalPayloadUpload;
         map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
         map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
+        map[KEY_TRANSFER_PAUSED] = session->isPaused();
 
         const quint64 atd = session->getAlltimeDL();
         const quint64 atu = session->getAlltimeUL();

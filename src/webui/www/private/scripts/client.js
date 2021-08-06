@@ -711,12 +711,16 @@ window.addEvent('load', function() {
 
     const processServerState = function() {
         let transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_speed, true);
-        if (serverState.dl_rate_limit > 0)
+        if (serverState.is_transfer_paused)
+            transfer_info += " [QBT_TR(Paused)QBT_TR[CONTEXT=StatusBar]]";
+        else if (serverState.dl_rate_limit > 0)
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.dl_info_data, false) + ")";
         $("DlInfos").set('html', transfer_info);
         transfer_info = window.qBittorrent.Misc.friendlyUnit(serverState.up_info_speed, true);
-        if (serverState.up_rate_limit > 0)
+        if (serverState.is_transfer_paused)
+            transfer_info += " [QBT_TR(Paused)QBT_TR[CONTEXT=StatusBar]]";
+        else if (serverState.up_rate_limit > 0)
             transfer_info += " [" + window.qBittorrent.Misc.friendlyUnit(serverState.up_rate_limit, true) + "]";
         transfer_info += " (" + window.qBittorrent.Misc.friendlyUnit(serverState.up_info_data, false) + ")";
         $("UpInfos").set('html', transfer_info);

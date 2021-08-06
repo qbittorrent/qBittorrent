@@ -210,8 +210,8 @@ void StatusBar::updateDHTNodesNumber()
 
 void StatusBar::updateSpeedLabels()
 {
-    const BitTorrent::SessionStatus &sessionStatus = BitTorrent::Session::instance()->status();
-    const auto* session = BitTorrent::Session::instance();
+    const auto &session = BitTorrent::Session::instance();
+    const BitTorrent::SessionStatus &sessionStatus = session->status();
 
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
     const int dlSpeedLimit = session->downloadSpeedLimit();

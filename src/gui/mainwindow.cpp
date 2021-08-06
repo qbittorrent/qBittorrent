@@ -1627,13 +1627,17 @@ void MainWindow::loadPreferences(const bool configureSession)
 void MainWindow::reloadSessionStats()
 {
     const BitTorrent::SessionStatus &status = BitTorrent::Session::instance()->status();
+    const bool isPaused = BitTorrent::Session::instance()->isPaused();
 
     // update global information
 #ifdef Q_OS_MACOS
     if (status.payloadDownloadRate > 0)
     {
-        MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
+        if (isPaused)
+            MacUtils::setBadgeLabelText(tr("Transfers paused by the schedule"));
+        else
+            MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
+                .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
     }
     else if (!MacUtils::badgeLabelText().isEmpty())
     {
@@ -1642,19 +1646,25 @@ void MainWindow::reloadSessionStats()
 #else
     if (m_systrayIcon)
     {
-        const QString toolTip = QString::fromLatin1("%1\n%2").arg(
-            tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-            , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+        const QString toolTip = isPaused
+            ? tr("Transfers paused by the schedule")
+            : QString::fromLatin1("%1\n%2").arg(
+                tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
+                , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
         m_systrayIcon->setToolTip(toolTip); // tray icon
     }
 #endif  // Q_OS_MACOS
 
     if (m_displaySpeedInTitle)
     {
-        setWindowTitle(tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
-            .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
-                , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
-                , QBT_VERSION));
+        QString title = isPaused
+            ? tr("[Paused] qBittorrent %3", "Transfer paused by schedule; %3 is qBittorrent version")
+                .arg(QBT_VERSION)
+            : tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
+                .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
+                    , Utils::Misc::friendlyUnit(status.payloadUploadRate, true)
+                    , QBT_VERSION);
+        setWindowTitle(title);
     }
 }
 
