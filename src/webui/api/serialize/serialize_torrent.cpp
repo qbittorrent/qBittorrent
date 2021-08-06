@@ -97,6 +97,13 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         return (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
     };
 
+    const auto adjustLastActivity = [](const qlonglong sinceActivity) -> qlonglong
+    {
+        if (sinceActivity < 0)
+            return m_nativeStatus.added_time;
+        return QDateTime::currentDateTime().toSecsSinceEpoch() - sinceActivity;
+    }
+
     return {
         {KEY_TORRENT_ID, torrent.id().toString()},
         {KEY_TORRENT_INFOHASHV1, torrent.infoHash().v1().toString()},
@@ -145,7 +152,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_AUTO_TORRENT_MANAGEMENT, torrent.isAutoTMMEnabled()},
         {KEY_TORRENT_TIME_ACTIVE, torrent.activeTime()},
         {KEY_TORRENT_SEEDING_TIME, torrent.seedingTime()},
-        {KEY_TORRENT_LAST_ACTIVITY_TIME, (QDateTime::currentDateTime().toSecsSinceEpoch() - torrent.timeSinceActivity())},
+        {KEY_TORRENT_LAST_ACTIVITY_TIME, adjustLastActivity(torrent.timeSinceActivity())},
         {KEY_TORRENT_AVAILABILITY, torrent.distributedCopies()},
 
         {KEY_TORRENT_TOTAL_SIZE, torrent.totalSize()}
