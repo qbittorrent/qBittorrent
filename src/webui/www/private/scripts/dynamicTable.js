@@ -50,7 +50,8 @@ window.qBittorrent.DynamicTable = (function() {
             RssArticleTable: RssArticleTable,
             RssDownloaderRulesTable: RssDownloaderRulesTable,
             RssDownloaderFeedSelectionTable: RssDownloaderFeedSelectionTable,
-            RssDownloaderArticlesTable: RssDownloaderArticlesTable
+            RssDownloaderArticlesTable: RssDownloaderArticlesTable,
+            ScheduleTable: ScheduleTable
         };
     };
 
@@ -2579,6 +2580,50 @@ window.qBittorrent.DynamicTable = (function() {
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
+        }
+    });
+
+    const ScheduleTable = new Class({
+        Extends: DynamicTable,
+        setupHeaderMenu: function() {},
+        setupHeaderEvents: function() {},
+        initColumns: function() {
+            this.newColumn('start', '', 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('end', '', 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('pause', '', 'QBT_TR(Pause?)QBT_TR[CONTEXT=OptionsDialog]', 45, true);
+            this.newColumn('dl', '', 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+            this.newColumn('ul', '', 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
+
+            this.columns['start'].updateTd = (td, row) => {
+                let time = new Date(0, 0, 0, Math.floor(row.data.start / 100), row.data.start % 100);
+                td.set('text', time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                td.set('title', td.text);
+            };
+
+            this.columns['end'].updateTd = (td, row) => {
+                let time = new Date(0, 0, 0, Math.floor(row.data.end / 100), row.data.end % 100);
+                td.set('text', time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                td.set('title', td.text);
+            };
+
+            this.columns['pause'].updateTd = (td, row) => {
+                td.set('text', row.data.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]');
+                td.set('title', td.text);
+            };
+
+            this.columns['dl'].updateTd = (td, row) => {
+                const speedText = row.data.dl == 0 ? '&infin;'
+                    : window.qBittorrent.Misc.friendlyUnit(row.data.dl * 1024, true);
+                td.set('html', row.data.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : speedText);
+                td.set('title', td.text);
+            };
+
+            this.columns['ul'].updateTd = (td, row) => {
+                const speedText = row.data.ul == 0 ? '&infin;'
+                    : window.qBittorrent.Misc.friendlyUnit(row.data.ul * 1024, true);
+                td.set('html', row.data.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : speedText);
+                td.set('title', td.text);
+            };
         }
     });
 

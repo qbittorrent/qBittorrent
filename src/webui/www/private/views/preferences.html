@@ -404,8 +404,9 @@
             <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
             <label for="limit_sheduling_checkbox">QBT_TR(Enable advanced scheduler)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
-        <div id="schedulerTable" class="toolbarTabs">
+        <div id="schedulerDiv" class="toolbarTabs">
             <ul id="schedulerTabsList" class="tab-menu"></ul>
+            <div class="clear"></div>
         </div>
     </fieldset>
 
@@ -426,7 +427,7 @@
     </fieldset>
 
     <style>
-        #schedulerTable thead td {
+        #schedulerDiv thead td {
             background-color: whitesmoke;
             font-weight: bold;
         }
@@ -1251,6 +1252,13 @@
 
 <div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
 
+<ul id="scheduleEntryMenu" class="contextMenu">
+    <li><a href="#copy"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li><a href="#paste"><img src="icons/edit-paste.svg" alt="QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li class="separator"><a href="#copyToOtherDays"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li><a href="#clearAll"><img src="icons/edit-clear.svg" alt="QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+</ul>
+
 <script>
     'use strict';
 
@@ -1451,6 +1459,44 @@
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
         };
 
+        const scheduleTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+            targets: 'schedulerDiv .dynamicTableFixedHeaderDiv',
+            menu: 'scheduleEntryMenu',
+            actions: {
+                copy: function(element, ref) {
+                    console.log({ element, ref });
+                    const selected = scheduleTable.getSelectedRowId();
+                    if (!selected) return;
+                },
+                paste: (element, ref) => console.log({ element, ref }),
+                copyToOtherDays: function(element, ref) {
+                    const selectedPeers = scheduleTable.selectedRows.slice();
+                    if (selectedPeers.length === 0) return;
+                },
+                clearAll: function(element, ref) {}
+            },
+            onShow: function() {
+                const all = scheduleTable.tableBody.getElements('tr');
+                const selected = scheduleTable.selectedRows.slice();
+
+                if (all.length > 0)
+                    this.showItem('clearAll');
+                else
+                    this.hideItem('clearAll');
+
+                if (selected.length > 0) {
+                    this.showItem('copy');
+                    this.showItem('copyToOtherDays');
+                }
+                else {
+                    this.hideItem('copy');
+                    this.hideItem('copyToOtherDays');
+                }
+            }
+        });
+
+        let scheduleTables = new Hash();
+
         const initializeSchedulerTables = (scheduleJson, locale, firstDayOfWeek, today) => {
             const dayTranslations = [
                 'QBT_TR(Monday)QBT_TR[CONTEXT=HttpServer]',
@@ -1466,7 +1512,7 @@
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             let schedule = JSON.parse(scheduleJson);
 
-            const updateSchedule = (then) => {
+            const updateSchedule = (dayIndex, then) => {
                 new Request({
                     url: 'api/v2/schedule/getJson',
                     method: 'get',
@@ -1474,6 +1520,8 @@
                     onSuccess: (responseJson) => {
                         schedule = JSON.parse(responseJson);
                         then();
+                        scheduleTables[dayIndex].updateTable(true);
+                        scheduleTables[dayIndex].altRow();
                     },
                     onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
                 }).send();
@@ -1481,35 +1529,26 @@
 
             const populateScheduleTable = (dayIndex, tableBody) => {
                 tableBody.textContent = '';
-                updateSchedule(() => schedule[dayShorts[dayIndex]].forEach((entry) => {
-                    const start = new Date(0, 0, 0, Math.floor(entry.start / 100), entry.start % 100);
-                    const end = new Date(0, 0, 0, Math.floor(entry.end / 100), entry.end % 100);
-                    const dlText = entry.dl == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.dl * 1024, true);
-                    const ulText = entry.ul == 0 ? "&infin;" : window.qBittorrent.Misc.friendlyUnit(entry.ul * 1024, true);
+                updateSchedule(dayIndex, () => schedule[dayShorts[dayIndex]].forEach((entry, i) => {
+                    entry.rowId = i;
+                    scheduleTables[dayIndex].updateRowData(entry);
 
-                    const row = tableBody.insertRow();
-                    row.insertCell().textContent = start.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = end.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' });
-                    row.insertCell().textContent = entry.pause ? 'QBT_TR(Yes)QBT_TR[CONTEXT=OptionsDialog]' : 'QBT_TR(No)QBT_TR[CONTEXT=OptionsDialog]';
-                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : dlText;
-                    row.insertCell().innerHTML = entry.pause ? 'QBT_TR(Paused)QBT_TR[CONTEXT=OptionsDialog]' : ulText;
-
-                    const removeButton = new Element('button', { text: 'X' });
-                    removeButton.addEvent('click', (ev) => {
-                        const tr = ev.target.closest('tr');
-                        new Request({
-                            url: 'api/v2/schedule/removeEntry',
-                            method: 'post',
-                            noCache: true,
-                            data: {
-                                day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
-                                index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
-                            },
-                            onSuccess: () => tr.remove(),
-                            onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
-                        }).send();
-                    });
-                    row.insertCell().appendChild(removeButton);
+                    // const removeButton = new Element('button', { text: 'X' });
+                    // removeButton.addEvent('click', (ev) => {
+                    //     const tr = ev.target.closest('tr');
+                    //     new Request({
+                    //         url: 'api/v2/schedule/removeEntry',
+                    //         method: 'post',
+                    //         noCache: true,
+                    //         data: {
+                    //             day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
+                    //             index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
+                    //         },
+                    //         onSuccess: () => tr.remove(),
+                    //         onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                    //     }).send();
+                    // });
+                    // row.insertCell().appendChild(removeButton);
                 }));
             }
 
@@ -1517,17 +1556,17 @@
                 const day = (firstDayOfWeek + i) % 7;
 
                 // Create the day tab
-                const listItem = new Element('li', { id: '#scheduleDay' + day });
+                const listItem = new Element('li', { id: 'scheduleDay' + day });
                 listItem.append(new Element('a', { text: dayTranslations[day] }));
                 $('schedulerTabsList').append(listItem);
 
                 const dayTab = new Element('div.scheduleDayTab', {
-                    id: '#scheduleDayTab' + day,
+                    id: 'scheduleDayTab' + day,
                     'data-day': i
                 });
                 const tabContent = new Element('div.formRow');
                 dayTab.append(tabContent);
-                $('schedulerTable').append(dayTab);
+                $('schedulerTabsList').after(dayTab);
 
                 if (day == today)
                     listItem.addClass('selected');
@@ -1539,16 +1578,30 @@
                     dayTab.removeClass('invisible');
                 });
 
-                // Create the table
-                const table = new Element('table');
-                const tableBody = table.createTBody();
+                // Create dynamic table
+                const headerDiv = new Element('div.dynamicTableFixedHeaderDiv', {
+                    id: 'scheduleTableFixedHeaderDiv' + i
+                });
+                const headerTable = new Element('table.dynamicTable', {
+                    style: 'position:relative;'
+                });
+                headerDiv.append(headerTable);
+                headerTable.createTHead().insertRow().class = 'dynamicTableHeader';
 
-                const headerRow = table.createTHead().insertRow();
-                headerRow.insertCell().textContent = 'QBT_TR(From)QBT_TR[CONTEXT=OptionsDialog]';
-                headerRow.insertCell().textContent = 'QBT_TR(To)QBT_TR[CONTEXT=OptionsDialog]';
-                headerRow.insertCell().textContent = 'QBT_TR(Pause)QBT_TR[CONTEXT=OptionsDialog]';
-                headerRow.insertCell().textContent = 'QBT_TR(Download)QBT_TR[CONTEXT=OptionsDialog]';
-                headerRow.insertCell().textContent = 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]';
+                const tableDiv = new Element('div.dynamicTableDiv', {
+                    id: 'scheduleTableDiv' + i
+                });
+                const table = new Element('table.dynamicTable');
+                tableDiv.append(table);
+                table.createTHead().insertRow().class = 'dynamicTableHeader';
+                let tableBody = table.createTBody();
+
+                tabContent.append(headerDiv);
+                tabContent.append(tableDiv);
+
+                let dynamicTable = new window.qBittorrent.DynamicTable.ScheduleTable();
+                dynamicTable.setup(tableDiv.id, headerDiv.id, scheduleTableContextMenu);
+                scheduleTables[day] = dynamicTable;
 
                 // Populate the list
                 populateScheduleTable(day, tableBody);
@@ -1570,7 +1623,6 @@
                     });
                 });
 
-                tabContent.append(table);
                 tabContent.append(addButton);
             }
 
