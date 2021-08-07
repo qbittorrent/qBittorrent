@@ -96,6 +96,10 @@ function genHash(string) {
     return hash;
 }
 
+function getTrackerHost(url) {
+    return new URL(url).hostname;
+}
+
 function getSyncMainDataInterval() {
     return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
 }
@@ -622,9 +626,10 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const hash = genHash(tracker);
+                            const host = getTrackerHost(tracker);
+                            const hash = genHash(host);
                             trackerList.set(hash, {
-                                url: tracker,
+                                url: host,
                                 torrents: torrents
                             });
                         }
