@@ -57,7 +57,7 @@ namespace
         return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
     }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     lt::create_flags_t toNativeTorrentFormatFlag(const BitTorrent::TorrentFormat torrentFormat)
     {
         switch (torrentFormat)
@@ -159,7 +159,7 @@ void TorrentCreatorThread::run()
 
         checkInterruptionRequested();
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         lt::create_torrent newTorrent {fs, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
 #else
         lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
@@ -233,7 +233,7 @@ void TorrentCreatorThread::run()
     }
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
 #else
 int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
@@ -245,7 +245,7 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
     lt::file_storage fs;
     lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     return lt::create_torrent {fs, pieceSize, toNativeTorrentFormatFlag(torrentFormat)}.num_pieces();
 #else
     return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit

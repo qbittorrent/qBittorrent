@@ -90,7 +90,7 @@ MagnetUri::MagnetUri(const QString &source)
 
     m_valid = true;
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_infoHash = m_addTorrentParams.info_hashes;
 #else
     m_infoHash = m_addTorrentParams.info_hash;

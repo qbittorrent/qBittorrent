@@ -31,7 +31,6 @@
 #include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/error_code.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QByteArray>
 #include <QDateTime>
@@ -197,7 +196,7 @@ InfoHash TorrentInfo::infoHash() const
 {
     if (!isValid()) return {};
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     return m_nativeInfo->info_hashes();
 #else
     return m_nativeInfo->info_hash();
@@ -342,7 +341,7 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
 QByteArray TorrentInfo::metadata() const
 {
     if (!isValid()) return {};
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const lt::span<const char> infoSection {m_nativeInfo->info_section()};
     return {infoSection.data(), static_cast<int>(infoSection.size())};
 #else

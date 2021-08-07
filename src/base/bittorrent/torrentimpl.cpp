@@ -43,9 +43,8 @@
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
-#include <libtorrent/version.hpp>
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/info_hash.hpp>
 #endif
 
@@ -96,7 +95,7 @@ namespace
         return entry;
     }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry
         , const lt::info_hash_t &hashes, const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
 #else
@@ -111,7 +110,7 @@ namespace
         int numNotWorking = 0;
         QString firstTrackerMessage;
         QString firstErrorMessage;
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
         trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
@@ -265,7 +264,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
     , m_session(session)
     , m_nativeSession(nativeSession)
     , m_nativeHandle(nativeHandle)
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     , m_infoHash(m_nativeHandle.info_hashes())
 #else
     , m_infoHash(m_nativeHandle.info_hash())
@@ -478,7 +477,7 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     for (const lt::announce_entry &tracker : nativeTrackers)
     {
         const QString trackerURL = QString::fromStdString(tracker.url);
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
 #else
         entries << fromNativeAnnouncerEntry(tracker, m_trackerPeerCounts[trackerURL]);
@@ -1942,7 +1941,7 @@ void TorrentImpl::handleFileErrorAlert(const lt::file_error_alert *p)
     m_lastFileError = {p->error, p->op};
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 20003)
+#ifdef QBT_USES_LIBTORRENT2
 void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
     if (m_nativeHandle.need_save_resume_data())
@@ -1987,7 +1986,7 @@ void TorrentImpl::handleAlert(const lt::alert *a)
 {
     switch (a->type())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20003)
+#ifdef QBT_USES_LIBTORRENT2
     case lt::file_prio_alert::alert_type:
         handleFilePrioAlert(static_cast<const lt::file_prio_alert*>(a));
         break;

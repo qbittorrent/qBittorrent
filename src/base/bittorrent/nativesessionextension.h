@@ -29,11 +29,10 @@
 #pragma once
 
 #include <libtorrent/extensions.hpp>
-#include <libtorrent/version.hpp>
 
 class NativeSessionExtension final : public lt::plugin
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     using ClientData = lt::client_data_t;
 #else
     using ClientData = void *;

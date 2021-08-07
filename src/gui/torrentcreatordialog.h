@@ -29,8 +29,6 @@
 
 #pragma once
 
-#include <libtorrent/version.hpp>
-
 #include <QDialog>
 
 #include "base/bittorrent/torrentcreatorthread.h"
@@ -68,7 +66,7 @@ private:
     void setInteractionEnabled(bool enabled) const;
 
     int getPieceSize() const;
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     BitTorrent::TorrentFormat getTorrentFormat() const;
 #else
     int getPaddedFileSizeLimit() const;
@@ -83,7 +81,7 @@ private:
     SettingValue<bool> m_storePrivateTorrent;
     SettingValue<bool> m_storeStartSeeding;
     SettingValue<bool> m_storeIgnoreRatio;
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     SettingValue<int> m_storeTorrentFormat;
 #else
     SettingValue<bool> m_storeOptimizeAlignment;

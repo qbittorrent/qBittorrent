@@ -28,14 +28,12 @@
 
 #pragma once
 
-#include <libtorrent/version.hpp>
-
 #include <QStringList>
 #include <QThread>
 
 namespace BitTorrent
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     enum class TorrentFormat
     {
         V1,
@@ -47,7 +45,7 @@ namespace BitTorrent
     struct TorrentCreatorParams
     {
         bool isPrivate;
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         TorrentFormat torrentFormat;
 #else
         bool isAlignmentOptimized;
@@ -73,7 +71,7 @@ namespace BitTorrent
 
         void create(const TorrentCreatorParams &params);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat);
 #else
         static int calculateTotalPieces(const QString &inputPath

@@ -45,6 +45,9 @@ DEFINES += BOOST_SYSTEM_STATIC_LINK
 # Enable if linking dynamically against libtorrent
 #DEFINES += TORRENT_LINKING_SHARED
 
+# Enable this if compiling with libtorrent 2.x
+#DEFINES += QBT_USES_LIBTORRENT2
+
 # Enable stack trace support
 CONFIG += stacktrace
 
