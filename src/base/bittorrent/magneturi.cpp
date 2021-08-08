@@ -80,7 +80,7 @@ MagnetUri::MagnetUri(const QString &source)
     if (source.isEmpty()) return;
 
     if (isV2Hash(source))
-        m_url = QString::fromLatin1("magnet:?xt=urn:btmh:") + source;
+        m_url = QString::fromLatin1("magnet:?xt=urn:btmh:1220") + source; // 0x12 0x20 is the "multihash format" tag for the SHA-256 hashing scheme.
     else if (isV1Hash(source))
         m_url = QString::fromLatin1("magnet:?xt=urn:btih:") + source;
 
