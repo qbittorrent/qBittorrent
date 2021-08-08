@@ -36,7 +36,6 @@
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QHash>
 #include <QPointer>
@@ -191,7 +190,7 @@ namespace BitTorrent
         {
             int diskBlocksInUse = -1;
             int numBlocksRead = -1;
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
             int numBlocksCacheHits = -1;
 #endif
             int writeJobs = -1;

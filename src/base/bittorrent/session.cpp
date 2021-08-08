@@ -210,7 +210,7 @@ namespace
     {
         switch (socketType)
         {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::http:
             return QLatin1String("HTTP");
         case lt::socket_type_t::http_ssl:
@@ -220,7 +220,7 @@ namespace
             return QLatin1String("I2P");
         case lt::socket_type_t::socks5:
             return QLatin1String("SOCKS5");
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::socks5_ssl:
             return QLatin1String("SOCKS5_SSL");
 #endif
@@ -228,7 +228,7 @@ namespace
             return QLatin1String("TCP");
         case lt::socket_type_t::tcp_ssl:
             return QLatin1String("TCP_SSL");
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::utp:
             return QLatin1String("UTP");
 #else
@@ -1077,14 +1077,14 @@ void Session::initializeNativeSession()
     pack.set_bool(lt::settings_pack::enable_upnp, false);
     pack.set_bool(lt::settings_pack::enable_natpmp, false);
 
-#if (LIBTORRENT_VERSION_NUM > 20000)
+#ifdef QBT_USES_LIBTORRENT2
     // preserve the same behavior as in earlier libtorrent versions
     pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
 #endif
 
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     sessionParams.disk_io_constructor = customDiskIOConstructor;
 #endif
     m_nativeSession = new lt::session {sessionParams};
@@ -1176,7 +1176,7 @@ void Session::initMetrics()
 
     m_metricIndices.disk.diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use");
     m_metricIndices.disk.numBlocksRead = findMetricIndex("disk.num_blocks_read");
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     m_metricIndices.disk.numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits");
 #endif
     m_metricIndices.disk.writeJobs = findMetricIndex("disk.num_write_ops");
@@ -1263,7 +1263,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
 #endif
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
@@ -1271,7 +1271,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(lt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(lt::settings_pack::cache_expiry, diskCacheTTL());
@@ -1282,7 +1282,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(lt::settings_pack::disk_io_write_mode, mode);
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
     settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
 #endif
@@ -2215,7 +2215,7 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
     // Limits
@@ -2223,7 +2223,7 @@ bool Session::loadTorrent(LoadTorrentParams params)
     p.max_uploads = maxUploadsPerTorrent();
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hashes() : p.info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hash() : p.info_hash);
@@ -2290,7 +2290,7 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
 
@@ -3905,7 +3905,7 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
@@ -3963,7 +3963,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
@@ -4048,7 +4048,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newP
 
 void Session::moveTorrentStorage(const MoveStorageJob &job) const
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hash());
@@ -4347,7 +4347,7 @@ void Session::handleAlert(const lt::alert *a)
     {
         switch (a->type())
         {
-#if (LIBTORRENT_VERSION_NUM >= 20003)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::file_prio_alert::alert_type:
 #endif
         case lt::file_renamed_alert::alert_type:
@@ -4449,7 +4449,7 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
 
 void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
 #else
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hash());
@@ -4515,7 +4515,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 
         const lt::add_torrent_params &params = p->params;
         const bool hasMetadata = (params.ti && params.ti->is_valid());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
 #else
         const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
@@ -4530,7 +4530,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 
 void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4549,7 +4549,7 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4567,7 +4567,7 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 
 void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4597,7 +4597,7 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->handle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(p->handle.info_hash());
@@ -4800,7 +4800,7 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
@@ -4835,7 +4835,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString newPath {p->storage_path()};
     Q_ASSERT(newPath == currentJob.path);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
@@ -4855,7 +4855,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
     Q_ASSERT(currentJob.torrentHandle == p->handle);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
@@ -4878,7 +4878,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     for (const lt::torrent_status &status : p->status)
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(status.info_hashes);
 #else
         const auto id = TorrentID::fromInfoHash(status.info_hash);

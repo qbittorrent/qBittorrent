@@ -28,8 +28,6 @@
 
 #pragma once
 
-#include <libtorrent/version.hpp>
-
 #include <QCheckBox>
 #include <QComboBox>
 #include <QLineEdit>
@@ -50,7 +48,7 @@ signals:
     void settingsChanged();
 
 private slots:
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     void updateCacheSpinSuffix(int value);
 #endif
     void updateSaveResumeDataIntervalSuffix(int value);
@@ -74,7 +72,7 @@ private:
               m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage;
     QLineEdit m_lineEditAnnounceIP;
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
     QCheckBox m_checkBoxCoalesceRW;
 #else

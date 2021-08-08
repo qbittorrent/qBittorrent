@@ -55,7 +55,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_ui->labelCacheHitsText->hide();
     m_ui->labelCacheHits->hide();
 #endif
@@ -87,7 +87,7 @@ void StatsDialog::update()
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
                 : "-");
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     // Cache hits
     const qreal readRatio = cs.readRatio;
     m_ui->labelCacheHits->setText(QString::fromLatin1("%1%").arg((readRatio > 0)

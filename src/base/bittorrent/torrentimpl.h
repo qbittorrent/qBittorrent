@@ -252,7 +252,7 @@ namespace BitTorrent
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
-#if (LIBTORRENT_VERSION_NUM >= 20003)
+#ifdef QBT_USES_LIBTORRENT2
         void handleFilePrioAlert(const lt::file_prio_alert *p);
 #endif
         void handleFileRenamedAlert(const lt::file_renamed_alert *p);
