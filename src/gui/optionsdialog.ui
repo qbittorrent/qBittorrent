@@ -1580,18 +1580,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <property name="text">
                   <string>Maximum number of upload slots per torrent:</string>
                  </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxUploads">
                  <property name="text">
                   <string>Global maximum number of upload slots:</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -1677,9 +1671,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <widget class="QLineEdit" name="textProxyIP">
                    <property name="enabled">
                     <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string/>
                    </property>
                   </widget>
                  </item>
