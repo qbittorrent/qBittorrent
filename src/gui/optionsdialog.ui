@@ -3367,11 +3367,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="DNSUsernameTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
-                   </widget>
+                   <widget class="QLineEdit" name="DNSUsernameTxt"/>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_22">
@@ -3382,9 +3378,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   </item>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="DNSPasswordTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Password</enum>
                     </property>
