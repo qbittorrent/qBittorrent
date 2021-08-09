@@ -45,8 +45,5 @@ http://forum.qbittorrent.org
 Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
-You can also meet me (sledgehammer_999) on IRC:
-`#qbittorrent on irc.freenode.net`
-
 ------------------------------------------
 sledgehammer999 <sledgehammer999@qbittorrent.org>
