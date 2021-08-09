@@ -1457,6 +1457,9 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinPort">
+                   <property name="toolTip">
+                    <string>Set to 0 to let your system pick an unused port</string>
+                   </property>
                    <property name="specialValueText">
                     <string>Any</string>
                    </property>
