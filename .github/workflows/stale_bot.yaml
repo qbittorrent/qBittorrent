@@ -19,3 +19,4 @@ jobs:
           days-before-pr-close: 7
           exempt-all-pr-assignees: true  # avoid stale for all PR with assignees
           exempt-all-pr-milestones: true # avoid stale for all PR with milestones
+          operations-per-run: 200
