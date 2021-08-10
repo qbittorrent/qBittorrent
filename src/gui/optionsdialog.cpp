@@ -674,7 +674,7 @@ void OptionsDialog::initializeSchedulerTables()
         ScheduleDay *scheduleDay = schedule->scheduleDay(day);
         scheduleTable->setItemDelegate(new ScheduleEntryItemDelegate(*scheduleDay, scheduleTable));
 
-        m_scheduleDayTables.insert(day, scheduleTable);
+        m_scheduleDayTables[day] = scheduleTable;
         populateScheduleDayTable(scheduleTable, scheduleDay);
 
         QItemSelectionModel *selectionModel = scheduleTable->selectionModel();

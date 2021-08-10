@@ -195,7 +195,7 @@ private:
 
     AdvancedSettings *m_advancedSettings;
 
-    QList<QTableWidget*> m_scheduleDayTables;
+    QVector<QTableWidget*> m_scheduleDayTables = QVector<QTableWidget*>(7);
 
     bool m_refreshingIpFilter = false;
 };
