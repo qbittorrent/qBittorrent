@@ -161,7 +161,12 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
 
     const auto *renameFileHotkey = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(renameFileHotkey, &QShortcut::activated, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
+    connect(renameFileHotkey, &QShortcut::activated, this,
+            [this]()
+            {
+                if (!m_torrent) return;
+                m_ui->filesList->renameSelectedFile(*m_torrent);
+            });
     const auto *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(openFileHotkeyReturn, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
     const auto *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
@@ -551,6 +556,7 @@ void PropertiesWidget::loadDynamicData()
 
 void PropertiesWidget::loadUrlSeeds()
 {
+    if (!m_torrent) return;
     m_ui->listWebSeeds->clear();
     qDebug("Loading URL seeds");
     const QVector<QUrl> hcSeeds = m_torrent->urlSeeds();
@@ -564,6 +570,12 @@ void PropertiesWidget::loadUrlSeeds()
 
 QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 {
+    if (!m_torrent)
+    {
+        const QString noPath {""};
+        return noPath;
+    }
+
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
     {
         const int fileIdx = m_propListModel->getFileIndex(index);
@@ -586,7 +598,7 @@ QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 
 void PropertiesWidget::openItem(const QModelIndex &index) const
 {
-    if (!index.isValid())
+    if (!index.isValid() || !m_torrent)
         return;
 
     m_torrent->flushCache();  // Flush data
@@ -595,6 +607,7 @@ void PropertiesWidget::openItem(const QModelIndex &index) const
 
 void PropertiesWidget::openParentFolder(const QModelIndex &index) const
 {
+    if (!m_torrent) return;
     const QString path = getFullPath(index);
     m_torrent->flushCache();  // Flush data
 #ifdef Q_OS_MACOS
@@ -771,6 +784,8 @@ void PropertiesWidget::configure()
 void PropertiesWidget::askWebSeed()
 {
     bool ok = false;
+
+    if (!m_torrent) return;
     // Ask user for a new url seed
     const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
@@ -784,14 +799,16 @@ void PropertiesWidget::askWebSeed()
                              QMessageBox::Ok);
         return;
     }
-    if (m_torrent)
-        m_torrent->addUrlSeeds({urlSeed});
+
+    m_torrent->addUrlSeeds({urlSeed});
     // Refresh the seeds list
     loadUrlSeeds();
+
 }
 
 void PropertiesWidget::deleteSelectedUrlSeeds()
 {
+    if (!m_torrent) return;
     const QList<QListWidgetItem *> selectedItems = m_ui->listWebSeeds->selectedItems();
     if (selectedItems.isEmpty()) return;
 
@@ -820,6 +837,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const
 
 void PropertiesWidget::editWebSeed()
 {
+    if (!m_torrent) return;
     const QList<QListWidgetItem *> selectedItems = m_ui->listWebSeeds->selectedItems();
     if (selectedItems.size() != 1) return;
 
@@ -846,6 +864,7 @@ void PropertiesWidget::editWebSeed()
 
 void PropertiesWidget::applyPriorities()
 {
+    if (!m_torrent) return;
     m_torrent->prioritizeFiles(m_propListModel->model()->getFilePriorities());
 }
 
