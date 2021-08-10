@@ -48,7 +48,7 @@ QByteArray Utils::Gzip::compress(const QByteArray &data, const int level, bool *
     const int BUFSIZE = 128 * 1024;
     std::vector<char> tmpBuf(BUFSIZE);
 
-    z_stream strm;
+    z_stream strm {};
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
@@ -109,7 +109,7 @@ QByteArray Utils::Gzip::decompress(const QByteArray &data, bool *ok)
     const int BUFSIZE = 1024 * 1024;
     std::vector<char> tmpBuf(BUFSIZE);
 
-    z_stream strm;
+    z_stream strm {};
     strm.zalloc = Z_NULL;
     strm.zfree = Z_NULL;
     strm.opaque = Z_NULL;
