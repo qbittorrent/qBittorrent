@@ -2596,13 +2596,13 @@ window.qBittorrent.DynamicTable = (function() {
 
             this.columns['start'].updateTd = (td, row) => {
                 let time = new Date(0, 0, 0, Math.floor(row.data.start / 100), row.data.start % 100);
-                td.set('text', time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
                 td.set('title', td.text);
             };
 
             this.columns['end'].updateTd = (td, row) => {
                 let time = new Date(0, 0, 0, Math.floor(row.data.end / 100), row.data.end % 100);
-                td.set('text', time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
+                td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
                 td.set('title', td.text);
             };
 

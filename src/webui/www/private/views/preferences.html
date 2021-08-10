@@ -1460,7 +1460,7 @@
         };
 
         const scheduleTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-            targets: 'schedulerDiv .dynamicTableFixedHeaderDiv',
+            targets: 'schedulerDiv .dynamicTableDiv',
             menu: 'scheduleEntryMenu',
             actions: {
                 copy: function(element, ref) {
@@ -1484,14 +1484,10 @@
                 else
                     this.hideItem('clearAll');
 
-                if (selected.length > 0) {
-                    this.showItem('copy');
-                    this.showItem('copyToOtherDays');
-                }
-                else {
-                    this.hideItem('copy');
-                    this.hideItem('copyToOtherDays');
-                }
+            },
+            offsets: {
+                x: -135,
+                y: 0
             }
         });
 
@@ -1512,45 +1508,14 @@
             const dayShorts = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
             let schedule = JSON.parse(scheduleJson);
 
-            const updateSchedule = (dayIndex, then) => {
-                new Request({
-                    url: 'api/v2/schedule/getJson',
-                    method: 'get',
-                    noCache: true,
-                    onSuccess: (responseJson) => {
-                        schedule = JSON.parse(responseJson);
-                        then();
-                        scheduleTables[dayIndex].updateTable(true);
-                        scheduleTables[dayIndex].altRow();
-                    },
-                    onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
-                }).send();
-            };
-
-            const populateScheduleTable = (dayIndex, tableBody) => {
-                tableBody.textContent = '';
-                updateSchedule(dayIndex, () => schedule[dayShorts[dayIndex]].forEach((entry, i) => {
+            const updateScheduleTable = (day) => {
+                schedule[dayShorts[day]].forEach((entry, i) => {
                     entry.rowId = i;
-                    scheduleTables[dayIndex].updateRowData(entry);
-
-                    // const removeButton = new Element('button', { text: 'X' });
-                    // removeButton.addEvent('click', (ev) => {
-                    //     const tr = ev.target.closest('tr');
-                    //     new Request({
-                    //         url: 'api/v2/schedule/removeEntry',
-                    //         method: 'post',
-                    //         noCache: true,
-                    //         data: {
-                    //             day: tr.closest('.scheduleDayTab').getAttribute('data-day'),
-                    //             index: Array.prototype.indexOf.call(tr.parentElement.children, tr)
-                    //         },
-                    //         onSuccess: () => tr.remove(),
-                    //         onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
-                    //     }).send();
-                    // });
-                    // row.insertCell().appendChild(removeButton);
-                }));
-            }
+                    scheduleTables[day].updateRowData(entry);
+                });
+                scheduleTables[day].updateTable(true);
+                scheduleTables[day].altRow();
+            };
 
             for (let i = 0; i < 7; i++) {
                 const day = (firstDayOfWeek + i) % 7;
@@ -1578,7 +1543,7 @@
                     dayTab.removeClass('invisible');
                 });
 
-                // Create dynamic table
+                // Set up dynamicTable divs
                 const headerDiv = new Element('div.dynamicTableFixedHeaderDiv', {
                     id: 'scheduleTableFixedHeaderDiv' + i
                 });
@@ -1599,12 +1564,14 @@
                 tabContent.append(headerDiv);
                 tabContent.append(tableDiv);
 
+                // Create the actual dynamicTable
                 let dynamicTable = new window.qBittorrent.DynamicTable.ScheduleTable();
+                dynamicTable.locale = locale;
                 dynamicTable.setup(tableDiv.id, headerDiv.id, scheduleTableContextMenu);
                 scheduleTables[day] = dynamicTable;
 
                 // Populate the list
-                populateScheduleTable(day, tableBody);
+                updateScheduleTable(day);
 
                 const addButton = new Element('button', { text: 'QBT_TR(Add)QBT_TR[CONTEXT=OptionsDialog]' });
                 addButton.addEvent('click', (ev) => {
@@ -1619,7 +1586,18 @@
                         scrollbars: false,
                         width: 370,
                         height: 120,
-                        onClose: (e) => populateScheduleTable(day, tableBody)
+                        onClose: (e) => {
+                            new Request({
+                                url: 'api/v2/schedule/getJson',
+                                method: 'get',
+                                noCache: true,
+                                onSuccess: (responseJson) => {
+                                    schedule = JSON.parse(responseJson);
+                                    updateScheduleTable(day);
+                                },
+                                onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                            }).send();
+                        } 
                     });
                 });
 
