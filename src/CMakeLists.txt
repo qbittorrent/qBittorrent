@@ -36,7 +36,6 @@ endmacro()
 find_libtorrent(${minLibtorrent1Version})
 if (LibtorrentRasterbar_FOUND AND (LibtorrentRasterbar_VERSION VERSION_GREATER_EQUAL 2.0))
     find_libtorrent(${minLibtorrentVersion})
-    target_compile_definitions(qbt_common_cfg PUBLIC QBT_USES_LIBTORRENT2)
 endif()
 
 # force variable type so that it always shows up in ccmake/cmake-gui frontends

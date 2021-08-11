@@ -90,4 +90,7 @@ macro(qbt_common_config)
         )
     endif()
 
+    if (LibtorrentRasterbar_VERSION VERSION_GREATER_EQUAL ${minLibtorrentVersion})
+        target_compile_definitions(qbt_common_cfg INTERFACE QBT_USES_LIBTORRENT2)
+    endif()
 endmacro(qbt_common_config)
