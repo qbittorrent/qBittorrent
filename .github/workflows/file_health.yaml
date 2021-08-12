@@ -5,7 +5,7 @@ on: [pull_request, push]
 jobs:
   check_file_health:
     name: Check file health
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: checkout repository
         uses: actions/checkout@v2

@@ -5,7 +5,7 @@ on: [pull_request, push]
 jobs:
   check_webui:
     name: Check WebUI
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: src/webui/www
