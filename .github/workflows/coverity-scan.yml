@@ -29,21 +29,29 @@ jobs:
       - name: install Qt 5.15.2 from an external PPA
         run: |
           sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
-          sudo apt install qt515base qt515svg qt515tools
+          sudo apt install \
+            qt515base qt515svg qt515tools
 
       - name: install libtorrent from source
         run: |
-          git clone https://github.com/arvidn/libtorrent && cd libtorrent
+          git clone https://github.com/arvidn/libtorrent
+          cd libtorrent
           git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
-          cmake -B cmake-build-dir -G "Ninja" \
+          cmake \
+            -B build \
+            -G "Ninja" \
             -DCMAKE_BUILD_TYPE=Release \
             -Ddeprecated-functions=OFF
-          cmake --build cmake-build-dir
-          sudo cmake --install cmake-build-dir --prefix /usr/local
+          cmake --build build
+          sudo cmake --install build --prefix /usr/local
 
       - name: Download Coverity Build Tool
         run: |
-          wget -q https://scan.coverity.com/download/linux64 --post-data "token=$TOKEN&project=qbittorrent%2FqBittorrent" -O coverity_tool.tgz
+          wget \
+            -q \
+            https://scan.coverity.com/download/linux64 \
+            --post-data "token=$TOKEN&project=qbittorrent%2FqBittorrent" \
+            -O coverity_tool.tgz
           mkdir coverity_tool
           tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
         env:
@@ -51,7 +59,9 @@ jobs:
 
       - name: Configure qBittorrent
         run: |
-          cmake -B build -G "Ninja" \
+          cmake \
+            -B build \
+            -G "Ninja" \
             -DCMAKE_BUILD_TYPE=Release \
             -DGUI=ON \
             -DVERBOSE_CONFIGURE=ON
