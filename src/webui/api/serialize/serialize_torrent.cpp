@@ -99,15 +99,9 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
 
     const auto getLastActivityTime = [&torrent]() -> qlonglong
     {
-        const qlonglong timeSinceActivity = torrent.timeSinceActivity();
         return (timeSinceActivity < 0)
             ? torrent.addedTime().toSecsSinceEpoch()
             : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
-    }
-    {
-        if (sinceActivity < 0)
-            return m_nativeStatus.added_time;
-        return QDateTime::currentDateTime().toSecsSinceEpoch() - sinceActivity;
     }
 
     return {
