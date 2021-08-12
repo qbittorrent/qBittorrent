@@ -68,7 +68,7 @@ jobs:
 
       - name: Build with cov-build
         run: |
-          export PATH=`pwd`/coverity_tool/bin:$PATH
+          export PATH="$(pwd)/coverity_tool/bin:$PATH"
           cov-build --dir cov-int cmake --build build
 
       - name: Submit the result to Coverity Scan
@@ -78,7 +78,7 @@ jobs:
             --form token=$TOKEN \
             --form email=sledgehammer999@qbittorrent.org \
             --form file=@qbittorrent.tgz \
-            --form version="`git rev-parse --short HEAD`" \
+            --form version="$(git rev-parse --short HEAD)" \
             --form description="master" \
             https://scan.coverity.com/builds?project=qbittorrent%2FqBittorrent
         env:
