@@ -97,7 +97,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         return (ratio > BitTorrent::Torrent::MAX_RATIO) ? -1 : ratio;
     };
 
-    const auto getLastActivityTime = [&torrent](const qlonglong timeSinceActivity) -> qlonglong
+    const auto getLastActivityTime = [](const qlonglong timeSinceActivity) -> qlonglong
     {
         return (timeSinceActivity < 0)
             ? torrent.addedTime().toSecsSinceEpoch()
