@@ -102,7 +102,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         return (timeSinceActivity < 0)
             ? torrent.addedTime().toSecsSinceEpoch()
             : (QDateTime::currentDateTime().toSecsSinceEpoch() - timeSinceActivity);
-    }
+    };
 
     return {
         {KEY_TORRENT_ID, torrent.id().toString()},
