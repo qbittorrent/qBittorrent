@@ -1,4 +1,4 @@
-name: GitHub Actions CI
+name: CI - Main
 
 # Cache is used for all Windows and macOS dependencies (size approx. 1230 * 2 + 1850 = 4310 MiB)
 # Cache is not used for Ubuntu builds, because it already has all dependencies except

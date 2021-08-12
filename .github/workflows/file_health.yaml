@@ -1,4 +1,4 @@
-name: GitHub Actions file health check
+name: CI - File health
 
 on: [pull_request, push]
 

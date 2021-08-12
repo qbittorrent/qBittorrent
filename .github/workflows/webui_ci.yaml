@@ -1,4 +1,4 @@
-name: WebUI CI
+name: CI - WebUI
 
 on: [pull_request, push]
 
