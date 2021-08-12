@@ -5,18 +5,16 @@ on: [pull_request, push]
 jobs:
   check_file_health:
     name: Check file health
-
     runs-on: ubuntu-20.04
-
     steps:
-    - name: checkout repository
-      uses: actions/checkout@v2
+      - name: checkout repository
+        uses: actions/checkout@v2
 
-    - name: install zsh
-      run: |
-        sudo apt update
-        sudo apt install zsh
+      - name: install zsh
+        run: |
+          sudo apt update
+          sudo apt install zsh
 
-    - name: run check file health script
-      run: |
-        ./.github/workflows/file_health.sh
+      - name: run check file health script
+        run: |
+          ./.github/workflows/file_health.sh
