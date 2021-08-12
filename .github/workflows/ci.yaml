@@ -93,7 +93,7 @@ jobs:
             libtorrent/cmake-build-dir/target_graph.dot
 
   windows:
-    name: Windows + vcpkg
+    name: Windows
     runs-on: windows-2019
 
     defaults:
@@ -181,7 +181,7 @@ jobs:
             dist/windows/qt.conf
 
   macos:
-    name: macOS + vcpkg
+    name: macOS
     runs-on: macos-10.15
 
     strategy:
