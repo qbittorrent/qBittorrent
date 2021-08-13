@@ -79,6 +79,18 @@ void ScheduleController::removeEntryAction()
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry index"));
 }
 
+void ScheduleController::clearDayAction()
+{
+    requireParams({"day"});
+
+    const int day = params()["day"].toInt();
+
+    if (day < 0 || day > 6)
+        throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
+
+    BandwidthScheduler::instance()->scheduleDay(day)->clearEntries();
+}
+
 void ScheduleController::getJsonAction()
 {
     setResult(BandwidthScheduler::instance()->getJson());
