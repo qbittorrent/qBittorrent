@@ -17,7 +17,7 @@ jobs:
       - name: setup nodejs
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 'lts/*'
 
       - name: install tools
         run: npm install
