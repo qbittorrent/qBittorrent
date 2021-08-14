@@ -7,14 +7,14 @@ jobs:
     name: Check file health
     runs-on: ubuntu-latest
     steps:
-      - name: checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: install zsh
+      - name: Install zsh
         run: |
           sudo apt update
           sudo apt install zsh
 
-      - name: run check file health script
+      - name: Run check file health script
         run: |
           ./.github/workflows/file_health.sh
