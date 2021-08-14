@@ -40,12 +40,27 @@ bool ScheduleDay::addEntry(const ScheduleEntry &entry)
     return true;
 }
 
-bool ScheduleDay::removeEntryAt(const int index)
+bool ScheduleDay::removeEntryAt(int index)
 {
     if (index >= m_entries.count())
         return false;
 
     m_entries.removeAt(index);
+    emit dayUpdated(m_dayOfWeek);
+    return true;
+}
+
+bool ScheduleDay::removeEntries(QVector<int> indexes)
+{
+    std::sort(indexes.begin(), indexes.end(),
+        [](int l, int r) { return l > r; });
+
+    if (indexes.first() >= m_entries.count())
+        return false;
+
+    for (int i = 0; i < indexes.count(); ++i)
+        m_entries.removeAt(indexes[i]);
+
     emit dayUpdated(m_dayOfWeek);
     return true;
 }

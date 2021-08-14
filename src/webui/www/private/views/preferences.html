@@ -1512,14 +1512,17 @@
                 actions: {
                     paste: (element, ref) => console.log({ element, ref }),
                     copyToOtherDays: (element, ref) => console.log({ element, ref }),
-                    clearAll: (element, ref) => new Request({
-                        url: 'api/v2/schedule/clearDay',
-                        method: 'post',
-                        noCache: true,
-                        data: { 'day': selectedScheduleDay },
-                        onSuccess: () => updateSchedule(() => updateScheduleTable(selectedScheduleDay)),
-                        onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
-                    }).send()
+                    clearAll: (element, ref) => {
+                        const day = selectedScheduleDay;
+                        new Request({
+                            url: 'api/v2/schedule/clearDay',
+                            method: 'post',
+                            noCache: true,
+                            data: { 'day': day },
+                            onSuccess: () => updateSchedule(() => updateScheduleTable(day)),
+                            onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                        }).send();
+                    }
                 },
                 onShow: function() {
                     const dynamicTable = scheduleTables[selectedScheduleDay];
@@ -1633,9 +1636,8 @@
                         method: 'post',
                         noCache: true,
                         data: {
-                            day: selectedScheduleDay,
-                            indexes: scheduleTables[selectedScheduleDay].selectedRows
-                                .map(Number).sort((i, n) => i < n).toString()
+                            day: day,
+                            indexes: scheduleTables[day].selectedRows.toString()
                         },
                         onSuccess: (e) => updateSchedule(() => updateScheduleTable(day)),
                         onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')

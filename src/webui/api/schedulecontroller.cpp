@@ -75,11 +75,16 @@ void ScheduleController::removeEntryAction()
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
 
-    QStringList split = indexes.split(',');
-    for (int i = 0; i < split.length(); ++i)
+    if (indexes.length() > 0)
     {
-        if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(split[i].toInt()))
-            throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry index %1").arg(split[i]));
+        const QStringList split = indexes.split(',');
+
+        QVector<int> indexVector(split.length());
+        std::transform(split.cbegin(), split.cend(), indexVector.begin()
+            , [](const QString& s) { return s.toInt(); });
+
+        if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexVector))
+            throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry indexes"));
     }
 }
 

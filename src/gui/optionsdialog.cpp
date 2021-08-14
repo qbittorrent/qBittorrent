@@ -776,16 +776,15 @@ void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
 void OptionsDialog::removeSelectedScheduleEntries(const int day)
 {
     QItemSelectionModel *selectionModel = m_scheduleDayTables[day]->selectionModel();
-    QList<QModelIndex> selection = selectionModel->selectedRows();
+    const QModelIndexList selection = selectionModel->selectedRows();
 
     if (selection.count() > 0)
     {
-        std::sort(selection.begin(), selection.end(),
-            [](const QModelIndex &l, const QModelIndex &r) { return l.row() > r.row(); });
+        QVector<int> indexes(selection.length());
+        std::transform(selection.cbegin(), selection.cend(), indexes.begin()
+            , [](const QModelIndex &i) { return i.row(); });
 
-        for (const QModelIndex &i : selection)
-            BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(i.row());
-
+        BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexes);
         selectionModel->clearSelection();
     }
 }

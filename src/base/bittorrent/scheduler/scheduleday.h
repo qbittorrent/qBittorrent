@@ -17,7 +17,8 @@ public:
 
     QList<ScheduleEntry> entries() const;
     bool addEntry(const ScheduleEntry &entry);
-    bool removeEntryAt(const int index);
+    bool removeEntryAt(int index);
+    bool removeEntries(QVector<int> indexes);
     void clearEntries();
 
     bool canSetStartTime(int index, QTime time);
