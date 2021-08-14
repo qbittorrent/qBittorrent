@@ -283,7 +283,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole))
     {
         auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
-        qDebug("setData(%s, %d", qUtf8Printable(item->name()), value.toInt());
+        qDebug("setData(%s, %d)", qUtf8Printable(item->name()), value.toInt());
         if (static_cast<int>(item->priority()) != value.toInt())
         {
             BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
@@ -349,7 +349,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
     switch (role)
     {
     case Qt::DecorationRole:
-    {
+        {
             if (index.column() != TorrentContentModelItem::COL_NAME)
                 return {};
 
@@ -358,7 +358,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
             return m_fileIconProvider->icon(QFileInfo(item->name()));
         }
     case Qt::CheckStateRole:
-    {
+        {
             if (index.column() != TorrentContentModelItem::COL_NAME)
                 return {};
 
@@ -519,7 +519,8 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
             currentParent = newParent;
         }
         // Actually create the file
-        TorrentContentModelFile *fileItem = new TorrentContentModelFile(info.fileName(i), info.fileSize(i), currentParent, i);
+        TorrentContentModelFile *fileItem = new TorrentContentModelFile(
+                    Utils::Fs::fileName(info.filePath(i)), info.fileSize(i), currentParent, i);
         currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }

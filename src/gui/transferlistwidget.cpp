@@ -92,9 +92,9 @@ namespace
         if (!torrent->hasMetadata())
             return false;
 
-        for (int i = 0; i < torrent->filesCount(); ++i)
+        for (const QString &filePath : asConst(torrent->filePaths()))
         {
-            QString fileName = torrent->fileName(i);
+            QString fileName = Utils::Fs::fileName(filePath);
             if (fileName.endsWith(QB_EXT))
                 fileName.chop(QB_EXT.length());
             if (Utils::Misc::isPreviewable(fileName))

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2019, 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,8 +28,25 @@
 
 #pragma once
 
-template <typename T>
-typename T::underlying_type toLTUnderlyingType(const T &t)
+#include <libtorrent/download_priority.hpp>
+
+#include "downloadpriority.h"
+
+namespace BitTorrent::LT
 {
-    return static_cast<typename T::underlying_type>(t);
+    template <typename T>
+    constexpr typename T::underlying_type toUnderlyingType(const T &t) noexcept
+    {
+        return static_cast<typename T::underlying_type>(t);
+    }
+
+    constexpr lt::download_priority_t toNative(const DownloadPriority priority) noexcept
+    {
+        return static_cast<lt::download_priority_t>(static_cast<lt::download_priority_t::underlying_type>(priority));
+    }
+
+    constexpr DownloadPriority fromNative(const lt::download_priority_t priority) noexcept
+    {
+        return static_cast<DownloadPriority>(toUnderlyingType(priority));
+    }
 }

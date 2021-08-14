@@ -44,7 +44,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/version.h"
-#include "ltunderlyingtype.h"
+#include "lttypecast.h"
 
 namespace
 {
@@ -186,7 +186,7 @@ void TorrentCreatorThread::run()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
             checkInterruptionRequested();
-            sendProgressSignal(toLTUnderlyingType(n), newTorrent.num_pieces());
+            sendProgressSignal(LT::toUnderlyingType(n), newTorrent.num_pieces());
         });
 
         // Set qBittorrent as creator and add user comment to
