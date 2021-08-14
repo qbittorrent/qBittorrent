@@ -32,7 +32,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install all build dependencies except libtorrent from Ubuntu repos
+      - name: Install dependencies
         run: |
           sudo apt update
           sudo apt install \
@@ -43,13 +43,13 @@ jobs:
 
       # this will be installed under /opt/qt515. CMake will still find it automatically without additional hints
       # to speed up the process, only the required components are installed rather than the full qt515-meta-full metapackage
-      - name: Install Qt 5.15.2 from an external PPA
+      - name: Install Qt
         run: |
           sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
           sudo apt install \
             qt515base qt515svg qt515tools
 
-      - name: Install libtorrent from source
+      - name: Install libtorrent
         run: |
           git clone https://github.com/arvidn/libtorrent
           cd libtorrent
@@ -79,7 +79,7 @@ jobs:
       - name: Install qBittorrent
         run: sudo cmake --install build --prefix /usr/local
 
-      - name: Upload artifact as zip
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}
@@ -105,11 +105,11 @@ jobs:
         uses: actions/checkout@v2
 
       # - ninja is needed for building qBittorrent (because it's preferable, not a hard requirement)
-      - name: Install additional required packages with chocolatey
+      - name: Install build tools
         run: |
           choco install ninja
 
-      - name: Setup vcpkg (cached, if possible)
+      - name: Setup vcpkg
         uses: lukka/run-vcpkg@v7
         with:
           vcpkgDirectory: ${{ env.VCPKG_DEST_WIN }}
@@ -117,7 +117,7 @@ jobs:
           setupOnly: true
 
       # Tell vcpkg to only build Release variants of the dependencies
-      - name: Configure vcpkg triplet overlay for release builds only
+      - name: Configure vcpkg triplet overlay
         run: |
           New-Item `
             -Path ${{ github.workspace }} `
@@ -131,7 +131,7 @@ jobs:
             -Value "set(VCPKG_BUILD_TYPE release)"
 
       # clear buildtrees after each package installation to reduce disk space requirements
-      - name: Install dependencies via vcpkg
+      - name: Install dependencies
         run: |
           $packages = `
             "boost-circular-buffer:x64-windows-static-release",
@@ -169,7 +169,7 @@ jobs:
             --graphviz=build\target_graph.dot
           cmake --build build
 
-      - name: Upload artifact as zip
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: qBittorrent-CI_Windows-x64
@@ -199,19 +199,19 @@ jobs:
 
       # - ninja is needed for building qBittorrent (because it's preferable, not a hard requirement)
       # - automake is needed for the installation the vcpkg installation of fontconfig, a dependency of qt5-base
-      - name: Install additional required packages with homebrew
+      - name: Install build tools
         shell: bash
         run: |
           brew install automake ninja
 
-      - name: Setup vcpkg (cached, if possible)
+      - name: Setup vcpkg
         uses: lukka/run-vcpkg@v7
         with:
           vcpkgDirectory: ${{ env.VCPKG_DEST_MACOS }}
           vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
           setupOnly: true
 
-      - name: Configure vcpkg triplet overlay for release builds only
+      - name: Configure vcpkg triplet overlay
         run: |
           New-Item `
             -Path ${{ github.workspace }} `
@@ -225,14 +225,14 @@ jobs:
             -Value "set(VCPKG_BUILD_TYPE release)","set(VCPKG_OSX_DEPLOYMENT_TARGET 10.15)"
 
       # NOTE: Avoids a libtorrent ABI issue. See https://github.com/arvidn/libtorrent/issues/4965
-      - name: Force AppleClang to compile libtorrent with the same C++ standard as qBittorrent
+      - name: Adjust "C++ standard" cmake flag
         run: |
           (Get-Content `
             -path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake).Replace( `
               '${FEATURE_OPTIONS}', '${FEATURE_OPTIONS} -DCMAKE_CXX_STANDARD=17') `
             | Set-Content -Path ${{ env.RUNVCPKG_VCPKG_ROOT }}/ports/libtorrent/portfile.cmake
 
-      - name: Install dependencies via vcpkg
+      - name: Install dependencies
         run: |
           $packages = `
             "boost-circular-buffer:x64-osx-release",
@@ -266,7 +266,7 @@ jobs:
             --graphviz=build/target_graph.dot
           cmake --build build
 
-      - name: Upload artifact as zip
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}

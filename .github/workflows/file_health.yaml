@@ -10,11 +10,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install zsh
+      - name: Install tools
         run: |
           sudo apt update
           sudo apt install zsh
 
-      - name: Run check file health script
+      - name: Run script
         run: |
           ./.github/workflows/file_health.sh
