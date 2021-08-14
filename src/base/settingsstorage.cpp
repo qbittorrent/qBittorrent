@@ -288,6 +288,10 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     QString finalPath = newPath;
     int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
     finalPath.remove(index, 4);
+    QString finalPathSymlink = QFile::symLinkTarget(finalPath);
+    if (!finalPathSymlink.isEmpty()) {
+        finalPath = finalPathSymlink;
+    }
 
     Utils::Fs::forceRemove(finalPath);
     return QFile::rename(newPath, finalPath);
