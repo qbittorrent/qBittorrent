@@ -1503,7 +1503,7 @@
             schedule = JSON.parse(scheduleJson);
 
             const contextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-                targets: '#schedulerDiv .dynamicTableDiv',
+                targets: '.scheduleDayTab',
                 menu: 'scheduleEntryMenu',
                 offsets: {
                     x: -135,
@@ -1534,7 +1534,8 @@
                     if (selected.length > 0) {
                         this.showItem('copy');
                         this.showItem('copyToOtherDays');
-                    } else {
+                    }
+                    else {
                         this.hideItem('copy');
                         this.hideItem('copyToOtherDays');
                     }
@@ -1554,7 +1555,7 @@
                 listItem.append(new Element('a', { text: dayTranslations[day] }));
                 $('schedulerTabsList').append(listItem);
 
-                const dayTab = new Element('div.scheduleDayTab.invisible', { 'data-day': day });
+                const dayTab = new Element('div.scheduleDayTab.invisible');
                 const tabContent = new Element('div.formRow');
                 dayTab.append(tabContent);
                 $('schedulerDiv').append(dayTab);
@@ -1601,7 +1602,10 @@
                 // Populate the list
                 updateScheduleTable(day);
 
-                const addButton = new Element('button', { text: 'QBT_TR(Add)QBT_TR[CONTEXT=OptionsDialog]' });
+                const addButton = new Element('button', {
+                    text: 'QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]',
+                    style: 'margin: .2em'
+                });
                 addButton.addEvent('click', (ev) => {
                     new Event(ev).stop();
                     new MochaUI.Window({
@@ -1618,7 +1622,28 @@
                     });
                 });
 
+                const removeButton = new Element('button', {
+                    text: 'QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]',
+                    style: 'margin: .2em'
+                });
+                removeButton.addEvent('click', (ev) => {
+                    new Event(ev).stop();
+                    new Request({
+                        url: 'api/v2/schedule/removeEntry',
+                        method: 'post',
+                        noCache: true,
+                        data: {
+                            day: selectedScheduleDay,
+                            indexes: scheduleTables[selectedScheduleDay].selectedRows
+                                .map(Number).sort((i, n) => i < n).toString()
+                        },
+                        onSuccess: (e) => updateSchedule(() => updateScheduleTable(day)),
+                        onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                    }).send();
+                });
+
                 tabContent.append(addButton);
+                tabContent.append(removeButton);
             }
 
             MochaUI.initializeTabs('schedulerTabsList');

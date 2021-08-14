@@ -67,16 +67,20 @@ void ScheduleController::addEntryAction()
 
 void ScheduleController::removeEntryAction()
 {
-    requireParams({"day", "index"});
+    requireParams({"day", "indexes"});
 
     const int day = params()["day"].toInt();
-    const int index = params()["index"].toInt();
+    const QString indexes = params()["indexes"];
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
 
-    if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(index))
-        throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry index"));
+    QStringList split = indexes.split(',');
+    for (int i = 0; i < split.length(); ++i)
+    {
+        if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntryAt(split[i].toInt()))
+            throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry index %1").arg(split[i]));
+    }
 }
 
 void ScheduleController::clearDayAction()
