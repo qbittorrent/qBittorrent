@@ -2681,7 +2681,7 @@ int Session::downloadSpeedLimit() const
         {
             int dl = today->entries()[index].downloadSpeed * 1024;
             return (globalDownloadSpeedLimit() == 0) ? dl
-                : std::min(globalDownloadSpeedLimit(), dl);
+                : qMin(globalDownloadSpeedLimit(), dl);
         }
     }
 
@@ -2709,7 +2709,7 @@ int Session::uploadSpeedLimit() const
         {
             int ul = today->entries()[index].uploadSpeed * 1024;
             return (globalUploadSpeedLimit() == 0) ? ul
-                : std::min(globalUploadSpeedLimit(), ul);
+                : qMin(globalUploadSpeedLimit(), ul);
         }
     }
 

@@ -7,17 +7,18 @@
 #include "ui_scheduleentrydialog.h"
 #include "utils.h"
 
-ScheduleEntryDialog::ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed, int maxSpeed)
+ScheduleEntryDialog::ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed)
     : QDialog {parent}
     , m_ui {new Ui::ScheduleEntryDialog}
     , m_scheduleDay {scheduleDay}
 {
     m_ui->setupUi(this);
 
-    m_ui->downloadSpinBox->setMaximum(maxSpeed);
+    // Max 10GiB/s speed limits
+    m_ui->downloadSpinBox->setMaximum(10000000);
     m_ui->downloadSpinBox->setValue(initialSpeed);
 
-    m_ui->uploadSpinBox->setMaximum(maxSpeed);
+    m_ui->uploadSpinBox->setMaximum(10000000);
     m_ui->uploadSpinBox->setValue(initialSpeed);
 
     const QLocale locale{Preferences::instance()->getLocale()};

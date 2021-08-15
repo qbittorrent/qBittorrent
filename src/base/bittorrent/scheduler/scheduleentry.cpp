@@ -16,12 +16,12 @@ void ScheduleEntry::setEndTime(const QTime time)
 
 void ScheduleEntry::setDownloadSpeed(int value)
 {
-    downloadSpeed = value;
+    downloadSpeed = qMax(value, 0);
 }
 
 void ScheduleEntry::setUploadSpeed(int value)
 {
-    uploadSpeed = value;
+    uploadSpeed = qMax(value, 0);
 }
 
 void ScheduleEntry::setPause(bool value)

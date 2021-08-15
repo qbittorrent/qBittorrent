@@ -14,7 +14,7 @@ class ScheduleEntryDialog final : public QDialog
     Q_OBJECT
 
 public:
-    ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed = 100, int maxSpeed = 1000000);
+    ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleDay, int initialSpeed = 100);
     ~ScheduleEntryDialog() override;
 
     QTime timeFrom() const;
