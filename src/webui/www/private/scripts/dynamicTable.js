@@ -2740,6 +2740,12 @@ window.qBittorrent.DynamicTable = (function() {
             ['start', 'end', 'pause', 'dl', 'ul'].forEach(setWidth);
             this.updateTableHeaders();
             this.setupHeaderEvents();
+        },
+        deselectAll: function() {
+            const len = this.selectedRows.length;
+            this.selectedRows.empty();
+            this.setRowClass();
+            if (len > 0) this.onSelectedRowChanged();
         }
     });
 

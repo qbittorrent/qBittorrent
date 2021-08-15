@@ -1254,10 +1254,12 @@
 <div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
 
 <ul id="scheduleEntryMenu" class="contextMenu">
-    <li><a href="#copy" id="CopyScheduleEntry"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li><a href="#addEntry"><img src="icons/list-add.svg" alt="QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li><a href="#removeEntry"><img src="icons/list-remove.svg" alt="QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li class="separator"><a href="#copy"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]</a></li>
     <li><a href="#paste"><img src="icons/edit-paste.svg" alt="QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li class="separator"><a href="#copyToOtherDays"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li><a href="#clearAll"><img src="icons/edit-clear.svg" alt="QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li><a href="#copyToOtherDays"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+    <li class="separator"><a href="#clearAll"><img src="icons/edit-clear.svg" alt="QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]</a></li>
 </ul>
 
 <script>
@@ -1460,32 +1462,10 @@
         const scheduleTables = new Hash();
         let schedule = {};
         let selectedScheduleDay = 0;
+        let scheduleClipboard = [];
 
         const updateSchedulingEnabled = function() {
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
-        };
-
-        const updateSchedule = (then) => {
-            new Request({
-                url: 'api/v2/schedule/getJson',
-                method: 'get',
-                noCache: true,
-                onSuccess: (responseJson) => {
-                    schedule = JSON.parse(responseJson);
-                    if (then) then();
-                },
-                onFailure: console.error
-            }).send();
-        }
-
-        const updateScheduleTable = (day) => {
-            scheduleTables[day].clear();
-            schedule[scheduleDayKeys[day]].forEach((entry, i) => {
-                entry.rowId = i;
-                scheduleTables[day].updateRowData(entry, true);
-            });
-            scheduleTables[day].updateTable(true);
-            scheduleTables[day].altRow();
         };
 
         const initializeSchedulerTables = (scheduleJson, locale, firstDayOfWeek, today) => {
@@ -1502,15 +1482,80 @@
             locale = locale.replace('_', '-');
             schedule = JSON.parse(scheduleJson);
 
+            const updateSchedule = (then) => {
+                new Request({
+                    url: 'api/v2/schedule/getJson',
+                    method: 'get',
+                    noCache: true,
+                    onSuccess: (responseJson) => {
+                        schedule = JSON.parse(responseJson);
+                        if (then) then();
+                    },
+                    onFailure: console.error
+                }).send();
+            }
+
+            const updateScheduleTable = (day) => {
+                scheduleTables[day].clear();
+                schedule[scheduleDayKeys[day]].forEach((entry, i) => {
+                    entry.rowId = i;
+                    scheduleTables[day].updateRowData(entry, true);
+                });
+                scheduleTables[day].updateTable(true);
+                scheduleTables[day].altRow();
+            };
+
             const contextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
-                targets: '.scheduleDayTab',
+                targets: '#schedulerDiv',
                 menu: 'scheduleEntryMenu',
                 offsets: {
-                    x: -135,
-                    y: -40
+                    x: -105,
+                    y: -20
                 },
                 actions: {
-                    paste: (element, ref) => console.log({ element, ref }),
+                    addEntry: (element, ref) => {
+                        const day = selectedScheduleDay;
+                        new MochaUI.Window({
+                            id: 'scheduleentrydialog',
+                            title: 'QBT_TR(Add scheduled speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]',
+                            loadMethod: 'iframe',
+                            contentURL: new URI('addscheduleentry.html').setData('day', day).toString(),
+                            padding: 8,
+                            maximizable: false,
+                            scrollbars: false,
+                            width: 370,
+                            height: 120,
+                            onClose: (e) => updateSchedule(() => updateScheduleTable(day))
+                        });
+                    },
+                    removeEntry: (element, ref) => {
+                        const day = selectedScheduleDay;
+                        const selectedRows = scheduleTables[day].selectedRows;
+                        if (selectedRows.length === 0) return;
+                        new Request({
+                            url: 'api/v2/schedule/removeEntry',
+                            method: 'post',
+                            noCache: true,
+                            data: {
+                                day: day,
+                                indexes: selectedRows.toString()
+                            },
+                            onSuccess: (e) => {
+                                selectedRows.map(Number).sort((l, r) => l < r)
+                                    .forEach(i => scheduleTables[day].removeRow(i));
+                            },
+                            onFailure: console.error
+                        }).send();
+                    },
+                    copy: (element, ref) => {
+                        scheduleClipboard = scheduleTables[selectedScheduleDay].selectedRows
+                            .map(i => schedule[scheduleDayKeys[selectedScheduleDay]][i]);
+                        console.log('copy', scheduleClipboard);
+                    },
+                    paste: (element, ref) => {
+                        if (scheduleClipboard.length !== 0)
+                            console.log('paste', scheduleClipboard);
+                    },
                     copyToOtherDays: (element, ref) => console.log({ element, ref }),
                     clearAll: (element, ref) => {
                         const day = selectedScheduleDay;
@@ -1538,19 +1583,21 @@
                         this.hideItem('clearAll');
 
                     if (selected.length > 0) {
+                        this.showItem('removeEntry');
                         this.showItem('copy');
                         this.showItem('copyToOtherDays');
                     }
                     else {
+                        this.hideItem('removeEntry');
                         this.hideItem('copy');
                         this.hideItem('copyToOtherDays');
                     }
-                }
-            });
 
-            new ClipboardJS('#CopyScheduleEntry', {
-                text: (trigger) => JSON.stringify(scheduleTables[selectedScheduleDay].selectedRows
-                    .map(i => schedule[scheduleDayKeys[selectedScheduleDay]][i]))
+                    if (scheduleClipboard.length !== 0)
+                        this.showItem('paste');
+                    else
+                        this.hideItem('paste');
+                }
             });
 
             for (let i = 0; i < 7; ++i) {
@@ -1575,9 +1622,13 @@
                 listItem.addEvent('click', (e) => {
                     $$('.scheduleDayTab').addClass('invisible');
                     dayTab.removeClass('invisible');
+
+                    scheduleTables[selectedScheduleDay].deselectAll();
                     selectedScheduleDay = day;
                     scheduleTables[day].reloadHeaders();
                 });
+
+                dayTab.addEvent('click', (e) => scheduleTables[day].deselectAll());
 
                 // Set up table divs
                 const headerDiv = new Element('div.dynamicTableFixedHeaderDiv', {
@@ -1592,7 +1643,7 @@
                 const tableDiv = new Element('div.dynamicTableDiv', {
                     id: 'scheduleTableDiv' + day
                 });
-                const table = new Element('table.dynamicTable');
+                const table = new Element('table.dynamicTable.unselectable');
                 tableDiv.append(table);
                 table.createTHead().insertRow().class = 'dynamicTableHeader';
                 let tableBody = table.createTBody();
@@ -1608,52 +1659,6 @@
 
                 // Populate the list
                 updateScheduleTable(day);
-
-                const addButton = new Element('button', {
-                    text: 'QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]',
-                    style: 'margin: .2em'
-                });
-                addButton.addEvent('click', (ev) => {
-                    new Event(ev).stop();
-                    new MochaUI.Window({
-                        id: 'scheduleentrydialog',
-                        title: 'QBT_TR(Add scheduled speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]',
-                        loadMethod: 'iframe',
-                        contentURL: new URI('addscheduleentry.html').setData('day', day).toString(),
-                        padding: 8,
-                        maximizable: false,
-                        scrollbars: false,
-                        width: 370,
-                        height: 120,
-                        onClose: (e) => updateSchedule(() => updateScheduleTable(day))
-                    });
-                });
-
-                const removeButton = new Element('button', {
-                    text: 'QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]',
-                    style: 'margin: .2em'
-                });
-                removeButton.addEvent('click', (ev) => {
-                    new Event(ev).stop();
-                    new Request({
-                        url: 'api/v2/schedule/removeEntry',
-                        method: 'post',
-                        noCache: true,
-                        data: {
-                            day: day,
-                            indexes: scheduleTables[day].selectedRows.toString()
-                        },
-                        onSuccess: (e) => {
-                            scheduleTables[day].selectedRows
-                                .map(Number).sort((l, r) => l < r)
-                                .forEach(i => scheduleTables[day].removeRow(i));
-                        },
-                        onFailure: console.error
-                    }).send();
-                });
-
-                tabContent.append(addButton);
-                tabContent.append(removeButton);
             }
 
             MochaUI.initializeTabs('schedulerTabsList');

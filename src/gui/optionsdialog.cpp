@@ -652,10 +652,8 @@ void OptionsDialog::initializeSchedulerTables()
     for (int i = 0; i < 7; ++i)
     {
         int day = (firstDay + i) % 7;
-        auto *tabContent = new QWidget(this);
-        auto *vLayout = new QVBoxLayout(tabContent);
 
-        auto *scheduleTable = new QTableWidget(0, Gui::ScheduleColumn::COL_COUNT, tabContent);
+        auto *scheduleTable = new QTableWidget(0, Gui::ScheduleColumn::COL_COUNT, this);
         scheduleTable->setHorizontalHeaderLabels(
         {
             tr("From", "i.e.: Beginning of time range"),
@@ -677,29 +675,10 @@ void OptionsDialog::initializeSchedulerTables()
         m_scheduleDayTables[day] = scheduleTable;
         populateScheduleDayTable(scheduleTable, scheduleDay);
 
-        QItemSelectionModel *selectionModel = scheduleTable->selectionModel();
-        auto *addButton = new QPushButton(tr("Add entry"), tabContent);
-        auto *removeButton = new QPushButton(tr("Remove entry"), tabContent);
-        removeButton->setEnabled(false);
-
-        connect(selectionModel, &QItemSelectionModel::selectionChanged, this,
-            [selectionModel, removeButton] () { removeButton->setEnabled(selectionModel->hasSelection()); });
-
         connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
             [this, day]() { showScheduleDayContextMenu(day); });
 
-        connect(addButton, &QPushButton::clicked, this,
-            [this, scheduleDay]() { OptionsDialog::openScheduleEntryDialog(scheduleDay); });
-
-        connect(removeButton, &QPushButton::clicked, this,
-            [this, day]() { OptionsDialog::removeSelectedScheduleEntries(day); });
-
-        auto *hLayout = new QHBoxLayout();
-        hLayout->addWidget(addButton);
-        hLayout->addWidget(removeButton);
-        vLayout->addWidget(scheduleTable);
-        vLayout->addLayout(hLayout);
-        m_ui->tabSchedule->addTab(tabContent, translatedWeekdayNames()[day]);
+        m_ui->tabSchedule->addTab(scheduleTable, translatedWeekdayNames()[day]);
 
         if (day == today)
         {
@@ -799,19 +778,29 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     auto *theme = UIThemeManager::instance();
 
+    QAction *actionAddEntry = menu->addAction(theme->getIcon("list-add"), tr("Add entry"));
+    QAction *actionRemoveEntry = menu->addAction(theme->getIcon("list-remove"), tr("Remove entry"));
+    menu->addSeparator();
     QAction *actionCopy = menu->addAction(theme->getIcon("edit-copy"), tr("Copy"));
     QAction *actionPaste = menu->addAction(theme->getIcon("edit-paste"), tr("Paste"));
-    menu->addSeparator();
     QAction *actionCopyAll = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
+    menu->addSeparator();
     QAction *actionClear = menu->addAction(theme->getIcon("edit-clear"), tr("Clear all"));
 
     const QList<ScheduleEntry> allEntries = scheduleDay->entries();
     const QList<QModelIndex> selectedRows = scheduleTable->selectionModel()->selectedRows();
 
+    actionRemoveEntry->setDisabled(selectedRows.empty());
     actionCopy->setDisabled(selectedRows.empty());
     actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat("application/json"));
     actionCopyAll->setDisabled(selectedRows.empty());
     actionClear->setDisabled(allEntries.empty());
+
+    connect(actionAddEntry, &QAction::triggered, scheduleDay,
+        [this, scheduleDay]() { OptionsDialog::openScheduleEntryDialog(scheduleDay); });
+
+    connect(actionRemoveEntry, &QAction::triggered, this,
+        [this, day]() { removeSelectedScheduleEntries(day); });
 
     connect(actionCopy, &QAction::triggered, scheduleDay, [allEntries, selectedRows]()
     {
