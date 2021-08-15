@@ -1474,7 +1474,7 @@
                     schedule = JSON.parse(responseJson);
                     if (then) then();
                 },
-                onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                onFailure: console.error
             }).send();
         }
 
@@ -1519,8 +1519,11 @@
                             method: 'post',
                             noCache: true,
                             data: { 'day': day },
-                            onSuccess: () => updateSchedule(() => updateScheduleTable(day)),
-                            onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                            onSuccess: () => {
+                                schedule[scheduleDayKeys[day]] = [];
+                                scheduleTables[day].clear();
+                            },
+                            onFailure: console.error
                         }).send();
                     }
                 },
@@ -1639,8 +1642,12 @@
                             day: day,
                             indexes: scheduleTables[day].selectedRows.toString()
                         },
-                        onSuccess: (e) => updateSchedule(() => updateScheduleTable(day)),
-                        onFailure: () => alert('QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]')
+                        onSuccess: (e) => {
+                            scheduleTables[day].selectedRows
+                                .map(Number).sort((l, r) => l < r)
+                                .forEach(i => scheduleTables[day].removeRow(i));
+                        },
+                        onFailure: console.error
                     }).send();
                 });
 

@@ -92,7 +92,7 @@
                         pause: pause,
                     },
                     onSuccess: closeThis,
-                    onFailure: (error) => console.log(error)
+                    onFailure: console.error
                 }).send();
             });
 
@@ -127,8 +127,8 @@
             <tbody>
                 <tr>
                     <th>QBT_TR(Speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
-                    <td><input type="number" id="downloadLimitInput" value="0"> KiB/s</td>
-                    <td><input type="number" id="uploadLimitInput" value="0"> KiB/s</td>
+                    <td><input type="number" id="downloadLimitInput" min="0" value="0"> KiB/s</td>
+                    <td><input type="number" id="uploadLimitInput" min="0" value="0"> KiB/s</td>
                     <td><input type="checkbox" id="pauseCheck"></td>
                 </tr>
                 <tr>
