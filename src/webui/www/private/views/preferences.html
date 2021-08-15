@@ -1576,6 +1576,7 @@
                     $$('.scheduleDayTab').addClass('invisible');
                     dayTab.removeClass('invisible');
                     selectedScheduleDay = day;
+                    scheduleTables[day].reloadHeaders();
                 });
 
                 // Set up table divs
