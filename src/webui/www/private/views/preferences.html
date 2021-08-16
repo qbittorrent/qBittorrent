@@ -559,6 +559,15 @@
                 </td>
             </tr>
             <tr>
+                <td>
+                    <input type="checkbox" id="min_seeders_checkbox" onclick="qBittorrent.Preferences.updateMaxRatioTimeEnabled();" />
+                    <label for="min_seeders_checkbox">QBT_TR(And seeded by at least)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="min_seeders_value" style="width: 4em;" />QBT_TR(seeders)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
                 <td style="text-align: right;"><label for="max_ratio_act">QBT_TR(then)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td>
                     <select id="max_ratio_act">
@@ -1489,7 +1498,13 @@
             const isMaxSeedingTimeEnabled = $('max_seeding_time_checkbox').getProperty('checked');
             $('max_seeding_time_value').setProperty('disabled', !isMaxSeedingTimeEnabled);
 
-            $('max_ratio_act').setProperty('disabled', !(isMaxRatioEnabled || isMaxSeedingTimeEnabled));
+            const isMinSeedersEnabled = $('min_seeders_checkbox').getProperty('checked');
+
+            const isShareLimitEnabled = isMaxRatioEnabled || isMaxSeedingTimeEnabled;
+
+            $('max_ratio_act').setProperty('disabled', !(isShareLimitEnabled));
+            $('min_seeders_checkbox').setProperty('disabled', !(isShareLimitEnabled));
+            $('min_seeders_value').setProperty('disabled', !(isShareLimitEnabled && isMinSeedersEnabled));
         };
 
         const updateAddTrackersEnabled = function() {
@@ -1830,6 +1845,8 @@
                         $('max_ratio_value').setProperty('value', (pref.max_ratio_enabled ? pref.max_ratio : 1));
                         $('max_seeding_time_checkbox').setProperty('checked', pref.max_seeding_time_enabled);
                         $('max_seeding_time_value').setProperty('value', (pref.max_seeding_time_enabled ? pref.max_seeding_time.toInt() : 1440));
+                        $('min_seeders_checkbox').setProperty('checked', pref.min_seeders_enabled);
+                        $('min_seeders_value').setProperty('value', (pref.min_seeders_enabled ? pref.min_seeders.toInt() : 0));
                         let maxRatioAct = 0;
                         switch (pref.max_ratio_act.toInt()) {
                             case 0: // Pause
@@ -2224,6 +2241,18 @@
             }
             settings.set('max_seeding_time_enabled', $('max_seeding_time_checkbox').getProperty('checked'));
             settings.set('max_seeding_time', max_seeding_time);
+
+            let min_seeders = 0;
+            if ($('min_seeders_checkbox').getProperty('checked')) {
+                min_seeders = $('min_seeders_value').getProperty('value').toInt();
+                if (isNaN(min_seeders) || min_seeders < 0 || min_seeders > 9999999) {
+                    alert("QBT_TR(Minimum seeders must be between 0 and 9999999.)QBT_TR[CONTEXT=HttpServer]");
+                    return;
+                }
+            }
+            settings.set('min_seeders_enabled', $('min_seeders_checkbox').getProperty('checked'));
+            settings.set('min_seeders', min_seeders);
+
             settings.set('max_ratio_act', $('max_ratio_act').getProperty('value').toInt());
 
             // Add trackers

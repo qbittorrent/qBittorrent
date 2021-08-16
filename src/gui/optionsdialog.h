@@ -96,7 +96,7 @@ private slots:
     void on_buttonBox_rejected();
     void applySettings();
     void enableApplyButton();
-    void toggleComboRatioLimitAct();
+    void toggleRatioLimitFields();
     void changePage(QListWidgetItem *, QListWidgetItem *);
     void loadSplitterState();
     void handleWatchedFolderViewSelectionChanged();
@@ -153,6 +153,7 @@ private:
     int getEncryptionSetting() const;
     qreal getMaxRatio() const;
     int getMaxSeedingMinutes() const;
+    int getMinSeeders() const;
     // Proxy options
     bool isProxyEnabled() const;
     bool isProxyAuthEnabled() const;

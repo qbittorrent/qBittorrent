@@ -2568,7 +2568,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="4" column="0">
                 <widget class="QLabel" name="label">
                  <property name="text">
                   <string>then</string>
@@ -2578,7 +2578,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
+               <item row="4" column="1">
                 <widget class="QComboBox" name="comboRatioLimitAct">
                  <property name="enabled">
                   <bool>false</bool>
@@ -2625,6 +2625,26 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  </property>
                  <property name="value">
                   <double>1.000000000000000</double>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QCheckBox" name="checkMinSeeders">
+                 <property name="text">
+                  <string>And seeded by at least</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="spinMinSeeders">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="suffix">
+                  <string> seeders</string>
+                 </property>
+                 <property name="maximum">
+                  <number>9999999</number>
                  </property>
                 </widget>
                </item>
@@ -3645,6 +3665,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
     <hint type="destinationlabel">
      <x>496</x>
      <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkMinSeeders</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>spinMinSeeders</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>353</x>
+     <y>369</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>572</x>
+     <y>369</y>
     </hint>
    </hints>
   </connection>

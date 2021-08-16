@@ -435,13 +435,16 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkLSD, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboEncryption, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->checkMaxRatio, &QAbstractButton::toggled, this, &ThisType::toggleRatioLimitFields);
     connect(m_ui->spinMaxRatio, qOverload<double>(&QDoubleSpinBox::valueChanged),
             this, &ThisType::enableApplyButton);
     connect(m_ui->comboRatioLimitAct, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleComboRatioLimitAct);
+    connect(m_ui->checkMaxSeedingMinutes, &QAbstractButton::toggled, this, &ThisType::toggleRatioLimitFields);
     connect(m_ui->spinMaxSeedingMinutes, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMinSeeders, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMinSeeders, &QAbstractButton::toggled, this, &ThisType::toggleRatioLimitFields);
+    connect(m_ui->spinMinSeeders, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     // Proxy tab
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -813,6 +816,7 @@ void OptionsDialog::saveOptions()
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
     session->setGlobalMaxSeedingMinutes(getMaxSeedingMinutes());
+    session->setGlobalMinSeeders(getMinSeeders());
 
     const QVector<MaxRatioAction> actIndex =
     {
@@ -1212,7 +1216,6 @@ void OptionsDialog::loadOptions()
         // Enable
         m_ui->checkMaxRatio->setChecked(true);
         m_ui->spinMaxRatio->setEnabled(true);
-        m_ui->comboRatioLimitAct->setEnabled(true);
         m_ui->spinMaxRatio->setValue(session->globalMaxRatio());
     }
     else
@@ -1234,7 +1237,18 @@ void OptionsDialog::loadOptions()
         m_ui->checkMaxSeedingMinutes->setChecked(false);
         m_ui->spinMaxSeedingMinutes->setEnabled(false);
     }
-    m_ui->comboRatioLimitAct->setEnabled((session->globalMaxSeedingMinutes() >= 0) || (session->globalMaxRatio() >= 0.));
+    if (session->globalMinSeeders() > 0)
+    {
+        // Enable
+        m_ui->checkMinSeeders->setChecked(true);
+        m_ui->spinMinSeeders->setValue(session->globalMinSeeders());
+    }
+    else
+    {
+        // Disable
+        m_ui->checkMinSeeders->setChecked(false);
+    }
+    toggleRatioLimitFields();
 
     const QHash<MaxRatioAction, int> actIndex =
     {
@@ -1381,6 +1395,13 @@ int OptionsDialog::getMaxSeedingMinutes() const
     return -1;
 }
 
+int OptionsDialog::getMinSeeders() const
+{
+    if (m_ui->checkMinSeeders->isChecked())
+        return m_ui->spinMinSeeders->value();
+    return 0;
+}
+
 // Return max connections number
 int OptionsDialog::getMaxConnecs() const
 {
@@ -1483,10 +1504,15 @@ void OptionsDialog::enableApplyButton()
     m_applyButton->setEnabled(true);
 }
 
-void OptionsDialog::toggleComboRatioLimitAct()
+void OptionsDialog::toggleRatioLimitFields()
 {
     // Verify if the share action button must be enabled
-    m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
+    bool limitsEnabled = m_ui->checkMaxRatio->isChecked()
+        || m_ui->checkMaxSeedingMinutes->isChecked();
+    m_ui->comboRatioLimitAct->setEnabled(limitsEnabled);
+    m_ui->checkMinSeeders->setEnabled(limitsEnabled);
+    m_ui->spinMinSeeders->setEnabled(limitsEnabled && m_ui->checkMinSeeders->isChecked());
+
 }
 
 void OptionsDialog::enableProxy(const int index)

@@ -261,6 +261,8 @@ namespace BitTorrent
         void setGlobalMaxRatio(qreal ratio);
         int globalMaxSeedingMinutes() const;
         void setGlobalMaxSeedingMinutes(int minutes);
+        int globalMinSeeders() const;
+        void setGlobalMinSeeders(int seeders);
         bool isDHTEnabled() const;
         void setDHTEnabled(bool enabled);
         bool isLSDEnabled() const;
@@ -606,6 +608,7 @@ namespace BitTorrent
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
+        bool performMaxRatioAction(TorrentImpl &torrent, MaxRatioAction action);
         void exportTorrentFile(const TorrentInfo &torrentInfo, const QString &folderPath, const QString &baseName);
 
         void handleAlert(const lt::alert *a);
@@ -707,6 +710,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
+        CachedSettingValue<int> m_globalMinSeeders;
         CachedSettingValue<bool> m_isAddTorrentPaused;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;

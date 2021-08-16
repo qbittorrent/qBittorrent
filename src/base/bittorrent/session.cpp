@@ -254,6 +254,20 @@ namespace
         return {};
     }
 
+    QString toString(const MaxRatioAction &action) {
+        switch (action) {
+        case Pause:
+            return QLatin1String("Paused");
+        case Remove:
+            return QLatin1String("Removed");
+        case DeleteFiles:
+            return QLatin1String("Removed torent and its files");
+        case EnableSuperSeeding:
+            return QLatin1String("Enabled super seeding for it");
+        }
+        return QLatin1String("INVALID");
+    }
+
     template <typename T>
     struct LowerLimited
     {
@@ -394,6 +408,7 @@ Session::Session(QObject *parent)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY("GlobalMaxRatio"), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY("GlobalMaxSeedingMinutes"), -1, lowerLimited(-1))
+    , m_globalMinSeeders(BITTORRENT_SESSION_KEY("GlobalMinSeeders"), 0, lowerLimited(0))
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY("AddTorrentPaused"), false)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY("TorrentContentLayout"), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY("AddExtensionToIncompleteFiles"), false)
@@ -960,6 +975,21 @@ void Session::setGlobalMaxSeedingMinutes(int minutes)
         m_globalMaxSeedingMinutes = minutes;
         updateSeedingLimitTimer();
     }
+}
+
+int Session::globalMinSeeders() const
+{
+    return m_globalMinSeeders;
+}
+
+void Session::setGlobalMinSeeders(int seeders)
+{
+    if (seeders < 0)
+        seeders = 0;
+
+    m_globalMinSeeders = seeders;
+    // no need to updateSeedingLimitTimer; whether or not the timer should run does not depend on
+    // min seeders.
 }
 
 // Main destructor
@@ -1609,84 +1639,49 @@ void Session::processShareLimits()
     const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
     for (TorrentImpl *const torrent : torrents)
     {
+        // per-torrent limiting overrides min seeders, but min seeders overrides global limiting
         if (torrent->isSeed() && !torrent->isForced())
         {
-            if (torrent->ratioLimit() != Torrent::NO_RATIO_LIMIT)
+            bool hasMinSeeds = torrent->totalSeedsCount() >= globalMinSeeders();
+
+            const qreal ratio = torrent->realRatio();
+            qreal ratioLimit = torrent->maxRatio();
+            bool isRatioLimitLocal = torrent->ratioLimit() != Torrent::USE_GLOBAL_RATIO;
+
+            // why the torrent should be stopped, or empty if it should not be stopped
+            QString why = "";
+
+            if (ratioLimit >= 0
+                && ratio <= Torrent::MAX_RATIO
+                && ratio >= ratioLimit
+                && (hasMinSeeds || isRatioLimitLocal))
             {
-                const qreal ratio = torrent->realRatio();
-                qreal ratioLimit = torrent->ratioLimit();
-                if (ratioLimit == Torrent::USE_GLOBAL_RATIO)
-                    // If Global Max Ratio is really set...
-                    ratioLimit = globalMaxRatio();
+                why = "ratio";
+            }
 
-                if (ratioLimit >= 0)
-                {
-                    qDebug("Ratio: %f (limit: %f)", ratio, ratioLimit);
+            const qlonglong seedingTimeInMinutes = torrent->seedingTime() / 60;
+            int seedingTimeLimit = torrent->maxSeedingTime();
+            bool isSeedingTimeLimitLocal = torrent->seedingTime() != Torrent::USE_GLOBAL_SEEDING_TIME;
+            if (seedingTimeLimit >= 0
+                && seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME
+                && seedingTimeInMinutes >= seedingTimeLimit
+                && (hasMinSeeds || isSeedingTimeLimitLocal))
+            {
+                why = "seeding time";
+            }
 
-                    if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
-                    {
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed torrent and its files.").arg(torrent->name()));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Enabled super seeding for it.").arg(torrent->name()));
-                        }
-                        continue;
-                    }
+            if (!why.isEmpty()) {
+                QString how = toString(maxRatioAction());
+
+                if (performMaxRatioAction(*torrent, maxRatioAction())) {
+                    LogMsg(tr("'%1' reached the %2 you set. %3")
+                           .arg(torrent->name())
+                           .arg(why)
+                           .arg(how));
                 }
             }
 
-            if (torrent->seedingTimeLimit() != Torrent::NO_SEEDING_TIME_LIMIT)
-            {
-                const qlonglong seedingTimeInMinutes = torrent->seedingTime() / 60;
-                int seedingTimeLimit = torrent->seedingTimeLimit();
-                if (seedingTimeLimit == Torrent::USE_GLOBAL_SEEDING_TIME)
-                {
-                     // If Global Seeding Time Limit is really set...
-                    seedingTimeLimit = globalMaxSeedingMinutes();
-                }
 
-                if (seedingTimeLimit >= 0)
-                {
-                    if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
-                    {
-                        if (m_maxRatioAction == Remove)
-                        {
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
-                            deleteTorrent(torrent->id());
-                        }
-                        else if (m_maxRatioAction == DeleteFiles)
-                        {
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed torrent and its files.").arg(torrent->name()));
-                            deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
-                        }
-                        else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
-                        {
-                            torrent->pause();
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
-                        }
-                        else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
-                        {
-                            torrent->setSuperSeeding(true);
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Enabled super seeding for it.").arg(torrent->name()));
-                        }
-                    }
-                }
-            }
         }
     }
 }
@@ -3826,6 +3821,30 @@ void Session::updateSeedingLimitTimer()
     else if (!m_seedingLimitTimer->isActive())
     {
         m_seedingLimitTimer->start();
+    }
+}
+
+// return whether any action was actually taken
+bool Session::performMaxRatioAction(TorrentImpl &torrent, MaxRatioAction action) {
+    switch(action) {
+        case Pause:
+            if (!torrent.isPaused()) {
+                torrent.pause();
+                return true;
+            }
+            return false;
+        case Remove:
+            deleteTorrent(torrent.id());
+            return true;
+        case DeleteFiles:
+            deleteTorrent(torrent.id(), DeleteTorrentAndFiles);
+            return true;
+        case EnableSuperSeeding:
+            if (!torrent.isPaused() && !torrent.superSeeding()) {
+                torrent.setSuperSeeding(true);
+                return true;
+            }
+            return false;
     }
 }
 
