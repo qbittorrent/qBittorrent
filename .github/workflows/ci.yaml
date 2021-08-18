@@ -8,8 +8,6 @@ on: [pull_request, push]
 
 env:
   VCPKG_COMMIT: 8dddc6c899ce6fdbeab38b525a31e7f23cb2d5bb
-  VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
-  VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
 
 jobs:
   ubuntu:
@@ -89,6 +87,9 @@ jobs:
   windows:
     name: Windows
     runs-on: windows-2019
+
+    env:
+      VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
 
     defaults:
       run:
@@ -182,6 +183,9 @@ jobs:
       matrix:
         qbt_gui: ["GUI=ON", "GUI=OFF"]
       fail-fast: false
+
+    env:
+      VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
 
     defaults:
       run:
