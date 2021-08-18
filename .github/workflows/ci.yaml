@@ -10,7 +10,6 @@ env:
   VCPKG_COMMIT: 8dddc6c899ce6fdbeab38b525a31e7f23cb2d5bb
   VCPKG_DEST_MACOS: /Users/runner/qbt_tools/vcpkg
   VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
-  LIBTORRENT_VERSION_TAG: v1.2.14
 
 jobs:
   ubuntu:
@@ -20,6 +19,7 @@ jobs:
       matrix:
         os: [ubuntu-20.04]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
+        libt_version: ["v2.0.4", "v1.2.14"]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -51,9 +51,9 @@ jobs:
 
       - name: Install libtorrent
         run: |
-          git clone https://github.com/arvidn/libtorrent
+          git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
-          git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
+          git submodule update --init --recursive
           cmake \
             -B build \
             -G "Ninja" \
@@ -82,7 +82,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}
+          name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}
           path: |
             build/compile_commands.json
             build/install_manifest.txt
