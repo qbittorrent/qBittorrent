@@ -24,6 +24,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+
       - name: Install dependencies
         run: |
           sudo apt update
@@ -46,6 +49,7 @@ jobs:
           git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
           git submodule update --init --recursive
+          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \
@@ -58,6 +62,7 @@ jobs:
 
       - name: Build qBittorrent
         run: |
+          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \
