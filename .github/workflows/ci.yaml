@@ -14,19 +14,13 @@ env:
 jobs:
   ubuntu:
     name: Ubuntu
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
-        os: [ubuntu-20.04]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         libt_version: ["v2.0.4", "v1.2.14"]
       fail-fast: false
-
-    runs-on: ${{ matrix.os }}
-
-    defaults:
-      run:
-        shell: bash
 
     steps:
       - name: Checkout repository
@@ -82,7 +76,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_${{ matrix.os }}-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_ubuntu-20.04-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}
           path: |
             build/compile_commands.json
             build/install_manifest.txt
