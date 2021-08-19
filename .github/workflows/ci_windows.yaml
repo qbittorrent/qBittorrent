@@ -1,0 +1,95 @@
+name: CI - Windows
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Build
+    runs-on: windows-2019
+
+    env:
+      VCPKG_COMMIT: 8dddc6c899ce6fdbeab38b525a31e7f23cb2d5bb
+      VCPKG_DEST_WIN: C:\qbt_tools\vcpkg
+
+    defaults:
+      run:
+        shell: pwsh
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # - ninja is needed for building qBittorrent (because it's preferable, not a hard requirement)
+      - name: Install build tools
+        run: |
+          choco install ninja
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v7
+        with:
+          vcpkgDirectory: ${{ env.VCPKG_DEST_WIN }}
+          vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
+          setupOnly: true
+
+      # Tell vcpkg to only build Release variants of the dependencies
+      - name: Configure vcpkg triplet overlay
+        run: |
+          New-Item `
+            -Path ${{ github.workspace }} `
+            -Name "triplets_overlay" `
+            -ItemType Directory
+          Copy-Item `
+            ${{ env.RUNVCPKG_VCPKG_ROOT }}/triplets/x64-windows-static.cmake `
+            ${{ github.workspace }}/triplets_overlay/x64-windows-static-release.cmake
+          Add-Content `
+            ${{ github.workspace }}/triplets_overlay/x64-windows-static-release.cmake `
+            -Value "set(VCPKG_BUILD_TYPE release)"
+
+      # clear buildtrees after each package installation to reduce disk space requirements
+      - name: Install dependencies
+        run: |
+          $packages = `
+            "boost-circular-buffer:x64-windows-static-release",
+            "libtorrent:x64-windows-static-release",
+            "qt5-base:x64-windows-static-release",
+            "qt5-svg:x64-windows-static-release",
+            "qt5-tools:x64-windows-static-release",
+            "qt5-winextras:x64-windows-static-release"
+          ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
+            --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+            --no-dry-run
+          foreach($package in $packages)
+          {
+            ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe install $package `
+              --overlay-triplets=${{ github.workspace }}/triplets_overlay `
+              --clean-after-build
+          }
+
+      # NOTE: this is necessary to correctly find and use cl.exe with the Ninja generator for now
+      - name: Setup devcmd
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Build qBittorrent
+        shell: cmd
+        run: |
+          cmake ^
+            -B build ^
+            -G "Ninja" ^
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo ^
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ^
+            -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_DEST_WIN }}\scripts\buildsystems\vcpkg.cmake ^
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static-release ^
+            -DVERBOSE_CONFIGURE=ON ^
+            -DMSVC_RUNTIME_DYNAMIC=OFF ^
+            --graphviz=build\target_graph.dot
+          cmake --build build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: qBittorrent-CI_Windows-x64
+          path: |
+            build/compile_commands.json
+            build/target_graph.dot
+            build/qbittorrent.exe
+            build/qbittorrent.pdb
+            dist/windows/qt.conf
