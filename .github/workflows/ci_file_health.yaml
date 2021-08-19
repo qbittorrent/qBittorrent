@@ -3,8 +3,8 @@ name: CI - File health
 on: [pull_request, push]
 
 jobs:
-  check_file_health:
-    name: Check file health
+  ci:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,6 +15,6 @@ jobs:
           sudo apt update
           sudo apt install zsh
 
-      - name: Run script
+      - name: Check files
         run: |
           ./.github/workflows/file_health.sh

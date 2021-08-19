@@ -3,9 +3,10 @@ name: CI - WebUI
 on: [pull_request, push]
 
 jobs:
-  check_webui:
-    name: Check WebUI
+  ci:
+    name: Check
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: src/webui/www
