@@ -1628,8 +1628,10 @@ void TorrentImpl::moveStorage(const QString &newPath, const MoveStorageMode mode
 
 void TorrentImpl::renameFile(const int index, const QString &path)
 {
+#ifndef QBT_USES_LIBTORRENT2
     const QString oldPath = filePath(index);
     m_oldPath[lt::file_index_t {index}].push_back(oldPath);
+#endif
     ++m_renameCount;
     m_nativeHandle.rename_file(lt::file_index_t {index}, Utils::Fs::toNativePath(path).toStdString());
 }
@@ -1865,11 +1867,14 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // Remove empty leftover folders
     // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
+#ifndef QBT_USES_LIBTORRENT2
     const QString oldFilePath = m_oldPath[p->index].takeFirst();
-    const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
-
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
+#else
+    const QString oldFilePath = Utils::Fs::toUniformPath(p->old_name());
+#endif
+    const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
     QList<QStringView> oldPathParts = QStringView(oldFilePath).split('/', Qt::SkipEmptyParts);
     oldPathParts.removeLast();  // drop file name part
@@ -1909,9 +1914,11 @@ void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
         .arg(name(), filePath(toLTUnderlyingType(p->index))
              , QString::fromLocal8Bit(p->error.message().c_str())), Log::WARNING);
 
+#ifndef QBT_USES_LIBTORRENT2
     m_oldPath[p->index].removeFirst();
     if (m_oldPath[p->index].isEmpty())
         m_oldPath.remove(p->index);
+#endif
 
     --m_renameCount;
     while (!isMoveInProgress() && (m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
