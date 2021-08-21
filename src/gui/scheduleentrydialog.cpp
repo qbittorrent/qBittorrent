@@ -27,7 +27,7 @@ ScheduleEntryDialog::ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleD
     m_ui->timeEditTo->setDisplayFormat(timeFormat);
     m_ui->timeEditTo->setTime(QTime(23, 59, 59, 999));
 
-    emit timesUpdated();
+    timesUpdated();
     connect(m_ui->timeEditFrom, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
     connect(m_ui->timeEditTo, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
 

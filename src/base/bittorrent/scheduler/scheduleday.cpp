@@ -145,7 +145,7 @@ int ScheduleDay::getNowIndex()
 TimeRangeConflict ScheduleDay::conflicts(const ScheduleEntry &scheduleEntry)
 {
     TimeRangeConflict conflict = NoConflict;
-    for (ScheduleEntry other : m_entries)
+    for (ScheduleEntry other : asConst(m_entries))
     {
         bool startOverlaps = (scheduleEntry.startTime >= other.startTime) && (scheduleEntry.startTime <= other.endTime);
         bool endOverlaps = (scheduleEntry.endTime >= other.startTime) && (scheduleEntry.endTime <= other.endTime);
@@ -179,7 +179,7 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
 {
     ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
 
-    for (QJsonValue jValue : jsonArray)
+    for (const QJsonValue &jValue : jsonArray)
     {
         if (!jValue.isObject())
         {

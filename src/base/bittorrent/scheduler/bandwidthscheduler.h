@@ -45,6 +45,9 @@ class BandwidthScheduler : public QObject
 
     friend class ::Application;
 
+    const QString ScheduleFileName = QStringLiteral("schedule.json");
+    const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
+
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);
     ~BandwidthScheduler() override;
@@ -67,7 +70,7 @@ private:
 
     bool loadSchedule();
     void saveSchedule();
-    void backupSchedule(QString errorMessage, bool preserveOriginal);
+    void backupSchedule(const QString &errorMessage, bool preserveOriginal);
     bool importLegacyScheduler();
 
     QThread *m_ioThread;

@@ -55,8 +55,8 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
         timeEdit->setTime(index.data(Qt::UserRole).toTime());
         connect(timeEdit, &QTimeEdit::timeChanged, this, [this, timeEdit, index](const QTime time)
         {
-            bool hasChanged = (index.column() == FROM && time != m_scheduleDay.entries()[index.row()].startTime)
-                || (index.column() == TO && time != m_scheduleDay.entries()[index.row()].endTime);
+            bool hasChanged = (index.column() == FROM && time != m_scheduleDay.entries().at(index.row()).startTime)
+                || (index.column() == TO && time != m_scheduleDay.entries().at(index.row()).endTime);
 
             if (!hasChanged)
                 timeEdit->setStyleSheet("border: none");
@@ -76,7 +76,7 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
         checkBox->setChecked(index.data(Qt::UserRole).toBool());
         connect(checkBox, &QCheckBox::stateChanged, this, [this, checkBox, index](const int value)
         {
-            bool hasChanged = m_scheduleDay.entries()[index.row()].pause != (value == 2);
+            bool hasChanged = m_scheduleDay.entries().at(index.row()).pause != (value == 2);
             if (!hasChanged)
                 checkBox->setStyleSheet("border: none");
             else

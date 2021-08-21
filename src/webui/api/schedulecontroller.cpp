@@ -8,9 +8,8 @@ namespace
 {
     using Utils::String::parseBool;
     using Utils::String::parseInt;
-    using Utils::String::fromEnum;
 
-    static ScheduleEntry parseEntry(QString startTime, QString endTime, QString downloadLimit = "0", QString uploadLimit = "0", QString pause = "false")
+    ScheduleEntry parseEntry(QString startTime, QString endTime, QString downloadLimit = "0", QString uploadLimit = "0", QString pause = "false")
     {
         const QStringList startSplit = startTime.split(':');
         const QStringList endSplit = endTime.split(':');

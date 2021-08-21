@@ -678,7 +678,7 @@ void OptionsDialog::initializeSchedulerTables()
         connect(scheduleTable, &QTableWidget::customContextMenuRequested, scheduleTable,
             [this, day]() { showScheduleDayContextMenu(day); });
 
-        m_ui->tabSchedule->addTab(scheduleTable, translatedWeekdayNames()[day]);
+        m_ui->tabSchedule->addTab(scheduleTable, translatedWeekdayNames().at(day));
 
         if (day == today)
         {
@@ -817,7 +817,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
         const auto *day = ScheduleDay::fromJsonArray(QJsonDocument::fromJson(json).array(), -1, &errored);
         if (errored) return;
 
-        for (const ScheduleEntry tr : day->entries())
+        for (const ScheduleEntry tr : asConst(day->entries()))
             scheduleDay->addEntry(tr);
     });
 

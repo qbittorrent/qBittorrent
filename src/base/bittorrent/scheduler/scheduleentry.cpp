@@ -47,7 +47,7 @@ QJsonObject ScheduleEntry::toJsonObject() const
     };
 }
 
-ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject jsonObject)
+ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject &jsonObject)
 {
     int start = jsonObject["start"].toInt();
     int end = jsonObject["end"].toInt();
@@ -69,7 +69,7 @@ ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject jsonObject)
     };
 }
 
-bool ScheduleEntry::validateJsonObject(const QJsonObject jsonObject)
+bool ScheduleEntry::validateJsonObject(const QJsonObject &jsonObject)
 {
     for (const auto &name : {"start", "end"})
     {

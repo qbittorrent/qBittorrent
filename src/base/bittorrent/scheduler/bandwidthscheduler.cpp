@@ -39,9 +39,6 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 
-const QString ScheduleFileName = QStringLiteral("schedule.json");
-const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
-
 QPointer<BandwidthScheduler> BandwidthScheduler::m_instance = nullptr;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
@@ -113,7 +110,7 @@ void BandwidthScheduler::stop()
     m_timer.stop();
 }
 
-void BandwidthScheduler::backupSchedule(QString errorMessage, bool preserveOriginal = false)
+void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preserveOriginal = false)
 {
     LogMsg(errorMessage, Log::CRITICAL);
 
