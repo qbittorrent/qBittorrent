@@ -1,0 +1,20 @@
+name: CI - File health
+
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install tools
+        run: |
+          sudo apt update
+          sudo apt install zsh
+
+      - name: Check files
+        run: |
+          ./.github/workflows/file_health.sh
