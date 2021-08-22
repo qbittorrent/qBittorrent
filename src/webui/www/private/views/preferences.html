@@ -1530,8 +1530,9 @@
                     },
                     removeEntry: (element, ref) => {
                         const day = selectedScheduleDay;
-                        const selectedRows = scheduleTables[day].selectedRows;
+                        const selectedRows = scheduleTables[day].selectedRows.slice();
                         if (selectedRows.length === 0) return;
+
                         new Request({
                             url: 'api/v2/schedule/removeEntry',
                             method: 'post',
@@ -1542,7 +1543,8 @@
                             },
                             onSuccess: (e) => {
                                 selectedRows.map(Number).sort((l, r) => l < r)
-                                    .forEach(i => scheduleTables[day].removeRow(i));
+                                    .forEach(i => schedule[scheduleDayKeys[day]].splice(i, 1));
+                                updateScheduleTable(day);
                             },
                             onFailure: console.error
                         }).send();
