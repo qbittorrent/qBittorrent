@@ -302,9 +302,11 @@ namespace BitTorrent
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
-        // Until libtorrent provide an "old_name" field in `file_renamed_alert`
-        // we will rely on this workaround to remove empty leftover folders
+#ifndef QBT_USES_LIBTORRENT2
+        // Until libtorrent provided an "old_name" field in `file_renamed_alert`
+        // we relied on this workaround to remove empty leftover folders
         QHash<lt::file_index_t, QVector<QString>> m_oldPath;
+#endif
 
         QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;
         FileErrorInfo m_lastFileError;
