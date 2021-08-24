@@ -29,7 +29,7 @@ FILESUBTYPE    	VFT2_UNKNOWN
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904E4"
+        BLOCK "040904B0"
         BEGIN
             VALUE "CompanyName",      "The qBittorrent Project"
             VALUE "FileDescription",  "qBittorrent - A Bittorrent Client"
