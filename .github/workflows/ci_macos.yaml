@@ -4,7 +4,7 @@ on: [pull_request, push]
 jobs:
   ci:
     name: Build
-    runs-on: macos-10.15
+    runs-on: macos-11
 
     strategy:
       matrix:
