@@ -1,3 +1,13 @@
+Sun Aug 29 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.8
+    - BUGFIX: Delay processing of watched folders (#15282) (glassez)
+    - BUGFIX: Use the same icon for selecting folders/files (Chocobo1)
+    - BUGFIX: Use default upper limits for ddns entries (Chocobo1)
+    - WEBUI: Expose SSRF mitigation (#15247) (Sylvain Finot)
+    - WEBUI: Update webui libraries (Chocobo1)
+    - WEBUI: Group trackers by hostname (#15264) (Mengyang Li)
+    - WEBUI: Improve "last activity" calculation in WebAPI (#15339) (Chocobo1)
+    - WINDOWS: NSIS: Add Polish translation (#15262) (Matthaiks)
+
 Tue Aug 03 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.7
     - BUGFIX: Don't forget to start Watched folders timer (glassez)
     - BUGFIX: Don't close tags menu when toggling items (tgregerson)
