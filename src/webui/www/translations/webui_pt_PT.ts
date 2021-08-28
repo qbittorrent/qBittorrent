@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="pt" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Criar subpasta</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>O limite do tempo a semear deverá estar localizado entre os 0 e os 525600 minutos.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">A porta utilizada para as receções tem que estar compreendida entre 1 e 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>A porta utilizada para as ligações de receção tem que estar entre 0 e 65535.</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>Utilizar o reencaminhamento de portas UPnP/NAT-PMP do meu router</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Utilizar uma porta diferente a cada arranque</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Limites das ligações</translation>
     </message>
@@ -850,7 +840,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os limites de rácio para o transporte "overhead"</translation>
+        <translation>Aplicar os limites de rácio para o transporte &quot;overhead&quot;</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -866,11 +856,11 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar a 'Troca de Fontes' (PeX) para encontrar mais fontes</translation>
+        <translation>Ativar a &apos;Troca de Fontes&apos; (PeX) para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Ativar 'Descoberta de fontes locais' para encontrar mais fontes</translation>
+        <translation>Ativar &apos;Descoberta de fontes locais&apos; para encontrar mais fontes</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -965,8 +955,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -986,7 +976,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Ativar a proteção contra o "clickjacking"</translation>
+        <translation>Ativar a proteção contra o &quot;clickjacking&quot;</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1018,7 +1008,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Caminho padrão para o 'Guardar':</translation>
+        <translation>Caminho padrão para o &apos;Guardar&apos;:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1030,11 +1020,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Mudar torrent para o 'Modo manual'</translation>
+        <translation>Mudar torrent para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Quando a 'Categoria do torrent' for alterada:</translation>
+        <translation>Quando a &apos;Categoria do torrent&apos; for alterada:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1054,7 +1044,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Quando o 'Caminho padrão para guardar' for alterado:</translation>
+        <translation>Quando o &apos;Caminho padrão para guardar&apos; for alterado:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1066,7 +1056,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
+        <translation>Quando alterar a &apos;Categoria do caminho para guardar&apos;:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1074,7 +1064,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Mudar os torrents afetados para o 'Modo manual'</translation>
+        <translation>Mudar os torrents afetados para o &apos;Modo manual&apos;</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1441,7 +1431,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -1793,7 +1783,7 @@
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Local por defeito para o 'Guardar'</translation>
+        <translation>Local por defeito para o &apos;Guardar&apos;</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>A verificar (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>A verificar (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] A transferir os metadados</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>Ativo</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de busca.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
 </context>

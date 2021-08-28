@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="pt_BR" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Criar sub-pasta</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>O limite do tempo do seeding deve estar entre 0 e 525600 minutos.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">A porta usada pra conexões de entrada deve estar entre 1 e 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>A porta usada pra conexões de entrada deve estar entre 0 e 65535.</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>Usar a abertura das portas UPnP / NAT-PMP do meu roteador</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Usar uma porta diferente a cada inicialização</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Limites das Conexões</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Dica: Encapsular o parâmetro com aspas pra evitar que o texto seja cortado nos espaços em branco (ex.: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Dica: Encapsular o parâmetro com aspas pra evitar que o texto seja cortado nos espaços em branco (ex.: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1182,7 +1172,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Enviar fator da marca d'água do buffer:</translation>
+        <translation>Enviar fator da marca d&apos;água do buffer:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1230,7 +1220,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Enviar marca d'água do buffer:</translation>
+        <translation>Enviar marca d&apos;água do buffer:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1274,7 +1264,7 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Enviar marca d'água com buffer baixo:</translation>
+        <translation>Enviar marca d&apos;água com buffer baixo:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1441,7 +1431,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
     <message>
@@ -1458,11 +1448,11 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation>%K: ID do torrent</translation>
+        <translation>%K: ID do Torrent</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Reanunciar para todos os trackers quando o IP ou porta for alterado:</translation>
+        <translation>Reanunciar pra todos os trackers quando o IP ou porta for mudado:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1470,15 +1460,15 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>Habilitar suporte a proxy reverso</translation>
+        <translation>Ativar suporte pro proxy reverso</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Informações de hash v2</translation>
+        <translation>%J: Informações do hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Informações de hash v1</translation>
+        <translation>%I: Informações do hash v1</translation>
     </message>
 </context>
 <context>
@@ -1766,15 +1756,15 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Informações de Hash v2:</translation>
+        <translation>Informações do Hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Informações de Hash v1:</translation>
+        <translation>Informações do Hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation>N/D</translation>
     </message>
 </context>
 <context>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Verificando (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Verificando (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Baixando metadados</translation>
     </message>
 </context>
 <context>
@@ -2488,7 +2478,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Forçar re-anúncio</translation>
+        <translation>Forçar o re-anúncio</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2536,11 +2526,11 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>Informações de hash v1</translation>
+        <translation>Informações do hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>Informações de hash v2</translation>
+        <translation>Informações do hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -2807,7 +2797,7 @@
         <translation>Ativado</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se de obedecer as leis de copyright do seu país quando baixar torrents de qualquer destes motores de busca.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também pra f
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
 </context>

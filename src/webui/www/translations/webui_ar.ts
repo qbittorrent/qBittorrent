@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="ar" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>يجب أن يكون الحد الزمني للبذر بين 0 و 525600 دقيقة.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 1 و 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 0 و 65535.</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>استخدام UPnP / NAT-PMP  لفتح المنافذ تلقائيا</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">استخدم منفذًا مختلفًا عند كل بدء تشغيل</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>حدود الاتصالات</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T: المتتبع الحالي</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1441,7 +1431,7 @@
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
     <message>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>يفحص (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>يفحص (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[إجباري] يُنزّل البيانات الوصفية</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>مُفعّل</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>تحذير: تأكد من الامتثال لقوانين حقوق الطبع والنشر في بلدك عند تنزيل التورنت من أي من محركات البحث هذه.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>

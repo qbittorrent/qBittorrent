@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="it" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Crea sottocartella</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
 </context>
@@ -109,7 +107,7 @@
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Il limite alternativo per l'upload deve essere maggiore di 0 o disattivato.</translation>
+        <translation>Il limite alternativo per l&apos;upload deve essere maggiore di 0 o disattivato.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
@@ -160,16 +158,12 @@
         <translation>Il limite temporale di condivisione deve essere tra 0 e 525600 minuti.</translation>
     </message>
     <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">La porta usata per le connessioni in entrata deve essere compresa tra 1 e 65535.</translation>
-    </message>
-    <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>La porta usata per l'interfaccia web deve essere compresa tra 1 e 65535.</translation>
+        <translation>La porta usata per l&apos;interfaccia web deve essere compresa tra 1 e 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Impossibile effettuare l'accesso, probabilmente qBittorrent non è raggiungibile.</translation>
+        <translation>Impossibile effettuare l&apos;accesso, probabilmente qBittorrent non è raggiungibile.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -285,7 +279,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Sei sicuro di voler eliminare i torrent selezionati dall'elenco trasferimenti?</translation>
+        <translation>Sei sicuro di voler eliminare i torrent selezionati dall&apos;elenco trasferimenti?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -370,7 +364,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>La porta usata per le connessioni in entrata deve essere compresa tra 0 e 65535.</translation>
     </message>
 </context>
 <context>
@@ -629,7 +623,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Pianifica l'uso di limiti di rapporto alternativi</translation>
+        <translation>Pianifica l&apos;uso di limiti di rapporto alternativi</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -685,7 +679,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Aggiungi l'estensione .!qB ai file incompleti</translation>
+        <translation>Aggiungi l&apos;estensione .!qB ai file incompleti</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -726,10 +720,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Usa UPnP / NAT-PMP per aprire le porte del mio router</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Usa porte diverse ad ogni avvio</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -966,16 +956,16 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>%T: Server traccia attuale</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Suggerimento: Incapsula i parametri con i segni di quotazione per evitare tagli del testo negli spazi bianchi (per esempio "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Suggerimento: Incapsula i parametri con i segni di quotazione per evitare tagli del testo negli spazi bianchi (per esempio &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Il nome utente per l'interfaccia web deve essere lungo almeno 3 caratteri.</translation>
+        <translation>Il nome utente per l&apos;interfaccia web deve essere lungo almeno 3 caratteri.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation>La password per l'interfaccia web deve essere lunga almeno 6 caratteri.</translation>
+        <translation>La password per l&apos;interfaccia web deve essere lunga almeno 6 caratteri.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1442,7 +1432,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Originale</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
     <message>
@@ -1463,7 +1453,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Riannuncia a tutti i tracker quando l'IP o la porta sono cambiati:</translation>
+        <translation>Riannuncia a tutti i tracker quando l&apos;IP o la porta sono cambiati:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1683,7 +1673,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>Visto completo l'ultima volta:</translation>
+        <translation>Visto completo l&apos;ultima volta:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -1987,11 +1977,11 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Verifica (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Verifica (0)</translation>
     </message>
 </context>
 <context>
@@ -2129,7 +2119,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>Visto completo l'ultima volta</translation>
+        <translation>Visto completo l&apos;ultima volta</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2257,7 +2247,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Finestra per l'aggiunta dei server traccia</translation>
+        <translation>Finestra per l&apos;aggiunta dei server traccia</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
@@ -2337,7 +2327,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Download metadati</translation>
     </message>
 </context>
 <context>
@@ -2431,7 +2421,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>Scarica la prima e l'ultima parte per prime</translation>
+        <translation>Scarica la prima e l&apos;ultima parte per prime</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -2808,7 +2798,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Abilitati</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Attenzione: assicurati di essere inr egola con la tua legge locale sul copyright quando scarichi torrent da uno di questi motori di ricerca.</translation>
     </message>
     <message>
@@ -3153,7 +3143,7 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
         <translation>Il recupero dei feed RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
+Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3197,7 +3187,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
         <translation>Il download automatico dei torrent RSS è disabilitato! 
-Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
+Puoi abilitarlo nelle impostazioni dell&apos;applicazione.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3249,7 +3239,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation>Un'espressione con una clausola %1 vuota (ad esempio %2)</translation>
+        <translation>Un&apos;espressione con una clausola %1 vuota (ad esempio %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3261,7 +3251,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation>Sei sicuro di voler cancellare l'elenco degli episodi scaricati per la regola selezionata?</translation>
+        <translation>Sei sicuro di voler cancellare l&apos;elenco degli episodi scaricati per la regola selezionata?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3281,7 +3271,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Numero singolo: &lt;b&gt;1x25;&lt;/b&gt; corrisponde all'episodio 25 della prima stagione</translation>
+        <translation>Numero singolo: &lt;b&gt;1x25;&lt;/b&gt; corrisponde all&apos;episodio 25 della prima stagione</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
@@ -3357,7 +3347,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Se l'ordine delle parole è importante, usa * al posto degli spazi.</translation>
+        <translation>Se l&apos;ordine delle parole è importante, usa * al posto degli spazi.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
@@ -3398,7 +3388,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Il Filtro Intelligente Episodi controllerà il numero dell'episodio per evitare il download di duplicati.
+        <translation>Il Filtro Intelligente Episodi controllerà il numero dell&apos;episodio per evitare il download di duplicati.
 Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
     </message>
     <message>
@@ -3414,7 +3404,7 @@ Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data suppo
         <translation>Originale</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Non creare sottocartella</translation>
     </message>
 </context>

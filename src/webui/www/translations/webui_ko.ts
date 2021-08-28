@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="ko" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>폴더 생성</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>배포 시간 제한은 반드시 0~525600(분) 사이여야 합니다.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">들어오는 연결에 사용하는 포트는 1 ~ 65535여야 합니다.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>수신 연결에 사용되는 포트는 0에서 65535 사이여야 합니다.</translation>
     </message>
 </context>
 <context>
@@ -676,7 +670,7 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>완료한 .torrent 복사 위치:</translation>
+        <translation>다운로드가 완료된 .torrent 파일 복사 위치:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -720,15 +714,11 @@
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>들어오는 연결 포트:</translation>
+        <translation>수신 연결에 사용되는 포트:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>라우터에서 UPnP / NAT-PMP 포트 전환 사용</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">시작할 때마다 다른 포트 사용</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -965,8 +955,8 @@
         <translation>%T: 현재 트래커</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1126,7 +1116,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>토렌트를 검사할 때 사용할 초과 메모리:</translation>
+        <translation>토렌트를 확인할 때 사용할 초과 메모리:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1441,7 +1431,7 @@
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
     <message>
@@ -1670,7 +1660,7 @@
     </message>
     <message>
         <source>Comment:</source>
-        <translation>설명:</translation>
+        <translation>주석:</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
@@ -1682,7 +1672,7 @@
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation>최근 완료:</translation>
+        <translation>마지막으로 완료된 항목:</translation>
     </message>
     <message>
         <source>Total Size:</source>
@@ -1902,7 +1892,7 @@
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>완료 (0)</translation>
+        <translation>완료됨 (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
@@ -1938,7 +1928,7 @@
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation>완료 (%1)</translation>
+        <translation>완료됨 (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
@@ -1974,7 +1964,7 @@
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>정체 (0)</translation>
+        <translation>중지됨 (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
@@ -1982,15 +1972,15 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>정체 (%1)</translation>
+        <translation>중지됨 (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>확인 중 (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>확인 중 (0)</translation>
     </message>
 </context>
 <context>
@@ -2128,7 +2118,7 @@
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation>최근 본 완료</translation>
+        <translation>마지막으로 완료된 항목</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2308,7 +2298,7 @@
     </message>
     <message>
         <source>Checking</source>
-        <translation>검사중</translation>
+        <translation>확인 중</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2316,7 +2306,7 @@
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation>검사 대기중</translation>
+        <translation>확인을 위해 대기 중</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2324,11 +2314,11 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>토렌트 이어받기 데이터 검사중</translation>
+        <translation>이어받기 데이터 확인 중</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation>정체</translation>
+        <translation>중지됨</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] 메타데이터 받는중</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>사용</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>경고: 검색 엔진으로 토렌트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
@@ -3409,7 +3399,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
 </context>
