@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="cs" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="cs" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Vytvořit podsložku</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>Doba seedování musí být v rozsahu od 0 do 525600 minut.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">Port příchozích spojení musí být mezi 1 a 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Port příchozích spojení musí být mezi 0 a 65535.</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>Použít přesměrování portů UPnP / NAT-PMP z mého routeru</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Při každém spuštění použít náhodné porty</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Limit spojení</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T: Současný tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: Ohraničit parametr uvozovkami, aby nedošlo k odstřižení textu za mezerou (např. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1441,7 +1431,7 @@
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
     <message>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontroluji (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontroluji (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Stahuji metadata</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>Zapnuto</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varování: Ujistěte se, že dodržujete zákony Vaší země o ochraně duševního vlastnictví když stahujete torrenty z kteréhokoliv z těchto vyhledávačů.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
         <translation>Originál</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Nevytvářet podsložku</translation>
     </message>
 </context>
