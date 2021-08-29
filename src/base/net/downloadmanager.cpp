@@ -348,6 +348,17 @@ Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
     return *this;
 }
 
+QString Net::DownloadRequest::destFileName() const
+{
+    return m_destFileName;
+}
+
+Net::DownloadRequest &Net::DownloadRequest::destFileName(const QString &value)
+{
+    m_destFileName = value;
+    return *this;
+}
+
 Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
 {
     return {url.host(), url.port(80)};
