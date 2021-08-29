@@ -97,7 +97,12 @@ function genHash(string) {
 }
 
 function getTrackerHost(url) {
-    return new URL(url).hostname;
+    try {
+        return new URL(url).hostname;
+    }
+    catch (error) {
+        return url;
+    }
 }
 
 function getSyncMainDataInterval() {
