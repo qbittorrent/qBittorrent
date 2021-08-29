@@ -281,9 +281,6 @@
           </item>
           <item row="3" column="1">
            <widget class="QScrollArea" name="scrollArea">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgba(0, 0, 0, 0);</string>
-            </property>
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
             </property>
@@ -291,14 +288,6 @@
              <bool>true</bool>
             </property>
             <widget class="QWidget" name="scrollAreaWidgetContents">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>333</width>
-               <height>69</height>
-              </rect>
-             </property>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <property name="leftMargin">
                <number>0</number>
