@@ -55,6 +55,7 @@
 
 #include "algorithm.h"
 #include "global.h"
+#include "profile.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
 
@@ -311,7 +312,7 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
 bool Preferences::WinStartup() const
 {
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-    return settings.contains("qBittorrent");
+    return settings.contains(Profile::instance()->profileName());
 }
 
 void Preferences::setWinStartup(const bool b)
@@ -319,12 +320,17 @@ void Preferences::setWinStartup(const bool b)
     QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (b)
     {
-        const QString binPath = '"' + Utils::Fs::toNativePath(qApp->applicationFilePath()) + '"';
-        settings.setValue("qBittorrent", binPath);
+        const QString profileDir = qApp->property("profileDir").toString();
+        const QString configuration = qApp->property("configuration").toString();
+
+        const QString cmd = QLatin1String(R"("%1" "--profile=%2" "--configuration=%3")")
+                .arg(Utils::Fs::toNativePath(qApp->applicationFilePath())
+                     , profileDir, configuration);
+        settings.setValue(Profile::instance()->profileName(), cmd);
     }
     else
     {
-        settings.remove("qBittorrent");
+        settings.remove(Profile::instance()->profileName());
     }
 }
 #endif // Q_OS_WIN
