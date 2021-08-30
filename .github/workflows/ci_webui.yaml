@@ -1,0 +1,32 @@
+name: CI - WebUI
+
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Check
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: src/webui/www
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 'lts/*'
+
+      - name: Install tools
+        run: npm install
+
+      - name: Lint code
+        run: npm run lint
+
+      - name: Format code
+        run: |
+          npm run format
+          git diff --exit-code

@@ -1580,18 +1580,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <property name="text">
                   <string>Maximum number of upload slots per torrent:</string>
                  </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxUploads">
                  <property name="text">
                   <string>Global maximum number of upload slots:</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -1677,9 +1671,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                   <widget class="QLineEdit" name="textProxyIP">
                    <property name="enabled">
                     <bool>false</bool>
-                   </property>
-                   <property name="text">
-                    <string/>
                    </property>
                   </widget>
                  </item>
@@ -3420,11 +3411,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="DNSUsernameTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
-                   </widget>
+                   <widget class="QLineEdit" name="DNSUsernameTxt"/>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_22">
@@ -3435,9 +3422,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
                   </item>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="DNSPasswordTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Password</enum>
                     </property>

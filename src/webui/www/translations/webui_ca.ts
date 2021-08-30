@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="ca" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ca" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Crea una subcarpeta</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No creïs una subcarpeta</translation>
     </message>
 </context>
@@ -160,12 +158,8 @@
         <translation>El límit de la sembra ha de ser entre 0 i 525600 minuts.</translation>
     </message>
     <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">El port utilitzat per a connexions entrants ha de ser major de 1024 i menor de 65535.</translation>
-    </message>
-    <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>El port utilitzat per a la interfície d'usuari web ha de ser major de 1024 i menor de 65535.</translation>
+        <translation>El port utilitzat per a la interfície d&apos;usuari web ha de ser major de 1024 i menor de 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -173,11 +167,11 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Nom d'usuari o contrasenya incorrectes.</translation>
+        <translation>Nom d&apos;usuari o contrasenya incorrectes.</translation>
     </message>
     <message>
         <source>Username</source>
-        <translation>Nom d'usuari</translation>
+        <translation>Nom d&apos;usuari</translation>
     </message>
     <message>
         <source>Password</source>
@@ -322,11 +316,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>El temporitzador d'inactivitat dels torrents ha de ser superior a 0.</translation>
+        <translation>El temporitzador d&apos;inactivitat dels torrents ha de ser superior a 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
-        <translation>Gestió de l'acció de desar</translation>
+        <translation>Gestió de l&apos;acció de desar</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
@@ -334,7 +328,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>El qBittorrent s'ha tancat.</translation>
+        <translation>El qBittorrent s&apos;ha tancat.</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -350,7 +344,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>Cal JavaScript! Heu d'habilitar el JavaScript perquè la Interfície web funcioni correctament.</translation>
+        <translation>Cal JavaScript! Heu d&apos;habilitar el JavaScript perquè la Interfície web funcioni correctament.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -358,7 +352,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation>No s'ha canviat el nom.</translation>
+        <translation>No s&apos;ha canviat el nom.</translation>
     </message>
     <message>
         <source>Failed to update name</source>
@@ -366,11 +360,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation>D'acord</translation>
+        <translation>D&apos;acord</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>El port utilitzat per a connexions entrants ha de ser entre 0 i 65535.</translation>
     </message>
 </context>
 <context>
@@ -405,11 +399,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
-        <translation>Barra d'eines superior</translation>
+        <translation>Barra d&apos;eines superior</translation>
     </message>
     <message>
         <source>Status Bar</source>
-        <translation>Barra d'estat</translation>
+        <translation>Barra d&apos;estat</translation>
     </message>
     <message>
         <source>Speed in Title Bar</source>
@@ -538,7 +532,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>Per usar aquesta funció, cal accedir a la interfície d'usuari de xarxa per HTTPS.</translation>
+        <translation>Per usar aquesta funció, cal accedir a la interfície d&apos;usuari de xarxa per HTTPS.</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -574,7 +568,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation>Lector d'RSS</translation>
+        <translation>Lector d&apos;RSS</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -613,11 +607,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation>Llengua de la interfície d'usuari:</translation>
+        <translation>Llengua de la interfície d&apos;usuari:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation>Notificació per correu electrònic de l'acabament de les descàrregues</translation>
+        <translation>Notificació per correu electrònic de l&apos;acabament de les descàrregues</translation>
     </message>
     <message>
         <source>Run external program on torrent completion</source>
@@ -625,11 +619,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation>Filtratge d'IP</translation>
+        <translation>Filtratge d&apos;IP</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation>Programació de l'ús de límits de ràtio alternatius</translation>
+        <translation>Programació de l&apos;ús de límits de ràtio alternatius</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
@@ -641,7 +635,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation>Interfície d'usuari web (control remot)</translation>
+        <translation>Interfície d&apos;usuari web (control remot)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -653,15 +647,15 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation>Usa HTTPS en lloc d'HTTP</translation>
+        <translation>Usa HTTPS en lloc d&apos;HTTP</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>Evita l'autenticació per als clients en l'amfitrió local</translation>
+        <translation>Evita l&apos;autenticació per als clients en l&apos;amfitrió local</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation>Evita l'autenticació per als clients en subxarxes en la llista blanca</translation>
+        <translation>Evita l&apos;autenticació per als clients en subxarxes en la llista blanca</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -685,7 +679,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation>Afegeix l'extensió .!qB a fitxers incomplets</translation>
+        <translation>Afegeix l&apos;extensió .!qB a fitxers incomplets</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
@@ -705,7 +699,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation>Nom d'usuari:</translation>
+        <translation>Nom d&apos;usuari:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -717,7 +711,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Listening Port</source>
-        <translation>Port d'escolta</translation>
+        <translation>Port d&apos;escolta</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -726,10 +720,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Utilitza UPnP / NAT-PMP reenviament de ports del router</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Usa un pot diferent a cada inici</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -785,7 +775,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Usa un servidor intermediari per a connexions d'igual a igual</translation>
+        <translation>Usa un servidor intermediari per a connexions d&apos;igual a igual</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -867,7 +857,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Habilita l'intercanvi de clients (PeX) per trobar-ne més </translation>
+        <translation>Habilita l&apos;intercanvi de clients (PeX) per trobar-ne més </translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
@@ -875,15 +865,15 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation>Mode d'encriptació</translation>
+        <translation>Mode d&apos;encriptació</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation>Requereix l'encriptació</translation>
+        <translation>Requereix l&apos;encriptació</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation>Inhabilita l'encriptació</translation>
+        <translation>Inhabilita l&apos;encriptació</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
@@ -903,7 +893,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation>No comptis els torrents lents fora d'aquests límits</translation>
+        <translation>No comptis els torrents lents fora d&apos;aquests límits</translation>
     </message>
     <message>
         <source>then</source>
@@ -911,7 +901,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Utilitza UPnP / NAT-PMP per reenviar el port des de l'encaminador</translation>
+        <translation>Utilitza UPnP / NAT-PMP per reenviar el port des de l&apos;encaminador</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -943,11 +933,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation>%F: Camí del contingut (igual que el camí d'arrel per a torrents de fitxers múltiples)</translation>
+        <translation>%F: Camí del contingut (igual que el camí d&apos;arrel per a torrents de fitxers múltiples)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: camí d'arrel (camí del subdirectori del primer torrent)</translation>
+        <translation>%R: camí d&apos;arrel (camí del subdirectori del primer torrent)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -966,12 +956,12 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>%T: rastrejador actual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tip: emmarqueu el paràmetre amb cometes per evitar que el text es talli a l'espai en blanc (p.e., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tip: emmarqueu el paràmetre amb cometes per evitar que el text es talli a l&apos;espai en blanc (p.e., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>El nom  d'usuari de la interfície web ha de tenir almenys 3 caràcters.</translation>
+        <translation>El nom  d&apos;usuari de la interfície web ha de tenir almenys 3 caràcters.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
@@ -1047,7 +1037,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation>0 significa 'sense límit'</translation>
+        <translation>0 significa &apos;sense límit&apos;</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
@@ -1059,7 +1049,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>Habilita la validació de la capçalera de l'amfitrió</translation>
+        <translation>Habilita la validació de la capçalera de l&apos;amfitrió</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1087,7 +1077,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation>Temporitzador d'inactivitat del torrent:</translation>
+        <translation>Temporitzador d&apos;inactivitat del torrent:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
@@ -1151,7 +1141,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>Mida de l'agrupació de fitxers:</translation>
+        <translation>Mida de l&apos;agrupació de fitxers:</translation>
     </message>
     <message>
         <source>Any interface</source>
@@ -1183,7 +1173,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Envia el factor la marca d'aigua de la memòria intermèdia:</translation>
+        <translation>Envia el factor la marca d&apos;aigua de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1203,7 +1193,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation>Permet l'encriptació</translation>
+        <translation>Permet l&apos;encriptació</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1223,7 +1213,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation>Fils d'E/S asincrònics:</translation>
+        <translation>Fils d&apos;E/S asincrònics:</translation>
     </message>
     <message>
         <source>s</source>
@@ -1231,7 +1221,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Envia la marca d'aigua de la memòria intermèdia:</translation>
+        <translation>Envia la marca d&apos;aigua de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1251,7 +1241,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation>Algorisme d'ofec de pujada:</translation>
+        <translation>Algorisme d&apos;ofec de pujada:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1275,7 +1265,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Envia la marca d'aigua feble de la memòria intermèdia:</translation>
+        <translation>Envia la marca d&apos;aigua feble de la memòria intermèdia:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1287,7 +1277,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>Temps d'espera de la sessió:</translation>
+        <translation>Temps d&apos;espera de la sessió:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1299,11 +1289,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Usa l'afinitat d'extensió de tros (requereix libtorrent &gt;= 1.2.2):</translation>
+        <translation>Usa l&apos;afinitat d&apos;extensió de tros (requereix libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Atura el temps d'espera del rastrejador:</translation>
+        <translation>Atura el temps d&apos;espera del rastrejador:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1315,7 +1305,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>Durada de la cessió d'UPnP [0: cessió permanent]:</translation>
+        <translation>Durada de la cessió d&apos;UPnP [0: cessió permanent]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1323,7 +1313,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation>Afegeix capçaleres d'HTTP personalitzades</translation>
+        <translation>Afegeix capçaleres d&apos;HTTP personalitzades</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1331,7 +1321,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>Habilita l'obtenció de canals d'RSS</translation>
+        <translation>Habilita l&apos;obtenció de canals d&apos;RSS</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
@@ -1347,7 +1337,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation>Descarregador automàtic de torrents d'RSS</translation>
+        <translation>Descarregador automàtic de torrents d&apos;RSS</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -1359,7 +1349,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation>Lector d'RSS</translation>
+        <translation>Lector d&apos;RSS</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1371,7 +1361,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation>Interval d'actualització dels canals:</translation>
+        <translation>Interval d&apos;actualització dels canals:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1379,11 +1369,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Nombre màxim d'articles per canal:</translation>
+        <translation>Nombre màxim d&apos;articles per canal:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Màxim d'anuncis concurrents d'HTTP (cal libtorrent &gt;= 1.2.7):</translation>
+        <translation>Màxim d&apos;anuncis concurrents d&apos;HTTP (cal libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1395,7 +1385,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation>Adreça IP opcional per vincular-s'hi:</translation>
+        <translation>Adreça IP opcional per vincular-s&apos;hi:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -1403,11 +1393,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation>Habilita la baixada automàtica de torrents d'RSS</translation>
+        <translation>Habilita la baixada automàtica de torrents d&apos;RSS</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation>Filtre d'episodis intel·ligents d'RSS</translation>
+        <translation>Filtre d&apos;episodis intel·ligents d&apos;RSS</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
@@ -1419,7 +1409,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation>Valida els certificats del rastrejador d'HTTPS:</translation>
+        <translation>Valida els certificats del rastrejador d&apos;HTTPS:</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
@@ -1442,7 +1432,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No creïs una subcarpeta</translation>
     </message>
     <message>
@@ -1467,7 +1457,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation>Llista d'intermediaris de confiança:</translation>
+        <translation>Llista d&apos;intermediaris de confiança:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
@@ -1759,7 +1749,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Canvia'n el nom...</translation>
+        <translation>Canvia&apos;n el nom...</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1786,7 +1776,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Override Save Location</source>
-        <translation>Salta't la ubicació per desar</translation>
+        <translation>Salta&apos;t la ubicació per desar</translation>
     </message>
     <message>
         <source>Monitored folder</source>
@@ -1820,7 +1810,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>User statistics</source>
-        <translation>Estadístiques d'usuari</translation>
+        <translation>Estadístiques d&apos;usuari</translation>
     </message>
     <message>
         <source>Cache statistics</source>
@@ -1864,7 +1854,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Ordres d'entrada / sortida a la cua:</translation>
+        <translation>Ordres d&apos;entrada / sortida a la cua:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -1987,11 +1977,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Comprovant (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Comprovant (0)</translation>
     </message>
 </context>
 <context>
@@ -2186,7 +2176,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Encara no s'hi ha contactat.</translation>
+        <translation>Encara no s&apos;hi ha contactat.</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2202,7 +2192,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Copia l'URL del rastrejador</translation>
+        <translation>Copia l&apos;URL del rastrejador</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -2210,7 +2200,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Edita l'URL del rastrejador...</translation>
+        <translation>Edita l&apos;URL del rastrejador...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2337,7 +2327,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Baixant metadades</translation>
     </message>
 </context>
 <context>
@@ -2371,7 +2361,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Canvia'n el nom</translation>
+        <translation>Canvia&apos;n el nom</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -2461,7 +2451,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Canvia'n el nom...</translation>
+        <translation>Canvia&apos;n el nom...</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -2597,7 +2587,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Baixa des d'URLs</translation>
+        <translation>Baixa des d&apos;URLs</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2707,7 +2697,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation>D'acord</translation>
+        <translation>D&apos;acord</translation>
     </message>
 </context>
 <context>
@@ -2774,7 +2764,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation>Augmenta l'amplada de la finestra per mostrar els filtres addicionals</translation>
+        <translation>Augmenta l&apos;amplada de la finestra per mostrar els filtres addicionals</translation>
     </message>
     <message>
         <source>to</source>
@@ -2808,8 +2798,8 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Habilitat</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Avís: assegureu-vos que compliu les lleis de dret de còpia del vostre país quan baixeu torrents des de qualsevol d'aquests motors de cerca.</translation>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Avís: assegureu-vos que compliu les lleis de dret de còpia del vostre país quan baixeu torrents des de qualsevol d&apos;aquests motors de cerca.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2886,7 +2876,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation>D'acord</translation>
+        <translation>D&apos;acord</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -2925,11 +2915,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation>Nom d'etiqueta no vàlid</translation>
+        <translation>Nom d&apos;etiqueta no vàlid</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation>Suprimeix l'etiqueta</translation>
+        <translation>Suprimeix l&apos;etiqueta</translation>
     </message>
 </context>
 <context>
@@ -2947,7 +2937,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Rastrejador d'errors:</translation>
+        <translation>Rastrejador d&apos;errors:</translation>
     </message>
     <message>
         <source>About</source>
@@ -2979,7 +2969,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Un client BitTorrent avançat programat en C++, basat en el conjunt d'eines Qt i libtorrent-rasterbar.</translation>
+        <translation>Un client BitTorrent avançat programat en C++, basat en el conjunt d&apos;eines Qt i libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -2999,7 +2989,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation>El qBittorrent s'ha construït amb les biblioteques següents:</translation>
+        <translation>El qBittorrent s&apos;ha construït amb les biblioteques següents:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -3026,11 +3016,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation>Totes les adreces d'IPv6</translation>
+        <translation>Totes les adreces d&apos;IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation>Totes les adreces d'IPv4</translation>
+        <translation>Totes les adreces d&apos;IPv4</translation>
     </message>
 </context>
 <context>
@@ -3079,7 +3069,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Si us plau, trieu un nom nou per a aquest canal d'RSS.</translation>
+        <translation>Si us plau, trieu un nom nou per a aquest canal d&apos;RSS.</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
@@ -3099,7 +3089,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>Descarregador d'RSS...</translation>
+        <translation>Descarregador d&apos;RSS...</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -3111,7 +3101,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation>Copia l'URL del canal</translation>
+        <translation>Copia l&apos;URL del canal</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
@@ -3119,11 +3109,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>Obre l'URL de notícies</translation>
+        <translation>Obre l&apos;URL de notícies</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Canvia'n el nom...</translation>
+        <translation>Canvia&apos;n el nom...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3147,11 +3137,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation>Si us plau, escriviu l'URL d'un canal d'RSS.</translation>
+        <translation>Si us plau, escriviu l&apos;URL d&apos;un canal d&apos;RSS.</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>Ara l'obtenció de canals d'RSS està inhabilitada! Podeu habilitar-la als paràmetres de l'aplicació.</translation>
+        <translation>Ara l&apos;obtenció de canals d&apos;RSS està inhabilitada! Podeu habilitar-la als paràmetres de l&apos;aplicació.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3159,7 +3149,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Segur que voleu suprimir els canals d'RSS seleccionats?</translation>
+        <translation>Segur que voleu suprimir els canals d&apos;RSS seleccionats?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -3178,7 +3168,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation>Coincidència d'articles d'RSS</translation>
+        <translation>Coincidència d&apos;articles d&apos;RSS</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -3190,11 +3180,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Regles del filtre d'episodis:</translation>
+        <translation>Regles del filtre d&apos;episodis:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Ara la baixada automàtica de torrents d'RSS està inhabilitada! Podeu habilitar-la als paràmetres de l'aplicació.</translation>
+        <translation>Ara la baixada automàtica de torrents d&apos;RSS està inhabilitada! Podeu habilitar-la als paràmetres de l&apos;aplicació.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3214,7 +3204,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation>El filtre ha d'acabar en punt i coma.</translation>
+        <translation>El filtre ha d&apos;acabar en punt i coma.</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -3222,7 +3212,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Articles coincidents amb el filtre d'episodis.</translation>
+        <translation>Articles coincidents amb el filtre d&apos;episodis.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -3230,11 +3220,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation>Mode d'expressió regular: usa expressions regulars compatibles amb Perl.</translation>
+        <translation>Mode d&apos;expressió regular: usa expressions regulars compatibles amb Perl.</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| s'usa com a operador d'OR</translation>
+        <translation>| s&apos;usa com a operador d&apos;OR</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3258,7 +3248,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation>Segur que voleu netejar la llista d'episodis baixats per a la regla seleccionada?</translation>
+        <translation>Segur que voleu netejar la llista d&apos;episodis baixats per a la regla seleccionada?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3278,11 +3268,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation>Un únic número: &lt;b&gt;1x25;&lt;b&gt; coincideix amb l'episodi 25 de la temporada u.</translation>
+        <translation>Un únic número: &lt;b&gt;1x25;&lt;b&gt; coincideix amb l&apos;episodi 25 de la temporada u.</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>S'admeten tres tipus d'intervals per als episodis:</translation>
+        <translation>S&apos;admeten tres tipus d&apos;intervals per als episodis:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3294,7 +3284,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Interval normal: &lt;b&gt;1x25-40;&lt;b&gt; coincideix de l'episodi 25 al 40 de la primera temporada.</translation>
+        <translation>Interval normal: &lt;b&gt;1x25-40;&lt;b&gt; coincideix de l&apos;episodi 25 al 40 de la primera temporada.</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
@@ -3310,7 +3300,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation>El número d'episodi ha de ser un valor positiu.</translation>
+        <translation>El número d&apos;episodi ha de ser un valor positiu.</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3326,11 +3316,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation>Filtre d'episodis:</translation>
+        <translation>Filtre d&apos;episodis:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation>Descarregador d'RSS</translation>
+        <translation>Descarregador d&apos;RSS</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3350,11 +3340,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation>Usa el filtre d'episodis intel·ligent</translation>
+        <translation>Usa el filtre d&apos;episodis intel·ligent</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation>Si l'ordre de paraules és important, useu * en comptes de l'espai en blanc.</translation>
+        <translation>Si l&apos;ordre de paraules és important, useu * en comptes de l&apos;espai en blanc.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
@@ -3395,7 +3385,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>El filtre d'episodis intel·ligent comprovarà el número d'episodi per evitar de baixar-ne de duplicats.
+        <translation>El filtre d&apos;episodis intel·ligent comprovarà el número d&apos;episodi per evitar de baixar-ne de duplicats.
 Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data també admeten - com a separador.)</translation>
     </message>
     <message>
@@ -3411,7 +3401,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>No creïs una subcarpeta</translation>
     </message>
 </context>
@@ -3442,7 +3432,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation>Canals d'RSS</translation>
+        <translation>Canals d&apos;RSS</translation>
     </message>
     <message>
         <source>Unread</source>

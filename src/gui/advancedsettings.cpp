@@ -122,6 +122,7 @@ namespace
         IDN_SUPPORT,
         MULTI_CONNECTIONS_PER_IP,
         VALIDATE_HTTPS_TRACKER_CERTIFICATE,
+        SSRF_MITIGATION,
         BLOCK_PEERS_ON_PRIVILEGED_PORTS,
         // seeding
         CHOKING_ALGORITHM,
@@ -236,6 +237,8 @@ void AdvancedSettings::saveAdvancedSettings()
     session->setMultiConnectionsPerIpEnabled(m_checkBoxMultiConnectionsPerIp.isChecked());
     // Validate HTTPS tracker certificate
     session->setValidateHTTPSTrackerCertificate(m_checkBoxValidateHTTPSTrackerCertificate.isChecked());
+    // SSRF mitigation
+    session->setSSRFMitigationEnabled(m_checkBoxSSRFMitigation.isChecked());
     // Disallow connection to peers on privileged ports
     session->setBlockPeersOnPrivilegedPorts(m_checkBoxBlockPeersOnPrivilegedPorts.isChecked());
     // Recheck torrents on completion
@@ -578,6 +581,11 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(VALIDATE_HTTPS_TRACKER_CERTIFICATE, (tr("Validate HTTPS tracker certificates")
             + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#validate_https_trackers", "(?)"))
             , &m_checkBoxValidateHTTPSTrackerCertificate);
+    // SSRF mitigation
+    m_checkBoxSSRFMitigation.setChecked(session->isSSRFMitigationEnabled());
+    addRow(SSRF_MITIGATION, (tr("Server-side request forgery (SSRF) mitigation")
+        + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#ssrf_mitigation", "(?)"))
+        , &m_checkBoxSSRFMitigation);
     // Disallow connection to peers on privileged ports
     m_checkBoxBlockPeersOnPrivilegedPorts.setChecked(session->blockPeersOnPrivilegedPorts());
     addRow(BLOCK_PEERS_ON_PRIVILEGED_PORTS, (tr("Disallow connection to peers on privileged ports") + ' ' + makeLink("https://libtorrent.org/single-page-ref.html#no_connect_privileged_ports", "(?)")), &m_checkBoxBlockPeersOnPrivilegedPorts);

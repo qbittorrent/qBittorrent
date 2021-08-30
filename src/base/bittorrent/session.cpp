@@ -408,6 +408,7 @@ Session::Session(QObject *parent)
     , m_IDNSupportEnabled(BITTORRENT_SESSION_KEY("IDNSupportEnabled"), false)
     , m_multiConnectionsPerIpEnabled(BITTORRENT_SESSION_KEY("MultiConnectionsPerIp"), false)
     , m_validateHTTPSTrackerCertificate(BITTORRENT_SESSION_KEY("ValidateHTTPSTrackerCertificate"), true)
+    , m_SSRFMitigationEnabled(BITTORRENT_SESSION_KEY("SSRFMitigation"), true)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY("BlockPeersOnPrivilegedPorts"), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY("AddTrackersEnabled"), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY("AdditionalTrackers"))
@@ -1477,6 +1478,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_bool(lt::settings_pack::allow_multiple_connections_per_ip, multiConnectionsPerIpEnabled());
 
     settingsPack.set_bool(lt::settings_pack::validate_https_trackers, validateHTTPSTrackerCertificate());
+
+    settingsPack.set_bool(lt::settings_pack::ssrf_mitigation, isSSRFMitigationEnabled());
 
     settingsPack.set_bool(lt::settings_pack::no_connect_privileged_ports, blockPeersOnPrivilegedPorts());
 
@@ -3821,6 +3824,19 @@ void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
     if (enabled == m_validateHTTPSTrackerCertificate) return;
 
     m_validateHTTPSTrackerCertificate = enabled;
+    configureDeferred();
+}
+
+bool Session::isSSRFMitigationEnabled() const
+{
+    return m_SSRFMitigationEnabled;
+}
+
+void Session::setSSRFMitigationEnabled(const bool enabled)
+{
+    if (enabled == m_SSRFMitigationEnabled) return;
+
+    m_SSRFMitigationEnabled = enabled;
     configureDeferred();
 }
 

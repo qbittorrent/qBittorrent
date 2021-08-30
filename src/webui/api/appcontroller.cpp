@@ -333,6 +333,8 @@ void AppController::preferencesAction()
     data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
     data["validate_https_tracker_certificate"] = session->validateHTTPSTrackerCertificate();
+    // SSRF mitigation
+    data["ssrf_mitigation"] = session->isSSRFMitigationEnabled();
     // Disallow connection to peers on privileged ports
     data["block_peers_on_privileged_ports"] = session->blockPeersOnPrivilegedPorts();
     // Embedded tracker
@@ -810,6 +812,9 @@ void AppController::setPreferencesAction()
     // Validate HTTPS tracker certificate
     if (hasKey("validate_https_tracker_certificate"))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
+    // SSRF mitigation
+    if (hasKey("ssrf_mitigation"))
+        session->setSSRFMitigationEnabled(it.value().toBool());
     // Disallow connection to peers on privileged ports
     if (hasKey("block_peers_on_privileged_ports"))
         session->setBlockPeersOnPrivilegedPorts(it.value().toBool());

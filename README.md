@@ -94,5 +94,5 @@ http://forum.qbittorrent.org
 Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
-For extra features bug(such as Auto Ban, API, Auto Update Tracker lists...), please report to:
+For enhanced features bug(such as Auto Ban, API, Auto Update Tracker lists...), please report to:
 https://github.com/c0re100/qBittorrent-Enhanced-Edition/issues
