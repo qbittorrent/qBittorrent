@@ -71,6 +71,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_periodCombobox->addItem(tr("1 Minute"));
     m_periodCombobox->addItem(tr("5 Minutes"));
     m_periodCombobox->addItem(tr("30 Minutes"));
+    m_periodCombobox->addItem(tr("3 Hours"));
     m_periodCombobox->addItem(tr("6 Hours"));
     m_periodCombobox->addItem(tr("12 Hours"));
     m_periodCombobox->addItem(tr("24 Hours"));
@@ -92,7 +93,8 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
 
     m_graphsMenuActions = m_graphsMenu->actions();
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         action->setCheckable(true);
         action->setChecked(true);
@@ -108,15 +110,12 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_hlayout->addWidget(m_graphsButton);
 
     m_plot = new SpeedPlotView(this);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &SpeedWidget::update);
 
     m_layout->addLayout(m_hlayout);
     m_layout->addWidget(m_plot);
 
     loadSettings();
-
-    QTimer *localUpdateTimer = new QTimer(this);
-    connect(localUpdateTimer, &QTimer::timeout, this, &SpeedWidget::update);
-    localUpdateTimer->start(1000);
 
     m_plot->show();
 }
@@ -132,21 +131,19 @@ void SpeedWidget::update()
 {
     const BitTorrent::SessionStatus &btStatus = BitTorrent::Session::instance()->status();
 
-    SpeedPlotView::PointData point;
-    point.x = QDateTime::currentMSecsSinceEpoch() / 1000;
-    point.y[SpeedPlotView::UP] = btStatus.uploadRate;
-    point.y[SpeedPlotView::DOWN] = btStatus.downloadRate;
-    point.y[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
-    point.y[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
-    point.y[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
-    point.y[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
-    point.y[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
-    point.y[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
-    point.y[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
-    point.y[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
+    SpeedPlotView::SampleData sampleData;
+    sampleData[SpeedPlotView::UP] = btStatus.uploadRate;
+    sampleData[SpeedPlotView::DOWN] = btStatus.downloadRate;
+    sampleData[SpeedPlotView::PAYLOAD_UP] = btStatus.payloadUploadRate;
+    sampleData[SpeedPlotView::PAYLOAD_DOWN] = btStatus.payloadDownloadRate;
+    sampleData[SpeedPlotView::OVERHEAD_UP] = btStatus.ipOverheadUploadRate;
+    sampleData[SpeedPlotView::OVERHEAD_DOWN] = btStatus.ipOverheadDownloadRate;
+    sampleData[SpeedPlotView::DHT_UP] = btStatus.dhtUploadRate;
+    sampleData[SpeedPlotView::DHT_DOWN] = btStatus.dhtDownloadRate;
+    sampleData[SpeedPlotView::TRACKER_UP] = btStatus.trackerUploadRate;
+    sampleData[SpeedPlotView::TRACKER_DOWN] = btStatus.trackerDownloadRate;
 
-    m_plot->pushPoint(point);
-    m_plot->replot();
+    m_plot->pushPoint(sampleData);
 }
 
 void SpeedWidget::onPeriodChange(int period)
@@ -168,7 +165,8 @@ void SpeedWidget::loadSettings()
     m_periodCombobox->setCurrentIndex(periodIndex);
     onPeriodChange(static_cast<SpeedPlotView::TimePeriod>(periodIndex));
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         bool enable = preferences->getSpeedWidgetGraphEnable(id);
 
@@ -183,7 +181,8 @@ void SpeedWidget::saveSettings() const
 
     preferences->setSpeedWidgetPeriod(m_periodCombobox->currentIndex());
 
-    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id) {
+    for (int id = SpeedPlotView::UP; id < SpeedPlotView::NB_GRAPHS; ++id)
+    {
         QAction *action = m_graphsMenuActions.at(id);
         preferences->setSpeedWidgetGraphEnable(id, action->isChecked());
     }

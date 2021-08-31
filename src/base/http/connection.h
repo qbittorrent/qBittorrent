@@ -28,8 +28,7 @@
  */
 
 
-#ifndef HTTP_CONNECTION_H
-#define HTTP_CONNECTION_H
+#pragma once
 
 #include <QElapsedTimer>
 #include <QObject>
@@ -44,7 +43,7 @@ namespace Http
     class Connection : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Connection)
+        Q_DISABLE_COPY_MOVE(Connection)
 
     public:
         Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObject *parent = nullptr);
@@ -66,5 +65,3 @@ namespace Http
         QElapsedTimer m_idleTimer;
     };
 }
-
-#endif // HTTP_CONNECTION_H

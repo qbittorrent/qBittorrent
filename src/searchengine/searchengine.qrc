@@ -6,11 +6,5 @@
         <file>nova3/novaprinter.py</file>
         <file>nova3/sgmllib3.py</file>
         <file>nova3/socks.py</file>
-        <file>nova/fix_encoding.py</file>
-        <file>nova/helpers.py</file>
-        <file>nova/nova2.py</file>
-        <file>nova/nova2dl.py</file>
-        <file>nova/novaprinter.py</file>
-        <file>nova/socks.py</file>
     </qresource>
 </RCC>

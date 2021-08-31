@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODEL_H
-#define TORRENTCONTENTMODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 #include <QVector>
@@ -45,12 +44,17 @@ namespace BitTorrent
     class TorrentInfo;
 }
 
-class TorrentContentModel : public QAbstractItemModel
+class TorrentContentModel final : public QAbstractItemModel
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentContentModel)
+    Q_DISABLE_COPY_MOVE(TorrentContentModel)
 
 public:
+    enum Roles
+    {
+        UnderlyingDataRole = Qt::UserRole
+    };
+
     TorrentContentModel(QObject *parent = nullptr);
     ~TorrentContentModel() override;
 
@@ -84,5 +88,3 @@ private:
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;
 };
-
-#endif // TORRENTCONTENTMODEL_H

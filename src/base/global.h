@@ -35,15 +35,15 @@
 #define QBT_APP_64BIT
 #endif
 
-const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
-const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
+inline const char C_TORRENT_FILE_EXTENSION[] = ".torrent";
+inline const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
 
 template <typename T>
-constexpr typename std::add_const<T>::type &asConst(T &t) noexcept { return t; }
+constexpr typename std::add_const_t<T> &asConst(T &t) noexcept { return t; }
 
 // Forward rvalue as const
 template <typename T>
-constexpr typename std::add_const<T>::type asConst(T &&t) noexcept { return std::move(t); }
+constexpr typename std::add_const_t<T> asConst(T &&t) noexcept { return std::move(t); }
 
 // Prevent const rvalue arguments
 template <typename T>

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef FILELOGGER_H
-#define FILELOGGER_H
+#pragma once
 
 #include <QFile>
 #include <QObject>
@@ -41,7 +40,7 @@ namespace Log
 class FileLogger : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(FileLogger)
+    Q_DISABLE_COPY_MOVE(FileLogger)
 
 public:
     enum FileLogAgeType
@@ -73,5 +72,3 @@ private:
     QFile m_logFile;
     QTimer m_flusher;
 };
-
-#endif // FILELOGGER_H

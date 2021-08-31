@@ -1,4 +1,4 @@
-﻿;Installer strings
+;Installer strings
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_UKRAINIAN} "qBittorrent (необхідний)"
@@ -6,17 +6,21 @@ LangString inst_qbt_req ${LANG_UKRAINIAN} "qBittorrent (необхідний)"
 LangString inst_dekstop ${LANG_UKRAINIAN} "Створити ярлик на стільниці"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_UKRAINIAN} "Створити ярлик в меню Пуск"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_UKRAINIAN} "Запустіть qBittorrent в Windows"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_UKRAINIAN} "Відкривати .torrent файли за допомогою qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
 LangString inst_magnet ${LANG_UKRAINIAN} "Відкривати посилання magnet за допомогою qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_UKRAINIAN} "Додати правило в Windows брандмауер"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_UKRAINIAN} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_UKRAINIAN} "Додаємо правило до брандмауера"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_UKRAINIAN} "qBittorrent вже виконується. Будь ласка, закрийте застосунок перед запуском інсталятору."
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_UKRAINIAN} "Виявлено попередню інсталяцію. Її буде видалено за виключенням користувацьких налаштувань."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_UKRAINIAN} "Видалення попередньої версії."
@@ -24,7 +28,10 @@ LangString inst_unist ${LANG_UKRAINIAN} "Видалення попередньо
 LangString launch_qbt ${LANG_UKRAINIAN} "Запустити qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_UKRAINIAN} "Ця програма установки працює тільки в 64-розрядних версіях Windows."
-
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_UKRAINIAN} "This qBittorrent version requires at least Windows 7."
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_UKRAINIAN} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

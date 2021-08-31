@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef QBT_FSPATHEDIT_H
-#define QBT_FSPATHEDIT_H
+#pragma once
 
 #include <QWidget>
 
@@ -101,14 +100,14 @@ private:
     virtual void setEditWidgetText(const QString &text) = 0;
 
     QWidget *editWidgetImpl() const;
-    Q_DISABLE_COPY(FileSystemPathEdit)
+    Q_DISABLE_COPY_MOVE(FileSystemPathEdit)
     class FileSystemPathEditPrivate;
     Q_DECLARE_PRIVATE(FileSystemPathEdit)
     FileSystemPathEditPrivate *d_ptr;
 };
 
 /// Widget which uses QLineEdit for path editing
-class FileSystemPathLineEdit : public FileSystemPathEdit
+class FileSystemPathLineEdit final : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileLineEdit;
@@ -124,7 +123,7 @@ private:
 };
 
 /// Widget which uses QComboBox for path editing
-class FileSystemPathComboEdit : public FileSystemPathEdit
+class FileSystemPathComboEdit final : public FileSystemPathEdit
 {
     using base = FileSystemPathEdit;
     using WidgetType = Private::FileComboEdit;
@@ -149,5 +148,3 @@ private:
     QString editWidgetText() const override;
     void setEditWidgetText(const QString &text) override;
 };
-
-#endif // QBT_FSPATHEDIT_H

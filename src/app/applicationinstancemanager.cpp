@@ -46,16 +46,20 @@ ApplicationInstanceManager::ApplicationInstanceManager(const QString &appId, QOb
 
 #ifdef Q_OS_WIN
     auto sharedMem = new QSharedMemory {appId + QLatin1String {"-shared-memory-key"}, this};
-    if (m_isFirstInstance) {
+    if (m_isFirstInstance)
+    {
         // First instance creates shared memory and store PID
-        if (sharedMem->create(sizeof(DWORD)) && sharedMem->lock()) {
+        if (sharedMem->create(sizeof(DWORD)) && sharedMem->lock())
+        {
             *(static_cast<DWORD *>(sharedMem->data())) = ::GetCurrentProcessId();
             sharedMem->unlock();
         }
     }
-    else {
+    else
+    {
         // Later instances attach to shared memory and retrieve PID
-        if (sharedMem->attach() && sharedMem->lock()) {
+        if (sharedMem->attach() && sharedMem->lock())
+        {
             ::AllowSetForegroundWindow(*(static_cast<DWORD *>(sharedMem->data())));
             sharedMem->unlock();
         }

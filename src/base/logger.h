@@ -26,15 +26,14 @@
  * exception statement from your version.
  */
 
-#ifndef LOGGER_H
-#define LOGGER_H
+#pragma once
 
 #include <boost/circular_buffer.hpp>
 
 #include <QObject>
 #include <QReadWriteLock>
 #include <QString>
-#include <QVector>
+#include <QtContainerFwd>
 
 const int MAX_LOG_MESSAGES = 20000;
 
@@ -53,17 +52,17 @@ namespace Log
     struct Msg
     {
         int id;
-        qint64 timestamp;
         MsgType type;
+        qint64 timestamp;
         QString message;
     };
 
     struct Peer
     {
         int id;
+        bool blocked;
         qint64 timestamp;
         QString ip;
-        bool blocked;
         QString reason;
     };
 }
@@ -73,7 +72,7 @@ Q_DECLARE_OPERATORS_FOR_FLAGS(Log::MsgTypes)
 class Logger : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Logger)
+    Q_DISABLE_COPY_MOVE(Logger)
 
 public:
     static void initInstance();
@@ -103,5 +102,3 @@ private:
 
 // Helper function
 void LogMsg(const QString &message, const Log::MsgType &type = Log::NORMAL);
-
-#endif // LOGGER_H

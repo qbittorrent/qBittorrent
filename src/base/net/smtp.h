@@ -30,8 +30,7 @@
  * This code is based on QxtSmtp from libqxt (http://libqxt.org)
  */
 
-#ifndef SMTP_H
-#define SMTP_H
+#pragma once
 
 #include <QAbstractSocket>
 #include <QByteArray>
@@ -89,7 +88,7 @@ namespace Net
             AuthCramMD5
         };
 
-        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QTextCodec *latin1, const QByteArray &prefix = {});
+        QByteArray encodeMimeHeader(const QString &key, const QString &value, const QByteArray &prefix = {});
         void ehlo();
         void helo();
         void parseEhloResponse(const QByteArray &code, bool continued, const QString &line);
@@ -119,5 +118,3 @@ namespace Net
         QString m_password;
     };
 }
-
-#endif // SMTP_H

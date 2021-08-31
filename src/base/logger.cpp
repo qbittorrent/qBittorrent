@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QDateTime>
+#include <QVector>
 
 namespace
 {
@@ -38,7 +39,7 @@ namespace
     QVector<T> loadFromBuffer(const boost::circular_buffer_space_optimized<T> &src, const int offset = 0)
     {
         QVector<T> ret;
-        ret.reserve(src.size() - offset);
+        ret.reserve(static_cast<typename decltype(ret)::size_type>(src.size()) - offset);
         std::copy((src.begin() + offset), src.end(), std::back_inserter(ret));
         return ret;
     }
@@ -49,7 +50,6 @@ Logger *Logger::m_instance = nullptr;
 Logger::Logger()
     : m_messages(MAX_LOG_MESSAGES)
     , m_peers(MAX_LOG_MESSAGES)
-    , m_lock(QReadWriteLock::Recursive)
 {
 }
 
@@ -66,38 +66,36 @@ void Logger::initInstance()
 
 void Logger::freeInstance()
 {
-    if (m_instance) {
-        delete m_instance;
-        m_instance = nullptr;
-    }
+    delete m_instance;
+    m_instance = nullptr;
 }
 
 void Logger::addMessage(const QString &message, const Log::MsgType &type)
 {
     QWriteLocker locker(&m_lock);
+    const Log::Msg msg = {m_msgCounter++, type, QDateTime::currentMSecsSinceEpoch(), message};
+    m_messages.push_back(msg);
+    locker.unlock();
 
-    const Log::Msg temp = {m_msgCounter++, QDateTime::currentMSecsSinceEpoch(), type, message.toHtmlEscaped()};
-    m_messages.push_back(temp);
-
-    emit newLogMessage(temp);
+    emit newLogMessage(msg);
 }
 
 void Logger::addPeer(const QString &ip, const bool blocked, const QString &reason)
 {
     QWriteLocker locker(&m_lock);
+    const Log::Peer msg = {m_peerCounter++, blocked, QDateTime::currentMSecsSinceEpoch(), ip, reason};
+    m_peers.push_back(msg);
+    locker.unlock();
 
-    const Log::Peer temp = {m_peerCounter++, QDateTime::currentMSecsSinceEpoch(), ip.toHtmlEscaped(), blocked, reason.toHtmlEscaped()};
-    m_peers.push_back(temp);
-
-    emit newLogPeer(temp);
+    emit newLogPeer(msg);
 }
 
 QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
 {
-    QReadLocker locker(&m_lock);
+    const QReadLocker locker(&m_lock);
 
     const int diff = m_msgCounter - lastKnownId - 1;
-    const int size = m_messages.size();
+    const int size = static_cast<int>(m_messages.size());
 
     if ((lastKnownId == -1) || (diff >= size))
         return loadFromBuffer(m_messages);
@@ -110,10 +108,10 @@ QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const
 
 QVector<Log::Peer> Logger::getPeers(const int lastKnownId) const
 {
-    QReadLocker locker(&m_lock);
+    const QReadLocker locker(&m_lock);
 
     const int diff = m_peerCounter - lastKnownId - 1;
-    const int size = m_peers.size();
+    const int size = static_cast<int>(m_peers.size());
 
     if ((lastKnownId == -1) || (diff >= size))
         return loadFromBuffer(m_peers);

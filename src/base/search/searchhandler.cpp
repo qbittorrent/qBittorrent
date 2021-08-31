@@ -31,10 +31,11 @@
 
 #include <QProcess>
 #include <QTimer>
+#include <QVector>
 
-#include "../global.h"
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
+#include "base/global.h"
+#include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "searchpluginmanager.h"
 
 namespace
@@ -64,7 +65,8 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     // Load environment variables (proxy)
     m_searchProcess->setEnvironment(QProcess::systemEnvironment());
 
-    const QStringList params {
+    const QStringList params
+    {
         Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2.py"),
         m_usedPlugins.join(','),
         m_category
@@ -127,21 +129,27 @@ void SearchHandler::processFinished(const int exitcode)
 void SearchHandler::readSearchOutput()
 {
     QByteArray output = m_searchProcess->readAllStandardOutput();
-    output.replace("\r", "");
+    output.replace('\r', "");
+
     QList<QByteArray> lines = output.split('\n');
     if (!m_searchResultLineTruncated.isEmpty())
         lines.prepend(m_searchResultLineTruncated + lines.takeFirst());
     m_searchResultLineTruncated = lines.takeLast().trimmed();
 
-    QList<SearchResult> searchResultList;
-    for (const QByteArray &line : asConst(lines)) {
+    QVector<SearchResult> searchResultList;
+    searchResultList.reserve(lines.size());
+
+    for (const QByteArray &line : asConst(lines))
+    {
         SearchResult searchResult;
         if (parseSearchResult(QString::fromUtf8(line), searchResult))
             searchResultList << searchResult;
     }
 
-    if (!searchResultList.isEmpty()) {
-        m_results.append(searchResultList);
+    if (!searchResultList.isEmpty())
+    {
+        for (const SearchResult &result : searchResultList)
+            m_results.append(result);
         emit newSearchResults(searchResultList);
     }
 }
@@ -155,26 +163,31 @@ void SearchHandler::processFailed()
 // Parse one line of search results list
 // Line is in the following form:
 // file url | file name | file size | nb seeds | nb leechers | Search engine url
-bool SearchHandler::parseSearchResult(const QString &line, SearchResult &searchResult)
+bool SearchHandler::parseSearchResult(const QStringView line, SearchResult &searchResult)
 {
-    const QStringList parts = line.split('|');
+    const QList<QStringView> parts = line.split(u'|');
     const int nbFields = parts.size();
+
     if (nbFields < (NB_PLUGIN_COLUMNS - 1)) return false; // -1 because desc_link is optional
 
     searchResult = SearchResult();
-    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed(); // download URL
-    searchResult.fileName = parts.at(PL_NAME).trimmed(); // Name
+    searchResult.fileUrl = parts.at(PL_DL_LINK).trimmed().toString(); // download URL
+    searchResult.fileName = parts.at(PL_NAME).trimmed().toString(); // Name
     searchResult.fileSize = parts.at(PL_SIZE).trimmed().toLongLong(); // Size
+
     bool ok = false;
+
     searchResult.nbSeeders = parts.at(PL_SEEDS).trimmed().toLongLong(&ok); // Seeders
     if (!ok || (searchResult.nbSeeders < 0))
         searchResult.nbSeeders = -1;
+
     searchResult.nbLeechers = parts.at(PL_LEECHS).trimmed().toLongLong(&ok); // Leechers
     if (!ok || (searchResult.nbLeechers < 0))
         searchResult.nbLeechers = -1;
-    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed(); // Search site URL
+
+    searchResult.siteUrl = parts.at(PL_ENGINE_URL).trimmed().toString(); // Search site URL
     if (nbFields == NB_PLUGIN_COLUMNS)
-        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed(); // Description Link
+        searchResult.descrLink = parts.at(PL_DESC_LINK).trimmed().toString(); // Description Link
 
     return true;
 }

@@ -28,8 +28,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTTP_REQUESTPARSER_H
-#define HTTP_REQUESTPARSER_H
+#pragma once
 
 #include "types.h"
 
@@ -61,7 +60,7 @@ namespace Http
         RequestParser();
 
         ParseResult doParse(const QByteArray &data);
-        bool parseStartLines(const QString &data);
+        bool parseStartLines(QStringView data);
         bool parseRequestLine(const QString &line);
 
         bool parsePostMessage(const QByteArray &data);
@@ -70,5 +69,3 @@ namespace Http
         Request m_request;
     };
 }
-
-#endif // HTTP_REQUESTPARSER_H

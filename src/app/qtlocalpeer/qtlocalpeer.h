@@ -66,8 +66,7 @@
 ****************************************************************************
 */
 
-#ifndef QTLOCALPEER_H
-#define QTLOCALPEER_H
+#pragma once
 
 #include "qtlockedfile.h"
 
@@ -79,6 +78,7 @@ class QtLocalPeer : public QObject
 
 public:
     QtLocalPeer(QObject *parent = nullptr, const QString &appId = QString());
+    ~QtLocalPeer() override;
 
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
@@ -99,5 +99,3 @@ protected:
 private:
     static const char* ack;
 };
-
-#endif // QTLOCALPEER_H

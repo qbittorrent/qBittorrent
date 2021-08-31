@@ -1,0 +1,801 @@
+<style>
+    #rssdownloaderpage_content {
+        height: calc(100% - 30px);
+    }
+
+    #RssDownloader {
+        height: 100%;
+    }
+
+    #leftRssDownloaderColumn {
+        width: 25%;
+        float: left;
+    }
+
+    #rulesTable,
+    #rssDownloaderArticlesTable {
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+    }
+
+    #centerRssDownloaderColumn {
+        width: 50%;
+        float: left;
+    }
+
+    #rightRssDownloaderColumn {
+        width: 25%;
+        float: left;
+    }
+
+    .fullWidth {
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+    }
+
+    .noWrap {
+        white-space: nowrap;
+    }
+
+    #rssDownloaderFeeds {
+        height: calc(100% - 355px);
+        overflow: hidden;
+    }
+
+    #rssDownloaderFeedsTable {
+        height: calc(100% - 21px);
+        width: 100%;
+        overflow: auto;
+    }
+
+    #saveButton {
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .articleTableFeed td {
+        font-weight: bold;
+    }
+
+    .articleTableArticle td {
+        padding-left: 22px;
+    }
+
+    #rssDownloaderDisabled {
+        color: red;
+        font-style: italic;
+        margin-bottom: 10px;
+    }
+
+    #rulesTable table,
+    #rssDownloaderFeedsTable table,
+    #rssDownloaderArticlesTable table {
+        width: 100%;
+    }
+
+    #ignoreDaysValue {
+        width: 4em;
+    }
+
+    #lastMatchDiv {
+        float: right;
+    }
+
+    #ruleSettings {
+        padding: 4px 10px 4px 10px
+    }
+
+    #topMenuBar {
+        height: 26px;
+    }
+
+    #rulesTableDesc {
+        vertical-align: middle;
+    }
+
+    .imageButton {
+        height: 22px;
+        width: 24px;
+        margin: 1px 2px 1px 2px;
+        border: 1px solid;
+        border-radius: 2px;
+        background-color: #efefef;
+        border-color: #767676;
+        background-position: center center;
+        vertical-align: middle;
+    }
+
+    .imageButton:hover {
+        background-color: #e5e5e5;
+        border-color: #4f4f4f;
+    }
+
+    .imageButton:active {
+        background-color: #f5f5f5;
+        border-color: #8d8d8d;
+    }
+
+    #newRuleButton {
+        float: right;
+        background-image: url('icons/document-new.svg');
+    }
+
+    #deleteRuleButton {
+        float: right;
+        background-image: url('icons/list-remove.svg');
+    }
+
+</style>
+
+<div id="RssDownloader" class="RssDownloader">
+    <div id="rssDownloaderDisabled" class="invisible">
+        QBT_TR(Auto downloading of RSS torrents is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=AutomatedRssDownloader]
+    </div>
+    <div id="leftRssDownloaderColumn">
+        <div id="topMenuBar">
+            <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+            <button id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
+            <button id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
+        </div>
+        <div id="rulesTable">
+            <div id="rulesSelectionCheckBoxList">
+                <div id="rssDownloaderRuleFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
+                    <table class="dynamicTable unselectable">
+                        <thead>
+                            <tr class="dynamicTableHeader"></tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="rssDownloaderRuleTableDiv" class="dynamicTableDiv">
+                    <table class="dynamicTable unselectable">
+                        <thead>
+                            <tr class="dynamicTableHeader"></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="centerRssDownloaderColumn">
+        <fieldset class="settings" id="ruleSettings">
+            <legend>QBT_TR(Rule Definition)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
+            <div class="formRow">
+                <input disabled type="checkbox" id="useRegEx" onclick="qBittorrent.RssDownloader.setElementTitles()" />
+                <label for="useRegEx">QBT_TR(Use Regular Expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+            </div>
+            <table class="fullWidth">
+                <tr>
+                    <td>
+                        <label for="mustContainText" class="noWrap">QBT_TR(Must Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <input disabled type="text" id="mustContainText" class="fullWidth" autocorrect="off" autocapitalize="none" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mustNotContainText" class="noWrap">QBT_TR(Must Not Contain:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <input disabled type="text" id="mustNotContainText" class="fullWidth" autocorrect="off" autocapitalize="none" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="episodeFilterText" class="noWrap">QBT_TR(Episode Filter:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <input disabled type="text" id="episodeFilterText" class="fullWidth" autocorrect="off" autocapitalize="none" />
+                    </td>
+                </tr>
+            </table>
+            <div class="formRow" title="QBT_TR(Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator))QBT_TR[CONTEXT=AutomatedRssDownloader]">
+                <input disabled type="checkbox" id="useSmartFilter" />
+                <label for="useSmartFilter">QBT_TR(Use Smart Episode Filter)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+            </div>
+
+            <hr>
+
+            <table class="fullWidth">
+                <tr>
+                    <td>
+                        <label class="noWrap">QBT_TR(Assign Category:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <select disabled id="assignCategoryCombobox" class="fullWidth">
+                            <option value=""></option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <div class="formRow">
+                <input disabled type="checkbox" id="savetoDifferentDir" />
+                <label for="savetoDifferentDir">QBT_TR(Save to a Different Directory)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+            </div>
+            <table class="fullWidth">
+                <tr>
+                    <td>
+                        <label class="noWrap" for="saveToText">QBT_TR(Save to:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <input disabled type="text" class="fullWidth" id="saveToText" autocorrect="off" autocapitalize="none" />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td><label for="ignoreDaysValue">QBT_TR(Ignore Subsequent Matches for (0 to Disable))QBT_TR[CONTEXT=AutomatedRssDownloader]</label></td>
+                    <td><input type="number" id="ignoreDaysValue" min="0" />QBT_TR( days)QBT_TR[CONTEXT=AutomatedRssDownloader]</td>
+                </tr>
+            </table>
+            <div id="lastMatchDiv">
+                <span id="lastMatchText">QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]</span>
+            </div>
+            <table class="fullWidth">
+                <tr>
+                    <td>
+                        <label class="noWrap">QBT_TR(Add Paused:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <select disabled id="addPausedCombobox" class="fullWidth">
+                            <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table class="fullWidth">
+                <tr>
+                    <td>
+                        <label class="noWrap">QBT_TR(Torrent content layout:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                    </td>
+                    <td class="fullWidth">
+                        <select disabled id="contentLayoutCombobox" class="fullWidth">
+                            <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset class="settings" id="rssDownloaderFeeds">
+            <legend>QBT_TR(Apply Rule to Feeds:)QBT_TR[CONTEXT=AutomatedRssDownloader]</legend>
+            <div id="rssDownloaderFeedsTable">
+                <div id="rssDownloaderFeedSelectionFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
+                    <table class="dynamicTable unselectable">
+                        <thead>
+                            <tr class="dynamicTableHeader"></tr>
+                        </thead>
+                    </table>
+                </div>
+                <div id="rssDownloaderFeedSelectionTableDiv" class="dynamicTableDiv">
+                    <table class="dynamicTable unselectable">
+                        <thead>
+                            <tr class="dynamicTableHeader"></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </fieldset>
+        <button disabled id="saveButton" onclick="qBittorrent.RssDownloader.saveSettings()">
+            QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]
+        </button>
+    </div>
+    <div id="rightRssDownloaderColumn">
+        <b id="articleTableDesc">QBT_TR(Matching RSS Articles)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
+        <div id="rssDownloaderArticlesTable">
+            <div id="rssDownloaderArticlesFixedHeaderDiv" class="dynamicTableFixedHeaderDiv invisible">
+                <table class="dynamicTable unselectable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="rssDownloaderArticlesTableDiv" class="dynamicTableDiv">
+                <table class="dynamicTable unselectable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul id="rssDownloaderRuleMenu" class="contextMenu">
+    <li><a href="#addRule"><img src="icons/document-new.svg" alt="QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Add new rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li><a href="#deleteRule"><img src="icons/list-remove.svg" alt="QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Delete rule)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#renameRule"><img src="icons/edit-rename.svg" alt="QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Rename rule...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+    <li class="separator"><a href="#clearDownloadedEpisodes"><img src="icons/edit-clear.svg" alt="QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]" /> QBT_TR(Clear downloaded episodes...)QBT_TR[CONTEXT=AutomatedRssDownloader]</a></li>
+</ul>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.RssDownloader = (() => {
+        const exports = () => {
+            return {
+                updateRulesList: updateRulesList,
+                showRule: showRule,
+                renameRule: renameRule,
+                modifyRuleState: modifyRuleState,
+                saveSettings: saveSettings,
+                rssDownloaderRulesTable: rssDownloaderRulesTable,
+                rssDownloaderFeedSelectionTable: rssDownloaderFeedSelectionTable,
+                setElementTitles: setElementTitles,
+                addRule: addRule,
+                removeSelectedRule: removeSelectedRule
+            };
+        };
+
+        let rssDownloaderRulesTable = new window.qBittorrent.DynamicTable.RssDownloaderRulesTable();
+        let rssDownloaderFeedSelectionTable = new window.qBittorrent.DynamicTable.RssDownloaderFeedSelectionTable();
+        let rssDownloaderArticlesTable = new window.qBittorrent.DynamicTable.RssDownloaderArticlesTable();
+
+        let rulesList = {};
+        let feedList = [];
+
+        const initRssDownloader = () => {
+            new Request.JSON({
+                url: 'api/v2/app/preferences',
+                method: 'get',
+                noCache: true,
+                onFailure: () => {
+                    alert('Could not contact qBittorrent');
+                },
+                onSuccess: (pref) => {
+                    if (!pref.rss_auto_downloading_enabled)
+                        $('rssDownloaderDisabled').removeClass('invisible');
+
+                    // recalculate height
+                    let warningHeight = $('rssDownloaderDisabled').getBoundingClientRect().height;
+
+                    $('leftRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+                    $('centerRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+                    $('rightRssDownloaderColumn').style.height = 'calc(100% - ' + warningHeight + 'px)';
+
+                    $('rulesTable').style.height = 'calc(100% - ' + $('rulesTableDesc').getBoundingClientRect().height + 'px)';
+                    $('rssDownloaderArticlesTable').style.height = 'calc(100% - ' + $('articleTableDesc').getBoundingClientRect().height + 'px)';
+
+                    let centerRowNotTableHeight = $('saveButton').getBoundingClientRect().height
+                        + $('ruleSettings').getBoundingClientRect().height + 15;
+
+                    $('rssDownloaderFeeds').style.height = 'calc(100% - ' + centerRowNotTableHeight + 'px)';
+
+                    // firefox calculates the height of the table inside fieldset differently and thus doesn't need the offset
+                    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+                        $('rssDownloaderFeedsTable').style.height = '100%';
+                    }
+                    else {
+                        let outsideTableHeight = ($('rssDownloaderFeedsTable').getBoundingClientRect().top - $('rssDownloaderFeeds').getBoundingClientRect().top) - 10;
+                        $('rssDownloaderFeedsTable').style.height = 'calc(100% - ' + outsideTableHeight + 'px)';
+                    }
+                }
+            }).send();
+
+            const rssDownloaderRuleContextMenu = new window.qBittorrent.ContextMenu.RssDownloaderRuleContextMenu({
+                targets: '',
+                menu: 'rssDownloaderRuleMenu',
+                actions: {
+                    addRule: addRule,
+                    deleteRule: removeSelectedRule,
+                    renameRule: (el) => {
+                        renameRule(rssDownloaderRulesTable.rows[rssDownloaderRulesTable.selectedRows[0]].full_data.name);
+                    },
+                    clearDownloadedEpisodes: (el) => {
+                        clearDownloadedEpisodes(rssDownloaderRulesTable.selectedRows
+                            .map((sRow) => rssDownloaderRulesTable.rows[sRow].full_data.name));
+                    }
+                },
+                offsets: {
+                    x: -22,
+                    y: -4
+                }
+            });
+            rssDownloaderRulesTable.setup('rssDownloaderRuleTableDiv', 'rssDownloaderRuleFixedHeaderDiv', rssDownloaderRuleContextMenu);
+            rssDownloaderFeedSelectionTable.setup('rssDownloaderFeedSelectionTableDiv', 'rssDownloaderFeedSelectionFixedHeaderDiv');
+            rssDownloaderArticlesTable.setup('rssDownloaderArticlesTableDiv', 'rssDownloaderArticlesFixedHeaderDiv');
+
+            rssDownloaderRuleContextMenu.addTarget($('rulesTable'));
+            // deselect feed when clicking on empty part of table
+            $('rulesTable').addEventListener('click', (e) => {
+                rssDownloaderRulesTable.deselectAll();
+                rssDownloaderRulesTable.deselectRow();
+                showRule('')
+            });
+            $('rulesTable').addEventListener('contextmenu', (e) => {
+                if (e.toElement.nodeName === 'DIV') {
+                    rssDownloaderRulesTable.deselectAll();
+                    rssDownloaderRulesTable.deselectRow();
+                    rssDownloaderRuleContextMenu.updateMenuItems();
+                    showRule('')
+                }
+            });
+            // get all categories and add to combobox
+            new Request.JSON({
+                url: 'api/v2/torrents/categories',
+                noCache: true,
+                method: 'get',
+                onSuccess: (response) => {
+                    let combobox = $('assignCategoryCombobox');
+                    for (let cat in response) {
+                        let option = document.createElement('option');
+                        option.text = option.value = cat;
+                        combobox.add(option);
+                    }
+                }
+            }).send();
+            // get all rss feed
+            new Request.JSON({
+                url: 'api/v2/rss/items',
+                noCache: true,
+                method: 'post',
+                data: {
+                    withData: false
+                },
+                onSuccess: (response) => {
+                    feedList = [];
+                    let flatten = (root) => {
+                        for (let child in root) {
+                            if (root[child].uid !== undefined)
+                                feedList.push({ name: child, url: root[child].url });
+                            else
+                                flatten(root[child]);
+                        }
+                    }
+                    flatten(response);
+                }
+            }).send();
+            $('savetoDifferentDir').addEvent('click', () => {
+                $('saveToText').disabled = !$('savetoDifferentDir').checked;
+            });
+            updateRulesList();
+        };
+
+        const updateRulesList = () => {
+            // get all rules
+            new Request.JSON({
+                url: 'api/v2/rss/rules',
+                noCache: true,
+                method: 'get',
+                onSuccess: (response) => {
+                    rssDownloaderRulesTable.clear();
+                    let rowCount = 0;
+                    for (let rule in response) {
+                        rssDownloaderRulesTable.updateRowData({
+                            rowId: rowCount++,
+                            checked: response[rule].enabled,
+                            name: rule
+                        });
+                    }
+                    rssDownloaderRulesTable.updateTable(false);
+                    rulesList = response;
+                }
+            }).send();
+        }
+
+        const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
+            rulesList[rule][setting] = newState;
+            new Request({
+                url: 'api/v2/rss/setRule',
+                noCache: true,
+                method: 'post',
+                data: {
+                    ruleName: rule,
+                    ruleDef: JSON.stringify(rulesList[rule])
+                },
+                onSuccess: () => {
+                    callback();
+                }
+            }).send();
+        }
+
+        const addRule = () => {
+            new MochaUI.Window({
+                id: 'newRulePage',
+                title: 'QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]',
+                loadMethod: 'iframe',
+                contentURL: 'newrule.html',
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 350,
+                height: 100
+            });
+        };
+
+        const renameRule = (rule) => {
+            new MochaUI.Window({
+                id: 'renameRulePage',
+                title: 'QBT_TR(Rule renaming)QBT_TR[CONTEXT=AutomatedRssDownloader]',
+                loadMethod: 'iframe',
+                contentURL: 'rename_rule.html?rule=' + encodeURIComponent(rule),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 350,
+                height: 100
+            });
+        };
+
+        const removeSelectedRule = () => {
+            if (rssDownloaderRulesTable.selectedRows.length === 0)
+                return;
+            removeRules(rssDownloaderRulesTable.selectedRows.map((sRow) =>
+                rssDownloaderRulesTable.rows[sRow].full_data.name));
+        };
+
+        const removeRules = (rules) => {
+            const encodedRules = rules.map((rule) => encodeURIComponent(rule));
+            new MochaUI.Window({
+                id: 'removeRulePage',
+                title: 'QBT_TR(Rule deletion confirmation)QBT_TR[CONTEXT=AutomatedRssDownloader]',
+                loadMethod: 'iframe',
+                contentURL: 'confirmruledeletion.html?rules=' + encodeURIComponent(encodedRules.join('|')),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 360,
+                height: 80
+            });
+        };
+
+        const clearDownloadedEpisodes = (rules) => {
+            const encodedRules = rules.map((rule) => encodeURIComponent(rule));
+            new MochaUI.Window({
+                id: 'clearRulesPage',
+                title: 'QBT_TR(New rule name)QBT_TR[CONTEXT=AutomatedRssDownloader]',
+                loadMethod: 'iframe',
+                contentURL: 'confirmruleclear.html?rules=' + encodeURIComponent(encodedRules.join('|')),
+                scrollbars: false,
+                resizable: false,
+                maximizable: false,
+                width: 350,
+                height: 85
+            });
+        }
+
+        const saveSettings = () => {
+            let lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
+            let rule = rssDownloaderRulesTable.rows[lastSelectedRow].full_data.name;
+
+            rulesList[rule].useRegex = $('useRegEx').checked;
+            rulesList[rule].mustContain = $('mustContainText').value;
+            rulesList[rule].mustNotContain = $('mustNotContainText').value;
+            rulesList[rule].episodeFilter = $('episodeFilterText').value;
+            rulesList[rule].smartFilter = $('useSmartFilter').checked;
+            rulesList[rule].assignedCategory = $('assignCategoryCombobox').value;
+            rulesList[rule].savePath = $('savetoDifferentDir').checked ? $('saveToText').value : '';
+            rulesList[rule].ignoreDays = parseInt($('ignoreDaysValue').value);
+
+            switch ($('addPausedCombobox').value) {
+                case 'default':
+                    rulesList[rule].addPaused = null;
+                    break;
+                case 'always':
+                    rulesList[rule].addPaused = true;
+                    break;
+                case 'never':
+                    rulesList[rule].addPaused = false;
+                    break;
+            }
+
+            switch ($('contentLayoutCombobox').value) {
+                case 'Default':
+                    rulesList[rule].torrentContentLayout = null;
+                    break;
+                case 'Original':
+                    rulesList[rule].torrentContentLayout = 'Original';
+                    break;
+                case 'Subfolder':
+                    rulesList[rule].torrentContentLayout = 'Subfolder';
+                    break;
+                case 'NoSubfolder':
+                    rulesList[rule].torrentContentLayout = 'NoSubfolder';
+                    break;
+            }
+
+            rulesList[rule].affectedFeeds = rssDownloaderFeedSelectionTable.rows.filter((row) => row.full_data.checked)
+                .map((row) => row.full_data.url)
+                .getValues();
+
+            new Request({
+                url: 'api/v2/rss/setRule',
+                noCache: true,
+                method: 'post',
+                data: {
+                    ruleName: rule,
+                    ruleDef: JSON.stringify(rulesList[rule])
+                },
+                onSuccess: () => {
+                    updateMatchingArticles(rule);
+                }
+            }).send();
+        }
+
+        const updateMatchingArticles = (ruleName) => {
+            new Request.JSON({
+                url: 'api/v2/rss/matchingArticles',
+                noCache: true,
+                method: 'post',
+                data: {
+                    ruleName: ruleName
+                },
+                onSuccess: (response) => {
+                    rssDownloaderArticlesTable.clear();
+                    let rowCount = 0;
+                    for (let feed in response) {
+                        rssDownloaderArticlesTable.updateRowData({
+                            rowId: rowCount++,
+                            name: feed,
+                            isFeed: true
+                        });
+                        response[feed].each((article) => {
+                            rssDownloaderArticlesTable.updateRowData({
+                                rowId: rowCount++,
+                                name: article,
+                                isFeed: false
+                            });
+                        });
+                    }
+                    rssDownloaderArticlesTable.updateTable(false);
+                }
+            }).send();
+        }
+
+        const showRule = (ruleName) => {
+            if (ruleName === '') {
+                // disable all
+                $('saveButton').disabled = true;
+                $('useRegEx').disabled = true;
+                $('mustContainText').disabled = true;
+                $('mustNotContainText').disabled = true;
+                $('episodeFilterText').disabled = true;
+                $('useSmartFilter').disabled = true;
+                $('assignCategoryCombobox').disabled = true;
+                $('savetoDifferentDir').disabled = true;
+                $('saveToText').disabled = true;
+                $('ignoreDaysValue').disabled = true;
+                $('addPausedCombobox').disabled = true;
+                $('contentLayoutCombobox').disabled = true;
+
+                // reset all boxes
+                $('useRegEx').checked = false;
+                $('mustContainText').value = '';
+                $('mustNotContainText').value = '';
+                $('episodeFilterText').value = '';
+                $('useSmartFilter').checked = false;
+                $('assignCategoryCombobox').value = 'default';
+                $('savetoDifferentDir').checked = false;
+                $('saveToText').value = '';
+                $('ignoreDaysValue').value = 0;
+                $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                $('addPausedCombobox').value = 'default';
+                $('contentLayoutCombobox').value = 'Default';
+                rssDownloaderFeedSelectionTable.clear();
+                rssDownloaderArticlesTable.clear();
+
+                $('mustContainText').title = '';
+                $('mustNotContainText').title = '';
+                $('episodeFilterText').title = '';
+            }
+            else {
+                // enable all
+                $('saveButton').disabled = false;
+                $('useRegEx').disabled = false;
+                $('mustContainText').disabled = false;
+                $('mustNotContainText').disabled = false;
+                $('episodeFilterText').disabled = false;
+                $('useSmartFilter').disabled = false;
+                $('assignCategoryCombobox').disabled = false;
+                $('savetoDifferentDir').disabled = false;
+                $('savetoDifferentDir').checked = rulesList[ruleName].savePath ? false : true;
+                $('saveToText').disabled = rulesList[ruleName].savePath ? false : true;
+                $('ignoreDaysValue').disabled = false;
+                $('addPausedCombobox').disabled = false;
+                $('contentLayoutCombobox').disabled = false;
+
+                // load rule settings
+                $('useRegEx').checked = rulesList[ruleName].useRegex;
+                $('mustContainText').value = rulesList[ruleName].mustContain;
+                $('mustNotContainText').value = rulesList[ruleName].mustNotContain;
+                $('episodeFilterText').value = rulesList[ruleName].episodeFilter;
+                $('useSmartFilter').checked = rulesList[ruleName].smartFilter;
+
+                $('assignCategoryCombobox').value = rulesList[ruleName].assignedCategory ? rulesList[ruleName].assignedCategory : 'default';
+                $('savetoDifferentDir').checked = rulesList[ruleName].savePath !== '';
+                $('saveToText').value = rulesList[ruleName].savePath;
+                $('ignoreDaysValue').value = rulesList[ruleName].ignoreDays;
+
+                // calculate days since last match
+                if (rulesList[ruleName].lastMatch !== '') {
+                    let timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
+                    let daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
+                    $('lastMatchText').innerHTML = ' QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]'.replace('%1', daysAgo);
+                }
+                else {
+                    $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                }
+
+                if (rulesList[ruleName].addPaused === null)
+                    $('addPausedCombobox').value = 'default';
+                else
+                    $('addPausedCombobox').value = rulesList[ruleName].addPaused ? 'always' : 'never';
+
+                if (rulesList[ruleName].torrentContentLayout === null)
+                    $('contentLayoutCombobox').value = 'Default';
+                else
+                    $('contentLayoutCombobox').value = rulesList[ruleName].torrentContentLayout;
+
+                setElementTitles();
+
+                rssDownloaderFeedSelectionTable.clear();
+                let rowCount = 0;
+                feedList.forEach((feed) => {
+                    rssDownloaderFeedSelectionTable.updateRowData({
+                        rowId: rowCount++,
+                        checked: rulesList[ruleName].affectedFeeds.contains(feed.url),
+                        name: feed.name,
+                        url: feed.url
+                    });
+                });
+                rssDownloaderFeedSelectionTable.updateTable(false);
+                updateMatchingArticles(ruleName);
+            }
+        }
+
+        const setElementTitles = () => {
+            let mainPart;
+            if ($('useRegEx').checked) {
+                mainPart = 'QBT_TR(Regex mode: use Perl-compatible regular expressions)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+            }
+            else {
+                mainPart = 'QBT_TR(Wildcard mode: you can use)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+                    + ' ● QBT_TR(? to match any single character)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                    + ' ● QBT_TR(* to match zero or more of any characters)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                    + ' ● QBT_TR(Whitespaces count as AND operators (all words, any order))QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                    + ' ● QBT_TR(| is used as OR operator)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+                    + 'QBT_TR(If word order is important use * instead of whitespace.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n';
+            }
+            let secondPart = 'QBT_TR(An expression with an empty %1 clause (e.g. %2))QBT_TR[CONTEXT=AutomatedRssDownloader]'
+                .replace('%1', '|').replace('%2', 'expr|');
+
+            $('mustContainText').title = mainPart + secondPart + 'QBT_TR( will match all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+            $('mustNotContainText').title = mainPart + secondPart + 'QBT_TR( will exclude all articles.)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+
+            let episodeFilterTitle = 'QBT_TR(Matches articles based on episode filter.)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+                + 'QBT_TR(Example: )QBT_TR[CONTEXT=AutomatedRssDownloader]'
+                + '1x2;8-15;5;30-;'
+                + 'QBT_TR( will match 2, 5, 8 through 15, 30 and onward episodes of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+                + 'QBT_TR(Episode filter rules: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n\n'
+                + ' ● QBT_TR(Season number is a mandatory non-zero value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + ' ● QBT_TR(Episode number is a mandatory positive value)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + ' ● QBT_TR(Filter must end with semicolon)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + ' ● QBT_TR(Three range types for episodes are supported: )QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + '    ● QBT_TR(Single number: <b>1x25;</b> matches episode 25 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + '    ● QBT_TR(Normal range: <b>1x25-40;</b> matches episodes 25 through 40 of season one)QBT_TR[CONTEXT=AutomatedRssDownloader]\n'
+                + '    ● QBT_TR(Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+
+            episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, '').replace(/<\/b>/g, '');
+            $('episodeFilterText').title = episodeFilterTitle;
+        }
+
+        initRssDownloader();
+        return exports();
+    })();
+
+    Object.freeze(window.qBittorrent.RssDownloader);
+</script>

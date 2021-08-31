@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PROXYCONFIGURATIONMANAGER_H
-#define NET_PROXYCONFIGURATIONMANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -57,7 +56,7 @@ namespace Net
     class ProxyConfigurationManager : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(ProxyConfigurationManager)
+        Q_DISABLE_COPY_MOVE(ProxyConfigurationManager)
 
         explicit ProxyConfigurationManager(QObject *parent = nullptr);
         ~ProxyConfigurationManager() = default;
@@ -85,5 +84,3 @@ namespace Net
         bool m_isProxyOnlyForTorrents;
     };
 }
-
-#endif // NET_PROXYCONFIGURATIONMANAGER_H

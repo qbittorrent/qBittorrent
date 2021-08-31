@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,20 +26,16 @@
  * exception statement from your version.
  */
 
-#ifndef BITTORRENT_TRACKERENTRY_H
-#define BITTORRENT_TRACKERENTRY_H
-
-#include <libtorrent/announce_entry.hpp>
+#pragma once
 
 #include <QtGlobal>
-
-class QString;
+#include <QString>
+#include <QVector>
 
 namespace BitTorrent
 {
-    class TrackerEntry
+    struct TrackerEntry
     {
-    public:
         enum Status
         {
             NotContacted = 1,
@@ -48,31 +44,32 @@ namespace BitTorrent
             NotWorking = 4
         };
 
-        TrackerEntry() = default;
-        TrackerEntry(const QString &url);
-        TrackerEntry(const lt::announce_entry &nativeEntry);
-        TrackerEntry(const TrackerEntry &other) = default;
-        TrackerEntry &operator=(const TrackerEntry &other) = default;
+        struct EndpointStats
+        {
+            int protocolVersion = 1;
 
-        QString url() const;
-        bool isWorking() const;
-        Status status() const;
+            Status status = NotContacted;
+            int numPeers = -1;
+            int numSeeds = -1;
+            int numLeeches = -1;
+            int numDownloaded = -1;
+            QString message {};
+        };
 
-        int tier() const;
-        void setTier(int value);
+        QString url {};
+        int tier = 0;
 
-        int numSeeds() const;
-        int numLeeches() const;
-        int numDownloaded() const;
+        QVector<EndpointStats> endpoints {};
 
-        const lt::announce_entry &nativeEntry() const;
-
-    private:
-        lt::announce_entry m_nativeEntry;
+        // Deprecated fields
+        Status status = NotContacted;
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
+        QString message {};
     };
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
     uint qHash(const TrackerEntry &key, uint seed);
 }
-
-#endif // BITTORRENT_TRACKERENTRY_H

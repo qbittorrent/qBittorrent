@@ -93,12 +93,14 @@ void Server::incomingConnection(const qintptr socketDescriptor)
     else
         serverSocket = new QTcpSocket(this);
 
-    if (!serverSocket->setSocketDescriptor(socketDescriptor)) {
+    if (!serverSocket->setSocketDescriptor(socketDescriptor))
+    {
         delete serverSocket;
         return;
     }
 
-    if (m_https) {
+    if (m_https)
+    {
         static_cast<QSslSocket *>(serverSocket)->setProtocol(QSsl::SecureProtocols);
         static_cast<QSslSocket *>(serverSocket)->setPrivateKey(m_key);
         static_cast<QSslSocket *>(serverSocket)->setLocalCertificateChain(m_certificates);
@@ -134,7 +136,8 @@ bool Server::setupHttps(const QByteArray &certificates, const QByteArray &privat
     const QList<QSslCertificate> certs {Utils::Net::loadSSLCertificate(certificates)};
     const QSslKey key {Utils::Net::loadSSLKey(privateKey)};
 
-    if (certs.isEmpty() || key.isNull()) {
+    if (certs.isEmpty() || key.isNull())
+    {
         disableHttps();
         return false;
     }

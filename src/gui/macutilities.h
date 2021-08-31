@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef MACUTILITIES_H
-#define MACUTILITIES_H
+#pragma once
 
 #include <objc/objc.h>
 
@@ -43,6 +42,7 @@ namespace MacUtils
     void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...));
     void displayNotification(const QString &title, const QString &message);
     void openFiles(const QSet<QString> &pathsList);
-}
 
-#endif // MACUTILITIES_H
+    QString badgeLabelText();
+    void setBadgeLabelText(const QString &text);
+}

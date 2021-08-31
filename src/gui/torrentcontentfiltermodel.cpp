@@ -28,7 +28,6 @@
 
 #include "torrentcontentfiltermodel.h"
 
-#include "base/utils/string.h"
 #include "torrentcontentmodel.h"
 
 TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
@@ -39,9 +38,10 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     setSourceModel(m_model);
     // Filter settings
     setFilterKeyColumn(TorrentContentModelItem::COL_NAME);
-    setFilterRole(Qt::DisplayRole);
+    setFilterRole(TorrentContentModel::UnderlyingDataRole);
     setDynamicSortFilter(true);
     setSortCaseSensitivity(Qt::CaseInsensitive);
+    setSortRole(TorrentContentModel::UnderlyingDataRole);
 }
 
 TorrentContentModel *TorrentContentFilterModel::model() const
@@ -71,7 +71,8 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType) {
+    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType)
+    {
         // accept folders if they have at least one filtered item
         return hasFiltered(m_model->index(sourceRow, 0, sourceParent));
     }
@@ -81,17 +82,21 @@ bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelInde
 
 bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
 {
-    switch (sortColumn()) {
-    case TorrentContentModelItem::COL_NAME: {
+    switch (sortColumn())
+    {
+    case TorrentContentModelItem::COL_NAME:
+    {
             const TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
             const TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
 
-            if (leftType == rightType) {
+            if (leftType == rightType)
+            {
                 const QString strL = left.data().toString();
                 const QString strR = right.data().toString();
-                return Utils::String::naturalLessThan<Qt::CaseInsensitive>(strL, strR);
+                return m_naturalLessThan(strL, strR);
             }
-            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder)) {
+            if ((leftType == TorrentContentModelItem::FolderType) && (sortOrder() == Qt::AscendingOrder))
+            {
                 return true;
             }
 
@@ -107,7 +112,7 @@ void TorrentContentFilterModel::selectAll()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentFilterModel::selectNone()
@@ -115,7 +120,7 @@ void TorrentContentFilterModel::selectNone()
     for (int i = 0; i < rowCount(); ++i)
         setData(index(i, 0), Qt::Unchecked, Qt::CheckStateRole);
 
-    emit dataChanged(index(0,0), index(rowCount(), columnCount()));
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
@@ -123,17 +128,19 @@ bool TorrentContentFilterModel::hasFiltered(const QModelIndex &folder) const
     // this should be called only with folders
     // check if the folder name itself matches the filter string
     QString name = folder.data().toString();
-    if (name.contains(filterRegExp()))
+    if (name.contains(filterRegularExpression()))
         return true;
-    for (int child = 0; child < m_model->rowCount(folder); ++child) {
+    for (int child = 0; child < m_model->rowCount(folder); ++child)
+    {
         QModelIndex childIndex = m_model->index(child, 0, folder);
-        if (m_model->hasChildren(childIndex)) {
+        if (m_model->hasChildren(childIndex))
+        {
             if (hasFiltered(childIndex))
                 return true;
             continue;
         }
         name = childIndex.data().toString();
-        if (name.contains(filterRegExp()))
+        if (name.contains(filterRegularExpression()))
             return true;
     }
 

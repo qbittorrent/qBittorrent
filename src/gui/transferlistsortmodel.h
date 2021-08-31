@@ -26,38 +26,49 @@
  * exception statement from your version.
  */
 
-#ifndef TRANSFERLISTSORTMODEL_H
-#define TRANSFERLISTSORTMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
+
+#include "base/settingvalue.h"
 #include "base/torrentfilter.h"
+#include "base/utils/compare.h"
 
-class QStringList;
+namespace BitTorrent
+{
+    class InfoHash;
+}
 
-class TransferListSortModel : public QSortFilterProxyModel
+class TransferListSortModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TransferListSortModel)
 
 public:
-    TransferListSortModel(QObject *parent = nullptr);
+    explicit TransferListSortModel(QObject *parent = nullptr);
+
+    void sort(int column, Qt::SortOrder order = Qt::AscendingOrder) override;
 
     void setStatusFilter(TorrentFilter::Type filter);
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
     void setTagFilter(const QString &tag);
     void disableTagFilter();
-    void setTrackerFilter(const QStringList &hashes);
+    void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
 
 private:
+    int compare(const QModelIndex &left, const QModelIndex &right) const;
+
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
-    bool lowerPositionThan(const QModelIndex &left, const QModelIndex &right) const;
-    bool dateLessThan(int dateColumn, const QModelIndex &left, const QModelIndex &right, bool sortInvalidInBottom) const;
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
     bool matchFilter(int sourceRow, const QModelIndex &sourceParent) const;
 
-private:
     TorrentFilter m_filter;
-};
+    CachedSettingValue<int> m_subSortColumn;
+    CachedSettingValue<int> m_subSortOrder;
+    int m_lastSortColumn = -1;
+    int m_lastSortOrder = 0;
 
-#endif // TRANSFERLISTSORTMODEL_H
+    Utils::Compare::NaturalCompare<Qt::CaseInsensitive> m_naturalCompare;
+};

@@ -28,10 +28,11 @@
 
 #include "torrentfilter.h"
 
-#include "bittorrent/torrenthandle.h"
+#include "bittorrent/infohash.h"
+#include "bittorrent/torrent.h"
 
 const QString TorrentFilter::AnyCategory;
-const QStringSet TorrentFilter::AnyHash = (QStringSet() << QString());
+const TorrentIDSet TorrentFilter::AnyID {{}};
 const QString TorrentFilter::AnyTag;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
@@ -41,35 +42,35 @@ const TorrentFilter TorrentFilter::PausedTorrent(TorrentFilter::Paused);
 const TorrentFilter TorrentFilter::ResumedTorrent(TorrentFilter::Resumed);
 const TorrentFilter TorrentFilter::ActiveTorrent(TorrentFilter::Active);
 const TorrentFilter TorrentFilter::InactiveTorrent(TorrentFilter::Inactive);
+const TorrentFilter TorrentFilter::StalledTorrent(TorrentFilter::Stalled);
+const TorrentFilter TorrentFilter::StalledUploadingTorrent(TorrentFilter::StalledUploading);
+const TorrentFilter TorrentFilter::StalledDownloadingTorrent(TorrentFilter::StalledDownloading);
+const TorrentFilter TorrentFilter::CheckingTorrent(TorrentFilter::Checking);
 const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
-using BitTorrent::TorrentHandle;
+using BitTorrent::Torrent;
 
-TorrentFilter::TorrentFilter()
-    : m_type(All)
-{
-}
-
-TorrentFilter::TorrentFilter(const Type type, const QStringSet &hashSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const Type type, const TorrentIDSet &idSet, const QString &category, const QString &tag)
     : m_type(type)
     , m_category(category)
     , m_tag(tag)
-    , m_hashSet(hashSet)
+    , m_idSet(idSet)
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const QStringSet &hashSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const QString &filter, const TorrentIDSet &idSet, const QString &category, const QString &tag)
     : m_type(All)
     , m_category(category)
     , m_tag(tag)
-    , m_hashSet(hashSet)
+    , m_idSet(idSet)
 {
     setTypeByName(filter);
 }
 
 bool TorrentFilter::setType(Type type)
 {
-    if (m_type != type) {
+    if (m_type != type)
+    {
         m_type = type;
         return true;
     }
@@ -95,16 +96,25 @@ bool TorrentFilter::setTypeByName(const QString &filter)
         type = Active;
     else if (filter == "inactive")
         type = Inactive;
+    else if (filter == "stalled")
+        type = Stalled;
+    else if (filter == "stalled_uploading")
+        type = StalledUploading;
+    else if (filter == "stalled_downloading")
+        type = StalledDownloading;
+    else if (filter == "checking")
+        type = Checking;
     else if (filter == "errored")
         type = Errored;
 
     return setType(type);
 }
 
-bool TorrentFilter::setHashSet(const QStringSet &hashSet)
+bool TorrentFilter::setTorrentIDSet(const TorrentIDSet &idSet)
 {
-    if (m_hashSet != hashSet) {
-        m_hashSet = hashSet;
+    if (m_idSet != idSet)
+    {
+        m_idSet = idSet;
         return true;
     }
 
@@ -116,7 +126,8 @@ bool TorrentFilter::setCategory(const QString &category)
     // QString::operator==() doesn't distinguish between empty and null strings.
     if ((m_category != category)
             || (m_category.isNull() && !category.isNull())
-            || (!m_category.isNull() && category.isNull())) {
+            || (!m_category.isNull() && category.isNull()))
+            {
         m_category = category;
         return true;
     }
@@ -129,7 +140,8 @@ bool TorrentFilter::setTag(const QString &tag)
     // QString::operator==() doesn't distinguish between empty and null strings.
     if ((m_tag != tag)
         || (m_tag.isNull() && !tag.isNull())
-        || (!m_tag.isNull() && tag.isNull())) {
+        || (!m_tag.isNull() && tag.isNull()))
+        {
         m_tag = tag;
         return true;
     }
@@ -137,16 +149,17 @@ bool TorrentFilter::setTag(const QString &tag)
     return false;
 }
 
-bool TorrentFilter::match(const TorrentHandle *const torrent) const
+bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
     return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
 }
 
-bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 {
-    switch (m_type) {
+    switch (m_type)
+    {
     case All:
         return true;
     case Downloading:
@@ -163,6 +176,17 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
         return torrent->isActive();
     case Inactive:
         return torrent->isInactive();
+    case Stalled:
+        return (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
+                || (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
+    case StalledUploading:
+        return torrent->state() ==  BitTorrent::TorrentState::StalledUploading;
+    case StalledDownloading:
+        return torrent->state() ==  BitTorrent::TorrentState::StalledDownloading;
+    case Checking:
+        return (torrent->state() == BitTorrent::TorrentState::CheckingUploading)
+                || (torrent->state() == BitTorrent::TorrentState::CheckingDownloading)
+                || (torrent->state() == BitTorrent::TorrentState::CheckingResumeData);
     case Errored:
         return torrent->isErrored();
     default: // All
@@ -170,21 +194,21 @@ bool TorrentFilter::matchState(const BitTorrent::TorrentHandle *const torrent) c
     }
 }
 
-bool TorrentFilter::matchHash(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
 {
-    if (m_hashSet == AnyHash) return true;
+    if (m_idSet == AnyID) return true;
 
-    return m_hashSet.contains(torrent->hash());
+    return m_idSet.contains(torrent->id());
 }
 
-bool TorrentFilter::matchCategory(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const
 {
     if (m_category.isNull()) return true;
 
     return (torrent->belongsToCategory(m_category));
 }
 
-bool TorrentFilter::matchTag(const BitTorrent::TorrentHandle *const torrent) const
+bool TorrentFilter::matchTag(const BitTorrent::Torrent *const torrent) const
 {
     // Empty tag is a special value to indicate we're filtering for untagged torrents.
     if (m_tag.isNull()) return true;

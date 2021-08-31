@@ -32,6 +32,7 @@
 #include <QString>
 
 #include "base/utils/misc.h"
+#include "base/version.h"
 #include "ui_stacktracedialog.h"
 
 StacktraceDialog::StacktraceDialog(QWidget *parent)

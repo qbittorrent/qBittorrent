@@ -1,0 +1,85 @@
+name: Coverity Scan
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Monthly (1st day of month at midnight)
+  workflow_dispatch: # Mainly for testing. Don't forget the Coverity usage limits.
+
+env:
+  LIBTORRENT_VERSION_TAG: v1.2.14
+
+jobs:
+  coverity_scan:
+    name: Scan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install \
+            build-essential cmake git ninja-build pkg-config \
+            libssl-dev zlib1g-dev libboost-dev libboost-system-dev
+        # sudo apt install libqt5svg5-dev qtbase5-dev qttools5-dev # the Qt version in the standard repositories is too old...
+
+      # this will be installed under /opt/qt515. CMake will still find it automatically without additional hints
+      # to speed up the process, only the required components are installed rather than the full qt515-meta-full metapackage
+      - name: Install Qt
+        run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
+          sudo apt install \
+            qt515base qt515svg qt515tools
+
+      - name: Install libtorrent
+        run: |
+          git clone https://github.com/arvidn/libtorrent
+          cd libtorrent
+          git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -Ddeprecated-functions=OFF
+          cmake --build build
+          sudo cmake --install build --prefix /usr/local
+
+      - name: Download Coverity Build Tool
+        run: |
+          wget \
+            -q \
+            https://scan.coverity.com/download/linux64 \
+            --post-data "token=$TOKEN&project=qbittorrent%2FqBittorrent" \
+            -O coverity_tool.tgz
+          mkdir coverity_tool
+          tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
+        env:
+          TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
+
+      - name: Configure qBittorrent
+        run: |
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGUI=ON \
+            -DVERBOSE_CONFIGURE=ON
+
+      - name: Build qBittorrent
+        run: |
+          export PATH="$(pwd)/coverity_tool/bin:$PATH"
+          cov-build --dir cov-int cmake --build build
+
+      - name: Submit the result to Coverity Scan
+        run: |
+          tar caf qbittorrent.xz cov-int
+          curl \
+            --form token=$TOKEN \
+            --form email=sledgehammer999@qbittorrent.org \
+            --form file=@qbittorrent.tgz \
+            --form version="$(git rev-parse --short HEAD)" \
+            --form description="master" \
+            https://scan.coverity.com/builds?project=qbittorrent%2FqBittorrent
+        env:
+          TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}

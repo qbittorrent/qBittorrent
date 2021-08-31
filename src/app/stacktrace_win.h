@@ -18,13 +18,13 @@
 *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
 ***************************************************************************/
 
-#ifndef STACKTRACE_WIN_H
-#define STACKTRACE_WIN_H
+#pragma once
 
 #include <windows.h>
 #include <dbghelp.h>
 #include <stdio.h>
 
+#include <QCoreApplication>
 #include <QDir>
 #include <QTextStream>
 #ifdef __MINGW32__
@@ -54,7 +54,8 @@ void straceWin::demangle(QString& str)
     int status = 0;
     size_t outSz = 0;
     char* demangled_name = abi::__cxa_demangle(inStr, 0, &outSz, &status);
-    if (status == 0) {
+    if (status == 0)
+    {
         str = QString::fromLocal8Bit(demangled_name);
         if (outSz > 0)
             free(demangled_name);
@@ -72,7 +73,7 @@ void straceWin::loadHelpStackFrame(IMAGEHLP_STACK_FRAME& ihsf, const STACKFRAME6
 BOOL CALLBACK straceWin::EnumSymbolsCB(PSYMBOL_INFO symInfo, ULONG size, PVOID user)
 {
     Q_UNUSED(size)
-    QStringList* params = (QStringList*)user;
+    auto params = static_cast<QStringList *>(user);
     if (symInfo->Flags & SYMFLAG_PARAMETER)
         params->append(symInfo->Name);
     return TRUE;
@@ -90,19 +91,21 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
 {
     Q_UNUSED(ModuleName)
     IMAGEHLP_MODULE64 mod;
-    EnumModulesContext* context = (EnumModulesContext*)UserContext;
+    auto context = static_cast<EnumModulesContext *>(UserContext);
     mod.SizeOfStruct = sizeof(IMAGEHLP_MODULE64);
-    if(SymGetModuleInfo64(context->hProcess, BaseOfDll, &mod)) {
-        QString moduleBase = QString("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
-        QString line = QString("%1 %2 Image: %3")
+    if(SymGetModuleInfo64(context->hProcess, BaseOfDll, &mod))
+    {
+        QString moduleBase = QString::fromLatin1("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
+        QString line = QString::fromLatin1("%1 %2 Image: %3")
                        .arg(mod.ModuleName, -25)
                        .arg(moduleBase, -13)
                        .arg(mod.LoadedImageName);
         context->stream << line << '\n';
 
         QString pdbName(mod.LoadedPdbName);
-        if(!pdbName.isEmpty()) {
-            QString line2 = QString("%1 %2")
+        if(!pdbName.isEmpty())
+        {
+            QString line2 = QString::fromLatin1("%1 %2")
                             .arg("", 35)
                             .arg(pdbName);
             context->stream << line2 << '\n';
@@ -126,7 +129,8 @@ bool straceWin::makeRelativePath(const QString& dir, QString& file)
     if (!d.isEmpty() && (d[d.length() - 1] != separator))
         d += separator;
 
-    if (f.startsWith(d, Qt::CaseInsensitive)) {
+    if (f.startsWith(d, Qt::CaseInsensitive))
+    {
         f.remove(0, d.length());
         file.swap(f);
 
@@ -142,7 +146,8 @@ QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
     line.SizeOfStruct = sizeof(IMAGEHLP_LINE64);
     DWORD dwDisplacement = 0;
 
-    if (SymGetLineFromAddr64(hProcess, addr, &dwDisplacement, &line)) {
+    if (SymGetLineFromAddr64(hProcess, addr, &dwDisplacement, &line))
+    {
         QString path(line.FileName);
 
 #if defined STACKTRACE_WIN_PROJECT_PATH || defined STACKTRACE_WIN_MAKEFILE_PATH
@@ -159,13 +164,14 @@ QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
 #endif
 
 #ifdef STACKTRACE_WIN_MAKEFILE_PATH
-        if (!success) {
+        if (!success)
+        {
             QString targetPath(STACKTRACE_WIN_STRING(STACKTRACE_WIN_MAKEFILE_PATH));
             makeRelativePath(targetPath, path);
         }
 #endif
 #endif
-        return QString("%1 : %2").arg(path).arg(line.LineNumber);
+        return QString::fromLatin1("%1 : %2").arg(path).arg(line.LineNumber);
     }
 
     return QString();
@@ -201,7 +207,8 @@ const QString straceWin::getBacktrace()
          : //no input
          : "eax");
 #else
-    _asm {
+    _asm
+    {
         Label:
         mov [Context.Ebp], ebp;
         mov [Context.Esp], esp;
@@ -250,14 +257,14 @@ const QString straceWin::getBacktrace()
 
     HANDLE hProcess = GetCurrentProcess();
     HANDLE hThread = GetCurrentThread();
-    SymInitialize(hProcess, NULL, TRUE);
+    SymInitializeW(hProcess, QCoreApplication::applicationDirPath().toStdWString().c_str(), TRUE);
 
     DWORD64 dwDisplacement;
 
     ULONG64 buffer[(sizeof(SYMBOL_INFO) +
                     MAX_SYM_NAME * sizeof(TCHAR) +
                     sizeof(ULONG64) - 1) /  sizeof(ULONG64)];
-    PSYMBOL_INFO pSymbol = (PSYMBOL_INFO)buffer;
+    auto pSymbol = reinterpret_cast<PSYMBOL_INFO>(buffer);
     pSymbol->SizeOfStruct = sizeof(SYMBOL_INFO);
     pSymbol->MaxNameLen = MAX_SYM_NAME;
 
@@ -269,15 +276,18 @@ const QString straceWin::getBacktrace()
 
     int i = 0;
 
-    while(StackWalk64(MachineType, hProcess, hThread, &StackFrame, &Context, NULL, NULL, NULL, NULL)) {
+    while(StackWalk64(MachineType, hProcess, hThread, &StackFrame, &Context, NULL, NULL, NULL, NULL))
+    {
         if(i == 128)
             break;
 
         loadHelpStackFrame(ihsf, StackFrame);
-        if(StackFrame.AddrPC.Offset != 0) { // Valid frame.
+        if(StackFrame.AddrPC.Offset != 0)
+        { // Valid frame.
 
             QString fileName("???");
-            if(SymGetModuleInfo64(hProcess, ihsf.InstructionOffset, &mod)) {
+            if(SymGetModuleInfo64(hProcess, ihsf.InstructionOffset, &mod))
+            {
                 fileName = QString(mod.ImageName);
                 int slashPos = fileName.lastIndexOf('\\');
                 if(slashPos != -1)
@@ -285,7 +295,8 @@ const QString straceWin::getBacktrace()
             }
             QString funcName;
             QString sourceFile;
-            if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol)) {
+            if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol))
+            {
                 funcName = QString(pSymbol->Name);
 #ifdef __MINGW32__
                 demangle(funcName);
@@ -295,8 +306,9 @@ const QString straceWin::getBacktrace()
                 // decrease the query address by one byte to point somewhere in the CALL instruction byte sequence
                 sourceFile = getSourcePathAndLineNumber(hProcess, ihsf.InstructionOffset - 1);
             }
-            else {
-                funcName = QString("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
+            else
+            {
+                funcName = QString::fromLatin1("0x%1").arg(ihsf.InstructionOffset, 8, 16, QLatin1Char('0'));
             }
             SymSetContext(hProcess, &ihsf, NULL);
 #ifndef __MINGW32__
@@ -304,7 +316,7 @@ const QString straceWin::getBacktrace()
             SymEnumSymbols(hProcess, 0, NULL, EnumSymbolsCB, (PVOID)&params);
 #endif
 
-            QString insOffset = QString("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
+            QString insOffset = QString::fromLatin1("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
             QString formatLine = "#%1 %2 %3 %4";
 #ifndef __MINGW32__
             formatLine += "(%5)";
@@ -318,14 +330,15 @@ const QString straceWin::getBacktrace()
                                 .arg(params.join(", "));
 
             if (!sourceFile.isEmpty())
-                debugLine += QString("[ %1 ]").arg(sourceFile);
+                debugLine += QString::fromLatin1("[ %1 ]").arg(sourceFile);
 #else
                                 ;
 #endif
             logStream << debugLine << '\n';
             i++;
         }
-        else {
+        else
+        {
             break; // we're at the end.
         }
     }
@@ -342,5 +355,3 @@ const QString straceWin::getBacktrace()
 #pragma warning(pop)
 #pragma optimize("g", on)
 #endif
-
-#endif // STACKTRACE_WIN_H

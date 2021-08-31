@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef STATUSBAR_H
-#define STATUSBAR_H
+#pragma once
 
 #include <QStatusBar>
 
@@ -42,7 +41,7 @@ namespace BitTorrent
 class StatusBar : public QStatusBar
 {
     Q_OBJECT
-    Q_DISABLE_COPY(StatusBar)
+    Q_DISABLE_COPY_MOVE(StatusBar)
 
 public:
     StatusBar(QWidget *parent = nullptr);
@@ -58,8 +57,7 @@ public slots:
 private slots:
     void refresh();
     void updateAltSpeedsBtn(bool alternative);
-    void capDownloadSpeed();
-    void capUploadSpeed();
+    void capSpeed();
 
 private:
     void updateConnectionStatus();
@@ -72,5 +70,3 @@ private:
     QPushButton *m_connecStatusLblIcon;
     QPushButton *m_altSpeedsBtn;
 };
-
-#endif // STATUSBAR_H

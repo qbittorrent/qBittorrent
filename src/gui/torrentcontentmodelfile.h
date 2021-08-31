@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFILE_H
-#define TORRENTCONTENTMODELFILE_H
+#pragma once
 
 #include "torrentcontentmodelitem.h"
 
@@ -36,7 +35,7 @@ namespace BitTorrent
     enum class DownloadPriority;
 }
 
-class TorrentContentModelFile : public TorrentContentModelItem
+class TorrentContentModelFile final : public TorrentContentModelItem
 {
 public:
     TorrentContentModelFile(const QString &fileName, qulonglong fileSize,
@@ -51,5 +50,3 @@ public:
 private:
     int m_fileIndex;
 };
-
-#endif // TORRENTCONTENTMODELFILE_H

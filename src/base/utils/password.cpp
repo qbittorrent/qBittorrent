@@ -34,6 +34,7 @@
 
 #include <QByteArray>
 #include <QString>
+#include <QVector>
 
 #include "bytearray.h"
 #include "random.h"
@@ -71,7 +72,8 @@ QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 
 QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
 {
-    const std::array<uint32_t, 4> salt {{Random::rand(), Random::rand()
+    const std::array<uint32_t, 4> salt
+    {{Random::rand(), Random::rand()
         , Random::rand(), Random::rand()}};
 
     std::array<unsigned char, 64> outBuf {};
@@ -97,7 +99,7 @@ bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &pa
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QByteArray &password)
 {
-    const QVector<QByteArray> list = ByteArray::splitToViews(secret, ":", QString::SkipEmptyParts);
+    const QVector<QByteArray> list = ByteArray::splitToViews(secret, ":", Qt::SkipEmptyParts);
     if (list.size() != 2)
         return false;
 

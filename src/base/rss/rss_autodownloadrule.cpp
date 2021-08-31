@@ -40,53 +40,63 @@
 #include <QString>
 #include <QStringList>
 
-#include "../global.h"
-#include "../preferences.h"
-#include "../tristatebool.h"
-#include "../utils/fs.h"
-#include "../utils/string.h"
+#include "base/global.h"
+#include "base/preferences.h"
+#include "base/utils/fs.h"
+#include "base/utils/string.h"
 #include "rss_article.h"
 #include "rss_autodownloader.h"
 #include "rss_feed.h"
 
 namespace
 {
-    TriStateBool jsonValueToTriStateBool(const QJsonValue &jsonVal)
+    std::optional<bool> toOptionalBool(const QJsonValue &jsonVal)
     {
         if (jsonVal.isBool())
-            return TriStateBool(jsonVal.toBool());
+            return jsonVal.toBool();
 
-        if (!jsonVal.isNull())
-            qDebug() << Q_FUNC_INFO << "Incorrect value" << jsonVal.toVariant();
-
-        return TriStateBool::Undefined;
+        return std::nullopt;
     }
 
-    QJsonValue triStateBoolToJsonValue(const TriStateBool &triStateBool)
+    QJsonValue toJsonValue(const std::optional<bool> boolValue)
     {
-        switch (static_cast<int>(triStateBool)) {
-        case 0:  return false;
-        case 1:  return true;
-        default: return {};
+        return boolValue.has_value() ? *boolValue : QJsonValue {};
+    }
+
+    std::optional<bool> addPausedLegacyToOptionalBool(const int val)
+    {
+        switch (val)
+        {
+        case 1:
+            return true; // always
+        case 2:
+            return false; // never
+        default:
+            return std::nullopt; // default
         }
     }
 
-    TriStateBool addPausedLegacyToTriStateBool(const int val)
+    int toAddPausedLegacy(const std::optional<bool> boolValue)
     {
-        switch (val) {
-        case 1:  return TriStateBool::True; // always
-        case 2:  return TriStateBool::False; // never
-        default: return TriStateBool::Undefined; // default
-        }
+        if (!boolValue.has_value())
+            return 0; // default
+
+        return (*boolValue ? 1 /* always */ : 2 /* never */);
     }
 
-    int triStateBoolToAddPausedLegacy(const TriStateBool &triStateBool)
+    std::optional<BitTorrent::TorrentContentLayout> jsonValueToContentLayout(const QJsonValue &jsonVal)
     {
-        switch (static_cast<int>(triStateBool)) {
-        case 0:  return 2; // never
-        case 1:  return 1; // always
-        default: return 0; // default
-        }
+        const QString str = jsonVal.toString();
+        if (str.isEmpty())
+            return std::nullopt;
+        return Utils::String::toEnum(str, BitTorrent::TorrentContentLayout::Original);
+    }
+
+    QJsonValue contentLayoutToJsonValue(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
+    {
+        if (!contentLayout)
+            return {};
+        return Utils::String::fromEnum(*contentLayout);
     }
 }
 
@@ -102,6 +112,8 @@ const QString Str_AssignedCategory(QStringLiteral("assignedCategory"));
 const QString Str_LastMatch(QStringLiteral("lastMatch"));
 const QString Str_IgnoreDays(QStringLiteral("ignoreDays"));
 const QString Str_AddPaused(QStringLiteral("addPaused"));
+const QString Str_CreateSubfolder(QStringLiteral("createSubfolder"));
+const QString Str_ContentLayout(QStringLiteral("torrentContentLayout"));
 const QString Str_SmartFilter(QStringLiteral("smartFilter"));
 const QString Str_PreviouslyMatched(QStringLiteral("previouslyMatchedEpisodes"));
 
@@ -122,7 +134,8 @@ namespace RSS
 
         QString savePath;
         QString category;
-        TriStateBool addPaused = TriStateBool::Undefined;
+        std::optional<bool> addPaused;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -144,6 +157,7 @@ namespace RSS
                     && (savePath == other.savePath)
                     && (category == other.category)
                     && (addPaused == other.addPaused)
+                    && (contentLayout == other.contentLayout)
                     && (smartFilter == other.smartFilter);
         }
     };
@@ -161,7 +175,8 @@ QString computeEpisodeName(const QString &article)
         return {};
 
     QStringList ret;
-    for (int i = 1; i <= match.lastCapturedIndex(); ++i) {
+    for (int i = 1; i <= match.lastCapturedIndex(); ++i)
+    {
         const QString cap = match.captured(i);
 
         if (cap.isEmpty())
@@ -196,10 +211,10 @@ QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, cons
     Q_ASSERT(!expression.isEmpty());
 
     QRegularExpression &regex = m_dataPtr->cachedRegexes[expression];
-    if (regex.pattern().isEmpty()) {
-        regex = QRegularExpression {
-                (isRegex ? expression : Utils::String::wildcardToRegex(expression))
-                , QRegularExpression::CaseInsensitiveOption};
+    if (regex.pattern().isEmpty())
+    {
+        const QString pattern = (isRegex ? expression : Utils::String::wildcardToRegexPattern(expression));
+        regex = QRegularExpression {pattern, QRegularExpression::CaseInsensitiveOption};
     }
 
     return regex;
@@ -209,20 +224,23 @@ bool AutoDownloadRule::matchesExpression(const QString &articleTitle, const QStr
 {
     const QRegularExpression whitespace {"\\s+"};
 
-    if (expression.isEmpty()) {
+    if (expression.isEmpty())
+    {
         // A regex of the form "expr|" will always match, so do the same for wildcards
         return true;
     }
 
-    if (m_dataPtr->useRegex) {
+    if (m_dataPtr->useRegex)
+    {
         const QRegularExpression reg(cachedRegex(expression));
         return reg.match(articleTitle).hasMatch();
     }
 
     // Only match if every wildcard token (separated by spaces) is present in the article name.
     // Order of wildcard tokens is unimportant (if order is important, they should have used *).
-    const QStringList wildcards {expression.split(whitespace, QString::SplitBehavior::SkipEmptyParts)};
-    for (const QString &wildcard : wildcards) {
+    const QStringList wildcards {expression.split(whitespace, Qt::SkipEmptyParts)};
+    for (const QString &wildcard : wildcards)
+    {
         const QRegularExpression reg {cachedRegex(wildcard, false)};
         if (!reg.match(articleTitle).hasMatch())
             return false;
@@ -276,7 +294,8 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
     const QStringList episodes {matcher.captured(2).split(';')};
     const int seasonOurs {season.toInt()};
 
-    for (QString episode : episodes) {
+    for (QString episode : episodes)
+    {
         if (episode.isEmpty())
             continue;
 
@@ -284,7 +303,8 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
         while ((episode.size() > 1) && episode.startsWith('0'))
             episode = episode.right(episode.size() - 1);
 
-        if (episode.indexOf('-') != -1) { // Range detected
+        if (episode.indexOf('-') != -1)
+        { // Range detected
             const QString partialPattern1 {"\\bs0?(\\d{1,4})[ -_\\.]?e(0?\\d{1,4})(?:\\D|\\b)"};
             const QString partialPattern2 {"\\b(\\d{1,4})x(0?\\d{1,4})(?:\\D|\\b)"};
 
@@ -292,21 +312,25 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
             QRegularExpressionMatch matcher = cachedRegex(partialPattern1).match(articleTitle);
             bool matched = matcher.hasMatch();
 
-            if (!matched) {
+            if (!matched)
+            {
                 matcher = cachedRegex(partialPattern2).match(articleTitle);
                 matched = matcher.hasMatch();
             }
 
-            if (matched) {
+            if (matched)
+            {
                 const int seasonTheirs {matcher.captured(1).toInt()};
                 const int episodeTheirs {matcher.captured(2).toInt()};
 
-                if (episode.endsWith('-')) { // Infinite range
-                    const int episodeOurs {episode.leftRef(episode.size() - 1).toInt()};
+                if (episode.endsWith('-'))
+                { // Infinite range
+                    const int episodeOurs {QStringView(episode).left(episode.size() - 1).toInt()};
                     if (((seasonTheirs == seasonOurs) && (episodeTheirs >= episodeOurs)) || (seasonTheirs > seasonOurs))
                         return true;
                 }
-                else { // Normal range
+                else
+                { // Normal range
                     const QStringList range {episode.split('-')};
                     Q_ASSERT(range.size() == 2);
                     if (range.first().toInt() > range.last().toInt())
@@ -319,8 +343,9 @@ bool AutoDownloadRule::matchesEpisodeFilterExpression(const QString &articleTitl
                 }
             }
         }
-        else { // Single number
-            const QString expStr {QString("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
+        else
+        { // Single number
+            const QString expStr {QString::fromLatin1("\\b(?:s0?%1[ -_\\.]?e0?%2|%1x0?%2)(?:\\D|\\b)").arg(season, episode)};
             if (cachedRegex(expStr).match(articleTitle).hasMatch())
                 return true;
         }
@@ -340,7 +365,8 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
 
     // See if this episode has been downloaded before
     const bool previouslyMatched = m_dataPtr->previouslyMatchedEpisodes.contains(episodeStr);
-    if (previouslyMatched) {
+    if (previouslyMatched)
+    {
         if (!AutoDownloader::instance()->downloadRepacks())
             return false;
 
@@ -351,7 +377,7 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
         if (!isRepack && !isProper)
             return false;
 
-        const QString fullEpisodeStr = QString("%1%2%3").arg(episodeStr,
+        const QString fullEpisodeStr = QString::fromLatin1("%1%2%3").arg(episodeStr,
                                                              isRepack ? "-REPACK" : "",
                                                              isProper ? "-PROPER" : "");
         const bool previouslyMatchedFull = m_dataPtr->previouslyMatchedEpisodes.contains(fullEpisodeStr);
@@ -362,9 +388,10 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
 
         // If this is a REPACK and PROPER download, add the individual entries to the list
         // so we don't download those
-        if (isRepack && isProper) {
-            m_dataPtr->lastComputedEpisodes.append(QString("%1-REPACK").arg(episodeStr));
-            m_dataPtr->lastComputedEpisodes.append(QString("%1-PROPER").arg(episodeStr));
+        if (isRepack && isProper)
+        {
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-REPACK"));
+            m_dataPtr->lastComputedEpisodes.append(episodeStr + QLatin1String("-PROPER"));
         }
     }
 
@@ -375,7 +402,8 @@ bool AutoDownloadRule::matchesSmartEpisodeFilter(const QString &articleTitle) co
 bool AutoDownloadRule::matches(const QVariantHash &articleData) const
 {
     const QDateTime articleDate {articleData[Article::KeyDate].toDateTime()};
-    if (ignoreDays() > 0) {
+    if (ignoreDays() > 0)
+    {
         if (lastMatch().isValid() && (articleDate < lastMatch().addDays(ignoreDays())))
             return false;
     }
@@ -401,7 +429,8 @@ bool AutoDownloadRule::accepts(const QVariantHash &articleData)
     setLastMatch(articleData[Article::KeyDate].toDateTime());
 
     // If there's a matched episode string, add that to the previously matched list
-    if (!m_dataPtr->lastComputedEpisodes.isEmpty()) {
+    if (!m_dataPtr->lastComputedEpisodes.isEmpty())
+    {
         m_dataPtr->previouslyMatchedEpisodes.append(m_dataPtr->lastComputedEpisodes);
         m_dataPtr->lastComputedEpisodes.clear();
     }
@@ -438,7 +467,8 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_AssignedCategory, assignedCategory()}
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
-        , {Str_AddPaused, triStateBoolToJsonValue(addPaused())}
+        , {Str_AddPaused, toJsonValue(addPaused())}
+        , {Str_ContentLayout, contentLayoutToJsonValue(torrentContentLayout())}
         , {Str_SmartFilter, useSmartFilter()}
         , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
 }
@@ -454,7 +484,32 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
     rule.setSavePath(jsonObj.value(Str_SavePath).toString());
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
-    rule.setAddPaused(jsonValueToTriStateBool(jsonObj.value(Str_AddPaused)));
+    rule.setAddPaused(toOptionalBool(jsonObj.value(Str_AddPaused)));
+
+    // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
+    // === BEGIN DEPRECATED CODE === //
+    if (jsonObj.contains(Str_ContentLayout))
+    {
+        rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
+    }
+    else
+    {
+        const std::optional<bool> createSubfolder = toOptionalBool(jsonObj.value(Str_CreateSubfolder));
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        if (createSubfolder.has_value())
+        {
+            contentLayout = (*createSubfolder
+                             ? BitTorrent::TorrentContentLayout::Original
+                             : BitTorrent::TorrentContentLayout::NoSubfolder);
+        }
+
+        rule.setTorrentContentLayout(contentLayout);
+    }
+    // === END DEPRECATED CODE === //
+    // === BEGIN REPLACEMENT CODE === //
+//    rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
+    // === END REPLACEMENT CODE === //
+
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
     rule.setUseSmartFilter(jsonObj.value(Str_SmartFilter).toBool(false));
@@ -469,10 +524,12 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
 
     const QJsonValue previouslyMatchedVal = jsonObj.value(Str_PreviouslyMatched);
     QStringList previouslyMatched;
-    if (previouslyMatchedVal.isString()) {
+    if (previouslyMatchedVal.isString())
+    {
         previouslyMatched << previouslyMatchedVal.toString();
     }
-    else {
+    else
+    {
         for (const QJsonValue &val : asConst(previouslyMatchedVal.toArray()))
             previouslyMatched << val.toString();
     }
@@ -491,7 +548,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
         {"enabled", isEnabled()},
         {"category_assigned", assignedCategory()},
         {"use_regex", useRegex()},
-        {"add_paused", triStateBoolToAddPausedLegacy(addPaused())},
+        {"add_paused", toAddPausedLegacy(addPaused())},
         {"episode_filter", episodeFilter()},
         {"last_match", lastMatch()},
         {"ignore_days", ignoreDays()}};
@@ -509,7 +566,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEnabled(dict.value("enabled", false).toBool());
     rule.setSavePath(dict.value("save_path").toString());
     rule.setCategory(dict.value("category_assigned").toString());
-    rule.setAddPaused(addPausedLegacyToTriStateBool(dict.value("add_paused").toInt()));
+    rule.setAddPaused(addPausedLegacyToOptionalBool(dict.value("add_paused").toInt()));
     rule.setLastMatch(dict.value("last_match").toDateTime());
     rule.setIgnoreDays(dict.value("ignore_days").toInt());
 
@@ -574,14 +631,24 @@ void AutoDownloadRule::setSavePath(const QString &savePath)
     m_dataPtr->savePath = Utils::Fs::toUniformPath(savePath);
 }
 
-TriStateBool AutoDownloadRule::addPaused() const
+std::optional<bool> AutoDownloadRule::addPaused() const
 {
     return m_dataPtr->addPaused;
 }
 
-void AutoDownloadRule::setAddPaused(const TriStateBool &addPaused)
+void AutoDownloadRule::setAddPaused(const std::optional<bool> addPaused)
 {
     m_dataPtr->addPaused = addPaused;
+}
+
+std::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
+{
+    return m_dataPtr->contentLayout;
+}
+
+void AutoDownloadRule::setTorrentContentLayout(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
+{
+    m_dataPtr->contentLayout = contentLayout;
 }
 
 QString AutoDownloadRule::assignedCategory() const

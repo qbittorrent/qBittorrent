@@ -26,16 +26,15 @@
  * exception statement from your version.
  */
 
-#ifndef HIDABLETABWIDGET_H
-#define HIDABLETABWIDGET_H
+#pragma once
 
 #include <QTabWidget>
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 class QPaintEvent;
 #endif
 
-class HidableTabWidget : public QTabWidget
+class HidableTabWidget final : public QTabWidget
 {
 public:
     explicit HidableTabWidget(QWidget *parent = nullptr);
@@ -44,9 +43,7 @@ private:
     void tabInserted(int index) override;
     void tabRemoved(int index) override;
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void paintEvent(QPaintEvent *event) override;
 #endif
 };
-
-#endif // HIDABLETABWIDGET_H

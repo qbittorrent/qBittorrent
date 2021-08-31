@@ -28,79 +28,111 @@
 
 #include "speedlimitdialog.h"
 
+#include <QStyle>
+
+#include "base/bittorrent/session.h"
 #include "ui_speedlimitdialog.h"
+#include "uithememanager.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "SpeedLimitDialog/" name
+
+namespace
+{
+    void updateSliderValue(QSlider *slider, const int value)
+    {
+        if (value > slider->maximum())
+            slider->setMaximum(value);
+        slider->setValue(value);
+    }
+}
+
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
-    : QDialog(parent)
-    , m_ui(new Ui::SpeedLimitDialog)
+    : QDialog {parent}
+    , m_ui {new Ui::SpeedLimitDialog}
+    , m_storeDialogSize {SETTINGS_KEY("Size")}
 {
     m_ui->setupUi(this);
 
-    // Connect to slots
-    connect(m_ui->bandwidthSlider, &QSlider::valueChanged, this, &SpeedLimitDialog::updateSpinValue);
-    connect(m_ui->spinBandwidth, qOverload<int>(&QSpinBox::valueChanged)
-            , this, &SpeedLimitDialog::updateSliderValue);
+    m_ui->labelGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off"))
+                                                , this, style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, this)));
+    m_ui->labelAltGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow"))
+                                                , this, style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, this)));
 
-    Utils::Gui::resize(this);
+    const auto initSlider = [](QSlider *slider, const int value, const int maximum)
+    {
+        slider->setMaximum(maximum);
+        slider->setValue(value);
+    };
+    const auto *session = BitTorrent::Session::instance();
+    const int uploadVal = qMax(0, (session->globalUploadSpeedLimit() / 1024));
+    const int downloadVal = qMax(0, (session->globalDownloadSpeedLimit() / 1024));
+    const int maxUpload = qMax(10000, (session->globalUploadSpeedLimit() / 1024));
+    const int maxDownload = qMax(10000, (session->globalDownloadSpeedLimit() / 1024));
+    initSlider(m_ui->sliderUploadLimit, uploadVal, maxUpload);
+    initSlider(m_ui->sliderDownloadLimit, downloadVal, maxDownload);
+
+    const int altUploadVal = qMax(0, (session->altGlobalUploadSpeedLimit() / 1024));
+    const int altDownloadVal = qMax(0, (session->altGlobalDownloadSpeedLimit() / 1024));
+    const int altMaxUpload = qMax(10000, (session->altGlobalUploadSpeedLimit() / 1024));
+    const int altMaxDownload = qMax(10000, (session->altGlobalDownloadSpeedLimit() / 1024));
+    initSlider(m_ui->sliderAltUploadLimit, altUploadVal, altMaxUpload);
+    initSlider(m_ui->sliderAltDownloadLimit, altDownloadVal, altMaxDownload);
+
+    m_ui->spinUploadLimit->setValue(uploadVal);
+    m_ui->spinDownloadLimit->setValue(downloadVal);
+    m_ui->spinAltUploadLimit->setValue(altUploadVal);
+    m_ui->spinAltDownloadLimit->setValue(altDownloadVal);
+
+    m_initialValues =
+    {
+        m_ui->spinUploadLimit->value(),
+        m_ui->spinDownloadLimit->value(),
+        m_ui->spinAltUploadLimit->value(),
+        m_ui->spinAltDownloadLimit->value()
+    };
+
+    // Sync up/down speed limit sliders with their corresponding spinboxes
+    connect(m_ui->sliderUploadLimit, &QSlider::valueChanged, m_ui->spinUploadLimit, &QSpinBox::setValue);
+    connect(m_ui->sliderDownloadLimit, &QSlider::valueChanged, m_ui->spinDownloadLimit, &QSpinBox::setValue);
+    connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, [this](const int value) { updateSliderValue(m_ui->sliderUploadLimit, value); });
+    connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, [this](const int value) { updateSliderValue(m_ui->sliderDownloadLimit, value); });
+    connect(m_ui->sliderAltUploadLimit, &QSlider::valueChanged, m_ui->spinAltUploadLimit, &QSpinBox::setValue);
+    connect(m_ui->sliderAltDownloadLimit, &QSlider::valueChanged, m_ui->spinAltDownloadLimit, &QSpinBox::setValue);
+    connect(m_ui->spinAltUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, [this](const int value) { updateSliderValue(m_ui->sliderAltUploadLimit, value); });
+    connect(m_ui->spinAltDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
+            , this, [this](const int value) { updateSliderValue(m_ui->sliderAltDownloadLimit, value); });
+
+    Utils::Gui::resize(this, m_storeDialogSize);
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 
-// -2: if cancel
-long SpeedLimitDialog::askSpeedLimit(QWidget *parent, bool *ok, const QString &title, const long defaultVal, const long maxVal)
+void SpeedLimitDialog::accept()
 {
-    if (ok) *ok = false;
+    auto *session = BitTorrent::Session::instance();
+    const int uploadLimit = (m_ui->spinUploadLimit->value() * 1024);
+    if (m_initialValues.uploadSpeedLimit != m_ui->spinUploadLimit->value())
+        session->setGlobalUploadSpeedLimit(uploadLimit);
 
-    SpeedLimitDialog dlg(parent);
-    dlg.setWindowTitle(title);
-    dlg.setupDialog((maxVal / 1024.), (defaultVal / 1024.));
+    const int downloadLimit = (m_ui->spinDownloadLimit->value() * 1024);
+    if (m_initialValues.downloadSpeedLimit != m_ui->spinDownloadLimit->value())
+        session->setGlobalDownloadSpeedLimit(downloadLimit);
 
-    if (dlg.exec() == QDialog::Accepted) {
-        if (ok) *ok = true;
+    const int altUploadLimit = (m_ui->spinAltUploadLimit->value() * 1024);
+    if (m_initialValues.altUploadSpeedLimit != m_ui->spinAltUploadLimit->value())
+        session->setAltGlobalUploadSpeedLimit(altUploadLimit);
 
-        const int val = dlg.getSpeedLimit();
-        if (val < 0)
-            return 0;
-        return (val * 1024);
-    }
+    const int altDownloadLimit = (m_ui->spinAltDownloadLimit->value() * 1024);
+    if (m_initialValues.altDownloadSpeedLimit != m_ui->spinAltDownloadLimit->value())
+        session->setAltGlobalDownloadSpeedLimit(altDownloadLimit);
 
-    return -2;
-}
-
-void SpeedLimitDialog::updateSpinValue(const int value)
-{
-    m_ui->spinBandwidth->setValue(value);
-}
-
-void SpeedLimitDialog::updateSliderValue(const int value)
-{
-    if (value > m_ui->bandwidthSlider->maximum())
-        m_ui->bandwidthSlider->setMaximum(value);
-    m_ui->bandwidthSlider->setValue(value);
-}
-
-int SpeedLimitDialog::getSpeedLimit() const
-{
-    return m_ui->spinBandwidth->value();
-}
-
-void SpeedLimitDialog::setupDialog(long maxSlider, long val)
-{
-    val = qMax<long>(0, val);
-
-    if (maxSlider <= 0)
-        maxSlider = 10000;
-
-    // This can happen for example if global rate limit is lower
-    // than torrent rate limit.
-    if (val > maxSlider)
-        maxSlider = val;
-
-    m_ui->bandwidthSlider->setMaximum(maxSlider);
-    m_ui->bandwidthSlider->setValue(val);
-    updateSpinValue(val);
+    QDialog::accept();
 }

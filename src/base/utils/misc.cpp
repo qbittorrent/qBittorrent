@@ -28,40 +28,48 @@
 
 #include "misc.h"
 
+#include <optional>
+
 #ifdef Q_OS_WIN
 #include <windows.h>
+#include <powrprof.h>
 #include <Shlobj.h>
 #else
 #include <sys/types.h>
 #include <unistd.h>
 #endif
 
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
 #include <Carbon/Carbon.h>
 #include <CoreServices/CoreServices.h>
 #endif
 
 #include <boost/version.hpp>
-#include <openssl/opensslv.h>
 #include <libtorrent/version.hpp>
+#include <openssl/crypto.h>
+#include <openssl/opensslv.h>
 #include <zlib.h>
 
 #include <QCoreApplication>
+#include <QMimeDatabase>
 #include <QRegularExpression>
 #include <QSet>
 #include <QSysInfo>
+#include <QVector>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC)) && defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 #include <QDBusInterface>
 #endif
 
 #include "base/types.h"
 #include "base/unicodestrings.h"
+#include "base/utils/fs.h"
 #include "base/utils/string.h"
 
 namespace
 {
-    const struct { const char *source; const char *comment; } units[] = {
+    const struct { const char *source; const char *comment; } units[] =
+    {
         QT_TRANSLATE_NOOP3("misc", "B", "bytes"),
         QT_TRANSLATE_NOOP3("misc", "KiB", "kibibytes (1024 bytes)"),
         QT_TRANSLATE_NOOP3("misc", "MiB", "mebibytes (1024 kibibytes)"),
@@ -76,20 +84,26 @@ namespace
     // see http://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
     // to send numbers instead of strings with suffixes
-    bool splitToFriendlyUnit(const qint64 sizeInBytes, qreal &val, Utils::Misc::SizeUnit &unit)
+    struct SplitToFriendlyUnitResult
     {
-        if (sizeInBytes < 0) return false;
+        qreal value;
+        Utils::Misc::SizeUnit unit;
+    };
+
+    std::optional<SplitToFriendlyUnitResult> splitToFriendlyUnit(const qint64 bytes)
+    {
+        if (bytes < 0)
+            return std::nullopt;
 
         int i = 0;
-        val = static_cast<qreal>(sizeInBytes);
+        auto value = static_cast<qreal>(bytes);
 
-        while ((val >= 1024.) && (i <= static_cast<int>(Utils::Misc::SizeUnit::ExbiByte))) {
-            val /= 1024.;
+        while ((value >= 1024) && (i < static_cast<int>(Utils::Misc::SizeUnit::ExbiByte)))
+        {
+            value /= 1024;
             ++i;
         }
-
-        unit = static_cast<Utils::Misc::SizeUnit>(i);
-        return true;
+        return {{value, static_cast<Utils::Misc::SizeUnit>(i)}};
     }
 }
 
@@ -117,20 +131,18 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (GetLastError() != ERROR_SUCCESS)
         return;
 
-    using PSETSUSPENDSTATE = BOOLEAN (WINAPI *)(BOOLEAN, BOOLEAN, BOOLEAN);
-    const auto setSuspendState = Utils::Misc::loadWinAPI<PSETSUSPENDSTATE>("PowrProf.dll", "SetSuspendState");
-
-    if (action == ShutdownDialogAction::Suspend) {
-        if (setSuspendState)
-            setSuspendState(false, false, false);
+    if (action == ShutdownDialogAction::Suspend)
+    {
+        ::SetSuspendState(false, false, false);
     }
-    else if (action == ShutdownDialogAction::Hibernate) {
-        if (setSuspendState)
-            setSuspendState(true, false, false);
+    else if (action == ShutdownDialogAction::Hibernate)
+    {
+        ::SetSuspendState(true, false, false);
     }
-    else {
+    else
+    {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
-        std::unique_ptr<wchar_t[]> msgWchar(new wchar_t[msg.length() + 1] {});
+        auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
         msg.toWCharArray(msgWchar.get());
         ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, true, false);
     }
@@ -139,7 +151,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     tkp.Privileges[0].Attributes = 0;
     AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) NULL, 0);
 
-#elif defined(Q_OS_MAC)
+#elif defined(Q_OS_MACOS)
     AEEventID EventToSend;
     if (action != ShutdownDialogAction::Shutdown)
         EventToSend = kAESleep;
@@ -174,11 +186,13 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 
 #elif (defined(Q_OS_UNIX) && defined(QT_DBUS_LIB))
     // Use dbus to power off / suspend the system
-    if (action != ShutdownDialogAction::Shutdown) {
+    if (action != ShutdownDialogAction::Shutdown)
+    {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
-        if (login1Iface.isValid()) {
+        if (login1Iface.isValid())
+        {
             if (action == ShutdownDialogAction::Suspend)
                 login1Iface.call("Suspend", false);
             else
@@ -188,7 +202,8 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
         // Else, other recent systems use UPower
         QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
                                    "org.freedesktop.UPower", QDBusConnection::systemBus());
-        if (upowerIface.isValid()) {
+        if (upowerIface.isValid())
+        {
             if (action == ShutdownDialogAction::Suspend)
                 upowerIface.call("Suspend");
             else
@@ -204,18 +219,21 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
         else
             halIface.call("Hibernate");
     }
-    else {
+    else
+    {
         // Some recent systems use systemd's logind
         QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
                                    "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
-        if (login1Iface.isValid()) {
+        if (login1Iface.isValid())
+        {
             login1Iface.call("PowerOff", false);
             return;
         }
         // Else, other recent systems use ConsoleKit
         QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
                                        "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
-        if (consolekitIface.isValid()) {
+        if (consolekitIface.isValid())
+        {
             consolekitIface.call("Stop");
             return;
         }
@@ -240,21 +258,21 @@ QString Utils::Misc::unitString(const SizeUnit unit, const bool isSpeed)
     return ret;
 }
 
-QString Utils::Misc::friendlyUnit(const qint64 bytesValue, const bool isSpeed)
+QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed)
 {
-    SizeUnit unit;
-    qreal friendlyVal;
-    if (!splitToFriendlyUnit(bytesValue, friendlyVal, unit))
+    const std::optional<SplitToFriendlyUnitResult> result = splitToFriendlyUnit(bytes);
+    if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
-    return Utils::String::fromDouble(friendlyVal, friendlyUnitPrecision(unit))
+    return Utils::String::fromDouble(result->value, friendlyUnitPrecision(result->unit))
            + QString::fromUtf8(C_NON_BREAKING_SPACE)
-           + unitString(unit, isSpeed);
+           + unitString(result->unit, isSpeed);
 }
 
 int Utils::Misc::friendlyUnitPrecision(const SizeUnit unit)
 {
     // friendlyUnit's number of digits after the decimal point
-    switch (unit) {
+    switch (unit)
+    {
     case SizeUnit::Byte:
         return 0;
     case SizeUnit::KibiByte:
@@ -274,9 +292,18 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
     return size;
 }
 
-bool Utils::Misc::isPreviewable(const QString &extension)
+bool Utils::Misc::isPreviewable(const QString &filename)
 {
-    static const QSet<QString> multimediaExtensions = {
+    const QString mime = QMimeDatabase().mimeTypeForFile(filename, QMimeDatabase::MatchExtension).name();
+
+    if (mime.startsWith(QLatin1String("audio"), Qt::CaseInsensitive)
+        || mime.startsWith(QLatin1String("video"), Qt::CaseInsensitive))
+    {
+        return true;
+    }
+
+    const QSet<QString> multimediaExtensions =
+    {
         "3GP",
         "AAC",
         "AC3",
@@ -320,7 +347,7 @@ bool Utils::Misc::isPreviewable(const QString &extension)
         "WMA",
         "WMV"
     };
-    return multimediaExtensions.contains(extension.toUpper());
+    return multimediaExtensions.contains(Utils::Fs::fileExtension(filename).toUpper());
 }
 
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
@@ -341,13 +368,15 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
         return QCoreApplication::translate("misc", "%1m", "e.g: 10minutes").arg(QString::number(minutes));
 
     qlonglong hours = (minutes / 60);
-    if (hours < 24) {
+    if (hours < 24)
+    {
         minutes -= (hours * 60);
         return QCoreApplication::translate("misc", "%1h %2m", "e.g: 3hours 5minutes").arg(QString::number(hours), QString::number(minutes));
     }
 
     qlonglong days = (hours / 24);
-    if (days < 365) {
+    if (days < 365)
+    {
         hours -= (days * 24);
         return QCoreApplication::translate("misc", "%1d %2h", "e.g: 2days 10hours").arg(QString::number(days), QString::number(hours));
     }
@@ -449,36 +478,41 @@ QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
     static const QString ver = QString("%1.%2.%3")
-                               .arg(BOOST_VERSION / 100000)
-                               .arg((BOOST_VERSION / 100) % 1000)
-                               .arg(BOOST_VERSION % 100);
+        .arg(QString::number(BOOST_VERSION / 100000)
+            , QString::number((BOOST_VERSION / 100) % 1000)
+            , QString::number(BOOST_VERSION % 100));
     return ver;
 }
 
 QString Utils::Misc::libtorrentVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString ver = LIBTORRENT_VERSION;
-    return ver;
+    static const auto version {QString::fromLatin1(lt::version())};
+    return version;
 }
 
 QString Utils::Misc::opensslVersionString()
 {
-    const QString version {OPENSSL_VERSION_TEXT};
-    return version.split(' ', QString::SkipEmptyParts)[1];
+#if (OPENSSL_VERSION_NUMBER >= 0x1010000f)
+    static const auto version {QString::fromLatin1(OpenSSL_version(OPENSSL_VERSION))};
+#else
+    static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
+#endif
+    return QStringView(version).split(u' ', Qt::SkipEmptyParts)[1].toString();
 }
 
 QString Utils::Misc::zlibVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString version {ZLIB_VERSION};
+    static const auto version {QString::fromLatin1(zlibVersion())};
     return version;
 }
 
 #ifdef Q_OS_WIN
 QString Utils::Misc::windowsSystemPath()
 {
-    static const QString path = []() -> QString {
+    static const QString path = []() -> QString
+    {
         WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
         return QString::fromWCharArray(systemPath);

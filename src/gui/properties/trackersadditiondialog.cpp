@@ -32,14 +32,14 @@
 #include <QMessageBox>
 #include <QStringList>
 
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
-#include "uithememanager.h"
 
-TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent)
     : QDialog(parent)
     , m_ui(new Ui::TrackersAdditionDialog())
     , m_torrent(torrent)
@@ -56,11 +56,14 @@ TrackersAdditionDialog::~TrackersAdditionDialog()
 
 QStringList TrackersAdditionDialog::newTrackers() const
 {
+    const QString plainText = m_ui->textEditTrackersList->toPlainText();
+
     QStringList cleanTrackers;
-    for (QString url : asConst(m_ui->textEditTrackersList->toPlainText().split('\n'))) {
+    for (QStringView url : asConst(QStringView(plainText).split(u'\n')))
+    {
         url = url.trimmed();
         if (!url.isEmpty())
-            cleanTrackers << url;
+            cleanTrackers << url.toString();
     }
     return cleanTrackers;
 }
@@ -76,7 +79,8 @@ void TrackersAdditionDialog::on_uTorrentListButton_clicked()
 
 void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResult &result)
 {
-    if (result.status != Net::DownloadStatus::Success) {
+    if (result.status != Net::DownloadStatus::Success)
+    {
         // To restore the cursor ...
         setCursor(Qt::ArrowCursor);
         m_ui->uTorrentListButton->setEnabled(true);
@@ -90,8 +94,9 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split('\n');
     QVector<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     existingTrackers.reserve(trackersFromUser.size());
-    for (const QString &userURL : trackersFromUser) {
-        const BitTorrent::TrackerEntry userTracker(userURL);
+    for (const QString &userURL : trackersFromUser)
+    {
+        const BitTorrent::TrackerEntry userTracker {userURL};
         if (!existingTrackers.contains(userTracker))
             existingTrackers << userTracker;
     }
@@ -103,12 +108,14 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     QBuffer buffer;
     buffer.setData(result.data);
     buffer.open(QBuffer::ReadOnly);
-    while (!buffer.atEnd()) {
+    while (!buffer.atEnd())
+    {
         const QString line = buffer.readLine().trimmed();
         if (line.isEmpty()) continue;
 
-        BitTorrent::TrackerEntry newTracker(line);
-        if (!existingTrackers.contains(newTracker)) {
+        BitTorrent::TrackerEntry newTracker {line};
+        if (!existingTrackers.contains(newTracker))
+        {
             m_ui->textEditTrackersList->insertPlainText(line + '\n');
             ++nb;
         }
@@ -122,7 +129,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         QMessageBox::information(this, tr("No change"), tr("No additional trackers were found."), QMessageBox::Ok);
 }
 
-QStringList TrackersAdditionDialog::askForTrackers(QWidget *parent, BitTorrent::TorrentHandle *const torrent)
+QStringList TrackersAdditionDialog::askForTrackers(QWidget *parent, BitTorrent::Torrent *const torrent)
 {
     QStringList trackers;
     TrackersAdditionDialog dlg(parent, torrent);

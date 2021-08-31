@@ -30,18 +30,23 @@
 
 #include <QString>
 
-BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(const QString &address)
-{
-    QVector<QStringRef> ipPort;
+using namespace BitTorrent;
 
-    if (address.startsWith('[') && address.contains("]:")) {  // IPv6
-        ipPort = address.splitRef("]:");
+PeerAddress PeerAddress::parse(const QStringView address)
+{
+    QList<QStringView> ipPort;
+
+    if (address.startsWith(u'[') && address.contains(QLatin1String("]:")))
+    {  // IPv6
+        ipPort = address.split(QString::fromLatin1("]:"));
         ipPort[0] = ipPort[0].mid(1);  // chop '['
     }
-    else if (address.contains(':')) {  // IPv4
-        ipPort = address.splitRef(':');
+    else if (address.contains(u':'))
+    {  // IPv4
+        ipPort = address.split(u':');
     }
-    else {
+    else
+    {
         return {};
     }
 
@@ -54,4 +59,25 @@ BitTorrent::PeerAddress BitTorrent::PeerAddress::parse(const QString &address)
         return {};
 
     return {ip, port};
+}
+
+QString PeerAddress::toString() const
+{
+    if (ip.isNull())
+        return {};
+
+    const QString ipStr = (ip.protocol() == QAbstractSocket::IPv6Protocol)
+        ? ('[' + ip.toString() + ']')
+        : ip.toString();
+    return (ipStr + ':' + QString::number(port));
+}
+
+bool BitTorrent::operator==(const BitTorrent::PeerAddress &left, const BitTorrent::PeerAddress &right)
+{
+    return (left.ip == right.ip) && (left.port == right.port);
+}
+
+uint BitTorrent::qHash(const BitTorrent::PeerAddress &addr, const uint seed)
+{
+    return (::qHash(addr.ip, seed) ^ ::qHash(addr.port));
 }

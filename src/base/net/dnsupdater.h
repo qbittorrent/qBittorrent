@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef DNSUPDATER_H
-#define DNSUPDATER_H
+#pragma once
 
 #include <QDateTime>
 #include <QHostAddress>
@@ -84,5 +83,3 @@ namespace Net
         QString m_password;
     };
 }
-
-#endif // DNSUPDATER_H

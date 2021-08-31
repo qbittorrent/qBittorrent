@@ -6,17 +6,17 @@
     <title>QBT_TR(Add Torrent Links)QBT_TR[CONTEXT=downloadFromURL]</title>
     <link rel="stylesheet" href="css/style.css?v=${CACHEID}" type="text/css" />
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css" />
-    <script src="scripts/lib/mootools-1.2-core-yc.js"></script>
-    <script src="scripts/lib/mootools-1.2-more.js"></script>
+    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
     <script src="scripts/download.js?v=${CACHEID}"></script>
     <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
 
 <body>
-    <iframe id="download_frame" name="download_frame" class="invisible" src="javascript:false;"></iframe>
+    <iframe id="download_frame" name="download_frame" class="invisible" src="about:blank"></iframe>
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="downloadForm" style="text-align: center;" target="download_frame" autocorrect="off" autocapitalize="none">
         <div style="text-align: center;">
-            <br/>
+            <br />
             <h2 class="vcenter">QBT_TR(Download Torrents from their URLs or Magnet links)QBT_TR[CONTEXT=HttpServer]</h2>
             <textarea id="urls" rows="10" name="urls"></textarea>
             <p>QBT_TR(Only one link per line)QBT_TR[CONTEXT=HttpServer]</p>
@@ -27,7 +27,7 @@
                             <label for="autoTMM">QBT_TR(Torrent Management Mode:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <select id="autoTMM" name="autoTMM" onchange="changeTMM(this)">
+                            <select id="autoTMM" name="autoTMM" onchange="qBittorrent.Download.changeTMM(this)">
                                 <option selected value="false">Manual</option>
                                 <option value="true">Automatic</option>
                             </select>
@@ -63,10 +63,10 @@
                         </td>
                         <td>
                             <div class="select-watched-folder-editable">
-                                <select id="categorySelect" onchange="changeCategorySelect(this)">
+                                <select id="categorySelect" onchange="qBittorrent.Download.changeCategorySelect(this)">
                                     <option selected value="\other"></option>
                                 </select>
-                                <input name="category" type="text" value="" />
+                                <input name="category" type="text" />
                             </div>
                         </td>
                     </tr>
@@ -89,11 +89,14 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="rootFolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                            <label for="contentLayout">QBT_TR(Content layout:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
-                            <input type="hidden" id="rootFolderHidden" name="root_folder" />
-                            <input type="checkbox" id="rootFolder" />
+                            <select id="contentLayout" name="contentLayout">
+                                <option selected value="Original">QBT_TR(Original)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="Subfolder">QBT_TR(Create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="NoSubfolder">QBT_TR(Don't create subfolder)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>
@@ -154,7 +157,6 @@
 
         $('downloadForm').addEventListener("submit", function() {
             $('startTorrentHidden').value = $('startTorrent').checked ? 'false' : 'true';
-            $('rootFolderHidden').value = $('rootFolder').checked ? 'true' : 'false';
 
             $('dlLimitHidden').value = $('dlLimitText').value.toInt() * 1024;
             $('upLimitHidden').value = $('upLimitText').value.toInt() * 1024;

@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_DOWNLOADMANAGER_H
-#define NET_DOWNLOADMANAGER_H
+#pragma once
 
 #include <QHash>
 #include <QNetworkAccessManager>
@@ -99,10 +98,12 @@ namespace Net
     class DownloadHandler : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(DownloadHandler)
+        Q_DISABLE_COPY_MOVE(DownloadHandler)
 
     public:
         using QObject::QObject;
+
+        virtual void cancel() = 0;
 
     signals:
         void finished(const DownloadResult &result);
@@ -111,15 +112,17 @@ namespace Net
     class DownloadManager : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(DownloadManager)
+        Q_DISABLE_COPY_MOVE(DownloadManager)
 
     public:
         static void initInstance();
         static void freeInstance();
         static DownloadManager *instance();
 
+        DownloadHandler *download(const DownloadRequest &downloadRequest);
+
         template <typename Context, typename Func>
-        void download(const DownloadRequest &downloadRequest, Context context, Func slot);
+        void download(const DownloadRequest &downloadRequest, Context context, Func &&slot);
 
         void registerSequentialService(const ServiceID &serviceID);
 
@@ -137,7 +140,6 @@ namespace Net
     private:
         explicit DownloadManager(QObject *parent = nullptr);
 
-        DownloadHandler *download(const DownloadRequest &downloadRequest);
         void applyProxySettings();
         void handleReplyFinished(const QNetworkReply *reply);
 
@@ -150,11 +152,9 @@ namespace Net
     };
 
     template <typename Context, typename Func>
-    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func slot)
+    void DownloadManager::download(const DownloadRequest &downloadRequest, Context context, Func &&slot)
     {
         const DownloadHandler *handler = download(downloadRequest);
         connect(handler, &DownloadHandler::finished, context, slot);
     }
 }
-
-#endif // NET_DOWNLOADMANAGER_H

@@ -34,20 +34,26 @@
  * RSS Session configuration file format (JSON):
  *
  * =============== BEGIN ===============
- * {
- *     "folder1": {
- *         "subfolder1": {
- *             "Feed name 1 (Alias)": {
+ *
+ {
+ *     "folder1":
+ {
+ *         "subfolder1":
+ {
+ *             "Feed name 1 (Alias)":
+ {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url1"
  *             }
- *             "Feed name 2 (Alias)": {
+ *             "Feed name 2 (Alias)":
+ {
  *                 "uid": "feed unique identifier",
  *                 "url": "http://some-feed-url2"
  *             }
  *         },
  *         "subfolder2": {},
- *         "Feed name 3 (Alias)": {
+ *         "Feed name 3 (Alias)":
+ {
  *             "uid": "feed unique identifier",
  *             "url": "http://some-feed-url3"
  *         }
@@ -81,7 +87,7 @@ namespace RSS
     class Session : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Session)
+        Q_DISABLE_COPY_MOVE(Session)
 
         friend class ::Application;
 
@@ -101,8 +107,8 @@ namespace RSS
         int maxArticlesPerFeed() const;
         void setMaxArticlesPerFeed(int n);
 
-        uint refreshInterval() const;
-        void setRefreshInterval(uint refreshInterval);
+        int refreshInterval() const;
+        void setRefreshInterval(int refreshInterval);
 
         bool addFolder(const QString &path, QString *error = nullptr);
         bool addFeed(const QString &url, const QString &path, QString *error = nullptr);
@@ -152,7 +158,7 @@ namespace RSS
         AsyncFileStorage *m_confFileStorage;
         AsyncFileStorage *m_dataFileStorage;
         QTimer m_refreshTimer;
-        uint m_refreshInterval;
+        int m_refreshInterval;
         int m_maxArticlesPerFeed;
         QHash<QString, Item *> m_itemsByPath;
         QHash<QUuid, Feed *> m_feedsByUID;

@@ -34,7 +34,7 @@
 #include <QSpacerItem>
 
 #include "base/global.h"
-#include "uithememanager.h"
+#include "gui/uithememanager.h"
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
@@ -45,7 +45,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup = new QButtonGroup(this);
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("document-properties"),
 #endif
             tr("General"), parent);
@@ -54,7 +54,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(mainInfosButton, MainTab);
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("Trackers"), parent);
@@ -63,7 +63,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(trackersButton, TrackersTab);
     // Peers tab
     QPushButton *peersButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("edit-find-user"),
 #endif
             tr("Peers"), parent);
@@ -72,7 +72,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(peersButton, PeersTab);
     // URL seeds tab
     QPushButton *URLSeedsButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("network-server"),
 #endif
             tr("HTTP Sources"), parent);
@@ -81,7 +81,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     m_btnGroup->addButton(URLSeedsButton, URLSeedsTab);
     // Files tab
     QPushButton *filesButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("inode-directory"),
 #endif
             tr("Content"), parent);
@@ -92,7 +92,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
     // Speed tab
     QPushButton *speedButton = new QPushButton(
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
             UIThemeManager::instance()->getIcon("office-chart-line"),
 #endif
             tr("Speed"), parent);
@@ -100,7 +100,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     addWidget(speedButton);
     m_btnGroup->addButton(speedButton, SpeedTab);
     // SIGNAL/SLOT
-    connect(m_btnGroup, qOverload<int>(&QButtonGroup::buttonClicked)
+    connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
     // Disable buttons focus
     for (QAbstractButton *btn : asConst(m_btnGroup->buttons()))
@@ -117,8 +117,10 @@ void PropTabBar::setCurrentIndex(int index)
     if (index >= m_btnGroup->buttons().size())
         index = 0;
     // If asked to hide or if the currently selected tab is clicked
-    if ((index < 0) || (m_currentIndex == index)) {
-        if (m_currentIndex >= 0) {
+    if ((index < 0) || (m_currentIndex == index))
+    {
+        if (m_currentIndex >= 0)
+        {
           m_btnGroup->button(m_currentIndex)->setDown(false);
           m_currentIndex = -1;
           emit visibilityToggled(false);
@@ -126,10 +128,12 @@ void PropTabBar::setCurrentIndex(int index)
         return;
     }
     // Unselect previous tab
-    if (m_currentIndex >= 0) {
+    if (m_currentIndex >= 0)
+    {
         m_btnGroup->button(m_currentIndex)->setDown(false);
     }
-    else {
+    else
+    {
         // Nothing was selected, show!
         emit visibilityToggled(true);
     }

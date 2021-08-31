@@ -33,7 +33,7 @@
 class TorrentsController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TorrentsController)
+    Q_DISABLE_COPY_MOVE(TorrentsController)
 
 public:
     using APIController::APIController;
@@ -66,6 +66,7 @@ private slots:
     void addTrackersAction();
     void editTrackerAction();
     void removeTrackersAction();
+    void addPeersAction();
     void filePrioAction();
     void uploadLimitAction();
     void downloadLimitAction();
@@ -82,4 +83,6 @@ private slots:
     void setForceStartAction();
     void toggleSequentialDownloadAction();
     void toggleFirstLastPiecePrioAction();
+    void renameFileAction();
+    void renameFolderAction();
 };

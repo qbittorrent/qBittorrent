@@ -41,6 +41,7 @@ class AsyncFileStorage;
 
 namespace Net
 {
+    class DownloadHandler;
     struct DownloadResult;
 }
 
@@ -58,7 +59,7 @@ namespace RSS
     class Feed final : public Item
     {
         Q_OBJECT
-        Q_DISABLE_COPY(Feed)
+        Q_DISABLE_COPY_MOVE(Feed)
 
         friend class Session;
 
@@ -125,5 +126,6 @@ namespace RSS
         QString m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
+        Net::DownloadHandler *m_downloadHandler = nullptr;
     };
 }

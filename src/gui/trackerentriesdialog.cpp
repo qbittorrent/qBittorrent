@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QHash>
+#include <QVector>
 
 #include "base/bittorrent/trackerentry.h"
 #include "ui_trackerentriesdialog.h"
@@ -41,7 +42,7 @@
 TrackerEntriesDialog::TrackerEntriesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::TrackerEntriesDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Dimension"))
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
 
@@ -63,9 +64,10 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
     int maxTier = -1;
     QHash<int, QString> tiers;  // <tier, tracker URLs>
 
-    for (const BitTorrent::TrackerEntry &entry : trackers) {
-        tiers[entry.tier()] += (entry.url() + '\n');
-        maxTier = std::max(maxTier, entry.tier());
+    for (const BitTorrent::TrackerEntry &entry : trackers)
+    {
+        tiers[entry.tier] += (entry.url + '\n');
+        maxTier = std::max(maxTier, entry.tier);
     }
 
     QString text = tiers.value(0);
@@ -79,23 +81,23 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
 QVector<BitTorrent::TrackerEntry> TrackerEntriesDialog::trackers() const
 {
     const QString plainText = m_ui->plainTextEdit->toPlainText();
-    const QVector<QStringRef> lines = plainText.splitRef('\n');
+    const QList<QStringView> lines = QStringView(plainText).split(u'\n');
 
     QVector<BitTorrent::TrackerEntry> entries;
     entries.reserve(lines.size());
 
     int tier = 0;
-    for (QStringRef line : lines) {
+    for (QStringView line : lines)
+    {
         line = line.trimmed();
 
-        if (line.isEmpty()) {
+        if (line.isEmpty())
+        {
             ++tier;
             continue;
         }
 
-        BitTorrent::TrackerEntry entry {line.toString()};
-        entry.setTier(tier);
-        entries.append(entry);
+        entries.append({line.toString(), tier});
     }
 
     return entries;

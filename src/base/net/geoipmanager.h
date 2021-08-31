@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_GEOIPMANAGER_H
-#define NET_GEOIPMANAGER_H
+#pragma once
 
 #include <QObject>
 
@@ -44,7 +43,7 @@ namespace Net
     class GeoIPManager : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(GeoIPManager)
+        Q_DISABLE_COPY_MOVE(GeoIPManager)
 
     public:
         static void initInstance();
@@ -73,5 +72,3 @@ namespace Net
         static GeoIPManager *m_instance;
     };
 }
-
-#endif // NET_GEOIPMANAGER_H

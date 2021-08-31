@@ -28,9 +28,12 @@
 
 #include "peerlistwidget.h"
 
+#include <algorithm>
+
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
+#include <QHostAddress>
 #include <QMenu>
 #include <QMessageBox>
 #include <QSet>
@@ -38,21 +41,40 @@
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
+#include <QVector>
 #include <QWheelEvent>
 
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/geoipmanager.h"
 #include "base/net/reverseresolution.h"
 #include "base/preferences.h"
-#include "peerlistdelegate.h"
+#include "base/utils/misc.h"
+#include "base/utils/string.h"
+#include "gui/uithememanager.h"
 #include "peerlistsortmodel.h"
 #include "peersadditiondialog.h"
 #include "propertieswidget.h"
-#include "uithememanager.h"
+
+struct PeerEndpoint
+{
+    BitTorrent::PeerAddress address;
+    QString connectionType; // matches return type of `PeerInfo::connectionType()`
+};
+
+bool operator==(const PeerEndpoint &left, const PeerEndpoint &right)
+{
+    return (left.address == right.address) && (left.connectionType == right.connectionType);
+}
+
+uint qHash(const PeerEndpoint &peerEndpoint, const uint seed)
+{
+    return (qHash(peerEndpoint.address, seed) ^ ::qHash(peerEndpoint.connectionType));
+}
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
@@ -65,64 +87,66 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setRootIsDecorated(false);
     setItemsExpandable(false);
     setAllColumnsShowFocus(true);
+    setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false);
     // List Model
-    m_listModel = new QStandardItemModel(0, PeerListDelegate::COL_COUNT, this);
-    m_listModel->setHeaderData(PeerListDelegate::COUNTRY, Qt::Horizontal, tr("Country")); // Country flag column
-    m_listModel->setHeaderData(PeerListDelegate::IP, Qt::Horizontal, tr("IP"));
-    m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, tr("Port"));
-    m_listModel->setHeaderData(PeerListDelegate::FLAGS, Qt::Horizontal, tr("Flags"));
-    m_listModel->setHeaderData(PeerListDelegate::CONNECTION, Qt::Horizontal, tr("Connection"));
-    m_listModel->setHeaderData(PeerListDelegate::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
-    m_listModel->setHeaderData(PeerListDelegate::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
-    m_listModel->setHeaderData(PeerListDelegate::DOWN_SPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
-    m_listModel->setHeaderData(PeerListDelegate::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
-    m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
-    m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
-    m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
-    m_listModel->setHeaderData(PeerListDelegate::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
+    m_listModel = new QStandardItemModel(0, PeerListColumns::COL_COUNT, this);
+    m_listModel->setHeaderData(PeerListColumns::COUNTRY, Qt::Horizontal, tr("Country/Region")); // Country flag column
+    m_listModel->setHeaderData(PeerListColumns::IP, Qt::Horizontal, tr("IP"));
+    m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, tr("Port"));
+    m_listModel->setHeaderData(PeerListColumns::FLAGS, Qt::Horizontal, tr("Flags"));
+    m_listModel->setHeaderData(PeerListColumns::CONNECTION, Qt::Horizontal, tr("Connection"));
+    m_listModel->setHeaderData(PeerListColumns::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
+    m_listModel->setHeaderData(PeerListColumns::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
+    m_listModel->setHeaderData(PeerListColumns::DOWN_SPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
+    m_listModel->setHeaderData(PeerListColumns::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
+    m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, tr("Downloaded", "i.e: total data downloaded"));
+    m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
+    m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
+    m_listModel->setHeaderData(PeerListColumns::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
     // Set header text alignment
-    m_listModel->setHeaderData(PeerListDelegate::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::PROGRESS, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::DOWN_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::UP_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
-    m_listModel->setHeaderData(PeerListDelegate::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::PROGRESS, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::DOWN_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::UP_SPEED, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
-    hideColumn(PeerListDelegate::IP_HIDDEN);
-    hideColumn(PeerListDelegate::COL_COUNT);
+    hideColumn(PeerListColumns::IP_HIDDEN);
+    hideColumn(PeerListColumns::COL_COUNT);
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
     if (!m_resolveCountries)
-        hideColumn(PeerListDelegate::COUNTRY);
+        hideColumn(PeerListColumns::COUNTRY);
     // Ensure that at least one column is visible at all times
     bool atLeastOne = false;
-    for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
-        if (!isColumnHidden(i)) {
+    for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+    {
+        if (!isColumnHidden(i))
+        {
             atLeastOne = true;
             break;
         }
     }
     if (!atLeastOne)
-        setColumnHidden(PeerListDelegate::IP, false);
+        setColumnHidden(PeerListColumns::IP, false);
     // To also mitigate the above issue, we have to resize each column when
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
-    for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i)
+    for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+    {
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
+    }
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &PeerListWidget::showPeerListMenu);
-    // List delegate
-    m_listDelegate = new PeerListDelegate(this);
-    setItemDelegate(m_listDelegate);
     // Enable sorting
     setSortingEnabled(true);
     // IP to Hostname resolver
@@ -149,8 +173,6 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
 PeerListWidget::~PeerListWidget()
 {
     saveSettings();
-    if (m_resolver)
-        delete m_resolver;
 }
 
 void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
@@ -159,8 +181,9 @@ void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
 
-    for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
-        if ((i == PeerListDelegate::COUNTRY) && !Preferences::instance()->resolvePeerCountries())
+    for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+    {
+        if ((i == PeerListColumns::COUNTRY) && !Preferences::instance()->resolvePeerCountries())
             continue;
 
         QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
@@ -172,7 +195,8 @@ void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
     connect(menu, &QMenu::triggered, this, [this](const QAction *action)
     {
         int visibleCols = 0;
-        for (int i = 0; i < PeerListDelegate::IP_HIDDEN; ++i) {
+        for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+        {
             if (!isColumnHidden(i))
                 ++visibleCols;
 
@@ -198,73 +222,76 @@ void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
 
 void PeerListWidget::updatePeerHostNameResolutionState()
 {
-    if (Preferences::instance()->resolvePeerHostNames()) {
-        if (!m_resolver) {
+    if (Preferences::instance()->resolvePeerHostNames())
+    {
+        if (!m_resolver)
+        {
             m_resolver = new Net::ReverseResolution(this);
-            connect(m_resolver.data(), &Net::ReverseResolution::ipResolved, this, &PeerListWidget::handleResolved);
-            loadPeers(m_properties->getCurrentTorrent(), true);
+            connect(m_resolver, &Net::ReverseResolution::ipResolved, this, &PeerListWidget::handleResolved);
+            loadPeers(m_properties->getCurrentTorrent());
         }
     }
-    else if (m_resolver) {
+    else
+    {
         delete m_resolver;
+        m_resolver = nullptr;
     }
 }
 
 void PeerListWidget::updatePeerCountryResolutionState()
 {
-    if (Preferences::instance()->resolvePeerCountries() != m_resolveCountries) {
-        m_resolveCountries = !m_resolveCountries;
-        if (m_resolveCountries) {
-            loadPeers(m_properties->getCurrentTorrent());
-            showColumn(PeerListDelegate::COUNTRY);
-            if (columnWidth(PeerListDelegate::COUNTRY) <= 0)
-                resizeColumnToContents(PeerListDelegate::COUNTRY);
-        }
-        else {
-            hideColumn(PeerListDelegate::COUNTRY);
-        }
+    const bool resolveCountries = Preferences::instance()->resolvePeerCountries();
+    if (resolveCountries == m_resolveCountries)
+        return;
+
+    m_resolveCountries = resolveCountries;
+    if (m_resolveCountries)
+    {
+        loadPeers(m_properties->getCurrentTorrent());
+        showColumn(PeerListColumns::COUNTRY);
+        if (columnWidth(PeerListColumns::COUNTRY) <= 0)
+            resizeColumnToContents(PeerListColumns::COUNTRY);
+    }
+    else
+    {
+        hideColumn(PeerListColumns::COUNTRY);
     }
 }
 
 void PeerListWidget::showPeerListMenu(const QPoint &)
 {
-    BitTorrent::TorrentHandle *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add Peer Action
-    if (!torrent->isQueued() && !torrent->isChecking()) {
-        const QAction *addPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer..."));
-        connect(addPeerAct, &QAction::triggered, this, [this, torrent]()
+    // Do not allow user to add peers in a private torrent
+    if (!torrent->isQueued() && !torrent->isChecking() && !torrent->isPrivate())
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer...")
+            , this, [this, torrent]()
         {
-            const QList<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
-            int peerCount = 0;
-            for (const BitTorrent::PeerAddress &addr : peersList) {
-                if (torrent->connectPeer(addr)) {
-                    Logger::instance()->addMessage(tr("Manually adding peer '%1'...").arg(addr.ip.toString()));
-                    ++peerCount;
-                }
-                else {
-                    Logger::instance()->addMessage(tr("The peer '%1' could not be added to this torrent.").arg(addr.ip.toString()), Log::WARNING);
-                }
-            }
+            const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+            const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
+            {
+                return torrent->connectPeer(peer);
+            });
             if (peerCount < peersList.length())
-                QMessageBox::information(this, tr("Peer addition"), tr("Some peers could not be added. Check the Log for details."));
+                QMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
             else if (peerCount > 0)
-                QMessageBox::information(this, tr("Peer addition"), tr("The peers were added to this torrent."));
+                QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
         });
     }
 
-    if (!selectionModel()->selectedRows().isEmpty()) {
-        const QAction *copyPeerAct = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port"));
-        connect(copyPeerAct, &QAction::triggered, this, &PeerListWidget::copySelectedPeers);
-
+    if (!selectionModel()->selectedRows().isEmpty())
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
+            , this, &PeerListWidget::copySelectedPeers);
         menu->addSeparator();
-
-        const QAction *banAct = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently"));
-        connect(banAct, &QAction::triggered, this, &PeerListWidget::banSelectedPeers);
+        menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
+            , this, &PeerListWidget::banSelectedPeers);
     }
 
     if (menu->isEmpty())
@@ -275,19 +302,28 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
 
 void PeerListWidget::banSelectedPeers()
 {
-    // Confirm first
-    int ret = QMessageBox::question(this, tr("Ban peer permanently"), tr("Are you sure you want to permanently ban the selected peers?"),
-                                    tr("&Yes"), tr("&No"),
-                                    QString(), 0, 1);
-    if (ret) return;
-
+    // Store selected rows first as selected peers may disconnect
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
-    for (const QModelIndex &index : selectedIndexes) {
-        int row = m_proxyModel->mapToSource(index).row();
-        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
-        qDebug("Banning peer %s...", ip.toLocal8Bit().data());
-        Logger::instance()->addMessage(tr("Manually banning peer '%1'...").arg(ip));
+
+    QVector<QString> selectedIPs;
+    selectedIPs.reserve(selectedIndexes.size());
+
+    for (const QModelIndex &index : selectedIndexes)
+    {
+        const int row = m_proxyModel->mapToSource(index).row();
+        const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
+        selectedIPs += ip;
+    }
+
+    // Confirm before banning peer
+    const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Ban peer permanently")
+        , tr("Are you sure you want to permanently ban the selected peers?"));
+    if (btn != QMessageBox::Yes) return;
+
+    for (const QString &ip : selectedIPs)
+    {
         BitTorrent::Session::instance()->banIP(ip);
+        LogMsg(tr("Peer \"%1\" is manually banned").arg(ip));
     }
     // Refresh list
     loadPeers(m_properties->getCurrentTorrent());
@@ -297,29 +333,29 @@ void PeerListWidget::copySelectedPeers()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     QStringList selectedPeers;
-    for (const QModelIndex &index : selectedIndexes) {
-        int row = m_proxyModel->mapToSource(index).row();
-        QString ip = m_listModel->data(m_listModel->index(row, PeerListDelegate::IP_HIDDEN)).toString();
-        QString myport = m_listModel->data(m_listModel->index(row, PeerListDelegate::PORT)).toString();
-        if (ip.indexOf('.') == -1) // IPv6
-            selectedPeers << '[' + ip + "]:" + myport;
-        else // IPv4
-            selectedPeers << ip + ':' + myport;
+
+    for (const QModelIndex &index : selectedIndexes)
+    {
+        const int row = m_proxyModel->mapToSource(index).row();
+        const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
+        const QString port = m_listModel->item(row, PeerListColumns::PORT)->text();
+
+        if (!ip.contains('.'))  // IPv6
+            selectedPeers << ('[' + ip + "]:" + port);
+        else  // IPv4
+            selectedPeers << (ip + ':' + port);
     }
+
     QApplication::clipboard()->setText(selectedPeers.join('\n'));
 }
 
 void PeerListWidget::clear()
 {
-    qDebug("clearing peer list");
     m_peerItems.clear();
-    m_peerAddresses.clear();
-    m_missingFlags.clear();
-    int nbrows = m_listModel->rowCount();
-    if (nbrows > 0) {
-        qDebug("Cleared %d peers", nbrows);
+    m_itemsByIP.clear();
+    const int nbrows = m_listModel->rowCount();
+    if (nbrows > 0)
         m_listModel->removeRows(0, nbrows);
-    }
 }
 
 void PeerListWidget::loadSettings()
@@ -332,136 +368,143 @@ void PeerListWidget::saveSettings() const
     Preferences::instance()->setPeerListState(header()->saveState());
 }
 
-void PeerListWidget::loadPeers(BitTorrent::TorrentHandle *const torrent, bool forceHostnameResolution)
+void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
 {
     if (!torrent) return;
 
-    const QList<BitTorrent::PeerInfo> peers = torrent->peers();
-    QSet<QString> oldPeersSet = m_peerItems.keys().toSet();
+    const QVector<BitTorrent::PeerInfo> peers = torrent->peers();
+    QSet<PeerEndpoint> existingPeers;
+    for (auto i = m_peerItems.cbegin(); i != m_peerItems.cend(); ++i)
+        existingPeers << i.key();
 
-    for (const BitTorrent::PeerInfo &peer : peers) {
-        BitTorrent::PeerAddress addr = peer.address();
-        if (addr.ip.isNull()) continue;
+    for (const BitTorrent::PeerInfo &peer : peers)
+    {
+        if (peer.address().ip.isNull()) continue;
 
-        QString peerIp = addr.ip.toString();
-        if (m_peerItems.contains(peerIp)) {
-            // Update existing peer
-            updatePeer(peerIp, torrent, peer);
-            oldPeersSet.remove(peerIp);
-            if (forceHostnameResolution && m_resolver)
-                m_resolver->resolve(peerIp);
-        }
-        else {
-            // Add new peer
-            m_peerItems[peerIp] = addPeer(peerIp, torrent, peer);
-            m_peerAddresses[peerIp] = addr;
-            // Resolve peer host name is asked
-            if (m_resolver)
-                m_resolver->resolve(peerIp);
+        bool isNewPeer = false;
+        updatePeer(torrent, peer, isNewPeer);
+        if (!isNewPeer)
+        {
+            const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
+            existingPeers.remove(peerEndpoint);
         }
     }
-    // Delete peers that are gone
-    for (const QString &ip : oldPeersSet) {
-        m_missingFlags.remove(ip);
-        m_peerAddresses.remove(ip);
-        QStandardItem *item = m_peerItems.take(ip);
+
+    // Remove peers that are gone
+    for (const PeerEndpoint &peerEndpoint : asConst(existingPeers))
+    {
+        QStandardItem *item = m_peerItems.take(peerEndpoint);
+
+        QSet<QStandardItem *> &items = m_itemsByIP[peerEndpoint.address.ip];
+        items.remove(item);
+        if (items.isEmpty())
+            m_itemsByIP.remove(peerEndpoint.address.ip);
+
         m_listModel->removeRow(item->row());
     }
 }
 
-QStandardItem *PeerListWidget::addPeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
+void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer)
 {
-    int row = m_listModel->rowCount();
-    // Adding Peer to peer list
-    m_listModel->insertRow(row);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP), ip, Qt::ToolTipRole);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::IP_HIDDEN), ip);
-    if (m_resolveCountries) {
-        const QIcon ico = UIThemeManager::instance()->getFlagIcon(peer.country());
-        if (!ico.isNull()) {
-            m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
+    const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
+    const QString peerIp = peerEndpoint.address.ip.toString();
+    const Qt::Alignment intDataTextAlignment = Qt::AlignRight | Qt::AlignVCenter;
+
+    const auto setModelData =
+        [this] (const int row, const int column, const QString &displayData
+                , const QVariant &underlyingData, const Qt::Alignment textAlignmentData = {}
+                , const QString &toolTip = {})
+    {
+        const QMap<int, QVariant> data =
+        {
+            {Qt::DisplayRole, displayData},
+            {PeerListSortModel::UnderlyingDataRole, underlyingData},
+            {Qt::TextAlignmentRole, QVariant {textAlignmentData}},
+            {Qt::ToolTipRole, toolTip}
+        };
+        m_listModel->setItemData(m_listModel->index(row, column), data);
+    };
+
+    auto itemIter = m_peerItems.find(peerEndpoint);
+    isNewPeer = (itemIter == m_peerItems.end());
+    if (isNewPeer)
+    {
+        // new item
+        const int row = m_listModel->rowCount();
+        m_listModel->insertRow(row);
+
+        setModelData(row, PeerListColumns::IP, peerIp, peerIp, {}, peerIp);
+        setModelData(row, PeerListColumns::PORT, QString::number(peer.address().port), peer.address().port, intDataTextAlignment);
+        setModelData(row, PeerListColumns::IP_HIDDEN, peerIp, peerIp);
+
+        itemIter = m_peerItems.insert(peerEndpoint, m_listModel->item(row, PeerListColumns::IP));
+        m_itemsByIP[peerEndpoint.address.ip].insert(itemIter.value());
+    }
+
+    const int row = (*itemIter)->row();
+    const bool hideValues = Preferences::instance()->getHideZeroValues();
+
+    setModelData(row, PeerListColumns::CONNECTION, peer.connectionType(), peer.connectionType());
+    setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
+    const QString client = peer.client().toHtmlEscaped();
+    setModelData(row, PeerListColumns::CLIENT, client, client, {}, client);
+    setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + '%'), peer.progress(), intDataTextAlignment);
+    const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
+    setModelData(row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
+    const QString upSpeed = (hideValues && (peer.payloadUpSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true);
+    setModelData(row, PeerListColumns::UP_SPEED, upSpeed, peer.payloadUpSpeed(), intDataTextAlignment);
+    const QString totalDown = (hideValues && (peer.totalDownload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalDownload());
+    setModelData(row, PeerListColumns::TOT_DOWN, totalDown, peer.totalDownload(), intDataTextAlignment);
+    const QString totalUp = (hideValues && (peer.totalUpload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalUpload());
+    setModelData(row, PeerListColumns::TOT_UP, totalUp, peer.totalUpload(), intDataTextAlignment);
+    setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + '%'), peer.relevance(), intDataTextAlignment);
+
+    const QStringList downloadingFiles {torrent->info().filesForPiece(peer.downloadingPieceIndex())};
+    const QString downloadingFilesDisplayValue = downloadingFiles.join(';');
+    setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(QLatin1Char('\n')));
+
+    if (m_resolver)
+        m_resolver->resolve(peerEndpoint.address.ip);
+
+    if (m_resolveCountries)
+    {
+        const QIcon icon = UIThemeManager::instance()->getFlagIcon(peer.country());
+        if (!icon.isNull())
+        {
+            m_listModel->setData(m_listModel->index(row, PeerListColumns::COUNTRY), icon, Qt::DecorationRole);
             const QString countryName = Net::GeoIPManager::CountryName(peer.country());
-            m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), countryName, Qt::ToolTipRole);
-        }
-        else {
-            m_missingFlags.insert(ip);
+            m_listModel->setData(m_listModel->index(row, PeerListColumns::COUNTRY), countryName, Qt::ToolTipRole);
         }
     }
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), peer.connectionType());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client().toHtmlEscaped());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
-    QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1Char(';')));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1Char('\n')), Qt::ToolTipRole);
-
-    return m_listModel->item(row, PeerListDelegate::IP);
 }
 
-void PeerListWidget::updatePeer(const QString &ip, BitTorrent::TorrentHandle *const torrent, const BitTorrent::PeerInfo &peer)
+void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const
 {
-    QStandardItem *item = m_peerItems.value(ip);
-    int row = item->row();
-    if (m_resolveCountries) {
-        const QIcon ico = UIThemeManager::instance()->getFlagIcon(peer.country());
-        if (!ico.isNull()) {
-            m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), ico, Qt::DecorationRole);
-            const QString countryName = Net::GeoIPManager::CountryName(peer.country());
-            m_listModel->setData(m_listModel->index(row, PeerListDelegate::COUNTRY), countryName, Qt::ToolTipRole);
-            m_missingFlags.remove(ip);
-        }
-    }
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CONNECTION), peer.connectionType());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PORT), peer.address().port);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flags());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::FLAGS), peer.flagsDescription(), Qt::ToolTipRole);
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::CLIENT), peer.client().toHtmlEscaped());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::PROGRESS), peer.progress());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWN_SPEED), peer.payloadDownSpeed());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::UP_SPEED), peer.payloadUpSpeed());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_DOWN), peer.totalDownload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::TOT_UP), peer.totalUpload());
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::RELEVANCE), peer.relevance());
-    QStringList downloadingFiles(torrent->info().filesForPiece(peer.downloadingPieceIndex()));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String(";")));
-    m_listModel->setData(m_listModel->index(row, PeerListDelegate::DOWNLOADING_PIECE), downloadingFiles.join(QLatin1String("\n")), Qt::ToolTipRole);
-}
+    if (hostname.isEmpty())
+        return;
 
-void PeerListWidget::handleResolved(const QString &ip, const QString &hostname)
-{
-    QStandardItem *item = m_peerItems.value(ip, nullptr);
-    if (item) {
-        qDebug("Resolved %s -> %s", qUtf8Printable(ip), qUtf8Printable(hostname));
+    const QSet<QStandardItem *> items = m_itemsByIP.value(ip);
+    for (QStandardItem *item : items)
         item->setData(hostname, Qt::DisplayRole);
-    }
 }
 
-void PeerListWidget::handleSortColumnChanged(int col)
+void PeerListWidget::handleSortColumnChanged(const int col)
 {
-    if (col == PeerListDelegate::COUNTRY) {
-        qDebug("Sorting by decoration");
+    if (col == PeerListColumns::COUNTRY)
         m_proxyModel->setSortRole(Qt::ToolTipRole);
-    }
-    else {
-        m_proxyModel->setSortRole(Qt::DisplayRole);
-    }
+    else
+        m_proxyModel->setSortRole(PeerListSortModel::UnderlyingDataRole);
 }
 
 void PeerListWidget::wheelEvent(QWheelEvent *event)
 {
-    if (event->modifiers() & Qt::ShiftModifier) {
+    if (event->modifiers() & Qt::ShiftModifier)
+    {
         // Shift + scroll = horizontal scroll
         event->accept();
-
-        QWheelEvent scrollHEvent(event->pos(), event->globalPos(), event->delta(), event->buttons(), event->modifiers(), Qt::Horizontal);
+        QWheelEvent scrollHEvent(event->position(), event->globalPosition()
+            , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
+            , event->modifiers(), event->phase(), event->inverted(), event->source());
         QTreeView::wheelEvent(&scrollHEvent);
         return;
     }

@@ -59,7 +59,7 @@ class FileLogger;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace RSS
@@ -68,13 +68,13 @@ namespace RSS
     class AutoDownloader;
 }
 
-class Application : public BaseApplication
+class Application final : public BaseApplication
 {
     Q_OBJECT
-    Q_DISABLE_COPY(Application)
+    Q_DISABLE_COPY_MOVE(Application)
 
 public:
-    Application(const QString &id, int &argc, char **argv);
+    Application(int &argc, char **argv);
     ~Application() override;
 
     bool isRunning();
@@ -105,14 +105,14 @@ public:
 
 protected:
 #ifndef DISABLE_GUI
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
 #endif
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::TorrentHandle *const torrent);
+    void torrentFinished(BitTorrent::Torrent *const torrent);
     void allTorrentsFinished();
     void cleanup();
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
@@ -120,7 +120,7 @@ private slots:
 #endif
 
 private:
-    ApplicationInstanceManager *m_instanceManager;
+    ApplicationInstanceManager *m_instanceManager = nullptr;
     bool m_running;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
@@ -130,7 +130,7 @@ private:
 #endif
 
 #ifndef DISABLE_WEBUI
-    WebUI *m_webui;
+    WebUI *m_webui = nullptr;
 #endif
 
     // FileLog
@@ -142,7 +142,6 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(const BitTorrent::TorrentHandle *torrent) const;
-    void sendNotificationEmail(const BitTorrent::TorrentHandle *torrent);
-    void validateCommandLineParameters();
+    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 };

@@ -28,15 +28,13 @@
 
 #pragma once
 
-#include <QHash>
-#include <QList>
+#include <QtContainerFwd>
 
 #include "base/search/searchpluginmanager.h"
 #include "apicontroller.h"
 
 class QJsonArray;
 class QJsonObject;
-class QStringList;
 
 struct ISession;
 struct SearchResult;
@@ -44,7 +42,7 @@ struct SearchResult;
 class SearchController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchController)
+    Q_DISABLE_COPY_MOVE(SearchController)
 
 public:
     using APIController::APIController;
@@ -55,7 +53,6 @@ private slots:
     void statusAction();
     void resultsAction();
     void deleteAction();
-    void categoriesAction();
     void pluginsAction();
     void installPluginAction();
     void uninstallPluginAction();

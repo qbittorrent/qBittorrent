@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTMODELFOLDER_H
-#define TORRENTCONTENTMODELFOLDER_H
+#pragma once
 
 #include "torrentcontentmodelitem.h"
 
@@ -36,14 +35,14 @@ namespace BitTorrent
     enum class DownloadPriority;
 }
 
-class TorrentContentModelFolder : public TorrentContentModelItem
+class TorrentContentModelFolder final : public TorrentContentModelItem
 {
 public:
     // Folder constructor
     TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
     // Invisible root item constructor
-    explicit TorrentContentModelFolder(const QList<QVariant> &data);
+    explicit TorrentContentModelFolder(const QVector<QString> &data);
 
     ~TorrentContentModelFolder() override;
 
@@ -57,14 +56,12 @@ public:
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
 
     void deleteAllChildren();
-    const QList<TorrentContentModelItem*> &children() const;
+    const QVector<TorrentContentModelItem*> &children() const;
     void appendChild(TorrentContentModelItem *item);
     TorrentContentModelItem *child(int row) const;
     TorrentContentModelFolder *childFolderWithName(const QString &name) const;
     int childCount() const;
 
 private:
-    QList<TorrentContentModelItem*> m_childItems;
+    QVector<TorrentContentModelItem*> m_childItems;
 };
-
-#endif // TORRENTCONTENTMODELFOLDER_H

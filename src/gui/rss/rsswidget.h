@@ -28,8 +28,7 @@
  * exception statement from your version.
  */
 
-#ifndef RSSWIDGET_H
-#define RSSWIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -54,7 +53,7 @@ public:
 
 public slots:
     void deleteSelectedItems();
-    void updateRefreshInterval(uint val);
+    void updateRefreshInterval(int val) const;
 
 signals:
     void unreadCountUpdated(int count);
@@ -86,5 +85,3 @@ private:
     ArticleListWidget *m_articleListWidget;
     FeedListWidget *m_feedListWidget;
 };
-
-#endif // RSSWIDGET_H

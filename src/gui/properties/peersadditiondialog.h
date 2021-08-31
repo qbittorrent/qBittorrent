@@ -26,11 +26,10 @@
  * exception statement from your version.
  */
 
-#ifndef PEERADDITION_H
-#define PEERADDITION_H
+#pragma once
 
 #include <QDialog>
-#include <QList>
+#include <QVector>
 
 #include "base/bittorrent/peerinfo.h"
 
@@ -47,14 +46,12 @@ public:
     PeersAdditionDialog(QWidget *parent);
     ~PeersAdditionDialog();
 
-    static QList<BitTorrent::PeerAddress> askForPeers(QWidget *parent);
+    static QVector<BitTorrent::PeerAddress> askForPeers(QWidget *parent);
 
 protected slots:
     void validateInput();
 
 private:
     Ui::PeersAdditionDialog *m_ui;
-    QList<BitTorrent::PeerAddress> m_peersList;
+    QVector<BitTorrent::PeerAddress> m_peersList;
 };
-
-#endif // PEERADDITION_H

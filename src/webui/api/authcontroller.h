@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include <QDeadlineTimer>
 #include <QHash>
 
 #include "apicontroller.h"
@@ -37,14 +38,14 @@ class QString;
 class AuthController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AuthController)
+    Q_DISABLE_COPY_MOVE(AuthController)
 
 public:
     using APIController::APIController;
 
 private slots:
     void loginAction();
-    void logoutAction();
+    void logoutAction() const;
 
 private:
     bool isBanned() const;
@@ -54,7 +55,7 @@ private:
     struct FailedLogin
     {
         int failedAttemptsCount = 0;
-        qint64 bannedAt = 0;
+        QDeadlineTimer banTimer {-1};
     };
     mutable QHash<QString, FailedLogin> m_clientFailedLogins;
 };

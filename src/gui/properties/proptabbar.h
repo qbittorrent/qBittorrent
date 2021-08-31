@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROPTABBAR_H
-#define PROPTABBAR_H
+#pragma once
 
 #include <QHBoxLayout>
 
@@ -36,7 +35,7 @@ class QButtonGroup;
 class PropTabBar : public QHBoxLayout
 {
   Q_OBJECT
-  Q_DISABLE_COPY(PropTabBar)
+  Q_DISABLE_COPY_MOVE(PropTabBar)
 
 public:
     enum PropertyTab
@@ -64,5 +63,3 @@ private:
     QButtonGroup *m_btnGroup;
     int m_currentIndex;
 };
-
-#endif // PROPTABBAR_H

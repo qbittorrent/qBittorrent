@@ -29,32 +29,41 @@
 
 #pragma once
 
+#include <QColor>
+#include <QHash>
+#include <QIcon>
 #include <QObject>
-
-class QString;
+#include <QString>
 
 class UIThemeManager : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(UIThemeManager)
+    Q_DISABLE_COPY_MOVE(UIThemeManager)
 
 public:
     static void initInstance();
     static void freeInstance();
     static UIThemeManager *instance();
 
-    void applyStyleSheet() const;
-
-    QIcon getIcon(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId, const QString &fallback) const;
+    QString getIconPath(const QString &iconId) const;
+    QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
+
+    QColor getColor(const QString &id, const QColor &defaultColor) const;
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPath(const QString &iconId) const;
+    QString getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    void loadColorsFromJSONConfig();
+    void applyPalette() const;
+    void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MAC))
-    bool m_useSystemTheme;
+    QHash<QString, QColor> m_colors;
+    mutable QHash<QString, QIcon> m_iconCache;
+    mutable QHash<QString, QIcon> m_flagCache;
+    const bool m_useCustomTheme;
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    const bool m_useSystemTheme;
 #endif
 };

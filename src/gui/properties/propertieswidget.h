@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PROPERTIESWIDGET_H
-#define PROPERTIESWIDGET_H
+#pragma once
 
 #include <QList>
 #include <QWidget>
@@ -46,7 +45,7 @@ class TrackerListWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Ui
@@ -57,7 +56,7 @@ namespace Ui
 class PropertiesWidget : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PropertiesWidget)
+    Q_DISABLE_COPY_MOVE(PropertiesWidget)
 
 public:
     enum SlideState
@@ -69,24 +68,25 @@ public:
     explicit PropertiesWidget(QWidget *parent);
     ~PropertiesWidget() override;
 
-    BitTorrent::TorrentHandle *getCurrentTorrent() const;
+    BitTorrent::Torrent *getCurrentTorrent() const;
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
 
 public slots:
     void setVisibility(bool visible);
-    void loadTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void loadTorrentInfos(BitTorrent::Torrent *const torrent);
     void loadDynamicData();
     void clear();
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void openDoubleClickedFile(const QModelIndex &);
-    void loadTrackers(BitTorrent::TorrentHandle *const torrent);
+    void displayFileListHeaderMenu();
+    void openItem(const QModelIndex &index) const;
+    void loadTrackers(BitTorrent::Torrent *const torrent);
 
 protected slots:
-    void updateTorrentInfos(BitTorrent::TorrentHandle *const torrent);
+    void updateTorrentInfos(BitTorrent::Torrent *const torrent);
     void loadUrlSeeds();
     void askWebSeed();
     void deleteSelectedUrlSeeds();
@@ -102,16 +102,16 @@ protected slots:
 private slots:
     void configure();
     void filterText(const QString &filter);
-    void updateSavePath(BitTorrent::TorrentHandle *const torrent);
+    void updateSavePath(BitTorrent::Torrent *const torrent);
 
 private:
     QPushButton *getButtonFromIndex(int index);
     void applyPriorities();
-    void openFile(const QModelIndex &index);
-    void openFolder(const QModelIndex &index, bool containingFolder);
+    void openParentFolder(const QModelIndex &index) const;
+    QString getFullPath(const QModelIndex &index) const;
 
     Ui::PropertiesWidget *m_ui;
-    BitTorrent::TorrentHandle *m_torrent;
+    BitTorrent::Torrent *m_torrent;
     SlideState m_state;
     TorrentContentFilterModel *m_propListModel;
     PropListDelegate *m_propListDelegate;
@@ -123,6 +123,5 @@ private:
     PieceAvailabilityBar *m_piecesAvailability;
     PropTabBar *m_tabBar;
     LineEdit *m_contentFilterLine;
+    int m_handleWidth;
 };
-
-#endif // PROPERTIESWIDGET_H

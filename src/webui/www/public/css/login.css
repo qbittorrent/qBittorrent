@@ -1,10 +1,10 @@
 body {
-    margin: 0;
-    text-align: left;
+    color: #555;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     line-height: 18px;
-    color: #555;
+    margin: 0;
+    text-align: left;
 }
 
 .col {
@@ -19,13 +19,13 @@ body {
 #main {
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
     padding-top: 5em;
+    text-align: center;
 }
 
 #formplace {
-    text-align: left;
     padding: 10px;
+    text-align: left;
 }
 
 #error_msg {

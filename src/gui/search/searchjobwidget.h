@@ -40,21 +40,20 @@ class QStandardItemModel;
 
 class LineEdit;
 class SearchHandler;
-class SearchListDelegate;
 class SearchSortModel;
 struct SearchResult;
 
-template <typename T> class CachedSettingValue;
+template <typename T> class SettingValue;
 
 namespace Ui
 {
     class SearchJobWidget;
 }
 
-class SearchJobWidget : public QWidget
+class SearchJobWidget final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchJobWidget)
+    Q_DISABLE_COPY_MOVE(SearchJobWidget)
 
 public:
     enum class NameFilteringMode
@@ -100,7 +99,7 @@ private:
     void onItemDoubleClicked(const QModelIndex &index);
     void searchFinished(bool cancelled);
     void searchFailed();
-    void appendSearchResults(const QList<SearchResult> &results);
+    void appendSearchResults(const QVector<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
     void downloadTorrent(const QModelIndex &rowIndex);
@@ -118,13 +117,12 @@ private:
     void copyField(int column) const;
 
     static QString statusText(Status st);
-    static CachedSettingValue<NameFilteringMode> &nameFilteringModeSetting();
+    static SettingValue<NameFilteringMode> &nameFilteringModeSetting();
 
     Ui::SearchJobWidget *m_ui;
     SearchHandler *m_searchHandler;
     QStandardItemModel *m_searchListModel;
     SearchSortModel *m_proxyModel;
-    SearchListDelegate *m_searchDelegate;
     LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;

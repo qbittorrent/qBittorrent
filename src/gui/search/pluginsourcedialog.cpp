@@ -28,22 +28,26 @@
 
 #include "pluginsourcedialog.h"
 
+#include "gui/utils.h"
 #include "ui_pluginsourcedialog.h"
-#include "utils.h"
+
+#define SETTINGS_KEY(name) "SearchPluginSourceDialog/" name
 
 PluginSourceDialog::PluginSourceDialog(QWidget *parent)
     : QDialog(parent)
-    , m_ui(new Ui::PluginSourceDialog())
+    , m_ui(new Ui::PluginSourceDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 PluginSourceDialog::~PluginSourceDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 

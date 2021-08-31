@@ -29,13 +29,13 @@
 #pragma once
 
 #include <QDialog>
-#include <QVector>
+#include <QtContainerFwd>
 
 #include "base/settingvalue.h"
 
 namespace BitTorrent
 {
-    class TrackerEntry;
+    struct TrackerEntry;
 }
 
 namespace Ui
@@ -46,7 +46,7 @@ namespace Ui
 class TrackerEntriesDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(TrackerEntriesDialog)
+    Q_DISABLE_COPY_MOVE(TrackerEntriesDialog)
 
 public:
     explicit TrackerEntriesDialog(QWidget *parent);
@@ -60,5 +60,5 @@ private:
     void loadSettings();
 
     Ui::TrackerEntriesDialog *m_ui;
-    CachedSettingValue<QSize> m_storeDialogSize;
+    SettingValue<QSize> m_storeDialogSize;
 };

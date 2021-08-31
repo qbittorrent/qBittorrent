@@ -66,8 +66,7 @@
 ****************************************************************************
 */
 
-#ifndef QTLOCKEDFILE_H
-#define QTLOCKEDFILE_H
+#pragma once
 
 #include <QFile>
 
@@ -77,7 +76,7 @@
 
 namespace QtLP_Private
 {
-    class QtLockedFile : public QFile
+    class QtLockedFile final : public QFile
     {
     public:
         enum LockMode
@@ -103,8 +102,8 @@ namespace QtLP_Private
         Qt::HANDLE getMutexHandle(int idx, bool doCreate);
         bool waitMutex(Qt::HANDLE mutex, bool doBlock);
 
-        Qt::HANDLE wmutex;
-        Qt::HANDLE rmutex;
+        Qt::HANDLE wmutex = nullptr;
+        Qt::HANDLE rmutex = nullptr;
         QVector<Qt::HANDLE> rmutexes;
         QString mutexname;
 #endif
@@ -112,5 +111,3 @@ namespace QtLP_Private
         LockMode m_lock_mode;
     };
 }
-
-#endif

@@ -38,10 +38,12 @@
 #include "ui_ipsubnetwhitelistoptionsdialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "IPSubnetWhitelistOptionsDialog/" name
+
 IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::IPSubnetWhitelistOptionsDialog)
-    , m_modified(false)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
 
@@ -58,17 +60,19 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonWhitelistIPSubnet->setEnabled(false);
 
-    Utils::Gui::resize(this);
+    Utils::Gui::resize(this, m_storeDialogSize);
 }
 
 IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 
 void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
 {
-    if (m_modified) {
+    if (m_modified)
+    {
         // save to session
         QStringList subnets;
         // Operate on the m_sortFilter to grab the strings in sorted order
@@ -77,7 +81,8 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
         Preferences::instance()->setWebUiAuthSubnetWhitelist(subnets);
         QDialog::accept();
     }
-    else {
+    else
+    {
         QDialog::reject();
     }
 }
@@ -86,7 +91,8 @@ void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 {
     bool ok = false;
     const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text(), &ok);
-    if (!ok) {
+    if (!ok)
+    {
         QMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
         return;
     }

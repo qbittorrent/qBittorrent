@@ -26,16 +26,15 @@
  * exception statement from your version.
  */
 
-#ifndef PIECEAVAILABILITYBAR_H
-#define PIECEAVAILABILITYBAR_H
+#pragma once
 
 #include "piecesbar.h"
 
-class PieceAvailabilityBar : public PiecesBar
+class PieceAvailabilityBar final : public PiecesBar
 {
     using base = PiecesBar;
     Q_OBJECT
-    Q_DISABLE_COPY(PieceAvailabilityBar)
+    Q_DISABLE_COPY_MOVE(PieceAvailabilityBar)
 
 public:
     PieceAvailabilityBar(QWidget *parent);
@@ -48,7 +47,6 @@ public:
 private:
     bool updateImage(QImage &image) override;
     QString simpleToolTipText() const override;
-    bool isFileNameCorrectionNeeded() const override;
 
     // last used int vector, uses to better resize redraw
     // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
@@ -57,5 +55,3 @@ private:
     // scale int vector to float vector
     QVector<float> intToFloatVector(const QVector<int> &vecin, int reqSize);
 };
-
-#endif // PIECEAVAILABILITYBAR_H

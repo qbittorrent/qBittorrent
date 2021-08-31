@@ -27,24 +27,19 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCREATORDIALOG_H
-#define TORRENTCREATORDIALOG_H
+#pragma once
 
 #include <QDialog>
 
+#include "base/bittorrent/torrentcreatorthread.h"
 #include "base/settingvalue.h"
-
-namespace BitTorrent
-{
-    class TorrentCreatorThread;
-}
 
 namespace Ui
 {
     class TorrentCreatorDialog;
 }
 
-class TorrentCreatorDialog : public QDialog
+class TorrentCreatorDialog final : public QDialog
 {
     Q_OBJECT
 
@@ -68,25 +63,34 @@ private:
 
     void saveSettings();
     void loadSettings();
+    void setInteractionEnabled(bool enabled) const;
+
     int getPieceSize() const;
-    void setInteractionEnabled(bool enabled);
+#ifdef QBT_USES_LIBTORRENT2
+    BitTorrent::TorrentFormat getTorrentFormat() const;
+#else
+    int getPaddedFileSizeLimit() const;
+#endif
 
     Ui::TorrentCreatorDialog *m_ui;
     BitTorrent::TorrentCreatorThread *m_creatorThread;
 
     // settings
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<int> m_storePieceSize;
-    CachedSettingValue<bool> m_storePrivateTorrent;
-    CachedSettingValue<bool> m_storeStartSeeding;
-    CachedSettingValue<bool> m_storeIgnoreRatio;
-    CachedSettingValue<bool> m_storeOptimizeAlignment;
-    CachedSettingValue<QString> m_storeLastAddPath;
-    CachedSettingValue<QString> m_storeTrackerList;
-    CachedSettingValue<QString> m_storeWebSeedList;
-    CachedSettingValue<QString> m_storeComments;
-    CachedSettingValue<QString> m_storeLastSavePath;
-    CachedSettingValue<QString> m_storeSource;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<int> m_storePieceSize;
+    SettingValue<bool> m_storePrivateTorrent;
+    SettingValue<bool> m_storeStartSeeding;
+    SettingValue<bool> m_storeIgnoreRatio;
+#ifdef QBT_USES_LIBTORRENT2
+    SettingValue<int> m_storeTorrentFormat;
+#else
+    SettingValue<bool> m_storeOptimizeAlignment;
+    SettingValue<int> m_paddedFileSizeLimit;
+#endif
+    SettingValue<QString> m_storeLastAddPath;
+    SettingValue<QString> m_storeTrackerList;
+    SettingValue<QString> m_storeWebSeedList;
+    SettingValue<QString> m_storeComments;
+    SettingValue<QString> m_storeLastSavePath;
+    SettingValue<QString> m_storeSource;
 };
-
-#endif // TORRENTCREATORDIALOG_H

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
  * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
@@ -33,6 +34,8 @@
 #include <QPointer>
 #include <QWidget>
 
+class QEvent;
+class QObject;
 class QTabWidget;
 
 class MainWindow;
@@ -46,7 +49,7 @@ namespace Ui
 class SearchWidget : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SearchWidget)
+    Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
     explicit SearchWidget(MainWindow *mainWindow);
@@ -59,8 +62,10 @@ private slots:
     void on_pluginsButton_clicked();
 
 private:
+    bool eventFilter(QObject *object, QEvent *event) override;
     void tabChanged(int index);
     void closeTab(int index);
+    void closeAllTabs();
     void tabStatusChanged(QWidget *tab);
     void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();

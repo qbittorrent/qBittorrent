@@ -1,60 +1,65 @@
-cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
-
-message(AUTHOR_WARNING "If the build fails, please try the autotools/qmake method.")
-
-if(POLICY CMP0074)
-    cmake_policy(SET CMP0074 NEW)
-endif()
+cmake_minimum_required(VERSION 3.16 FATAL_ERROR) # Policies <= CMP0097 default to NEW
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-include(FunctionReadVersion)
 
-read_version("${CMAKE_CURRENT_SOURCE_DIR}/version.pri" VER_MAJOR VER_MINOR VER_BUGFIX VER_BUILD VER_STATUS)
-# message(STATUS "Project version is: ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD} (${VER_STATUS})")
+project(qBittorrent
+    DESCRIPTION "The qBittorrent BitTorrent client"
+    HOMEPAGE_URL "https://www.qbittorrent.org/"
+    LANGUAGES CXX
+)
 
-project(qBittorrent VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}.${VER_BUILD})
+# use CONFIG mode first in find_package
+set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
+# version requirements - older versions may work, but you are on your own
+set(minBoostVersion 1.65)
+set(minQtVersion 5.15.2)
+set(minOpenSSLVersion 1.1.1)
+set(minLibtorrent1Version 1.2.14)
+set(minLibtorrentVersion 2.0.4)
+set(minZlibVersion 1.2.11)
 
-set(PROJECT_VERSION "${VER_MAJOR}.${VER_MINOR}.${VER_BUGFIX}")
-
-if (NOT VER_BUILD EQUAL 0)
-    set(PROJECT_VERSION "${PROJECT_VERSION}.${VER_BUILD}")
+# features (some are platform-specific)
+include(CheckCXXSourceCompiles) # TODO: migrate to CheckSourceCompiles in CMake >= 3.19
+include(FeatureSummary)
+include(FeatureOptionsSetup)
+feature_option(STACKTRACE "Enable stacktraces" ON)
+feature_option(GUI "Build GUI application" ON)
+feature_option(WEBUI "Enables built-in HTTP server for headless use" ON)
+feature_option(VERBOSE_CONFIGURE "Show information about PACKAGES_FOUND and PACKAGES_NOT_FOUND in the configure output (only useful for debugging the CMake build scripts)" OFF)
+if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    feature_option_dependent(DBUS
+        "Enables support for notifications and power-management features on Linux via D-Bus"
+        ON "GUI" OFF
+    )
+    feature_option_dependent(SYSTEMD
+        "Install systemd service file to a directory manually overridable with Systemd_SERVICES_INSTALL_DIR"
+        OFF "NOT GUI" OFF
+    )
+    if (STACKTRACE)
+        check_cxx_source_compiles(
+            "#include <execinfo.h>
+            int main(){return 0;}"
+            QBITTORRENT_HAS_EXECINFO_H
+        )
+        if (NOT QBITTORRENT_HAS_EXECINFO_H)
+            message(FATAL_ERROR "execinfo.h header file not found.\n"
+                "Please either disable the STACKTRACE feature or use a libc that has this header file, such as glibc (GNU libc)."
+            )
+        endif()
+    endif()
+elseif (MSVC)
+    feature_option(MSVC_RUNTIME_DYNAMIC "Use MSVC dynamic runtime library (-MD) instead of static (-MT)" ON)
 endif()
 
-set(PROJECT_VERSION "${PROJECT_VERSION}${VER_STATUS}")
-
-add_definitions(-DQBT_VERSION_MAJOR=${VER_MAJOR})
-add_definitions(-DQBT_VERSION_MINOR=${VER_MINOR})
-add_definitions(-DQBT_VERSION_BUGFIX=${VER_BUGFIX})
-add_definitions(-DQBT_VERSION_BUILD=${VER_BUILD})
-
-add_definitions(-DQBT_VERSION="v${PROJECT_VERSION}")
-add_definitions(-DQBT_VERSION_2="${PROJECT_VERSION}")
-
 include(GNUInstallDirs)
-include(FeatureSummary)
-
-# version requirements
-set(requiredBoostVersion 1.40)
-set(requiredQtVersion 5.9.0)
-set(requiredOpensslVersion 1.0)
-set(requiredLibtorrentVersion 1.1.10)
-
-if(WIN32)
-    include(winconf)
-endif(WIN32)
-
-
-# we need options here, at the top level, because they are used not only in "src" subdir, but in the "dist" dir too
-include(CompileFeature)
-
-optional_compile_definitions(COUNTRIES_RESOLUTION FEATURE DESCRIPTION "Enable resolving peers IP addresses to countries"
-    DEFAULT ON DISABLED DISABLE_COUNTRIES_RESOLUTION)
-optional_compile_definitions(STACKTRACE FEATURE DESCRIPTION "Enable stacktraces"
-    DEFAULT ON ENABLED STACKTRACE)
-optional_compile_definitions(WEBUI FEATURE DESCRIPTION "Enables built-in HTTP server for headless use"
-    DEFAULT ON DISABLED DISABLE_WEBUI)
-
 add_subdirectory(src)
 add_subdirectory(dist)
 
-feature_summary(DESCRIPTION "\nConfiguration results:" WHAT ALL)
+if (VERBOSE_CONFIGURE)
+    feature_summary(WHAT ALL)
+else()
+    feature_summary(WHAT ENABLED_FEATURES DISABLED_FEATURES)
+endif()
+
+# Generate version header
+configure_file("src/base/version.h.in" "${CMAKE_CURRENT_SOURCE_DIR}/src/base/version.h" @ONLY)

@@ -35,7 +35,7 @@
 class AppController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AppController)
+    Q_DISABLE_COPY_MOVE(AppController)
 
 public:
     using APIController::APIController;
@@ -48,7 +48,7 @@ private slots:
     void preferencesAction();
     void setPreferencesAction();
     void defaultSavePathAction();
-    
+
     void networkInterfaceListAction();
     void networkInterfaceAddressListAction();
 };

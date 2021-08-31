@@ -59,14 +59,18 @@ void Connection::read()
     m_idleTimer.restart();
     m_receivedData.append(m_socket->readAll());
 
-    while (!m_receivedData.isEmpty()) {
+    while (!m_receivedData.isEmpty())
+    {
         const RequestParser::ParseResult result = RequestParser::parse(m_receivedData);
 
-        switch (result.status) {
-        case RequestParser::ParseStatus::Incomplete: {
+        switch (result.status)
+        {
+        case RequestParser::ParseStatus::Incomplete:
+        {
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
-                if (m_receivedData.size() > bufferLimit) {
-                    Logger::instance()->addMessage(tr("Http request size exceeds limiation, closing socket. Limit: %1, IP: %2")
+                if (m_receivedData.size() > bufferLimit)
+                {
+                    Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                     Response resp(413, "Payload Too Large");
@@ -78,7 +82,8 @@ void Connection::read()
             }
             return;
 
-        case RequestParser::ParseStatus::BadRequest: {
+        case RequestParser::ParseStatus::BadRequest:
+        {
                 Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
@@ -90,7 +95,8 @@ void Connection::read()
             }
             return;
 
-        case RequestParser::ParseStatus::OK: {
+        case RequestParser::ParseStatus::OK:
+        {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
@@ -131,9 +137,10 @@ bool Connection::acceptsGzipEncoding(QString codings)
 {
     // [rfc7231] 5.3.4. Accept-Encoding
 
-    const auto isCodingAvailable = [](const QStringList &list, const QString &encoding) -> bool
+    const auto isCodingAvailable = [](const QList<QStringView> &list, const QStringView encoding) -> bool
     {
-        for (const QString &str : list) {
+        for (const QStringView &str : list)
+        {
             if (!str.startsWith(encoding))
                 continue;
 
@@ -142,11 +149,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
                 return true;
 
             // [rfc7231] 5.3.1. Quality Values
-            const QStringRef substr = str.midRef(encoding.size() + 3);  // ex. skip over "gzip;q="
+            const QStringView substr = str.mid(encoding.size() + 3);  // ex. skip over "gzip;q="
 
             bool ok = false;
             const double qvalue = substr.toDouble(&ok);
-            if (!ok || (qvalue <= 0.0))
+            if (!ok || (qvalue <= 0))
                 return false;
 
             return true;
@@ -154,15 +161,15 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QStringList list = codings.remove(' ').remove('\t').split(',', QString::SkipEmptyParts);
+    const QList<QStringView> list = QStringView(codings.remove(' ').remove('\t')).split(u',', Qt::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, QLatin1String("gzip"));
+    const bool canGzip = isCodingAvailable(list, QString::fromLatin1("gzip"));
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, QLatin1String("*"));
+    const bool canAny = isCodingAvailable(list, QString::fromLatin1("*"));
     if (canAny)
         return true;
 

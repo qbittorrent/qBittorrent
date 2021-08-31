@@ -1,4 +1,4 @@
-﻿;Installer strings
+;Installer strings
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_ARABIC} "qBittorrent (مطلوب)"
@@ -6,17 +6,21 @@ LangString inst_qbt_req ${LANG_ARABIC} "qBittorrent (مطلوب)"
 LangString inst_dekstop ${LANG_ARABIC} "وضع اختصار على سطح المكتب"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_ARABIC} "وضع اختصار في قائمة البداية"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_ARABIC} "بدء qBittorrent على ويندوز بدء التشغيل"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_ARABIC} "فتح ملفات التورنت باستخدام qBittorrent"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
 LangString inst_magnet ${LANG_ARABIC} "فتح الروابط المغناطيسية باستخدام qBittorrent"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_ARABIC} "اضافة قاعدة للجدار الناري لويندوز"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_ARABIC} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_ARABIC} "جاري اضافة القاعدة للجدار الناري"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_ARABIC} "البرنامج يعمل. يرجى اغلاقه قبل البدء في التنصيب"
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_ARABIC} "يوجد نسخة سابقة من البرنامج. سيتم إزالتها دون حذف إعدادات المستخدم"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السابقة من البرنامج"
@@ -24,7 +28,10 @@ LangString inst_unist ${LANG_ARABIC} "جاري ازالة النسخة السا�
 LangString launch_qbt ${LANG_ARABIC} "تشغيل البرنامج"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ARABIC} "هذا المثبت يعمل فقط في نسخ ويندوز 64 بت"
-
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_ARABIC} "This qBittorrent version requires at least Windows 7."
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_ARABIC} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

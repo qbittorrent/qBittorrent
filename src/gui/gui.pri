@@ -1,9 +1,5 @@
 INCLUDEPATH += $$PWD
 
-include(powermanagement/powermanagement.pri)
-include(properties/properties.pri)
-unix:!macx:dbus: include(qtnotify/qtnotify.pri)
-
 HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
@@ -19,27 +15,41 @@ HEADERS += \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
+    $$PWD/fspathedit_p.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
-    $$PWD/loglistwidget.h \
+    $$PWD/log/logfiltermodel.h \
+    $$PWD/log/loglistview.h \
+    $$PWD/log/logmodel.h \
     $$PWD/mainwindow.h \
     $$PWD/optionsdialog.h \
+    $$PWD/powermanagement/powermanagement.h \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
-    $$PWD/private/fspathedit_p.h \
-    $$PWD/private/tristatewidget.h \
+    $$PWD/progressbarpainter.h \
+    $$PWD/properties/downloadedpiecesbar.h \
+    $$PWD/properties/peerlistsortmodel.h \
+    $$PWD/properties/peerlistwidget.h \
+    $$PWD/properties/peersadditiondialog.h \
+    $$PWD/properties/pieceavailabilitybar.h \
+    $$PWD/properties/piecesbar.h \
+    $$PWD/properties/propertieswidget.h \
+    $$PWD/properties/proplistdelegate.h \
+    $$PWD/properties/proptabbar.h \
+    $$PWD/properties/speedplotview.h \
+    $$PWD/properties/speedwidget.h \
+    $$PWD/properties/trackerlistwidget.h \
+    $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
     $$PWD/rss/feedlistwidget.h \
     $$PWD/rss/htmlbrowser.h \
     $$PWD/rss/rsswidget.h \
-    $$PWD/scanfoldersdelegate.h \
     $$PWD/search/pluginselectdialog.h \
     $$PWD/search/pluginsourcedialog.h \
     $$PWD/search/searchjobwidget.h \
-    $$PWD/search/searchlistdelegate.h \
     $$PWD/search/searchsortmodel.h \
     $$PWD/search/searchwidget.h \
     $$PWD/shutdownconfirmdialog.h \
@@ -57,6 +67,7 @@ HEADERS += \
     $$PWD/torrentcontentmodelitem.h \
     $$PWD/torrentcontenttreeview.h \
     $$PWD/torrentcreatordialog.h \
+    $$PWD/torrentoptionsdialog.h \
     $$PWD/trackerentriesdialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
@@ -64,9 +75,11 @@ HEADERS += \
     $$PWD/transferlistsortmodel.h \
     $$PWD/transferlistwidget.h \
     $$PWD/tristateaction.h \
+    $$PWD/tristatewidget.h \
     $$PWD/uithememanager.h \
-    $$PWD/updownratiodialog.h \
-    $$PWD/utils.h
+    $$PWD/utils.h \
+    $$PWD/watchedfolderoptionsdialog.h \
+    $$PWD/watchedfoldersmodel.h
 
 SOURCES += \
     $$PWD/aboutdialog.cpp \
@@ -79,30 +92,45 @@ SOURCES += \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
+    $$PWD/deletionconfirmationdialog.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
+    $$PWD/fspathedit_p.cpp \
     $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
-    $$PWD/loglistwidget.cpp \
+    $$PWD/log/logfiltermodel.cpp \
+    $$PWD/log/loglistview.cpp \
+    $$PWD/log/logmodel.cpp \
     $$PWD/mainwindow.cpp \
     $$PWD/optionsdialog.cpp \
+    $$PWD/powermanagement/powermanagement.cpp \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
-    $$PWD/private/fspathedit_p.cpp \
-    $$PWD/private/tristatewidget.cpp \
+    $$PWD/progressbarpainter.cpp \
+    $$PWD/properties/downloadedpiecesbar.cpp \
+    $$PWD/properties/peerlistsortmodel.cpp \
+    $$PWD/properties/peerlistwidget.cpp \
+    $$PWD/properties/peersadditiondialog.cpp \
+    $$PWD/properties/pieceavailabilitybar.cpp \
+    $$PWD/properties/piecesbar.cpp \
+    $$PWD/properties/propertieswidget.cpp \
+    $$PWD/properties/proplistdelegate.cpp \
+    $$PWD/properties/proptabbar.cpp \
+    $$PWD/properties/speedplotview.cpp \
+    $$PWD/properties/speedwidget.cpp \
+    $$PWD/properties/trackerlistwidget.cpp \
+    $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/feedlistwidget.cpp \
     $$PWD/rss/htmlbrowser.cpp \
     $$PWD/rss/rsswidget.cpp \
-    $$PWD/scanfoldersdelegate.cpp \
     $$PWD/search/pluginselectdialog.cpp \
     $$PWD/search/pluginsourcedialog.cpp \
     $$PWD/search/searchjobwidget.cpp \
-    $$PWD/search/searchlistdelegate.cpp \
     $$PWD/search/searchsortmodel.cpp \
     $$PWD/search/searchwidget.cpp \
     $$PWD/shutdownconfirmdialog.cpp \
@@ -120,6 +148,7 @@ SOURCES += \
     $$PWD/torrentcontentmodelitem.cpp \
     $$PWD/torrentcontenttreeview.cpp \
     $$PWD/torrentcreatordialog.cpp \
+    $$PWD/torrentoptionsdialog.cpp \
     $$PWD/trackerentriesdialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
@@ -127,13 +156,25 @@ SOURCES += \
     $$PWD/transferlistsortmodel.cpp \
     $$PWD/transferlistwidget.cpp \
     $$PWD/tristateaction.cpp \
+    $$PWD/tristatewidget.cpp \
     $$PWD/uithememanager.cpp \
-    $$PWD/updownratiodialog.cpp \
-    $$PWD/utils.cpp
+    $$PWD/utils.cpp \
+    $$PWD/watchedfolderoptionsdialog.cpp \
+    $$PWD/watchedfoldersmodel.cpp
 
 win32|macx {
     HEADERS += $$PWD/programupdater.h
     SOURCES += $$PWD/programupdater.cpp
+}
+
+unix:!macx:dbus {
+    HEADERS += \
+        $$PWD/powermanagement/powermanagement_x11.h \
+        $$PWD/qtnotify/notifications.h
+
+    SOURCES += \
+        $$PWD/powermanagement/powermanagement_x11.cpp \
+        $$PWD/qtnotify/notifications.cpp
 }
 
 macx {
@@ -154,6 +195,9 @@ FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \
+    $$PWD/properties/peersadditiondialog.ui \
+    $$PWD/properties/propertieswidget.ui \
+    $$PWD/properties/trackersadditiondialog.ui \
     $$PWD/rss/automatedrssdownloader.ui \
     $$PWD/rss/rsswidget.ui \
     $$PWD/search/pluginselectdialog.ui \
@@ -165,7 +209,8 @@ FORMS += \
     $$PWD/statsdialog.ui \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
+    $$PWD/torrentoptionsdialog.ui \
     $$PWD/trackerentriesdialog.ui \
-    $$PWD/updownratiodialog.ui
+    $$PWD/watchedfolderoptionsdialog.ui
 
 RESOURCES += $$PWD/about.qrc

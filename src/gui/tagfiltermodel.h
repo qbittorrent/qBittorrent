@@ -26,12 +26,12 @@
  * exception statement from your version.
  */
 
-#ifndef TAGFILTERMODEL_H
-#define TAGFILTERMODEL_H
+#pragma once
 
 #include <QAbstractListModel>
-#include <QSet>
-#include <QVector>
+#include <QtContainerFwd>
+
+#include "base/tagset.h"
 
 class QModelIndex;
 
@@ -39,10 +39,10 @@ class TagModelItem;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
-class TagFilterModel : public QAbstractListModel
+class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -64,10 +64,10 @@ public:
 private slots:
     void tagAdded(const QString &tag);
     void tagRemoved(const QString &tag);
-    void torrentTagAdded(BitTorrent::TorrentHandle *const torrent, const QString &tag);
-    void torrentTagRemoved(BitTorrent::TorrentHandle *const, const QString &tag);
-    void torrentAdded(BitTorrent::TorrentHandle *const torrent);
-    void torrentAboutToBeRemoved(BitTorrent::TorrentHandle *const torrent);
+    void torrentTagAdded(BitTorrent::Torrent *const torrent, const QString &tag);
+    void torrentTagRemoved(BitTorrent::Torrent *const, const QString &tag);
+    void torrentAdded(BitTorrent::Torrent *const torrent);
+    void torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
 
 private:
     static QString tagDisplayName(const QString &tag);
@@ -78,11 +78,9 @@ private:
     bool isValidRow(int row) const;
     int findRow(const QString &tag) const;
     TagModelItem *findItem(const QString &tag);
-    QVector<TagModelItem *> findItems(const QSet<QString> &tags);
+    QVector<TagModelItem *> findItems(const TagSet &tags);
     TagModelItem *allTagsItem();
     TagModelItem *untaggedItem();
 
     QList<TagModelItem> m_tagItems;  // Index corresponds to its row
 };
-
-#endif // TAGFILTERMODEL_H

@@ -7,14 +7,13 @@
 **
 ****************************************************************************/
 
-#ifndef LINEEDIT_H
-#define LINEEDIT_H
+#pragma once
 
 #include <QLineEdit>
 
 class QToolButton;
 
-class LineEdit : public QLineEdit
+class LineEdit final : public QLineEdit
 {
     Q_OBJECT
 
@@ -28,5 +27,3 @@ protected:
 private:
     QToolButton *m_searchButton;
 };
-
-#endif // LIENEDIT_H

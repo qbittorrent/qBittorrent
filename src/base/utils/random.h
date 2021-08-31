@@ -26,18 +26,12 @@
  * exception statement from your version.
  */
 
-#ifndef UTILS_RANDOM_H
-#define UTILS_RANDOM_H
+#pragma once
 
 #include <cstdint>
 #include <limits>
 
-namespace Utils
+namespace Utils::Random
 {
-    namespace Random
-    {
-        uint32_t rand(uint32_t min = 0, uint32_t max = std::numeric_limits<uint32_t>::max());
-    }
+    uint32_t rand(uint32_t min = 0, uint32_t max = std::numeric_limits<uint32_t>::max());
 }
-
-#endif // UTILS_FS_H

@@ -30,10 +30,10 @@
 
 #include <QTreeView>
 
-class CategoryFilterWidget : public QTreeView
+class CategoryFilterWidget final : public QTreeView
 {
     Q_OBJECT
-    Q_DISABLE_COPY(CategoryFilterWidget)
+    Q_DISABLE_COPY_MOVE(CategoryFilterWidget)
 
 public:
     explicit CategoryFilterWidget(QWidget *parent = nullptr);

@@ -28,11 +28,15 @@
 
 #pragma once
 
-#include <QSet>
+#include <optional>
+
+#include <QMetaType>
 #include <QString>
 #include <QVector>
 
-#include "../tristatebool.h"
+#include "base/tagset.h"
+#include "torrent.h"
+#include "torrentcontentlayout.h"
 
 namespace BitTorrent
 {
@@ -42,19 +46,22 @@ namespace BitTorrent
     {
         QString name;
         QString category;
-        QSet<QString> tags;
+        TagSet tags;
         QString savePath;
         bool disableTempPath = false; // e.g. for imported torrents
         bool sequential = false;
         bool firstLastPiecePriority = false;
-        TriStateBool addForced;
-        TriStateBool addPaused;
+        bool addForced = false;
+        std::optional<bool> addPaused;
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool ignoreShareLimits = false;
         bool skipChecking = false;
-        TriStateBool createSubfolder;
-        TriStateBool useAutoTMM;
+        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        std::optional<bool> useAutoTMM;
         int uploadLimit = -1;
         int downloadLimit = -1;
+        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
+        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
     };
 }
+
+Q_DECLARE_METATYPE(BitTorrent::AddTorrentParams)

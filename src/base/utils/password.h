@@ -31,21 +31,18 @@
 class QByteArray;
 class QString;
 
-namespace Utils
+namespace Utils::Password
 {
-    namespace Password
+    // Implements constant-time comparison to protect against timing attacks
+    // Taken from https://crackstation.net/hashing-security.htm
+    bool slowEquals(const QByteArray &a, const QByteArray &b);
+
+    namespace PBKDF2
     {
-        // Implements constant-time comparison to protect against timing attacks
-        // Taken from https://crackstation.net/hashing-security.htm
-        bool slowEquals(const QByteArray &a, const QByteArray &b);
+        QByteArray generate(const QString &password);
+        QByteArray generate(const QByteArray &password);
 
-        namespace PBKDF2
-        {
-            QByteArray generate(const QString &password);
-            QByteArray generate(const QByteArray &password);
-
-            bool verify(const QByteArray &secret, const QString &password);
-            bool verify(const QByteArray &secret, const QByteArray &password);
-        }
+        bool verify(const QByteArray &secret, const QString &password);
+        bool verify(const QByteArray &secret, const QByteArray &password);
     }
 }

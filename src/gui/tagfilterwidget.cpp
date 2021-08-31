@@ -28,7 +28,6 @@
 
 #include "tagfilterwidget.h"
 
-#include <QAction>
 #include <QMenu>
 #include <QMessageBox>
 
@@ -45,7 +44,8 @@ namespace
     QString getTagFilter(const TagFilterProxyModel *const model, const QModelIndex &index)
     {
         QString tagFilter; // Defaults to All
-        if (index.isValid()) {
+        if (index.isValid())
+        {
             if (index.row() == 1)
                 tagFilter = "";  // Untagged
             else if (index.row() > 1)
@@ -69,7 +69,7 @@ TagFilterWidget::TagFilterWidget(QWidget *parent)
     setUniformRowHeights(true);
     setHeaderHidden(true);
     setIconSize(Utils::Gui::smallIconSize());
-#if defined(Q_OS_MAC)
+#if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     setIndentation(0);
@@ -107,43 +107,25 @@ void TagFilterWidget::showMenu(QPoint)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QAction *addAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("list-add")
-        , tr("Add tag..."));
-    connect(addAct, &QAction::triggered, this, &TagFilterWidget::addTag);
+    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add tag...")
+        , this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
-        const QAction *removeAct = menu->addAction(
-            UIThemeManager::instance()->getIcon("list-remove")
-            , tr("Remove tag"));
-        connect(removeAct, &QAction::triggered, this, &TagFilterWidget::removeTag);
+    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tag")
+            , this, &TagFilterWidget::removeTag);
     }
 
-    const QAction *removeUnusedAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("list-remove")
-        , tr("Remove unused tags"));
-    connect(removeUnusedAct, &QAction::triggered, this, &TagFilterWidget::removeUnusedTags);
-
+    menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove unused tags")
+        , this, &TagFilterWidget::removeUnusedTags);
     menu->addSeparator();
-
-    const QAction *startAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("media-playback-start")
-        , tr("Resume torrents"));
-    connect(startAct, &QAction::triggered
+    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents")
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
-
-    const QAction *pauseAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("media-playback-pause")
-        , tr("Pause torrents"));
-    connect(pauseAct, &QAction::triggered, this
-        , &TagFilterWidget::actionPauseTorrentsTriggered);
-
-    const QAction *deleteTorrentsAct = menu->addAction(
-        UIThemeManager::instance()->getIcon("edit-delete")
-        , tr("Delete torrents"));
-    connect(deleteTorrentsAct, &QAction::triggered, this
-        , &TagFilterWidget::actionDeleteTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents")
+        , this, &TagFilterWidget::actionPauseTorrentsTriggered);
+    menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents")
+        , this, &TagFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());
 }
@@ -155,7 +137,8 @@ void TagFilterWidget::callUpdateGeometry()
 
 QSize TagFilterWidget::sizeHint() const
 {
-    return {
+    return
+    {
         // Width should be exactly the width of the content
         sizeHintForColumn(0),
         // Height should be exactly the height of the content
@@ -181,12 +164,15 @@ QString TagFilterWidget::askTagName()
     bool ok = false;
     QString tag = "";
     bool invalid = true;
-    while (invalid) {
+    while (invalid)
+    {
         invalid = false;
         tag = AutoExpandableDialog::getText(
             this, tr("New Tag"), tr("Tag:"), QLineEdit::Normal, tag, &ok).trimmed();
-        if (ok && !tag.isEmpty()) {
-            if (!BitTorrent::Session::isValidTag(tag)) {
+        if (ok && !tag.isEmpty())
+        {
+            if (!BitTorrent::Session::isValidTag(tag))
+            {
                 QMessageBox::warning(
                     this, tr("Invalid tag name")
                     , tr("Tag name '%1' is invalid").arg(tag));
@@ -212,7 +198,8 @@ void TagFilterWidget::addTag()
 void TagFilterWidget::removeTag()
 {
     const auto selectedRows = selectionModel()->selectedRows();
-    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first())) {
+    if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
+    {
         BitTorrent::Session::instance()->removeTag(
             static_cast<TagFilterProxyModel *>(model())->tag(selectedRows.first()));
         updateGeometry();

@@ -17,19 +17,23 @@ Contributors:
 * Nick Tiskov <daymansmail@gmail.com>
 
 Code from other projects:
-* files src/qtsingleapplication/* src/lineedit/*
+* files src/app/qtlocalpeer/*
   copyright: Nokia Corporation
-  license: LGPL
+  license: mixed
 
-* files src/ico.cpp src/ico.h
-  copyright: Malte Starostik <malte@kde.org>
-  license: LGPL
+* files src/gui/lineedit.*
+  copyright: Trolltech ASA <info@trolltech.com>
+  license: custom
 
 * files src/search_engine/socks.py
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
 
-* file src/stacktrace_win.h
+* file src/app/stacktrace.h
+  copyright: Timo Bingmann from http://idlebox.net/
+  license: WTFPL v2.0
+
+* file src/app/stacktrace_win.h
   copyright: Quassel Project
   license: GPLv2/3
 
@@ -62,7 +66,7 @@ Images Authors:
   copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
   license: GPLv2
 
-* file: src/icons/skin/tabs.gif
+* file: src/icons/tabs.gif
   copyright: Greg Houston <gregory.houston@gmail.com>
   license: MIT
 
@@ -87,7 +91,7 @@ Images Authors:
 
 * file: src/icons/oxygen/checked.png
   copyright: Victor Buinsky <allok.victor@gmail.com>
-  
+
 * file: src/icons/skin/ratio.png
   copyright: Fatcow Web Hosting
   license: Creative Commons Attribution 3.0 License
@@ -119,7 +123,7 @@ Translations authors:
   - German: Niels Hoffmann (zentralmaschine@users.sourceforge.net)
   - Greek: Tsvetan Bankov (emerge_life@users.sourceforge.net), Stephanos Antaris (santaris@csd.auth.gr), sledgehammer999(hammered999@gmail.com) and Γιάννης Ανθυμίδης Evropi(Transifex)
   - Hebrew: David Deutsch (d.deffo@gmail.com)
-  - Hungarian: Majoros Péter (majoros.j.p@t-online.hu)
+  - Hungarian: Majoros Péter
   - Italian: bovirus (bovirus@live.it) and Matteo Sechi (bu17714@gmail.com)
   - Japanese: Masato Hashimoto (cabezon.hashimoto@gmail.com)
   - Korean: Jin Woo Sin (jin828sin@users.sourceforge.net)

@@ -47,7 +47,8 @@ Item::~Item() {}
 
 void Item::setPath(const QString &path)
 {
-    if (path != m_path) {
+    if (path != m_path)
+    {
         m_path = path;
         emit pathChanged(this);
     }
@@ -67,9 +68,10 @@ bool Item::isValidPath(const QString &path)
 {
     static const QRegularExpression re(
                 QString(R"(\A[^\%1]+(\%1[^\%1]+)*\z)").arg(Item::PathSeparator)
-                , QRegularExpression::DontCaptureOption | QRegularExpression::OptimizeOnFirstUsageOption);
+                , QRegularExpression::DontCaptureOption);
 
-    if (path.isEmpty() || !re.match(path).hasMatch()) {
+    if (path.isEmpty() || !re.match(path).hasMatch())
+    {
         qDebug() << "Incorrect RSS Item path:" << path;
         return false;
     }
@@ -93,7 +95,8 @@ QStringList Item::expandPath(const QString &path)
     //        return result;
 
     int index = 0;
-    while ((index = path.indexOf(Item::PathSeparator, index)) >= 0) {
+    while ((index = path.indexOf(Item::PathSeparator, index)) >= 0)
+    {
         result << path.left(index);
         ++index;
     }

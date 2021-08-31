@@ -7,7 +7,9 @@ win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
 
-QT += network xml
+QT += network sql xml
+
+macx|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
 
 nogui {
     TARGET = qbittorrent-nox
@@ -25,7 +27,6 @@ nogui {
         QT += winextras
     }
     macx {
-        QT += macextras
         LIBS += -lobjc
     }
 }
@@ -55,8 +56,9 @@ CONFIG(release, debug|release) {
 include(../version.pri)
 
 # Qt defines
-DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x050f02
 DEFINES += QT_NO_CAST_TO_ASCII
+DEFINES += QT_NO_CAST_FROM_BYTEARRAY
 DEFINES += QT_USE_QSTRINGBUILDER
 DEFINES += QT_STRICT_ITERATORS
 
@@ -68,8 +70,8 @@ include(base/base.pri)
 !nowebui: include(webui/webui.pri)
 
 isEmpty(QMAKE_LRELEASE) {
-    win32: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease.exe
-    else: QMAKE_LRELEASE = $$[QT_INSTALL_BINS]/lrelease
+    win32: QMAKE_LRELEASE = $$[QT_HOST_BINS]/lrelease.exe
+    else: QMAKE_LRELEASE = $$[QT_HOST_BINS]/lrelease
     unix {
         equals(QT_MAJOR_VERSION, 5) {
             !exists($$QMAKE_LRELEASE): QMAKE_LRELEASE = lrelease-qt5

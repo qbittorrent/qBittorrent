@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef SPEEDWIDGET_H
-#define SPEEDWIDGET_H
+#pragma once
 
 #include <QComboBox>
 #include <QWidget>
@@ -40,7 +39,7 @@ class QVBoxLayout;
 class PropertiesWidget;
 class SpeedPlotView;
 
-class ComboBoxMenuButton : public QComboBox
+class ComboBoxMenuButton final : public QComboBox
 {
     Q_OBJECT
 
@@ -80,5 +79,3 @@ private:
     QMenu *m_graphsMenu;
     QList<QAction *> m_graphsMenuActions;
 };
-
-#endif // SPEEDWIDGET_H

@@ -51,23 +51,24 @@ namespace
         {
         }
 
-        QVariantHash read();
-        bool write(const QVariantHash &data);
+        QVariantHash read() const;
+        bool write(const QVariantHash &data) const;
 
     private:
         // we return actual file names used by QSettings because
         // there is no other way to get that name except
         // actually create a QSettings object.
         // if serialization operation was not successful we return empty string
-        QString deserialize(const QString &name, QVariantHash &data);
-        QString serialize(const QString &name, const QVariantHash &data);
+        QString deserialize(const QString &name, QVariantHash &data) const;
+        QString serialize(const QString &name, const QVariantHash &data) const;
 
         const QString m_name;
     };
 
     QString mapKey(const QString &key)
     {
-        static const QHash<QString, QString> keyMapping = {
+        static const QHash<QString, QString> keyMapping =
+        {
             {"BitTorrent/Session/MaxRatioAction", "Preferences/Bittorrent/MaxRatioAction"},
             {"BitTorrent/Session/DefaultSavePath", "Preferences/Downloads/SavePath"},
             {"BitTorrent/Session/TempPath", "Preferences/Downloads/TempPath"},
@@ -86,7 +87,6 @@ namespace
             {"BitTorrent/Session/BandwidthSchedulerEnabled", "Preferences/Scheduler/Enabled"},
             {"BitTorrent/Session/Port", "Preferences/Connection/PortRangeMin"},
             {"BitTorrent/Session/UseRandomPort", "Preferences/General/UseRandomPort"},
-            {"BitTorrent/Session/IPv6Enabled", "Preferences/Connection/InterfaceListenIPv6"},
             {"BitTorrent/Session/Interface", "Preferences/Connection/Interface"},
             {"BitTorrent/Session/InterfaceName", "Preferences/Connection/InterfaceName"},
             {"BitTorrent/Session/InterfaceAddress", "Preferences/Connection/InterfaceAddress"},
@@ -153,9 +153,7 @@ namespace
 SettingsStorage *SettingsStorage::m_instance = nullptr;
 
 SettingsStorage::SettingsStorage()
-    : m_data{TransactionalSettings(QLatin1String("qBittorrent")).read()}
-    , m_dirty(false)
-    , m_lock(QReadWriteLock::Recursive)
+    : m_data {TransactionalSettings(QLatin1String("qBittorrent")).read()}
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -186,33 +184,37 @@ SettingsStorage *SettingsStorage::instance()
 
 bool SettingsStorage::save()
 {
-    if (!m_dirty) return false; // Obtaining the lock is expensive, let's check early
-    QWriteLocker locker(&m_lock);
-    if (!m_dirty) return false; // something might have changed while we were getting the lock
+    const QWriteLocker locker(&m_lock);  // guard for `m_dirty` too
+    if (!m_dirty) return true;
 
-    TransactionalSettings settings(QLatin1String("qBittorrent"));
-    if (settings.write(m_data)) {
-        m_dirty = false;
-        return true;
+    const TransactionalSettings settings(QLatin1String("qBittorrent"));
+    if (!settings.write(m_data))
+    {
+        m_timer.start();
+        return false;
     }
 
-    m_timer.start();
-    return false;
+    m_dirty = false;
+    return true;
 }
 
-QVariant SettingsStorage::loadValue(const QString &key, const QVariant &defaultValue) const
-{
-    QReadLocker locker(&m_lock);
-    return m_data.value(mapKey(key), defaultValue);
-}
-
-void SettingsStorage::storeValue(const QString &key, const QVariant &value)
+QVariant SettingsStorage::loadValueImpl(const QString &key, const QVariant &defaultValue) const
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.value(realKey) != value) {
+    const QReadLocker locker(&m_lock);
+    return m_data.value(realKey, defaultValue);
+}
+
+void SettingsStorage::storeValueImpl(const QString &key, const QVariant &value)
+{
+    const QString realKey = mapKey(key);
+    const QWriteLocker locker(&m_lock);
+
+    QVariant &currentValue = m_data[realKey];
+    if (currentValue != value)
+    {
         m_dirty = true;
-        m_data.insert(realKey, value);
+        currentValue = value;
         m_timer.start();
     }
 }
@@ -220,20 +222,32 @@ void SettingsStorage::storeValue(const QString &key, const QVariant &value)
 void SettingsStorage::removeValue(const QString &key)
 {
     const QString realKey = mapKey(key);
-    QWriteLocker locker(&m_lock);
-    if (m_data.contains(realKey)) {
+    const QWriteLocker locker(&m_lock);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    if (m_data.remove(realKey))
+#else
+    if (m_data.remove(realKey) > 0)
+#endif
+    {
         m_dirty = true;
-        m_data.remove(realKey);
         m_timer.start();
     }
 }
 
-QVariantHash TransactionalSettings::read()
+bool SettingsStorage::hasKey(const QString &key) const
+{
+    const QString realKey = mapKey(key);
+    const QReadLocker locker {&m_lock};
+    return m_data.contains(realKey);
+}
+
+QVariantHash TransactionalSettings::read() const
 {
     QVariantHash res;
 
     const QString newPath = deserialize(m_name + QLatin1String("_new"), res);
-    if (!newPath.isEmpty()) { // "_new" file is NOT empty
+    if (!newPath.isEmpty())
+    { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
         // or because the disk was full. In any case the settings weren't transferred
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
@@ -249,14 +263,15 @@ QVariantHash TransactionalSettings::read()
         Utils::Fs::forceRemove(finalPath);
         QFile::rename(newPath, finalPath);
     }
-    else {
+    else
+    {
         deserialize(m_name, res);
     }
 
     return res;
 }
 
-bool TransactionalSettings::write(const QVariantHash &data)
+bool TransactionalSettings::write(const QVariantHash &data) const
 {
     // QSettings deletes the file before writing it out. This can result in problems
     // if the disk is full or a power outage occurs. Those events might occur
@@ -264,7 +279,8 @@ bool TransactionalSettings::write(const QVariantHash &data)
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
     const QString newPath = serialize(m_name + QLatin1String("_new"), data);
-    if (newPath.isEmpty()) {
+    if (newPath.isEmpty())
+    {
         Utils::Fs::forceRemove(newPath);
         return false;
     }
@@ -277,9 +293,9 @@ bool TransactionalSettings::write(const QVariantHash &data)
     return QFile::rename(newPath, finalPath);
 }
 
-QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data)
+QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
 
     if (settings->allKeys().isEmpty())
         return {};
@@ -288,20 +304,25 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
     // or that we don't touch directly in this code (eg disabled by ifdef). This ensures
     // that they will be copied over when save our settings to disk.
     for (const QString &key : asConst(settings->allKeys()))
-        data.insert(key, settings->value(key));
+    {
+        const QVariant value = settings->value(key);
+        if (value.isValid())
+            data[key] = value;
+    }
 
     return settings->fileName();
 }
 
-QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data)
+QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data) const
 {
-    SettingsPtr settings = Profile::instance().applicationSettings(name);
+    SettingsPtr settings = Profile::instance()->applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
         settings->setValue(i.key(), i.value());
 
     settings->sync(); // Important to get error status
 
-    switch (settings->status()) {
+    switch (settings->status())
+    {
     case QSettings::NoError:
         return settings->fileName();
     case QSettings::AccessError:

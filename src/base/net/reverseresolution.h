@@ -26,10 +26,10 @@
  * exception statement from your version.
  */
 
-#ifndef NET_REVERSERESOLUTION_H
-#define NET_REVERSERESOLUTION_H
+#pragma once
 
 #include <QCache>
+#include <QHostAddress>
 #include <QObject>
 
 class QHostInfo;
@@ -40,24 +40,22 @@ namespace Net
     class ReverseResolution : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY(ReverseResolution)
+        Q_DISABLE_COPY_MOVE(ReverseResolution)
 
     public:
         explicit ReverseResolution(QObject *parent = nullptr);
         ~ReverseResolution();
 
-        void resolve(const QString &ip);
+        void resolve(const QHostAddress &ip);
 
     signals:
-        void ipResolved(const QString &ip, const QString &hostname);
+        void ipResolved(const QHostAddress &ip, const QString &hostname);
 
     private slots:
         void hostResolved(const QHostInfo &host);
 
     private:
-        QHash<int /* LookupID */, QString /* IP */> m_lookups;
-        QCache<QString /* IP */, QString /* HostName */> m_cache;
+        QHash<int, QHostAddress> m_lookups;  // <LookupID, IP>
+        QCache<QHostAddress, QString> m_cache;  // <IP, HostName>
     };
 }
-
-#endif // NET_REVERSERESOLUTION_H

@@ -26,14 +26,13 @@
  * exception statement from your version.
  */
 
-#ifndef COOKIESMODEL_H
-#define COOKIESMODEL_H
+#pragma once
 
 #include <QAbstractItemModel>
 #include <QList>
 #include <QNetworkCookie>
 
-class CookiesModel : public QAbstractItemModel
+class CookiesModel final : public QAbstractItemModel
 {
      Q_OBJECT
 
@@ -70,5 +69,3 @@ public:
 private:
     mutable QList<QNetworkCookie> m_cookies;
 };
-
-#endif // COOKIESMODEL_H

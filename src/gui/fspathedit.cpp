@@ -29,6 +29,7 @@
 #include "fspathedit.h"
 
 #include <memory>
+#include <stdexcept>
 
 #include <QAction>
 #include <QApplication>
@@ -39,7 +40,7 @@
 #include <QToolButton>
 
 #include "base/utils/fs.h"
-#include "private/fspathedit_p.h"
+#include "fspathedit_p.h"
 
 namespace
 {
@@ -67,7 +68,7 @@ namespace
 class FileSystemPathEdit::FileSystemPathEditPrivate
 {
     Q_DECLARE_PUBLIC(FileSystemPathEdit)
-    Q_DISABLE_COPY(FileSystemPathEditPrivate)
+    Q_DISABLE_COPY_MOVE(FileSystemPathEditPrivate)
 
     FileSystemPathEditPrivate(FileSystemPathEdit *q, Private::FileEditorWithCompletion *editor);
 
@@ -114,7 +115,8 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
     QString directory = q->currentDirectory().isEmpty() ? QDir::homePath() : q->currentDirectory();
 
     QString selectedPath;
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
         selectedPath = QFileDialog::getOpenFileName(q, dialogCaptionOrDefault(), directory, filter);
         break;
@@ -138,7 +140,8 @@ QString FileSystemPathEdit::FileSystemPathEditPrivate::dialogCaptionOrDefault() 
     if (!m_dialogCaption.isEmpty())
         return m_dialogCaption;
 
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
         return defaultDialogCaptionForFile.tr();
@@ -152,25 +155,21 @@ QString FileSystemPathEdit::FileSystemPathEditPrivate::dialogCaptionOrDefault() 
 
 void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
 {
-    QStyle::StandardPixmap pixmap = QStyle::SP_DialogOpenButton;
     bool showDirsOnly = false;
-    switch (m_mode) {
+    switch (m_mode)
+    {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
-#ifdef Q_OS_WIN
-        pixmap = QStyle::SP_DirOpenIcon;
-#endif
         showDirsOnly = false;
         break;
     case FileSystemPathEdit::Mode::DirectoryOpen:
     case FileSystemPathEdit::Mode::DirectorySave:
-        pixmap = QStyle::SP_DirOpenIcon;
         showDirsOnly = true;
         break;
     default:
         throw std::logic_error("Unknown FileSystemPathEdit mode");
     }
-    m_browseAction->setIcon(QApplication::style()->standardIcon(pixmap));
+    m_browseAction->setIcon(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
     m_editor->completeDirectoriesOnly(showDirsOnly);
 
     m_validator->setExistingOnly(m_mode != FileSystemPathEdit::Mode::FileSave);
@@ -228,17 +227,21 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
     // extract file masks
     const int openBracePos = val.indexOf(QLatin1Char('('), 0);
     const int closeBracePos = val.indexOf(QLatin1Char(')'), openBracePos + 1);
-    if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2)) {
+    if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2))
+    {
         QString filterString = val.mid(openBracePos + 1, closeBracePos - openBracePos - 1);
-        if (filterString == QLatin1String("*")) {        // no filters
+        if (filterString == QLatin1String("*"))
+        {        // no filters
             d->m_editor->setFilenameFilters({});
         }
-        else {
-            QStringList filters = filterString.split(QLatin1Char(' '), QString::SkipEmptyParts);
+        else
+        {
+            QStringList filters = filterString.split(QLatin1Char(' '), Qt::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }
-    else {
+    else
+    {
         d->m_editor->setFilenameFilters({});
     }
 #endif
@@ -260,7 +263,8 @@ void FileSystemPathEdit::onPathEdited()
 {
     Q_D(FileSystemPathEdit);
     QString newPath = selectedPath();
-    if (newPath != d->m_lastSignaledPath) {
+    if (newPath != d->m_lastSignaledPath)
+    {
         emit selectedPathChanged(newPath);
         d->m_lastSignaledPath = newPath;
         d->m_editor->widget()->setToolTip(editWidgetText());

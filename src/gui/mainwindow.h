@@ -26,13 +26,12 @@
  * exception statement from your version.
  */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPointer>
 
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
 #include <QSystemTrayIcon>
 #endif
 
@@ -48,6 +47,7 @@ class ExecutionLogWidget;
 class LineEdit;
 class OptionsDialog;
 class PowerManagement;
+class ProgramUpdater;
 class PropertiesWidget;
 class RSSWidget;
 class SearchWidget;
@@ -59,7 +59,7 @@ class TransferListWidget;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 
 namespace Net
@@ -72,7 +72,7 @@ namespace Ui
     class MainWindow;
 }
 
-class MainWindow : public QMainWindow
+class MainWindow final : public QMainWindow
 {
     Q_OBJECT
 
@@ -96,6 +96,10 @@ public:
     void setNotificationsEnabled(bool value);
     bool isTorrentAddedNotificationsEnabled() const;
     void setTorrentAddedNotificationsEnabled(bool value);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    int getNotificationTimeout() const;
+    void setNotificationTimeout(int value);
+#endif
 
     // Misc properties
     bool isDownloadTrackerFavicon() const;
@@ -111,7 +115,7 @@ private slots:
     void balloonClicked();
     void writeSettings();
     void readSettings();
-    void fullDiskError(BitTorrent::TorrentHandle *const torrent, const QString &msg) const;
+    void fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const;
     void handleDownloadFromUrlFailure(const QString &, const QString &) const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
@@ -127,16 +131,14 @@ private slots:
     void displayRSSTab();
     void displayExecutionLogTab();
     void focusSearchFilter();
-    void updateGUI();
+    void reloadSessionStats();
+    void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences(bool configureSession = true);
     void addTorrentFailed(const QString &error) const;
-    void torrentNew(BitTorrent::TorrentHandle *const torrent) const;
-    void finishedTorrent(BitTorrent::TorrentHandle *const torrent) const;
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::TorrentHandle *const torrent);
+    void torrentNew(BitTorrent::Torrent *const torrent) const;
+    void finishedTorrent(BitTorrent::Torrent *const torrent) const;
+    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
     void optionsSaved();
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    void handleUpdateCheckFinished(bool updateAvailable, QString newVersion, bool invokedByUser);
-#endif
     void toggleAlternativeSpeeds();
 
 #ifdef Q_OS_WIN
@@ -170,8 +172,7 @@ private slots:
     void on_actionStatistics_triggered();
     void on_actionCreateTorrent_triggered();
     void on_actionOptions_triggered();
-    void on_actionSetGlobalUploadLimit_triggered();
-    void on_actionSetGlobalDownloadLimit_triggered();
+    void on_actionSetGlobalSpeedLimits_triggered();
     void on_actionDocumentation_triggered() const;
     void on_actionOpen_triggered();
     void on_actionDownloadFromURL_triggered();
@@ -179,16 +180,14 @@ private slots:
     void on_actionLock_triggered();
     // Check for unpaused downloading or seeding torrents and prevent system suspend/sleep according to preferences
     void updatePowerManagementState();
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    void checkProgramUpdate();
-#endif
+
     void toolbarMenuRequested(const QPoint &point);
     void toolbarIconsOnly();
     void toolbarTextOnly();
     void toolbarTextBeside();
     void toolbarTextUnder();
     void toolbarFollowSystem();
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void on_actionCloseWindow_triggered();
 #else
     void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
@@ -197,7 +196,7 @@ private slots:
 #endif
 
 private:
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MACOS
     void setupDockClickHandler();
 #else
     void createTrayIcon();
@@ -211,6 +210,7 @@ private:
     void dragEnterEvent(QDragEnterEvent *event) override;
     void closeEvent(QCloseEvent *) override;
     void showEvent(QShowEvent *) override;
+    void keyPressEvent(QKeyEvent *event) override;
     bool event(QEvent *e) override;
     void displayRSSTab(bool enable);
     void displaySearchTab(bool enable);
@@ -231,7 +231,7 @@ private:
     QPointer<StatsDialog> m_statsDlg;
     QPointer<TorrentCreatorDialog> m_createTorrentDlg;
     QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
-#ifndef Q_OS_MAC
+#ifndef Q_OS_MACOS
     QPointer<QSystemTrayIcon> m_systrayIcon;
     QPointer<QTimer> m_systrayCreator;
 #endif
@@ -255,12 +255,13 @@ private:
     // Power Management
     PowerManagement *m_pwr;
     QTimer *m_preventTimer;
-#if defined(Q_OS_WIN) || defined(Q_OS_MAC)
-    QTimer *m_programUpdateTimer;
-    bool m_wasUpdateCheckEnabled;
-#endif
     bool m_hasPython;
     QMenu *m_toolbarMenu;
-};
 
-#endif // MAINWINDOW_H
+#if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
+    void checkProgramUpdate(bool invokedByUser);
+    void handleUpdateCheckFinished(ProgramUpdater *updater, bool invokedByUser);
+
+    QTimer *m_programUpdateTimer = nullptr;
+#endif
+};

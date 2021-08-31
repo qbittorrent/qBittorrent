@@ -27,8 +27,7 @@
  * exception statement from your version.
  */
 
-#ifndef ICONPROVIDER_H
-#define ICONPROVIDER_H
+#pragma once
 
 #include <QObject>
 
@@ -36,7 +35,7 @@ class QString;
 
 class IconProvider : public QObject
 {
-    Q_DISABLE_COPY(IconProvider)
+    Q_DISABLE_COPY_MOVE(IconProvider)
 
 public:
     static void initInstance();
@@ -51,5 +50,3 @@ protected:
 
     static IconProvider *m_instance;
 };
-
-#endif // ICONPROVIDER_H

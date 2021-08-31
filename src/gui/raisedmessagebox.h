@@ -26,12 +26,11 @@
  * exception statement from your version.
  */
 
-#ifndef RAISEDMESSAGEBOX_H
-#define RAISEDMESSAGEBOX_H
+#pragma once
 
 #include <QMessageBox>
 
-class RaisedMessageBox : public QMessageBox
+class RaisedMessageBox final : public QMessageBox
 {
   Q_OBJECT
 
@@ -52,5 +51,3 @@ private:
 
     static QMessageBox::StandardButton impl(const QMessageBox::Icon &icon, QWidget *parent, const QString &title, const QString &text, QMessageBox::StandardButtons buttons = QMessageBox::Ok, QMessageBox::StandardButton defaultButton = QMessageBox::NoButton);
 };
-
-#endif // RAISEDMESSAGEBOX_H

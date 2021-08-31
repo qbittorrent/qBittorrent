@@ -35,7 +35,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QDesktopWidget>
 #include <QFileInfo>
 #include <QIcon>
 #include <QPixmap>
@@ -62,17 +61,8 @@ void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
 
 qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
 {
-    if (!widget)
-        return 1;
-
-#ifdef Q_OS_WIN
-    const int screen = qApp->desktop()->screenNumber(widget);
-    return (QApplication::screens()[screen]->logicalDotsPerInch() / 96);
-#elif defined(Q_OS_MAC)
+    Q_UNUSED(widget);
     return 1;
-#else
-    return widget->devicePixelRatioF();
-#endif // Q_OS_WIN
 }
 
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
@@ -96,7 +86,8 @@ QPixmap Utils::Gui::scaledPixmapSvg(const QString &path, const QWidget *widget, 
 
     QPixmap pm;
     QPixmapCache cache;
-    if (!cache.find(normalizedKey, &pm)) {
+    if (!cache.find(normalizedKey, &pm))
+    {
         pm = QIcon(path).pixmap(scaledHeight);
         cache.insert(normalizedKey, pm);
     }
@@ -166,31 +157,39 @@ void Utils::Gui::openPath(const QString &absolutePath)
 // (if possible) the item at the given path
 void Utils::Gui::openFolderSelect(const QString &absolutePath)
 {
-    const QString path = Utils::Fs::toUniformPath(absolutePath);
+    QString path {Utils::Fs::toUniformPath(absolutePath)};
+    const QFileInfo pathInfo {path};
     // If the item to select doesn't exist, try to open its parent
-    if (!QFileInfo::exists(path)) {
+    if (!pathInfo.exists(path))
+    {
         openPath(path.left(path.lastIndexOf('/')));
         return;
     }
+
 #ifdef Q_OS_WIN
     HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
     PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
-    if (pidl) {
+    if (pidl)
+    {
         ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
         ::ILFree(pidl);
     }
     if ((hresult == S_OK) || (hresult == S_FALSE))
         ::CoUninitialize();
-#elif defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
+#elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     QProcess proc;
     proc.start("xdg-mime", {"query", "default", "inode/directory"});
     proc.waitForFinished();
     const QString output = proc.readLine().simplified();
-    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop")) {
+    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
+    {
         proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
     }
     else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-                 || (output == "nautilus-folder-handler.desktop")) {
+                 || (output == "nautilus-folder-handler.desktop"))
+                 {
+        if (pathInfo.isDir())
+            path = path.left(path.lastIndexOf('/'));
         proc.start("nautilus", {"--version"});
         proc.waitForFinished();
         const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
@@ -200,13 +199,18 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
         else
             proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
     }
-    else if (output == "nemo.desktop") {
+    else if (output == "nemo.desktop")
+    {
+        if (pathInfo.isDir())
+            path = path.left(path.lastIndexOf('/'));
         proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
     }
-    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop")) {
+    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
+    {
         proc.startDetached("konqueror", {"--select", Utils::Fs::toNativePath(path)});
     }
-    else {
+    else
+    {
         // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
         openPath(path.left(path.lastIndexOf('/')));
     }

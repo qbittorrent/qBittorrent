@@ -1,80 +1,82 @@
-set(CMAKE_CXX_STANDARD_REQUIRED True)
+macro(find_libtorrent version)
+    if (UNIX AND (NOT APPLE) AND (NOT CYGWIN))
+        find_package(LibtorrentRasterbar QUIET ${version} COMPONENTS torrent-rasterbar)
+        if (NOT LibtorrentRasterbar_FOUND)
+            include(FindPkgConfig)
+            pkg_check_modules(LibtorrentRasterbar IMPORTED_TARGET GLOBAL "libtorrent-rasterbar>=${version}")
+            if (NOT LibtorrentRasterbar_FOUND)
+                message(
+                    FATAL_ERROR
+                    "Package LibtorrentRasterbar >= ${version} not found"
+                    " with CMake or pkg-config.\n- Set LibtorrentRasterbar_DIR to a directory containing"
+                    " a LibtorrentRasterbarConfig.cmake file or add the installation prefix of LibtorrentRasterbar"
+                    " to CMAKE_PREFIX_PATH.\n- Alternatively, make sure there is a valid libtorrent-rasterbar.pc"
+                    " file in your system's pkg-config search paths (use the system environment variable PKG_CONFIG_PATH"
+                    " to specify additional search paths if needed)."
+                )
+            endif()
+            add_library(LibtorrentRasterbar::torrent-rasterbar ALIAS PkgConfig::LibtorrentRasterbar)
+            # force a fake package to show up in the feature summary
+            set_property(GLOBAL APPEND PROPERTY
+                PACKAGES_FOUND
+                "LibtorrentRasterbar via pkg-config (version >= ${version})"
+            )
+            set_package_properties("LibtorrentRasterbar via pkg-config (version >= ${version})"
+                PROPERTIES
+                TYPE REQUIRED
+            )
+        else()
+            set_package_properties(LibtorrentRasterbar PROPERTIES TYPE REQUIRED)
+        endif()
+    else()
+        find_package(LibtorrentRasterbar ${version} REQUIRED COMPONENTS torrent-rasterbar)
+    endif()
+endmacro()
 
-# If C++14 is available, use it as libtorent ABI depends on 11/14 version
-if (cxx_std_14 IN_LIST CMAKE_CXX_COMPILE_FEATURES)
-    message(STATUS "Building in C++14 mode")
-    set(CMAKE_CXX_STANDARD "14")
-else()
-    message(STATUS "Building in C++11 mode")
-    set(CMAKE_CXX_STANDARD "11")
+find_libtorrent(${minLibtorrent1Version})
+if (LibtorrentRasterbar_FOUND AND (LibtorrentRasterbar_VERSION VERSION_GREATER_EQUAL 2.0))
+    find_libtorrent(${minLibtorrentVersion})
 endif()
 
-include(MacroQbtCompilerSettings)
-qbt_set_compiler_options()
-
-include(QbtTargetSources)
-
-find_package(Boost ${requiredBoostVersion} REQUIRED)
-find_package(LibtorrentRasterbar ${requiredLibtorrentVersion} REQUIRED)
-find_package(OpenSSL ${requiredOpensslVersion} REQUIRED)
-
-if (Boost_VERSION VERSION_LESS 106000)
-    add_definitions(-DBOOST_NO_CXX11_RVALUE_REFERENCES)
+# force variable type so that it always shows up in ccmake/cmake-gui frontends
+set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
+find_package(Boost ${minBoostVersion} REQUIRED)
+find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
+find_package(ZLIB ${minZlibVersion} REQUIRED)
+find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
+if (DBUS)
+    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS DBus)
+    set_package_properties(Qt5DBus PROPERTIES
+        DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
+        PURPOSE "Required by the DBUS feature"
+    )
 endif()
 
-find_package(Qt5 ${requiredQtVersion} REQUIRED COMPONENTS Core Network Xml LinguistTools)
-find_package(Qt5Widgets ${requiredQtVersion})
-if (Qt5Widgets_FOUND)
-    find_package(Qt5DBus ${requiredQtVersion})
-else()
-    add_definitions(-DDISABLE_GUI)
-endif()
+# automatically call Qt moc, rcc and uic as needed for all targets by default
+set(CMAKE_AUTORCC_OPTIONS --compress 9 --threshold 5)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
 
-set_package_properties(Qt5Widgets PROPERTIES
-    DESCRIPTION "Set of components for creating classic desktop-style UIs for the Qt5 framework"
-    PURPOSE "Enables qBittorrent GUI. Unneeded for headless configuration."
-    TYPE OPTIONAL
-)
+# create interface-only target libraries with common compile options/definitions to link to
+include(MacroQbtCommonConfig)
+qbt_common_config()
 
-set_package_properties(Qt5DBus PROPERTIES
-    DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
-    PURPOSE "Enables communication with other system components (e.g. notification service) via D-Bus. "
-    TYPE RECOMMENDED
-)
-
-set(CMAKE_AUTOMOC True)
-list(APPEND CMAKE_AUTORCC_OPTIONS -compress 9 -threshold 5)
-if (APPLE)
-    # Workaround CMake bug (autogen does not pass required parameters to moc)
-    # Relevant issue: https://gitlab.kitware.com/cmake/cmake/issues/18041
-    list(APPEND CMAKE_AUTOMOC_MOC_OPTIONS -DQ_OS_MAC -DQ_OS_DARWIN)
-endif ()
-
+# include directories - ideally, would be done per target instead of global directory scope
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
-# defines
-add_definitions(-DQT_DEPRECATED_WARNINGS)
-add_definitions(-DQT_NO_CAST_TO_ASCII)
-add_definitions(-DQT_USE_QSTRINGBUILDER)
-add_definitions(-DQT_STRICT_ITERATORS)
-
-if (CMAKE_BUILD_TYPE MATCHES "Debug")
-    message(STATUS "Project is built in DEBUG mode.")
-else()
-    message(STATUS "Project is built in RELEASE mode.")
-    message(STATUS "Disabling debug output.")
-    add_definitions(-DQT_NO_DEBUG_OUTPUT)
-endif()
-
-configure_file(config.h.cmakein ${CMAKE_CURRENT_BINARY_DIR}/config.h)
-
-add_subdirectory(app)
 add_subdirectory(base)
 
-if (Qt5Widgets_FOUND)
+if (GUI)
+    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS WinExtras)
+    endif()
     add_subdirectory(gui)
-endif ()
+endif()
 
 if (WEBUI)
     add_subdirectory(webui)
-endif (WEBUI)
+endif()
+
+add_subdirectory(app)

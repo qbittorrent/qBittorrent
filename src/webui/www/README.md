@@ -7,7 +7,6 @@ qBittorrent Web UI
 | ----------------- | -------------------------------------------------- |
 | Chrome            | [The release from 1 year ago][Chrome-history-link] |
 | Firefox           | [Oldest active ESR release][Firefox-ESR-link]      |
-| Internet Explorer | 11                                                 |
 | Microsoft Edge    | [The release from 1 year ago][MSEdge-history-link] |
 | Safari            | [The release from 1 year ago][Safari-history-link] |
 

@@ -1,4 +1,4 @@
-﻿Unicode true
+Unicode true
 ManifestDPIAware true
 ;Compress the header too
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
@@ -14,6 +14,7 @@ XPStyle on
 !include "MUI.nsh"
 !include "UAC.nsh"
 !include "FileFunc.nsh"
+!include "WinVer.nsh"
 !ifdef APP64BIT
 !include "x64.nsh"
 !endif
@@ -27,7 +28,7 @@ XPStyle on
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
 ; Program specific
-!define PROG_VERSION "4.2.0"
+!define PROG_VERSION "4.4.0"
 
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
@@ -50,7 +51,7 @@ XPStyle on
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
-VIAddVersionKey "LegalCopyright" "Copyright ©2006-2019 The qBittorrent project"
+VIAddVersionKey "LegalCopyright" "Copyright ©2006-2021 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
 VIAddVersionKey "FileVersion" "${PROG_VERSION}"
 
@@ -66,7 +67,7 @@ VIProductVersion "${PROG_VERSION}.0"
   InstallDir $PROGRAMFILES64\qBittorrent
 !endif
 
-; Registry key to check for directory (so if you install again, it will 
+; Registry key to check for directory (so if you install again, it will
 ; overwrite the old one automatically)
 InstallDirRegKey HKLM Software\qbittorrent InstallLocation
 
@@ -84,8 +85,8 @@ RequestExecutionLevel user
 
 ;--------------------------------
 ;Remember the unistaller/installer language
-!define MUI_LANGDLL_REGISTRY_ROOT "HKLM" 
-!define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent" 
+!define MUI_LANGDLL_REGISTRY_ROOT "HKLM"
+!define MUI_LANGDLL_REGISTRY_KEY "Software\qbittorrent"
 !define MUI_LANGDLL_REGISTRY_VALUENAME "Installer Language"
 
 ;--------------------------------

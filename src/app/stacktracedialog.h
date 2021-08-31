@@ -27,8 +27,7 @@
  *
  */
 
-#ifndef STACKTRACEDIALOG_H
-#define STACKTRACEDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -40,7 +39,7 @@ namespace Ui
 class StacktraceDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(StacktraceDialog)
+    Q_DISABLE_COPY_MOVE(StacktraceDialog)
 
 public:
     explicit StacktraceDialog(QWidget *parent = nullptr);
@@ -51,5 +50,3 @@ public:
 private:
     Ui::StacktraceDialog *m_ui;
 };
-
-#endif // STACKTRACEDIALOG_H

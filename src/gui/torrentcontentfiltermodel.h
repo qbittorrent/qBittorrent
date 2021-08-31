@@ -26,16 +26,16 @@
  * exception statement from your version.
  */
 
-#ifndef TORRENTCONTENTFILTERMODEL_H
-#define TORRENTCONTENTFILTERMODEL_H
+#pragma once
 
 #include <QSortFilterProxyModel>
 
+#include "base/utils/compare.h"
 #include "torrentcontentmodelitem.h"
 
 class TorrentContentModel;
 
-class TorrentContentFilterModel : public QSortFilterProxyModel
+class TorrentContentFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
 
@@ -62,6 +62,5 @@ private:
     bool hasFiltered(const QModelIndex &folder) const;
 
     TorrentContentModel *m_model;
+    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };
-
-#endif // TORRENTCONTENTFILTERMODEL_H

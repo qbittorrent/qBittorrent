@@ -41,7 +41,7 @@ class FreeDiskSpaceChecker;
 class SyncController : public APIController
 {
     Q_OBJECT
-    Q_DISABLE_COPY(SyncController)
+    Q_DISABLE_COPY_MOVE(SyncController)
 
 public:
     using APIController::APIController;

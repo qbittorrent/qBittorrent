@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef WEBUI_H
-#define WEBUI_H
+#pragma once
 
 #include <QObject>
 #include <QPointer>
@@ -47,7 +46,7 @@ class WebApplication;
 class WebUI : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WebUI)
+    Q_DISABLE_COPY_MOVE(WebUI)
 
 public:
     WebUI();
@@ -67,5 +66,3 @@ private:
     QPointer<WebApplication> m_webapp;
     quint16 m_port;
 };
-
-#endif // WEBUI_H

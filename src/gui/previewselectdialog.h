@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef PREVIEWSELECTDIALOG_H
-#define PREVIEWSELECTDIALOG_H
+#pragma once
 
 #include <QDialog>
 
@@ -37,7 +36,7 @@ class QStandardItemModel;
 
 namespace BitTorrent
 {
-    class TorrentHandle;
+    class Torrent;
 }
 namespace Ui
 {
@@ -45,9 +44,10 @@ namespace Ui
 }
 class PreviewListDelegate;
 
-class PreviewSelectDialog : public QDialog
+class PreviewSelectDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PreviewSelectDialog)
 
 public:
     enum PreviewColumn
@@ -60,31 +60,28 @@ public:
         NB_COLUMNS
     };
 
-    PreviewSelectDialog(QWidget *parent, BitTorrent::TorrentHandle *const torrent);
+    PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent);
     ~PreviewSelectDialog();
 
 signals:
     void readyToPreviewFile(QString) const;
 
-protected:
-    void showEvent(QShowEvent *event) override;
-
 private slots:
     void previewButtonClicked();
 
 private:
+    void showEvent(QShowEvent *event) override;
+
     void loadWindowState();
     void saveWindowState();
 
     Ui::PreviewSelectDialog *m_ui;
     QStandardItemModel *m_previewListModel;
     PreviewListDelegate *m_listDelegate;
-    BitTorrent::TorrentHandle *const m_torrent;
+    const BitTorrent::Torrent *m_torrent;
     bool m_headerStateInitialized = false;
 
     // Settings
-    CachedSettingValue<QSize> m_storeDialogSize;
-    CachedSettingValue<QByteArray> m_storeTreeHeaderState;
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeTreeHeaderState;
 };
-
-#endif // PREVIEWSELECTDIALOG_H

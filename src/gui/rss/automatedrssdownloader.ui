@@ -183,8 +183,8 @@
           <item>
            <widget class="QCheckBox" name="checkSmart">
             <property name="toolTip">
-            <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also support - as a separator)</string>
+             <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
             </property>
             <property name="text">
              <string>Use Smart Episode Filter</string>
@@ -209,7 +209,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Assign Category:</string>
+               <string>Category:</string>
               </property>
              </widget>
             </item>
@@ -219,6 +219,9 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
                <bool>false</bool>
               </property>
              </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="addCategoryBtn" />
             </item>
            </layout>
           </item>
@@ -242,21 +245,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="lineSavePath">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="browseSP">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string notr="true">...</string>
-              </property>
-             </widget>
+             <widget class="FileSystemPathLineEdit" name="lineSavePath" native="true"/>
             </item>
            </layout>
           </item>
@@ -265,7 +254,7 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
             <item>
              <widget class="QLabel" name="lblIgnoreDays">
               <property name="text">
-               <string comment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+               <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
               </property>
              </widget>
             </item>
@@ -330,6 +319,47 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
               <item>
                <property name="text">
                 <string>Never</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QLabel" name="lblContentLayout">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text">
+               <string>Torrent content layout:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="comboContentLayout">
+              <item>
+               <property name="text">
+                <string>Use global settings</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Original</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Create subfolder</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Don't create subfolder</string>
                </property>
               </item>
              </widget>
@@ -428,6 +458,13 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>gui/fspathedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>removeRuleBtn</tabstop>
   <tabstop>addRuleBtn</tabstop>
@@ -440,9 +477,9 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
   <tabstop>comboCategory</tabstop>
   <tabstop>checkBoxSaveDiffDir</tabstop>
   <tabstop>lineSavePath</tabstop>
-  <tabstop>browseSP</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
   <tabstop>comboAddPaused</tabstop>
+  <tabstop>comboContentLayout</tabstop>
   <tabstop>listFeeds</tabstop>
   <tabstop>treeMatchingArticles</tabstop>
   <tabstop>importBtn</tabstop>
@@ -511,22 +548,6 @@ Supports the formats: S01E01, 1x1, 2017.01.01 and 01.01.2017 (Date formats also 
     <hint type="destinationlabel">
      <x>476</x>
      <y>204</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxSaveDiffDir</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>browseSP</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>544</x>
-     <y>166</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>549</x>
-     <y>209</y>
     </hint>
    </hints>
   </connection>

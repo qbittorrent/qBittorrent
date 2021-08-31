@@ -43,14 +43,12 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-constexpr Utils::Version<int, 3, 2> API_VERSION {2, 2, 0};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 3};
 
 class APIController;
 class WebApplication;
 
-constexpr char C_SID[] = "SID"; // name of session id cookie
-
-class WebSession : public ISession
+class WebSession final : public ISession
 {
 public:
     explicit WebSession(const QString &sid);
@@ -69,12 +67,12 @@ private:
     QVariantHash m_data;
 };
 
-class WebApplication
+class WebApplication final
         : public QObject, public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WebApplication)
+    Q_DISABLE_COPY_MOVE(WebApplication)
 
 #ifndef Q_MOC_RUN
 #define WEBAPI_PUBLIC
@@ -105,7 +103,7 @@ private:
     void sendFile(const QString &path);
     void sendWebUIFile();
 
-    void translateDocument(QString &data);
+    void translateDocument(QString &data) const;
 
     // Session management
     QString generateSid() const;
@@ -116,6 +114,8 @@ private:
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
 
+    QHostAddress resolveClientAddress() const;
+
     // Persistent data
     QHash<QString, WebSession *> m_sessions;
 
@@ -123,10 +123,10 @@ private:
     WebSession *m_currentSession = nullptr;
     Http::Request m_request;
     Http::Environment m_env;
-    QMap<QString, QString> m_params;
+    QHash<QString, QString> m_params;
     const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {(QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"))};
+    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
@@ -136,6 +136,7 @@ private:
     struct TranslatedFile
     {
         QByteArray data;
+        QString mimeType;
         QDateTime lastModified;
     };
     QHash<QString, TranslatedFile> m_translatedFiles;
@@ -145,14 +146,20 @@ private:
 
     bool m_isLocalAuthEnabled;
     bool m_isAuthSubnetWhitelistEnabled;
-    QList<Utils::Net::Subnet> m_authSubnetWhitelist;
+    QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout;
 
     // security related
     QStringList m_domainList;
-    bool m_isClickjackingProtectionEnabled;
     bool m_isCSRFProtectionEnabled;
+    bool m_isSecureCookieEnabled;
     bool m_isHostHeaderValidationEnabled;
     bool m_isHttpsEnabled;
-    QString m_contentSecurityPolicy;
+
+    // Reverse proxy
+    bool m_isReverseProxySupportEnabled;
+    QVector<QHostAddress> m_trustedReverseProxyList;
+    QHostAddress m_clientAddress;
+
+    QVector<Http::Header> m_prebuiltHeaders;
 };

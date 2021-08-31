@@ -28,21 +28,21 @@
 
 #pragma once
 
-#include <QMap>
 #include <QObject>
-#include <QSet>
 #include <QVariant>
+#include <QtContainerFwd>
 
 class QString;
 
 struct ISessionManager;
-using StringMap = QMap<QString, QString>;
-using DataMap = QMap<QString, QByteArray>;
+
+using DataMap = QHash<QString, QByteArray>;
+using StringMap = QHash<QString, QString>;
 
 class APIController : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(APIController)
+    Q_DISABLE_COPY_MOVE(APIController)
 
 #ifndef Q_MOC_RUN
 #define WEBAPI_PUBLIC
@@ -59,7 +59,7 @@ public:
 protected:
     const StringMap &params() const;
     const DataMap &data() const;
-    void checkParams(const QSet<QString> &requiredParams) const;
+    void requireParams(const QVector<QString> &requiredParams) const;
 
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);

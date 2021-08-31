@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef NET_PORTFORWARDER_H
-#define NET_PORTFORWARDER_H
+#pragma once
 
 #include <QObject>
 
@@ -35,7 +34,7 @@ namespace Net
 {
     class PortForwarder : public QObject
     {
-        Q_DISABLE_COPY(PortForwarder)
+        Q_DISABLE_COPY_MOVE(PortForwarder)
 
     public:
         explicit PortForwarder(QObject *parent = nullptr);
@@ -53,5 +52,3 @@ namespace Net
         static PortForwarder *m_instance;
     };
 }
-
-#endif // NET_PORTFORWARDER_H

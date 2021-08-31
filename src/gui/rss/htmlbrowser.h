@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTMLBROWSER_H
-#define HTMLBROWSER_H
+#pragma once
 
 #include <QHash>
 #include <QTextBrowser>
@@ -36,7 +35,7 @@ class QNetworkAccessManager;
 class QNetworkDiskCache;
 class QNetworkReply;
 
-class HtmlBrowser : public QTextBrowser
+class HtmlBrowser final : public QTextBrowser
 {
     Q_OBJECT
 
@@ -44,7 +43,7 @@ public:
     explicit HtmlBrowser(QWidget* parent = nullptr);
     ~HtmlBrowser();
 
-    virtual QVariant loadResource(int type, const QUrl &name) override;
+    QVariant loadResource(int type, const QUrl &name) override;
 
 protected:
     QNetworkAccessManager *m_netManager;
@@ -54,5 +53,3 @@ protected:
 protected slots:
     void resourceLoaded(QNetworkReply *reply);
 };
-
-#endif // HTMLBROWSER_H

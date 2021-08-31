@@ -1,4 +1,4 @@
-﻿;Installer strings
+;Installer strings
 
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_SIMPCHINESE} "qBittorrent (必要)"
@@ -6,17 +6,21 @@ LangString inst_qbt_req ${LANG_SIMPCHINESE} "qBittorrent (必要)"
 LangString inst_dekstop ${LANG_SIMPCHINESE} "创建桌面快捷方式"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
 LangString inst_startmenu ${LANG_SIMPCHINESE} "创建开始菜单快捷方式"
+;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
+LangString inst_startup ${LANG_SIMPCHINESE} "在Windows上启动qBittorrent进行启动"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
 LangString inst_torrent ${LANG_SIMPCHINESE} "用 qBittorrent 打开.torrent文件"
 ;LangString inst_magnet ${LANG_ENGLISH} "Open magnet links with qBittorrent"
 LangString inst_magnet ${LANG_SIMPCHINESE} "用 qBittorrent 打开磁力链接"
 ;LangString inst_firewall ${LANG_ENGLISH} "Add Windows Firewall rule"
 LangString inst_firewall ${LANG_SIMPCHINESE} "添加Windows防火墙规则"
+;LangString inst_pathlimit ${LANG_ENGLISH} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
+LangString inst_pathlimit ${LANG_SIMPCHINESE} "Disable Windows path length limit (260 character MAX_PATH limitation, requires Windows 10 1607 or later)"
 ;LangString inst_firewallinfo ${LANG_ENGLISH} "Adding Windows Firewall rule"
 LangString inst_firewallinfo ${LANG_SIMPCHINESE} "正在添加Windows防火墙规则"
 ;LangString inst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before installing."
 LangString inst_warning ${LANG_SIMPCHINESE} "qBittorrent 正在运行。 安装前请关闭应用程序。"
-;LangString inst_uninstall_question ${LANG_ENGLISH} "A previous installation was detected. It will be uninstalled without deleting user settings."
+;LangString inst_uninstall_question ${LANG_ENGLISH} "Current version will be uninstalled. User settings and torrents will remain intact."
 LangString inst_uninstall_question ${LANG_SIMPCHINESE} "检测到以前的安装。 它将被卸载但不删除用户设置。"
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_SIMPCHINESE} "卸载以前的版本。"
@@ -24,7 +28,10 @@ LangString inst_unist ${LANG_SIMPCHINESE} "卸载以前的版本。"
 LangString launch_qbt ${LANG_SIMPCHINESE} "启动 qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_SIMPCHINESE} "此安装程序只能在64位的Windows上工作。"
-
+;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
+LangString inst_requires_win7 ${LANG_SIMPCHINESE} "This qBittorrent version requires at least Windows 7."
+;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_SIMPCHINESE} "Uninstall qBittorrent"
 
 ;------------------------------------
 ;Uninstaller strings

@@ -29,6 +29,7 @@
 #include "torrentcategorydialog.h"
 
 #include <QMessageBox>
+#include <QPushButton>
 
 #include "base/bittorrent/session.h"
 #include "ui_torrentcategorydialog.h"
@@ -40,6 +41,13 @@ TorrentCategoryDialog::TorrentCategoryDialog(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->comboSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->comboSavePath->setDialogCaption(tr("Choose save path"));
+
+    // disable save button
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
+    connect(m_ui->textCategoryName, &QLineEdit::textChanged, this, [this](const QString &text)
+    {
+        m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(!text.isEmpty());
+    });
 }
 
 TorrentCategoryDialog::~TorrentCategoryDialog()
@@ -58,23 +66,27 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
 
     TorrentCategoryDialog dialog(parent);
     dialog.setCategoryName(newCategoryName);
-    while (dialog.exec() == TorrentCategoryDialog::Accepted) {
+    while (dialog.exec() == TorrentCategoryDialog::Accepted)
+    {
         newCategoryName = dialog.categoryName();
 
-        if (!BitTorrent::Session::isValidCategoryName(newCategoryName)) {
+        if (!BitTorrent::Session::isValidCategoryName(newCategoryName))
+        {
             QMessageBox::critical(
                         parent, tr("Invalid category name")
                         , tr("Category name cannot contain '\\'.\n"
                              "Category name cannot start/end with '/'.\n"
                              "Category name cannot contain '//' sequence."));
         }
-        else if (BitTorrent::Session::instance()->categories().contains(newCategoryName)) {
+        else if (BitTorrent::Session::instance()->categories().contains(newCategoryName))
+        {
             QMessageBox::critical(
                         parent, tr("Category creation error")
                         , tr("Category with the given name already exists.\n"
                              "Please choose a different name and try again."));
         }
-        else {
+        else
+        {
             Session::instance()->addCategory(newCategoryName, dialog.savePath());
             return newCategoryName;
         }

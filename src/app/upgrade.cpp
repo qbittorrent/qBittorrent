@@ -29,31 +29,38 @@
 #include "upgrade.h"
 
 #include <QFile>
+#include <QMetaEnum>
+#include <QVector>
 
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
+#include "base/utils/string.h"
 
 namespace
 {
     void exportWebUIHttpsFiles()
     {
-        const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath) {
+        const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath)
+        {
             SettingsStorage *settingsStorage {SettingsStorage::instance()};
-            const QByteArray oldData {settingsStorage->loadValue(oldKey).toByteArray()};
-            const QString newData {settingsStorage->loadValue(newKey).toString()};
+            const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
+            const auto newData {settingsStorage->loadValue<QString>(newKey)};
             const QString errorMsgFormat {QObject::tr("Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
 
             if (!newData.isEmpty() || oldData.isEmpty())
                 return;
 
             QFile file(savePath);
-            if (!file.open(QIODevice::WriteOnly)) {
+            if (!file.open(QIODevice::WriteOnly))
+            {
                 LogMsg(errorMsgFormat.arg(savePath, file.errorString()) , Log::WARNING);
                 return;
             }
-            if (file.write(oldData) != oldData.size()) {
+            if (file.write(oldData) != oldData.size())
+            {
                 file.close();
                 Utils::Fs::forceRemove(savePath);
                 LogMsg(errorMsgFormat.arg(savePath, QLatin1String("Write incomplete.")) , Log::WARNING);
@@ -75,10 +82,69 @@ namespace
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
             , Utils::Fs::toNativePath(configPath + QLatin1String("WebUIPrivateKey.pem")));
     }
+
+    void upgradeTorrentContentLayout()
+    {
+        const QString oldKey {QLatin1String {"BitTorrent/Session/CreateTorrentSubfolder"}};
+        const QString newKey {QLatin1String {"BitTorrent/Session/TorrentContentLayout"}};
+
+        SettingsStorage *settingsStorage {SettingsStorage::instance()};
+        const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
+        const auto newData {settingsStorage->loadValue<QString>(newKey)};
+
+        if (!newData.isEmpty() || !oldData.isValid())
+            return;
+
+        const bool createSubfolder = oldData.toBool();
+        const BitTorrent::TorrentContentLayout torrentContentLayout =
+                (createSubfolder ? BitTorrent::TorrentContentLayout::Original : BitTorrent::TorrentContentLayout::NoSubfolder);
+
+        settingsStorage->storeValue(newKey, Utils::String::fromEnum(torrentContentLayout));
+        settingsStorage->removeValue(oldKey);
+    }
+
+    void upgradeListenPortSettings()
+    {
+        const auto oldKey = QString::fromLatin1("BitTorrent/Session/UseRandomPort");
+        const auto newKey = QString::fromLatin1("Preferences/Connection/PortRangeMin");
+        auto *settingsStorage = SettingsStorage::instance();
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            if (settingsStorage->loadValue<bool>(oldKey))
+                settingsStorage->storeValue(newKey, 0);
+
+            settingsStorage->removeValue(oldKey);
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
 {
     exportWebUIHttpsFiles();
+    upgradeTorrentContentLayout();
+    upgradeListenPortSettings();
     return true;
+}
+
+void handleChangedDefaults(const DefaultPreferencesMode mode)
+{
+    struct DefaultValue
+    {
+        QString name;
+        QVariant legacy;
+        QVariant current;
+    };
+
+    const QVector<DefaultValue> changedDefaults
+    {
+        {QLatin1String {"BitTorrent/Session/QueueingSystemEnabled"}, true, false}
+    };
+
+    SettingsStorage *settingsStorage {SettingsStorage::instance()};
+    for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it)
+    {
+        if (settingsStorage->loadValue<QVariant>(it->name).isNull())
+            settingsStorage->storeValue(it->name, (mode == DefaultPreferencesMode::Legacy ? it->legacy : it->current));
+    }
 }

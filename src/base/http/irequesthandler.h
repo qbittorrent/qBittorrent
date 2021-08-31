@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef HTTP_IREQUESTHANDLER_H
-#define HTTP_IREQUESTHANDLER_H
+#pragma once
 
 namespace Http
 {
@@ -42,6 +41,3 @@ namespace Http
         virtual Response processRequest(const Request &request, const Environment &env) = 0;
     };
 }
-
-#endif // HTTP_IREQUESTHANDLER_H
-

@@ -26,8 +26,7 @@
  * exception statement from your version.
  */
 
-#ifndef AUTOEXPANDABLEDIALOG_H
-#define AUTOEXPANDABLEDIALOG_H
+#pragma once
 
 #include <QDialog>
 #include <QLineEdit>
@@ -39,7 +38,7 @@ namespace Ui
     class AutoExpandableDialog;
 }
 
-class AutoExpandableDialog : public QDialog
+class AutoExpandableDialog final : public QDialog
 {
     Q_OBJECT
 
@@ -57,5 +56,3 @@ protected:
 private:
     Ui::AutoExpandableDialog *m_ui;
 };
-
-#endif // AUTOEXPANDABLEDIALOG_H

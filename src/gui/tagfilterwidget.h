@@ -26,12 +26,11 @@
  * exception statement from your version.
  */
 
-#ifndef TAGFILTERWIDGET_H
-#define TAGFILTERWIDGET_H
+#pragma once
 
 #include <QTreeView>
 
-class TagFilterWidget : public QTreeView
+class TagFilterWidget final : public QTreeView
 {
     Q_OBJECT
 
@@ -60,5 +59,3 @@ private:
     void rowsInserted(const QModelIndex &parent, int start, int end) override;
     QString askTagName();
 };
-
-#endif // TAGFILTERWIDGET_H

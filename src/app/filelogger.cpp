@@ -28,19 +28,27 @@
 
 #include "filelogger.h"
 
+#include <chrono>
+
 #include <QDateTime>
 #include <QDir>
 #include <QTextStream>
+#include <QVector>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/fs.h"
 
+namespace
+{
+    const std::chrono::seconds FLUSH_INTERVAL {2};
+}
+
 FileLogger::FileLogger(const QString &path, const bool backup, const int maxSize, const bool deleteOld, const int age, const FileLogAgeType ageType)
     : m_backup(backup)
     , m_maxSize(maxSize)
 {
-    m_flusher.setInterval(0);
+    m_flusher.setInterval(FLUSH_INTERVAL);
     m_flusher.setSingleShot(true);
     connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
@@ -66,7 +74,8 @@ void FileLogger::changePath(const QString &newPath)
     dir.mkpath(newPath);
     const QString tmpPath = dir.absoluteFilePath("qbittorrent.log");
 
-    if (tmpPath != m_path) {
+    if (tmpPath != m_path)
+    {
         m_path = tmpPath;
 
         closeLogFile();
@@ -82,9 +91,11 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
     const QFileInfoList fileList = dir.entryInfoList(QStringList("qbittorrent.log.bak*")
         , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
-    for (const QFileInfo &file : fileList) {
+    for (const QFileInfo &file : fileList)
+    {
         QDateTime modificationDate = file.lastModified();
-        switch (ageType) {
+        switch (ageType)
+        {
         case DAYS:
             modificationDate = modificationDate.addDays(age);
             break;
@@ -114,30 +125,36 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 {
     if (!m_logFile.isOpen()) return;
 
-    QTextStream str(&m_logFile);
+    QTextStream stream(&m_logFile);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    stream.setCodec("UTF-8");
+#endif
 
-    switch (msg.type) {
+    switch (msg.type)
+    {
     case Log::INFO:
-        str << "(I) ";
+        stream << "(I) ";
         break;
     case Log::WARNING:
-        str << "(W) ";
+        stream << "(W) ";
         break;
     case Log::CRITICAL:
-        str << "(C) ";
+        stream << "(C) ";
         break;
     default:
-        str << "(N) ";
+        stream << "(N) ";
     }
 
-    str << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << endl;
+    stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << " - " << msg.message << '\n';
 
-    if (m_backup && (m_logFile.size() >= m_maxSize)) {
+    if (m_backup && (m_logFile.size() >= m_maxSize))
+    {
         closeLogFile();
         int counter = 0;
         QString backupLogFilename = m_path + ".bak";
 
-        while (QFile::exists(backupLogFilename)) {
+        while (QFile::exists(backupLogFilename))
+        {
             ++counter;
             backupLogFilename = m_path + ".bak" + QString::number(counter);
         }
@@ -145,8 +162,10 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
         QFile::rename(m_path, backupLogFilename);
         openLogFile();
     }
-    else {
-        m_flusher.start();
+    else
+    {
+        if (!m_flusher.isActive())
+            m_flusher.start();
     }
 }
 
@@ -159,7 +178,8 @@ void FileLogger::flushLog()
 void FileLogger::openLogFile()
 {
     if (!m_logFile.open(QIODevice::WriteOnly | QIODevice::Append | QIODevice::Text)
-        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner)) {
+        || !m_logFile.setPermissions(QFile::ReadOwner | QFile::WriteOwner))
+        {
         m_logFile.close();
         LogMsg(tr("An error occurred while trying to open the log file. Logging to file is disabled."), Log::CRITICAL);
     }

@@ -1,0 +1,73 @@
+name: CI - macOS
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Build
+    runs-on: macos-10.15
+
+    strategy:
+      matrix:
+        libt_version: ["v2.0.4", "v1.2.14"]
+        qbt_gui: ["GUI=ON", "GUI=OFF"]
+      fail-fast: false
+
+    env:
+      openssl_root: /usr/local/opt/openssl@1.1
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup ccache
+        uses: hendrikmuhs/ccache-action@v1
+        with:
+          key: ${{ runner.os }}
+
+      - name: Install dependencies
+        run: |
+          brew update > /dev/null
+          brew install \
+            cmake ninja \
+            boost openssl@1.1 qt@5 zlib
+          brew link --force \
+            qt@5
+          # workaround for cmake + Qt
+          sudo ln -s /usr/local/opt/qt@5/mkspecs /usr/local/mkspecs
+          sudo ln -s /usr/local/opt/qt@5/plugins /usr/local/plugins
+
+      - name: Install libtorrent
+        run: |
+          git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          cd libtorrent
+          git submodule update --init --recursive
+          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_CXX_STANDARD=17 \
+            -Ddeprecated-functions=OFF \
+            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
+          cmake --build build
+          sudo cmake --install build
+
+      - name: Build qBittorrent
+        run: |
+          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -D${{ matrix.qbt_gui }} \
+            -DVERBOSE_CONFIGURE=ON \
+            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
+          cmake --build build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}
+          path: |
+            build/qbittorrent.app
+            build/qbittorrent-nox.app

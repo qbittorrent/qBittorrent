@@ -33,16 +33,19 @@
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrenthandle.h"
+#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "ui_statsdialog.h"
 #include "utils.h"
 
+#define SETTINGS_KEY(name) "StatisticsDialog/" name
+
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::StatsDialog)
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -52,12 +55,18 @@ StatsDialog::StatsDialog(QWidget *parent)
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated
             , this, &StatsDialog::update);
 
-    Utils::Gui::resize(this);
+#ifdef QBT_USES_LIBTORRENT2
+    m_ui->labelCacheHitsText->hide();
+    m_ui->labelCacheHits->hide();
+#endif
+
+    Utils::Gui::resize(this, m_storeDialogSize);
     show();
 }
 
 StatsDialog::~StatsDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 
@@ -78,33 +87,26 @@ void StatsDialog::update()
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
                 : "-");
+#ifndef QBT_USES_LIBTORRENT2
     // Cache hits
-    qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText(QString("%1%").arg(
-        readRatio > 0
+    const qreal readRatio = cs.readRatio;
+    m_ui->labelCacheHits->setText(QString::fromLatin1("%1%").arg((readRatio > 0)
         ? Utils::String::fromDouble(100 * readRatio, 2)
-        : "0"));
+        : QLatin1String("0")));
+#endif
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
     // Disk overload (100%) equivalent
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
-    // num_peers is not reliable (adds up peers, which didn't even overcome tcp handshake)
-    const auto torrents = BitTorrent::Session::instance()->torrents();
-    const quint32 peers = std::accumulate(torrents.cbegin(), torrents.cend(), 0, [](const quint32 acc, const BitTorrent::TorrentHandle *torrent)
-    {
-        return (acc + torrent->peersCount());
-    });
+    m_ui->labelWriteStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
+        ? Utils::String::fromDouble((100. * ss.diskWriteQueue / ss.peersCount), 2)
+        : QLatin1String("0")));
+    m_ui->labelReadStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
+        ? Utils::String::fromDouble((100. * ss.diskReadQueue / ss.peersCount), 2)
+        : QLatin1String("0")));
 
-    m_ui->labelWriteStarve->setText(QString("%1%")
-                                    .arg(((ss.diskWriteQueue > 0) && (peers > 0))
-                                         ? Utils::String::fromDouble((100. * ss.diskWriteQueue) / peers, 2)
-                                         : "0"));
-    m_ui->labelReadStarve->setText(QString("%1%")
-                                   .arg(((ss.diskReadQueue > 0) && (peers > 0))
-                                        ? Utils::String::fromDouble((100. * ss.diskReadQueue) / peers, 2)
-                                        : "0"));
     // Disk queues
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));
     m_ui->labelJobsTime->setText(tr("%1 ms", "18 milliseconds").arg(cs.averageJobTime));
