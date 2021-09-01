@@ -1,6 +1,7 @@
 #include "schedulecontroller.h"
 
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
+#include "base/global.h"
 #include "base/utils/string.h"
 #include "webui/api/apierror.h"
 
@@ -20,6 +21,15 @@ namespace
             parseInt(uploadLimit).value_or(0),
             parseBool(pause).value_or(false)
         };
+    }
+
+    QVector<int> parseIndexesParam(const QString &indexesParam)
+    {
+        const QStringList split = indexesParam.split(',');
+        QVector<int> indexes(split.length());
+        std::transform(split.cbegin(), split.cend(), indexes.begin()
+            , [](const QString& s) { return s.toInt(); });
+        return indexes;
     }
 }
 
@@ -69,22 +79,15 @@ void ScheduleController::removeEntryAction()
     requireParams({"day", "indexes"});
 
     const int day = params()["day"].toInt();
-    const QString indexes = params()["indexes"];
+    const QVector<int> indexes = parseIndexesParam(params()["indexes"]);
 
     if (day < 0 || day > 6)
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
 
-    if (indexes.length() > 0)
-    {
-        const QStringList split = indexes.split(',');
+    if (indexes.length() == 0) return;
 
-        QVector<int> indexVector(split.length());
-        std::transform(split.cbegin(), split.cend(), indexVector.begin()
-            , [](const QString& s) { return s.toInt(); });
-
-        if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexVector))
-            throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry indexes"));
-    }
+    if (!BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexes))
+        throw APIError(APIErrorType::BadParams, tr("Invalid schedule entry indexes"));
 }
 
 void ScheduleController::clearDayAction()
@@ -97,6 +100,38 @@ void ScheduleController::clearDayAction()
         throw APIError(APIErrorType::BadParams, tr("Invalid schedule day index"));
 
     BandwidthScheduler::instance()->scheduleDay(day)->clearEntries();
+}
+
+void ScheduleController::pasteAction()
+{
+    requireParams({"sourceDay", "indexes", "targetDay"});
+
+    const QVector<int> indexes = parseIndexesParam(params()["indexes"]);
+    if (indexes.length() == 0) return;
+
+    const auto &sourceEntries = asConst(BandwidthScheduler::instance()->scheduleDay(params()["sourceDay"].toInt())->entries());
+    ScheduleDay *targetDay = BandwidthScheduler::instance()->scheduleDay(params()["targetDay"].toInt());
+
+    for (const int i : indexes)
+        targetDay->addEntry(sourceEntries.at(i));
+}
+
+void ScheduleController::copyToOtherDaysAction()
+{
+    requireParams({"sourceDay", "indexes"});
+
+    const QVector<int> indexes = parseIndexesParam(params()["indexes"]);
+    if (indexes.length() == 0) return;
+
+    const int sourceDayIndex = params()["sourceDay"].toInt();
+    const auto &sourceEntries = asConst(BandwidthScheduler::instance()->scheduleDay(sourceDayIndex)->entries());
+
+    for (int day = 0; day < 7; ++day)
+    {
+        if (day == sourceDayIndex) continue;
+        for (int i : indexes)
+            BandwidthScheduler::instance()->scheduleDay(day)->addEntry(sourceEntries.at(i));
+    }
 }
 
 void ScheduleController::getJsonAction()

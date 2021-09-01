@@ -15,5 +15,7 @@ private slots:
     void addEntryAction();
     void removeEntryAction();
     void clearDayAction();
+    void pasteAction();
+    void copyToOtherDaysAction();
     void getJsonAction();
 };

@@ -1462,7 +1462,7 @@
         const scheduleTables = new Hash();
         let schedule = {};
         let selectedScheduleDay = 0;
-        let scheduleClipboard = [];
+        let scheduleClipboard = {};
 
         const updateSchedulingEnabled = function() {
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
@@ -1550,22 +1550,57 @@
                         }).send();
                     },
                     copy: (element, ref) => {
-                        scheduleClipboard = scheduleTables[selectedScheduleDay].selectedRows
-                            .map(i => schedule[scheduleDayKeys[selectedScheduleDay]][i]);
-                        console.log('copy', scheduleClipboard);
+                        scheduleClipboard = {
+                            sourceDay: selectedScheduleDay,
+                            indexes: scheduleTables[selectedScheduleDay].selectedRows.slice()
+                        };
                     },
                     paste: (element, ref) => {
-                        if (scheduleClipboard.length !== 0)
-                            console.log('paste', scheduleClipboard);
+                        const targetDay = selectedScheduleDay;
+                        if (scheduleClipboard !== {}) {
+                            new Request({
+                                url: 'api/v2/schedule/paste',
+                                method: 'post',
+                                noCache: true,
+                                data: {
+                                    sourceDay: scheduleClipboard.sourceDay,
+                                    indexes: scheduleClipboard.indexes.toString(),
+                                    targetDay: targetDay
+                                },
+                                onSuccess: () => updateSchedule(() => updateScheduleTable(targetDay)),
+                                onFailure: console.error
+                            }).send();
+                        }
                     },
-                    copyToOtherDays: (element, ref) => console.log({ element, ref }),
+                    copyToOtherDays: (element, ref) => {
+                        const day = selectedScheduleDay;
+                        const selectedRows = scheduleTables[day].selectedRows.slice();
+                        if (selectedRows.length === 0) return;
+
+                        new Request({
+                            url: 'api/v2/schedule/copyToOtherDays',
+                            method: 'post',
+                            noCache: true,
+                            data: {
+                                sourceDay: day,
+                                indexes: selectedRows.toString()
+                            },
+                            onSuccess: () => updateSchedule(() => {
+                                for (let i = 0; i < 7; ++i)
+                                    updateScheduleTable(i);
+                            }),
+                            onFailure: console.error
+                        }).send();
+                    },
                     clearAll: (element, ref) => {
                         const day = selectedScheduleDay;
                         new Request({
                             url: 'api/v2/schedule/clearDay',
                             method: 'post',
                             noCache: true,
-                            data: { 'day': day },
+                            data: {
+                                day: day
+                            },
                             onSuccess: () => {
                                 schedule[scheduleDayKeys[day]] = [];
                                 scheduleTables[day].clear();
@@ -1595,7 +1630,7 @@
                         this.hideItem('copyToOtherDays');
                     }
 
-                    if (scheduleClipboard.length !== 0)
+                    if (scheduleClipboard !== {})
                         this.showItem('paste');
                     else
                         this.hideItem('paste');
