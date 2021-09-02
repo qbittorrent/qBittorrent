@@ -426,14 +426,6 @@
             <label for="limit_lan_peers_checkbox">QBT_TR(Apply rate limit to peers on LAN)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
     </fieldset>
-
-    <style>
-        #schedulerDiv thead td {
-            background-color: whitesmoke;
-            font-weight: bold;
-        }
-
-    </style>
 </div>
 
 <div id="BittorrentTab" class="PrefTab invisible">
@@ -1253,15 +1245,6 @@
 
 <div style="text-align: center; margin-top: 1em;"><input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" onclick="qBittorrent.Preferences.applyPreferences();" /></div>
 
-<ul id="scheduleEntryMenu" class="contextMenu">
-    <li><a href="#addEntry"><img src="icons/list-add.svg" alt="QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Add entry)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li><a href="#removeEntry"><img src="icons/list-remove.svg" alt="QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Remove entry)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li class="separator"><a href="#copy"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li><a href="#paste"><img src="icons/edit-paste.svg" alt="QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Paste)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li><a href="#copyToOtherDays"><img src="icons/edit-copy.svg" alt="QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Copy selected to other days)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-    <li class="separator"><a href="#clearAll"><img src="icons/edit-clear.svg" alt="QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]" /> QBT_TR(Clear all)QBT_TR[CONTEXT=OptionsDialog]</a></li>
-</ul>
-
 <script>
     'use strict';
 
@@ -1509,8 +1492,8 @@
                 targets: '#schedulerDiv',
                 menu: 'scheduleEntryMenu',
                 offsets: {
-                    x: -105,
-                    y: -20
+                    x: -15,
+                    y: 2
                 },
                 actions: {
                     addEntry: (element, ref) => {
@@ -1678,7 +1661,8 @@
                 headerTable.createTHead().insertRow().class = 'dynamicTableHeader';
 
                 const tableDiv = new Element('div.dynamicTableDiv', {
-                    id: 'scheduleTableDiv' + day
+                    id: 'scheduleTableDiv' + day,
+                    style: 'min-height: 4em; max-height: 16em;'
                 });
                 const table = new Element('table.dynamicTable.unselectable');
                 tableDiv.append(table);
