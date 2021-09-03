@@ -452,13 +452,12 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
             path += EXT_LEGACY;
     }
 
+    const QByteArray rules {RSS::AutoDownloader::instance()->exportRules(format)};
     QFile file {path};
-    if (!file.open(QFile::WriteOnly)
-            || (file.write(RSS::AutoDownloader::instance()->exportRules(format)) == -1))
-            {
-        QMessageBox::critical(
-                    this, tr("I/O Error")
-                    , tr("Failed to create the destination file. Reason: %1").arg(file.errorString()));
+    if (!file.open(QFile::WriteOnly) || (file.write(rules) != rules.length()))
+    {
+        QMessageBox::critical(this, tr("I/O Error")
+            , tr("Failed to create the destination file. Reason: %1").arg(file.errorString()));
     }
 }
 

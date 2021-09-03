@@ -47,9 +47,7 @@ namespace
             QFile file {filePath};
             if (!file.open(QIODevice::WriteOnly))
                 return false;
-
-            file.write(replyData);
-            return true;
+            return (file.write(replyData) == replyData.length());
         }
 
         QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
@@ -59,9 +57,7 @@ namespace
             return false;
 
         filePath = tmpfile.fileName();
-
-        tmpfile.write(replyData);
-        return true;
+        return (tmpfile.write(replyData) == replyData.length());
     }
 }
 

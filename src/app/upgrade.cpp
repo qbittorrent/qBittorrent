@@ -63,7 +63,7 @@ namespace
             {
                 file.close();
                 Utils::Fs::forceRemove(savePath);
-                LogMsg(errorMsgFormat.arg(savePath, QLatin1String("Write incomplete.")) , Log::WARNING);
+                LogMsg(errorMsgFormat.arg(savePath, QObject::tr("Write incomplete")) , Log::WARNING);
                 return;
             }
 

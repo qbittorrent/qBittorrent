@@ -67,15 +67,12 @@ QDir AsyncFileStorage::storageDir() const
 void AsyncFileStorage::store_impl(const QString &fileName, const QByteArray &data)
 {
     const QString filePath = m_storageDir.absoluteFilePath(fileName);
-    QSaveFile file(filePath);
     qDebug() << "AsyncFileStorage: Saving data to" << filePath;
-    if (file.open(QIODevice::WriteOnly))
+
+    QSaveFile file(filePath);
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.length()) || !file.commit())
     {
-        file.write(data);
-        if (!file.commit())
-        {
-            qDebug() << "AsyncFileStorage: Failed to save data";
-            emit failed(filePath, file.errorString());
-        }
+        qDebug() << "AsyncFileStorage: Failed to save data";
+        emit failed(filePath, file.errorString());
     }
 }

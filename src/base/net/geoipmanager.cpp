@@ -451,11 +451,17 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                         specialFolderLocation(SpecialFolder::Data) + GEODB_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
+
             QFile targetFile(QString::fromLatin1("%1/%2").arg(targetPath, GEODB_FILENAME));
-            if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) == -1))
-                LogMsg(tr("Couldn't save downloaded IP geolocation database file."), Log::WARNING);
+            if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) != data.length()))
+            {
+                LogMsg(tr("Couldn't save downloaded IP geolocation database file. Reason: %1")
+                    .arg(targetFile.errorString()), Log::WARNING);
+            }
             else
+            {
                 LogMsg(tr("Successfully updated IP geolocation database."), Log::INFO);
+            }
         }
         else
         {
