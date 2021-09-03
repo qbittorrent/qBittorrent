@@ -797,33 +797,34 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     actionClear->setDisabled(allEntries.empty());
 
     connect(actionAddEntry, &QAction::triggered, scheduleDay,
-        [this, scheduleDay]() { OptionsDialog::openScheduleEntryDialog(scheduleDay); });
+        [this, scheduleDay]() { openScheduleEntryDialog(scheduleDay); });
 
-    connect(actionRemoveEntry, &QAction::triggered, this,
+    connect(actionRemoveEntry, &QAction::triggered, scheduleDay,
         [this, day]() { removeSelectedScheduleEntries(day); });
 
-    connect(actionCopy, &QAction::triggered, scheduleDay, [allEntries, selectedRows]()
+    connect(actionCopy, &QAction::triggered, this, [allEntries, selectedRows]()
     {
-        auto selectedEntries = allEntries.mid(selectedRows[0].row(), selectedRows.count());
+        QJsonArray jsonArray{};
+        for (QModelIndex index : asConst(selectedRows))
+            jsonArray.append(allEntries.at(index.row()).toJsonObject());
+
         auto *mimeData = new QMimeData;
-        mimeData->setData("application/json", QJsonDocument(ScheduleDay(selectedEntries).toJsonArray()).toJson());
+        mimeData->setData("application/json", QJsonDocument(jsonArray).toJson());
         QApplication::clipboard()->setMimeData(mimeData);
     });
 
     connect(actionPaste, &QAction::triggered, scheduleDay, [scheduleDay]()
     {
-        QByteArray json = QApplication::clipboard()->mimeData()->data("application/json");
-        bool errored = false;
-        const auto *day = ScheduleDay::fromJsonArray(QJsonDocument::fromJson(json).array(), -1, &errored);
-        if (errored) return;
+        const QByteArray clipboard = QApplication::clipboard()->mimeData()->data("application/json");
+        const QJsonArray jsonArray = QJsonDocument::fromJson(clipboard).array();
 
-        for (const ScheduleEntry tr : asConst(day->entries()))
-            scheduleDay->addEntry(tr);
+        for (const QJsonValue jValue : asConst(jsonArray))
+            scheduleDay->addEntry(ScheduleEntry::fromJsonObject(jValue.toObject()));
     });
 
-    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [schedule, day, allEntries, selectedRows]()
+    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [=]()
     {
-        for (QModelIndex index : selectedRows)
+        for (QModelIndex index : asConst(selectedRows))
         {
             ScheduleEntry entry = allEntries[index.row()];
             for (int i = 0; i < 7; ++i)
