@@ -2,6 +2,7 @@
 
 #include <QJsonArray>
 
+#include "bandwidthscheduler.h"
 #include "base/global.h"
 #include "base/logger.h"
 
@@ -36,7 +37,7 @@ bool ScheduleDay::addEntry(const ScheduleEntry &entry)
         }
     }
 
-    emit dayUpdated(m_dayOfWeek);
+    emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     return true;
 }
 
@@ -46,7 +47,7 @@ bool ScheduleDay::removeEntryAt(int index)
         return false;
 
     m_entries.removeAt(index);
-    emit dayUpdated(m_dayOfWeek);
+    emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     return true;
 }
 
@@ -61,14 +62,14 @@ bool ScheduleDay::removeEntries(QVector<int> indexes)
     for (int i = 0; i < indexes.count(); ++i)
         m_entries.removeAt(indexes[i]);
 
-    emit dayUpdated(m_dayOfWeek);
+    emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     return true;
 }
 
 void ScheduleDay::clearEntries()
 {
     m_entries.clear();
-    emit dayUpdated(m_dayOfWeek);
+    emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
 }
 
 bool ScheduleDay::canSetStartTime(int index, QTime time)
@@ -89,7 +90,7 @@ void ScheduleDay::setStartTimeAt(int index, const QTime time)
     if (m_entries[index].startTime != time && canSetStartTime(index, time))
     {
         m_entries[index].setStartTime(time);
-        emit dayUpdated(m_dayOfWeek);
+        emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     }
 }
 
@@ -98,7 +99,7 @@ void ScheduleDay::setEndTimeAt(int index, const QTime time)
     if (m_entries[index].endTime != time && canSetEndTime(index, time))
     {
         m_entries[index].setEndTime(time);
-        emit dayUpdated(m_dayOfWeek);
+        emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     }
 }
 
@@ -107,7 +108,7 @@ void ScheduleDay::setDownloadSpeedAt(int index, int value)
     if (m_entries[index].downloadSpeed != value)
     {
         m_entries[index].setDownloadSpeed(value);
-        emit dayUpdated(m_dayOfWeek);
+        emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     }
 }
 
@@ -116,7 +117,7 @@ void ScheduleDay::setUploadSpeedAt(int index, int value)
     if (m_entries[index].uploadSpeed != value)
     {
         m_entries[index].setUploadSpeed(value);
-        emit dayUpdated(m_dayOfWeek);
+        emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     }
 }
 
@@ -125,7 +126,7 @@ void ScheduleDay::setPauseAt(int index, bool value)
     if (m_entries[index].pause != value)
     {
         m_entries[index].setPause(value);
-        emit dayUpdated(m_dayOfWeek);
+        emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
     }
 }
 
@@ -177,7 +178,7 @@ QJsonArray ScheduleDay::toJsonArray() const
 
 ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored)
 {
-    ScheduleDay *scheduleDay = new ScheduleDay(dayOfWeek);
+    auto *scheduleDay = new ScheduleDay(dayOfWeek);
 
     for (const QJsonValue &jValue : jsonArray)
     {
@@ -193,7 +194,7 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
         if (!ScheduleEntry::validateJsonObject(jObject))
             *errored = true;
 
-        ScheduleEntry entry = ScheduleEntry::fromJsonObject(jObject);
+        auto entry = ScheduleEntry::fromJsonObject(jObject);
         scheduleDay->addEntry(entry);
     }
 

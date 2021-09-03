@@ -783,7 +783,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     menu->addSeparator();
     QAction *actionCopy = menu->addAction(theme->getIcon("edit-copy"), tr("Copy"));
     QAction *actionPaste = menu->addAction(theme->getIcon("edit-paste"), tr("Paste"));
-    QAction *actionCopyAll = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
+    QAction *actionCopyToOtherDays = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
     menu->addSeparator();
     QAction *actionClear = menu->addAction(theme->getIcon("edit-clear"), tr("Clear all"));
 
@@ -793,7 +793,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     actionRemoveEntry->setDisabled(selectedRows.empty());
     actionCopy->setDisabled(selectedRows.empty());
     actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat("application/json"));
-    actionCopyAll->setDisabled(selectedRows.empty());
+    actionCopyToOtherDays->setDisabled(selectedRows.empty());
     actionClear->setDisabled(allEntries.empty());
 
     connect(actionAddEntry, &QAction::triggered, scheduleDay,
@@ -821,7 +821,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
             scheduleDay->addEntry(tr);
     });
 
-    connect(actionCopyAll, &QAction::triggered, scheduleDay, [schedule, day, allEntries, selectedRows]()
+    connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [schedule, day, allEntries, selectedRows]()
     {
         for (QModelIndex index : selectedRows)
         {
@@ -988,14 +988,6 @@ void OptionsDialog::saveOptions()
     session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(m_ui->comboProtocol->currentIndex()));
     session->setPort(getPort());
     Net::PortForwarder::instance()->setEnabled(isUPnPEnabled());
-    session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024);
-    session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
-    session->setAltGlobalDownloadSpeedLimit(m_ui->spinDownloadLimitAlt->value() * 1024);
-    session->setAltGlobalUploadSpeedLimit(m_ui->spinUploadLimitAlt->value() * 1024);
-    session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
-    session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
-    session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
-    session->setBandwidthSchedulerEnabled(m_ui->checkScheduleEnable->isChecked());
 
     auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
@@ -1009,6 +1001,17 @@ void OptionsDialog::saveOptions()
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
     // End Connection preferences
+
+    // Speed preferences
+    session->setGlobalDownloadSpeedLimit(m_ui->spinDownloadLimit->value() * 1024);
+    session->setGlobalUploadSpeedLimit(m_ui->spinUploadLimit->value() * 1024);
+    session->setAltGlobalDownloadSpeedLimit(m_ui->spinDownloadLimitAlt->value() * 1024);
+    session->setAltGlobalUploadSpeedLimit(m_ui->spinUploadLimitAlt->value() * 1024);
+    session->setBandwidthSchedulerEnabled(m_ui->checkScheduleEnable->isChecked());
+    session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
+    session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
+    session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
+    // End Speed preferences
 
     // Bittorrent preferences
     session->setMaxConnections(getMaxConnecs());

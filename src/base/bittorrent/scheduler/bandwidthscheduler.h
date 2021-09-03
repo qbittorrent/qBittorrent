@@ -46,7 +46,7 @@ class BandwidthScheduler : public QObject
     friend class ::Application;
 
     const QString ScheduleFileName = QStringLiteral("schedule.json");
-    const QStringList DAYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
+    const QStringList DAY_KEYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
 
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);
@@ -75,6 +75,6 @@ private:
 
     QThread *m_ioThread;
     AsyncFileStorage *m_fileStorage;
-    QList<ScheduleDay*> m_scheduleDays;
+    QVector<ScheduleDay*> m_scheduleDays = QVector<ScheduleDay*>(7);
     QTimer m_timer;
 };

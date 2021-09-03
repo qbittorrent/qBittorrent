@@ -35,9 +35,6 @@ public:
     QJsonArray toJsonArray() const;
     static ScheduleDay* fromJsonArray(const QJsonArray &jsonArray, int dayOfWeek, bool *errored);
 
-signals:
-    void dayUpdated(int dayOfWeek);
-
 private:
     int m_dayOfWeek;
     QList<ScheduleEntry> m_entries;

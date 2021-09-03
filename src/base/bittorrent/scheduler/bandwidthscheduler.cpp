@@ -67,20 +67,16 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
     if (!loadSchedule())
     {
         for (int day = 0; day < 7; ++day)
-            m_scheduleDays.append(new ScheduleDay(day));
+            m_scheduleDays[day] = new ScheduleDay(day);
+        saveSchedule();
     }
 
-    for (int i = 0; i < 7; ++i)
+    connect(this, &BandwidthScheduler::scheduleUpdated, this, [this](int day)
     {
-        connect(m_scheduleDays[i], &ScheduleDay::dayUpdated, this, [this](int day)
-        {
-            saveSchedule();
-            emit scheduleUpdated(day);
-
-            if (day == QDate::currentDate().dayOfWeek() - 1)
-                emit limitChangeRequested();
-        });
-    }
+        saveSchedule();
+        if (day == QDate::currentDate().dayOfWeek() - 1)
+            emit limitChangeRequested();
+    });
 
     connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::limitChangeRequested);
 }
@@ -165,18 +161,18 @@ bool BandwidthScheduler::loadSchedule()
 
     for (int day = 0; day < 7; ++day)
     {
-        if (!jsonObj[DAYS[day]].isArray())
+        if (!jsonObj[DAY_KEYS[day]].isArray())
         {
             LogMsg(tr("Ignoring invalid value for schedule day: %1 (expected an array)")
-                    .arg(DAYS[day]), Log::WARNING);
+                    .arg(DAY_KEYS[day]), Log::WARNING);
 
             errored = true;
-            m_scheduleDays.append(new ScheduleDay(day));
+            m_scheduleDays[day] = new ScheduleDay(day);
             continue;
         }
 
-        QJsonArray arr = jsonObj[DAYS[day]].toArray();
-        m_scheduleDays.append(ScheduleDay::fromJsonArray(arr, day, &errored));
+        QJsonArray arr = jsonObj[DAY_KEYS[day]].toArray();
+        m_scheduleDays[day] = ScheduleDay::fromJsonArray(arr, day, &errored);
     }
 
     if (errored)
@@ -197,7 +193,7 @@ QByteArray BandwidthScheduler::getJson() const
 {
     QJsonObject jsonObj;
     for (int i = 0; i < 7; ++i)
-        jsonObj.insert(DAYS[i], m_scheduleDays[i]->toJsonArray());
+        jsonObj.insert(DAY_KEYS[i], m_scheduleDays[i]->toJsonArray());
 
     return QJsonDocument(jsonObj).toJson();
 }
@@ -224,7 +220,7 @@ bool BandwidthScheduler::importLegacyScheduler()
             || (schedulerDays == WEEK_ENDS && (day == 5 || day == 6))
             || (day == schedulerDays - 3);
 
-        ScheduleDay *scheduleDay = new ScheduleDay(day);
+        auto *scheduleDay = new ScheduleDay(day);
 
         if (shouldAdd)
         {
@@ -249,7 +245,7 @@ bool BandwidthScheduler::importLegacyScheduler()
             }
         }
 
-        m_scheduleDays.append(scheduleDay);
+        m_scheduleDays[day] = scheduleDay;
     }
 
     saveSchedule();
