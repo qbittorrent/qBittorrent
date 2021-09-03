@@ -9,6 +9,7 @@ Type=simple
 PrivateTmp=false
 User=%i
 ExecStart=@EXPAND_BINDIR@/qbittorrent-nox
+TimeoutStopSec=1800
 
 [Install]
 WantedBy=multi-user.target
