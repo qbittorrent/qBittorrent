@@ -31,6 +31,7 @@
 
 #include <QDragMoveEvent>
 #include <QDropEvent>
+#include <QHeaderView>
 #include <QTreeWidgetItem>
 
 #include "base/global.h"
@@ -39,6 +40,33 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "gui/uithememanager.h"
+
+namespace
+{
+    enum
+    {
+        StickyItemTagRole = Qt::UserRole + 1
+    };
+
+    class FeedListItem final : public QTreeWidgetItem
+    {
+    public:
+        using QTreeWidgetItem::QTreeWidgetItem;
+
+    private:
+        bool operator<(const QTreeWidgetItem &other) const override
+        {
+            const bool lhsSticky = data(0, StickyItemTagRole).toBool();
+            const bool rhsSticky = other.data(0, StickyItemTagRole).toBool();
+
+            if (lhsSticky == rhsSticky)
+                return QTreeWidgetItem::operator<(other);
+
+            const int order = treeWidget()->header()->sortIndicatorOrder();
+            return ((order == Qt::AscendingOrder) ? lhsSticky : rhsSticky);
+        }
+    };
+}
 
 FeedListWidget::FeedListWidget(QWidget *parent)
     : QTreeWidget(parent)
@@ -57,10 +85,12 @@ FeedListWidget::FeedListWidget(QWidget *parent)
 
     m_rssToTreeItemMapping[RSS::Session::instance()->rootFolder()] = invisibleRootItem();
 
-    m_unreadStickyItem = new QTreeWidgetItem(this);
+    m_unreadStickyItem = new FeedListItem(this);
     m_unreadStickyItem->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
     m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("mail-folder-inbox"));
+    m_unreadStickyItem->setData(0, StickyItemTagRole, true);
+
 
     connect(RSS::Session::instance()->rootFolder(), &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
 
@@ -233,7 +263,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
 
 QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem)
 {
-    auto *item = new QTreeWidgetItem;
+    auto *item = new FeedListItem;
     item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
     item->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(rssItem));
     m_rssToTreeItemMapping[rssItem] = item;
