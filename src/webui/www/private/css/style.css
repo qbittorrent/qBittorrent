@@ -517,6 +517,21 @@ td.generalLabel {
     padding: 2px;
 }
 
+#progress {
+    border: 1px solid #999;
+    padding: 0;
+    position: relative;
+    width: 100%;
+}
+
+#progress canvas {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
 #watched_folders_tab {
     border-collapse: collapse;
 }
