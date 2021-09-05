@@ -66,7 +66,8 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     , m_uid(uid)
     , m_url(url)
 {
-    m_dataFileName = QString::fromLatin1(m_uid.toRfc4122().toHex()) + QLatin1String(".json");
+    const auto uidHex = QString::fromLatin1(m_uid.toRfc4122().toHex());
+    m_dataFileName = uidHex + QLatin1String(".json");
 
     // Move to new file naming scheme (since v4.1.2)
     const QString legacyFilename
@@ -75,6 +76,8 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     const QDir storageDir {m_session->dataFileStorage()->storageDir()};
     if (!QFile::exists(storageDir.absoluteFilePath(m_dataFileName)))
         QFile::rename(storageDir.absoluteFilePath(legacyFilename), storageDir.absoluteFilePath(m_dataFileName));
+
+    m_iconPath = Utils::Fs::toUniformPath(storageDir.absoluteFilePath(uidHex + QLatin1String(".ico")));
 
     m_parser = new Private::Parser(m_lastBuildDate);
     m_parser->moveToThread(m_session->workingThread());
@@ -96,7 +99,6 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
 Feed::~Feed()
 {
     emit aboutToBeDestroyed(this);
-    Utils::Fs::forceRemove(m_iconPath);
 }
 
 QList<Article *> Feed::articles() const
@@ -135,6 +137,9 @@ void Feed::refresh()
 
     m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
+
+    if (!QFile::exists(m_iconPath))
+        downloadIcon();
 
     m_isLoading = true;
     emit stateChanged(this);
@@ -186,7 +191,6 @@ void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success)
     {
-        m_iconPath = Utils::Fs::toUniformPath(result.filePath);
         emit iconLoaded(this);
     }
 }
@@ -423,7 +427,7 @@ void Feed::downloadIcon()
     const QUrl url(m_url);
     const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
-            Net::DownloadRequest(iconUrl).saveToFile(true)
+            Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
                 , this, &Feed::handleIconDownloadFinished);
 }
 
@@ -545,6 +549,7 @@ void Feed::handleArticleRead(Article *article)
 void Feed::cleanup()
 {
     Utils::Fs::forceRemove(m_session->dataFileStorage()->storageDir().absoluteFilePath(m_dataFileName));
+    Utils::Fs::forceRemove(m_iconPath);
 }
 
 void Feed::timerEvent(QTimerEvent *event)

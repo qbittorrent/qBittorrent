@@ -42,6 +42,16 @@ namespace
 {
     bool saveToFile(const QByteArray &replyData, QString &filePath)
     {
+        if (!filePath.isEmpty())
+        {
+            QFile file {filePath};
+            if (!file.open(QIODevice::WriteOnly))
+                return false;
+
+            file.write(replyData);
+            return true;
+        }
+
         QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
         tmpfile.setAutoRemove(false);
 
@@ -129,7 +139,7 @@ void DownloadHandlerImpl::processFinishedDownload()
 
     if (m_downloadRequest.saveToFile())
     {
-        QString filePath;
+        QString filePath {m_downloadRequest.destFileName()};
         if (saveToFile(m_result.data, filePath))
             m_result.filePath = filePath;
         else
