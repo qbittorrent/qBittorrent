@@ -28,7 +28,6 @@
 
 #include "torrentinfo.h"
 
-#include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/error_code.hpp>
 
@@ -172,14 +171,9 @@ void TorrentInfo::saveToFile(const QString &path) const
     {
         const auto torrentCreator = lt::create_torrent(*nativeInfo());
         const lt::entry torrentEntry = torrentCreator.generate();
-
-        QFile torrentFile {path};
-        if (!torrentFile.open(QIODevice::WriteOnly))
-            throw RuntimeError(torrentFile.errorString());
-
-        lt::bencode(Utils::IO::FileDeviceOutputIterator {torrentFile}, torrentEntry);
-        if (torrentFile.error() != QFileDevice::NoError)
-            throw RuntimeError(torrentFile.errorString());
+        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
+        if (!result)
+            throw RuntimeError(result.error());
     }
     catch (const lt::system_error &err)
     {

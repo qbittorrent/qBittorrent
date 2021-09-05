@@ -31,8 +31,13 @@
 #include <iterator>
 #include <memory>
 
+#include <libtorrent/fwd.hpp>
+
+#include "base/3rdparty/expected.hpp"
+
 class QByteArray;
 class QFileDevice;
+class QString;
 
 namespace Utils::IO
 {
@@ -74,4 +79,7 @@ namespace Utils::IO
         std::shared_ptr<QByteArray> m_buffer;
         int m_bufferSize;
     };
+
+    nonstd::expected<void, QString> saveToFile(const QString &path, const QByteArray &data);
+    nonstd::expected<void, QString> saveToFile(const QString &path, const lt::entry &data);
 }

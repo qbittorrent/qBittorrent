@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/3rdparty/expected.hpp \
     $$PWD/algorithm.h \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \

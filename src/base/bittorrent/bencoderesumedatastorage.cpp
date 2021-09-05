@@ -29,7 +29,6 @@
 #include "bencoderesumedatastorage.h"
 
 #include <libtorrent/bdecode.hpp>
-#include <libtorrent/bencode.hpp>
 #include <libtorrent/entry.hpp>
 #include <libtorrent/read_resume_data.hpp>
 #include <libtorrent/torrent_info.hpp>
@@ -37,7 +36,6 @@
 
 #include <QByteArray>
 #include <QRegularExpression>
-#include <QSaveFile>
 #include <QThread>
 
 #include "base/algorithm.h"
@@ -87,17 +85,6 @@ namespace
         for (const QString &setValue : input)
             entryList.emplace_back(setValue.toStdString());
         return entryList;
-    }
-
-    void writeEntryToFile(const QString &filepath, const lt::entry &data)
-    {
-        QSaveFile file {filepath};
-        if (!file.open(QIODevice::WriteOnly))
-            throw RuntimeError(file.errorString());
-
-        lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, data);
-        if (file.error() != QFileDevice::NoError || !file.commit())
-            throw RuntimeError(file.errorString());
     }
 }
 
@@ -355,14 +342,11 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         metadataDict.insert(dataDict.extract("comment"));
 
         const QString torrentFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.torrent").arg(id.toString()));
-        try
-        {
-            writeEntryToFile(torrentFilepath, metadata);
-        }
-        catch (const RuntimeError &err)
+        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(torrentFilepath, metadata);
+        if (!result)
         {
             LogMsg(tr("Couldn't save torrent metadata to '%1'. Error: %2.")
-                   .arg(torrentFilepath, err.message()), Log::CRITICAL);
+                   .arg(torrentFilepath, result.error()), Log::CRITICAL);
             return;
         }
     }
@@ -378,14 +362,11 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
 
     const QString resumeFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.fastresume").arg(id.toString()));
-    try
-    {
-        writeEntryToFile(resumeFilepath, data);
-    }
-    catch (const RuntimeError &err)
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(resumeFilepath, data);
+    if (!result)
     {
         LogMsg(tr("Couldn't save torrent resume data to '%1'. Error: %2.")
-               .arg(resumeFilepath, err.message()), Log::CRITICAL);
+               .arg(resumeFilepath, result.error()), Log::CRITICAL);
     }
 }
 
@@ -406,10 +387,10 @@ void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QVector<Torr
         data += (torrentID.toString().toLatin1() + '\n');
 
     const QString filepath = m_resumeDataDir.absoluteFilePath(QLatin1String("queue"));
-    QSaveFile file {filepath};
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(filepath, data);
+    if (!result)
     {
         LogMsg(tr("Couldn't save data to '%1'. Error: %2")
-            .arg(filepath, file.errorString()), Log::CRITICAL);
+            .arg(filepath, result.error()), Log::CRITICAL);
     }
 }

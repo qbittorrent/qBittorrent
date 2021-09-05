@@ -1,5 +1,6 @@
 add_library(qbt_base STATIC
     # headers
+    3rdparty/expected.hpp
     algorithm.h
     asyncfilestorage.h
     bittorrent/abstractfilestorage.h
