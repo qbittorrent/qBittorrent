@@ -112,6 +112,20 @@ namespace
     void processList(QVariantList prevData, const QVariantList &data, QVariantList &syncData, QVariantList &removedItems);
     QVariantMap generateSyncData(int acceptedResponseId, const QVariantMap &data, QVariantMap &lastAcceptedData, QVariantMap &lastData);
 
+    // TODO: copied from transferlistfilterswidget.cpp, move me to somewhere else?
+    QString getHost(const QString &tracker)
+    {
+        // We want the domain + tld. Subdomains should be disregarded
+        const QUrl url {tracker};
+        const QString host {url.host()};
+
+        // host is in IP format
+        if (!QHostAddress(host).isNull())
+            return host;
+
+        return host.section('.', -2, -1);
+    }
+
     QVariantMap getTransferInfo()
     {
         QVariantMap map;
@@ -515,7 +529,7 @@ void SyncController::maindataAction()
     QVariantHash trackersHash;
     for (auto i = trackers.constBegin(); i != trackers.constEnd(); ++i)
     {
-        trackersHash[i.key()] = i.value();
+        trackersHash[getHost(i.key())] = i.value();
     }
     data["trackers"] = trackersHash;
 

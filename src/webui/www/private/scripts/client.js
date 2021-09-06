@@ -631,10 +631,8 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const host = getTrackerHost(tracker);
-                            const hash = genHash(host);
-                            trackerList.set(hash, {
-                                url: host,
+                            trackerList.set(tracker, {
+                                url: tracker,
                                 torrents: torrents
                             });
                         }
@@ -643,8 +641,7 @@ window.addEvent('load', function() {
                     if (response['trackers_removed']) {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
-                            const hash = genHash(tracker);
-                            trackerList.delete(hash);
+                            trackerList.delete(tracker);
                         }
                         updateTrackers = true;
                     }
