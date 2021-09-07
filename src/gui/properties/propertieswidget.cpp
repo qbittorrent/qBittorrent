@@ -610,7 +610,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
             }
 
             // Save changes
-            filteredFilesChanged();
+            this->applyPriorities();
         };
 
         QMenu *subMenu = menu->addMenu(tr("Priority"));
@@ -663,6 +663,9 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
                 const QModelIndex &index = selectedRows[i];
                 m_propListModel->setData(index.sibling(index.row(), PRIORITY)
                     , static_cast<int>(priority));
+
+                // Save changes
+                this->applyPriorities();
             }
         });
     }
