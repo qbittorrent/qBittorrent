@@ -76,6 +76,7 @@ const QString PARAM_TAGS {QStringLiteral("tags")};
 const QString PARAM_SAVEPATH {QStringLiteral("save_path")};
 const QString PARAM_OPERATINGMODE {QStringLiteral("operating_mode")};
 const QString PARAM_STOPPED {QStringLiteral("stopped")};
+const QString PARAM_SKIPCHECKING {QStringLiteral("skip_checking")};
 const QString PARAM_CONTENTLAYOUT {QStringLiteral("content_layout")};
 const QString PARAM_AUTOTMM {QStringLiteral("use_auto_tmm")};
 const QString PARAM_UPLOADLIMIT {QStringLiteral("upload_limit")};
@@ -137,6 +138,7 @@ namespace
         params.savePath = jsonObj.value(PARAM_SAVEPATH).toString();
         params.addForced = (getEnum<BitTorrent::TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == BitTorrent::TorrentOperatingMode::Forced);
         params.addPaused = getOptionalBool(jsonObj, PARAM_STOPPED);
+        params.skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool();
         params.contentLayout = getOptionalEnum<BitTorrent::TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT);
         params.useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM);
         params.uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1);
@@ -155,6 +157,7 @@ namespace
             {PARAM_SAVEPATH, params.savePath},
             {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
                 ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged)},
+            {PARAM_SKIPCHECKING, params.skipChecking},
             {PARAM_UPLOADLIMIT, params.uploadLimit},
             {PARAM_DOWNLOADLIMIT, params.downloadLimit},
             {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},

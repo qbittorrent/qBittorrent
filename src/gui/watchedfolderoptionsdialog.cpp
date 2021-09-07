@@ -61,6 +61,7 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
     const auto *session = BitTorrent::Session::instance();
     const BitTorrent::AddTorrentParams &torrentParams = watchedFolderOptions.addTorrentParams;
     m_ui->startTorrentCheckBox->setChecked(!torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
+    m_ui->skipCheckingCheckBox->setChecked(torrentParams.skipChecking);
     m_ui->comboTTM->setCurrentIndex(torrentParams.useAutoTMM.value_or(!session->isAutoTMMDisabledByDefault()));
     m_ui->contentLayoutComboBox->setCurrentIndex(
         static_cast<int>(torrentParams.contentLayout.value_or(session->torrentContentLayout())));
@@ -101,6 +102,7 @@ TorrentFilesWatcher::WatchedFolderOptions WatchedFolderOptionsDialog::watchedFol
         params.savePath = m_ui->savePath->selectedPath();
     params.category = m_ui->categoryComboBox->currentText();;
     params.addPaused = !m_ui->startTorrentCheckBox->isChecked();
+    params.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
     params.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 
     return watchedFolderOptions;
