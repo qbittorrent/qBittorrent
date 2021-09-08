@@ -71,6 +71,7 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     loadSettings();
 
     header()->setStretchLastSection(false);
+    header()->setTextElideMode(Qt::ElideRight);
 
     // Set Search results list model
     m_searchListModel = new QStandardItemModel(0, SearchSortModel::NB_SEARCH_COLUMNS, this);

@@ -72,6 +72,7 @@ TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
     unused.setVerticalHeader(header());
     header()->setParent(this);
     header()->setStretchLastSection(false);
+    header()->setTextElideMode(Qt::ElideRight);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
