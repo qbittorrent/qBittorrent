@@ -442,7 +442,10 @@ bool AutoDownloadRule::accepts(const QVariantHash &articleData)
 
 AutoDownloadRule &AutoDownloadRule::operator=(const AutoDownloadRule &other)
 {
-    m_dataPtr = other.m_dataPtr;
+    if (this != &other)
+    {
+        m_dataPtr = other.m_dataPtr;
+    }
     return *this;
 }
 
