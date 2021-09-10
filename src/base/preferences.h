@@ -252,7 +252,13 @@ public:
     void setAutoRunEnabled(bool enabled);
     QString getAutoRunProgram() const;
     void setAutoRunProgram(const QString &program);
+    bool isStartAutoRunEnabled() const;
+    void setStartAutoRunEnabled(bool enabled);
+    QString getStartAutoRunProgram() const;
+    void setStartAutoRunProgram(const QString &program);
 #if defined(Q_OS_WIN)
+    bool isStartAutoRunConsoleEnabled() const;
+    void setStartAutoRunConsoleEnabled(bool enabled);
     bool isAutoRunConsoleEnabled() const;
     void setAutoRunConsoleEnabled(bool enabled);
 #endif

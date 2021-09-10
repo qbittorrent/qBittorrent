@@ -852,6 +852,26 @@ void Preferences::setUILocked(const bool locked)
     setValue("Locking/locked", locked);
 }
 
+bool Preferences::isStartAutoRunEnabled() const
+{
+    return value("StartAutoRun/enabled", false).toBool();
+}
+
+void Preferences::setStartAutoRunEnabled(const bool enabled)
+{
+    setValue("StartAutoRun/enabled", enabled);
+}
+
+QString Preferences::getStartAutoRunProgram() const
+{
+    return value("StartAutoRun/program").toString();
+}
+
+void Preferences::setStartAutoRunProgram(const QString &program)
+{
+    setValue("StartAutoRun/program", program);
+}
+
 bool Preferences::isAutoRunEnabled() const
 {
     return value("AutoRun/enabled", false).toBool();
@@ -873,6 +893,16 @@ void Preferences::setAutoRunProgram(const QString &program)
 }
 
 #if defined(Q_OS_WIN)
+bool Preferences::isStartAutoRunConsoleEnabled() const
+{
+    return value("StartAutoRun/ConsoleEnabled", false).toBool();
+}
+
+void Preferences::setStartAutoRunConsoleEnabled(const bool enabled)
+{
+    setValue("StartAutoRun/ConsoleEnabled", enabled);
+}
+
 bool Preferences::isAutoRunConsoleEnabled() const
 {
     return value("AutoRun/ConsoleEnabled", false).toBool();

@@ -146,6 +146,11 @@ void AppController::preferencesAction()
     data["mail_notification_auth_enabled"] = pref->getMailNotificationSMTPAuth();
     data["mail_notification_username"] = pref->getMailNotificationSMTPUsername();
     data["mail_notification_password"] = pref->getMailNotificationSMTPPassword();
+
+    // Run an external program after torrent is added
+    data["start_autorun_enabled"] = pref->isStartAutoRunEnabled();
+    data["start_autorun_program"] = Utils::Fs::toNativePath(pref->getStartAutoRunProgram());
+
     // Run an external program on torrent completion
     data["autorun_enabled"] = pref->isAutoRunEnabled();
     data["autorun_program"] = Utils::Fs::toNativePath(pref->getAutoRunProgram());

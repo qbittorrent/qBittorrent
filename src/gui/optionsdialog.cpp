@@ -364,6 +364,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteCancelledTorrentBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->startAutoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditStartAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->startAutoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkExportDir, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkExportDir, &QAbstractButton::toggled, m_ui->textExportDir, &QWidget::setEnabled);
     connect(m_ui->checkExportDirFin, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -404,6 +407,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
             , tr("%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)")
             , tr("Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., \"%N\")"));
     m_ui->labelAutoRunParam->setText(autoRunStr);
+    m_ui->labelStartAutoRunParam->setText(autoRunStr);
 
     // Connection tab
     connect(m_ui->comboProtocol, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -758,10 +762,13 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
+    pref->setStartAutoRunEnabled(m_ui->startAutoRunBox->isChecked());
+    pref->setStartAutoRunProgram(m_ui->lineEditStartAutoRun->text().trimmed());
     pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
     pref->setAutoRunProgram(m_ui->lineEditAutoRun->text().trimmed());
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
+    pref->setStartAutoRunConsoleEnabled(m_ui->startAutoRunConsole->isChecked());
 #endif
     pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
     pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
@@ -1050,12 +1057,17 @@ void OptionsDialog::loadOptions()
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
+    m_ui->startAutoRunBox->setChecked(pref->isStartAutoRunEnabled());
+    m_ui->lineEditStartAutoRun->setText(pref->getStartAutoRunProgram());
+
     m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
     m_ui->lineEditAutoRun->setText(pref->getAutoRunProgram());
 #if defined(Q_OS_WIN)
     m_ui->autoRunConsole->setChecked(pref->isAutoRunConsoleEnabled());
+    m_ui->startAutoRunConsole->setChecked(pref->isStartAutoRunConsoleEnabled());
 #else
     m_ui->autoRunConsole->hide();
+    m_ui->startAutoRunConsole->hide();
 #endif
     intValue = pref->getActionOnDblClOnTorrentDl();
     if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())

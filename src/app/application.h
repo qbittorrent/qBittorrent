@@ -112,6 +112,7 @@ protected:
 
 private slots:
     void processMessage(const QString &message);
+    void torrentAdded(BitTorrent::Torrent *const torrent);
     void torrentFinished(BitTorrent::Torrent *const torrent);
     void allTorrentsFinished();
     void cleanup();
@@ -142,6 +143,6 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void runExternalProgram(const BitTorrent::Torrent *torrent, const QString targetProgram) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 };

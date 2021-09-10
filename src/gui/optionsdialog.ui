@@ -876,6 +876,38 @@
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QGroupBox" name="startAutoRunBox">
+                 <property name="title">
+                  <string>Run external program when torrent a&amp;dded</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_36">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditStartAutoRun"/>
+                  </item>
+                  <item>
+                   <widget class="QCheckBox" name="startAutoRunConsole">
+                    <property name="text">
+                     <string>Show console window</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QLabel" name="labelStartAutoRunParam">
+                    <property name="wordWrap">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

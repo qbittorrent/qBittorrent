@@ -311,7 +311,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
+void Application::runExternalProgram(const BitTorrent::Torrent *torrent, const QString targetProgram) const
 {
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
@@ -322,7 +322,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     };
 #endif
 
-    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
+    QString program = QString(targetProgram);
 
     for (int i = (program.length() - 2); i >= 0; --i)
     {
@@ -463,13 +463,22 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
                      content);
 }
 
+void Application::torrentAdded(BitTorrent::Torrent *const torrent)
+{
+    Preferences *const pref = Preferences::instance();
+
+    // AutoRun program
+    if (pref->isStartAutoRunEnabled())
+        runExternalProgram(torrent, pref->getStartAutoRunProgram().trimmed());
+}
+
 void Application::torrentFinished(BitTorrent::Torrent *const torrent)
 {
     Preferences *const pref = Preferences::instance();
 
     // AutoRun program
     if (pref->isAutoRunEnabled())
-        runExternalProgram(torrent);
+        runExternalProgram(torrent, pref->getAutoRunProgram().trimmed());
 
     // Mail notification
     if (pref->isMailNotificationEnabled())
@@ -619,6 +628,7 @@ int Application::exec(const QStringList &params)
     try
     {
         BitTorrent::Session::initInstance();
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
