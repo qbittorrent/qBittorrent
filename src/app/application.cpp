@@ -469,7 +469,7 @@ void Application::torrentAdded(BitTorrent::Torrent *const torrent)
 
     // AutoRun program
     if (pref->isStartAutoRunEnabled())
-        runExternalProgram(torrent, pref->getStartAutoRunProgram().trimmed());
+        runExternalProgram(pref->getStartAutoRunProgram().trimmed(), torrent);
 }
 
 void Application::torrentFinished(BitTorrent::Torrent *const torrent)
@@ -478,7 +478,7 @@ void Application::torrentFinished(BitTorrent::Torrent *const torrent)
 
     // AutoRun program
     if (pref->isAutoRunEnabled())
-        runExternalProgram(torrent, pref->getAutoRunProgram().trimmed());
+        runExternalProgram(pref->getAutoRunProgram().trimmed(), torrent);
 
     // Mail notification
     if (pref->isMailNotificationEnabled())
