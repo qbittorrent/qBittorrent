@@ -322,7 +322,7 @@ void Application::runExternalProgram(const QString targetProgram, const BitTorre
     };
 #endif
 
-    QString program = QString(targetProgram);
+    QString program = targetProgram;
 
     for (int i = (program.length() - 2); i >= 0; --i)
     {
