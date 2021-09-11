@@ -62,6 +62,9 @@ public:
     QString location(SpecialFolder folder) const;
     SettingsPtr applicationSettings(const QString &name) const;
 
+    QString rootPath() const;
+    QString configurationName() const;
+
     /// Returns either default name for configuration file (QCoreApplication::applicationName())
     /// or the value, supplied via parameters
     QString profileName() const;
