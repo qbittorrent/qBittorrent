@@ -699,7 +699,7 @@ QIcon getIconByState(const BitTorrent::TorrentState state)
 
 QColor getDefaultColorByState(const BitTorrent::TorrentState state)
 {
-    // Color names taken from http://cloford.com/resources/colours/500col.htm
+    // Colors were selecetd by using https://material.io/resources/color
     bool dark = isDarkTheme();
 
     switch (state)
@@ -709,31 +709,25 @@ QColor getDefaultColorByState(const BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::DownloadingMetadata:
     case BitTorrent::TorrentState::ForcedDownloadingMetadata:
         if (!dark)
-            return {34, 139, 34}; // Forest Green
+            return {15, 187, 88}; // Deep Green
         else
-            return {50, 205, 50}; // Lime Green
+            return {108, 194, 74}; // Light Green
     case BitTorrent::TorrentState::StalledDownloading:
     case BitTorrent::TorrentState::StalledUploading:
         if (!dark)
             return {0, 0, 0}; // Black
         else
-            return {204, 204, 204}; // Gray 80
+            return {104, 104, 104}; // Grey
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
-        if (!dark)
-            return {65, 105, 225}; // Royal Blue
-        else
-            return {99, 184, 255}; // Steel Blue 1
+            return {66, 133, 244}; // Blue
     case BitTorrent::TorrentState::PausedDownloading:
-        return {250, 128, 114}; // Salmon
+        return {242, 80, 34}; // Orange
     case BitTorrent::TorrentState::PausedUploading:
-        if (!dark)
-            return {0, 0, 139}; // Dark Blue
-        else
-            return {79, 148, 205}; // Steel Blue 3
+            return {66, 133, 244}; // Blue
     case BitTorrent::TorrentState::Error:
     case BitTorrent::TorrentState::MissingFiles:
-        return {255, 0, 0}; // red
+        return {219, 50, 54}; // Bright Red
     case BitTorrent::TorrentState::QueuedDownloading:
     case BitTorrent::TorrentState::QueuedUploading:
     case BitTorrent::TorrentState::CheckingDownloading:
@@ -741,14 +735,14 @@ QColor getDefaultColorByState(const BitTorrent::TorrentState state)
     case BitTorrent::TorrentState::CheckingResumeData:
     case BitTorrent::TorrentState::Moving:
         if (!dark)
-            return {0, 128, 128}; // Teal
+            return {192, 81, 219}; // Deep Purple
         else
-            return {0, 205, 205}; // Cyan 3
+            return {175, 92, 249}; // Light Purple
     case BitTorrent::TorrentState::Unknown:
-        return {255, 0, 0}; // red
+        return {219, 50, 54}; // Bright Red
     default:
         Q_ASSERT(false);
-        return {255, 0, 0}; // red
+        return {219, 50, 54}; // Bright Red
     }
 }
 

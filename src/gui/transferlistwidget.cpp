@@ -847,7 +847,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
     auto *actionSetTorrentPath = new QAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
-    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force recheck"), listMenu);
+    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon("force-recheck"), tr("Force recheck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
@@ -1015,7 +1015,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     for (const QString &category : asConst(categories))
     {
         const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
+        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("view-categories"), escapedCategory
             , this, [this, category]() { setSelectionCategory(category); });
 
         if (allSameCategory && (category == firstCategory))

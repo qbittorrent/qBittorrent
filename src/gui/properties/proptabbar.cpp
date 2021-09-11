@@ -55,7 +55,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon("network-server"),
+            UIThemeManager::instance()->getIcon("trackers"),
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);

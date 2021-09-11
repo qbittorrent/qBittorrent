@@ -214,7 +214,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
-        return UIThemeManager::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon("view-categories");
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole))

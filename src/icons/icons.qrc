@@ -107,6 +107,7 @@
         <file>flags/er.svg</file>
         <file>flags/es.svg</file>
         <file>flags/et.svg</file>
+        <file>flags/eu.svg</file>
         <file>flags/fi.svg</file>
         <file>flags/fj.svg</file>
         <file>flags/fk.svg</file>
@@ -270,6 +271,7 @@
         <file>flags/ua.svg</file>
         <file>flags/ug.svg</file>
         <file>flags/um.svg</file>
+        <file>flags/un.svg</file>
         <file>flags/us.svg</file>
         <file>flags/uy.svg</file>
         <file>flags/uz.svg</file>
@@ -282,6 +284,7 @@
         <file>flags/vu.svg</file>
         <file>flags/wf.svg</file>
         <file>flags/ws.svg</file>
+        <file>flags/xk.svg</file>
         <file>flags/ye.svg</file>
         <file>flags/yt.svg</file>
         <file>flags/za.svg</file>
@@ -291,6 +294,7 @@
         <file>folder-download.svg</file>
         <file>folder-new.svg</file>
         <file>folder-remote.svg</file>
+        <file>force-recheck.svg</file>
         <file>go-bottom.svg</file>
         <file>go-down.svg</file>
         <file>go-top.svg</file>
@@ -312,7 +316,6 @@
         <file>media-playback-start.svg</file>
         <file>media-seek-forward.svg</file>
         <file>network-server.svg</file>
-        <file>network-wired.svg</file>
         <file>object-locked.svg</file>
         <file>office-chart-line.svg</file>
         <file>paused.svg</file>
@@ -352,6 +355,8 @@
         <file>task-reject.svg</file>
         <file>text-plain.svg</file>
         <file>tools-report-bug.svg</file>
+        <file>torrent-creator.svg</file>
+        <file>trackers.svg</file>
         <file>unavailable.svg</file>
         <file>uploading.svg</file>
         <file>user-group-delete.svg</file>
