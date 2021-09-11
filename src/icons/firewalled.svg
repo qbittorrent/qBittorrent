@@ -1,3 +1,54 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#D1954E" d="M25.8 27.2v.9c0 .1 0 .2-.1.3-.1.1-.2.1-.3.1H6.6c-.1 0-.2 0-.3-.1-.1-.1-.1-.2-.1-.3v-.9c0-.1 0-.2.1-.3s.2-.1.3-.1h18.8c.1 0 .2 0 .3.1.1 0 .1.1.1.3zm-3.5-14.8c0 .7-.1 1.4-.3 2s-.6 1.2-1 1.6l-1.2 1.2c-.4.4-.9.7-1.3 1.1-.4.3-.9.7-1.2 1-.4.3-.7.7-.9 1.1-.2.4-.3.9-.3 1.3 0 .9.3 1.9.9 3.1h-.1c-.8-.4-1.6-.8-2.2-1.2s-1.3-.9-1.9-1.4-1.2-1.1-1.6-1.7c-.4-.6-.8-1.3-1-2.1-.3-.8-.4-1.7-.4-2.6 0-.7.1-1.4.3-2s.5-1.1.9-1.6l1.2-1.2c.4-.4.9-.7 1.3-1.1.4-.3.9-.7 1.2-1 .4-.3.7-.7.9-1.1.3-.3.4-.7.4-1.2 0-.9-.3-1.9-.9-3.1.8.4 1.6.8 2.2 1.2.7.3 1.3.8 2 1.4s1.2 1.1 1.6 1.7c.4.6.8 1.3 1 2.1s.4 1.6.4 2.5z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="ionicon"
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="flame-outline.svg"
+   width="32"
+   height="32"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     lock-margins="true"
+     inkscape:zoom="11.191659"
+     inkscape:cx="12.196583"
+     inkscape:cy="20.193609"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <title
+     id="title2">Flame</title>
+  <path
+     id="path4"
+     style="fill:#f25022;fill-opacity:1;stroke:#f25022;stroke-width:0.0705665;stroke-opacity:1"
+     d="M 12.678431,1.0354926 C 14.616011,8.7352915 6.0352837,13.916464 6.0352837,20.608812 a 9.9647182,10.362347 0 0 0 19.9294323,0 c 0,-12.6650887 -8.719126,-19.5733194 -13.286285,-19.5733194 z m 5.426208,12.6447094 c -0.5536,3.022351 2.214379,5.058121 2.214379,9.210974 0,4.152855 -2.214379,5.756859 -4.428758,5.756859 -2.214389,0 -4.428768,-1.604004 -4.428768,-5.756859 0,-4.152853 3.736768,-9.210974 6.643147,-9.210974 z" />
+  <metadata
+     id="metadata1094">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Flame</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
 </svg>

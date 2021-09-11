@@ -1,20 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
-  <title>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 1024 1024"
+   version="1.1"
+   id="svg23"
+   sodipodi:docname="qbittorrent-tray-with-font.svg"
+   inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="0.52832031"
+     inkscape:cx="447.6451"
+     inkscape:cy="198.74307"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg23" />
+  <title
+     id="title2">
     qbittorrent-new-light
   </title>
-  <defs>
-    <linearGradient x1="34.012%" y1="0%" x2="76.373%" y2="76.805%" id="a">
-      <stop stop-color="#72B4F5" offset="0%"/>
-      <stop stop-color="#356EBF" offset="100%"/>
+  <defs
+     id="defs9">
+    <linearGradient
+       x1="348.2829"
+       y1="0"
+       x2="782.05951"
+       y2="786.48322"
+       id="a"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         stop-color="#72B4F5"
+         offset="0%"
+         id="stop4" />
+      <stop
+         stop-color="#356EBF"
+         offset="100%"
+         id="stop6" />
     </linearGradient>
   </defs>
-  <g fill="none" fill-rule="evenodd">
-    <circle stroke="#DAEFFF" stroke-width="32" fill="url(#a)" cx="512" cy="512" r="496"/>
-    <text font-size="632" font-family="Open Sans" fill="#FFF">
-      <tspan x="501.203" y="676.172">b</tspan>
-    </text>
-    <text font-size="632" font-family="Open Sans" fill="#C8E8FF">
-      <tspan x="135.203" y="676.172">q</tspan>
-    </text>
+  <g
+     fill="none"
+     fill-rule="evenodd"
+     id="g21"
+     transform="matrix(0.99609381,0,0,0.99609372,1.9999693,2.0000154)">
+    <path
+       id="circle11"
+       style="fill:url(#a);stroke:#daefff;stroke-width:32"
+       d="M 1008,512 A 496,496 0 0 1 512,1008 496,496 0 0 1 16,512 496,496 0 0 1 512,16 496,496 0 0 1 1008,512 Z" />
+    <g
+       aria-label="b"
+       id="text15"
+       style="font-size:632px;font-family:'Open Sans';fill:#ffffff">
+      <path
+         d="m 808.87097,503.66809 q 0,-62.64453 -25.92187,-98.13281 -25.61328,-35.79688 -70.66797,-35.79688 -45.05469,0 -70.97656,35.79688 -25.61329,35.48828 -25.61329,98.13281 0,62.64453 25.61329,98.44141 25.92187,35.48828 70.97656,35.48828 45.05469,0 70.66797,-35.48828 25.92187,-35.79688 25.92187,-98.44141 z M 615.69128,383.00793 q 17.89844,-30.85937 45.05469,-45.67187 27.46485,-15.12109 65.42188,-15.12109 62.95312,0 102.14453,49.99218 39.5,49.99219 39.5,131.46094 0,81.46875 -39.5,131.46094 -39.19141,49.99219 -102.14453,49.99219 -37.95703,0 -65.42188,-14.8125 -27.15625,-15.1211 -45.05469,-45.98047 V 676.172 H 558.60144 V 196.00012 h 57.08984 z"
+         id="path843" />
+    </g>
+    <g
+       aria-label="q"
+       id="text19"
+       style="font-size:632px;font-family:'Open Sans';fill:#c8e8ff">
+      <path
+         d="m 228.70691,503.66809 q 0,62.64453 25.61328,98.44141 25.92188,35.48828 70.97656,35.48828 45.05469,0 70.97657,-35.48828 25.92187,-35.79688 25.92187,-98.44141 0,-62.64453 -25.92187,-98.13281 -25.92188,-35.79688 -70.97657,-35.79688 -45.05468,0 -70.97656,35.79688 -25.61328,35.48828 -25.61328,98.13281 z m 193.48828,120.66016 q -17.89844,30.85937 -45.36328,45.98047 -27.15625,14.8125 -65.42188,14.8125 -62.64453,0 -102.14453,-49.99219 -39.1914,-49.99219 -39.1914,-131.46094 0,-81.46875 39.1914,-131.46094 39.5,-49.99218 102.14453,-49.99218 38.26563,0 65.42188,15.12109 27.46484,14.8125 45.36328,45.67187 V 330.547 h 56.78125 v 477.08593 h -56.78125 z"
+         id="path846" />
+    </g>
   </g>
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>
+    qbittorrent-new-light
+  </dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
 </svg>

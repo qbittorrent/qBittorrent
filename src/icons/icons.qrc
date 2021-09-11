@@ -13,7 +13,6 @@
         <file>dialog-information.svg</file>
         <file>dialog-warning.svg</file>
         <file>disconnected.svg</file>
-        <file>document-edit-verify.svg</file>
         <file>document-edit.svg</file>
         <file>document-encrypt.svg</file>
         <file>document-import.svg</file>
@@ -22,7 +21,6 @@
         <file>document-save.svg</file>
         <file>download.svg</file>
         <file>downloading.svg</file>
-        <file>downloading_small.svg</file>
         <file>edit-clear-history.svg</file>
         <file>edit-clear.svg</file>
         <file>edit-copy.svg</file>
@@ -109,7 +107,6 @@
         <file>flags/er.svg</file>
         <file>flags/es.svg</file>
         <file>flags/et.svg</file>
-        <file>flags/eu.svg</file>
         <file>flags/fi.svg</file>
         <file>flags/fj.svg</file>
         <file>flags/fk.svg</file>
@@ -273,7 +270,6 @@
         <file>flags/ua.svg</file>
         <file>flags/ug.svg</file>
         <file>flags/um.svg</file>
-        <file>flags/un.svg</file>
         <file>flags/us.svg</file>
         <file>flags/uy.svg</file>
         <file>flags/uz.svg</file>
@@ -286,7 +282,6 @@
         <file>flags/vu.svg</file>
         <file>flags/wf.svg</file>
         <file>flags/ws.svg</file>
-        <file>flags/xk.svg</file>
         <file>flags/ye.svg</file>
         <file>flags/yt.svg</file>
         <file>flags/za.svg</file>
@@ -296,8 +291,6 @@
         <file>folder-download.svg</file>
         <file>folder-new.svg</file>
         <file>folder-remote.svg</file>
-        <file>gear.svg</file>
-        <file>gear32.svg</file>
         <file>go-bottom.svg</file>
         <file>go-down.svg</file>
         <file>go-top.svg</file>
@@ -335,6 +328,7 @@
         <file>qbittorrent_file.ico</file>
         <file>queued.svg</file>
         <file>ratio.svg</file>
+        <file>reannounce.svg</file>
         <file>resumed.svg</file>
         <file>rss-config.svg</file>
         <file>security-high.svg</file>
@@ -351,6 +345,7 @@
         <file>stalledUP.svg</file>
         <file>system-log-out.svg</file>
         <file>tab-close.svg</file>
+        <file>tags.svg</file>
         <file>task-attention.svg</file>
         <file>task-complete.svg</file>
         <file>task-ongoing.svg</file>

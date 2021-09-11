@@ -598,10 +598,10 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
 
     if (!torrent->isPaused())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce to selected trackers")
             , this, &TrackerListWidget::reannounceSelected);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce to all trackers")
             , this, [this]()
         {
             BitTorrent::Torrent *h = m_properties->getCurrentTorrent();
