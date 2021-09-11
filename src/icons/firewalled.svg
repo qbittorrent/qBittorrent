@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   height="32"
+   class="ionicon"
    viewBox="0 0 32 32"
-   width="32"
    version="1.1"
-   id="svg4"
-   sodipodi:docname="firewalled.svg"
+   id="svg8"
+   sodipodi:docname="flame-outline.svg"
+   width="32"
+   height="32"
    inkscape:version="1.1 (c4e8f9ed74, 2021-05-24)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
   <defs
-     id="defs8" />
+     id="defs12" />
   <sodipodi:namedview
-     id="namedview6"
+     id="namedview10"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
@@ -22,18 +26,29 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="4.2265625"
-     inkscape:cx="19.519408"
-     inkscape:cy="12.066543"
+     lock-margins="true"
+     inkscape:zoom="11.191659"
+     inkscape:cx="12.196583"
+     inkscape:cy="20.193609"
      inkscape:window-width="1366"
      inkscape:window-height="705"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
+     inkscape:current-layer="svg8" />
+  <title
+     id="title2">Flame</title>
   <path
-     id="path2"
-     style="color:#000000;fill:#f25022;stroke-width:1.39196;-inkscape-stroke:none"
-     d="m 13.214844,1 c 0.620029,0.231247 1.85371,0.8552704 2.365234,3.5527344 0.375118,1.982473 0.02548,5.2683727 -2.009766,6.3183596 C 11.037739,12.064796 13.214844,1 11.132812,9.4121094 9.5596209,14.781465 6.00155,17.285293 6,21.677734 6,27.365157 9.6029679,30.956251 15.527344,31 c 10.731154,0.07875 12.892462,-11.376704 7.957031,-16.087891 -0.65103,-0.619991 0.710551,3.678745 -1.919922,3.25 -2.531268,-0.414994 0.5323,-4.525607 0.273438,-9.0292965 C 21.724736,7.1403395 20.386608,5.6952332 19.251953,4.1523438 18.053938,2.5254162 15.403288,1.7914893 13.214844,1 Z m 4.451172,13.087891 C 16.693786,17.94652 21,20.54271 21,23.896484 c -9.56e-4,2.867274 -2.239253,5.191127 -5,5.191127 -2.760747,0 -4.999044,-2.323853 -5,-5.191127 0,-6.346917 4.374346,-9.808593 6.666016,-9.808593 z m -0.556641,6.552734 c -1.45833,0 -3.332031,2.534105 -3.332031,4.615234 0,2.081143 1.111546,2.884766 2.222656,2.884766 1.11111,0 2.220703,-0.803623 2.220703,-2.884766 0,-2.081129 -1.389108,-3.100625 -1.111328,-4.615234 z"
-     sodipodi:nodetypes="cccccccccccccscccsssc" />
+     id="path4"
+     style="fill:#f25022;fill-opacity:1;stroke:#f25022;stroke-width:0.0705665;stroke-opacity:1"
+     d="M 12.678431,1.0354926 C 14.616011,8.7352915 6.0352837,13.916464 6.0352837,20.608812 a 9.9647182,10.362347 0 0 0 19.9294323,0 c 0,-12.6650887 -8.719126,-19.5733194 -13.286285,-19.5733194 z m 5.426208,12.6447094 c -0.5536,3.022351 2.214379,5.058121 2.214379,9.210974 0,4.152855 -2.214379,5.756859 -4.428758,5.756859 -2.214389,0 -4.428768,-1.604004 -4.428768,-5.756859 0,-4.152853 3.736768,-9.210974 6.643147,-9.210974 z" />
+  <metadata
+     id="metadata1094">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title>Flame</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
 </svg>
