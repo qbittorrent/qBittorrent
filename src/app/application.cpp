@@ -311,7 +311,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::Torrent *torrent, const QString targetProgram) const
+void Application::runExternalProgram(const QString targetProgram, const BitTorrent::Torrent *torrent) const
 {
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString

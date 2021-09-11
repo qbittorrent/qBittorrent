@@ -143,6 +143,6 @@ private:
 
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent, const QString targetProgram) const;
+    void runExternalProgram(const QString targetProgram, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 };
