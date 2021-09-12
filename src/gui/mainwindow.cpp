@@ -2159,9 +2159,9 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
 #ifdef QBT_APP_64BIT
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe";
 #else
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10.exe";
 #endif
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)
