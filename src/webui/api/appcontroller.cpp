@@ -393,6 +393,11 @@ void AppController::setPreferencesAction()
         session->setPreallocationEnabled(it.value().toBool());
     if (hasKey("incomplete_files_ext"))
         session->setAppendExtensionEnabled(it.value().toBool());
+    // Run an external program on torrent start
+    if (hasKey("start_autorun_enabled"))
+        pref->setStartAutoRunEnabled(it.value().toBool());
+    if (hasKey("start_autorun_program"))
+        pref->setStartAutoRunProgram(it.value().toString());
 
     // Saving Management
     if (hasKey("auto_tmm_enabled"))
