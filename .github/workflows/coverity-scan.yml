@@ -77,7 +77,7 @@ jobs:
           curl \
             --form token=$TOKEN \
             --form email=sledgehammer999@qbittorrent.org \
-            --form file=@qbittorrent.tgz \
+            --form file=@qbittorrent.xz \
             --form version="$(git rev-parse --short HEAD)" \
             --form description="master" \
             https://scan.coverity.com/builds?project=qbittorrent%2FqBittorrent
