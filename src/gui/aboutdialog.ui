@@ -78,7 +78,7 @@
      </widget>
      <widget class="QWidget" name="authorTab">
       <attribute name="title">
-       <string>Author</string>
+       <string>Authors</string>
       </attribute>
       <layout class="QVBoxLayout" name="authorTabLayout">
        <item>

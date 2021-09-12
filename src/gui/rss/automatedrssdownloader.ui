@@ -25,7 +25,7 @@
       <string notr="true">color: red;</string>
      </property>
      <property name="text">
-      <string>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</string>
+      <string>Auto downloading of RSS torrents is currently disabled. You can enable it in application settings.</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>
@@ -221,7 +221,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
              </widget>
             </item>
             <item>
-             <widget class="QToolButton" name="addCategoryBtn" />
+             <widget class="QToolButton" name="addCategoryBtn"/>
             </item>
            </layout>
           </item>

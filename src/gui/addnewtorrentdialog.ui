@@ -138,7 +138,7 @@
             <item row="2" column="0">
              <widget class="QCheckBox" name="doNotDeleteTorrentCheckBox">
               <property name="toolTip">
-               <string>When checked, the .torrent file will not be deleted despite the settings at the &quot;Download&quot; page of the options dialog</string>
+               <string>When checked, the .torrent file will not be deleted regardless of the settings at the &quot;Download&quot; page of the Options dialog</string>
               </property>
               <property name="text">
                <string>Do not delete .torrent file</string>

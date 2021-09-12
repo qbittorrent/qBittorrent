@@ -2929,7 +2929,7 @@ void Session::setBannedIPs(const QStringList &newList)
         }
         else
         {
-            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned addresses.")
+            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned IP addresses.")
                    .arg(ip)
                 , Log::WARNING);
         }

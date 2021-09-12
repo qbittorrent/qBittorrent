@@ -654,7 +654,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(NETWORK_IFACE_ADDRESS, tr("Optional IP address to bind to"), &m_comboBoxInterfaceAddress);
     // Announce IP
     m_lineEditAnnounceIP.setText(session->announceIP());
-    addRow(ANNOUNCE_IP, (tr("IP Address to report to trackers (requires restart)")
+    addRow(ANNOUNCE_IP, (tr("IP address reported to trackers (requires restart)")
         + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#announce_ip", "(?)"))
         , &m_lineEditAnnounceIP);
     // Max concurrent HTTP announces
