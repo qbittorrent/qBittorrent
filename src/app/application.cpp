@@ -311,7 +311,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const QString targetProgram, const BitTorrent::Torrent *torrent) const
+void Application::runExternalProgram(const QString &targetProgram, const BitTorrent::Torrent *torrent) const
 {
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
@@ -463,9 +463,9 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
                      content);
 }
 
-void Application::torrentAdded(BitTorrent::Torrent *const torrent)
+void Application::torrentAdded(const BitTorrent::Torrent *torrent) const
 {
-    Preferences *const pref = Preferences::instance();
+    const Preferences *pref = Preferences::instance();
 
     // AutoRun program
     if (pref->isStartAutoRunEnabled())
