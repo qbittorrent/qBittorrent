@@ -1486,7 +1486,7 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled, const QVector<
         const TorrentInfo::PieceRange extremities = info().filePieces(index);
 
         // worst case: AVI index = 1% of total file size (at the end of the file)
-        const int nNumPieces = std::ceil(fileSize(index) * 0.01 / pieceLength());
+        const int nNumPieces = std::ceil(fileSize(index) * 0.15 / pieceLength());
         for (int i = 0; i < nNumPieces; ++i)
         {
             piecePriorities[extremities.first() + i] = newPrio;
