@@ -138,3 +138,8 @@ void ScheduleController::getJsonAction()
 {
     setResult(BandwidthScheduler::instance()->getJson());
 }
+
+void ScheduleController::loadFromDiskAction()
+{
+    BandwidthScheduler::instance()->loadScheduleFromDisk();
+}

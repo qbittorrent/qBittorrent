@@ -271,6 +271,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Languages supported
     initializeLanguageCombo();
 
+    BandwidthScheduler::instance()->loadScheduleFromDisk();
     initializeSchedulerTables();
 
     m_ui->checkUseCustomTheme->setChecked(Preferences::instance()->useCustomUITheme());
@@ -628,6 +629,8 @@ OptionsDialog::~OptionsDialog()
 {
     qDebug("-> destructing Options");
 
+    BandwidthScheduler::instance()->loadScheduleFromDisk();
+
     // save dialog states
     m_storeDialogSize = size();
 
@@ -737,7 +740,7 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
 void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
 {
     auto *dialog = new ScheduleEntryDialog(this, scheduleDay);
-    connect(dialog, &QDialog::accepted, dialog, [dialog, scheduleDay]()
+    connect(dialog, &QDialog::accepted, dialog, [=]()
     {
         scheduleDay->addEntry({
             dialog->timeFrom(),
@@ -746,6 +749,7 @@ void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
             dialog->uploadSpeed(),
             dialog->pause()
         });
+        enableApplyButton();
     });
 
     dialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -765,6 +769,7 @@ void OptionsDialog::removeSelectedScheduleEntries(const int day)
 
         BandwidthScheduler::instance()->scheduleDay(day)->removeEntries(indexes);
         selectionModel->clearSelection();
+        enableApplyButton();
     }
 }
 
@@ -813,13 +818,15 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
         QApplication::clipboard()->setMimeData(mimeData);
     });
 
-    connect(actionPaste, &QAction::triggered, scheduleDay, [scheduleDay]()
+    connect(actionPaste, &QAction::triggered, scheduleDay, [this, scheduleDay]()
     {
         const QByteArray clipboard = QApplication::clipboard()->mimeData()->data("application/json");
         const QJsonArray jsonArray = QJsonDocument::fromJson(clipboard).array();
 
         for (const QJsonValue jValue : asConst(jsonArray))
             scheduleDay->addEntry(ScheduleEntry::fromJsonObject(jValue.toObject()));
+
+        enableApplyButton();
     });
 
     connect(actionCopyToOtherDays, &QAction::triggered, scheduleDay, [=]()
@@ -833,9 +840,11 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
                 schedule->scheduleDay(i)->addEntry(entry);
             }
         }
+        enableApplyButton();
     });
 
     connect(actionClear, &QAction::triggered, scheduleDay, &ScheduleDay::clearEntries);
+    connect(actionClear, &QAction::triggered, this, &OptionsDialog::enableApplyButton);
 
     menu->popup(QCursor::pos());
 }
@@ -1009,6 +1018,7 @@ void OptionsDialog::saveOptions()
     session->setAltGlobalDownloadSpeedLimit(m_ui->spinDownloadLimitAlt->value() * 1024);
     session->setAltGlobalUploadSpeedLimit(m_ui->spinUploadLimitAlt->value() * 1024);
     session->setBandwidthSchedulerEnabled(m_ui->checkScheduleEnable->isChecked());
+    BandwidthScheduler::instance()->saveScheduleToDisk();
     session->setUTPRateLimited(m_ui->checkLimituTPConnections->isChecked());
     session->setIncludeOverheadInLimits(m_ui->checkLimitTransportOverhead->isChecked());
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
@@ -1667,6 +1677,10 @@ void OptionsDialog::applySettings()
 
 void OptionsDialog::closeEvent(QCloseEvent *e)
 {
+    // auto res = m_options->result();
+    // qDebug("%d", res);
+    qDebug("CLOSE EVENT TRIGGERED");
+
     setAttribute(Qt::WA_DeleteOnClose);
     e->accept();
 }
