@@ -128,19 +128,19 @@
                 <tr>
                     <th>QBT_TR(Speed limit)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
                     <td>
-                        <input type="number" id="downloadLimitInput" min="0" max="10000000">
+                        <input type="number" id="downloadLimitInput" min="0" max="10000000" required>
                         <label for="downloadLimitInput">KiB/s</label>
                     </td>
                     <td>
-                        <input type="number" id="uploadLimitInput" min="0" max="10000000">
+                        <input type="number" id="uploadLimitInput" min="0" max="10000000" required>
                         <label for="uploadLimitInput">KiB/s</label>
                     </td>
                     <td><input type="checkbox" id="pauseCheck"></td>
                 </tr>
                 <tr>
                     <th>QBT_TR(In between)QBT_TR[CONTEXT=ScheduleEntryDialog]</th>
-                    <td><input type="time" id="startTimeInput" value="00:00"></td>
-                    <td><input type="time" id="endTimeInput" value="23:59"></td>
+                    <td><input type="time" id="startTimeInput" value="00:00" required></td>
+                    <td><input type="time" id="endTimeInput" value="23:59" required></td>
                 </tr>
             </tbody>
         </table>

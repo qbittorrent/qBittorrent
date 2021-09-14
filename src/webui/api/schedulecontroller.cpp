@@ -1,6 +1,10 @@
 #include "schedulecontroller.h"
 
+#include <QJsonArray>
+#include <QJsonDocument>
+
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
+#include "base/bittorrent/scheduler/scheduleentry.h"
 #include "base/global.h"
 #include "base/utils/string.h"
 #include "webui/api/apierror.h"
@@ -15,8 +19,8 @@ namespace
         const QStringList startSplit = startTime.split(':');
         const QStringList endSplit = endTime.split(':');
         return {
-            QTime(parseInt(startSplit[0]).value_or(0), parseInt(startSplit[1]).value_or(0)),
-            QTime(parseInt(endSplit[0]).value_or(23), parseInt(endSplit[1]).value_or(59), 59, 999),
+            QTime(parseInt(startSplit.value(0)).value_or(0), parseInt(startSplit.value(1)).value_or(0)),
+            QTime(parseInt(endSplit.value(0)).value_or(23), parseInt(endSplit.value(1)).value_or(59), 59, 999),
             parseInt(downloadLimit).value_or(0),
             parseInt(uploadLimit).value_or(0),
             parseBool(pause).value_or(false)
@@ -104,16 +108,16 @@ void ScheduleController::clearDayAction()
 
 void ScheduleController::pasteAction()
 {
-    requireParams({"sourceDay", "indexes", "targetDay"});
+    requireParams({"entries", "targetDay"});
 
-    const QVector<int> indexes = parseIndexesParam(params()["indexes"]);
-    if (indexes.length() == 0) return;
+    const QByteArray entriesParam = params()["entries"].toLatin1();
+    const int targetDayIndex = params()["targetDay"].toInt();
 
-    const auto &sourceEntries = asConst(BandwidthScheduler::instance()->scheduleDay(params()["sourceDay"].toInt())->entries());
-    ScheduleDay *targetDay = BandwidthScheduler::instance()->scheduleDay(params()["targetDay"].toInt());
+    const auto entries = QJsonDocument::fromJson(entriesParam).array();
 
-    for (const int i : indexes)
-        targetDay->addEntry(sourceEntries.at(i));
+    ScheduleDay *targetDay = BandwidthScheduler::instance()->scheduleDay(targetDayIndex);
+    for (const QJsonValue entry : entries)
+        targetDay->addEntry(ScheduleEntry::fromJsonObject(entry.toObject()));
 }
 
 void ScheduleController::copyToOtherDaysAction()

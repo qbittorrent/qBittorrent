@@ -1445,7 +1445,7 @@
         const scheduleTables = new Hash();
         let schedule = {};
         let selectedScheduleDay = 0;
-        let scheduleClipboard = {};
+        let scheduleClipboard = [];
 
         const updateSchedulingEnabled = function() {
             const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
@@ -1533,21 +1533,19 @@
                         }).send();
                     },
                     copy: (element, ref) => {
-                        scheduleClipboard = {
-                            sourceDay: selectedScheduleDay,
-                            indexes: scheduleTables[selectedScheduleDay].selectedRows.slice()
-                        };
+                        const indexes = scheduleTables[selectedScheduleDay].selectedRows.slice();
+                        const day = schedule[scheduleDayKeys[selectedScheduleDay]];
+                        scheduleClipboard = indexes.map((entryIndex) => day[entryIndex]);
                     },
                     paste: (element, ref) => {
                         const targetDay = selectedScheduleDay;
-                        if (scheduleClipboard !== {}) {
+                        if (scheduleClipboard !== []) {
                             new Request({
                                 url: 'api/v2/schedule/paste',
                                 method: 'post',
                                 noCache: true,
                                 data: {
-                                    sourceDay: scheduleClipboard.sourceDay,
-                                    indexes: scheduleClipboard.indexes.toString(),
+                                    entries: JSON.stringify(scheduleClipboard),
                                     targetDay: targetDay
                                 },
                                 onSuccess: () => updateSchedule(() => updateScheduleTable(targetDay)),
@@ -1613,7 +1611,7 @@
                         this.hideItem('copyToOtherDays');
                     }
 
-                    if (scheduleClipboard !== {})
+                    if (scheduleClipboard !== [])
                         this.showItem('paste');
                     else
                         this.hideItem('paste');
