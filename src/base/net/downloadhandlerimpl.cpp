@@ -46,14 +46,13 @@ namespace
         if (!filePath.isEmpty())
             return Utils::IO::saveToFile(filePath, replyData).has_value();
 
-        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
-        tmpfile.setAutoRemove(false);
-
-        if (!tmpfile.open())
+        QTemporaryFile file {Utils::Fs::tempPath()};
+        if (!file.open() || (file.write(replyData) != replyData.length()) || !file.flush())
             return false;
 
-        filePath = tmpfile.fileName();
-        return (tmpfile.write(replyData) == replyData.length());
+        file.setAutoRemove(false);
+        filePath = file.fileName();
+        return true;
     }
 }
 
