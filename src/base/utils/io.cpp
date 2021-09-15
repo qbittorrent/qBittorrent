@@ -69,7 +69,7 @@ Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operat
 nonstd::expected<void, QString> Utils::IO::saveToFile(const QString &path, const QByteArray &data)
 {
     QSaveFile file {path};
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
+    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.flush() || !file.commit())
         return nonstd::make_unexpected(file.errorString());
     return {};
 }
@@ -81,7 +81,7 @@ nonstd::expected<void, QString> Utils::IO::saveToFile(const QString &path, const
         return nonstd::make_unexpected(file.errorString());
 
     const int bencodedDataSize = lt::bencode(Utils::IO::FileDeviceOutputIterator {file}, data);
-    if ((file.size() != bencodedDataSize) || !file.commit())
+    if ((file.size() != bencodedDataSize) || !file.flush() || !file.commit())
         return nonstd::make_unexpected(file.errorString());
 
     return {};
