@@ -32,13 +32,18 @@
 #include <QCoreApplication>
 
 Private::Profile::Profile(const QString &configurationName)
-    : m_configurationSuffix {configurationName.isEmpty() ? QString() : QLatin1Char('_') + configurationName}
+    : m_configurationName {configurationName}
 {
+}
+
+QString Private::Profile::configurationName() const
+{
+    return m_configurationName;
 }
 
 QString Private::Profile::configurationSuffix() const
 {
-    return m_configurationSuffix;
+    return (m_configurationName.isEmpty() ? QString() : QLatin1Char('_') + m_configurationName);
 }
 
 QString Private::Profile::profileName() const
@@ -47,11 +52,16 @@ QString Private::Profile::profileName() const
 }
 
 Private::DefaultProfile::DefaultProfile(const QString &configurationName)
-    : Profile(configurationName)
+    : Profile {configurationName}
 {
 }
 
-QString Private::DefaultProfile::baseDirectory() const
+QString Private::DefaultProfile::rootPath() const
+{
+    return {};
+}
+
+QString Private::DefaultProfile::basePath() const
 {
     return QDir::homePath();
 }
@@ -116,33 +126,43 @@ QString Private::DefaultProfile::locationWithConfigurationName(const QStandardPa
 
 Private::CustomProfile::CustomProfile(const QString &rootPath, const QString &configurationName)
     : Profile {configurationName}
-    , m_rootDirectory {QDir(rootPath).absoluteFilePath(this->profileName())}
+    , m_rootDir {rootPath}
+    , m_baseDir {m_rootDir.absoluteFilePath(profileName())}
+    , m_cacheLocation {m_baseDir.absoluteFilePath(QLatin1String("cache"))}
+    , m_configLocation {m_baseDir.absoluteFilePath(QLatin1String("config"))}
+    , m_dataLocation {m_baseDir.absoluteFilePath(QLatin1String("data"))}
+    , m_downloadLocation {m_baseDir.absoluteFilePath(QLatin1String("downloads"))}
 {
 }
 
-QString Private::CustomProfile::baseDirectory() const
+QString Private::CustomProfile::rootPath() const
 {
-    return m_rootDirectory.canonicalPath();
+    return m_rootDir.absolutePath();
+}
+
+QString Private::CustomProfile::basePath() const
+{
+    return m_baseDir.absolutePath();
 }
 
 QString Private::CustomProfile::cacheLocation() const
 {
-    return m_rootDirectory.absoluteFilePath(QLatin1String(cacheDirName));
+    return m_cacheLocation;
 }
 
 QString Private::CustomProfile::configLocation() const
 {
-    return m_rootDirectory.absoluteFilePath(QLatin1String(configDirName));
+    return m_configLocation;
 }
 
 QString Private::CustomProfile::dataLocation() const
 {
-    return m_rootDirectory.absoluteFilePath(QLatin1String(dataDirName));
+    return m_dataLocation;
 }
 
 QString Private::CustomProfile::downloadLocation() const
 {
-    return m_rootDirectory.absoluteFilePath(QLatin1String(downloadsDirName));
+    return m_downloadLocation;
 }
 
 SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) const
