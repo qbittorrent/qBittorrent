@@ -8,7 +8,7 @@
   <summary>An open-source Bittorrent client</summary>
   <description>
     <p>
-      The qBittorrent project aims to provide an open-source software alternative to µTorrent.
+      The qBittorrent project focuses on providing an interactive open-source software alternative to µTorrent.
       Additionally, qBittorrent runs and provides the same features on all major platforms (FreeBSD, Linux, macOS, OS/2, Windows).
       qBittorrent is based on the Qt toolkit and libtorrent-rasterbar library.
     </p>
