@@ -1,0 +1,76 @@
+name: Bug Report
+description: File a bug report to help improve qBittorrent user experience.
+body:
+  - type: markdown
+    attributes:
+      value: |
+        #### ADVISORY
+        "We do not support any versions older than the current release series"
+
+        "We do not support any 3rd party/forked versions e.g. `portableapps`/`Enhanced Edition`etc."
+
+        "Please post all details in **English**."
+
+        #### Prerequisites before submitting an issue!
+        - Read the issue reporting section in the **[contributing guidelines](https://github.com/qbittorrent/qBittorrent/blob/master/CONTRIBUTING.md)**, to know how to submit a good bug report with the required information.
+        - Verify that the issue is not fixed and is reproducible in the **[latest official qBittorrent version](https://www.qbittorrent.org/download.php).**
+        - (Optional, but recommended) Verify that the issue is not fixed and is reproducible in the latest CI (**[macOS](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_macos.yaml?query=branch%3Amaster+event%3Apush)** / **[Ubuntu](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml?query=branch%3Amaster+event%3Apush)** / **[Windows](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_windows.yaml?query=branch%3Amaster+event%3Apush)**) builds.
+        - Check the **[frequent/common issues list](https://github.com/qbittorrent/qBittorrent/projects/2)** and perform a **[search of the issue tracker (including closed ones)](https://github.com/qbittorrent/qBittorrent/issues)** to avoid posting a duplicate.
+        - Make sure this is not a support request or question, both of which are better suited for either the **[discussions section](https://github.com/qbittorrent/qBittorrent/discussions)**, **[forum](https://qbforums.shiki.hu/)**, or **[subreddit](https://www.reddit.com/r/qBittorrent/)**.
+        - Verify that the **[wiki](https://github.com/qbittorrent/qBittorrent/wiki)** did not contain a suitable solution either.
+        - If relevant to issue/when asked, the qBittorrent preferences file, qBittorrent.log & watched_folders.json (if using "Watched Folders" feature) must be provided.
+          See **[Where does qBittorrent save its settings?](https://github.com/qbittorrent/qBittorrent/wiki/Frequently-Asked-Questions#Where_does_qBittorrent_save_its_settings)**
+
+  - type: textarea
+    attributes:
+      label: qBittorrent & operating system versions
+      description: |
+        Qt and libtorrent-rasterbar versions are required when: 1. You are using linux. 2. You are not using an official build downloaded from our website.
+
+        Example of preferred formatting:
+        qBittorrent: 4.3.7 x64
+        Operating system: Windows 10 Pro 21H1/2009 x64
+        Qt: 5.15.2
+        libtorrent-rasterbar: 1.2.14
+      placeholder: |
+        qBittorrent:
+        Operating system:
+        Qt:
+        libtorrent-rasterbar:
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: What is the problem?
+      description: Please add the "crash report" (if encountered) or give a clear and concise description of problem.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: Please provide reliable steps to reproduce the problem.
+      placeholder: |
+        1. First step
+        2. Second step
+        3. and so on...
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Add screenshots etc. (Anything that will provide more context about the problem)
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Log(s) & preferences file(s)
+      description: |
+        Add these files: qBittorrent preferences file, qBittorrent.log & watched_folders.json (if using "Watched Folders" feature).
+        See **[Where does qBittorrent save its settings?](https://github.com/qbittorrent/qBittorrent/wiki/Frequently-Asked-Questions#Where_does_qBittorrent_save_its_settings)**
+        #### Note: It's the user's responsibility to redact any sensitive information
+    validations:
+      required: false
