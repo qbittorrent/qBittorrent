@@ -1,0 +1,37 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for qBittorrent.
+labels: ["Feature request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        #### ADVISORY
+
+        "Please post all details in **English**."
+
+        #### Prerequisites before submitting a feature request!
+        - Read the feature request section in the **[contributing guidelines](https://github.com/qbittorrent/qBittorrent/blob/master/CONTRIBUTING.md)**, to know how to submit a good feature request with the required information.
+        - Verify that the feature being requested is not available in the **[latest official qBittorrent version](https://www.qbittorrent.org/download.php).**
+        - (Optional but recommended) Verify that the feature being requested is not available in the latest CI (**[macOS](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_macos.yaml?query=branch%3Amaster+event%3Apush)** / **[Ubuntu](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml?query=branch%3Amaster+event%3Apush)** / **[Windows](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_windows.yaml?query=branch%3Amaster+event%3Apush)**) builds.
+        - Search the issue tracker with the **[feature request filter](https://github.com/qbittorrent/qBittorrent/issues?q=is%3Aopen+is%3Aissue+label%3A%22Feature+request%22)** for similar feature requests (including closed ones) to avoid posting a duplicate.
+        - Make sure this is not a support request or question, both of which are better suited for either the **[discussions section](https://github.com/qbittorrent/qBittorrent/discussions)**, **[forum](https://qbforums.shiki.hu/)**, or **[subreddit](https://www.reddit.com/r/qBittorrent/)**.
+        - Verify that the **[wiki](https://github.com/qbittorrent/qBittorrent/wiki)** did not contain a suitable solution either.
+
+  - type: textarea
+    attributes:
+      label: Suggestion
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Use case
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Extra info/examples/attachments
+      description: Add screenshots etc. (Anything that will give us more context about what is being requested!)
+    validations:
+      required: false
