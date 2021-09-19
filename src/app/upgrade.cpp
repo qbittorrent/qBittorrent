@@ -28,7 +28,6 @@
 
 #include "upgrade.h"
 
-#include <QFile>
 #include <QMetaEnum>
 #include <QVector>
 
@@ -37,6 +36,7 @@
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/string.h"
 
 namespace
@@ -53,17 +53,10 @@ namespace
             if (!newData.isEmpty() || oldData.isEmpty())
                 return;
 
-            QFile file(savePath);
-            if (!file.open(QIODevice::WriteOnly))
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(savePath, oldData);
+            if (!result)
             {
-                LogMsg(errorMsgFormat.arg(savePath, file.errorString()) , Log::WARNING);
-                return;
-            }
-            if (file.write(oldData) != oldData.size())
-            {
-                file.close();
-                Utils::Fs::forceRemove(savePath);
-                LogMsg(errorMsgFormat.arg(savePath, QLatin1String("Write incomplete.")) , Log::WARNING);
+                LogMsg(errorMsgFormat.arg(savePath, result.error()) , Log::WARNING);
                 return;
             }
 

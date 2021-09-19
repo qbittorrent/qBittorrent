@@ -31,7 +31,6 @@
 
 #include <QDateTime>
 #include <QDir>
-#include <QFile>
 #include <QHostAddress>
 #include <QLocale>
 
@@ -40,6 +39,7 @@
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
+#include "base/utils/io.h"
 #include "downloadmanager.h"
 #include "geoipdatabase.h"
 
@@ -451,11 +451,18 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                         specialFolderLocation(SpecialFolder::Data) + GEODB_FOLDER);
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
-            QFile targetFile(QString::fromLatin1("%1/%2").arg(targetPath, GEODB_FILENAME));
-            if (!targetFile.open(QFile::WriteOnly) || (targetFile.write(data) == -1))
-                LogMsg(tr("Couldn't save downloaded IP geolocation database file."), Log::WARNING);
-            else
+
+            const auto path = QString::fromLatin1("%1/%2").arg(targetPath, GEODB_FILENAME);
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, data);
+            if (result)
+            {
                 LogMsg(tr("Successfully updated IP geolocation database."), Log::INFO);
+            }
+            else
+            {
+                LogMsg(tr("Couldn't save downloaded IP geolocation database file. Reason: %1")
+                    .arg(result.error()), Log::WARNING);
+            }
         }
         else
         {

@@ -34,6 +34,7 @@
 
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 
 const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
@@ -43,24 +44,14 @@ namespace
     bool saveToFile(const QByteArray &replyData, QString &filePath)
     {
         if (!filePath.isEmpty())
-        {
-            QFile file {filePath};
-            if (!file.open(QIODevice::WriteOnly))
-                return false;
+            return Utils::IO::saveToFile(filePath, replyData).has_value();
 
-            file.write(replyData);
-            return true;
-        }
-
-        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
-        tmpfile.setAutoRemove(false);
-
-        if (!tmpfile.open())
+        QTemporaryFile file {Utils::Fs::tempPath()};
+        if (!file.open() || (file.write(replyData) != replyData.length()) || !file.flush())
             return false;
 
-        filePath = tmpfile.fileName();
-
-        tmpfile.write(replyData);
+        file.setAutoRemove(false);
+        filePath = file.fileName();
         return true;
     }
 }

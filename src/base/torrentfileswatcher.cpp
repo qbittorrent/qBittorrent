@@ -40,7 +40,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QSaveFile>
 #include <QSet>
 #include <QTextStream>
 #include <QThread>
@@ -60,6 +59,7 @@
 #include "base/settingsstorage.h"
 #include "base/tagset.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/string.h"
 
 using namespace std::chrono_literals;
@@ -373,13 +373,13 @@ void TorrentFilesWatcher::store() const
         jsonObj[watchedFolder] = serializeWatchedFolderOptions(options);
     }
 
+    const QString path = QDir(specialFolderLocation(SpecialFolder::Config)).absoluteFilePath(CONF_FILE_NAME);
     const QByteArray data = QJsonDocument(jsonObj).toJson();
-
-    QSaveFile confFile {QDir(specialFolderLocation(SpecialFolder::Config)).absoluteFilePath(CONF_FILE_NAME)};
-    if (!confFile.open(QIODevice::WriteOnly) || (confFile.write(data) != data.size()) || !confFile.commit())
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, data);
+    if (!result)
     {
         LogMsg(tr("Couldn't store Watched Folders configuration to %1. Error: %2")
-            .arg(confFile.fileName(), confFile.errorString()), Log::WARNING);
+            .arg(path, result.error()), Log::WARNING);
     }
 }
 
