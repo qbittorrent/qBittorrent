@@ -461,7 +461,7 @@ MainWindow::MainWindow(QWidget *parent)
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
     {
         if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
+                                  tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?"),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
                                   {
             Preferences::setTorrentFileAssoc(true);
@@ -650,7 +650,7 @@ bool MainWindow::defineUILockPassword()
 
     if (newPassword.size() < 3)
     {
-        QMessageBox::warning(this, tr("Invalid password"), tr("The password should contain at least 3 characters"));
+        QMessageBox::warning(this, tr("Invalid password"), tr("The password must be at least 3 characters long"));
         return false;
     }
 
@@ -871,7 +871,7 @@ void MainWindow::torrentNew(BitTorrent::Torrent *const torrent) const
 // called when a torrent has finished
 void MainWindow::finishedTorrent(BitTorrent::Torrent *const torrent) const
 {
-    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    showNotificationBaloon(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
 // Notification when disk is full
@@ -1469,6 +1469,7 @@ void MainWindow::activate()
 
 void MainWindow::optionsSaved()
 {
+    Logger::instance()->addMessage(tr("Options saved."));
     loadPreferences();
 }
 
@@ -1491,7 +1492,6 @@ void MainWindow::showStatusBar(bool show)
 
 void MainWindow::loadPreferences(const bool configureSession)
 {
-    Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences *const pref = Preferences::instance();
 #ifdef Q_OS_MACOS
     Q_UNUSED(configureSession);

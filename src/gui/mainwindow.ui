@@ -390,7 +390,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>&amp;Disabled</string>
+    <string>&amp;Do nothing</string>
    </property>
   </action>
   <action name="actionToggleVisibility">
