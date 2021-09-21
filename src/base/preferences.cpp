@@ -61,12 +61,14 @@
 
 namespace
 {
+#ifdef Q_OS_WIN
     QString makeProfileID(const QString &profilePath, const QString &profileName)
     {
         return profilePath.isEmpty()
                 ? profileName
                 : profileName + QLatin1Char('@') + Utils::Fs::toValidFileSystemName(profilePath, false, {});
     }
+#endif
 }
 
 Preferences *Preferences::m_instance = nullptr;

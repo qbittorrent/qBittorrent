@@ -30,6 +30,7 @@
 #pragma once
 
 #include <QtContainerFwd>
+#include <QtGlobal>
 #include <QVariant>
 
 #include "base/utils/net.h"
