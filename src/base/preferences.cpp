@@ -92,7 +92,7 @@ void Preferences::freeInstance()
     m_instance = nullptr;
 }
 
-const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
+QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
 {
     return SettingsStorage::instance()->loadValue(key, defaultValue);
 }
