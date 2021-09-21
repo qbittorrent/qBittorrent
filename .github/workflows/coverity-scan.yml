@@ -5,9 +5,6 @@ on:
     - cron: '0 0 1 * *' # Monthly (1st day of month at midnight)
   workflow_dispatch: # Mainly for testing. Don't forget the Coverity usage limits.
 
-env:
-  LIBTORRENT_VERSION_TAG: v1.2.14
-
 jobs:
   coverity_scan:
     name: Scan
@@ -20,8 +17,8 @@ jobs:
         run: |
           sudo apt update
           sudo apt install \
-            build-essential cmake git ninja-build pkg-config \
-            libssl-dev zlib1g-dev libboost-dev libboost-system-dev
+            build-essential cmake ninja-build pkg-config \
+            libboost-dev libssl-dev zlib1g-dev
         # sudo apt install libqt5svg5-dev qtbase5-dev qttools5-dev # the Qt version in the standard repositories is too old...
 
       # this will be installed under /opt/qt515. CMake will still find it automatically without additional hints
@@ -34,28 +31,26 @@ jobs:
 
       - name: Install libtorrent
         run: |
-          git clone https://github.com/arvidn/libtorrent
+          git clone --branch v2.0.4 --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
-          git checkout ${{ env.LIBTORRENT_VERSION_TAG }}
+          git submodule update --init --recursive
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=Release \
             -Ddeprecated-functions=OFF
           cmake --build build
-          sudo cmake --install build --prefix /usr/local
+          sudo cmake --install build
 
       - name: Download Coverity Build Tool
         run: |
           wget \
             -q \
             https://scan.coverity.com/download/linux64 \
-            --post-data "token=$TOKEN&project=qbittorrent%2FqBittorrent" \
+            --post-data "token=${{ secrets.COVERITY_SCAN_TOKEN }}&project=qbittorrent%2FqBittorrent" \
             -O coverity_tool.tgz
           mkdir coverity_tool
           tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
-        env:
-          TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
 
       - name: Configure qBittorrent
         run: |
@@ -75,11 +70,9 @@ jobs:
         run: |
           tar caf qbittorrent.xz cov-int
           curl \
-            --form token=$TOKEN \
+            --form token="${{ secrets.COVERITY_SCAN_TOKEN }}" \
             --form email=sledgehammer999@qbittorrent.org \
             --form file=@qbittorrent.xz \
             --form version="$(git rev-parse --short HEAD)" \
             --form description="master" \
             https://scan.coverity.com/builds?project=qbittorrent%2FqBittorrent
-        env:
-          TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}

@@ -19,11 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup ccache
-        uses: hendrikmuhs/ccache-action@v1
-        with:
-          key: ${{ runner.os }}
-
       - name: Install dependencies
         run: |
           brew update > /dev/null
@@ -36,12 +31,16 @@ jobs:
           sudo ln -s /usr/local/opt/qt@5/mkspecs /usr/local/mkspecs
           sudo ln -s /usr/local/opt/qt@5/plugins /usr/local/plugins
 
+      - name: Setup ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
+
       - name: Install libtorrent
         run: |
           git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
           git submodule update --init --recursive
-          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \
@@ -54,7 +53,6 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \

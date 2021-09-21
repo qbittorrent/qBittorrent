@@ -16,19 +16,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Setup ccache
-        uses: hendrikmuhs/ccache-action@v1
-        with:
-          key: ${{ runner.os }}
-
       - name: Install dependencies
         run: |
           sudo apt update
           sudo apt install \
-            build-essential cmake git ninja-build pkg-config \
-            libssl-dev libgeoip-dev zlib1g-dev \
-            libboost-dev libboost-chrono-dev libboost-random-dev libboost-system-dev
+            build-essential cmake ninja-build pkg-config \
+            libboost-dev libssl-dev zlib1g-dev
         # sudo apt install libqt5svg5-dev qtbase5-dev qttools5-dev # the Qt version in the standard repositories is too old...
+
+      - name: Setup ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          update_packager_index: false
 
       # this will be installed under /opt/qt515. CMake will still find it automatically without additional hints
       # to speed up the process, only the required components are installed rather than the full qt515-meta-full metapackage
@@ -43,7 +42,6 @@ jobs:
           git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
           git submodule update --init --recursive
-          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \
@@ -56,7 +54,6 @@ jobs:
 
       - name: Build qBittorrent
         run: |
-          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH"
           cmake \
             -B build \
             -G "Ninja" \
