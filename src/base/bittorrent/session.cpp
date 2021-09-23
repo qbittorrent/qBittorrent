@@ -1015,7 +1015,7 @@ void Session::adjustLimits()
 
 void Session::applyBandwidthLimits()
 {
-    ScheduleDay *today = m_bwScheduler->today();
+    ScheduleDay *today = m_bwScheduler->today(true);
     int index = today->getNowIndex();
 
     if (index > -1 && today->entries().at(index).pause)
@@ -2675,7 +2675,7 @@ int Session::downloadSpeedLimit() const
 
     if (m_isBandwidthSchedulerEnabled)
     {
-        ScheduleDay *today = m_bwScheduler->today();
+        ScheduleDay *today = m_bwScheduler->today(true);
         int index = today->getNowIndex();
         if (index > -1)
         {
@@ -2703,7 +2703,7 @@ int Session::uploadSpeedLimit() const
 
     if (m_isBandwidthSchedulerEnabled)
     {
-        ScheduleDay *today = m_bwScheduler->today();
+        ScheduleDay *today = m_bwScheduler->today(true);
         int index = today->getNowIndex();
         if (index > -1)
         {

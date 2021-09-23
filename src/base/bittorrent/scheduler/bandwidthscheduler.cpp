@@ -64,16 +64,16 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 
     m_ioThread->start();
 
-    if (!loadSchedule())
+    if (!loadScheduleFromDisk())
     {
         for (int day = 0; day < 7; ++day)
-            m_scheduleDays[day] = new ScheduleDay(day);
-        saveSchedule();
+            m_schedule[day] = new ScheduleDay(day);
+
+        saveScheduleToDisk();
     }
 
     connect(this, &BandwidthScheduler::scheduleUpdated, this, [this](int day)
     {
-        saveSchedule();
         if (day == QDate::currentDate().dayOfWeek() - 1)
             emit limitChangeRequested();
     });
@@ -84,7 +84,6 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 BandwidthScheduler::~BandwidthScheduler()
 {
     m_timer.stop();
-    saveSchedule();
 
     m_ioThread->quit();
     m_ioThread->wait();
@@ -128,7 +127,7 @@ void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preser
         QFile::rename(fileAbsPath, errorFileAbsPath);
 }
 
-bool BandwidthScheduler::loadSchedule()
+bool BandwidthScheduler::loadScheduleFromDisk()
 {
     QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
     QFile file(fileAbsPath);
@@ -167,33 +166,36 @@ bool BandwidthScheduler::loadSchedule()
                     .arg(DAY_KEYS[day]), Log::WARNING);
 
             errored = true;
-            m_scheduleDays[day] = new ScheduleDay(day);
+            m_schedule[day] = new ScheduleDay(day);
             continue;
         }
 
         QJsonArray arr = jsonObj[DAY_KEYS[day]].toArray();
-        m_scheduleDays[day] = ScheduleDay::fromJsonArray(arr, day, &errored);
+        m_schedule[day] = ScheduleDay::fromJsonArray(arr, day, &errored);
     }
+
+    commitSchedule(false);
 
     if (errored)
     {
         backupSchedule(tr("There were invalid data in the scheduler JSON file that have been ignored."), true);
-        saveSchedule();
+        saveScheduleToDisk();
     }
 
     return true;
 }
 
-void BandwidthScheduler::saveSchedule()
+void BandwidthScheduler::saveScheduleToDisk()
 {
-    m_fileStorage->store(ScheduleFileName, getJson());
+    m_fileStorage->store(ScheduleFileName, getJson(true));
 }
 
-QByteArray BandwidthScheduler::getJson() const
+QByteArray BandwidthScheduler::getJson(bool onDisk) const
 {
     QJsonObject jsonObj;
-    for (int i = 0; i < 7; ++i)
-        jsonObj.insert(DAY_KEYS[i], m_scheduleDays[i]->toJsonArray());
+
+    for (int day = 0; day < 7; ++day)
+        jsonObj.insert(DAY_KEYS[day], scheduleDay(day, onDisk)->toJsonArray());
 
     return QJsonDocument(jsonObj).toJson();
 }
@@ -245,22 +247,37 @@ bool BandwidthScheduler::importLegacyScheduler()
             }
         }
 
-        m_scheduleDays[day] = scheduleDay;
+        m_schedule[day] = scheduleDay;
     }
 
-    saveSchedule();
+    commitSchedule(true);
     pref->removeLegacySchedulerTimes();
 
     LogMsg(tr("Successfully transferred the old scheduler into the new JSON format."), Log::INFO);
     return true;
 }
 
-ScheduleDay* BandwidthScheduler::scheduleDay(const int day) const
+ScheduleDay* BandwidthScheduler::scheduleDay(const int day, bool onDisk) const
 {
-    return m_scheduleDays[day];
+    return onDisk ? m_scheduleOnDisk[day] : m_schedule[day];
 }
 
-ScheduleDay* BandwidthScheduler::today() const
+ScheduleDay* BandwidthScheduler::today(bool onDisk) const
 {
-    return m_scheduleDays[QDate::currentDate().dayOfWeek() - 1];
+    return scheduleDay(QDate::currentDate().dayOfWeek() - 1, onDisk);
+}
+
+void BandwidthScheduler::commitSchedule(bool saveToDisk = true)
+{
+    for (int day = 0; day < 7; ++day)
+        m_scheduleOnDisk[day] = new ScheduleDay(day, m_schedule.at(day)->entries());
+
+    if (saveToDisk)
+        saveScheduleToDisk();
+}
+
+void BandwidthScheduler::revertSchedule()
+{
+    for (int day = 0; day < 7; ++day)
+        m_schedule[day] = new ScheduleDay(day, m_scheduleOnDisk.at(day)->entries());
 }

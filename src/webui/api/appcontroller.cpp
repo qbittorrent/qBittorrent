@@ -194,7 +194,8 @@ void AppController::preferencesAction()
     data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
     // Scheduling
     data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
-    data["scheduler_json"] = QString(BandwidthScheduler::instance()->getJson());
+    BandwidthScheduler::instance()->revertSchedule();
+    data["scheduler_json"] = QString(BandwidthScheduler::instance()->getJson(false));
     const QLocale locale{pref->getLocale()};
     data["locale_first_day"] = locale.firstDayOfWeek() - 1;
     data["current_day_of_week"] = QDate::currentDate().dayOfWeek() - 1;
@@ -555,6 +556,7 @@ void AppController::setPreferencesAction()
     // Scheduling
     if (hasKey("scheduler_enabled"))
         session->setBandwidthSchedulerEnabled(it.value().toBool());
+    BandwidthScheduler::instance()->commitSchedule(true);
 
     // Bittorrent
     // Privacy

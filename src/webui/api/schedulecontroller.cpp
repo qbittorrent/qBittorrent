@@ -140,5 +140,5 @@ void ScheduleController::copyToOtherDaysAction()
 
 void ScheduleController::getJsonAction()
 {
-    setResult(BandwidthScheduler::instance()->getJson());
+    setResult(BandwidthScheduler::instance()->getJson(false));
 }

@@ -10,10 +10,9 @@ class ScheduleDay final : public QObject
 
     friend class OptionsDialog;
 
-    ScheduleDay(QList<ScheduleEntry> &entries, int dayOfWeek = -1);
-
 public:
     ScheduleDay(int dayOfWeek);
+    ScheduleDay(int dayOfWeek, const QList<ScheduleEntry> &entries);
 
     QList<ScheduleEntry> entries() const;
     bool addEntry(const ScheduleEntry &entry);

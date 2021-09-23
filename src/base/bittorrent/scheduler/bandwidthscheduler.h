@@ -54,12 +54,14 @@ public:
 
     static BandwidthScheduler *instance();
 
-    ScheduleDay* scheduleDay(int day) const;
-    ScheduleDay* today() const;
+    ScheduleDay* scheduleDay(int day, bool onDisk = false) const;
+    ScheduleDay* today(bool onDisk = false) const;
+    void commitSchedule(bool saveToDisk);
+    void revertSchedule();
     void start();
     void stop();
 
-    QByteArray getJson() const;
+    QByteArray getJson(bool onDisk) const;
 
 signals:
     void limitChangeRequested();
@@ -68,13 +70,14 @@ signals:
 private:
     static QPointer<BandwidthScheduler> m_instance;
 
-    bool loadSchedule();
-    void saveSchedule();
+    bool loadScheduleFromDisk();
+    void saveScheduleToDisk();
     void backupSchedule(const QString &errorMessage, bool preserveOriginal);
     bool importLegacyScheduler();
 
     QThread *m_ioThread;
     AsyncFileStorage *m_fileStorage;
-    QVector<ScheduleDay*> m_scheduleDays = QVector<ScheduleDay*>(7);
+    QVector<ScheduleDay*> m_scheduleOnDisk = QVector<ScheduleDay*>(7);
+    QVector<ScheduleDay*> m_schedule = QVector<ScheduleDay*>(7);
     QTimer m_timer;
 };

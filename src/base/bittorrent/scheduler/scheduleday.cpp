@@ -11,7 +11,7 @@ ScheduleDay::ScheduleDay(int dayOfWeek)
 {
 }
 
-ScheduleDay::ScheduleDay(QList<ScheduleEntry> &entries, int dayOfWeek)
+ScheduleDay::ScheduleDay(int dayOfWeek, const QList<ScheduleEntry> &entries)
     : m_dayOfWeek(dayOfWeek)
     , m_entries(entries)
 {
