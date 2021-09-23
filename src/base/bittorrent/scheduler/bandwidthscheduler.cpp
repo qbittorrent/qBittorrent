@@ -33,7 +33,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPointer>
-#include <QSaveFile>
 
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -44,20 +43,37 @@ QPointer<BandwidthScheduler> BandwidthScheduler::m_instance = nullptr;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject {parent}
-    , m_scheduleFilePath {QDir(specialFolderLocation(SpecialFolder::Config)).absoluteFilePath(ScheduleFileName)}
+    , m_ioThread {new QThread(this)}
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
-    if (!loadScheduleFromDisk())
+    m_fileStorage = new AsyncFileStorage(
+        Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config)));
+
+    if (!m_fileStorage)
+        throw RuntimeError("Directory for scheduler data is unavailable.");
+
+    m_fileStorage->moveToThread(m_ioThread);
+    connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
+    connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    {
+        LogMsg(tr("Couldn't save scheduler data in %1. Error: %2")
+                .arg(fileName, errorString), Log::CRITICAL);
+    });
+
+    m_ioThread->start();
+
+    if (!loadSchedule())
     {
         for (int day = 0; day < 7; ++day)
             m_scheduleDays[day] = new ScheduleDay(day);
-        saveScheduleToDisk();
+        saveSchedule();
     }
 
     connect(this, &BandwidthScheduler::scheduleUpdated, this, [this](int day)
     {
+        saveSchedule();
         if (day == QDate::currentDate().dayOfWeek() - 1)
             emit limitChangeRequested();
     });
@@ -68,6 +84,10 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 BandwidthScheduler::~BandwidthScheduler()
 {
     m_timer.stop();
+    saveSchedule();
+
+    m_ioThread->quit();
+    m_ioThread->wait();
 }
 
 BandwidthScheduler *BandwidthScheduler::instance()
@@ -90,26 +110,28 @@ void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preser
 {
     LogMsg(errorMessage, Log::CRITICAL);
 
-    QString errorFileAbsPath = m_scheduleFilePath + ".error";
+    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
+    QString errorFileAbsPath = fileAbsPath + ".error";
 
     int counter = 0;
     while (QFile::exists(errorFileAbsPath))
     {
         ++counter;
-        errorFileAbsPath = m_scheduleFilePath + ".error" + QString::number(counter);
+        errorFileAbsPath = fileAbsPath + ".error" + QString::number(counter);
     }
 
     LogMsg(tr("Backing up errored schedule file in %1").arg(errorFileAbsPath), Log::WARNING);
 
     if (preserveOriginal)
-        QFile::copy(m_scheduleFilePath, errorFileAbsPath);
+        QFile::copy(fileAbsPath, errorFileAbsPath);
     else
-        QFile::rename(m_scheduleFilePath, errorFileAbsPath);
+        QFile::rename(fileAbsPath, errorFileAbsPath);
 }
 
-bool BandwidthScheduler::loadScheduleFromDisk()
+bool BandwidthScheduler::loadSchedule()
 {
-    QFile file(m_scheduleFilePath);
+    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
+    QFile file(fileAbsPath);
 
     if (!file.exists())
         return importLegacyScheduler();
@@ -156,22 +178,15 @@ bool BandwidthScheduler::loadScheduleFromDisk()
     if (errored)
     {
         backupSchedule(tr("There were invalid data in the scheduler JSON file that have been ignored."), true);
-        saveScheduleToDisk();
+        saveSchedule();
     }
 
     return true;
 }
 
-void BandwidthScheduler::saveScheduleToDisk()
+void BandwidthScheduler::saveSchedule()
 {
-    QSaveFile file(m_scheduleFilePath);
-    QByteArray data = getJson();
-
-    if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.commit())
-    {
-        LogMsg(tr("Couldn't store scheduler data in %1. Error: %2")
-            .arg(file.fileName(), file.errorString()), Log::WARNING);
-    }
+    m_fileStorage->store(ScheduleFileName, getJson());
 }
 
 QByteArray BandwidthScheduler::getJson() const
@@ -233,7 +248,7 @@ bool BandwidthScheduler::importLegacyScheduler()
         m_scheduleDays[day] = scheduleDay;
     }
 
-    saveScheduleToDisk();
+    saveSchedule();
     pref->removeLegacySchedulerTimes();
 
     LogMsg(tr("Successfully transferred the old scheduler into the new JSON format."), Log::INFO);

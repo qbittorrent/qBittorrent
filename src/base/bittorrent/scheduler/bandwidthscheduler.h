@@ -58,8 +58,6 @@ public:
     ScheduleDay* today() const;
     void start();
     void stop();
-    bool loadScheduleFromDisk();
-    void saveScheduleToDisk();
 
     QByteArray getJson() const;
 
@@ -70,10 +68,13 @@ signals:
 private:
     static QPointer<BandwidthScheduler> m_instance;
 
+    bool loadSchedule();
+    void saveSchedule();
     void backupSchedule(const QString &errorMessage, bool preserveOriginal);
     bool importLegacyScheduler();
 
+    QThread *m_ioThread;
+    AsyncFileStorage *m_fileStorage;
     QVector<ScheduleDay*> m_scheduleDays = QVector<ScheduleDay*>(7);
-    QString m_scheduleFilePath;
     QTimer m_timer;
 };

@@ -166,13 +166,6 @@ const initializeWindows = function() {
             height: loadWindowHeight(id, 600),
             onResize: function() {
                 saveWindowSize(id);
-            },
-            onClose: function() {
-                new Request({
-                    url: 'api/v2/schedule/loadFromDisk',
-                    method: 'post',
-                    noCache: true
-                }).send();
             }
         });
     });

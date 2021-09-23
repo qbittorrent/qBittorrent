@@ -18,5 +18,4 @@ private slots:
     void pasteAction();
     void copyToOtherDaysAction();
     void getJsonAction();
-    void loadFromDiskAction();
 };
