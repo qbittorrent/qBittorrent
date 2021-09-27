@@ -341,29 +341,27 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
         return false;
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
-#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
-    QString file = path;
-    if (!file.endsWith('/'))
-        file += '/';
-    file += '.';
-
-    struct statfs buf {};
-    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
-        return false;
-
-    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
-        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
 #else
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
     file += '.';
 
+#if defined(Q_OS_MACOS)
+    struct statfs64 buf {};
+    if (statfs64(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+#else
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
+#endif
 
+#if defined(Q_OS_OPENBSD)
+    return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
+        || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
+#else
     // Magic number reference:
     // https://github.com/coreutils/coreutils/blob/master/src/stat.c
     switch (static_cast<quint32>(buf.f_type))
@@ -402,6 +400,7 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     }
 
     return false;
+#endif
 #endif
 }
 #endif // Q_OS_HAIKU
