@@ -5200,6 +5200,18 @@ else $as_nop
 printf "%s\n" "no" >&6; }
 fi
 
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether OS is OpenBSD" >&5
+printf %s "checking whether OS is OpenBSD... " >&6; }
+if expr "$host_os" : ".*openbsd.*" > /dev/null
+then :
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+      LIBS="-lexecinfo $LIBS"
+else $as_nop
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether OS is macOS" >&5
 printf %s "checking whether OS is macOS... " >&6; }
 if expr "$host_os" : ".*darwin.*" > /dev/null

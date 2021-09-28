@@ -60,6 +60,12 @@ AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
       LIBS="-lexecinfo $LIBS"],
       [AC_MSG_RESULT([no])])
 
+AC_MSG_CHECKING([whether OS is OpenBSD])
+AS_IF([expr "$host_os" : ".*openbsd.*" > /dev/null],
+      [AC_MSG_RESULT([yes])
+      LIBS="-lexecinfo $LIBS"],
+      [AC_MSG_RESULT([no])])
+
 AC_MSG_CHECKING([whether OS is macOS])
 AS_IF([expr "$host_os" : ".*darwin.*" > /dev/null],
       [AC_MSG_RESULT([yes])
