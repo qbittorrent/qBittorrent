@@ -5224,6 +5224,18 @@ else $as_nop
 printf "%s\n" "no" >&6; }
 fi
 
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether OS is Haiku" >&5
+printf %s "checking whether OS is Haiku... " >&6; }
+if expr "$host_os" : ".*haiku.*" > /dev/null
+then :
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+      LIBS="-lnetwork $LIBS"
+else $as_nop
+  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+printf "%s\n" "no" >&6; }
+fi
+
 # Require 0.23 pkg-config
 
 

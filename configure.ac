@@ -72,6 +72,12 @@ AS_IF([expr "$host_os" : ".*darwin.*" > /dev/null],
       enable_qt_dbus=no],
       [AC_MSG_RESULT([no])])
 
+AC_MSG_CHECKING([whether OS is Haiku])
+AS_IF([expr "$host_os" : ".*haiku.*" > /dev/null],
+      [AC_MSG_RESULT([yes])
+      LIBS="-lnetwork $LIBS"],
+      [AC_MSG_RESULT([no])])
+
 # Require 0.23 pkg-config
 PKG_PROG_PKG_CONFIG([0.23])
 AS_IF([test "x$PKG_CONFIG" = "x"],
