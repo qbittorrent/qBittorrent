@@ -340,45 +340,67 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
     auto volumePath = std::make_unique<wchar_t[]>(path.length() + 1);
     if (!::GetVolumePathNameW(pathW.c_str(), volumePath.get(), (path.length() + 1)))
         return false;
-
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
-#elif defined(Q_OS_MACOS) || defined(Q_OS_OPENBSD)
+#else
     QString file = path;
     if (!file.endsWith('/'))
         file += '/';
     file += '.';
 
+#if defined(Q_OS_MACOS)
+    struct statfs64 buf {};
+    if (statfs64(file.toLocal8Bit().constData(), &buf) != 0)
+        return false;
+#else
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
+#endif
 
-    // XXX: should we make sure HAVE_STRUCT_FSSTAT_F_FSTYPENAME is defined?
+#if defined(Q_OS_OPENBSD)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "nfs", sizeof(buf.f_fstypename)) == 0)
         || (strncmp(buf.f_fstypename, "smbfs", sizeof(buf.f_fstypename)) == 0));
-#else // Q_OS_WIN
-    QString file = path;
-    if (!file.endsWith('/'))
-        file += '/';
-    file += '.';
-
-    struct statfs buf {};
-    if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
-        return false;
-
-    // Magic number references:
-    // 1. /usr/include/linux/magic.h
-    // 2. https://github.com/coreutils/coreutils/blob/master/src/stat.c
-    switch (static_cast<unsigned int>(buf.f_type))
+#else
+    // Magic number reference:
+    // https://github.com/coreutils/coreutils/blob/master/src/stat.c
+    switch (static_cast<quint32>(buf.f_type))
     {
-    case 0xFF534D42:  // CIFS_MAGIC_NUMBER
-    case 0x6969:  // NFS_SUPER_MAGIC
-    case 0x517B:  // SMB_SUPER_MAGIC
-    case 0xFE534D42:  // S_MAGIC_SMB2
+    case 0x0000517B:  // SMB
+    case 0x0000564C:  // NCP
+    case 0x00006969:  // NFS
+    case 0x00C36400:  // CEPH
+    case 0x01161970:  // GFS
+    case 0x013111A8:  // IBRIX
+    case 0x0BD00BD0:  // LUSTRE
+    case 0x19830326:  // FHGFS
+    case 0x47504653:  // GPFS
+    case 0x50495045:  // PIPEFS
+    case 0x5346414F:  // AFS
+    case 0x61636673:  // ACFS
+    case 0x61756673:  // AUFS
+    case 0x65735543:  // FUSECTL
+    case 0x65735546:  // FUSEBLK
+    case 0x6B414653:  // KAFS
+    case 0x6E667364:  // NFSD
+    case 0x73757245:  // CODA
+    case 0x7461636F:  // OCFS2
+    case 0x786F4256:  // VBOXSF
+    case 0x794C7630:  // OVERLAYFS
+    case 0x7C7C6673:  // PRL_FS
+    case 0xA501FCF5:  // VXFS
+    case 0xAAD7AAEA:  // OVERLAYFS
+    case 0xBACBACBC:  // VMHGFS
+    case 0xBEEFDEAD:  // SNFS
+    case 0xFE534D42:  // SMB2
+    case 0xFF534D42:  // CIFS
         return true;
     default:
-        return false;
+        break;
     }
-#endif // Q_OS_WIN
+
+    return false;
+#endif
+#endif
 }
 #endif // Q_OS_HAIKU
