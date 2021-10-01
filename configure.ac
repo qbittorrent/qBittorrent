@@ -54,17 +54,32 @@ AC_ARG_ENABLE(qt-dbus,
               [enable_qt_dbus=yes])
 
 # Detect OS
-AC_MSG_CHECKING([whether OS is FreeBSD])
-AS_IF([expr "$host_os" : ".*freebsd.*" > /dev/null],
-      [AC_MSG_RESULT([yes])
-      LIBS="-lexecinfo $LIBS"],
-      [AC_MSG_RESULT([no])])
+AC_MSG_CHECKING([whether to enable specific tweaks for current host "$host_os"])
+case "$host_os" in
+    *darwin*)
+        AC_MSG_RESULT([yes])
+        enable_qt_dbus=no
+        ;;
 
-AC_MSG_CHECKING([whether OS is macOS])
-AS_IF([expr "$host_os" : ".*darwin.*" > /dev/null],
-      [AC_MSG_RESULT([yes])
-      enable_qt_dbus=no],
-      [AC_MSG_RESULT([no])])
+    *freebsd*)
+        AC_MSG_RESULT([yes])
+        LIBS="-lexecinfo $LIBS"
+        ;;
+
+    *haiku*)
+        AC_MSG_RESULT([yes])
+        LIBS="-lnetwork $LIBS"
+        ;;
+
+    *openbsd*)
+        AC_MSG_RESULT([yes])
+        LIBS="-lexecinfo $LIBS"
+        ;;
+
+    *)
+        AC_MSG_RESULT([no])
+        ;;
+esac
 
 # Require 0.23 pkg-config
 PKG_PROG_PKG_CONFIG([0.23])

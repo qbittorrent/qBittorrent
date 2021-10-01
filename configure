@@ -5188,29 +5188,38 @@ fi
 
 
 # Detect OS
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether OS is FreeBSD" >&5
-printf %s "checking whether OS is FreeBSD... " >&6; }
-if expr "$host_os" : ".*freebsd.*" > /dev/null
-then :
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether to enable specific tweaks for current host \"$host_os\"" >&5
+printf %s "checking whether to enable specific tweaks for current host \"$host_os\"... " >&6; }
+case "$host_os" in
+    *darwin*)
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-      LIBS="-lexecinfo $LIBS"
-else $as_nop
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
-printf "%s\n" "no" >&6; }
-fi
+        enable_qt_dbus=no
+        ;;
 
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether OS is macOS" >&5
-printf %s "checking whether OS is macOS... " >&6; }
-if expr "$host_os" : ".*darwin.*" > /dev/null
-then :
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+    *freebsd*)
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
 printf "%s\n" "yes" >&6; }
-      enable_qt_dbus=no
-else $as_nop
-  { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
+        LIBS="-lexecinfo $LIBS"
+        ;;
+
+    *haiku*)
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+        LIBS="-lnetwork $LIBS"
+        ;;
+
+    *openbsd*)
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+printf "%s\n" "yes" >&6; }
+        LIBS="-lexecinfo $LIBS"
+        ;;
+
+    *)
+        { printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: no" >&5
 printf "%s\n" "no" >&6; }
-fi
+        ;;
+esac
 
 # Require 0.23 pkg-config
 
