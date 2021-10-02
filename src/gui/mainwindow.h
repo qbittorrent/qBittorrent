@@ -35,6 +35,8 @@
 #include <QSystemTrayIcon>
 #endif
 
+#include "base/bittorrent/torrent.h"
+
 class QCloseEvent;
 class QFileSystemWatcher;
 class QSplitter;
@@ -56,11 +58,6 @@ class StatusBar;
 class TorrentCreatorDialog;
 class TransferListFiltersWidget;
 class TransferListWidget;
-
-namespace BitTorrent
-{
-    class Torrent;
-}
 
 namespace Net
 {

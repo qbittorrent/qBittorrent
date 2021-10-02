@@ -32,6 +32,9 @@
 #include <QListWidget>
 #include <QtContainerFwd>
 
+#include "base/bittorrent/infohash.h"
+#include "base/bittorrent/trackerentry.h"
+
 class QCheckBox;
 class QResizeEvent;
 
@@ -40,8 +43,6 @@ class TransferListWidget;
 namespace BitTorrent
 {
     class Torrent;
-    class TorrentID;
-    struct TrackerEntry;
 }
 
 namespace Net

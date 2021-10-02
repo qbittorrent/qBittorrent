@@ -29,8 +29,11 @@
 #pragma once
 
 #include <functional>
+
 #include <QtContainerFwd>
 #include <QTreeView>
+
+#include "base/bittorrent/infohash.h"
 
 class MainWindow;
 class TransferListModel;
@@ -39,7 +42,6 @@ class TransferListSortModel;
 namespace BitTorrent
 {
     class Torrent;
-    class TorrentID;
 }
 
 enum class CopyInfohashPolicy
