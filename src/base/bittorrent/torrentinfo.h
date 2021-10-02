@@ -75,7 +75,6 @@ namespace BitTorrent
         int piecesCount() const;
         QString filePath(int index) const override;
         QStringList filePaths() const;
-        QString fileName(int index) const override;
         QString origFilePath(int index) const;
         qlonglong fileSize(int index) const override;
         qlonglong fileOffset(int index) const;
@@ -99,6 +98,7 @@ namespace BitTorrent
         void setContentLayout(TorrentContentLayout layout);
 
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
+        QVector<lt::file_index_t> nativeIndexes() const;
 
     private:
         // returns file index or -1 if fileName is not found
@@ -108,6 +108,10 @@ namespace BitTorrent
         TorrentContentLayout defaultContentLayout() const;
 
         std::shared_ptr<lt::torrent_info> m_nativeInfo;
+
+        // internal indexes of files (payload only, excluding any .pad files)
+        // by which they are addressed in libtorrent
+        QVector<lt::file_index_t> m_nativeIndexes;
     };
 }
 

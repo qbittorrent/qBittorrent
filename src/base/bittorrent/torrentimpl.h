@@ -126,8 +126,8 @@ namespace BitTorrent
         int seedingTimeLimit() const override;
 
         QString filePath(int index) const override;
-        QString fileName(int index) const override;
         qlonglong fileSize(int index) const override;
+        QStringList filePaths() const override;
         QStringList absoluteFilePaths() const override;
         QVector<DownloadPriority> filePriorities() const override;
 
@@ -149,7 +149,6 @@ namespace BitTorrent
         bool hasMetadata() const override;
         bool hasMissingFiles() const override;
         bool hasError() const override;
-        bool hasFilteredPieces() const override;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
         QVector<QUrl> urlSeeds() const override;
@@ -305,7 +304,7 @@ namespace BitTorrent
 #ifndef QBT_USES_LIBTORRENT2
         // Until libtorrent provided an "old_name" field in `file_renamed_alert`
         // we relied on this workaround to remove empty leftover folders
-        QHash<lt::file_index_t, QVector<QString>> m_oldPath;
+        QHash<int, QVector<QString>> m_oldPath;
 #endif
 
         QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;

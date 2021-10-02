@@ -139,8 +139,10 @@ void TorrentContentModelFolder::setPriority(BitTorrent::DownloadPriority newPrio
 
     // Update children
     if (m_priority != BitTorrent::DownloadPriority::Mixed)
+    {
         for (TorrentContentModelItem *child : asConst(m_childItems))
             child->setPriority(m_priority, false);
+    }
 }
 
 void TorrentContentModelFolder::recalculateProgress()

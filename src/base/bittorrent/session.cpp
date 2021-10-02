@@ -93,7 +93,7 @@
 #include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
-#include "ltunderlyingtype.h"
+#include "lttypecast.h"
 #include "magneturi.h"
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
@@ -1491,7 +1491,7 @@ void Session::configurePeerClasses()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
                , lt::address_v4::broadcast()
-               , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
+               , 1 << LT::toUnderlyingType(lt::session::global_peer_class_id));
 
     // IPv6 may not be available on OS and the parsing
     // would result in an exception -> abnormal program termination
@@ -1500,7 +1500,7 @@ void Session::configurePeerClasses()
     {
         f.add_rule(lt::address_v6::any()
                    , lt::make_address("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 
@@ -1509,21 +1509,21 @@ void Session::configurePeerClasses()
         // local networks
         f.add_rule(lt::make_address("10.0.0.0")
                    , lt::make_address("10.255.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("172.16.0.0")
                    , lt::make_address("172.31.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("192.168.0.0")
                    , lt::make_address("192.168.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         // link local
         f.add_rule(lt::make_address("169.254.0.0")
                    , lt::make_address("169.254.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         // loopback
         f.add_rule(lt::make_address("127.0.0.0")
                    , lt::make_address("127.255.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
 
         // IPv6 may not be available on OS and the parsing
         // would result in an exception -> abnormal program termination
@@ -1533,15 +1533,15 @@ void Session::configurePeerClasses()
             // link local
             f.add_rule(lt::make_address("fe80::")
                        , lt::make_address("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
             // unique local addresses
             f.add_rule(lt::make_address("fc00::")
                        , lt::make_address("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
                        , lt::address_v6::loopback()
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         }
         catch (const std::exception &) {}
     }
@@ -1727,8 +1727,10 @@ void Session::fileSearchFinished(const TorrentID &id, const QString &savePath, c
         lt::add_torrent_params &p = params.ltAddTorrentParams;
 
         p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        const TorrentInfo torrentInfo {p.ti};
+        const auto nativeIndexes = torrentInfo.nativeIndexes();
         for (int i = 0; i < fileNames.size(); ++i)
-            p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
+            p.renamed_files[nativeIndexes[i]] = fileNames[i].toStdString();
 
         loadTorrent(params);
     }
@@ -2141,28 +2143,20 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         {
             QString contentName = metadata.rootFolder();
             if (contentName.isEmpty() && (metadata.filesCount() == 1))
-                contentName = metadata.fileName(0);
+                contentName = Utils::Fs::fileName(metadata.filePath(0));
 
             if (!contentName.isEmpty() && (contentName != metadata.name()))
                 loadTorrentParams.name = contentName;
         }
 
         Q_ASSERT(p.file_priorities.empty());
-        if (addTorrentParams.filePriorities.empty())
-        {
-            // Use qBittorrent default priority rather than libtorrent's (4)
-            p.file_priorities = std::vector(metadata.filesCount(), static_cast<lt::download_priority_t>(
-                    static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
-        }
-        else
-        {
-            std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
-                           , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
-            {
-                return static_cast<lt::download_priority_t>(
-                        static_cast<lt::download_priority_t::underlying_type>(priority));
-            });
-        }
+        const int internalFilesCount = metadata.nativeInfo()->files().num_files(); // including .pad files
+        // Use qBittorrent default priority rather than libtorrent's (4)
+        p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
+        const auto nativeIndexes = metadata.nativeIndexes();
+        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
+        for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
+            p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
 
         p.ti = metadata.nativeInfo();
     }
@@ -2388,7 +2382,7 @@ void Session::saveTorrentsQueue() const
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
         // We require actual (non-cached) queue position here!
-        const int queuePos = toLTUnderlyingType(torrent->nativeHandle().queue_position());
+        const int queuePos = LT::toUnderlyingType(torrent->nativeHandle().queue_position());
         if (queuePos >= 0)
         {
             if (queuePos >= queue.size())
@@ -3937,9 +3931,8 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
 
     qDebug("Checking if the torrent contains torrent files to download");
     // Check if there are torrent files inside
-    for (int i = 0; i < torrent->filesCount(); ++i)
+    for (const QString &torrentRelpath : asConst(torrent->filePaths()))
     {
-        const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent", Qt::CaseInsensitive))
         {
             qDebug("Found possible recursive torrent download.");
@@ -4162,9 +4155,8 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
     TorrentImpl *const torrent = m_torrents.value(id);
     if (!torrent) return;
 
-    for (int i = 0; i < torrent->filesCount(); ++i)
+    for (const QString &torrentRelpath : asConst(torrent->filePaths()))
     {
-        const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent"))
         {
             LogMsg(tr("Recursive download of file '%1' embedded in torrent '%2'"
