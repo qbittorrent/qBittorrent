@@ -154,7 +154,7 @@ class socksocket(socket.socket):
         addr -      The address of the server (IP or DNS).
         port -      The port of the server. Defaults to 1080 for SOCKS
                 servers and 8080 for HTTP proxy servers.
-        rdns -      Should DNS queries be preformed on the remote side
+        rdns -      Should DNS queries be performed on the remote side
                 (rather than the local side). The default is True.
                 Note: This has no effect with SOCKS4 servers.
         username -  Username to authenticate with to the server.
