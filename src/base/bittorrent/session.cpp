@@ -4616,6 +4616,18 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
     if (!torrent)
         return;
 
+    if (p->op == lt::operation_t::partfile_read && p->error.value() == 2 && p->error.failed()) {
+        std::string expected_name = std::string(p->filename());
+        for (int file_i = 0; file_i < torrent->filesCount(); ++file_i) {
+            if (torrent->absoluteFilePaths()[file_i].toStdString() == expected_name) {
+                if (torrent->filePriorities()[file_i] == DownloadPriority::Ignored) {
+                    return;
+                }
+                break;
+            }
+        }
+    }
+
     torrent->handleAlert(p);
 
     const TorrentID id = torrent->id();
