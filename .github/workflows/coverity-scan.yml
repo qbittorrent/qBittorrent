@@ -15,19 +15,11 @@ jobs:
 
       - name: Install dependencies
         run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev zlib1g-dev
-        # sudo apt install libqt5svg5-dev qtbase5-dev qttools5-dev # the Qt version in the standard repositories is too old...
-
-      # this will be installed under /opt/qt515. CMake will still find it automatically without additional hints
-      # to speed up the process, only the required components are installed rather than the full qt515-meta-full metapackage
-      - name: Install Qt
-        run: |
-          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
-          sudo apt install \
-            qt515base qt515svg qt515tools
+            libboost-dev libssl-dev qt515base qt515svg qt515tools zlib1g-dev
 
       - name: Install libtorrent
         run: |
@@ -52,7 +44,7 @@ jobs:
           mkdir coverity_tool
           tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
 
-      - name: Configure qBittorrent
+      - name: Build qBittorrent
         run: |
           cmake \
             -B build \
@@ -60,9 +52,6 @@ jobs:
             -DCMAKE_BUILD_TYPE=Release \
             -DGUI=ON \
             -DVERBOSE_CONFIGURE=ON
-
-      - name: Build qBittorrent
-        run: |
           export PATH="$(pwd)/coverity_tool/bin:$PATH"
           cov-build --dir cov-int cmake --build build
 

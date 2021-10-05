@@ -4,11 +4,23 @@ on: [pull_request, push]
 jobs:
   ci:
     name: Build
-    runs-on: windows-2019
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        libt_version: ["v2.0.4", "v1.2.14"]
+      fail-fast: false
+
+    env:
+      boost_path: "${{ github.workspace }}/boost"
+      libtorrent_path: "${{ github.workspace }}/libtorrent"
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
+      - name: Setup devcmd
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Install build tools
         run: |
@@ -41,12 +53,12 @@ jobs:
       - name: Install dependencies
         run: |
           $packages = `
-            "boost-circular-buffer:x64-windows-static-release",
-            "libtorrent:x64-windows-static-release",
+            "openssl:x64-windows-static-release",
             "qt5-base:x64-windows-static-release",
             "qt5-svg:x64-windows-static-release",
             "qt5-tools:x64-windows-static-release",
-            "qt5-winextras:x64-windows-static-release"
+            "qt5-winextras:x64-windows-static-release",
+            "zlib:x64-windows-static-release"
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
             --overlay-triplets="${{ github.workspace }}/triplets_overlay" `
             --no-dry-run
@@ -55,9 +67,33 @@ jobs:
             --clean-after-build `
             $packages
 
-      # this is necessary to correctly find and use cl.exe with the Ninja generator for now
-      - name: Setup devcmd
-        uses: ilammy/msvc-dev-cmd@v1
+      - name: Install boost
+        run: |
+          aria2c `
+            "https://boostorg.jfrog.io/artifactory/main/release/1.76.0/source/boost_1_76_0.7z" `
+            -d "${{ runner.temp }}" `
+            -o "boost.7z"
+          7z x "${{ runner.temp }}/boost.7z" -o"${{ github.workspace }}/.."
+          move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
+
+      - name: Install libtorrent
+        run: |
+          git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          cd libtorrent
+          git submodule update --init --recursive
+          cmake `
+            -B build `
+            -G "Ninja" `
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}" `
+            -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
+            -DBOOST_ROOT="${{ env.boost_path }}" `
+            -DBUILD_SHARED_LIBS=OFF `
+            -Ddeprecated-functions=OFF `
+            -Dstatic_runtime=ON `
+            -DVCPKG_TARGET_TRIPLET=x64-windows-static-release
+          cmake --build build
+          cmake --install build
 
       - name: Build qBittorrent
         run: |
@@ -67,19 +103,26 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
+            -DBOOST_ROOT="${{ env.boost_path }}" `
+            -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=OFF `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
             -DVERBOSE_CONFIGURE=ON `
             --graphviz=build/target_graph.dot
           cmake --build build
 
+      - name: Prepare build artifacts
+        run: |
+          mkdir upload
+          copy build/qbittorrent.exe upload
+          copy build/qbittorrent.pdb upload
+          copy dist/windows/qt.conf upload
+          mkdir upload/cmake
+          copy build/compile_commands.json upload/cmake
+          copy build/target_graph.dot upload/cmake
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_Windows-x64
-          path: |
-            build/compile_commands.json
-            build/qbittorrent.exe
-            build/qbittorrent.pdb
-            build/target_graph.dot
-            dist/windows/qt.conf
+          name: qBittorrent-CI_Windows-x64_libtorrent-${{ matrix.libt_version }}
+          path: upload
