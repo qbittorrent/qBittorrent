@@ -222,7 +222,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         }
 
     default:
-        Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparsion case");
+        Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;
     }
 
