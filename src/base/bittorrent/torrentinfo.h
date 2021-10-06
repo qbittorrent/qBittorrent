@@ -58,7 +58,7 @@ namespace BitTorrent
 
         static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
         static nonstd::expected<TorrentInfo, QString> loadFromFile(const QString &path) noexcept;
-        void saveToFile(const QString &path) const;
+        nonstd::expected<void, QString> saveToFile(const QString &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 

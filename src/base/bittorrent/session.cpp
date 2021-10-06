@@ -69,7 +69,6 @@
 #include <QUuid>
 
 #include "base/algorithm.h"
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -2317,14 +2316,11 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const QString &f
             newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         }
 
-        try
-        {
-            torrentInfo.saveToFile(newTorrentPath);
-        }
-        catch (const RuntimeError &err)
+        const nonstd::expected<void, QString> result = torrentInfo.saveToFile(newTorrentPath);
+        if (!result)
         {
             LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2.")
-                   .arg(newTorrentPath, err.message()), Log::WARNING);
+                   .arg(newTorrentPath, result.error()), Log::WARNING);
         }
     }
 }

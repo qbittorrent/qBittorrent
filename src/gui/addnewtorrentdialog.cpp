@@ -43,7 +43,6 @@
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/settingsstorage.h"
@@ -473,14 +472,11 @@ void AddNewTorrentDialog::saveTorrentFile()
     if (!path.endsWith(torrentFileExtension, Qt::CaseInsensitive))
         path += torrentFileExtension;
 
-    try
-    {
-        m_torrentInfo.saveToFile(path);
-    }
-    catch (const RuntimeError &err)
+    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(path);
+    if (!result)
     {
         QMessageBox::critical(this, tr("I/O Error")
-            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, err.message()));
+            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, result.error()));
     }
 }
 

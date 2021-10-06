@@ -40,7 +40,6 @@
 #include <QUrl>
 #include <QVector>
 
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
@@ -153,10 +152,10 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const QString &
     return load(data);
 }
 
-void TorrentInfo::saveToFile(const QString &path) const
+nonstd::expected<void, QString> TorrentInfo::saveToFile(const QString &path) const
 {
     if (!isValid())
-        throw RuntimeError {tr("Invalid metadata")};
+        return nonstd::make_unexpected(tr("Invalid metadata"));
 
     try
     {
@@ -164,12 +163,14 @@ void TorrentInfo::saveToFile(const QString &path) const
         const lt::entry torrentEntry = torrentCreator.generate();
         const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
         if (!result)
-            throw RuntimeError(result.error());
+            return result.get_unexpected();
     }
     catch (const lt::system_error &err)
     {
-        throw RuntimeError(QString::fromLocal8Bit(err.what()));
+        return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
     }
+
+    return {};
 }
 
 bool TorrentInfo::isValid() const
