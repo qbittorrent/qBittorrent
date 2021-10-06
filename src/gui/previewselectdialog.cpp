@@ -85,7 +85,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     // Fill list in
     const QVector<qreal> fp = torrent->filesProgress();
-    for (int i = 0; i <= torrent->filesCount(); ++i)
+    for (int i = 0; i < torrent->filesCount(); ++i)
     {
         QString fileName = Utils::Fs::fileName(torrent->filePath(i));
         if (fileName.endsWith(QB_EXT))
