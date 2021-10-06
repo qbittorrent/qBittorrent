@@ -224,9 +224,13 @@ void TorrentCreatorThread::run()
         emit updateProgress(100);
         emit creationSuccess(m_params.savePath, parentPath);
     }
-    catch (const std::exception &e)
+    catch (const RuntimeError &err)
     {
-        emit creationFailure(e.what());
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(err.message()));
+    }
+    catch (const std::exception &err)
+    {
+        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
     }
 }
 
