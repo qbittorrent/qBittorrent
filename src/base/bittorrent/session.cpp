@@ -4616,13 +4616,13 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
     if (!torrent)
         return;
 
-    if (p->op == lt::operation_t::partfile_read && p->error.value() == boost::system::errc::no_such_file_or_directory &&
-        p->error.failed()) {
+    if (p->error.value() == boost::system::errc::no_such_file_or_directory &&
+        (p->op == lt::operation_t::partfile_read || p->op == lt::operation_t::file_open)) {
         std::string expectedName = std::string(p->filename());
         for (int file_i = 0; file_i < torrent->filesCount(); ++file_i) {
             if (torrent->absoluteFilePaths()[file_i].toStdString() == expectedName) {
                 if (torrent->filePriorities()[file_i] == DownloadPriority::Ignored) {
-                    torrent->nativeHandle().force_recheck();
+                    torrent->forceRecheck();
                     return;
                 }
                 break;
