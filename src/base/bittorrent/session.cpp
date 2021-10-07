@@ -4622,9 +4622,7 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
         for (int file_i = 0; file_i < torrent->filesCount(); ++file_i) {
             if (torrent->absoluteFilePaths()[file_i].toStdString() == expectedName) {
                 if (torrent->filePriorities()[file_i] == DownloadPriority::Ignored) {
-                    // this will trigger check_files without all the unwanted side effects
-                    // of force_recheck()
-                    torrent->nativeHandle().unset_flags(lt::torrent_flags::seed_mode);
+                    torrent->nativeHandle().force_recheck();
                     return;
                 }
                 break;
