@@ -51,10 +51,8 @@ namespace
         const bool isLeftValid = left.isValid();
         const bool isRightValid = right.isValid();
 
-        if (isLeftValid && isRightValid)
+        if (isLeftValid == isRightValid)
             return threeWayCompare(left, right);
-        if (!isLeftValid && !isRightValid)
-            return 0;
         return isLeftValid ? -1 : 1;
     }
 
