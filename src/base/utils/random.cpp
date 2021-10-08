@@ -33,9 +33,6 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
 #include <Windows.h>
 #include <Ntsecapi.h>
 #else  // Q_OS_WIN
