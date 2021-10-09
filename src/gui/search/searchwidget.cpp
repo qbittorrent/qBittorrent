@@ -304,7 +304,7 @@ void SearchWidget::on_searchButton_clicked()
 {
     if (!Utils::ForeignApps::pythonInfo().isValid())
     {
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
@@ -373,9 +373,9 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
         if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         {
             if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
-                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
+                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has failed"));
             else
-                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has finished"));
         }
 
         m_activeSearchTab = nullptr;

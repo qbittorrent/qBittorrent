@@ -1525,7 +1525,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
+                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
                  <property name="text">
                   <string>Maximum number of connections per torrent:</string>
                  </property>
@@ -1535,7 +1535,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QCheckBox" name="checkMaxConnecs">
+                <widget class="QCheckBox" name="checkMaxConnections">
                  <property name="text">
                   <string>Global maximum number of connections:</string>
                  </property>
@@ -1701,7 +1701,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProxyPeerConnecs">
+                <widget class="QCheckBox" name="checkProxyPeerConnections">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3502,9 +3502,9 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>lineEditAutoRun</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
-  <tabstop>checkMaxConnecs</tabstop>
+  <tabstop>checkMaxConnections</tabstop>
   <tabstop>spinMaxConnec</tabstop>
-  <tabstop>checkMaxConnecsPerTorrent</tabstop>
+  <tabstop>checkMaxConnectionsPerTorrent</tabstop>
   <tabstop>spinMaxConnecPerTorrent</tabstop>
   <tabstop>checkMaxUploadsPerTorrent</tabstop>
   <tabstop>spinMaxUploadsPerTorrent</tabstop>
@@ -3513,7 +3513,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyPeerConnecs</tabstop>
+  <tabstop>checkProxyPeerConnections</tabstop>
   <tabstop>isProxyOnlyForTorrents</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>
@@ -3558,7 +3558,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  <resources/>
  <connections>
   <connection>
-   <sender>checkMaxConnecs</sender>
+   <sender>checkMaxConnections</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinMaxConnec</receiver>
    <slot>setEnabled(bool)</slot>
@@ -3574,7 +3574,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxConnecsPerTorrent</sender>
+   <sender>checkMaxConnectionsPerTorrent</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinMaxConnecPerTorrent</receiver>
    <slot>setEnabled(bool)</slot>
