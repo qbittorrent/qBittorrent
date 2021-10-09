@@ -8,7 +8,7 @@ AC_PROG_CXX
 AC_PROG_SED
 AC_LANG(C++)
 AC_CANONICAL_HOST
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 
 # use compiler from env variables if available
 QBT_CC="$CC"
