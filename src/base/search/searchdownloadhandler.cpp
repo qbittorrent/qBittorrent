@@ -64,5 +64,5 @@ void SearchDownloadHandler::downloadProcessFinished(int exitcode)
             path = parts[0].toString();
     }
 
-    emit downloadFinished(path);
+    Q_EMIT downloadFinished(path);
 }

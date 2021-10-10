@@ -98,7 +98,7 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
 
 Feed::~Feed()
 {
-    emit aboutToBeDestroyed(this);
+    Q_EMIT aboutToBeDestroyed(this);
 }
 
 QList<Article *> Feed::articles() const
@@ -116,7 +116,7 @@ void Feed::markAsRead()
             article->disconnect(this);
             article->markAsRead();
             --m_unreadCount;
-            emit articleRead(article);
+            Q_EMIT articleRead(article);
         }
     }
 
@@ -124,7 +124,7 @@ void Feed::markAsRead()
     {
         m_dirty = true;
         store();
-        emit unreadCountChanged(this);
+        Q_EMIT unreadCountChanged(this);
     }
 }
 
@@ -142,7 +142,7 @@ void Feed::refresh()
         downloadIcon();
 
     m_isLoading = true;
-    emit stateChanged(this);
+    Q_EMIT stateChanged(this);
 }
 
 QUuid Feed::uid() const
@@ -191,7 +191,7 @@ void Feed::handleIconDownloadFinished(const Net::DownloadResult &result)
 {
     if (result.status == Net::DownloadStatus::Success)
     {
-        emit iconLoaded(this);
+        Q_EMIT iconLoaded(this);
     }
 }
 
@@ -219,7 +219,7 @@ void Feed::handleDownloadFinished(const Net::DownloadResult &result)
         LogMsg(tr("Failed to download RSS feed at '%1'. Reason: %2")
                .arg(result.url, result.errorString), Log::WARNING);
 
-        emit stateChanged(this);
+        Q_EMIT stateChanged(this);
     }
 }
 
@@ -231,7 +231,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
     {
         m_title = result.title;
         m_dirty = true;
-        emit titleChanged(this);
+        Q_EMIT titleChanged(this);
     }
 
     if (!result.lastBuildDate.isEmpty())
@@ -256,7 +256,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
            .arg(url(), QString::number(newArticlesCount)));
 
     m_isLoading = false;
-    emit stateChanged(this);
+    Q_EMIT stateChanged(this);
 }
 
 void Feed::load()
@@ -384,7 +384,7 @@ bool Feed::addArticle(Article *article)
     }
 
     m_dirty = true;
-    emit newArticle(article);
+    Q_EMIT newArticle(article);
 
     if (m_articlesByDate.size() > maxArticles)
         removeOldestArticle();
@@ -395,7 +395,7 @@ bool Feed::addArticle(Article *article)
 void Feed::removeOldestArticle()
 {
     auto oldestArticle = m_articlesByDate.last();
-    emit articleAboutToBeRemoved(oldestArticle);
+    Q_EMIT articleAboutToBeRemoved(oldestArticle);
 
     m_articles.remove(oldestArticle->guid());
     m_articlesByDate.removeLast();
@@ -409,7 +409,7 @@ void Feed::removeOldestArticle()
 void Feed::increaseUnreadCount()
 {
     ++m_unreadCount;
-    emit unreadCountChanged(this);
+    Q_EMIT unreadCountChanged(this);
 }
 
 void Feed::decreaseUnreadCount()
@@ -417,7 +417,7 @@ void Feed::decreaseUnreadCount()
     Q_ASSERT(m_unreadCount > 0);
 
     --m_unreadCount;
-    emit unreadCountChanged(this);
+    Q_EMIT unreadCountChanged(this);
 }
 
 void Feed::downloadIcon()
@@ -540,7 +540,7 @@ void Feed::handleArticleRead(Article *article)
 {
     article->disconnect(this);
     decreaseUnreadCount();
-    emit articleRead(article);
+    Q_EMIT articleRead(article);
     // will be stored deferred
     m_dirty = true;
     storeDeferred();

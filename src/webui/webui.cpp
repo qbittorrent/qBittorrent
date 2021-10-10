@@ -126,7 +126,7 @@ void WebUI::configure()
                 qCritical() << errorMsg;
 
                 m_isErrored = true;
-                emit fatalError();
+                Q_EMIT fatalError();
             }
         }
 

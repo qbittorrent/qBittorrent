@@ -365,7 +365,7 @@ void CategoryFilterModel::torrentCategoryChanged(BitTorrent::Torrent *const torr
     i = index(item);
     while (i.isValid())
     {
-        emit dataChanged(i, i);
+        Q_EMIT dataChanged(i, i);
         i = parent(i);
     }
 
@@ -376,7 +376,7 @@ void CategoryFilterModel::torrentCategoryChanged(BitTorrent::Torrent *const torr
     i = index(item);
     while (i.isValid())
     {
-        emit dataChanged(i, i);
+        Q_EMIT dataChanged(i, i);
         i = parent(i);
     }
 }

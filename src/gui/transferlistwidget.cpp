@@ -1141,7 +1141,7 @@ void TransferListWidget::currentChanged(const QModelIndex &current, const QModel
         // Scroll Fix
         scrollTo(current);
     }
-    emit currentTorrentChanged(torrent);
+    Q_EMIT currentTorrentChanged(torrent);
 }
 
 void TransferListWidget::applyCategoryFilter(const QString &category)

@@ -265,7 +265,7 @@ void FileSystemPathEdit::onPathEdited()
     QString newPath = selectedPath();
     if (newPath != d->m_lastSignaledPath)
     {
-        emit selectedPathChanged(newPath);
+        Q_EMIT selectedPathChanged(newPath);
         d->m_lastSignaledPath = newPath;
         d->m_editor->widget()->setToolTip(editWidgetText());
     }

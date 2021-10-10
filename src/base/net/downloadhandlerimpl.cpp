@@ -213,7 +213,7 @@ void DownloadHandlerImpl::setError(const QString &error)
 
 void DownloadHandlerImpl::finish()
 {
-    emit finished(m_result);
+    Q_EMIT finished(m_result);
 }
 
 QString DownloadHandlerImpl::errorCodeToString(const QNetworkReply::NetworkError status)

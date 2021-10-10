@@ -187,7 +187,7 @@ void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
             disabledPlugins.append(name);
         pref->setSearchEngDisabled(disabledPlugins);
 
-        emit pluginEnabled(name, enabled);
+        Q_EMIT pluginEnabled(name, enabled);
     }
 }
 
@@ -218,7 +218,7 @@ void SearchPluginManager::installPlugin(const QString &source)
         pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.'));
 
         if (!path.endsWith(".py", Qt::CaseInsensitive))
-            emit pluginInstallationFailed(pluginName, tr("Unknown search engine plugin file format."));
+            Q_EMIT pluginInstallationFailed(pluginName, tr("Unknown search engine plugin file format."));
         else
             installPlugin_impl(pluginName, path);
     }
@@ -231,7 +231,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
     if (plugin && !(plugin->version < newVersion))
     {
         LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version, newVersion), Log::INFO);
-        emit pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
+        Q_EMIT pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
         return;
     }
 
@@ -262,11 +262,11 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const QString 
             Utils::Fs::forceRemove(destPath + ".bak");
             // Update supported plugins
             update();
-            emit pluginUpdateFailed(name, tr("Plugin is not supported."));
+            Q_EMIT pluginUpdateFailed(name, tr("Plugin is not supported."));
         }
         else
         {
-            emit pluginInstallationFailed(name, tr("Plugin is not supported."));
+            Q_EMIT pluginInstallationFailed(name, tr("Plugin is not supported."));
         }
     }
     else
@@ -294,7 +294,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
     // Remove it from supported engines
     delete m_plugins.take(name);
 
-    emit pluginUninstalled(name);
+    Q_EMIT pluginUninstalled(name);
     return true;
 }
 
@@ -381,7 +381,7 @@ void SearchPluginManager::versionInfoDownloadFinished(const Net::DownloadResult 
     if (result.status == Net::DownloadStatus::Success)
         parseVersionInfo(result.data);
     else
-        emit checkForUpdatesFailed(tr("Update server is temporarily unavailable. %1").arg(result.errorString));
+        Q_EMIT checkForUpdatesFailed(tr("Update server is temporarily unavailable. %1").arg(result.errorString));
 }
 
 void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &result)
@@ -402,9 +402,9 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
         pluginName.replace(".py", "", Qt::CaseInsensitive);
 
         if (pluginInfo(pluginName))
-            emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
+            Q_EMIT pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
         else
-            emit pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
+            Q_EMIT pluginInstallationFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
     }
 }
 
@@ -499,13 +499,13 @@ void SearchPluginManager::update()
             if (!m_plugins.contains(pluginName))
             {
                 m_plugins[pluginName] = plugin.release();
-                emit pluginInstalled(pluginName);
+                Q_EMIT pluginInstalled(pluginName);
             }
             else if (m_plugins[pluginName]->version != plugin->version)
             {
                 delete m_plugins.take(pluginName);
                 m_plugins[pluginName] = plugin.release();
-                emit pluginUpdated(pluginName);
+                Q_EMIT pluginUpdated(pluginName);
             }
         }
     }
@@ -541,12 +541,12 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
 
     if (numCorrectData < lines.size())
     {
-        emit checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
+        Q_EMIT checkForUpdatesFailed(tr("Incorrect update info received for %1 out of %2 plugins.")
             .arg(QString::number(lines.size() - numCorrectData), QString::number(lines.size())));
     }
     else
     {
-        emit checkForUpdatesFinished(updateInfo);
+        Q_EMIT checkForUpdatesFinished(updateInfo);
     }
 }
 

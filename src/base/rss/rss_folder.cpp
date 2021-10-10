@@ -47,7 +47,7 @@ Folder::Folder(const QString &path)
 
 Folder::~Folder()
 {
-    emit aboutToBeDestroyed(this);
+    Q_EMIT aboutToBeDestroyed(this);
 
     for (auto item : asConst(items()))
         delete item;
@@ -107,7 +107,7 @@ QJsonValue Folder::toJsonValue(bool withData) const
 
 void Folder::handleItemUnreadCountChanged()
 {
-    emit unreadCountChanged(this);
+    Q_EMIT unreadCountChanged(this);
 }
 
 void Folder::cleanup()
@@ -128,10 +128,10 @@ void Folder::addItem(Item *item)
     connect(item, &Item::unreadCountChanged, this, &Folder::handleItemUnreadCountChanged);
 
     for (auto article : asConst(item->articles()))
-        emit newArticle(article);
+        Q_EMIT newArticle(article);
 
     if (item->unreadCount() > 0)
-        emit unreadCountChanged(this);
+        Q_EMIT unreadCountChanged(this);
 }
 
 void Folder::removeItem(Item *item)
@@ -139,10 +139,10 @@ void Folder::removeItem(Item *item)
     Q_ASSERT(m_items.contains(item));
 
     for (auto article : asConst(item->articles()))
-        emit articleAboutToBeRemoved(article);
+        Q_EMIT articleAboutToBeRemoved(article);
 
     item->disconnect(this);
     m_items.removeOne(item);
     if (item->unreadCount() > 0)
-        emit unreadCountChanged(this);
+        Q_EMIT unreadCountChanged(this);
 }

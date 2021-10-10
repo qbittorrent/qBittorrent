@@ -124,6 +124,6 @@ void DownloadFromURLDialog::downloadButtonClicked()
         return;
     }
 
-    emit urlsReadyToBeDownloaded(uniqueURLs.values());
+    Q_EMIT urlsReadyToBeDownloaded(uniqueURLs.values());
     accept();
 }

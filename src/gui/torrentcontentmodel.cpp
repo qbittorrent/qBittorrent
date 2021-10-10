@@ -214,13 +214,13 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
     // XXX: Why is this necessary?
     if (m_filesIndex.size() != fp.size()) return;
 
-    emit layoutAboutToBeChanged();
+    Q_EMIT layoutAboutToBeChanged();
     for (int i = 0; i < fp.size(); ++i)
         m_filesIndex[i]->setProgress(fp[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
     m_rootItem->recalculateAvailability();
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio)
@@ -230,10 +230,10 @@ void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::Downlo
     if (m_filesIndex.size() != fprio.size())
         return;
 
-    emit layoutAboutToBeChanged();
+    Q_EMIT layoutAboutToBeChanged();
     for (int i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
@@ -242,12 +242,12 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
     // XXX: Why is this necessary?
     if (m_filesIndex.size() != fa.size()) return;
 
-    emit layoutAboutToBeChanged();
+    Q_EMIT layoutAboutToBeChanged();
     for (int i = 0; i < m_filesIndex.size(); ++i)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() const
@@ -296,8 +296,8 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             // Update folders progress in the tree
             m_rootItem->recalculateProgress();
             m_rootItem->recalculateAvailability();
-            emit dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
-            emit filteredFilesChanged();
+            Q_EMIT dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
+            Q_EMIT filteredFilesChanged();
         }
         return true;
     }
@@ -317,7 +317,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         default:
             return false;
         }
-        emit dataChanged(index, index);
+        Q_EMIT dataChanged(index, index);
         return true;
     }
 
@@ -491,7 +491,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
     if (filesCount <= 0)
         return;
 
-    emit layoutAboutToBeChanged();
+    Q_EMIT layoutAboutToBeChanged();
     // Initialize files_index array
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
@@ -524,7 +524,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
         currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
-    emit layoutChanged();
+    Q_EMIT layoutChanged();
 }
 
 void TorrentContentModel::selectAll()
@@ -535,12 +535,12 @@ void TorrentContentModel::selectAll()
         if (child->priority() == BitTorrent::DownloadPriority::Ignored)
             child->setPriority(BitTorrent::DownloadPriority::Normal);
     }
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 
 void TorrentContentModel::selectNone()
 {
     for (int i = 0; i < m_rootItem->childCount(); ++i)
         m_rootItem->child(i)->setPriority(BitTorrent::DownloadPriority::Ignored);
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }

@@ -74,6 +74,6 @@ void AsyncFileStorage::store_impl(const QString &fileName, const QByteArray &dat
     if (!result)
     {
         qDebug() << "AsyncFileStorage: Failed to save data";
-        emit failed(filePath, result.error());
+        Q_EMIT failed(filePath, result.error());
     }
 }

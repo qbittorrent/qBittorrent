@@ -50,7 +50,7 @@ void Item::setPath(const QString &path)
     if (path != m_path)
     {
         m_path = path;
-        emit pathChanged(this);
+        Q_EMIT pathChanged(this);
     }
 }
 

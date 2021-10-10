@@ -113,7 +113,7 @@ void TriStateWidget::mouseReleaseEvent(QMouseEvent *event)
     {
         update();
         // need to emit `triggered` signal manually
-        emit triggered(m_checkState == Qt::Checked);
+        Q_EMIT triggered(m_checkState == Qt::Checked);
     }
 }
 
@@ -128,7 +128,7 @@ void TriStateWidget::keyPressEvent(QKeyEvent *event)
         {
             update();
             // need to emit parent `triggered` signal manually
-            emit triggered(m_checkState == Qt::Checked);
+            Q_EMIT triggered(m_checkState == Qt::Checked);
             return;
         }
     }

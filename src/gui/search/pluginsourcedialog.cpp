@@ -53,12 +53,12 @@ PluginSourceDialog::~PluginSourceDialog()
 
 void PluginSourceDialog::on_localButton_clicked()
 {
-    emit askForLocalFile();
+    Q_EMIT askForLocalFile();
     close();
 }
 
 void PluginSourceDialog::on_urlButton_clicked()
 {
-    emit askForUrl();
+    Q_EMIT askForUrl();
     close();
 }

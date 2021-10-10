@@ -101,7 +101,7 @@ void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, const
 {
     Q_UNUSED(previous);
 
-    emit categoryChanged(getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current));
+    Q_EMIT categoryChanged(getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current));
 }
 
 void CategoryFilterWidget::showMenu(const QPoint &)

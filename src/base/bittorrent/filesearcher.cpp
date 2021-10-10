@@ -65,5 +65,5 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &or
         findInDir(savePath, adjustedFileNames);
     }
 
-    emit searchFinished(id, savePath, adjustedFileNames);
+    Q_EMIT searchFinished(id, savePath, adjustedFileNames);
 }

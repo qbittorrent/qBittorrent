@@ -110,7 +110,7 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
         settings()->storeValue(KEY_PASSWORD, config.password);
         configureProxy();
 
-        emit proxyConfigurationChanged();
+        Q_EMIT proxyConfigurationChanged();
     }
 }
 

@@ -268,7 +268,7 @@ void SearchJobWidget::setStatus(Status value)
 
     m_status = value;
     setStatusTip(statusText(value));
-    emit statusChanged();
+    Q_EMIT statusChanged();
 }
 
 void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
@@ -309,7 +309,7 @@ void SearchJobWidget::updateResultsCount()
                               .arg(filteredResults).arg(totalResults));
 
     m_noSearchResults = (totalResults == 0);
-    emit resultsCountUpdated();
+    Q_EMIT resultsCountUpdated();
 }
 
 void SearchJobWidget::updateFilter()

@@ -139,7 +139,7 @@ void PreviewSelectDialog::previewButtonClicked()
         return;
     }
 
-    emit readyToPreviewFile(path);
+    Q_EMIT readyToPreviewFile(path);
     accept();
 }
 

@@ -47,7 +47,7 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
 void BandwidthScheduler::start()
 {
     m_lastAlternative = isTimeForAlternative();
-    emit bandwidthLimitRequested(m_lastAlternative);
+    Q_EMIT bandwidthLimitRequested(m_lastAlternative);
 
     // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
@@ -102,6 +102,6 @@ void BandwidthScheduler::onTimeout()
     if (alternative != m_lastAlternative)
     {
         m_lastAlternative = alternative;
-        emit bandwidthLimitRequested(alternative);
+        Q_EMIT bandwidthLimitRequested(alternative);
     }
 }

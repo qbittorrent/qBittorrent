@@ -61,7 +61,7 @@ void ReverseResolution::resolve(const QHostAddress &ip)
     const QString *hostname = m_cache.object(ip);
     if (hostname)
     {
-        emit ipResolved(ip, *hostname);
+        Q_EMIT ipResolved(ip, *hostname);
         return;
     }
 
@@ -76,7 +76,7 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
 
     if (host.error() != QHostInfo::NoError)
     {
-        emit ipResolved(ip, {});
+        Q_EMIT ipResolved(ip, {});
         return;
     }
 
@@ -84,5 +84,5 @@ void ReverseResolution::hostResolved(const QHostInfo &host)
         ? host.hostName()
         : QString();
     m_cache.insert(ip, new QString(hostname));
-    emit ipResolved(ip, hostname);
+    Q_EMIT ipResolved(ip, hostname);
 }

@@ -613,7 +613,7 @@ void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const to
     const int row = m_torrentMap.value(torrent, -1);
     Q_ASSERT(row >= 0);
 
-    emit dataChanged(index(row, 0), index(row, columnCount() - 1));
+    Q_EMIT dataChanged(index(row, 0), index(row, columnCount() - 1));
 }
 
 void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents)
@@ -627,13 +627,13 @@ void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent 
             const int row = m_torrentMap.value(torrent, -1);
             Q_ASSERT(row >= 0);
 
-            emit dataChanged(index(row, 0), index(row, columns));
+            Q_EMIT dataChanged(index(row, 0), index(row, columns));
         }
     }
     else
     {
         // save the overhead when more than half of the torrent list needs update
-        emit dataChanged(index(0, 0), index((rowCount() - 1), columns));
+        Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), columns));
     }
 }
 
@@ -653,7 +653,7 @@ void TransferListModel::configure()
     if (m_hideZeroValuesMode != hideZeroValuesMode)
     {
         m_hideZeroValuesMode = hideZeroValuesMode;
-        emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+        Q_EMIT dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
     }
 }
 

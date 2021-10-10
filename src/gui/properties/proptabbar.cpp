@@ -123,7 +123,7 @@ void PropTabBar::setCurrentIndex(int index)
         {
           m_btnGroup->button(m_currentIndex)->setDown(false);
           m_currentIndex = -1;
-          emit visibilityToggled(false);
+          Q_EMIT visibilityToggled(false);
         }
         return;
     }
@@ -135,11 +135,11 @@ void PropTabBar::setCurrentIndex(int index)
     else
     {
         // Nothing was selected, show!
-        emit visibilityToggled(true);
+        Q_EMIT visibilityToggled(true);
     }
     // Select the new button
     m_btnGroup->button(index)->setDown(true);
     m_currentIndex = index;
     // Emit the signal
-    emit tabChanged(index);
+    Q_EMIT tabChanged(index);
 }

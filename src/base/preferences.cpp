@@ -1587,5 +1587,5 @@ void Preferences::setSpeedWidgetGraphEnable(const int id, const bool enable)
 void Preferences::apply()
 {
     if (SettingsStorage::instance()->save())
-        emit changed();
+        Q_EMIT changed();
 }

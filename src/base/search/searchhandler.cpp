@@ -116,11 +116,11 @@ void SearchHandler::processFinished(const int exitcode)
     m_searchTimeout->stop();
 
     if (m_searchCancelled)
-        emit searchFinished(true);
+        Q_EMIT searchFinished(true);
     else if ((m_searchProcess->exitStatus() == QProcess::NormalExit) && (exitcode == 0))
-        emit searchFinished(false);
+        Q_EMIT searchFinished(false);
     else
-        emit searchFailed();
+        Q_EMIT searchFailed();
 }
 
 // search QProcess return output as soon as it gets new
@@ -150,14 +150,14 @@ void SearchHandler::readSearchOutput()
     {
         for (const SearchResult &result : searchResultList)
             m_results.append(result);
-        emit newSearchResults(searchResultList);
+        Q_EMIT newSearchResults(searchResultList);
     }
 }
 
 void SearchHandler::processFailed()
 {
     if (!m_searchCancelled)
-        emit searchFailed();
+        Q_EMIT searchFailed();
 }
 
 // Parse one line of search results list

@@ -182,7 +182,7 @@ void AutoDownloader::insertRule(const AutoDownloadRule &rule)
         setRule_impl(rule);
         m_dirty = true;
         store();
-        emit ruleAdded(rule.name());
+        Q_EMIT ruleAdded(rule.name());
         resetProcessingQueue();
     }
     else if (ruleByName(rule.name()) != rule)
@@ -191,7 +191,7 @@ void AutoDownloader::insertRule(const AutoDownloadRule &rule)
         setRule_impl(rule);
         m_dirty = true;
         storeDeferred();
-        emit ruleChanged(rule.name());
+        Q_EMIT ruleChanged(rule.name());
         resetProcessingQueue();
     }
 }
@@ -206,7 +206,7 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
     m_rules.insert(newRuleName, rule);
     m_dirty = true;
     store();
-    emit ruleRenamed(newRuleName, ruleName);
+    Q_EMIT ruleRenamed(newRuleName, ruleName);
     return true;
 }
 
@@ -214,7 +214,7 @@ void AutoDownloader::removeRule(const QString &ruleName)
 {
     if (m_rules.contains(ruleName))
     {
-        emit ruleAboutToBeRemoved(ruleName);
+        Q_EMIT ruleAboutToBeRemoved(ruleName);
         m_rules.remove(ruleName);
         m_dirty = true;
         store();
@@ -517,7 +517,7 @@ void AutoDownloader::setProcessingEnabled(const bool enabled)
             disconnect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
         }
 
-        emit processingStateChanged(m_processingEnabled);
+        Q_EMIT processingStateChanged(m_processingEnabled);
     }
 }
 

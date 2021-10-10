@@ -93,7 +93,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     if (result.status != Net::DownloadStatus::Success)
     {
         qDebug() << "Downloading the new qBittorrent updates RSS failed:" << result.errorString;
-        emit updateCheckFinished();
+        Q_EMIT updateCheckFinished();
         return;
     }
 
@@ -163,7 +163,7 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
         }
     }
 
-    emit updateCheckFinished();
+    Q_EMIT updateCheckFinished();
 }
 
 bool ProgramUpdater::updateProgram() const

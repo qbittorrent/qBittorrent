@@ -93,7 +93,7 @@ void TorrentCreatorThread::create(const TorrentCreatorParams &params)
 
 void TorrentCreatorThread::sendProgressSignal(int currentPieceIdx, int totalPieces)
 {
-    emit updateProgress(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
+    Q_EMIT updateProgress(static_cast<int>((currentPieceIdx * 100.) / totalPieces));
 }
 
 void TorrentCreatorThread::checkInterruptionRequested() const
@@ -104,7 +104,7 @@ void TorrentCreatorThread::checkInterruptionRequested() const
 
 void TorrentCreatorThread::run()
 {
-    emit updateProgress(0);
+    Q_EMIT updateProgress(0);
 
     try
     {
@@ -211,16 +211,16 @@ void TorrentCreatorThread::run()
         if (!result)
             throw RuntimeError(result.error());
 
-        emit updateProgress(100);
-        emit creationSuccess(m_params.savePath, parentPath);
+        Q_EMIT updateProgress(100);
+        Q_EMIT creationSuccess(m_params.savePath, parentPath);
     }
     catch (const RuntimeError &err)
     {
-        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(err.message()));
+        Q_EMIT creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(err.message()));
     }
     catch (const std::exception &err)
     {
-        emit creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
+        Q_EMIT creationFailure(tr("Create new torrent file failed. Reason: %1.").arg(QString::fromLocal8Bit(err.what())));
     }
 }
 

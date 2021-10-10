@@ -765,17 +765,17 @@ void TransferListFiltersWidget::changeTrackerless(const BitTorrent::Torrent *tor
 
 void TransferListFiltersWidget::trackerSuccess(const BitTorrent::Torrent *torrent, const QString &tracker)
 {
-    emit trackerSuccess(torrent->id(), tracker);
+    Q_EMIT trackerSuccess(torrent->id(), tracker);
 }
 
 void TransferListFiltersWidget::trackerWarning(const BitTorrent::Torrent *torrent, const QString &tracker)
 {
-    emit trackerWarning(torrent->id(), tracker);
+    Q_EMIT trackerWarning(torrent->id(), tracker);
 }
 
 void TransferListFiltersWidget::trackerError(const BitTorrent::Torrent *torrent, const QString &tracker)
 {
-    emit trackerError(torrent->id(), tracker);
+    Q_EMIT trackerError(torrent->id(), tracker);
 }
 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)

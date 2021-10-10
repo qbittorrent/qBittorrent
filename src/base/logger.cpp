@@ -77,7 +77,7 @@ void Logger::addMessage(const QString &message, const Log::MsgType &type)
     m_messages.push_back(msg);
     locker.unlock();
 
-    emit newLogMessage(msg);
+    Q_EMIT newLogMessage(msg);
 }
 
 void Logger::addPeer(const QString &ip, const bool blocked, const QString &reason)
@@ -87,7 +87,7 @@ void Logger::addPeer(const QString &ip, const bool blocked, const QString &reaso
     m_peers.push_back(msg);
     locker.unlock();
 
-    emit newLogPeer(msg);
+    Q_EMIT newLogPeer(msg);
 }
 
 QVector<Log::Msg> Logger::getMessages(const int lastKnownId) const

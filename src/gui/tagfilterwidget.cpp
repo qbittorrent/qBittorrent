@@ -99,7 +99,7 @@ void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QMod
 {
     Q_UNUSED(previous);
 
-    emit tagChanged(getTagFilter(static_cast<TagFilterProxyModel *>(model()), current));
+    Q_EMIT tagChanged(getTagFilter(static_cast<TagFilterProxyModel *>(model()), current));
 }
 
 void TagFilterWidget::showMenu(QPoint)

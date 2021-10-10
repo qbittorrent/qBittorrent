@@ -34,5 +34,5 @@
 void FreeDiskSpaceChecker::check()
 {
     const qint64 freeDiskSpace = Utils::Fs::freeDiskSpaceOnPath(BitTorrent::Session::instance()->defaultSavePath());
-    emit checked(freeDiskSpace);
+    Q_EMIT checked(freeDiskSpace);
 }

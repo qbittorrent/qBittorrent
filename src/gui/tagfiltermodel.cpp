@@ -213,7 +213,7 @@ void TagFilterModel::torrentTagAdded(BitTorrent::Torrent *const torrent, const Q
 
     item.increaseTorrentsCount();
     const QModelIndex i = index(row, 0, QModelIndex());
-    emit dataChanged(i, i);
+    Q_EMIT dataChanged(i, i);
 }
 
 void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const QString &tag)
@@ -228,7 +228,7 @@ void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const
     m_tagItems[row].decreaseTorrentsCount();
 
     const QModelIndex i = index(row, 0, QModelIndex());
-    emit dataChanged(i, i);
+    Q_EMIT dataChanged(i, i);
 }
 
 void TagFilterModel::torrentAdded(BitTorrent::Torrent *const torrent)

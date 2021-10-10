@@ -565,5 +565,5 @@ void RSSWidget::handleSessionProcessingStateChanged(bool enabled)
 
 void RSSWidget::handleUnreadCountChanged()
 {
-    emit unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
+    Q_EMIT unreadCountUpdated(RSS::Session::instance()->rootFolder()->unreadCount());
 }

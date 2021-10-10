@@ -231,7 +231,7 @@ bool Session::removeItem(const QString &itemPath, QString *error)
         return false;
     }
 
-    emit itemAboutToBeRemoved(item);
+    Q_EMIT itemAboutToBeRemoved(item);
     item->cleanup();
 
     auto folder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
@@ -452,7 +452,7 @@ void Session::addItem(Item *item, Folder *destFolder)
     connect(item, &Item::aboutToBeDestroyed, this, &Session::handleItemAboutToBeDestroyed);
     m_itemsByPath[item->path()] = item;
     destFolder->addItem(item);
-    emit itemAdded(item);
+    Q_EMIT itemAdded(item);
 }
 
 bool Session::isProcessingEnabled() const
@@ -476,7 +476,7 @@ void Session::setProcessingEnabled(bool enabled)
             m_refreshTimer.stop();
         }
 
-        emit processingStateChanged(m_processingEnabled);
+        Q_EMIT processingStateChanged(m_processingEnabled);
     }
 }
 
@@ -564,7 +564,7 @@ void Session::setMaxArticlesPerFeed(const int n)
     {
         m_maxArticlesPerFeed = n;
         SettingsStorage::instance()->storeValue(SettingsKey_MaxArticlesPerFeed, n);
-        emit maxArticlesPerFeedChanged(n);
+        Q_EMIT maxArticlesPerFeedChanged(n);
     }
 }
 

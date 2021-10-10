@@ -130,7 +130,7 @@ void Article::markAsRead()
     {
         m_isRead = true;
         m_data[KeyIsRead] = m_isRead;
-        emit read(this);
+        Q_EMIT read(this);
     }
 }
 

@@ -404,7 +404,7 @@ void TorrentFilesWatcher::doSetWatchedFolder(const QString &path, const WatchedF
         m_asyncWorker->setWatchedFolder(path, options);
     });
 
-    emit watchedFolderSet(cleanPath, options);
+    Q_EMIT watchedFolderSet(cleanPath, options);
 }
 
 void TorrentFilesWatcher::removeWatchedFolder(const QString &path)
@@ -417,7 +417,7 @@ void TorrentFilesWatcher::removeWatchedFolder(const QString &path)
             m_asyncWorker->removeWatchedFolder(cleanPath);
         });
 
-        emit watchedFolderRemoved(cleanPath);
+        Q_EMIT watchedFolderRemoved(cleanPath);
 
         store();
     }
@@ -514,7 +514,7 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
             {
                 QTextStream str {&file};
                 while (!str.atEnd())
-                    emit magnetFound(BitTorrent::MagnetUri(str.readLine()), addTorrentParams);
+                    Q_EMIT magnetFound(BitTorrent::MagnetUri(str.readLine()), addTorrentParams);
 
                 file.close();
                 Utils::Fs::forceRemove(filePath);
@@ -529,7 +529,7 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
             const auto torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
             if (torrentInfo.isValid())
             {
-                emit torrentFound(torrentInfo, addTorrentParams);
+                Q_EMIT torrentFound(torrentInfo, addTorrentParams);
                 Utils::Fs::forceRemove(filePath);
             }
             else
@@ -578,7 +578,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                     addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
                 }
 
-                emit torrentFound(torrentInfo, addTorrentParams);
+                Q_EMIT torrentFound(torrentInfo, addTorrentParams);
                 Utils::Fs::forceRemove(torrentPath);
 
                 return true;

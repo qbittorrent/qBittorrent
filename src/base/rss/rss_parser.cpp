@@ -602,7 +602,7 @@ void Parser::parse_impl(const QByteArray &feedData)
                 .arg(xml.columnNumber()).arg(xml.characterOffset());
     }
 
-    emit finished(m_result);
+    Q_EMIT finished(m_result);
     m_result.articles.clear(); // clear articles only
     m_articleIDs.clear();
 }

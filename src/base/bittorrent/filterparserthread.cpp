@@ -637,11 +637,11 @@ void FilterParserThread::run()
 
     try
     {
-        emit IPFilterParsed(ruleCount);
+        Q_EMIT IPFilterParsed(ruleCount);
     }
     catch (const std::exception &)
     {
-        emit IPFilterError();
+        Q_EMIT IPFilterError();
     }
 
     qDebug("IP Filter thread: finished parsing, filter applied");
