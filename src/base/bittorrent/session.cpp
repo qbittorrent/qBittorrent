@@ -69,7 +69,6 @@
 #include <QUuid>
 
 #include "base/algorithm.h"
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -1698,7 +1697,7 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     {
     case Net::DownloadStatus::Success:
         emit downloadFromUrlFinished(result.url);
-        addTorrent(TorrentInfo::load(result.data), m_downloadedTorrents.take(result.url));
+        addTorrent(TorrentInfo::load(result.data).value_or(TorrentInfo()), m_downloadedTorrents.take(result.url));
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         emit downloadFromUrlFinished(result.url);
@@ -2028,7 +2027,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
         return addTorrent(magnetUri, params);
 
     TorrentFileGuard guard {source};
-    if (addTorrent(TorrentInfo::loadFromFile(source), params))
+    if (addTorrent(TorrentInfo::loadFromFile(source).value_or(TorrentInfo()), params))
     {
         guard.markAsAddedToSession();
         return true;
@@ -2317,14 +2316,11 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const QString &f
             newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         }
 
-        try
-        {
-            torrentInfo.saveToFile(newTorrentPath);
-        }
-        catch (const RuntimeError &err)
+        const nonstd::expected<void, QString> result = torrentInfo.saveToFile(newTorrentPath);
+        if (!result)
         {
             LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2.")
-                   .arg(newTorrentPath, err.message()), Log::WARNING);
+                   .arg(newTorrentPath, result.error()), Log::WARNING);
         }
     }
 }
@@ -3938,8 +3934,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
             qDebug("Found possible recursive torrent download.");
             const QString torrentFullpath = torrent->savePath(true) + '/' + torrentRelpath;
             qDebug("Full subtorrent path is %s", qUtf8Printable(torrentFullpath));
-            TorrentInfo torrentInfo = TorrentInfo::loadFromFile(torrentFullpath);
-            if (torrentInfo.isValid())
+            if (TorrentInfo::loadFromFile(torrentFullpath))
             {
                 qDebug("emitting recursiveTorrentDownloadPossible()");
                 emit recursiveTorrentDownloadPossible(torrent);
@@ -4167,7 +4162,7 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
             AddTorrentParams params;
             // Passing the save path along to the sub torrent file
             params.savePath = torrent->savePath();
-            addTorrent(TorrentInfo::loadFromFile(torrentFullpath), params);
+            addTorrent(TorrentInfo::loadFromFile(torrentFullpath).value_or(TorrentInfo()), params);
         }
     }
 }

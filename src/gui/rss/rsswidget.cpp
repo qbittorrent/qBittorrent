@@ -246,10 +246,10 @@ void RSSWidget::askNewFolder()
                                   ? RSS::Session::instance()->rootFolder()
                                   : qobject_cast<RSS::Folder *>(m_feedListWidget->getRSSItem(destItem)));
 
-    QString error;
     const QString newFolderPath = RSS::Item::joinPath(rssDestFolder->path(), newName);
-    if (!RSS::Session::instance()->addFolder(newFolderPath, &error))
-        QMessageBox::warning(this, "qBittorrent", error, QMessageBox::Ok);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(newFolderPath);
+    if (!result)
+        QMessageBox::warning(this, "qBittorrent", result.error(), QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
@@ -287,11 +287,11 @@ void RSSWidget::on_newFeedButton_clicked()
                                   ? RSS::Session::instance()->rootFolder()
                                   : qobject_cast<RSS::Folder *>(m_feedListWidget->getRSSItem(destItem)));
 
-    QString error;
     // NOTE: We still add feed using legacy way (with URL as feed name)
     const QString newFeedPath = RSS::Item::joinPath(rssDestFolder->path(), newURL);
-    if (!RSS::Session::instance()->addFeed(newURL, newFeedPath, &error))
-        QMessageBox::warning(this, "qBittorrent", error, QMessageBox::Ok);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(newURL, newFeedPath);
+    if (!result)
+        QMessageBox::warning(this, "qBittorrent", result.error(), QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
@@ -411,10 +411,10 @@ void RSSWidget::renameSelectedRSSItem()
         // Check if name is already taken
         if (!ok) return;
 
-        QString error;
-        if (!RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(parentPath, newName), &error))
+        const nonstd::expected<void, QString> result = RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(parentPath, newName));
+        if (!result)
         {
-            QMessageBox::warning(nullptr, tr("Rename failed"), error);
+            QMessageBox::warning(nullptr, tr("Rename failed"), result.error());
             ok = false;
         }
     } while (!ok);

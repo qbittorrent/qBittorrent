@@ -526,10 +526,10 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
         }
         else
         {
-            const auto torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
-            if (torrentInfo.isValid())
+            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(filePath);
+            if (result)
             {
-                emit torrentFound(torrentInfo, addTorrentParams);
+                emit torrentFound(result.value(), addTorrentParams);
                 Utils::Fs::forceRemove(filePath);
             }
             else
@@ -567,8 +567,8 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
             if (!QFile::exists(torrentPath))
                 return true;
 
-            const auto torrentInfo = BitTorrent::TorrentInfo::loadFromFile(torrentPath);
-            if (torrentInfo.isValid())
+            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(torrentPath);
+            if (result)
             {
                 BitTorrent::AddTorrentParams addTorrentParams = options.addTorrentParams;
                 const QString exactDirPath = QFileInfo(torrentPath).canonicalPath();
@@ -578,7 +578,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                     addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
                 }
 
-                emit torrentFound(torrentInfo, addTorrentParams);
+                emit torrentFound(result.value(), addTorrentParams);
                 Utils::Fs::forceRemove(torrentPath);
 
                 return true;

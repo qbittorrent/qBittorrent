@@ -40,7 +40,6 @@
 #include <QUrl>
 #include <QVector>
 
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
@@ -106,7 +105,7 @@ TorrentInfo &TorrentInfo::operator=(const TorrentInfo &other)
     return *this;
 }
 
-TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
+nonstd::expected<TorrentInfo, QString> TorrentInfo::load(const QByteArray &data) noexcept
 {
     // 2-step construction to overcome default limits of `depth_limit` & `token_limit` which are
     // used in `torrent_info()` constructor
@@ -117,42 +116,23 @@ TorrentInfo TorrentInfo::load(const QByteArray &data, QString *error) noexcept
     const lt::bdecode_node node = lt::bdecode(data, ec
         , nullptr, depthLimit, tokenLimit);
     if (ec)
-    {
-        if (error)
-            *error = QString::fromStdString(ec.message());
-        return TorrentInfo();
-    }
+        return nonstd::make_unexpected(QString::fromStdString(ec.message()));
 
     TorrentInfo info {std::shared_ptr<lt::torrent_info>(new lt::torrent_info(node, ec))};
     if (ec)
-    {
-        if (error)
-            *error = QString::fromStdString(ec.message());
-        return TorrentInfo();
-    }
+        return nonstd::make_unexpected(QString::fromStdString(ec.message()));
 
     return info;
 }
 
-TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexcept
+nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const QString &path) noexcept
 {
-    if (error)
-        error->clear();
-
     QFile file {path};
     if (!file.open(QIODevice::ReadOnly))
-    {
-        if (error)
-            *error = file.errorString();
-        return TorrentInfo();
-    }
+        return nonstd::make_unexpected(file.errorString());
 
     if (file.size() > MAX_TORRENT_SIZE)
-    {
-        if (error)
-            *error = tr("File size exceeds max limit %1").arg(Utils::Misc::friendlyUnit(MAX_TORRENT_SIZE));
-        return TorrentInfo();
-    }
+        return nonstd::make_unexpected(tr("File size exceeds max limit %1").arg(Utils::Misc::friendlyUnit(MAX_TORRENT_SIZE)));
 
     QByteArray data;
     try
@@ -161,26 +141,21 @@ TorrentInfo TorrentInfo::loadFromFile(const QString &path, QString *error) noexc
     }
     catch (const std::bad_alloc &e)
     {
-        if (error)
-            *error = tr("Torrent file read error: %1").arg(e.what());
-        return TorrentInfo();
+        return nonstd::make_unexpected(tr("Torrent file read error: %1").arg(e.what()));
     }
+
     if (data.size() != file.size())
-    {
-        if (error)
-            *error = tr("Torrent file read error: size mismatch");
-        return TorrentInfo();
-    }
+        return nonstd::make_unexpected(tr("Torrent file read error: size mismatch"));
 
     file.close();
 
-    return load(data, error);
+    return load(data);
 }
 
-void TorrentInfo::saveToFile(const QString &path) const
+nonstd::expected<void, QString> TorrentInfo::saveToFile(const QString &path) const
 {
     if (!isValid())
-        throw RuntimeError {tr("Invalid metadata")};
+        return nonstd::make_unexpected(tr("Invalid metadata"));
 
     try
     {
@@ -188,12 +163,14 @@ void TorrentInfo::saveToFile(const QString &path) const
         const lt::entry torrentEntry = torrentCreator.generate();
         const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
         if (!result)
-            throw RuntimeError(result.error());
+            return result.get_unexpected();
     }
     catch (const lt::system_error &err)
     {
-        throw RuntimeError(QString::fromLocal8Bit(err.what()));
+        return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
     }
+
+    return {};
 }
 
 bool TorrentInfo::isValid() const

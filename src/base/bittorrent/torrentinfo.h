@@ -33,6 +33,7 @@
 #include <QCoreApplication>
 #include <QtContainerFwd>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
 #include "abstractfilestorage.h"
 #include "torrentcontentlayout.h"
@@ -55,9 +56,9 @@ namespace BitTorrent
         explicit TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo = {});
         TorrentInfo(const TorrentInfo &other);
 
-        static TorrentInfo load(const QByteArray &data, QString *error = nullptr) noexcept;
-        static TorrentInfo loadFromFile(const QString &path, QString *error = nullptr) noexcept;
-        void saveToFile(const QString &path) const;
+        static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
+        static nonstd::expected<TorrentInfo, QString> loadFromFile(const QString &path) noexcept;
+        nonstd::expected<void, QString> saveToFile(const QString &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 
