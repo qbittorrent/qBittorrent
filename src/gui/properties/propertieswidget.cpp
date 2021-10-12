@@ -412,7 +412,7 @@ void PropertiesWidget::saveSettings()
         sizes = hSplitter->sizes();
     else
         sizes = m_slideSizes;
-    qDebug("Sizes: %d", sizes.size());
+
     if (sizes.size() == 2)
         pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
     pref->setPropFileListState(m_ui->filesList->header()->saveState());
