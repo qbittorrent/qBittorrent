@@ -400,8 +400,8 @@
 
         <fieldset class="settings">
             <legend>
-                <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
-                <label for="limit_sheduling_checkbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
+                <input type="checkbox" id="limitSchedulingCheckbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
+                <label for="limitSchedulingCheckbox">QBT_TR(Schedule the use of alternative rate limits)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
                 QBT_TR(From:)QBT_TR[CONTEXT=OptionsDialog]
@@ -1457,7 +1457,7 @@
 
         // Speed tab
         const updateSchedulingEnabled = function() {
-            const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
+            const isLimitSchedulingEnabled = $('limitSchedulingCheckbox').getProperty('checked');
             $('schedule_from_hour').setProperty('disabled', !isLimitSchedulingEnabled);
             $('schedule_from_min').setProperty('disabled', !isLimitSchedulingEnabled);
             $('schedule_to_hour').setProperty('disabled', !isLimitSchedulingEnabled);
@@ -1797,7 +1797,7 @@
                         $('limit_lan_peers_checkbox').setProperty('checked', pref.limit_lan_peers);
 
                         // Scheduling
-                        $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
+                        $('limitSchedulingCheckbox').setProperty('checked', pref.scheduler_enabled);
                         $('schedule_from_hour').setProperty('value', time_padding(pref.schedule_from_hour));
                         $('schedule_from_min').setProperty('value', time_padding(pref.schedule_from_min));
                         $('schedule_to_hour').setProperty('value', time_padding(pref.schedule_to_hour));
@@ -2142,7 +2142,7 @@
             settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
 
             // Scheduler
-            const scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
+            const scheduling_enabled = $('limitSchedulingCheckbox').getProperty('checked');
             settings.set('scheduler_enabled', scheduling_enabled);
             if (scheduling_enabled) {
                 settings.set('schedule_from_hour', $('schedule_from_hour').getProperty('value').toInt());

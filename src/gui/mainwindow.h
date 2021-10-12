@@ -105,7 +105,7 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBaloon(const QString &title, const QString &msg) const;
+    void showNotificationBalloon(const QString &title, const QString &msg) const;
 
 private slots:
     void showFilterContextMenu(const QPoint &);
