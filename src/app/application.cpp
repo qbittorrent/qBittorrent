@@ -141,7 +141,9 @@ Application::Application(int &argc, char **argv)
     setOrganizationDomain("qbittorrent.org");
 #if !defined(DISABLE_GUI)
     setDesktopFileName("org.qbittorrent.qBittorrent");
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+#endif
     setQuitOnLastWindowClosed(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
