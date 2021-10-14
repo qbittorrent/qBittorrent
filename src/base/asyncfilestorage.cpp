@@ -30,7 +30,8 @@
 
 #include <QDebug>
 #include <QMetaObject>
-#include <QSaveFile>
+
+#include "base/utils/io.h"
 
 AsyncFileStorage::AsyncFileStorage(const QString &storageFolderPath, QObject *parent)
     : QObject(parent)
@@ -67,15 +68,12 @@ QDir AsyncFileStorage::storageDir() const
 void AsyncFileStorage::store_impl(const QString &fileName, const QByteArray &data)
 {
     const QString filePath = m_storageDir.absoluteFilePath(fileName);
-    QSaveFile file(filePath);
     qDebug() << "AsyncFileStorage: Saving data to" << filePath;
-    if (file.open(QIODevice::WriteOnly))
+
+    const nonstd::expected<void, QString> result = Utils::IO::saveToFile(filePath, data);
+    if (!result)
     {
-        file.write(data);
-        if (!file.commit())
-        {
-            qDebug() << "AsyncFileStorage: Failed to save data";
-            emit failed(filePath, file.errorString());
-        }
+        qDebug() << "AsyncFileStorage: Failed to save data";
+        emit failed(filePath, result.error());
     }
 }

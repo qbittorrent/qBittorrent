@@ -73,6 +73,8 @@
 #include <QPointer>
 #include <QTimer>
 
+#include "base/3rdparty/expected.hpp"
+
 class QThread;
 
 class Application;
@@ -110,12 +112,11 @@ namespace RSS
         int refreshInterval() const;
         void setRefreshInterval(int refreshInterval);
 
-        bool addFolder(const QString &path, QString *error = nullptr);
-        bool addFeed(const QString &url, const QString &path, QString *error = nullptr);
-        bool moveItem(const QString &itemPath, const QString &destPath
-                         , QString *error = nullptr);
-        bool moveItem(Item *item, const QString &destPath, QString *error = nullptr);
-        bool removeItem(const QString &itemPath, QString *error = nullptr);
+        nonstd::expected<void, QString> addFolder(const QString &path);
+        nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
+        nonstd::expected<void, QString> moveItem(const QString &itemPath, const QString &destPath);
+        nonstd::expected<void, QString> moveItem(Item *item, const QString &destPath);
+        nonstd::expected<void, QString> removeItem(const QString &itemPath);
 
         QList<Item *> items() const;
         Item *itemByPath(const QString &path) const;
@@ -146,7 +147,7 @@ namespace RSS
         void loadFolder(const QJsonObject &jsonObj, Folder *folder);
         void loadLegacy();
         void store();
-        Folder *prepareItemDest(const QString &path, QString *error);
+        nonstd::expected<Folder *, QString> prepareItemDest(const QString &path);
         Folder *addSubfolder(const QString &name, Folder *parentFolder);
         Feed *addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder);
         void addItem(Item *item, Folder *destFolder);

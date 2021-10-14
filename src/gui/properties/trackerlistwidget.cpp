@@ -71,6 +71,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     setItemsExpandable(false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
+    header()->setTextElideMode(Qt::ElideRight);
     // Ensure that at least one column is visible at all times
     if (visibleColumnsCount() == 0)
         setColumnHidden(COL_URL, false);

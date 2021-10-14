@@ -193,6 +193,7 @@ namespace BitTorrent
         virtual qreal ratioLimit() const = 0;
         virtual int seedingTimeLimit() const = 0;
 
+        virtual QStringList filePaths() const = 0;
         virtual QStringList absoluteFilePaths() const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
 
@@ -214,7 +215,6 @@ namespace BitTorrent
         virtual bool hasMetadata() const = 0;
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
-        virtual bool hasFilteredPieces() const = 0;
         virtual int queuePosition() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;

@@ -45,7 +45,7 @@ Profile::Profile(const QString &rootProfilePath, const QString &configurationNam
     ensureDirectoryExists(SpecialFolder::Data);
 
     if (convertPathsToProfileRelative)
-        m_pathConverterImpl = std::make_unique<Private::Converter>(m_profileImpl->baseDirectory());
+        m_pathConverterImpl = std::make_unique<Private::Converter>(m_profileImpl->basePath());
     else
         m_pathConverterImpl = std::make_unique<Private::NoConvertConverter>();
 }
@@ -91,6 +91,16 @@ QString Profile::location(const SpecialFolder folder) const
     if (!result.endsWith(QLatin1Char('/')))
         result += QLatin1Char('/');
     return result;
+}
+
+QString Profile::rootPath() const
+{
+    return m_profileImpl->rootPath();
+}
+
+QString Profile::configurationName() const
+{
+    return m_profileImpl->configurationName();
 }
 
 QString Profile::profileName() const

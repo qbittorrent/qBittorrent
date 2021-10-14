@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="sv" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="sv" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Skapa undermapp</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Skapa inte undermapp</translation>
     </message>
 </context>
@@ -141,7 +139,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Kunde inte spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
+        <translation>Det gick inte att spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
@@ -160,16 +158,12 @@
         <translation>Distributionstidsgränsen måste vara mellan 0 och 525600 minuter.</translation>
     </message>
     <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">Porten som användas för inkommande anslutningar måste vara mellan 1 och 65535.</translation>
-    </message>
-    <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
         <translation>Porten som används för webbgränssnittet måste vara mellan 1 och 65535</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Kunde inte logga in. qBittorrent är troligtvis inte nåbart.</translation>
+        <translation>Det gick inte att logga in. qBittorrent är troligtvis inte nåbart.</translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Porten som används för inkommande anslutningar måste vara mellan 0 och 65535.</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>Använd UPnP / NAT-PMP-portomdirigering från min router</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Använd olika portar vid varje start</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Anslutningsgränser</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T: Aktuell spårare</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tips: Inkapsla parametern med citattecken för att undvika att text skärs av vid blanktecknet (t. ex. "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tips: Inkapsla parametern med citattecken för att undvika att text skärs av vid blanktecknet (t. ex. &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1342,7 +1332,7 @@
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1374,7 +1364,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1390,7 +1380,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1441,7 +1431,7 @@
         <translation>Ursprunglig</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Skapa inte undermapp</translation>
     </message>
     <message>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontrollerar (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontrollerar (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[T] Hämtar metadata</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>Aktiverad</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varning: Var noga med att följa ditt lands upphovsrättslagar när du hämtar torrenter från någon av dessa sökmotorer.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Skapa inte undermapp</translation>
     </message>
 </context>

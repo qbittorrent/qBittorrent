@@ -33,13 +33,12 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
-#ifndef NOMINMAX
-#define NOMINMAX
-#endif
 #include <Windows.h>
 #include <Ntsecapi.h>
 #else  // Q_OS_WIN
+#include <cerrno>
 #include <cstdio>
+#include <cstring>
 #endif
 
 #include <QString>
@@ -97,7 +96,7 @@ namespace
             : m_randDev {fopen("/dev/urandom", "rb")}
         {
             if (!m_randDev)
-                qFatal("Failed to open /dev/urandom");
+                qFatal("Failed to open /dev/urandom. Reason: %s. Error code: %d.\n", std::strerror(errno), errno);
         }
 
         ~RandomLayer()
@@ -119,7 +118,7 @@ namespace
         {
             result_type buf = 0;
             if (fread(&buf, sizeof(buf), 1, m_randDev) != 1)
-                qFatal("Read /dev/urandom error");
+                qFatal("Read /dev/urandom error. Reason: %s. Error code: %d.\n", std::strerror(errno), errno);
 
             return buf;
         }

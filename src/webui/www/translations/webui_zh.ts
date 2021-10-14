@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="zh" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>创建子文件夹</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>做种时间限制必须在 0 和 525600 分钟之间。</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">用于传入连接的端口必须大于 1 且小于 65535。</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>用于传入连接的端口必须介于 0 和 65535 之间。</translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>使用我的路由器的 UPnP / NAT-PMP 功能来转发端口</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">在每次启动时使用不同的端口</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>连接限制</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T：当前 tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如："%N"）</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如：&quot;%N&quot;）</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1441,7 +1431,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
     <message>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>正在检查 (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>正在检查 (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] 下载元数据</translation>
     </message>
 </context>
 <context>
@@ -2807,7 +2797,7 @@
         <translation>启用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：在下载来自这些搜索引擎的 torrent 时，请确认它符合您所在国家的版权法。</translation>
     </message>
     <message>
@@ -3233,7 +3223,7 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| —— "或" 运算符</translation>
+        <translation>| —— &quot;或&quot; 运算符</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3241,7 +3231,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>空格 —— "与" 运算符 (所有关键词，任意顺序)</translation>
+        <translation>空格 —— &quot;与&quot; 运算符 (所有关键词，任意顺序)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3395,7 +3385,7 @@
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation>智能剧集过滤器会检查集数以避免重复下载。
-支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 "-" 符号)</translation>
+支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 &quot;-&quot; 符号)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3410,7 +3400,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>

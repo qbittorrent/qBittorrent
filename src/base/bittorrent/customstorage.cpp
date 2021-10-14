@@ -35,7 +35,7 @@
 #include "base/utils/fs.h"
 #include "common.h"
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/session.hpp>
 
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(

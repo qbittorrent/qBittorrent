@@ -30,13 +30,11 @@
 
 #include <fstream>
 
-#include <libtorrent/bencode.hpp>
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/torrent_info.hpp>
 
 #include <QDirIterator>
-#include <QFile>
 #include <QFileInfo>
 #include <QHash>
 
@@ -46,7 +44,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/version.h"
-#include "ltunderlyingtype.h"
+#include "lttypecast.h"
 
 namespace
 {
@@ -57,7 +55,7 @@ namespace
         return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
     }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     lt::create_flags_t toNativeTorrentFormatFlag(const BitTorrent::TorrentFormat torrentFormat)
     {
         switch (torrentFormat)
@@ -159,7 +157,7 @@ void TorrentCreatorThread::run()
 
         checkInterruptionRequested();
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         lt::create_torrent newTorrent {fs, m_params.pieceSize, toNativeTorrentFormatFlag(m_params.torrentFormat)};
 #else
         lt::create_torrent newTorrent(fs, m_params.pieceSize, m_params.paddedFileSizeLimit
@@ -188,7 +186,7 @@ void TorrentCreatorThread::run()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
             checkInterruptionRequested();
-            sendProgressSignal(toLTUnderlyingType(n), newTorrent.num_pieces());
+            sendProgressSignal(LT::toUnderlyingType(n), newTorrent.num_pieces());
         });
 
         // Set qBittorrent as creator and add user comment to
@@ -209,16 +207,9 @@ void TorrentCreatorThread::run()
         checkInterruptionRequested();
 
         // create the torrent
-        QFile outfile {m_params.savePath};
-        if (!outfile.open(QIODevice::WriteOnly))
-            throw RuntimeError(outfile.errorString());
-
-        checkInterruptionRequested();
-
-        lt::bencode(Utils::IO::FileDeviceOutputIterator {outfile}, entry);
-        if (outfile.error() != QFileDevice::NoError)
-            throw RuntimeError(outfile.errorString());
-        outfile.close();
+        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(m_params.savePath, entry);
+        if (!result)
+            throw RuntimeError(result.error());
 
         emit updateProgress(100);
         emit creationSuccess(m_params.savePath, parentPath);
@@ -233,7 +224,7 @@ void TorrentCreatorThread::run()
     }
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
 #else
 int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
@@ -245,7 +236,7 @@ int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const i
     lt::file_storage fs;
     lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     return lt::create_torrent {fs, pieceSize, toNativeTorrentFormatFlag(torrentFormat)}.num_pieces();
 #else
     return lt::create_torrent(fs, pieceSize, paddedFileSizeLimit

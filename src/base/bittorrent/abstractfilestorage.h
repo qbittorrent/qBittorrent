@@ -44,7 +44,6 @@ namespace BitTorrent
 
         virtual int filesCount() const = 0;
         virtual QString filePath(int index) const = 0;
-        virtual QString fileName(int index) const = 0;
         virtual qlonglong fileSize(int index) const = 0;
 
         virtual void renameFile(int index, const QString &name) = 0;

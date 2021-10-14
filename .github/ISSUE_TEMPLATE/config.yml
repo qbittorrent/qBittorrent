@@ -1,20 +1,17 @@
 blank_issues_enabled: false
 contact_links:
-  -
-    about: "Consult the wiki first (especially the FAQ), it might already contain the information you are looking for"
-    name: Wiki
+  - name: Wiki
     url: "https://github.com/qbittorrent/qBittorrent/wiki/"
+    about: "Consult the wiki first (especially the FAQ), it might already contain the information you are looking for"
 
-  -
-    about: "Please ask questions related to usage/setup/support/non-issue development discussion in the Discussions section"
-    name: Question
+  - name: Question
     url: "https://github.com/qbittorrent/qBittorrent/discussions"
+    about: "Please ask questions related to usage/setup/support/non-issue development discussion in the Discussions section"
 
-  -
-    about: "Alternatively, ask on the official forum"
-    name: Question
+  - name: Question
     url: "http://forum.qbittorrent.org/"
-  -
-    about: "Alternatively, use the subreddit"
-    name: Question
+    about: "Alternatively, ask on the official forum"
+
+  - name: Question
     url: "https://www.reddit.com/r/qBittorrent/"
+    about: "Alternatively, use the subreddit"

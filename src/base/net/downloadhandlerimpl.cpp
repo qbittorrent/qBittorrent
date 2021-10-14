@@ -32,26 +32,24 @@
 #include <QTemporaryFile>
 #include <QUrl>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/utils/fs.h"
 #include "base/utils/gzip.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 
 const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
 namespace
 {
-    bool saveToFile(const QByteArray &replyData, QString &filePath)
+    nonstd::expected<QString, QString> saveToTempFile(const QByteArray &data)
     {
-        QTemporaryFile tmpfile {Utils::Fs::tempPath() + "XXXXXX"};
-        tmpfile.setAutoRemove(false);
+        QTemporaryFile file {Utils::Fs::tempPath()};
+        if (!file.open() || (file.write(data) != data.length()) || !file.flush())
+            return nonstd::make_unexpected(file.errorString());
 
-        if (!tmpfile.open())
-            return false;
-
-        filePath = tmpfile.fileName();
-
-        tmpfile.write(replyData);
-        return true;
+        file.setAutoRemove(false);
+        return file.fileName();
     }
 }
 
@@ -129,11 +127,23 @@ void DownloadHandlerImpl::processFinishedDownload()
 
     if (m_downloadRequest.saveToFile())
     {
-        QString filePath;
-        if (saveToFile(m_result.data, filePath))
-            m_result.filePath = filePath;
+        const QString destinationPath = m_downloadRequest.destFileName();
+        if (destinationPath.isEmpty())
+        {
+            const nonstd::expected<QString, QString> result = saveToTempFile(m_result.data);
+            if (result)
+                m_result.filePath = result.value();
+            else
+                setError(tr("I/O Error: %1").arg(result.error()));
+        }
         else
-            setError(tr("I/O Error"));
+        {
+            const nonstd::expected<void, QString> result = Utils::IO::saveToFile(destinationPath, m_result.data);
+            if (result)
+                m_result.filePath = destinationPath;
+            else
+                setError(tr("I/O Error: %1").arg(result.error()));
+        }
     }
 
     finish();

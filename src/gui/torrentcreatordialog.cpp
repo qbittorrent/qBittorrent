@@ -53,7 +53,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const QString &defau
     , m_storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"))
     , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))
     , m_storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"))
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     , m_storeTorrentFormat(SETTINGS_KEY("TorrentFormat"))
 #else
     , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"))
@@ -84,7 +84,7 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const QString &defau
     loadSettings();
     updateInputPath(defaultPath);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_ui->checkOptimizeAlignment->hide();
 #else
     m_ui->widgetTorrentFormat->hide();
@@ -127,7 +127,7 @@ int TorrentCreatorDialog::getPieceSize() const
     return pieceSizes[m_ui->comboPieceSize->currentIndex()] * 1024;
 }
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 BitTorrent::TorrentFormat TorrentCreatorDialog::getTorrentFormat() const
 {
     switch (m_ui->comboTorrentFormat->currentIndex())
@@ -201,7 +201,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     const BitTorrent::TorrentCreatorParams params
     {
         m_ui->checkPrivate->isChecked()
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         , getTorrentFormat()
 #else
         , m_ui->checkOptimizeAlignment->isChecked()
@@ -234,8 +234,8 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
     if (m_ui->checkStartSeeding->isChecked())
     {
         // Create save path temp data
-        const BitTorrent::TorrentInfo info = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
-        if (!info.isValid())
+        const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(Utils::Fs::toNativePath(path));
+        if (!result)
         {
             QMessageBox::critical(this, tr("Torrent creation failed"), tr("Reason: Created torrent is invalid. It won't be added to download list."));
             return;
@@ -251,7 +251,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const QString &path, const QStr
         }
         params.useAutoTMM = false;  // otherwise if it is on by default, it will overwrite `savePath` to the default save path
 
-        BitTorrent::Session::instance()->addTorrent(info, params);
+        BitTorrent::Session::instance()->addTorrent(result.value(), params);
     }
     QMessageBox::information(this, tr("Torrent creator")
         , QString::fromLatin1("%1\n%2").arg(tr("Torrent created:"), Utils::Fs::toNativePath(path)));
@@ -266,7 +266,7 @@ void TorrentCreatorDialog::updateProgressBar(int progress)
 void TorrentCreatorDialog::updatePiecesCount()
 {
     const QString path = m_ui->textInputPath->text().trimmed();
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const int count = BitTorrent::TorrentCreatorThread::calculateTotalPieces(
         path, getPieceSize(), getTorrentFormat());
 #else
@@ -291,7 +291,7 @@ void TorrentCreatorDialog::setInteractionEnabled(const bool enabled) const
     m_ui->checkStartSeeding->setEnabled(enabled);
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(enabled);
     m_ui->checkIgnoreShareLimits->setEnabled(enabled && m_ui->checkStartSeeding->isChecked());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_ui->widgetTorrentFormat->setEnabled(enabled);
 #else
     m_ui->checkOptimizeAlignment->setEnabled(enabled);
@@ -307,7 +307,7 @@ void TorrentCreatorDialog::saveSettings()
     m_storePrivateTorrent = m_ui->checkPrivate->isChecked();
     m_storeStartSeeding = m_ui->checkStartSeeding->isChecked();
     m_storeIgnoreRatio = m_ui->checkIgnoreShareLimits->isChecked();
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_storeTorrentFormat = m_ui->comboTorrentFormat->currentIndex();
 #else
     m_storeOptimizeAlignment = m_ui->checkOptimizeAlignment->isChecked();
@@ -331,7 +331,7 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->checkStartSeeding->setChecked(m_storeStartSeeding);
     m_ui->checkIgnoreShareLimits->setChecked(m_storeIgnoreRatio);
     m_ui->checkIgnoreShareLimits->setEnabled(m_ui->checkStartSeeding->isChecked());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     m_ui->comboTorrentFormat->setCurrentIndex(m_storeTorrentFormat.get(1));
 #else
     m_ui->checkOptimizeAlignment->setChecked(m_storeOptimizeAlignment.get(true));

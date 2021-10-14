@@ -231,7 +231,7 @@
         <legend>QBT_TR(Listening Port)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
             <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
-            <input type="text" id="port_value" style="width: 4em;" />
+            <input type="text" id="port_value" style="width: 4em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]" />
             <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
@@ -401,8 +401,8 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="limit_sheduling_checkbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
-            <label for="limit_sheduling_checkbox">QBT_TR(Enable advanced scheduler)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="checkbox" id="limitSchedulingCheckbox" onclick="qBittorrent.Preferences.updateSchedulingEnabled();" />
+            <label for="limitSchedulingCheckbox">QBT_TR(Enable advanced scheduler)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
         <div class="toolbarTabs">
             <ul id="schedulerTabsList" class="tab-menu"></ul>
@@ -1193,7 +1193,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="announceIP">QBT_TR(IP Address to report to trackers (requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_ip" target="_blank">(?)</a></label>
+                    <label for="announceIP">QBT_TR(IP address reported to trackers (requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#announce_ip" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="announceIP" style="width: 15em;" />
@@ -1448,7 +1448,7 @@
         let scheduleClipboard = [];
 
         const updateSchedulingEnabled = function() {
-            const isLimitSchedulingEnabled = $('limit_sheduling_checkbox').getProperty('checked');
+            const isLimitSchedulingEnabled = $('limitSchedulingCheckbox').getProperty('checked');
         };
 
         const initializeSchedulerTables = (scheduleJson, locale, firstDayOfWeek, today) => {
@@ -2016,7 +2016,7 @@
 
                         // Scheduling
                         initializeSchedulerTables(pref.scheduler_json, pref.locale, pref.locale_first_day, pref.current_day_of_week);
-                        $('limit_sheduling_checkbox').setProperty('checked', pref.scheduler_enabled);
+                        $('limitSchedulingCheckbox').setProperty('checked', pref.scheduler_enabled);
                         updateSchedulingEnabled();
 
                         // Bittorrent tab
@@ -2356,7 +2356,7 @@
             settings.set('limit_lan_peers', $('limit_lan_peers_checkbox').getProperty('checked'));
 
             // Scheduler
-            const scheduling_enabled = $('limit_sheduling_checkbox').getProperty('checked');
+            const scheduling_enabled = $('limitSchedulingCheckbox').getProperty('checked');
             settings.set('scheduler_enabled', scheduling_enabled);
 
             // Bittorrent tab

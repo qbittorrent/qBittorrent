@@ -50,9 +50,9 @@ void RSSController::addFolderAction()
     requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
-    QString error;
-    if (!RSS::Session::instance()->addFolder(path, &error))
-        throw APIError(APIErrorType::Conflict, error);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(path);
+    if (!result)
+        throw APIError(APIErrorType::Conflict, result.error());
 }
 
 void RSSController::addFeedAction()
@@ -61,9 +61,9 @@ void RSSController::addFeedAction()
 
     const QString url = params()["url"].trimmed();
     const QString path = params()["path"].trimmed();
-    QString error;
-    if (!RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path), &error))
-        throw APIError(APIErrorType::Conflict, error);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(url, (path.isEmpty() ? url : path));
+    if (!result)
+        throw APIError(APIErrorType::Conflict, result.error());
 }
 
 void RSSController::removeItemAction()
@@ -71,9 +71,9 @@ void RSSController::removeItemAction()
     requireParams({"path"});
 
     const QString path = params()["path"].trimmed();
-    QString error;
-    if (!RSS::Session::instance()->removeItem(path, &error))
-        throw APIError(APIErrorType::Conflict, error);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->removeItem(path);
+    if (!result)
+        throw APIError(APIErrorType::Conflict, result.error());
 }
 
 void RSSController::moveItemAction()
@@ -82,9 +82,9 @@ void RSSController::moveItemAction()
 
     const QString itemPath = params()["itemPath"].trimmed();
     const QString destPath = params()["destPath"].trimmed();
-    QString error;
-    if (!RSS::Session::instance()->moveItem(itemPath, destPath, &error))
-        throw APIError(APIErrorType::Conflict, error);
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->moveItem(itemPath, destPath);
+    if (!result)
+        throw APIError(APIErrorType::Conflict, result.error());
 }
 
 void RSSController::itemsAction()

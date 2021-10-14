@@ -44,7 +44,6 @@
 #include <QWheelEvent>
 
 #include "base/bittorrent/common.h"
-#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -92,9 +91,9 @@ namespace
         if (!torrent->hasMetadata())
             return false;
 
-        for (int i = 0; i < torrent->filesCount(); ++i)
+        for (const QString &filePath : asConst(torrent->filePaths()))
         {
-            QString fileName = torrent->fileName(i);
+            QString fileName = Utils::Fs::fileName(filePath);
             if (fileName.endsWith(QB_EXT))
                 fileName.chop(QB_EXT.length());
             if (Utils::Misc::isPreviewable(fileName))
@@ -158,6 +157,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
     header()->setStretchLastSection(false);
+    header()->setTextElideMode(Qt::ElideRight);
 
     // Default hidden columns
     if (!columnLoaded)

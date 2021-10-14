@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="bg" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="bg" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Създай подпапка</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>Ограничението за време на споделяне трябва да бъде между 0 и 525600 минути.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">Портът, който се използва за входящи връзки трябва да бъде между 1 и 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -370,7 +364,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Портът използван за входящи връзки трябва да бъде между 0 и 65535.</translation>
     </message>
 </context>
 <context>
@@ -728,10 +722,6 @@
         <translation>Използване на UPnP / NAT-PMP порт за препращане от моя рутер</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Използване на различен порт при всяко стартиране</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Ограничения на Връзките</translation>
     </message>
@@ -966,8 +956,8 @@
         <translation>%T: Сегашен тракер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1442,7 +1432,7 @@
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
     <message>
@@ -1987,11 +1977,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Проверяване (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Проверяване (0)</translation>
     </message>
 </context>
 <context>
@@ -2337,7 +2327,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[П] Сваляне на метаданните</translation>
     </message>
 </context>
 <context>
@@ -2808,7 +2798,7 @@
         <translation>Активирано</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Уверете се, че се придържате към законите на авторското право на вашата страна, когато сваляте торенти от която и да е то тези търсачки.</translation>
     </message>
     <message>
@@ -3411,7 +3401,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>

@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="gl" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="gl" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -28,19 +26,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <source>Don&apos;t create subfolder</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>O límite do tempo de sementeira debe estar entre 0 e 525600 minutos.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">O porto usado para as conexións entrantes debe estar entre 1 e 65535.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -338,39 +332,39 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -502,83 +496,83 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -726,10 +720,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Usar un porto UPnP / NAT-PMP para reencamiñar desde o router</translation>
-    </message>
-    <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Usar un porto distinto en cada inicio</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -966,8 +956,8 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>%T: Localizador actual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Consello: encapsule o parámetro entre comiñas para evitar cortar o texto nun espazo en branco (p.e: "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Consello: encapsule o parámetro entre comiñas para evitar cortar o texto nun espazo en branco (p.e: &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1099,387 +1089,387 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>File pool size:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <source>Don&apos;t create subfolder</source>
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1542,23 +1532,23 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1580,11 +1570,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1751,31 +1741,31 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1798,11 +1788,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1963,35 +1953,35 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2143,7 +2133,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2226,31 +2216,31 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2333,11 +2323,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2352,11 +2342,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2501,51 +2491,51 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2590,7 +2580,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Confirmación de eliminación - 'qBittorrent</translation>
+        <translation>Confirmación de eliminación - &apos;qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2677,7 +2667,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2770,15 +2760,15 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2808,7 +2798,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Activados</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: asegúrese de cumprir as leis sobre dereitos de autor do seu país cando descargue torrents con calquera destes motores de busca.</translation>
     </message>
     <message>
@@ -2863,589 +2853,589 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Author</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
-        <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <source>Don&apos;t create subfolder</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>

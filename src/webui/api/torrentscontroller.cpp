@@ -176,7 +176,7 @@ namespace
         const QJsonObject dht
         {
             {KEY_TRACKER_URL, "** [DHT] **"},
-            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
             {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isDHTEnabled() && !isTorrentPrivate) ? working : disabled)},
             {KEY_TRACKER_PEERS_COUNT, 0},
@@ -188,7 +188,7 @@ namespace
         const QJsonObject pex
         {
             {KEY_TRACKER_URL, "** [PeX] **"},
-            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
             {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isPeXEnabled() && !isTorrentPrivate) ? working : disabled)},
             {KEY_TRACKER_PEERS_COUNT, 0},
@@ -200,7 +200,7 @@ namespace
         const QJsonObject lsd
         {
             {KEY_TRACKER_URL, "** [LSD] **"},
-            {KEY_TRACKER_TIER, ""},
+            {KEY_TRACKER_TIER, -1},
             {KEY_TRACKER_MSG, (isTorrentPrivate ? privateMsg : "")},
             {KEY_TRACKER_STATUS, ((BitTorrent::Session::instance()->isLSDEnabled() && !isTorrentPrivate) ? working : disabled)},
             {KEY_TRACKER_PEERS_COUNT, 0},
@@ -701,14 +701,14 @@ void TorrentsController::addAction()
 
     for (auto it = data().constBegin(); it != data().constEnd(); ++it)
     {
-        const BitTorrent::TorrentInfo torrentInfo = BitTorrent::TorrentInfo::load(it.value());
-        if (!torrentInfo.isValid())
+        const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(it.value());
+        if (!result)
         {
             throw APIError(APIErrorType::BadData
                            , tr("Error: '%1' is not a valid torrent file.").arg(it.key()));
         }
 
-        partialSuccess |= BitTorrent::Session::instance()->addTorrent(torrentInfo, addTorrentParams);
+        partialSuccess |= BitTorrent::Session::instance()->addTorrent(result.value(), addTorrentParams);
     }
 
     if (partialSuccess)

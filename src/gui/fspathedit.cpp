@@ -155,26 +155,21 @@ QString FileSystemPathEdit::FileSystemPathEditPrivate::dialogCaptionOrDefault() 
 
 void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
 {
-    QStyle::StandardPixmap pixmap = QStyle::SP_DialogOpenButton;
     bool showDirsOnly = false;
     switch (m_mode)
     {
     case FileSystemPathEdit::Mode::FileOpen:
     case FileSystemPathEdit::Mode::FileSave:
-#ifdef Q_OS_WIN
-        pixmap = QStyle::SP_DirOpenIcon;
-#endif
         showDirsOnly = false;
         break;
     case FileSystemPathEdit::Mode::DirectoryOpen:
     case FileSystemPathEdit::Mode::DirectorySave:
-        pixmap = QStyle::SP_DirOpenIcon;
         showDirsOnly = true;
         break;
     default:
         throw std::logic_error("Unknown FileSystemPathEdit mode");
     }
-    m_browseAction->setIcon(QApplication::style()->standardIcon(pixmap));
+    m_browseAction->setIcon(QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
     m_editor->completeDirectoriesOnly(showDirsOnly);
 
     m_validator->setExistingOnly(m_mode != FileSystemPathEdit::Mode::FileSave);

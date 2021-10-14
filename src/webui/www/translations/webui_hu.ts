@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS language="hu" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hu" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Almappa létrehozása</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
@@ -158,10 +156,6 @@
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
         <translation>A megosztási időkorlát 0 és 525600 perc között kell legyen.</translation>
-    </message>
-    <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">Bejövő kapcsolatokhoz használt portnak 1024 és 65535 közé kell esnie.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -369,7 +363,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>A bejövő kapcsolatokhoz használt portnak 0 és 65535 között kell lennie. </translation>
     </message>
 </context>
 <context>
@@ -727,10 +721,6 @@
         <translation>UPnP / NAT-PMP használata a portok átirányítására</translation>
     </message>
     <message>
-        <source>Use different port on each startup</source>
-        <translation type="vanished">Különböző port használata minden indításnál</translation>
-    </message>
-    <message>
         <source>Connections Limits</source>
         <translation>Kapcsolati korlátok</translation>
     </message>
@@ -965,8 +955,8 @@
         <translation>%T: Jelenlegi követő</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1441,7 +1431,7 @@
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
     <message>
@@ -1986,11 +1976,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ellenőrzés (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Ellenőrzés (0)</translation>
     </message>
 </context>
 <context>
@@ -2336,7 +2326,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Metaadatok letöltése</translation>
     </message>
 </context>
 <context>
@@ -2596,7 +2586,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Letöltés URL-ekről</translation>
+        <translation>Letöltés URL-ekből</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2807,7 +2797,7 @@
         <translation>Engedélyezve</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Figyelmeztetés: Győződjön meg róla, hogy a keresőmotorok bármelyikéből származó torrentek letöltésekor betartja az ország szerzői jogi törvényeit.</translation>
     </message>
     <message>
@@ -3410,7 +3400,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>

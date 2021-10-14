@@ -438,8 +438,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     // Bittorrent tab
-    connect(m_ui->checkMaxConnecs, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxConnecsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploads, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploadsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxConnec, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -463,7 +463,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinProxyPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkProxyPeerConnecs, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxyPeerConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->isProxyOnlyForTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -1009,7 +1009,7 @@ void OptionsDialog::saveOptions()
     proxyConfigManager->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
-    session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
+    session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
     // End Connection preferences
 
     // Speed preferences
@@ -1025,8 +1025,8 @@ void OptionsDialog::saveOptions()
     // End Speed preferences
 
     // Bittorrent preferences
-    session->setMaxConnections(getMaxConnecs());
-    session->setMaxConnectionsPerTorrent(getMaxConnecsPerTorrent());
+    session->setMaxConnections(getMaxConnections());
+    session->setMaxConnectionsPerTorrent(getMaxConnectionsPerTorrent());
     session->setMaxUploads(getMaxUploads());
     session->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
     session->setDHTEnabled(isDHTEnabled());
@@ -1301,28 +1301,28 @@ void OptionsDialog::loadOptions()
     if (intValue > 0)
     {
         // enable
-        m_ui->checkMaxConnecs->setChecked(true);
+        m_ui->checkMaxConnections->setChecked(true);
         m_ui->spinMaxConnec->setEnabled(true);
         m_ui->spinMaxConnec->setValue(intValue);
     }
     else
     {
         // disable
-        m_ui->checkMaxConnecs->setChecked(false);
+        m_ui->checkMaxConnections->setChecked(false);
         m_ui->spinMaxConnec->setEnabled(false);
     }
     intValue = session->maxConnectionsPerTorrent();
     if (intValue > 0)
     {
         // enable
-        m_ui->checkMaxConnecsPerTorrent->setChecked(true);
+        m_ui->checkMaxConnectionsPerTorrent->setChecked(true);
         m_ui->spinMaxConnecPerTorrent->setEnabled(true);
         m_ui->spinMaxConnecPerTorrent->setValue(intValue);
     }
     else
     {
         // disable
-        m_ui->checkMaxConnecsPerTorrent->setChecked(false);
+        m_ui->checkMaxConnectionsPerTorrent->setChecked(false);
         m_ui->spinMaxConnecPerTorrent->setEnabled(false);
     }
     intValue = session->maxUploads();
@@ -1387,7 +1387,7 @@ void OptionsDialog::loadOptions()
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
 
-    m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
     enableProxy(m_ui->comboProxyType->currentIndex());
 
@@ -1606,17 +1606,17 @@ int OptionsDialog::getMaxSeedingMinutes() const
 }
 
 // Return max connections number
-int OptionsDialog::getMaxConnecs() const
+int OptionsDialog::getMaxConnections() const
 {
-    if (!m_ui->checkMaxConnecs->isChecked())
+    if (!m_ui->checkMaxConnections->isChecked())
         return -1;
 
     return m_ui->spinMaxConnec->value();
 }
 
-int OptionsDialog::getMaxConnecsPerTorrent() const
+int OptionsDialog::getMaxConnectionsPerTorrent() const
 {
-    if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
+    if (!m_ui->checkMaxConnectionsPerTorrent->isChecked())
         return -1;
 
     return m_ui->spinMaxConnecPerTorrent->value();
@@ -1712,7 +1712,7 @@ void OptionsDialog::enableProxy(const int index)
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
-        m_ui->checkProxyPeerConnecs->setEnabled(true);
+        m_ui->checkProxyPeerConnections->setEnabled(true);
         if (index >= 2)
         { // SOCKS5 or HTTP
             m_ui->checkProxyAuth->setEnabled(true);
@@ -1732,7 +1732,7 @@ void OptionsDialog::enableProxy(const int index)
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
         m_ui->spinProxyPort->setEnabled(false);
-        m_ui->checkProxyPeerConnecs->setEnabled(false);
+        m_ui->checkProxyPeerConnections->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
     }

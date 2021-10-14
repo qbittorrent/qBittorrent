@@ -43,13 +43,24 @@ set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
 find_package(Boost ${minBoostVersion} REQUIRED)
 find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
 find_package(ZLIB ${minZlibVersion} REQUIRED)
-find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
-if (DBUS)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS DBus)
-    set_package_properties(Qt5DBus PROPERTIES
-        DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
-        PURPOSE "Required by the DBUS feature"
-    )
+if (QT6)
+    find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
+    if (DBUS)
+        find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS DBus)
+        set_package_properties(Qt6DBus PROPERTIES
+            DESCRIPTION "Qt6 module for inter-process communication over the D-Bus protocol"
+            PURPOSE "Required by the DBUS feature"
+        )
+    endif()
+else()
+    find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS Core Network Sql Xml LinguistTools)
+    if (DBUS)
+        find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS DBus)
+        set_package_properties(Qt5DBus PROPERTIES
+            DESCRIPTION "Qt5 module for inter-process communication over the D-Bus protocol"
+            PURPOSE "Required by the DBUS feature"
+        )
+    endif()
 endif()
 
 # automatically call Qt moc, rcc and uic as needed for all targets by default
@@ -68,10 +79,15 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 add_subdirectory(base)
 
 if (GUI)
-    find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS Widgets Svg)
-    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
-        find_package(Qt5 ${minQtVersion} REQUIRED COMPONENTS WinExtras)
+    if (QT6)
+        find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Widgets Svg)
+    else()
+        find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS Widgets Svg)
+        if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+            find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS WinExtras)
+        endif()
     endif()
+
     add_subdirectory(gui)
 endif()
 

@@ -30,11 +30,10 @@
 
 #include <libtorrent/aux_/vector.hpp>
 #include <libtorrent/fwd.hpp>
-#include <libtorrent/version.hpp>
 
 #include <QString>
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/disk_interface.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
@@ -46,7 +45,7 @@
 #include <libtorrent/storage.hpp>
 #endif
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 

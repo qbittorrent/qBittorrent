@@ -310,6 +310,11 @@
                     </item>
                     <item>
                      <property name="text">
+                      <string>Preview file, otherwise open destination folder</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
                       <string>No action</string>
                      </property>
                     </item>
@@ -827,7 +832,7 @@
                <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
                  <property name="toolTip">
-                  <string>Should the .torrent file be deleted after adding it</string>
+                  <string>Whether the .torrent file should be deleted after adding it</string>
                  </property>
                  <property name="title">
                   <string>De&amp;lete .torrent files afterwards </string>
@@ -1456,6 +1461,9 @@
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinPort">
+                   <property name="toolTip">
+                    <string>Set to 0 to let your system pick an unused port</string>
+                   </property>
                    <property name="specialValueText">
                     <string>Any</string>
                    </property>
@@ -1516,7 +1524,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QCheckBox" name="checkMaxConnecsPerTorrent">
+                <widget class="QCheckBox" name="checkMaxConnectionsPerTorrent">
                  <property name="text">
                   <string>Maximum number of connections per torrent:</string>
                  </property>
@@ -1526,7 +1534,7 @@
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QCheckBox" name="checkMaxConnecs">
+                <widget class="QCheckBox" name="checkMaxConnections">
                  <property name="text">
                   <string>Global maximum number of connections:</string>
                  </property>
@@ -1569,18 +1577,12 @@
                  <property name="text">
                   <string>Maximum number of upload slots per torrent:</string>
                  </property>
-                 <property name="checked">
-                  <bool>false</bool>
-                 </property>
                 </widget>
                </item>
                <item row="2" column="0">
                 <widget class="QCheckBox" name="checkMaxUploads">
                  <property name="text">
                   <string>Global maximum number of upload slots:</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
                  </property>
                 </widget>
                </item>
@@ -1667,9 +1669,6 @@
                    <property name="enabled">
                     <bool>false</bool>
                    </property>
-                   <property name="text">
-                    <string/>
-                   </property>
                   </widget>
                  </item>
                  <item>
@@ -1701,7 +1700,7 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProxyPeerConnecs">
+                <widget class="QCheckBox" name="checkProxyPeerConnections">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
@@ -3258,11 +3257,7 @@ you should put in domain names used by WebUI server.
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="DNSUsernameTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
-                   </widget>
+                   <widget class="QLineEdit" name="DNSUsernameTxt"/>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_22">
@@ -3273,9 +3268,6 @@ you should put in domain names used by WebUI server.
                   </item>
                   <item row="3" column="1">
                    <widget class="QLineEdit" name="DNSPasswordTxt">
-                    <property name="maxLength">
-                     <number>50</number>
-                    </property>
                     <property name="echoMode">
                      <enum>QLineEdit::Password</enum>
                     </property>
@@ -3401,9 +3393,9 @@ you should put in domain names used by WebUI server.
   <tabstop>lineEditAutoRun</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
-  <tabstop>checkMaxConnecs</tabstop>
+  <tabstop>checkMaxConnections</tabstop>
   <tabstop>spinMaxConnec</tabstop>
-  <tabstop>checkMaxConnecsPerTorrent</tabstop>
+  <tabstop>checkMaxConnectionsPerTorrent</tabstop>
   <tabstop>spinMaxConnecPerTorrent</tabstop>
   <tabstop>checkMaxUploadsPerTorrent</tabstop>
   <tabstop>spinMaxUploadsPerTorrent</tabstop>
@@ -3412,7 +3404,7 @@ you should put in domain names used by WebUI server.
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyPeerConnecs</tabstop>
+  <tabstop>checkProxyPeerConnections</tabstop>
   <tabstop>isProxyOnlyForTorrents</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>
@@ -3455,7 +3447,7 @@ you should put in domain names used by WebUI server.
  <resources/>
  <connections>
   <connection>
-   <sender>checkMaxConnecs</sender>
+   <sender>checkMaxConnections</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinMaxConnec</receiver>
    <slot>setEnabled(bool)</slot>
@@ -3471,7 +3463,7 @@ you should put in domain names used by WebUI server.
    </hints>
   </connection>
   <connection>
-   <sender>checkMaxConnecsPerTorrent</sender>
+   <sender>checkMaxConnectionsPerTorrent</sender>
    <signal>toggled(bool)</signal>
    <receiver>spinMaxConnecPerTorrent</receiver>
    <slot>setEnabled(bool)</slot>

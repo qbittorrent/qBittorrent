@@ -6,22 +6,14 @@ Read the respective section to find out more.
 ### Table Of Contents
 
 *   **[Bug reporting etiquette](#bug-reporting-etiquette)**
-
-
 *   **[Submitting an issue/bug report](#submitting-an-issuebug-report)**
     *   [What is an actual bug report?](#what-is-an-actual-bug-report)
     *   [Before submitting a bug report](#before-submitting-a-bug-report)
     *   [Steps to ensure a good bug report](#steps-to-ensure-a-good-bug-report)
-
-
 *   **[Suggesting enhancements/feature requests](#suggesting-enhancementsfeature-requests)**
     *   [Before submitting an enhancement/feature request](#before-submitting-an-enhancementfeature-request)
     *   [Steps to ensure a good enhancement/feature suggestion](#steps-to-ensure-a-good-enhancementfeature-suggestion)
-
-
 *   **[Opening a pull request](#opening-a-pull-request)**
-    *   [Must read](#must-read)
-    *   [Good to know](#good-to-know)
 
 # Bug reporting etiquette
 
@@ -194,28 +186,26 @@ Following these guidelines helps maintainers and the community understand your s
 
 # Opening a pull request
 
-### Must read
-*   Read our [**coding guidelines**][coding-guidelines-url]. There are some scripts to help you: [uncrustify script][uncrustify-script-url], [astyle script][astyle-script-url], [(related thread)][coding-guidelines-thread-url].
-*   Keep the title **short** and provide a **clear** description about what your pull request does.
-*   Provide **screenshots** for UI related changes.
-*   Keep your git commit history **clean** and **precise.** Refer to the section about "Git commit messages" in the [**coding guidelines**][coding-guidelines-url].
-*   If your commit fixes a reported issue (for example #4134), add the following message to the commit `Closes #4134.`. Example [here][commit-message-fix-issue-example-url].
+*   Consult [coding guidelines][coding-guidelines-url] first. If you are working on translation/i18n, read ["How to translate qBittorrent"][how-to-translate-url].
+*   Keep your git commit history clean.
+    * Refer to the section about ["Git commit messages"][coding-guidelines-git-commit-message-url] in the coding guidelines.
+    * When merge conflicts arise, do `git rebase <target_branch_name>` and fix the conflicts, don't do `git pull`. Here is a good explanation: [merging-vs-rebasing][merging-vs-rebasing-url].
+*   Keep pull request title concise and provide motivation and "what it does" in the pull request description area. Make it easy to read and understand.
+*   Provide screenshots for UI related changes.
+*   If your commit addresses a reported issue (for example issue #8454), append the following text to the commit body `Closes #8454.`. Example [commit][commit-message-fix-issue-example-url].
+*   Search [pull request list][pull-request-list-url] first. Others might have already implemented your idea (or got rejected already).
 
-### Good to know
-*   **Search** pull request history! Others might have already implemented your idea and it is waiting to be merged (or got rejected already). Save your precious time by doing a search first.
-*   When resolving merge conflicts, do `git rebase <target_branch_name>`, don't do `git pull`. Then you can start fixing the conflicts. Here is a good explanation: [link][merging-vs-rebasing-url].
-
-[astyle-script-url]: https://gist.github.com/Chocobo1/539cee860d1eef0acfa6
 [attachments-howto-url]: https://help.github.com/articles/file-attachments-on-issues-and-pull-requests
+[builds-url]: https://sourceforge.net/projects/qbittorrent/files/
 [coding-guidelines-url]: https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md
-[coding-guidelines-thread-url]: https://github.com/qbittorrent/qBittorrent/issues/2192
+[coding-guidelines-git-commit-message-url]: https://github.com/qbittorrent/qBittorrent/blob/master/CODING_GUIDELINES.md#10-git-commit-message
 [commit-message-fix-issue-example-url]: https://github.com/qbittorrent/qBittorrent/commit/c07cd440cd46345297debb47cb260f8688975f50
 [forum-url]: http://forum.qbittorrent.org/
 [howto-report-bugs-url]: https://www.chiark.greenend.org.uk/~sgtatham/bugs.html
+[how-to-translate-url]: https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent
 [merging-vs-rebasing-url]: https://www.atlassian.com/git/tutorials/merging-vs-rebasing
+[pull-request-list-url]: https://github.com/qbittorrent/qBittorrent/pulls
 [python-url]: https://www.python.org/
 [releases-url]: https://github.com/qbittorrent/qBittorrent/releases
 [search-plugins-url]: https://github.com/qbittorrent/search-plugins
-[uncrustify-script-url]: https://raw.githubusercontent.com/qbittorrent/qBittorrent/master/uncrustify.cfg
 [wiki-url]: https://github.com/qbittorrent/qBittorrent/wiki
-[builds-url]: https://sourceforge.net/projects/qbittorrent/files/

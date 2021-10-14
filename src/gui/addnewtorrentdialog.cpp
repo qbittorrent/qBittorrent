@@ -43,7 +43,6 @@
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/settingsstorage.h"
@@ -252,13 +251,13 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
         ? QUrl::fromEncoded(torrentPath.toLocal8Bit()).toLocalFile()
         : torrentPath;
 
-    QString error;
-    m_torrentInfo = BitTorrent::TorrentInfo::loadFromFile(decodedPath, &error);
-    if (!m_torrentInfo.isValid())
+    const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(decodedPath);
+    m_torrentInfo = result.value_or(BitTorrent::TorrentInfo());
+    if (!result)
     {
         RaisedMessageBox::critical(this, tr("Invalid torrent")
             , tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
-                .arg(Utils::Fs::toNativePath(decodedPath), error));
+                .arg(Utils::Fs::toNativePath(decodedPath), result.error()));
         return false;
     }
 
@@ -407,8 +406,10 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
             const QVector<BitTorrent::DownloadPriority> priorities = m_contentModel->model()->getFilePriorities();
             Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
             for (int i = 0; i < priorities.size(); ++i)
+            {
                 if (priorities[i] > BitTorrent::DownloadPriority::Ignored)
                     torrentSize += m_torrentInfo.fileSize(i);
+            }
         }
         else
         {
@@ -471,14 +472,11 @@ void AddNewTorrentDialog::saveTorrentFile()
     if (!path.endsWith(torrentFileExtension, Qt::CaseInsensitive))
         path += torrentFileExtension;
 
-    try
-    {
-        m_torrentInfo.saveToFile(path);
-    }
-    catch (const RuntimeError &err)
+    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(path);
+    if (!result)
     {
         QMessageBox::critical(this, tr("I/O Error")
-            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, err.message()));
+            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, result.error()));
     }
 }
 
@@ -744,36 +742,38 @@ void AddNewTorrentDialog::setupTreeview()
     updateDiskSpaceLabel();
 }
 
-void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &result)
+void AddNewTorrentDialog::handleDownloadFinished(const Net::DownloadResult &downloadResult)
 {
-    QString error;
-    switch (result.status)
+    switch (downloadResult.status)
     {
     case Net::DownloadStatus::Success:
-        m_torrentInfo = BitTorrent::TorrentInfo::load(result.data, &error);
-        if (!m_torrentInfo.isValid())
         {
-            RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
-                                       .arg(result.url, error));
-            return;
+            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(downloadResult.data);
+            m_torrentInfo = result.value_or(BitTorrent::TorrentInfo());
+            if (!result)
+            {
+                RaisedMessageBox::critical(this, tr("Invalid torrent"), tr("Failed to load from URL: %1.\nError: %2")
+                                           .arg(downloadResult.url, result.error()));
+                return;
+            }
+
+            m_torrentGuard = std::make_unique<TorrentFileGuard>();
+
+            if (loadTorrentImpl())
+                open();
+            else
+                deleteLater();
         }
-
-        m_torrentGuard = std::make_unique<TorrentFileGuard>();
-
-        if (loadTorrentImpl())
-            open();
-        else
-            deleteLater();
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
-        if (loadMagnet(BitTorrent::MagnetUri(result.magnet)))
+        if (loadMagnet(BitTorrent::MagnetUri(downloadResult.magnet)))
             open();
         else
             deleteLater();
         break;
     default:
         RaisedMessageBox::critical(this, tr("Download Error"),
-            tr("Cannot download '%1': %2").arg(result.url, result.errorString));
+            tr("Cannot download '%1': %2").arg(downloadResult.url, downloadResult.errorString));
         deleteLater();
     }
 }

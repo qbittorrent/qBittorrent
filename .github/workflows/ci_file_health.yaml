@@ -1,0 +1,17 @@
+name: CI - File health
+
+on: [pull_request, push]
+
+jobs:
+  ci:
+    name: Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install tools
+        uses: actions/setup-python@v2
+
+      - name: Check files
+        uses: pre-commit/action@v2.0.3

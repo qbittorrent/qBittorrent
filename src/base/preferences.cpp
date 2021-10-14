@@ -55,8 +55,21 @@
 
 #include "algorithm.h"
 #include "global.h"
+#include "profile.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
+
+namespace
+{
+#ifdef Q_OS_WIN
+    QString makeProfileID(const QString &profilePath, const QString &profileName)
+    {
+        return profilePath.isEmpty()
+                ? profileName
+                : profileName + QLatin1Char('@') + Utils::Fs::toValidFileSystemName(profilePath, false, {});
+    }
+#endif
+}
 
 Preferences *Preferences::m_instance = nullptr;
 
@@ -79,7 +92,7 @@ void Preferences::freeInstance()
     m_instance = nullptr;
 }
 
-const QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
+QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
 {
     return SettingsStorage::instance()->loadValue(key, defaultValue);
 }
@@ -310,21 +323,31 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
 #ifdef Q_OS_WIN
 bool Preferences::WinStartup() const
 {
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-    return settings.contains("qBittorrent");
+    const QString profileName = Profile::instance()->profileName();
+    const QString profilePath = Profile::instance()->rootPath();
+    const QString profileID = makeProfileID(profilePath, profileName);
+    const QSettings settings {"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat};
+
+    return settings.contains(profileID);
 }
 
 void Preferences::setWinStartup(const bool b)
 {
-    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    const QString profileName = Profile::instance()->profileName();
+    const QString profilePath = Profile::instance()->rootPath();
+    const QString profileID = makeProfileID(profilePath, profileName);
+    QSettings settings {"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat};
     if (b)
     {
-        const QString binPath = '"' + Utils::Fs::toNativePath(qApp->applicationFilePath()) + '"';
-        settings.setValue("qBittorrent", binPath);
+        const QString configuration = Profile::instance()->configurationName();
+
+        const auto cmd = QString::fromLatin1(R"("%1" "--profile=%2" "--configuration=%3")")
+                .arg(Utils::Fs::toNativePath(qApp->applicationFilePath()), profilePath, configuration);
+        settings.setValue(profileID, cmd);
     }
     else
     {
-        settings.remove("qBittorrent");
+        settings.remove(profileID);
     }
 }
 #endif // Q_OS_WIN

@@ -1,0 +1,67 @@
+name: Coverity Scan
+
+on:
+  schedule:
+    - cron: '0 0 1 * *' # Monthly (1st day of month at midnight)
+  workflow_dispatch: # Mainly for testing. Don't forget the Coverity usage limits.
+
+jobs:
+  coverity_scan:
+    name: Scan
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
+          sudo apt update
+          sudo apt install \
+            build-essential cmake ninja-build pkg-config \
+            libboost-dev libssl-dev qt515base qt515svg qt515tools zlib1g-dev
+
+      - name: Install libtorrent
+        run: |
+          git clone --branch v2.0.4 --depth 1 https://github.com/arvidn/libtorrent.git
+          cd libtorrent
+          git submodule update --init --recursive
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -Ddeprecated-functions=OFF
+          cmake --build build
+          sudo cmake --install build
+
+      - name: Download Coverity Build Tool
+        run: |
+          wget \
+            -q \
+            https://scan.coverity.com/download/linux64 \
+            --post-data "token=${{ secrets.COVERITY_SCAN_TOKEN }}&project=qbittorrent%2FqBittorrent" \
+            -O coverity_tool.tgz
+          mkdir coverity_tool
+          tar xzf coverity_tool.tgz --strip 1 -C coverity_tool
+
+      - name: Build qBittorrent
+        run: |
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DGUI=ON \
+            -DVERBOSE_CONFIGURE=ON
+          export PATH="$(pwd)/coverity_tool/bin:$PATH"
+          cov-build --dir cov-int cmake --build build
+
+      - name: Submit the result to Coverity Scan
+        run: |
+          tar caf qbittorrent.xz cov-int
+          curl \
+            --form token="${{ secrets.COVERITY_SCAN_TOKEN }}" \
+            --form email=sledgehammer999@qbittorrent.org \
+            --form file=@qbittorrent.xz \
+            --form version="$(git rev-parse --short HEAD)" \
+            --form description="master" \
+            https://scan.coverity.com/builds?project=qbittorrent%2FqBittorrent

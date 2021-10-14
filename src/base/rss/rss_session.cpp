@@ -34,7 +34,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QSaveFile>
 #include <QString>
 #include <QThread>
 
@@ -143,67 +142,59 @@ Session *Session::instance()
     return m_instance;
 }
 
-bool Session::addFolder(const QString &path, QString *error)
+nonstd::expected<void, QString> Session::addFolder(const QString &path)
 {
-    Folder *destFolder = prepareItemDest(path, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
+    if (!result)
+        return result.get_unexpected();
 
+    const auto destFolder = result.value();
     addItem(new Folder(path), destFolder);
     store();
-    return true;
+    return {};
 }
 
-bool Session::addFeed(const QString &url, const QString &path, QString *error)
+nonstd::expected<void, QString> Session::addFeed(const QString &url, const QString &path)
 {
     if (m_feedsByURL.contains(url))
-    {
-        if (error)
-            *error = tr("RSS feed with given URL already exists: %1.").arg(url);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("RSS feed with given URL already exists: %1.").arg(url));
 
-    Folder *destFolder = prepareItemDest(path, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
+    if (!result)
+        return result.get_unexpected();
 
+    const auto destFolder = result.value();
     addItem(new Feed(generateUID(), url, path, this), destFolder);
     store();
     if (m_processingEnabled)
         feedByURL(url)->refresh();
-    return true;
+
+    return {};
 }
 
-bool Session::moveItem(const QString &itemPath, const QString &destPath, QString *error)
+nonstd::expected<void, QString> Session::moveItem(const QString &itemPath, const QString &destPath)
 {
     if (itemPath.isEmpty())
-    {
-        if (error)
-            *error = tr("Cannot move root folder.");
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Cannot move root folder."));
 
     auto item = m_itemsByPath.value(itemPath);
     if (!item)
-    {
-        if (error)
-            *error = tr("Item doesn't exist: %1.").arg(itemPath);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Item doesn't exist: %1.").arg(itemPath));
 
-    return moveItem(item, destPath, error);
+    return moveItem(item, destPath);
 }
 
-bool Session::moveItem(Item *item, const QString &destPath, QString *error)
+nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &destPath)
 {
     Q_ASSERT(item);
     Q_ASSERT(item != rootFolder());
 
-    Folder *destFolder = prepareItemDest(destPath, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
+    if (!result)
+        return result.get_unexpected();
 
     auto srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
+    const auto destFolder = result.value();
     if (srcFolder != destFolder)
     {
         srcFolder->removeItem(item);
@@ -212,25 +203,17 @@ bool Session::moveItem(Item *item, const QString &destPath, QString *error)
     m_itemsByPath.insert(destPath, m_itemsByPath.take(item->path()));
     item->setPath(destPath);
     store();
-    return true;
+    return {};
 }
 
-bool Session::removeItem(const QString &itemPath, QString *error)
+nonstd::expected<void, QString> Session::removeItem(const QString &itemPath)
 {
     if (itemPath.isEmpty())
-    {
-        if (error)
-            *error = tr("Cannot delete root folder.");
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Cannot delete root folder."));
 
-    auto item = m_itemsByPath.value(itemPath);
+    auto *item = m_itemsByPath.value(itemPath);
     if (!item)
-    {
-        if (error)
-            *error = tr("Item doesn't exist: %1.").arg(itemPath);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Item doesn't exist: %1.").arg(itemPath));
 
     emit itemAboutToBeRemoved(item);
     item->cleanup();
@@ -239,7 +222,7 @@ bool Session::removeItem(const QString &itemPath, QString *error)
     folder->removeItem(item);
     delete item;
     store();
-    return true;
+    return {};
 }
 
 QList<Item *> Session::items() const
@@ -396,30 +379,18 @@ void Session::store()
     m_confFileStorage->store(FeedsFileName, QJsonDocument(rootFolder()->toJsonValue().toObject()).toJson());
 }
 
-Folder *Session::prepareItemDest(const QString &path, QString *error)
+nonstd::expected<Folder *, QString> Session::prepareItemDest(const QString &path)
 {
     if (!Item::isValidPath(path))
-    {
-        if (error)
-            *error = tr("Incorrect RSS Item path: %1.").arg(path);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("Incorrect RSS Item path: %1.").arg(path));
 
     if (m_itemsByPath.contains(path))
-    {
-        if (error)
-            *error = tr("RSS item with given path already exists: %1.").arg(path);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("RSS item with given path already exists: %1.").arg(path));
 
     const QString destFolderPath = Item::parentPath(path);
-    auto destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
+    const auto destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
     if (!destFolder)
-    {
-        if (error)
-            *error = tr("Parent folder doesn't exist: %1.").arg(destFolderPath);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("Parent folder doesn't exist: %1.").arg(destFolderPath));
 
     return destFolder;
 }

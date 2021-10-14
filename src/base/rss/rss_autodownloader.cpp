@@ -33,7 +33,6 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
-#include <QSaveFile>
 #include <QThread>
 #include <QTimer>
 #include <QUrl>

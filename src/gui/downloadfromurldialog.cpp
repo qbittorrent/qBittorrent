@@ -50,7 +50,7 @@ namespace
             || str.startsWith("ftp://", Qt::CaseInsensitive)
             || str.startsWith("magnet:", Qt::CaseInsensitive)
             || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v1 hex-encoded SHA-1 info-hash
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
             || ((str.size() == 64) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v2 hex-encoded SHA-256 info-hash
 #endif
             || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]")))); // v1 Base32 encoded SHA-1 info-hash

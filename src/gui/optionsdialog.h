@@ -154,8 +154,8 @@ private:
     void removeSelectedScheduleEntries(int day);
     void showScheduleDayContextMenu(int day);
     // Bittorrent options
-    int getMaxConnecs() const;
-    int getMaxConnecsPerTorrent() const;
+    int getMaxConnections() const;
+    int getMaxConnectionsPerTorrent() const;
     int getMaxUploads() const;
     int getMaxUploadsPerTorrent() const;
     bool isDHTEnabled() const;

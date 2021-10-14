@@ -55,7 +55,6 @@
 
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
-#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -416,7 +415,7 @@ MainWindow::MainWindow(QWidget *parent)
                 hide();
                 if (!pref->minimizeToTrayNotified())
                 {
-                    showNotificationBaloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+                    showNotificationBalloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
                     pref->setMinimizeToTrayNotified(true);
                 }
             }
@@ -461,7 +460,7 @@ MainWindow::MainWindow(QWidget *parent)
     if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
     {
         if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application to open torrent files or Magnet links.\nDo you want to associate qBittorrent to torrent files and Magnet links?"),
+                                  tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?"),
                                   QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
                                   {
             Preferences::setTorrentFileAssoc(true);
@@ -650,7 +649,7 @@ bool MainWindow::defineUILockPassword()
 
     if (newPassword.size() < 3)
     {
-        QMessageBox::warning(this, tr("Invalid password"), tr("The password should contain at least 3 characters"));
+        QMessageBox::warning(this, tr("Invalid password"), tr("The password must be at least 3 characters long"));
         return false;
     }
 
@@ -858,26 +857,26 @@ void MainWindow::balloonClicked()
 
 void MainWindow::addTorrentFailed(const QString &error) const
 {
-    showNotificationBaloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
+    showNotificationBalloon(tr("Error"), tr("Failed to add torrent: %1").arg(error));
 }
 
 // called when a torrent was added
 void MainWindow::torrentNew(BitTorrent::Torrent *const torrent) const
 {
     if (isTorrentAddedNotificationsEnabled())
-        showNotificationBaloon(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
+        showNotificationBalloon(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
 }
 
 // called when a torrent has finished
 void MainWindow::finishedTorrent(BitTorrent::Torrent *const torrent) const
 {
-    showNotificationBaloon(tr("Download completion"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    showNotificationBalloon(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
 }
 
 // Notification when disk is full
 void MainWindow::fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const
 {
-    showNotificationBaloon(tr("I/O Error", "i.e: Input/Output Error")
+    showNotificationBalloon(tr("I/O Error", "i.e: Input/Output Error")
         , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
             , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
 }
@@ -994,7 +993,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *co
 void MainWindow::handleDownloadFromUrlFailure(const QString &url, const QString &reason) const
 {
     // Display a message box
-    showNotificationBaloon(tr("URL download error")
+    showNotificationBalloon(tr("URL download error")
         , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
 }
 
@@ -1204,7 +1203,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
         QTimer::singleShot(0, this, &QWidget::hide);
         if (!pref->closeToTrayNotified())
         {
-            showNotificationBaloon(tr("qBittorrent is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+            showNotificationBalloon(tr("qBittorrent is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
             pref->setCloseToTrayNotified(true);
         }
         return;
@@ -1304,7 +1303,7 @@ bool MainWindow::event(QEvent *e)
                     QTimer::singleShot(0, this, &QWidget::hide);
                     if (!pref->minimizeToTrayNotified())
                     {
-                        showNotificationBaloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
+                        showNotificationBalloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
                         pref->setMinimizeToTrayNotified(true);
                     }
                     return true;
@@ -1469,6 +1468,7 @@ void MainWindow::activate()
 
 void MainWindow::optionsSaved()
 {
+    Logger::instance()->addMessage(tr("Options saved."));
     loadPreferences();
 }
 
@@ -1491,7 +1491,6 @@ void MainWindow::showStatusBar(bool show)
 
 void MainWindow::loadPreferences(const bool configureSession)
 {
-    Logger::instance()->addMessage(tr("Options were saved successfully."));
     const Preferences *const pref = Preferences::instance();
 #ifdef Q_OS_MACOS
     Q_UNUSED(configureSession);
@@ -1677,7 +1676,7 @@ void MainWindow::reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torren
     }
 }
 
-void MainWindow::showNotificationBaloon(const QString &title, const QString &msg) const
+void MainWindow::showNotificationBalloon(const QString &title, const QString &msg) const
 {
     if (!isNotificationsEnabled())
         return;
@@ -1897,15 +1896,15 @@ void MainWindow::on_actionSearchWidget_triggered()
 
 #ifdef Q_OS_WIN
             const QMessageBox::StandardButton buttonPressed = QMessageBox::question(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Minimum requirement: 3.5.0.\nDo you want to install a newer version now?")
-                    .arg(pyInfo.version)
+                , tr("Your Python version (%1) is outdated. Minimum requirement: %2.\nDo you want to install a newer version now?")
+                    .arg(pyInfo.version, QLatin1String("3.5.0"))
                 , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
             if (buttonPressed == QMessageBox::Yes)
                 installPython();
 #else
             QMessageBox::information(this, tr("Old Python Runtime")
-                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: 3.3.0.")
-                .arg(pyInfo.version));
+                , tr("Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.\nMinimum requirement: %2.")
+                .arg(pyInfo.version, QLatin1String("3.5.0")));
 #endif
             return;
         }
@@ -2169,9 +2168,9 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
 #ifdef QBT_APP_64BIT
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5-amd64.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe";
 #else
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.5/python-3.8.5.exe";
+    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10.exe";
 #endif
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)

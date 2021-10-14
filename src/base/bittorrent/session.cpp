@@ -70,8 +70,6 @@
 
 #include "base/algorithm.h"
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
-#include "base/bittorrent/scheduler/scheduleday.h"
-#include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
@@ -94,7 +92,7 @@
 #include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
-#include "ltunderlyingtype.h"
+#include "lttypecast.h"
 #include "magneturi.h"
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
@@ -211,7 +209,7 @@ namespace
     {
         switch (socketType)
         {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::http:
             return QLatin1String("HTTP");
         case lt::socket_type_t::http_ssl:
@@ -221,7 +219,7 @@ namespace
             return QLatin1String("I2P");
         case lt::socket_type_t::socks5:
             return QLatin1String("SOCKS5");
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::socks5_ssl:
             return QLatin1String("SOCKS5_SSL");
 #endif
@@ -229,7 +227,7 @@ namespace
             return QLatin1String("TCP");
         case lt::socket_type_t::tcp_ssl:
             return QLatin1String("TCP_SSL");
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::utp:
             return QLatin1String("UTP");
 #else
@@ -1088,14 +1086,14 @@ void Session::initializeNativeSession()
     pack.set_bool(lt::settings_pack::enable_upnp, false);
     pack.set_bool(lt::settings_pack::enable_natpmp, false);
 
-#if (LIBTORRENT_VERSION_NUM > 20000)
+#ifdef QBT_USES_LIBTORRENT2
     // preserve the same behavior as in earlier libtorrent versions
     pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
 #endif
 
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     sessionParams.disk_io_constructor = customDiskIOConstructor;
 #endif
     m_nativeSession = new lt::session {sessionParams};
@@ -1186,7 +1184,7 @@ void Session::initMetrics()
 
     m_metricIndices.disk.diskBlocksInUse = findMetricIndex("disk.disk_blocks_in_use");
     m_metricIndices.disk.numBlocksRead = findMetricIndex("disk.num_blocks_read");
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     m_metricIndices.disk.numBlocksCacheHits = findMetricIndex("disk.num_blocks_cache_hits");
 #endif
     m_metricIndices.disk.writeJobs = findMetricIndex("disk.num_write_ops");
@@ -1273,7 +1271,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
 #endif
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
@@ -1281,7 +1279,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     const int checkingMemUsageSize = checkingMemUsage() * 64;
     settingsPack.set_int(lt::settings_pack::checking_mem_usage, checkingMemUsageSize);
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     const int cacheSize = (diskCacheSize() > -1) ? (diskCacheSize() * 64) : -1;
     settingsPack.set_int(lt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(lt::settings_pack::cache_expiry, diskCacheTTL());
@@ -1292,7 +1290,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::disk_io_read_mode, mode);
     settingsPack.set_int(lt::settings_pack::disk_io_write_mode, mode);
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
     settingsPack.set_bool(lt::settings_pack::coalesce_writes, isCoalesceReadWriteEnabled());
 #endif
@@ -1501,7 +1499,7 @@ void Session::configurePeerClasses()
     // Proactively do the same for 0.0.0.0 and address_v4::any()
     f.add_rule(lt::address_v4::any()
                , lt::address_v4::broadcast()
-               , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
+               , 1 << LT::toUnderlyingType(lt::session::global_peer_class_id));
 
     // IPv6 may not be available on OS and the parsing
     // would result in an exception -> abnormal program termination
@@ -1510,7 +1508,7 @@ void Session::configurePeerClasses()
     {
         f.add_rule(lt::address_v6::any()
                    , lt::make_address("ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                   , 1 << toLTUnderlyingType(lt::session::global_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::global_peer_class_id));
     }
     catch (const std::exception &) {}
 
@@ -1519,21 +1517,21 @@ void Session::configurePeerClasses()
         // local networks
         f.add_rule(lt::make_address("10.0.0.0")
                    , lt::make_address("10.255.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("172.16.0.0")
                    , lt::make_address("172.31.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         f.add_rule(lt::make_address("192.168.0.0")
                    , lt::make_address("192.168.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         // link local
         f.add_rule(lt::make_address("169.254.0.0")
                    , lt::make_address("169.254.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         // loopback
         f.add_rule(lt::make_address("127.0.0.0")
                    , lt::make_address("127.255.255.255")
-                   , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                   , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
 
         // IPv6 may not be available on OS and the parsing
         // would result in an exception -> abnormal program termination
@@ -1543,15 +1541,15 @@ void Session::configurePeerClasses()
             // link local
             f.add_rule(lt::make_address("fe80::")
                        , lt::make_address("febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
             // unique local addresses
             f.add_rule(lt::make_address("fc00::")
                        , lt::make_address("fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff")
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
             // loopback
             f.add_rule(lt::address_v6::loopback()
                        , lt::address_v6::loopback()
-                       , 1 << toLTUnderlyingType(lt::session::local_peer_class_id));
+                       , 1 << LT::toUnderlyingType(lt::session::local_peer_class_id));
         }
         catch (const std::exception &) {}
     }
@@ -1707,7 +1705,7 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     {
     case Net::DownloadStatus::Success:
         emit downloadFromUrlFinished(result.url);
-        addTorrent(TorrentInfo::load(result.data), m_downloadedTorrents.take(result.url));
+        addTorrent(TorrentInfo::load(result.data).value_or(TorrentInfo()), m_downloadedTorrents.take(result.url));
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         emit downloadFromUrlFinished(result.url);
@@ -1736,8 +1734,10 @@ void Session::fileSearchFinished(const TorrentID &id, const QString &savePath, c
         lt::add_torrent_params &p = params.ltAddTorrentParams;
 
         p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
+        const TorrentInfo torrentInfo {p.ti};
+        const auto nativeIndexes = torrentInfo.nativeIndexes();
         for (int i = 0; i < fileNames.size(); ++i)
-            p.renamed_files[lt::file_index_t {i}] = fileNames[i].toStdString();
+            p.renamed_files[nativeIndexes[i]] = fileNames[i].toStdString();
 
         loadTorrent(params);
     }
@@ -2035,7 +2035,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
         return addTorrent(magnetUri, params);
 
     TorrentFileGuard guard {source};
-    if (addTorrent(TorrentInfo::loadFromFile(source), params))
+    if (addTorrent(TorrentInfo::loadFromFile(source).value_or(TorrentInfo()), params))
     {
         guard.markAsAddedToSession();
         return true;
@@ -2150,28 +2150,20 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         {
             QString contentName = metadata.rootFolder();
             if (contentName.isEmpty() && (metadata.filesCount() == 1))
-                contentName = metadata.fileName(0);
+                contentName = Utils::Fs::fileName(metadata.filePath(0));
 
             if (!contentName.isEmpty() && (contentName != metadata.name()))
                 loadTorrentParams.name = contentName;
         }
 
         Q_ASSERT(p.file_priorities.empty());
-        if (addTorrentParams.filePriorities.empty())
-        {
-            // Use qBittorrent default priority rather than libtorrent's (4)
-            p.file_priorities = std::vector(metadata.filesCount(), static_cast<lt::download_priority_t>(
-                    static_cast<lt::download_priority_t::underlying_type>(DownloadPriority::Normal)));
-        }
-        else
-        {
-            std::transform(addTorrentParams.filePriorities.cbegin(), addTorrentParams.filePriorities.cend()
-                           , std::back_inserter(p.file_priorities), [](const DownloadPriority priority)
-            {
-                return static_cast<lt::download_priority_t>(
-                        static_cast<lt::download_priority_t::underlying_type>(priority));
-            });
-        }
+        const int internalFilesCount = metadata.nativeInfo()->files().num_files(); // including .pad files
+        // Use qBittorrent default priority rather than libtorrent's (4)
+        p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
+        const auto nativeIndexes = metadata.nativeIndexes();
+        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
+        for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
+            p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
 
         p.ti = metadata.nativeInfo();
     }
@@ -2224,7 +2216,7 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
     // Limits
@@ -2232,7 +2224,7 @@ bool Session::loadTorrent(LoadTorrentParams params)
     p.max_uploads = maxUploadsPerTorrent();
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hashes() : p.info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hash() : p.info_hash);
@@ -2299,7 +2291,7 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     // Solution to avoid accidental file writes
     p.flags |= lt::torrent_flags::upload_mode;
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
 
@@ -2332,14 +2324,11 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const QString &f
             newTorrentPath = exportDir.absoluteFilePath(torrentExportFilename);
         }
 
-        try
-        {
-            torrentInfo.saveToFile(newTorrentPath);
-        }
-        catch (const RuntimeError &err)
+        const nonstd::expected<void, QString> result = torrentInfo.saveToFile(newTorrentPath);
+        if (!result)
         {
             LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2.")
-                   .arg(newTorrentPath, err.message()), Log::WARNING);
+                   .arg(newTorrentPath, result.error()), Log::WARNING);
         }
     }
 }
@@ -2397,7 +2386,7 @@ void Session::saveTorrentsQueue() const
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
         // We require actual (non-cached) queue position here!
-        const int queuePos = toLTUnderlyingType(torrent->nativeHandle().queue_position());
+        const int queuePos = LT::toUnderlyingType(torrent->nativeHandle().queue_position());
         if (queuePos >= 0)
         {
             if (queuePos >= queue.size())
@@ -2964,7 +2953,7 @@ void Session::setBannedIPs(const QStringList &newList)
         }
         else
         {
-            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned addresses.")
+            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned IP addresses.")
                    .arg(ip)
                 , Log::WARNING);
         }
@@ -3945,7 +3934,7 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
@@ -3977,16 +3966,14 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
 
     qDebug("Checking if the torrent contains torrent files to download");
     // Check if there are torrent files inside
-    for (int i = 0; i < torrent->filesCount(); ++i)
+    for (const QString &torrentRelpath : asConst(torrent->filePaths()))
     {
-        const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent", Qt::CaseInsensitive))
         {
             qDebug("Found possible recursive torrent download.");
             const QString torrentFullpath = torrent->savePath(true) + '/' + torrentRelpath;
             qDebug("Full subtorrent path is %s", qUtf8Printable(torrentFullpath));
-            TorrentInfo torrentInfo = TorrentInfo::loadFromFile(torrentFullpath);
-            if (torrentInfo.isValid())
+            if (TorrentInfo::loadFromFile(torrentFullpath))
             {
                 qDebug("emitting recursiveTorrentDownloadPossible()");
                 emit recursiveTorrentDownloadPossible(torrent);
@@ -4003,7 +3990,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
 #else
         const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
@@ -4088,7 +4075,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newP
 
 void Session::moveTorrentStorage(const MoveStorageJob &job) const
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hash());
@@ -4202,9 +4189,8 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
     TorrentImpl *const torrent = m_torrents.value(id);
     if (!torrent) return;
 
-    for (int i = 0; i < torrent->filesCount(); ++i)
+    for (const QString &torrentRelpath : asConst(torrent->filePaths()))
     {
-        const QString torrentRelpath = torrent->filePath(i);
         if (torrentRelpath.endsWith(".torrent"))
         {
             LogMsg(tr("Recursive download of file '%1' embedded in torrent '%2'"
@@ -4215,7 +4201,7 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
             AddTorrentParams params;
             // Passing the save path along to the sub torrent file
             params.savePath = torrent->savePath();
-            addTorrent(TorrentInfo::loadFromFile(torrentFullpath), params);
+            addTorrent(TorrentInfo::loadFromFile(torrentFullpath).value_or(TorrentInfo()), params);
         }
     }
 }
@@ -4387,7 +4373,7 @@ void Session::handleAlert(const lt::alert *a)
     {
         switch (a->type())
         {
-#if (LIBTORRENT_VERSION_NUM >= 20003)
+#ifdef QBT_USES_LIBTORRENT2
         case lt::file_prio_alert::alert_type:
 #endif
         case lt::file_renamed_alert::alert_type:
@@ -4489,7 +4475,7 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
 
 void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
 #else
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hash());
@@ -4555,7 +4541,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 
         const lt::add_torrent_params &params = p->params;
         const bool hasMetadata = (params.ti && params.ti->is_valid());
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
 #else
         const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
@@ -4570,7 +4556,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
 
 void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4589,7 +4575,7 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 
 void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4607,7 +4593,7 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 
 void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
 #else
     const auto id = TorrentID::fromInfoHash(p->info_hash);
@@ -4637,7 +4623,7 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
 
 void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->handle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(p->handle.info_hash());
@@ -4840,7 +4826,7 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
 
-#if (LIBTORRENT_VERSION_NUM < 20000)
+#ifndef QBT_USES_LIBTORRENT2
     const int64_t numBlocksRead = stats[m_metricIndices.disk.numBlocksRead];
     const int64_t numBlocksCacheHits = stats[m_metricIndices.disk.numBlocksCacheHits];
     m_cacheStatus.readRatio = static_cast<qreal>(numBlocksCacheHits) / std::max<int64_t>((numBlocksCacheHits + numBlocksRead), 1);
@@ -4875,7 +4861,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString newPath {p->storage_path()};
     Q_ASSERT(newPath == currentJob.path);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
@@ -4895,7 +4881,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     const MoveStorageJob &currentJob = m_moveStorageQueue.first();
     Q_ASSERT(currentJob.torrentHandle == p->handle);
 
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hashes());
 #else
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
@@ -4918,7 +4904,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     for (const lt::torrent_status &status : p->status)
     {
-#if (LIBTORRENT_VERSION_NUM >= 20000)
+#ifdef QBT_USES_LIBTORRENT2
         const auto id = TorrentID::fromInfoHash(status.info_hashes);
 #else
         const auto id = TorrentID::fromInfoHash(status.info_hash);
