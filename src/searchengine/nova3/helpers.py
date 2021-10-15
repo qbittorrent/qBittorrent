@@ -35,6 +35,7 @@ import re
 import socket
 import socks
 import tempfile
+import ssl
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -70,11 +71,16 @@ def htmlentitydecode(s):
     return re.sub(r'&#x(\w+);', lambda x: chr(int(x.group(1), 16)), t)
 
 
-def retrieve_url(url):
+def retrieve_url(url, ssl_ignore=False):
     """ Return the content of the url page as a string """
     req = urllib.request.Request(url, headers=headers)
     try:
-        response = urllib.request.urlopen(req)
+        ctx = None
+        if ssl_ignore:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+        response = urllib.request.urlopen(req, context=ctx)
     except urllib.error.URLError as errno:
         print(" ".join(("Connection error:", str(errno.reason))))
         return ""
