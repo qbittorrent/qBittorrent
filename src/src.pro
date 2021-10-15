@@ -23,7 +23,7 @@ nogui {
         DEFINES += QBT_STATIC_QT
         QTPLUGIN += qico
     }
-    win32: lessThan(QT_VERSION_MAJOR, 6) {
+    win32: lessThan(QT_MAJOR_VERSION, 6) {
         QT += winextras
     }
     macx {

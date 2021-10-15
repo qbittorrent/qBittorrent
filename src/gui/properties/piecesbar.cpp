@@ -186,7 +186,7 @@ void PiecesBar::paintEvent(QPaintEvent *)
     if (!m_highlightedRegion.isNull())
     {
         QColor highlightColor {this->palette().color(QPalette::Active, QPalette::Highlight)};
-        highlightColor.setAlphaF(0.35);
+        highlightColor.setAlphaF(0.35f);
         QRect targetHighlightRect {m_highlightedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
         painter.fillRect(targetHighlightRect, highlightColor);
     }

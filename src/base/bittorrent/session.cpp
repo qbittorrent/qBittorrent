@@ -2523,7 +2523,7 @@ QStringList Session::getListeningIPs() const
     }
 
     const QList<QNetworkAddressEntry> addresses = networkIFace.addressEntries();
-    qDebug("This network interface has %d IP addresses", addresses.size());
+    qDebug() << "This network interface has " << addresses.size() << " IP addresses";
     for (const QNetworkAddressEntry &entry : addresses)
         checkAndAddIP(entry.ip(), configuredAddr);
 
