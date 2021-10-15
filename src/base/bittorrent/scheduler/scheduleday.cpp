@@ -190,11 +190,16 @@ ScheduleDay* ScheduleDay::fromJsonArray(const QJsonArray &jsonArray, int dayOfWe
             continue;
         }
 
-        QJsonObject jObject = jValue.toObject();
-        if (!ScheduleEntry::validateJsonObject(jObject))
-            *errored = true;
+        auto entry = ScheduleEntry::fromJsonObject(jValue.toObject());
 
-        auto entry = ScheduleEntry::fromJsonObject(jObject);
+        if (!entry.isValid())
+        {
+            LogMsg(QObject::tr("Ignoring invalid schedule entry in day %1")
+                            .arg(dayOfWeek), Log::WARNING);
+            *errored = true;
+            continue;
+        }
+
         scheduleDay->addEntry(entry);
     }
 

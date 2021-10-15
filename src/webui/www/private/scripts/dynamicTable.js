@@ -2705,13 +2705,15 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('ul', '', 'QBT_TR(Upload)QBT_TR[CONTEXT=OptionsDialog]', 75, true);
 
             this.columns['start'].updateTd = (td, row) => {
-                let time = new Date(0, 0, 0, Math.floor(row.data.start / 100), row.data.start % 100);
+                let split = row.data.start.split(':');
+                let time = new Date(0, 0, 0, split[0], split[1]);
                 td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
                 td.set('title', td.text);
             };
 
             this.columns['end'].updateTd = (td, row) => {
-                let time = new Date(0, 0, 0, Math.floor(row.data.end / 100), row.data.end % 100);
+                let split = row.data.end.split(':');
+                let time = new Date(0, 0, 0, split[0], split[1]);
                 td.set('text', time.toLocaleTimeString(this.locale, { hour: '2-digit', minute: '2-digit' }));
                 td.set('title', td.text);
             };

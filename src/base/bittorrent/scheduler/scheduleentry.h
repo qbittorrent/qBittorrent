@@ -29,5 +29,4 @@ struct ScheduleEntry
 
     QJsonObject toJsonObject() const;
     static ScheduleEntry fromJsonObject(const QJsonObject &jsonObject);
-    static bool validateJsonObject(const QJsonObject &jsonObject);
 };

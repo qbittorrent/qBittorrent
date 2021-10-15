@@ -36,11 +36,10 @@ bool ScheduleEntry::isValid() const
 
 QJsonObject ScheduleEntry::toJsonObject() const
 {
-    // Hour*100 for readability (2100 = 9pm, 100 = 1am, and so on)
     return
     {
-        {"start", startTime.hour() * 100 + startTime.minute()},
-        {"end", endTime.hour() * 100 + endTime.minute()},
+        {"start", startTime.toString("hh:mm")},
+        {"end", endTime.toString("hh:mm")},
         {"dl", downloadSpeed},
         {"ul", uploadSpeed},
         {"pause", pause}
@@ -49,37 +48,18 @@ QJsonObject ScheduleEntry::toJsonObject() const
 
 ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject &jsonObject)
 {
-    int start = jsonObject["start"].toInt();
-    int end = jsonObject["end"].toInt();
-    bool pause = jsonObject["pause"].toBool();
+    QTime startTime = QTime::fromString(jsonObject["start"].toString(), "hh:mm");;
+    QTime endTime = QTime::fromString(jsonObject["end"].toString(), "hh:mm");;
 
-    QTime startTime = QTime(start / 100, start % 100);
-    QTime endTime = QTime(end / 100, end % 100, 59, 999);
-
-    if (start > end)
+    if (startTime > endTime)
         std::swap(startTime, endTime);
 
     return
     {
         startTime,
         endTime,
-        jsonObject["dl"].toInt(0),
-        jsonObject["ul"].toInt(0),
-        pause
+        jsonObject["dl"].toInt(),
+        jsonObject["ul"].toInt(),
+        jsonObject["pause"].toBool()
     };
-}
-
-bool ScheduleEntry::validateJsonObject(const QJsonObject &jsonObject)
-{
-    for (const auto &name : {"start", "end"})
-    {
-        int value = jsonObject[name].toInt(-1);
-        if (value < 0 || value > 2359) {
-            LogMsg(QObject::tr("Ignoring invalid %1 time for a schedule entry: %2 (expected number between 0-2359)")
-                            .arg(name, QString::number(value)), Log::WARNING);
-            return false;
-        }
-    }
-
-    return true;
 }
