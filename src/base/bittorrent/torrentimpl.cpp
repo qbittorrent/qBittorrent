@@ -1108,7 +1108,7 @@ int TorrentImpl::leechsCount() const
 
 int TorrentImpl::totalSeedsCount() const
 {
-    return (m_nativeStatus.num_complete > 0) ? m_nativeStatus.num_complete : m_nativeStatus.list_seeds;
+    return qMax(m_nativeStatus.list_seeds, m_nativeStatus.num_complete);
 }
 
 int TorrentImpl::totalPeersCount() const
@@ -1119,7 +1119,7 @@ int TorrentImpl::totalPeersCount() const
 
 int TorrentImpl::totalLeechersCount() const
 {
-    return (m_nativeStatus.num_incomplete > 0) ? m_nativeStatus.num_incomplete : (m_nativeStatus.list_peers - m_nativeStatus.list_seeds);
+    return qMax(m_nativeStatus.list_peers - m_nativeStatus.list_seeds, m_nativeStatus.num_incomplete);
 }
 
 int TorrentImpl::completeCount() const
