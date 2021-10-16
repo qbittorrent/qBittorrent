@@ -263,6 +263,10 @@ void PeerInfo::determineFlags()
         m_flagsDescription += QString::fromLatin1("%1 = %2\n").arg(specifier, explanation);
     };
 
+    // C = is peer in connecting state, such peer don't get counted in Torrent::leechsCount
+    if (isConnecting())
+        updateFlags(QLatin1Char('C'), tr("Connecting"));
+
     if (isInteresting())
     {
         if (isRemoteChocked())
