@@ -246,6 +246,10 @@ void PeerInfo::determineFlags()
         m_flagsDescription += u"%1 = %2\n"_qs.arg(specifier, explanation);
     };
 
+    // C = is peer in connecting state
+    if (isConnecting())
+        updateFlags(u'C', tr("Connecting"));
+
     if (isInteresting())
     {
         if (isRemoteChocked())
