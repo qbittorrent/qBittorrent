@@ -478,6 +478,12 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
             m_listModel->setData(m_listModel->index(row, PeerListColumns::COUNTRY), countryName, Qt::ToolTipRole);
         }
     }
+
+    for (int col = 0; col < PeerListColumns::COL_COUNT; ++col)
+    {
+        if (auto item = m_listModel->item(row, col))
+            item->setEnabled(!peer.isConnecting());
+    }
 }
 
 void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const
