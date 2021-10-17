@@ -362,32 +362,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
         loadUrlSeeds();
 
         m_ui->labelCreatedByVal->setText(m_torrent->creator());
-
-        // List files in torrent
-        m_propListModel->model()->setupModelData(m_torrent->info());
-
-        // Load file priorities
-        m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
-
-        // Load progress and availability. loadDynamicData() will take care of it if "content" tab is
-        // visible and selected. Always load all data so that the files list can be sorted properly.
-        if (m_state != VISIBLE || m_ui->stackedProperties->currentIndex() != PropTabBar::FilesTab)
-        {
-            m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-            m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
-        }
     }
     // Load dynamic data
     loadDynamicData();
-
-    // Expand single-item folders recursively.
-    // This will trigger sorting and filtering so do it after all relevant data is loaded.
-    QModelIndex currentIndex;
-    while (m_propListModel->rowCount(currentIndex) == 1)
-    {
-        currentIndex = m_propListModel->index(0, 0, currentIndex);
-        m_ui->filesList->setExpanded(currentIndex, true);
-    }
 }
 
 void PropertiesWidget::readSettings()
@@ -545,12 +522,35 @@ void PropertiesWidget::loadDynamicData()
         {
             qDebug("Updating priorities in files tab");
             m_ui->filesList->setUpdatesEnabled(false);
+
+            // Load torrent content if not yet done so
+            const bool loadTorrentContent = !m_propListModel->model()->hasIndex(0, 0);
+            if (loadTorrentContent)
+            {
+                // List files in torrent
+                m_propListModel->model()->setupModelData(m_torrent->info());
+                // Load file priorities
+                // XXX: We don't update file priorities regularly for performance
+                // reasons. This means that priorities will not be updated if
+                // set from the Web UI.
+                m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
+            }
+
             m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
             m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
-            // XXX: We don't update file priorities regularly for performance
-            // reasons. This means that priorities will not be updated if
-            // set from the Web UI.
-            // PropListModel->model()->updateFilesPriorities(h.file_priorities());
+
+            if (loadTorrentContent)
+            {
+                // Expand single-item folders recursively.
+                // This will trigger sorting and filtering so do it after all relevant data is loaded.
+                QModelIndex currentIndex;
+                while (m_propListModel->rowCount(currentIndex) == 1)
+                {
+                    currentIndex = m_propListModel->index(0, 0, currentIndex);
+                    m_ui->filesList->setExpanded(currentIndex, true);
+                }
+            }
+
             m_ui->filesList->setUpdatesEnabled(true);
         }
         break;
