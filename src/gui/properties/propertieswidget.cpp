@@ -368,6 +368,14 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
 
         // Load file priorities
         m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
+
+        // Load progress and availability. loadDynamicData() will take care of it if "content" tab is
+        // visible and selected. Always load all data so that the files list can be sorted properly.
+        if (m_state != VISIBLE || m_ui->stackedProperties->currentIndex() != PropTabBar::FilesTab)
+        {
+            m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+            m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+        }
     }
     // Load dynamic data
     loadDynamicData();
