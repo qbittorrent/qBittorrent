@@ -366,19 +366,20 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
         // List files in torrent
         m_propListModel->model()->setupModelData(m_torrent->info());
 
-        // Expand single-item folders recursively
-        QModelIndex currentIndex;
-        while (m_propListModel->rowCount(currentIndex) == 1)
-        {
-            currentIndex = m_propListModel->index(0, 0, currentIndex);
-            m_ui->filesList->setExpanded(currentIndex, true);
-        }
-
         // Load file priorities
         m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
     }
     // Load dynamic data
     loadDynamicData();
+
+    // Expand single-item folders recursively.
+    // This will trigger sorting and filtering so do it after all relevant data is loaded.
+    QModelIndex currentIndex;
+    while (m_propListModel->rowCount(currentIndex) == 1)
+    {
+        currentIndex = m_propListModel->index(0, 0, currentIndex);
+        m_ui->filesList->setExpanded(currentIndex, true);
+    }
 }
 
 void PropertiesWidget::readSettings()
