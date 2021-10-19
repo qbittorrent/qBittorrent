@@ -89,7 +89,7 @@ BandwidthScheduler::~BandwidthScheduler()
     m_ioThread->wait();
 }
 
-BandwidthScheduler *BandwidthScheduler::instance()
+BandwidthScheduler* BandwidthScheduler::instance()
 {
     return m_instance;
 }
@@ -105,7 +105,7 @@ void BandwidthScheduler::stop()
     m_timer.stop();
 }
 
-void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preserveOriginal = false)
+void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preserveOriginal = false) const
 {
     LogMsg(errorMessage, Log::CRITICAL);
 
@@ -185,7 +185,7 @@ bool BandwidthScheduler::loadScheduleFromDisk()
     return true;
 }
 
-void BandwidthScheduler::saveScheduleToDisk()
+void BandwidthScheduler::saveScheduleToDisk() const
 {
     m_fileStorage->store(ScheduleFileName, getJson(true));
 }

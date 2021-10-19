@@ -14,7 +14,7 @@ namespace
     using Utils::String::parseBool;
     using Utils::String::parseInt;
 
-    ScheduleEntry parseEntry(QString startTime, QString endTime, QString downloadLimit = "0", QString uploadLimit = "0", QString pause = "false")
+    ScheduleEntry parseEntry(const QString &startTime, const QString &endTime, const QString &downloadLimit = "0", const QString &uploadLimit = "0", const QString &pause = "false")
     {
         const QStringList startSplit = startTime.split(':');
         const QStringList endSplit = endTime.split(':');
@@ -116,7 +116,7 @@ void ScheduleController::pasteAction()
     const auto entries = QJsonDocument::fromJson(entriesParam).array();
 
     ScheduleDay *targetDay = BandwidthScheduler::instance()->scheduleDay(targetDayIndex);
-    for (const QJsonValue entry : entries)
+    for (const QJsonValue &entry : entries)
         targetDay->addEntry(ScheduleEntry::fromJsonObject(entry.toObject()));
 }
 

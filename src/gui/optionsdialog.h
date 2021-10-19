@@ -30,15 +30,14 @@
 
 #include <QDialog>
 
-#include "base/bittorrent/scheduler/scheduleday.h"
 #include "base/settingvalue.h"
 
 class QCloseEvent;
 class QListWidgetItem;
-class QPoint;
 class QTableWidget;
 
 class AdvancedSettings;
+class ScheduleDay;
 
 // actions on double-click on torrents
 enum DoubleClickAction

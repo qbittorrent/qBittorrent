@@ -71,8 +71,8 @@ private:
     static QPointer<BandwidthScheduler> m_instance;
 
     bool loadScheduleFromDisk();
-    void saveScheduleToDisk();
-    void backupSchedule(const QString &errorMessage, bool preserveOriginal);
+    void saveScheduleToDisk() const;
+    void backupSchedule(const QString &errorMessage, bool preserveOriginal) const;
     bool importLegacyScheduler();
 
     QThread *m_ioThread;

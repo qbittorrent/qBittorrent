@@ -31,10 +31,8 @@
 #include <cstdlib>
 #include <limits>
 
-#include <QAbstractItemModel>
 #include <QAction>
 #include <QApplication>
-#include <QCheckBox>
 #include <QClipboard>
 #include <QCloseEvent>
 #include <QDebug>
@@ -44,13 +42,10 @@
 #include <QFileDialog>
 #include <QJsonArray>
 #include <QJsonDocument>
-#include <QListView>
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QScrollArea>
 #include <QSystemTrayIcon>
-#include <QTableWidget>
 #include <QTranslator>
 #include <qnamespace.h>
 
@@ -60,8 +55,6 @@
 #include "base/logger.h"
 #include "banlistoptionsdialog.h"
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
-#include "base/bittorrent/scheduler/scheduleday.h"
-#include "base/bittorrent/scheduler/scheduleentry.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
 #include "base/global.h"
@@ -644,7 +637,7 @@ OptionsDialog::~OptionsDialog()
 
 void OptionsDialog::initializeSchedulerTables()
 {
-    auto *schedule = BandwidthScheduler::instance();
+    auto *scheduler = BandwidthScheduler::instance();
     int today = QDate::currentDate().dayOfWeek() - 1;
 
     const QLocale locale{Preferences::instance()->getLocale()};
@@ -670,7 +663,7 @@ void OptionsDialog::initializeSchedulerTables()
         scheduleTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
         scheduleTable->setContextMenuPolicy(Qt::CustomContextMenu);
 
-        ScheduleDay *scheduleDay = schedule->scheduleDay(day);
+        ScheduleDay *scheduleDay = scheduler->scheduleDay(day);
         auto *itemDelegate = new ScheduleEntryItemDelegate(*scheduleDay, scheduleTable);
         connect(itemDelegate, &QAbstractItemDelegate::commitData, this, &OptionsDialog::enableApplyButton);
         scheduleTable->setItemDelegate(itemDelegate);
@@ -691,7 +684,7 @@ void OptionsDialog::initializeSchedulerTables()
     }
 
     const auto &tables = asConst(m_scheduleDayTables);
-    connect(schedule, &BandwidthScheduler::scheduleUpdated, this, [tables](int day)
+    connect(scheduler, &BandwidthScheduler::scheduleUpdated, this, [tables](int day)
     {
         auto *scheduleDay = BandwidthScheduler::instance()->scheduleDay(day);
         OptionsDialog::populateScheduleDayTable(tables[day], scheduleDay);
@@ -775,8 +768,8 @@ void OptionsDialog::removeSelectedScheduleEntries(const int day)
 
 void OptionsDialog::showScheduleDayContextMenu(int day)
 {
-    auto *schedule = BandwidthScheduler::instance();
-    ScheduleDay *scheduleDay = schedule->scheduleDay(day);
+    auto *scheduler = BandwidthScheduler::instance();
+    ScheduleDay *scheduleDay = scheduler->scheduleDay(day);
     QTableWidget *scheduleTable = m_scheduleDayTables[day];
 
     auto *menu = new QMenu(scheduleTable);
@@ -823,7 +816,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
         const QByteArray clipboard = QApplication::clipboard()->mimeData()->data("application/json");
         const QJsonArray jsonArray = QJsonDocument::fromJson(clipboard).array();
 
-        for (const QJsonValue jValue : asConst(jsonArray))
+        for (const QJsonValue &jValue : asConst(jsonArray))
             scheduleDay->addEntry(ScheduleEntry::fromJsonObject(jValue.toObject()));
 
         enableApplyButton();
@@ -837,7 +830,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
             for (int i = 0; i < 7; ++i)
             {
                 if (i == day) continue;
-                schedule->scheduleDay(i)->addEntry(entry);
+                scheduler->scheduleDay(i)->addEntry(entry);
             }
         }
         enableApplyButton();

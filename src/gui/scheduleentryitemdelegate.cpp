@@ -62,8 +62,8 @@ void ScheduleEntryItemDelegate::setEditorData(QWidget *editor, const QModelIndex
                 timeEdit->setStyleSheet("border: none");
             else
             {
-                bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTime(index.row(), time))
-                    || (index.column() == TO && m_scheduleDay.canSetEndTime(index.row(), time));
+                bool ok = (index.column() == FROM && m_scheduleDay.canSetStartTimeAt(index.row(), time))
+                    || (index.column() == TO && m_scheduleDay.canSetEndTimeAt(index.row(), time));
 
                 QString color = ok ? "green" : "red";
                 timeEdit->setStyleSheet("border: 1px solid " + color);

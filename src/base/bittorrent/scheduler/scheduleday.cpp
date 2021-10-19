@@ -72,13 +72,13 @@ void ScheduleDay::clearEntries()
     emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
 }
 
-bool ScheduleDay::canSetStartTime(int index, QTime time)
+bool ScheduleDay::canSetStartTimeAt(int index, QTime time)
 {
     return (time < m_entries[index].endTime) && ((index == 0)
         || (index > 0 && time > m_entries[index - 1].endTime));
 }
 
-bool ScheduleDay::canSetEndTime(int index, QTime time)
+bool ScheduleDay::canSetEndTimeAt(int index, QTime time)
 {
     int last = m_entries.count() - 1;
     return (time > m_entries[index].startTime) && ((index == last)
@@ -87,7 +87,7 @@ bool ScheduleDay::canSetEndTime(int index, QTime time)
 
 void ScheduleDay::setStartTimeAt(int index, const QTime time)
 {
-    if (m_entries[index].startTime != time && canSetStartTime(index, time))
+    if (m_entries[index].startTime != time && canSetStartTimeAt(index, time))
     {
         m_entries[index].setStartTime(time);
         emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);
@@ -96,7 +96,7 @@ void ScheduleDay::setStartTimeAt(int index, const QTime time)
 
 void ScheduleDay::setEndTimeAt(int index, const QTime time)
 {
-    if (m_entries[index].endTime != time && canSetEndTime(index, time))
+    if (m_entries[index].endTime != time && canSetEndTimeAt(index, time))
     {
         m_entries[index].setEndTime(time);
         emit BandwidthScheduler::instance()->scheduleUpdated(m_dayOfWeek);

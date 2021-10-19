@@ -20,8 +20,8 @@ public:
     bool removeEntries(QVector<int> indexes);
     void clearEntries();
 
-    bool canSetStartTime(int index, QTime time);
-    bool canSetEndTime(int index, QTime time);
+    bool canSetStartTimeAt(int index, QTime time);
+    bool canSetEndTimeAt(int index, QTime time);
     void setStartTimeAt(int index, QTime time);
     void setEndTimeAt(int index, QTime time);
     void setDownloadSpeedAt(int index, int value);
