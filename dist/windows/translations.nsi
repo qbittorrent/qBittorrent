@@ -6,6 +6,7 @@
 !insertmacro MUI_LANGUAGE "Arabic"
 !insertmacro MUI_LANGUAGE "Basque"
 !insertmacro MUI_LANGUAGE "Belarusian"
+!insertmacro MUI_LANGUAGE "Bengali"
 !insertmacro MUI_LANGUAGE "Bosnian"
 !insertmacro MUI_LANGUAGE "Breton"
 !insertmacro MUI_LANGUAGE "Bulgarian"
@@ -68,6 +69,7 @@
 !include arabic.nsi
 !include basque.nsi
 !include belarusian.nsi
+!include bengali.nsi
 !include bosnian.nsi
 !include breton.nsi
 !include bulgarian.nsi
