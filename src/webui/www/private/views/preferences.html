@@ -1539,7 +1539,7 @@
                     },
                     paste: (element, ref) => {
                         const targetDay = selectedScheduleDay;
-                        if (scheduleClipboard !== []) {
+                        if (Array.isArray(scheduleClipboard) && scheduleClipboard.length) {
                             new Request({
                                 url: 'api/v2/schedule/paste',
                                 method: 'post',
