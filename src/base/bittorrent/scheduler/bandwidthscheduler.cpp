@@ -69,7 +69,7 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
         for (int day = 0; day < 7; ++day)
             m_schedule[day] = new ScheduleDay(day);
 
-        saveScheduleToDisk();
+        commitSchedule(true);
     }
 
     connect(this, &BandwidthScheduler::scheduleUpdated, this, [this](int day)
