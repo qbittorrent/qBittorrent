@@ -2,7 +2,9 @@ qBittorrent - A BitTorrent client in Qt
 ------------------------------------------
 
 [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/qbittorrent/qBittorrent?branch=master&svg=true)](https://ci.appveyor.com/project/qbittorrent/qBittorrent)
-[![GitHub Actions CI Status](https://github.com/qbittorrent/qBittorrent/workflows/GitHub%20Actions%20CI/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions)
+[![GitHub Actions CI Ubuntu Status](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_ubuntu.yaml)
+[![GitHub Actions CI Windows Status](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_windows.yaml/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_windows.yaml)
+[![GitHub Actions CI macOS Status](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_macos.yaml/badge.svg)](https://github.com/qbittorrent/qBittorrent/actions/workflows/ci_macos.yaml)
 [![Coverity Status](https://scan.coverity.com/projects/5494/badge.svg)](https://scan.coverity.com/projects/5494)
 ********************************
 ### Description:
