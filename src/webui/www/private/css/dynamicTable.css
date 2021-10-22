@@ -52,8 +52,6 @@ tr.dynamicTableHeader {
 .dynamicTable th {
     background-color: #eee;
     border-right: 1px solid #ccc;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 4px;
     white-space: nowrap;

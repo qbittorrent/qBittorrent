@@ -260,7 +260,6 @@ a.propButton img {
 
 .contextMenu li img {
     height: 16px;
-    -ms-interpolation-mode: bicubic;
     margin-bottom: -4px;
     width: 16px;
 }
@@ -407,8 +406,6 @@ label.partial {
 
 fieldset.settings {
     border: solid 1px black;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
     border-radius: 8px;
     padding: 4px 4px 4px 10px;
 }
@@ -506,10 +503,6 @@ td.generalLabel {
 
 .unselectable {
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
