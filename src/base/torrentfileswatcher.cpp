@@ -504,7 +504,15 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
         if (path != watchedFolderPath)
         {
             const QString subdirPath = watchedDir.relativeFilePath(path);
-            addTorrentParams.savePath = QDir::cleanPath(QDir(addTorrentParams.savePath).filePath(subdirPath));
+            if (addTorrentParams.useAutoTMM)
+            {
+                addTorrentParams.category = addTorrentParams.category.isEmpty()
+                        ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
+            }
+            else
+            {
+                addTorrentParams.savePath = QDir::cleanPath(QDir(addTorrentParams.savePath).filePath(subdirPath));
+            }
         }
 
         if (filePath.endsWith(QLatin1String(".magnet"), Qt::CaseInsensitive))
@@ -575,7 +583,15 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                 if (exactDirPath != dir.path())
                 {
                     const QString subdirPath = dir.relativeFilePath(exactDirPath);
-                    addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
+                    if (addTorrentParams.useAutoTMM)
+                    {
+                        addTorrentParams.category = addTorrentParams.category.isEmpty()
+                                ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
+                    }
+                    else
+                    {
+                        addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
+                    }
                 }
 
                 emit torrentFound(result.value(), addTorrentParams);
