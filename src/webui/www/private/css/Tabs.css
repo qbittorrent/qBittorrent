@@ -37,7 +37,7 @@ Required by:
     background-position: left -35px;
     cursor: pointer;
     float: left;
-    margin: 0 0 5px 0;
+    margin: 0 0 5px;
 }
 
 .tab-menu li.selected {

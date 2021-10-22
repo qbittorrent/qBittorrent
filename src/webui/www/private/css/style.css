@@ -42,7 +42,7 @@ h4 {
     font-size: 12px;
     font-weight: bold;
     margin: 0;
-    padding: 0 0 5px 0;
+    padding: 0 0 5px;
 }
 
 h2 {
@@ -55,8 +55,8 @@ h2 {
     border-bottom: 1px solid #bbb;
     display: block;
     font-size: 12px;
-    margin: 0 0 8px 0;
-    padding: 6px 0 6px 0;
+    margin: 0 0 8px;
+    padding: 6px 0;
 }
 
 #error_div {
@@ -82,7 +82,7 @@ a:hover {
 
 p {
     margin: 0;
-    padding: 0 0 9px 0;
+    padding: 0 0 9px;
 }
 
 /* List Elements */
@@ -97,7 +97,7 @@ dt {
 }
 
 dd {
-    padding: 0 0 9px 0;
+    padding: 0 0 9px;
 }
 
 /* Code */
@@ -109,7 +109,7 @@ pre {
     display: block;
     font-family: "Courier New", Courier, monospace;
     font-size: 11px;
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     max-height: 250px;
     overflow: auto;
     padding: 10px;
