@@ -276,7 +276,6 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
             ? firstTorrentSeedingTime : session->globalMaxSeedingMinutes();
     m_ui->spinRatioLimit->setValue(maxRatio);
     m_ui->spinTimeLimit->setValue(maxSeedingTime);
-    handleRatioTypeChanged();
 
     if (!allTorrentsArePrivate)
     {
@@ -338,6 +337,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
 
     // Needs to be called after the initial values struct is initialized
     handleTMMChanged();
+    handleRatioTypeChanged();
 
     connect(m_ui->checkAutoTMM, &QCheckBox::clicked, this, &TorrentOptionsDialog::handleTMMChanged);
     connect(m_ui->comboCategory, &QComboBox::activated, this, &TorrentOptionsDialog::handleCategoryChanged);
@@ -514,6 +514,19 @@ void TorrentOptionsDialog::handleTMMChanged()
 
 void TorrentOptionsDialog::handleRatioTypeChanged()
 {
+    if ((m_initialValues.ratio == MIXED_SHARE_LIMITS) || (m_initialValues.seedingTime == MIXED_SHARE_LIMITS))
+    {
+        QAbstractButton *currentRadio = m_ui->buttonGroup->checkedButton();
+        if (currentRadio && (currentRadio == m_previousRadio))
+        {
+            // Hack to deselect the currently selected radio button programatically because Qt doesn't allow it in exclusive mode
+            m_ui->buttonGroup->setExclusive(false);
+            currentRadio->setChecked(false);
+            m_ui->buttonGroup->setExclusive(true);
+        }
+        m_previousRadio = m_ui->buttonGroup->checkedButton();
+    }
+
     m_ui->checkMaxRatio->setEnabled(m_ui->radioTorrentLimit->isChecked());
     m_ui->checkMaxTime->setEnabled(m_ui->radioTorrentLimit->isChecked());
 

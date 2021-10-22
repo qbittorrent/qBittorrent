@@ -34,6 +34,8 @@
 
 #include "base/settingvalue.h"
 
+class QAbstractButton;
+
 namespace BitTorrent
 {
     class Torrent;
@@ -76,6 +78,7 @@ private:
     QStringList m_categories;
     QString m_currentCategoriesString;
     bool m_allSameCategory = true;
+    QAbstractButton *m_previousRadio = nullptr;
     struct
     {
         QString savePath;
