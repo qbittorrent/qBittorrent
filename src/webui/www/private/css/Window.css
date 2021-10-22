@@ -102,7 +102,7 @@ div.mochaToolbarWrapper.bottom {
     font-size: 1px; /* For IE6 */
     height: 3px;
     -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     overflow: hidden;
     position: absolute;
     width: 3px;
@@ -214,7 +214,7 @@ div.mochaToolbarWrapper.bottom {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     left: 0;
     -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -228,7 +228,7 @@ div.mochaToolbarWrapper.bottom {
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     left: 0;
     -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     position: absolute;
     top: 0;
     width: 100%;
@@ -320,7 +320,7 @@ div.mochaToolbarWrapper.bottom {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
     filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
 }
 
 .mocha.notification .mochaContentBorder {
