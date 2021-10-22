@@ -243,7 +243,7 @@ a.propButton img {
 
 .contextMenu li a.arrow-right,
 .contextMenu li a:hover.arrow-right {
-    background-image: url(../images/arrow-right.gif);
+    background-image: url("../images/arrow-right.gif");
     background-position: right center;
     background-repeat: no-repeat;
 }
@@ -290,7 +290,7 @@ a.propButton img {
 }
 
 .sliderarea {
-    background: #f2f2f2 url(../images/slider-area.gif) repeat-x;
+    background: #f2f2f2 url("../images/slider-area.gif") repeat-x;
     border: 1px solid #a3a3a3;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
@@ -307,7 +307,7 @@ a.propButton img {
 }
 
 .sliderknob {
-    background: url(../images/knob.gif) no-repeat;
+    background: url("../images/knob.gif") no-repeat;
     cursor: pointer;
     font-size: 1px;
     height: 9px;
@@ -338,7 +338,7 @@ a.propButton img {
 }
 
 #mochaToolbar .divider {
-    background-image: url(../images/toolbox-divider.gif);
+    background-image: url("../images/toolbox-divider.gif");
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 14px;
@@ -387,7 +387,7 @@ a.propButton img {
 /* Tri-state checkbox */
 
 label.tristate {
-    background: url(../images/3-state-checkbox.gif) 0 0 no-repeat;
+    background: url("../images/3-state-checkbox.gif") 0 0 no-repeat;
     display: block;
     float: left;
     height: 13px;

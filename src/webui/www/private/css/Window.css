@@ -42,7 +42,7 @@ Required by:
 */
 
 .mochaTitlebar {
-    background: url(../images/spacer.gif?from=fafafa&to=e5e5e5);
+    background: url("../images/spacer.gif?from=fafafa&to=e5e5e5");
     overflow: hidden;
     width: 100%;
 }
@@ -178,7 +178,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaSpinner {
-    background: url(../images/spinner.gif) no-repeat;
+    background: url("../images/spinner.gif") no-repeat;
     bottom: 7px;
     display: none;
     height: 16px;
@@ -337,7 +337,7 @@ div.mochaToolbarWrapper.bottom {
 /* Example Window Themes */
 
 #about_contentWrapper {
-    background: #e5e5e5 url(../images/logo2.gif) 3px 3px no-repeat;
+    background: #e5e5e5 url("../images/logo2.gif") 3px 3px no-repeat;
 }
 
 #builder_contentWrapper {
@@ -378,7 +378,7 @@ div.mochaToolbarWrapper.bottom {
 .mochaMinimizeButton.replaced,
 .mochaMaximizeButton.replaced,
 .mochaCloseButton.replaced {
-    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) !important;
+    background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") !important;
 }
 
 /* iOS iframe scrolling */
