@@ -7,10 +7,14 @@ jobs:
     runs-on: ubuntu-20.04
 
     strategy:
-      matrix:
-        libt_version: ["v2.0.4", "v1.2.14"]
-        qbt_gui: ["GUI=ON", "GUI=OFF"]
       fail-fast: false
+      matrix:
+        libt_version: ["2.0.4", "1.2.14"]
+        qbt_gui: ["GUI=ON", "GUI=OFF"]
+        qt_version: ["5.15.2", "6.2.0"]
+        exclude:
+          - libt_version: "1.2.14"
+            qt_version: "6.2.0"
 
     steps:
       - name: Checkout repository
@@ -18,11 +22,10 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev qt515base qt515svg qt515tools zlib1g-dev
+            libboost-dev libssl-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -31,9 +34,14 @@ jobs:
           ccache_options: |
             max_size=2G
 
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: ${{ matrix.qt_version }}
+
       - name: Install libtorrent
         run: |
-          git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          git clone --branch v${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
           git submodule update --init --recursive
           cmake \
@@ -46,13 +54,31 @@ jobs:
           cmake --build build
           sudo cmake --install build
 
-      - name: Build qBittorrent
+      - name: Build qBittorrent (Qt5)
+        if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DQt5_DIR="$Qt5_DIR" \
+            -D${{ matrix.qbt_gui }} \
+            -DVERBOSE_CONFIGURE=ON \
+            --graphviz=build/target_graph.dot
+          cmake --build build
+          sudo cmake --install build
+
+      - name: Build qBittorrent (Qt6)
+        if: ${{ startsWith(matrix.qt_version, 6) }}
+        run: |
+          cmake \
+            -B build \
+            -G "Ninja" \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DQt6_DIR="$Qt6_DIR" \
+            -DQT6=ON \
             -D${{ matrix.qbt_gui }} \
             -DVERBOSE_CONFIGURE=ON \
             --graphviz=build/target_graph.dot
@@ -62,7 +88,7 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_ubuntu-20.04-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}
+          name: qBittorrent-CI_ubuntu-20.04-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: |
             build/compile_commands.json
             build/install_manifest.txt
