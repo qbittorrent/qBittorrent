@@ -364,6 +364,30 @@ void TrackerListWidget::loadTrackers()
 
     loadStickyItems(torrent);
 
+    const auto setAlignment = [](QTreeWidgetItem *item)
+    {
+        for (TrackerListColumn col : {COL_TIER, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
+            item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
+    };
+    const auto numberIf = [](const int val)
+    {
+        return (val > -1) ? QString::number(val) : tr("N/A");
+    };
+    const auto toString = [](const BitTorrent::TrackerEntry::Status status)
+    {
+        switch (status) {
+        case BitTorrent::TrackerEntry::Status::Working:
+            return tr("Working");
+        case BitTorrent::TrackerEntry::Status::Updating:
+            return tr("Updating...");
+        case BitTorrent::TrackerEntry::Status::NotWorking:
+            return tr("Not working");
+        case BitTorrent::TrackerEntry::Status::NotContacted:
+            return tr("Not contacted yet");
+        }
+        return tr("Invalid status!");
+    };
+
     // Load actual trackers information
     QStringList oldTrackerURLs = m_trackerItems.keys();
 
@@ -385,45 +409,35 @@ void TrackerListWidget::loadTrackers()
             oldTrackerURLs.removeOne(trackerURL);
         }
 
-        item->setText(COL_TIER, QString::number(entry.tier));
+        int peersMax = -1;
+        int seedsMax = -1;
+        int leechesMax = -1;
+        int downloadedMax = -1;
 
-        switch (entry.status)
+        int index = 0;
+        for (const auto &endpoint : entry.stats)
         {
-        case BitTorrent::TrackerEntry::Working:
-            item->setText(COL_STATUS, tr("Working"));
-            break;
-        case BitTorrent::TrackerEntry::Updating:
-            item->setText(COL_STATUS, tr("Updating..."));
-            break;
-        case BitTorrent::TrackerEntry::NotWorking:
-            item->setText(COL_STATUS, tr("Not working"));
-            break;
-        case BitTorrent::TrackerEntry::NotContacted:
-            item->setText(COL_STATUS, tr("Not contacted yet"));
-            break;
+            for (auto it = endpoint.cbegin(), end = endpoint.cend(); it != end; ++it)
+            {
+                int protocolVersion = it.key();
+                const BitTorrent::TrackerEntry::EndpointStats &protocolStats = it.value();
+
+                peersMax = std::max(peersMax, protocolStats.numPeers);
+                seedsMax = std::max(seedsMax, protocolStats.numSeeds);
+                leechesMax = std::max(leechesMax, protocolStats.numLeeches);
+                downloadedMax = std::max(downloadedMax, protocolStats.numDownloaded);
+            }
         }
 
+        item->setText(COL_TIER, QString::number(entry.tier));
         item->setText(COL_MSG, entry.message);
         item->setToolTip(COL_MSG, entry.message);
-        item->setText(COL_PEERS, ((entry.numPeers > -1)
-            ? QString::number(entry.numPeers)
-            : tr("N/A")));
-        item->setText(COL_SEEDS, ((entry.numSeeds > -1)
-            ? QString::number(entry.numSeeds)
-            : tr("N/A")));
-        item->setText(COL_LEECHES, ((entry.numLeeches > -1)
-            ? QString::number(entry.numLeeches)
-            : tr("N/A")));
-        item->setText(COL_TIMES_DOWNLOADED, ((entry.numDownloaded > -1)
-            ? QString::number(entry.numDownloaded)
-            : tr("N/A")));
-
-        const Qt::Alignment alignment = (Qt::AlignRight | Qt::AlignVCenter);
-        item->setTextAlignment(COL_TIER, alignment);
-        item->setTextAlignment(COL_PEERS, alignment);
-        item->setTextAlignment(COL_SEEDS, alignment);
-        item->setTextAlignment(COL_LEECHES, alignment);
-        item->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+        item->setText(COL_STATUS, toString(entry.status));
+        item->setText(COL_PEERS, numberIf(peersMax));
+        item->setText(COL_SEEDS, numberIf(seedsMax));
+        item->setText(COL_LEECHES, numberIf(leechesMax));
+        item->setText(COL_TIMES_DOWNLOADED, numberIf(downloadedMax));
+        setAlignment(item);
     }
 
     // Remove old trackers

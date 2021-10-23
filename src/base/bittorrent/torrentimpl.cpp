@@ -146,12 +146,6 @@ namespace
                     const QString errorMessage = QString::fromLocal8Bit(infoHash.last_error.message().c_str());
                     trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
-                    trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2] = trackerEndpoint;
-                    trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
-
                     if (firstTrackerMessage.isEmpty())
                         firstTrackerMessage = trackerMessage;
                     if (firstErrorMessage.isEmpty())
@@ -193,12 +187,6 @@ namespace
             const QString trackerMessage = QString::fromStdString(endpoint.message);
             const QString errorMessage = QString::fromLocal8Bit(endpoint.last_error.message().c_str());
             trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
-
-            trackerEntry.stats[endpoint.local_endpoint][1] = trackerEndpoint;
-            trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
 
             if (firstTrackerMessage.isEmpty())
                 firstTrackerMessage = trackerMessage;
