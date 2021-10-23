@@ -42,7 +42,7 @@ Required by:
 */
 
 .mochaTitlebar {
-    background: url(../images/spacer.gif?from=fafafa&to=e5e5e5);
+    background: url("../images/spacer.gif?from=fafafa&to=e5e5e5");
     overflow: hidden;
     width: 100%;
 }
@@ -97,12 +97,9 @@ div.mochaToolbarWrapper.bottom {
 
 .mocha .handle {
     background: #0f0;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     font-size: 1px; /* For IE6 */
     height: 3px;
-    -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     overflow: hidden;
     position: absolute;
     width: 3px;
@@ -178,7 +175,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mochaSpinner {
-    background: url(../images/spinner.gif) no-repeat;
+    background: url("../images/spinner.gif") no-repeat;
     bottom: 7px;
     display: none;
     height: 16px;
@@ -210,11 +207,8 @@ div.mochaToolbarWrapper.bottom {
 #modalOverlay {
     background: #000;
     display: none;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     left: 0;
-    -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     position: fixed;
     top: 0;
     width: 100%;
@@ -224,11 +218,8 @@ div.mochaToolbarWrapper.bottom {
 /* Fix for IE6 select z-index issue */
 #modalFix {
     display: none;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
     left: 0;
-    -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
     position: absolute;
     top: 0;
     width: 100%;
@@ -317,10 +308,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha.notification .mochaTitlebar {
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE8 */
-    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0); /* IE6 and 7*/
-    -moz-opacity: 0;
-    opacity: 0;
+    opacity: 0%;
 }
 
 .mocha.notification .mochaContentBorder {
@@ -337,7 +325,7 @@ div.mochaToolbarWrapper.bottom {
 /* Example Window Themes */
 
 #about_contentWrapper {
-    background: #e5e5e5 url(../images/logo2.gif) 3px 3px no-repeat;
+    background: #e5e5e5 url("../images/logo2.gif") 3px 3px no-repeat;
 }
 
 #builder_contentWrapper {
@@ -378,7 +366,7 @@ div.mochaToolbarWrapper.bottom {
 .mochaMinimizeButton.replaced,
 .mochaMaximizeButton.replaced,
 .mochaCloseButton.replaced {
-    background-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7) !important;
+    background-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7") !important;
 }
 
 /* iOS iframe scrolling */

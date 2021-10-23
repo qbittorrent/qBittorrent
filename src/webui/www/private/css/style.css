@@ -1,7 +1,5 @@
 /* Reset */
 
-/*ul,ol,dl,li,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input,object,iframe { margin: 0; padding: 0; }*/
-
 a img,
 :link img,
 :visited img {
@@ -42,7 +40,7 @@ h4 {
     font-size: 12px;
     font-weight: bold;
     margin: 0;
-    padding: 0 0 5px 0;
+    padding: 0 0 5px;
 }
 
 h2 {
@@ -55,8 +53,8 @@ h2 {
     border-bottom: 1px solid #bbb;
     display: block;
     font-size: 12px;
-    margin: 0 0 8px 0;
-    padding: 6px 0 6px 0;
+    margin: 0 0 8px;
+    padding: 6px 0;
 }
 
 #error_div {
@@ -82,7 +80,7 @@ a:hover {
 
 p {
     margin: 0;
-    padding: 0 0 9px 0;
+    padding: 0 0 9px;
 }
 
 /* List Elements */
@@ -97,7 +95,7 @@ dt {
 }
 
 dd {
-    padding: 0 0 9px 0;
+    padding: 0 0 9px;
 }
 
 /* Code */
@@ -109,7 +107,7 @@ pre {
     display: block;
     font-family: "Courier New", Courier, monospace;
     font-size: 11px;
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     max-height: 250px;
     overflow: auto;
     padding: 10px;
@@ -167,7 +165,7 @@ hr {
 }
 
 a.propButton {
-    border: 1px solid rgb(85, 81, 91);
+    border: 1px solid rgb(85 81 91);
     margin-left: 3px;
     margin-right: 3px;
     /*border-radius: 3px;*/
@@ -243,7 +241,7 @@ a.propButton img {
 
 .contextMenu li a.arrow-right,
 .contextMenu li a:hover.arrow-right {
-    background-image: url(../images/arrow-right.gif);
+    background-image: url("../images/arrow-right.gif");
     background-position: right center;
     background-repeat: no-repeat;
 }
@@ -260,7 +258,6 @@ a.propButton img {
 
 .contextMenu li img {
     height: 16px;
-    -ms-interpolation-mode: bicubic;
     margin-bottom: -4px;
     width: 16px;
 }
@@ -290,7 +287,7 @@ a.propButton img {
 }
 
 .sliderarea {
-    background: #f2f2f2 url(../images/slider-area.gif) repeat-x;
+    background: #f2f2f2 url("../images/slider-area.gif") repeat-x;
     border: 1px solid #a3a3a3;
     border-bottom: 1px solid #ccc;
     border-left: 1px solid #ccc;
@@ -307,7 +304,7 @@ a.propButton img {
 }
 
 .sliderknob {
-    background: url(../images/knob.gif) no-repeat;
+    background: url("../images/knob.gif") no-repeat;
     cursor: pointer;
     font-size: 1px;
     height: 9px;
@@ -338,7 +335,7 @@ a.propButton img {
 }
 
 #mochaToolbar .divider {
-    background-image: url(../images/toolbox-divider.gif);
+    background-image: url("../images/toolbox-divider.gif");
     background-position: left center;
     background-repeat: no-repeat;
     padding-left: 14px;
@@ -387,7 +384,7 @@ a.propButton img {
 /* Tri-state checkbox */
 
 label.tristate {
-    background: url(../images/3-state-checkbox.gif) 0 0 no-repeat;
+    background: url("../images/3-state-checkbox.gif") 0 0 no-repeat;
     display: block;
     float: left;
     height: 13px;
@@ -407,8 +404,6 @@ label.partial {
 
 fieldset.settings {
     border: solid 1px black;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
     border-radius: 8px;
     padding: 4px 4px 4px 10px;
 }
@@ -506,10 +501,6 @@ td.generalLabel {
 
 .unselectable {
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 
