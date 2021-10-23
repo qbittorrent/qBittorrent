@@ -61,16 +61,12 @@ namespace BitTorrent
 
         QString url {};
         int tier = 0;
+        Status status = NotContacted;
 
         // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
         QMap<Endpoint, QHash<int, EndpointStats>> stats {};
 
         // Deprecated fields
-        Status status = NotContacted;
-        int numPeers = -1;
-        int numSeeds = -1;
-        int numLeeches = -1;
-        int numDownloaded = -1;
         QString message {};
     };
 

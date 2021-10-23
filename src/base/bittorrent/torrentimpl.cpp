@@ -138,10 +138,6 @@ namespace
                     trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
                     trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2] = trackerEndpoint;
-                    trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-                    trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-                    trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-                    trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
 
                     if (firstTrackerMessage.isEmpty())
                         firstTrackerMessage = trackerMessage;
@@ -185,10 +181,6 @@ namespace
             trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
             trackerEntry.stats[endpoint.local_endpoint][1] = trackerEndpoint;
-            trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
-            trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
-            trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
-            trackerEntry.numDownloaded = std::max(trackerEntry.numDownloaded, trackerEndpoint.numDownloaded);
 
             if (firstTrackerMessage.isEmpty())
                 firstTrackerMessage = trackerMessage;

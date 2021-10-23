@@ -356,6 +356,37 @@ void TrackerListWidget::loadTrackers()
 
     loadStickyItems(torrent);
 
+    const auto toString = [](const BitTorrent::TrackerEntry::Status status) -> QString
+    {
+        switch (status)
+        {
+        case BitTorrent::TrackerEntry::Status::Working:
+            return tr("Working");
+        case BitTorrent::TrackerEntry::Status::Updating:
+            return tr("Updating...");
+        case BitTorrent::TrackerEntry::Status::NotWorking:
+            return tr("Not working");
+        case BitTorrent::TrackerEntry::Status::NotContacted:
+            return tr("Not contacted yet");
+        default:
+            Q_ASSERT(false);
+            return {};
+        }
+    };
+    const auto updateMinMax = [](std::pair<int, int> &minMax, int val)
+    {
+        if (val == -1)
+            return;
+        minMax.first = (minMax.first == -1) ? val : std::min(minMax.first, val);
+        minMax.second = (minMax.second == -1) ? val : std::max(minMax.second, val);
+    };
+    const auto printMinMax = [](const std::pair<int, int> &minMax)
+    {
+        if (minMax.first == minMax.second)
+            return (minMax.first > -1) ? QString::number(minMax.first) : tr("N/A");
+        return tr("%1 ~ %2").arg(minMax.first).arg(minMax.second);
+    };
+
     // Load actual trackers information
     QStringList oldTrackerURLs = m_trackerItems.keys();
 
@@ -377,45 +408,32 @@ void TrackerListWidget::loadTrackers()
             oldTrackerURLs.removeOne(trackerURL);
         }
 
-        item->setText(COL_TIER, QString::number(entry.tier));
+        std::pair<int, int> peersMinMax = {-1, -1};
+        std::pair<int, int> seedsMinMax = {-1, -1};
+        std::pair<int, int> leechesMinMax = {-1, -1};
+        std::pair<int, int> downloadedMinMax = {-1, -1};
 
-        switch (entry.status)
+        for (const auto &endpoint : entry.stats)
         {
-        case BitTorrent::TrackerEntry::Working:
-            item->setText(COL_STATUS, tr("Working"));
-            break;
-        case BitTorrent::TrackerEntry::Updating:
-            item->setText(COL_STATUS, tr("Updating..."));
-            break;
-        case BitTorrent::TrackerEntry::NotWorking:
-            item->setText(COL_STATUS, tr("Not working"));
-            break;
-        case BitTorrent::TrackerEntry::NotContacted:
-            item->setText(COL_STATUS, tr("Not contacted yet"));
-            break;
+            for (const auto &protocolStats : endpoint)
+            {
+                updateMinMax(peersMinMax, protocolStats.numPeers);
+                updateMinMax(seedsMinMax, protocolStats.numSeeds);
+                updateMinMax(leechesMinMax, protocolStats.numLeeches);
+                updateMinMax(downloadedMinMax, protocolStats.numDownloaded);
+            }
         }
 
+        item->setText(COL_TIER, QString::number(entry.tier));
         item->setText(COL_MSG, entry.message);
         item->setToolTip(COL_MSG, entry.message);
-        item->setText(COL_PEERS, ((entry.numPeers > -1)
-            ? QString::number(entry.numPeers)
-            : tr("N/A")));
-        item->setText(COL_SEEDS, ((entry.numSeeds > -1)
-            ? QString::number(entry.numSeeds)
-            : tr("N/A")));
-        item->setText(COL_LEECHES, ((entry.numLeeches > -1)
-            ? QString::number(entry.numLeeches)
-            : tr("N/A")));
-        item->setText(COL_TIMES_DOWNLOADED, ((entry.numDownloaded > -1)
-            ? QString::number(entry.numDownloaded)
-            : tr("N/A")));
-
-        const Qt::Alignment alignment = (Qt::AlignRight | Qt::AlignVCenter);
-        item->setTextAlignment(COL_TIER, alignment);
-        item->setTextAlignment(COL_PEERS, alignment);
-        item->setTextAlignment(COL_SEEDS, alignment);
-        item->setTextAlignment(COL_LEECHES, alignment);
-        item->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+        item->setText(COL_STATUS, toString(entry.status));
+        item->setText(COL_PEERS, printMinMax(peersMinMax));
+        item->setText(COL_SEEDS, printMinMax(seedsMinMax));
+        item->setText(COL_LEECHES, printMinMax(leechesMinMax));
+        item->setText(COL_TIMES_DOWNLOADED, printMinMax(downloadedMinMax));
+        for (TrackerListColumn col : {COL_TIER, COL_PEERS, COL_SEEDS, COL_LEECHES, COL_TIMES_DOWNLOADED})
+            item->setTextAlignment(col, (Qt::AlignRight | Qt::AlignVCenter));
     }
 
     // Remove old trackers

@@ -474,16 +474,31 @@ void TorrentsController::trackersAction()
 
     for (const BitTorrent::TrackerEntry &tracker : asConst(torrent->trackers()))
     {
+        int numPeers = -1;
+        int numSeeds = -1;
+        int numLeeches = -1;
+        int numDownloaded = -1;
+        for (const auto &endpoint : tracker.stats)
+        {
+            for (const auto &protocolStats : endpoint)
+            {
+                numPeers = std::max(numPeers, protocolStats.numPeers);
+                numSeeds = std::max(numSeeds, protocolStats.numSeeds);
+                numLeeches = std::max(numLeeches, protocolStats.numLeeches);
+                numDownloaded = std::max(numDownloaded, protocolStats.numDownloaded);
+            }
+        }
+
         trackerList << QJsonObject
         {
             {KEY_TRACKER_URL, tracker.url},
             {KEY_TRACKER_TIER, tracker.tier},
             {KEY_TRACKER_STATUS, static_cast<int>(tracker.status)},
             {KEY_TRACKER_MSG, tracker.message},
-            {KEY_TRACKER_PEERS_COUNT, tracker.numPeers},
-            {KEY_TRACKER_SEEDS_COUNT, tracker.numSeeds},
-            {KEY_TRACKER_LEECHES_COUNT, tracker.numLeeches},
-            {KEY_TRACKER_DOWNLOADED_COUNT, tracker.numDownloaded}
+            {KEY_TRACKER_PEERS_COUNT, numPeers},
+            {KEY_TRACKER_SEEDS_COUNT, numSeeds},
+            {KEY_TRACKER_LEECHES_COUNT, numLeeches},
+            {KEY_TRACKER_DOWNLOADED_COUNT, numDownloaded}
         };
     }
 
