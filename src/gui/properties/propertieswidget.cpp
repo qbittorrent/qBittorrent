@@ -524,8 +524,8 @@ void PropertiesWidget::loadDynamicData()
             m_ui->filesList->setUpdatesEnabled(false);
 
             // Load torrent content if not yet done so
-            const bool isContentInitialized = !m_propListModel->model()->hasIndex(0, 0);
-            if (isContentInitialized)
+            const bool isContentInitialized = m_propListModel->model()->hasIndex(0, 0);
+            if (!isContentInitialized)
             {
                 // List files in torrent
                 m_propListModel->model()->setupModelData(m_torrent->info());
@@ -539,7 +539,7 @@ void PropertiesWidget::loadDynamicData()
             m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
             m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
 
-            if (isContentInitialized)
+            if (!isContentInitialized)
             {
                 // Expand single-item folders recursively.
                 // This will trigger sorting and filtering so do it after all relevant data is loaded.
