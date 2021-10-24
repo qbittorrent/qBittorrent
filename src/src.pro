@@ -4,12 +4,12 @@ CONFIG += qt thread silent
 
 # Platform specific configuration
 win32: include(../winconf.pri)
-macx: include(../macxconf.pri)
-unix:!macx: include(../unixconf.pri)
+macos: include(../macxconf.pri)
+unix: include(../unixconf.pri)
 
 QT += network sql xml
 
-macx|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
+macos|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
 
 nogui {
     TARGET = qbittorrent-nox
@@ -26,7 +26,7 @@ nogui {
     win32: lessThan(QT_MAJOR_VERSION, 6) {
         QT += winextras
     }
-    macx {
+    macos {
         LIBS += -lobjc
     }
 }

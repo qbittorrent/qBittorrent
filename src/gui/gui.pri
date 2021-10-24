@@ -162,12 +162,12 @@ SOURCES += \
     $$PWD/watchedfolderoptionsdialog.cpp \
     $$PWD/watchedfoldersmodel.cpp
 
-win32|macx {
+win32|macos {
     HEADERS += $$PWD/programupdater.h
     SOURCES += $$PWD/programupdater.cpp
 }
 
-unix:!macx:dbus {
+unix:dbus {
     HEADERS += \
         $$PWD/powermanagement/powermanagement_x11.h \
         $$PWD/qtnotify/notifications.h
@@ -177,7 +177,7 @@ unix:!macx:dbus {
         $$PWD/qtnotify/notifications.cpp
 }
 
-macx {
+macos {
     HEADERS += $$PWD/macutilities.h
     OBJECTIVE_SOURCES += $$PWD/macutilities.mm
 }
