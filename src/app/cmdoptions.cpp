@@ -383,11 +383,9 @@ QStringList QBtCommandLineParameters::paramList() const
     if (!category.isEmpty())
         result.append(QLatin1String("@category=") + category);
 
-    if (sequential)
-        result.append(QLatin1String("@sequential"));
+    result.append(QLatin1String("@sequential"));
 
-    if (firstLastPiecePriority)
-        result.append(QLatin1String("@firstLastPiecePriority"));
+    result.append(QLatin1String("@firstLastPiecePriority"));
 
     if (skipDialog.has_value())
         result.append(*skipDialog ? QLatin1String {"@skipDialog=1"} : QLatin1String {"@skipDialog=0"});

@@ -579,17 +579,9 @@ void Application::processParams(const QStringList &params)
             continue;
         }
 
-        if (param == QLatin1String("@sequential"))
-        {
-            torrentParams.sequential = true;
-            continue;
-        }
+        torrentParams.sequential = true;
 
-        if (param == QLatin1String("@firstLastPiecePriority"))
-        {
-            torrentParams.firstLastPiecePriority = true;
-            continue;
-        }
+        torrentParams.firstLastPiecePriority = true;
 
         if (param.startsWith(QLatin1String("@skipDialog=")))
         {
