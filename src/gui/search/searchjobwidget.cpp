@@ -211,11 +211,11 @@ void SearchJobWidget::cancelSearch()
     m_searchHandler->cancelSearch();
 }
 
-void SearchJobWidget::downloadTorrents()
+void SearchJobWidget::downloadTorrents(ShowAddNewTorrentDialog showDialog)
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
     for (const QModelIndex &rowIndex : rows)
-        downloadTorrent(rowIndex);
+        downloadTorrent(rowIndex, showDialog);
 }
 
 void SearchJobWidget::openTorrentPages() const
@@ -271,7 +271,7 @@ void SearchJobWidget::setStatus(Status value)
     emit statusChanged();
 }
 
-void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
+void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, ShowAddNewTorrentDialog showDialog)
 {
     const QString torrentUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
@@ -280,22 +280,23 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex)
 
     if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive))
     {
-        addTorrentToSession(torrentUrl);
+        addTorrentToSession(torrentUrl, showDialog);
     }
     else
     {
         SearchDownloadHandler *downloadHandler = m_searchHandler->manager()->downloadTorrent(siteUrl, torrentUrl);
-        connect(downloadHandler, &SearchDownloadHandler::downloadFinished, this, &SearchJobWidget::addTorrentToSession);
+        connect(downloadHandler, &SearchDownloadHandler::downloadFinished
+            , this, [this, showDialog](const QString &source) { addTorrentToSession(source, showDialog); });
         connect(downloadHandler, &SearchDownloadHandler::downloadFinished, downloadHandler, &SearchDownloadHandler::deleteLater);
     }
     setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
 }
 
-void SearchJobWidget::addTorrentToSession(const QString &source)
+void SearchJobWidget::addTorrentToSession(const QString &source, ShowAddNewTorrentDialog showDialog)
 {
     if (source.isEmpty()) return;
 
-    if (AddNewTorrentDialog::isEnabled())
+    if (showDialog == ShowAddNewTorrentDialog::Yes || (showDialog == ShowAddNewTorrentDialog::FromSettings && AddNewTorrentDialog::isEnabled()))
         AddNewTorrentDialog::show(source, this);
     else
         BitTorrent::Session::instance()->addTorrent(source);
@@ -394,8 +395,10 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Download")
-        , this, &SearchJobWidget::downloadTorrents);
+    menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Open download window")
+        , this, [this]() { downloadTorrents(ShowAddNewTorrentDialog::Yes); });
+    menu->addAction(UIThemeManager::instance()->getIcon("downloading"), tr("Start downloading")
+        , this, [this]() { downloadTorrents(ShowAddNewTorrentDialog::No); });
     menu->addSeparator();
     menu->addAction(UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);

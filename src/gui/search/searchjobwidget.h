@@ -89,6 +89,12 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
+    enum class ShowAddNewTorrentDialog {
+        No,
+        Yes,
+        FromSettings,
+    };
+
     void loadSettings();
     void saveSettings() const;
     void updateFilter();
@@ -102,14 +108,14 @@ private:
     void appendSearchResults(const QVector<SearchResult> &results);
     void updateResultsCount();
     void setStatus(Status value);
-    void downloadTorrent(const QModelIndex &rowIndex);
-    void addTorrentToSession(const QString &source);
+    void downloadTorrent(const QModelIndex &rowIndex, ShowAddNewTorrentDialog showDialog = ShowAddNewTorrentDialog::FromSettings);
+    void addTorrentToSession(const QString &source, ShowAddNewTorrentDialog showDialog = ShowAddNewTorrentDialog::FromSettings);
     void fillFilterComboBoxes();
     NameFilteringMode filteringMode() const;
     QHeaderView *header() const;
     void setRowColor(int row, const QColor &color);
 
-    void downloadTorrents();
+    void downloadTorrents(ShowAddNewTorrentDialog showDialog = ShowAddNewTorrentDialog::FromSettings);
     void openTorrentPages() const;
     void copyTorrentURLs() const;
     void copyTorrentDownloadLinks() const;
