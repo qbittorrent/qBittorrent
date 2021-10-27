@@ -530,17 +530,11 @@ void PropertiesWidget::loadDynamicData()
                 // List files in torrent
                 m_propListModel->model()->setupModelData(m_torrent->info());
                 // Load file priorities
-                // XXX: We don't update file priorities regularly for performance
-                // reasons. This means that priorities will not be updated if
-                // set from the Web UI.
                 m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
-            }
+                // Update file progress/availability
+                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
 
-            m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-            m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
-
-            if (!isContentInitialized)
-            {
                 // Expand single-item folders recursively.
                 // This will trigger sorting and filtering so do it after all relevant data is loaded.
                 QModelIndex currentIndex;
@@ -549,6 +543,15 @@ void PropertiesWidget::loadDynamicData()
                     currentIndex = m_propListModel->index(0, 0, currentIndex);
                     m_ui->filesList->setExpanded(currentIndex, true);
                 }
+            } else {
+                // Torrent content was loaded already, only make some updates
+
+                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+                // XXX: We don't update file priorities regularly for performance
+                // reasons. This means that priorities will not be updated if
+                // set from the Web UI.
+                // m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
             }
 
             m_ui->filesList->setUpdatesEnabled(true);
