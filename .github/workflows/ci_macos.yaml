@@ -11,10 +11,10 @@ jobs:
       matrix:
         libt_version: ["2.0.4", "1.2.14"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.2.0"]
+        qt_version: ["5.15.2", "6.2.1"]
         exclude:
           - libt_version: "1.2.14"
-            qt_version: "6.2.0"
+            qt_version: "6.2.1"
 
     env:
       openssl_root: /usr/local/opt/openssl@1.1
