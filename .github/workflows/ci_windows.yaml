@@ -29,11 +29,10 @@ jobs:
       # use the preinstalled vcpkg from image
       # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md#package-management
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v7
+        uses: lukka/run-vcpkg@v10
         with:
           vcpkgDirectory: C:/vcpkg
           doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
-          setupOnly: true
 
       # tell vcpkg to only build Release variants of the dependencies
       - name: Configure vcpkg triplet overlay
