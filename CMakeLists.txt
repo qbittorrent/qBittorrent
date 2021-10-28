@@ -13,7 +13,7 @@ set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
 # version requirements - older versions may work, but you are on your own
 set(minBoostVersion 1.65)
 set(minQt5Version 5.15.2)
-set(minQt6Version 6.2)
+set(minQt6Version 6.2.1)
 set(minOpenSSLVersion 1.1.1)
 set(minLibtorrent1Version 1.2.14)
 set(minLibtorrentVersion 2.0.4)
