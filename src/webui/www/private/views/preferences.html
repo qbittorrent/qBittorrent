@@ -843,8 +843,8 @@
                 <label for="webUIReverseProxySupportCheckbox">QBT_TR(Enable reverse proxy support)QBT_TR[CONTEXT=OptionsDialog]</label>
             </legend>
             <div class="formRow">
+                <label for="webUIReverseProxiesListTextarea">QBT_TR(Trusted proxies list:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 <input type="text" id="webUIReverseProxiesListTextarea" />
-                <label for="webUIReverseProxiesListTextarea" class="leftLabelLarge">QBT_TR(Trusted proxies list:)QBT_TR[CONTEXT=OptionsDialog]</label>
             </div>
         </fieldset>
 
@@ -1904,8 +1904,8 @@
                         updateWebUICustomHTTPHeadersSettings();
 
                         // Reverse Proxy
-                        $('webUIReverseProxySupportCheckbox').setProperty('checked', pref.web_ui_reverse_proxy_support_enabled);
-                        $('webUIReverseProxiesListTextarea').setProperty('value', pref.web_ui_trusted_reverse_proxies_list);
+                        $('webUIReverseProxySupportCheckbox').setProperty('checked', pref.web_ui_reverse_proxy_enabled);
+                        $('webUIReverseProxiesListTextarea').setProperty('value', pref.web_ui_reverse_proxies_list);
                         updateWebUIReverseProxySettings();
 
                         // Update my dynamic domain name
@@ -2300,8 +2300,8 @@
             settings.set('web_ui_custom_http_headers', $('webUICustomHTTPHeadersTextarea').getProperty('value'));
 
             // Reverse Proxy
-            settings.set('web_ui_reverse_proxy_support_enabled', $('webUIReverseProxySupportCheckbox').getProperty('checked'));
-            settings.set('web_ui_trusted_reverse_proxies_list', $('webUIReverseProxiesListTextarea').getProperty('value'));
+            settings.set('web_ui_reverse_proxy_enabled', $('webUIReverseProxySupportCheckbox').getProperty('checked'));
+            settings.set('web_ui_reverse_proxies_list', $('webUIReverseProxiesListTextarea').getProperty('value'));
 
             // Update my dynamic domain name
             settings.set('dyndns_enabled', $('use_dyndns_checkbox').getProperty('checked'));
