@@ -1804,8 +1804,6 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
         m_ltAddTorrentParams = params;
     }
 
-    m_ltAddTorrentParams.added_time = addedTime().toSecsSinceEpoch();
-
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
     m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
 
