@@ -9,6 +9,8 @@ else {
 
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.14
 
+DEFINES += _DARWIN_FEATURE_64_BIT_INODE
+
 LIBS += -framework Carbon -framework IOKit -framework AppKit
 
 QT_LANG_PATH = ../dist/qt-translations
