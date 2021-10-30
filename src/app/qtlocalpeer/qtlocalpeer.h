@@ -68,21 +68,23 @@
 
 #pragma once
 
+#include <QString>
+
 #include "qtlockedfile.h"
 
 class QLocalServer;
 
-class QtLocalPeer : public QObject
+class QtLocalPeer final : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(QtLocalPeer)
 
 public:
-    QtLocalPeer(QObject *parent = nullptr, const QString &appId = QString());
+    QtLocalPeer(const QString &path, QObject *parent = nullptr);
     ~QtLocalPeer() override;
 
     bool isClient();
     bool sendMessage(const QString &message, int timeout);
-    QString applicationId() const;
 
 signals:
     void messageReceived(const QString &message);
