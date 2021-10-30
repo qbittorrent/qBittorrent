@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="es" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Crear subcarpeta</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>No crear subcarpeta</translation>
     </message>
 </context>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Original authors</source>
-        <translation>Autores originales</translation>
+        <translation type="vanished">Autores originales</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -364,6 +366,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>El puerto usado para conexiones entrantes debe estar comprendido entre 0 y 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +961,8 @@
         <translation>%T: Tracker actual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Consejo: Encapsula el parámetro con comillas para evitar que el texto sea cortado en un espacio (ej: "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1184,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>Dirección IP para reportar a rastreadores (requiere reinicio):</translation>
+        <translation type="vanished">Dirección IP para reportar a rastreadores (requiere reinicio):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1431,7 +1437,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>No crear subcarpetas</translation>
     </message>
     <message>
@@ -1469,6 +1475,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: Informacion hash v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1765,6 +1783,10 @@
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2735,7 +2757,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Resultados (mostrando</translation>
+        <translation type="vanished">Resultados (mostrando</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2769,6 +2791,14 @@
         <source>to</source>
         <translation>a</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2827,7 @@
         <translation>Habilitado</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advertencia: Asegúrese de cumplir con las leyes de copyright de su país cuando descarga torrents de estos motores de búsqueda. </translation>
     </message>
     <message>
@@ -2996,7 +3026,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Autor</translation>
+        <translation type="vanished">Autor</translation>
     </message>
     <message>
         <source>Software Used</source>
@@ -3005,6 +3035,14 @@
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>La base de datos gratuita IP to Country Lite de DB-IP se usa para resolver los pares de países. La base de datos está licenciada bajo Creative Commons Attribution 4.0 International License</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>France</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3400,7 +3438,7 @@ Admite los formatos: S01E01, 1x1, 2017.12.31 y 31.12.2017 (los formatos de fecha
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>No crear subcarpeta</translation>
     </message>
 </context>

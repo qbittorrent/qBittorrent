@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="vi" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="vi" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Tạo thư mục con</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Không tạo thư mục con</translation>
     </message>
 </context>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Original authors</source>
-        <translation>Tác giả gốc</translation>
+        <translation type="vanished">Tác giả gốc</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -204,7 +206,7 @@
     </message>
     <message>
         <source>Cookie:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>More information</source>
@@ -364,6 +366,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>Cổng được dùng cho các kết nối đến phải nằm trong khoảng từ 0 đến 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -571,7 +577,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -594,11 +600,11 @@
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Language</source>
@@ -754,15 +760,15 @@
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Host:</source>
@@ -840,7 +846,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -896,7 +902,7 @@
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -955,8 +961,8 @@
         <translation>%T: Máy theo dõi hiện tại</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Mẹo: Bao bọc tham số bằng ngoặc kép để tránh văn bản bị cắt tại khoảng trắng (v.d., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Mẹo: Bao bọc tham số bằng ngoặc kép để tránh văn bản bị cắt tại khoảng trắng (v.d., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1112,7 +1118,7 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished"/>
+        <translation>Ưu tiên TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
@@ -1120,7 +1126,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable OS cache:</source>
@@ -1172,7 +1178,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1184,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>Địa chỉ IP để báo cáo cho trình theo dõi (yêu cầu khởi động lại):</translation>
+        <translation type="vanished">Địa chỉ IP để báo cáo cho trình theo dõi (yêu cầu khởi động lại):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1216,11 +1222,11 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1248,11 +1254,11 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1260,7 +1266,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1340,7 +1346,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Network interface:</source>
@@ -1364,7 +1370,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1380,7 +1386,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
@@ -1431,7 +1437,7 @@
         <translation>Gốc</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Không tạo thư mục con</translation>
     </message>
     <message>
@@ -1448,7 +1454,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1469,6 +1475,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: Băm thông tin v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1616,7 +1634,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1680,7 +1698,7 @@
     </message>
     <message>
         <source>Pieces:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Created By:</source>
@@ -1764,7 +1782,11 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2179,7 +2201,7 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation>Không</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2207,7 +2229,7 @@
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Remove tracker</source>
@@ -2534,7 +2556,7 @@
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2627,12 +2649,12 @@
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>/s</source>
@@ -2666,7 +2688,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2735,7 +2757,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Kết quả (đang hiển thị</translation>
+        <translation type="vanished">Kết quả (đang hiển thị</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2751,7 +2773,7 @@
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Everywhere</source>
@@ -2768,6 +2790,14 @@
     <message>
         <source>to</source>
         <translation>đến</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2797,7 +2827,7 @@
         <translation>Đã bật</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Cảnh báo: Đảm bảo tuân thủ luật bản quyền của quốc gia bạn khi tải xuống torrent từ bất kỳ công cụ tìm kiếm nào trong số này.</translation>
     </message>
     <message>
@@ -2821,7 +2851,7 @@
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Search engine</source>
@@ -2840,7 +2870,7 @@
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enabled</source>
@@ -2948,7 +2978,7 @@
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Current maintainer</source>
@@ -2996,7 +3026,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Tác giả</translation>
+        <translation type="vanished">Tác giả</translation>
     </message>
     <message>
         <source>Software Used</source>
@@ -3005,6 +3035,14 @@
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>Cơ sở dữ liệu IP đến Country Lite miễn phí của DB-IP được sử dụng để giải quyết các quốc gia ngang hàng. Cơ sở dữ liệu được cấp phép theo Giấy phép Quốc tế Ghi Công Sáng Tạo Công Cộng 4.0</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>France</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3400,7 +3438,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
         <translation>Gốc</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Không tạo thư mục con</translation>
     </message>
 </context>
