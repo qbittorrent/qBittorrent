@@ -543,7 +543,9 @@ void PropertiesWidget::loadDynamicData()
                     currentIndex = m_propListModel->index(0, 0, currentIndex);
                     m_ui->filesList->setExpanded(currentIndex, true);
                 }
-            } else {
+            }
+            else
+            {
                 // Torrent content was loaded already, only make some updates
 
                 m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
