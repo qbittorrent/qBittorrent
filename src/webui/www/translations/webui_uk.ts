@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="uk" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -30,14 +32,14 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Create subfolder</source>
         <translation>Створити підтеку</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не створювати підтеку</translation>
     </message>
 </context>
@@ -127,15 +129,15 @@
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з&apos;єднань повинна бути більша 0 або відсутня.</translation>
+        <translation>Максимальна кількість з'єднань повинна бути більша 0 або відсутня.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з&apos;єднань на торрент повинна бути більша 0 або відсутня.</translation>
+        <translation>Максимальна кількість з'єднань на торрент повинна бути більша 0 або відсутня.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальна кількість з&apos;єднань для відвантаження на торрент повинна бути більша 0 або відсутня.</translation>
+        <translation>Максимальна кількість з'єднань для відвантаження на торрент повинна бути більша 0 або відсутня.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -171,7 +173,7 @@
     </message>
     <message>
         <source>Username</source>
-        <translation>Ім&apos;я користувача</translation>
+        <translation>Ім'я користувача</translation>
     </message>
     <message>
         <source>Password</source>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Original authors</source>
-        <translation>Оригінальні автори</translation>
+        <translation type="vanished">Оригінальні автори</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -253,7 +255,7 @@
     <message>
         <source>Friday</source>
         <comment>Schedule the use of alternative rate limits on ...</comment>
-        <translation>П&apos;ятниця</translation>
+        <translation>П'ятниця</translation>
     </message>
     <message>
         <source>Saturday</source>
@@ -363,7 +365,11 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -535,11 +541,11 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>Стан з&apos;єднання: закрито брандмауером</translation>
+        <translation>Стан з'єднання: закрито брандмауером</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation>Стан з&apos;єднання: підключено</translation>
+        <translation>Стан з'єднання: підключено</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -551,7 +557,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation>Статус з&apos;єднання</translation>
+        <translation>Статус з'єднання</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -563,7 +569,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>Стан з&apos;єднання: від&apos;єднано</translation>
+        <translation>Стан з'єднання: від'єднано</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -586,7 +592,7 @@
     </message>
     <message>
         <source>Connection</source>
-        <translation>З&apos;єднання</translation>
+        <translation>З'єднання</translation>
     </message>
     <message>
         <source>Speed</source>
@@ -650,7 +656,7 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation>Пропустити автентифікацію для клієнтів на цьому ж комп&apos;ютері</translation>
+        <translation>Пропустити автентифікацію для клієнтів на цьому ж комп'ютері</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
@@ -690,7 +696,7 @@
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
-        <translation>Цей сервер вимагає безпечного з&apos;єднання (SSL)</translation>
+        <translation>Цей сервер вимагає безпечного з'єднання (SSL)</translation>
     </message>
     <message>
         <source>Authentication</source>
@@ -698,7 +704,7 @@
     </message>
     <message>
         <source>Username:</source>
-        <translation>Ім&apos;я користувача:</translation>
+        <translation>Ім'я користувача:</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -710,11 +716,11 @@
     </message>
     <message>
         <source>Listening Port</source>
-        <translation>Порт для вхідних з&apos;єднань</translation>
+        <translation>Порт для вхідних з'єднань</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation>Порт, який використовуватиметься для вхідних з&apos;єднань:</translation>
+        <translation>Порт, який використовуватиметься для вхідних з'єднань:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
@@ -722,23 +728,23 @@
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation>Обмеження з&apos;єднань</translation>
+        <translation>Обмеження з'єднань</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максимальна кількість з&apos;єднань на торрент:</translation>
+        <translation>Максимальна кількість з'єднань на торрент:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Максимальна кількість з&apos;єднань:</translation>
+        <translation>Максимальна кількість з'єднань:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Макс. з&apos;єднань для відвантаження на торрент:</translation>
+        <translation>Макс. з'єднань для відвантаження на торрент:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Максимальна кількість з&apos;єднань для відвантаження:</translation>
+        <translation>Максимальна кількість з'єднань для відвантаження:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -774,7 +780,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Використовувати проксі для з&apos;єднання з пірами</translation>
+        <translation>Використовувати проксі для з'єднання з пірами</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -955,12 +961,12 @@
         <translation>%T: Поточний трекер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Порада: Обгорніть параметр лапками, щоб уникнути розділення тексту пробілами (наприклад, &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Порада: Обгорніть параметр лапками, щоб уникнути розділення тексту пробілами (наприклад, "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation>Ім&apos;я користувача веб-інтерфейсу повинне містити хоча б 3 символи.</translation>
+        <translation>Ім'я користувача веб-інтерфейсу повинне містити хоча б 3 символи.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
@@ -1116,7 +1122,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>Накладна пам&apos;ять при перевірці торрентів:</translation>
+        <translation>Накладна пам'ять при перевірці торрентів:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1136,7 +1142,7 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation>Дозволити декілька з&apos;єднань з однієї IP-адреси:</translation>
+        <translation>Дозволити декілька з'єднань з однієї IP-адреси:</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1184,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>IP для повідомлення трекерам (потрібно перезапуск):</translation>
+        <translation type="vanished">IP для повідомлення трекерам (потрібно перезапуск):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1324,15 +1330,15 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Об&apos;єднувати операції читання і запису (потребує libtorrent &lt; 2.0):</translation>
+        <translation>Об'єднувати операції читання і запису (потребує libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1364,7 +1370,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1372,7 +1378,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source> min</source>
@@ -1380,15 +1386,15 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation>Обрана IP-адреса для прив&apos;язки:</translation>
+        <translation>Обрана IP-адреса для прив'язки:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1400,23 +1406,23 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1428,31 +1434,31 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не створювати підтеку</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1460,15 +1466,27 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1487,7 +1505,7 @@
     </message>
     <message>
         <source>Connection</source>
-        <translation>З&apos;єднання</translation>
+        <translation>З'єднання</translation>
     </message>
     <message>
         <source>Client</source>
@@ -1652,7 +1670,7 @@
     </message>
     <message>
         <source>Connections:</source>
-        <translation>З&apos;єднання:</translation>
+        <translation>З'єднання:</translation>
     </message>
     <message>
         <source>Information</source>
@@ -1752,19 +1770,23 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1787,7 +1809,7 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Type folder here</source>
@@ -1825,7 +1847,7 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>Під&apos;єднані піри:</translation>
+        <translation>Під'єднані піри:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -1976,11 +1998,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2175,7 +2197,7 @@
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation>Ще не зв&apos;язувався</translation>
+        <translation>Ще не зв'язувався</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2322,11 +2344,11 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2526,15 +2548,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2735,7 +2757,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Результати (показано</translation>
+        <translation type="vanished">Результати (показано</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2769,6 +2791,14 @@
         <source>to</source>
         <translation>до</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,8 +2827,8 @@
         <translation>Увімкнено</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Попередження: Під час завантаження торрентів з будь-якої з цих пошукових систем, обов&apos;язково дотримуйтесь законів про захист авторських прав у вашій країні.</translation>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <translation>Попередження: Під час завантаження торрентів з будь-якої з цих пошукових систем, обов'язково дотримуйтесь законів про захист авторських прав у вашій країні.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2996,7 +3026,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Автор</translation>
+        <translation type="vanished">Автор</translation>
     </message>
     <message>
         <source>Software Used</source>
@@ -3005,6 +3035,14 @@
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>Для визначення країн пірів використовується відкрита база даних DB-IP, яка ліцензується відповідно до Creative Commons Attribution 4.0 International</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>France</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3136,7 +3174,7 @@
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
@@ -3183,7 +3221,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3219,11 +3257,11 @@
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| використовується як оператор &quot;або&quot;</translation>
+        <translation>| використовується як оператор "або"</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3231,7 +3269,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>Пробіли вважаються операторами &quot;і&quot; (всі слова, у будь-якому порядку)</translation>
+        <translation>Пробіли вважаються операторами "і" (всі слова, у будь-якому порядку)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3299,7 +3337,7 @@
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation>Номер серії — обов&apos;язкове додатне значення</translation>
+        <translation>Номер серії — обов'язкове додатне значення</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3323,7 +3361,7 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Номер сезону — обов&apos;язкове ненульове значення</translation>
+        <translation>Номер сезону — обов'язкове ненульове значення</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3400,7 +3438,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Оригінал</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не створювати підтеку</translation>
     </message>
 </context>
