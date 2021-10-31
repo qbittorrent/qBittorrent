@@ -89,7 +89,8 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
-    enum class ShowAddNewTorrentDialog {
+    enum class ShowAddNewTorrentDialog
+    {
         No,
         Yes,
         FromSettings,
