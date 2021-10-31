@@ -1,4 +1,4 @@
-flag-icon-css - https://github.com/lipis/flag-icon-css
+flag-icons - https://github.com/lipis/flag-icons
 
 The MIT License (MIT)
 
