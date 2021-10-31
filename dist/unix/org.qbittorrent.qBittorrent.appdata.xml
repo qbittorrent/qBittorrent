@@ -74,6 +74,6 @@
   <url type="translate">https://github.com/qbittorrent/qBittorrent/wiki/How-to-translate-qBittorrent</url>
   <content_rating type="oars-1.1"/>
   <releases>
-    <release version="4.3.8" date="2021-08-29"/>
+    <release version="4.3.9" date="2021-10-31"/>
   </releases>
 </component>
