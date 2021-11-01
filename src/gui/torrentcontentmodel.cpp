@@ -310,15 +310,15 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
         {
         case TorrentContentModelItem::COL_NAME:
             item->setName(value.toString());
-            break;
+            emit dataChanged(index, index);
+            return true;
         case TorrentContentModelItem::COL_PRIO:
             item->setPriority(static_cast<BitTorrent::DownloadPriority>(value.toInt()));
-            break;
+            emit dataChanged(this->index(0, 0), this->index(rowCount() - 1, columnCount() - 1));
+            return true;
         default:
             return false;
         }
-        emit dataChanged(index, index);
-        return true;
     }
 
     return false;

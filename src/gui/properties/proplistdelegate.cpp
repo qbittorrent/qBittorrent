@@ -87,6 +87,13 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     editor->addItem(tr("Normal", "Normal (priority)"));
     editor->addItem(tr("High", "High (priority)"));
     editor->addItem(tr("Maximum", "Maximum (priority)"));
+
+    // Apply newly selected priority right away, don't wait until editor is closed.
+    connect(editor, qOverload<int>(&QComboBox::activated), this, [this, editor]()
+    {
+        emit const_cast<PropListDelegate* >(this)->commitData(editor);
+    });
+
     return editor;
 }
 
