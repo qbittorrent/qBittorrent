@@ -347,15 +347,9 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         file += '/';
     file += '.';
 
-#if defined(Q_OS_MACOS)
-    struct statfs64 buf {};
-    if (statfs64(file.toLocal8Bit().constData(), &buf) != 0)
-        return false;
-#else
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
-#endif
 
 #if defined(Q_OS_OPENBSD)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
