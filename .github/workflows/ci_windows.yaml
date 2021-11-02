@@ -7,9 +7,9 @@ jobs:
     runs-on: windows-latest
 
     strategy:
-      matrix:
-        libt_version: ["v2.0.4", "v1.2.14"]
       fail-fast: false
+      matrix:
+        libt_version: ["2.0.4", "1.2.14"]
 
     env:
       boost_path: "${{ github.workspace }}/boost"
@@ -78,13 +78,14 @@ jobs:
 
       - name: Install libtorrent
         run: |
-          git clone --branch ${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          git clone --branch v${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
           cd libtorrent
           git submodule update --init --recursive
           cmake `
             -B build `
             -G "Ninja" `
             -DCMAKE_BUILD_TYPE=RelWithDebInfo `
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON `
             -DCMAKE_INSTALL_PREFIX="${{ env.libtorrent_path }}" `
             -DCMAKE_TOOLCHAIN_FILE="${{ env.RUNVCPKG_VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake" `
             -DBOOST_ROOT="${{ env.boost_path }}" `
@@ -120,6 +121,8 @@ jobs:
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
           copy build/target_graph.dot upload/cmake
+          mkdir upload/cmake/libtorrent
+          copy libtorrent/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2

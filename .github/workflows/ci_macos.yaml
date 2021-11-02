@@ -50,6 +50,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_CXX_STANDARD=17 \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -Ddeprecated-functions=OFF \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
           cmake --build build
@@ -62,6 +63,7 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQt5_DIR="$Qt5_DIR" \
             -DVERBOSE_CONFIGURE=ON \
@@ -75,6 +77,7 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \
             -DQt6_DIR="$Qt6_DIR" \
@@ -82,10 +85,17 @@ jobs:
             -D${{ matrix.qbt_gui }}
           cmake --build build
 
+      - name: Prepare build artifacts
+        run: |
+          mkdir upload
+          mv build/qbittorrent*.app upload
+          mkdir upload/cmake
+          cp build/compile_commands.json upload/cmake
+          mkdir upload/cmake/libtorrent
+          cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
-          path: |
-            build/qbittorrent.app
-            build/qbittorrent-nox.app
+          path: upload
