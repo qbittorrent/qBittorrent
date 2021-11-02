@@ -81,8 +81,8 @@ case "$host_os" in
         ;;
 esac
 
-# Require 0.23 pkg-config
-PKG_PROG_PKG_CONFIG([0.23])
+# Require 0.29 pkg-config
+PKG_PROG_PKG_CONFIG([0.29])
 AS_IF([test "x$PKG_CONFIG" = "x"],
       [AC_MSG_ERROR([Could not find pkg-config])])
 

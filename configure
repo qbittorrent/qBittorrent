@@ -5221,7 +5221,7 @@ printf "%s\n" "no" >&6; }
         ;;
 esac
 
-# Require 0.23 pkg-config
+# Require 0.29 pkg-config
 
 
 
@@ -5340,7 +5340,7 @@ fi
 
 fi
 if test -n "$PKG_CONFIG"; then
-	_pkg_min_version=0.23
+	_pkg_min_version=0.29
 	{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking pkg-config is at least version $_pkg_min_version" >&5
 printf %s "checking pkg-config is at least version $_pkg_min_version... " >&6; }
 	if $PKG_CONFIG --atleast-pkgconfig-version $_pkg_min_version; then
