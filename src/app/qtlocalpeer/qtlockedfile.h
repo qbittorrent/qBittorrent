@@ -71,6 +71,7 @@
 #include <QFile>
 
 #ifdef Q_OS_WIN
+#include <QString>
 #include <QVector>
 #endif
 

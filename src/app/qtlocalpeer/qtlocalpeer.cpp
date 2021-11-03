@@ -68,20 +68,16 @@
 
 #include "qtlocalpeer.h"
 
-#if defined(Q_OS_UNIX)
-#include <sys/types.h>
-#include <time.h>
-#include <unistd.h>
+#include <QtGlobal>
+
+#if defined(Q_OS_WIN)
+#include <Windows.h>
 #endif
 
-#include <QCoreApplication>
 #include <QDataStream>
-#include <QDir>
+#include <QFileInfo>
 #include <QLocalServer>
 #include <QLocalSocket>
-#include <QRegularExpression>
-
-#include "base/utils/misc.h"
 
 namespace QtLP_Private
 {
@@ -96,41 +92,14 @@ namespace QtLP_Private
 
 const char* QtLocalPeer::ack = "ack";
 
-QtLocalPeer::QtLocalPeer(QObject *parent, const QString &appId)
+QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
-    , id(appId)
+    , socketName(path + QLatin1String("/ipc-socket"))
+    , server(new QLocalServer(this))
 {
-    QString prefix = id;
-    if (id.isEmpty())
-    {
-        id = QCoreApplication::applicationFilePath();
-#if defined(Q_OS_WIN)
-        id = id.toLower();
-#endif
-        prefix = id.section(QLatin1Char('/'), -1);
-    }
-    prefix.remove(QRegularExpression("[^a-zA-Z]"));
-    prefix.truncate(6);
-
-    QByteArray idc = id.toUtf8();
-    quint16 idNum = qChecksum(idc.constData(), idc.size());
-    socketName = QLatin1String("qtsingleapp-") + prefix
-                 + QLatin1Char('-') + QString::number(idNum, 16);
-
-#if defined(Q_OS_WIN)
-    DWORD sessionId = 0;
-    ::ProcessIdToSessionId(GetCurrentProcessId(), &sessionId);
-    socketName += (QLatin1Char('-') + QString::number(sessionId, 16));
-#else
-    socketName += (QLatin1Char('-') + QString::number(::getuid(), 16));
-#endif
-
-    server = new QLocalServer(this);
     server->setSocketOptions(QLocalServer::UserAccessOption);
-    QString lockName = QDir(QDir::tempPath()).absolutePath()
-                       + QLatin1Char('/') + socketName
-                       + QLatin1String("-lockfile");
-    lockFile.setFileName(lockName);
+
+    lockFile.setFileName(path + QLatin1String("/lockfile"));
     lockFile.open(QIODevice::ReadWrite);
 }
 
@@ -156,12 +125,13 @@ bool QtLocalPeer::isClient()
     // ### Workaround
     if (!res && server->serverError() == QAbstractSocket::AddressInUseError)
     {
-        QFile::remove(QDir::cleanPath(QDir::tempPath())+QLatin1Char('/')+socketName);
+        QFile::remove(socketName);
         res = server->listen(socketName);
     }
 #endif
     if (!res)
         qWarning("QtSingleCoreApplication: listen on local socket failed, %s", qPrintable(server->errorString()));
+
     connect(server, &QLocalServer::newConnection, this, &QtLocalPeer::receiveConnection);
     return false;
 }
@@ -202,11 +172,6 @@ bool QtLocalPeer::sendMessage(const QString &message, const int timeout)
             res &= (socket.read(qstrlen(ack)) == ack);
     }
     return res;
-}
-
-QString QtLocalPeer::applicationId() const
-{
-    return id;
 }
 
 void QtLocalPeer::receiveConnection()

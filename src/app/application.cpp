@@ -154,16 +154,10 @@ Application::Application(int &argc, char **argv)
     const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
-#ifdef Q_OS_WIN
-    const QString instanceId = (profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName))).toLower();
-#else
-    const QString instanceId = profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
-#endif
-    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + instanceId;
-    m_instanceManager = new ApplicationInstanceManager {appId, this};
-
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
                         (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
+
+    m_instanceManager = new ApplicationInstanceManager {Profile::instance()->location(SpecialFolder::Config), this};
 
     Logger::initInstance();
     SettingsStorage::initInstance();
