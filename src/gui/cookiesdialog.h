@@ -30,6 +30,8 @@
 
 #include <QDialog>
 
+#include "base/settingvalue.h"
+
 class CookiesModel;
 
 namespace Ui
@@ -55,4 +57,7 @@ private slots:
 private:
     Ui::CookiesDialog *m_ui;
     CookiesModel *m_cookiesModel;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeViewState;
 };
