@@ -37,6 +37,7 @@
 #include <QSharedPointer>
 
 #include "base/exceptions.h"
+#include "base/settingvalue.h"
 
 class QThread;
 class QTimer;
@@ -86,7 +87,7 @@ namespace RSS
         QRegularExpression smartEpisodeRegex() const;
 
         bool downloadRepacks() const;
-        void setDownloadRepacks(bool downloadRepacks);
+        void setDownloadRepacks(bool enabled);
 
         bool hasRule(const QString &ruleName) const;
         AutoDownloadRule ruleByName(const QString &ruleName) const;
@@ -131,7 +132,10 @@ namespace RSS
 
         static QPointer<AutoDownloader> m_instance;
 
-        bool m_processingEnabled;
+        CachedSettingValue<bool> m_storeProcessingEnabled;
+        SettingValue<QVariant> m_storeSmartEpisodeFilter;
+        SettingValue<bool> m_storeDownloadRepacks;
+
         QTimer *m_processingTimer;
         QThread *m_ioThread;
         AsyncFileStorage *m_fileStorage;

@@ -74,6 +74,7 @@
 #include <QTimer>
 
 #include "base/3rdparty/expected.hpp"
+#include "base/settingvalue.h"
 
 class QThread;
 
@@ -154,13 +155,13 @@ namespace RSS
 
         static QPointer<Session> m_instance;
 
-        bool m_processingEnabled;
+        CachedSettingValue<bool> m_storeProcessingEnabled;
+        CachedSettingValue<int> m_storeRefreshInterval;
+        CachedSettingValue<int> m_storeMaxArticlesPerFeed;
         QThread *m_workingThread;
         AsyncFileStorage *m_confFileStorage;
         AsyncFileStorage *m_dataFileStorage;
         QTimer m_refreshTimer;
-        int m_refreshInterval;
-        int m_maxArticlesPerFeed;
         QHash<QString, Item *> m_itemsByPath;
         QHash<QUuid, Feed *> m_feedsByUID;
         QHash<QString, Feed *> m_feedsByURL;

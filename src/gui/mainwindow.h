@@ -36,6 +36,8 @@
 #endif
 
 #include "base/bittorrent/torrent.h"
+#include "base/logger.h"
+#include "base/settingvalue.h"
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -85,8 +87,8 @@ public:
     // ExecutionLog properties
     bool isExecutionLogEnabled() const;
     void setExecutionLogEnabled(bool value);
-    int executionLogMsgTypes() const;
-    void setExecutionLogMsgTypes(int value);
+    Log::MsgTypes executionLogMsgTypes() const;
+    void setExecutionLogMsgTypes(Log::MsgTypes value);
 
     // Notifications properties
     bool isNotificationsEnabled() const;
@@ -217,7 +219,7 @@ private:
 
     QFileSystemWatcher *m_executableWatcher;
     // GUI related
-    bool m_posInitialized;
+    bool m_posInitialized = false;
     QPointer<QTabWidget> m_tabs;
     QPointer<StatusBar> m_statusBar;
     QPointer<OptionsDialog> m_options;
@@ -234,9 +236,9 @@ private:
     TransferListFiltersWidget *m_transferListFiltersWidget;
     PropertiesWidget *m_propertiesWidget;
     bool m_displaySpeedInTitle;
-    bool m_forceExit;
+    bool m_forceExit = false;
     bool m_uiLocked;
-    bool m_unlockDlgShowing;
+    bool m_unlockDlgShowing = false;
     LineEdit *m_searchFilter;
     QAction *m_searchFilterAction;
     // Widgets
@@ -249,8 +251,18 @@ private:
     // Power Management
     PowerManagement *m_pwr;
     QTimer *m_preventTimer;
-    bool m_hasPython;
+    bool m_hasPython = false;
     QMenu *m_toolbarMenu;
+
+    SettingValue<bool> m_storeExecutionLogEnabled;
+    SettingValue<bool> m_storeDownloadTrackerFavicon;
+    SettingValue<bool> m_storeNotificationEnabled;
+    SettingValue<bool> m_storeNotificationTorrentAdded;
+    CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    SettingValue<int> m_storeNotificationTimeOut;
+#endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void checkProgramUpdate(bool invokedByUser);

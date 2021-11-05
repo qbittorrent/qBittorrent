@@ -63,12 +63,9 @@ namespace
 {
 #define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
     const QString KEY_ENABLED = QStringLiteral(SETTINGS_KEY("Enabled"));
-    const QString KEY_DEFAULTCATEGORY = QStringLiteral(SETTINGS_KEY("DefaultCategory"));
-    const QString KEY_TREEHEADERSTATE = QStringLiteral(SETTINGS_KEY("TreeHeaderState"));
     const QString KEY_TOPLEVEL = QStringLiteral(SETTINGS_KEY("TopLevel"));
     const QString KEY_SAVEPATHHISTORY = QStringLiteral(SETTINGS_KEY("SavePathHistory"));
     const QString KEY_SAVEPATHHISTORYLENGTH = QStringLiteral(SETTINGS_KEY("SavePathHistoryLength"));
-    const QString KEY_REMEMBERLASTSAVEPATH = QStringLiteral(SETTINGS_KEY("RememberLastSavePath"));
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -83,13 +80,12 @@ const int AddNewTorrentDialog::maxPathHistoryLength;
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AddNewTorrentDialog)
-    , m_contentModel(nullptr)
-    , m_contentDelegate(nullptr)
-    , m_hasMetadata(false)
-    , m_oldIndex(0)
     , m_torrentParams(inParams)
     , m_storeDialogSize(SETTINGS_KEY("DialogSize"))
     , m_storeSplitterState(SETTINGS_KEY("SplitterState"))
+    , m_storeDefaultCategory(SETTINGS_KEY("DefaultCategory"))
+    , m_storeRememberLastSavePath(SETTINGS_KEY("RememberLastSavePath"))
+    , m_storeTreeHeaderState(SETTINGS_KEY("TreeHeaderState"))
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
@@ -114,8 +110,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     populateSavePathComboBox();
     connect(m_ui->savePath, &FileSystemPathEdit::selectedPathChanged, this, &AddNewTorrentDialog::onSavePathChanged);
 
-    const bool rememberLastSavePath = settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false);
-    m_ui->checkBoxRememberLastSavePath->setChecked(rememberLastSavePath);
+    m_ui->checkBoxRememberLastSavePath->setChecked(m_storeRememberLastSavePath);
 
     m_ui->contentLayoutComboBox->setCurrentIndex(
                 static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
@@ -129,7 +124,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // Load categories
     QStringList categories = session->categories().keys();
     std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
-    auto defaultCategory = settings()->loadValue<QString>(KEY_DEFAULTCATEGORY);
+    const QString defaultCategory = m_storeDefaultCategory;
 
     if (!m_torrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(m_torrentParams.category);
@@ -164,22 +159,22 @@ AddNewTorrentDialog::~AddNewTorrentDialog()
 
 bool AddNewTorrentDialog::isEnabled()
 {
-    return SettingsStorage::instance()->loadValue(KEY_ENABLED, true);
+    return settings()->loadValue(KEY_ENABLED, true);
 }
 
-void AddNewTorrentDialog::setEnabled(bool value)
+void AddNewTorrentDialog::setEnabled(const bool value)
 {
-    SettingsStorage::instance()->storeValue(KEY_ENABLED, value);
+    settings()->storeValue(KEY_ENABLED, value);
 }
 
 bool AddNewTorrentDialog::isTopLevel()
 {
-    return SettingsStorage::instance()->loadValue(KEY_TOPLEVEL, true);
+    return settings()->loadValue(KEY_TOPLEVEL, true);
 }
 
-void AddNewTorrentDialog::setTopLevel(bool value)
+void AddNewTorrentDialog::setTopLevel(const bool value)
 {
-    SettingsStorage::instance()->storeValue(KEY_TOPLEVEL, value);
+    settings()->storeValue(KEY_TOPLEVEL, value);
 }
 
 int AddNewTorrentDialog::savePathHistoryLength()
@@ -189,7 +184,7 @@ int AddNewTorrentDialog::savePathHistoryLength()
     return qBound(minPathHistoryLength, value, maxPathHistoryLength);
 }
 
-void AddNewTorrentDialog::setSavePathHistoryLength(int value)
+void AddNewTorrentDialog::setSavePathHistoryLength(const int value)
 {
     const int clampedValue = qBound(minPathHistoryLength, value, maxPathHistoryLength);
     const int oldValue = savePathHistoryLength();
@@ -204,8 +199,7 @@ void AddNewTorrentDialog::setSavePathHistoryLength(int value)
 void AddNewTorrentDialog::loadState()
 {
     Utils::Gui::resize(this, m_storeDialogSize);
-    m_ui->splitter->restoreState(m_storeSplitterState);
-    m_headerState = settings()->loadValue<QByteArray>(KEY_TREEHEADERSTATE);
+    m_ui->splitter->restoreState(m_storeSplitterState);;
 }
 
 void AddNewTorrentDialog::saveState()
@@ -213,7 +207,7 @@ void AddNewTorrentDialog::saveState()
     m_storeDialogSize = size();
     m_storeSplitterState = m_ui->splitter->saveState();
     if (m_contentModel)
-        settings()->storeValue(KEY_TREEHEADERSTATE, m_ui->contentTreeView->header()->saveState());
+        m_storeTreeHeaderState = m_ui->contentTreeView->header()->saveState();
 }
 
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
@@ -489,12 +483,11 @@ void AddNewTorrentDialog::populateSavePathComboBox()
     for (const QString &savePath : savePathHistory)
         m_ui->savePath->addItem(savePath);
 
-    const bool rememberLastSavePath {settings()->loadValue(KEY_REMEMBERLASTSAVEPATH, false)};
     const QString defSavePath {BitTorrent::Session::instance()->defaultSavePath()};
 
     if (!m_torrentParams.savePath.isEmpty())
         setSavePath(m_torrentParams.savePath);
-    else if (!rememberLastSavePath)
+    else if (!m_storeRememberLastSavePath)
         setSavePath(defSavePath);
     // else last used save path will be selected since it is the first in the list
 }
@@ -607,9 +600,9 @@ void AddNewTorrentDialog::accept()
     // Category
     m_torrentParams.category = m_ui->categoryComboBox->currentText();
     if (m_ui->defaultCategoryCheckbox->isChecked())
-        settings()->storeValue(KEY_DEFAULTCATEGORY, m_torrentParams.category);
+        m_storeDefaultCategory = m_torrentParams.category;
 
-    settings()->storeValue(KEY_REMEMBERLASTSAVEPATH, m_ui->checkBoxRememberLastSavePath->isChecked());
+    m_storeRememberLastSavePath = m_ui->checkBoxRememberLastSavePath->isChecked();
 
     // Save file priorities
     if (m_contentModel)
@@ -722,8 +715,8 @@ void AddNewTorrentDialog::setupTreeview()
 
         // List files in torrent
         m_contentModel->model()->setupModelData(m_torrentInfo);
-        if (!m_headerState.isEmpty())
-            m_ui->contentTreeView->header()->restoreState(m_headerState);
+        if (!m_storeTreeHeaderState.get().isEmpty())
+            m_ui->contentTreeView->header()->restoreState(m_storeTreeHeaderState);
 
         // Hide useless columns after loading the header state
         m_ui->contentTreeView->hideColumn(PROGRESS);

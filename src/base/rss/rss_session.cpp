@@ -53,19 +53,15 @@ const QString ConfFolderName(QStringLiteral("rss"));
 const QString DataFolderName(QStringLiteral("rss/articles"));
 const QString FeedsFileName(QStringLiteral("feeds.json"));
 
-const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/Session/EnableProcessing"));
-const QString SettingsKey_RefreshInterval(QStringLiteral("RSS/Session/RefreshInterval"));
-const QString SettingsKey_MaxArticlesPerFeed(QStringLiteral("RSS/Session/MaxArticlesPerFeed"));
-
 using namespace RSS;
 
 QPointer<Session> Session::m_instance = nullptr;
 
 Session::Session()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
+    : m_storeProcessingEnabled("RSS/Session/EnableProcessing")
+    , m_storeRefreshInterval("RSS/Session/RefreshInterval", 30)
+    , m_storeMaxArticlesPerFeed("RSS/Session/MaxArticlesPerFeed", 50)
     , m_workingThread(new QThread(this))
-    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30))
-    , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -96,9 +92,9 @@ Session::Session()
     load();
 
     connect(&m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
-    if (m_processingEnabled)
+    if (isProcessingEnabled())
     {
-        m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+        m_refreshTimer.start(refreshInterval() * MsecsPerMin);
         refresh();
     }
 
@@ -166,7 +162,7 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
     const auto destFolder = result.value();
     addItem(new Feed(generateUID(), url, path, this), destFolder);
     store();
-    if (m_processingEnabled)
+    if (isProcessingEnabled())
         feedByURL(url)->refresh();
 
     return {};
@@ -429,18 +425,17 @@ void Session::addItem(Item *item, Folder *destFolder)
 
 bool Session::isProcessingEnabled() const
 {
-    return m_processingEnabled;
+    return m_storeProcessingEnabled;
 }
 
-void Session::setProcessingEnabled(bool enabled)
+void Session::setProcessingEnabled(const bool enabled)
 {
-    if (m_processingEnabled != enabled)
+    if (m_storeProcessingEnabled != enabled)
     {
-        m_processingEnabled = enabled;
-        SettingsStorage::instance()->storeValue(SettingsKey_ProcessingEnabled, m_processingEnabled);
-        if (m_processingEnabled)
+        m_storeProcessingEnabled = enabled;
+        if (enabled)
         {
-            m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+            m_refreshTimer.start(refreshInterval() * MsecsPerMin);
             refresh();
         }
         else
@@ -448,7 +443,7 @@ void Session::setProcessingEnabled(bool enabled)
             m_refreshTimer.stop();
         }
 
-        emit processingStateChanged(m_processingEnabled);
+        emit processingStateChanged(enabled);
     }
 }
 
@@ -479,16 +474,15 @@ Feed *Session::feedByURL(const QString &url) const
 
 int Session::refreshInterval() const
 {
-    return m_refreshInterval;
+    return m_storeRefreshInterval;
 }
 
 void Session::setRefreshInterval(const int refreshInterval)
 {
-    if (m_refreshInterval != refreshInterval)
+    if (m_storeRefreshInterval != refreshInterval)
     {
-        SettingsStorage::instance()->storeValue(SettingsKey_RefreshInterval, refreshInterval);
-        m_refreshInterval = refreshInterval;
-        m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+        m_storeRefreshInterval = refreshInterval;
+        m_refreshTimer.start(m_storeRefreshInterval * MsecsPerMin);
     }
 }
 
@@ -527,15 +521,14 @@ QUuid Session::generateUID() const
 
 int Session::maxArticlesPerFeed() const
 {
-    return m_maxArticlesPerFeed;
+    return m_storeMaxArticlesPerFeed;
 }
 
 void Session::setMaxArticlesPerFeed(const int n)
 {
-    if (m_maxArticlesPerFeed != n)
+    if (m_storeMaxArticlesPerFeed != n)
     {
-        m_maxArticlesPerFeed = n;
-        SettingsStorage::instance()->storeValue(SettingsKey_MaxArticlesPerFeed, n);
+        m_storeMaxArticlesPerFeed = n;
         emit maxArticlesPerFeedChanged(n);
     }
 }
