@@ -397,7 +397,7 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
 
     menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Open download window")
         , this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
-    menu->addAction(UIThemeManager::instance()->getIcon("downloading"), tr("Start downloading")
+    menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Download")
         , this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
     menu->addAction(UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page")
