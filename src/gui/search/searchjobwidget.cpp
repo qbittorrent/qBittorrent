@@ -296,7 +296,7 @@ void SearchJobWidget::addTorrentToSession(const QString &source, AddTorrentOptio
 {
     if (source.isEmpty()) return;
 
-    if (option == AddTorrentOption::ShowDialog || (option == AddTorrentOption::Default && AddNewTorrentDialog::isEnabled()))
+    if ((option == AddTorrentOption::ShowDialog) || ((option == AddTorrentOption::Default) && AddNewTorrentDialog::isEnabled()))
         AddNewTorrentDialog::show(source, this);
     else
         BitTorrent::Session::instance()->addTorrent(source);
