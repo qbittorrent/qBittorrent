@@ -49,8 +49,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -Ddeprecated-functions=OFF \
-            --graphviz=cmake-build-dir/target_graph.dot
+            -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
 
@@ -62,12 +61,12 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DCMAKE_INSTALL_PREFIX="/usr" \
             -DQt5_DIR="$Qt5_DIR" \
-            -D${{ matrix.qbt_gui }} \
             -DVERBOSE_CONFIGURE=ON \
-            --graphviz=build/target_graph.dot
+            -D${{ matrix.qbt_gui }}
           cmake --build build
-          sudo cmake --install build
+          DESTDIR="qbittorrent" cmake --install build
 
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
@@ -77,23 +76,25 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
-            -DQt6_DIR="$Qt6_DIR" \
+            -DCMAKE_INSTALL_PREFIX="/usr" \
             -DQT6=ON \
-            -D${{ matrix.qbt_gui }} \
+            -DQt6_DIR="$Qt6_DIR" \
             -DVERBOSE_CONFIGURE=ON \
-            --graphviz=build/target_graph.dot
+            -D${{ matrix.qbt_gui }}
           cmake --build build
-          sudo cmake --install build
+          DESTDIR="qbittorrent" cmake --install build
+
+      - name: Prepare build artifacts
+        run: |
+          mkdir upload
+          mv qbittorrent upload
+          mkdir upload/cmake
+          cp build/compile_commands.json upload/cmake
+          mkdir upload/cmake/libtorrent
+          cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: qBittorrent-CI_ubuntu-20.04-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
-          path: |
-            build/compile_commands.json
-            build/install_manifest.txt
-            build/target_graph.dot
-            build/qbittorrent
-            build/qbittorrent-nox
-            libtorrent/cmake-build-dir/compile_commands.json
-            libtorrent/cmake-build-dir/target_graph.dot
+          path: upload
