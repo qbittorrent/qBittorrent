@@ -211,7 +211,7 @@ void SearchJobWidget::cancelSearch()
     m_searchHandler->cancelSearch();
 }
 
-void SearchJobWidget::downloadTorrents(AddTorrentOption option)
+void SearchJobWidget::downloadTorrents(const AddTorrentOption option)
 {
     const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
     for (const QModelIndex &rowIndex : rows)
@@ -271,7 +271,7 @@ void SearchJobWidget::setStatus(Status value)
     emit statusChanged();
 }
 
-void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, AddTorrentOption option)
+void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorrentOption option)
 {
     const QString torrentUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::DL_LINK)).toString();
@@ -292,7 +292,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, AddTorrentOpt
     setRowColor(rowIndex.row(), QApplication::palette().color(QPalette::LinkVisited));
 }
 
-void SearchJobWidget::addTorrentToSession(const QString &source, AddTorrentOption option)
+void SearchJobWidget::addTorrentToSession(const QString &source, const AddTorrentOption option)
 {
     if (source.isEmpty()) return;
 
