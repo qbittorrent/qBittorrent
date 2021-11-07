@@ -2860,12 +2860,12 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <message>
         <location filename="../gui/mainwindow.ui" line="369"/>
         <source>&amp;Suspend System</source>
-        <translation>U&amp;spat počítač</translation>
+        <translation>&amp;Režim spánku</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="377"/>
         <source>&amp;Hibernate System</source>
-        <translation>&amp;Režim spánku</translation>
+        <translation>&amp;Režim hibernace</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="385"/>
