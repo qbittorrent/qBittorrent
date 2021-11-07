@@ -501,100 +501,17 @@ void AddNewTorrentDialog::populateSavePathComboBox()
 
 void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
 {
-    const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
-
-    const auto applyPriorities = [this](const BitTorrent::DownloadPriority prio)
-    {
-        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
-        for (const QModelIndex &index : selectedRows)
-        {
-            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
-                , static_cast<int>(prio));
-        }
-    };
-    const auto applyPrioritiesByOrder = [this]()
-    {
-        // Equally distribute the selected items into groups and for each group assign
-        // a download priority that will apply to each item. The number of groups depends on how
-        // many "download priority" are available to be assigned
-
-        const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
-
-        const qsizetype priorityGroups = 3;
-        const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
-
-        for (qsizetype i = 0; i < selectedRows.length(); ++i)
-        {
-            auto priority = BitTorrent::DownloadPriority::Ignored;
-            switch (i / priorityGroupSize)
-            {
-            case 0:
-                priority = BitTorrent::DownloadPriority::Maximum;
-                break;
-            case 1:
-                priority = BitTorrent::DownloadPriority::High;
-                break;
-            default:
-            case 2:
-                priority = BitTorrent::DownloadPriority::Normal;
-                break;
-            }
-
-            const QModelIndex &index = selectedRows[i];
-            m_contentModel->setData(index.sibling(index.row(), PRIORITY)
-                , static_cast<int>(priority));
-        }
-    };
-
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
-    if (selectedRows.size() == 1)
+
+    const bool isSingleItemSelected = (m_ui->contentTreeView->selectionModel()->selectedRows().size() == 1);
+    if (isSingleItemSelected)
     {
         menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
             , this, [this]() { m_ui->contentTreeView->renameSelectedFile(m_torrentInfo); });
         menu->addSeparator();
-
-        QMenu *priorityMenu = menu->addMenu(tr("Priority"));
-        priorityMenu->addAction(tr("Do not download"), priorityMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-        });
-        priorityMenu->addAction(tr("Normal"), priorityMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Normal);
-        });
-        priorityMenu->addAction(tr("High"), priorityMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::High);
-        });
-        priorityMenu->addAction(tr("Maximum"), priorityMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Maximum);
-        });
-        priorityMenu->addSeparator();
-        priorityMenu->addAction(tr("By shown file order"), priorityMenu, applyPrioritiesByOrder);
     }
-    else
-    {
-        menu->addAction(tr("Do not download"), menu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-        });
-        menu->addAction(tr("Normal priority"), menu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Normal);
-        });
-        menu->addAction(tr("High priority"), menu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::High);
-        });
-        menu->addAction(tr("Maximum priority"), menu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Maximum);
-        });
-        menu->addSeparator();
-        menu->addAction(tr("Priority by shown file order"), menu, applyPrioritiesByOrder);
-    }
+    m_ui->contentTreeView->setupDownloadPriorityMenu(menu, isSingleItemSelected);
 
     menu->popup(QCursor::pos());
 }

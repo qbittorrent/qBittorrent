@@ -46,6 +46,7 @@ public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
 
+    void setupDownloadPriorityMenu(QMenu *menu, bool createSubMenu) const;
     void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
 
 private:

@@ -631,7 +631,8 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (selectedRows.size() == 1)
+    const bool isSingleItemSelected = (selectedRows.size() == 1);
+    if (isSingleItemSelected)
     {
         const QModelIndex index = selectedRows[0];
 
@@ -645,76 +646,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     }
 
     if (!m_torrent->isSeed())
-    {
-        const auto applyPriorities = [this](const BitTorrent::DownloadPriority prio)
-        {
-            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
-            for (const QModelIndex &index : selectedRows)
-            {
-                m_propListModel->setData(index.sibling(index.row(), PRIORITY)
-                    , static_cast<int>(prio));
-            }
-
-            // Save changes
-            this->applyPriorities();
-        };
-
-        QMenu *subMenu = menu->addMenu(tr("Priority"));
-
-        subMenu->addAction(tr("Do not download"), subMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Ignored);
-        });
-        subMenu->addAction(tr("Normal"), subMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Normal);
-        });
-        subMenu->addAction(tr("High"), subMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::High);
-        });
-        subMenu->addAction(tr("Maximum"), subMenu, [applyPriorities]()
-        {
-            applyPriorities(BitTorrent::DownloadPriority::Maximum);
-        });
-        subMenu->addSeparator();
-        subMenu->addAction(tr("By shown file order"), subMenu, [this]()
-        {
-            // Equally distribute the selected items into groups and for each group assign
-            // a download priority that will apply to each item. The number of groups depends on how
-            // many "download priority" are available to be assigned
-
-            const QModelIndexList selectedRows = m_ui->filesList->selectionModel()->selectedRows(0);
-
-            const qsizetype priorityGroups = 3;
-            const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
-
-            for (qsizetype i = 0; i < selectedRows.length(); ++i)
-            {
-                auto priority = BitTorrent::DownloadPriority::Ignored;
-                switch (i / priorityGroupSize)
-                {
-                case 0:
-                    priority = BitTorrent::DownloadPriority::Maximum;
-                    break;
-                case 1:
-                    priority = BitTorrent::DownloadPriority::High;
-                    break;
-                default:
-                case 2:
-                    priority = BitTorrent::DownloadPriority::Normal;
-                    break;
-                }
-
-                const QModelIndex &index = selectedRows[i];
-                m_propListModel->setData(index.sibling(index.row(), PRIORITY)
-                    , static_cast<int>(priority));
-
-                // Save changes
-                this->applyPriorities();
-            }
-        });
-    }
+        m_ui->filesList->setupDownloadPriorityMenu(menu, isSingleItemSelected);
 
     // The selected torrent might have disappeared during exec()
     // so we just close menu when an appropriate model is reset

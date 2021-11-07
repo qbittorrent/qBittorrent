@@ -32,6 +32,7 @@
 #include <QHeaderView>
 #include <QKeyEvent>
 #include <QLineEdit>
+#include <QMenu>
 #include <QMessageBox>
 #include <QModelIndexList>
 #include <QTableView>
@@ -104,6 +105,78 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
     {
         Q_ASSERT(index.column() == TorrentContentModelItem::COL_NAME);
         model()->setData(index, state, Qt::CheckStateRole);
+    }
+}
+
+void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool createSubMenu) const
+{
+    const auto model = qobject_cast<TorrentContentFilterModel *>(this->model());
+    Q_ASSERT(model);
+
+    const auto getSelectedRows = [this]() { return selectionModel()->selectedRows(TorrentContentModelItem::COL_PRIO); };
+
+    const auto applyPriorities = [&](const BitTorrent::DownloadPriority priority)
+    {
+        return [model, getSelectedRows, priority]()
+        {
+            for (const QModelIndex &index : asConst(getSelectedRows()))
+            {
+                model->setData(index, static_cast<int>(priority));
+            }
+            emit model->filteredFilesChanged();
+        };
+    };
+    const auto applyPrioritiesByOrder = [model, getSelectedRows]()
+    {
+        // Equally distribute the selected items into groups and for each group assign
+        // a download priority that will apply to each item. The number of groups depends on how
+        // many "download priority" are available to be assigned
+
+        const QModelIndexList selectedRows = getSelectedRows();
+        const qsizetype priorityGroups = 3;
+        const auto priorityGroupSize = std::max<qsizetype>(selectedRows.length() / priorityGroups, 1);
+
+        for (qsizetype i = 0; i < selectedRows.length(); ++i)
+        {
+            auto priority = BitTorrent::DownloadPriority::Ignored;
+            switch (i / priorityGroupSize)
+            {
+            case 0:
+                priority = BitTorrent::DownloadPriority::Maximum;
+                break;
+            case 1:
+                priority = BitTorrent::DownloadPriority::High;
+                break;
+            default:
+            case 2:
+                priority = BitTorrent::DownloadPriority::Normal;
+                break;
+            }
+
+            model->setData(selectedRows[i], static_cast<int>(priority));
+        }
+
+        emit model->filteredFilesChanged();
+    };
+
+    if (createSubMenu)
+    {
+        menu = menu->addMenu(tr("Priority"));
+        menu->addAction(tr("Do not download"), menu, applyPriorities(BitTorrent::DownloadPriority::Ignored));
+        menu->addAction(tr("Normal"),          menu, applyPriorities(BitTorrent::DownloadPriority::Normal));
+        menu->addAction(tr("High"),            menu, applyPriorities(BitTorrent::DownloadPriority::High));
+        menu->addAction(tr("Maximum"),         menu, applyPriorities(BitTorrent::DownloadPriority::Maximum));
+        menu->addSeparator();
+        menu->addAction(tr("By shown file order"), menu, applyPrioritiesByOrder);
+    }
+    else
+    {
+        menu->addAction(tr("Do not download"),  menu, applyPriorities(BitTorrent::DownloadPriority::Ignored));
+        menu->addAction(tr("Normal priority"),  menu, applyPriorities(BitTorrent::DownloadPriority::Normal));
+        menu->addAction(tr("High priority"),    menu, applyPriorities(BitTorrent::DownloadPriority::High));
+        menu->addAction(tr("Maximum priority"), menu, applyPriorities(BitTorrent::DownloadPriority::Maximum));
+        menu->addSeparator();
+        menu->addAction(tr("Priority by shown file order"), menu, applyPrioritiesByOrder);
     }
 }
 
