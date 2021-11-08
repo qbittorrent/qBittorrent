@@ -33,16 +33,13 @@
 #include <QDebug>
 
 #include "base/logger.h"
-#include "base/settingsstorage.h"
-
-const QString KEY_ENABLED = QStringLiteral("Network/PortForwardingEnabled");
 
 PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
     : Net::PortForwarder {parent}
-    , m_active {SettingsStorage::instance()->loadValue(KEY_ENABLED, true)}
+    , m_storeActive {"Network/PortForwardingEnabled", true}
     , m_provider {provider}
 {
-    if (m_active)
+    if (isEnabled())
         start();
 }
 
@@ -53,20 +50,19 @@ PortForwarderImpl::~PortForwarderImpl()
 
 bool PortForwarderImpl::isEnabled() const
 {
-    return m_active;
+    return m_storeActive;
 }
 
 void PortForwarderImpl::setEnabled(const bool enabled)
 {
-    if (m_active != enabled)
+    if (m_storeActive != enabled)
     {
         if (enabled)
             start();
         else
             stop();
 
-        m_active = enabled;
-        SettingsStorage::instance()->storeValue(KEY_ENABLED, enabled);
+        m_storeActive = enabled;
     }
 }
 

@@ -56,12 +56,10 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/global.h"
-#include "base/logger.h"
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
-#include "base/settingsstorage.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -105,33 +103,13 @@ using namespace std::chrono_literals;
 namespace
 {
 #define SETTINGS_KEY(name) "GUI/" name
-
-    // ExecutionLog properties keys
-#define EXECUTIONLOG_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Log/") name)
-    const QString KEY_EXECUTIONLOG_ENABLED = EXECUTIONLOG_SETTINGS_KEY("Enabled");
-    const QString KEY_EXECUTIONLOG_TYPES = EXECUTIONLOG_SETTINGS_KEY("Types");
-
-    // Notifications properties keys
-#define NOTIFICATIONS_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("Notifications/") name)
-    const QString KEY_NOTIFICATIONS_ENABLED = NOTIFICATIONS_SETTINGS_KEY("Enabled");
-    const QString KEY_NOTIFICATIONS_TORRENTADDED = NOTIFICATIONS_SETTINGS_KEY("TorrentAdded");
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    const QString KEY_NOTIFICATION_TIMEOUT = NOTIFICATIONS_SETTINGS_KEY("Timeout");
-#endif
-
-    // Misc
-    const QString KEY_DOWNLOAD_TRACKER_FAVICON = QStringLiteral(SETTINGS_KEY("DownloadTrackerFavicon"));
+#define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY("Log/") name)
+#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY("Notifications/") name)
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 #if !defined(Q_OS_MACOS)
     const int TIME_TRAY_BALLOON = 5000;
 #endif
-
-    // just a shortcut
-    inline SettingsStorage *settings()
-    {
-        return SettingsStorage::instance();
-    }
 
     bool isTorrentLink(const QString &str)
     {
@@ -145,10 +123,14 @@ namespace
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_ui(new Ui::MainWindow)
-    , m_posInitialized(false)
-    , m_forceExit(false)
-    , m_unlockDlgShowing(false)
-    , m_hasPython(false)
+    , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY("Enabled"))
+    , m_storeDownloadTrackerFavicon(SETTINGS_KEY("DownloadTrackerFavicon"))
+    , m_storeNotificationEnabled(NOTIFICATIONS_SETTINGS_KEY("Enabled"))
+    , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY("TorrentAdded"))
+    , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY("Types"), Log::MsgType::ALL)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+    , m_storeNotificationTimeOut(NOTIFICATIONS_SETTINGS_KEY("Timeout"))
+#endif
 {
     m_ui->setupUi(this);
 
@@ -358,11 +340,11 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionSearchWidget->setChecked(pref->isSearchEnabled());
     m_ui->actionExecutionLogs->setChecked(isExecutionLogEnabled());
 
-    Log::MsgTypes flags(executionLogMsgTypes());
-    m_ui->actionNormalMessages->setChecked(flags & Log::NORMAL);
-    m_ui->actionInformationMessages->setChecked(flags & Log::INFO);
-    m_ui->actionWarningMessages->setChecked(flags & Log::WARNING);
-    m_ui->actionCriticalMessages->setChecked(flags & Log::CRITICAL);
+    const Log::MsgTypes flags = executionLogMsgTypes();
+    m_ui->actionNormalMessages->setChecked(flags.testFlag(Log::NORMAL));
+    m_ui->actionInformationMessages->setChecked(flags.testFlag(Log::INFO));
+    m_ui->actionWarningMessages->setChecked(flags.testFlag(Log::WARNING));
+    m_ui->actionCriticalMessages->setChecked(flags.testFlag(Log::CRITICAL));
 
     displayRSSTab(m_ui->actionRSSReader->isChecked());
     on_actionExecutionLogs_triggered(m_ui->actionExecutionLogs->isChecked());
@@ -485,68 +467,66 @@ MainWindow::~MainWindow()
 
 bool MainWindow::isExecutionLogEnabled() const
 {
-    return settings()->loadValue(KEY_EXECUTIONLOG_ENABLED, false);
+    return m_storeExecutionLogEnabled;
 }
 
-void MainWindow::setExecutionLogEnabled(bool value)
+void MainWindow::setExecutionLogEnabled(const bool value)
 {
-    settings()->storeValue(KEY_EXECUTIONLOG_ENABLED, value);
+    m_storeExecutionLogEnabled = value;
 }
 
-int MainWindow::executionLogMsgTypes() const
+Log::MsgTypes MainWindow::executionLogMsgTypes() const
 {
-    // as default value we need all the bits set
-    // -1 is considered the portable way to achieve that
-    return settings()->loadValue(KEY_EXECUTIONLOG_TYPES, -1);
+    return m_storeExecutionLogTypes;
 }
 
-void MainWindow::setExecutionLogMsgTypes(const int value)
+void MainWindow::setExecutionLogMsgTypes(const Log::MsgTypes value)
 {
-    m_executionLog->setMessageTypes(static_cast<Log::MsgTypes>(value));
-    settings()->storeValue(KEY_EXECUTIONLOG_TYPES, value);
+    m_executionLog->setMessageTypes(value);
+    m_storeExecutionLogTypes = value;
 }
 
 bool MainWindow::isNotificationsEnabled() const
 {
-    return settings()->loadValue(KEY_NOTIFICATIONS_ENABLED, true);
+    return m_storeNotificationEnabled.get(true);
 }
 
 void MainWindow::setNotificationsEnabled(bool value)
 {
-    settings()->storeValue(KEY_NOTIFICATIONS_ENABLED, value);
+    m_storeNotificationEnabled = value;
 }
 
 bool MainWindow::isTorrentAddedNotificationsEnabled() const
 {
-    return settings()->loadValue(KEY_NOTIFICATIONS_TORRENTADDED, false);
+    return m_storeNotificationTorrentAdded;
 }
 
-void MainWindow::setTorrentAddedNotificationsEnabled(bool value)
+void MainWindow::setTorrentAddedNotificationsEnabled(const bool value)
 {
-    settings()->storeValue(KEY_NOTIFICATIONS_TORRENTADDED, value);
+    m_storeNotificationTorrentAdded = value;
 }
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
 int MainWindow::getNotificationTimeout() const
 {
-    return settings()->loadValue(KEY_NOTIFICATION_TIMEOUT, -1);
+    return m_storeNotificationTimeOut.get(-1);
 }
 
 void MainWindow::setNotificationTimeout(const int value)
 {
-    settings()->storeValue(KEY_NOTIFICATION_TIMEOUT, value);
+    m_storeNotificationTimeOut = value;
 }
 #endif
 
 bool MainWindow::isDownloadTrackerFavicon() const
 {
-    return settings()->loadValue(KEY_DOWNLOAD_TRACKER_FAVICON, false);
+    return m_storeDownloadTrackerFavicon;
 }
 
-void MainWindow::setDownloadTrackerFavicon(bool value)
+void MainWindow::setDownloadTrackerFavicon(const bool value)
 {
     m_transferListFiltersWidget->setDownloadTrackerFavicon(value);
-    settings()->storeValue(KEY_DOWNLOAD_TRACKER_FAVICON, value);
+    m_storeDownloadTrackerFavicon = value;
 }
 
 void MainWindow::addToolbarContextMenu()
@@ -2005,7 +1985,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     if (checked)
     {
         Q_ASSERT(!m_executionLog);
-        m_executionLog = new ExecutionLogWidget(static_cast<Log::MsgType>(executionLogMsgTypes()), m_tabs);
+        m_executionLog = new ExecutionLogWidget(executionLogMsgTypes(), m_tabs);
 #ifdef Q_OS_MACOS
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
@@ -2025,43 +2005,39 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
     setExecutionLogEnabled(checked);
 }
 
-void MainWindow::on_actionNormalMessages_triggered(bool checked)
+void MainWindow::on_actionNormalMessages_triggered(const bool checked)
 {
     if (!m_executionLog)
         return;
 
-    Log::MsgTypes flags(executionLogMsgTypes());
-    checked ? (flags |= Log::NORMAL) : (flags &= ~Log::NORMAL);
+    const Log::MsgTypes flags = executionLogMsgTypes().setFlag(Log::NORMAL, checked);
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionInformationMessages_triggered(bool checked)
+void MainWindow::on_actionInformationMessages_triggered(const bool checked)
 {
     if (!m_executionLog)
         return;
 
-    Log::MsgTypes flags(executionLogMsgTypes());
-    checked ? (flags |= Log::INFO) : (flags &= ~Log::INFO);
+    const Log::MsgTypes flags = executionLogMsgTypes().setFlag(Log::INFO, checked);
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionWarningMessages_triggered(bool checked)
+void MainWindow::on_actionWarningMessages_triggered(const bool checked)
 {
     if (!m_executionLog)
         return;
 
-    Log::MsgTypes flags(executionLogMsgTypes());
-    checked ? (flags |= Log::WARNING) : (flags &= ~Log::WARNING);
+    const Log::MsgTypes flags = executionLogMsgTypes().setFlag(Log::WARNING, checked);
     setExecutionLogMsgTypes(flags);
 }
 
-void MainWindow::on_actionCriticalMessages_triggered(bool checked)
+void MainWindow::on_actionCriticalMessages_triggered(const bool checked)
 {
     if (!m_executionLog)
         return;
 
-    Log::MsgTypes flags(executionLogMsgTypes());
-    checked ? (flags |= Log::CRITICAL) : (flags &= ~Log::CRITICAL);
+    const Log::MsgTypes flags = executionLogMsgTypes().setFlag(Log::CRITICAL, checked);
     setExecutionLogMsgTypes(flags);
 }
 

@@ -38,6 +38,12 @@
 
 #include "utils/string.h"
 
+template <typename T>
+struct IsQFlags : std::false_type {};
+
+template <typename T>
+struct IsQFlags<QFlags<T>> : std::true_type {};
+
 class SettingsStorage : public QObject
 {
     Q_OBJECT
@@ -61,6 +67,11 @@ public:
         {
             return loadValueImpl(key, defaultValue);
         }
+        else if constexpr (IsQFlags<T>::value)
+        {
+            const QVariant value = loadValueImpl(key, static_cast<typename T::Int>(defaultValue));
+            return T {value.template value<typename T::Int>()};
+        }
         else
         {
             const QVariant value = loadValueImpl(key);
@@ -74,6 +85,8 @@ public:
     {
         if constexpr (std::is_enum_v<T>)
             storeValueImpl(key, Utils::String::fromEnum(value));
+        else if constexpr (IsQFlags<T>::value)
+            storeValueImpl(key, static_cast<typename T::Int>(value));
         else
             storeValueImpl(key, value);
     }

@@ -33,7 +33,6 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "base/settingsstorage.h"
 #include "base/utils/fs.h"
 #include "ui_watchedfolderoptionsdialog.h"
 #include "utils.h"
