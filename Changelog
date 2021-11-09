@@ -28,7 +28,7 @@ Tue Aug 03 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.7
     - BUGFIX: Properly create "clean path" for watched folder (glassez)
     - WEBUI: Disconnect comment links (Daniel Aleksandersen)
     - WINDOWS: NSIS: Update Danish translation (scootergrisen)
-	
+
 Sat Jun 26 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.6
     - FEATURE: New languages: Mongolian, Persian, Thai
     - BUGFIX: Provide correct error description in "upload mode" (glassez)
@@ -53,7 +53,7 @@ Sun May 02 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.5
     - WEBUI: Allow to specify file indexes in torrents/files API (glassez)
     - WINDOWS: NSIS: Allow more strings to translated (bovirus, Chocobo1)
     - WINDOWS: NSIS: Update Italian, German, Estonian, Russian, PortugueseBR translations (bovirus, Henry Water, PriitUring, Долматов Алексей, Felipe)
-    - LINUX: Fix D-Bus Notification desktop-entry field (Chocobo1)
+    - LINUX: Fix D-Bus Notification `desktop-entry` field (Chocobo1)
     - MACOS: Don't use executable name as CFBundleName value (Nick Korotysh)
     - OTHER: Lower Qt requirement to 5.11 (sledgehammer999)
     - OTHER: Clarify that the license is GPLv2+ (sledgehammer999)
@@ -62,7 +62,7 @@ Wed Mar 24 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4.1
     - BUGFIX: Correctly draw progress bar (glassez)
     - WEBUI: Fix javascript code which broke the UI (Chocobo1)
 
-Wed Mar 24 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4
+Tue Mar 23 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4
     - WEBUI: It is accidentally broken in this release. Use v4.3.4.1 instead.
     - FEATURE: Add ability to prioritize selected items by shown file order (Chocobo1)
     - FEATURE: Allow tab to escape the text box in "Edit trackers" dialog (Christoph Rackwitz)
@@ -107,7 +107,7 @@ Wed Mar 24 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.4
     - OTHER: Raise minimum libtorrent version to 1.2.12 (glassez)
     - OTHER: Raise minimum Qt version to 5.12 (glassez)
 
-Thu Jan 19 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.3
+Tue Jan 19 2021 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.3
     - FEATURE: New languages: Azerbaijani, Estonian
     - BUGFIX: Unify global speed dialogs for normal/alternative speeds (thalieht)
     - BUGFIX: Increase maximum global speed limits ~2 GiB/s (thalieht)
