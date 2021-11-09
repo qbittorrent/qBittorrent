@@ -1,6 +1,49 @@
 Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.0
-    - FEATURE: Add support for creating v2 torrents(requires libtorrent 2.0.x) (Chocobo1)
+    - FEATURE: Support for v2 torrents along with libtorrent 2.0.x support (glassez, Chocobo1)
+    - FEATURE: Support for Qt6 (glassez)
     - FEATURE: Expose libtorrent hashing_threads settings (Anton Bershanskiy)
+    - FEATURE: Add "Notification timeout" option (kevtechxx) 7722916fada4ae984d1c134edcd74edd5262ea4f
+    - FEATURE: Improve "Watched folders" feature (glassez) 2993fdb16954a9e3301efb7f9171ae1f03ab7743
+    - FEATURE: Add `connection_speed` to advanced settings (Chocobo1) ef79546508b2ac8c4ff2c5b7d62dc6215d60e53d
+    - FEATURE: Announce to all trackers if IP changed (#15001) (zhuangzi926) 2e8e2b04a141a8858726fc13714e2cb03956809
+    - FEATURE: Add tooltip for various columns (Chocobo1) bdc03b1c75074bc3c7950223c600d8139a7a9ef0
+    - FEATURE: Add context menu to toggle content tab columns (#15164) (AbeniMatteo) abd6eb2ff32504b48002ce69a89f10b21b30f461
+    - FEATURE: Add filter "Checking" to side panel (#15166) (AbeniMatteo) e5943b64c1cb803c52f69e1e837d73fd3f8b7281
+    - FEATURE: Add "Forced metadata downloading" state (#15185) (AbeniMatteo) 01d851440bc5f4b5dd913d94cea048ea184656dd
+    - FEATURE: Remember last viewed page in Options dialog (#15230) (Chocobo1) 2d4d2462680904ede2f9d46f080523683e6c1ef3
+    - FEATURE: Add tooltip to listening port spinbox (Chocobo1) 526ee9c9db99d49dbe7c4f84fc35438b92a48283
+    - FEATURE: Add "Skip hash check" option for watched folders (glassez) 90296b3ef09e479a00cd4b2f1969ecdcf8c0d5fe
+    - BUGFIX: Save "resume data" once file priority is changed (glassez) cd6959b712872407376b1cbd5bcc41daa4650d76
+    - BUGFIX: Show priority menu at top level if there is no other in Add New Torrent dialog (FozzeY) 3e47d26e440ac44ee511812fde253359b4351c17
+    - BUGFIX: Capitalize "peer flags" descriptions (Chocobo1) e38128119ca330a5a66aacbfebfcf1152d4f1d76
+    - BUGFIX: Reorder peer flags (Chocobo1) cb8d6a09395e2e3e81bff1bf9ff04dd3da9d81bb
+    - BUGFIX: Show "last activity" value under all circumstances (Chocobo1) 6864e13e6f0817567d9441028458f80d374c2afc
+    - BUGFIX: Correctly handle "no enough disk space" error (glassez) d4554c2e5c1fb0cdabd37e317a67b532c5987442
+    - BUGFIX: Elide text from the right for all columns' header (smigii) 8f02fe0cc606480c7d488bab8dcb4d85cbd1b08c
+    - BUGFIX: Fix startup with different profiles (jagannatharjun) a734199383b58f34420be2d6ee84562058f386ec
+    - WEBUI: Add reverse proxy source IP resolution (#15047) (HiFiPhile) f5315d9ba7692dded84cb3f0323f78ea8d50c103
+    - WEBUI: Support navigating UI tables with arrow keys (Thomas Piccirello) e76bac41314b0f5fe90693f8b6067ac2563307ff
+    - WEBUI: Support expanding/collapsing UI folders with arrow keys (Thomas Piccirello) 32f29e72c6d9de55948b4d6db04442e24ca035bc
+    - WEBUI: Support sorting UI tables via touch (#15205) (Tom Piccirello) 7974b5a95ccf85cbc40e001babb96f888b745e5d
+    - WEBUI: Expose SSRF mitigation (#15247) (Sylvain Finot) e87f8f5b9341cfd466791d78f894ad4c530d2057
+    - WEBUI: Improve "last activity" calculation in WebAPI (#15339) (Chocobo1) 8d822f2cb4406f3cc363d18b6f6f3293f9cba4ac
+    - WEBUI: Add pieces progress bar to General tab (Jesse Smick) 6229b817300344759139d2fedbd59651065a561d
+    - WEBUI: Update authors page (Chocobo1) fc86034fab830d588b0bca6dd4089535821af464
+    - WEBUI: Set icon sizes attribute (Daniel Aleksandersen) 9e92e5995f9698d3c24e55f967e3c31c0187ff53
+    - WEBUI: Add meta application name (Daniel Aleksandersen) eb5e1d34df9c08b79be4238b096528b78d35ab0c
+    - RSS: Stick Unread row to top in RSS feed list (Prince Gupta) f2912c14ea56dfc289e087d3073ea4a07847e301
+    - RSS: Correctly use fallback icons for RSS feed in GUI (jagannatharjun) 68133ec8e3d88ad5d56994b9c339cd56b17ad8fa
+    - SEARCH: Add context menu for tabs in search widget (#14926) (Anton) a51742b47c4eb81d81a7ccd1aab90832209f14b9
+    - WINDOWS: Add windows-clang support (#15115) (Biswapriyo Nath) f6eb29d800d276ed7f262e2fa7c582e305263a30
+    - WINDOWS: Update python installer URL for Windows (xavier2k6) 4b78af268fa35e2ab10f84f5e1dc2b2013d02399
+    - WINDOWS: NSIS: Update Simplified Chinese translation (Losiki) f991d2bdb437d513684efff526daba6aefb3aa81
+    - LINUX: Fix D-Bus Notification `desktop-entry` field (Chocobo1) d13be829c33bcb99c29cc28a9729625544a3db49
+    - LINUX: Prolong wait time for shutdown for qbittorrent-nox (Chocobo1) 615b76f78c8ab92ad57bed42fc4266950c9f0251
+    - LINUX: Install vector program icon (Chocobo1) f457069881acc5c8fe9cced369d7ba805a0047e0
+    - LINUX: Add detection for OpenBSD, Haiku in configure script (Chocobo1)
+    - MACOS: Update Mac icons for Big Sur (17jiangz1) 41682bfcbb37151357d6e313186976dcdf5253c2
+    - EXPERIMENTAL: Setting to store/load fastresume/torrent files in an SQLite database (glassez) 383eaf44ac9966bd7f9eee27e426c108510388c3
+    - OTHER: Many internal code refactorings and bug fixing by many people
 
 Sun Oct 18 2020 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.3.0
     - FEATURE: Many UI elements colors are themeable now (jagannatharjun)
