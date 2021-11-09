@@ -314,7 +314,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             return true;
         case TorrentContentModelItem::COL_PRIO:
             item->setPriority(static_cast<BitTorrent::DownloadPriority>(value.toInt()));
-            emit dataChanged(this->index(0, 0), this->index(rowCount() - 1, columnCount() - 1));
+            emit dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
             return true;
         default:
             return false;

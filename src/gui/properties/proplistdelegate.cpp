@@ -91,7 +91,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     // Apply newly selected priority right away, don't wait until editor is closed.
     connect(editor, qOverload<int>(&QComboBox::activated), this, [this, editor]()
     {
-        emit const_cast<PropListDelegate* >(this)->commitData(editor);
+        emit const_cast<PropListDelegate *>(this)->commitData(editor);
     });
 
     return editor;
