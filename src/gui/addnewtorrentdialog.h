@@ -118,8 +118,8 @@ private:
     BitTorrent::AddTorrentParams m_torrentParams;
 
     SettingValue<QSize> m_storeDialogSize;
-    SettingValue<QByteArray> m_storeSplitterState;
     SettingValue<QString> m_storeDefaultCategory;
     SettingValue<bool> m_storeRememberLastSavePath;
-    CachedSettingValue<QByteArray> m_storeTreeHeaderState;
+    SettingValue<QByteArray> m_storeTreeHeaderState;
+    SettingValue<QByteArray> m_storeSplitterState;
 };

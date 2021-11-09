@@ -33,10 +33,6 @@
 #include <memory>
 #include <type_traits>
 
-#ifdef Q_OS_WIN
-#include <Windows.h>
-#endif
-
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/magnet_uri.hpp>

@@ -1265,12 +1265,20 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
 
 QByteArray Preferences::getMainVSplitterState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/MainWindow/VSplitterState").toByteArray();
+#else
     return value("MainWindow/qt5/vsplitterState").toByteArray();
+#endif
 }
 
 void Preferences::setMainVSplitterState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/MainWindow/VSplitterState", state);
+#else
     setValue("MainWindow/qt5/vsplitterState", state);
+#endif
 }
 
 QString Preferences::getMainLastDir() const
@@ -1285,12 +1293,20 @@ void Preferences::setMainLastDir(const QString &path)
 
 QByteArray Preferences::getPeerListState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/TorrentProperties/PeerListState").toByteArray();
+#else
     return value("TorrentProperties/Peers/qt5/PeerListState").toByteArray();
+#endif
 }
 
 void Preferences::setPeerListState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/TorrentProperties/PeerListState", state);
+#else
     setValue("TorrentProperties/Peers/qt5/PeerListState", state);
+#endif
 }
 
 QString Preferences::getPropSplitterSizes() const
@@ -1305,12 +1321,20 @@ void Preferences::setPropSplitterSizes(const QString &sizes)
 
 QByteArray Preferences::getPropFileListState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/TorrentProperties/FilesListState").toByteArray();
+#else
     return value("TorrentProperties/qt5/FilesListState").toByteArray();
+#endif
 }
 
 void Preferences::setPropFileListState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/TorrentProperties/FilesListState", state);
+#else
     setValue("TorrentProperties/qt5/FilesListState", state);
+#endif
 }
 
 int Preferences::getPropCurTab() const
@@ -1335,12 +1359,20 @@ void Preferences::setPropVisible(const bool visible)
 
 QByteArray Preferences::getPropTrackerListState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/TorrentProperties/TrackerListState").toByteArray();
+#else
     return value("TorrentProperties/Trackers/qt5/TrackerListState").toByteArray();
+#endif
 }
 
 void Preferences::setPropTrackerListState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/TorrentProperties/TrackerListState", state);
+#else
     setValue("TorrentProperties/Trackers/qt5/TrackerListState", state);
+#endif
 }
 
 QSize Preferences::getRssGeometrySize() const
@@ -1355,12 +1387,20 @@ void Preferences::setRssGeometrySize(const QSize &geometry)
 
 QByteArray Preferences::getRssHSplitterSizes() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/RSSFeedDownloader/HSplitterSizes").toByteArray();
+#else
     return value("RssFeedDownloader/qt5/hsplitterSizes").toByteArray();
+#endif
 }
 
 void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/RSSFeedDownloader/HSplitterSizes", sizes);
+#else
     setValue("RssFeedDownloader/qt5/hsplitterSizes", sizes);
+#endif
 }
 
 QStringList Preferences::getRssOpenFolders() const
@@ -1375,32 +1415,56 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 
 QByteArray Preferences::getRssSideSplitterState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/RSSWidget/SideSplitterState").toByteArray();
+#else
     return value("GUI/RSSWidget/qt5/splitter_h").toByteArray();
+#endif
 }
 
 void Preferences::setRssSideSplitterState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/RSSWidget/SideSplitterState", state);
+#else
     setValue("GUI/RSSWidget/qt5/splitter_h", state);
+#endif
 }
 
 QByteArray Preferences::getRssMainSplitterState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/RSSWidget/MainSplitterState").toByteArray();
+#else
     return value("GUI/RSSWidget/qt5/splitterMain").toByteArray();
+#endif
 }
 
 void Preferences::setRssMainSplitterState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/RSSWidget/MainSplitterState", state);
+#else
     setValue("GUI/RSSWidget/qt5/splitterMain", state);
+#endif
 }
 
 QByteArray Preferences::getSearchTabHeaderState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/SearchTab/HeaderState").toByteArray();
+#else
     return value("SearchTab/qt5/HeaderState").toByteArray();
+#endif
 }
 
 void Preferences::setSearchTabHeaderState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/SearchTab/HeaderState", state);
+#else
     setValue("SearchTab/qt5/HeaderState", state);
+#endif
 }
 
 bool Preferences::getRegexAsFilteringPatternForSearchJob() const
@@ -1495,12 +1559,20 @@ void Preferences::setTransSelFilter(const int index)
 
 QByteArray Preferences::getTransHeaderState() const
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    return value("GUI/Qt6/TransferList/HeaderState").toByteArray();
+#else
     return value("TransferList/qt5/HeaderState").toByteArray();
+#endif
 }
 
 void Preferences::setTransHeaderState(const QByteArray &state)
 {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    setValue("GUI/Qt6/TransferList/HeaderState", state);
+#else
     setValue("TransferList/qt5/HeaderState", state);
+#endif
 }
 
 bool Preferences::getRegexAsFilteringPatternForTransferList() const

@@ -82,10 +82,14 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     , m_ui(new Ui::AddNewTorrentDialog)
     , m_torrentParams(inParams)
     , m_storeDialogSize(SETTINGS_KEY("DialogSize"))
-    , m_storeSplitterState(SETTINGS_KEY("SplitterState"))
     , m_storeDefaultCategory(SETTINGS_KEY("DefaultCategory"))
     , m_storeRememberLastSavePath(SETTINGS_KEY("RememberLastSavePath"))
     , m_storeTreeHeaderState(SETTINGS_KEY("TreeHeaderState"))
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    , m_storeSplitterState("GUI/Qt6/" SETTINGS_KEY("SplitterState"))
+#else
+    , m_storeSplitterState(SETTINGS_KEY("SplitterState"))
+#endif
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
@@ -715,8 +719,8 @@ void AddNewTorrentDialog::setupTreeview()
 
         // List files in torrent
         m_contentModel->model()->setupModelData(m_torrentInfo);
-        if (!m_storeTreeHeaderState.get().isEmpty())
-            m_ui->contentTreeView->header()->restoreState(m_storeTreeHeaderState);
+        if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
+            m_ui->contentTreeView->header()->restoreState(state);
 
         // Hide useless columns after loading the header state
         m_ui->contentTreeView->hideColumn(PROGRESS);

@@ -133,18 +133,18 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 
     if (action == ShutdownDialogAction::Suspend)
     {
-        ::SetSuspendState(false, false, false);
+        ::SetSuspendState(FALSE, FALSE, FALSE);
     }
     else if (action == ShutdownDialogAction::Hibernate)
     {
-        ::SetSuspendState(true, false, false);
+        ::SetSuspendState(TRUE, FALSE, FALSE);
     }
     else
     {
         const QString msg = QCoreApplication::translate("misc", "qBittorrent will shutdown the computer now because all downloads are complete.");
         auto msgWchar = std::make_unique<wchar_t[]>(msg.length() + 1);
         msg.toWCharArray(msgWchar.get());
-        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, true, false);
+        ::InitiateSystemShutdownW(nullptr, msgWchar.get(), 10, TRUE, FALSE);
     }
 
     // Disable shutdown privilege.
