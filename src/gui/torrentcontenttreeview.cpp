@@ -120,9 +120,8 @@ void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool c
         return [model, getSelectedRows, priority]()
         {
             for (const QModelIndex &index : asConst(getSelectedRows()))
-            {
                 model->setData(index, static_cast<int>(priority));
-            }
+
             emit model->filteredFilesChanged();
         };
     };
@@ -134,7 +133,7 @@ void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool c
 
         const QModelIndexList selectedRows = getSelectedRows();
         const qsizetype priorityGroups = 3;
-        const auto priorityGroupSize = std::max<qsizetype>(selectedRows.length() / priorityGroups, 1);
+        const auto priorityGroupSize = std::max<qsizetype>((selectedRows.length() / priorityGroups), 1);
 
         for (qsizetype i = 0; i < selectedRows.length(); ++i)
         {
