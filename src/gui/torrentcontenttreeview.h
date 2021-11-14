@@ -30,6 +30,8 @@
 
 #include <QTreeView>
 
+class QMenu;
+
 namespace BitTorrent
 {
     class AbstractFileStorage;
