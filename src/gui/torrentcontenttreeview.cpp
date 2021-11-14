@@ -108,7 +108,7 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool createSubMenu) const
+void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *const menu, const bool createSubMenu) const
 {
     const auto model = qobject_cast<TorrentContentFilterModel *>(this->model());
     Q_ASSERT(model);
@@ -163,13 +163,13 @@ void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool c
 
     if (createSubMenu)
     {
-        menu = menu->addMenu(tr("Priority"));
-        menu->addAction(tr("Do not download"), menu, applyPriorities(BitTorrent::DownloadPriority::Ignored));
-        menu->addAction(tr("Normal"),          menu, applyPriorities(BitTorrent::DownloadPriority::Normal));
-        menu->addAction(tr("High"),            menu, applyPriorities(BitTorrent::DownloadPriority::High));
-        menu->addAction(tr("Maximum"),         menu, applyPriorities(BitTorrent::DownloadPriority::Maximum));
-        menu->addSeparator();
-        menu->addAction(tr("By shown file order"), menu, applyPrioritiesByOrder);
+        QMenu *const priorityMenu = menu->addMenu(tr("Priority"));
+        priorityMenu->addAction(tr("Do not download"), priorityMenu, applyPriorities(BitTorrent::DownloadPriority::Ignored));
+        priorityMenu->addAction(tr("Normal"),          priorityMenu, applyPriorities(BitTorrent::DownloadPriority::Normal));
+        priorityMenu->addAction(tr("High"),            priorityMenu, applyPriorities(BitTorrent::DownloadPriority::High));
+        priorityMenu->addAction(tr("Maximum"),         priorityMenu, applyPriorities(BitTorrent::DownloadPriority::Maximum));
+        priorityMenu->addSeparator();
+        priorityMenu->addAction(tr("By shown file order"), priorityMenu, applyPrioritiesByOrder);
     }
     else
     {
