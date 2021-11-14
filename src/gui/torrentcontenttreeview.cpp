@@ -113,11 +113,14 @@ void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool c
     const auto model = qobject_cast<TorrentContentFilterModel *>(this->model());
     Q_ASSERT(model);
 
-    const auto getSelectedRows = [this]() { return selectionModel()->selectedRows(TorrentContentModelItem::COL_PRIO); };
-
-    const auto applyPriorities = [&](const BitTorrent::DownloadPriority priority)
+    const auto getSelectedRows = [this]() -> QModelIndexList
     {
-        return [model, getSelectedRows, priority]()
+        return selectionModel()->selectedRows(TorrentContentModelItem::COL_PRIO);
+    };
+
+    const auto applyPriorities = [getSelectedRows, model](const BitTorrent::DownloadPriority priority) -> auto
+    {
+        return [getSelectedRows, model, priority]() -> void
         {
             for (const QModelIndex &index : asConst(getSelectedRows()))
                 model->setData(index, static_cast<int>(priority));
@@ -125,7 +128,7 @@ void TorrentContentTreeView::setupDownloadPriorityMenu(QMenu *menu, const bool c
             emit model->filteredFilesChanged();
         };
     };
-    const auto applyPrioritiesByOrder = [model, getSelectedRows]()
+    const auto applyPrioritiesByOrder = [getSelectedRows, model]() -> void
     {
         // Equally distribute the selected items into groups and for each group assign
         // a download priority that will apply to each item. The number of groups depends on how
