@@ -33,6 +33,7 @@
 #include <QMetaType>
 #include <QObject>
 
+#include "base/path.h"
 #include "base/utils/version.h"
 
 using PluginVersion = Utils::Version<unsigned short, 2>;
@@ -50,7 +51,7 @@ struct PluginInfo
     QString fullName;
     QString url;
     QStringList supportedCategories;
-    QString iconPath;
+    Path iconPath;
     bool enabled;
 };
 
@@ -85,11 +86,11 @@ public:
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
     SearchDownloadHandler *downloadTorrent(const QString &siteUrl, const QString &url);
 
-    static PluginVersion getPluginVersion(const QString &filePath);
+    static PluginVersion getPluginVersion(const Path &filePath);
     static QString categoryFullName(const QString &categoryName);
     QString pluginFullName(const QString &pluginName);
-    static QString pluginsLocation();
-    static QString engineLocation();
+    static Path pluginsLocation();
+    static Path engineLocation();
 
 signals:
     void pluginEnabled(const QString &name, bool enabled);
@@ -106,13 +107,13 @@ private:
     void update();
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
-    void installPlugin_impl(const QString &name, const QString &path);
+    void installPlugin_impl(const QString &name, const Path &path);
     bool isUpdateNeeded(const QString &pluginName, PluginVersion newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);
     void pluginDownloadFinished(const Net::DownloadResult &result);
 
-    static QString pluginPath(const QString &name);
+    static Path pluginPath(const QString &name);
 
     static QPointer<SearchPluginManager> m_instance;
 

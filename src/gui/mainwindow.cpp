@@ -58,6 +58,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
@@ -1250,10 +1251,10 @@ void MainWindow::closeEvent(QCloseEvent *e)
 // Display window to create a torrent
 void MainWindow::on_actionCreateTorrent_triggered()
 {
-    createTorrentTriggered();
+    createTorrentTriggered({});
 }
 
-void MainWindow::createTorrentTriggered(const QString &path)
+void MainWindow::createTorrentTriggered(const Path &path)
 {
     if (m_createTorrentDlg)
     {
@@ -1261,7 +1262,9 @@ void MainWindow::createTorrentTriggered(const QString &path)
         m_createTorrentDlg->activateWindow();
     }
     else
+    {
         m_createTorrentDlg = new TorrentCreatorDialog(this, path);
+    }
 }
 
 bool MainWindow::event(QEvent *e)
@@ -1367,7 +1370,7 @@ void MainWindow::dropEvent(QDropEvent *event)
     // Create torrent
     for (const QString &file : asConst(otherFiles))
     {
-        createTorrentTriggered(file);
+        createTorrentTriggered(Path(file));
 
         // currently only handle the first entry
         // this is a stub that can be expanded later to create many torrents at once
@@ -1423,7 +1426,7 @@ void MainWindow::on_actionOpen_triggered()
     // Open File Open Dialog
     // Note: it is possible to select more than one file
     const QStringList pathsList =
-        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir(),
+        QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir().data(),
                                       tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
 
     if (pathsList.isEmpty())
@@ -1440,9 +1443,9 @@ void MainWindow::on_actionOpen_triggered()
     }
 
     // Save last dir to remember it
-    QString topDir = Utils::Fs::toUniformPath(pathsList.at(0));
-    topDir = topDir.left(topDir.lastIndexOf('/'));
-    pref->setMainLastDir(topDir);
+    const Path topDir {pathsList.at(0)};
+    const Path parentDir = topDir.parentPath();
+    pref->setMainLastDir(parentDir.isEmpty() ? topDir : parentDir);
 }
 
 void MainWindow::activate()
@@ -2110,9 +2113,9 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    const QString exePath = result.filePath + QLatin1String(".exe");
-    QFile::rename(result.filePath, exePath);
-    installer.start(Utils::Fs::toNativePath(exePath), {"/passive"});
+    const Path exePath = result.filePath + ".exe";
+    Utils::Fs::renameFile(result.filePath, exePath);
+    installer.start(exePath.toString(), {"/passive"});
 
     // Wait for setup to complete
     installer.waitForFinished(10 * 60 * 1000);
@@ -2122,7 +2125,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     qDebug("Setup should be complete!");
 
     // Delete temp file
-    Utils::Fs::forceRemove(exePath);
+    Utils::Fs::removeFile(exePath);
 
     // Reload search engine
     if (Utils::ForeignApps::pythonInfo().isSupportedVersion())

@@ -54,6 +54,7 @@
 
 #include "algorithm.h"
 #include "global.h"
+#include "path.h"
 #include "profile.h"
 #include "settingsstorage.h"
 #include "utils/fs.h"
@@ -85,11 +86,11 @@ namespace
     }
 
 #ifdef Q_OS_WIN
-    QString makeProfileID(const QString &profilePath, const QString &profileName)
+    QString makeProfileID(const Path &profilePath, const QString &profileName)
     {
         return profilePath.isEmpty()
                 ? profileName
-                : profileName + QLatin1Char('@') + Utils::Fs::toValidFileSystemName(profilePath, false, {});
+                : profileName + QLatin1Char('@') + Utils::Fs::toValidFileName(profilePath.data(), {});
     }
 #endif
 }
@@ -137,12 +138,12 @@ void Preferences::setUseCustomUITheme(const bool use)
     setValue("Preferences/General/UseCustomUITheme", use);
 }
 
-QString Preferences::customUIThemePath() const
+Path Preferences::customUIThemePath() const
 {
-    return value<QString>("Preferences/General/CustomUIThemePath");
+    return value<Path>("Preferences/General/CustomUIThemePath");
 }
 
-void Preferences::setCustomUIThemePath(const QString &path)
+void Preferences::setCustomUIThemePath(const Path &path)
 {
     setValue("Preferences/General/CustomUIThemePath", path);
 }
@@ -336,7 +337,7 @@ void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
 bool Preferences::WinStartup() const
 {
     const QString profileName = Profile::instance()->profileName();
-    const QString profilePath = Profile::instance()->rootPath();
+    const Path profilePath = Profile::instance()->rootPath();
     const QString profileID = makeProfileID(profilePath, profileName);
     const QSettings settings {"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat};
 
@@ -346,7 +347,7 @@ bool Preferences::WinStartup() const
 void Preferences::setWinStartup(const bool b)
 {
     const QString profileName = Profile::instance()->profileName();
-    const QString profilePath = Profile::instance()->rootPath();
+    const Path profilePath = Profile::instance()->rootPath();
     const QString profileID = makeProfileID(profilePath, profileName);
     QSettings settings {"HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat};
     if (b)
@@ -354,7 +355,7 @@ void Preferences::setWinStartup(const bool b)
         const QString configuration = Profile::instance()->configurationName();
 
         const auto cmd = QString::fromLatin1(R"("%1" "--profile=%2" "--configuration=%3")")
-                .arg(Utils::Fs::toNativePath(qApp->applicationFilePath()), profilePath, configuration);
+                .arg(Path(qApp->applicationFilePath()).toString(), profilePath.toString(), configuration);
         settings.setValue(profileID, cmd);
     }
     else
@@ -365,24 +366,14 @@ void Preferences::setWinStartup(const bool b)
 #endif // Q_OS_WIN
 
 // Downloads
-QString Preferences::lastLocationPath() const
+Path Preferences::getScanDirsLastPath() const
 {
-    return Utils::Fs::toUniformPath(value<QString>("Preferences/Downloads/LastLocationPath"));
+    return value<Path>("Preferences/Downloads/ScanDirsLastPath");
 }
 
-void Preferences::setLastLocationPath(const QString &path)
+void Preferences::setScanDirsLastPath(const Path &path)
 {
-    setValue("Preferences/Downloads/LastLocationPath", Utils::Fs::toUniformPath(path));
-}
-
-QString Preferences::getScanDirsLastPath() const
-{
-    return Utils::Fs::toUniformPath(value<QString>("Preferences/Downloads/ScanDirsLastPath"));
-}
-
-void Preferences::setScanDirsLastPath(const QString &path)
-{
-    setValue("Preferences/Downloads/ScanDirsLastPath", Utils::Fs::toUniformPath(path));
+    setValue("Preferences/Downloads/ScanDirsLastPath", path);
 }
 
 bool Preferences::isMailNotificationEnabled() const
@@ -737,22 +728,22 @@ void Preferences::setWebUiHttpsEnabled(const bool enabled)
     setValue("Preferences/WebUI/HTTPS/Enabled", enabled);
 }
 
-QString Preferences::getWebUIHttpsCertificatePath() const
+Path Preferences::getWebUIHttpsCertificatePath() const
 {
-    return value<QString>("Preferences/WebUI/HTTPS/CertificatePath");
+    return value<Path>("Preferences/WebUI/HTTPS/CertificatePath");
 }
 
-void Preferences::setWebUIHttpsCertificatePath(const QString &path)
+void Preferences::setWebUIHttpsCertificatePath(const Path &path)
 {
     setValue("Preferences/WebUI/HTTPS/CertificatePath", path);
 }
 
-QString Preferences::getWebUIHttpsKeyPath() const
+Path Preferences::getWebUIHttpsKeyPath() const
 {
-    return value<QString>("Preferences/WebUI/HTTPS/KeyPath");
+    return value<Path>("Preferences/WebUI/HTTPS/KeyPath");
 }
 
-void Preferences::setWebUIHttpsKeyPath(const QString &path)
+void Preferences::setWebUIHttpsKeyPath(const Path &path)
 {
     setValue("Preferences/WebUI/HTTPS/KeyPath", path);
 }
@@ -767,12 +758,12 @@ void Preferences::setAltWebUiEnabled(const bool enabled)
     setValue("Preferences/WebUI/AlternativeUIEnabled", enabled);
 }
 
-QString Preferences::getWebUiRootFolder() const
+Path Preferences::getWebUiRootFolder() const
 {
-    return value<QString>("Preferences/WebUI/RootFolder");
+    return value<Path>("Preferences/WebUI/RootFolder");
 }
 
-void Preferences::setWebUiRootFolder(const QString &path)
+void Preferences::setWebUiRootFolder(const Path &path)
 {
     setValue("Preferences/WebUI/RootFolder", path);
 }
@@ -1050,14 +1041,14 @@ bool Preferences::isMagnetLinkAssocSet()
     const QSettings settings("HKEY_CURRENT_USER\\Software\\Classes", QSettings::NativeFormat);
 
     // Check magnet link assoc
-    const QString shellCommand = Utils::Fs::toNativePath(settings.value("magnet/shell/open/command/Default", "").toString());
+    const QString shellCommand = settings.value("magnet/shell/open/command/Default", "").toString();
 
     const QRegularExpressionMatch exeRegMatch = QRegularExpression("\"([^\"]+)\".*").match(shellCommand);
     if (!exeRegMatch.hasMatch())
         return false;
 
-    const QString assocExe = exeRegMatch.captured(1);
-    if (assocExe.compare(Utils::Fs::toNativePath(qApp->applicationFilePath()), Qt::CaseInsensitive) != 0)
+    const Path assocExe {exeRegMatch.captured(1)};
+    if (assocExe != Path(qApp->applicationFilePath()))
         return false;
 
     return true;
@@ -1090,15 +1081,16 @@ void Preferences::setMagnetLinkAssoc(const bool set)
     // Magnet association
     if (set)
     {
-        const QString commandStr = '"' + qApp->applicationFilePath() + "\" \"%1\"";
-        const QString iconStr = '"' + qApp->applicationFilePath() + "\",1";
+        const QString applicationFilePath = Path(qApp->applicationFilePath()).toString();
+        const QString commandStr = '"' + applicationFilePath + "\" \"%1\"";
+        const QString iconStr = '"' + applicationFilePath + "\",1";
 
         settings.setValue("magnet/Default", "URL:Magnet link");
         settings.setValue("magnet/Content Type", "application/x-magnet");
         settings.setValue("magnet/URL Protocol", "");
-        settings.setValue("magnet/DefaultIcon/Default", Utils::Fs::toNativePath(iconStr));
+        settings.setValue("magnet/DefaultIcon/Default", iconStr);
         settings.setValue("magnet/shell/Default", "open");
-        settings.setValue("magnet/shell/open/command/Default", Utils::Fs::toNativePath(commandStr));
+        settings.setValue("magnet/shell/open/command/Default", commandStr);
     }
     else if (isMagnetLinkAssocSet())
     {
@@ -1294,12 +1286,12 @@ void Preferences::setMainVSplitterState(const QByteArray &state)
 #endif
 }
 
-QString Preferences::getMainLastDir() const
+Path Preferences::getMainLastDir() const
 {
-    return value("MainWindow/LastDir", QDir::homePath());
+    return value("MainWindow/LastDir", Utils::Fs::homePath());
 }
 
-void Preferences::setMainLastDir(const QString &path)
+void Preferences::setMainLastDir(const Path &path)
 {
     setValue("MainWindow/LastDir", path);
 }

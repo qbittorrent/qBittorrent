@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2011  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,63 +28,8 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QtContainerFwd>
 
-#include "base/path.h"
-#include "base/settingvalue.h"
+class Path;
 
-class QStandardItemModel;
-
-namespace BitTorrent
-{
-    class Torrent;
-}
-
-namespace Ui
-{
-    class PreviewSelectDialog;
-}
-class PreviewListDelegate;
-
-class PreviewSelectDialog final : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PreviewSelectDialog)
-
-public:
-    enum PreviewColumn
-    {
-        NAME,
-        SIZE,
-        PROGRESS,
-        FILE_INDEX,
-
-        NB_COLUMNS
-    };
-
-    PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent);
-    ~PreviewSelectDialog();
-
-signals:
-    void readyToPreviewFile(const Path &filePath) const;
-
-private slots:
-    void previewButtonClicked();
-    void displayColumnHeaderMenu();
-
-private:
-    void showEvent(QShowEvent *event) override;
-
-    void loadWindowState();
-    void saveWindowState();
-
-    Ui::PreviewSelectDialog *m_ui;
-    QStandardItemModel *m_previewListModel;
-    PreviewListDelegate *m_listDelegate;
-    const BitTorrent::Torrent *m_torrent;
-    bool m_headerStateInitialized = false;
-
-    // Settings
-    SettingValue<QSize> m_storeDialogSize;
-    SettingValue<QByteArray> m_storeTreeHeaderState;
-};
+using PathList = QList<Path>;

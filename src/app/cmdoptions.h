@@ -36,6 +36,7 @@
 #include <QStringList>
 
 #include "base/exceptions.h"
+#include "base/path.h"
 
 class QProcessEnvironment;
 
@@ -58,9 +59,9 @@ struct QBtCommandLineParameters
     std::optional<bool> addPaused;
     std::optional<bool> skipDialog;
     QStringList torrents;
-    QString profileDir;
+    Path profileDir;
     QString configurationName;
-    QString savePath;
+    Path savePath;
     QString category;
     QString unknownParameter;
 

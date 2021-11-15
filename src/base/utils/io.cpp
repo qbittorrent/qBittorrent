@@ -36,6 +36,8 @@
 #include <QSaveFile>
 #include <QString>
 
+#include "base/path.h"
+
 Utils::IO::FileDeviceOutputIterator::FileDeviceOutputIterator(QFileDevice &device, const int bufferSize)
     : m_device {&device}
     , m_buffer {std::make_shared<QByteArray>()}
@@ -66,17 +68,17 @@ Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operat
     return *this;
 }
 
-nonstd::expected<void, QString> Utils::IO::saveToFile(const QString &path, const QByteArray &data)
+nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const QByteArray &data)
 {
-    QSaveFile file {path};
+    QSaveFile file {path.data()};
     if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.flush() || !file.commit())
         return nonstd::make_unexpected(file.errorString());
     return {};
 }
 
-nonstd::expected<void, QString> Utils::IO::saveToFile(const QString &path, const lt::entry &data)
+nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const lt::entry &data)
 {
-    QSaveFile file {path};
+    QSaveFile file {path.data()};
     if (!file.open(QIODevice::WriteOnly))
         return nonstd::make_unexpected(file.errorString());
 

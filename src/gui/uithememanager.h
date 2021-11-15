@@ -36,6 +36,8 @@
 #include <QObject>
 #include <QString>
 
+#include "base/pathfwd.h"
+
 class UIThemeSource
 {
 public:
@@ -43,7 +45,7 @@ public:
 
     virtual QByteArray readStyleSheet() = 0;
     virtual QByteArray readConfig() = 0;
-    virtual QString iconPath(const QString &iconId) const = 0;
+    virtual Path iconPath(const QString &iconId) const = 0;
 };
 
 class UIThemeManager : public QObject
@@ -56,7 +58,7 @@ public:
     static void freeInstance();
     static UIThemeManager *instance();
 
-    QString getIconPath(const QString &iconId) const;
+    Path getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
@@ -68,7 +70,7 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    Path getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
     void applyStyleSheet() const;

@@ -30,34 +30,33 @@
 
 #include <QSize>
 
+#include "base/pathfwd.h"
+
 class QIcon;
 class QPixmap;
 class QPoint;
 class QWidget;
 
-namespace Utils
+namespace Utils::Gui
 {
-    namespace Gui
+    void resize(QWidget *widget, const QSize &newSize = {});
+    qreal screenScalingFactor(const QWidget *widget);
+
+    template <typename T>
+    T scaledSize(const QWidget *widget, const T &size)
     {
-        void resize(QWidget *widget, const QSize &newSize = {});
-        qreal screenScalingFactor(const QWidget *widget);
-
-        template <typename T>
-        T scaledSize(const QWidget *widget, const T &size)
-        {
-            return (size * screenScalingFactor(widget));
-        }
-
-        QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
-        QPixmap scaledPixmap(const QString &path, const QWidget *widget, int height = 0);
-        QPixmap scaledPixmapSvg(const QString &path, const QWidget *widget, int baseHeight);
-        QSize smallIconSize(const QWidget *widget = nullptr);
-        QSize mediumIconSize(const QWidget *widget = nullptr);
-        QSize largeIconSize(const QWidget *widget = nullptr);
-
-        QPoint screenCenter(const QWidget *w);
-
-        void openPath(const QString &absolutePath);
-        void openFolderSelect(const QString &absolutePath);
+        return (size * screenScalingFactor(widget));
     }
+
+    QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
+    QPixmap scaledPixmap(const Path &path, const QWidget *widget, int height = 0);
+    QPixmap scaledPixmapSvg(const Path &path, const QWidget *widget, int baseHeight);
+    QSize smallIconSize(const QWidget *widget = nullptr);
+    QSize mediumIconSize(const QWidget *widget = nullptr);
+    QSize largeIconSize(const QWidget *widget = nullptr);
+
+    QPoint screenCenter(const QWidget *w);
+
+    void openPath(const Path &path);
+    void openFolderSelect(const Path &path);
 }

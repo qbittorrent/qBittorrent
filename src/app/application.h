@@ -47,6 +47,7 @@ class QSessionManager;
 using BaseApplication = QCoreApplication;
 #endif // DISABLE_GUI
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
 #include "cmdoptions.h"
@@ -91,8 +92,8 @@ public:
     // FileLogger properties
     bool isFileLoggerEnabled() const;
     void setFileLoggerEnabled(bool value);
-    QString fileLoggerPath() const;
-    void setFileLoggerPath(const QString &path);
+    Path fileLoggerPath() const;
+    void setFileLoggerPath(const Path &path);
     bool isFileLoggerBackup() const;
     void setFileLoggerBackup(bool value);
     bool isFileLoggerDeleteOld() const;
@@ -152,5 +153,5 @@ private:
     SettingValue<int> m_storeFileLoggerMaxSize;
     SettingValue<int> m_storeFileLoggerAge;
     SettingValue<int> m_storeFileLoggerAgeType;
-    SettingValue<QString> m_storeFileLoggerPath;
+    SettingValue<Path> m_storeFileLoggerPath;
 };

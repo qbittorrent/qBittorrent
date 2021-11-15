@@ -32,6 +32,7 @@
 
 #include <QDialog>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 class QAbstractButton;
@@ -82,8 +83,8 @@ private:
     QAbstractButton *m_previousRadio = nullptr;
     struct
     {
-        QString savePath;
-        QString downloadPath;
+        Path savePath;
+        Path downloadPath;
         QString category;
         qreal ratio;
         int seedingTime;

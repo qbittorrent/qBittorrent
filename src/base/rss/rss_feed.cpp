@@ -68,17 +68,16 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     , m_url(url)
 {
     const auto uidHex = QString::fromLatin1(m_uid.toRfc4122().toHex());
-    m_dataFileName = uidHex + QLatin1String(".json");
+    m_dataFileName = Path(uidHex + QLatin1String(".json"));
 
     // Move to new file naming scheme (since v4.1.2)
-    const QString legacyFilename
-    {Utils::Fs::toValidFileSystemName(m_url, false, QLatin1String("_"))
-                + QLatin1String(".json")};
-    const QDir storageDir {m_session->dataFileStorage()->storageDir()};
-    if (!QFile::exists(storageDir.absoluteFilePath(m_dataFileName)))
-        QFile::rename(storageDir.absoluteFilePath(legacyFilename), storageDir.absoluteFilePath(m_dataFileName));
+    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, QLatin1String("_")) + QLatin1String(".json");
+    const Path storageDir = m_session->dataFileStorage()->storageDir();
+    const Path dataFilePath = storageDir / m_dataFileName;
+    if (!dataFilePath.exists())
+        Utils::Fs::renameFile((storageDir / Path(legacyFilename)), dataFilePath);
 
-    m_iconPath = Utils::Fs::toUniformPath(storageDir.absoluteFilePath(uidHex + QLatin1String(".ico")));
+    m_iconPath = storageDir / Path(uidHex + QLatin1String(".ico"));
 
     m_parser = new Private::Parser(m_lastBuildDate);
     m_parser->moveToThread(m_session->workingThread());
@@ -139,7 +138,7 @@ void Feed::refresh()
     m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
-    if (!QFile::exists(m_iconPath))
+    if (!m_iconPath.exists())
         downloadIcon();
 
     m_isLoading = true;
@@ -262,7 +261,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 
 void Feed::load()
 {
-    QFile file(m_session->dataFileStorage()->storageDir().absoluteFilePath(m_dataFileName));
+    QFile file {(m_session->dataFileStorage()->storageDir() / m_dataFileName).data()};
 
     if (!file.exists())
     {
@@ -278,7 +277,7 @@ void Feed::load()
     else
     {
         LogMsg(tr("Couldn't read RSS Session data from %1. Error: %2")
-               .arg(m_dataFileName, file.errorString())
+               .arg(m_dataFileName.toString(), file.errorString())
                , Log::WARNING);
     }
 }
@@ -500,7 +499,7 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     return newArticlesCount;
 }
 
-QString Feed::iconPath() const
+Path Feed::iconPath() const
 {
     return m_iconPath;
 }
@@ -549,8 +548,8 @@ void Feed::handleArticleRead(Article *article)
 
 void Feed::cleanup()
 {
-    Utils::Fs::forceRemove(m_session->dataFileStorage()->storageDir().absoluteFilePath(m_dataFileName));
-    Utils::Fs::forceRemove(m_iconPath);
+    Utils::Fs::removeFile(m_session->dataFileStorage()->storageDir() / m_dataFileName);
+    Utils::Fs::removeFile(m_iconPath);
 }
 
 void Feed::timerEvent(QTimerEvent *event)

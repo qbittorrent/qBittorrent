@@ -31,6 +31,8 @@
 
 #include <QCoreApplication>
 
+#include "base/utils/fs.h"
+
 Private::Profile::Profile(const QString &configurationName)
     : m_configurationName {configurationName}
 {
@@ -56,22 +58,22 @@ Private::DefaultProfile::DefaultProfile(const QString &configurationName)
 {
 }
 
-QString Private::DefaultProfile::rootPath() const
+Path Private::DefaultProfile::rootPath() const
 {
     return {};
 }
 
-QString Private::DefaultProfile::basePath() const
+Path Private::DefaultProfile::basePath() const
 {
-    return QDir::homePath();
+    return Utils::Fs::homePath();
 }
 
-QString Private::DefaultProfile::cacheLocation() const
+Path Private::DefaultProfile::cacheLocation() const
 {
     return locationWithConfigurationName(QStandardPaths::CacheLocation);
 }
 
-QString Private::DefaultProfile::configLocation() const
+Path Private::DefaultProfile::configLocation() const
 {
 #if defined(Q_OS_WIN)
     // On Windows QSettings stores files in FOLDERID_RoamingAppData\AppName
@@ -81,22 +83,22 @@ QString Private::DefaultProfile::configLocation() const
 #endif
 }
 
-QString Private::DefaultProfile::dataLocation() const
+Path Private::DefaultProfile::dataLocation() const
 {
 #if defined(Q_OS_WIN) || defined (Q_OS_MACOS)
     return locationWithConfigurationName(QStandardPaths::AppLocalDataLocation);
 #else
     // On Linux keep using the legacy directory ~/.local/share/data/ if it exists
-    const QString legacyDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-        + QLatin1String("/data/") + profileName();
+    const Path genericDataPath {QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)};
+    const Path profilePath {profileName()};
+    const Path legacyDir = genericDataPath / Path("data") / profilePath;
 
-    const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-        + QLatin1Char('/') + profileName();
+    const Path dataDir = genericDataPath / profilePath;
 
-    if (!QDir(dataDir).exists() && QDir(legacyDir).exists())
+    if (!dataDir.exists() && legacyDir.exists())
     {
         qWarning("The legacy data directory '%s' is used. It is recommended to move its content to '%s'",
-            qUtf8Printable(legacyDir), qUtf8Printable(dataDir));
+            qUtf8Printable(legacyDir.toString()), qUtf8Printable(dataDir.toString()));
 
         return legacyDir;
     }
@@ -105,9 +107,9 @@ QString Private::DefaultProfile::dataLocation() const
 #endif
 }
 
-QString Private::DefaultProfile::downloadLocation() const
+Path Private::DefaultProfile::downloadLocation() const
 {
-    return QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    return Path(QStandardPaths::writableLocation(QStandardPaths::DownloadLocation));
 }
 
 SettingsPtr Private::DefaultProfile::applicationSettings(const QString &name) const
@@ -119,48 +121,48 @@ SettingsPtr Private::DefaultProfile::applicationSettings(const QString &name) co
 #endif
 }
 
-QString Private::DefaultProfile::locationWithConfigurationName(const QStandardPaths::StandardLocation location) const
+Path Private::DefaultProfile::locationWithConfigurationName(const QStandardPaths::StandardLocation location) const
 {
-    return QStandardPaths::writableLocation(location) + configurationSuffix();
+    return Path(QStandardPaths::writableLocation(location) + configurationSuffix());
 }
 
-Private::CustomProfile::CustomProfile(const QString &rootPath, const QString &configurationName)
+Private::CustomProfile::CustomProfile(const Path &rootPath, const QString &configurationName)
     : Profile {configurationName}
-    , m_rootDir {rootPath}
-    , m_baseDir {m_rootDir.absoluteFilePath(profileName())}
-    , m_cacheLocation {m_baseDir.absoluteFilePath(QLatin1String("cache"))}
-    , m_configLocation {m_baseDir.absoluteFilePath(QLatin1String("config"))}
-    , m_dataLocation {m_baseDir.absoluteFilePath(QLatin1String("data"))}
-    , m_downloadLocation {m_baseDir.absoluteFilePath(QLatin1String("downloads"))}
+    , m_rootPath {rootPath}
+    , m_basePath {m_rootPath / Path(profileName())}
+    , m_cacheLocation {m_basePath / Path("cache")}
+    , m_configLocation {m_basePath / Path("config")}
+    , m_dataLocation {m_basePath / Path("data")}
+    , m_downloadLocation {m_basePath / Path("downloads")}
 {
 }
 
-QString Private::CustomProfile::rootPath() const
+Path Private::CustomProfile::rootPath() const
 {
-    return m_rootDir.absolutePath();
+    return m_rootPath;
 }
 
-QString Private::CustomProfile::basePath() const
+Path Private::CustomProfile::basePath() const
 {
-    return m_baseDir.absolutePath();
+    return m_basePath;
 }
 
-QString Private::CustomProfile::cacheLocation() const
+Path Private::CustomProfile::cacheLocation() const
 {
     return m_cacheLocation;
 }
 
-QString Private::CustomProfile::configLocation() const
+Path Private::CustomProfile::configLocation() const
 {
     return m_configLocation;
 }
 
-QString Private::CustomProfile::dataLocation() const
+Path Private::CustomProfile::dataLocation() const
 {
     return m_dataLocation;
 }
 
-QString Private::CustomProfile::downloadLocation() const
+Path Private::CustomProfile::downloadLocation() const
 {
     return m_downloadLocation;
 }
@@ -173,48 +175,48 @@ SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) con
 #else
     const char CONF_FILE_EXTENSION[] = ".conf";
 #endif
-    const QString settingsFileName {QDir(configLocation()).absoluteFilePath(name + QLatin1String(CONF_FILE_EXTENSION))};
-    return SettingsPtr(new QSettings(settingsFileName, QSettings::IniFormat));
+    const Path settingsFilePath = configLocation() / Path(name + QLatin1String(CONF_FILE_EXTENSION));
+    return SettingsPtr(new QSettings(settingsFilePath.data(), QSettings::IniFormat));
 }
 
-QString Private::NoConvertConverter::fromPortablePath(const QString &portablePath) const
+Path Private::NoConvertConverter::fromPortablePath(const Path &portablePath) const
 {
     return portablePath;
 }
 
-QString Private::NoConvertConverter::toPortablePath(const QString &path) const
+Path Private::NoConvertConverter::toPortablePath(const Path &path) const
 {
     return path;
 }
 
-Private::Converter::Converter(const QString &basePath)
-    : m_baseDir {basePath}
+Private::Converter::Converter(const Path &basePath)
+    : m_basePath {basePath}
 {
-    m_baseDir.makeAbsolute();
+    Q_ASSERT(basePath.isAbsolute());
 }
 
-QString Private::Converter::toPortablePath(const QString &path) const
+Path Private::Converter::toPortablePath(const Path &path) const
 {
-    if (path.isEmpty() || m_baseDir.path().isEmpty())
+    if (path.isEmpty())
         return path;
 
 #ifdef Q_OS_WIN
-    if (QDir::isAbsolutePath(path))
+    if (path.isAbsolute())
     {
-        const QChar driveLeter = path[0].toUpper();
-        const QChar baseDriveLetter = m_baseDir.path()[0].toUpper();
-        const bool onSameDrive = (driveLeter.category() == QChar::Letter_Uppercase) && (driveLeter == baseDriveLetter);
+        const QChar driveLetter = path.data()[0].toUpper();
+        const QChar baseDriveLetter = m_basePath.data()[0].toUpper();
+        const bool onSameDrive = (driveLetter.category() == QChar::Letter_Uppercase) && (driveLetter == baseDriveLetter);
         if (!onSameDrive)
             return path;
     }
 #endif
-    return m_baseDir.relativeFilePath(path);
+    return m_basePath.relativePathOf(path);
 }
 
-QString Private::Converter::fromPortablePath(const QString &portablePath) const
+Path Private::Converter::fromPortablePath(const Path &portablePath) const
 {
-    if (portablePath.isEmpty() || QDir::isAbsolutePath(portablePath))
+    if (portablePath.isEmpty() || portablePath.isAbsolute())
         return portablePath;
 
-    return QDir::cleanPath(m_baseDir.absoluteFilePath(portablePath));
+    return m_basePath / portablePath;
 }

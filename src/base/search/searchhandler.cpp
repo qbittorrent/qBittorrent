@@ -34,6 +34,7 @@
 #include <QVector>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "searchpluginmanager.h"
@@ -67,7 +68,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     const QStringList params
     {
-        Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2.py"),
+        (m_manager->engineLocation() / Path("nova2.py")).toString(),
         m_usedPlugins.join(','),
         m_category
     };

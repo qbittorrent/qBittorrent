@@ -35,6 +35,7 @@
 
 #include "global.h"
 #include "logger.h"
+#include "path.h"
 #include "profile.h"
 #include "utils/fs.h"
 
@@ -59,8 +60,8 @@ namespace
         // there is no other way to get that name except
         // actually create a QSettings object.
         // if serialization operation was not successful we return empty string
-        QString deserialize(const QString &name, QVariantHash &data) const;
-        QString serialize(const QString &name, const QVariantHash &data) const;
+        Path deserialize(const QString &name, QVariantHash &data) const;
+        Path serialize(const QString &name, const QVariantHash &data) const;
 
         const QString m_name;
     };
@@ -156,7 +157,7 @@ QVariantHash TransactionalSettings::read() const
 {
     QVariantHash res;
 
-    const QString newPath = deserialize(m_name + QLatin1String("_new"), res);
+    const Path newPath = deserialize(m_name + QLatin1String("_new"), res);
     if (!newPath.isEmpty())
     { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
@@ -164,15 +165,16 @@ QVariantHash TransactionalSettings::read() const
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
         // contains the most recent settings.
         Logger::instance()->addMessage(QObject::tr("Detected unclean program exit. Using fallback file to restore settings: %1")
-                .arg(Utils::Fs::toNativePath(newPath))
+                .arg(newPath.toString())
             , Log::WARNING);
 
-        QString finalPath = newPath;
-        int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
-        finalPath.remove(index, 4);
+        QString finalPathStr = newPath.data();
+        const int index = finalPathStr.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+        finalPathStr.remove(index, 4);
 
-        Utils::Fs::forceRemove(finalPath);
-        QFile::rename(newPath, finalPath);
+        const Path finalPath {finalPathStr};
+        Utils::Fs::removeFile(finalPath);
+        Utils::Fs::renameFile(newPath, finalPath);
     }
     else
     {
@@ -189,22 +191,23 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     // between deleting the file and recreating it. This is a safety measure.
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
-    const QString newPath = serialize(m_name + QLatin1String("_new"), data);
+    const Path newPath = serialize(m_name + QLatin1String("_new"), data);
     if (newPath.isEmpty())
     {
-        Utils::Fs::forceRemove(newPath);
+        Utils::Fs::removeFile(newPath);
         return false;
     }
 
-    QString finalPath = newPath;
-    int index = finalPath.lastIndexOf("_new", -1, Qt::CaseInsensitive);
-    finalPath.remove(index, 4);
+    QString finalPathStr = newPath.data();
+    const int index = finalPathStr.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+    finalPathStr.remove(index, 4);
 
-    Utils::Fs::forceRemove(finalPath);
-    return QFile::rename(newPath, finalPath);
+    const Path finalPath {finalPathStr};
+    Utils::Fs::removeFile(finalPath);
+    return Utils::Fs::renameFile(newPath, finalPath);
 }
 
-QString TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
+Path TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
 {
     SettingsPtr settings = Profile::instance()->applicationSettings(name);
 
@@ -221,10 +224,10 @@ QString TransactionalSettings::deserialize(const QString &name, QVariantHash &da
             data[key] = value;
     }
 
-    return settings->fileName();
+    return Path(settings->fileName());
 }
 
-QString TransactionalSettings::serialize(const QString &name, const QVariantHash &data) const
+Path TransactionalSettings::serialize(const QString &name, const QVariantHash &data) const
 {
     SettingsPtr settings = Profile::instance()->applicationSettings(name);
     for (auto i = data.begin(); i != data.end(); ++i)
@@ -235,7 +238,7 @@ QString TransactionalSettings::serialize(const QString &name, const QVariantHash
     switch (settings->status())
     {
     case QSettings::NoError:
-        return settings->fileName();
+        return Path(settings->fileName());
     case QSettings::AccessError:
         Logger::instance()->addMessage(QObject::tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;

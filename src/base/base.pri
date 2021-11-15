@@ -61,6 +61,8 @@ HEADERS += \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/orderedset.h \
+    $$PWD/path.h \
+    $$PWD/pathfwd.h \
     $$PWD/preferences.h \
     $$PWD/profile.h \
     $$PWD/profile_p.h \
@@ -144,6 +146,7 @@ SOURCES += \
     $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
+    $$PWD/path.cpp \
     $$PWD/preferences.cpp \
     $$PWD/profile.cpp \
     $$PWD/profile_p.cpp \

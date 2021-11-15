@@ -28,7 +28,7 @@
 
 #include "autoexpandabledialog.h"
 
-#include "base/utils/fs.h"
+#include "base/path.h"
 #include "ui_autoexpandabledialog.h"
 #include "utils.h"
 
@@ -58,9 +58,9 @@ QString AutoExpandableDialog::getText(QWidget *parent, const QString &title, con
     d.m_ui->textEdit->selectAll();
     if (excludeExtension)
     {
-        const QString extension = Utils::Fs::fileExtension(text);
+        const QString extension = Path(text).extension();
         if (!extension.isEmpty())
-            d.m_ui->textEdit->setSelection(0, (text.length() - extension.length() - 1));
+            d.m_ui->textEdit->setSelection(0, (text.length() - extension.length()));
     }
 
     bool res = d.exec();

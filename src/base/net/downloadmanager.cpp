@@ -348,12 +348,12 @@ Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
     return *this;
 }
 
-QString Net::DownloadRequest::destFileName() const
+Path Net::DownloadRequest::destFileName() const
 {
     return m_destFileName;
 }
 
-Net::DownloadRequest &Net::DownloadRequest::destFileName(const QString &value)
+Net::DownloadRequest &Net::DownloadRequest::destFileName(const Path &value)
 {
     m_destFileName = value;
     return *this;

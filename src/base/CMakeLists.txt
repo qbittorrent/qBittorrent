@@ -62,6 +62,8 @@ add_library(qbt_base STATIC
     net/reverseresolution.h
     net/smtp.h
     orderedset.h
+    path.h
+    pathfwd.h
     preferences.h
     profile.h
     profile_p.h
@@ -144,6 +146,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
     net/smtp.cpp
+    path.cpp
     preferences.cpp
     profile.cpp
     profile_p.cpp

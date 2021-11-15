@@ -35,6 +35,7 @@
 #include <QList>
 #include <QUuid>
 
+#include "base/path.h"
 #include "rss_item.h"
 
 class AsyncFileStorage;
@@ -79,7 +80,7 @@ namespace RSS
         bool hasError() const;
         bool isLoading() const;
         Article *articleByGUID(const QString &guid) const;
-        QString iconPath() const;
+        Path iconPath() const;
 
         QJsonValue toJsonValue(bool withData = false) const override;
 
@@ -122,8 +123,8 @@ namespace RSS
         QHash<QString, Article *> m_articles;
         QList<Article *> m_articlesByDate;
         int m_unreadCount = 0;
-        QString m_iconPath;
-        QString m_dataFileName;
+        Path m_iconPath;
+        Path m_dataFileName;
         QBasicTimer m_savingTimer;
         bool m_dirty = false;
         Net::DownloadHandler *m_downloadHandler = nullptr;

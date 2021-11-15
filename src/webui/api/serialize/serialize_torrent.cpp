@@ -34,6 +34,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/path.h"
 #include "base/tagset.h"
 #include "base/utils/fs.h"
 
@@ -130,9 +131,9 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_TAGS, torrent.tags().join(QLatin1String(", "))},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
-        {KEY_TORRENT_SAVE_PATH, Utils::Fs::toNativePath(torrent.savePath())},
-        {KEY_TORRENT_DOWNLOAD_PATH, Utils::Fs::toNativePath(torrent.downloadPath())},
-        {KEY_TORRENT_CONTENT_PATH, Utils::Fs::toNativePath(torrent.contentPath())},
+        {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},
+        {KEY_TORRENT_DOWNLOAD_PATH, torrent.downloadPath().toString()},
+        {KEY_TORRENT_CONTENT_PATH, torrent.contentPath().toString()},
         {KEY_TORRENT_ADDED_ON, torrent.addedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_COMPLETION_ON, torrent.completedTime().toSecsSinceEpoch()},
         {KEY_TORRENT_TRACKER, torrent.currentTracker()},

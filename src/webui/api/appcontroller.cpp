@@ -47,6 +47,7 @@
 #include "base/global.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
@@ -112,28 +113,28 @@ void AppController::preferencesAction()
     data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
     data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
     data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
-    data["save_path"] = Utils::Fs::toNativePath(session->savePath());
+    data["save_path"] = session->savePath().toString();
     data["temp_path_enabled"] = session->isDownloadPathEnabled();
-    data["temp_path"] = Utils::Fs::toNativePath(session->downloadPath());
+    data["temp_path"] = session->downloadPath().toString();
     data["use_category_paths_in_manual_mode"] = session->useCategoryPathsInManualMode();
-    data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
-    data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
+    data["export_dir"] = session->torrentExportDirectory().toString();
+    data["export_dir_fin"] = session->finishedTorrentExportDirectory().toString();
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
     TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
-    const QHash<QString, TorrentFilesWatcher::WatchedFolderOptions> watchedFolders = fsWatcher->folders();
+    const QHash<Path, TorrentFilesWatcher::WatchedFolderOptions> watchedFolders = fsWatcher->folders();
     QJsonObject nativeDirs;
     for (auto i = watchedFolders.cbegin(); i != watchedFolders.cend(); ++i)
     {
-        const QString watchedFolder = i.key();
+        const Path watchedFolder = i.key();
         const BitTorrent::AddTorrentParams params = i.value().addTorrentParams;
         if (params.savePath.isEmpty())
-            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), 1);
+            nativeDirs.insert(watchedFolder.toString(), 1);
         else if (params.savePath == watchedFolder)
-            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), 0);
+            nativeDirs.insert(watchedFolder.toString(), 0);
         else
-            nativeDirs.insert(Utils::Fs::toNativePath(watchedFolder), Utils::Fs::toNativePath(params.savePath));
+            nativeDirs.insert(watchedFolder.toString(), params.savePath.toString());
     }
     data["scan_dirs"] = nativeDirs;
     // === END DEPRECATED CODE === //
@@ -149,7 +150,7 @@ void AppController::preferencesAction()
     data["mail_notification_password"] = pref->getMailNotificationSMTPPassword();
     // Run an external program on torrent completion
     data["autorun_enabled"] = pref->isAutoRunEnabled();
-    data["autorun_program"] = Utils::Fs::toNativePath(pref->getAutoRunProgram());
+    data["autorun_program"] = pref->getAutoRunProgram();
 
     // Connection
     // Listening Port
@@ -177,7 +178,7 @@ void AppController::preferencesAction()
 
     // IP Filtering
     data["ip_filter_enabled"] = session->isIPFilteringEnabled();
-    data["ip_filter_path"] = Utils::Fs::toNativePath(session->IPFilterFile());
+    data["ip_filter_path"] = session->IPFilterFile().toString();
     data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
     data["banned_IPs"] = session->bannedIPs().join('\n');
 
@@ -236,8 +237,8 @@ void AppController::preferencesAction()
     data["web_ui_port"] = pref->getWebUiPort();
     data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
     data["use_https"] = pref->isWebUiHttpsEnabled();
-    data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath();
-    data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath();
+    data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath().toString();
+    data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath().toString();
     // Authentication
     data["web_ui_username"] = pref->getWebUiUsername();
     data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
@@ -251,7 +252,7 @@ void AppController::preferencesAction()
     data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
     // Use alternative Web UI
     data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
-    data["alternative_webui_path"] = pref->getWebUiRootFolder();
+    data["alternative_webui_path"] = pref->getWebUiRootFolder().toString();
     // Security
     data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
     data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
@@ -400,31 +401,31 @@ void AppController::setPreferencesAction()
     if (hasKey("category_changed_tmm_enabled"))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
     if (hasKey("save_path"))
-        session->setSavePath(it.value().toString());
+        session->setSavePath(Path(it.value().toString()));
     if (hasKey("temp_path_enabled"))
         session->setDownloadPathEnabled(it.value().toBool());
     if (hasKey("temp_path"))
-        session->setDownloadPath(it.value().toString());
+        session->setDownloadPath(Path(it.value().toString()));
     if (hasKey("use_category_paths_in_manual_mode"))
         session->setUseCategoryPathsInManualMode(it.value().toBool());
     if (hasKey("export_dir"))
-        session->setTorrentExportDirectory(it.value().toString());
+        session->setTorrentExportDirectory(Path(it.value().toString()));
     if (hasKey("export_dir_fin"))
-        session->setFinishedTorrentExportDirectory(it.value().toString());
+        session->setFinishedTorrentExportDirectory(Path(it.value().toString()));
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
     if (hasKey("scan_dirs"))
     {
-        QStringList scanDirs;
+        PathList scanDirs;
         TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
-        const QStringList oldScanDirs = fsWatcher->folders().keys();
+        const PathList oldScanDirs = fsWatcher->folders().keys();
         const QVariantHash nativeDirs = it.value().toHash();
         for (auto i = nativeDirs.cbegin(); i != nativeDirs.cend(); ++i)
         {
             try
             {
-                const QString watchedFolder = TorrentFilesWatcher::makeCleanPath(i.key());
+                const Path watchedFolder {i.key()};
                 TorrentFilesWatcher::WatchedFolderOptions options = fsWatcher->folders().value(watchedFolder);
                 BitTorrent::AddTorrentParams &params = options.addTorrentParams;
 
@@ -440,7 +441,7 @@ void AppController::setPreferencesAction()
                 }
                 else
                 {
-                    const QString customSavePath = i.value().toString();
+                    const Path customSavePath {i.value().toString()};
                     params.savePath = customSavePath;
                     params.useAutoTMM = false;
                 }
@@ -454,7 +455,7 @@ void AppController::setPreferencesAction()
         }
 
         // Update deleted folders
-        for (const QString &path : oldScanDirs)
+        for (const Path &path : oldScanDirs)
         {
             if (!scanDirs.contains(path))
                 fsWatcher->removeWatchedFolder(path);
@@ -531,7 +532,7 @@ void AppController::setPreferencesAction()
     if (hasKey("ip_filter_enabled"))
         session->setIPFilteringEnabled(it.value().toBool());
     if (hasKey("ip_filter_path"))
-        session->setIPFilterFile(it.value().toString());
+        session->setIPFilterFile(Path(it.value().toString()));
     if (hasKey("ip_filter_trackers"))
         session->setTrackerFilteringEnabled(it.value().toBool());
     if (hasKey("banned_IPs"))
@@ -650,9 +651,9 @@ void AppController::setPreferencesAction()
     if (hasKey("use_https"))
         pref->setWebUiHttpsEnabled(it.value().toBool());
     if (hasKey("web_ui_https_cert_path"))
-        pref->setWebUIHttpsCertificatePath(it.value().toString());
+        pref->setWebUIHttpsCertificatePath(Path(it.value().toString()));
     if (hasKey("web_ui_https_key_path"))
-        pref->setWebUIHttpsKeyPath(it.value().toString());
+        pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey("web_ui_username"))
         pref->setWebUiUsername(it.value().toString());
@@ -677,7 +678,7 @@ void AppController::setPreferencesAction()
     if (hasKey("alternative_webui_enabled"))
         pref->setAltWebUiEnabled(it.value().toBool());
     if (hasKey("alternative_webui_path"))
-        pref->setWebUiRootFolder(it.value().toString());
+        pref->setWebUiRootFolder(Path(it.value().toString()));
     // Security
     if (hasKey("web_ui_clickjacking_protection_enabled"))
         pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
@@ -869,7 +870,7 @@ void AppController::setPreferencesAction()
 
 void AppController::defaultSavePathAction()
 {
-    setResult(BitTorrent::Session::instance()->savePath());
+    setResult(BitTorrent::Session::instance()->savePath().toString());
 }
 
 void AppController::networkInterfaceListAction()

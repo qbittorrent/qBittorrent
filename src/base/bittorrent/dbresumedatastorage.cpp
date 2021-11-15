@@ -49,6 +49,7 @@
 #include "base/exceptions.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/path.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
@@ -173,7 +174,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(Worker)
 
     public:
-        Worker(const QString &dbPath, const QString &dbConnectionName);
+        Worker(const Path &dbPath, const QString &dbConnectionName);
 
         void openDatabase() const;
         void closeDatabase() const;
@@ -183,19 +184,19 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const;
 
     private:
-        const QString m_path;
+        const Path m_path;
         const QString m_connectionName;
     };
 }
 
-BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const QString &dbPath, QObject *parent)
+BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
     : ResumeDataStorage {parent}
     , m_ioThread {new QThread(this)}
 {
-    const bool needCreateDB = !QFile::exists(dbPath);
+    const bool needCreateDB = !dbPath.exists();
 
     auto db = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"), DB_CONNECTION_NAME);
-    db.setDatabaseName(dbPath);
+    db.setDatabaseName(dbPath.data());
     if (!db.open())
         throw RuntimeError(db.lastError().text());
 
@@ -308,12 +309,12 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
     resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
 
     resumeData.savePath = Profile::instance()->fromPortablePath(
-                Utils::Fs::toUniformPath(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
+                Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
     resumeData.useAutoTMM = resumeData.savePath.isEmpty();
     if (!resumeData.useAutoTMM)
     {
         resumeData.downloadPath = Profile::instance()->fromPortablePath(
-                    Utils::Fs::toUniformPath(query.value(DB_COLUMN_DOWNLOAD_PATH.name).toString()));
+                    Path(query.value(DB_COLUMN_DOWNLOAD_PATH.name).toString()));
     }
 
     const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
@@ -325,13 +326,11 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
     lt::error_code ec;
     const lt::bdecode_node root = lt::bdecode(allData, ec);
 
-    resumeData.downloadPath = Profile::instance()->fromPortablePath(
-                Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-downloadPath"))));
-
     lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
     p = lt::read_resume_data(root, ec);
-    p.save_path = Profile::instance()->fromPortablePath(fromLTString(p.save_path)).toStdString();
+    p.save_path = Profile::instance()->fromPortablePath(Path(fromLTString(p.save_path)))
+            .toString().toStdString();
 
     return resumeData;
 }
@@ -485,7 +484,7 @@ void BitTorrent::DBResumeDataStorage::updateDBFromVersion1() const
     }
 }
 
-BitTorrent::DBResumeDataStorage::Worker::Worker(const QString &dbPath, const QString &dbConnectionName)
+BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, const QString &dbConnectionName)
     : m_path {dbPath}
     , m_connectionName {dbConnectionName}
 {
@@ -494,7 +493,7 @@ BitTorrent::DBResumeDataStorage::Worker::Worker(const QString &dbPath, const QSt
 void BitTorrent::DBResumeDataStorage::Worker::openDatabase() const
 {
     auto db = QSqlDatabase::addDatabase(QLatin1String("QSQLITE"), m_connectionName);
-    db.setDatabaseName(m_path);
+    db.setDatabaseName(m_path.data());
     if (!db.open())
         throw RuntimeError(db.lastError().text());
 }
@@ -508,7 +507,8 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
 {
     // We need to adjust native libtorrent resume data
     lt::add_torrent_params p = resumeData.ltAddTorrentParams;
-    p.save_path = Profile::instance()->toPortablePath(QString::fromStdString(p.save_path)).toStdString();
+    p.save_path = Profile::instance()->toPortablePath(Path(p.save_path))
+            .toString().toStdString();
     if (resumeData.stopped)
     {
         p.flags |= lt::torrent_flags::paused;
@@ -603,8 +603,8 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
 
         if (!resumeData.useAutoTMM)
         {
-            query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, Profile::instance()->toPortablePath(resumeData.savePath));
-            query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, Profile::instance()->toPortablePath(resumeData.downloadPath));
+            query.bindValue(DB_COLUMN_TARGET_SAVE_PATH.placeholder, Profile::instance()->toPortablePath(resumeData.savePath).data());
+            query.bindValue(DB_COLUMN_DOWNLOAD_PATH.placeholder, Profile::instance()->toPortablePath(resumeData.downloadPath).data());
         }
 
         query.bindValue(DB_COLUMN_RESUMEDATA.placeholder, bencodedResumeData);

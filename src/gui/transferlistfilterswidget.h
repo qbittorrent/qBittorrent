@@ -34,6 +34,7 @@
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/path.h"
 
 class QCheckBox;
 class QResizeEvent;
@@ -133,7 +134,7 @@ private:
     QHash<QString, QSet<BitTorrent::TorrentID>> m_trackers;  // <tracker host, torrent IDs>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
-    QStringList m_iconPaths;
+    PathList m_iconPaths;
     int m_totalTorrents;
     bool m_downloadTrackerFavicon;
 };

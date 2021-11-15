@@ -31,7 +31,6 @@
 #include <QClipboard>
 #include <QDateTime>
 #include <QDebug>
-#include <QDir>
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
@@ -45,6 +44,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -333,7 +333,7 @@ QTreeView *PropertiesWidget::getFilesList() const
 void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
-        m_ui->labelSavePathVal->setText(Utils::Fs::toNativePath(m_torrent->savePath()));
+        m_ui->labelSavePathVal->setText(m_torrent->savePath().toString());
 }
 
 void PropertiesWidget::loadTrackers(BitTorrent::Torrent *const torrent)
@@ -593,25 +593,22 @@ void PropertiesWidget::loadUrlSeeds()
     }
 }
 
-QString PropertiesWidget::getFullPath(const QModelIndex &index) const
+Path PropertiesWidget::getFullPath(const QModelIndex &index) const
 {
-    const QDir saveDir {m_torrent->actualStorageLocation()};
-
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
     {
         const int fileIdx = m_propListModel->getFileIndex(index);
-        const QString filename {m_torrent->actualFilePath(fileIdx)};
-        const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(filename))};
+        const Path fullPath = m_torrent->actualStorageLocation() / m_torrent->actualFilePath(fileIdx);
         return fullPath;
     }
 
     // folder type
     const QModelIndex nameIndex {index.sibling(index.row(), TorrentContentModelItem::COL_NAME)};
-    QString folderPath {nameIndex.data().toString()};
+    Path folderPath {nameIndex.data().toString()};
     for (QModelIndex modelIdx = m_propListModel->parent(nameIndex); modelIdx.isValid(); modelIdx = modelIdx.parent())
-        folderPath.prepend(modelIdx.data().toString() + '/');
+        folderPath = Path(modelIdx.data().toString()) / folderPath;
 
-    const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(folderPath))};
+    const Path fullPath = m_torrent->actualStorageLocation() / folderPath;
     return fullPath;
 }
 
@@ -626,7 +623,7 @@ void PropertiesWidget::openItem(const QModelIndex &index) const
 
 void PropertiesWidget::openParentFolder(const QModelIndex &index) const
 {
-    const QString path = getFullPath(index);
+    const Path path = getFullPath(index);
     m_torrent->flushCache();  // Flush data
 #ifdef Q_OS_MACOS
     MacUtils::openFiles({path});

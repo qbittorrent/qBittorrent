@@ -372,7 +372,7 @@ QStringList QBtCommandLineParameters::paramList() const
     // torrent paths or URLs.
 
     if (!savePath.isEmpty())
-        result.append(QLatin1String("@savePath=") + savePath);
+        result.append(QLatin1String("@savePath=") + savePath.data());
 
     if (addPaused.has_value())
         result.append(*addPaused ? QLatin1String {"@addPaused=1"} : QLatin1String {"@addPaused=0"});
@@ -438,7 +438,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 #endif
             else if (arg == PROFILE_OPTION)
             {
-                result.profileDir = PROFILE_OPTION.value(arg);
+                result.profileDir = Path(PROFILE_OPTION.value(arg));
             }
             else if (arg == RELATIVE_FASTRESUME)
             {
@@ -450,7 +450,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             }
             else if (arg == SAVE_PATH_OPTION)
             {
-                result.savePath = SAVE_PATH_OPTION.value(arg);
+                result.savePath = Path(SAVE_PATH_OPTION.value(arg));
             }
             else if (arg == PAUSED_OPTION)
             {

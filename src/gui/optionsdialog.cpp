@@ -48,6 +48,7 @@
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_session.h"
@@ -492,9 +493,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const QString &s) { webUIHttpsCertChanged(s, ShowError::Show); });
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const Path &path) { webUIHttpsCertChanged(path, ShowError::Show); });
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const QString &s) { webUIHttpsKeyChanged(s, ShowError::Show); });
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const Path &path) { webUIHttpsKeyChanged(path, ShowError::Show); });
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -732,7 +733,7 @@ void OptionsDialog::saveOptions()
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    session->setSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
+    session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setUseCategoryPathsInManualMode(m_ui->checkUseCategoryPaths->isChecked());
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
@@ -740,7 +741,7 @@ void OptionsDialog::saveOptions()
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
     session->setDownloadPathEnabled(m_ui->checkUseDownloadPath->isChecked());
-    session->setDownloadPath(Utils::Fs::expandPathAbs(m_ui->textDownloadPath->selectedPath()));
+    session->setDownloadPath(m_ui->textDownloadPath->selectedPath());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setPreallocationEnabled(preAllocateAllFiles());
     pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
@@ -1008,14 +1009,12 @@ void OptionsDialog::loadOptions()
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
     m_ui->checkUseDownloadPath->setChecked(session->isDownloadPathEnabled());
     m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
-    m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
-    m_ui->textDownloadPath->setSelectedPath(Utils::Fs::toNativePath(session->downloadPath()));
+    m_ui->textDownloadPath->setSelectedPath(session->downloadPath());
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());
 
-    strValue = session->torrentExportDirectory();
-    if (strValue.isEmpty())
+    if (session->torrentExportDirectory().isEmpty())
     {
         // Disable
         m_ui->checkExportDir->setChecked(false);
@@ -1026,11 +1025,10 @@ void OptionsDialog::loadOptions()
         // Enable
         m_ui->checkExportDir->setChecked(true);
         m_ui->textExportDir->setEnabled(true);
-        m_ui->textExportDir->setSelectedPath(strValue);
+        m_ui->textExportDir->setSelectedPath(session->torrentExportDirectory());
     }
 
-    strValue = session->finishedTorrentExportDirectory();
-    if (strValue.isEmpty())
+    if (session->finishedTorrentExportDirectory().isEmpty())
     {
         // Disable
         m_ui->checkExportDirFin->setChecked(false);
@@ -1041,7 +1039,7 @@ void OptionsDialog::loadOptions()
         // Enable
         m_ui->checkExportDirFin->setChecked(true);
         m_ui->textExportDirFin->setEnabled(true);
-        m_ui->textExportDirFin->setSelectedPath(strValue);
+        m_ui->textExportDirFin->setSelectedPath(session->finishedTorrentExportDirectory());
     }
 
     m_ui->groupMailNotification->setChecked(pref->isMailNotificationEnabled());
@@ -1644,25 +1642,25 @@ void OptionsDialog::setLocale(const QString &localeStr)
     m_ui->comboI18n->setCurrentIndex(index);
 }
 
-QString OptionsDialog::getTorrentExportDir() const
+Path OptionsDialog::getTorrentExportDir() const
 {
     if (m_ui->checkExportDir->isChecked())
-        return Utils::Fs::expandPathAbs(m_ui->textExportDir->selectedPath());
+        return m_ui->textExportDir->selectedPath();
     return {};
 }
 
-QString OptionsDialog::getFinishedTorrentExportDir() const
+Path OptionsDialog::getFinishedTorrentExportDir() const
 {
     if (m_ui->checkExportDirFin->isChecked())
-        return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
+        return m_ui->textExportDirFin->selectedPath();
     return {};
 }
 
 void OptionsDialog::on_addWatchedFolderButton_clicked()
 {
     Preferences *const pref = Preferences::instance();
-    const QString dir = QFileDialog::getExistingDirectory(this, tr("Select folder to monitor"),
-        Utils::Fs::toNativePath(Utils::Fs::folderName(pref->getScanDirsLastPath())));
+    const Path dir {QFileDialog::getExistingDirectory(
+                this, tr("Select folder to monitor"), pref->getScanDirsLastPath().parentPath().toString())};
     if (dir.isEmpty())
         return;
 
@@ -1739,19 +1737,8 @@ void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
     dialog->open();
 }
 
-QString OptionsDialog::askForExportDir(const QString &currentExportPath)
-{
-    QDir currentExportDir(Utils::Fs::expandPathAbs(currentExportPath));
-    QString dir;
-    if (!currentExportPath.isEmpty() && currentExportDir.exists())
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), currentExportDir.absolutePath());
-    else
-        dir = QFileDialog::getExistingDirectory(this, tr("Choose export directory"), QDir::homePath());
-    return dir;
-}
-
 // Return Filter object to apply to BT session
-QString OptionsDialog::getFilter() const
+Path OptionsDialog::getFilter() const
 {
     return m_ui->textFilterPath->selectedPath();
 }
@@ -1773,7 +1760,7 @@ QString OptionsDialog::webUiPassword() const
     return m_ui->textWebUiPassword->text();
 }
 
-void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError showError)
+void OptionsDialog::webUIHttpsCertChanged(const Path &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
@@ -1781,7 +1768,7 @@ void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError s
     if (path.isEmpty())
         return;
 
-    QFile file(path);
+    QFile file {path.data()};
     if (!file.open(QIODevice::ReadOnly))
     {
         if (showError == ShowError::Show)
@@ -1799,7 +1786,7 @@ void OptionsDialog::webUIHttpsCertChanged(const QString &path, const ShowError s
     m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
 }
 
-void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError showError)
+void OptionsDialog::webUIHttpsKeyChanged(const Path &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
     m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
@@ -1807,7 +1794,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const QString &path, const ShowError sh
     if (path.isEmpty())
         return;
 
-    QFile file(path);
+    QFile file {path.data()};
     if (!file.open(QIODevice::ReadOnly))
     {
         if (showError == ShowError::Show)
@@ -1843,7 +1830,7 @@ void OptionsDialog::on_IpFilterRefreshBtn_clicked()
     // Updating program preferences
     BitTorrent::Session *const session = BitTorrent::Session::instance();
     session->setIPFilteringEnabled(true);
-    session->setIPFilterFile(""); // forcing Session reload filter file
+    session->setIPFilterFile({}); // forcing Session reload filter file
     session->setIPFilterFile(getFilter());
     connect(session, &BitTorrent::Session::IPFilterParsed, this, &OptionsDialog::handleIPFilterParsed);
     setCursor(QCursor(Qt::WaitCursor));
@@ -1887,7 +1874,7 @@ bool OptionsDialog::webUIAuthenticationOk()
 
 bool OptionsDialog::isAlternativeWebUIPathValid()
 {
-    if (m_ui->groupAltWebUI->isChecked() && m_ui->textWebUIRootFolder->selectedPath().trimmed().isEmpty())
+    if (m_ui->groupAltWebUI->isChecked() && m_ui->textWebUIRootFolder->selectedPath().isEmpty())
     {
         QMessageBox::warning(this, tr("Location Error"), tr("The alternative Web UI files location cannot be blank."));
         return false;

@@ -90,8 +90,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     bool allSameDownloadPath = true;
 
     const bool isFirstTorrentAutoTMMEnabled = torrents[0]->isAutoTMMEnabled();
-    const QString firstTorrentSavePath = torrents[0]->savePath();
-    const QString firstTorrentDownloadPath = torrents[0]->downloadPath();
+    const Path firstTorrentSavePath = torrents[0]->savePath();
+    const Path firstTorrentDownloadPath = torrents[0]->downloadPath();
     const QString firstTorrentCategory = torrents[0]->category();
 
     const int firstTorrentUpLimit = std::max(0, torrents[0]->uploadLimit());
@@ -418,20 +418,20 @@ void TorrentOptionsDialog::accept()
 
         if (m_ui->checkAutoTMM->checkState() == Qt::Unchecked)
         {
-            const QString savePath = m_ui->savePath->selectedPath();
+            const Path savePath = m_ui->savePath->selectedPath();
             if (m_initialValues.savePath != savePath)
-                torrent->setSavePath(Utils::Fs::expandPathAbs(savePath));
+                torrent->setSavePath(savePath);
 
             const Qt::CheckState useDownloadPathState = m_ui->checkUseDownloadPath->checkState();
             if (useDownloadPathState == Qt::Checked)
             {
-                const QString downloadPath = m_ui->downloadPath->selectedPath();
+                const Path downloadPath = m_ui->downloadPath->selectedPath();
                 if (m_initialValues.downloadPath != downloadPath)
-                    torrent->setDownloadPath(Utils::Fs::expandPathAbs(downloadPath));
+                    torrent->setDownloadPath(downloadPath);
             }
             else if (useDownloadPathState == Qt::Unchecked)
             {
-                torrent->setDownloadPath(QString());
+                torrent->setDownloadPath({});
             }
         }
 
@@ -513,14 +513,14 @@ void TorrentOptionsDialog::handleCategoryChanged(const int index)
     {
         if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
         {
-            m_ui->savePath->setSelectedPath(QString());
+            m_ui->savePath->setSelectedPath({});
         }
         else
         {
-            const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
-            m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
-            const QString downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
-            m_ui->downloadPath->setSelectedPath(Utils::Fs::toNativePath(downloadPath));
+            const Path savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+            m_ui->savePath->setSelectedPath(savePath);
+            const Path downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
+            m_ui->downloadPath->setSelectedPath(downloadPath);
             m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
         }
     }
@@ -541,8 +541,8 @@ void TorrentOptionsDialog::handleTMMChanged()
     if (m_ui->checkAutoTMM->checkState() == Qt::Unchecked)
     {
         m_ui->groupBoxSavePath->setEnabled(true);
-        m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(m_initialValues.savePath));
-        m_ui->downloadPath->setSelectedPath(Utils::Fs::toNativePath(m_initialValues.downloadPath));
+        m_ui->savePath->setSelectedPath(m_initialValues.savePath);
+        m_ui->downloadPath->setSelectedPath(m_initialValues.downloadPath);
         m_ui->checkUseDownloadPath->setCheckState(m_initialValues.useDownloadPath);
     }
     else
@@ -552,23 +552,23 @@ void TorrentOptionsDialog::handleTMMChanged()
         {
             if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
             {
-                m_ui->savePath->setSelectedPath(QString());
-                m_ui->downloadPath->setSelectedPath(QString());
+                m_ui->savePath->setSelectedPath({});
+                m_ui->downloadPath->setSelectedPath({});
                 m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
             }
             else
             {
-                const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
-                m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
-                const QString downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
-                m_ui->downloadPath->setSelectedPath(Utils::Fs::toNativePath(downloadPath));
+                const Path savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+                m_ui->savePath->setSelectedPath(savePath);
+                const Path downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
+                m_ui->downloadPath->setSelectedPath(downloadPath);
                 m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
             }
         }
         else // partially checked
         {
-            m_ui->savePath->setSelectedPath(QString());
-            m_ui->downloadPath->setSelectedPath(QString());
+            m_ui->savePath->setSelectedPath({});
+            m_ui->downloadPath->setSelectedPath({});
             m_ui->checkUseDownloadPath->setCheckState(Qt::PartiallyChecked);
         }
     }

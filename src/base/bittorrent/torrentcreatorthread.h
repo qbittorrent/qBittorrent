@@ -31,6 +31,8 @@
 #include <QStringList>
 #include <QThread>
 
+#include "base/path.h"
+
 namespace BitTorrent
 {
 #ifdef QBT_USES_LIBTORRENT2
@@ -52,8 +54,8 @@ namespace BitTorrent
         int paddedFileSizeLimit;
 #endif
         int pieceSize;
-        QString inputPath;
-        QString savePath;
+        Path inputPath;
+        Path savePath;
         QString comment;
         QString source;
         QStringList trackers;
@@ -72,15 +74,15 @@ namespace BitTorrent
         void create(const TorrentCreatorParams &params);
 
 #ifdef QBT_USES_LIBTORRENT2
-        static int calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat);
+        static int calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat);
 #else
-        static int calculateTotalPieces(const QString &inputPath
+        static int calculateTotalPieces(const Path &inputPath
             , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);
 #endif
 
     signals:
         void creationFailure(const QString &msg);
-        void creationSuccess(const QString &path, const QString &branchPath);
+        void creationSuccess(const Path &path, const Path &branchPath);
         void updateProgress(int progress);
 
     private:

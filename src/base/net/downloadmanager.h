@@ -35,6 +35,8 @@
 #include <QQueue>
 #include <QSet>
 
+#include "base/path.h"
+
 class QNetworkCookie;
 class QNetworkReply;
 class QSslError;
@@ -81,15 +83,15 @@ namespace Net
         // if saveToFile is set, the file is saved in destFileName
         // (deprecated) if destFileName is not provided, the file will be saved
         // in a temporary file, the name of file is set in DownloadResult::filePath
-        QString destFileName() const;
-        DownloadRequest &destFileName(const QString &value);
+        Path destFileName() const;
+        DownloadRequest &destFileName(const Path &value);
 
     private:
         QString m_url;
         QString m_userAgent;
         qint64 m_limit = 0;
         bool m_saveToFile = false;
-        QString m_destFileName;
+        Path m_destFileName;
     };
 
     struct DownloadResult
@@ -98,7 +100,7 @@ namespace Net
         DownloadStatus status;
         QString errorString;
         QByteArray data;
-        QString filePath;
+        Path filePath;
         QString magnet;
     };
 

@@ -41,6 +41,7 @@
 #include <QStringList>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
@@ -132,7 +133,7 @@ namespace RSS
         int ignoreDays = 0;
         QDateTime lastMatch;
 
-        QString savePath;
+        Path savePath;
         QString category;
         std::optional<bool> addPaused;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;
@@ -466,7 +467,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
         , {Str_MustNotContain, mustNotContain()}
         , {Str_EpisodeFilter, episodeFilter()}
         , {Str_AffectedFeeds, QJsonArray::fromStringList(feedURLs())}
-        , {Str_SavePath, savePath()}
+        , {Str_SavePath, savePath().toString()}
         , {Str_AssignedCategory, assignedCategory()}
         , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
         , {Str_IgnoreDays, ignoreDays()}
@@ -485,7 +486,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     rule.setMustNotContain(jsonObj.value(Str_MustNotContain).toString());
     rule.setEpisodeFilter(jsonObj.value(Str_EpisodeFilter).toString());
     rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
-    rule.setSavePath(jsonObj.value(Str_SavePath).toString());
+    rule.setSavePath(Path(jsonObj.value(Str_SavePath).toString()));
     rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
     rule.setAddPaused(toOptionalBool(jsonObj.value(Str_AddPaused)));
 
@@ -546,7 +547,7 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
     return {{"name", name()},
         {"must_contain", mustContain()},
         {"must_not_contain", mustNotContain()},
-        {"save_path", savePath()},
+        {"save_path", savePath().toString()},
         {"affected_feeds", feedURLs()},
         {"enabled", isEnabled()},
         {"category_assigned", assignedCategory()},
@@ -567,7 +568,7 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEpisodeFilter(dict.value("episode_filter").toString());
     rule.setFeedURLs(dict.value("affected_feeds").toStringList());
     rule.setEnabled(dict.value("enabled", false).toBool());
-    rule.setSavePath(dict.value("save_path").toString());
+    rule.setSavePath(Path(dict.value("save_path").toString()));
     rule.setCategory(dict.value("category_assigned").toString());
     rule.setAddPaused(addPausedLegacyToOptionalBool(dict.value("add_paused").toInt()));
     rule.setLastMatch(dict.value("last_match").toDateTime());
@@ -624,14 +625,14 @@ void AutoDownloadRule::setName(const QString &name)
     m_dataPtr->name = name;
 }
 
-QString AutoDownloadRule::savePath() const
+Path AutoDownloadRule::savePath() const
 {
     return m_dataPtr->savePath;
 }
 
-void AutoDownloadRule::setSavePath(const QString &savePath)
+void AutoDownloadRule::setSavePath(const Path &savePath)
 {
-    m_dataPtr->savePath = Utils::Fs::toUniformPath(savePath);
+    m_dataPtr->savePath = savePath;
 }
 
 std::optional<bool> AutoDownloadRule::addPaused() const

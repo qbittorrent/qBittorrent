@@ -40,6 +40,7 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_autodownloader.h"
@@ -47,7 +48,6 @@
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "base/utils/compare.h"
-#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 #include "gui/autoexpandabledialog.h"
@@ -261,7 +261,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         else
             m_ui->lineEFilter->clear();
         m_ui->checkBoxSaveDiffDir->setChecked(!m_currentRule.savePath().isEmpty());
-        m_ui->lineSavePath->setSelectedPath(Utils::Fs::toNativePath(m_currentRule.savePath()));
+        m_ui->lineSavePath->setSelectedPath(m_currentRule.savePath());
         m_ui->checkRegex->blockSignals(true);
         m_ui->checkRegex->setChecked(m_currentRule.useRegex());
         m_ui->checkRegex->blockSignals(false);
@@ -346,7 +346,7 @@ void AutomatedRssDownloader::updateEditedRule()
     m_currentRule.setMustContain(m_ui->lineContains->text());
     m_currentRule.setMustNotContain(m_ui->lineNotContains->text());
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
-    m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->selectedPath() : "");
+    m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->selectedPath() : Path());
     m_currentRule.setCategory(m_ui->comboCategory->currentText());
     std::optional<bool> addPaused;
     if (m_ui->comboAddPaused->currentIndex() == 1)
@@ -429,9 +429,10 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
     }
 
     QString selectedFilter {m_formatFilterJSON};
-    QString path = QFileDialog::getSaveFileName(
+    Path path {QFileDialog::getSaveFileName(
                 this, tr("Export RSS rules"), QDir::homePath()
-                , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
+                , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter)};
+
     if (path.isEmpty()) return;
 
     const RSS::AutoDownloader::RulesFileFormat format
@@ -443,12 +444,12 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 
     if (format == RSS::AutoDownloader::RulesFileFormat::JSON)
     {
-        if (!path.endsWith(EXT_JSON, Qt::CaseInsensitive))
+        if (!path.hasExtension(EXT_JSON))
             path += EXT_JSON;
     }
     else
     {
-        if (!path.endsWith(EXT_LEGACY, Qt::CaseInsensitive))
+        if (!path.hasExtension(EXT_LEGACY))
             path += EXT_LEGACY;
     }
 
@@ -464,13 +465,13 @@ void AutomatedRssDownloader::on_exportBtn_clicked()
 void AutomatedRssDownloader::on_importBtn_clicked()
 {
     QString selectedFilter {m_formatFilterJSON};
-    QString path = QFileDialog::getOpenFileName(
-                this, tr("Import RSS rules"), QDir::homePath()
-                , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter);
-    if (path.isEmpty() || !QFile::exists(path))
+    const Path path {QFileDialog::getOpenFileName(
+                    this, tr("Import RSS rules"), QDir::homePath()
+                    , QString::fromLatin1("%1;;%2").arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter)};
+    if (!path.exists())
         return;
 
-    QFile file {path};
+    QFile file {path.data()};
     if (!file.open(QIODevice::ReadOnly))
     {
         QMessageBox::critical(

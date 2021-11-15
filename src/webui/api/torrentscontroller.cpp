@@ -31,7 +31,6 @@
 #include <functional>
 
 #include <QBitArray>
-#include <QDir>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
@@ -431,8 +430,8 @@ void TorrentsController::propertiesAction()
         dataDict[KEY_PROP_COMPLETION_DATE] = -1;
         dataDict[KEY_PROP_CREATION_DATE] = -1;
     }
-    dataDict[KEY_PROP_SAVE_PATH] = Utils::Fs::toNativePath(torrent->savePath());
-    dataDict[KEY_PROP_DOWNLOAD_PATH] = Utils::Fs::toNativePath(torrent->downloadPath());
+    dataDict[KEY_PROP_SAVE_PATH] = torrent->savePath().toString();
+    dataDict[KEY_PROP_DOWNLOAD_PATH] = torrent->downloadPath().toString();
     dataDict[KEY_PROP_COMMENT] = torrent->comment();
 
     setResult(dataDict);
@@ -565,7 +564,7 @@ void TorrentsController::filesAction()
                 {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
                 {KEY_FILE_SIZE, torrent->fileSize(index)},
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
-                {KEY_FILE_NAME, Utils::Fs::toUniformPath(torrent->filePath(index))}
+                {KEY_FILE_NAME, torrent->filePath(index).toString()}
             };
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
@@ -682,8 +681,8 @@ void TorrentsController::addAction()
     addTorrentParams.firstLastPiecePriority = firstLastPiece;
     addTorrentParams.addPaused = addPaused;
     addTorrentParams.contentLayout = contentLayout;
-    addTorrentParams.savePath = savepath;
-    addTorrentParams.downloadPath = downloadPath;
+    addTorrentParams.savePath = Path(savepath);
+    addTorrentParams.downloadPath = Path(downloadPath);
     addTorrentParams.useDownloadPath = useDownloadPath;
     addTorrentParams.category = category;
     addTorrentParams.tags.insert(tags.cbegin(), tags.cend());
@@ -1081,25 +1080,25 @@ void TorrentsController::setLocationAction()
     requireParams({"hashes", "location"});
 
     const QStringList hashes {params()["hashes"].split('|')};
-    const QString newLocation {params()["location"].trimmed()};
+    const Path newLocation {params()["location"].trimmed()};
 
     if (newLocation.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Save path cannot be empty"));
 
     // try to create the location if it does not exist
-    if (!QDir(newLocation).mkpath("."))
+    if (!Utils::Fs::mkpath(newLocation))
         throw APIError(APIErrorType::Conflict, tr("Cannot make save path"));
 
     // check permissions
-    if (!QFileInfo(newLocation).isWritable())
+    if (!Utils::Fs::isWritable(newLocation))
         throw APIError(APIErrorType::AccessDenied, tr("Cannot write to directory"));
 
     applyToTorrents(hashes, [newLocation](BitTorrent::Torrent *const torrent)
     {
         LogMsg(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"")
-            .arg(torrent->name(), Utils::Fs::toNativePath(torrent->savePath()), Utils::Fs::toNativePath(newLocation)));
+            .arg(torrent->name(), torrent->savePath().toString(), newLocation.toString()));
         torrent->setAutoTMMEnabled(false);
-        torrent->setSavePath(Utils::Fs::expandPathAbs(newLocation));
+        torrent->setSavePath(newLocation);
     });
 }
 
@@ -1108,17 +1107,17 @@ void TorrentsController::setSavePathAction()
     requireParams({"id", "path"});
 
     const QStringList ids {params()["id"].split('|')};
-    const QString newPath {params()["path"]};
+    const Path newPath {params()["path"]};
 
     if (newPath.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Save path cannot be empty"));
 
     // try to create the directory if it does not exist
-    if (!QDir(newPath).mkpath("."))
+    if (!Utils::Fs::mkpath(newPath))
         throw APIError(APIErrorType::Conflict, tr("Cannot create target directory"));
 
     // check permissions
-    if (!QFileInfo(newPath).isWritable())
+    if (!Utils::Fs::isWritable(newPath))
         throw APIError(APIErrorType::AccessDenied, tr("Cannot write to directory"));
 
     applyToTorrents(ids, [&newPath](BitTorrent::Torrent *const torrent)
@@ -1133,16 +1132,16 @@ void TorrentsController::setDownloadPathAction()
     requireParams({"id", "path"});
 
     const QStringList ids {params()["id"].split('|')};
-    const QString newPath {params()["path"]};
+    const Path newPath {params()["path"]};
 
     if (!newPath.isEmpty())
     {
         // try to create the directory if it does not exist
-        if (!QDir(newPath).mkpath("."))
+        if (!Utils::Fs::mkpath(newPath))
             throw APIError(APIErrorType::Conflict, tr("Cannot create target directory"));
 
         // check permissions
-        if (!QFileInfo(newPath).isWritable())
+        if (!Utils::Fs::isWritable(newPath))
             throw APIError(APIErrorType::AccessDenied, tr("Cannot write to directory"));
     }
 
@@ -1225,13 +1224,13 @@ void TorrentsController::createCategoryAction()
     if (!BitTorrent::Session::isValidCategoryName(category))
         throw APIError(APIErrorType::Conflict, tr("Incorrect category name"));
 
-    const QString savePath = params()["savePath"];
+    const Path savePath {params()["savePath"]};
     const auto useDownloadPath = parseBool(params()["downloadPathEnabled"]);
     BitTorrent::CategoryOptions categoryOptions;
     categoryOptions.savePath = savePath;
     if (useDownloadPath.has_value())
     {
-        const QString downloadPath = params()["downloadPath"];
+        const Path downloadPath {params()["downloadPath"]};
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
@@ -1247,13 +1246,13 @@ void TorrentsController::editCategoryAction()
     if (category.isEmpty())
         throw APIError(APIErrorType::BadParams, tr("Category cannot be empty"));
 
-    const QString savePath = params()["savePath"];
+    const Path savePath {params()["savePath"]};
     const auto useDownloadPath = parseBool(params()["downloadPathEnabled"]);
     BitTorrent::CategoryOptions categoryOptions;
     categoryOptions.savePath = savePath;
     if (useDownloadPath.has_value())
     {
-        const QString downloadPath = params()["downloadPath"];
+        const Path downloadPath {params()["downloadPath"]};
         categoryOptions.downloadPath = {useDownloadPath.value(), downloadPath};
     }
 
@@ -1367,8 +1366,8 @@ void TorrentsController::renameFileAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QString oldPath = params()["oldPath"];
-    const QString newPath = params()["newPath"];
+    const Path oldPath {params()["oldPath"]};
+    const Path newPath {params()["newPath"]};
 
     try
     {
@@ -1389,8 +1388,8 @@ void TorrentsController::renameFolderAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QString oldPath = params()["oldPath"];
-    const QString newPath = params()["newPath"];
+    const Path oldPath {params()["oldPath"]};
+    const Path newPath {params()["newPath"]};
 
     try
     {

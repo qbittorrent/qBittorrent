@@ -44,6 +44,7 @@
 #include "base/bittorrent/torrentinfo.h"
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
 #include "raisedmessagebox.h"
@@ -52,12 +53,12 @@
 
 namespace
 {
-    QString getFullPath(const QModelIndex &idx)
+    Path getFullPath(const QModelIndex &idx)
     {
-        QStringList paths;
+        Path path;
         for (QModelIndex i = idx; i.isValid(); i = i.parent())
-            paths.prepend(i.data().toString());
-        return paths.join(QLatin1Char {'/'});
+            path = Path(i.data().toString()) / path;
+        return path;
     }
 }
 
@@ -130,9 +131,9 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage 
     if (newName == oldName)
         return;  // Name did not change
 
-    const QString parentPath = getFullPath(modelIndex.parent());
-    const QString oldPath {parentPath.isEmpty() ? oldName : parentPath + QLatin1Char {'/'} + oldName};
-    const QString newPath {parentPath.isEmpty() ? newName : parentPath + QLatin1Char {'/'} + newName};
+    const Path parentPath = getFullPath(modelIndex.parent());
+    const Path oldPath = parentPath / Path(oldName);
+    const Path newPath = parentPath / Path(newName);
 
     try
     {

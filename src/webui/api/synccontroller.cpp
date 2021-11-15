@@ -579,7 +579,14 @@ void SyncController::torrentPeersAction()
         };
 
         if (torrent->hasMetadata())
-            peer.insert(KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n'));
+        {
+            const PathList filePaths = torrent->info().filesForPiece(pi.downloadingPieceIndex());
+            QStringList filesForPiece;
+            filesForPiece.reserve(filePaths.size());
+            for (const Path &filePath : filePaths)
+                filesForPiece.append(filePath.toString());
+            peer.insert(KEY_PEER_FILES, filesForPiece.join(QLatin1Char('\n')));
+        }
 
         if (resolvePeerCountries)
         {

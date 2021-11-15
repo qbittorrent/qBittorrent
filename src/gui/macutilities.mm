@@ -32,9 +32,11 @@
 #include <objc/message.h>
 
 #include <QPixmap>
-#include <QSet>
 #include <QSize>
 #include <QString>
+#include <QVector>
+
+#include "base/path.h"
 
 QImage qt_mac_toQImage(CGImageRef image);
 
@@ -95,14 +97,14 @@ namespace MacUtils
         }
     }
 
-    void openFiles(const QSet<QString> &pathsList)
+    void openFiles(const PathList &pathList)
     {
         @autoreleasepool
         {
-            NSMutableArray *pathURLs = [NSMutableArray arrayWithCapacity:pathsList.size()];
+            NSMutableArray *pathURLs = [NSMutableArray arrayWithCapacity:pathList.size()];
 
-            for (const auto &path : pathsList)
-                [pathURLs addObject:[NSURL fileURLWithPath:path.toNSString()]];
+            for (const auto &path : pathList)
+                [pathURLs addObject:[NSURL fileURLWithPath:path.toString().toNSString()]];
 
             [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:pathURLs];
         }

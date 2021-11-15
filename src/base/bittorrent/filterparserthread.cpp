@@ -124,7 +124,7 @@ FilterParserThread::~FilterParserThread()
 int FilterParserThread::parseDATFilterFile()
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file {m_filePath.data()};
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -288,7 +288,7 @@ int FilterParserThread::parseDATFilterFile()
 int FilterParserThread::parseP2PFilterFile()
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file {m_filePath.data()};
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -469,7 +469,7 @@ int FilterParserThread::getlineInStream(QDataStream &stream, std::string &name, 
 int FilterParserThread::parseP2BFilterFile()
 {
     int ruleCount = 0;
-    QFile file(m_filePath);
+    QFile file {m_filePath.data()};
     if (!file.exists()) return ruleCount;
 
     if (!file.open(QIODevice::ReadOnly))
@@ -592,7 +592,7 @@ int FilterParserThread::parseP2BFilterFile()
 //  * eMule IP list (DAT): http://wiki.phoenixlabs.org/wiki/DAT_Format
 //  * PeerGuardian Text (P2P): http://wiki.phoenixlabs.org/wiki/P2P_Format
 //  * PeerGuardian Binary (P2B): http://wiki.phoenixlabs.org/wiki/P2B_Format
-void FilterParserThread::processFilterFile(const QString &filePath)
+void FilterParserThread::processFilterFile(const Path &filePath)
 {
     if (isRunning())
     {
@@ -617,17 +617,17 @@ void FilterParserThread::run()
 {
     qDebug("Processing filter file");
     int ruleCount = 0;
-    if (m_filePath.endsWith(".p2p", Qt::CaseInsensitive))
+    if (m_filePath.hasExtension(QLatin1String(".p2p")))
     {
         // PeerGuardian p2p file
         ruleCount = parseP2PFilterFile();
     }
-    else if (m_filePath.endsWith(".p2b", Qt::CaseInsensitive))
+    else if (m_filePath.hasExtension(QLatin1String(".p2b")))
     {
         // PeerGuardian p2b file
         ruleCount = parseP2BFilterFile();
     }
-    else if (m_filePath.endsWith(".dat", Qt::CaseInsensitive))
+    else if (m_filePath.hasExtension(QLatin1String(".dat")))
     {
         // eMule DAT format
         ruleCount = parseDATFilterFile();

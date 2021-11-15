@@ -37,6 +37,8 @@
 #include <QStringList>
 #include <QStyle>
 
+#include "base/path.h"
+
 // -------------------- FileSystemPathValidator ----------------------------------------
 Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
     : QValidator(parent)
@@ -149,7 +151,7 @@ QValidator::State Private::FileSystemPathValidator::validate(const QList<QString
         const QStringView componentPath = pathComponents[i];
         if (componentPath.isEmpty()) continue;
 
-        m_lastTestResult = testPath(pathComponents[i], isFinalPath);
+        m_lastTestResult = testPath(Path(pathComponents[i].toString()), isFinalPath);
         if (m_lastTestResult != TestResult::OK)
         {
             m_lastTestedPath = componentPath.toString();
@@ -161,9 +163,9 @@ QValidator::State Private::FileSystemPathValidator::validate(const QList<QString
 }
 
 Private::FileSystemPathValidator::TestResult
-Private::FileSystemPathValidator::testPath(const QStringView path, bool pathIsComplete) const
+Private::FileSystemPathValidator::testPath(const Path &path, bool pathIsComplete) const
 {
-    QFileInfo fi(path.toString());
+    QFileInfo fi {path.data()};
     if (m_existingOnly && !fi.exists())
         return TestResult::DoesNotExist;
 
@@ -240,14 +242,14 @@ void Private::FileLineEdit::setValidator(QValidator *validator)
     QLineEdit::setValidator(validator);
 }
 
-QString Private::FileLineEdit::placeholder() const
+Path Private::FileLineEdit::placeholder() const
 {
-    return placeholderText();
+    return Path(placeholderText());
 }
 
-void Private::FileLineEdit::setPlaceholder(const QString &val)
+void Private::FileLineEdit::setPlaceholder(const Path &val)
 {
-    setPlaceholderText(val);
+    setPlaceholderText(val.toString());
 }
 
 QWidget *Private::FileLineEdit::widget()
@@ -356,14 +358,14 @@ void Private::FileComboEdit::setValidator(QValidator *validator)
     lineEdit()->setValidator(validator);
 }
 
-QString Private::FileComboEdit::placeholder() const
+Path Private::FileComboEdit::placeholder() const
 {
-    return lineEdit()->placeholderText();
+    return Path(lineEdit()->placeholderText());
 }
 
-void Private::FileComboEdit::setPlaceholder(const QString &val)
+void Private::FileComboEdit::setPlaceholder(const Path &val)
 {
-    lineEdit()->setPlaceholderText(val);
+    lineEdit()->setPlaceholderText(val.toString());
 }
 
 void Private::FileComboEdit::setFilenameFilters(const QStringList &filters)

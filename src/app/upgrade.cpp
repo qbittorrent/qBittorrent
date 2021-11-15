@@ -48,7 +48,7 @@ namespace
 
     void exportWebUIHttpsFiles()
     {
-        const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath)
+        const auto migrate = [](const QString &oldKey, const QString &newKey, const Path &savePath)
         {
             SettingsStorage *settingsStorage {SettingsStorage::instance()};
             const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
@@ -61,24 +61,24 @@ namespace
             const nonstd::expected<void, QString> result = Utils::IO::saveToFile(savePath, oldData);
             if (!result)
             {
-                LogMsg(errorMsgFormat.arg(savePath, result.error()) , Log::WARNING);
+                LogMsg(errorMsgFormat.arg(savePath.toString(), result.error()) , Log::WARNING);
                 return;
             }
 
             settingsStorage->storeValue(newKey, savePath);
             settingsStorage->removeValue(oldKey);
 
-            LogMsg(QObject::tr("Migrated preferences: WebUI https, exported data to file: \"%1\"").arg(savePath)
+            LogMsg(QObject::tr("Migrated preferences: WebUI https, exported data to file: \"%1\"").arg(savePath.toString())
                 , Log::INFO);
         };
 
-        const QString configPath {specialFolderLocation(SpecialFolder::Config)};
+        const Path configPath = specialFolderLocation(SpecialFolder::Config);
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Certificate")
             , QLatin1String("Preferences/WebUI/HTTPS/CertificatePath")
-            , Utils::Fs::toNativePath(configPath + QLatin1String("/WebUICertificate.crt")));
+            , (configPath / Path("WebUICertificate.crt")));
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Key")
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
-            , Utils::Fs::toNativePath(configPath + QLatin1String("/WebUIPrivateKey.pem")));
+            , (configPath / Path("WebUIPrivateKey.pem")));
     }
 
     void upgradeTorrentContentLayout()

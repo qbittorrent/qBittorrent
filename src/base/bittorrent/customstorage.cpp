@@ -30,8 +30,6 @@
 
 #include <libtorrent/download_priority.hpp>
 
-#include <QDir>
-
 #include "base/utils/fs.h"
 #include "common.h"
 
@@ -53,12 +51,13 @@ lt::storage_holder CustomDiskIOThread::new_torrent(const lt::storage_params &sto
 {
     lt::storage_holder storageHolder = m_nativeDiskIO->new_torrent(storageParams, torrent);
 
-    const QString savePath = Utils::Fs::expandPathAbs(QString::fromStdString(storageParams.path));
+    const Path savePath {storageParams.path};
     m_storageData[storageHolder] =
     {
-            savePath
-            , storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files
-            , storageParams.priorities};
+        savePath,
+        storageParams.mapped_files ? *storageParams.mapped_files : storageParams.files,
+        storageParams.priorities
+    };
 
     return storageHolder;
 }
@@ -99,7 +98,7 @@ void CustomDiskIOThread::async_hash2(lt::storage_index_t storage, lt::piece_inde
 void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::string path, lt::move_flags_t flags
                                             , std::function<void (lt::status_t, const std::string &, const lt::storage_error &)> handler)
 {
-    const QString newSavePath {Utils::Fs::expandPathAbs(QString::fromStdString(path))};
+    const Path newSavePath {path};
 
     if (flags == lt::move_flags_t::dont_replace)
         handleCompleteFiles(storage, newSavePath);
@@ -192,9 +191,8 @@ void CustomDiskIOThread::settings_updated()
     m_nativeDiskIO->settings_updated();
 }
 
-void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const QString &savePath)
+void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const Path &savePath)
 {
-    const QDir saveDir {savePath};
     const StorageData storageData = m_storageData[storage];
     const lt::file_storage &fileStorage = storageData.files;
     for (const lt::file_index_t fileIndex : fileStorage.file_range())
@@ -206,16 +204,16 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
         // ignore pad files
         if (fileStorage.pad_file_at(fileIndex)) continue;
 
-        const QString filePath = QString::fromStdString(fileStorage.file_path(fileIndex));
-        if (filePath.endsWith(QB_EXT))
+        const Path filePath {fileStorage.file_path(fileIndex)};
+        if (filePath.hasExtension(QB_EXT))
         {
-            const QString completeFilePath = filePath.left(filePath.size() - QB_EXT.size());
-            QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
-            if (completeFile.exists())
+            const Path incompleteFilePath = savePath / filePath;
+            Path completeFilePath = incompleteFilePath;
+            completeFilePath.removeExtension();
+            if (completeFilePath.exists())
             {
-                QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
-                incompleteFile.remove();
-                completeFile.rename(incompleteFile.fileName());
+                Utils::Fs::removeFile(incompleteFilePath);
+                Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
             }
         }
     }
@@ -230,7 +228,7 @@ lt::storage_interface *customStorageConstructor(const lt::storage_params &params
 
 CustomStorage::CustomStorage(const lt::storage_params &params, lt::file_pool &filePool)
     : lt::default_storage {params, filePool}
-    , m_savePath {Utils::Fs::expandPathAbs(QString::fromStdString(params.path))}
+    , m_savePath {params.path}
 {
 }
 
@@ -248,7 +246,7 @@ void CustomStorage::set_file_priority(lt::aux::vector<lt::download_priority_t, l
 
 lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_flags_t flags, lt::storage_error &ec)
 {
-    const QString newSavePath {Utils::Fs::expandPathAbs(QString::fromStdString(savePath))};
+    const Path newSavePath {savePath};
 
     if (flags == lt::move_flags_t::dont_replace)
         handleCompleteFiles(newSavePath);
@@ -260,10 +258,8 @@ lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_f
     return ret;
 }
 
-void CustomStorage::handleCompleteFiles(const QString &savePath)
+void CustomStorage::handleCompleteFiles(const Path &savePath)
 {
-    const QDir saveDir {savePath};
-
     const lt::file_storage &fileStorage = files();
     for (const lt::file_index_t fileIndex : fileStorage.file_range())
     {
@@ -274,16 +270,16 @@ void CustomStorage::handleCompleteFiles(const QString &savePath)
         // ignore pad files
         if (fileStorage.pad_file_at(fileIndex)) continue;
 
-        const QString filePath = QString::fromStdString(fileStorage.file_path(fileIndex));
-        if (filePath.endsWith(QB_EXT))
+        const Path filePath {fileStorage.file_path(fileIndex)};
+        if (filePath.hasExtension(QB_EXT))
         {
-            const QString completeFilePath = filePath.left(filePath.size() - QB_EXT.size());
-            QFile completeFile {saveDir.absoluteFilePath(completeFilePath)};
-            if (completeFile.exists())
+            const Path incompleteFilePath = savePath / filePath;
+            Path completeFilePath = incompleteFilePath;
+            completeFilePath.removeExtension();
+            if (completeFilePath.exists())
             {
-                QFile incompleteFile {saveDir.absoluteFilePath(filePath)};
-                incompleteFile.remove();
-                completeFile.rename(incompleteFile.fileName());
+                Utils::Fs::removeFile(incompleteFilePath);
+                Utils::Fs::renameFile(completeFilePath, incompleteFilePath);
             }
         }
     }

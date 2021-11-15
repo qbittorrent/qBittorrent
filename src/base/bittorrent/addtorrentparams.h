@@ -34,6 +34,7 @@
 #include <QString>
 #include <QVector>
 
+#include "base/path.h"
 #include "base/tagset.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
@@ -47,14 +48,14 @@ namespace BitTorrent
         QString name;
         QString category;
         TagSet tags;
-        QString savePath;
+        Path savePath;
         std::optional<bool> useDownloadPath;
-        QString downloadPath;
+        Path downloadPath;
         bool sequential = false;
         bool firstLastPiecePriority = false;
         bool addForced = false;
         std::optional<bool> addPaused;
-        QStringList filePaths; // used if TorrentInfo is set
+        PathList filePaths; // used if TorrentInfo is set
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;

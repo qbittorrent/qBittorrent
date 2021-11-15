@@ -34,6 +34,7 @@
 #include <libtorrent/fwd.hpp>
 
 #include "base/3rdparty/expected.hpp"
+#include "base/pathfwd.h"
 
 class QByteArray;
 class QFileDevice;
@@ -80,6 +81,6 @@ namespace Utils::IO
         int m_bufferSize;
     };
 
-    nonstd::expected<void, QString> saveToFile(const QString &path, const QByteArray &data);
-    nonstd::expected<void, QString> saveToFile(const QString &path, const lt::entry &data);
+    nonstd::expected<void, QString> saveToFile(const Path &path, const QByteArray &data);
+    nonstd::expected<void, QString> saveToFile(const Path &path, const lt::entry &data);
 }

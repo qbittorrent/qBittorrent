@@ -46,6 +46,7 @@
 #include <QString>
 #include <QVector>
 
+#include "base/path.h"
 #include "base/tagset.h"
 #include "infohash.h"
 #include "speedmonitor.h"
@@ -102,13 +103,13 @@ namespace BitTorrent
 
         bool isAutoTMMEnabled() const override;
         void setAutoTMMEnabled(bool enabled) override;
-        QString savePath() const override;
-        void setSavePath(const QString &path) override;
-        QString downloadPath() const override;
-        void setDownloadPath(const QString &path) override;
-        QString actualStorageLocation() const override;
-        QString rootPath() const override;
-        QString contentPath() const override;
+        Path savePath() const override;
+        void setSavePath(const Path &path) override;
+        Path downloadPath() const override;
+        void setDownloadPath(const Path &path) override;
+        Path actualStorageLocation() const override;
+        Path rootPath() const override;
+        Path contentPath() const override;
         QString category() const override;
         bool belongsToCategory(const QString &category) const override;
         bool setCategory(const QString &category) override;
@@ -127,10 +128,10 @@ namespace BitTorrent
         qreal ratioLimit() const override;
         int seedingTimeLimit() const override;
 
-        QString filePath(int index) const override;
-        QString actualFilePath(int index) const override;
+        Path filePath(int index) const override;
+        Path actualFilePath(int index) const override;
         qlonglong fileSize(int index) const override;
-        QStringList filePaths() const override;
+        PathList filePaths() const override;
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;
@@ -205,7 +206,7 @@ namespace BitTorrent
         void forceReannounce(int index = -1) override;
         void forceDHTAnnounce() override;
         void forceRecheck() override;
-        void renameFile(int index, const QString &path) override;
+        void renameFile(int index, const Path &path) override;
         void prioritizeFiles(const QVector<DownloadPriority> &priorities) override;
         void setRatioLimit(qreal limit) override;
         void setSeedingTimeLimit(int limit) override;
@@ -237,7 +238,7 @@ namespace BitTorrent
         void handleAppendExtensionToggled();
         void saveResumeData();
         void handleMoveStorageJobFinished(bool hasOutstandingJob);
-        void fileSearchFinished(const QString &savePath, const QStringList &fileNames);
+        void fileSearchFinished(const Path &savePath, const PathList &fileNames);
 
     private:
         using EventTrigger = std::function<void ()>;
@@ -271,12 +272,12 @@ namespace BitTorrent
         void setAutoManaged(bool enable);
 
         void adjustStorageLocation();
-        void moveStorage(const QString &newPath, MoveStorageMode mode);
+        void moveStorage(const Path &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
 
         void prepareResumeData(const lt::add_torrent_params &params);
-        void endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames);
+        void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
         void reload();
 
         Session *const m_session;
@@ -285,7 +286,7 @@ namespace BitTorrent
         lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
-        QStringList m_filePaths;
+        PathList m_filePaths;
         QHash<lt::file_index_t, int> m_indexMap;
         SpeedMonitor m_speedMonitor;
 
@@ -304,8 +305,8 @@ namespace BitTorrent
 
         // Persistent data
         QString m_name;
-        QString m_savePath;
-        QString m_downloadPath;
+        Path m_savePath;
+        Path m_downloadPath;
         QString m_category;
         TagSet m_tags;
         qreal m_ratioLimit;

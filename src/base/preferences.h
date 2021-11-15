@@ -29,10 +29,11 @@
 
 #pragma once
 
-#include <QObject>
 #include <QtContainerFwd>
 #include <QtGlobal>
+#include <QObject>
 
+#include "base/pathfwd.h"
 #include "base/utils/net.h"
 
 class QDateTime;
@@ -108,8 +109,8 @@ public:
     void setLocale(const QString &locale);
     bool useCustomUITheme() const;
     void setUseCustomUITheme(bool use);
-    QString customUIThemePath() const;
-    void setCustomUIThemePath(const QString &path);
+    Path customUIThemePath() const;
+    void setCustomUIThemePath(const Path &path);
     bool deleteTorrentFilesAsDefault() const;
     void setDeleteTorrentFilesAsDefault(bool del);
     bool confirmOnExit() const;
@@ -140,10 +141,8 @@ public:
 #endif
 
     // Downloads
-    QString lastLocationPath() const;
-    void setLastLocationPath(const QString &path);
-    QString getScanDirsLastPath() const;
-    void setScanDirsLastPath(const QString &path);
+    Path getScanDirsLastPath() const;
+    void setScanDirsLastPath(const Path &path);
     bool isMailNotificationEnabled() const;
     void setMailNotificationEnabled(bool enabled);
     QString getMailNotificationSender() const;
@@ -220,14 +219,14 @@ public:
     // HTTPS
     bool isWebUiHttpsEnabled() const;
     void setWebUiHttpsEnabled(bool enabled);
-    QString getWebUIHttpsCertificatePath() const;
-    void setWebUIHttpsCertificatePath(const QString &path);
-    QString getWebUIHttpsKeyPath() const;
-    void setWebUIHttpsKeyPath(const QString &path);
+    Path getWebUIHttpsCertificatePath() const;
+    void setWebUIHttpsCertificatePath(const Path &path);
+    Path getWebUIHttpsKeyPath() const;
+    void setWebUIHttpsKeyPath(const Path &path);
     bool isAltWebUiEnabled() const;
     void setAltWebUiEnabled(bool enabled);
-    QString getWebUiRootFolder() const;
-    void setWebUiRootFolder(const QString &path);
+    Path getWebUiRootFolder() const;
+    void setWebUiRootFolder(const Path &path);
 
     // WebUI custom HTTP headers
     bool isWebUICustomHTTPHeadersEnabled() const;
@@ -343,8 +342,8 @@ public:
     void setMainGeometry(const QByteArray &geometry);
     QByteArray getMainVSplitterState() const;
     void setMainVSplitterState(const QByteArray &state);
-    QString getMainLastDir() const;
-    void setMainLastDir(const QString &path);
+    Path getMainLastDir() const;
+    void setMainLastDir(const Path &path);
     QByteArray getPeerListState() const;
     void setPeerListState(const QByteArray &state);
     QString getPropSplitterSizes() const;
