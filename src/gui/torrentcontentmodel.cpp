@@ -284,14 +284,15 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
     {
         auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
         qDebug("setData(%s, %d)", qUtf8Printable(item->name()), value.toInt());
-        if (static_cast<int>(item->priority()) != value.toInt())
-        {
-            BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
-            if (value.toInt() == Qt::PartiallyChecked)
-                prio = BitTorrent::DownloadPriority::Mixed;
-            else if (value.toInt() == Qt::Unchecked)
-                prio = BitTorrent::DownloadPriority::Ignored;
 
+        BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
+        if (value.toInt() == Qt::PartiallyChecked)
+            prio = BitTorrent::DownloadPriority::Mixed;
+        else if (value.toInt() == Qt::Unchecked)
+            prio = BitTorrent::DownloadPriority::Ignored;
+
+        if (item->priority() != prio)
+        {
             item->setPriority(prio);
             // Update folders progress in the tree
             m_rootItem->recalculateProgress();
