@@ -78,9 +78,12 @@ jobs:
 
       - name: Install libtorrent
         run: |
-          git clone --branch v${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          git clone `
+            --branch v${{ matrix.libt_version }} `
+            --depth 1 `
+            --recurse-submodules `
+            https://github.com/arvidn/libtorrent.git
           cd libtorrent
-          git submodule update --init --recursive
           cmake `
             -B build `
             -G "Ninja" `
