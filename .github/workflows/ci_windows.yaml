@@ -35,9 +35,9 @@ jobs:
           doNotUpdateVcpkg: true  # the preinstalled vcpkg is updated regularly
           setupOnly: true
 
-      # tell vcpkg to only build Release variants of the dependencies
-      - name: Configure vcpkg triplet overlay
+      - name: Install dependencies from vcpkg
         run: |
+          # tell vcpkg to only build Release variants of the dependencies
           New-Item `
             -Path "${{ github.workspace }}" `
             -Name "triplets_overlay" `
@@ -48,16 +48,9 @@ jobs:
           Add-Content `
             "${{ github.workspace }}/triplets_overlay/x64-windows-static-release.cmake" `
             -Value "set(VCPKG_BUILD_TYPE release)"
-
-      # clear buildtrees after each package installation to reduce disk space requirements
-      - name: Install dependencies
-        run: |
+          # clear buildtrees after each package installation to reduce disk space requirements
           $packages = `
             "openssl:x64-windows-static-release",
-            "qt5-base:x64-windows-static-release",
-            "qt5-svg:x64-windows-static-release",
-            "qt5-tools:x64-windows-static-release",
-            "qt5-winextras:x64-windows-static-release",
             "zlib:x64-windows-static-release"
           ${{ env.RUNVCPKG_VCPKG_ROOT }}/vcpkg.exe upgrade `
             --overlay-triplets="${{ github.workspace }}/triplets_overlay" `
@@ -75,6 +68,11 @@ jobs:
             -o "boost.7z"
           7z x "${{ runner.temp }}/boost.7z" -o"${{ github.workspace }}/.."
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: "5.15.2"
 
       - name: Install libtorrent
         run: |
@@ -121,6 +119,27 @@ jobs:
           copy build/qbittorrent.exe upload
           copy build/qbittorrent.pdb upload
           copy dist/windows/qt.conf upload
+          # runtimes
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Core.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Gui.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Network.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Sql.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Svg.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Widgets.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5WinExtras.dll" upload
+          copy "${{ env.Qt5_DIR }}/bin/Qt5Xml.dll" upload
+          mkdir upload/plugins/iconengines
+          copy "${{ env.Qt5_DIR }}/plugins/iconengines/qsvgicon.dll" upload/plugins/iconengines
+          mkdir upload/plugins/imageformats
+          copy "${{ env.Qt5_DIR }}/plugins/imageformats/qico.dll" upload/plugins/imageformats
+          copy "${{ env.Qt5_DIR }}/plugins/imageformats/qsvg.dll" upload/plugins/imageformats
+          mkdir upload/plugins/platforms
+          copy "${{ env.Qt5_DIR }}/plugins/platforms/qwindows.dll" upload/plugins/platforms
+          mkdir upload/plugins/sqldrivers
+          copy "${{ env.Qt5_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/plugins/sqldrivers
+          mkdir upload/plugins/styles
+          copy "${{ env.Qt5_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/plugins/styles
+          # cmake additionals
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
           copy build/target_graph.dot upload/cmake
