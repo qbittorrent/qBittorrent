@@ -99,7 +99,7 @@ div.mochaToolbarWrapper.bottom {
     background: #0f0;
     font-size: 1px; /* For IE6 */
     height: 3px;
-    opacity: 0%;
+    opacity: 0;
     overflow: hidden;
     position: absolute;
     width: 3px;
@@ -208,7 +208,7 @@ div.mochaToolbarWrapper.bottom {
     background: #000;
     display: none;
     left: 0;
-    opacity: 0%;
+    opacity: 0;
     position: fixed;
     top: 0;
     width: 100%;
@@ -219,7 +219,7 @@ div.mochaToolbarWrapper.bottom {
 #modalFix {
     display: none;
     left: 0;
-    opacity: 0%;
+    opacity: 0;
     position: absolute;
     top: 0;
     width: 100%;
@@ -308,7 +308,7 @@ div.mochaToolbarWrapper.bottom {
 }
 
 .mocha.notification .mochaTitlebar {
-    opacity: 0%;
+    opacity: 0;
 }
 
 .mocha.notification .mochaContentBorder {
