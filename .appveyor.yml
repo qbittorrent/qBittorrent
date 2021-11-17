@@ -42,7 +42,7 @@ install:
 
 before_build:
   # setup env
-  - CALL "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - CALL "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
   - SET PATH=%PATH%;C:\Qt\5.15.2\msvc2019_64\bin;%CACHE_DIR%\jom
   # setup project
   - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
