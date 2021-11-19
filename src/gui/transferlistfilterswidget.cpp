@@ -304,16 +304,16 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("trackers"));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, tr("Trackerless (0)"));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("trackers"));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, tr("Error (0)"));
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
     auto *warningTracker = new QListWidgetItem(this);
     warningTracker->setData(Qt::DisplayRole, tr("Warning (0)"));
-    warningTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxWarning));
+    warningTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("dialog-warning"));
     m_trackers[NULL_HOST] = {};
 
     setCurrentRow(0, QItemSelectionModel::SelectCurrent);
@@ -344,7 +344,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     else
     {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("trackers"));
 
         const QString scheme = getScheme(tracker);
         downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));

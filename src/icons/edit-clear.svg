@@ -1,7 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="984 984 32 32">
-  <path fill="#375273" d="M998.8 999c0 .3-.2.5-.5.5h-.8c-.3 0-.5-.2-.5-.5v-12.5c0-.3.2-.5.5-.5h.8c.3 0 .5.2.5.5V999zm.7 2.4c.3 0 .4-.2.2-.4l-.5-.7c-.2-.2-.5-.4-.8-.4h-1.2c-.3 0-.6.2-.8.4l-.3.7c-.2.2-.1.4.2.4h3.2z"/>
-  <path fill="#733737" d="M1007.1 1010.5c0 .2-.1.3-.2.5l-1 1c-.1.1-.3.2-.5.2s-.3-.1-.5-.2l-2.1-2.2-2.2 2.1c-.1.1-.3.2-.5.2s-.3-.1-.5-.2l-1-1c-.1-.1-.2-.3-.2-.5s.1-.3.2-.5l2.1-2.1-2.1-2.1c-.2-.1-.2-.3-.2-.5s.1-.3.2-.5l1-.9c.1-.1.3-.2.5-.2s.3.1.5.2l2.2 2.1 2.1-2.1c.1-.1.3-.2.5-.2s.3.1.5.2l1 1c.1.1.2.3.2.5s-.1.3-.2.5l-2.2 2.1 2.1 2.1c.2.1.3.3.3.5z"/>
-  <path fill="none" d="M1006.9 1005.8c.1-.2.2-.3.2-.5 0 .2-.1.3-.2.5z"/>
-  <path fill="#733737" d="M1004.7 1003.7c.1-.1.1-.1 0 0 .1-.1.1-.1 0 0zm0 4.2l2.2-2.1c.1-.2.2-.4.2-.5 0-.2-.1-.4-.2-.4l-1-1c-.2-.1-.3-.2-.5-.2s-.4 0-.5.2l-2.1 2.1-2.2-2.1c-.2-.1-.3-.2-.5-.2s-.4.1-.5.2l-1 .9c-.1.2-.2.3-.2.5s0 .4.2.5l2.1 2.1-2.1 2.1c-.1.2-.2.3-.2.5s.1.4.2.5l1 1c.2.1.3.2.5.2s.4-.1.5-.2l2.2-2.1 2 2.2c.2.1.3.2.5.2s.4-.1.5-.2l1-1c.1-.2.2-.3.2-.5s-.1-.4-.2-.5l-2.1-2.2z"/>
-  <path fill="#375273" d="M1000.9 1012c-.2.2-.4.3-.7.3s-.5-.1-.7-.3l-1-1c-.2-.2-.3-.4-.3-.7s.1-.5.3-.7l1.9-1.9-1.6-1.6h-3.7c-.3 0-.6.2-.6.5l-1.6 6.8c-.1.3.1.5.4.5h9.4c.3 0 .4-.2.4-.5l-.7-3-1.5 1.6zm-2.7-6.8c0-.3.1-.5.3-.7l1-.9c.2-.2.4-.3.7-.3.2 0 .3 0 .5.1l-.3-1.1c-.1-.3-.3-.5-.6-.5H996c-.3 0-.6.2-.6.5l-.7 3c-.1.3.1.5.4.5h3.3c-.1-.1-.2-.3-.2-.6z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   height="32"
+   viewBox="0 0 32 32"
+   width="32"
+   version="1.1"
+   id="svg8"
+   sodipodi:docname="edit-clear.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs12" />
+  <sodipodi:namedview
+     id="namedview10"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="16.90625"
+     inkscape:cx="16"
+     inkscape:cy="16.029575"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg8" />
+  <g
+     fill="none"
+     stroke="#db3236"
+     stroke-width="32"
+     transform="matrix(0.06533391,0,0,0.06533299,-0.72548096,-0.72524544)"
+     id="g6"
+     style="stroke-width:44.5711;stroke-miterlimit:4;stroke-dasharray:none">
+    <path
+       d="M 448,256 C 448,150 362,64 256,64 150,64 64,150 64,256 c 0,106 86,192 192,192 106,0 192,-86 192,-192 z"
+       stroke-miterlimit="10"
+       id="path2"
+       style="stroke-width:44.5711;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       d="M 336,256 H 176"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       id="path4"
+       style="stroke-width:44.5711;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
 </svg>

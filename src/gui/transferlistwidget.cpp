@@ -818,9 +818,9 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionTopQueuePos, &QAction::triggered, this, &TransferListWidget::topQueuePosSelectedTorrents);
     auto *actionBottomQueuePos = new QAction(UIThemeManager::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
     connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
-    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
+    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon("force-recheck"), tr("Force recheck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
-    auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), listMenu);
+    auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon("reannounce"), tr("Force reannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
     auto *actionCopyMagnetLink = new QAction(UIThemeManager::instance()->getIcon("kt-magnet"), tr("Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
@@ -961,7 +961,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     QStringList tags(BitTorrent::Session::instance()->tags().values());
     std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
-    QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Tags"));
+    QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("tags"), tr("Tags"));
 
     tagsMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags...")
         , this, &TransferListWidget::askAddTagsForSelection);

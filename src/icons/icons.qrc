@@ -13,7 +13,6 @@
         <file>dialog-information.svg</file>
         <file>dialog-warning.svg</file>
         <file>disconnected.svg</file>
-        <file>document-edit-verify.svg</file>
         <file>document-edit.svg</file>
         <file>document-encrypt.svg</file>
         <file>document-import.svg</file>
@@ -22,7 +21,6 @@
         <file>document-save.svg</file>
         <file>download.svg</file>
         <file>downloading.svg</file>
-        <file>downloading_small.svg</file>
         <file>edit-clear-history.svg</file>
         <file>edit-clear.svg</file>
         <file>edit-copy.svg</file>
@@ -309,8 +307,7 @@
         <file>folder-download.svg</file>
         <file>folder-new.svg</file>
         <file>folder-remote.svg</file>
-        <file>gear.svg</file>
-        <file>gear32.svg</file>
+	<file>force-recheck.svg</file>
         <file>go-bottom.svg</file>
         <file>go-down.svg</file>
         <file>go-top.svg</file>
@@ -332,7 +329,6 @@
         <file>media-playback-start.svg</file>
         <file>media-seek-forward.svg</file>
         <file>network-server.svg</file>
-        <file>network-wired.svg</file>
         <file>object-locked.svg</file>
         <file>office-chart-line.svg</file>
         <file>paused.svg</file>
@@ -364,12 +360,15 @@
         <file>stalledUP.svg</file>
         <file>system-log-out.svg</file>
         <file>tab-close.svg</file>
+	<file>tags.svg</file>
         <file>task-attention.svg</file>
         <file>task-complete.svg</file>
         <file>task-ongoing.svg</file>
         <file>task-reject.svg</file>
         <file>text-plain.svg</file>
         <file>tools-report-bug.svg</file>
+	<file>torrent-creator.svg</file>
+        <file>trackers.svg</file>
         <file>unavailable.svg</file>
         <file>uploading.svg</file>
         <file>user-group-delete.svg</file>

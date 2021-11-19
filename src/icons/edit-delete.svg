@@ -1,3 +1,56 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path fill="#733737" d="M29.6 24.2c0 .6-.2 1.1-.6 1.6l-3.1 3.1c-.4.4-.9.6-1.6.6-.6 0-1.1-.2-1.6-.6L16 22.1l-6.7 6.7c-.4.4-.9.6-1.6.6-.6 0-1.1-.2-1.6-.6L3 25.7c-.4-.4-.6-.9-.6-1.6s.2-1.1.6-1.6l6.7-6.7-6.6-6.6c-.5-.4-.7-1-.7-1.6 0-.6.2-1.1.6-1.6l3.2-3c.4-.4.9-.6 1.6-.6.6 0 1.1.2 1.6.6L16 9.7 22.7 3c.4-.4.9-.6 1.6-.6.6 0 1.1.2 1.6.6L29 6.1c.4.4.6.9.6 1.6 0 .6-.2 1.1-.6 1.6L22.3 16l6.7 6.7c.4.4.6.9.6 1.5z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 32 32"
+   version="1.1"
+   id="svg10"
+   sodipodi:docname="edit-delete.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     id="namedview12"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="16.90625"
+     inkscape:cx="16"
+     inkscape:cy="10.232902"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg10" />
+  <g
+     fill="none"
+     stroke="#db3236"
+     stroke-linecap="round"
+     stroke-width="32"
+     transform="matrix(0.05967972,0,0,0.06230726,0.72199168,0.0493446)"
+     id="g8"
+     style="stroke-width:33.3884;stroke-miterlimit:4;stroke-dasharray:none">
+    <path
+       d="m 112,112 20,320 c 0.95,18.49 14.4,32 32,32 h 184 c 17.67,0 30.87,-13.51 32,-32 l 20,-320"
+       stroke-linejoin="round"
+       id="path2"
+       style="stroke-width:33.3884;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       d="M 80,112 H 432"
+       stroke-miterlimit="10"
+       id="path4"
+       style="stroke-width:33.3884;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       d="M 192,112 V 72 a 23.93,23.93 0 0 1 24,-24 h 80 a 23.93,23.93 0 0 1 24,24 v 40 m -64,64 v 224 m -72,-224 8,224 m 136,-224 -8,224"
+       stroke-linejoin="round"
+       id="path6"
+       style="stroke-width:33.3884;stroke-miterlimit:4;stroke-dasharray:none" />
+  </g>
 </svg>

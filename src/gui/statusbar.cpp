@@ -70,7 +70,7 @@ StatusBar::StatusBar(QWidget *parent)
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("downloading_small")));
+    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("downloading")));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);

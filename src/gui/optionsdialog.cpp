@@ -194,12 +194,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon("preferences-desktop"));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("network-wired"));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("configure"));
     m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon("folder-download"));
     m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon("speedometer", "chronometer"));
     m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon("rss-config", "application-rss+xml"));
 #ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("network-server"));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("webui"));
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif

@@ -153,7 +153,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon("list-add"));
     m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon("insert-link"));
     m_ui->actionSetGlobalSpeedLimits->setIcon(UIThemeManager::instance()->getIcon("speedometer"));
-    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("document-edit"));
+    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon("torrent-creator.svg"));
     m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon("help-about"));
     m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon("view-statistics"));
     m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon("go-top"));
@@ -172,6 +172,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon("media-playback-start"));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon("application-exit"));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon("preferences-web-browser-cookies"));
+    m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
     auto *lockMenu = new QMenu(this);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
