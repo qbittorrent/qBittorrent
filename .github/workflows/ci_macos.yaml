@@ -42,9 +42,12 @@ jobs:
 
       - name: Install libtorrent
         run: |
-          git clone --branch v${{ matrix.libt_version }} --depth 1 https://github.com/arvidn/libtorrent.git
+          git clone \
+            --branch v${{ matrix.libt_version }} \
+            --depth 1 \
+            --recurse-submodules \
+            https://github.com/arvidn/libtorrent.git
           cd libtorrent
-          git submodule update --init --recursive
           cmake \
             -B build \
             -G "Ninja" \
@@ -65,7 +68,6 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
-            -DQt5_DIR="$Qt5_DIR" \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build
@@ -80,7 +82,6 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \
-            -DQt6_DIR="$Qt6_DIR" \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build
