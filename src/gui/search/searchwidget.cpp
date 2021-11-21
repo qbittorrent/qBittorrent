@@ -68,15 +68,15 @@ namespace
         switch (st)
         {
         case SearchJobWidget::Status::Ongoing:
-            return u"task-ongoing"_qs;
+            return u"queued"_qs;
         case SearchJobWidget::Status::Finished:
             return u"task-complete"_qs;
         case SearchJobWidget::Status::Aborted:
             return u"task-reject"_qs;
         case SearchJobWidget::Status::Error:
-            return u"task-attention"_qs;
+            return u"dialog-warning"_qs;
         case SearchJobWidget::Status::NoResults:
-            return u"task-attention"_qs;
+            return u"dialog-warning"_qs;
         default:
             return {};
         }
@@ -111,7 +111,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 #ifndef Q_OS_MACOS
     // Icons
     m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_qs));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"preferences-system-network"_qs));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_qs));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();

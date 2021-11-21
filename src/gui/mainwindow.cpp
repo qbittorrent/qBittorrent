@@ -171,7 +171,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
     m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon(u"insert-link"_qs));
     m_ui->actionSetGlobalSpeedLimits->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
-    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon(u"document-edit"_qs));
+    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon(u"torrent-creator"_qs));
     m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon(u"help-about"_qs));
     m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon(u"view-statistics"_qs));
     m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon(u"go-top"_qs));
@@ -183,13 +183,15 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon(u"wallet-open"_qs));
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_qs));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_qs));
-    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_qs, u"preferences-system"_qs));
+    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_qs));
     m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs));
     m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs));
     m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs));
     m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs));
-    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_qs));
+    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
     m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"preferences-web-browser-cookies"_qs));
+    m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_qs));
+    m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 
     auto *lockMenu = new QMenu(this);
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
@@ -2037,7 +2039,7 @@ void MainWindow::on_actionExecutionLogs_triggered(bool checked)
         m_tabs->addTab(m_executionLog, tr("Execution Log"));
 #else
         const int indexTab = m_tabs->addTab(m_executionLog, tr("Execution Log"));
-        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"view-calendar-journal"_qs));
+        m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"help-contents"_qs));
 #endif
     }
     else

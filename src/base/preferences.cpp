@@ -982,7 +982,7 @@ void Preferences::resolvePeerHostNames(const bool resolve)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
 bool Preferences::useSystemIconTheme() const
 {
-    return value(u"Preferences/Advanced/useSystemIconTheme"_qs, true);
+    return value(u"Preferences/Advanced/useSystemIconTheme"_qs, false);
 }
 
 void Preferences::useSystemIconTheme(const bool enabled)

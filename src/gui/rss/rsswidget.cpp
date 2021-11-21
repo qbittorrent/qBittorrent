@@ -63,9 +63,9 @@ RSSWidget::RSSWidget(QWidget *parent)
 
     // Icons
     m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_qs));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-delete"_qs));
-    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
-    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"mail-mark-read"_qs));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_qs));
+    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_qs));
+    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
     m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_qs));
     m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
     m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs));
@@ -74,9 +74,9 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 #ifndef Q_OS_MACOS
     m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
-    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"mail-mark-read"_qs));
+    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
     m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
-    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
+    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_qs));
 #endif
 
     m_articleListWidget = new ArticleListWidget(m_ui->splitterMain);

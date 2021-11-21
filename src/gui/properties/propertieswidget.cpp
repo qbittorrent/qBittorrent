@@ -749,7 +749,7 @@ void PropertiesWidget::displayWebSeedListMenu()
 
     if (!rows.isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove Web seed")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_qs), tr("Remove Web seed")
             , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy Web seed URL")
