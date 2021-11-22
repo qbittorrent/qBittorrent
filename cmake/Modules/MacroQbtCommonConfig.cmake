@@ -84,6 +84,7 @@ macro(qbt_common_config)
     if (MSVC)
         target_compile_options(qbt_common_cfg INTERFACE
             /guard:cf
+            /Qspectre
             /utf-8
             # https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
             /Zc:__cplusplus
