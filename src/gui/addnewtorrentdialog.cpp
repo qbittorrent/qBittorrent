@@ -84,10 +84,11 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     , m_storeDialogSize(SETTINGS_KEY("DialogSize"))
     , m_storeDefaultCategory(SETTINGS_KEY("DefaultCategory"))
     , m_storeRememberLastSavePath(SETTINGS_KEY("RememberLastSavePath"))
-    , m_storeTreeHeaderState(SETTINGS_KEY("TreeHeaderState"))
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    , m_storeTreeHeaderState("GUI/Qt6/" SETTINGS_KEY("TreeHeaderState"))
     , m_storeSplitterState("GUI/Qt6/" SETTINGS_KEY("SplitterState"))
 #else
+    , m_storeTreeHeaderState(SETTINGS_KEY("TreeHeaderState"))
     , m_storeSplitterState(SETTINGS_KEY("SplitterState"))
 #endif
 {
