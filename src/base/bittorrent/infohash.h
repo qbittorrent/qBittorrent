@@ -64,7 +64,6 @@ namespace BitTorrent
 #endif
 
         InfoHash() = default;
-        InfoHash(const InfoHash &other) = default;
         InfoHash(const WrappedType &nativeHash);
 
         bool isValid() const;

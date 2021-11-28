@@ -48,12 +48,7 @@ namespace Utils
         typedef T ComponentType;
         typedef Version<T, N, Mandatory> ThisType;
 
-        constexpr Version()
-            : m_components {{}}
-        {
-        }
-
-        constexpr Version(const ThisType &other) = default;
+        constexpr Version() = default;
 
         template <typename ... Other>
         constexpr Version(Other ... components)
@@ -187,7 +182,7 @@ namespace Utils
         {
         }
 
-        ComponentsArray m_components;
+        ComponentsArray m_components {{}};
     };
 
     template <typename T, std::size_t N, std::size_t Mandatory>
