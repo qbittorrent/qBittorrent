@@ -44,7 +44,6 @@ namespace Private
 class FileSystemPathEdit : public QWidget
 {
     Q_OBJECT
-    Q_ENUMS(Mode)
     Q_PROPERTY(Mode mode READ mode WRITE setMode)
     Q_PROPERTY(QString selectedPath READ selectedPath WRITE setSelectedPath NOTIFY selectedPathChanged)
     Q_PROPERTY(QString fileNameFilter READ fileNameFilter WRITE setFileNameFilter)
@@ -60,6 +59,7 @@ public:
         DirectoryOpen,   //!< selecting existing directories
         DirectorySave    //!< selecting directories for saving
     };
+    Q_ENUM(Mode)
 
     Mode mode() const;
     void setMode(Mode mode);

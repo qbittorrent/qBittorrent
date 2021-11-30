@@ -412,7 +412,8 @@ void CategoryFilterModel::populate()
                                     , [](Torrent *torrent) { return torrent->category().isEmpty(); })));
 
     using Torrent = BitTorrent::Torrent;
-    for (auto i = session->categories().cbegin(); i != session->categories().cend(); ++i)
+    const QStringMap categories = session->categories();
+    for (auto i = categories.cbegin(); i != categories.cend(); ++i)
     {
         const QString &category = i.key();
         if (m_isSubcategoriesEnabled)

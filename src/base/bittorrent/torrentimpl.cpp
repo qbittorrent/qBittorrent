@@ -1616,7 +1616,7 @@ void TorrentImpl::renameFile(const int index, const QString &path)
     m_oldPath[index].push_back(oldPath);
 #endif
     ++m_renameCount;
-    m_nativeHandle.rename_file(m_torrentInfo.nativeIndexes()[index], Utils::Fs::toNativePath(path).toStdString());
+    m_nativeHandle.rename_file(m_torrentInfo.nativeIndexes().at(index), Utils::Fs::toNativePath(path).toStdString());
 }
 
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)

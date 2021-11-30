@@ -34,6 +34,9 @@
 
 #include <QHash>
 
+// From https://doc.qt.io/qt-6/qhash.html#the-hashing-function:
+// A hashing function for a key type K may be provided in two different ways.
+// The first way is by having an overload of qHash() in K's namespace.
 namespace libtorrent
 {
     namespace aux
