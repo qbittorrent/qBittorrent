@@ -1218,15 +1218,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
-    // abort search if any
-    delete m_searchWidget;
-
-    hide();
 #ifndef Q_OS_MACOS
     // Hide tray icon
     if (m_systrayIcon)
         m_systrayIcon->hide();
 #endif
+
     // Accept exit
     e->accept();
     qApp->exit();
