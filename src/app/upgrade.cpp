@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
+#include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/utils/fs.h"
@@ -110,6 +111,120 @@ namespace
             settingsStorage->removeValue(oldKey);
         }
     }
+
+    void upgradeSchedulerDaysSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto key = QString::fromLatin1("Preferences/Scheduler/days");
+        const auto value = settingsStorage->loadValue<QString>(key);
+
+        bool ok = false;
+        const auto number = value.toInt(&ok);
+
+        if (ok)
+        {
+            switch (number)
+            {
+            case 0:
+                settingsStorage->storeValue(key, Scheduler::Days::EveryDay);
+                break;
+            case 1:
+                settingsStorage->storeValue(key, Scheduler::Days::Weekday);
+                break;
+            case 2:
+                settingsStorage->storeValue(key, Scheduler::Days::Weekend);
+                break;
+            case 3:
+                settingsStorage->storeValue(key, Scheduler::Days::Monday);
+                break;
+            case 4:
+                settingsStorage->storeValue(key, Scheduler::Days::Tuesday);
+                break;
+            case 5:
+                settingsStorage->storeValue(key, Scheduler::Days::Wednesday);
+                break;
+            case 6:
+                settingsStorage->storeValue(key, Scheduler::Days::Thursday);
+                break;
+            case 7:
+                settingsStorage->storeValue(key, Scheduler::Days::Friday);
+                break;
+            case 8:
+                settingsStorage->storeValue(key, Scheduler::Days::Saturday);
+                break;
+            case 9:
+                settingsStorage->storeValue(key, Scheduler::Days::Sunday);
+                break;
+            default:
+                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                    .arg(key, QString::number(number)), Log::WARNING);
+                settingsStorage->removeValue(key);
+                break;
+            }
+        }
+    }
+
+    void upgradeDNSServiceSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto key = QString::fromLatin1("Preferences/DynDNS/Service");
+        const auto value = settingsStorage->loadValue<QString>(key);
+
+        bool ok = false;
+        const auto number = value.toInt(&ok);
+
+        if (ok)
+        {
+            switch (number)
+            {
+            case -1:
+                settingsStorage->storeValue(key, DNS::Service::None);
+                break;
+            case 0:
+                settingsStorage->storeValue(key, DNS::Service::DynDNS);
+                break;
+            case 1:
+                settingsStorage->storeValue(key, DNS::Service::NoIP);
+                break;
+            default:
+                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                    .arg(key, QString::number(number)), Log::WARNING);
+                settingsStorage->removeValue(key);
+                break;
+            }
+        }
+    }
+
+    void upgradeTrayIconStyleSettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto key = QString::fromLatin1("Preferences/Advanced/TrayIconStyle");
+        const auto value = settingsStorage->loadValue<QString>(key);
+
+        bool ok = false;
+        const auto number = value.toInt(&ok);
+
+        if (ok)
+        {
+            switch (number)
+            {
+            case 0:
+                settingsStorage->storeValue(key, TrayIcon::Style::Normal);
+                break;
+            case 1:
+                settingsStorage->storeValue(key, TrayIcon::Style::MonoDark);
+                break;
+            case 2:
+                settingsStorage->storeValue(key, TrayIcon::Style::MonoLight);
+                break;
+            default:
+                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                    .arg(key, QString::number(number)), Log::WARNING);
+                settingsStorage->removeValue(key);
+                break;
+            }
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
@@ -117,6 +232,9 @@ bool upgrade(const bool /*ask*/)
     exportWebUIHttpsFiles();
     upgradeTorrentContentLayout();
     upgradeListenPortSettings();
+    upgradeSchedulerDaysSettings();
+    upgradeDNSServiceSettings();
+    upgradeTrayIconStyleSettings();
     return true;
 }
 

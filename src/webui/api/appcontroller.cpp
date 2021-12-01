@@ -198,7 +198,7 @@ void AppController::preferencesAction()
     const QTime end_time = pref->getSchedulerEndTime();
     data["schedule_to_hour"] = end_time.hour();
     data["schedule_to_min"] = end_time.minute();
-    data["scheduler_days"] = pref->getSchedulerDays();
+    data["scheduler_days"] = static_cast<int>(pref->getSchedulerDays());
 
     // Bittorrent
     // Privacy
@@ -264,7 +264,7 @@ void AppController::preferencesAction()
     data["web_ui_reverse_proxies_list"] = pref->getWebUITrustedReverseProxiesList();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
-    data["dyndns_service"] = pref->getDynDNSService();
+    data["dyndns_service"] = static_cast<int>(pref->getDynDNSService());
     data["dyndns_username"] = pref->getDynDNSUsername();
     data["dyndns_password"] = pref->getDynDNSPassword();
     data["dyndns_domain"] = pref->getDynDomainName();
@@ -560,7 +560,7 @@ void AppController::setPreferencesAction()
     if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
         pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
     if (hasKey("scheduler_days"))
-        pref->setSchedulerDays(SchedulerDays(it.value().toInt()));
+        pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
 
     // Bittorrent
     // Privacy
@@ -698,7 +698,7 @@ void AppController::setPreferencesAction()
     if (hasKey("dyndns_enabled"))
         pref->setDynDNSEnabled(it.value().toBool());
     if (hasKey("dyndns_service"))
-        pref->setDynDNSService(it.value().toInt());
+        pref->setDynDNSService(static_cast<DNS::Service>(it.value().toInt()));
     if (hasKey("dyndns_username"))
         pref->setDynDNSUsername(it.value().toString());
     if (hasKey("dyndns_password"))
