@@ -32,7 +32,6 @@
 #include <QObject>
 #include <QtContainerFwd>
 #include <QtGlobal>
-#include <QVariant>
 
 #include "base/utils/net.h"
 
@@ -93,9 +92,6 @@ class Preferences : public QObject
     Q_DISABLE_COPY_MOVE(Preferences)
 
     Preferences();
-
-    QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
-    void setValue(const QString &key, const QVariant &value);
 
     static Preferences *m_instance;
 
