@@ -255,7 +255,7 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
     SettingsStorage *settingsStorage {SettingsStorage::instance()};
     for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it)
     {
-        if (settingsStorage->loadValue<QVariant>(it->name).isNull())
+        if (!settingsStorage->hasKey(it->name))
             settingsStorage->storeValue(it->name, (mode == DefaultPreferencesMode::Legacy ? it->legacy : it->current));
     }
 }
