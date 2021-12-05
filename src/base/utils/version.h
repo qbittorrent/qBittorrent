@@ -146,9 +146,9 @@ namespace Utils
             {
                 return Version(s);
             }
-            catch (const RuntimeError &er)
+            catch (const RuntimeError &error)
             {
-                qDebug() << "Error parsing version:" << er.message();
+                qDebug() << "Error parsing version:" << error.message();
                 return defaultVersion;
             }
         }
