@@ -262,44 +262,54 @@ void PeerListWidget::updatePeerCountryResolutionState()
 
 void PeerListWidget::showPeerListMenu(const QPoint &)
 {
-    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
+    BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
 
-    QMenu *menu = new QMenu(this);
+    auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setToolTipsVisible(true);
 
-    // Add Peer Action
-    // Do not allow user to add peers in a private torrent
-    if (!torrent->isQueued() && !torrent->isChecking() && !torrent->isPrivate())
+    QAction *addNewPeer = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add peers...")
+        , this, [this, torrent]()
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add a new peer...")
-            , this, [this, torrent]()
+        const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
+        const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
         {
-            const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
-            const int peerCount = std::count_if(peersList.cbegin(), peersList.cend(), [torrent](const BitTorrent::PeerAddress &peer)
-            {
-                return torrent->connectPeer(peer);
-            });
-            if (peerCount < peersList.length())
-                QMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
-            else if (peerCount > 0)
-                QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
+            return torrent->connectPeer(peer);
         });
-    }
+        if (peerCount < peersList.length())
+            QMessageBox::information(this, tr("Adding peers"), tr("Some peers cannot be added. Check the Log for details."));
+        else if (peerCount > 0)
+            QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
+    });
+    QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
+        , this, &PeerListWidget::copySelectedPeers);
+    menu->addSeparator();
+    QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
+        , this, &PeerListWidget::banSelectedPeers);
 
-    if (!selectionModel()->selectedRows().isEmpty())
+    // disable actions
+    const auto disableAction = [](QAction *action, const QString &tooltip)
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
-            , this, &PeerListWidget::copySelectedPeers);
-        menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
-            , this, &PeerListWidget::banSelectedPeers);
+        action->setEnabled(false);
+        action->setToolTip(tooltip);
+    };
+
+    if (torrent->isPrivate())
+        disableAction(addNewPeer, tr("Cannot add peers to a private torrent"));
+    else if (torrent->isChecking())
+        disableAction(addNewPeer, tr("Cannot add peers when the torrent is checking"));
+    else if (torrent->isQueued())
+        disableAction(addNewPeer, tr("Cannot add peers when the torrent is queued"));
+
+    if (selectionModel()->selectedRows().isEmpty())
+    {
+        const QString tooltip = tr("No peer was selected");
+        disableAction(copyPeers, tooltip);
+        disableAction(banPeers, tooltip);
     }
 
-    if (menu->isEmpty())
-        delete menu;
-    else
-        menu->popup(QCursor::pos());
+    menu->popup(QCursor::pos());
 }
 
 void PeerListWidget::banSelectedPeers()
