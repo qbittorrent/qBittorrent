@@ -2080,11 +2080,11 @@ QIcon MainWindow::getSystrayIcon() const
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     switch (style)
     {
-    case TrayIcon::NORMAL:
+    case TrayIcon::Style::Normal:
         return QIcon::fromTheme(QLatin1String("qbittorrent-tray"));
-    case TrayIcon::MONO_DARK:
+    case TrayIcon::Style::MonoDark:
         return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
-    case TrayIcon::MONO_LIGHT:
+    case TrayIcon::Style::MonoLight:
         return QIcon::fromTheme(QLatin1String("qbittorrent-tray-light"));
     default:
         break;
@@ -2092,11 +2092,11 @@ QIcon MainWindow::getSystrayIcon() const
 #else
     switch (style)
     {
-    case TrayIcon::NORMAL:
+    case TrayIcon::Style::Normal:
         return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray"));
-    case TrayIcon::MONO_DARK:
+    case TrayIcon::Style::MonoDark:
         return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-dark"));
-    case TrayIcon::MONO_LIGHT:
+    case TrayIcon::Style::MonoLight:
         return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-light"));
     default:
         break;

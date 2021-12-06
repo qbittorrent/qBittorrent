@@ -493,14 +493,14 @@ void Preferences::setSchedulerEndTime(const QTime &time)
     setValue("Preferences/Scheduler/end_time", time);
 }
 
-SchedulerDays Preferences::getSchedulerDays() const
+Scheduler::Days Preferences::getSchedulerDays() const
 {
-    return static_cast<SchedulerDays>(value("Preferences/Scheduler/days", EVERY_DAY).toInt());
+    return SettingsStorage::instance()->loadValue("Preferences/Scheduler/days", Scheduler::Days::EveryDay);
 }
 
-void Preferences::setSchedulerDays(const SchedulerDays days)
+void Preferences::setSchedulerDays(const Scheduler::Days days)
 {
-    setValue("Preferences/Scheduler/days", static_cast<int>(days));
+    SettingsStorage::instance()->storeValue("Preferences/Scheduler/days", days);
 }
 
 // Search
@@ -816,12 +816,12 @@ void Preferences::setDynDNSEnabled(const bool enabled)
 
 DNS::Service Preferences::getDynDNSService() const
 {
-    return DNS::Service(value("Preferences/DynDNS/Service", DNS::DYNDNS).toInt());
+    return SettingsStorage::instance()->loadValue("Preferences/DynDNS/Service", DNS::Service::DynDNS);
 }
 
-void Preferences::setDynDNSService(const int service)
+void Preferences::setDynDNSService(const DNS::Service service)
 {
-    setValue("Preferences/DynDNS/Service", service);
+    SettingsStorage::instance()->storeValue("Preferences/DynDNS/Service", service);
 }
 
 QString Preferences::getDynDomainName() const
@@ -1211,12 +1211,12 @@ void Preferences::setConfirmRemoveAllTags(const bool enabled)
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
-    return TrayIcon::Style(value("Preferences/Advanced/TrayIconStyle", TrayIcon::NORMAL).toInt());
+    return SettingsStorage::instance()->loadValue("Preferences/Advanced/TrayIconStyle", TrayIcon::Style::Normal);
 }
 
 void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 {
-    setValue("Preferences/Advanced/TrayIconStyle", style);
+    SettingsStorage::instance()->storeValue("Preferences/Advanced/TrayIconStyle", style);
 }
 #endif
 

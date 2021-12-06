@@ -783,7 +783,7 @@ void OptionsDialog::saveOptions()
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
-    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
+    pref->setSchedulerDays(static_cast<Scheduler::Days>(m_ui->comboBoxScheduleDays->currentIndex()));
     session->setBandwidthSchedulerEnabled(m_ui->groupBoxSchedule->isChecked());
 
     auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
@@ -867,7 +867,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
-        pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
+        pref->setDynDNSService(static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex()));
         pref->setDynDomainName(m_ui->domainNameTxt->text());
         pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
         pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
@@ -941,7 +941,7 @@ void OptionsDialog::loadOptions()
     {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-        m_ui->comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+        m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
     }
 #endif
 
@@ -1832,7 +1832,8 @@ void OptionsDialog::showConnectionTab()
 
 void OptionsDialog::on_registerDNSBtn_clicked()
 {
-    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(m_ui->comboDNSService->currentIndex()));
+    const auto service = static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex());
+    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(service));
 }
 
 void OptionsDialog::on_IpFilterRefreshBtn_clicked()
