@@ -47,7 +47,6 @@
 #include <QSettings>
 #include <QSize>
 #include <QTime>
-#include <QVariant>
 
 #ifdef Q_OS_WIN
 #include <QRegularExpression>
@@ -61,6 +60,30 @@
 
 namespace
 {
+    template <typename T>
+    T value(const QString &key, const T &defaultValue = {})
+    {
+        return SettingsStorage::instance()->loadValue(key, defaultValue);
+    }
+
+    template <typename T>
+    T value(const char *key, const T &defaultValue = {})
+    {
+        return value(QLatin1String(key), defaultValue);
+    }
+
+    template <typename T>
+    void setValue(const QString &key, const T &value)
+    {
+        SettingsStorage::instance()->storeValue(key, value);
+    }
+
+    template <typename T>
+    void setValue(const char *key, const T &value)
+    {
+        setValue(QLatin1String(key), value);
+    }
+
 #ifdef Q_OS_WIN
     QString makeProfileID(const QString &profilePath, const QString &profileName)
     {
@@ -92,20 +115,10 @@ void Preferences::freeInstance()
     m_instance = nullptr;
 }
 
-QVariant Preferences::value(const QString &key, const QVariant &defaultValue) const
-{
-    return SettingsStorage::instance()->loadValue(key, defaultValue);
-}
-
-void Preferences::setValue(const QString &key, const QVariant &value)
-{
-    SettingsStorage::instance()->storeValue(key, value);
-}
-
 // General options
 QString Preferences::getLocale() const
 {
-    const QString localeName = value("Preferences/General/Locale").toString();
+    const auto localeName = value<QString>("Preferences/General/Locale");
     return (localeName.isEmpty() ? QLocale::system().name() : localeName);
 }
 
@@ -116,8 +129,7 @@ void Preferences::setLocale(const QString &locale)
 
 bool Preferences::useCustomUITheme() const
 {
-    return value("Preferences/General/UseCustomUITheme", false).toBool()
-           && !customUIThemePath().isEmpty();
+    return value("Preferences/General/UseCustomUITheme", false) && !customUIThemePath().isEmpty();
 }
 
 void Preferences::setUseCustomUITheme(const bool use)
@@ -127,7 +139,7 @@ void Preferences::setUseCustomUITheme(const bool use)
 
 QString Preferences::customUIThemePath() const
 {
-    return value("Preferences/General/CustomUIThemePath").toString();
+    return value<QString>("Preferences/General/CustomUIThemePath");
 }
 
 void Preferences::setCustomUIThemePath(const QString &path)
@@ -137,7 +149,7 @@ void Preferences::setCustomUIThemePath(const QString &path)
 
 bool Preferences::deleteTorrentFilesAsDefault() const
 {
-    return value("Preferences/General/DeleteTorrentsFilesAsDefault", false).toBool();
+    return value("Preferences/General/DeleteTorrentsFilesAsDefault", false);
 }
 
 void Preferences::setDeleteTorrentFilesAsDefault(const bool del)
@@ -147,7 +159,7 @@ void Preferences::setDeleteTorrentFilesAsDefault(const bool del)
 
 bool Preferences::confirmOnExit() const
 {
-    return value("Preferences/General/ExitConfirm", true).toBool();
+    return value("Preferences/General/ExitConfirm", true);
 }
 
 void Preferences::setConfirmOnExit(const bool confirm)
@@ -157,7 +169,7 @@ void Preferences::setConfirmOnExit(const bool confirm)
 
 bool Preferences::speedInTitleBar() const
 {
-    return value("Preferences/General/SpeedInTitleBar", false).toBool();
+    return value("Preferences/General/SpeedInTitleBar", false);
 }
 
 void Preferences::showSpeedInTitleBar(const bool show)
@@ -167,7 +179,7 @@ void Preferences::showSpeedInTitleBar(const bool show)
 
 bool Preferences::useAlternatingRowColors() const
 {
-    return value("Preferences/General/AlternatingRowColors", true).toBool();
+    return value("Preferences/General/AlternatingRowColors", true);
 }
 
 void Preferences::setAlternatingRowColors(const bool b)
@@ -177,7 +189,7 @@ void Preferences::setAlternatingRowColors(const bool b)
 
 bool Preferences::getHideZeroValues() const
 {
-    return value("Preferences/General/HideZeroValues", false).toBool();
+    return value("Preferences/General/HideZeroValues", false);
 }
 
 void Preferences::setHideZeroValues(const bool b)
@@ -187,7 +199,7 @@ void Preferences::setHideZeroValues(const bool b)
 
 int Preferences::getHideZeroComboValues() const
 {
-    return value("Preferences/General/HideZeroComboValues", 0).toInt();
+    return value<int>("Preferences/General/HideZeroComboValues", 0);
 }
 
 void Preferences::setHideZeroComboValues(const int n)
@@ -200,7 +212,7 @@ void Preferences::setHideZeroComboValues(const int n)
 #ifndef Q_OS_MACOS
 bool Preferences::systrayIntegration() const
 {
-    return value("Preferences/General/SystrayEnabled", true).toBool();
+    return value("Preferences/General/SystrayEnabled", true);
 }
 
 void Preferences::setSystrayIntegration(const bool enabled)
@@ -210,7 +222,7 @@ void Preferences::setSystrayIntegration(const bool enabled)
 
 bool Preferences::minimizeToTray() const
 {
-    return value("Preferences/General/MinimizeToTray", false).toBool();
+    return value("Preferences/General/MinimizeToTray", false);
 }
 
 void Preferences::setMinimizeToTray(const bool b)
@@ -220,7 +232,7 @@ void Preferences::setMinimizeToTray(const bool b)
 
 bool Preferences::minimizeToTrayNotified() const
 {
-    return value("Preferences/General/MinimizeToTrayNotified", false).toBool();
+    return value("Preferences/General/MinimizeToTrayNotified", false);
 }
 
 void Preferences::setMinimizeToTrayNotified(const bool b)
@@ -230,7 +242,7 @@ void Preferences::setMinimizeToTrayNotified(const bool b)
 
 bool Preferences::closeToTray() const
 {
-    return value("Preferences/General/CloseToTray", true).toBool();
+    return value("Preferences/General/CloseToTray", true);
 }
 
 void Preferences::setCloseToTray(const bool b)
@@ -240,7 +252,7 @@ void Preferences::setCloseToTray(const bool b)
 
 bool Preferences::closeToTrayNotified() const
 {
-    return value("Preferences/General/CloseToTrayNotified", false).toBool();
+    return value("Preferences/General/CloseToTrayNotified", false);
 }
 
 void Preferences::setCloseToTrayNotified(const bool b)
@@ -250,7 +262,7 @@ void Preferences::setCloseToTrayNotified(const bool b)
 
 bool Preferences::iconsInMenusEnabled() const
 {
-    return value("Preferences/Advanced/EnableIconsInMenus", true).toBool();
+    return value("Preferences/Advanced/EnableIconsInMenus", true);
 }
 
 void Preferences::setIconsInMenusEnabled(const bool enable)
@@ -261,7 +273,7 @@ void Preferences::setIconsInMenusEnabled(const bool enable)
 
 bool Preferences::isToolbarDisplayed() const
 {
-    return value("Preferences/General/ToolbarDisplayed", true).toBool();
+    return value("Preferences/General/ToolbarDisplayed", true);
 }
 
 void Preferences::setToolbarDisplayed(const bool displayed)
@@ -271,7 +283,7 @@ void Preferences::setToolbarDisplayed(const bool displayed)
 
 bool Preferences::isStatusbarDisplayed() const
 {
-    return value("Preferences/General/StatusbarDisplayed", true).toBool();
+    return value("Preferences/General/StatusbarDisplayed", true);
 }
 
 void Preferences::setStatusbarDisplayed(const bool displayed)
@@ -281,7 +293,7 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
 
 bool Preferences::startMinimized() const
 {
-    return value("Preferences/General/StartMinimized", false).toBool();
+    return value("Preferences/General/StartMinimized", false);
 }
 
 void Preferences::setStartMinimized(const bool b)
@@ -291,7 +303,7 @@ void Preferences::setStartMinimized(const bool b)
 
 bool Preferences::isSplashScreenDisabled() const
 {
-    return value("Preferences/General/NoSplashScreen", true).toBool();
+    return value("Preferences/General/NoSplashScreen", true);
 }
 
 void Preferences::setSplashScreenDisabled(const bool b)
@@ -302,7 +314,7 @@ void Preferences::setSplashScreenDisabled(const bool b)
 // Preventing from system suspend while active torrents are presented.
 bool Preferences::preventFromSuspendWhenDownloading() const
 {
-    return value("Preferences/General/PreventFromSuspendWhenDownloading", false).toBool();
+    return value("Preferences/General/PreventFromSuspendWhenDownloading", false);
 }
 
 void Preferences::setPreventFromSuspendWhenDownloading(const bool b)
@@ -312,7 +324,7 @@ void Preferences::setPreventFromSuspendWhenDownloading(const bool b)
 
 bool Preferences::preventFromSuspendWhenSeeding() const
 {
-    return value("Preferences/General/PreventFromSuspendWhenSeeding", false).toBool();
+    return value("Preferences/General/PreventFromSuspendWhenSeeding", false);
 }
 
 void Preferences::setPreventFromSuspendWhenSeeding(const bool b)
@@ -355,7 +367,7 @@ void Preferences::setWinStartup(const bool b)
 // Downloads
 QString Preferences::lastLocationPath() const
 {
-    return Utils::Fs::toUniformPath(value("Preferences/Downloads/LastLocationPath").toString());
+    return Utils::Fs::toUniformPath(value<QString>("Preferences/Downloads/LastLocationPath"));
 }
 
 void Preferences::setLastLocationPath(const QString &path)
@@ -365,7 +377,7 @@ void Preferences::setLastLocationPath(const QString &path)
 
 QString Preferences::getScanDirsLastPath() const
 {
-    return Utils::Fs::toUniformPath(value("Preferences/Downloads/ScanDirsLastPath").toString());
+    return Utils::Fs::toUniformPath(value<QString>("Preferences/Downloads/ScanDirsLastPath"));
 }
 
 void Preferences::setScanDirsLastPath(const QString &path)
@@ -375,7 +387,7 @@ void Preferences::setScanDirsLastPath(const QString &path)
 
 bool Preferences::isMailNotificationEnabled() const
 {
-    return value("Preferences/MailNotification/enabled", false).toBool();
+    return value("Preferences/MailNotification/enabled", false);
 }
 
 void Preferences::setMailNotificationEnabled(const bool enabled)
@@ -385,7 +397,8 @@ void Preferences::setMailNotificationEnabled(const bool enabled)
 
 QString Preferences::getMailNotificationSender() const
 {
-    return value("Preferences/MailNotification/sender", "qBittorrent_notification@example.com").toString();
+    return value<QString>("Preferences/MailNotification/sender"
+        , QLatin1String("qBittorrent_notification@example.com"));
 }
 
 void Preferences::setMailNotificationSender(const QString &mail)
@@ -395,7 +408,7 @@ void Preferences::setMailNotificationSender(const QString &mail)
 
 QString Preferences::getMailNotificationEmail() const
 {
-    return value("Preferences/MailNotification/email").toString();
+    return value<QString>("Preferences/MailNotification/email");
 }
 
 void Preferences::setMailNotificationEmail(const QString &mail)
@@ -405,7 +418,7 @@ void Preferences::setMailNotificationEmail(const QString &mail)
 
 QString Preferences::getMailNotificationSMTP() const
 {
-    return value("Preferences/MailNotification/smtp_server", "smtp.changeme.com").toString();
+    return value<QString>("Preferences/MailNotification/smtp_server", QLatin1String("smtp.changeme.com"));
 }
 
 void Preferences::setMailNotificationSMTP(const QString &smtp_server)
@@ -415,7 +428,7 @@ void Preferences::setMailNotificationSMTP(const QString &smtp_server)
 
 bool Preferences::getMailNotificationSMTPSSL() const
 {
-    return value("Preferences/MailNotification/req_ssl", false).toBool();
+    return value("Preferences/MailNotification/req_ssl", false);
 }
 
 void Preferences::setMailNotificationSMTPSSL(const bool use)
@@ -425,7 +438,7 @@ void Preferences::setMailNotificationSMTPSSL(const bool use)
 
 bool Preferences::getMailNotificationSMTPAuth() const
 {
-    return value("Preferences/MailNotification/req_auth", false).toBool();
+    return value("Preferences/MailNotification/req_auth", false);
 }
 
 void Preferences::setMailNotificationSMTPAuth(const bool use)
@@ -435,7 +448,7 @@ void Preferences::setMailNotificationSMTPAuth(const bool use)
 
 QString Preferences::getMailNotificationSMTPUsername() const
 {
-    return value("Preferences/MailNotification/username").toString();
+    return value<QString>("Preferences/MailNotification/username");
 }
 
 void Preferences::setMailNotificationSMTPUsername(const QString &username)
@@ -445,7 +458,7 @@ void Preferences::setMailNotificationSMTPUsername(const QString &username)
 
 QString Preferences::getMailNotificationSMTPPassword() const
 {
-    return value("Preferences/MailNotification/password").toString();
+    return value<QString>("Preferences/MailNotification/password");
 }
 
 void Preferences::setMailNotificationSMTPPassword(const QString &password)
@@ -455,7 +468,7 @@ void Preferences::setMailNotificationSMTPPassword(const QString &password)
 
 int Preferences::getActionOnDblClOnTorrentDl() const
 {
-    return value("Preferences/Downloads/DblClOnTorDl", 0).toInt();
+    return value<int>("Preferences/Downloads/DblClOnTorDl", 0);
 }
 
 void Preferences::setActionOnDblClOnTorrentDl(const int act)
@@ -465,7 +478,7 @@ void Preferences::setActionOnDblClOnTorrentDl(const int act)
 
 int Preferences::getActionOnDblClOnTorrentFn() const
 {
-    return value("Preferences/Downloads/DblClOnTorFn", 1).toInt();
+    return value<int>("Preferences/Downloads/DblClOnTorFn", 1);
 }
 
 void Preferences::setActionOnDblClOnTorrentFn(const int act)
@@ -475,7 +488,7 @@ void Preferences::setActionOnDblClOnTorrentFn(const int act)
 
 QTime Preferences::getSchedulerStartTime() const
 {
-    return value("Preferences/Scheduler/start_time", QTime(8,0)).toTime();
+    return value("Preferences/Scheduler/start_time", QTime(8, 0));
 }
 
 void Preferences::setSchedulerStartTime(const QTime &time)
@@ -485,7 +498,7 @@ void Preferences::setSchedulerStartTime(const QTime &time)
 
 QTime Preferences::getSchedulerEndTime() const
 {
-    return value("Preferences/Scheduler/end_time", QTime(20,0)).toTime();
+    return value("Preferences/Scheduler/end_time", QTime(20, 0));
 }
 
 void Preferences::setSchedulerEndTime(const QTime &time)
@@ -495,18 +508,18 @@ void Preferences::setSchedulerEndTime(const QTime &time)
 
 Scheduler::Days Preferences::getSchedulerDays() const
 {
-    return SettingsStorage::instance()->loadValue("Preferences/Scheduler/days", Scheduler::Days::EveryDay);
+    return value("Preferences/Scheduler/days", Scheduler::Days::EveryDay);
 }
 
 void Preferences::setSchedulerDays(const Scheduler::Days days)
 {
-    SettingsStorage::instance()->storeValue("Preferences/Scheduler/days", days);
+    setValue("Preferences/Scheduler/days", days);
 }
 
 // Search
 bool Preferences::isSearchEnabled() const
 {
-    return value("Preferences/Search/SearchEnabled", false).toBool();
+    return value("Preferences/Search/SearchEnabled", false);
 }
 
 void Preferences::setSearchEnabled(const bool enabled)
@@ -519,7 +532,7 @@ bool Preferences::isWebUiEnabled() const
 #ifdef DISABLE_GUI
     return true;
 #else
-    return value("Preferences/WebUI/Enabled", false).toBool();
+    return value("Preferences/WebUI/Enabled", false);
 #endif
 }
 
@@ -530,7 +543,7 @@ void Preferences::setWebUiEnabled(const bool enabled)
 
 bool Preferences::isWebUiLocalAuthEnabled() const
 {
-    return value("Preferences/WebUI/LocalHostAuth", true).toBool();
+    return value("Preferences/WebUI/LocalHostAuth", true);
 }
 
 void Preferences::setWebUiLocalAuthEnabled(const bool enabled)
@@ -540,7 +553,7 @@ void Preferences::setWebUiLocalAuthEnabled(const bool enabled)
 
 bool Preferences::isWebUiAuthSubnetWhitelistEnabled() const
 {
-    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", false).toBool();
+    return value("Preferences/WebUI/AuthSubnetWhitelistEnabled", false);
 }
 
 void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
@@ -550,7 +563,7 @@ void Preferences::setWebUiAuthSubnetWhitelistEnabled(const bool enabled)
 
 QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 {
-    const QStringList subnets = value("Preferences/WebUI/AuthSubnetWhitelist").toStringList();
+    const auto subnets = value<QStringList>("Preferences/WebUI/AuthSubnetWhitelist");
 
     QVector<Utils::Net::Subnet> ret;
     ret.reserve(subnets.size());
@@ -580,7 +593,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 
 QString Preferences::getServerDomains() const
 {
-    return value("Preferences/WebUI/ServerDomains", QChar('*')).toString();
+    return value<QString>("Preferences/WebUI/ServerDomains", QChar('*'));
 }
 
 void Preferences::setServerDomains(const QString &str)
@@ -590,7 +603,7 @@ void Preferences::setServerDomains(const QString &str)
 
 QString Preferences::getWebUiAddress() const
 {
-    return value("Preferences/WebUI/Address", QChar('*')).toString().trimmed();
+    return value<QString>("Preferences/WebUI/Address", QChar('*')).trimmed();
 }
 
 void Preferences::setWebUiAddress(const QString &addr)
@@ -600,7 +613,7 @@ void Preferences::setWebUiAddress(const QString &addr)
 
 quint16 Preferences::getWebUiPort() const
 {
-    return value("Preferences/WebUI/Port", 8080).toInt();
+    return value<int>("Preferences/WebUI/Port", 8080);
 }
 
 void Preferences::setWebUiPort(const quint16 port)
@@ -611,9 +624,9 @@ void Preferences::setWebUiPort(const quint16 port)
 bool Preferences::useUPnPForWebUIPort() const
 {
 #ifdef DISABLE_GUI
-    return value("Preferences/WebUI/UseUPnP", true).toBool();
+    return value("Preferences/WebUI/UseUPnP", true);
 #else
-    return value("Preferences/WebUI/UseUPnP", false).toBool();
+    return value("Preferences/WebUI/UseUPnP", false);
 #endif
 }
 
@@ -624,7 +637,7 @@ void Preferences::setUPnPForWebUIPort(const bool enabled)
 
 QString Preferences::getWebUiUsername() const
 {
-    return value("Preferences/WebUI/Username", "admin").toString();
+    return value<QString>("Preferences/WebUI/Username", QLatin1String("admin"));
 }
 
 void Preferences::setWebUiUsername(const QString &username)
@@ -636,7 +649,7 @@ QByteArray Preferences::getWebUIPassword() const
 {
     // default: adminadmin
     const QByteArray defaultValue = "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==";
-    return value("Preferences/WebUI/Password_PBKDF2", defaultValue).toByteArray();
+    return value("Preferences/WebUI/Password_PBKDF2", defaultValue);
 }
 
 void Preferences::setWebUIPassword(const QByteArray &password)
@@ -646,7 +659,7 @@ void Preferences::setWebUIPassword(const QByteArray &password)
 
 int Preferences::getWebUIMaxAuthFailCount() const
 {
-    return value("Preferences/WebUI/MaxAuthenticationFailCount", 5).toInt();
+    return value<int>("Preferences/WebUI/MaxAuthenticationFailCount", 5);
 }
 
 void Preferences::setWebUIMaxAuthFailCount(const int count)
@@ -656,7 +669,7 @@ void Preferences::setWebUIMaxAuthFailCount(const int count)
 
 std::chrono::seconds Preferences::getWebUIBanDuration() const
 {
-    return std::chrono::seconds {value("Preferences/WebUI/BanDuration", 3600).toInt()};
+    return std::chrono::seconds(value<int>("Preferences/WebUI/BanDuration", 3600));
 }
 
 void Preferences::setWebUIBanDuration(const std::chrono::seconds duration)
@@ -666,7 +679,7 @@ void Preferences::setWebUIBanDuration(const std::chrono::seconds duration)
 
 int Preferences::getWebUISessionTimeout() const
 {
-    return value("Preferences/WebUI/SessionTimeout", 3600).toInt();
+    return value<int>("Preferences/WebUI/SessionTimeout", 3600);
 }
 
 void Preferences::setWebUISessionTimeout(const int timeout)
@@ -676,7 +689,7 @@ void Preferences::setWebUISessionTimeout(const int timeout)
 
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
 {
-    return value("Preferences/WebUI/ClickjackingProtection", true).toBool();
+    return value("Preferences/WebUI/ClickjackingProtection", true);
 }
 
 void Preferences::setWebUiClickjackingProtectionEnabled(const bool enabled)
@@ -686,7 +699,7 @@ void Preferences::setWebUiClickjackingProtectionEnabled(const bool enabled)
 
 bool Preferences::isWebUiCSRFProtectionEnabled() const
 {
-    return value("Preferences/WebUI/CSRFProtection", true).toBool();
+    return value("Preferences/WebUI/CSRFProtection", true);
 }
 
 void Preferences::setWebUiCSRFProtectionEnabled(const bool enabled)
@@ -696,7 +709,7 @@ void Preferences::setWebUiCSRFProtectionEnabled(const bool enabled)
 
 bool Preferences::isWebUiSecureCookieEnabled() const
 {
-    return value("Preferences/WebUI/SecureCookie", true).toBool();
+    return value("Preferences/WebUI/SecureCookie", true);
 }
 
 void Preferences::setWebUiSecureCookieEnabled(const bool enabled)
@@ -706,7 +719,7 @@ void Preferences::setWebUiSecureCookieEnabled(const bool enabled)
 
 bool Preferences::isWebUIHostHeaderValidationEnabled() const
 {
-    return value("Preferences/WebUI/HostHeaderValidation", true).toBool();
+    return value("Preferences/WebUI/HostHeaderValidation", true);
 }
 
 void Preferences::setWebUIHostHeaderValidationEnabled(const bool enabled)
@@ -716,7 +729,7 @@ void Preferences::setWebUIHostHeaderValidationEnabled(const bool enabled)
 
 bool Preferences::isWebUiHttpsEnabled() const
 {
-    return value("Preferences/WebUI/HTTPS/Enabled", false).toBool();
+    return value("Preferences/WebUI/HTTPS/Enabled", false);
 }
 
 void Preferences::setWebUiHttpsEnabled(const bool enabled)
@@ -726,7 +739,7 @@ void Preferences::setWebUiHttpsEnabled(const bool enabled)
 
 QString Preferences::getWebUIHttpsCertificatePath() const
 {
-    return value("Preferences/WebUI/HTTPS/CertificatePath").toString();
+    return value<QString>("Preferences/WebUI/HTTPS/CertificatePath");
 }
 
 void Preferences::setWebUIHttpsCertificatePath(const QString &path)
@@ -736,7 +749,7 @@ void Preferences::setWebUIHttpsCertificatePath(const QString &path)
 
 QString Preferences::getWebUIHttpsKeyPath() const
 {
-    return value("Preferences/WebUI/HTTPS/KeyPath").toString();
+    return value<QString>("Preferences/WebUI/HTTPS/KeyPath");
 }
 
 void Preferences::setWebUIHttpsKeyPath(const QString &path)
@@ -746,7 +759,7 @@ void Preferences::setWebUIHttpsKeyPath(const QString &path)
 
 bool Preferences::isAltWebUiEnabled() const
 {
-    return value("Preferences/WebUI/AlternativeUIEnabled", false).toBool();
+    return value("Preferences/WebUI/AlternativeUIEnabled", false);
 }
 
 void Preferences::setAltWebUiEnabled(const bool enabled)
@@ -756,7 +769,7 @@ void Preferences::setAltWebUiEnabled(const bool enabled)
 
 QString Preferences::getWebUiRootFolder() const
 {
-    return value("Preferences/WebUI/RootFolder").toString();
+    return value<QString>("Preferences/WebUI/RootFolder");
 }
 
 void Preferences::setWebUiRootFolder(const QString &path)
@@ -766,7 +779,7 @@ void Preferences::setWebUiRootFolder(const QString &path)
 
 bool Preferences::isWebUICustomHTTPHeadersEnabled() const
 {
-    return value("Preferences/WebUI/CustomHTTPHeadersEnabled", false).toBool();
+    return value("Preferences/WebUI/CustomHTTPHeadersEnabled", false);
 }
 
 void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
@@ -776,7 +789,7 @@ void Preferences::setWebUICustomHTTPHeadersEnabled(const bool enabled)
 
 QString Preferences::getWebUICustomHTTPHeaders() const
 {
-    return value("Preferences/WebUI/CustomHTTPHeaders").toString();
+    return value<QString>("Preferences/WebUI/CustomHTTPHeaders");
 }
 
 void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
@@ -786,7 +799,7 @@ void Preferences::setWebUICustomHTTPHeaders(const QString &headers)
 
 bool Preferences::isWebUIReverseProxySupportEnabled() const
 {
-    return value("Preferences/WebUI/ReverseProxySupportEnabled", false).toBool();
+    return value("Preferences/WebUI/ReverseProxySupportEnabled", false);
 }
 
 void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
@@ -796,7 +809,7 @@ void Preferences::setWebUIReverseProxySupportEnabled(const bool enabled)
 
 QString Preferences::getWebUITrustedReverseProxiesList() const
 {
-    return value("Preferences/WebUI/TrustedReverseProxiesList").toString();
+    return value<QString>("Preferences/WebUI/TrustedReverseProxiesList");
 }
 
 void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
@@ -806,7 +819,7 @@ void Preferences::setWebUITrustedReverseProxiesList(const QString &addr)
 
 bool Preferences::isDynDNSEnabled() const
 {
-    return value("Preferences/DynDNS/Enabled", false).toBool();
+    return value("Preferences/DynDNS/Enabled", false);
 }
 
 void Preferences::setDynDNSEnabled(const bool enabled)
@@ -816,17 +829,17 @@ void Preferences::setDynDNSEnabled(const bool enabled)
 
 DNS::Service Preferences::getDynDNSService() const
 {
-    return SettingsStorage::instance()->loadValue("Preferences/DynDNS/Service", DNS::Service::DynDNS);
+    return value("Preferences/DynDNS/Service", DNS::Service::DynDNS);
 }
 
 void Preferences::setDynDNSService(const DNS::Service service)
 {
-    SettingsStorage::instance()->storeValue("Preferences/DynDNS/Service", service);
+    setValue("Preferences/DynDNS/Service", service);
 }
 
 QString Preferences::getDynDomainName() const
 {
-    return value("Preferences/DynDNS/DomainName", "changeme.dyndns.org").toString();
+    return value<QString>("Preferences/DynDNS/DomainName", QLatin1String("changeme.dyndns.org"));
 }
 
 void Preferences::setDynDomainName(const QString &name)
@@ -836,7 +849,7 @@ void Preferences::setDynDomainName(const QString &name)
 
 QString Preferences::getDynDNSUsername() const
 {
-    return value("Preferences/DynDNS/Username").toString();
+    return value<QString>("Preferences/DynDNS/Username");
 }
 
 void Preferences::setDynDNSUsername(const QString &username)
@@ -846,7 +859,7 @@ void Preferences::setDynDNSUsername(const QString &username)
 
 QString Preferences::getDynDNSPassword() const
 {
-    return value("Preferences/DynDNS/Password").toString();
+    return value<QString>("Preferences/DynDNS/Password");
 }
 
 void Preferences::setDynDNSPassword(const QString &password)
@@ -857,7 +870,7 @@ void Preferences::setDynDNSPassword(const QString &password)
 // Advanced settings
 QByteArray Preferences::getUILockPassword() const
 {
-    return value("Locking/password_PBKDF2").toByteArray();
+    return value<QByteArray>("Locking/password_PBKDF2");
 }
 
 void Preferences::setUILockPassword(const QByteArray &password)
@@ -867,7 +880,7 @@ void Preferences::setUILockPassword(const QByteArray &password)
 
 bool Preferences::isUILocked() const
 {
-    return value("Locking/locked", false).toBool();
+    return value("Locking/locked", false);
 }
 
 void Preferences::setUILocked(const bool locked)
@@ -877,7 +890,7 @@ void Preferences::setUILocked(const bool locked)
 
 bool Preferences::isAutoRunEnabled() const
 {
-    return value("AutoRun/enabled", false).toBool();
+    return value("AutoRun/enabled", false);
 }
 
 void Preferences::setAutoRunEnabled(const bool enabled)
@@ -887,7 +900,7 @@ void Preferences::setAutoRunEnabled(const bool enabled)
 
 QString Preferences::getAutoRunProgram() const
 {
-    return value("AutoRun/program").toString();
+    return value<QString>("AutoRun/program");
 }
 
 void Preferences::setAutoRunProgram(const QString &program)
@@ -898,7 +911,7 @@ void Preferences::setAutoRunProgram(const QString &program)
 #if defined(Q_OS_WIN)
 bool Preferences::isAutoRunConsoleEnabled() const
 {
-    return value("AutoRun/ConsoleEnabled", false).toBool();
+    return value("AutoRun/ConsoleEnabled", false);
 }
 
 void Preferences::setAutoRunConsoleEnabled(const bool enabled)
@@ -909,7 +922,7 @@ void Preferences::setAutoRunConsoleEnabled(const bool enabled)
 
 bool Preferences::shutdownWhenDownloadsComplete() const
 {
-    return value("Preferences/Downloads/AutoShutDownOnCompletion", false).toBool();
+    return value("Preferences/Downloads/AutoShutDownOnCompletion", false);
 }
 
 void Preferences::setShutdownWhenDownloadsComplete(const bool shutdown)
@@ -919,7 +932,7 @@ void Preferences::setShutdownWhenDownloadsComplete(const bool shutdown)
 
 bool Preferences::suspendWhenDownloadsComplete() const
 {
-    return value("Preferences/Downloads/AutoSuspendOnCompletion", false).toBool();
+    return value("Preferences/Downloads/AutoSuspendOnCompletion", false);
 }
 
 void Preferences::setSuspendWhenDownloadsComplete(const bool suspend)
@@ -929,7 +942,7 @@ void Preferences::setSuspendWhenDownloadsComplete(const bool suspend)
 
 bool Preferences::hibernateWhenDownloadsComplete() const
 {
-    return value("Preferences/Downloads/AutoHibernateOnCompletion", false).toBool();
+    return value("Preferences/Downloads/AutoHibernateOnCompletion", false);
 }
 
 void Preferences::setHibernateWhenDownloadsComplete(const bool hibernate)
@@ -939,7 +952,7 @@ void Preferences::setHibernateWhenDownloadsComplete(const bool hibernate)
 
 bool Preferences::shutdownqBTWhenDownloadsComplete() const
 {
-    return value("Preferences/Downloads/AutoShutDownqBTOnCompletion", false).toBool();
+    return value("Preferences/Downloads/AutoShutDownqBTOnCompletion", false);
 }
 
 void Preferences::setShutdownqBTWhenDownloadsComplete(const bool shutdown)
@@ -949,7 +962,7 @@ void Preferences::setShutdownqBTWhenDownloadsComplete(const bool shutdown)
 
 bool Preferences::dontConfirmAutoExit() const
 {
-    return value("ShutdownConfirmDlg/DontConfirmAutoExit", false).toBool();
+    return value("ShutdownConfirmDlg/DontConfirmAutoExit", false);
 }
 
 void Preferences::setDontConfirmAutoExit(const bool dontConfirmAutoExit)
@@ -959,7 +972,7 @@ void Preferences::setDontConfirmAutoExit(const bool dontConfirmAutoExit)
 
 bool Preferences::recheckTorrentsOnCompletion() const
 {
-    return value("Preferences/Advanced/RecheckOnCompletion", false).toBool();
+    return value("Preferences/Advanced/RecheckOnCompletion", false);
 }
 
 void Preferences::recheckTorrentsOnCompletion(const bool recheck)
@@ -969,7 +982,7 @@ void Preferences::recheckTorrentsOnCompletion(const bool recheck)
 
 bool Preferences::resolvePeerCountries() const
 {
-    return value("Preferences/Connection/ResolvePeerCountries", true).toBool();
+    return value("Preferences/Connection/ResolvePeerCountries", true);
 }
 
 void Preferences::resolvePeerCountries(const bool resolve)
@@ -979,7 +992,7 @@ void Preferences::resolvePeerCountries(const bool resolve)
 
 bool Preferences::resolvePeerHostNames() const
 {
-    return value("Preferences/Connection/ResolvePeerHostNames", false).toBool();
+    return value("Preferences/Connection/ResolvePeerHostNames", false);
 }
 
 void Preferences::resolvePeerHostNames(const bool resolve)
@@ -990,7 +1003,7 @@ void Preferences::resolvePeerHostNames(const bool resolve)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
 bool Preferences::useSystemIconTheme() const
 {
-    return value("Preferences/Advanced/useSystemIconTheme", true).toBool();
+    return value("Preferences/Advanced/useSystemIconTheme", true);
 }
 
 void Preferences::useSystemIconTheme(const bool enabled)
@@ -1001,7 +1014,7 @@ void Preferences::useSystemIconTheme(const bool enabled)
 
 bool Preferences::recursiveDownloadDisabled() const
 {
-    return value("Preferences/Advanced/DisableRecursiveDownload", false).toBool();
+    return value("Preferences/Advanced/DisableRecursiveDownload", false);
 }
 
 void Preferences::disableRecursiveDownload(const bool disable)
@@ -1012,7 +1025,7 @@ void Preferences::disableRecursiveDownload(const bool disable)
 #ifdef Q_OS_WIN
 bool Preferences::neverCheckFileAssoc() const
 {
-    return value("Preferences/Win32/NeverCheckFileAssocation", false).toBool();
+    return value("Preferences/Win32/NeverCheckFileAssocation", false);
 }
 
 void Preferences::setNeverCheckFileAssoc(const bool check)
@@ -1158,7 +1171,7 @@ void Preferences::setMagnetLinkAssoc()
 
 int Preferences::getTrackerPort() const
 {
-    return value("Preferences/Advanced/trackerPort", 9000).toInt();
+    return value<int>("Preferences/Advanced/trackerPort", 9000);
 }
 
 void Preferences::setTrackerPort(const int port)
@@ -1169,7 +1182,7 @@ void Preferences::setTrackerPort(const int port)
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {
-    return value("Preferences/Advanced/updateCheck", true).toBool();
+    return value("Preferences/Advanced/updateCheck", true);
 }
 
 void Preferences::setUpdateCheckEnabled(const bool enabled)
@@ -1180,7 +1193,7 @@ void Preferences::setUpdateCheckEnabled(const bool enabled)
 
 bool Preferences::confirmTorrentDeletion() const
 {
-    return value("Preferences/Advanced/confirmTorrentDeletion", true).toBool();
+    return value("Preferences/Advanced/confirmTorrentDeletion", true);
 }
 
 void Preferences::setConfirmTorrentDeletion(const bool enabled)
@@ -1190,7 +1203,7 @@ void Preferences::setConfirmTorrentDeletion(const bool enabled)
 
 bool Preferences::confirmTorrentRecheck() const
 {
-    return value("Preferences/Advanced/confirmTorrentRecheck", true).toBool();
+    return value("Preferences/Advanced/confirmTorrentRecheck", true);
 }
 
 void Preferences::setConfirmTorrentRecheck(const bool enabled)
@@ -1200,7 +1213,7 @@ void Preferences::setConfirmTorrentRecheck(const bool enabled)
 
 bool Preferences::confirmRemoveAllTags() const
 {
-    return value("Preferences/Advanced/confirmRemoveAllTags", true).toBool();
+    return value("Preferences/Advanced/confirmRemoveAllTags", true);
 }
 
 void Preferences::setConfirmRemoveAllTags(const bool enabled)
@@ -1211,12 +1224,12 @@ void Preferences::setConfirmRemoveAllTags(const bool enabled)
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
-    return SettingsStorage::instance()->loadValue("Preferences/Advanced/TrayIconStyle", TrayIcon::Style::Normal);
+    return value("Preferences/Advanced/TrayIconStyle", TrayIcon::Style::Normal);
 }
 
 void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 {
-    SettingsStorage::instance()->storeValue("Preferences/Advanced/TrayIconStyle", style);
+    setValue("Preferences/Advanced/TrayIconStyle", style);
 }
 #endif
 
@@ -1225,7 +1238,7 @@ void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 
 QDateTime Preferences::getDNSLastUpd() const
 {
-    return value("DNSUpdater/lastUpdateTime").toDateTime();
+    return value<QDateTime>("DNSUpdater/lastUpdateTime");
 }
 
 void Preferences::setDNSLastUpd(const QDateTime &date)
@@ -1235,7 +1248,7 @@ void Preferences::setDNSLastUpd(const QDateTime &date)
 
 QString Preferences::getDNSLastIP() const
 {
-    return value("DNSUpdater/lastIP").toString();
+    return value<QString>("DNSUpdater/lastIP");
 }
 
 void Preferences::setDNSLastIP(const QString &ip)
@@ -1245,7 +1258,7 @@ void Preferences::setDNSLastIP(const QString &ip)
 
 bool Preferences::getAcceptedLegal() const
 {
-    return value("LegalNotice/Accepted", false).toBool();
+    return value("LegalNotice/Accepted", false);
 }
 
 void Preferences::setAcceptedLegal(const bool accepted)
@@ -1255,7 +1268,7 @@ void Preferences::setAcceptedLegal(const bool accepted)
 
 QByteArray Preferences::getMainGeometry() const
 {
-    return value("MainWindow/geometry").toByteArray();
+    return value<QByteArray>("MainWindow/geometry");
 }
 
 void Preferences::setMainGeometry(const QByteArray &geometry)
@@ -1266,9 +1279,9 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
 QByteArray Preferences::getMainVSplitterState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/MainWindow/VSplitterState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/MainWindow/VSplitterState");
 #else
-    return value("MainWindow/qt5/vsplitterState").toByteArray();
+    return value<QByteArray>("MainWindow/qt5/vsplitterState");
 #endif
 }
 
@@ -1283,7 +1296,7 @@ void Preferences::setMainVSplitterState(const QByteArray &state)
 
 QString Preferences::getMainLastDir() const
 {
-    return value("MainWindowLastDir", QDir::homePath()).toString();
+    return value("MainWindowLastDir", QDir::homePath());
 }
 
 void Preferences::setMainLastDir(const QString &path)
@@ -1294,9 +1307,9 @@ void Preferences::setMainLastDir(const QString &path)
 QByteArray Preferences::getPeerListState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/TorrentProperties/PeerListState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/TorrentProperties/PeerListState");
 #else
-    return value("TorrentProperties/Peers/qt5/PeerListState").toByteArray();
+    return value<QByteArray>("TorrentProperties/Peers/qt5/PeerListState");
 #endif
 }
 
@@ -1311,7 +1324,7 @@ void Preferences::setPeerListState(const QByteArray &state)
 
 QString Preferences::getPropSplitterSizes() const
 {
-    return value("TorrentProperties/SplitterSizes").toString();
+    return value<QString>("TorrentProperties/SplitterSizes");
 }
 
 void Preferences::setPropSplitterSizes(const QString &sizes)
@@ -1322,9 +1335,9 @@ void Preferences::setPropSplitterSizes(const QString &sizes)
 QByteArray Preferences::getPropFileListState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/TorrentProperties/FilesListState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/TorrentProperties/FilesListState");
 #else
-    return value("TorrentProperties/qt5/FilesListState").toByteArray();
+    return value<QByteArray>("TorrentProperties/qt5/FilesListState");
 #endif
 }
 
@@ -1339,7 +1352,7 @@ void Preferences::setPropFileListState(const QByteArray &state)
 
 int Preferences::getPropCurTab() const
 {
-    return value("TorrentProperties/CurrentTab", -1).toInt();
+    return value<int>("TorrentProperties/CurrentTab", -1);
 }
 
 void Preferences::setPropCurTab(const int tab)
@@ -1349,7 +1362,7 @@ void Preferences::setPropCurTab(const int tab)
 
 bool Preferences::getPropVisible() const
 {
-    return value("TorrentProperties/Visible", false).toBool();
+    return value("TorrentProperties/Visible", false);
 }
 
 void Preferences::setPropVisible(const bool visible)
@@ -1360,9 +1373,9 @@ void Preferences::setPropVisible(const bool visible)
 QByteArray Preferences::getPropTrackerListState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/TorrentProperties/TrackerListState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/TorrentProperties/TrackerListState");
 #else
-    return value("TorrentProperties/Trackers/qt5/TrackerListState").toByteArray();
+    return value<QByteArray>("TorrentProperties/Trackers/qt5/TrackerListState");
 #endif
 }
 
@@ -1377,7 +1390,7 @@ void Preferences::setPropTrackerListState(const QByteArray &state)
 
 QSize Preferences::getRssGeometrySize() const
 {
-    return value("RssFeedDownloader/geometrySize").toSize();
+    return value<QSize>("RssFeedDownloader/geometrySize");
 }
 
 void Preferences::setRssGeometrySize(const QSize &geometry)
@@ -1388,9 +1401,9 @@ void Preferences::setRssGeometrySize(const QSize &geometry)
 QByteArray Preferences::getRssHSplitterSizes() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/RSSFeedDownloader/HSplitterSizes").toByteArray();
+    return value<QByteArray>("GUI/Qt6/RSSFeedDownloader/HSplitterSizes");
 #else
-    return value("RssFeedDownloader/qt5/hsplitterSizes").toByteArray();
+    return value<QByteArray>("RssFeedDownloader/qt5/hsplitterSizes");
 #endif
 }
 
@@ -1405,7 +1418,7 @@ void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
 
 QStringList Preferences::getRssOpenFolders() const
 {
-    return value("GUI/RSSWidget/OpenedFolders").toStringList();
+    return value<QStringList>("GUI/RSSWidget/OpenedFolders");
 }
 
 void Preferences::setRssOpenFolders(const QStringList &folders)
@@ -1416,9 +1429,9 @@ void Preferences::setRssOpenFolders(const QStringList &folders)
 QByteArray Preferences::getRssSideSplitterState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/RSSWidget/SideSplitterState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/RSSWidget/SideSplitterState");
 #else
-    return value("GUI/RSSWidget/qt5/splitter_h").toByteArray();
+    return value<QByteArray>("GUI/RSSWidget/qt5/splitter_h");
 #endif
 }
 
@@ -1434,9 +1447,9 @@ void Preferences::setRssSideSplitterState(const QByteArray &state)
 QByteArray Preferences::getRssMainSplitterState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/RSSWidget/MainSplitterState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/RSSWidget/MainSplitterState");
 #else
-    return value("GUI/RSSWidget/qt5/splitterMain").toByteArray();
+    return value<QByteArray>("GUI/RSSWidget/qt5/splitterMain");
 #endif
 }
 
@@ -1452,9 +1465,9 @@ void Preferences::setRssMainSplitterState(const QByteArray &state)
 QByteArray Preferences::getSearchTabHeaderState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/SearchTab/HeaderState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/SearchTab/HeaderState");
 #else
-    return value("SearchTab/qt5/HeaderState").toByteArray();
+    return value<QByteArray>("SearchTab/qt5/HeaderState");
 #endif
 }
 
@@ -1469,7 +1482,7 @@ void Preferences::setSearchTabHeaderState(const QByteArray &state)
 
 bool Preferences::getRegexAsFilteringPatternForSearchJob() const
 {
-    return value("SearchTab/UseRegexAsFilteringPattern", false).toBool();
+    return value("SearchTab/UseRegexAsFilteringPattern", false);
 }
 
 void Preferences::setRegexAsFilteringPatternForSearchJob(const bool checked)
@@ -1479,7 +1492,7 @@ void Preferences::setRegexAsFilteringPatternForSearchJob(const bool checked)
 
 QStringList Preferences::getSearchEngDisabled() const
 {
-    return value("SearchEngines/disabledEngines").toStringList();
+    return value<QStringList>("SearchEngines/disabledEngines");
 }
 
 void Preferences::setSearchEngDisabled(const QStringList &engines)
@@ -1489,7 +1502,7 @@ void Preferences::setSearchEngDisabled(const QStringList &engines)
 
 QString Preferences::getTorImportLastContentDir() const
 {
-    return value("TorrentImport/LastContentDir", QDir::homePath()).toString();
+    return value("TorrentImport/LastContentDir", QDir::homePath());
 }
 
 void Preferences::setTorImportLastContentDir(const QString &path)
@@ -1499,7 +1512,7 @@ void Preferences::setTorImportLastContentDir(const QString &path)
 
 QByteArray Preferences::getTorImportGeometry() const
 {
-    return value("TorrentImportDlg/dimensions").toByteArray();
+    return value<QByteArray>("TorrentImportDlg/dimensions");
 }
 
 void Preferences::setTorImportGeometry(const QByteArray &geometry)
@@ -1509,7 +1522,7 @@ void Preferences::setTorImportGeometry(const QByteArray &geometry)
 
 bool Preferences::getStatusFilterState() const
 {
-    return value("TransferListFilters/statusFilterState", true).toBool();
+    return value("TransferListFilters/statusFilterState", true);
 }
 
 void Preferences::setStatusFilterState(const bool checked)
@@ -1519,7 +1532,7 @@ void Preferences::setStatusFilterState(const bool checked)
 
 bool Preferences::getCategoryFilterState() const
 {
-    return value("TransferListFilters/CategoryFilterState", true).toBool();
+    return value("TransferListFilters/CategoryFilterState", true);
 }
 
 void Preferences::setCategoryFilterState(const bool checked)
@@ -1529,7 +1542,7 @@ void Preferences::setCategoryFilterState(const bool checked)
 
 bool Preferences::getTagFilterState() const
 {
-    return value("TransferListFilters/TagFilterState", true).toBool();
+    return value("TransferListFilters/TagFilterState", true);
 }
 
 void Preferences::setTagFilterState(const bool checked)
@@ -1539,7 +1552,7 @@ void Preferences::setTagFilterState(const bool checked)
 
 bool Preferences::getTrackerFilterState() const
 {
-    return value("TransferListFilters/trackerFilterState", true).toBool();
+    return value("TransferListFilters/trackerFilterState", true);
 }
 
 void Preferences::setTrackerFilterState(const bool checked)
@@ -1549,7 +1562,7 @@ void Preferences::setTrackerFilterState(const bool checked)
 
 int Preferences::getTransSelFilter() const
 {
-    return value("TransferListFilters/selectedFilterIndex", 0).toInt();
+    return value<int>("TransferListFilters/selectedFilterIndex", 0);
 }
 
 void Preferences::setTransSelFilter(const int index)
@@ -1560,9 +1573,9 @@ void Preferences::setTransSelFilter(const int index)
 QByteArray Preferences::getTransHeaderState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value("GUI/Qt6/TransferList/HeaderState").toByteArray();
+    return value<QByteArray>("GUI/Qt6/TransferList/HeaderState");
 #else
-    return value("TransferList/qt5/HeaderState").toByteArray();
+    return value<QByteArray>("TransferList/qt5/HeaderState");
 #endif
 }
 
@@ -1577,7 +1590,7 @@ void Preferences::setTransHeaderState(const QByteArray &state)
 
 bool Preferences::getRegexAsFilteringPatternForTransferList() const
 {
-    return value("TransferList/UseRegexAsFilteringPattern", false).toBool();
+    return value("TransferList/UseRegexAsFilteringPattern", false);
 }
 
 void Preferences::setRegexAsFilteringPatternForTransferList(const bool checked)
@@ -1588,7 +1601,7 @@ void Preferences::setRegexAsFilteringPatternForTransferList(const bool checked)
 // From old RssSettings class
 bool Preferences::isRSSWidgetEnabled() const
 {
-    return value("GUI/RSSWidget/Enabled", false).toBool();
+    return value("GUI/RSSWidget/Enabled", false);
 }
 
 void Preferences::setRSSWidgetVisible(const bool enabled)
@@ -1598,7 +1611,7 @@ void Preferences::setRSSWidgetVisible(const bool enabled)
 
 int Preferences::getToolbarTextPosition() const
 {
-    return value("Toolbar/textPosition", -1).toInt();
+    return value<int>("Toolbar/textPosition", -1);
 }
 
 void Preferences::setToolbarTextPosition(const int position)
@@ -1608,26 +1621,26 @@ void Preferences::setToolbarTextPosition(const int position)
 
 QList<QNetworkCookie> Preferences::getNetworkCookies() const
 {
+    const auto rawCookies = value<QStringList>("Network/Cookies");
     QList<QNetworkCookie> cookies;
-    const QStringList rawCookies = value("Network/Cookies").toStringList();
+    cookies.reserve(rawCookies.size());
     for (const QString &rawCookie : rawCookies)
         cookies << QNetworkCookie::parseCookies(rawCookie.toUtf8());
-
     return cookies;
 }
 
 void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
 {
     QStringList rawCookies;
+    rawCookies.reserve(cookies.size());
     for (const QNetworkCookie &cookie : cookies)
         rawCookies << cookie.toRawForm();
-
     setValue("Network/Cookies", rawCookies);
 }
 
 bool Preferences::isSpeedWidgetEnabled() const
 {
-    return value("SpeedWidget/Enabled", true).toBool();
+    return value("SpeedWidget/Enabled", true);
 }
 
 void Preferences::setSpeedWidgetEnabled(const bool enabled)
@@ -1637,7 +1650,7 @@ void Preferences::setSpeedWidgetEnabled(const bool enabled)
 
 int Preferences::getSpeedWidgetPeriod() const
 {
-    return value("SpeedWidget/period", 1).toInt();
+    return value<int>("SpeedWidget/period", 1);
 }
 
 void Preferences::setSpeedWidgetPeriod(const int period)
@@ -1648,12 +1661,12 @@ void Preferences::setSpeedWidgetPeriod(const int period)
 bool Preferences::getSpeedWidgetGraphEnable(const int id) const
 {
     // UP and DOWN graphs enabled by default
-    return value("SpeedWidget/graph_enable_" + QString::number(id), (id == 0 || id == 1)).toBool();
+    return value(QString::fromLatin1("SpeedWidget/graph_enable_%1").arg(id), ((id == 0) || (id == 1)));
 }
 
 void Preferences::setSpeedWidgetGraphEnable(const int id, const bool enable)
 {
-    setValue("SpeedWidget/graph_enable_" + QString::number(id), enable);
+    setValue(QString::fromLatin1("SpeedWidget/graph_enable_%1").arg(id), enable);
 }
 
 void Preferences::apply()
