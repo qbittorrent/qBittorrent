@@ -62,6 +62,7 @@ jobs:
       - name: Build qBittorrent (Qt5)
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
+          lupdate -extensions c,cpp,h,hpp,ui ./
           cmake \
             -B build \
             -G "Ninja" \
@@ -75,6 +76,7 @@ jobs:
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
+          lupdate -extensions c,cpp,h,hpp,ui ./
           cmake \
             -B build \
             -G "Ninja" \
