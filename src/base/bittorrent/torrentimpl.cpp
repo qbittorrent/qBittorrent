@@ -397,12 +397,11 @@ QString TorrentImpl::rootPath(bool actual) const
     if (!hasMetadata())
         return {};
 
-    const QString firstFilePath = filePath(0);
-    const int slashIndex = firstFilePath.indexOf('/');
-    if (slashIndex >= 0)
-        return QDir(savePath(actual)).absoluteFilePath(firstFilePath.left(slashIndex));
-    else
-        return QDir(savePath(actual)).absoluteFilePath(firstFilePath);
+    const QString relativeRootPath = m_torrentInfo.rootFolder();
+    if (relativeRootPath.isEmpty())
+        return {};
+
+    return QDir(savePath(actual)).absoluteFilePath(relativeRootPath);
 }
 
 QString TorrentImpl::contentPath(const bool actual) const
@@ -413,10 +412,8 @@ QString TorrentImpl::contentPath(const bool actual) const
     if (filesCount() == 1)
         return QDir(savePath(actual)).absoluteFilePath(filePath(0));
 
-    if (m_torrentInfo.hasRootFolder())
-        return rootPath(actual);
-
-    return savePath(actual);
+    const QString rootPath = this->rootPath(actual);
+    return (rootPath.isEmpty() ? savePath(actual) : rootPath);
 }
 
 bool TorrentImpl::isAutoTMMEnabled() const
