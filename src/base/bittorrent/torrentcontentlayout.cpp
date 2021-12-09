@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,43 +26,45 @@
  * exception statement from your version.
  */
 
-#pragma once
-
-#include <optional>
-
-#include <QMetaType>
-#include <QString>
-#include <QVector>
-
-#include "base/tagset.h"
-#include "torrent.h"
 #include "torrentcontentlayout.h"
 
-namespace BitTorrent
-{
-    enum class DownloadPriority;
+#include "base/utils/fs.h"
 
-    struct AddTorrentParams
+namespace
+{
+    QString removeExtension(const QString &fileName)
     {
-        QString name;
-        QString category;
-        TagSet tags;
-        QString savePath;
-        bool disableTempPath = false; // e.g. for imported torrents
-        bool sequential = false;
-        bool firstLastPiecePriority = false;
-        bool addForced = false;
-        std::optional<bool> addPaused;
-        QStringList filePaths; // used if TorrentInfo is set
-        QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool skipChecking = false;
-        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        std::optional<bool> useAutoTMM;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-    };
+        const QString extension = Utils::Fs::fileExtension(fileName);
+        return extension.isEmpty()
+                ? fileName
+                : fileName.chopped(extension.size() + 1);
+    }
 }
 
-Q_DECLARE_METATYPE(BitTorrent::AddTorrentParams)
+BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const QStringList &filePaths)
+{
+    const QString rootFolder = Utils::Fs::findRootFolder(filePaths);
+    return (rootFolder.isEmpty()
+            ? TorrentContentLayout::NoSubfolder
+            : TorrentContentLayout::Subfolder);
+}
+
+void BitTorrent::applyContentLayout(QStringList &filePaths, const TorrentContentLayout contentLayout, const QString &rootFolder)
+{
+    Q_ASSERT(!filePaths.isEmpty());
+
+    switch (contentLayout)
+    {
+    case TorrentContentLayout::Subfolder:
+        if (Utils::Fs::findRootFolder(filePaths).isEmpty())
+            Utils::Fs::addRootFolder(filePaths, !rootFolder.isEmpty() ? rootFolder : removeExtension(filePaths.at(0)));
+        break;
+
+    case TorrentContentLayout::NoSubfolder:
+        Utils::Fs::stripRootFolder(filePaths);
+        break;
+
+    default:
+        break;
+    }
+}

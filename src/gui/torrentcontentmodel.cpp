@@ -50,8 +50,8 @@
 #include <QPixmapCache>
 #endif
 
+#include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/downloadpriority.h"
-#include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "torrentcontentmodelfile.h"
@@ -485,7 +485,7 @@ void TorrentContentModel::clear()
     endResetModel();
 }
 
-void TorrentContentModel::setupModelData(const BitTorrent::TorrentInfo &info)
+void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &info)
 {
     qDebug("setup model data called");
     const int filesCount = info.filesCount();

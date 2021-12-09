@@ -398,3 +398,40 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
 #endif
 }
 #endif // Q_OS_HAIKU
+
+QString Utils::Fs::findRootFolder(const QStringList &filePaths)
+{
+    QString rootFolder;
+    for (const QString &filePath : filePaths)
+    {
+        const auto filePathElements = QStringView(filePath).split(u'/');
+        // if at least one file has no root folder, no common root folder exists
+        if (filePathElements.count() <= 1)
+            return {};
+
+        if (rootFolder.isEmpty())
+            rootFolder = filePathElements.at(0).toString();
+        else if (rootFolder != filePathElements.at(0))
+            return {};
+    }
+
+    return rootFolder;
+}
+
+void Utils::Fs::stripRootFolder(QStringList &filePaths)
+{
+    const QString commonRootFolder = findRootFolder(filePaths);
+    if (commonRootFolder.isEmpty())
+        return;
+
+    for (QString &filePath : filePaths)
+        filePath = filePath.mid(commonRootFolder.size() + 1);
+}
+
+void Utils::Fs::addRootFolder(QStringList &filePaths, const QString &rootFolder)
+{
+    Q_ASSERT(!rootFolder.isEmpty());
+
+    for (QString &filePath : filePaths)
+        filePath = rootFolder + QLatin1Char('/') + filePath;
+}

@@ -1698,11 +1698,14 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     {
     case Net::DownloadStatus::Success:
         emit downloadFromUrlFinished(result.url);
-        addTorrent(TorrentInfo::load(result.data).value_or(TorrentInfo()), m_downloadedTorrents.take(result.url));
+        if (const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::load(result.data); loadResult)
+            addTorrent(loadResult.value(), m_downloadedTorrents.take(result.url));
+        else
+            LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         emit downloadFromUrlFinished(result.url);
-        addTorrent(MagnetUri {result.magnet}, m_downloadedTorrents.take(result.url));
+        addTorrent(MagnetUri(result.magnet), m_downloadedTorrents.take(result.url));
         break;
     default:
         emit downloadFromUrlFailed(result.url, result.errorString);
@@ -1727,7 +1730,7 @@ void Session::fileSearchFinished(const TorrentID &id, const QString &savePath, c
         lt::add_torrent_params &p = params.ltAddTorrentParams;
 
         p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
-        const TorrentInfo torrentInfo {p.ti};
+        const TorrentInfo torrentInfo {*p.ti};
         const auto nativeIndexes = torrentInfo.nativeIndexes();
         for (int i = 0; i < fileNames.size(); ++i)
             p.renamed_files[nativeIndexes[i]] = fileNames[i].toStdString();
@@ -2028,13 +2031,15 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
         return addTorrent(magnetUri, params);
 
     TorrentFileGuard guard {source};
-    if (addTorrent(TorrentInfo::loadFromFile(source).value_or(TorrentInfo()), params))
+    const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::loadFromFile(source);
+    if (!loadResult)
     {
-        guard.markAsAddedToSession();
-        return true;
+       LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
+       return false;
     }
 
-    return false;
+    guard.markAsAddedToSession();
+    return addTorrent(loadResult.value(), params);
 }
 
 bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params)
@@ -2046,8 +2051,6 @@ bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &par
 
 bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params)
 {
-    if (!torrentInfo.isValid()) return false;
-
     return addTorrent_impl(torrentInfo, params);
 }
 
@@ -2093,9 +2096,7 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams)
 {
     const bool hasMetadata = std::holds_alternative<TorrentInfo>(source);
-    TorrentInfo metadata = (hasMetadata ? std::get<TorrentInfo>(source) : TorrentInfo {});
-    const MagnetUri &magnetUri = (hasMetadata ? MagnetUri {} : std::get<MagnetUri>(source));
-    const auto id = TorrentID::fromInfoHash(hasMetadata ? metadata.infoHash() : magnetUri.infoHash());
+    const auto id = TorrentID::fromInfoHash(hasMetadata ? std::get<TorrentInfo>(source).infoHash() : std::get<MagnetUri>(source).infoHash());
 
     // It looks illogical that we don't just use an existing handle,
     // but as previous experience has shown, it actually creates unnecessary
@@ -2111,12 +2112,29 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     TorrentImpl *const torrent = m_torrents.value(id);
     if (torrent)
     {  // a duplicate torrent is added
-        if (torrent->isPrivate() || (hasMetadata && metadata.isPrivate()))
+        if (torrent->isPrivate())
             return false;
 
-        // merge trackers and web seeds
-        torrent->addTrackers(hasMetadata ? metadata.trackers() : magnetUri.trackers());
-        torrent->addUrlSeeds(hasMetadata ? metadata.urlSeeds() : magnetUri.urlSeeds());
+        if (hasMetadata)
+        {
+            const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
+
+            if (torrentInfo.isPrivate())
+                return false;
+
+            // merge trackers and web seeds
+            torrent->addTrackers(torrentInfo.trackers());
+            torrent->addUrlSeeds(torrentInfo.urlSeeds());
+        }
+        else
+        {
+            const MagnetUri &magnetUri = std::get<MagnetUri>(source);
+
+            // merge trackers and web seeds
+            torrent->addTrackers(magnetUri.trackers());
+            torrent->addUrlSeeds(magnetUri.urlSeeds());
+        }
+
         return true;
     }
 
@@ -2129,39 +2147,53 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     const QString actualSavePath = loadTorrentParams.savePath.isEmpty() ? categorySavePath(loadTorrentParams.category) : loadTorrentParams.savePath;
     if (hasMetadata)
     {
-        metadata.setContentLayout(loadTorrentParams.contentLayout);
-
-        if (!loadTorrentParams.hasSeedStatus)
-        {
-            findIncompleteFiles(metadata, actualSavePath);
-            isFindingIncompleteFiles = true;
-        }
+        const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly
         if (loadTorrentParams.name.isEmpty())
         {
-            QString contentName = metadata.rootFolder();
-            if (contentName.isEmpty() && (metadata.filesCount() == 1))
-                contentName = Utils::Fs::fileName(metadata.filePath(0));
+            QString contentName = torrentInfo.rootFolder();
+            if (contentName.isEmpty() && (torrentInfo.filesCount() == 1))
+                contentName = Utils::Fs::fileName(torrentInfo.filePath(0));
 
-            if (!contentName.isEmpty() && (contentName != metadata.name()))
+            if (!contentName.isEmpty() && (contentName != torrentInfo.name()))
                 loadTorrentParams.name = contentName;
         }
 
+        Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
+
+        const TorrentContentLayout contentLayout = ((loadTorrentParams.contentLayout == TorrentContentLayout::Original)
+                                                    ? detectContentLayout(torrentInfo.filePaths()) : loadTorrentParams.contentLayout);
+        QStringList filePaths = (!addTorrentParams.filePaths.isEmpty() ? addTorrentParams.filePaths : torrentInfo.filePaths());
+        applyContentLayout(filePaths, contentLayout, Utils::Fs::findRootFolder(torrentInfo.filePaths()));
+
+        if (!loadTorrentParams.hasSeedStatus)
+        {
+            findIncompleteFiles(torrentInfo, actualSavePath, filePaths);
+            isFindingIncompleteFiles = true;
+        }
+
+        const auto nativeIndexes = torrentInfo.nativeIndexes();
+        if (!filePaths.isEmpty())
+        {
+            for (int index = 0; index < addTorrentParams.filePaths.size(); ++index)
+                p.renamed_files[nativeIndexes[index]] = Utils::Fs::toNativePath(addTorrentParams.filePaths.at(index)).toStdString();
+        }
+
         Q_ASSERT(p.file_priorities.empty());
-        const int internalFilesCount = metadata.nativeInfo()->files().num_files(); // including .pad files
+        const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
         // Use qBittorrent default priority rather than libtorrent's (4)
         p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
-        const auto nativeIndexes = metadata.nativeIndexes();
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
         for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
             p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
 
-        p.ti = metadata.nativeInfo();
+        p.ti = torrentInfo.nativeInfo();
     }
     else
     {
+        const MagnetUri &magnetUri = std::get<MagnetUri>(source);
         p = magnetUri.addTorrentParams();
 
         if (loadTorrentParams.name.isEmpty() && !p.name.empty())
@@ -2232,10 +2264,12 @@ bool Session::loadTorrent(LoadTorrentParams params)
     return true;
 }
 
-void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const
+void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath, const QStringList &filePaths) const
 {
+    Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
+
     const auto searchId = TorrentID::fromInfoHash(torrentInfo.infoHash());
-    const QStringList originalFileNames = torrentInfo.filePaths();
+    const QStringList originalFileNames = (filePaths.isEmpty() ? torrentInfo.filePaths() : filePaths);
     const QString completeSavePath = savePath;
     const QString incompleteSavePath = (isTempPathEnabled() ? torrentTempPath(torrentInfo) : QString {});
     QMetaObject::invokeMethod(m_fileSearcher, [=]()
@@ -3899,9 +3933,9 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     if (!torrentExportDirectory().isEmpty())
     {
 #ifdef QBT_USES_LIBTORRENT2
-        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file_with_hashes()};
 #else
-        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
 #endif
         exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
     }
@@ -3955,9 +3989,9 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     if (!finishedTorrentExportDirectory().isEmpty())
     {
 #ifdef QBT_USES_LIBTORRENT2
-        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file_with_hashes()};
+        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file_with_hashes()};
 #else
-        const TorrentInfo torrentInfo {torrent->nativeHandle().torrent_file()};
+        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
 #endif
         exportTorrentFile(torrentInfo, finishedTorrentExportDirectory(), torrent->name());
     }
@@ -4155,7 +4189,7 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
 
     for (const QString &torrentRelpath : asConst(torrent->filePaths()))
     {
-        if (torrentRelpath.endsWith(".torrent"))
+        if (torrentRelpath.endsWith(QLatin1String(".torrent")))
         {
             LogMsg(tr("Recursive download of file '%1' embedded in torrent '%2'"
                     , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
@@ -4165,7 +4199,11 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
             AddTorrentParams params;
             // Passing the save path along to the sub torrent file
             params.savePath = torrent->savePath();
-            addTorrent(TorrentInfo::loadFromFile(torrentFullpath).value_or(TorrentInfo()), params);
+            const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::loadFromFile(torrentFullpath);
+            if (loadResult)
+                addTorrent(loadResult.value(), params);
+            else
+                LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
         }
     }
 }
@@ -4468,7 +4506,7 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
             // Copy the torrent file to the export folder
             if (!torrentExportDirectory().isEmpty())
             {
-                const TorrentInfo torrentInfo {params.ltAddTorrentParams.ti};
+                const TorrentInfo torrentInfo {*params.ltAddTorrentParams.ti};
                 exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
             }
         }
@@ -4597,7 +4635,7 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
     if (downloadedMetadataIter != m_downloadedMetadata.end())
     {
-        const TorrentInfo metadata {p->handle.torrent_file()};
+        const TorrentInfo metadata {*p->handle.torrent_file()};
 
         m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;

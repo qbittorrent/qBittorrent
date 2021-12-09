@@ -35,7 +35,6 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
-#include "abstractfilestorage.h"
 #include "torrentcontentlayout.h"
 
 class QByteArray;
@@ -48,13 +47,15 @@ namespace BitTorrent
     class InfoHash;
     struct TrackerEntry;
 
-    class TorrentInfo final : public AbstractFileStorage
+    class TorrentInfo
     {
         Q_DECLARE_TR_FUNCTIONS(TorrentInfo)
 
     public:
-        explicit TorrentInfo(std::shared_ptr<const lt::torrent_info> nativeInfo = {});
+        TorrentInfo() = default;
         TorrentInfo(const TorrentInfo &other);
+
+        explicit TorrentInfo(const lt::torrent_info &nativeInfo);
 
         static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
         static nonstd::expected<TorrentInfo, QString> loadFromFile(const QString &path) noexcept;
@@ -70,14 +71,13 @@ namespace BitTorrent
         QString comment() const;
         bool isPrivate() const;
         qlonglong totalSize() const;
-        int filesCount() const override;
+        int filesCount() const;
         int pieceLength() const;
         int pieceLength(int index) const;
         int piecesCount() const;
-        QString filePath(int index) const override;
+        QString filePath(int index) const;
         QStringList filePaths() const;
-        QString origFilePath(int index) const;
-        qlonglong fileSize(int index) const override;
+        qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
         QVector<TrackerEntry> trackers() const;
         QVector<QUrl> urlSeeds() const;
@@ -92,11 +92,8 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        void renameFile(int index, const QString &newPath) override;
-
         QString rootFolder() const;
         bool hasRootFolder() const;
-        void setContentLayout(TorrentContentLayout layout);
 
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
         QVector<lt::file_index_t> nativeIndexes() const;
@@ -104,11 +101,9 @@ namespace BitTorrent
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const QString &fileName) const;
-        void stripRootFolder();
-        void addRootFolder();
-        TorrentContentLayout defaultContentLayout() const;
+        TorrentContentLayout contentLayout() const;
 
-        std::shared_ptr<lt::torrent_info> m_nativeInfo;
+        std::shared_ptr<const lt::torrent_info> m_nativeInfo;
 
         // internal indexes of files (payload only, excluding any .pad files)
         // by which they are addressed in libtorrent

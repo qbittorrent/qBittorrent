@@ -86,6 +86,7 @@ private slots:
     void TMMChanged(int index);
     void categoryChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
+    void renameSelectedFile();
 
     void accept() override;
     void reject() override;
@@ -104,13 +105,13 @@ private:
     void setupTreeview();
     void setSavePath(const QString &newPath);
     void saveTorrentFile();
+    bool hasMetadata() const;
 
     void showEvent(QShowEvent *event) override;
 
     Ui::AddNewTorrentDialog *m_ui;
     TorrentContentFilterModel *m_contentModel = nullptr;
     PropListDelegate *m_contentDelegate = nullptr;
-    bool m_hasMetadata = false;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
     int m_oldIndex = 0;

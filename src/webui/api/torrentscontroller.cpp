@@ -594,9 +594,12 @@ void TorrentsController::pieceHashesAction()
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray pieceHashes;
-    const QVector<QByteArray> hashes = torrent->info().pieceHashes();
-    for (const QByteArray &hash : hashes)
-        pieceHashes.append(QString(hash.toHex()));
+    if (torrent->hasMetadata())
+    {
+        const QVector<QByteArray> hashes = torrent->info().pieceHashes();
+        for (const QByteArray &hash : hashes)
+            pieceHashes.append(QString(hash.toHex()));
+    }
 
     setResult(pieceHashes);
 }
