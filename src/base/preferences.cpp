@@ -1296,12 +1296,12 @@ void Preferences::setMainVSplitterState(const QByteArray &state)
 
 QString Preferences::getMainLastDir() const
 {
-    return value("MainWindowLastDir", QDir::homePath());
+    return value("MainWindow/LastDir", QDir::homePath());
 }
 
 void Preferences::setMainLastDir(const QString &path)
 {
-    setValue("MainWindowLastDir", path);
+    setValue("MainWindow/LastDir", path);
 }
 
 QByteArray Preferences::getPeerListState() const

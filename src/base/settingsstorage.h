@@ -60,17 +60,18 @@ public:
     {
         if constexpr (std::is_enum_v<T>)
         {
-            const auto value = loadValueImpl(key).toString();
+            const auto value = loadValue<QString>(key);
             return Utils::String::toEnum(value, defaultValue);
-        }
-        else if constexpr (std::is_same_v<T, QVariant>)
-        {
-            return loadValueImpl(key, defaultValue);
         }
         else if constexpr (IsQFlags<T>::value)
         {
-            const QVariant value = loadValueImpl(key, static_cast<typename T::Int>(defaultValue));
-            return T {value.template value<typename T::Int>()};
+            const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
+            return T {value};
+        }
+        else if constexpr (std::is_same_v<T, QVariant>)
+        {
+            // fast path for loading QVariant
+            return loadValueImpl(key, defaultValue);
         }
         else
         {

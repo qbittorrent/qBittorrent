@@ -36,12 +36,15 @@
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
+#include "base/settingvalue.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 
 namespace
 {
+    const int MIGRATION_VERSION = 1;
+
     void exportWebUIHttpsFiles()
     {
         const auto migrate = [](const QString &oldKey, const QString &newKey, const QString &savePath)
@@ -229,12 +232,23 @@ namespace
 
 bool upgrade(const bool /*ask*/)
 {
-    exportWebUIHttpsFiles();
-    upgradeTorrentContentLayout();
-    upgradeListenPortSettings();
-    upgradeSchedulerDaysSettings();
-    upgradeDNSServiceSettings();
-    upgradeTrayIconStyleSettings();
+    CachedSettingValue<int> version {"Meta/MigrationVersion", 0};
+
+    if (version != MIGRATION_VERSION)
+    {
+        if (version < 1)
+        {
+            exportWebUIHttpsFiles();
+            upgradeTorrentContentLayout();
+            upgradeListenPortSettings();
+            upgradeSchedulerDaysSettings();
+            upgradeDNSServiceSettings();
+            upgradeTrayIconStyleSettings();
+        }
+
+        version = MIGRATION_VERSION;
+    }
+
     return true;
 }
 
@@ -255,7 +269,7 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
     SettingsStorage *settingsStorage {SettingsStorage::instance()};
     for (auto it = changedDefaults.cbegin(); it != changedDefaults.cend(); ++it)
     {
-        if (settingsStorage->loadValue<QVariant>(it->name).isNull())
+        if (!settingsStorage->hasKey(it->name))
             settingsStorage->storeValue(it->name, (mode == DefaultPreferencesMode::Legacy ? it->legacy : it->current));
     }
 }
