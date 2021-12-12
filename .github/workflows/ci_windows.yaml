@@ -12,7 +12,7 @@ jobs:
         libt_version: ["2.0.5", "1.2.15"]
 
     env:
-      boost_path: "${{ github.workspace }}/boost"
+      boost_path: "${{ github.workspace }}/../boost"
       libtorrent_path: "${{ github.workspace }}/libtorrent"
 
     steps:
