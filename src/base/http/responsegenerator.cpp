@@ -42,7 +42,7 @@ QByteArray Http::toByteArray(Response response)
     response.headers[HEADER_DATE] = httpDate();
 
     QByteArray buf;
-    buf.reserve(10 * 1024);
+    buf.reserve(1024 + response.content.length());
 
     // Status Line
     buf += QString("HTTP/%1 %2 %3")
