@@ -1218,10 +1218,13 @@ void MainWindow::closeEvent(QCloseEvent *e)
         }
     }
 
+    // Disable some UI to prevent user interactions
 #ifndef Q_OS_MACOS
-    // Hide tray icon
     if (m_systrayIcon)
-        m_systrayIcon->hide();
+    {
+        m_systrayIcon->setToolTip(tr("qBittorrent is shutting down..."));
+        m_trayIconMenu->setEnabled(false);
+    }
 #endif
 
     // Accept exit
