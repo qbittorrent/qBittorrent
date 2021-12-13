@@ -210,12 +210,12 @@ void Preferences::setHideZeroComboValues(const int n)
 // In Mac OS X the dock is sufficient for our needs so we disable the sys tray functionality.
 // See extensive discussion in https://github.com/qbittorrent/qBittorrent/pull/3018
 #ifndef Q_OS_MACOS
-bool Preferences::systrayIntegration() const
+bool Preferences::systemTrayEnabled() const
 {
     return value("Preferences/General/SystrayEnabled", true);
 }
 
-void Preferences::setSystrayIntegration(const bool enabled)
+void Preferences::setSystemTrayEnabled(const bool enabled)
 {
     setValue("Preferences/General/SystrayEnabled", enabled);
 }

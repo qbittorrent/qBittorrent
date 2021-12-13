@@ -122,7 +122,7 @@ private:
     // General options
     QString getLocale() const;
 #ifndef Q_OS_MACOS
-    bool systrayIntegration() const;
+    bool systemTrayEnabled() const;
     bool minimizeToTray() const;
     bool closeToTray() const;
 #endif

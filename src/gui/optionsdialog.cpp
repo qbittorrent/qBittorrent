@@ -677,7 +677,7 @@ void OptionsDialog::saveOptions()
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MACOS
-    pref->setSystrayIntegration(systrayIntegration());
+    pref->setSystemTrayEnabled(systemTrayEnabled());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
@@ -936,7 +936,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
 #ifndef Q_OS_MACOS
-    m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
+    m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
     if (m_ui->checkShowSystray->isChecked())
     {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
@@ -1346,10 +1346,11 @@ bool OptionsDialog::startMinimized() const
 }
 
 #ifndef Q_OS_MACOS
-bool OptionsDialog::systrayIntegration() const
+bool OptionsDialog::systemTrayEnabled() const
 {
-    if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
-    return m_ui->checkShowSystray->isChecked();
+    return QSystemTrayIcon::isSystemTrayAvailable()
+        ? m_ui->checkShowSystray->isChecked()
+        : false;
 }
 
 bool OptionsDialog::minimizeToTray() const

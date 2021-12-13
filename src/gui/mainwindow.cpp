@@ -179,6 +179,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->actionLock->setMenu(lockMenu);
 
     // Creating Bittorrent session
+    updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
+
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::fullDiskError, this, &MainWindow::fullDiskError);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::loadTorrentFailed, this, &MainWindow::addTorrentFailed);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded,this, &MainWindow::torrentNew);
@@ -319,7 +321,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
 
     // Configure BT session according to options
-    loadPreferences(false);
+    loadPreferences();
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::statsUpdated, this, &MainWindow::reloadSessionStats);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated, this, &MainWindow::reloadTorrentStats);
@@ -380,7 +382,19 @@ MainWindow::MainWindow(QWidget *parent)
     // Load Window state and sizes
     readSettings();
 
-#ifndef Q_OS_MACOS
+#ifdef Q_OS_MACOS
+    // Make sure the Window is visible if we don't have a tray icon
+    if (pref->startMinimized())
+    {
+        showMinimized();
+    }
+    else
+    {
+        show();
+        activateWindow();
+        raise();
+    }
+#else
     if (m_systrayIcon)
     {
         if (!(pref->startMinimized() || m_uiLocked))
@@ -405,7 +419,6 @@ MainWindow::MainWindow(QWidget *parent)
     }
     else
     {
-#endif
         // Make sure the Window is visible if we don't have a tray icon
         if (pref->startMinimized())
         {
@@ -417,7 +430,6 @@ MainWindow::MainWindow(QWidget *parent)
             activateWindow();
             raise();
         }
-#ifndef Q_OS_MACOS
     }
 #endif
 
@@ -456,7 +468,8 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 #ifdef Q_OS_MACOS
     setupDockClickHandler();
-    trayIconMenu()->setAsDockMenu();
+    createTrayIconMenu();
+    m_trayIconMenu->setAsDockMenu();
 #endif
 }
 
@@ -785,10 +798,6 @@ void MainWindow::cleanup()
     delete m_rssWidget;
 
     delete m_executableWatcher;
-#ifndef Q_OS_MACOS
-    if (m_systrayCreator)
-        m_systrayCreator->stop();
-#endif
 
     m_preventTimer->stop();
 
@@ -1469,50 +1478,33 @@ void MainWindow::showStatusBar(bool show)
     }
 }
 
-void MainWindow::loadPreferences(const bool configureSession)
+void MainWindow::loadPreferences()
 {
-    const Preferences *const pref = Preferences::instance();
-#ifdef Q_OS_MACOS
-    Q_UNUSED(configureSession);
-#else
-    const bool newSystrayIntegration = pref->systrayIntegration();
-    m_ui->actionLock->setVisible(newSystrayIntegration);
-    if (newSystrayIntegration != (m_systrayIcon != nullptr))
+    const Preferences *pref = Preferences::instance();
+
+#ifndef Q_OS_MACOS
+    // system tray icon
+    const bool useSystray = pref->systemTrayEnabled();
+    m_ui->actionLock->setVisible(useSystray);
+    if (useSystray)
     {
-        if (newSystrayIntegration)
+        if (m_systrayIcon)
         {
-            // create the trayicon
-            if (!QSystemTrayIcon::isSystemTrayAvailable())
-            {
-                if (!configureSession)
-                { // Program startup
-                    m_systrayCreator = new QTimer(this);
-                    connect(m_systrayCreator.data(), &QTimer::timeout, this, &MainWindow::createSystrayDelayed);
-                    m_systrayCreator->setSingleShot(true);
-                    m_systrayCreator->start(2000);
-                    qDebug("Info: System tray is unavailable, trying again later.");
-                }
-                else
-                {
-                    qDebug("Warning: System tray is unavailable.");
-                }
-            }
-            else
-            {
-                createTrayIcon();
-            }
+            // Reload systray icon
+            m_systrayIcon->setIcon(UIThemeManager::instance()->getSystrayIcon());
         }
         else
         {
-            // Destroy trayicon
-            delete m_systrayIcon;
-            delete m_trayIconMenu;
+            createTrayIcon(20);
         }
     }
-    // Reload systray icon
-    if (newSystrayIntegration && m_systrayIcon)
-        m_systrayIcon->setIcon(getSystrayIcon());
+    else
+    {
+        delete m_systrayIcon;
+        delete m_trayIconMenu;
+    }
 #endif
+
     // General
     if (pref->isToolbarDisplayed())
     {
@@ -1621,7 +1613,7 @@ void MainWindow::reloadSessionStats()
 #else
     if (m_systrayIcon)
     {
-        const QString toolTip = QString::fromLatin1("%1\n%2").arg(
+        const auto toolTip = QString::fromLatin1("%1\n%2").arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
         m_systrayIcon->setToolTip(toolTip); // tray icon
@@ -1705,86 +1697,81 @@ void MainWindow::downloadFromURLList(const QStringList &urlList)
 *****************************************************/
 
 #ifndef Q_OS_MACOS
-void MainWindow::createSystrayDelayed()
+void MainWindow::createTrayIcon(const int retries)
 {
-    static int timeout = 20;
+    if (m_systrayIcon)
+        return;
+
     if (QSystemTrayIcon::isSystemTrayAvailable())
     {
-        // Ok, systray integration is now supported
-        // Create systray icon
-        createTrayIcon();
-        delete m_systrayCreator;
+        m_systrayIcon = new QSystemTrayIcon(UIThemeManager::instance()->getSystrayIcon(), this);
+
+        createTrayIconMenu();
+        m_systrayIcon->setContextMenu(m_trayIconMenu);
+
+        connect(m_systrayIcon, &QSystemTrayIcon::activated, this, &MainWindow::toggleVisibility);
+        connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &MainWindow::balloonClicked);
+
+        m_systrayIcon->show();
     }
     else
     {
-        if (timeout)
+        if (retries > 0)
         {
-            // Retry a bit later
-            m_systrayCreator->start(2000);
-            --timeout;
+            LogMsg("System tray icon is not available, retrying...", Log::WARNING);
+            QTimer::singleShot(std::chrono::seconds(2), this, [this, retries]()
+            {
+                if (Preferences::instance()->systemTrayEnabled())
+                    createTrayIcon(retries - 1);
+            });
         }
         else
         {
-            // Timed out, apparently system really does not
-            // support systray icon
-            delete m_systrayCreator;
-            // Disable it in program preferences to
-            // avoid trying at each startup
-            Preferences::instance()->setSystrayIntegration(false);
+            LogMsg("System tray icon is still not available after retries. Disabling it.", Log::WARNING);
+            Preferences::instance()->setSystemTrayEnabled(false);
         }
     }
 }
-
-void MainWindow::updateTrayIconMenu()
-{
-    m_ui->actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
-}
-
-void MainWindow::createTrayIcon()
-{
-    // Tray icon
-    m_systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
-
-    m_systrayIcon->setContextMenu(trayIconMenu());
-    connect(m_systrayIcon.data(), &QSystemTrayIcon::messageClicked, this, &MainWindow::balloonClicked);
-    // End of Icon Menu
-    connect(m_systrayIcon.data(), &QSystemTrayIcon::activated, this, &MainWindow::toggleVisibility);
-    m_systrayIcon->show();
-}
 #endif // Q_OS_MACOS
 
-QMenu *MainWindow::trayIconMenu()
+void MainWindow::createTrayIconMenu()
 {
-    if (m_trayIconMenu) return m_trayIconMenu;
+    if (m_trayIconMenu)
+        return;
 
     m_trayIconMenu = new QMenu(this);
+
 #ifndef Q_OS_MACOS
-    connect(m_trayIconMenu.data(), &QMenu::aboutToShow, this, &MainWindow::updateTrayIconMenu);
+    connect(m_trayIconMenu, &QMenu::aboutToShow, this, [this]()
+    {
+        m_ui->actionToggleVisibility->setText(isVisible() ? tr("Hide") : tr("Show"));
+    });
+
     m_trayIconMenu->addAction(m_ui->actionToggleVisibility);
     m_trayIconMenu->addSeparator();
 #endif
+
     m_trayIconMenu->addAction(m_ui->actionOpen);
     m_trayIconMenu->addAction(m_ui->actionDownloadFromURL);
     m_trayIconMenu->addSeparator();
-    const bool isAltBWEnabled = BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled();
-    updateAltSpeedsBtn(isAltBWEnabled);
-    m_ui->actionUseAlternativeSpeedLimits->setChecked(isAltBWEnabled);
+
     m_trayIconMenu->addAction(m_ui->actionUseAlternativeSpeedLimits);
     m_trayIconMenu->addAction(m_ui->actionSetGlobalSpeedLimits);
     m_trayIconMenu->addSeparator();
+
     m_trayIconMenu->addAction(m_ui->actionStartAll);
     m_trayIconMenu->addAction(m_ui->actionPauseAll);
+
 #ifndef Q_OS_MACOS
     m_trayIconMenu->addSeparator();
     m_trayIconMenu->addAction(m_ui->actionExit);
 #endif
+
     if (m_uiLocked)
         m_trayIconMenu->setEnabled(false);
-
-    return m_trayIconMenu;
 }
 
-void MainWindow::updateAltSpeedsBtn(bool alternative)
+void MainWindow::updateAltSpeedsBtn(const bool alternative)
 {
     m_ui->actionUseAlternativeSpeedLimits->setChecked(alternative);
 }
@@ -2071,42 +2058,6 @@ void MainWindow::updatePowerManagementState()
                              || (Preferences::instance()->preventFromSuspendWhenSeeding() && BitTorrent::Session::instance()->hasRunningSeed());
     m_pwr->setActivityState(inhibitSuspend);
 }
-
-#ifndef Q_OS_MACOS
-QIcon MainWindow::getSystrayIcon() const
-{
-    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
-    // on Linux we use theme icons, and icons from resources everywhere else
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    switch (style)
-    {
-    case TrayIcon::Style::Normal:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray"));
-    case TrayIcon::Style::MonoDark:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
-    case TrayIcon::Style::MonoLight:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-light"));
-    default:
-        break;
-    }
-#else
-    switch (style)
-    {
-    case TrayIcon::Style::Normal:
-        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray"));
-    case TrayIcon::Style::MonoDark:
-        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-dark"));
-    case TrayIcon::Style::MonoLight:
-        return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray-light"));
-    default:
-        break;
-    }
-#endif
-
-    // As a failsafe in case the enum is invalid
-    return UIThemeManager::instance()->getIcon(QLatin1String("qbittorrent-tray"));
-}
-#endif // Q_OS_MACOS
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 void MainWindow::checkProgramUpdate(const bool invokedByUser)
