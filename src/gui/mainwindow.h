@@ -108,6 +108,9 @@ public:
 
     void showNotificationBalloon(const QString &title, const QString &msg) const;
 
+signals:
+    void systemTrayIconCreated();
+
 private slots:
     void showFilterContextMenu(const QPoint &);
     void balloonClicked();

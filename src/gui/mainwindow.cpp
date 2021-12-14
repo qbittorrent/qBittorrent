@@ -177,6 +177,10 @@ MainWindow::MainWindow(QWidget *parent)
     lockMenu->addAction(tr("&Set Password"), this, &MainWindow::defineUILockPassword);
     lockMenu->addAction(tr("&Clear Password"), this, &MainWindow::clearUILockPassword);
     m_ui->actionLock->setMenu(lockMenu);
+    connect(this, &MainWindow::systemTrayIconCreated, this, [this]()
+    {
+        m_ui->actionLock->setVisible(true);
+    });
 
     // Creating Bittorrent session
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
@@ -1484,9 +1488,7 @@ void MainWindow::loadPreferences()
 
 #ifndef Q_OS_MACOS
     // system tray icon
-    const bool useSystray = pref->systemTrayEnabled();
-    m_ui->actionLock->setVisible(useSystray);
-    if (useSystray)
+    if (pref->systemTrayEnabled())
     {
         if (m_systrayIcon)
         {
@@ -1502,6 +1504,7 @@ void MainWindow::loadPreferences()
     {
         delete m_systrayIcon;
         delete m_trayIconMenu;
+        m_ui->actionLock->setVisible(false);
     }
 #endif
 
@@ -1713,6 +1716,7 @@ void MainWindow::createTrayIcon(const int retries)
         connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &MainWindow::balloonClicked);
 
         m_systrayIcon->show();
+        emit systemTrayIconCreated();
     }
     else
     {
