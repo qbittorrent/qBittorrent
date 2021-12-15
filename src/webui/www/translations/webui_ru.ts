@@ -1190,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP для сообщения трекерам (требуется перезапуск):</translation>
+        <translation>IP адрес для сообщения трекерам (требуется перезапуск):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
