@@ -315,8 +315,8 @@ public:
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
 #ifndef Q_OS_MACOS
-    bool systrayIntegration() const;
-    void setSystrayIntegration(bool enabled);
+    bool systemTrayEnabled() const;
+    void setSystemTrayEnabled(bool enabled);
     bool minimizeToTrayNotified() const;
     void setMinimizeToTrayNotified(bool b);
     bool minimizeToTray() const;

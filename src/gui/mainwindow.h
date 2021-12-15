@@ -82,7 +82,6 @@ public:
     QWidget *currentTabWidget() const;
     TransferListWidget *transferListWidget() const;
     PropertiesWidget *propertiesWidget() const;
-    QMenu *trayIconMenu();
 
     // ExecutionLog properties
     bool isExecutionLogEnabled() const;
@@ -109,6 +108,9 @@ public:
 
     void showNotificationBalloon(const QString &title, const QString &msg) const;
 
+signals:
+    void systemTrayIconCreated();
+
 private slots:
     void showFilterContextMenu(const QPoint &);
     void balloonClicked();
@@ -132,7 +134,7 @@ private slots:
     void focusSearchFilter();
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
-    void loadPreferences(bool configureSession = true);
+    void loadPreferences();
     void addTorrentFailed(const QString &error) const;
     void torrentNew(BitTorrent::Torrent *const torrent) const;
     void finishedTorrent(BitTorrent::Torrent *const torrent) const;
@@ -189,16 +191,14 @@ private slots:
     void on_actionCloseWindow_triggered();
 #else
     void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
-    void createSystrayDelayed();
-    void updateTrayIconMenu();
 #endif
 
 private:
+    void createTrayIconMenu();
 #ifdef Q_OS_MACOS
     void setupDockClickHandler();
 #else
-    void createTrayIcon();
-    QIcon getSystrayIcon() const;
+    void createTrayIcon(int retries);
 #endif
 #ifdef Q_OS_WIN
     void installPython();
@@ -227,11 +227,12 @@ private:
     QPointer<StatsDialog> m_statsDlg;
     QPointer<TorrentCreatorDialog> m_createTorrentDlg;
     QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
+
 #ifndef Q_OS_MACOS
     QPointer<QSystemTrayIcon> m_systrayIcon;
-    QPointer<QTimer> m_systrayCreator;
 #endif
     QPointer<QMenu> m_trayIconMenu;
+
     TransferListWidget *m_transferListWidget;
     TransferListFiltersWidget *m_transferListFiltersWidget;
     PropertiesWidget *m_propertiesWidget;

@@ -157,6 +157,36 @@ QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) c
     return m_colors.value(id, defaultColor);
 }
 
+#ifndef Q_OS_MACOS
+QIcon UIThemeManager::getSystrayIcon() const
+{
+    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    switch (style)
+    {
+#if defined(Q_OS_UNIX)
+    case TrayIcon::Style::Normal:
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray"));
+    case TrayIcon::Style::MonoDark:
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
+    case TrayIcon::Style::MonoLight:
+        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-light"));
+#else
+    case TrayIcon::Style::Normal:
+        return getIcon(QLatin1String("qbittorrent-tray"));
+    case TrayIcon::Style::MonoDark:
+        return getIcon(QLatin1String("qbittorrent-tray-dark"));
+    case TrayIcon::Style::MonoLight:
+        return getIcon(QLatin1String("qbittorrent-tray-light"));
+#endif
+    default:
+        break;
+    }
+
+    // As a failsafe in case the enum is invalid
+    return getIcon(QLatin1String("qbittorrent-tray"));
+}
+#endif
+
 QString UIThemeManager::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
