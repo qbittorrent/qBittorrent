@@ -42,19 +42,23 @@ QByteArray Http::toByteArray(Response response)
     response.headers[HEADER_DATE] = httpDate();
 
     QByteArray buf;
-    buf.reserve(10 * 1024);
+    buf.reserve(1024 + response.content.length());
 
     // Status Line
-    buf += QString("HTTP/%1 %2 %3")
-        .arg("1.1",  // TODO: depends on request
-            QString::number(response.status.code),
-            response.status.text)
-        .toLatin1()
+    buf.append("HTTP/1.1 ")  // TODO: depends on request
+        .append(QByteArray::number(response.status.code))
+        .append(' ')
+        .append(response.status.text.toLatin1())
         .append(CRLF);
 
     // Header Fields
     for (auto i = response.headers.constBegin(); i != response.headers.constEnd(); ++i)
-        buf += QString::fromLatin1("%1: %2").arg(i.key(), i.value()).toLatin1().append(CRLF);
+    {
+        buf.append(i.key().toLatin1())
+            .append(": ")
+            .append(i.value().toLatin1())
+            .append(CRLF);
+    }
 
     // the first empty line
     buf += CRLF;
