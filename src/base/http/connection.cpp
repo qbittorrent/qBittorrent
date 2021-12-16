@@ -134,7 +134,9 @@ void Connection::sendResponse(const Response &response) const
 
 bool Connection::hasExpired(const qint64 timeout) const
 {
-    return m_idleTimer.hasExpired(timeout);
+    return (m_socket->bytesAvailable() == 0)
+        && (m_socket->bytesToWrite() == 0)
+        && m_idleTimer.hasExpired(timeout);
 }
 
 bool Connection::isClosed() const
