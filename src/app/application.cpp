@@ -645,11 +645,12 @@ int Application::exec(const QStringList &params)
 
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
-    Preferences *const pref = Preferences::instance();
-    // Display some information to the user
+    const Preferences *pref = Preferences::instance();
+
+    const auto scheme = QString::fromLatin1(pref->isWebUiHttpsEnabled() ? "https" : "http");
+    const auto url = QString::fromLatin1("%1://localhost:%2\n").arg(scheme, QString::number(pref->getWebUiPort()));
     const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
+        + tr("To control qBittorrent, access the WebUI at: %1\n").arg(url);
     printf("%s", qUtf8Printable(mesg));
 
     if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")
