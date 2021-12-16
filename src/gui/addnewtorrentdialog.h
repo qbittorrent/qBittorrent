@@ -85,6 +85,7 @@ private slots:
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
+    void contentLayoutChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
     void renameSelectedFile();
 
