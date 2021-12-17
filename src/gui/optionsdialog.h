@@ -40,10 +40,11 @@ class AdvancedSettings;
 // actions on double-click on torrents
 enum DoubleClickAction
 {
-    TOGGLE_PAUSE,
-    OPEN_DEST,
-    PREVIEW_FILE,
-    NO_ACTION
+    TOGGLE_PAUSE = 0,
+    OPEN_DEST = 1,
+    PREVIEW_FILE = 2,
+    NO_ACTION = 3,
+    SHOW_OPTIONS = 4
 };
 
 namespace Net
@@ -138,8 +139,6 @@ private:
     QString getTorrentExportDir() const;
     QString getFinishedTorrentExportDir() const;
     QString askForExportDir(const QString &currentExportPath);
-    int getActionOnDblClOnTorrentDl() const;
-    int getActionOnDblClOnTorrentFn() const;
     // Connection options
     int getPort() const;
     bool isUPnPEnabled() const;

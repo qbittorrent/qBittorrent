@@ -303,6 +303,9 @@ void TransferListWidget::torrentDoubleClicked()
     case OPEN_DEST:
         openDestinationFolder(torrent);
         break;
+    case SHOW_OPTIONS:
+        setTorrentOptions();
+        break;
     }
 }
 
