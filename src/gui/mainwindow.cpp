@@ -1192,7 +1192,18 @@ void MainWindow::closeEvent(QCloseEvent *e)
     const bool goToSystrayOnExit = pref->closeToTray();
     if (!m_forceExit && m_systrayIcon && goToSystrayOnExit && !this->isHidden())
     {
-        e->ignore();
+        // This is the same as QX11Info::isPlatformX11(), inlined manually to avoid Qt X11 Extras modules
+        if (QGuiApplication::platformName() == QLatin1String("xcb")) {
+            // Don't ignore the close event, because doing so cancels session logout if
+            // the main window is visible when the user attempts to log out.
+            // The main window will be only hidden, because QApplication::quitOnLastWindowClosed
+            // property is false and Qt::WA_DeleteOnClose widget attribute is not set.
+            Q_ASSERT(!QApplication::quitOnLastWindowClosed());
+            Q_ASSERT(!testAttribute(Qt::WA_DeleteOnClose));
+        } else {
+            // Ignore the close event because closing the main window breaks global hotkeys on Windows/MacOS.
+            e->ignore();
+        }
         QTimer::singleShot(0, this, &QWidget::hide);
         if (!pref->closeToTrayNotified())
         {
