@@ -763,8 +763,8 @@ void OptionsDialog::saveOptions()
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
-    pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
-    pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
+    pref->setActionOnDblClOnTorrentDl(m_ui->actionTorrentDlOnDblClBox->currentData().toInt());
+    pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
@@ -1057,14 +1057,26 @@ void OptionsDialog::loadOptions()
 #else
     m_ui->autoRunConsole->hide();
 #endif
-    intValue = pref->getActionOnDblClOnTorrentDl();
-    if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
-        intValue = 0;
-    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
-    intValue = pref->getActionOnDblClOnTorrentFn();
-    if (intValue >= m_ui->actionTorrentFnOnDblClBox->count())
-        intValue = 1;
-    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
+
+    m_ui->actionTorrentDlOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(4, NO_ACTION);
+    int actionDownloading = pref->getActionOnDblClOnTorrentDl();
+    if ((actionDownloading < 0) || (actionDownloading >= m_ui->actionTorrentDlOnDblClBox->count()))
+        actionDownloading = TOGGLE_PAUSE;
+    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(m_ui->actionTorrentDlOnDblClBox->findData(actionDownloading));
+
+    m_ui->actionTorrentFnOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(4, NO_ACTION);
+    int actionSeeding = pref->getActionOnDblClOnTorrentFn();
+    if ((actionSeeding < 0) || (actionSeeding >= m_ui->actionTorrentFnOnDblClBox->count()))
+        actionSeeding = OPEN_DEST;
+    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
     // End Downloads preferences
 
     // Connection preferences
@@ -1641,22 +1653,6 @@ QString OptionsDialog::getFinishedTorrentExportDir() const
     if (m_ui->checkExportDirFin->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
     return {};
-}
-
-// Return action on double-click on a downloading torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentDl() const
-{
-    if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentDlOnDblClBox->currentIndex();
-}
-
-// Return action on double-click on a finished torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentFn() const
-{
-    if (m_ui->actionTorrentFnOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentFnOnDblClBox->currentIndex();
 }
 
 void OptionsDialog::on_addWatchedFolderButton_clicked()
