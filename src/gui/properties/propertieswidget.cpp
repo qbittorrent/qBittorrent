@@ -528,7 +528,7 @@ void PropertiesWidget::loadDynamicData()
             if (!isContentInitialized)
             {
                 // List files in torrent
-                m_propListModel->model()->setupModelData(m_torrent->info());
+                m_propListModel->model()->setupModelData(*m_torrent);
                 // Load file priorities
                 m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
                 // Update file progress/availability

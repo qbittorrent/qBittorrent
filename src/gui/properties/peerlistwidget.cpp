@@ -471,7 +471,9 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::TOT_UP, totalUp, peer.totalUpload(), intDataTextAlignment);
     setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + '%'), peer.relevance(), intDataTextAlignment);
 
-    const QStringList downloadingFiles {torrent->info().filesForPiece(peer.downloadingPieceIndex())};
+    const QStringList downloadingFiles {torrent->hasMetadata()
+                ? torrent->info().filesForPiece(peer.downloadingPieceIndex())
+                : QStringList()};
     const QString downloadingFilesDisplayValue = downloadingFiles.join(';');
     setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(QLatin1Char('\n')));
 
