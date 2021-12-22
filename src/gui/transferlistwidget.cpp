@@ -968,7 +968,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     tagsMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add...", "Add / assign multiple tags...")
         , this, &TransferListWidget::askAddTagsForSelection);
-    tagsMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Remove All", "Remove all tags")
+    tagsMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Remove All...", "Remove all tags")
         , this, [this]()
     {
         if (Preferences::instance()->confirmRemoveAllTags())
