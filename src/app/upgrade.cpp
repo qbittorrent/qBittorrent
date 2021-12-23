@@ -43,6 +43,7 @@
 namespace
 {
     const int MIGRATION_VERSION = 2;
+    const char MIGRATION_VERSION_KEY[] = "Meta/MigrationVersion";
 
     void exportWebUIHttpsFiles()
     {
@@ -329,7 +330,7 @@ namespace
 
 bool upgrade(const bool /*ask*/)
 {
-    CachedSettingValue<int> version {"Meta/MigrationVersion", 0};
+    CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0};
 
     if (version != MIGRATION_VERSION)
     {
@@ -349,6 +350,11 @@ bool upgrade(const bool /*ask*/)
     }
 
     return true;
+}
+
+void setCurrentMigrationVersion()
+{
+    SettingsStorage::instance()->storeValue(QLatin1String(MIGRATION_VERSION_KEY), MIGRATION_VERSION);
 }
 
 void handleChangedDefaults(const DefaultPreferencesMode mode)

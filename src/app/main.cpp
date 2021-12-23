@@ -188,7 +188,6 @@ int main(int argc, char *argv[])
 #ifndef DISABLE_GUI
             if (!userAgreesWithLegalNotice())
                 return EXIT_SUCCESS;
-
 #elif defined(Q_OS_WIN)
             if (_isatty(_fileno(stdin))
                 && _isatty(_fileno(stdout))
@@ -201,6 +200,8 @@ int main(int argc, char *argv[])
                 && !userAgreesWithLegalNotice())
                 return EXIT_SUCCESS;
 #endif
+
+            setCurrentMigrationVersion();
         }
 
         // Check if qBittorrent is already running for this user
