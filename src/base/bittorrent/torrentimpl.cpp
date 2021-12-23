@@ -991,7 +991,7 @@ int TorrentImpl::queuePosition() const
 QString TorrentImpl::error() const
 {
     if (m_nativeStatus.errc)
-        return QString::fromStdString(m_nativeStatus.errc.message());
+        return QString::fromLocal8Bit(m_nativeStatus.errc.message().c_str());
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
