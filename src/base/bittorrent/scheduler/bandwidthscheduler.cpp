@@ -207,7 +207,7 @@ bool BandwidthScheduler::importLegacyScheduler()
     const QTime end = pref->getLegacySchedulerEndTime();
     const Scheduler::Days schedulerDays = pref->getLegacySchedulerDays();
 
-    if (!start.isValid() || !end.isValid() || schedulerDays == -1)
+    if (!start.isValid() || !end.isValid() || static_cast<int>(schedulerDays) == -1)
         return false;
 
     LogMsg(tr("Bandwidth scheduler format has been changed. Attempting to transfer into the new JSON format."), Log::INFO);
@@ -220,7 +220,7 @@ bool BandwidthScheduler::importLegacyScheduler()
         bool shouldAdd = (schedulerDays == Scheduler::Days::EveryDay)
             || (schedulerDays == Scheduler::Days::Weekday && (day != 5 && day != 6))
             || (schedulerDays == Scheduler::Days::Weekend && (day == 5 || day == 6))
-            || (day == schedulerDays - 3);
+            || (day == static_cast<int>(schedulerDays) - 3);
 
         auto *scheduleDay = new ScheduleDay(day);
 
