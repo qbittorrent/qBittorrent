@@ -488,17 +488,17 @@ void Preferences::setActionOnDblClOnTorrentFn(const int act)
 
 QTime Preferences::getLegacySchedulerStartTime() const
 {
-    return value("Preferences/Scheduler/start_time").toTime();
+    return value<QTime>("Preferences/Scheduler/start_time");
 }
 
 QTime Preferences::getLegacySchedulerEndTime() const
 {
-    return value("Preferences/Scheduler/end_time").toTime();
+    return value<QTime>("Preferences/Scheduler/end_time");
 }
 
 Scheduler::Days Preferences::getLegacySchedulerDays() const
 {
-    return static_cast<Scheduler::Days>(value("Preferences/Scheduler/days", -1).toInt());
+    return static_cast<Scheduler::Days>(value("Preferences/Scheduler/days", -1));
 }
 
 void Preferences::removeLegacySchedulerTimes()
@@ -510,12 +510,12 @@ void Preferences::removeLegacySchedulerTimes()
 
 int Preferences::getGlobalAltDownloadLimit() const
 {
-    return value("Preferences/Connection/GlobalDLLimitAlt", 0).toInt();
+    return value<int>("Preferences/Connection/GlobalDLLimitAlt", 0);
 }
 
 int Preferences::getGlobalAltUploadLimit() const
 {
-    return value("Preferences/Connection/GlobalUPLimitAlt", 0).toInt();
+    return value<int>("Preferences/Connection/GlobalUPLimitAlt", 0);
 }
 
 // Search
