@@ -30,6 +30,7 @@
 
 #include "torrentoptionsdialog.h"
 
+#include <QLineEdit>
 #include <QMessageBox>
 #include <QString>
 
@@ -38,6 +39,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/unicodestrings.h"
+#include "base/utils/fs.h"
 #include "ui_torrentoptionsdialog.h"
 #include "utils.h"
 
@@ -59,13 +61,22 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY("Size")}
+    , m_currentCategoriesString {QString::fromLatin1("--%1--").arg(tr("Currently used categories"))}
 {
     m_ui->setupUi(this);
 
+    m_ui->savePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->savePath->setDialogCaption(tr("Choose save path"));
     Q_ASSERT(!torrents.empty());
+
     const auto *session = BitTorrent::Session::instance();
     bool allSameUpLimit = true, allSameDownLimit = true, allSameRatio = true, allSameSeedingTime = true
-            , allTorrentsArePrivate = true, allSameDHT = true, allSamePEX = true,  allSameLSD = true;
+            , allTorrentsArePrivate = true, allSameDHT = true, allSamePEX = true, allSameLSD = true
+            , allSameSequential = true, allSameFirstLastPieces = true, allSameAutoTMM = true, allSameSavePath = true;
+
+    const bool isFirstTorrentAutoTMMEnabled = torrents[0]->isAutoTMMEnabled();
+    const QString firstTorrentSavePath = torrents[0]->savePath();
+    const QString firstTorrentCategory = torrents[0]->category();
 
     const int firstTorrentUpLimit = qMax(0, torrents[0]->uploadLimit());
     const int firstTorrentDownLimit = qMax(0, torrents[0]->downloadLimit());
@@ -76,11 +87,29 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     const bool isFirstTorrentDHTDisabled = torrents[0]->isDHTDisabled();
     const bool isFirstTorrentPEXDisabled = torrents[0]->isPEXDisabled();
     const bool isFirstTorrentLSDDisabled = torrents[0]->isLSDDisabled();
+    const bool isFirstTorrentSequentialEnabled = torrents[0]->isSequentialDownload();
+    const bool isFirstTorrentFirstLastPiecesEnabled = torrents[0]->hasFirstLastPiecePriority();
 
     m_torrentIDs.reserve(torrents.size());
     for (const BitTorrent::Torrent *torrent : torrents)
     {
         m_torrentIDs << torrent->id();
+
+        if (allSameAutoTMM)
+        {
+            if (torrent->isAutoTMMEnabled() != isFirstTorrentAutoTMMEnabled)
+                allSameAutoTMM = false;
+        }
+        if (allSameSavePath)
+        {
+            if (torrent->savePath() != firstTorrentSavePath)
+                allSameSavePath = false;
+        }
+        if (m_allSameCategory)
+        {
+            if (torrent->category() != firstTorrentCategory)
+                m_allSameCategory = false;
+        }
         if (allSameUpLimit)
         {
             if (qMax(0, torrent->uploadLimit()) != firstTorrentUpLimit)
@@ -109,27 +138,59 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
         if (allSameDHT)
         {
             if (torrent->isDHTDisabled() != isFirstTorrentDHTDisabled)
-            {
-                m_ui->checkDisableDHT->setCheckState(Qt::PartiallyChecked);
                 allSameDHT = false;
-            }
         }
         if (allSamePEX)
         {
             if (torrent->isPEXDisabled() != isFirstTorrentPEXDisabled)
-            {
-                m_ui->checkDisablePEX->setCheckState(Qt::PartiallyChecked);
                 allSamePEX = false;
-            }
         }
         if (allSameLSD)
         {
             if (torrent->isLSDDisabled() != isFirstTorrentLSDDisabled)
-            {
-                m_ui->checkDisableLSD->setCheckState(Qt::PartiallyChecked);
                 allSameLSD = false;
-            }
         }
+        if (allSameSequential)
+        {
+            if (torrent->isSequentialDownload() != isFirstTorrentSequentialEnabled)
+                allSameSequential = false;
+        }
+        if (allSameFirstLastPieces)
+        {
+            if (torrent->hasFirstLastPiecePriority() != isFirstTorrentFirstLastPiecesEnabled)
+                allSameFirstLastPieces = false;
+        }
+    }
+
+    if (allSameAutoTMM)
+        m_ui->checkAutoTMM->setChecked(isFirstTorrentAutoTMMEnabled);
+    else
+        m_ui->checkAutoTMM->setCheckState(Qt::PartiallyChecked);
+
+    if (allSameSavePath)
+        m_ui->savePath->setSelectedPath(firstTorrentSavePath);
+
+    if (!m_allSameCategory)
+    {
+        m_ui->comboCategory->addItem(m_currentCategoriesString);
+        m_ui->comboCategory->clearEditText();
+        m_ui->comboCategory->lineEdit()->setPlaceholderText(m_currentCategoriesString);
+    }
+    else if (!firstTorrentCategory.isEmpty())
+    {
+        m_ui->comboCategory->setCurrentText(firstTorrentCategory);
+        m_ui->comboCategory->addItem(firstTorrentCategory);
+    }
+    m_ui->comboCategory->addItem(QString());
+
+    m_categories = session->categories().keys();
+    std::sort(m_categories.begin(), m_categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    for (const QString &category : asConst(m_categories))
+    {
+        if (m_allSameCategory && (category == firstTorrentCategory))
+            continue;
+
+        m_ui->comboCategory->addItem(category);
     }
 
     const bool isAltLimitEnabled = session->isAltGlobalSpeedLimitEnabled();
@@ -215,16 +276,23 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
             ? firstTorrentSeedingTime : session->globalMaxSeedingMinutes();
     m_ui->spinRatioLimit->setValue(maxRatio);
     m_ui->spinTimeLimit->setValue(maxSeedingTime);
-    handleRatioTypeChanged();
 
     if (!allTorrentsArePrivate)
     {
-        if (m_ui->checkDisableDHT->checkState() != Qt::PartiallyChecked)
+        if (allSameDHT)
             m_ui->checkDisableDHT->setChecked(isFirstTorrentDHTDisabled);
-        if (m_ui->checkDisablePEX->checkState() != Qt::PartiallyChecked)
+        else
+            m_ui->checkDisableDHT->setCheckState(Qt::PartiallyChecked);
+
+        if (allSamePEX)
             m_ui->checkDisablePEX->setChecked(isFirstTorrentPEXDisabled);
-        if (m_ui->checkDisableLSD->checkState() != Qt::PartiallyChecked)
+        else
+            m_ui->checkDisablePEX->setCheckState(Qt::PartiallyChecked);
+
+        if (allSameLSD)
             m_ui->checkDisableLSD->setChecked(isFirstTorrentLSDDisabled);
+        else
+            m_ui->checkDisableLSD->setCheckState(Qt::PartiallyChecked);
     }
     else
     {
@@ -241,16 +309,38 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     m_ui->checkDisablePEX->setToolTip(privateTorrentsTooltip);
     m_ui->checkDisableLSD->setToolTip(privateTorrentsTooltip);
 
+    if (allSameSequential)
+        m_ui->checkSequential->setChecked(isFirstTorrentSequentialEnabled);
+    else
+        m_ui->checkSequential->setCheckState(Qt::PartiallyChecked);
+
+    if (allSameFirstLastPieces)
+        m_ui->checkFirstLastPieces->setChecked(isFirstTorrentFirstLastPiecesEnabled);
+    else
+        m_ui->checkFirstLastPieces->setCheckState(Qt::PartiallyChecked);
+
     m_initialValues =
     {
+        m_ui->savePath->selectedPath(),
+        m_ui->comboCategory->currentText(),
         getRatio(),
         getSeedingTime(),
         m_ui->spinUploadLimit->value(),
         m_ui->spinDownloadLimit->value(),
+        m_ui->checkAutoTMM->checkState(),
         m_ui->checkDisableDHT->checkState(),
         m_ui->checkDisablePEX->checkState(),
-        m_ui->checkDisableLSD->checkState()
+        m_ui->checkDisableLSD->checkState(),
+        m_ui->checkSequential->checkState(),
+        m_ui->checkFirstLastPieces->checkState()
     };
+
+    // Needs to be called after the initial values struct is initialized
+    handleTMMChanged();
+    handleRatioTypeChanged();
+
+    connect(m_ui->checkAutoTMM, &QCheckBox::clicked, this, &TorrentOptionsDialog::handleTMMChanged);
+    connect(m_ui->comboCategory, &QComboBox::activated, this, &TorrentOptionsDialog::handleCategoryChanged);
 
     // Sync up/down speed limit sliders with their corresponding spinboxes
     connect(m_ui->sliderUploadLimit, &QSlider::valueChanged, m_ui->spinUploadLimit, &QSpinBox::setValue);
@@ -282,11 +372,26 @@ void TorrentOptionsDialog::accept()
         return;
     }
 
-    const auto *session = BitTorrent::Session::instance();
+    auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
         BitTorrent::Torrent *torrent = session->findTorrent(id);
         if (!torrent) continue;
+
+        const QString savePath = m_ui->savePath->selectedPath();
+        if (m_initialValues.autoTMM != m_ui->checkAutoTMM->checkState())
+            torrent->setAutoTMMEnabled(m_ui->checkAutoTMM->isChecked());
+        if (!m_ui->checkAutoTMM->isChecked() && (m_initialValues.savePath != savePath))
+            torrent->move(Utils::Fs::expandPathAbs(savePath));
+        const QString category = m_ui->comboCategory->currentText();
+        // index 0 is always the current category
+        if ((m_initialValues.category != category) || (m_ui->comboCategory->currentIndex() != 0))
+        {
+            if (!m_categories.contains(category))
+                session->addCategory(category);
+
+            torrent->setCategory(category);
+        }
 
         if (m_initialValues.upSpeedLimit != m_ui->spinUploadLimit->value())
             torrent->setUploadLimit(m_ui->spinUploadLimit->value() * 1024);
@@ -310,6 +415,11 @@ void TorrentOptionsDialog::accept()
             if (m_initialValues.disableLSD != m_ui->checkDisableLSD->checkState())
                 torrent->setLSDDisabled(m_ui->checkDisableLSD->isChecked());
         }
+
+        if (m_initialValues.sequential != m_ui->checkSequential->checkState())
+            torrent->setSequentialDownload(m_ui->checkSequential->isChecked());
+        if (m_initialValues.firstLastPieces != m_ui->checkFirstLastPieces->checkState())
+            torrent->setFirstLastPiecePriority(m_ui->checkFirstLastPieces->isChecked());
     }
 
     QDialog::accept();
@@ -343,8 +453,80 @@ int TorrentOptionsDialog::getSeedingTime() const
     return m_ui->spinTimeLimit->value();
 }
 
+void TorrentOptionsDialog::handleCategoryChanged(const int index)
+{
+    Q_UNUSED(index);
+
+    if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
+    {
+        if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
+        {
+            m_ui->savePath->setSelectedPath(QString());
+        }
+        else
+        {
+            const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+            m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
+        }
+    }
+
+    if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
+    {
+        m_ui->comboCategory->clearEditText();
+        m_ui->comboCategory->lineEdit()->setPlaceholderText(m_currentCategoriesString);
+    }
+    else
+    {
+        m_ui->comboCategory->lineEdit()->setPlaceholderText(QString());
+    }
+}
+
+void TorrentOptionsDialog::handleTMMChanged()
+{
+    if (m_ui->checkAutoTMM->checkState() == Qt::Unchecked)
+    {
+        m_ui->labelSavePath->setEnabled(true);
+        m_ui->savePath->setEnabled(true);
+        m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(m_initialValues.savePath));
+    }
+    else
+    {
+        m_ui->labelSavePath->setEnabled(false);
+        m_ui->savePath->setEnabled(false);
+        if (m_ui->checkAutoTMM->checkState() == Qt::Checked)
+        {
+            if (!m_allSameCategory && (m_ui->comboCategory->currentIndex() == 0))
+            {
+                m_ui->savePath->setSelectedPath(QString());
+            }
+            else
+            {
+                const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
+                m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
+            }
+        }
+        else // partially checked
+        {
+            m_ui->savePath->setSelectedPath(QString());
+        }
+    }
+}
+
 void TorrentOptionsDialog::handleRatioTypeChanged()
 {
+    if ((m_initialValues.ratio == MIXED_SHARE_LIMITS) || (m_initialValues.seedingTime == MIXED_SHARE_LIMITS))
+    {
+        QAbstractButton *currentRadio = m_ui->buttonGroup->checkedButton();
+        if (currentRadio && (currentRadio == m_previousRadio))
+        {
+            // Hack to deselect the currently selected radio button programatically because Qt doesn't allow it in exclusive mode
+            m_ui->buttonGroup->setExclusive(false);
+            currentRadio->setChecked(false);
+            m_ui->buttonGroup->setExclusive(true);
+        }
+        m_previousRadio = m_ui->buttonGroup->checkedButton();
+    }
+
     m_ui->checkMaxRatio->setEnabled(m_ui->radioTorrentLimit->isChecked());
     m_ui->checkMaxTime->setEnabled(m_ui->radioTorrentLimit->isChecked());
 

@@ -36,6 +36,7 @@
 #include <QHash>
 
 #include "base/net/portforwarder.h"
+#include "base/settingvalue.h"
 
 class PortForwarderImpl final : public Net::PortForwarder
 {
@@ -56,7 +57,7 @@ private:
     void start();
     void stop();
 
-    bool m_active;
+    CachedSettingValue<bool> m_storeActive;
     lt::session *m_provider;
     QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 };

@@ -48,12 +48,7 @@ namespace Utils
         typedef T ComponentType;
         typedef Version<T, N, Mandatory> ThisType;
 
-        constexpr Version()
-            : m_components {{}}
-        {
-        }
-
-        constexpr Version(const ThisType &other) = default;
+        constexpr Version() = default;
 
         template <typename ... Other>
         constexpr Version(Other ... components)
@@ -151,9 +146,9 @@ namespace Utils
             {
                 return Version(s);
             }
-            catch (const RuntimeError &er)
+            catch (const RuntimeError &error)
             {
-                qDebug() << "Error parsing version:" << er.message();
+                qDebug() << "Error parsing version:" << error.message();
                 return defaultVersion;
             }
         }
@@ -187,7 +182,7 @@ namespace Utils
         {
         }
 
-        ComponentsArray m_components;
+        ComponentsArray m_components {{}};
     };
 
     template <typename T, std::size_t N, std::size_t Mandatory>

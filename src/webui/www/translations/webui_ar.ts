@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="ar" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Original authors</source>
-        <translation>المؤلفين الأصليين</translation>
+        <translation type="vanished">المؤلفين الأصليين</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -364,6 +366,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 0 و 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +961,8 @@
         <translation>%T: المتتبع الحالي</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1184,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>عنوان الآي بي الذي يتم إعلانه للمتتبع (يتطلب إعادة التشغيل)</translation>
+        <translation type="vanished">عنوان الآي بي الذي يتم إعلانه للمتتبع (يتطلب إعادة التشغيل)</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1431,7 +1437,7 @@
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
     <message>
@@ -1469,6 +1475,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: معلومات التحقق من البيانات (الهاش) الإصدار 1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1765,6 +1783,10 @@
     <message>
         <source>N/A</source>
         <translation>لا يوجد</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2735,7 +2757,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>النتائج (تظهر</translation>
+        <translation type="vanished">النتائج (تظهر</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2769,6 +2791,14 @@
         <source>to</source>
         <translation>إلى</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2827,7 @@
         <translation>مُفعّل</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>تحذير: تأكد من الامتثال لقوانين حقوق الطبع والنشر في بلدك عند تنزيل التورنت من أي من محركات البحث هذه.</translation>
     </message>
     <message>
@@ -2996,7 +3026,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>المؤلف</translation>
+        <translation type="vanished">المؤلف</translation>
     </message>
     <message>
         <source>Software Used</source>
@@ -3005,6 +3035,14 @@
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>تُستخدم قاعدة بيانات IP to Country Lite المجانية بواسطة DB-IP لفصل بلدان القرناء. قاعدة البيانات مُرخصة بموجب ترخيص Creative Commons Attribution 4.0 International License</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>France</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3400,7 +3438,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>

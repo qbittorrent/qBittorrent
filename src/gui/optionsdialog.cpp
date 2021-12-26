@@ -894,7 +894,7 @@ void OptionsDialog::saveOptions()
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MACOS
-    pref->setSystrayIntegration(systrayIntegration());
+    pref->setSystemTrayEnabled(systemTrayEnabled());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
@@ -980,8 +980,8 @@ void OptionsDialog::saveOptions()
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
-    pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
-    pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
+    pref->setActionOnDblClOnTorrentDl(m_ui->actionTorrentDlOnDblClBox->currentData().toInt());
+    pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
@@ -1085,7 +1085,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
-        pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
+        pref->setDynDNSService(static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex()));
         pref->setDynDomainName(m_ui->domainNameTxt->text());
         pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
         pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
@@ -1154,12 +1154,12 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
 #ifndef Q_OS_MACOS
-    m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
+    m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
     if (m_ui->checkShowSystray->isChecked())
     {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-        m_ui->comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+        m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
     }
 #endif
 
@@ -1275,14 +1275,26 @@ void OptionsDialog::loadOptions()
 #else
     m_ui->autoRunConsole->hide();
 #endif
-    intValue = pref->getActionOnDblClOnTorrentDl();
-    if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
-        intValue = 0;
-    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
-    intValue = pref->getActionOnDblClOnTorrentFn();
-    if (intValue >= m_ui->actionTorrentFnOnDblClBox->count())
-        intValue = 1;
-    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
+
+    m_ui->actionTorrentDlOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(4, NO_ACTION);
+    int actionDownloading = pref->getActionOnDblClOnTorrentDl();
+    if ((actionDownloading < 0) || (actionDownloading >= m_ui->actionTorrentDlOnDblClBox->count()))
+        actionDownloading = TOGGLE_PAUSE;
+    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(m_ui->actionTorrentDlOnDblClBox->findData(actionDownloading));
+
+    m_ui->actionTorrentFnOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(4, NO_ACTION);
+    int actionSeeding = pref->getActionOnDblClOnTorrentFn();
+    if ((actionSeeding < 0) || (actionSeeding >= m_ui->actionTorrentFnOnDblClBox->count()))
+        actionSeeding = OPEN_DEST;
+    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
     // End Downloads preferences
 
     // Connection preferences
@@ -1563,10 +1575,11 @@ bool OptionsDialog::startMinimized() const
 }
 
 #ifndef Q_OS_MACOS
-bool OptionsDialog::systrayIntegration() const
+bool OptionsDialog::systemTrayEnabled() const
 {
-    if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
-    return m_ui->checkShowSystray->isChecked();
+    return QSystemTrayIcon::isSystemTrayAvailable()
+        ? m_ui->checkShowSystray->isChecked()
+        : false;
 }
 
 bool OptionsDialog::minimizeToTray() const
@@ -1849,22 +1862,6 @@ QString OptionsDialog::getFinishedTorrentExportDir() const
     return {};
 }
 
-// Return action on double-click on a downloading torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentDl() const
-{
-    if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentDlOnDblClBox->currentIndex();
-}
-
-// Return action on double-click on a finished torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentFn() const
-{
-    if (m_ui->actionTorrentFnOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentFnOnDblClBox->currentIndex();
-}
-
 void OptionsDialog::on_addWatchedFolderButton_clicked()
 {
     Preferences *const pref = Preferences::instance();
@@ -2039,7 +2036,8 @@ void OptionsDialog::showConnectionTab()
 
 void OptionsDialog::on_registerDNSBtn_clicked()
 {
-    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(m_ui->comboDNSService->currentIndex()));
+    const auto service = static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex());
+    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(service));
 }
 
 void OptionsDialog::on_IpFilterRefreshBtn_clicked()

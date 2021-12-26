@@ -326,9 +326,6 @@
           </item>
           <item row="2" column="1">
            <widget class="QLabel" name="labelInfohash1Data">
-            <property name="textFormat">
-             <enum>Qt::PlainText</enum>
-            </property>
             <property name="textInteractionFlags">
              <set>Qt::TextSelectableByMouse</set>
             </property>
@@ -350,8 +347,8 @@
           </item>
           <item row="3" column="1">
            <widget class="QLabel" name="labelInfohash2Data">
-            <property name="text">
-             <string/>
+            <property name="textInteractionFlags">
+             <set>Qt::TextSelectableByMouse</set>
             </property>
            </widget>
           </item>

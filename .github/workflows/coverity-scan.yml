@@ -15,21 +15,28 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo add-apt-repository ppa:beineri/opt-qt-5.15.2-focal
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev qt515base qt515svg qt515tools zlib1g-dev
+            libboost-dev libssl-dev zlib1g-dev
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v2
+        with:
+          version: "5.15.2"
 
       - name: Install libtorrent
         run: |
-          git clone --branch v2.0.4 --depth 1 https://github.com/arvidn/libtorrent.git
+          git clone \
+            --branch "v2.0.5" \
+            --depth 1 \
+            --recurse-submodules \
+            https://github.com/arvidn/libtorrent.git
           cd libtorrent
-          git submodule update --init --recursive
           cmake \
             -B build \
             -G "Ninja" \
-            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -Ddeprecated-functions=OFF
           cmake --build build
           sudo cmake --install build
@@ -49,7 +56,7 @@ jobs:
           cmake \
             -B build \
             -G "Ninja" \
-            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DGUI=ON \
             -DVERBOSE_CONFIGURE=ON
           export PATH="$(pwd)/coverity_tool/bin:$PATH"

@@ -46,7 +46,7 @@ Please report any bug (or feature request) to:
 http://bugs.qbittorrent.org
 
 Official IRC channel:
-`#qbittorrent on irc.libera.chat`
+[#qbittorrent on irc.libera.chat](ircs://irc.libera.chat:6697/qbittorrent)
 
 ------------------------------------------
-sledgehammer999 <sledgehammer999@qbittorrent.org>
+sledgehammer999 \<sledgehammer999@qbittorrent.org\>

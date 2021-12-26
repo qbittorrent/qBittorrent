@@ -35,6 +35,7 @@
 #include <libtorrent/write_resume_data.hpp>
 
 #include <QByteArray>
+#include <QDebug>
 #include <QRegularExpression>
 #include <QThread>
 
@@ -113,7 +114,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const QString &pa
 
     loadQueue(m_resumeDataDir.absoluteFilePath(QLatin1String("queue")));
 
-    qDebug("Registered torrents count: %d", m_registeredTorrents.size());
+    qDebug() << "Registered torrents count: " << m_registeredTorrents.size();
 
     m_asyncWorker->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);

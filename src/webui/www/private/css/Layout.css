@@ -41,17 +41,17 @@ body {
 }
 
 #desktopTitlebarWrapper {
-    background: #718ba6 url(../images/bg-header.gif) repeat-x;
+    background: #718ba6 url("../images/bg-header.gif") repeat-x;
     height: 45px;
     overflow: hidden;
     position: relative;
 }
 
 #desktopTitlebar {
-    background: url(../images/logo.gif) no-repeat;
+    background: url("../images/logo.gif") no-repeat;
     background-position: left 0;
     height: 32px;
-    padding: 7px 8px 6px 8px;
+    padding: 7px 8px 6px;
 }
 
 #desktopTitlebar h1.applicationTitle {
@@ -69,7 +69,7 @@ body {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 10px;
     font-weight: bold;
-    padding: 7px 0 0 0;
+    padding: 7px 0 0;
     text-align: center;
     text-transform: uppercase;
 }
@@ -128,7 +128,7 @@ body {
 #desktopNavbar ul li a {
     color: #333;
     font-weight: normal;
-    padding: 2px 10px 6px 10px;
+    padding: 2px 10px 6px;
 }
 
 #desktopNavbar ul li a:hover {
@@ -138,13 +138,13 @@ body {
 
 #desktopNavbar ul li a.arrow-right,
 #desktopNavbar ul li a:hover.arrow-right {
-    background-image: url(../images/arrow-right.gif);
+    background-image: url("../images/arrow-right.gif");
     background-position: right 7px;
     background-repeat: no-repeat;
 }
 
 #desktopNavbar li ul {
-    background: #fff url(../images/bg-dropdown.gif) repeat-y;
+    background: #fff url("../images/bg-dropdown.gif") repeat-y;
     border: 1px solid #3f3f3f;
     left: -999em;
     margin-top: -6px;
@@ -186,7 +186,7 @@ body {
 
 #desktopNavbar li ul li a:hover {
     background: #6c98d9;
-    -moz-border-radius: 2px;
+    border-radius: 2px;
     color: #fff;
 }
 
@@ -239,7 +239,7 @@ li.divider {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 11px;
     height: 24px;
-    padding: 6px 8px 0 8px;
+    padding: 6px 8px 0;
 }
 
 /* Panel Layout
@@ -283,7 +283,7 @@ li.divider {
 }
 
 .panel-header {
-    background: #f1f1f1 url(../images/bg-panel-header.gif) repeat-x;
+    background: #f1f1f1 url("../images/bg-panel-header.gif") repeat-x;
     border-bottom: 1px solid #d3d3d3;
     height: 30px;
     overflow: hidden;
@@ -295,7 +295,7 @@ li.divider {
 }
 
 .panel-headerContent.tabs {
-    background: url(../images/tabs.gif) repeat-x;
+    background: url("../images/tabs.gif") repeat-x;
     background-position: left -68px;
 }
 
@@ -306,15 +306,15 @@ li.divider {
     height: 22px;
     margin: 0;
     overflow: hidden;
-    padding: 3px 8px 0 8px;
+    padding: 3px 8px 0;
 }
 
 .panel-collapse {
-    background: url(../icons/collapse.svg) left top no-repeat;
+    background: url("../icons/collapse.svg") left top no-repeat;
 }
 
 .panel-expand {
-    background: url(../icons/collapse.svg) left top no-repeat;
+    background: url("../icons/collapse.svg") left top no-repeat;
     transform: rotate(180deg);
 }
 
@@ -326,7 +326,7 @@ li.divider {
 /* Column and Panel Handles */
 
 .horizontalHandle {
-    background: #eee url(../images/bg-handle-horizontal.gif) repeat-x;
+    background: #eee url("../images/bg-handle-horizontal.gif") repeat-x;
     font-size: 1px;
     height: 4px;
     line-height: 1px;
@@ -338,7 +338,7 @@ li.divider {
 }
 
 .horizontalHandle .handleIcon {
-    background: url(../images/handle-icon-horizontal.gif) center center
+    background: url("../images/handle-icon-horizontal.gif") center center
         no-repeat;
     font-size: 1px;
     height: 4px;
@@ -348,7 +348,7 @@ li.divider {
 }
 
 .columnHandle {
-    background: #c3c3c3 url(../images/handle-icon.gif) center center no-repeat;
+    background: #c3c3c3 url("../images/handle-icon.gif") center center no-repeat;
     border: 1px solid #909090;
     border-bottom: 0;
     border-top: 0;
@@ -371,7 +371,7 @@ li.divider {
 
 /* Have to specify div here for IE6's sake */
 div.toolbox.divider {
-    background: url(../images/toolbox-divider.gif) repeat-y;
+    background: url("../images/toolbox-divider.gif") repeat-y;
     padding-left: 8px;
 }
 
@@ -400,18 +400,18 @@ div.toolbox.divider {
 
 .iconWrapper:hover {
     border: 1px solid #a0a0a0;
-    -moz-border-radius: 3px;
+    border-radius: 3px;
 }
 
 #spinnerWrapper {
-    background: url(../images/spinner-placeholder.gif) no-repeat;
+    background: url("../images/spinner-placeholder.gif") no-repeat;
     height: 16px;
-    margin: 4px 5px 0 5px;
+    margin: 4px 5px 0;
     width: 16px;
 }
 
 #spinner {
-    background: url(../images/spinner.gif) no-repeat;
+    background: url("../images/spinner.gif") no-repeat;
     display: none;
     height: 16px;
     width: 16px;

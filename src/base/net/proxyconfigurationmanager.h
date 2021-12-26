@@ -30,8 +30,12 @@
 
 #include <QObject>
 
+#include "base/settingvalue.h"
+
 namespace Net
 {
+    Q_NAMESPACE
+
     enum class ProxyType
     {
         None = 0,
@@ -41,6 +45,7 @@ namespace Net
         SOCKS5_PW = 4,
         SOCKS4 = 5
     };
+    Q_ENUM_NS(ProxyType)
 
     struct ProxyConfiguration
     {
@@ -53,7 +58,7 @@ namespace Net
     bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
     bool operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right);
 
-    class ProxyConfigurationManager : public QObject
+    class ProxyConfigurationManager final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(ProxyConfigurationManager)
@@ -81,6 +86,11 @@ namespace Net
 
         static ProxyConfigurationManager *m_instance;
         ProxyConfiguration m_config;
-        bool m_isProxyOnlyForTorrents;
+        SettingValue<bool> m_storeProxyOnlyForTorrents;
+        SettingValue<ProxyType> m_storeProxyType;
+        SettingValue<QString> m_storeProxyIP;
+        SettingValue<ushort> m_storeProxyPort;
+        SettingValue<QString> m_storeProxyUsername;
+        SettingValue<QString> m_storeProxyPassword;
     };
 }

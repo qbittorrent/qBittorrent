@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="nl" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="nl" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Submap aanmaken</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
 </context>
@@ -183,7 +185,7 @@
     </message>
     <message>
         <source>Original authors</source>
-        <translation>Oorspronkelijke auteurs</translation>
+        <translation type="vanished">Oorspronkelijke auteurs</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Torrents downloaden via hun URL&apos;s of magneetkoppelingen</translation>
+        <translation>Torrents downloaden via hun URL's of magneetkoppelingen</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -364,6 +366,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>De poort gebruikt voor inkomende verbindingen moet liggen tussen 0 en 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +961,8 @@
         <translation>%T: huidige tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: omring de parameter met aanhalingstekens om te vermijden dat tekst afgekapt wordt bij witruimte (bijvoorbeeld: "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1184,7 +1190,7 @@
     </message>
     <message>
         <source>IP Address to report to trackers (requires restart):</source>
-        <translation>IP-adres om te melden aan trackers (opnieuw opstarten vereist):</translation>
+        <translation type="vanished">IP-adres om te melden aan trackers (opnieuw opstarten vereist):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1431,7 +1437,7 @@
         <translation>Oorspronkelijk</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
     <message>
@@ -1456,7 +1462,7 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation>Lijst van vertrouwde proxy&apos;s:</translation>
+        <translation>Lijst van vertrouwde proxy's:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
@@ -1469,6 +1475,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%J: Info-hash v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1765,6 +1783,10 @@
     <message>
         <source>N/A</source>
         <translation>N/B</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2586,7 +2608,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Downloaden uit URL&apos;s</translation>
+        <translation>Downloaden uit URL's</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2735,7 +2757,7 @@
     </message>
     <message>
         <source>Results (showing</source>
-        <translation>Resultaten (</translation>
+        <translation type="vanished">Resultaten (</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2769,6 +2791,14 @@
         <source>to</source>
         <translation>tot</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2827,7 @@
         <translation>Ingeschakeld</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Waarschuwing: verzeker u ervan dat u voldoet aan de wetten op auteursrecht in uw land wanneer u torrents downloadt via een van deze zoekmachines.</translation>
     </message>
     <message>
@@ -2996,7 +3026,7 @@
     </message>
     <message>
         <source>Author</source>
-        <translation>Auteur</translation>
+        <translation type="vanished">Auteur</translation>
     </message>
     <message>
         <source>Software Used</source>
@@ -3005,6 +3035,14 @@
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>De gratis IP to Country Lite database van DB-IP wordt gebruikt voor het oplossen van de landen van peers. De database is gelicenseerd onder de Creative Commons Attribution 4.0 International License.</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>France</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3323,7 +3361,7 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation>Seizoensnummer is een verplichte &quot;geen nul&quot;-waarde</translation>
+        <translation>Seizoensnummer is een verplichte "geen nul"-waarde</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3400,7 +3438,7 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
         <translation>Oorspronkelijk</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Geen submap aanmaken</translation>
     </message>
 </context>

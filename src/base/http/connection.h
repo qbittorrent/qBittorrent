@@ -52,11 +52,9 @@ namespace Http
         bool hasExpired(qint64 timeout) const;
         bool isClosed() const;
 
-    private slots:
-        void read();
-
     private:
         static bool acceptsGzipEncoding(QString codings);
+        void read();
         void sendResponse(const Response &response) const;
 
         QTcpSocket *m_socket;

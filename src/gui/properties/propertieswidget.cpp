@@ -362,20 +362,6 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
         loadUrlSeeds();
 
         m_ui->labelCreatedByVal->setText(m_torrent->creator());
-
-        // List files in torrent
-        m_propListModel->model()->setupModelData(m_torrent->info());
-
-        // Expand single-item folders recursively
-        QModelIndex currentIndex;
-        while (m_propListModel->rowCount(currentIndex) == 1)
-        {
-            currentIndex = m_propListModel->index(0, 0, currentIndex);
-            m_ui->filesList->setExpanded(currentIndex, true);
-        }
-
-        // Load file priorities
-        m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
     }
     // Load dynamic data
     loadDynamicData();
@@ -412,7 +398,7 @@ void PropertiesWidget::saveSettings()
         sizes = hSplitter->sizes();
     else
         sizes = m_slideSizes;
-    qDebug("Sizes: %d", sizes.size());
+
     if (sizes.size() == 2)
         pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
     pref->setPropFileListState(m_ui->filesList->header()->saveState());
@@ -536,12 +522,40 @@ void PropertiesWidget::loadDynamicData()
         {
             qDebug("Updating priorities in files tab");
             m_ui->filesList->setUpdatesEnabled(false);
-            m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-            m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
-            // XXX: We don't update file priorities regularly for performance
-            // reasons. This means that priorities will not be updated if
-            // set from the Web UI.
-            // PropListModel->model()->updateFilesPriorities(h.file_priorities());
+
+            // Load torrent content if not yet done so
+            const bool isContentInitialized = m_propListModel->model()->hasIndex(0, 0);
+            if (!isContentInitialized)
+            {
+                // List files in torrent
+                m_propListModel->model()->setupModelData(*m_torrent);
+                // Load file priorities
+                m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
+                // Update file progress/availability
+                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+
+                // Expand single-item folders recursively.
+                // This will trigger sorting and filtering so do it after all relevant data is loaded.
+                QModelIndex currentIndex;
+                while (m_propListModel->rowCount(currentIndex) == 1)
+                {
+                    currentIndex = m_propListModel->index(0, 0, currentIndex);
+                    m_ui->filesList->setExpanded(currentIndex, true);
+                }
+            }
+            else
+            {
+                // Torrent content was loaded already, only make some updates
+
+                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
+                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+                // XXX: We don't update file priorities regularly for performance
+                // reasons. This means that priorities will not be updated if
+                // set from the Web UI.
+                // m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
+            }
+
             m_ui->filesList->setUpdatesEnabled(true);
         }
         break;
@@ -752,21 +766,31 @@ void PropertiesWidget::configure()
     // Speed widget
     if (Preferences::instance()->isSpeedWidgetEnabled())
     {
-        if (!m_speedWidget || !qobject_cast<SpeedWidget *>(m_speedWidget))
+        if (!qobject_cast<SpeedWidget *>(m_speedWidget))
         {
-            m_ui->speedLayout->removeWidget(m_speedWidget);
-            delete m_speedWidget;
-            m_speedWidget = new SpeedWidget {this};
+            if (m_speedWidget)
+            {
+                m_ui->speedLayout->removeWidget(m_speedWidget);
+                delete m_speedWidget;
+            }
+
+            m_speedWidget = new SpeedWidget(this);
             m_ui->speedLayout->addWidget(m_speedWidget);
         }
     }
     else
     {
-        if (!m_speedWidget || !qobject_cast<QLabel *>(m_speedWidget))
+        if (!qobject_cast<QLabel *>(m_speedWidget))
         {
-            m_ui->speedLayout->removeWidget(m_speedWidget);
-            delete m_speedWidget;
-            auto *label = new QLabel(tr("<center><b>Speed graphs are disabled</b><p>You may change this setting in Advanced Options </center>"), this);
+            if (m_speedWidget)
+            {
+                m_ui->speedLayout->removeWidget(m_speedWidget);
+                delete m_speedWidget;
+            }
+
+            const auto displayText = QString::fromLatin1("<center><b>%1</b><p>%2</p></center>")
+                .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
+            auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
             m_speedWidget = label;
             m_ui->speedLayout->addWidget(m_speedWidget);

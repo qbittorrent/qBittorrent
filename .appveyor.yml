@@ -3,7 +3,7 @@ version: '{branch}-{build}'
 # Do not build on tags (GitHub only)
 skip_tags: true
 
-image: Visual Studio 2019
+image: Visual Studio 2022
 
 branches:
   except:  # blacklist
@@ -42,7 +42,7 @@ install:
 
 before_build:
   # setup env
-  - CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvars64.bat"
+  - CALL "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" x64
   - SET PATH=%PATH%;C:\Qt\5.15.2\msvc2019_64\bin;%CACHE_DIR%\jom
   # setup project
   - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
@@ -56,4 +56,38 @@ build_script:
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
 
+after_build:
+  - cd "%REPO_DIR%"
+  - MKDIR upload
+  - COPY dist\windows\qt.conf upload
+  - COPY src\release\qbittorrent.exe upload
+  - COPY src\release\qbittorrent.pdb upload
+  - COPY "%CACHE_DIR%\base\bin\libcrypto-1_1-x64.dll" upload
+  - COPY "%CACHE_DIR%\base\bin\libssl-1_1-x64.dll" upload
+  - COPY "%CACHE_DIR%\base\lib\torrent-rasterbar.dll" upload
+  - COPY "%CACHE_DIR%\base\lib\zlib1.dll" upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Core.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Gui.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Network.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Sql.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Svg.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Widgets.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5WinExtras.dll upload
+  - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Xml.dll upload
+  - MKDIR upload\plugins\iconengines
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\iconengines\qsvgicon.dll upload\plugins\iconengines
+  - MKDIR upload\plugins\imageformats
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qico.dll upload\plugins\imageformats
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\imageformats\qsvg.dll upload\plugins\imageformats
+  - MKDIR upload\plugins\platforms
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\platforms\qwindows.dll upload\plugins\platforms
+  - MKDIR upload\plugins\sqldrivers
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\sqldrivers\qsqlite.dll upload\plugins\sqldrivers
+  - MKDIR upload\plugins\styles
+  - COPY C:\Qt\5.15.2\msvc2019_64\plugins\styles\qwindowsvistastyle.dll upload\plugins\styles
+
 test: off
+
+artifacts:
+  - path: upload
+    name: qBittorrent-Appveyor_Windows-x64

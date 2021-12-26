@@ -303,6 +303,9 @@ void TransferListWidget::torrentDoubleClicked()
     case OPEN_DEST:
         openDestinationFolder(torrent);
         break;
+    case SHOW_OPTIONS:
+        setTorrentOptions();
+        break;
     }
 }
 
@@ -326,21 +329,6 @@ QVector<BitTorrent::Torrent *> TransferListWidget::getVisibleTorrents() const
     for (int i = 0; i < visibleTorrentsCount; ++i)
         torrents << m_listModel->torrentHandle(mapToSource(m_sortFilterModel->index(i, 0)));
     return torrents;
-}
-
-void TransferListWidget::setSelectedTorrentsLocation()
-{
-    const QVector<BitTorrent::Torrent *> torrents = getSelectedTorrents();
-    if (torrents.isEmpty()) return;
-
-    const QString oldLocation = torrents[0]->savePath();
-    const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
-                                            QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
-    if (newLocation.isEmpty() || !QDir(newLocation).exists()) return;
-
-    // Actually move storage
-    for (BitTorrent::Torrent *const torrent : torrents)
-        torrent->move(Utils::Fs::expandPathAbs(newLocation));
 }
 
 void TransferListWidget::pauseAllTorrents()
@@ -659,18 +647,6 @@ void TransferListWidget::setSelectedTorrentsSuperSeeding(const bool enabled) con
     }
 }
 
-void TransferListWidget::setSelectedTorrentsSequentialDownload(const bool enabled) const
-{
-    for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->setSequentialDownload(enabled);
-}
-
-void TransferListWidget::setSelectedFirstLastPiecePrio(const bool enabled) const
-{
-    for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
-        torrent->setFirstLastPiecePriority(enabled);
-}
-
 void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled) const
 {
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
@@ -845,8 +821,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionTopQueuePos, &QAction::triggered, this, &TransferListWidget::topQueuePosSelectedTorrents);
     auto *actionBottomQueuePos = new QAction(UIThemeManager::instance()->getIcon("go-bottom"), tr("Move to bottom", "i.e. Move to bottom of the queue"), listMenu);
     connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
-    auto *actionSetTorrentPath = new QAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Set location..."), listMenu);
-    connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
     auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon("document-edit-verify"), tr("Force recheck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon("document-edit-verify"), tr("Force reannounce"), listMenu);
@@ -865,13 +839,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
     auto *actionRename = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."), listMenu);
     connect(actionRename, &QAction::triggered, this, &TransferListWidget::renameSelectedTorrent);
-    auto *actionSequentialDownload = new TriStateAction(tr("Download in sequential order"), listMenu);
-    connect(actionSequentialDownload, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSequentialDownload);
-    auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
-    connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
-    auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
-    actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
-    connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
     // End of actions
@@ -884,8 +851,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     bool sequentialDownloadMode = false, prioritizeFirstLast = false;
     bool oneHasMetadata = false, oneNotSeed = false;
     bool allSameCategory = true;
-    bool allSameAutoTMM = true;
-    bool firstAutoTMM = false;
     QString firstCategory;
     bool first = true;
     TagSet tagsInAny;
@@ -909,16 +874,12 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
         if (first)
         {
-            firstAutoTMM = torrent->isAutoTMMEnabled();
             tagsInAll = torrentTags;
         }
         else
         {
             tagsInAll.intersect(torrentTags);
         }
-
-        if (firstAutoTMM != torrent->isAutoTMMEnabled())
-            allSameAutoTMM = false;
 
         if (torrent->hasMetadata())
             oneHasMetadata = true;
@@ -979,7 +940,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
         if (oneHasMetadata && oneNotSeed && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
-            && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM
+            && needsStart && needsForce && needsPause && needsPreview
             && hasInfohashV1 && hasInfohashV2)
         {
             break;
@@ -995,35 +956,9 @@ void TransferListWidget::displayListMenu(const QPoint &)
     listMenu->addSeparator();
     listMenu->addAction(actionDelete);
     listMenu->addSeparator();
-    listMenu->addAction(actionSetTorrentPath);
     if (selectedIndexes.size() == 1)
         listMenu->addAction(actionRename);
     listMenu->addAction(actionEditTracker);
-
-    // Category Menu
-    QStringList categories = BitTorrent::Session::instance()->categories().keys();
-    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
-
-    QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
-
-    categoryMenu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New...", "New category...")
-        , this, &TransferListWidget::askNewCategoryForSelection);
-    categoryMenu->addAction(UIThemeManager::instance()->getIcon("edit-clear"), tr("Reset", "Reset category")
-        , this, [this]() { setSelectionCategory(""); });
-    categoryMenu->addSeparator();
-
-    for (const QString &category : asConst(categories))
-    {
-        const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
-            , this, [this, category]() { setSelectionCategory(category); });
-
-        if (allSameCategory && (category == firstCategory))
-        {
-            cat->setCheckable(true);
-            cat->setChecked(true);
-        }
-    }
 
     // Tag Menu
     QStringList tags(BitTorrent::Session::instance()->tags().values());
@@ -1063,11 +998,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
         tagsMenu->addAction(action);
     }
 
-    actionAutoTMM->setCheckState(allSameAutoTMM
-        ? (firstAutoTMM ? Qt::Checked : Qt::Unchecked)
-        : Qt::PartiallyChecked);
-    listMenu->addAction(actionAutoTMM);
-
     listMenu->addSeparator();
     listMenu->addAction(actionTorrentOptions);
     if (!oneNotSeed && oneHasMetadata)
@@ -1085,19 +1015,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         addedPreviewAction = true;
     }
     if (oneNotSeed)
-    {
-        actionSequentialDownload->setCheckState(allSameSequentialDownloadMode
-            ? (sequentialDownloadMode ? Qt::Checked : Qt::Unchecked)
-            : Qt::PartiallyChecked);
-        listMenu->addAction(actionSequentialDownload);
-
-        actionFirstLastPiecePrio->setCheckState(allSamePrioFirstlast
-            ? (prioritizeFirstLast ? Qt::Checked : Qt::Unchecked)
-            : Qt::PartiallyChecked);
-        listMenu->addAction(actionFirstLastPiecePrio);
-
         addedPreviewAction = true;
-    }
 
     if (addedPreviewAction)
         listMenu->addSeparator();

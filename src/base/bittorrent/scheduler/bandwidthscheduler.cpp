@@ -205,7 +205,7 @@ bool BandwidthScheduler::importLegacyScheduler()
     Preferences *pref = Preferences::instance();
     const QTime start = pref->getLegacySchedulerStartTime();
     const QTime end = pref->getLegacySchedulerEndTime();
-    const int schedulerDays = pref->getLegacySchedulerDays();
+    const Scheduler::Days schedulerDays = pref->getLegacySchedulerDays();
 
     if (!start.isValid() || !end.isValid() || schedulerDays == -1)
         return false;
@@ -217,9 +217,9 @@ bool BandwidthScheduler::importLegacyScheduler()
 
     for (int day = 0; day < 7; ++day)
     {
-        bool shouldAdd = (schedulerDays == EVERY_DAY)
-            || (schedulerDays == WEEK_DAYS && (day != 5 && day != 6))
-            || (schedulerDays == WEEK_ENDS && (day == 5 || day == 6))
+        bool shouldAdd = (schedulerDays == Scheduler::Days::EveryDay)
+            || (schedulerDays == Scheduler::Days::Weekday && (day != 5 && day != 6))
+            || (schedulerDays == Scheduler::Days::Weekend && (day == 5 || day == 6))
             || (day == schedulerDays - 3);
 
         auto *scheduleDay = new ScheduleDay(day);

@@ -284,7 +284,8 @@ namespace
                     }
                     break;
                 default:
-                    Q_ASSERT(0);
+                    Q_ASSERT(false);
+                    break;
                 }
             }
 
@@ -574,9 +575,11 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
             {KEY_PEER_FLAGS, pi.flags()},
             {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
-            {KEY_PEER_RELEVANCE, pi.relevance()},
-            {KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n')}
+            {KEY_PEER_RELEVANCE, pi.relevance()}
         };
+
+        if (torrent->hasMetadata())
+            peer.insert(KEY_PEER_FILES, torrent->info().filesForPiece(pi.downloadingPieceIndex()).join('\n'));
 
         if (resolvePeerCountries)
         {

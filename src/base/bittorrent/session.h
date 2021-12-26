@@ -500,7 +500,7 @@ namespace BitTorrent
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newPath, MoveStorageMode mode);
 
-        void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath) const;
+        void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath, const QStringList &filePaths = {}) const;
 
     signals:
         void allTorrentsFinished();

@@ -289,6 +289,7 @@ namespace BitTorrent
         lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
+        QStringList m_filePaths;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_infoHash;
@@ -300,12 +301,6 @@ namespace BitTorrent
         bool m_storageIsMoving = false;
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
-
-#ifndef QBT_USES_LIBTORRENT2
-        // Until libtorrent provided an "old_name" field in `file_renamed_alert`
-        // we relied on this workaround to remove empty leftover folders
-        QHash<int, QVector<QString>> m_oldPath;
-#endif
 
         QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;
         FileErrorInfo m_lastFileError;

@@ -71,6 +71,10 @@ namespace Utils::Fs
 
     QString tempPath();
 
+    QString findRootFolder(const QStringList &filePaths);
+    void stripRootFolder(QStringList &filePaths);
+    void addRootFolder(QStringList &filePaths, const QString &name);
+
 #if !defined Q_OS_HAIKU
     bool isNetworkFileSystem(const QString &path);
 #endif

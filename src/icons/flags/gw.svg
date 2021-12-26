@@ -1,1 +1,13 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="m0 0h220v480h-220z" fill="#ce1126"/><path d="m220 0h420v240h-420z" fill="#fcd116"/><path d="m220 240h420v240h-420z" fill="#009e49"/><g id="a" transform="matrix(80 0 0 80 110 240)"><path id="b" d="m0-1v1h.5" transform="matrix(.95105652 .30901699 -.30901699 .95105652 -.309017 -.048943)"/><use height="100%" transform="scale(-1 1)" width="100%" xlink:href="#b"/></g><use height="100%" transform="matrix(.30901699 .95105652 -.95105652 .30901699 304.261695 61.219705)" width="100%" xlink:href="#a"/><use height="100%" transform="matrix(-.80901699 .58778525 -.58778525 -.80901699 340.06033 369.507701)" width="100%" xlink:href="#a"/><use height="100%" transform="matrix(-.80901699 -.58778525 .58778525 -.80901699 57.923409 498.820456)" width="100%" xlink:href="#a"/><use height="100%" transform="matrix(.30901699 -.95105652 .95105652 .30901699 -152.245433 270.452138)" width="100%" xlink:href="#a"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-gw" viewBox="0 0 640 480">
+  <path fill="#ce1126" d="M0 0h220v480H0z"/>
+  <path fill="#fcd116" d="M220 0h420v240H220z"/>
+  <path fill="#009e49" d="M220 240h420v240H220z"/>
+  <g id="b" transform="matrix(80 0 0 80 110 240)">
+    <path id="a" d="M0-1v1h.5" transform="rotate(18 0 -1)"/>
+    <use xlink:href="#a" width="100%" height="100%" transform="scale(-1 1)"/>
+  </g>
+  <use xlink:href="#b" width="100%" height="100%" transform="rotate(72 110 240)"/>
+  <use xlink:href="#b" width="100%" height="100%" transform="rotate(144 110 240)"/>
+  <use xlink:href="#b" width="100%" height="100%" transform="rotate(-144 110 240)"/>
+  <use xlink:href="#b" width="100%" height="100%" transform="rotate(-72 110 240)"/>
+</svg>

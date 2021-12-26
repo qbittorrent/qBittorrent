@@ -264,7 +264,7 @@ void AppController::preferencesAction()
     data["web_ui_reverse_proxies_list"] = pref->getWebUITrustedReverseProxiesList();
     // Update my dynamic domain name
     data["dyndns_enabled"] = pref->isDynDNSEnabled();
-    data["dyndns_service"] = pref->getDynDNSService();
+    data["dyndns_service"] = static_cast<int>(pref->getDynDNSService());
     data["dyndns_username"] = pref->getDynDNSUsername();
     data["dyndns_password"] = pref->getDynDNSPassword();
     data["dyndns_domain"] = pref->getDynDomainName();
@@ -694,7 +694,7 @@ void AppController::setPreferencesAction()
     if (hasKey("dyndns_enabled"))
         pref->setDynDNSEnabled(it.value().toBool());
     if (hasKey("dyndns_service"))
-        pref->setDynDNSService(it.value().toInt());
+        pref->setDynDNSService(static_cast<DNS::Service>(it.value().toInt()));
     if (hasKey("dyndns_username"))
         pref->setDynDNSUsername(it.value().toString());
     if (hasKey("dyndns_password"))

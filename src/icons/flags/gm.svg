@@ -1,1 +1,14 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m0-48h640v480h-640z"/></clipPath><g clip-path="url(#a)" fill-rule="evenodd" stroke-width="1pt" transform="translate(0 48)"><path d="m0-128h640v213.3h-640z" fill="#f00"/><path d="m0 85.3h640v35.7h-640z" fill="#fff"/><path d="m0 120.9h640v142.1h-640z" fill="#009"/><path d="m0 263.1h640v35.6h-640z" fill="#fff"/><path d="m0 298.7h640v213.3h-640z" fill="#090"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-gm" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="gm-a">
+      <path fill-opacity=".7" d="M0-48h640v480H0z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" stroke-width="1pt" clip-path="url(#gm-a)" transform="translate(0 48)">
+    <path fill="red" d="M0-128h640V85.3H0z"/>
+    <path fill="#fff" d="M0 85.3h640V121H0z"/>
+    <path fill="#009" d="M0 120.9h640V263H0z"/>
+    <path fill="#fff" d="M0 263.1h640v35.6H0z"/>
+    <path fill="#090" d="M0 298.7h640V512H0z"/>
+  </g>
+</svg>

@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QtGlobal>
 #include <QColor>
 #include <QHash>
 #include <QIcon>
@@ -50,6 +51,10 @@ public:
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
     QColor getColor(const QString &id, const QColor &defaultColor) const;
+
+#ifndef Q_OS_MACOS
+    QIcon getSystrayIcon() const;
+#endif
 
 private:
     UIThemeManager(); // singleton class

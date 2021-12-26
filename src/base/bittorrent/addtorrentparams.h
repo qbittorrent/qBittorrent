@@ -53,6 +53,7 @@ namespace BitTorrent
         bool firstLastPiecePriority = false;
         bool addForced = false;
         std::optional<bool> addPaused;
+        QStringList filePaths; // used if TorrentInfo is set
         QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
         bool skipChecking = false;
         std::optional<BitTorrent::TorrentContentLayout> contentLayout;

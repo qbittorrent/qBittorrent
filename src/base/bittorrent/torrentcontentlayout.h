@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -48,4 +48,7 @@ namespace BitTorrent
 
         Q_ENUM_NS(TorrentContentLayout)
     }
+
+    TorrentContentLayout detectContentLayout(const QStringList &filePaths);
+    void applyContentLayout(QStringList &filePaths, TorrentContentLayout contentLayout, const QString &rootFolder = {});
 }

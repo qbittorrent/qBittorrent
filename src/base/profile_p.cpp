@@ -169,9 +169,9 @@ SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) con
 {
     // here we force QSettings::IniFormat format always because we need it to be portable across platforms
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    constexpr const char *CONF_FILE_EXTENSION = ".ini";
+    const char CONF_FILE_EXTENSION[] = ".ini";
 #else
-    constexpr const char *CONF_FILE_EXTENSION = ".conf";
+    const char CONF_FILE_EXTENSION[] = ".conf";
 #endif
     const QString settingsFileName {QDir(configLocation()).absoluteFilePath(name + QLatin1String(CONF_FILE_EXTENSION))};
     return SettingsPtr(new QSettings(settingsFileName, QSettings::IniFormat));

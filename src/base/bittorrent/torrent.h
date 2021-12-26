@@ -125,8 +125,8 @@ namespace BitTorrent
         virtual qlonglong wastedSize() const = 0;
         virtual QString currentTracker() const = 0;
 
-        // 1. savePath() - the path where all the files and subfolders of torrent are stored (as always).
-        // 2. rootPath() - absolute path of torrent file tree (save path + first item from 1st torrent file path).
+        // 1. savePath() - the path where all the files and subfolders of torrent are stored.
+        // 2. rootPath() - absolute path of torrent file tree (first common subfolder of torrent files); empty string if torrent has no root folder.
         // 3. contentPath() - absolute path of torrent content (root path for multifile torrents, absolute file path for singlefile torrents).
         //
         // These methods have 'actual' parameter (defaults to false) which allow to get actual or final path variant.
@@ -166,7 +166,7 @@ namespace BitTorrent
         // | A | /home/user/torrents/torrentA | /home/user/torrents/torrentA               |
         // | A*|           <empty>            | /home/user/torrents                        |
         // | B | /home/user/torrents/torrentB | /home/user/torrents/torrentB/subdir1/file1 |
-        // | C | /home/user/torrents/file1    | /home/user/torrents/file1                  |
+        // | C |           <empty>            | /home/user/torrents/file1                  |
 
         virtual QString savePath(bool actual = false) const = 0;
         virtual QString rootPath(bool actual = false) const = 0;

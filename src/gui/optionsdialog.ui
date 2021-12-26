@@ -315,6 +315,11 @@
                     </item>
                     <item>
                      <property name="text">
+                      <string>Show torrent options</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
                       <string>No action</string>
                      </property>
                     </item>
@@ -342,6 +347,11 @@
                     <item>
                      <property name="text">
                       <string>Preview file, otherwise open destination folder</string>
+                     </property>
+                    </item>
+                    <item>
+                     <property name="text">
+                      <string>Show torrent options</string>
                      </property>
                     </item>
                     <item>

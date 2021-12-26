@@ -32,20 +32,23 @@
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
-#include "base/settingsstorage.h"
 #include "cookiesmodel.h"
 #include "ui_cookiesdialog.h"
 #include "uithememanager.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) QStringLiteral("CookiesDialog/" name)
-const QString KEY_SIZE = SETTINGS_KEY("Size");
-const QString KEY_COOKIESVIEWSTATE = SETTINGS_KEY("CookiesViewState");
+#define SETTINGS_KEY(name) "CookiesDialog/" name
 
 CookiesDialog::CookiesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::CookiesDialog)
     , m_cookiesModel(new CookiesModel(Net::DownloadManager::instance()->allCookies(), this))
+    , m_storeDialogSize(SETTINGS_KEY("Size"))
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    , m_storeViewState("GUI/Qt6/" SETTINGS_KEY("ViewState"))
+#else
+    , m_storeViewState(SETTINGS_KEY("CookiesViewState"))
+#endif
 {
     m_ui->setupUi(this);
 
@@ -61,16 +64,14 @@ CookiesDialog::CookiesDialog(QWidget *parent)
                     m_cookiesModel->index(0, 0),
                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
-    Utils::Gui::resize(this, SettingsStorage::instance()->loadValue<QSize>(KEY_SIZE));
-    m_ui->treeView->header()->restoreState(
-        SettingsStorage::instance()->loadValue<QByteArray>(KEY_COOKIESVIEWSTATE));
+    Utils::Gui::resize(this, m_storeDialogSize);
+    m_ui->treeView->header()->restoreState(m_storeViewState);
 }
 
 CookiesDialog::~CookiesDialog()
 {
-    SettingsStorage::instance()->storeValue(KEY_SIZE, size());
-    SettingsStorage::instance()->storeValue(
-                KEY_COOKIESVIEWSTATE, m_ui->treeView->header()->saveState());
+    m_storeDialogSize = size();
+    m_storeViewState = m_ui->treeView->header()->saveState();
     delete m_ui;
 }
 

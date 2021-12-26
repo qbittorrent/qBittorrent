@@ -85,7 +85,9 @@ private slots:
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
+    void contentLayoutChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
+    void renameSelectedFile();
 
     void accept() override;
     void reject() override;
@@ -104,20 +106,22 @@ private:
     void setupTreeview();
     void setSavePath(const QString &newPath);
     void saveTorrentFile();
+    bool hasMetadata() const;
 
     void showEvent(QShowEvent *event) override;
 
     Ui::AddNewTorrentDialog *m_ui;
-    TorrentContentFilterModel *m_contentModel;
-    PropListDelegate *m_contentDelegate;
-    bool m_hasMetadata;
+    TorrentContentFilterModel *m_contentModel = nullptr;
+    PropListDelegate *m_contentDelegate = nullptr;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
-    QByteArray m_headerState;
-    int m_oldIndex;
+    int m_oldIndex = 0;
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 
     SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QString> m_storeDefaultCategory;
+    SettingValue<bool> m_storeRememberLastSavePath;
+    SettingValue<QByteArray> m_storeTreeHeaderState;
     SettingValue<QByteArray> m_storeSplitterState;
 };
