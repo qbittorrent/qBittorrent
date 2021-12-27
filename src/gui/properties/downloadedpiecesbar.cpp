@@ -28,6 +28,7 @@
 
 #include "downloadedpiecesbar.h"
 
+#include <algorithm>
 #include <cmath>
 
 #include <QDebug>
@@ -117,7 +118,7 @@ QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin
         value /= ratio;
 
         // float precision sometimes gives > 1, because it's not possible to store irrational numbers
-        value = qMin(value, 1.0f);
+        value = std::min(value, 1.0f);
 
         result[x] = value;
     }

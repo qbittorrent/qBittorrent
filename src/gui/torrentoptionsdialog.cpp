@@ -30,6 +30,8 @@
 
 #include "torrentoptionsdialog.h"
 
+#include <algorithm>
+
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QString>
@@ -78,8 +80,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     const QString firstTorrentSavePath = torrents[0]->savePath();
     const QString firstTorrentCategory = torrents[0]->category();
 
-    const int firstTorrentUpLimit = qMax(0, torrents[0]->uploadLimit());
-    const int firstTorrentDownLimit = qMax(0, torrents[0]->downloadLimit());
+    const int firstTorrentUpLimit = std::max(0, torrents[0]->uploadLimit());
+    const int firstTorrentDownLimit = std::max(0, torrents[0]->downloadLimit());
 
     const qreal firstTorrentRatio = torrents[0]->ratioLimit();
     const int firstTorrentSeedingTime = torrents[0]->seedingTimeLimit();
@@ -112,12 +114,12 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
         }
         if (allSameUpLimit)
         {
-            if (qMax(0, torrent->uploadLimit()) != firstTorrentUpLimit)
+            if (std::max(0, torrent->uploadLimit()) != firstTorrentUpLimit)
                 allSameUpLimit = false;
         }
         if (allSameDownLimit)
         {
-            if (qMax(0, torrent->downloadLimit()) != firstTorrentDownLimit)
+            if (std::max(0, torrent->downloadLimit()) != firstTorrentDownLimit)
                 allSameDownLimit = false;
         }
         if (allSameRatio)
@@ -201,8 +203,8 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
             ? (session->altGlobalDownloadSpeedLimit() / 1024)
             : (session->globalDownloadSpeedLimit() / 1024);
 
-    const int uploadVal = qMax(0, (firstTorrentUpLimit / 1024));
-    const int downloadVal = qMax(0, (firstTorrentDownLimit / 1024));
+    const int uploadVal = std::max(0, (firstTorrentUpLimit / 1024));
+    const int downloadVal = std::max(0, (firstTorrentDownLimit / 1024));
     int maxUpload = (globalUploadLimit <= 0) ? 10000 : globalUploadLimit;
     int maxDownload = (globalDownloadLimit <= 0) ? 10000 : globalDownloadLimit;
 

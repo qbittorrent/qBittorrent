@@ -28,6 +28,8 @@
 
 #include "speedlimitdialog.h"
 
+#include <algorithm>
+
 #include <QStyle>
 
 #include "base/bittorrent/session.h"
@@ -65,17 +67,17 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
         slider->setValue(value);
     };
     const auto *session = BitTorrent::Session::instance();
-    const int uploadVal = qMax(0, (session->globalUploadSpeedLimit() / 1024));
-    const int downloadVal = qMax(0, (session->globalDownloadSpeedLimit() / 1024));
-    const int maxUpload = qMax(10000, (session->globalUploadSpeedLimit() / 1024));
-    const int maxDownload = qMax(10000, (session->globalDownloadSpeedLimit() / 1024));
+    const int uploadVal = std::max(0, (session->globalUploadSpeedLimit() / 1024));
+    const int downloadVal = std::max(0, (session->globalDownloadSpeedLimit() / 1024));
+    const int maxUpload = std::max(10000, (session->globalUploadSpeedLimit() / 1024));
+    const int maxDownload = std::max(10000, (session->globalDownloadSpeedLimit() / 1024));
     initSlider(m_ui->sliderUploadLimit, uploadVal, maxUpload);
     initSlider(m_ui->sliderDownloadLimit, downloadVal, maxDownload);
 
-    const int altUploadVal = qMax(0, (session->altGlobalUploadSpeedLimit() / 1024));
-    const int altDownloadVal = qMax(0, (session->altGlobalDownloadSpeedLimit() / 1024));
-    const int altMaxUpload = qMax(10000, (session->altGlobalUploadSpeedLimit() / 1024));
-    const int altMaxDownload = qMax(10000, (session->altGlobalDownloadSpeedLimit() / 1024));
+    const int altUploadVal = std::max(0, (session->altGlobalUploadSpeedLimit() / 1024));
+    const int altDownloadVal = std::max(0, (session->altGlobalDownloadSpeedLimit() / 1024));
+    const int altMaxUpload = std::max(10000, (session->altGlobalUploadSpeedLimit() / 1024));
+    const int altMaxDownload = std::max(10000, (session->altGlobalDownloadSpeedLimit() / 1024));
     initSlider(m_ui->sliderAltUploadLimit, altUploadVal, altMaxUpload);
     initSlider(m_ui->sliderAltDownloadLimit, altDownloadVal, altMaxDownload);
 

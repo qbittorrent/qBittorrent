@@ -3171,7 +3171,7 @@ void Session::setPeerTurnoverInterval(const int val)
 
 int Session::asyncIOThreads() const
 {
-    return qBound(1, m_asyncIOThreads.get(), 1024);
+    return std::clamp(m_asyncIOThreads.get(), 1, 1024);
 }
 
 void Session::setAsyncIOThreads(const int num)
@@ -3185,7 +3185,7 @@ void Session::setAsyncIOThreads(const int num)
 
 int Session::hashingThreads() const
 {
-    return qBound(1, m_hashingThreads.get(), 1024);
+    return std::clamp(m_hashingThreads.get(), 1, 1024);
 }
 
 void Session::setHashingThreads(const int num)
@@ -3213,12 +3213,12 @@ void Session::setFilePoolSize(const int size)
 
 int Session::checkingMemUsage() const
 {
-    return qMax(1, m_checkingMemUsage.get());
+    return std::max(1, m_checkingMemUsage.get());
 }
 
 void Session::setCheckingMemUsage(int size)
 {
-    size = qMax(size, 1);
+    size = std::max(size, 1);
 
     if (size == m_checkingMemUsage)
         return;
@@ -3230,21 +3230,21 @@ void Session::setCheckingMemUsage(int size)
 int Session::diskCacheSize() const
 {
 #ifdef QBT_APP_64BIT
-    return qMin(m_diskCacheSize.get(), 33554431);  // 32768GiB
+    return std::min(m_diskCacheSize.get(), 33554431);  // 32768GiB
 #else
     // When build as 32bit binary, set the maximum at less than 2GB to prevent crashes
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    return qMin(m_diskCacheSize.get(), 1536);
+    return std::min(m_diskCacheSize.get(), 1536);
 #endif
 }
 
 void Session::setDiskCacheSize(int size)
 {
 #ifdef QBT_APP_64BIT
-    size = qMin(size, 33554431);  // 32768GiB
+    size = std::min(size, 33554431);  // 32768GiB
 #else
     // allocate 1536MiB and leave 512MiB to the rest of program data in RAM
-    size = qMin(size, 1536);
+    size = std::min(size, 1536);
 #endif
     if (size != m_diskCacheSize)
     {
