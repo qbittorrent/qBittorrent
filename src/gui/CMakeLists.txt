@@ -27,6 +27,7 @@ add_library(qbt_gui STATIC
     previewlistdelegate.h
     previewselectdialog.h
     progressbarpainter.h
+    properties/contentwidget.h
     properties/downloadedpiecesbar.h
     properties/peerlistsortmodel.h
     properties/peerlistwidget.h
@@ -109,6 +110,7 @@ add_library(qbt_gui STATIC
     previewlistdelegate.cpp
     previewselectdialog.cpp
     progressbarpainter.cpp
+    properties/contentwidget.cpp
     properties/downloadedpiecesbar.cpp
     properties/peerlistsortmodel.cpp
     properties/peerlistwidget.cpp
@@ -176,6 +178,7 @@ add_library(qbt_gui STATIC
     mainwindow.ui
     optionsdialog.ui
     previewselectdialog.ui
+    properties/contentwidget.ui
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
     properties/trackersadditiondialog.ui

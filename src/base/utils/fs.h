@@ -76,12 +76,15 @@ namespace Utils::Fs
     bool isRegularFile(const QString &path);
     // join the two paths with a forward slash if they're both nonempty
     QString combinePaths(const QString &p1, const QString &p2);
-    // rename all the oldPaths according to the transformer. Will remove and add QB_EXT as needed.
-    // The paths parameter determines whether the transformer runs on the whole path or just the
-    // file name.
-    QVector<QString> renamePaths(const QVector<QString> &oldPaths
-                                 , std::function<QString (const QString &)> &transformer
-                                 , bool paths = true);
+    /*
+     * Rename the oldPath according to the transformer. Will remove and add QB_EXT as needed. The
+     * paths parameter determines whether the transformer runs on the whole path or just the file
+     * name.
+     */
+    QString renamePath(const QString &oldPath
+                       , const std::function<QString (const QString &)> &transformer
+                       , bool paths = true
+                       , bool *ok = nullptr);
 
     bool smartRemoveEmptyFolderTree(const QString &path);
     bool forceRemove(const QString &filePath);

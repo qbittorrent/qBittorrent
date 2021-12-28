@@ -121,7 +121,7 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     if (newPriority != previousPriority)
     {
         model->setData(index, newPriority);
-        emit filteredFilesChanged();
+        emit prioritiesChanged();
     }
 }
 

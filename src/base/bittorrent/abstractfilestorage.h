@@ -52,10 +52,9 @@ namespace BitTorrent
         // return indexes of all files in the given folder.
         QVector<int> folderIndexes(const QString &folder) const;
 
-        // rename multiple files by applying the nameTransformer to each of their names. Checks
-        // validity of new file names. If paths=true, then the transformer is run on the whole path,
-        // not just file name. The QB_EXT, if present, will be invisible to the transformer.
-        void renameFiles(const QVector<int> &indexes, const QVector<QString> &names);
+        // Rename files at given torrent indexes to the given paths, throwing a RuntimeError if any
+        // paths conflict with each other.
+        void renameFiles(const QVector<int> &indexes, const QVector<QString> &paths);
         // rename file, checking that new path is valid
         void renameFileChecked(int index, const QString &newPath);
         // rename file, checking that old and new paths are valid

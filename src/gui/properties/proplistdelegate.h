@@ -66,7 +66,7 @@ public slots:
     void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 signals:
-    void filteredFilesChanged() const;
+    void prioritiesChanged() const;
 
 private:
     PropertiesWidget *m_properties;

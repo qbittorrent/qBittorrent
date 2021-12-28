@@ -71,7 +71,6 @@ public:
     BitTorrent::Torrent *getCurrentTorrent() const;
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
-    QTreeView *getFilesList() const;
 
 public slots:
     void setVisibility(bool visible);
@@ -81,8 +80,6 @@ public slots:
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void displayFileListHeaderMenu();
-    void openItem(const QModelIndex &index) const;
     void loadTrackers(BitTorrent::Torrent *const torrent);
 
 protected slots:
@@ -92,29 +89,20 @@ protected slots:
     void deleteSelectedUrlSeeds();
     void copySelectedWebSeedsToClipboard() const;
     void editWebSeed();
-    void displayFilesListMenu(const QPoint &);
     void displayWebSeedListMenu(const QPoint &);
-    void filteredFilesChanged();
     void showPiecesDownloaded(bool show);
     void showPiecesAvailability(bool show);
-    void openSelectedFile();
 
 private slots:
     void configure();
-    void filterText(const QString &filter);
     void updateSavePath(BitTorrent::Torrent *const torrent);
 
 private:
     QPushButton *getButtonFromIndex(int index);
-    void applyPriorities();
-    void openParentFolder(const QModelIndex &index) const;
-    QString getFullPath(const QModelIndex &index) const;
 
     Ui::PropertiesWidget *m_ui;
     BitTorrent::Torrent *m_torrent;
     SlideState m_state;
-    TorrentContentFilterModel *m_propListModel;
-    PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
     TrackerListWidget *m_trackerList;
     QWidget *m_speedWidget = nullptr;
@@ -122,6 +110,5 @@ private:
     DownloadedPiecesBar *m_downloadedPieces;
     PieceAvailabilityBar *m_piecesAvailability;
     PropTabBar *m_tabBar;
-    LineEdit *m_contentFilterLine;
     int m_handleWidth;
 };

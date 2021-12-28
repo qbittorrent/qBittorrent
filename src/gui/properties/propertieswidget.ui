@@ -1051,60 +1051,7 @@
         <number>0</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" name="contentFilterLayout">
-         <item>
-          <widget class="QPushButton" name="selectAllButton">
-           <property name="text">
-            <string>Select All</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="selectNoneButton">
-           <property name="text">
-            <string>Select None</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="TorrentContentTreeView" name="filesList">
-         <property name="contextMenuPolicy">
-          <enum>Qt::CustomContextMenu</enum>
-         </property>
-         <property name="acceptDrops">
-          <bool>true</bool>
-         </property>
-         <property name="editTriggers">
-          <set>QAbstractItemView::AllEditTriggers</set>
-         </property>
-         <property name="dragDropMode">
-          <enum>QAbstractItemView::InternalMove</enum>
-         </property>
-         <property name="defaultDropAction">
-          <enum>Qt::MoveAction</enum>
-         </property>
-         <property name="selectionMode">
-          <enum>QAbstractItemView::ExtendedSelection</enum>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>true</bool>
-         </property>
-        </widget>
+        <widget class="ContentWidget" name="contentWidget" native="true"/>
        </item>
       </layout>
      </widget>
@@ -1130,9 +1077,10 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TorrentContentTreeView</class>
-   <extends>QTreeView</extends>
-   <header location="global">gui/torrentcontenttreeview.h</header>
+   <class>ContentWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">gui/properties/contentwidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

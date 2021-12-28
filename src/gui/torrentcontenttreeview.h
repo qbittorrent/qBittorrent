@@ -46,8 +46,8 @@ public:
     explicit TorrentContentTreeView(QWidget *parent = nullptr);
     void keyPressEvent(QKeyEvent *event) override;
 
-    void renameSelectedFiles(BitTorrent::AbstractFileStorage &fileStorage);
-
 private:
     QModelIndex currentNameCell();
+
+    BitTorrent::AbstractFileStorage *m_fileStorage;
 };

@@ -28,6 +28,7 @@ HEADERS += \
     $$PWD/previewlistdelegate.h \
     $$PWD/previewselectdialog.h \
     $$PWD/progressbarpainter.h \
+    $$PWD/properties/contentwidget.h \
     $$PWD/properties/downloadedpiecesbar.h \
     $$PWD/properties/peerlistsortmodel.h \
     $$PWD/properties/peerlistwidget.h \
@@ -42,6 +43,7 @@ HEADERS += \
     $$PWD/properties/trackerlistwidget.h \
     $$PWD/properties/trackersadditiondialog.h \
     $$PWD/raisedmessagebox.h \
+    $$PWD/regexreplacementdialog.h \
     $$PWD/rss/articlelistwidget.h \
     $$PWD/rss/automatedrssdownloader.h \
     $$PWD/rss/feedlistwidget.h \
@@ -109,6 +111,7 @@ SOURCES += \
     $$PWD/previewlistdelegate.cpp \
     $$PWD/previewselectdialog.cpp \
     $$PWD/progressbarpainter.cpp \
+    $$PWD/properties/contentwidget.cpp \
     $$PWD/properties/downloadedpiecesbar.cpp \
     $$PWD/properties/peerlistsortmodel.cpp \
     $$PWD/properties/peerlistwidget.cpp \
@@ -123,6 +126,7 @@ SOURCES += \
     $$PWD/properties/trackerlistwidget.cpp \
     $$PWD/properties/trackersadditiondialog.cpp \
     $$PWD/raisedmessagebox.cpp \
+    $$PWD/regexreplacementdialog.cpp \
     $$PWD/rss/articlelistwidget.cpp \
     $$PWD/rss/automatedrssdownloader.cpp \
     $$PWD/rss/feedlistwidget.cpp \
@@ -195,6 +199,7 @@ FORMS += \
     $$PWD/mainwindow.ui \
     $$PWD/optionsdialog.ui \
     $$PWD/previewselectdialog.ui \
+    $$PWD/properties/contentwidget.ui \
     $$PWD/properties/peersadditiondialog.ui \
     $$PWD/properties/propertieswidget.ui \
     $$PWD/properties/trackersadditiondialog.ui \

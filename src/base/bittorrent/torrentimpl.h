@@ -80,6 +80,8 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
+        using EventTrigger = std::function<void ()>;
+
         TorrentImpl(Session *session, lt::session *nativeSession
                           , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
         ~TorrentImpl() override;
@@ -238,12 +240,11 @@ namespace BitTorrent
         void saveResumeData();
         void handleMoveStorageJobFinished(bool hasOutstandingJob);
         void fileSearchFinished(const QString &savePath, const QStringList &fileNames);
+        void onRenameComplete(EventTrigger callback);
 
         QString actualStorageLocation() const;
 
     private:
-        using EventTrigger = std::function<void ()>;
-
         void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();

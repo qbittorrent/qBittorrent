@@ -357,30 +357,12 @@
        </item>
       </layout>
      </widget>
-     <widget class="TorrentContentTreeView" name="contentTreeView">
+     <widget class="ContentWidget" name="contentWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
         <horstretch>1</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
-      </property>
-      <property name="contextMenuPolicy">
-       <enum>Qt::CustomContextMenu</enum>
-      </property>
-      <property name="acceptDrops">
-       <bool>true</bool>
-      </property>
-      <property name="dragDropMode">
-       <enum>QAbstractItemView::InternalMove</enum>
-      </property>
-      <property name="defaultDropAction">
-       <enum>Qt::MoveAction</enum>
-      </property>
-      <property name="selectionMode">
-       <enum>QAbstractItemView::ExtendedSelection</enum>
-      </property>
-      <property name="sortingEnabled">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
@@ -461,9 +443,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TorrentContentTreeView</class>
-   <extends>QTreeView</extends>
-   <header>gui/torrentcontenttreeview.h</header>
+   <class>ContentWidget</class>
+   <extends>QWidget</extends>
+   <header>gui/properties/contentwidget.h</header>
   </customwidget>
   <customwidget>
    <class>FileSystemPathComboEdit</class>

@@ -52,7 +52,7 @@ public slots:
     void selectNone();
 
 signals:
-    void filteredFilesChanged();
+    void prioritiesChanged();
 
 protected:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;

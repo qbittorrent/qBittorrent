@@ -67,14 +67,10 @@ void TorrentContentModelItem::setName(const QString &name)
 
 QString TorrentContentModelItem::path() const
 {
-    QString result = isRootItem() ? "" : name();
-    TorrentContentModelFolder *parent = m_parentItem;
-    while (parent && !parent->isRootItem())
-    {
-        result = Utils::Fs::combinePaths(parent->name(), result);
-        parent = parent->parent();
-    }
-    return result;
+    if (isRootItem() || !(itemType() == FileType || itemType() == FolderType))
+        return "";
+
+    return Utils::Fs::combinePaths(m_parentItem->path(), name());
 }
 
 qulonglong TorrentContentModelItem::size() const

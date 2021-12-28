@@ -34,7 +34,7 @@ TorrentContentFilterModel::TorrentContentFilterModel(QObject *parent)
     : QSortFilterProxyModel(parent)
     , m_model(new TorrentContentModel(this))
 {
-    connect(m_model, &TorrentContentModel::filteredFilesChanged, this, &TorrentContentFilterModel::filteredFilesChanged);
+    connect(m_model, &TorrentContentModel::prioritiesChanged, this, &TorrentContentFilterModel::prioritiesChanged);
     setSourceModel(m_model);
     // Filter settings
     setFilterKeyColumn(TorrentContentModelItem::COL_NAME);
@@ -113,6 +113,8 @@ void TorrentContentFilterModel::selectAll()
         setData(index(i, 0), Qt::Checked, Qt::CheckStateRole);
 
     emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    // do not need to emit prioritiesChanged here or in selectNone because setData on CheckStateRole
+    // automatically calls it.
 }
 
 void TorrentContentFilterModel::selectNone()

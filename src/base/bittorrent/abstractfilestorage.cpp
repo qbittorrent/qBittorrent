@@ -57,10 +57,9 @@ QVector<int> BitTorrent::AbstractFileStorage::folderIndexes(const QString &folde
 }
 
 void BitTorrent::AbstractFileStorage::renameFiles(const QVector<int> &indexes
-                                                  , const QVector<QString> &newNames)
+                                                  , const QVector<QString> &newPaths)
 {
-    // both these are without QB_EXT:
-    QSet<QString> oldAndFolderNames;
+    QSet<QString> oldAndFolderNames; // without QB_EXT
     for (int i = 0; i < filesCount(); i++)
     {
         if (!indexes.contains(i))
@@ -74,15 +73,15 @@ void BitTorrent::AbstractFileStorage::renameFiles(const QVector<int> &indexes
         }
     }
 
-    for (auto it = newNames.cbegin(); it != newNames.cend(); it++)
+    for (auto it = newPaths.cbegin(); it != newPaths.cend(); it++)
     {
         if (oldAndFolderNames.contains(*it))
         {
             throw RuntimeError {tr("Renamed file would conflict with other file in torrent: '%1'.").arg(*it)};
         }
-        if (std::find(it+1, newNames.cend(), *it) != newNames.cend())
+        if (std::find(it+1, newPaths.cend(), *it) != newPaths.cend())
         {
-            throw RuntimeError {tr("Multiple newly renamed files would have the same name: '%1'.").arg(*it)};
+            throw RuntimeError {tr("Multiple renamed files would have the same name: '%1'.").arg(*it)};
         }
         // TODO: prevent overwriting files. Have to see if libtorrent already takes any renaming overwrite precautions.
         // TODO: handle .. in file names
@@ -92,8 +91,8 @@ void BitTorrent::AbstractFileStorage::renameFiles(const QVector<int> &indexes
     for (int i = 0; i < indexes.size(); i++)
     {
         const QString newNameWithExtension = Utils::Fs::hasQbExtension(filePath(indexes[i]))
-            ? Utils::Fs::ensureQbExtension(newNames[i])
-            : newNames[i];
+            ? Utils::Fs::ensureQbExtension(newPaths[i])
+            : newPaths[i];
         renameFile(indexes[i], newNameWithExtension);
     }
 }
@@ -161,10 +160,17 @@ void BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const
         renamingFilePaths.push_back(filePath(idx));
     }
     std::function<QString (const QString &)> nameTransformer;
-    nameTransformer = [newFolderPath, oldFolderPath](const QString &filePath) -> QString {
-        return newFolderPath + filePath.mid(oldFolderPath.size());
-    };
-    QVector<QString> newFilePaths = Utils::Fs::renamePaths(renamingFilePaths, nameTransformer, true);
+    nameTransformer = [newFolderPath, oldFolderPath](const QString &filePath) -> QString
+        {
+            return newFolderPath + filePath.mid(oldFolderPath.size());
+        };
+    QVector<QString> newFilePaths;
+    for (const QString &oldFilePath : renamingFilePaths)
+    {
+        bool ok;
+        newFilePaths.push_back(Utils::Fs::renamePath(oldFilePath, nameTransformer, true, &ok));
+        if (!ok) return;
+    }
 
     renameFiles(renamingFileIndexes, newFilePaths);
 }

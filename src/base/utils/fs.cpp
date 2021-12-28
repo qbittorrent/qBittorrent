@@ -373,35 +373,38 @@ QString Utils::Fs::combinePaths(const QString &p1, const QString &p2)
         return p1 + QLatin1Char{'/'} + p2;
 }
 
-QVector<QString> Utils::Fs::renamePaths(const QVector<QString> &oldPaths
-                                        , std::function<QString (const QString &)> &transformer
-                                        , bool paths)
+QString Utils::Fs::renamePath(const QString &oldPathWithExtension
+                              , const std::function<QString (const QString &)> &transformer
+                              , bool paths
+                              , bool *ok)
 {
-    QVector<QString> result;
-    for (QString oldPath : oldPaths)
+    bool unusedOk;
+    if (ok == nullptr)
+        ok = &unusedOk;
+    QString oldPath = Utils::Fs::stripQbExtension(oldPathWithExtension);
+
+    QString newPath;
+    if (paths)
     {
-        bool extension = Utils::Fs::hasQbExtension(oldPath);
-        if (extension)
-            oldPath = Utils::Fs::stripQbExtension(oldPath);
-
-        QString newPath;
-        if (paths)
-        {
-            newPath = transformer(oldPath);
-        }
-        else
-        {
-            QString newFile = transformer(Utils::Fs::fileName(oldPath));
-            newPath = Utils::Fs::combinePaths(Utils::Fs::folderName(oldPath), newFile);
-            // TODO: handle slashes and relative directories
-        }
-
-        if (extension)
-            newPath = Utils::Fs::ensureQbExtension(newPath);
-
-        result.push_back(newPath);
+        newPath = transformer(oldPath);
     }
-    return result;
+    else
+    {
+        QString newName = transformer(Utils::Fs::fileName(oldPath));
+        *ok = Utils::Fs::isValidFileSystemName(newName, false);
+        if (!*ok)
+            return "";
+        newPath = Utils::Fs::combinePaths(Utils::Fs::folderName(oldPath), newName);
+    }
+
+    if (Utils::Fs::hasQbExtension(oldPathWithExtension))
+        newPath = Utils::Fs::ensureQbExtension(newPath);
+
+    *ok = Utils::Fs::isValidFileSystemName(newPath, true);
+    if (!*ok)
+        return "";
+
+    return newPath;
 }
 
 #if !defined Q_OS_HAIKU

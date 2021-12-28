@@ -305,7 +305,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             m_rootItem->recalculateProgress();
             m_rootItem->recalculateAvailability();
             emit dataChanged(this->index(0, 0), this->index((rowCount() - 1), (columnCount() - 1)));
-            emit filteredFilesChanged();
+            emit prioritiesChanged();
         }
         return true;
     }
@@ -326,6 +326,14 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             return false;
         }
         emit dataChanged(index, index);
+
+        // This isn't as efficient as it could be, since prioritiesChanged will be emitted many
+        // times if a bulk operation such as "prioritize in displayed order" is executed. However,
+        // the "select all" and "select none" buttons historically emitted this signal for every
+        // item in the torrent without major performance issues.
+        if (index.column() == TorrentContentModelItem::COL_PRIO)
+            emit prioritiesChanged();
+
         return true;
     }
 
@@ -468,6 +476,8 @@ QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
         return {};
 
     auto *childItem = this->citem(index);
+    if (!childItem)
+        return {};
 
     TorrentContentModelItem *parentItem = childItem->parent();
     if (parentItem == m_rootItem)
@@ -571,15 +581,8 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         newPaths.push_back(Utils::Fs::combinePaths(newParentPath, stub));
     }
 
-    try
-    {
-        m_fileStorage->renameFiles(fileIndexes, newPaths);
-    }
-    catch (const RuntimeError &error)
-    {
-        puts("error"); // TODO: create a message box? But then we need access to the GUI parent
-    }
-    relayout();
+    emit filesDropped(std::move(fileIndexes), std::move(newPaths));
+
     return true;
 }
 
@@ -604,7 +607,7 @@ void TorrentContentModel::clear()
     endResetModel();
 }
 
-void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
+void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &info)
 {
     qDebug("setup model data called");
 
@@ -621,8 +624,7 @@ void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
             }
         };
 
-    m_fileStorage = info;
-    const int filesCount = info->filesCount();
+    const int filesCount = info.filesCount();
     if (filesCount <= 0)
         return;
     qDebug("Torrent contains %d files", filesCount);
@@ -674,7 +676,7 @@ void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
     {
         QModelIndex currentFolderIndex;
         TorrentContentModelFolder *currentFolderItem = dynamic_cast<TorrentContentModelFolder *>(item(currentFolderIndex));
-        const QString path = Utils::Fs::toUniformPath(info->filePath(i));
+        const QString path = Utils::Fs::toUniformPath(info.filePath(i));
 
         // Iterate of parts of the path to create necessary folders
         QVector<QString> pathFolders = Utils::Fs::parentFolders(path);
@@ -708,8 +710,8 @@ void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
         }
 
         // Add the new file
-        TorrentContentModelFile *fileItem = new TorrentContentModelFile(Utils::Fs::fileName(info->filePath(i))
-                                                                        , info->fileSize(i), currentFolderItem, i);
+        TorrentContentModelFile *fileItem = new TorrentContentModelFile(Utils::Fs::fileName(info.filePath(i))
+                                                                        , info.fileSize(i), currentFolderItem, i);
         currentFolderItem->appendChild(fileItem);
         m_filesIndex[i] = fileItem;
         if (haveFileIndexes)
@@ -732,11 +734,6 @@ void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
     delete oldRootItem;
 
     emit layoutChanged();
-}
-
-void TorrentContentModel::relayout()
-{
-    setupModelData(m_fileStorage);
 }
 
 void TorrentContentModel::selectAll()

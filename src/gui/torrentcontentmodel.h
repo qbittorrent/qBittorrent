@@ -81,13 +81,11 @@ public:
     bool canDropMimeData(const QMimeData *, Qt::DropAction, int row, int column, const QModelIndex &parent) const override;
     Qt::DropActions supportedDropActions() const override;
     void clear();
-    // info must live until setupModelData is called again
-    void setupModelData(BitTorrent::AbstractFileStorage *info);
-    // recalculate the layout using the abstract file storage last passed to setupModelData
-    void relayout();
+    void setupModelData(const BitTorrent::AbstractFileStorage &info);
 
 signals:
-    void filteredFilesChanged();
+    void prioritiesChanged();
+    void filesDropped(QVector<int> indexes, QVector<QString> names);
 
 public slots:
     void selectAll();
@@ -100,5 +98,4 @@ private:
     TorrentContentModelFolder *m_rootItem;
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;
-    BitTorrent::AbstractFileStorage *m_fileStorage;
 };
