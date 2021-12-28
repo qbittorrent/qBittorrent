@@ -52,6 +52,7 @@ ContentWidget::ContentWidget(QWidget *parent)
     , m_treeViewDelegate(new PropListDelegate(nullptr))
     , m_ui(new Ui::ContentWidget())
     , m_filterModel(new TorrentContentFilterModel())
+    , m_hasUndo(false)
 {
     m_ui->setupUi(this);
 
@@ -65,6 +66,10 @@ ContentWidget::ContentWidget(QWidget *parent)
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
     // TODO: icons for flatten actions
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-undo"), tr("Undo rename")
+                             , this, &ContentWidget::undoRename);
+    QAction *undoAction = m_actionsMenu->actions().last();
+    undoAction->setEnabled(false);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename all")
                              , this, &ContentWidget::renameAll);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename Selected")
@@ -84,6 +89,10 @@ ContentWidget::ContentWidget(QWidget *parent)
     m_actionsMenu->addAction(tr("Prioritize in displayed order"), this, &ContentWidget::prioritizeInDisplayedOrderAll);
 
     m_ui->actionsButton->setMenu(m_actionsMenu.get());
+    connect(m_actionsMenu.get(), &QMenu::aboutToShow, this, [this, undoAction]()
+        {
+            undoAction->setEnabled(m_hasUndo);
+        });
 
     m_ui->filesTreeView->header()->setContextMenuPolicy(Qt::CustomContextMenu);
     m_ui->filesTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
@@ -101,15 +110,14 @@ ContentWidget::ContentWidget(QWidget *parent)
     connect(m_ui->filesTreeView, &QAbstractItemView::clicked, m_ui->filesTreeView
             , qOverload<const QModelIndex &>(&QAbstractItemView::edit));
 
-    // TODO: does connect take ownership of thi ssomehow? Or do we need to manually delete it? In
-    // the previous code (from addnewtorrentdialog.cpp) it is not freed.
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, m_ui->filesTreeView, nullptr, nullptr, Qt::WidgetShortcut);
     connect(editHotkey, &QShortcut::activated, this, &ContentWidget::renameSelected);
-    connect(m_ui->filesTreeView, &QAbstractItemView::doubleClicked, this, &ContentWidget::renameSelected);
+    connect(m_ui->filesTreeView, &QAbstractItemView::doubleClicked, this, &ContentWidget::doubleClicked);
 
     connect(m_ui->textFilter, &QLineEdit::textChanged, this, &ContentWidget::filterText);
     connect(m_ui->filesTreeView, &QTreeView::customContextMenuRequested, this, &ContentWidget::displayTreeMenu);
-    connect(contentModel(), &TorrentContentModel::filesDropped, this, &ContentWidget::editPaths);
+    connect(m_ui->filesTreeView->header(), &QHeaderView::customContextMenuRequested, this, &::ContentWidget::displayFileListHeaderMenu);
+    connect(contentModel(), &TorrentContentModel::filesDropped, this, &ContentWidget::performEditPaths);
     connect(m_treeViewDelegate.get(), &PropListDelegate::prioritiesChanged, this, &ContentWidget::prioritiesChanged);
     connect(m_filterModel.get(), &TorrentContentFilterModel::prioritiesChanged, this, &ContentWidget::prioritiesChanged);
     connect(this, &ContentWidget::prioritiesChanged, this, &ContentWidget::applyPriorities);
@@ -158,8 +166,9 @@ void ContentWidget::setupContentModelAfterRename()
 {
     if (m_torrent)
     {
-        // TODO: ensure this callback doesn't cause an issue if the selected torrent changes during
-        // the rename.
+        // The selected torrent might change between the time the rename event handler is registered
+        // and the time it is called. However, since the callback is not bound to any particular
+        // torrent, this is fine.
         BitTorrent::TorrentImpl::EventTrigger renameHandler = [this]()
         {
             setupContentModel();
@@ -207,6 +216,11 @@ void ContentWidget::loadDynamicData()
 TorrentContentModel *ContentWidget::contentModel()
 {
     return m_filterModel->model();
+}
+
+QModelIndexList ContentWidget::selectedRows() const
+{
+    return m_ui->filesTreeView->selectionModel()->selectedRows(0);
 }
 
 QByteArray ContentWidget::saveState() const
@@ -319,7 +333,14 @@ void ContentWidget::prioritizeInDisplayedOrderAll()
 
 void ContentWidget::prioritizeInDisplayedOrderSelected()
 {
-    prioritizeInDisplayedOrder(m_ui->filesTreeView->selectionModel()->selectedRows(0));
+    prioritizeInDisplayedOrder(selectedRows());
+}
+
+void ContentWidget::undoRename()
+{
+    if (!m_hasUndo) return;
+    performEditPaths(m_undoState);
+    m_hasUndo = false;
 }
 
 void ContentWidget::applyPriorities()
@@ -329,17 +350,37 @@ void ContentWidget::applyPriorities()
         m_torrent->prioritizeFiles(contentModel()->getFilePriorities());
 }
 
-void ContentWidget::editPaths(const QVector<int> &indexes, const QVector<QString> &paths)
+void ContentWidget::doubleClicked()
 {
+    if (m_torrent)
+    {
+        const QModelIndexList selected = selectedRows();
+        if (selected.size() < 1) return;
+        openItem(selected[0]);
+    }
+    else
+    {
+        renameSelected();
+    }
+}
+
+void ContentWidget::performEditPaths(const BitTorrent::AbstractFileStorage::RenameList &renameList)
+{
+    BitTorrent::AbstractFileStorage::RenameList newUndoState;
+    for (int i = 0; i < m_fileStorage->filesCount(); i++)
+        newUndoState.insert(i, m_fileStorage->filePath(i)); // TODO: qb extension
+
     try
     {
-        m_fileStorage->renameFiles(indexes, paths);
+        m_fileStorage->renameFiles(renameList);
     }
     catch (const RuntimeError &error)
     {
         RaisedMessageBox::warning(this, tr("Edit paths error"), error.message(), QMessageBox::Ok);
     }
 
+    m_undoState = newUndoState;
+    m_hasUndo = true;
     setupContentModelAfterRename();
 }
 
@@ -353,7 +394,7 @@ void ContentWidget::renameAll()
 
 void ContentWidget::renameSelected()
 {
-    QModelIndexList selectedModelIndexes = m_ui->filesTreeView->selectionModel()->selectedRows(0);
+    QModelIndexList selectedModelIndexes = selectedRows();
     if (selectedModelIndexes.size() == 1)
     {
         renamePromptSingle(selectedModelIndexes[0]);
@@ -375,7 +416,7 @@ void ContentWidget::editPathsAll()
 
 void ContentWidget::editPathsSelected()
 {
-    QModelIndexList selectedModelIndexes = m_ui->filesTreeView->selectionModel()->selectedRows(0);
+    QModelIndexList selectedModelIndexes = selectedRows();
     if (selectedModelIndexes.size() == 1)
     {
         editPathPromptSingle(selectedModelIndexes[0]);
@@ -409,21 +450,19 @@ void ContentWidget::renamePromptSingle(const QModelIndex &index)
                                                     , oldFileName, &ok, isFile).trimmed();
     if (!ok) return;
     QString newPath = Utils::Fs::renamePath(oldPath, [newName](const QString &) -> QString { return newName; }, false, &ok);
-    try
+    if (!ok)
     {
-        if (!ok)
-            throw RuntimeError {tr("The new name must not contain path separators. Try \"edit paths\" instead.")};
-        if (isFile)
-            m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
-        else
-            m_fileStorage->renameFolder(m_filterModel->item(index)->path(), newPath);
-    }
-    catch (const RuntimeError &error)
-    {
-        RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
+        RaisedMessageBox::warning(this, tr("Rename error"), {tr("The new name must not contain path separators. Try \"edit paths\" instead.")}, QMessageBox::Ok);
+        return;
     }
 
-    setupContentModelAfterRename();
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    if (isFile)
+        renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
+    else
+        renameList = m_fileStorage->renameFolder(m_filterModel->item(index)->path(), newPath);
+
+    performEditPaths(renameList);
 }
 
 void ContentWidget::renamePromptMultiple(const QVector<int> &indexes)
@@ -443,23 +482,14 @@ void ContentWidget::renamePromptMultiple(const QVector<int> &indexes)
         oldPaths.push_back(m_fileStorage->filePath(index));
     }
 
-    try
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    for (int index : indexes)
     {
-        QVector<QString> newPaths;
-        for (const QString &oldPath : oldPaths)
-        {
-            newPaths.push_back(Utils::Fs::renamePath(oldPath, nameTransformer, false));
-        }
-        m_fileStorage->renameFiles(indexes, newPaths);
-    }
-    catch (const RuntimeError &error)
-    {
-        RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
+        renameList.insert(index, Utils::Fs::renamePath(m_fileStorage->filePath(index), nameTransformer, false));
     }
 
-    setupContentModelAfterRename();
+    performEditPaths(renameList);
 }
-
 
 void ContentWidget::editPathPromptSingle(const QModelIndex &index)
 {
@@ -480,19 +510,13 @@ void ContentWidget::editPathPromptSingle(const QModelIndex &index)
     QString newPath = AutoExpandableDialog::getText(this, tr("Editing path"), tr("New path:"), QLineEdit::Normal
                                                     , oldPath, &ok, isFile).trimmed();
     if (!ok) return;
-    try
-    {
-        if (isFile)
-            m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
-        else
-            m_fileStorage->renameFolder(m_filterModel->item(index)->path(), newPath);
-    }
-    catch (const RuntimeError &error)
-    {
-        RaisedMessageBox::warning(this, tr("Edit path error"), error.message(), QMessageBox::Ok);
-    }
 
-    setupContentModelAfterRename();
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    if (isFile)
+        renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
+    else
+        renameList = m_fileStorage->renameFolder(m_filterModel->item(index)->path(), newPath);
+    performEditPaths(renameList);
 }
 
 void ContentWidget::editPathsPromptMultiple(const QVector<int> &indexes)
@@ -512,21 +536,13 @@ void ContentWidget::editPathsPromptMultiple(const QVector<int> &indexes)
         oldPaths.push_back(m_fileStorage->filePath(index));
     }
 
-    try
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    for (int index : indexes)
     {
-        QVector<QString> newPaths;
-        for (const QString &oldPath : oldPaths)
-        {
-            newPaths.push_back(Utils::Fs::renamePath(oldPath, nameTransformer, true));
-        }
-        m_fileStorage->renameFiles(indexes, newPaths);
-    }
-    catch (const RuntimeError &error)
-    {
-        RaisedMessageBox::warning(this, tr("Edit paths error"), error.message(), QMessageBox::Ok);
+        renameList.insert(index, Utils::Fs::renamePath(m_fileStorage->filePath(index), nameTransformer, true));
     }
 
-    setupContentModelAfterRename();
+    performEditPaths(renameList);
 }
 
 void ContentWidget::relocateSelected()
@@ -541,6 +557,25 @@ void ContentWidget::ensureDirectoryTop()
     qDebug("ensureDirectoryTop: not implemented");
 }
 
+void ContentWidget::flattenDirectory(const QString &directory)
+{
+    if (directory.isEmpty())
+        return;
+    Q_ASSERT(directory.right(1) != "/"); // probably don't need this
+
+    QString newStub = Utils::Fs::folderName(directory);
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    for (int i = 0; i < m_fileStorage->filesCount(); i++)
+    {
+        if (m_fileStorage->filePath(i).startsWith(directory))
+        {
+            renameList.insert(i, Utils::Fs::combinePaths(newStub, m_fileStorage->filePath(i).mid(directory.size() + 1)));
+        }
+    }
+
+    performEditPaths(renameList);
+}
+
 void ContentWidget::flattenDirectoryTop()
 {
     //TODO
@@ -549,19 +584,62 @@ void ContentWidget::flattenDirectoryTop()
 
 void ContentWidget::flattenDirectoriesAll()
 {
-    QVector<int> fileIndexes;
-    QVector<QString> newPaths;
+    BitTorrent::AbstractFileStorage::RenameList renameList;
     for (int i = 0; i < m_fileStorage->filesCount(); i++)
     {
         const QString newPath = Utils::Fs::fileName(m_fileStorage->filePath(i));
         if (!QDir::isAbsolutePath(m_fileStorage->filePath(i)))
         {
-            fileIndexes.push_back(i);
-            newPaths.push_back(newPath);
+            renameList.insert(i, newPath);
         }
     }
 
-    editPaths(fileIndexes, newPaths);
+    performEditPaths(renameList);
+}
+
+bool ContentWidget::canWrapSelected() const
+{
+    const QModelIndexList selectedRows = this->selectedRows();
+    if (selectedRows.size() < 1)
+        return false;
+    for (const QModelIndex &idx : selectedRows)
+    {
+        if (Utils::Fs::folderName(m_filterModel->item(idx)->path())
+            != Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path()))
+            return false;
+    }
+    return true;
+}
+
+void ContentWidget::wrapSelected()
+{
+    Q_ASSERT(canWrapSelected());
+
+    bool ok;
+    // my rapper name is Lil Welp
+    const QString enteredWrapperName = AutoExpandableDialog::getText(this, tr("Creating directory"), tr("New directory name:"), QLineEdit::Normal, {}, &ok);
+    const QString wrapperName = Utils::Fs::toNativePath(enteredWrapperName)
+        .replace(QRegularExpression("^/|/$"), "");
+    if (!ok)
+        return;
+    if (!Utils::Fs::isValidFileSystemName(wrapperName, false))
+    {
+        RaisedMessageBox::warning(this, tr("Create directory error"), tr("Illegal directory name"), QMessageBox::Ok);
+        return;
+    }
+
+    const QModelIndexList selectedRows = this->selectedRows();
+    const QString newParentDirectory = Utils::Fs::combinePaths(
+        Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path())
+        , wrapperName);
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    for (const QModelIndex &idx : selectedRows)
+    {
+        renameList.insert(m_filterModel->getFileIndex(idx)
+                          , Utils::Fs::combinePaths(newParentDirectory, Utils::Fs::fileName(m_filterModel->item(idx)->path())));
+    }
+
+    performEditPaths(renameList);
 }
 
 void ContentWidget::openItem(const QModelIndex &index) const
@@ -632,11 +710,13 @@ QVector<int> ContentWidget::modelIndexesToFileIndexes(const QModelIndexList &mod
 
 void ContentWidget::displayTreeMenu(const QPoint &)
 {
-    const QModelIndexList selectedRows = m_ui->filesTreeView->selectionModel()->selectedRows(0);
+    const QModelIndexList selectedRows = this->selectedRows();
+    if (selectedRows.size() < 1)
+        return;
 
     const auto setPriorities = [this](const BitTorrent::DownloadPriority prio)
     {
-        const QModelIndexList selectedRows = m_ui->filesTreeView->selectionModel()->selectedRows(0);
+        const QModelIndexList selectedRows = this->selectedRows();
         for (const QModelIndex &index : selectedRows)
         {
             m_filterModel->setData(index.sibling(index.row(), PRIORITY)
@@ -655,12 +735,28 @@ void ContentWidget::displayTreeMenu(const QPoint &)
                                , this, [this, selectedIndex]() { openItem(selectedIndex); });
         contextMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
                                , this, [this, selectedIndex]() { openParentFolder(selectedIndex); });
+
         contextMenu->addSeparator();
+
+        if (m_filterModel->item(selectedIndex)->itemType() == TorrentContentModelItem::FolderType)
+        {
+            contextMenu->addAction(tr("Flatten directory"), this, [this, selectedIndex]()
+                {
+                    flattenDirectory(m_filterModel->item(selectedIndex)->path());
+                });
+        }
+
     }
+
+    contextMenu->addAction(UIThemeManager::instance()->getIcon("folder-create"), tr("Create surrounding directory")
+                           , this, &ContentWidget::wrapSelected);
+    // disabling wrap action rather than omitting it is more clear to the user.
+    contextMenu->actions().last()->setEnabled(canWrapSelected());
 
     contextMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename")
                            , this, &ContentWidget::renameSelected);
-    contextMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Paths")
+    QString editPathsText = selectedRows.size() == 1 ? tr("Edit Path") : tr("Edit Paths");
+    contextMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), editPathsText
                            , this, &ContentWidget::editPathsSelected);
     contextMenu->addAction(UIThemeManager::instance()->getIcon("document-save"), tr("Relocate")
                            , this, &ContentWidget::relocateSelected);
@@ -704,30 +800,33 @@ void ContentWidget::clear()
 
 // TODO: header context menu
 
-// void PropertiesWidget::displayFileListHeaderMenu()
-// {
-//     QMenu *menu = new QMenu(this);
-//     menu->setAttribute(Qt::WA_DeleteOnClose);
+void ContentWidget::displayFileListHeaderMenu()
+{
+    QMenu *menu = new QMenu(this);
+    menu->setAttribute(Qt::WA_DeleteOnClose);
 
-//     for (int i = 0; i < TorrentContentModelItem::TreeItemColumns::NB_COL; ++i)
-//     {
-//         QAction *myAct = menu->addAction(m_propListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-//         myAct->setCheckable(true);
-//         myAct->setChecked(!m_ui->filesList->isColumnHidden(i));
-//         if (i == TorrentContentModelItem::TreeItemColumns::COL_NAME)
-//             myAct->setEnabled(false);
+    for (int i = 0; i < TorrentContentModelItem::TreeItemColumns::NB_COL; ++i)
+    {
+        if (!m_torrent && (i == PROGRESS || i == REMAINING || i == AVAILABILITY))
+            continue;
 
-//         connect(myAct, &QAction::toggled, this, [this, i](const bool checked)
-//         {
-//             m_ui->filesList->setColumnHidden(i, !checked);
+        QAction *myAct = menu->addAction(m_filterModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
+        myAct->setCheckable(true);
+        myAct->setChecked(!m_ui->filesTreeView->isColumnHidden(i));
+        if (i == TorrentContentModelItem::TreeItemColumns::COL_NAME)
+            myAct->setEnabled(false);
 
-//             if (!m_ui->filesList->isColumnHidden(i) && (m_ui->filesList->columnWidth(i) <= 5))
-//                 m_ui->filesList->resizeColumnToContents(i);
+        connect(myAct, &QAction::toggled, this, [this, i](const bool checked)
+        {
+            m_ui->filesTreeView->setColumnHidden(i, !checked);
 
-//             saveSettings();
-//         });
-//     }
+            if (!m_ui->filesTreeView->isColumnHidden(i) && (m_ui->filesTreeView->columnWidth(i) <= 5))
+                m_ui->filesTreeView->resizeColumnToContents(i);
 
-//     menu->popup(QCursor::pos());
-// }
+            // TODO saveSettings();
+        });
+    }
+
+    menu->popup(QCursor::pos());
+}
 

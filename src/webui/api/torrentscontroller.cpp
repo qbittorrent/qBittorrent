@@ -1300,7 +1300,7 @@ void TorrentsController::renameFileAction()
 
     try
     {
-        torrent->renameFile(oldPath, newPath);
+        torrent->renameFiles(torrent->renameFile(oldPath, newPath));
     }
     catch (const RuntimeError &error)
     {
@@ -1322,7 +1322,7 @@ void TorrentsController::renameFolderAction()
 
     try
     {
-        torrent->renameFolder(oldPath, newPath);
+        torrent->renameFiles(torrent->renameFolder(oldPath, newPath));
     }
     catch (const RuntimeError &error)
     {

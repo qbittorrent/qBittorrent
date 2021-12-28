@@ -32,6 +32,7 @@
 #include <QVector>
 #include <QMimeData>
 
+#include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
@@ -85,7 +86,7 @@ public:
 
 signals:
     void prioritiesChanged();
-    void filesDropped(QVector<int> indexes, QVector<QString> names);
+    void filesDropped(const BitTorrent::AbstractFileStorage::RenameList &renameList);
 
 public slots:
     void selectAll();

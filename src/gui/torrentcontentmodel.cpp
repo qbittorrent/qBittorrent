@@ -567,8 +567,7 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
     QByteArray encoded = data->data(QB_DRAGNDROP_MIME);
     QDataStream stream(&encoded, QIODevice::ReadOnly);
 
-    QVector<int> fileIndexes;
-    QVector<QString> newPaths;
+    BitTorrent::AbstractFileStorage::RenameList renameList;
 
     while (!stream.atEnd())
     {
@@ -577,11 +576,10 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         stream >> fileIndex;
         stream >> stub;
         qDebug("drop %d %s", fileIndex, qUtf8Printable(stub));
-        fileIndexes.push_back(fileIndex);
-        newPaths.push_back(Utils::Fs::combinePaths(newParentPath, stub));
+        renameList.insert(fileIndex, Utils::Fs::combinePaths(newParentPath, stub));
     }
 
-    emit filesDropped(std::move(fileIndexes), std::move(newPaths));
+    emit filesDropped(renameList);
 
     return true;
 }

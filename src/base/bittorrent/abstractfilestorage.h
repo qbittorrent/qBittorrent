@@ -30,6 +30,9 @@
 
 #include <QtGlobal>
 #include <QCoreApplication>
+#include <QMap>
+
+#include "base/utils/fs.h"
 
 class QString;
 
@@ -40,6 +43,8 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
 
     public:
+        using RenameList = QMap<int, QString>;
+
         virtual ~AbstractFileStorage() = default;
 
         virtual int filesCount() const = 0;
@@ -53,15 +58,20 @@ namespace BitTorrent
         QVector<int> folderIndexes(const QString &folder) const;
 
         // Rename files at given torrent indexes to the given paths, throwing a RuntimeError if any
-        // paths conflict with each other.
-        void renameFiles(const QVector<int> &indexes, const QVector<QString> &paths);
+        // paths conflict with each other. Adds or removes the .qb! extension based on whether or
+        // not the original file being renamed from has the extension.
+        void renameFiles(const RenameList &);
+
+        // The next three methods do not actually rename the files, but rather return a list of
+        // which files need to be renamed and to what. The returned list should be passed to
+        // renameFiles. This allows callers to have a central wrapper function around renameFiles,
+        // which can perform some pre- or post- rename tasks.
+
         // rename file, checking that new path is valid
-        void renameFileChecked(int index, const QString &newPath);
+        RenameList renameFileChecked(int index, const QString &newPath);
         // rename file, checking that old and new paths are valid
-        void renameFile(const QString &oldPath, const QString &newPath);
+        RenameList renameFile(const QString &oldPath, const QString &newPath);
         // rename all files in a folder, checking that old and new paths are valid
-        void renameFolder(const QString &oldPath, const QString &newPath);
-        // rename all files in a folder, checking new path is valid
-        void renameFolder(int index, const QString &newPath);
+        RenameList renameFolder(const QString &oldPath, const QString &newPath);
     };
 }

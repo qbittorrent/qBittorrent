@@ -71,6 +71,8 @@ private:
     std::unique_ptr<TorrentContentFilterModel> m_filterModel;
     BitTorrent::AbstractFileStorage *m_fileStorage = nullptr;
     BitTorrent::Torrent *m_torrent = nullptr;
+    BitTorrent::AbstractFileStorage::RenameList m_undoState;
+    bool m_hasUndo;
 
     // rename the files with the given indexes, prompting the new file name(s)
     void renamePromptMultiple(const QVector<int> &indexes);
@@ -90,10 +92,14 @@ private:
 
     void openItem(const QModelIndex &) const;
     void openParentFolder(const QModelIndex &) const;
+    void flattenDirectory(const QString &);
     QString getFullPath(const QModelIndex &index) const;
     QModelIndexList allIndexes() const;
+    // whether the selected files all have the same immediate parent directory
+    bool canWrapSelected() const;
 
     TorrentContentModel *contentModel();
+    QModelIndexList selectedRows() const;
 
 signals:
     // signalled when the set of files selected to be downloaded changes
@@ -102,17 +108,23 @@ signals:
 private slots:
     void renameAll();
     void renameSelected();
-    void editPaths(const QVector<int> &indexes, const QVector<QString> &paths);
+    // All renames should go through performEditPaths, because it updates the content model and undo
+    // state. It also handles conflicting names and displays a message box.
+    void performEditPaths(const BitTorrent::AbstractFileStorage::RenameList &);
     void editPathsAll();
     void editPathsSelected();
     void ensureDirectoryTop();
     void flattenDirectoryTop();
     void flattenDirectoriesAll();
+    void wrapSelected(); // wrap the selected files and folders in a new folder
     void relocateSelected();
     void prioritizeInDisplayedOrder(const QModelIndexList &rows);
     void prioritizeInDisplayedOrderAll();
     void prioritizeInDisplayedOrderSelected();
+    void undoRename();
     void applyPriorities();
+    void doubleClicked();
     void filterText(const QString &);
     void displayTreeMenu(const QPoint &);
+    void displayFileListHeaderMenu();
 };
