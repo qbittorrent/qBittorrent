@@ -77,10 +77,26 @@ QString Utils::Fs::toUniformPath(const QString &path)
  */
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    const QString name = filename.endsWith(QB_EXT)
+    return QMimeDatabase().suffixForFileName(Utils::Fs::stripQbExtension(filename));
+}
+
+bool Utils::Fs::hasQbExtension(const QString &filename)
+{
+    return filename.endsWith(QB_EXT, Qt::CaseInsensitive);
+}
+
+QString Utils::Fs::stripQbExtension(const QString &filename)
+{
+    return Utils::Fs::hasQbExtension(filename)
         ? filename.chopped(QB_EXT.length())
         : filename;
-    return QMimeDatabase().suffixForFileName(name);
+}
+
+QString Utils::Fs::ensureQbExtension(const QString &filename)
+{
+    return Utils::Fs::hasQbExtension(filename)
+        ? filename
+        : filename + QB_EXT;
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
@@ -99,6 +115,22 @@ QString Utils::Fs::folderName(const QString &filePath)
     if (slashIndex == -1)
         return {};
     return path.left(slashIndex);
+}
+
+QVector<QString> Utils::Fs::parentFolders(const QString &filePath)
+{
+    QStringList parts = filePath.split(QLatin1Char{'/'}, Qt::SkipEmptyParts);
+    QVector<QString> result;
+    for (int i = 0; i < parts.size(); i++)
+    {
+        QString curFolder = "";
+        for (int k = 0; k <= i; k++)
+        {
+            curFolder += parts[k] + QLatin1Char{'/'};
+        }
+        result.push_back(curFolder);
+    }
+    return result;
 }
 
 /**
@@ -330,6 +362,45 @@ bool Utils::Fs::isRegularFile(const QString &path)
     }
 
     return (st.st_mode & S_IFMT) == S_IFREG;
+}
+
+QString Utils::Fs::combinePaths(const QString &p1, const QString &p2)
+{
+    if (p1.isEmpty() || p2.isEmpty())
+        return p1 + p2;
+    else
+        return p1 + QLatin1Char{'/'} + p2;
+}
+
+QVector<QString> Utils::Fs::renamePaths(const QVector<QString> &oldPaths
+                                        , std::function<QString (const QString &)> &transformer
+                                        , bool paths)
+{
+    QVector<QString> result;
+    for (QString oldPath : oldPaths)
+    {
+        bool extension = Utils::Fs::hasQbExtension(oldPath);
+        if (extension)
+            oldPath = Utils::Fs::stripQbExtension(oldPath);
+
+        QString newPath;
+        if (paths)
+        {
+            newPath = transformer(oldPath);
+        }
+        else
+        {
+            QString newFile = transformer(Utils::Fs::fileName(oldPath));
+            newPath = Utils::Fs::combinePaths(Utils::Fs::folderName(oldPath), newFile);
+            // TODO: handle slashes and relative directories
+        }
+
+        if (extension)
+            newPath = Utils::Fs::ensureQbExtension(newPath);
+
+        result.push_back(newPath);
+    }
+    return result;
 }
 
 #if !defined Q_OS_HAIKU

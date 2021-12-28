@@ -32,6 +32,7 @@
  * Utility functions related to file system.
  */
 
+#include <functional>
 #include <QString>
 
 namespace Utils::Fs
@@ -51,8 +52,17 @@ namespace Utils::Fs
     QString toUniformPath(const QString &path);
 
     QString fileExtension(const QString &filename);
+    // return whether QB_EXT is present at the end
+    bool hasQbExtension(const QString &filePath);
+    // remove the QB_EXT from filePath if present
+    QString stripQbExtension(const QString &filePath);
+    // ensure QB_EXT is present at the end of filePath
+    QString ensureQbExtension(const QString &filePath);
     QString fileName(const QString &filePath);
     QString folderName(const QString &filePath);
+    // return list of all prefix folders. Eg, etc/nginx/default => { "etc", "etc/default" }. Expects
+    // forwards slashes.
+    QVector<QString> parentFolders(const QString &filePath);
     qint64 computePathSize(const QString &path);
     bool sameFiles(const QString &path1, const QString &path2);
     QString toValidFileSystemName(const QString &name, bool allowSeparators = false
@@ -64,6 +74,14 @@ namespace Utils::Fs
     QString expandPath(const QString &path);
     QString expandPathAbs(const QString &path);
     bool isRegularFile(const QString &path);
+    // join the two paths with a forward slash if they're both nonempty
+    QString combinePaths(const QString &p1, const QString &p2);
+    // rename all the oldPaths according to the transformer. Will remove and add QB_EXT as needed.
+    // The paths parameter determines whether the transformer runs on the whole path or just the
+    // file name.
+    QVector<QString> renamePaths(const QVector<QString> &oldPaths
+                                 , std::function<QString (const QString &)> &transformer
+                                 , bool paths = true);
 
     bool smartRemoveEmptyFolderTree(const QString &path);
     bool forceRemove(const QString &filePath);

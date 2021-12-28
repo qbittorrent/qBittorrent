@@ -46,9 +46,23 @@ namespace BitTorrent
         virtual QString filePath(int index) const = 0;
         virtual qlonglong fileSize(int index) const = 0;
 
+        // rename the file without checking name's validity
         virtual void renameFile(int index, const QString &name) = 0;
 
+        // return indexes of all files in the given folder.
+        QVector<int> folderIndexes(const QString &folder) const;
+
+        // rename multiple files by applying the nameTransformer to each of their names. Checks
+        // validity of new file names. If paths=true, then the transformer is run on the whole path,
+        // not just file name. The QB_EXT, if present, will be invisible to the transformer.
+        void renameFiles(const QVector<int> &indexes, const QVector<QString> &names);
+        // rename file, checking that new path is valid
+        void renameFileChecked(int index, const QString &newPath);
+        // rename file, checking that old and new paths are valid
         void renameFile(const QString &oldPath, const QString &newPath);
+        // rename all files in a folder, checking that old and new paths are valid
         void renameFolder(const QString &oldPath, const QString &newPath);
+        // rename all files in a folder, checking new path is valid
+        void renameFolder(int index, const QString &newPath);
     };
 }

@@ -30,7 +30,9 @@
 
 #include <QAbstractItemModel>
 #include <QVector>
+#include <QMimeData>
 
+#include "base/bittorrent/torrentinfo.h"
 #include "torrentcontentmodelitem.h"
 
 class QFileIconProvider;
@@ -65,16 +67,23 @@ public:
     bool allFiltered() const;
     int columnCount(const QModelIndex &parent = {}) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
-    TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
-    int getFileIndex(const QModelIndex &index);
+    TorrentContentModelItem *item(const QModelIndex &index) const;
+    int getFileIndex(const QModelIndex &index) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
     QVariant headerData(int section, Qt::Orientation orientation, int role) const override;
     QModelIndex index(int row, int column, const QModelIndex &parent = {}) const override;
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
+    bool dropMimeData(const QMimeData *, Qt::DropAction, int row, int col, const QModelIndex &parent) override;
+    QMimeData *mimeData(const QModelIndexList &indexes) const override;
+    bool canDropMimeData(const QMimeData *, Qt::DropAction, int row, int column, const QModelIndex &parent) const override;
+    Qt::DropActions supportedDropActions() const override;
     void clear();
-    void setupModelData(const BitTorrent::AbstractFileStorage &info);
+    // info must live until setupModelData is called again
+    void setupModelData(BitTorrent::AbstractFileStorage *info);
+    // recalculate the layout using the abstract file storage last passed to setupModelData
+    void relayout();
 
 signals:
     void filteredFilesChanged();
@@ -87,4 +96,5 @@ private:
     TorrentContentModelFolder *m_rootItem;
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;
+    BitTorrent::AbstractFileStorage *m_fileStorage;
 };

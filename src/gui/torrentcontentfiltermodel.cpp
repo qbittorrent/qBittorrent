@@ -49,9 +49,9 @@ TorrentContentModel *TorrentContentFilterModel::model() const
      return m_model;
 }
 
-TorrentContentModelItem::ItemType TorrentContentFilterModel::itemType(const QModelIndex &index) const
+TorrentContentModelItem *TorrentContentFilterModel::item(const QModelIndex &index) const
 {
-    return m_model->itemType(mapToSource(index));
+    return m_model->item(mapToSource(index));
 }
 
 int TorrentContentFilterModel::getFileIndex(const QModelIndex &index) const
@@ -71,7 +71,7 @@ QModelIndex TorrentContentFilterModel::parent(const QModelIndex &child) const
 
 bool TorrentContentFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (m_model->itemType(m_model->index(sourceRow, 0, sourceParent)) == TorrentContentModelItem::FolderType)
+    if (m_model->item(m_model->index(sourceRow, 0, sourceParent))->itemType() == TorrentContentModelItem::FolderType)
     {
         // accept folders if they have at least one filtered item
         return hasFiltered(m_model->index(sourceRow, 0, sourceParent));
@@ -86,8 +86,8 @@ bool TorrentContentFilterModel::lessThan(const QModelIndex &left, const QModelIn
     {
     case TorrentContentModelItem::COL_NAME:
     {
-            const TorrentContentModelItem::ItemType leftType = m_model->itemType(m_model->index(left.row(), 0, left.parent()));
-            const TorrentContentModelItem::ItemType rightType = m_model->itemType(m_model->index(right.row(), 0, right.parent()));
+            const TorrentContentModelItem::ItemType leftType = m_model->item(m_model->index(left.row(), 0, left.parent()))->itemType();
+            const TorrentContentModelItem::ItemType rightType = m_model->item(m_model->index(right.row(), 0, right.parent()))->itemType();
 
             if (leftType == rightType)
             {

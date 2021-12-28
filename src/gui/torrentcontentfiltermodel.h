@@ -43,7 +43,7 @@ public:
     TorrentContentFilterModel(QObject *parent = nullptr);
 
     TorrentContentModel *model() const;
-    TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
+    TorrentContentModelItem *item(const QModelIndex &index) const;
     int getFileIndex(const QModelIndex &index) const;
     QModelIndex parent(const QModelIndex &child) const override;
 

@@ -31,6 +31,7 @@
 #include <QVariant>
 
 #include "base/unicodestrings.h"
+#include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
 #include "torrentcontentmodelfolder.h"
@@ -62,6 +63,18 @@ void TorrentContentModelItem::setName(const QString &name)
 {
     Q_ASSERT(!isRootItem());
     m_name = name;
+}
+
+QString TorrentContentModelItem::path() const
+{
+    QString result = isRootItem() ? "" : name();
+    TorrentContentModelFolder *parent = m_parentItem;
+    while (parent && !parent->isRootItem())
+    {
+        result = Utils::Fs::combinePaths(parent->name(), result);
+        parent = parent->parent();
+    }
+    return result;
 }
 
 qulonglong TorrentContentModelItem::size() const

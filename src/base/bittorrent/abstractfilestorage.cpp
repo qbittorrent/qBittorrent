@@ -30,6 +30,7 @@
 
 #include <QDir>
 #include <QHash>
+#include <QSet>
 #include <QVector>
 
 #include "base/bittorrent/common.h"
@@ -42,15 +43,59 @@ const Qt::CaseSensitivity CASE_SENSITIVITY {Qt::CaseInsensitive};
 const Qt::CaseSensitivity CASE_SENSITIVITY {Qt::CaseSensitive};
 #endif
 
-namespace
+QVector<int> BitTorrent::AbstractFileStorage::folderIndexes(const QString &folder) const
 {
-    bool areSameFileNames(QString first, QString second)
+    QVector<int> result;
+
+    for (int i = 0; i < filesCount(); ++i)
     {
-        if (first.endsWith(QB_EXT, Qt::CaseInsensitive))
-            first.chop(QB_EXT.size());
-        if (second.endsWith(QB_EXT, Qt::CaseInsensitive))
-            second.chop(QB_EXT.size());
-        return QString::compare(first, second, CASE_SENSITIVITY) == 0;
+        if (filePath(i).startsWith(folder, CASE_SENSITIVITY))
+            result.append(i);
+    }
+
+    return result;
+}
+
+void BitTorrent::AbstractFileStorage::renameFiles(const QVector<int> &indexes
+                                                  , const QVector<QString> &newNames)
+{
+    // both these are without QB_EXT:
+    QSet<QString> oldAndFolderNames;
+    for (int i = 0; i < filesCount(); i++)
+    {
+        if (!indexes.contains(i))
+        {
+            oldAndFolderNames.insert(Utils::Fs::stripQbExtension(filePath(i)));
+        }
+
+        for (QString folder : Utils::Fs::parentFolders(filePath(i)))
+        {
+            folder.chop(1);
+            oldAndFolderNames.insert(folder); // remove trailing slash
+        }
+    }
+
+    for (auto it = newNames.cbegin(); it != newNames.cend(); it++)
+    {
+        if (oldAndFolderNames.contains(*it))
+        {
+            throw RuntimeError {tr("Renamed file would conflict with other file in torrent: '%1'.").arg(*it)};
+        }
+        if (std::find(it+1, newNames.cend(), *it) != newNames.cend())
+        {
+            throw RuntimeError {tr("Multiple newly renamed files would have the same name: '%1'.").arg(*it)};
+        }
+        // TODO: prevent overwriting files. Have to see if libtorrent already takes any renaming overwrite precautions.
+        // TODO: handle .. in file names
+        // TODO: at what point are backslashes turned into slashes? Are they forward slashes in libtorrent?
+    }
+
+    for (int i = 0; i < indexes.size(); i++)
+    {
+        const QString newNameWithExtension = Utils::Fs::hasQbExtension(filePath(indexes[i]))
+            ? Utils::Fs::ensureQbExtension(newNames[i])
+            : newNames[i];
+        renameFile(indexes[i], newNameWithExtension);
     }
 }
 
@@ -58,42 +103,36 @@ void BitTorrent::AbstractFileStorage::renameFile(const QString &oldPath, const Q
 {
     if (!Utils::Fs::isValidFileSystemName(oldPath, true))
         throw RuntimeError {tr("The old path is invalid: '%1'.").arg(oldPath)};
-    if (!Utils::Fs::isValidFileSystemName(newPath, true))
-        throw RuntimeError {tr("The new path is invalid: '%1'.").arg(newPath)};
 
     const QString oldFilePath = Utils::Fs::toUniformPath(oldPath);
     if (oldFilePath.endsWith(QLatin1Char {'/'}))
         throw RuntimeError {tr("Invalid file path: '%1'.").arg(oldFilePath)};
-
-    const QString newFilePath = Utils::Fs::toUniformPath(newPath);
-    if (newFilePath.endsWith(QLatin1Char {'/'}))
-        throw RuntimeError {tr("Invalid file path: '%1'.").arg(newFilePath)};
-    if (QDir().isAbsolutePath(newFilePath))
-        throw RuntimeError {tr("Absolute path isn't allowed: '%1'.").arg(newFilePath)};
 
     int renamingFileIndex = -1;
     for (int i = 0; i < filesCount(); ++i)
     {
         const QString path = filePath(i);
 
-        if ((renamingFileIndex < 0) && areSameFileNames(path, oldFilePath))
+        if ((renamingFileIndex < 0) && Utils::Fs::stripQbExtension(path) == Utils::Fs::stripQbExtension(oldFilePath))
             renamingFileIndex = i;
-        else if (areSameFileNames(path, newFilePath))
-            throw RuntimeError {tr("The file already exists: '%1'.").arg(newFilePath)};
     }
 
     if (renamingFileIndex < 0)
         throw RuntimeError {tr("No such file: '%1'.").arg(oldFilePath)};
 
-    const auto extAdjusted = [](const QString &path, const bool needExt) -> QString
-    {
-        if (path.endsWith(QB_EXT, Qt::CaseInsensitive) == needExt)
-            return path;
+    renameFileChecked(renamingFileIndex, newPath);
+}
 
-        return (needExt ? (path + QB_EXT) : (path.left(path.size() - QB_EXT.size())));
-    };
+void BitTorrent::AbstractFileStorage::renameFileChecked(int index, const QString &newPath)
+{
+    if (!Utils::Fs::isValidFileSystemName(newPath, true))
+        throw RuntimeError {tr("The new path is invalid: '%1'.").arg(newPath)};
 
-    renameFile(renamingFileIndex, extAdjusted(newFilePath, filePath(renamingFileIndex).endsWith(QB_EXT, Qt::CaseInsensitive)));
+    const QString newFilePath = Utils::Fs::toUniformPath(newPath);
+    if (newFilePath.endsWith(QLatin1Char {'/'}))
+        throw RuntimeError {tr("Invalid file path: '%1'.").arg(newFilePath)};
+
+    renameFiles(QVector<int>{index}, QVector<QString>{newFilePath});
 }
 
 void BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const QString &newPath)
@@ -111,28 +150,22 @@ void BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const
 
     const QString oldFolderPath = cleanFolderPath(oldPath);
     const QString newFolderPath = cleanFolderPath(newPath);
-    if (QDir().isAbsolutePath(newFolderPath))
-        throw RuntimeError {tr("Absolute path isn't allowed: '%1'.").arg(newFolderPath)};
 
-    QVector<int> renamingFileIndexes;
-    renamingFileIndexes.reserve(filesCount());
-
-    for (int i = 0; i < filesCount(); ++i)
-    {
-        const QString path = filePath(i);
-
-        if (path.startsWith(oldFolderPath, CASE_SENSITIVITY))
-            renamingFileIndexes.append(i);
-        else if (path.startsWith(newFolderPath, CASE_SENSITIVITY))
-            throw RuntimeError {tr("The folder already exists: '%1'.").arg(newFolderPath)};
-    }
+    QVector<int> renamingFileIndexes = folderIndexes(oldFolderPath);
 
     if (renamingFileIndexes.isEmpty())
         throw RuntimeError {tr("No such folder: '%1'.").arg(oldFolderPath)};
 
-    for (const int index : renamingFileIndexes)
+    QVector<QString> renamingFilePaths;
+    for (int idx : renamingFileIndexes)
     {
-        const QString newFilePath = newFolderPath + filePath(index).mid(oldFolderPath.size());
-        renameFile(index, newFilePath);
+        renamingFilePaths.push_back(filePath(idx));
     }
+    std::function<QString (const QString &)> nameTransformer;
+    nameTransformer = [newFolderPath, oldFolderPath](const QString &filePath) -> QString {
+        return newFolderPath + filePath.mid(oldFolderPath.size());
+    };
+    QVector<QString> newFilePaths = Utils::Fs::renamePaths(renamingFilePaths, nameTransformer, true);
+
+    renameFiles(renamingFileIndexes, newFilePaths);
 }

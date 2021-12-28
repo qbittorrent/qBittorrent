@@ -68,6 +68,7 @@ public:
 
     QString name() const;
     void setName(const QString &name);
+    QString path() const;
 
     qulonglong size() const;
     qreal progress() const;

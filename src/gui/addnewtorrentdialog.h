@@ -118,6 +118,7 @@ private:
     int m_oldIndex = 0;
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
+    std::unique_ptr<BitTorrent::AbstractFileStorage> m_fileStorage;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QString> m_storeDefaultCategory;

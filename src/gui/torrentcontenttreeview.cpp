@@ -36,6 +36,7 @@
 #include <QModelIndexList>
 #include <QTableView>
 #include <QThread>
+#include <QVector>
 
 #include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/common.h"
@@ -46,21 +47,11 @@
 #include "base/global.h"
 #include "base/utils/fs.h"
 #include "autoexpandabledialog.h"
+#include "gui/torrentcontentmodel.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodelitem.h"
 #include "regexreplacementdialog.h"
-
-namespace
-{
-    QString getFullPath(const QModelIndex &idx)
-    {
-        QStringList paths;
-        for (QModelIndex i = idx; i.isValid(); i = i.parent())
-            paths.prepend(i.data().toString());
-        return paths.join(QLatin1Char {'/'});
-    }
-}
 
 TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
     : QTreeView(parent)
@@ -110,69 +101,77 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
 
 void TorrentContentTreeView::renameSelectedFiles(BitTorrent::AbstractFileStorage &fileStorage)
 {
-    QModelIndexList transientSelectedIndexes = selectionModel()->selectedRows(0);
+    QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
     // if nothing is selected, then add all rows
-    if (transientSelectedIndexes.size() == 0)
+    if (selectedIndexes.size() == 0)
     {
         for (int i = 0; i < model()->rowCount(); i++)
         {
-            transientSelectedIndexes.push_back(model()->index(i, 0));
+            selectedIndexes.push_back(model()->index(i, 0));
         }
-    }
-    // make persistent copies of all the indexes
-    QList<QPersistentModelIndex> selectedIndexes;
-    for (const QModelIndex &modelIndex : transientSelectedIndexes)
-    {
-        selectedIndexes.push_back(modelIndex);
-    }
-    bool singleIndex = selectedIndexes.size() == 1;
-
-    std::function<QString (const QString &, bool isFile)> nameTransformer;
-    std::unique_ptr<RegexReplacementDialog> regexDialog; // TODO: avoid unique ptr, just return the lambda from rrd?
-    if (singleIndex)
-    {
-        nameTransformer = [this](const QString &arg, bool isFile) -> QString
-            {
-                bool ok;
-                QString result = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
-                                                               , arg, &ok, isFile).trimmed();
-                return ok ? result : QString("");
-            };
-    }
-    else
-    {
-        regexDialog = std::unique_ptr<RegexReplacementDialog>(new RegexReplacementDialog(this, tr("Batch Renaming Files")));
-        bool ok = regexDialog->prompt();
-        if (!ok) return;
-        nameTransformer = [&regexDialog](const QString &arg, bool) -> QString
-            {
-                return regexDialog->replace(arg);
-            };
     }
 
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
     if (!model) return;
 
-    for (const QPersistentModelIndex modelIndex : selectedIndexes)
-    { // TODO: is it right to make a copy of the modelIndex?
-        if (!modelIndex.isValid()) continue;
-        const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
-        const QString oldName = modelIndex.data().toString();
-        const QString newName = nameTransformer(oldName, isFile);
-        if (newName == oldName) continue;
-        if (!singleIndex && !isFile) continue; // TODO: could we rename folders in a batch without breaking things horribly?
-        const QString parentPath = getFullPath(modelIndex.parent());
-
-        const QString oldPath {parentPath.isEmpty() ? oldName : parentPath + QLatin1Char {'/'} + oldName};
-        const QString newPath {parentPath.isEmpty() ? newName : parentPath + QLatin1Char {'/'} + newName};
+    if (selectedIndexes.size() == 1)
+    {
+        auto *item = model->item(selectedIndexes[0]);
+        bool isFile = item->itemType() == TorrentContentModelItem::FileType;
+        QString oldFileName = selectedIndexes[0].data().toString();
+        QString parentPath = selectedIndexes[0].parent().isValid() ? model->item(selectedIndexes[0].parent())->path() : "";
+        bool ok;
+        QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
+                                                        , oldFileName, &ok, isFile).trimmed();
+        QString newPath = Utils::Fs::combinePaths(parentPath, newName);
+        
+        if (!ok) return;
         try
         {
             if (isFile)
-                fileStorage.renameFile(oldPath, newPath);
+                fileStorage.renameFileChecked(model->getFileIndex(selectedIndexes[0]), newPath);
             else
-                fileStorage.renameFolder(oldPath, newPath);
+                fileStorage.renameFolder(model->item(selectedIndexes[0])->path(), newPath);
 
-            model->setData(modelIndex, newName);
+            model->model()->relayout();
+        }
+        catch (const RuntimeError &error)
+        {
+            RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
+        }
+    }
+    else // multiple files selected
+    {
+        RegexReplacementDialog regexDialog(this, tr("Batch Renaming Files"));
+        bool ok = regexDialog.prompt();
+        if (!ok) return;
+        std::function<QString (const QString &)> nameTransformer;
+        nameTransformer = [&regexDialog](const QString &oldPath) -> QString
+            {
+                return regexDialog.replace(Utils::Fs::fileName(oldPath));
+            };
+
+        // torrent indexes, not Qt model indexes
+        QVector<int> torrentIndexes;
+        QVector<QString> oldPaths;
+        for (auto it = selectedIndexes.begin(); it != selectedIndexes.end(); it++)
+        {
+            auto item = model->item(*it);
+            if (it->isValid() && item->itemType() == TorrentContentModelItem::FileType)
+            {
+                torrentIndexes.push_back(model->getFileIndex(*it));
+                oldPaths.push_back(item->path());
+            }
+            else
+            {
+                selectedIndexes.erase(it);
+            }
+        }
+        try
+        {
+            QVector<QString> newPaths = Utils::Fs::renamePaths(oldPaths, nameTransformer, false);
+            fileStorage.renameFiles(torrentIndexes, newPaths);
+            model->model()->relayout();
         }
         catch (const RuntimeError &error)
         {

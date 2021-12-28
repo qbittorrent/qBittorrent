@@ -305,6 +305,7 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
     }
 
     m_torrentInfo = result.value();
+    m_fileStorage = std::make_unique<FileStorageAdaptor>(m_torrentInfo, m_torrentParams.filePaths);
     m_torrentGuard = std::make_unique<TorrentFileGuard>(decodedPath);
 
     return loadTorrentImpl();
@@ -499,7 +500,7 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
                                 ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
                                 : static_cast<BitTorrent::TorrentContentLayout>(index));
     BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
-    m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
+    m_contentModel->model()->setupModelData(m_fileStorage.get());
     m_contentModel->model()->updateFilesPriorities(filePriorities);
 
     // Expand single-item folders recursively
@@ -739,6 +740,7 @@ void AddNewTorrentDialog::updateMetadata(const BitTorrent::TorrentInfo &metadata
 
     // Good to go
     m_torrentInfo = metadata;
+    m_fileStorage = std::make_unique<FileStorageAdaptor>(m_torrentInfo, m_torrentParams.filePaths);
     setMetadataProgressIndicator(true, tr("Parsing metadata..."));
 
     // Update UI
@@ -794,7 +796,7 @@ void AddNewTorrentDialog::setupTreeview()
             m_torrentParams.filePaths = m_torrentInfo.filePaths();
         BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
         // List files in torrent
-        m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
+        m_contentModel->model()->setupModelData(m_fileStorage.get());
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
             m_ui->contentTreeView->header()->restoreState(state);
 

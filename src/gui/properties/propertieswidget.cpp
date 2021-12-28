@@ -528,7 +528,7 @@ void PropertiesWidget::loadDynamicData()
             if (!isContentInitialized)
             {
                 // List files in torrent
-                m_propListModel->model()->setupModelData(*m_torrent);
+                m_propListModel->model()->setupModelData(m_torrent);
                 // Load file priorities
                 m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
                 // Update file progress/availability
@@ -581,7 +581,7 @@ void PropertiesWidget::loadUrlSeeds()
 
 QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 {
-    if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
+    if (m_propListModel->item(index)->itemType() == TorrentContentModelItem::FileType)
     {
         const int fileIdx = m_propListModel->getFileIndex(index);
         const QString filename {m_torrent->filePath(fileIdx)};
