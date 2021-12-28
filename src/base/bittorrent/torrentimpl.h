@@ -130,7 +130,7 @@ namespace BitTorrent
         QString filePath(int index) const override;
         qlonglong fileSize(int index) const override;
         QStringList filePaths() const override;
-        QStringList absoluteFilePaths() const override;
+        QString absoluteFilePath(bool actual, int index) const override;
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;

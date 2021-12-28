@@ -99,6 +99,8 @@ namespace Utils::Fs
     QStringList stripRootFolder(const QStringList &filePaths);
     QStringList addRootFolder(const QStringList &filePaths, const QString &name);
     RenameList stringListToRenameList(const QStringList &filePaths);
+    // true when the filesystem starts absolute paths with a slash.
+    bool absolutePathsStartWithSlash();
 
 #if !defined Q_OS_HAIKU
     bool isNetworkFileSystem(const QString &path);

@@ -29,6 +29,7 @@
 #include "torrentcontentmodelitem.h"
 
 #include <QVariant>
+#include <QDir>
 
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -43,6 +44,7 @@ TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *pare
     , m_priority(BitTorrent::DownloadPriority::Normal)
     , m_progress(0)
     , m_availability(-1.)
+    , m_isRelocatedLabel(false)
 {
 }
 
@@ -51,6 +53,16 @@ TorrentContentModelItem::~TorrentContentModelItem() = default;
 bool TorrentContentModelItem::isRootItem() const
 {
     return !m_parentItem;
+}
+
+bool TorrentContentModelItem::isRelocatedLabel() const
+{
+    return m_isRelocatedLabel;
+}
+
+bool TorrentContentModelItem::isFsItem() const
+{
+    return !(isRootItem() || isRelocatedLabel());
 }
 
 QString TorrentContentModelItem::name() const
@@ -67,7 +79,12 @@ void TorrentContentModelItem::setName(const QString &name)
 
 QString TorrentContentModelItem::path() const
 {
-    if (isRootItem() || !(itemType() == FileType || itemType() == FolderType))
+    if (isRelocatedLabel())
+    {
+        return Utils::Fs::absolutePathsStartWithSlash() ? "/" : "";
+    }
+
+    if (!isFsItem())
         return "";
 
     return Utils::Fs::combinePaths(m_parentItem->path(), name());

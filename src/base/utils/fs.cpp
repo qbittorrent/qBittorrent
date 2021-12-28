@@ -123,7 +123,7 @@ QVector<QString> Utils::Fs::parentFolders(const QString &filePath)
     QVector<QString> result;
     for (int i = 0; i < parts.size(); i++)
     {
-        QString curFolder = "";
+        QString curFolder = filePath.startsWith("/") ? "/" : "";
         for (int k = 0; k <= i; k++)
         {
             curFolder += parts[k] + QLatin1Char{'/'};
@@ -369,8 +369,10 @@ QString Utils::Fs::combinePaths(const QString &p1, const QString &p2)
 {
     if (p1.isEmpty() || p2.isEmpty())
         return p1 + p2;
-    else
-        return p1 + QLatin1Char{'/'} + p2;
+
+    QString left = p1.endsWith("/") ? p1.chopped(1) : p1;
+    QString right = p2.startsWith("/") ? p2.mid(1) : p2;
+    return left + QLatin1Char{'/'} + right;
 }
 
 QString Utils::Fs::renamePath(const QString &oldPathWithExtension
@@ -405,6 +407,11 @@ QString Utils::Fs::renamePath(const QString &oldPathWithExtension
         return "";
 
     return newPath;
+}
+
+bool Utils::Fs::absolutePathsStartWithSlash()
+{
+    return Utils::Fs::toUniformPath(QDir::rootPath()).startsWith("/");
 }
 
 #if !defined Q_OS_HAIKU
@@ -479,6 +486,8 @@ QString Utils::Fs::findRootFolder(const QStringList &filePaths)
     QString rootFolder;
     for (const QString &filePath : filePaths)
     {
+        // when filePath is absolute (file relocated), then filePathElements.(0) is empty, which
+        // will force this function to return empty, which is correct.
         const auto filePathElements = QStringView(filePath).split(u'/');
         // if at least one file has no root folder, no common root folder exists
         if (filePathElements.count() <= 1)

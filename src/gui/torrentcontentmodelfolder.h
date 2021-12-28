@@ -38,11 +38,13 @@ namespace BitTorrent
 class TorrentContentModelFolder final : public TorrentContentModelItem
 {
 public:
-    // Folder constructor
+    TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent, bool isRealFolder);
     TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent);
 
     // Invisible root item constructor
     explicit TorrentContentModelFolder(const QVector<QString> &data);
+
+    friend TorrentContentModelFolder *makeRelocatedLabel(const QString &name, TorrentContentModelFolder*parent);
 
     ~TorrentContentModelFolder() override;
 
@@ -64,3 +66,6 @@ public:
 private:
     QVector<TorrentContentModelItem*> m_childItems;
 };
+
+// allocate and return a newly allocated "Relocated Files" label
+TorrentContentModelFolder *makeRelocatedLabel(const QString &name, TorrentContentModelFolder *parent);

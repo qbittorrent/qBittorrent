@@ -201,3 +201,10 @@ void TorrentContentModelFolder::increaseSize(qulonglong delta)
     m_size += delta;
     m_parentItem->increaseSize(delta);
 }
+
+TorrentContentModelFolder *makeRelocatedLabel(const QString &name, TorrentContentModelFolder *parent)
+{
+    TorrentContentModelFolder *result = new TorrentContentModelFolder(name, parent);
+    result->m_isRelocatedLabel = true;
+    return result;
+}

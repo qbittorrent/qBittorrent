@@ -422,7 +422,7 @@ QString TorrentImpl::contentPath(const bool actual) const
         return {};
 
     if (filesCount() == 1)
-        return QDir(savePath(actual)).absoluteFilePath(filePath(0));
+        return absoluteFilePath(actual, 0);
 
     const QString rootPath = this->rootPath(actual);
     return (rootPath.isEmpty() ? savePath(actual) : rootPath);
@@ -758,6 +758,16 @@ QString TorrentImpl::filePath(const int index) const
     return m_filePaths.at(index);
 }
 
+QString TorrentImpl::absoluteFilePath(bool actual, int index) const
+{
+    if (!hasMetadata())
+        return "";
+    if (QDir::isAbsolutePath(filePath(index)))
+        return filePath(index);
+    else
+        return Utils::Fs::expandPathAbs(QDir(savePath(actual)).absoluteFilePath(filePath(index)));
+}
+
 qlonglong TorrentImpl::fileSize(const int index) const
 {
     return m_torrentInfo.fileSize(index);
@@ -766,20 +776,6 @@ qlonglong TorrentImpl::fileSize(const int index) const
 QStringList TorrentImpl::filePaths() const
 {
     return m_filePaths;
-}
-
-// Return a list of absolute paths corresponding
-// to all files in a torrent
-QStringList TorrentImpl::absoluteFilePaths() const
-{
-    if (!hasMetadata()) return {};
-
-    const QDir saveDir {savePath(true)};
-    QStringList res;
-    res.reserve(filesCount());
-    for (int i = 0; i < filesCount(); ++i)
-        res << Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
-    return res;
 }
 
 QVector<DownloadPriority> TorrentImpl::filePriorities() const

@@ -128,9 +128,8 @@ void PreviewSelectDialog::previewButtonClicked()
     // Flush data
     m_torrent->flushCache();
 
-    const QStringList absolutePaths = m_torrent->absoluteFilePaths();
     // Only one file should be selected
-    const QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
+    const QString path = m_torrent->absoluteFilePath(true, selectedIndexes.at(0).data().toInt());
     // File
     if (!QFile::exists(path))
     {
