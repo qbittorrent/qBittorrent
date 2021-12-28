@@ -1782,7 +1782,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         TorrentInfo metadata = TorrentInfo(*m_nativeHandle.torrent_file());
 
         QStringList filePaths = metadata.filePaths();
-        applyContentLayout(filePaths, m_contentLayout);
+        filePaths = applyContentLayout(filePaths, m_contentLayout);
         m_session->findIncompleteFiles(metadata, m_savePath, filePaths);
     }
     else

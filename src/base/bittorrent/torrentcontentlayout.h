@@ -50,5 +50,5 @@ namespace BitTorrent
     }
 
     TorrentContentLayout detectContentLayout(const QStringList &filePaths);
-    void applyContentLayout(QStringList &filePaths, TorrentContentLayout contentLayout, const QString &rootFolder = {});
+    QStringList applyContentLayout(const QStringList &filePaths, TorrentContentLayout contentLayout, const QString &rootFolder = {});
 }

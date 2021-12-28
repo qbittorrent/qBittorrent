@@ -382,6 +382,7 @@ void ContentWidget::performEditPaths(const BitTorrent::AbstractFileStorage::Rena
     m_undoState = newUndoState;
     m_hasUndo = true;
     setupContentModelAfterRename();
+    emit contentLayoutBackprop(BitTorrent::detectContentLayout(m_fileStorage->filePaths()));
 }
 
 void ContentWidget::renameAll()
@@ -542,6 +543,13 @@ void ContentWidget::editPathsPromptMultiple(const QVector<int> &indexes)
         renameList.insert(index, Utils::Fs::renamePath(m_fileStorage->filePath(index), nameTransformer, true));
     }
 
+    performEditPaths(renameList);
+}
+
+void ContentWidget::contentLayoutChanged(const BitTorrent::TorrentContentLayout &layout, const QString &originalRootFolder)
+{
+    QStringList renamedPaths = BitTorrent::applyContentLayout(m_fileStorage->filePaths(), layout, originalRootFolder);
+    auto renameList = Utils::Fs::stringListToRenameList(renamedPaths);
     performEditPaths(renameList);
 }
 

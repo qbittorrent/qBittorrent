@@ -36,6 +36,7 @@
 
 #include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "gui/torrentcontentfiltermodel.h"
 #include "gui/properties/proplistdelegate.h"
 #include "ui_contentwidget.h"
@@ -61,6 +62,7 @@ public:
     qlonglong selectedSize() const;
     // if the content widget is backed by a Torrent, update availability and progress
     void loadDynamicData();
+    void contentLayoutChanged(const BitTorrent::TorrentContentLayout &, const QString &originalRootFolder);
     QVector<BitTorrent::DownloadPriority> getFilePriorities() const;
     void clear();
 
@@ -104,6 +106,8 @@ private:
 signals:
     // signalled when the set of files selected to be downloaded changes
     void prioritiesChanged();
+    // if files are renamed manually such that the content layout needs to change, it is done here.
+    void contentLayoutBackprop(BitTorrent::TorrentContentLayout);
 
 private slots:
     void renameAll();

@@ -43,6 +43,14 @@ const Qt::CaseSensitivity CASE_SENSITIVITY {Qt::CaseInsensitive};
 const Qt::CaseSensitivity CASE_SENSITIVITY {Qt::CaseSensitive};
 #endif
 
+QStringList BitTorrent::AbstractFileStorage::filePaths() const
+{
+    QStringList result;
+    for (int i = 0; i < filesCount(); i++)
+        result.push_back(filePath(i));
+    return result;
+}
+
 QVector<int> BitTorrent::AbstractFileStorage::folderIndexes(const QString &folder) const
 {
     QVector<int> result;

@@ -85,6 +85,7 @@ private slots:
     void TMMChanged(int index);
     void categoryChanged(int index);
     void contentLayoutChanged(int index);
+    void contentLayoutBackprop(BitTorrent::TorrentContentLayout);
     void doNotDeleteTorrentClicked(bool checked);
 
     void accept() override;

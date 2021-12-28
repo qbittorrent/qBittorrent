@@ -166,6 +166,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->contentLayoutComboBox->setCurrentIndex(
                 static_cast<int>(m_torrentParams.contentLayout.value_or(session->torrentContentLayout())));
     connect(m_ui->contentLayoutComboBox, &QComboBox::currentIndexChanged, this, &AddNewTorrentDialog::contentLayoutChanged);
+    connect(m_ui->contentWidget, &ContentWidget::contentLayoutBackprop, this, &AddNewTorrentDialog::contentLayoutBackprop);
 
     m_ui->sequentialCheckBox->setChecked(m_torrentParams.sequential);
     m_ui->firstLastCheckBox->setChecked(m_torrentParams.firstLastPiecePriority);
@@ -471,24 +472,18 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
     if (!hasMetadata())
         return;
 
-    const auto filePriorities = m_contentModel->model()->getFilePriorities();
-    m_contentModel->model()->clear();
-
-    Q_ASSERT(!m_torrentParams.filePaths.isEmpty());
     const auto contentLayout = ((index == 0)
                                 ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
                                 : static_cast<BitTorrent::TorrentContentLayout>(index));
-    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
-    m_contentModel->model()->setupModelData(*m_fileStorage.get());
-    m_contentModel->model()->updateFilesPriorities(filePriorities);
+    m_ui->contentWidget->contentLayoutChanged(contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
+    // contentLayoutChanged itself emits contentLayoutBackprop, which messes up the box if it was in
+    // the "original" position.
+    m_ui->contentLayoutComboBox->setCurrentIndex(index);
+}
 
-    // Expand single-item folders recursively
-    QModelIndex currentIndex;
-    while (m_contentModel->rowCount(currentIndex) == 1)
-    {
-        currentIndex = m_contentModel->index(0, 0, currentIndex);
-        // m_ui->contentTreeView->setExpanded(currentIndex, true);
-    }
+void AddNewTorrentDialog::contentLayoutBackprop(BitTorrent::TorrentContentLayout layout)
+{
+    m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(layout));
 }
 
 void AddNewTorrentDialog::setSavePath(const QString &newPath)

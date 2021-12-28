@@ -493,20 +493,34 @@ QString Utils::Fs::findRootFolder(const QStringList &filePaths)
     return rootFolder;
 }
 
-void Utils::Fs::stripRootFolder(QStringList &filePaths)
+QStringList Utils::Fs::stripRootFolder(const QStringList &filePaths)
 {
     const QString commonRootFolder = findRootFolder(filePaths);
     if (commonRootFolder.isEmpty())
-        return;
+        return filePaths;
 
-    for (QString &filePath : filePaths)
-        filePath = filePath.mid(commonRootFolder.size() + 1);
+    QStringList result;
+    for (const QString &filePath : filePaths)
+        result.push_back(filePath.mid(commonRootFolder.size() + 1));
+    return result;
 }
 
-void Utils::Fs::addRootFolder(QStringList &filePaths, const QString &rootFolder)
+QStringList Utils::Fs::addRootFolder(const QStringList &filePaths, const QString &rootFolder)
 {
     Q_ASSERT(!rootFolder.isEmpty());
 
-    for (QString &filePath : filePaths)
-        filePath = rootFolder + QLatin1Char('/') + filePath;
+    QStringList result;
+    for (const QString &filePath : filePaths)
+        result.push_back(rootFolder + QLatin1Char('/') + filePath);
+    return result;
+}
+
+Utils::Fs::RenameList Utils::Fs::stringListToRenameList(const QStringList &filePaths)
+{
+    Utils::Fs::RenameList result;
+    for (int idx = 0; idx < filePaths.size(); idx++)
+    {
+        result.insert(idx, filePaths[idx]);
+    }
+    return result;
 }

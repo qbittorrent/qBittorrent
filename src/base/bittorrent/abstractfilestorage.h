@@ -54,6 +54,8 @@ namespace BitTorrent
         // rename the file without checking name's validity
         virtual void renameFile(int index, const QString &name) = 0;
 
+        QStringList filePaths() const;
+
         // return indexes of all files in the given folder.
         QVector<int> folderIndexes(const QString &folder) const;
 

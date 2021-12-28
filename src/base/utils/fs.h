@@ -34,9 +34,12 @@
 
 #include <functional>
 #include <QString>
+#include <QMap>
 
 namespace Utils::Fs
 {
+    using RenameList = QMap<int, QString>;
+
     /**
      * Converts a path to a string suitable for display.
      * This function makes sure the directory separator used is consistent
@@ -93,8 +96,9 @@ namespace Utils::Fs
     QString tempPath();
 
     QString findRootFolder(const QStringList &filePaths);
-    void stripRootFolder(QStringList &filePaths);
-    void addRootFolder(QStringList &filePaths, const QString &name);
+    QStringList stripRootFolder(const QStringList &filePaths);
+    QStringList addRootFolder(const QStringList &filePaths, const QString &name);
+    RenameList stringListToRenameList(const QStringList &filePaths);
 
 #if !defined Q_OS_HAIKU
     bool isNetworkFileSystem(const QString &path);
