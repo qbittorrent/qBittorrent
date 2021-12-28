@@ -32,6 +32,7 @@
 
 #include "base/bittorrent/common.h"
 #include "base/global.h"
+#include "gui/torrentcontentmodelfile.h"
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)
     : TorrentContentModelItem(parent)
@@ -84,16 +85,6 @@ void TorrentContentModelFolder::appendChild(TorrentContentModelItem *item)
 TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
 {
     return m_childItems.value(row, nullptr);
-}
-
-TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const QString &name) const
-{
-    for (TorrentContentModelItem *child : asConst(m_childItems))
-    {
-        if ((child->itemType() == FolderType) && (child->name() == name))
-            return static_cast<TorrentContentModelFolder *>(child);
-    }
-    return nullptr;
 }
 
 int TorrentContentModelFolder::childCount() const

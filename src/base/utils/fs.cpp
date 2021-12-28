@@ -119,7 +119,7 @@ QString Utils::Fs::folderName(const QString &filePath)
 
 QVector<QString> Utils::Fs::parentFolders(const QString &filePath)
 {
-    QStringList parts = filePath.split(QLatin1Char{'/'}, Qt::SkipEmptyParts);
+    QStringList parts = Utils::Fs::folderName(filePath).split(QLatin1Char{'/'}, Qt::SkipEmptyParts);
     QVector<QString> result;
     for (int i = 0; i < parts.size(); i++)
     {
@@ -128,6 +128,7 @@ QVector<QString> Utils::Fs::parentFolders(const QString &filePath)
         {
             curFolder += parts[k] + QLatin1Char{'/'};
         }
+        curFolder.chop(1); // eliminate trailing slash
         result.push_back(curFolder);
     }
     return result;

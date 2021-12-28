@@ -27,6 +27,7 @@
  */
 
 #include "torrentcontentmodel.h"
+#include "base/exceptions.h"
 
 #include <algorithm>
 
@@ -194,8 +195,8 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
 {
+    initializeRootItem();
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
 #elif defined(Q_OS_MACOS)
@@ -210,6 +211,11 @@ TorrentContentModel::~TorrentContentModel()
 {
     delete m_fileIconProvider;
     delete m_rootItem;
+}
+
+void TorrentContentModel::initializeRootItem()
+{
+    m_rootItem = new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") }));
 }
 
 void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
@@ -233,7 +239,6 @@ void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::Downlo
     if (m_filesIndex.size() != fprio.size())
         return;
 
-    emit layoutAboutToBeChanged();
     for (int i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
     emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
@@ -245,7 +250,6 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
     // XXX: Why is this necessary?
     if (m_filesIndex.size() != fa.size()) return;
 
-    emit layoutAboutToBeChanged();
     for (int i = 0; i < m_filesIndex.size(); ++i)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
@@ -273,7 +277,7 @@ bool TorrentContentModel::allFiltered() const
 int TorrentContentModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
-        return this->item(parent)->columnCount();
+        return this->citem(parent)->columnCount();
 
     return m_rootItem->columnCount();
 }
@@ -328,14 +332,23 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
     return false;
 }
 
-TorrentContentModelItem *TorrentContentModel::item(const QModelIndex &index) const
+const TorrentContentModelItem *TorrentContentModel::citem(const QModelIndex &index) const
 {
-    return static_cast<TorrentContentModelItem *>(index.internalPointer());
+    return static_cast<const TorrentContentModelItem *>(
+        index.isValid() ? index.internalPointer() : m_rootItem
+        );
+}
+
+TorrentContentModelItem *TorrentContentModel::item(const QModelIndex &index)
+{
+    return static_cast<TorrentContentModelItem *>(
+        index.isValid() ? index.internalPointer() : m_rootItem
+        );
 }
 
 int TorrentContentModel::getFileIndex(const QModelIndex &index) const
 {
-    const TorrentContentModelItem *item = this->item(index);
+    const TorrentContentModelItem *item = this->citem(index);
     if (item->itemType() == TorrentContentModelItem::FileType)
         return static_cast<const TorrentContentModelFile*>(item)->fileIndex();
 
@@ -348,7 +361,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
     if (!index.isValid())
         return {};
 
-    auto *item = this->item(index);
+    auto *item = this->citem(index);
 
     switch (role)
     {
@@ -396,7 +409,7 @@ Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
         return Qt::ItemIsDropEnabled; // TODO: can we handle top-level drops?
 
     Qt::ItemFlags flags {Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled};
-    if (item(index)->itemType() == TorrentContentModelItem::FolderType)
+    if (citem(index)->itemType() == TorrentContentModelItem::FolderType)
         flags |= Qt::ItemIsAutoTristate | Qt::ItemIsDropEnabled;
     if (index.column() == TorrentContentModelItem::COL_PRIO)
         flags |= Qt::ItemIsEditable;
@@ -454,9 +467,7 @@ QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return {};
 
-    auto *childItem = this->item(index);
-    if (!childItem)
-        return {};
+    auto *childItem = this->citem(index);
 
     TorrentContentModelItem *parentItem = childItem->parent();
     if (parentItem == m_rootItem)
@@ -470,11 +481,11 @@ int TorrentContentModel::rowCount(const QModelIndex &parent) const
     if (parent.column() > 0)
         return 0;
 
-    TorrentContentModelFolder *parentItem;
+    const TorrentContentModelFolder *parentItem;
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
-        parentItem = dynamic_cast<TorrentContentModelFolder*>(this->item(parent));
+        parentItem = dynamic_cast<const TorrentContentModelFolder*>(this->citem(parent));
 
     return parentItem ? parentItem->childCount() : 0;
 }
@@ -522,7 +533,7 @@ QMimeData *TorrentContentModel::mimeData(const QModelIndexList &indexes) const
         };
     for (const QModelIndex &index : indexes)
     {
-        addStubs(item(index), "");
+        addStubs(citem(index), "");
     }
 
     QByteArray encoded;
@@ -555,11 +566,19 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
         QString stub;
         stream >> fileIndex;
         stream >> stub;
+        qDebug("drop %d %s", fileIndex, qUtf8Printable(stub));
         fileIndexes.push_back(fileIndex);
         newPaths.push_back(Utils::Fs::combinePaths(newParentPath, stub));
     }
 
-    m_fileStorage->renameFiles(fileIndexes, newPaths);
+    try
+    {
+        m_fileStorage->renameFiles(fileIndexes, newPaths);
+    }
+    catch (const RuntimeError &error)
+    {
+        puts("error"); // TODO: create a message box? But then we need access to the GUI parent
+    }
     relayout();
     return true;
 }
@@ -567,7 +586,7 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
 bool TorrentContentModel::canDropMimeData(const QMimeData *mimeData, Qt::DropAction, int, int, const QModelIndex &parent) const
 {
     return !parent.isValid() // root is OK
-        || (mimeData->hasFormat(QB_DRAGNDROP_MIME) && item(parent)->itemType() == TorrentContentModelItem::FolderType);
+        || (mimeData->hasFormat(QB_DRAGNDROP_MIME) && citem(parent)->itemType() == TorrentContentModelItem::FolderType);
 }
 
 Qt::DropActions TorrentContentModel::supportedDropActions() const
@@ -580,57 +599,143 @@ void TorrentContentModel::clear()
     qDebug("clear called");
     beginResetModel();
     m_filesIndex.clear();
-    m_rootItem->deleteAllChildren();
+    delete m_rootItem;
+    initializeRootItem();
     endResetModel();
 }
 
 void TorrentContentModel::setupModelData(BitTorrent::AbstractFileStorage *info)
 {
     qDebug("setup model data called");
+
+    // helper function: Change all indexes for the given row, the arguments being the indexes of
+    // the rows to be operated on, with column zero.
+    auto changePersistentRowIndexes = [this](const QModelIndex &oldIndex, const QModelIndex &newIndex)
+        {
+            Q_ASSERT(columnCount(oldIndex.parent()) == columnCount(newIndex.parent()));
+
+            for (int i = 0; i < columnCount(oldIndex.parent()); i++)
+            {
+                changePersistentIndex(index(oldIndex.row(), i, oldIndex.parent()),
+                                      index(newIndex.row(), i, newIndex.parent()));
+            }
+        };
+
     m_fileStorage = info;
     const int filesCount = info->filesCount();
     if (filesCount <= 0)
         return;
+    qDebug("Torrent contains %d files", filesCount);
+
+    bool haveFileIndexes = !m_filesIndex.isEmpty();
+
+    // Map from each file and folder to the model index, so that we can call ChangePersistentIndex appropriately later
+    // TODO: should we store pointers to the indexes instead of directly?
+    QVector<QModelIndex> oldFileModelIndexes;
+    QMap<QString, QModelIndex> oldFolderModelIndexes;
+    oldFileModelIndexes.resize(filesCount);
+    std::function<void (const QModelIndex &parent)> addIndexes;
+    // TODO: when adding relocate, we'll need to handle the folder name of the root differently
+    addIndexes = [this, &oldFileModelIndexes, &oldFolderModelIndexes, &addIndexes](const QModelIndex &parent)
+        {
+            TorrentContentModelItem *item = this->item(parent);
+            switch (item->itemType())
+            {
+            case TorrentContentModelItem::FileType:
+            {
+                TorrentContentModelFile *fileItem = dynamic_cast<TorrentContentModelFile *>(item);
+                oldFileModelIndexes[fileItem->fileIndex()] = parent;
+            }
+            break;
+            case TorrentContentModelItem::FolderType:
+            {
+                if (parent.isValid())
+                    oldFolderModelIndexes.insert(item->path(), parent);
+                for (int i = 0; i < this->rowCount(parent); i++)
+                {
+                    addIndexes(this->index(i, 0, parent));
+                }
+            }
+            break;
+            }
+        };
+    addIndexes(QModelIndex());
 
     emit layoutAboutToBeChanged();
-    // Initialize files_index array
-    qDebug("Torrent contains %d files", filesCount);
-    m_filesIndex.reserve(filesCount);
 
-    TorrentContentModelFolder *currentParent;
+    // cannot delete m_rootItem because the old indexes store pointers into it. Once all the indexes
+    // have been changed, we delete it.
+    TorrentContentModelFolder *oldRootItem = m_rootItem;
+    initializeRootItem();
+    m_filesIndex.resize(filesCount);
+
     // Iterate over files
     for (int i = 0; i < filesCount; ++i)
     {
-        currentParent = m_rootItem;
+        QModelIndex currentFolderIndex;
+        TorrentContentModelFolder *currentFolderItem = dynamic_cast<TorrentContentModelFolder *>(item(currentFolderIndex));
         const QString path = Utils::Fs::toUniformPath(info->filePath(i));
 
         // Iterate of parts of the path to create necessary folders
-        QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
-        pathFolders.removeLast();
+        QVector<QString> pathFolders = Utils::Fs::parentFolders(path);
 
-        for (const QStringView pathPart : asConst(pathFolders))
+        for (const QString &parentFolderPath : pathFolders)
         {
-            const QString folderPath = pathPart.toString();
-            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(folderPath);
-            if (!newParent)
+            QString parentFolderName = Utils::Fs::fileName(parentFolderPath);
+            auto currentFolderChildren = currentFolderItem->children();
+            auto childFolderIt = std::find_if(currentFolderChildren.cbegin(), currentFolderChildren.cend(),
+                                              [&parentFolderName](const TorrentContentModelItem *item) -> bool {
+                                                  return item->name() == parentFolderName;
+                                              });
+            int childFolderRow = childFolderIt - currentFolderChildren.cbegin();
+            if (childFolderIt == currentFolderChildren.cend())
             {
-                newParent = new TorrentContentModelFolder(folderPath, currentParent);
-                currentParent->appendChild(newParent);
+                // need to create new folder
+                auto *newParent = new TorrentContentModelFolder(parentFolderName, currentFolderItem);
+                currentFolderItem->appendChild(newParent);
             }
-            currentParent = newParent;
+            currentFolderIndex = index(childFolderRow, 0, currentFolderIndex);
+            currentFolderItem = dynamic_cast<TorrentContentModelFolder *>(item(currentFolderIndex));
+
+            auto oldIndexIt = oldFolderModelIndexes.constFind(parentFolderPath);
+            if (oldIndexIt != oldFolderModelIndexes.cend())
+            {
+                Q_ASSERT(oldIndexIt->isValid());
+                Q_ASSERT(currentFolderIndex.isValid());
+                changePersistentRowIndexes(*oldIndexIt, currentFolderIndex);
+                oldFolderModelIndexes.remove(parentFolderPath);
+            }
         }
-        // Actually create the file
-        TorrentContentModelFile *fileItem = new TorrentContentModelFile(
-                    Utils::Fs::fileName(info->filePath(i)), info->fileSize(i), currentParent, i);
-        currentParent->appendChild(fileItem);
-        m_filesIndex.push_back(fileItem);
+
+        // Add the new file
+        TorrentContentModelFile *fileItem = new TorrentContentModelFile(Utils::Fs::fileName(info->filePath(i))
+                                                                        , info->fileSize(i), currentFolderItem, i);
+        currentFolderItem->appendChild(fileItem);
+        m_filesIndex[i] = fileItem;
+        if (haveFileIndexes)
+        {
+            QModelIndex oldFileIndex = oldFileModelIndexes[i];
+            QModelIndex newFileIndex = index(currentFolderItem->childCount() - 1, 0, currentFolderIndex);
+            Q_ASSERT(oldFileIndex.isValid());
+            Q_ASSERT(newFileIndex.isValid());
+            changePersistentRowIndexes(oldFileIndex, newFileIndex);
+        }
     }
+
+    // remove deleted folders
+    for (const QString &folderName : oldFolderModelIndexes.keys())
+    {
+        Q_ASSERT(oldFolderModelIndexes[folderName].isValid());
+        changePersistentRowIndexes(oldFolderModelIndexes[folderName], QModelIndex());
+    }
+
+    delete oldRootItem;
+
     emit layoutChanged();
 }
 
 void TorrentContentModel::relayout()
 {
-    clear();
     setupModelData(m_fileStorage);
 }
 

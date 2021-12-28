@@ -67,7 +67,8 @@ public:
     bool allFiltered() const;
     int columnCount(const QModelIndex &parent = {}) const override;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
-    TorrentContentModelItem *item(const QModelIndex &index) const;
+    const TorrentContentModelItem *citem(const QModelIndex &index) const;
+    TorrentContentModelItem *item(const QModelIndex &index);
     int getFileIndex(const QModelIndex &index) const;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     Qt::ItemFlags flags(const QModelIndex &index) const override;
@@ -93,6 +94,9 @@ public slots:
     void selectNone();
 
 private:
+    // set the root item. Does not delete the old one.
+    void initializeRootItem();
+
     TorrentContentModelFolder *m_rootItem;
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;

@@ -68,10 +68,9 @@ void BitTorrent::AbstractFileStorage::renameFiles(const QVector<int> &indexes
             oldAndFolderNames.insert(Utils::Fs::stripQbExtension(filePath(i)));
         }
 
-        for (QString folder : Utils::Fs::parentFolders(filePath(i)))
+        for (const QString &folder : Utils::Fs::parentFolders(filePath(i)))
         {
-            folder.chop(1);
-            oldAndFolderNames.insert(folder); // remove trailing slash
+            oldAndFolderNames.insert(folder);
         }
     }
 
