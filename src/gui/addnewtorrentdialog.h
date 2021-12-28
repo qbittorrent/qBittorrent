@@ -87,7 +87,7 @@ private slots:
     void categoryChanged(int index);
     void contentLayoutChanged(int index);
     void doNotDeleteTorrentClicked(bool checked);
-    void renameSelectedFile();
+    void renameSelectedFiles();
 
     void accept() override;
     void reject() override;

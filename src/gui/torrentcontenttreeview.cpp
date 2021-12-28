@@ -49,6 +49,7 @@
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
 #include "torrentcontentmodelitem.h"
+#include "regexreplacementdialog.h"
 
 namespace
 {
@@ -107,45 +108,76 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage)
+void TorrentContentTreeView::renameSelectedFiles(BitTorrent::AbstractFileStorage &fileStorage)
 {
-    const QModelIndexList selectedIndexes = selectionModel()->selectedRows(0);
-    if (selectedIndexes.size() != 1) return;
+    QModelIndexList transientSelectedIndexes = selectionModel()->selectedRows(0);
+    // if nothing is selected, then add all rows
+    if (transientSelectedIndexes.size() == 0)
+    {
+        for (int i = 0; i < model()->rowCount(); i++)
+        {
+            transientSelectedIndexes.push_back(model()->index(i, 0));
+        }
+    }
+    // make persistent copies of all the indexes
+    QList<QPersistentModelIndex> selectedIndexes;
+    for (const QModelIndex &modelIndex : transientSelectedIndexes)
+    {
+        selectedIndexes.push_back(modelIndex);
+    }
+    bool singleIndex = selectedIndexes.size() == 1;
 
-    const QPersistentModelIndex modelIndex = selectedIndexes.first();
-    if (!modelIndex.isValid()) return;
+    std::function<QString (const QString &, bool isFile)> nameTransformer;
+    std::unique_ptr<RegexReplacementDialog> regexDialog; // TODO: avoid unique ptr, just return the lambda from rrd?
+    if (singleIndex)
+    {
+        nameTransformer = [this](const QString &arg, bool isFile) -> QString
+            {
+                bool ok;
+                QString result = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
+                                                               , arg, &ok, isFile).trimmed();
+                return ok ? result : QString("");
+            };
+    }
+    else
+    {
+        regexDialog = std::unique_ptr<RegexReplacementDialog>(new RegexReplacementDialog(this, tr("Batch Renaming Files")));
+        bool ok = regexDialog->prompt();
+        if (!ok) return;
+        nameTransformer = [&regexDialog](const QString &arg, bool) -> QString
+            {
+                return regexDialog->replace(arg);
+            };
+    }
 
     auto model = dynamic_cast<TorrentContentFilterModel *>(TorrentContentTreeView::model());
     if (!model) return;
 
-    const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
+    for (const QPersistentModelIndex modelIndex : selectedIndexes)
+    { // TODO: is it right to make a copy of the modelIndex?
+        if (!modelIndex.isValid()) continue;
+        const bool isFile = (model->itemType(modelIndex) == TorrentContentModelItem::FileType);
+        const QString oldName = modelIndex.data().toString();
+        const QString newName = nameTransformer(oldName, isFile);
+        if (newName == oldName) continue;
+        if (!singleIndex && !isFile) continue; // TODO: could we rename folders in a batch without breaking things horribly?
+        const QString parentPath = getFullPath(modelIndex.parent());
 
-    // Ask for new name
-    bool ok = false;
-    QString newName = AutoExpandableDialog::getText(this, tr("Renaming"), tr("New name:"), QLineEdit::Normal
-            , modelIndex.data().toString(), &ok, isFile).trimmed();
-    if (!ok || !modelIndex.isValid()) return;
+        const QString oldPath {parentPath.isEmpty() ? oldName : parentPath + QLatin1Char {'/'} + oldName};
+        const QString newPath {parentPath.isEmpty() ? newName : parentPath + QLatin1Char {'/'} + newName};
+        try
+        {
+            if (isFile)
+                fileStorage.renameFile(oldPath, newPath);
+            else
+                fileStorage.renameFolder(oldPath, newPath);
 
-    const QString oldName = modelIndex.data().toString();
-    if (newName == oldName)
-        return;  // Name did not change
-
-    const QString parentPath = getFullPath(modelIndex.parent());
-    const QString oldPath {parentPath.isEmpty() ? oldName : parentPath + QLatin1Char {'/'} + oldName};
-    const QString newPath {parentPath.isEmpty() ? newName : parentPath + QLatin1Char {'/'} + newName};
-
-    try
-    {
-        if (isFile)
-            fileStorage.renameFile(oldPath, newPath);
-        else
-            fileStorage.renameFolder(oldPath, newPath);
-
-        model->setData(modelIndex, newName);
-    }
-    catch (const RuntimeError &error)
-    {
-        RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
+            model->setData(modelIndex, newName);
+        }
+        catch (const RuntimeError &error)
+        {
+            RaisedMessageBox::warning(this, tr("Rename error"), error.message(), QMessageBox::Ok);
+        }
     }
 }
 

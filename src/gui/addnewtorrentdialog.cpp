@@ -193,8 +193,8 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     // Signal / slots
     connect(m_ui->doNotDeleteTorrentCheckBox, &QCheckBox::clicked, this, &AddNewTorrentDialog::doNotDeleteTorrentClicked);
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, m_ui->contentTreeView, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(editHotkey, &QShortcut::activated, this, &AddNewTorrentDialog::renameSelectedFile);
-    connect(m_ui->contentTreeView, &QAbstractItemView::doubleClicked, this, &AddNewTorrentDialog::renameSelectedFile);
+    connect(editHotkey, &QShortcut::activated, this, &AddNewTorrentDialog::renameSelectedFiles);
+    connect(m_ui->contentTreeView, &QAbstractItemView::doubleClicked, this, &AddNewTorrentDialog::renameSelectedFiles);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
 }
@@ -622,7 +622,7 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     if (selectedRows.size() == 1)
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."), this, &AddNewTorrentDialog::renameSelectedFile);
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."), this, &AddNewTorrentDialog::renameSelectedFiles);
         menu->addSeparator();
 
         QMenu *priorityMenu = menu->addMenu(tr("Priority"));
@@ -647,6 +647,8 @@ void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
     }
     else
     {
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Batch Rename..."), this, &AddNewTorrentDialog::renameSelectedFiles);
+        menu->addSeparator();
         menu->addAction(tr("Do not download"), menu, [applyPriorities]()
         {
             applyPriorities(BitTorrent::DownloadPriority::Ignored);
@@ -874,11 +876,11 @@ void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
     m_torrentGuard->setAutoRemove(!checked);
 }
 
-void AddNewTorrentDialog::renameSelectedFile()
+void AddNewTorrentDialog::renameSelectedFiles()
 {
     if (hasMetadata())
     {
         FileStorageAdaptor fileStorageAdaptor {m_torrentInfo, m_torrentParams.filePaths};
-        m_ui->contentTreeView->renameSelectedFile(fileStorageAdaptor);
+        m_ui->contentTreeView->renameSelectedFiles(fileStorageAdaptor);
     }
 }

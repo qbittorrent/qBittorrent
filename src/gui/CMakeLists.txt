@@ -41,6 +41,7 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.h
     properties/trackersadditiondialog.h
     raisedmessagebox.h
+    regexreplacementdialog.h
     rss/articlelistwidget.h
     rss/automatedrssdownloader.h
     rss/feedlistwidget.h
@@ -122,6 +123,7 @@ add_library(qbt_gui STATIC
     properties/trackerlistwidget.cpp
     properties/trackersadditiondialog.cpp
     raisedmessagebox.cpp
+    regexreplacementdialog.cpp
     rss/articlelistwidget.cpp
     rss/automatedrssdownloader.cpp
     rss/feedlistwidget.cpp
@@ -177,6 +179,7 @@ add_library(qbt_gui STATIC
     properties/peersadditiondialog.ui
     properties/propertieswidget.ui
     properties/trackersadditiondialog.ui
+    regexreplacementdialog.ui
     rss/automatedrssdownloader.ui
     rss/rsswidget.ui
     search/pluginselectdialog.ui

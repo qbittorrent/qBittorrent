@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Ivan Sorokin <vanyacpp@gmail.com>
+ * Copyright (C) 2021  Welp Wazowski <welp@orpheus.network>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,26 +28,34 @@
 
 #pragma once
 
-#include <QTreeView>
+#include <memory>
 
-namespace BitTorrent
-{
-    class AbstractFileStorage;
-    class Torrent;
-    class TorrentInfo;
-}
+#include <QDialog>
+#include <QString>
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QRegularExpression>
 
-class TorrentContentTreeView final : public QTreeView
+#include "ui_regexreplacementdialog.h"
+
+class RegexReplacementDialog final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TorrentContentTreeView)
 
 public:
-    explicit TorrentContentTreeView(QWidget *parent = nullptr);
-    void keyPressEvent(QKeyEvent *event) override;
+    RegexReplacementDialog(QWidget *parent, const QString &title);
+    bool prompt();
 
-    void renameSelectedFiles(BitTorrent::AbstractFileStorage &fileStorage);
+    QString replace(QString arg) const;
+
+private slots:
+    void okClicked();
 
 private:
-    QModelIndex currentNameCell();
+    std::shared_ptr<Ui::RegexReplacementDialog> m_ui;
+    QRegularExpression m_regex;
+    QString m_find;
+    QString m_replace;
+    bool m_isRegex;
+    bool m_isCaseInsensitive;
 };

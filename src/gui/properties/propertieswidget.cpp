@@ -161,7 +161,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
 
     const auto *renameFileHotkey = new QShortcut(Qt::Key_F2, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    connect(renameFileHotkey, &QShortcut::activated, this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
+    connect(renameFileHotkey, &QShortcut::activated, this, [this]() { m_ui->filesList->renameSelectedFiles(*m_torrent); });
     const auto *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
     connect(openFileHotkeyReturn, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
     const auto *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
@@ -640,8 +640,13 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
         menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
             , this, [this, index]() { openParentFolder(index); });
         menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
-            , this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
+            , this, [this]() { m_ui->filesList->renameSelectedFiles(*m_torrent); });
         menu->addSeparator();
+    }
+    else
+    {
+        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Batch Rename...")
+            , this, [this]() { m_ui->filesList->renameSelectedFiles(*m_torrent); });
     }
 
     if (!m_torrent->isSeed())
