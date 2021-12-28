@@ -157,13 +157,18 @@ void ContentWidget::setContentTorrent(BitTorrent::Torrent *torrent)
     setupChangedTorrent();
 }
 
-void ContentWidget::setupContentModel()
+void ContentWidget::setupContentModel(bool isSameTorrent)
 {
+    auto savedFilePriorities = getFilePriorities();
     contentModel()->setupModelData(*m_fileStorage);
     if (m_torrent)
     {
         loadDynamicData();
         contentModel()->updateFilesPriorities(m_torrent->filePriorities());
+    }
+    else if (isSameTorrent)
+    {
+        contentModel()->updateFilesPriorities(savedFilePriorities);
     }
 }
 
@@ -183,21 +188,21 @@ void ContentWidget::setupTreeViewAfterRename()
                                           , tr("Some files could not be renamed. Ensure you have permission to write to the rename destination.")
                                           , QMessageBox::Ok);
             }
-            setupContentModel();
+            setupContentModel(true);
             expandSelected();
         };
         dynamic_cast<BitTorrent::TorrentImpl *>(m_torrent)->onRenameComplete(renameHandler);
     }
     else
     {
-        setupContentModel();
+        setupContentModel(true);
         expandSelected();
     }
 }
 
 void ContentWidget::setupChangedTorrent()
 {
-    setupContentModel();
+    setupContentModel(false);
     expandSingleItemFolders();
 }
 

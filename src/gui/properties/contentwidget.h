@@ -85,8 +85,9 @@ private:
     void editPathPromptSingle(const QModelIndex &index);
     // return list of torrent indexes, taking only the selected files
     QVector<int> modelIndexesToFileIndexes(const QModelIndexList &) const;
-    // Update inner TorrentContentModel after file paths or torrent is changed.
-    void setupContentModel();
+    // Update inner TorrentContentModel after file paths or torrent is changed. If isSameTorrent is
+    // provided, then file priorities are preserved.
+    void setupContentModel(bool isSameTorrent);
     // called after a rename completes
     void setupTreeViewAfterRename();
     // call whenever m_torrent or m_torrentInfo are changed.
