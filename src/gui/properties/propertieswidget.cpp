@@ -86,7 +86,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
-    // TODO:
+    // TODO: do we relaly need these? saveSettings is called whenever qBit exits normally.
     // connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
     // connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
     // connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);
@@ -134,12 +134,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     const auto *deleteWebSeedsHotkey = new QShortcut(QKeySequence::Delete, m_ui->listWebSeeds, nullptr, nullptr, Qt::WidgetShortcut);
     connect(deleteWebSeedsHotkey, &QShortcut::activated, this, &PropertiesWidget::deleteSelectedUrlSeeds);
     connect(m_ui->listWebSeeds, &QListWidget::doubleClicked, this, &PropertiesWidget::editWebSeed);
-
-    // TODO:
-    // const auto *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    // connect(openFileHotkeyReturn, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
-    // const auto *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, m_ui->filesList, nullptr, nullptr, Qt::WidgetShortcut);
-    // connect(openFileHotkeyEnter, &QShortcut::activated, this, &PropertiesWidget::openSelectedFile);
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &PropertiesWidget::configure);
@@ -324,8 +318,7 @@ void PropertiesWidget::readSettings()
     }
     const int currentTab = pref->getPropCurTab();
     const bool visible = pref->getPropVisible();
-    // TODO:
-    // m_ui->filesList->header()->restoreState(pref->getPropFileListState());
+    m_ui->contentWidget->loadState(pref->getPropFileListState());
     m_tabBar->setCurrentIndex(currentTab);
     if (!visible)
         setVisibility(false);
@@ -345,8 +338,7 @@ void PropertiesWidget::saveSettings()
 
     if (sizes.size() == 2)
         pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
-    // TODO:
-    //pref->setPropFileListState(m_ui->filesList->header()->saveState());
+    pref->setPropFileListState(m_ui->contentWidget->saveState());
     // Remember current tab
     pref->setPropCurTab(m_tabBar->currentIndex());
 }

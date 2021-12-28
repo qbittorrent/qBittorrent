@@ -36,12 +36,12 @@
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "base/utils/string.h"
-#include "gui/fspathedit.h"
 #include "gui/regexreplacementdialog.h"
 #include "gui/torrentcontentmodel.h"
 #include "gui/uithememanager.h"
 #include "gui/properties/proplistdelegate.h"
 #include "gui/torrentcontentmodelfile.h"
+#include "gui/torrentcontentmodelfolder.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/raisedmessagebox.h"
 #include "gui/utils.h"
@@ -72,7 +72,7 @@ ContentWidget::ContentWidget(QWidget *parent)
     undoAction->setEnabled(false);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename all")
                              , this, &ContentWidget::renameAll);
-    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename Selected")
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename selected")
                              , this, &ContentWidget::renameSelected);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit all paths")
                              , this, &ContentWidget::editPathsAll);
@@ -111,6 +111,10 @@ ContentWidget::ContentWidget(QWidget *parent)
             , qOverload<const QModelIndex &>(&QAbstractItemView::edit));
 
     QShortcut *editHotkey = new QShortcut(Qt::Key_F2, m_ui->filesTreeView, nullptr, nullptr, Qt::WidgetShortcut);
+    QShortcut *openFileHotkeyReturn = new QShortcut(Qt::Key_Return, m_ui->filesTreeView, nullptr, nullptr, Qt::WidgetShortcut);
+    QShortcut *openFileHotkeyEnter = new QShortcut(Qt::Key_Enter, m_ui->filesTreeView, nullptr, nullptr, Qt::WidgetShortcut);
+    connect(openFileHotkeyReturn, &QShortcut::activated, this, &ContentWidget::doubleClicked);
+    connect(openFileHotkeyEnter, &QShortcut::activated, this, &ContentWidget::doubleClicked);
     connect(editHotkey, &QShortcut::activated, this, &ContentWidget::renameSelected);
     connect(m_ui->filesTreeView, &QAbstractItemView::doubleClicked, this, &ContentWidget::doubleClicked);
 
@@ -125,7 +129,7 @@ ContentWidget::ContentWidget(QWidget *parent)
 
 ContentWidget::~ContentWidget()
 {
-    // TODO: save settings or something?
+    // TODO: figure out if anything belongs here
 }
 
 void ContentWidget::setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *fileStorage)
@@ -162,32 +166,37 @@ void ContentWidget::setupContentModel()
     }
 }
 
-void ContentWidget::setupContentModelAfterRename()
+void ContentWidget::setupTreeViewAfterRename()
 {
     if (m_torrent)
     {
         // The selected torrent might change between the time the rename event handler is registered
         // and the time it is called. However, since the callback is not bound to any particular
-        // torrent, this is fine.
+        // torrent, this is fine. Also, the handler is removed after it fires once, so there is no
+        // need to worry about event handlers on previously selected torrents slowly piling up.
         BitTorrent::TorrentImpl::EventTrigger renameHandler = [this]()
         {
             setupContentModel();
+            expandSelected();
         };
         dynamic_cast<BitTorrent::TorrentImpl *>(m_torrent)->onRenameComplete(renameHandler);
     }
     else
     {
         setupContentModel();
+        expandSelected();
     }
 }
 
 void ContentWidget::setupChangedTorrent()
 {
     setupContentModel();
+    expandSingleItemFolders();
+}
 
-    // TODO: restore state
-    
-    // Expand single-item folders recursively
+void ContentWidget::expandSingleItemFolders()
+{
+    m_ui->filesTreeView->collapseAll();
     QModelIndex currentIndex;
     while (m_filterModel->rowCount(currentIndex) == 1)
     {
@@ -196,21 +205,33 @@ void ContentWidget::setupChangedTorrent()
     }
 }
 
+void ContentWidget::expandSelected()
+{
+    const QModelIndexList selectedRows = this->selectedRows();
+    for (const QModelIndex &index : selectedRows)
+    {
+        QModelIndex parent = index;
+        while (parent.isValid())
+        {
+            m_ui->filesTreeView->setExpanded(parent, true);
+            parent = parent.parent();
+        }
+    }
+}
+
 void ContentWidget::loadDynamicData()
 {
     Q_ASSERT(m_torrent);
 
-    // TODO: evaluate whether it's necessary to call setUpdatesEnabled(false) on the tree view to
-    // avoid flicker (also when updating model data after renames and setupModelData)
-
+    m_ui->filesTreeView->setUpdatesEnabled(false);
     contentModel()->updateFilesProgress(m_torrent->filesProgress());
     contentModel()->updateFilesAvailability(m_torrent->availableFileFractions());
+    m_ui->filesTreeView->setUpdatesEnabled(true);
     // XXX: We don't update file priorities regularly for performance reasons. This means that
     // priorities will not be updated if set from the Web UI.
     // contentModel()->updateFilesPriorities(m_torrent->file_priorities());
 
-    // TODO: analyze whether the preceding is actually correct about performance. I can't imagine
-    // that updating priorities is any worse than updating progress bars.
+    // Welp: I can't imagine that updating priorities is any worse than updating progress bars
 }
 
 TorrentContentModel *ContentWidget::contentModel()
@@ -259,12 +280,7 @@ void ContentWidget::filterText(const QString &filter)
     m_filterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
     if (filter.isEmpty())
     {
-        m_ui->filesTreeView->collapseAll();
-        m_ui->filesTreeView->expand(m_filterModel->index(0, 0)); // TODO: is expanding the first folder
-                                                             // really the best choice? Maybe expand
-                                                             // only if it's the only relative
-                                                             // folder, then also expand relocated
-                                                             // files?
+        expandSingleItemFolders();
     }
     else
     {
@@ -308,7 +324,7 @@ void ContentWidget::prioritizeInDisplayedOrder(const QModelIndexList &allRows)
     }
 }
 
-QModelIndexList ContentWidget::allIndexes() const
+QModelIndexList ContentWidget::childIndexes(const QModelIndex idx) const
 {
     QModelIndexList result;
     std::function<void (const QModelIndex &)> addChildren;
@@ -321,14 +337,14 @@ QModelIndexList ContentWidget::allIndexes() const
             addChildren(idx);
         }
     };
-    addChildren(QModelIndex());
+    addChildren(idx);
     return result;
 }
 
 void ContentWidget::prioritizeInDisplayedOrderAll()
 {
     // displayed order only makes sense for currently displayed indexes
-    prioritizeInDisplayedOrder(allIndexes());
+    prioritizeInDisplayedOrder(childIndexes());
 }
 
 void ContentWidget::prioritizeInDisplayedOrderSelected()
@@ -381,7 +397,7 @@ void ContentWidget::performEditPaths(const BitTorrent::AbstractFileStorage::Rena
 
     m_undoState = newUndoState;
     m_hasUndo = true;
-    setupContentModelAfterRename();
+    setupTreeViewAfterRename();
     emit contentLayoutBackprop(BitTorrent::detectContentLayout(m_fileStorage->filePaths()));
 }
 
@@ -468,7 +484,7 @@ void ContentWidget::renamePromptSingle(const QModelIndex &index)
 
 void ContentWidget::renamePromptMultiple(const QVector<int> &indexes)
 {
-    RegexReplacementDialog regexDialog(this, tr("Batch Renaming Files"));
+    RegexReplacementDialog regexDialog(this, tr("Batch Renaming"));
     bool ok = regexDialog.prompt();
     if (!ok) return;
     std::function<QString (const QString &)> nameTransformer;
@@ -628,8 +644,7 @@ void ContentWidget::wrapSelected()
     const QString enteredWrapperName = AutoExpandableDialog::getText(this, tr("Creating directory"), tr("New directory name:"), QLineEdit::Normal, {}, &ok);
     const QString wrapperName = Utils::Fs::toNativePath(enteredWrapperName)
         .replace(QRegularExpression("^/|/$"), "");
-    if (!ok)
-        return;
+    if (!ok) return;
     if (!Utils::Fs::isValidFileSystemName(wrapperName, false))
     {
         RaisedMessageBox::warning(this, tr("Create directory error"), tr("Illegal directory name"), QMessageBox::Ok);
@@ -637,14 +652,37 @@ void ContentWidget::wrapSelected()
     }
 
     const QModelIndexList selectedRows = this->selectedRows();
-    const QString newParentDirectory = Utils::Fs::combinePaths(
-        Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path())
-        , wrapperName);
+
+    const QString oldParentDirectory = Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path());
+    const QString newParentDirectory = Utils::Fs::combinePaths(oldParentDirectory, wrapperName);
+
     BitTorrent::AbstractFileStorage::RenameList renameList;
+
+    std::function<void (const TorrentContentModelItem *, const QString &)> wrapItem;
+    wrapItem = [&newParentDirectory, &wrapItem, &renameList](const TorrentContentModelItem *item, const QString &stubSoFar)
+        {
+            const QString newStub = Utils::Fs::combinePaths(stubSoFar, item->name());
+            switch (item->itemType())
+            {
+            case TorrentContentModelItem::FileType:
+            {
+                int fileIndex = dynamic_cast<const TorrentContentModelFile *>(item)->fileIndex();
+                renameList.insert(fileIndex, Utils::Fs::combinePaths(newParentDirectory, newStub));
+                break;
+            }
+            case TorrentContentModelItem::FolderType:
+            {
+                for (const TorrentContentModelItem *child : dynamic_cast<const TorrentContentModelFolder *>(item)->children())
+                {
+                    wrapItem(child, newStub);
+                }
+            }
+            }
+        };
+
     for (const QModelIndex &idx : selectedRows)
     {
-        renameList.insert(m_filterModel->getFileIndex(idx)
-                          , Utils::Fs::combinePaths(newParentDirectory, Utils::Fs::fileName(m_filterModel->item(idx)->path())));
+        wrapItem(m_filterModel->item(idx), "");
     }
 
     performEditPaths(renameList);
@@ -806,8 +844,6 @@ void ContentWidget::clear()
     contentModel()->clear();
 }
 
-// TODO: header context menu
-
 void ContentWidget::displayFileListHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
@@ -830,8 +866,6 @@ void ContentWidget::displayFileListHeaderMenu()
 
             if (!m_ui->filesTreeView->isColumnHidden(i) && (m_ui->filesTreeView->columnWidth(i) <= 5))
                 m_ui->filesTreeView->resizeColumnToContents(i);
-
-            // TODO saveSettings();
         });
     }
 

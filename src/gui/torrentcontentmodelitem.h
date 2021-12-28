@@ -62,6 +62,7 @@ public:
     explicit TorrentContentModelItem(TorrentContentModelFolder *parent);
     virtual ~TorrentContentModelItem();
 
+    // If this element is at the top level. Does not necessarily mean that there are not other root items.
     bool isRootItem() const;
     TorrentContentModelFolder *parent() const;
     virtual ItemType itemType() const = 0;

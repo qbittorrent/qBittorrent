@@ -87,16 +87,19 @@ private:
     QVector<int> modelIndexesToFileIndexes(const QModelIndexList &) const;
     // Update inner TorrentContentModel after file paths or torrent is changed.
     void setupContentModel();
-    // once the current rename is complete, setup the content model again. Call after rename
-    void setupContentModelAfterRename();
+    // called after a rename completes
+    void setupTreeViewAfterRename();
     // call whenever m_torrent or m_torrentInfo are changed.
     void setupChangedTorrent();
+    void expandSingleItemFolders();
+    void expandSelected();
 
     void openItem(const QModelIndex &) const;
     void openParentFolder(const QModelIndex &) const;
     void flattenDirectory(const QString &);
     QString getFullPath(const QModelIndex &index) const;
-    QModelIndexList allIndexes() const;
+    // return all indexes of the children of idx, or if idx is omitted, all indexes in the tree.
+    QModelIndexList childIndexes(const QModelIndex idx = QModelIndex()) const;
     // whether the selected files all have the same immediate parent directory
     bool canWrapSelected() const;
 

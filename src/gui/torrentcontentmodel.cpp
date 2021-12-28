@@ -414,7 +414,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
 Qt::ItemFlags TorrentContentModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return Qt::ItemIsDropEnabled; // TODO: can we handle top-level drops?
+        return Qt::ItemIsDropEnabled;
 
     Qt::ItemFlags flags {Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled};
     if (citem(index)->itemType() == TorrentContentModelItem::FolderType)
@@ -629,8 +629,8 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
 
     bool haveFileIndexes = !m_filesIndex.isEmpty();
 
-    // Map from each file and folder to the model index, so that we can call ChangePersistentIndex appropriately later
-    // TODO: should we store pointers to the indexes instead of directly?
+    // Map from each file and folder to the model index, so that we can call ChangePersistentIndex
+    // appropriately later
     QVector<QModelIndex> oldFileModelIndexes;
     QMap<QString, QModelIndex> oldFolderModelIndexes;
     oldFileModelIndexes.resize(filesCount);
