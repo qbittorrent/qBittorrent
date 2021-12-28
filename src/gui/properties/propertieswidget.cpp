@@ -86,10 +86,6 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     connect(m_ui->stackedProperties, &QStackedWidget::currentChanged, this, &PropertiesWidget::loadDynamicData);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentSavePathChanged, this, &PropertiesWidget::updateSavePath);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentMetadataReceived, this, &PropertiesWidget::updateTorrentInfos);
-    // TODO: do we relaly need these? saveSettings is called whenever qBit exits normally.
-    // connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
-    // connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
-    // connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);
 
     // set bar height relative to screen dpi
     const int barHeight = Utils::Gui::scaledSize(this, 18);

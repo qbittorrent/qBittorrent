@@ -48,7 +48,7 @@ class ContentWidget : public QWidget
 
 public:
     explicit ContentWidget(QWidget *parent);
-    ~ContentWidget() override;
+    ~ContentWidget() override {};
 
     // content widget can be backed either by an abstract file storage, or by a true torrent, and in
     // the latter case extra features are enabled. In practice, AFS used in addnewtorrentdialog,
@@ -97,9 +97,10 @@ private:
     void openItem(const QModelIndex &) const;
     void openParentFolder(const QModelIndex &) const;
     void flattenDirectory(const QString &);
+    // return the absolute path of the given file/folder. Precondition: using a Torrent (not TorrentInfo)
     QString getFullPath(const QModelIndex &index) const;
-    // return all indexes of the children of idx, or if idx is omitted, all indexes in the tree.
-    QModelIndexList childIndexes(const QModelIndex idx = QModelIndex()) const;
+    // return all indexes of files
+    QModelIndexList allFileIndexes() const;
     // whether the selected files all have the same immediate parent directory
     bool canWrapSelected() const;
 

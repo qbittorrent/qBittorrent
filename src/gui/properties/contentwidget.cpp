@@ -83,11 +83,16 @@ ContentWidget::ContentWidget(QWidget *parent)
 
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("folder-new"), tr("Add top-level directory")
                              , this, &ContentWidget::ensureDirectoryTop);
-    m_actionsMenu->addAction(tr("Flatten top-level directory"), this, &ContentWidget::flattenDirectoryTop);
-    m_actionsMenu->addAction(tr("Flatten all directories"), this, &ContentWidget::flattenDirectoriesAll);
-    m_actionsMenu->addAction(tr("Select all for download"), m_filterModel.get(), &TorrentContentFilterModel::selectAll);
-    m_actionsMenu->addAction(tr("Select none for download"), m_filterModel.get(), &TorrentContentFilterModel::selectNone);
-    m_actionsMenu->addAction(tr("Prioritize in displayed order"), this, &ContentWidget::prioritizeInDisplayedOrderAll);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("format-indent-less"), tr("Flatten top-level directory")
+                             , this, &ContentWidget::flattenDirectoryTop);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("format-indent-less"), tr("Flatten all directories")
+                             , this, &ContentWidget::flattenDirectoriesAll);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-select-all"), tr("Select all for download")
+                             , m_filterModel.get(), &TorrentContentFilterModel::selectAll);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("media-playback-stop"), tr("Select none for download")
+                             , m_filterModel.get(), &TorrentContentFilterModel::selectNone);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("view-sort-descending"), tr("Prioritize in displayed order")
+                             , this, &ContentWidget::prioritizeInDisplayedOrderAll);
 
     m_ui->actionsButton->setMenu(m_actionsMenu.get());
     connect(m_actionsMenu.get(), &QMenu::aboutToShow, this, [this, undoAction]()
@@ -126,11 +131,6 @@ ContentWidget::ContentWidget(QWidget *parent)
     connect(m_treeViewDelegate.get(), &PropListDelegate::prioritiesChanged, this, &ContentWidget::prioritiesChanged);
     connect(m_filterModel.get(), &TorrentContentFilterModel::prioritiesChanged, this, &ContentWidget::prioritiesChanged);
     connect(this, &ContentWidget::prioritiesChanged, this, &ContentWidget::applyPriorities);
-}
-
-ContentWidget::~ContentWidget()
-{
-    // TODO: figure out if anything belongs here
 }
 
 void ContentWidget::setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *fileStorage)
@@ -295,12 +295,8 @@ void ContentWidget::filterText(const QString &filter)
     }
 }
 
-void ContentWidget::prioritizeInDisplayedOrder(const QModelIndexList &allRows)
+void ContentWidget::prioritizeInDisplayedOrder(const QModelIndexList &rows)
 {
-    QModelIndexList rows;
-    for (const QModelIndex &row : allRows)
-        if (m_filterModel->item(row)->itemType() == TorrentContentModelItem::FileType)
-            rows.push_back(row);
     // Equally distribute the selected items into groups and for each group assign
     // a download priority that will apply to each item. The number of groups depends on how
     // many "download priority" are available to be assigned
@@ -331,27 +327,33 @@ void ContentWidget::prioritizeInDisplayedOrder(const QModelIndexList &allRows)
     }
 }
 
-QModelIndexList ContentWidget::childIndexes(const QModelIndex idx) const
+QModelIndexList ContentWidget::allFileIndexes() const
 {
     QModelIndexList result;
     std::function<void (const QModelIndex &)> addChildren;
     addChildren = [this, &addChildren, &result](const QModelIndex &index)
     {
-        for (int i = 0; i < m_filterModel->rowCount(index); i++)
+        if (m_filterModel->item(index)->itemType() == TorrentContentModelItem::FileType)
         {
-            QModelIndex idx = m_filterModel->index(i, 0, index);
-            result.push_back(idx);
-            addChildren(idx);
+            result.push_back(index);
+        }
+        else
+        {
+            for (int i = 0; i < m_filterModel->rowCount(index); i++)
+            {
+                QModelIndex idx = m_filterModel->index(i, 0, index);
+                addChildren(idx);
+            }
         }
     };
-    addChildren(idx);
+    addChildren(QModelIndex());
     return result;
 }
 
 void ContentWidget::prioritizeInDisplayedOrderAll()
 {
     // displayed order only makes sense for currently displayed indexes
-    prioritizeInDisplayedOrder(childIndexes());
+    prioritizeInDisplayedOrder(allFileIndexes());
 }
 
 void ContentWidget::prioritizeInDisplayedOrderSelected()
@@ -587,21 +589,16 @@ void ContentWidget::relocateSelected()
     {
     case TorrentContentModelItem::FileType:
     {
-        QString newPath = QFileDialog::getSaveFileName(
-            this, tr("Relocate file")
-            , getFullPath(selectedIndex)
-            );
+        QString defaultDir = m_torrent ? getFullPath(selectedIndex) : m_filterModel->item(selectedIndex)->name();
+        QString newPath = QFileDialog::getSaveFileName(this, tr("Relocate file"), defaultDir);
         if (newPath.isEmpty()) return;
         renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(selectedIndex), newPath);
         break;
     }
     case TorrentContentModelItem::FolderType:
     {
-        QString newPath = QFileDialog::getExistingDirectory(
-            this, tr("Relocate folder")
-            , getFullPath(selectedIndex)
-            , QFileDialog::ShowDirsOnly
-            );
+        QString defaultDir = m_torrent ? getFullPath(selectedIndex) : "";
+        QString newPath = QFileDialog::getExistingDirectory(this, tr("Relocate folder"), defaultDir, QFileDialog::ShowDirsOnly);
         if (newPath.isEmpty()) return;
         renameList = m_fileStorage->renameFolder(m_filterModel->item(selectedIndex)->path(), newPath);
         break;
@@ -745,10 +742,7 @@ void ContentWidget::openParentFolder(const QModelIndex &index) const
 
 QString ContentWidget::getFullPath(const QModelIndex &index) const
 {
-    Q_ASSERT(m_torrent); // TODO: possibly remove, depending on how we want to allow absolute paths
-                         // in the add new torrent dialog
-    if (!m_torrent)
-        return {};
+    Q_ASSERT(m_torrent);
 
     if (m_filterModel->item(index)->itemType() == TorrentContentModelItem::FileType)
     {
@@ -821,7 +815,8 @@ void ContentWidget::displayTreeMenu(const QPoint &)
 
         if (m_filterModel->item(selectedIndex)->itemType() == TorrentContentModelItem::FolderType)
         {
-            contextMenu->addAction(tr("Flatten directory"), this, [this, selectedIndex]()
+            contextMenu->addAction(UIThemeManager::instance()->getIcon("format-indent-less"), tr("Flatten directory")
+                                   , this, [this, selectedIndex]()
                 {
                     flattenDirectory(m_filterModel->item(selectedIndex)->path());
                 });
@@ -844,7 +839,7 @@ void ContentWidget::displayTreeMenu(const QPoint &)
     contextMenu->addSeparator();
 
     QMenu *priorityMenu = contextMenu->addMenu(tr("Priority"));
-    priorityMenu->addAction(tr("Do not download"), priorityMenu, [setPriorities]()
+    priorityMenu->addAction(UIThemeManager::instance()->getIcon("media-playback-stop"), tr("Do not download"), priorityMenu, [setPriorities]()
         {
             setPriorities(BitTorrent::DownloadPriority::Ignored);
         });
@@ -861,7 +856,8 @@ void ContentWidget::displayTreeMenu(const QPoint &)
             setPriorities(BitTorrent::DownloadPriority::Maximum);
         });
     priorityMenu->addSeparator();
-    priorityMenu->addAction(tr("By shown file order"), this, &ContentWidget::prioritizeInDisplayedOrderSelected);
+    priorityMenu->addAction(UIThemeManager::instance()->getIcon("view-sort-descending"), tr("By shown file order")
+                            , this, &ContentWidget::prioritizeInDisplayedOrderSelected);
 
     // Remove the menu if the file tree view is changed
     connect(m_filterModel.get(), &QAbstractItemModel::layoutAboutToBeChanged

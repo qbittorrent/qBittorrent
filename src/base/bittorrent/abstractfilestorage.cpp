@@ -67,7 +67,11 @@ QVector<int> BitTorrent::AbstractFileStorage::folderIndexes(const QString &folde
 void BitTorrent::AbstractFileStorage::renameFiles(const RenameList &renames)
 {
     auto indexes = renames.keys();
-    auto newPaths = renames.values();
+    QStringList newPaths;
+    for (const QString &newPath : renames.values())
+    {
+        newPaths.push_back(Utils::Fs::toUniformPath(QDir::cleanPath(newPath)));
+    }
 
     QSet<QString> oldAndFolderNames; // without QB_EXT
     for (int i = 0; i < filesCount(); i++)
@@ -93,8 +97,10 @@ void BitTorrent::AbstractFileStorage::renameFiles(const RenameList &renames)
         {
             throw RuntimeError {tr("Multiple renamed files would have the same name: '%1'.").arg(*it)};
         }
-        // TODO: prevent overwriting files. Have to see if libtorrent already takes any renaming overwrite precautions.
-        // TODO: handle .. in file names
+        // disallow paths that refer to parent directories
+        if (*it == ".." || it->startsWith("../")) {
+            throw RuntimeError {tr("Renamed file would be in parent directory: '%1'. Use \"edit paths\" to rename to an absolute path.").arg(*it)};
+        }
         // TODO: at what point are backslashes turned into slashes? Are they forward slashes in libtorrent?
     }
 

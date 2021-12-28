@@ -380,7 +380,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
                 return {};
 
             if (item->isRelocatedLabel())
-                return UIThemeManager::instance()->getIcon("drive-harddisk"); // TODO: is this the best icon?
+                return UIThemeManager::instance()->getIcon("drive-harddisk");
             if (item->itemType() == TorrentContentModelItem::FolderType)
                 return m_fileIconProvider->icon(QFileIconProvider::Folder);
             return m_fileIconProvider->icon(QFileInfo(item->name()));
