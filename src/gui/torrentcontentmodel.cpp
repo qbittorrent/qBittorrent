@@ -37,6 +37,7 @@
 #include <QMimeData>
 #include <QSet>
 #include <QDir>
+#include <QFont>
 
 #if defined(Q_OS_WIN)
 #include <Windows.h>
@@ -405,6 +406,15 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
     case Qt::DisplayRole:
     case Qt::ToolTipRole:
         return item->displayData(index.column());
+
+    case Qt::FontRole:
+        if (item->isRelocatedLabel() && index.column() == TorrentContentModelItem::COL_NAME)
+        {
+            QFont result;
+            result.setItalic(true);
+            return result;
+        }
+        return {};
 
     case Roles::UnderlyingDataRole:
         return item->underlyingData(index.column());

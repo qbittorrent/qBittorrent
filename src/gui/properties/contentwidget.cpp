@@ -907,4 +907,3 @@ void ContentWidget::displayFileListHeaderMenu()
 
     menu->popup(QCursor::pos());
 }
-
