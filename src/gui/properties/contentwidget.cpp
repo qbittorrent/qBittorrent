@@ -29,6 +29,7 @@
 #include <QDir>
 #include <QShortcut>
 #include <QTableView>
+#include <QFileDialog>
 
 #include "base/bittorrent/torrentimpl.h"
 #include "contentwidget.h"
@@ -174,8 +175,14 @@ void ContentWidget::setupTreeViewAfterRename()
         // and the time it is called. However, since the callback is not bound to any particular
         // torrent, this is fine. Also, the handler is removed after it fires once, so there is no
         // need to worry about event handlers on previously selected torrents slowly piling up.
-        BitTorrent::TorrentImpl::EventTrigger renameHandler = [this]()
+        BitTorrent::TorrentImpl::EventTrigger renameHandler = [this](bool hadError)
         {
+            if (hadError)
+            {
+                RaisedMessageBox::warning(this, tr("Rename failed")
+                                          , tr("Some files could not be renamed. Ensure you have permission to write to the rename destination.")
+                                          , QMessageBox::Ok);
+            }
             setupContentModel();
             expandSelected();
         };
@@ -571,8 +578,37 @@ void ContentWidget::contentLayoutChanged(const BitTorrent::TorrentContentLayout 
 
 void ContentWidget::relocateSelected()
 {
-    //TODO
-    qDebug("relocateSelected: not implemented.");
+    QModelIndexList selectedRows = this->selectedRows();
+    if (selectedRows.size() != 1) return;
+    QModelIndex selectedIndex = selectedRows[0];
+
+    BitTorrent::AbstractFileStorage::RenameList renameList;
+    switch (m_filterModel->item(selectedIndex)->itemType())
+    {
+    case TorrentContentModelItem::FileType:
+    {
+        QString newPath = QFileDialog::getSaveFileName(
+            this, tr("Relocate file")
+            , getFullPath(selectedIndex)
+            );
+        if (newPath.isEmpty()) return;
+        renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(selectedIndex), newPath);
+        break;
+    }
+    case TorrentContentModelItem::FolderType:
+    {
+        QString newPath = QFileDialog::getExistingDirectory(
+            this, tr("Relocate folder")
+            , getFullPath(selectedIndex)
+            , QFileDialog::ShowDirsOnly
+            );
+        if (newPath.isEmpty()) return;
+        renameList = m_fileStorage->renameFolder(m_filterModel->item(selectedIndex)->path(), newPath);
+        break;
+    }
+    }
+
+    performEditPaths(renameList);
 }
 
 void ContentWidget::ensureDirectoryTop()
@@ -709,7 +745,8 @@ void ContentWidget::openParentFolder(const QModelIndex &index) const
 
 QString ContentWidget::getFullPath(const QModelIndex &index) const
 {
-    Q_ASSERT(m_torrent);
+    Q_ASSERT(m_torrent); // TODO: possibly remove, depending on how we want to allow absolute paths
+                         // in the add new torrent dialog
     if (!m_torrent)
         return {};
 

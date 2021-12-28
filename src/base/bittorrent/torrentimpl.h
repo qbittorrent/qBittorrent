@@ -80,7 +80,9 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
-        using EventTrigger = std::function<void ()>;
+        // withErrors=true if the event did not complete totally successfully. Eg, for rename
+        // events, withErrors=true if at least one file_rename_failed_alert occurred.
+        using EventTrigger = std::function<void (bool withErrors)>;
 
         TorrentImpl(Session *session, lt::session *nativeSession
                           , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
@@ -240,6 +242,8 @@ namespace BitTorrent
         void saveResumeData();
         void handleMoveStorageJobFinished(bool hasOutstandingJob);
         void fileSearchFinished(const QString &savePath, const QStringList &fileNames);
+        // callback will be run when all currently pending rename and move storage operations
+        // complete. The callback is only run once, then unregistered.
         void onRenameComplete(EventTrigger callback);
 
         QString actualStorageLocation() const;
@@ -268,6 +272,9 @@ namespace BitTorrent
         void handleTrackerErrorAlert(const lt::tracker_error_alert *p);
         void handleTrackerReplyAlert(const lt::tracker_reply_alert *p);
         void handleTrackerWarningAlert(const lt::tracker_warning_alert *p);
+
+        // If all move jobs and file rename jobs are complete, call all move finished triggers.
+        void callMoveFinishedTriggers();
 
         bool isMoveInProgress() const;
 
@@ -300,6 +307,7 @@ namespace BitTorrent
         QQueue<EventTrigger> m_moveFinishedTriggers;
         int m_renameCount = 0;
         bool m_storageIsMoving = false;
+        bool m_renameErrors = false;
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
