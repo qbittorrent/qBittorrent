@@ -36,24 +36,37 @@
 void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
                           , const QString &completeSavePath, const QString &incompleteSavePath)
 {
+    // Returns true if any of the filenames stored at relative paths were found in dirPath,
+    // indicating that it is the true save directory. Also return true if all the filenames are
+    // absolute, indicating that the save path doesn't matter.
     const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool
     {
         const QDir dir {dirPath};
         bool found = false;
+        bool allAbsolute = true;
         for (QString &fileName : fileNames)
         {
-            if (dir.exists(fileName))
+            if (QDir::isAbsolutePath(fileName))
             {
-                found = true;
+                if (QFile::exists(fileName + QB_EXT))
+                    fileName += QB_EXT;
             }
-            else if (dir.exists(fileName + QB_EXT))
+            else
             {
-                found = true;
-                fileName += QB_EXT;
+                allAbsolute = false;
+                if (dir.exists(fileName))
+                {
+                    found = true;
+                }
+                else if (dir.exists(fileName + QB_EXT))
+                {
+                    found = true;
+                    fileName += QB_EXT;
+                }
             }
         }
 
-        return found;
+        return allAbsolute || found;
     };
 
     QString savePath = completeSavePath;
