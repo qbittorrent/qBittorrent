@@ -73,7 +73,7 @@ private:
     std::unique_ptr<TorrentContentFilterModel> m_filterModel;
     BitTorrent::AbstractFileStorage *m_fileStorage = nullptr;
     BitTorrent::Torrent *m_torrent = nullptr;
-    BitTorrent::AbstractFileStorage::RenameList m_undoState;
+    Utils::Fs::RenameList m_undoState;
     bool m_hasUndo;
 
     // rename the files with the given indexes, prompting the new file name(s)
@@ -119,7 +119,7 @@ private slots:
     void renameSelected();
     // All renames should go through performEditPaths, because it updates the content model and undo
     // state. It also handles conflicting names and displays a message box.
-    void performEditPaths(const BitTorrent::AbstractFileStorage::RenameList &);
+    void performEditPaths(const Utils::Fs::RenameList &);
     void editPathsAll();
     void editPathsSelected();
     void ensureDirectoryTop();

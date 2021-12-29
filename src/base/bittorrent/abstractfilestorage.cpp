@@ -64,7 +64,7 @@ QVector<int> BitTorrent::AbstractFileStorage::folderIndexes(const QString &folde
     return result;
 }
 
-void BitTorrent::AbstractFileStorage::renameFiles(const RenameList &renames)
+void BitTorrent::AbstractFileStorage::renameFiles(const Utils::Fs::RenameList &renames)
 {
     auto indexes = renames.keys();
     QStringList newPaths;
@@ -114,7 +114,7 @@ void BitTorrent::AbstractFileStorage::renameFiles(const RenameList &renames)
     }
 }
 
-BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::renameFile(const QString &oldPath, const QString &newPath)
+Utils::Fs::RenameList BitTorrent::AbstractFileStorage::renameFile(const QString &oldPath, const QString &newPath)
 {
     if (!Utils::Fs::isValidFileSystemName(oldPath, true))
         throw RuntimeError {tr("The old path is invalid: '%1'.").arg(oldPath)};
@@ -138,7 +138,7 @@ BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::ren
     return renameFileChecked(renamingFileIndex, newPath);
 }
 
-BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::renameFileChecked(int index, const QString &newPath)
+Utils::Fs::RenameList BitTorrent::AbstractFileStorage::renameFileChecked(int index, const QString &newPath)
 {
     if (!Utils::Fs::isValidFileSystemName(newPath, true))
         throw RuntimeError {tr("The new path is invalid: '%1'.").arg(newPath)};
@@ -147,12 +147,12 @@ BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::ren
     if (newFilePath.endsWith(QLatin1Char {'/'}))
         throw RuntimeError {tr("Invalid file path: '%1'.").arg(newFilePath)};
 
-    RenameList result;
+    Utils::Fs::RenameList result;
     result.insert(index, newFilePath);
     return result;
 }
 
-BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const QString &newPath)
+Utils::Fs::RenameList BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const QString &newPath)
 {
     if (!Utils::Fs::isValidFileSystemName(oldPath, true))
         throw RuntimeError {tr("The old path is invalid: '%1'.").arg(oldPath)};
@@ -179,14 +179,14 @@ BitTorrent::AbstractFileStorage::RenameList BitTorrent::AbstractFileStorage::ren
             return newFolderPath + filePath.mid(oldFolderPath.size());
         };
 
-    RenameList result;
+    Utils::Fs::RenameList result;
     QVector<QString> newFilePaths;
     for (int idx : renamingFileIndexes)
     {
         bool ok;
         result.insert(idx, Utils::Fs::renamePath(filePath(idx), nameTransformer, true, &ok));
         Q_ASSERT(ok);
-        if (!ok) return RenameList();
+        if (!ok) return Utils::Fs::RenameList();
     }
 
     return result;

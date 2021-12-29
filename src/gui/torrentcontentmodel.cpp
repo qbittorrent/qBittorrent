@@ -582,7 +582,7 @@ bool TorrentContentModel::dropMimeData(const QMimeData *data, Qt::DropAction act
     QByteArray encoded = data->data(QB_DRAGNDROP_MIME);
     QDataStream stream(&encoded, QIODevice::ReadOnly);
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
 
     while (!stream.atEnd())
     {

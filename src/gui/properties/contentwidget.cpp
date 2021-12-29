@@ -394,9 +394,9 @@ void ContentWidget::doubleClicked()
     }
 }
 
-void ContentWidget::performEditPaths(const BitTorrent::AbstractFileStorage::RenameList &renameList)
+void ContentWidget::performEditPaths(const Utils::Fs::RenameList &renameList)
 {
-    BitTorrent::AbstractFileStorage::RenameList newUndoState;
+    Utils::Fs::RenameList newUndoState;
     for (int i = 0; i < m_fileStorage->filesCount(); i++)
         newUndoState.insert(i, m_fileStorage->filePath(i)); // TODO: qb extension
 
@@ -487,7 +487,7 @@ void ContentWidget::renamePromptSingle(const QModelIndex &index)
         return;
     }
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     if (isFile)
         renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
     else
@@ -513,7 +513,7 @@ void ContentWidget::renamePromptMultiple(const QVector<int> &indexes)
         oldPaths.push_back(m_fileStorage->filePath(index));
     }
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     for (int index : indexes)
     {
         renameList.insert(index, Utils::Fs::renamePath(m_fileStorage->filePath(index), nameTransformer, false));
@@ -542,7 +542,7 @@ void ContentWidget::editPathPromptSingle(const QModelIndex &index)
                                                     , oldPath, &ok, isFile).trimmed();
     if (!ok) return;
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     if (isFile)
         renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(index), newPath);
     else
@@ -567,7 +567,7 @@ void ContentWidget::editPathsPromptMultiple(const QVector<int> &indexes)
         oldPaths.push_back(m_fileStorage->filePath(index));
     }
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     for (int index : indexes)
     {
         renameList.insert(index, Utils::Fs::renamePath(m_fileStorage->filePath(index), nameTransformer, true));
@@ -576,9 +576,9 @@ void ContentWidget::editPathsPromptMultiple(const QVector<int> &indexes)
     performEditPaths(renameList);
 }
 
-void ContentWidget::contentLayoutChanged(const BitTorrent::TorrentContentLayout &layout, const QString &originalRootFolder)
+void ContentWidget::contentLayoutChanged(const BitTorrent::TorrentContentLayout &layout)
 {
-    QStringList renamedPaths = BitTorrent::applyContentLayout(m_fileStorage->filePaths(), layout, originalRootFolder);
+    QStringList renamedPaths = BitTorrent::applyContentLayout(m_fileStorage->filePaths(), layout, Utils::Fs::findRootFolder(m_originalFilePaths));
     auto renameList = Utils::Fs::stringListToRenameList(renamedPaths);
     performEditPaths(renameList);
 }
@@ -589,7 +589,7 @@ void ContentWidget::relocateSelected()
     if (selectedRows.size() != 1) return;
     QModelIndex selectedIndex = selectedRows[0];
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     switch (m_filterModel->item(selectedIndex)->itemType())
     {
     case TorrentContentModelItem::FileType:
@@ -626,7 +626,7 @@ void ContentWidget::flattenDirectory(const QString &directory)
     Q_ASSERT(directory.right(1) != "/"); // probably don't need this
 
     QString newStub = Utils::Fs::folderName(directory);
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     for (int i = 0; i < m_fileStorage->filesCount(); i++)
     {
         if (m_fileStorage->filePath(i).startsWith(directory))
@@ -646,7 +646,7 @@ void ContentWidget::flattenDirectoryTop()
 
 void ContentWidget::flattenDirectoriesAll()
 {
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
     for (int i = 0; i < m_fileStorage->filesCount(); i++)
     {
         const QString newPath = Utils::Fs::fileName(m_fileStorage->filePath(i));
@@ -693,7 +693,7 @@ void ContentWidget::wrapSelected()
     const QString oldParentDirectory = Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path());
     const QString newParentDirectory = Utils::Fs::combinePaths(oldParentDirectory, wrapperName);
 
-    BitTorrent::AbstractFileStorage::RenameList renameList;
+    Utils::Fs::RenameList renameList;
 
     std::function<void (const TorrentContentModelItem *, const QString &)> wrapItem;
     wrapItem = [&newParentDirectory, &wrapItem, &renameList](const TorrentContentModelItem *item, const QString &stubSoFar)

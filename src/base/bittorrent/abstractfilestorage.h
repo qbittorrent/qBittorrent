@@ -43,7 +43,6 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(AbstractFileStorage)
 
     public:
-        using RenameList = QMap<int, QString>;
 
         virtual ~AbstractFileStorage() = default;
 
@@ -62,7 +61,7 @@ namespace BitTorrent
         // Rename files at given torrent indexes to the given paths, throwing a RuntimeError if any
         // paths conflict with each other. Adds or removes the .qb! extension based on whether or
         // not the original file being renamed from has the extension.
-        void renameFiles(const RenameList &);
+        void renameFiles(const Utils::Fs::RenameList &);
 
         // The next three methods do not actually rename the files, but rather return a list of
         // which files need to be renamed and to what. The returned list should be passed to
@@ -70,10 +69,10 @@ namespace BitTorrent
         // which can perform some pre- or post- rename tasks.
 
         // rename file, checking that new path is valid
-        RenameList renameFileChecked(int index, const QString &newPath);
+        Utils::Fs::RenameList renameFileChecked(int index, const QString &newPath);
         // rename file, checking that old and new paths are valid
-        RenameList renameFile(const QString &oldPath, const QString &newPath);
+        Utils::Fs::RenameList renameFile(const QString &oldPath, const QString &newPath);
         // rename all files in a folder, checking that old and new paths are valid
-        RenameList renameFolder(const QString &oldPath, const QString &newPath);
+        Utils::Fs::RenameList renameFolder(const QString &oldPath, const QString &newPath);
     };
 }

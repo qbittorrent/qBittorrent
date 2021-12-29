@@ -86,7 +86,7 @@ public:
 
 signals:
     void prioritiesChanged();
-    void filesDropped(const BitTorrent::AbstractFileStorage::RenameList &renameList);
+    void filesDropped(const Utils::Fs::RenameList &renameList);
 
 public slots:
     void selectAll();
