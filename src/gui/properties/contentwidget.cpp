@@ -213,11 +213,34 @@ void ContentWidget::setupChangedTorrent()
 void ContentWidget::expandSingleItemFolders()
 {
     m_ui->filesTreeView->collapseAll();
-    QModelIndex currentIndex;
-    while (m_filterModel->rowCount(currentIndex) == 1)
+    std::function<void (const QModelIndex &)> expandSingleItemChildren;
+    // recursive helper: expand currentIndex, recurse if appropriate.
+    expandSingleItemChildren = [this, &expandSingleItemChildren](const QModelIndex &currentIndex)
+        {
+            m_ui->filesTreeView->setExpanded(currentIndex, true);
+            if (m_filterModel->rowCount(currentIndex) == 1)
+                expandSingleItemChildren(m_filterModel->index(0, 0, currentIndex));
+        };
+    // special case for root: If relocated files is present, always expand it. If there is exactly
+    // one folder other than relocated files, also expand it.
+    int numTopLevelEntries = m_filterModel->rowCount(QModelIndex());
+    bool hasRelocatedLabel = false;
+    for (int i = 0; i < numTopLevelEntries; i++)
     {
-        currentIndex = m_filterModel->index(0, 0, currentIndex);
-        m_ui->filesTreeView->setExpanded(currentIndex, true);
+        QModelIndex idx = m_filterModel->index(i, 0, QModelIndex());
+        if (m_filterModel->item(idx)->isRelocatedLabel())
+        {
+            expandSingleItemChildren(idx);
+            hasRelocatedLabel = true;
+        }
+    }
+    if ((hasRelocatedLabel && numTopLevelEntries <= 2) || numTopLevelEntries == 1)
+    {
+        for (int i = 0; i < numTopLevelEntries; i++)
+        {
+            QModelIndex idx = m_filterModel->index(i, 0, QModelIndex());
+            expandSingleItemChildren(idx);
+        }
     }
 }
 
@@ -415,7 +438,7 @@ void ContentWidget::performEditPaths(const Utils::Fs::RenameList &renameList)
 {
     Utils::Fs::RenameList newUndoState;
     for (int i = 0; i < m_fileStorage->filesCount(); i++)
-        newUndoState.insert(i, m_fileStorage->filePath(i)); // TODO: qb extension
+        newUndoState.insert(i, m_fileStorage->filePath(i));
 
     try
     {

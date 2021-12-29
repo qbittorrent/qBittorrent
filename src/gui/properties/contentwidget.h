@@ -93,7 +93,9 @@ private:
     void setupTreeViewAfterRename();
     // call whenever m_torrent or m_torrentInfo are changed.
     void setupChangedTorrent();
+    // expand all folders which are "only child"s
     void expandSingleItemFolders();
+    // expand all ancestors of selected files
     void expandSelected();
 
     void openItem(const QModelIndex &) const;

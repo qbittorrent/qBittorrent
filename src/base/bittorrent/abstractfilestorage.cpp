@@ -70,7 +70,7 @@ void BitTorrent::AbstractFileStorage::renameFiles(const Utils::Fs::RenameList &r
     QStringList newPaths;
     for (const QString &newPath : renames.values())
     {
-        newPaths.push_back(Utils::Fs::toUniformPath(QDir::cleanPath(newPath)));
+        newPaths.push_back(Utils::Fs::stripQbExtension(Utils::Fs::toUniformPath(QDir::cleanPath(newPath))));
     }
 
     QSet<QString> oldAndFolderNames; // without QB_EXT
@@ -101,14 +101,13 @@ void BitTorrent::AbstractFileStorage::renameFiles(const Utils::Fs::RenameList &r
         if (*it == ".." || it->startsWith("../")) {
             throw RuntimeError {tr("Renamed file would be in parent directory: '%1'. Use \"edit paths\" to rename to an absolute path.").arg(*it)};
         }
-        // TODO: at what point are backslashes turned into slashes? Are they forward slashes in libtorrent?
     }
 
     for (int i = 0; i < indexes.size(); i++)
     {
         const QString newNameWithExtension = Utils::Fs::hasQbExtension(filePath(indexes[i]))
             ? Utils::Fs::ensureQbExtension(newPaths[i])
-            : newPaths[i];
+            : newPaths[i]; // already stripped of qb extension
         if (filePath(i) != newNameWithExtension)
             renameFile(indexes[i], newNameWithExtension);
     }
@@ -185,6 +184,7 @@ Utils::Fs::RenameList BitTorrent::AbstractFileStorage::renameFolder(const QStrin
     {
         bool ok;
         result.insert(idx, Utils::Fs::renamePath(filePath(idx), nameTransformer, true, &ok));
+        // already checked that the new path is valid, so there's no reason for file path to be invalid
         Q_ASSERT(ok);
         if (!ok) return Utils::Fs::RenameList();
     }
