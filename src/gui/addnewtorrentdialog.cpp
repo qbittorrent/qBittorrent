@@ -101,6 +101,11 @@ namespace
             return (m_filePaths.isEmpty() ? m_torrentInfo.filePath(index) : m_filePaths.at(index));
         }
 
+        QStringList filePaths() const override
+        {
+            return m_torrentInfo.filePaths();
+        }
+
         void renameFile(const int index, const QString &newFilePath) override
         {
             Q_ASSERT((index >= 0) && (index < filesCount()));
