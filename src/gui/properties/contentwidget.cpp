@@ -602,29 +602,43 @@ void ContentWidget::contentLayoutChanged(const BitTorrent::TorrentContentLayout 
 
 void ContentWidget::relocateSelected()
 {
+    Q_ASSERT(canWrapSelected());
+
     QModelIndexList selectedRows = this->selectedRows();
-    if (selectedRows.size() != 1) return;
-    QModelIndex selectedIndex = selectedRows[0];
+    Q_ASSERT(!selectedRows.isEmpty());
 
     Utils::Fs::RenameList renameList;
-    switch (m_filterModel->item(selectedIndex)->itemType())
+    if (selectedRows.size() == 1)
     {
-    case TorrentContentModelItem::FileType:
-    {
-        QString defaultDir = m_torrent ? getFullPath(selectedIndex) : m_filterModel->item(selectedIndex)->name();
-        QString newPath = QFileDialog::getSaveFileName(this, tr("Relocate file"), defaultDir);
-        if (newPath.isEmpty()) return;
-        renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(selectedIndex), newPath);
-        break;
+        switch (m_filterModel->item(selectedRows[0])->itemType())
+        {
+        case TorrentContentModelItem::FileType:
+        {
+            QString defaultDir = m_torrent ? getFullPath(selectedRows[0]) : m_filterModel->item(selectedRows[0])->name();
+            QString newPath = QFileDialog::getSaveFileName(this, tr("Relocate file"), defaultDir);
+            if (newPath.isEmpty()) return;
+            renameList = m_fileStorage->renameFileChecked(m_filterModel->getFileIndex(selectedRows[0]), newPath);
+            break;
+        }
+        case TorrentContentModelItem::FolderType:
+        {
+            QString defaultDir = m_torrent ? getFullPath(selectedRows[0]) : "";
+            QString newPath = QFileDialog::getExistingDirectory(this, tr("Relocate folder"), defaultDir, QFileDialog::ShowDirsOnly);
+            if (newPath.isEmpty()) return;
+            renameList = m_fileStorage->renameFolder(m_filterModel->item(selectedRows[0])->path(), newPath);
+            break;
+        }
+        default:
+            Q_ASSERT(false);
+            return;
+        }
     }
-    case TorrentContentModelItem::FolderType:
+    else
     {
-        QString defaultDir = m_torrent ? getFullPath(selectedIndex) : "";
-        QString newPath = QFileDialog::getExistingDirectory(this, tr("Relocate folder"), defaultDir, QFileDialog::ShowDirsOnly);
-        if (newPath.isEmpty()) return;
-        renameList = m_fileStorage->renameFolder(m_filterModel->item(selectedIndex)->path(), newPath);
-        break;
-    }
+        QString defaultDir = m_torrent ? m_torrent->savePath() : "";
+        QString newParentFolder = QFileDialog::getExistingDirectory(this, tr("Relocate files"), defaultDir, QFileDialog::ShowDirsOnly);
+        if (newParentFolder.isEmpty()) return;
+        renameList = wrapSelectedInto(newParentFolder);
     }
 
     performEditPaths(renameList);
@@ -712,6 +726,11 @@ void ContentWidget::wrapSelected()
     const QString oldParentDirectory = Utils::Fs::folderName(m_filterModel->item(selectedRows[0])->path());
     const QString newParentDirectory = Utils::Fs::combinePaths(oldParentDirectory, wrapperName);
 
+    performEditPaths(wrapSelectedInto(newParentDirectory));
+}
+
+Utils::Fs::RenameList ContentWidget::wrapSelectedInto(const QString &newParentDirectory) const
+{
     Utils::Fs::RenameList renameList;
 
     std::function<void (const TorrentContentModelItem *, const QString &)> wrapItem;
@@ -736,12 +755,12 @@ void ContentWidget::wrapSelected()
             }
         };
 
-    for (const QModelIndex &idx : selectedRows)
+    for (const QModelIndex &idx : selectedRows())
     {
         wrapItem(m_filterModel->item(idx), "");
     }
 
-    performEditPaths(renameList);
+    return renameList;
 }
 
 void ContentWidget::openItem(const QModelIndex &index) const
@@ -862,6 +881,7 @@ void ContentWidget::displayTreeMenu(const QPoint &)
                            , this, &ContentWidget::editPathsSelected);
     contextMenu->addAction(UIThemeManager::instance()->getIcon("document-save"), tr("Relocate")
                            , this, &ContentWidget::relocateSelected);
+    contextMenu->actions().last()->setEnabled(canWrapSelected());
     contextMenu->addSeparator();
 
     QMenu *priorityMenu = contextMenu->addMenu(tr("Priority"));

@@ -105,6 +105,8 @@ private:
     QModelIndexList allFileIndexes() const;
     // whether the selected files all have the same immediate parent directory
     bool canWrapSelected() const;
+    // rename all files at or under the given indexes so that their new immediate parent is newParentFolder
+    Utils::Fs::RenameList wrapSelectedInto(const QString &newParentDirectory) const;
 
     TorrentContentModel *contentModel();
     QModelIndexList selectedRows() const;
