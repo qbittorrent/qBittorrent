@@ -53,7 +53,7 @@ public:
     // content widget can be backed either by an abstract file storage, or by a true torrent, and in
     // the latter case extra features are enabled. In practice, AFS used in addnewtorrentdialog,
     // torrent used in the properties panel.
-    void setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *info);
+    void setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *info, QStringList originalFilePaths);
     void setContentTorrent(BitTorrent::Torrent *torrent);
 
     QByteArray saveState() const;
@@ -62,7 +62,7 @@ public:
     qlonglong selectedSize() const;
     // if the content widget is backed by a Torrent, update availability and progress
     void loadDynamicData();
-    void contentLayoutChanged(const BitTorrent::TorrentContentLayout &, const QString &originalRootFolder);
+    void contentLayoutChanged(const BitTorrent::TorrentContentLayout &);
     QVector<BitTorrent::DownloadPriority> getFilePriorities() const;
     void clear();
 
@@ -73,6 +73,7 @@ private:
     std::unique_ptr<TorrentContentFilterModel> m_filterModel;
     BitTorrent::AbstractFileStorage *m_fileStorage = nullptr;
     BitTorrent::Torrent *m_torrent = nullptr;
+    QStringList m_originalFilePaths;
     Utils::Fs::RenameList m_undoState;
     bool m_hasUndo;
 
@@ -131,6 +132,7 @@ private slots:
     void prioritizeInDisplayedOrderAll();
     void prioritizeInDisplayedOrderSelected();
     void undoRename();
+    void resetRenames();
     void applyPriorities();
     void doubleClicked();
     void filterText(const QString &);

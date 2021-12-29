@@ -520,7 +520,12 @@ QStringList Utils::Fs::addRootFolder(const QStringList &filePaths, const QString
 
     QStringList result;
     for (const QString &filePath : filePaths)
-        result.push_back(rootFolder + QLatin1Char('/') + filePath);
+    {
+        if (QDir::isAbsolutePath(filePath))
+            return QStringList(); // no-op
+        else
+            result.push_back(Utils::Fs::combinePaths(rootFolder, filePath));
+    }
     return result;
 }
 

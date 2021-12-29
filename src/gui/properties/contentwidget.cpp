@@ -31,6 +31,7 @@
 #include <QTableView>
 #include <QFileDialog>
 
+#include "base/bittorrent/torrentcontentlayout.h"
 #include "base/bittorrent/torrentimpl.h"
 #include "contentwidget.h"
 #include "base/exceptions.h"
@@ -66,11 +67,12 @@ ContentWidget::ContentWidget(QWidget *parent)
     m_ui->filesTreeView->header()->setStretchLastSection(false);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
-    // TODO: icons for flatten actions
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-undo"), tr("Undo rename")
                              , this, &ContentWidget::undoRename);
     QAction *undoAction = m_actionsMenu->actions().last();
     undoAction->setEnabled(false);
+    m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-undo"), tr("Reset to original names")
+                             , this, &ContentWidget::resetRenames);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename all")
                              , this, &ContentWidget::renameAll);
     m_actionsMenu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename selected")
@@ -133,10 +135,11 @@ ContentWidget::ContentWidget(QWidget *parent)
     connect(this, &ContentWidget::prioritiesChanged, this, &ContentWidget::applyPriorities);
 }
 
-void ContentWidget::setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *fileStorage)
+void ContentWidget::setContentAbstractFileStorage(BitTorrent::AbstractFileStorage *fileStorage, QStringList originalFilePaths)
 {
     m_fileStorage = fileStorage;
     m_torrent = nullptr;
+    m_originalFilePaths = std::move(originalFilePaths);
 
     m_ui->filesTreeView->hideColumn(PROGRESS);
     m_ui->filesTreeView->hideColumn(REMAINING);
@@ -149,6 +152,7 @@ void ContentWidget::setContentTorrent(BitTorrent::Torrent *torrent)
 {
     m_fileStorage = torrent;
     m_torrent = torrent;
+    m_originalFilePaths = torrent->info().filePaths();
 
     m_ui->filesTreeView->showColumn(PROGRESS);
     m_ui->filesTreeView->showColumn(REMAINING);
@@ -220,13 +224,20 @@ void ContentWidget::expandSingleItemFolders()
 void ContentWidget::expandSelected()
 {
     const QModelIndexList selectedRows = this->selectedRows();
-    for (const QModelIndex &index : selectedRows)
+    if (selectedRows.isEmpty())
     {
-        QModelIndex parent = index;
-        while (parent.isValid())
+        expandSingleItemFolders();
+    }
+    else
+    {
+        for (const QModelIndex &index : selectedRows)
         {
-            m_ui->filesTreeView->setExpanded(parent, true);
-            parent = parent.parent();
+            QModelIndex parent = index;
+            while (parent.isValid())
+            {
+                m_ui->filesTreeView->setExpanded(parent, true);
+                parent = parent.parent();
+            }
         }
     }
 }
@@ -371,6 +382,12 @@ void ContentWidget::undoRename()
     if (!m_hasUndo) return;
     performEditPaths(m_undoState);
     m_hasUndo = false;
+}
+
+void ContentWidget::resetRenames()
+{
+    Utils::Fs::RenameList renameList = Utils::Fs::stringListToRenameList(m_originalFilePaths);
+    performEditPaths(renameList);
 }
 
 void ContentWidget::applyPriorities()
@@ -615,8 +632,9 @@ void ContentWidget::relocateSelected()
 
 void ContentWidget::ensureDirectoryTop()
 {
-    //TODO
-    qDebug("ensureDirectoryTop: not implemented");
+    QStringList renamedPaths = BitTorrent::applyContentLayout(m_fileStorage->filePaths(), BitTorrent::TorrentContentLayout::Subfolder, Utils::Fs::findRootFolder(m_originalFilePaths));
+    auto renameList = Utils::Fs::stringListToRenameList(renamedPaths);
+    performEditPaths(renameList);
 }
 
 void ContentWidget::flattenDirectory(const QString &directory)
@@ -640,8 +658,9 @@ void ContentWidget::flattenDirectory(const QString &directory)
 
 void ContentWidget::flattenDirectoryTop()
 {
-    //TODO
-    qDebug("flattenDirectoryTop: not implemented.");
+    QStringList renamedPaths = BitTorrent::applyContentLayout(m_fileStorage->filePaths(), BitTorrent::TorrentContentLayout::NoSubfolder, Utils::Fs::findRootFolder(m_originalFilePaths));
+    auto renameList = Utils::Fs::stringListToRenameList(renamedPaths);
+    performEditPaths(renameList);
 }
 
 void ContentWidget::flattenDirectoriesAll()
@@ -803,30 +822,32 @@ void ContentWidget::displayTreeMenu(const QPoint &)
                                    , static_cast<int>(prio));
         }
     };
-    
+
     QMenu *contextMenu = new QMenu(this);
     contextMenu->setAttribute(Qt::WA_DeleteOnClose);
 
-    if (m_torrent && selectedRows.size() == 1)
+    if (selectedRows.size() == 1)
     {
         const QModelIndex &selectedIndex = selectedRows[0];
+        if (m_torrent)
+        {
 
-        contextMenu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open")
-                               , this, [this, selectedIndex]() { openItem(selectedIndex); });
-        contextMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
-                               , this, [this, selectedIndex]() { openParentFolder(selectedIndex); });
+            contextMenu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open")
+                                   , this, [this, selectedIndex]() { openItem(selectedIndex); });
+            contextMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
+                                   , this, [this, selectedIndex]() { openParentFolder(selectedIndex); });
 
-        contextMenu->addSeparator();
+            contextMenu->addSeparator();
+        }
 
         if (m_filterModel->item(selectedIndex)->itemType() == TorrentContentModelItem::FolderType)
         {
             contextMenu->addAction(UIThemeManager::instance()->getIcon("format-indent-less"), tr("Flatten directory")
                                    , this, [this, selectedIndex]()
-                {
-                    flattenDirectory(m_filterModel->item(selectedIndex)->path());
-                });
+                                   {
+                                       flattenDirectory(m_filterModel->item(selectedIndex)->path());
+                                   });
         }
-
     }
 
     contextMenu->addAction(UIThemeManager::instance()->getIcon("folder-create"), tr("Create surrounding directory")

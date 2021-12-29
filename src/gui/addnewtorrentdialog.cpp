@@ -475,14 +475,17 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
     const auto contentLayout = ((index == 0)
                                 ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
                                 : static_cast<BitTorrent::TorrentContentLayout>(index));
-    m_ui->contentWidget->contentLayoutChanged(contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
-    // contentLayoutChanged itself emits contentLayoutBackprop, which messes up the box if it was in
-    // the "original" position.
-    m_ui->contentLayoutComboBox->setCurrentIndex(index);
+    m_ui->contentWidget->contentLayoutChanged(contentLayout);
 }
 
 void AddNewTorrentDialog::contentLayoutBackprop(BitTorrent::TorrentContentLayout layout)
 {
+    // If the combo box was set to "original" and that agrees with layout, then leave it at original.
+    if (m_ui->contentLayoutComboBox->currentIndex() == 0 &&
+        BitTorrent::detectContentLayout(m_torrentInfo.filePaths()) == layout)
+    {
+        return;
+    }
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(layout));
 }
 
@@ -653,7 +656,7 @@ void AddNewTorrentDialog::setupTreeview()
         m_ui->labelDateData->setText(!m_torrentInfo.creationDate().isNull() ? QLocale().toString(m_torrentInfo.creationDate(), QLocale::ShortFormat) : tr("Not available"));
 
         // Prepare content tree
-        m_ui->contentWidget->setContentAbstractFileStorage(m_fileStorage.get());
+        m_ui->contentWidget->setContentAbstractFileStorage(m_fileStorage.get(), m_torrentInfo.filePaths());
     }
 
     updateDiskSpaceLabel();
