@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>462</width>
-    <height>325</height>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -118,6 +118,24 @@
             <layout class="QVBoxLayout" name="verticalLayout">
              <item>
               <widget class="FileSystemPathLineEdit" name="savePath" native="true"/>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="groupBoxDownloadPath">
+               <property name="title">
+                <string>Use another path for incomplete torrents</string>
+               </property>
+               <property name="checkable">
+                <bool>true</bool>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_4">
+                <item>
+                 <widget class="FileSystemPathLineEdit" name="downloadPath" native="true"/>
+                </item>
+               </layout>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -290,6 +308,12 @@
   </layout>
  </widget>
  <customwidgets>
+  <customwidget>
+   <class>FileSystemPathLineEdit</class>
+   <extends>QWidget</extends>
+   <header>gui/fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>FileSystemPathLineEdit</class>
    <extends>QWidget</extends>

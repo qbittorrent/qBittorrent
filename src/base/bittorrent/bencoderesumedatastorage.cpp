@@ -173,11 +173,18 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::BencodeResumeDataStorag
     torrentParams.restored = true;
     torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
     torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
-    torrentParams.savePath = Profile::instance()->fromPortablePath(
-                Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
     torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
     torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
     torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", Torrent::USE_GLOBAL_SEEDING_TIME);
+
+    torrentParams.savePath = Profile::instance()->fromPortablePath(
+                Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-savePath"))));
+    torrentParams.useAutoTMM = torrentParams.savePath.isEmpty();
+    if (!torrentParams.useAutoTMM)
+    {
+        torrentParams.downloadPath = Profile::instance()->fromPortablePath(
+                    Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-downloadPath"))));
+    }
 
     // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
     // === BEGIN DEPRECATED CODE === //
@@ -352,7 +359,6 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
         }
     }
 
-    data["qBt-savePath"] = Profile::instance()->toPortablePath(resumeData.savePath).toStdString();
     data["qBt-ratioLimit"] = static_cast<int>(resumeData.ratioLimit * 1000);
     data["qBt-seedingTimeLimit"] = resumeData.seedingTimeLimit;
     data["qBt-category"] = resumeData.category.toStdString();
@@ -361,6 +367,12 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-seedStatus"] = resumeData.hasSeedStatus;
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
+
+    if (!resumeData.useAutoTMM)
+    {
+        data["qBt-savePath"] = Profile::instance()->toPortablePath(resumeData.savePath).toStdString();
+        data["qBt-downloadPath"] = Profile::instance()->toPortablePath(resumeData.downloadPath).toStdString();
+    }
 
     const QString resumeFilepath = m_resumeDataDir.absoluteFilePath(QString::fromLatin1("%1.fastresume").arg(id.toString()));
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(resumeFilepath, data);

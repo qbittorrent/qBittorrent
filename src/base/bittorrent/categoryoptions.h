@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,41 +28,29 @@
 
 #pragma once
 
-#include <QDialog>
+#include <optional>
+
+#include <QString>
+
+class QJsonObject;
 
 namespace BitTorrent
 {
-    struct CategoryOptions;
+    struct CategoryOptions
+    {
+        struct DownloadPathOption
+        {
+            bool enabled;
+            QString path;
+        };
+
+        QString savePath;
+        std::optional<DownloadPathOption> downloadPath;
+
+        static CategoryOptions fromJSON(const QJsonObject &jsonObj);
+        QJsonObject toJSON() const;
+    };
+
+    bool operator==(const CategoryOptions::DownloadPathOption &left, const CategoryOptions::DownloadPathOption &right);
+    bool operator==(const CategoryOptions &left, const CategoryOptions &right);
 }
-
-namespace Ui
-{
-    class TorrentCategoryDialog;
-}
-
-class TorrentCategoryDialog : public QDialog
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TorrentCategoryDialog)
-
-public:
-    static QString createCategory(QWidget *parent, const QString &parentCategoryName = {});
-    static void editCategory(QWidget *parent, const QString &categoryName);
-
-    explicit TorrentCategoryDialog(QWidget *parent = nullptr);
-    ~TorrentCategoryDialog() override;
-
-    void setCategoryNameEditable(bool editable);
-    QString categoryName() const;
-    void setCategoryName(const QString &categoryName);
-    void setCategoryOptions(const BitTorrent::CategoryOptions &categoryOptions);
-    BitTorrent::CategoryOptions categoryOptions() const;
-
-private slots:
-    void categoryNameChanged(const QString &categoryName);
-    void useDownloadPathChanged(int index);
-
-private:
-    Ui::TorrentCategoryDialog *m_ui;
-    QString m_lastEnteredDownloadPath;
-};

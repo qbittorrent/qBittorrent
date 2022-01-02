@@ -88,8 +88,6 @@ QString Profile::location(const SpecialFolder folder) const
         break;
     }
 
-    if (!result.endsWith(QLatin1Char('/')))
-        result += QLatin1Char('/');
     return result;
 }
 

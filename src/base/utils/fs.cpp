@@ -72,9 +72,14 @@ QString Utils::Fs::toUniformPath(const QString &path)
     return QDir::fromNativeSeparators(path);
 }
 
-/**
- * Returns the file extension part of a file name.
- */
+QString Utils::Fs::resolvePath(const QString &relativePath, const QString &basePath)
+{
+    Q_ASSERT(QDir::isRelativePath(relativePath));
+    Q_ASSERT(QDir::isAbsolutePath(basePath));
+
+    return (relativePath.isEmpty() ? basePath : QDir(basePath).absoluteFilePath(relativePath));
+}
+
 QString Utils::Fs::fileExtension(const QString &filename)
 {
     const QString name = filename.endsWith(QB_EXT)

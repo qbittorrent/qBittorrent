@@ -71,6 +71,9 @@ public:
     QString fileNameFilter() const;
     void setFileNameFilter(const QString &val);
 
+    QString placeholder() const;
+    void setPlaceholder(const QString &val);
+
     /// The browse button caption is "..." if true, and "Browse" otherwise
     bool briefBrowseButtonCaption() const;
     void setBriefBrowseButtonCaption(bool brief);

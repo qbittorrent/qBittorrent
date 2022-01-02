@@ -354,7 +354,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textTempPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textDownloadPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreallocateAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -372,8 +372,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textExportDirFin, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkTempFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkTempFolder, &QAbstractButton::toggled, m_ui->textTempPath, &QWidget::setEnabled);
+    connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, m_ui->textDownloadPath, &QWidget::setEnabled);
     connect(m_ui->addWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -559,8 +559,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
-    m_ui->textTempPath->setDialogCaption(tr("Choose a save directory"));
-    m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->textDownloadPath->setDialogCaption(tr("Choose a save directory"));
+    m_ui->textDownloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     // disable mouse wheel event on widgets to avoid mis-selection
     auto *wheelEventEater = new WheelEventEater(this);
@@ -731,14 +731,14 @@ void OptionsDialog::saveOptions()
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
+    session->setSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
-    session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
-    session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->selectedPath()));
+    session->setDownloadPathEnabled(m_ui->checkUseDownloadPath->isChecked());
+    session->setDownloadPath(Utils::Fs::expandPathAbs(m_ui->textDownloadPath->selectedPath()));
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setPreallocationEnabled(preAllocateAllFiles());
     pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
@@ -997,16 +997,16 @@ void OptionsDialog::loadOptions()
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
-    m_ui->textSavePath->setSelectedPath(session->defaultSavePath());
+    m_ui->textSavePath->setSelectedPath(session->savePath());
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
-    m_ui->checkTempFolder->setChecked(session->isTempPathEnabled());
-    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->textTempPath->setSelectedPath(Utils::Fs::toNativePath(session->tempPath()));
+    m_ui->checkUseDownloadPath->setChecked(session->isDownloadPathEnabled());
+    m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
+    m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
+    m_ui->textDownloadPath->setSelectedPath(Utils::Fs::toNativePath(session->downloadPath()));
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());

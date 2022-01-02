@@ -581,11 +581,12 @@ void PropertiesWidget::loadUrlSeeds()
 
 QString PropertiesWidget::getFullPath(const QModelIndex &index) const
 {
+    const QDir saveDir {m_torrent->actualStorageLocation()};
+
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
     {
         const int fileIdx = m_propListModel->getFileIndex(index);
         const QString filename {m_torrent->filePath(fileIdx)};
-        const QDir saveDir {m_torrent->savePath(true)};
         const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(filename))};
         return fullPath;
     }
@@ -596,7 +597,6 @@ QString PropertiesWidget::getFullPath(const QModelIndex &index) const
     for (QModelIndex modelIdx = m_propListModel->parent(nameIndex); modelIdx.isValid(); modelIdx = modelIdx.parent())
         folderPath.prepend(modelIdx.data().toString() + '/');
 
-    const QDir saveDir {m_torrent->savePath(true)};
     const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(folderPath))};
     return fullPath;
 }

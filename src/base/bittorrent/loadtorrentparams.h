@@ -46,8 +46,10 @@ namespace BitTorrent
         QString category;
         TagSet tags;
         QString savePath;
+        QString downloadPath;
         TorrentContentLayout contentLayout = TorrentContentLayout::Original;
         TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
+        bool useAutoTMM = false;
         bool firstLastPiecePriority = false;
         bool hasSeedStatus = false;
         bool stopped = false;

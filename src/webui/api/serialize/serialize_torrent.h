@@ -61,6 +61,7 @@ inline const char KEY_TORRENT_TAGS[] = "tags";
 inline const char KEY_TORRENT_SUPER_SEEDING[] = "super_seeding";
 inline const char KEY_TORRENT_FORCE_START[] = "force_start";
 inline const char KEY_TORRENT_SAVE_PATH[] = "save_path";
+inline const char KEY_TORRENT_DOWNLOAD_PATH[] = "download_path";
 inline const char KEY_TORRENT_CONTENT_PATH[] = "content_path";
 inline const char KEY_TORRENT_ADDED_ON[] = "added_on";
 inline const char KEY_TORRENT_COMPLETION_ON[] = "completion_on";

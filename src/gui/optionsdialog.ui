@@ -1105,22 +1105,25 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                </item>
                <item>
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="1" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QCheckBox" name="checkExportDirFin">
-                   <property name="text">
-                    <string>Copy .torrent files for finished downloads to:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelSavePath">
                    <property name="text">
                     <string>Default Save Path:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QCheckBox" name="checkUseDownloadPath">
+                   <property name="text">
+                    <string>Use another path for incomplete torrents:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textDownloadPath" native="true"/>
                  </item>
                  <item row="2" column="0">
                   <widget class="QCheckBox" name="checkExportDir">
@@ -1129,21 +1132,18 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="checkTempFolder">
-                   <property name="text">
-                    <string>Keep incomplete torrents in:</string>
-                   </property>
-                  </widget>
+                 <item row="2" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                  <item row="3" column="1">
                   <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
+                 <item row="3" column="0">
+                  <widget class="QCheckBox" name="checkExportDirFin">
+                   <property name="text">
+                    <string>Copy .torrent files for finished downloads to:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -3490,8 +3490,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
-  <tabstop>checkTempFolder</tabstop>
-  <tabstop>textTempPath</tabstop>
+  <tabstop>checkUseDownloadPath</tabstop>
+  <tabstop>textDownloadPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
   <tabstop>addWatchedFolderButton</tabstop>

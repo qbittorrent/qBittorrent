@@ -62,6 +62,7 @@ public slots:
 private slots:
     void handleCategoryChanged(int index);
     void handleTMMChanged();
+    void handleUseDownloadPathChanged();
 
     void handleUpSpeedLimitChanged();
     void handleDownSpeedLimitChanged();
@@ -82,12 +83,14 @@ private:
     struct
     {
         QString savePath;
+        QString downloadPath;
         QString category;
         qreal ratio;
         int seedingTime;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;
+        Qt::CheckState useDownloadPath;
         Qt::CheckState disableDHT;
         Qt::CheckState disablePEX;
         Qt::CheckState disableLSD;
