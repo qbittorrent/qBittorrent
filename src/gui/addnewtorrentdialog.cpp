@@ -28,6 +28,8 @@
 
 #include "addnewtorrentdialog.h"
 
+#include <algorithm>
+
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
@@ -231,7 +233,7 @@ int AddNewTorrentDialog::savePathHistoryLength()
 {
     const int defaultHistoryLength = 8;
     const int value = settings()->loadValue(KEY_SAVEPATHHISTORYLENGTH, defaultHistoryLength);
-    return qBound(minPathHistoryLength, value, maxPathHistoryLength);
+    return std::clamp(value, minPathHistoryLength, maxPathHistoryLength);
 }
 
 void AddNewTorrentDialog::setSavePathHistoryLength(const int value)

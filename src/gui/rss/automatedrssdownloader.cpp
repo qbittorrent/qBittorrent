@@ -33,7 +33,6 @@
 #include <QFileDialog>
 #include <QMenu>
 #include <QMessageBox>
-#include <QPair>
 #include <QRegularExpression>
 #include <QShortcut>
 #include <QSignalBlocker>
@@ -664,7 +663,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
     // Insert the articles
     for (const QString &article : articles)
     {
-        QPair<QString, QString> key(feed->name(), article);
+        const std::pair<QString, QString> key(feed->name(), article);
 
         if (!m_treeListEntries.contains(key))
         {

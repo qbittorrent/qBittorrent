@@ -28,6 +28,7 @@
 
 #include "pieceavailabilitybar.h"
 
+#include <algorithm>
 #include <cmath>
 
 #include <QDebug>
@@ -46,9 +47,9 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
 
     const int maxElement = *std::max_element(vecin.begin(), vecin.end());
 
-    // qMax because in normalization we don't want divide by 0
+    // std::max because in normalization we don't want divide by 0
     // if maxElement == 0 check will be disabled please enable this line:
-    // const int maxElement = qMax(*std::max_element(avail.begin(), avail.end()), 1);
+    // const int maxElement = std::max(*std::max_element(avail.begin(), avail.end()), 1);
 
     if (maxElement == 0)
         return result;
@@ -115,7 +116,7 @@ QVector<float> PieceAvailabilityBar::intToFloatVector(const QVector<int> &vecin,
         value /= ratio * maxElement;
 
         // float precision sometimes gives > 1, because it's not possible to store irrational numbers
-        value = qMin(value, 1.0f);
+        value = std::min(value, 1.0f);
 
         result[x] = value;
     }
