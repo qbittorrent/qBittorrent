@@ -40,7 +40,6 @@
 #include <QUrl>
 
 #include "base/bittorrent/categoryoptions.h"
-#include "base/bittorrent/common.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
@@ -565,13 +564,9 @@ void TorrentsController::filesAction()
                 {KEY_FILE_PROGRESS, fp[index]},
                 {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
                 {KEY_FILE_SIZE, torrent->fileSize(index)},
-                {KEY_FILE_AVAILABILITY, fileAvailability[index]}
+                {KEY_FILE_AVAILABILITY, fileAvailability[index]},
+                {KEY_FILE_NAME, Utils::Fs::toUniformPath(torrent->filePath(index))}
             };
-
-            QString fileName = torrent->filePath(index);
-            if (fileName.endsWith(QB_EXT, Qt::CaseInsensitive))
-                fileName.chop(QB_EXT.size());
-            fileDict[KEY_FILE_NAME] = Utils::Fs::toUniformPath(fileName);
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
             fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};

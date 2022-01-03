@@ -43,7 +43,6 @@
 #include <QVector>
 #include <QWheelEvent>
 
-#include "base/bittorrent/common.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -93,9 +92,7 @@ namespace
 
         for (const QString &filePath : asConst(torrent->filePaths()))
         {
-            QString fileName = Utils::Fs::fileName(filePath);
-            if (fileName.endsWith(QB_EXT))
-                fileName.chop(QB_EXT.length());
+            const QString fileName = Utils::Fs::fileName(filePath);
             if (Utils::Misc::isPreviewable(fileName))
                 return true;
         }

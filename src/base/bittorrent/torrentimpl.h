@@ -127,9 +127,9 @@ namespace BitTorrent
         int seedingTimeLimit() const override;
 
         QString filePath(int index) const override;
+        QString actualFilePath(int index) const override;
         qlonglong fileSize(int index) const override;
         QStringList filePaths() const override;
-        QStringList absoluteFilePaths() const override;
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;

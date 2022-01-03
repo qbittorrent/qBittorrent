@@ -32,7 +32,6 @@
 #include <QHash>
 #include <QVector>
 
-#include "base/bittorrent/common.h"
 #include "base/exceptions.h"
 #include "base/utils/fs.h"
 
@@ -46,10 +45,6 @@ namespace
 {
     bool areSameFileNames(QString first, QString second)
     {
-        if (first.endsWith(QB_EXT, Qt::CaseInsensitive))
-            first.chop(QB_EXT.size());
-        if (second.endsWith(QB_EXT, Qt::CaseInsensitive))
-            second.chop(QB_EXT.size());
         return QString::compare(first, second, CASE_SENSITIVITY) == 0;
     }
 }
@@ -85,15 +80,7 @@ void BitTorrent::AbstractFileStorage::renameFile(const QString &oldPath, const Q
     if (renamingFileIndex < 0)
         throw RuntimeError {tr("No such file: '%1'.").arg(oldFilePath)};
 
-    const auto extAdjusted = [](const QString &path, const bool needExt) -> QString
-    {
-        if (path.endsWith(QB_EXT, Qt::CaseInsensitive) == needExt)
-            return path;
-
-        return (needExt ? (path + QB_EXT) : (path.left(path.size() - QB_EXT.size())));
-    };
-
-    renameFile(renamingFileIndex, extAdjusted(newFilePath, filePath(renamingFileIndex).endsWith(QB_EXT, Qt::CaseInsensitive)));
+    renameFile(renamingFileIndex, newFilePath);
 }
 
 void BitTorrent::AbstractFileStorage::renameFolder(const QString &oldPath, const QString &newPath)
