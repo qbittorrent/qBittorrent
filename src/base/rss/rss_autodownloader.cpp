@@ -108,7 +108,7 @@ AutoDownloader::AutoDownloader()
     m_instance = this;
 
     m_fileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
     if (!m_fileStorage)
         throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 

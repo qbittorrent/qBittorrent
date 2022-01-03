@@ -220,7 +220,7 @@ void Application::setFileLoggerEnabled(const bool value)
 
 QString Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER);
+    return m_storeFileLoggerPath.get(QDir(specialFolderLocation(SpecialFolder::Data)).absoluteFilePath(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const QString &path)

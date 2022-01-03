@@ -4313,7 +4313,7 @@ void Session::startUpTorrents()
     qDebug("Initializing torrents resume data storage...");
 
     const QString dbPath = Utils::Fs::expandPathAbs(
-                specialFolderLocation(SpecialFolder::Data) + QLatin1String("torrents.db"));
+                specialFolderLocation(SpecialFolder::Data) + QLatin1String("/torrents.db"));
     const bool dbStorageExists = QFile::exists(dbPath);
 
     ResumeDataStorage *startupStorage = nullptr;
@@ -4324,14 +4324,14 @@ void Session::startUpTorrents()
         if (!dbStorageExists)
         {
             const QString dataPath = Utils::Fs::expandPathAbs(
-                        specialFolderLocation(SpecialFolder::Data) + QLatin1String("BT_backup"));
+                        specialFolderLocation(SpecialFolder::Data) + QLatin1String("/BT_backup"));
             startupStorage = new BencodeResumeDataStorage(dataPath, this);
         }
     }
     else
     {
         const QString dataPath = Utils::Fs::expandPathAbs(
-                    specialFolderLocation(SpecialFolder::Data) + QLatin1String("BT_backup"));
+                    specialFolderLocation(SpecialFolder::Data) + QLatin1String("/BT_backup"));
         m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
 
         if (dbStorageExists)

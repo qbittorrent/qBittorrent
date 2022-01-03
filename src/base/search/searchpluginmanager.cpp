@@ -367,7 +367,7 @@ QString SearchPluginManager::engineLocation()
     static QString location;
     if (location.isEmpty())
     {
-        location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "nova3");
+        location = Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + "/nova3");
 
         const QDir locationDir(location);
         locationDir.mkpath(locationDir.absolutePath());

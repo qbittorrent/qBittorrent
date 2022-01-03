@@ -88,10 +88,10 @@ QString Private::DefaultProfile::dataLocation() const
 #else
     // On Linux keep using the legacy directory ~/.local/share/data/ if it exists
     const QString legacyDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-        + QLatin1String("/data/") + profileName() + QLatin1Char('/');
+        + QLatin1String("/data/") + profileName();
 
     const QString dataDir = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation)
-        + QLatin1Char('/') + profileName() + QLatin1Char('/');
+        + QLatin1Char('/') + profileName();
 
     if (!QDir(dataDir).exists() && QDir(legacyDir).exists())
     {

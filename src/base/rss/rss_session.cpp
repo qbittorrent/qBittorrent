@@ -67,7 +67,7 @@ Session::Session()
     m_instance = this;
 
     m_confFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
     m_confFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_confFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
@@ -77,7 +77,7 @@ Session::Session()
     });
 
     m_dataFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + DataFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + QLatin1Char('/') + DataFolderName));
     m_dataFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
