@@ -41,7 +41,7 @@ BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObj
 
     const QJsonValue downloadPathValue = jsonObj.value(OPTION_DOWNLOADPATH);
     if (downloadPathValue.isBool())
-        options.downloadPath = {downloadPathValue.toBool()};
+        options.downloadPath = {downloadPathValue.toBool(), {}};
     else if (downloadPathValue.isString())
         options.downloadPath = {true, downloadPathValue.toString()};
 
