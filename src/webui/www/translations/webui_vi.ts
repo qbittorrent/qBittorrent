@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent trên Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent trên Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Đăng nhập</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Tác giả gốc</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Tác giả gốc</translation>
     </message>
 </context>
 <context>
@@ -577,7 +573,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
@@ -600,11 +596,11 @@
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished" />
+        <translation>Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -760,15 +756,15 @@
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished" />
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished" />
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -846,7 +842,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished" />
+        <translation>Áp dụng giới hạn tốc độ cho mào đầu truyền tải</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -902,7 +898,7 @@
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished" />
+        <translation>thì</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
@@ -1189,10 +1185,6 @@
         <translation>Cổng đi (Tối thiểu) [0: Đã tắt]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Địa chỉ IP để báo cáo cho trình theo dõi (yêu cầu khởi động lại):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Kiểm tra lại torrent khi hoàn thành:</translation>
     </message>
@@ -1346,7 +1338,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Địa chỉ IP được báo cáo cho máy theo dõi (yêu cầu khởi động lại):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Đặt là 0 để cho hệ thống chọn một cổng không sử dụng</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Giảm thiểu giả mạo yêu cầu phía máy chủ (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Thêm máy ngang hàng mới...</translation>
+        <translation type="vanished">Thêm máy ngang hàng mới...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Quốc gia/Khu vực</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1634,7 +1630,7 @@
     </message>
     <message>
         <source>ETA:</source>
-        <translation type="unfinished" />
+        <translation>ETA</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -1698,7 +1694,7 @@
     </message>
     <message>
         <source>Pieces:</source>
-        <translation type="unfinished" />
+        <translation>Mảnh:</translation>
     </message>
     <message>
         <source>Created By:</source>
@@ -1782,11 +1778,11 @@
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Không áp dụng</translation>
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Tiến trình:</translation>
     </message>
 </context>
 <context>
@@ -2229,7 +2225,7 @@
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished" />
+        <translation>Tải về</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -2442,7 +2438,7 @@
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation>Tải về phần đầu và cuối trước tiên</translation>
+        <translation>Tải về phần đầu và phần cuối trước</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
@@ -2556,7 +2552,7 @@
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>ID Torrent</translation>
     </message>
 </context>
 <context>
@@ -2649,12 +2645,12 @@
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation type="unfinished" />
+        <translation>PiB</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation type="unfinished" />
+        <translation>EiB</translation>
     </message>
     <message>
         <source>/s</source>
@@ -2756,10 +2752,6 @@
         <translation>Tìm kiếm ở:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Kết quả (đang hiển thị</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Bộ Lọc</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Kết quả</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>hiển thị</translation>
     </message>
 </context>
 <context>
@@ -2978,7 +2970,7 @@
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -3025,12 +3017,8 @@
         <translation>Quốc tịch:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Tác giả</translation>
-    </message>
-    <message>
         <source>Software Used</source>
-        <translation>Phần mềm được sử dụng</translation>
+        <translation>Phần Mềm Đã Dùng</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Tác giả</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Pháp</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

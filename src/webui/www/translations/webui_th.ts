@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>เลย์เอาต์เนื้อหา:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent บน Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent บน Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>ล็อกอิน</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">ผู้เขียนต้นฉบับ</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -640,7 +636,7 @@
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
-        <translation type="unfinished" />
+        <translation>Web User Interface (รีโมทคอนโทรล)</translation>
     </message>
     <message>
         <source>IP address:</source>
@@ -724,7 +720,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
+        <translation>ใช้ UPnP / NAT-PMP พอร์ตการส่งต่อ จากเร้าเตอร์</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -882,7 +878,7 @@
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งานโหมดไม่ระบุตัวตน</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
@@ -950,15 +946,15 @@
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: จำนวนไฟล์</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: ขนาดไฟล์ทอร์เรนต์ (ไบต์)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation type="unfinished" />
+        <translation>%T: ตัวติดตามปัจจุบัน</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -982,7 +978,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งานการป้องกันการคลิกแจ็ค</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1014,7 +1010,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>ตำแหน่งที่บันทึกเริ่มต้น</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1026,15 +1022,15 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนโหมดทอร์เรนต์เป็นแบบจัดการเอง</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation type="unfinished" />
+        <translation>เมื่อหมวดหมู่ทอร์เรนต์เปลี่ยนไป:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished" />
+        <translation>ย้ายตำแหน่งทอร์เรนต์ที่ได้รับผล</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -1046,7 +1042,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>ย้ายตำแหน่งทอร์เรนต์</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1070,11 +1066,11 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนทอร์เรนต์ที่ได้รับผลกระทบเป็นแบบจัดการเอง</translation>
     </message>
     <message>
         <source>Files location:</source>
-        <translation type="unfinished" />
+        <translation>ตำแหน่งไฟล์:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1086,11 +1082,11 @@
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>โหมดการจัดการทอร์เรนต์เริ่มต้น:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished" />
+        <translation>เมื่อเพิ่มทอร์เรนต์</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
@@ -1106,7 +1102,7 @@
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: แท็ก (คั่นด้วยเครื่องหมายจุลภาค)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1114,7 +1110,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งานการส่งต่อขั้นสูงสำหรับทอร์เรนต์</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1134,11 +1130,11 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>เมื่ออัตราส่วนถึง</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>เวลาในการส่งต่อครบกำหนด</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1166,11 +1162,11 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>หยุดทอร์เรนต์</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>ลบทอร์เรนต์และไฟล์ของมัน</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
@@ -1194,7 +1190,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>ยืนยันการเข้ารหัส</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1206,7 +1202,7 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1234,7 +1230,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>ขั้นสูง</translation>
     </message>
     <message>
         <source>min</source>
@@ -1246,7 +1242,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>จำกัดการส่งต่อ</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1278,7 +1274,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>หมดเวลา:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1286,7 +1282,7 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>แบนสำหรับ:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
@@ -1318,7 +1314,7 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation>ตัวกรอง:</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
@@ -1338,11 +1334,11 @@
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation type="unfinished" />
+        <translation>RSS ทอร์เรนต์ดาวน์โหลดอัตโนมัติ</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1350,11 +1346,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS ผู้อ่าน</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished" />
+        <translation>แก้ไขกฎการดาวน์โหลดอัตโนมัติ ...</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
@@ -1378,7 +1374,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>นาที</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1394,7 +1390,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งานการดาวน์โหลด RSS ทอร์เรนต์อัตโนมัติ</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1414,7 +1410,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>โปรโตคอลการเชื่อมต่อแบบเพียร์:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1422,19 +1418,19 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>เลย์เอาต์เนื้อหาทอร์เรนต์:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>สร้างโฟลเดอร์ย่อย</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>ต้นฉบับ</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>ไม่ต้องสร้างโฟลเดอร์ย่อย</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1446,7 +1442,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>สุ่ม</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1489,78 +1485,82 @@
     <name>PeerListWidget</name>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>ไปพี</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished" />
+        <translation>พอร์ต</translation>
     </message>
     <message>
         <source>Flags</source>
-        <translation type="unfinished" />
+        <translation>ธง</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished" />
+        <translation>การเชื่อมต่อ</translation>
     </message>
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished" />
+        <translation>ลูกค้า</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished" />
+        <translation>กระบวนการ</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการอัพโหลด</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation type="unfinished" />
+        <translation>อัพโหลด</translation>
     </message>
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>ความเกี่ยวข้อง</translation>
     </message>
     <message>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
-        <translation type="unfinished" />
+        <translation>ไฟล์</translation>
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>แบนเพียร์ถาวร</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>คุณแน่ใจหรือไม่ว่าต้องการแบนเพียร์ที่เลือกอย่างถาวร?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
+        <translation>คัดลอก IP:พอร์ต</translation>
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation type="vanished">เพิ่มเพียร์ใหม่...</translation>
     </message>
     <message>
         <source>Country/Region</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add peers...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1569,17 +1569,17 @@
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation type="unfinished" />
+        <translation>ปกติ</translation>
     </message>
     <message>
         <source>High</source>
         <comment>High (priority)</comment>
-        <translation type="unfinished" />
+        <translation>สูง</translation>
     </message>
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation type="unfinished" />
+        <translation>สูงสุด</translation>
     </message>
     <message>
         <source>Mixed</source>
@@ -1594,15 +1594,15 @@
     <name>PropTabBar</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>ทั่วไป</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>แทร็กเกอร์</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished" />
+        <translation>เพียร์</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1610,55 +1610,55 @@
     </message>
     <message>
         <source>Content</source>
-        <translation type="unfinished" />
+        <translation>เนื้อหา</translation>
     </message>
 </context>
 <context>
     <name>PropertiesWidget</name>
     <message>
         <source>Downloaded:</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลด:</translation>
     </message>
     <message>
         <source>Transfer</source>
-        <translation type="unfinished" />
+        <translation>ถ่ายโอน</translation>
     </message>
     <message>
         <source>Time Active:</source>
         <extracomment>Time (duration) the torrent is active (not paused)</extracomment>
-        <translation type="unfinished" />
+        <translation>ใช้เวลาไป:</translation>
     </message>
     <message>
         <source>ETA:</source>
-        <translation type="unfinished" />
+        <translation>เวลาโดยประมาณ</translation>
     </message>
     <message>
         <source>Uploaded:</source>
-        <translation type="unfinished" />
+        <translation>อัพโหลด:</translation>
     </message>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>ผู้ส่ง:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Upload Speed:</source>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการอัพโหลด</translation>
     </message>
     <message>
         <source>Peers:</source>
-        <translation type="unfinished" />
+        <translation>เพียร์:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
-        <translation type="unfinished" />
+        <translation>จำกัดดาวน์โหลด:</translation>
     </message>
     <message>
         <source>Upload Limit:</source>
-        <translation type="unfinished" />
+        <translation>จำกัดอัปโหลด:</translation>
     </message>
     <message>
         <source>Wasted:</source>
@@ -1670,15 +1670,15 @@
     </message>
     <message>
         <source>Information</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูล</translation>
     </message>
     <message>
         <source>Comment:</source>
-        <translation type="unfinished" />
+        <translation>ความคิดเห็น:</translation>
     </message>
     <message>
         <source>Share Ratio:</source>
-        <translation type="unfinished" />
+        <translation>อัตราส่วนการแบ่งปัน:</translation>
     </message>
     <message>
         <source>Reannounce In:</source>
@@ -1686,27 +1686,27 @@
     </message>
     <message>
         <source>Last Seen Complete:</source>
-        <translation type="unfinished" />
+        <translation>ล่าสุดเสร็จสมบูรณ์:</translation>
     </message>
     <message>
         <source>Total Size:</source>
-        <translation type="unfinished" />
+        <translation>ขนาดทั้งหมด:</translation>
     </message>
     <message>
         <source>Pieces:</source>
-        <translation type="unfinished" />
+        <translation>ชิ้นส่วน:</translation>
     </message>
     <message>
         <source>Created By:</source>
-        <translation type="unfinished" />
+        <translation>สร้างโดย:</translation>
     </message>
     <message>
         <source>Added On:</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มเมื่อ:</translation>
     </message>
     <message>
         <source>Completed On:</source>
-        <translation type="unfinished" />
+        <translation>เสร็จเมื่อ:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -1727,7 +1727,7 @@
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation type="unfinished" />
+        <translation>%1 (เซสชั่นนี้ %2)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
@@ -1737,12 +1737,12 @@
     <message>
         <source>%1 (%2 total)</source>
         <comment>%1 and %2 are numbers, e.g. 3 (10 total)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (ทั้งหมด %2)</translation>
     </message>
     <message>
         <source>%1 (%2 avg.)</source>
         <comment>%1 and %2 are speed rates, e.g. 200KiB/s (100KiB/s avg.)</comment>
-        <translation type="unfinished" />
+        <translation>%1 (เฉลี่ย %2.)</translation>
     </message>
     <message>
         <source>Download limit:</source>
@@ -1754,15 +1754,15 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>ความสำคัญ</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>กรองไฟล์...</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนชื่อ...</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1770,11 +1770,11 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลแฮช v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลแฮช v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1782,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>ความคืบหน้า:</translation>
     </message>
 </context>
 <context>
@@ -1823,11 +1823,11 @@
     <name>StatsDialog</name>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>สถิติ</translation>
     </message>
     <message>
         <source>User statistics</source>
-        <translation type="unfinished" />
+        <translation>สถิติผู้ใช้</translation>
     </message>
     <message>
         <source>Cache statistics</source>
@@ -1843,7 +1843,7 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation type="unfinished" />
+        <translation>เพียร์ที่เชื่อมต่อ:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -1855,7 +1855,7 @@
     </message>
     <message>
         <source>Session waste:</source>
-        <translation type="unfinished" />
+        <translation>เซสชันเสีย:</translation>
     </message>
     <message>
         <source>All-time upload:</source>
@@ -1863,7 +1863,7 @@
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>ขนาดบัฟเฟอร์ทั้งหมด:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
@@ -1883,14 +1883,14 @@
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation type="unfinished" />
+        <translation>ขนาดเข้าคิวทั้งหมด:</translation>
     </message>
 </context>
 <context>
     <name>StatusBar</name>
     <message>
         <source>DHT: %1 nodes</source>
-        <translation type="unfinished" />
+        <translation>DHT: %1 โหนด</translation>
     </message>
 </context>
 <context>
@@ -1898,107 +1898,107 @@
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished" />
+        <translation>ทั้งหมด (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>กำลังดาวน์โหลด (0)</translation>
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation type="unfinished" />
+        <translation>กำลังส่ง (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation type="unfinished" />
+        <translation>เสร็จสมบูรณ์ (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation type="unfinished" />
+        <translation>ดำเนินการต่อ (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation type="unfinished" />
+        <translation>หยุดชั่วคราว (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
-        <translation type="unfinished" />
+        <translation>ใช้งานอยู่ (0)</translation>
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation type="unfinished" />
+        <translation>ไม่ทำงาน (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation type="unfinished" />
+        <translation>ผิดพลาด (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>ทั้งหมด (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>กำลังดาวน์โหลด (%1)</translation>
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation type="unfinished" />
+        <translation>กำลังส่ง (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation type="unfinished" />
+        <translation>เสร็จสมบูรณ์ (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation type="unfinished" />
+        <translation>หยุดชั่วคราว (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation type="unfinished" />
+        <translation>ดำเนินการต่อ  (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
-        <translation type="unfinished" />
+        <translation>ใช้งานอยู่ (%1)</translation>
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation type="unfinished" />
+        <translation>ไม่ทำงาน (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation type="unfinished" />
+        <translation>ผิดพลาด (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้นการอัพโหลด (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้นการดาวน์โหลด (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้นการดาวน์โหลด (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้น (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้นการอัพโหลด (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>ปิดกั้น (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>กำลังตรวจสอบ (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>กำลังตรวจสอบ (0)</translation>
     </message>
 </context>
 <context>
@@ -2009,12 +2009,12 @@
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Size</source>
         <comment>i.e: torrent size</comment>
-        <translation type="unfinished" />
+        <translation>ขนาด</translation>
     </message>
     <message>
         <source>Done</source>
@@ -2024,129 +2024,129 @@
     <message>
         <source>Status</source>
         <comment>Torrent status (e.g. downloading, seeding, paused)</comment>
-        <translation type="unfinished" />
+        <translation>สถานะ</translation>
     </message>
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation type="unfinished" />
+        <translation>ผู้ส่ง</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation type="unfinished" />
+        <translation>เพียร์</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished" />
+        <translation>ความเร็วในการอัพโหลด</translation>
     </message>
     <message>
         <source>Ratio</source>
         <comment>Share ratio</comment>
-        <translation type="unfinished" />
+        <translation>อัตราส่วน</translation>
     </message>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation type="unfinished" />
+        <translation>เวลาโดยประมาณ</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>หมวดหมู่</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>แท็ก</translation>
     </message>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation type="unfinished" />
+        <translation>เพิ่มเมื่อ</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation type="unfinished" />
+        <translation>เสร็จเมื่อ:</translation>
     </message>
     <message>
         <source>Tracker</source>
-        <translation type="unfinished" />
+        <translation>ติดตาม</translation>
     </message>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation type="unfinished" />
+        <translation>จำกัดการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation type="unfinished" />
+        <translation>จำกัดการอัป</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลดแล้ว</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>อัปโหลดแล้ว</translation>
     </message>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>การดาวน์โหลดเซสซัน</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>การอัปโหลดเซสชัน</translation>
     </message>
     <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>ที่เหลืออยู่</translation>
     </message>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation type="unfinished" />
+        <translation>ใช้เวลาไป</translation>
     </message>
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation type="unfinished" />
+        <translation>บันทึกเส้นทาง</translation>
     </message>
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>เสร็จสมบูรณ์</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished" />
+        <translation>จำกัดอัตราส่วน</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished" />
+        <translation>ล่าสุดเสร็จสมบูรณ์</translation>
     </message>
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished" />
+        <translation>กิจกรรมล่าสุด</translation>
     </message>
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished" />
+        <translation>ขนาดทั้งหมด</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2157,23 +2157,23 @@
     <name>TrackerListWidget</name>
     <message>
         <source>URL</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>สถานะ</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation type="unfinished" />
+        <translation>เพียร์</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>ข้อความ</translation>
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลดแล้ว</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2181,15 +2181,15 @@
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>กำลังอัพเดต...</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>กำลังทำงาน</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>ปิดการใข้งาน</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2201,11 +2201,11 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>ผู้ส่ง</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>ไม่ทำงาน</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
@@ -2225,7 +2225,7 @@
     </message>
     <message>
         <source>Leeches</source>
-        <translation type="unfinished" />
+        <translation>ผู้รับ</translation>
     </message>
     <message>
         <source>Remove tracker</source>
@@ -2264,11 +2264,11 @@
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished" />
+        <translation>กล่องโต้ตอบการเพิ่มตัวติดตาม</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation type="unfinished" />
+        <translation>รายการตัวติดตามที่จะเพิ่ม (หนึ่งรายการต่อบรรทัด):</translation>
     </message>
 </context>
 <context>
@@ -2351,128 +2351,128 @@
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>สถานะ</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished" />
+        <translation>หมวดหมู่</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>แท็ก</translation>
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>ติดตาม</translation>
     </message>
 </context>
 <context>
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation type="unfinished" />
+        <translation>Torrent จำกัดความเร็วการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation type="unfinished" />
+        <translation>Torrent จำกัดความเร็วการอัพโหลด</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนชื่อ</translation>
     </message>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation>ดำเนินการต่อ</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation>บังคับให้ดำเนินการต่อ</translation>
     </message>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished" />
+        <translation>พัก</translation>
     </message>
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished" />
+        <translation>ลบ</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation type="unfinished" />
+        <translation>จำกัด สัดส่วนหุ้น ...</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation type="unfinished" />
+        <translation>จำกัด อัตราการอัพโหลด ...</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation type="unfinished" />
+        <translation>จำกัด อัตราการดาวน์โหลด ...</translation>
     </message>
     <message>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished" />
+        <translation>ขยับขึ้น</translation>
     </message>
     <message>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished" />
+        <translation>ย้ายลง</translation>
     </message>
     <message>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished" />
+        <translation>ย้ายไปด้านบนสุด</translation>
     </message>
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished" />
+        <translation>ย้ายไปด้านล่าง</translation>
     </message>
     <message>
         <source>Set location...</source>
-        <translation type="unfinished" />
+        <translation>กำหนดตำแหน่ง...</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลดชิ้นแรกและชิ้นสุดท้ายก่อน</translation>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished" />
+        <translation>การจัดการทอร์เรนต์อัตโนมัติ</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>หมวดหมู่</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>ใหม่...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
+        <translation>รีเซ็ต</translation>
     </message>
     <message>
         <source>Force recheck</source>
-        <translation type="unfinished" />
+        <translation>บังคับตรวจสอบ</translation>
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation type="unfinished" />
+        <translation>โหลดส่งต่อข้อมูลขั้นสูง</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนชื่อ...</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลดตามลำดับ</translation>
     </message>
     <message>
         <source>Force Recheck</source>
@@ -2496,7 +2496,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation type="unfinished" />
+        <translation>บังคับให้ประกาศอีกครั้ง</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2508,19 +2508,19 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>แท็กที่คั่นด้วยจุลภาค:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มแท็ก</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>แท็ก</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>ลิงค์แม่เหล็ก</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2528,15 +2528,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>คัดลอก</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>คิว</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -2544,42 +2544,42 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลแฮช v1:</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลแฮช v2:</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>ทอร์เรนต์ไอดี</translation>
     </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation type="unfinished" />
+        <translation>Torrent อัปโหลด/ดาวน์โหลด การจำกัดอัตราส่วน</translation>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation type="unfinished" />
+        <translation>ใช้ขีดจำกัดการแชร์ทั่วโลก</translation>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>ตั้งค่า ไม่จำกัดการแชร์</translation>
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation type="unfinished" />
+        <translation>ตั้งค่า จำกัดการแชร์</translation>
     </message>
     <message>
         <source>ratio</source>
-        <translation type="unfinished" />
+        <translation>อัตราส่วน</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>นาที</translation>
     </message>
 </context>
 <context>
@@ -2593,7 +2593,7 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation type="unfinished" />
+        <translation>ลบไฟล์ออกจากฮาร์ดดิสด้วย</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
@@ -2604,11 +2604,11 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลดจาก URLs</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Add Torrent Links</source>
@@ -2620,67 +2620,67 @@
     <message>
         <source>B</source>
         <comment>bytes</comment>
-        <translation type="unfinished" />
+        <translation>ไบต์</translation>
     </message>
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation type="unfinished" />
+        <translation>กิบิไบต์</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation type="unfinished" />
+        <translation>เมบิไบต์</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation type="unfinished" />
+        <translation>จิบิไบต์</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation type="unfinished" />
+        <translation>เทบิไบต์</translation>
     </message>
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation type="unfinished" />
+        <translation>เพบิไบต์</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation type="unfinished" />
+        <translation>เอกซ์บิไบต์</translation>
     </message>
     <message>
         <source>/s</source>
         <comment>per second</comment>
-        <translation type="unfinished" />
+        <translation>/วินาที</translation>
     </message>
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation type="unfinished" />
+        <translation>%1 ชั่วโมง %2 นาที</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation type="unfinished" />
+        <translation>%1 วัน %2 ชั่วโมง</translation>
     </message>
     <message>
         <source>Unknown</source>
         <comment>Unknown (size)</comment>
-        <translation type="unfinished" />
+        <translation>ไม่ทราบ</translation>
     </message>
     <message>
         <source>&lt; 1m</source>
         <comment>&lt; 1 minute</comment>
-        <translation type="unfinished" />
+        <translation>&lt; 1 นาที</translation>
     </message>
     <message>
         <source>%1m</source>
         <comment>e.g: 10minutes</comment>
-        <translation type="unfinished" />
+        <translation>% 1 นาที</translation>
     </message>
     <message>
         <source>%1y %2d</source>
@@ -2889,11 +2889,11 @@
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มเพียร์</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>รายชื่อเพียร์ที่จะเพิ่ม (หนึ่ง IP ต่อบรรทัด):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2908,85 +2908,85 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>เท็กใหม่</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>เพื่มแท็ก...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>เท็ก:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>หยุดทอร์เรนต์</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>ดำเนินการทอร์เรนต์ต่อ</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>ลบแท็กที่ไม่ได้ใช้</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อแท็กไม่ถูกต้อง</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>ลบแท็ก</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>ทั้งหมด</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>ไม่ติดแท็ก</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>ติดตามบั๊ค:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>เกี่ยวกับ</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>ฟอรั่ม</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>อีเมล</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>ผู้ดูแลขณะนี้</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>หน้าแรก</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>กรีซ</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>ขอบคุณเป็นพิเศษ</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -2994,7 +2994,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
@@ -3002,11 +3002,11 @@
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>ใบอนุญาต</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>นักแปล</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
@@ -3014,15 +3014,15 @@
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>สัญชาติ</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>ซอฟต์แวร์ที่ใช้</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>ฐานข้อมูล IP to Country Lite ฟรีโดย DB-IP ใช้สำหรับแก้ไขประเทศของเพียร์. ฐานข้อมูลได้รับอนุญาตภายใต้ Creative Commons Attribution 4.0 International License</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3030,6 +3030,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation>ฝรั่งเศส</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3052,15 +3060,15 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>คัดลอก</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3072,18 +3080,18 @@
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>ลิ้งค์ดาวน์โหลด</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนชื่อ</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>ชื่อใหม่:</translation>
     </message>
 </context>
 <context>
@@ -3193,71 +3201,71 @@
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>จับคู่บทความ RSS</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>* เพื่อจับคู่อักขระใด ๆ เป็นศูนย์หรือมากกว่า</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation>จะตรงกับบทความทั้งหมด</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>กฎตัวกรองตอน: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>การดาวน์โหลด RSS torrents อัตโนมัติ ถูกปิดใช้งานแล้ว! คุณสามารถเปิดใช้งานได้ในการตั้งค่าแอปพลิเคชัน.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>นิยามกฎ</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>บันทึกไปที่:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>ใช้นิพจน์ทั่วไป</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อกฎใหม่</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>ตัวกรองต้องลงท้ายด้วยอัฒภาค  " ; " </translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>? เพื่อจับคู่อักขระเดี่ยวใด ๆ</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>จับคู่บทความตามตัวกรองตอน</translation>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>กำหนดหมวดหมู่:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished" />
+        <translation>โหมด Regex: ใช้ Perl-เข้ากันได้ แสดงความคิดปกติ</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished" />
+        <translation>| ใช้เป็นตัวดำเนินการ OR</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>ล้างตอนที่ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation>ช่องว่างนับเป็นและเป็นตัวดำเนินการ (ทุกคำใด ๆ )</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3265,67 +3273,67 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>ตัวอย่าง</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มกฏใหม่...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>คุณมั่นใจหรือว่าจะทำการล้างรายชื่อการดาวน์โหลดตอนที่เลือก?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>ต้องมี:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation>ช่วงไม่มีที่สิ้นสุด: &lt;b&gt;1x25-;&lt;/b&gt; ตรงกับตอน 25 และสูงกว่าของซีซันที่หนึ่งและทุกตอนของซีซันต่อมา</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>บันทึกลงในไดเรกทอรีอื่น</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>ต้องไม่มี:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>หมายเลขเดียว: &lt;b&gt;1x25;&lt;/b&gt; ตรงกับตอน 25 of ซีซันแรก</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>รอบรับตอนทั้งสามประเภท: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>แน่ใจไหมว่าต้องการลบกฎการดาวน์โหลดที่เลือก?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>ใช้การตั้งค่าส่วนกลาง</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>ช่วงปกติ: &lt;b&gt;1x25-40;&lt;/b&gt; ตรงกับตอน 25 ผ่าน 40 of ซีซันแรก</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>กรุณาพิมพ์ชื่อกฏใหม่</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>การเปลี่ยนชื่อกฎ</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>เสมอ</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation>หมายเลขตอนต้องเป็นค่าบวก</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3333,15 +3341,15 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>ยืนยันการลบกฏ</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>นัดสุดท้าย: %1 วันที่แล้ว</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>ตัวกรองตอน:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3349,95 +3357,96 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>หมายเลขซีซันเป็นค่าบังคับที่ไม่ใช่ศูนย์</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>ไม่เลย</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>ใช้กฎกับฟีด:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>วัน</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation>ใช้ตัวกรองตอนอัจฉริยะ</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished" />
+        <translation>หากลำดับคำมีความสำคัญให้ใช้ * แทนช่องว่าง</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>เพิ่มหยุดชั่วคราว:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>กรุณาพิมพ์ชื่อกฎการดาวน์โหลดใหม่</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>โหมดสัญลักษณ์แทน: คุณสามารถใช้ได้</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation>จะไม่รวมบทความทั้งหมด</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>ลบกฏ</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>ละเว้นการจับคู่ที่ตามมาสำหรับ (0 ถึงปิดใช้งาน)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>เปลี่ยนชื่อกฏ...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>นัดสุดท้าย: ไม่ทราบ</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>ล้างตอนที่ดาวน์โหลด...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>ตัวกรองตอนอัจฉริยะจะตรวจสอบหมายเลขตอนเพื่อป้องกันการดาวน์โหลดรายการที่ซ้ำกัน.
+รองรับรูปแบบ: S01E01, 1x1, 2017.12.31 and 31.12.2017 (รูปแบบวันที่ที่รองรับ - เป็นตัวคั่น)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>เลย์เอาต์เนื้อหาทอร์เรนต์:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>สร้างโฟลเดอร์ย่อย</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>ต้นฉบับ</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>ไม่ต้องสร้างโฟลเดอร์ย่อย</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>ดำเนินการทอร์เรนต์ต่อ</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3449,14 +3458,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>หยุดทอร์เรนต์</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSS ฟีด</translation>
     </message>
     <message>
         <source>Unread</source>

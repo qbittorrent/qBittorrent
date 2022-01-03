@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent στο Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent στο Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Σύνδεση</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Αρχικοί δημιουργοί</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Αρχικός δημιουργός</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Εξερχόμενες θύρες (Ελάχ) [0: Απενεργοποιημένο]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Διεύθυνση IP που θα ανακοινώνεται στους tracker (απαιτεί επανεκκίνηση):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Επανέλεγχος των torrent μετά την ολοκλήρωση:</translation>
     </message>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Η διεύθυνση IP που εκτίθεται στους trackers (απαιτεί επανεκκίνηση):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Ορίστε το σε 0 για να επιτρέψετε στο σύστημά σας να επιλέξει μια αχρησιμοποίητη θύρα</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Μετριασμός Server-side request forgery (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Προσθήκη νέου peer...</translation>
+        <translation type="vanished">Προσθήκη νέου peer...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Χώρα/Περιοχή</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Πρόοδος:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Αναζήτηση σε:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Αποτελέσματα (εμφανίζονται</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Φίλτρο</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Αποτελέσματα</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>εμφανίζονται</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3017,6 @@
         <translation>Εθνικότητα:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished"> Δημιουργός</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Λογισμικό που Χρησιμοποιήθηκε</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Δημιουργοί</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Γαλλία</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

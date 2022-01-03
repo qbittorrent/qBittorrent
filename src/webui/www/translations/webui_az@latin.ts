@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>İRC: Freenode üzərindən #qbittorrent</translation>
+        <translation type="vanished">İRC: Freenode üzərindən #qbittorrent</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Giriş</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Orijinal müəlliflər</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Orijinal müəllifi</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Xarici portlar (Ən az) [0: Söndürülüb]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">İzləyicilərə məlumat üçün İP ünvanı (yenidən başladılmalı):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Yüklənmə tamamlandıqdan sonta torrentləri yoxlamaq</translation>
     </message>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>İP ünvanı izləyicilərə bildirildi (yenidən başladılmalıdır):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Dəyəri 0 təyin edin ki, sisteminiz istifadə olunmayan portu seçsin</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Server tərəfindən saxta sorğulardan (SSRF) qorunma:</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Yeni iştirakçı əlavə edin...</translation>
+        <translation type="vanished">Yeni iştirakçı əlavə edin...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Ölkə/Bölgə</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Gedişat:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Burada axtarmaq:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Nəticələr (göstərən</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtr</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Nəticələr</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>göstərərək</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3017,6 @@
         <translation>Milliyət:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Müəllif</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>İstifadə olunan proqram təminatı</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Müəlliflər</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Fransa</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

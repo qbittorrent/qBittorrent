@@ -28,7 +28,7 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Satvora izlikaliejums:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent iz Freenode servera</translation>
+        <translation type="vanished">IRC: #qbittorrent iz Freenode servera</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Dasaslāgt</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Programmas radeituojs</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -365,11 +361,11 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Portam priekš atīmūšim salaidumim juoir nu 0 leidz 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Programmas radeituojs</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Izīmūšie porti (Min) [0: Nūgrīzts]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP adress kū paviesteit trakeriem (vajadzeigs restarts):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Atkuortuotai puorsavērt torrentus piec atsasyuteišonas dabeigšonas:</translation>
     </message>
@@ -1362,7 +1354,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished" />
+        <translation>Atsasyuteit REPACK/PROPER epizodes</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1374,7 +1366,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>Īrokstu skaits uz vīnu kanalu:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1418,7 +1410,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Kūplītuotuoju salaidumu protokols:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1426,7 +1418,7 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrenta satvora izlikaliejums:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -1478,7 +1470,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP adress kū paviesteit trakeriem (vajadzeigs restarts):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Pīlikt jaunu kūplītuotuoju...</translation>
+        <translation type="vanished">Pīlikt jaunu kūplītuotuoju...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Vaļsteiba/Apgabaļs</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1614,7 +1610,7 @@
     </message>
     <message>
         <source>Content</source>
-        <translation>Turīņs</translation>
+        <translation>Satvors:</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Progress</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Meklēt:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Rezultati (ruoda</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Meklēt rezultatūs</translation>
     </message>
@@ -3025,10 +3017,6 @@
         <translation>Piļsuoneiba:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autori</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Programatura</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autori</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Praņceja</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3186,7 +3182,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Voi drūši zini, ka gribi nūteireit izalaseituos RSS kanalus?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -3427,7 +3423,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrenta satvora izlikaliejums:</translation>
     </message>
     <message>
         <source>Create subfolder</source>

@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent på Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent på Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Inloggning</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Ursprungliga upphovsmän</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -341,7 +337,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Det går inte att lägga till noder. Vänligen se till att du följer formatet IP:port.</translation>
+        <translation>Det går inte att lägga till jämlikar. Vänligen se till att du följer formatet IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Ursprunglig upphovsman</translation>
     </message>
 </context>
 <context>
@@ -636,7 +632,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Lägg a&amp;utomatiskt till de här bevakarna till nya hämtningar:</translation>
+        <translation>Lägg a&amp;utomatiskt till de här spårarna till nya hämtningar:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -780,7 +776,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Använd proxy för nodanslutningar</translation>
+        <translation>Använd proxy för jämlikeanslutningar</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -796,7 +792,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>Tillämpa på bevakare</translation>
+        <translation>Tillämpa på spårare</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -858,15 +854,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Aktivera DHT (decentraliserat nätverk) för att hitta fler noder</translation>
+        <translation>Aktivera DHT (decentraliserat nätverk) för att hitta fler jämlikar</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Aktivera nodutbyte (PeX) för att hitta fler noder</translation>
+        <translation>Aktivera jämlikeutbyte (PeX) för att hitta fler jämlikar</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Aktivera upptäckt av lokala noder för att hitta fler noder</translation>
+        <translation>Aktivera upptäckt av lokala jämlikar för att hitta fler jämlikar</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -1038,7 +1034,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Tillämpa hastighetsgräns för LAN-noder</translation>
+        <translation>Tillämpa hastighetsgräns för LAN-jämlikar</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1158,7 +1154,7 @@
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation>Port för inbäddad bevakare:</translation>
+        <translation>Port för inbäddad spårare:</translation>
     </message>
     <message>
         <source>Fastest upload</source>
@@ -1189,10 +1185,6 @@
         <translation>Utgående portar (min) [0: Inaktiverat]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP-adress att rapportera till bevakare (kräver omstart):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Kontrollera torrenter igen vid slutföring:</translation>
     </message>
@@ -1206,7 +1198,7 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>Aktivera inbäddad bevakare:</translation>
+        <translation>Aktivera inbäddad spårare:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1230,7 +1222,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>Proportionell nod (stryper TCP)</translation>
+        <translation>Proportionell jämlike (stryper TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1278,7 +1270,7 @@
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation>Annonsera alltid till alla bevakare i en nivå:</translation>
+        <translation>Annonsera alltid till alla spårare i en nivå:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1286,7 +1278,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>Slå upp nodernas länder:</translation>
+        <translation>Slå upp jämlikarnas länder:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1298,7 +1290,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Stopptidsgräns för bevakare</translation>
+        <translation>Stopptidsgräns för spårare</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1394,7 +1386,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Tillåt inte anslutning till noder på privilegierade portar:</translation>
+        <translation>Tillåt inte anslutning till jämlikar på privilegierade portar:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1414,11 +1406,11 @@
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation>Validera HTTPS-bevakarcertifikat:</translation>
+        <translation>Validera HTTPS-spårarcertifikat:</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation>Nodanslutningsprotokoll:</translation>
+        <translation>Jämlikeanslutningsprotokoll:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1442,7 +1434,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Typ av tjänst (TOS) för anslutningar till noder</translation>
+        <translation>Typ av tjänst (TOS) för anslutningar till jämlikar</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1458,7 +1450,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Återannonsera alla bevakare när IP eller port ändrats:</translation>
+        <translation>Återannonsera alla spårare när IP eller port ändrats:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP-adress rapporterad till spårare (kräver omstart):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Ställ in 0 för att låta ditt system välja en oanvänd port</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Begränsning av förfalskning på serversidan (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1549,11 +1541,11 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Förbjud noden permanent</translation>
+        <translation>Förbjud jämliken permanent</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Är du säker på att du vill permanent förbjuda de valda noderna?</translation>
+        <translation>Är du säker på att du vill permanent förbjuda de valda jämlikarna?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Lägg till en ny nod...</translation>
+        <translation type="vanished">Lägg till en ny jämlike...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Land/region</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1602,11 +1598,11 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Bevakare</translation>
+        <translation>Spårare</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Noder</translation>
+        <translation>Jämlikar</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1654,7 +1650,7 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Noder:</translation>
+        <translation>Jämlikar:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Förlopp:</translation>
     </message>
 </context>
 <context>
@@ -1847,7 +1843,7 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>Anslutna noder:</translation>
+        <translation>Anslutna jämlikar:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -2038,7 +2034,7 @@
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Noder</translation>
+        <translation>Jämlikar</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2080,7 +2076,7 @@
     </message>
     <message>
         <source>Tracker</source>
-        <translation>Bevakare</translation>
+        <translation>Spårare</translation>
     </message>
     <message>
         <source>Down Limit</source>
@@ -2169,7 +2165,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>Noder</translation>
+        <translation>Jämlikar</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2181,7 +2177,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>Bevakarwebbadress:</translation>
+        <translation>Spårarwebbadress:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2213,19 +2209,19 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Kopiera webbadress för bevakare</translation>
+        <translation>Kopiera webbadress för spårare</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Lägg till en ny bevakare...</translation>
+        <translation>Lägg till en ny spårare...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Ändra bevakarwebbadress...</translation>
+        <translation>Ändra spårarwebbadress...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Redigera bevakare</translation>
+        <translation>Redigera spårare</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2233,7 +2229,7 @@
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation>Ta bort bevakare</translation>
+        <translation>Ta bort spårare</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2268,11 +2264,11 @@
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Lägg till bevakare</translation>
+        <translation>Lägg till spårare</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Lista över bevakare att lägga till (en per rad):</translation>
+        <translation>Lista över spårare att lägga till (en per rad):</translation>
     </message>
 </context>
 <context>
@@ -2367,7 +2363,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Bevakare</translation>
+        <translation>Spårare</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Sök i:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Resultat (visar</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultat</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>visar</translation>
     </message>
 </context>
 <context>
@@ -2897,11 +2889,11 @@
     </message>
     <message>
         <source>Add Peers</source>
-        <translation>Lägg till noder</translation>
+        <translation>Lägg till jämlikar</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Lista över noder att lägga till (en IP per rad):</translation>
+        <translation>Lista över jämlikar att lägga till (en IP per rad):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3025,23 +3017,27 @@
         <translation>Nationalitet:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Upphovsmän</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Använd mjukvara</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Den fria databasen IP to Country Lite av DB-IP används för att slå upp nodernas länder. Databasen är licensierad enligt Creative Commons Attribution 4.0 International License</translation>
+        <translation>Den fria databasen IP to Country Lite av DB-IP används för att slå upp jämlikarnas länder. Databasen är licensierad enligt Creative Commons Attribution 4.0 International License</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Upphovsmän</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Frankrike</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3458,7 +3454,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation>Utan bevakare (%1)</translation>
+        <translation>Utan spårare (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>

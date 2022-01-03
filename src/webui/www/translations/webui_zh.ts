@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC：#qbittorrent on Freenode</translation>
+        <translation type="vanished">IRC：#qbittorrent on Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>登录</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">原作者</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>原始作者</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>传出端口 (下限) [0: 禁用]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">向 Tracker 汇报的 IP 地址 (需要重启):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>完成后重新校验 Torrent:</translation>
     </message>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP 地址已报告给 Trackers (需要重启)</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>设为 0，让系统选择一个未使用的端口</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>服务器端请求伪造（SSRF）攻击缓解：</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>添加新用户...</translation>
+        <translation type="vanished">添加新用户...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>国家/地区</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>进度：</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>在以下范围搜索：</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">结果 (显示</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>过滤器</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>结果</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>显示</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3017,6 @@
         <translation>国籍：</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">作者</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>使用的软件</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>作者</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>法国</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

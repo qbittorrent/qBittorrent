@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent na Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent na Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Přihlášení</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Původní autoři</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -1189,10 +1185,6 @@
         <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP adresa hlášená trackerům (vyžaduje restart):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Při dokončení překontrolovat torrenty:</translation>
     </message>
@@ -1482,7 +1474,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Nastav na 0 a systém vybere nevyužitý port</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Přidat nový peer...</translation>
+        <translation type="vanished">Přidat nový peer...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Země/Oblast</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Průběh:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Hledat v:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Výsledky (zobrazuji</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtr</translation>
     </message>
@@ -3025,10 +3017,6 @@
         <translation>Národnost:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autor</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Použitý software</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autoři</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Francie</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

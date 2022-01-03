@@ -141,11 +141,11 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>프로그램 설정을 저장할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
+        <translation>프로그램 기본설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: Freenode #qbittorrent 채널</translation>
+        <translation type="vanished">IRC: Freenode #qbittorrent 채널</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>로그인</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">원 제작자</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>원본 작성자</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>나가는 포트(최소) [0: 사용 안 함]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">트래커에 보고할 IP 주소(다시 시작):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>완료했을 때 토렌트 다시 검사</translation>
     </message>
@@ -1466,7 +1458,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>역방향 프록시 지원 활성화</translation>
+        <translation>역방향 프록시 지원 사용</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>트래커에 보고된 IP 주소(다시 시작해야 함):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>시스템이 사용하지 않는 포트를 선택하도록 하려면 0으로 지정</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>SSRF(서버 측 요청 위조) 완화:</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>새 피어 추가...</translation>
+        <translation type="vanished">새 피어 추가...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>국가/지역</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>진행률:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>찾기:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">결과 (보기</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>필터</translation>
     </message>
@@ -2769,7 +2761,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>사용중인 것만</translation>
+        <translation>사용된 경우에만</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>결과</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>표시</translation>
     </message>
 </context>
 <context>
@@ -2824,7 +2816,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2874,7 +2866,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3025,10 +3017,6 @@
         <translation>국적:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">제작자</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>사용된 소프트웨어</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>작성자</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>프랑스</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3178,7 +3174,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 피드 가져오기가 이제 비활성화되었습니다! 응용 프로그램 설정에서 활성화할 수 있습니다.</translation>
+        <translation>RSS 피드 가져오기가 이제 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3221,7 +3217,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 토렌트 자동 받기를 사용 중지했습니다! 프로그램 옵션에서 사용으로 설정할 수 있습니다.</translation>
+        <translation>지금 RSS 토렌트의 자동 다운로드가 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Rule Definition</source>

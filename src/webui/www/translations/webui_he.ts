@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: ערוץ #qbittorrent על Freenode</translation>
+        <translation type="vanished">IRC: ערוץ #qbittorrent על Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>היכנס</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">מחברים מקוריים</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>מחבר מקורי</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>פתחות יוצאות (מיזער) [0: מושבת]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">כתובת IP לדיווח לגששים (דורש הפעלה מחדש):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>בדוק מחדש טורנטים בעת השלמה:</translation>
     </message>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>כתובת IP דווחה אל גששים (דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>הגדר אל 0 כדי לתת למערכת שלך לבחור פתחה שאינה בשימוש</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>שיכוך של זיוף בקשות צד־שרת (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>הוסף עמית חדש…</translation>
+        <translation type="vanished">הוסף עמית חדש…</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>מדינה/אזור</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>התקדמות:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>חפש ב:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">תוצאות (מראה</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>סנן</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>תוצאות</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>מראה</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3017,6 @@
         <translation>לאום:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">מחבר</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>תוכנות בשימוש</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>מחברים</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>צרפת</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

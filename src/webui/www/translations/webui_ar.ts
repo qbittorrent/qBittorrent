@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent على Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent على Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>ولوج</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">المؤلفين الأصليين</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -1189,10 +1185,6 @@
         <translation>منافذ الخروج (دقيقة) [0: معطلة]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">عنوان الآي بي الذي يتم إعلانه للمتتبع (يتطلب إعادة التشغيل)</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>أعد فحص التورنتات عند الانتهاء:</translation>
     </message>
@@ -1482,7 +1474,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>قم بالتعيين إلى 0 للسماح للنظام الخاص بك باختيار منفذ غير مستخدم</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>إضافة قرين جديد...</translation>
+        <translation type="vanished">إضافة قرين جديد...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>الدولة/المنطقة</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>التقدم:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>البحث في:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">النتائج (تظهر</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>تصفية</translation>
     </message>
@@ -3025,10 +3017,6 @@
         <translation>الجنسية:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">المؤلف</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>البرمجيات المستخدمة</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>فرنسا</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent auf Freenode</translation>
+        <translation type="vanished">IRC: #qbittorrent auf Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Anmelden</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Ursprüngliche Entwickler</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +365,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Ursprünglicher Entwickler</translation>
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Ausgehende Ports (Min) [0: Deaktiviert]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Diese IP Adresse bei Trackern angeben (Neustart benötigt):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Torrents nach Abschluss der Übertragung erneut prüfen:</translation>
     </message>
@@ -1478,15 +1470,15 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Angegebene IP-Adresse bei Trackern (Neustart benötigt):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Wert auf 0 setzen, damit das System einen unbenutzten Port wählen kann</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Schutz vor serverseitiger Anforderungsfälschung (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Neuen Peer hinzufügen ...</translation>
+        <translation type="vanished">Neuen Peer hinzufügen ...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Land/Region</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Fortschritt:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Suche in:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Ergebnisse (zeige</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -2793,11 +2785,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Ergebnisse</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>angezeigt</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3017,6 @@
         <translation>Nationalität:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Author</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Verwendete Software</translation>
     </message>
@@ -3038,10 +3026,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autoren</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Frankreich</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

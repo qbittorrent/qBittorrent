@@ -145,7 +145,7 @@
     </message>
     <message>
         <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent Freenode-an</translation>
+        <translation type="vanished">IRC: #qbittorrent Freenode-an</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +182,6 @@
     <message>
         <source>Login</source>
         <translation>Hasi Saioa</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Jatorrizko egileak</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -1189,10 +1185,6 @@
         <translation>Irteerako atakak (Min) [0: Ezgaituta]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Jarraitzaileei jakinarazteko IP helbidea (berrabiaraztea beharrezkoa):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Berregiaztatu torrentak osatutakoan:</translation>
     </message>
@@ -1561,11 +1553,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Gehitu pareko berri bat...</translation>
+        <translation type="vanished">Gehitu pareko berri bat...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Herrialdea/Eskualdea</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1782,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Garapena:</translation>
     </message>
 </context>
 <context>
@@ -2756,10 +2752,6 @@
         <translation>Bilatu hemen:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Emaitzak (erakusten</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Iragazkia</translation>
     </message>
@@ -3025,10 +3017,6 @@
         <translation>Herritartasuna:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Egilea</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Erabilitako softwarea</translation>
     </message>
@@ -3042,6 +3030,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation>Frantzia</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3178,7 +3174,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>RSS jarioak lortzea ezgaituta dago orain! Aplikazioaren ezarpenetan gaitu dezakezu.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3293,7 +3289,7 @@
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation>Eremu mugagabea: &lt;b&gt;1x25-;&lt;/b&gt; lehen denboraldiko 25. atala eta aurreranzkoak, eta ondorengo denboraldietako atal guztiak bat datoz</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -3422,7 +3418,8 @@
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Atal Adimentsu Iragazkiak atal zenbakia egiaztatuko du bikoiztuak jeistea saihesteko.
+Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskarriek - ere sostengatzen dute banantzaile bezala)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>

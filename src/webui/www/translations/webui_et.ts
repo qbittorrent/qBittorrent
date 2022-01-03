@@ -144,10 +144,6 @@
         <translation>Ei saa salvestada programmis eelistusi, qBitorrent arvatavasti pole kättesaadav. </translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Tundmatu</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Logi sisse</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Algselt autorid</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Algne autor</translation>
     </message>
 </context>
 <context>
@@ -1150,7 +1142,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Iga kasutajaliides</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1234,7 +1226,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Edasijõudnutele</translation>
     </message>
     <message>
         <source>min</source>
@@ -1246,7 +1238,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Jagamise Limiidid</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1478,7 +1470,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Vali 0, et süsteem saaks valida vaba pordi</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1557,11 +1549,15 @@
     </message>
     <message>
         <source>Add a new peer...</source>
-        <translation>Lisa uus partner...</translation>
+        <translation type="vanished">Lisa uus partner...</translation>
     </message>
     <message>
         <source>Country/Region</source>
         <translation>Riik/Regioon</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1871,7 +1867,7 @@
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation type="unfinished" />
+        <translation>Ootel I/O toimingud:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -1942,7 +1938,7 @@
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation type="unfinished" />
+        <translation>Jagamisel (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
@@ -1994,11 +1990,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontrollitakse (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontrollimisel (0)</translation>
     </message>
 </context>
 <context>
@@ -2264,7 +2260,7 @@
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation type="unfinished" />
+        <translation>Jälitajate lisa dialoog</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
@@ -2516,7 +2512,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Sildid</translation>
     </message>
     <message>
         <source>Magnet link</source>
@@ -2710,7 +2706,7 @@
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Installi plugin</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2750,10 +2746,6 @@
     <message>
         <source>Search in:</source>
         <translation>Otsi asukohast:</translation>
-    </message>
-    <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Tulemused (kuvatakse</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2804,11 +2796,11 @@
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Installi uus plugin</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Siit saate uusi plugin'aid otsingu mootorile:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2820,7 +2812,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Lubatud</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2851,7 +2843,7 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Otsingu mootor</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -2962,7 +2954,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Vigade jälgija:</translation>
     </message>
     <message>
         <source>About</source>
@@ -3021,10 +3013,6 @@
         <translation>Rahvus:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autor</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Kasutatud tarkvara</translation>
     </message>
@@ -3034,10 +3022,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autorid</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Prantsuse</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3261,7 +3257,7 @@
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>Puhasta allalaaditud episoodid</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
@@ -3281,7 +3277,7 @@
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>Kindel, et soovite eemaldada valitud reeglis allalaaditud episoodide nimekirja?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3305,7 +3301,7 @@
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Kolm toetatud vahemiku tüüpi episoodidele:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3349,7 +3345,7 @@
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Episoodi Filter:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
