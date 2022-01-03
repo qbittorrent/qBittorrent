@@ -89,7 +89,7 @@ void GeoIPManager::loadDatabase()
     m_geoIPDatabase = nullptr;
 
     const QString filepath = Utils::Fs::expandPathAbs(
-        QString::fromLatin1("%1%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEODB_FOLDER, GEODB_FILENAME));
+        QString::fromLatin1("%1/%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEODB_FOLDER, GEODB_FILENAME));
 
     QString error;
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
@@ -448,7 +448,7 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
                 .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
                 Log::INFO);
             const QString targetPath = Utils::Fs::expandPathAbs(
-                        specialFolderLocation(SpecialFolder::Data) + GEODB_FOLDER);
+                        QDir(specialFolderLocation(SpecialFolder::Data)).absoluteFilePath(GEODB_FOLDER));
             if (!QDir(targetPath).exists())
                 QDir().mkpath(targetPath);
 

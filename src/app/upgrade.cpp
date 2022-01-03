@@ -74,10 +74,10 @@ namespace
         const QString configPath {specialFolderLocation(SpecialFolder::Config)};
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Certificate")
             , QLatin1String("Preferences/WebUI/HTTPS/CertificatePath")
-            , Utils::Fs::toNativePath(configPath + QLatin1String("WebUICertificate.crt")));
+            , Utils::Fs::toNativePath(configPath + QLatin1String("/WebUICertificate.crt")));
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Key")
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
-            , Utils::Fs::toNativePath(configPath + QLatin1String("WebUIPrivateKey.pem")));
+            , Utils::Fs::toNativePath(configPath + QLatin1String("/WebUIPrivateKey.pem")));
     }
 
     void upgradeTorrentContentLayout()
