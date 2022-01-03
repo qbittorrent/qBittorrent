@@ -153,11 +153,10 @@ namespace
 
         auto pathList = settings()->loadValue<QStringList>(settingsKey);
         const int selectedSavePathIndex = pathList.indexOf(path);
-        if (selectedSavePathIndex > 0)
-            pathList.removeAt(selectedSavePathIndex);
-        if (selectedSavePathIndex != 0)
+        if (selectedSavePathIndex > -1)
+            pathList.move(selectedSavePathIndex, 0);
+        else
             pathList.prepend(path);
-
         settings()->storeValue(settingsKey, QStringList(pathList.mid(0, maxLength)));
     }
 }
