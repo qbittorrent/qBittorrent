@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2019  Prince Gupta <jagannatharjun11@gmail.com>
+ * Copyright (C) 2019, 2021  Prince Gupta <jagannatharjun11@gmail.com>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,6 +30,7 @@
 #include "uithememanager.h"
 
 #include <QApplication>
+#include <QDir>
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -42,9 +43,16 @@
 
 namespace
 {
-    const QString ICONS_DIR = QStringLiteral(":icons/");
-    const QString THEME_ICONS_DIR = QStringLiteral(":uitheme/icons/");
-    const QString CONFIG_FILE_NAME = QStringLiteral(":uitheme/config.json");
+    const QString CONFIG_FILE_NAME = QStringLiteral("config.json");
+    const QString DEFAULT_ICONS_DIR = QStringLiteral(":icons/");
+    const QString STYLESHEET_FILE_NAME = QStringLiteral("stylesheet.qss");
+
+    // Directory used by stylesheet to reference internal resources
+    // for example `icon: url(:/uitheme/file.svg)` will be expected to
+    // point to a file `file.svg` in root directory of CONFIG_FILE_NAME
+    const QString STYLESHEET_RESOURCES_DIR = QStringLiteral(":/uitheme/");
+
+    const QString THEME_ICONS_DIR = QStringLiteral("icons/");
 
     QString findIcon(const QString &iconId, const QString &dir)
     {
@@ -57,6 +65,90 @@ namespace
             return pathPng;
 
         return {};
+    }
+
+    QByteArray readFile(const QString &fileName)
+    {
+        QFile file {fileName};
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
+                    .arg(QFileInfo(fileName).fileName(), file.errorString())
+                   , Log::WARNING);
+            return {};
+        }
+
+        return file.readAll();
+    }
+
+    class QRCThemeSource final : public UIThemeSource
+    {
+    public:
+        QByteArray readStyleSheet() override
+        {
+            return readFile(m_qrcThemeDir + STYLESHEET_FILE_NAME);
+        }
+
+        QByteArray readConfig() override
+        {
+            return readFile(m_qrcThemeDir + CONFIG_FILE_NAME);
+        }
+
+        QString iconPath(const QString &iconId) const override
+        {
+            return findIcon(iconId, m_qrcIconsDir);
+        }
+
+    private:
+        const QString m_qrcThemeDir {":/uitheme/"};
+        const QString m_qrcIconsDir = m_qrcThemeDir + THEME_ICONS_DIR;
+    };
+
+    class FolderThemeSource final : public UIThemeSource
+    {
+    public:
+        explicit FolderThemeSource(const QDir &dir)
+            : m_folder {dir}
+            , m_iconsDir {m_folder.absolutePath() + '/' + THEME_ICONS_DIR}
+        {
+        }
+
+        QByteArray readStyleSheet() override
+        {
+            QByteArray styleSheetData = readFile(m_folder.absoluteFilePath(STYLESHEET_FILE_NAME));
+            return styleSheetData.replace(STYLESHEET_RESOURCES_DIR.toUtf8(), (m_folder.absolutePath() + '/').toUtf8());
+        }
+
+        QByteArray readConfig() override
+        {
+            return readFile(m_folder.absoluteFilePath(CONFIG_FILE_NAME));
+        }
+
+        QString iconPath(const QString &iconId) const override
+        {
+            return findIcon(iconId, m_iconsDir);
+        }
+
+    private:
+        const QDir m_folder;
+        const QString m_iconsDir;
+    };
+
+
+    std::unique_ptr<UIThemeSource> createUIThemeSource(const QString &themePath)
+    {
+        const QFileInfo themeInfo {themePath};
+
+        if (themeInfo.fileName() == CONFIG_FILE_NAME)
+            return std::make_unique<FolderThemeSource>(themeInfo.dir());
+
+        if ((themeInfo.suffix() == QLatin1String {"qbtheme"})
+                && QResource::registerResource(themePath, QLatin1String {"/uitheme"}))
+        {
+            return std::make_unique<QRCThemeSource>();
+        }
+
+        return nullptr;
     }
 }
 
@@ -80,12 +172,13 @@ UIThemeManager::UIThemeManager()
     , m_useSystemTheme(Preferences::instance()->useSystemIconTheme())
 #endif
 {
-    const Preferences *const pref = Preferences::instance();
     if (m_useCustomTheme)
     {
-        if (!QResource::registerResource(pref->customUIThemePath(), "/uitheme"))
+        const QString themePath = Preferences::instance()->customUIThemePath();
+        m_themeSource = createUIThemeSource(themePath);
+        if (!m_themeSource)
         {
-            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(pref->customUIThemePath()), Log::WARNING);
+            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath), Log::WARNING);
         }
         else
         {
@@ -103,16 +196,7 @@ UIThemeManager *UIThemeManager::instance()
 
 void UIThemeManager::applyStyleSheet() const
 {
-    QFile qssFile(":uitheme/stylesheet.qss");
-    if (!qssFile.open(QIODevice::ReadOnly | QIODevice::Text))
-    {
-        qApp->setStyleSheet({});
-        LogMsg(tr("Couldn't apply theme stylesheet. stylesheet.qss couldn't be opened. Reason: %1").arg(qssFile.errorString())
-               , Log::WARNING);
-        return;
-    }
-
-    qApp->setStyleSheet(qssFile.readAll());
+    qApp->setStyleSheet(m_themeSource->readStyleSheet());
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
@@ -210,34 +294,31 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
 
 QString UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
 {
-    if (m_useCustomTheme)
+    if (m_useCustomTheme && m_themeSource)
     {
-        const QString customIcon = findIcon(iconId, THEME_ICONS_DIR);
+        const QString customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
             return customIcon;
 
         if (!fallback.isEmpty())
         {
-            const QString fallbackIcon = findIcon(fallback, THEME_ICONS_DIR);
+            const QString fallbackIcon = m_themeSource->iconPath(fallback);
             if (!fallbackIcon.isEmpty())
                 return fallbackIcon;
         }
     }
 
-    return findIcon(iconId, ICONS_DIR);
+    return findIcon(iconId, DEFAULT_ICONS_DIR);
 }
 
 void UIThemeManager::loadColorsFromJSONConfig()
 {
-    QFile configFile(CONFIG_FILE_NAME);
-    if (!configFile.open(QIODevice::ReadOnly))
-    {
-        LogMsg(tr("Failed to open \"%1\". Reason: %2").arg(CONFIG_FILE_NAME, configFile.errorString()), Log::WARNING);
+    const QByteArray config = m_themeSource->readConfig();
+    if (config.isEmpty())
         return;
-    }
 
     QJsonParseError jsonError;
-    const QJsonDocument configJsonDoc = QJsonDocument::fromJson(configFile.readAll(), &jsonError);
+    const QJsonDocument configJsonDoc = QJsonDocument::fromJson(config, &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
         LogMsg(tr("\"%1\" has invalid format. Reason: %2").arg(CONFIG_FILE_NAME, jsonError.errorString()), Log::WARNING);

@@ -256,7 +256,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
-    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme)"));
+    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_ui->checkUseSystemIcon->setChecked(Preferences::instance()->useSystemIconTheme());

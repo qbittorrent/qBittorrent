@@ -36,6 +36,16 @@
 #include <QObject>
 #include <QString>
 
+class UIThemeSource
+{
+public:
+    virtual ~UIThemeSource() = default;
+
+    virtual QByteArray readStyleSheet() = 0;
+    virtual QByteArray readConfig() = 0;
+    virtual QString iconPath(const QString &iconId) const = 0;
+};
+
 class UIThemeManager : public QObject
 {
     Q_OBJECT
@@ -64,10 +74,11 @@ private:
     void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
+    const bool m_useCustomTheme;
+    std::unique_ptr<UIThemeSource> m_themeSource;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;
     mutable QHash<QString, QIcon> m_flagCache;
-    const bool m_useCustomTheme;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     const bool m_useSystemTheme;
 #endif
