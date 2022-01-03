@@ -142,7 +142,7 @@ BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
     if (m_ui->comboUseDownloadPath->currentIndex() == 1)
         categoryOptions.downloadPath = {true, m_ui->comboDownloadPath->selectedPath()};
     else if (m_ui->comboUseDownloadPath->currentIndex() == 2)
-        categoryOptions.downloadPath = {false};
+        categoryOptions.downloadPath = {false, {}};
 
     return categoryOptions;
 }
