@@ -322,7 +322,7 @@ namespace
             {
                 const auto value = settingsStorage->loadValue<QVariant>(mapping.oldKey);
                 settingsStorage->storeValue(mapping.newKey, value);
-                settingsStorage->removeValue(mapping.oldKey);
+                // TODO: Remove oldKey after ~v4.4.3 and bump migration version
             }
         }
     }
