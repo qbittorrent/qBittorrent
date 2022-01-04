@@ -233,8 +233,8 @@ namespace
     {
         struct KeyMapping
         {
-            QString oldKey;
             QString newKey;
+            QString oldKey;
         };
 
         const KeyMapping mappings[] =
