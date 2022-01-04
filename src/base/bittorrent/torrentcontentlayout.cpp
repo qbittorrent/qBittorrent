@@ -49,7 +49,7 @@ BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const QStringLi
             : TorrentContentLayout::Subfolder);
 }
 
-void BitTorrent::applyContentLayout(QStringList &filePaths, const TorrentContentLayout contentLayout, const QString &rootFolder)
+void BitTorrent::applyContentLayout(QStringList &filePaths, const BitTorrent::TorrentContentLayout contentLayout, const QString &rootFolder)
 {
     Q_ASSERT(!filePaths.isEmpty());
 
