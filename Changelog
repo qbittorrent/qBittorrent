@@ -1,3 +1,5 @@
+Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.0
+
 Thu Jan 06 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.0
     - FEATURE: Support for v2 torrents along with libtorrent 2.0.x support (glassez, Chocobo1)
     - FEATURE: Support for Qt6 (glassez)
