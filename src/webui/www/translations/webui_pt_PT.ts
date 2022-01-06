@@ -144,10 +144,6 @@
         <translation>Não foi possível guardar as preferências, o qBittorrent está provavelmente inacessível.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent no Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Desconhecido(a)</translation>
     </message>
@@ -337,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>impossível adicionar sementes. Por favor, asseegure-se que aderiu ao IP:formato de porta.</translation>
+        <translation>impossível adicionar fontes. Asseegure-se que aderiu ao IP:formato de porta.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -1386,7 +1382,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Não permitir ligação com pares em portas privilegiadas:</translation>
+        <translation>Não permitir ligação com fontes em portas privilegiadas:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1434,7 +1430,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Tipo de serviço (TdS) para ligações com pares</translation>
+        <translation>Tipo de serviço (TdS) para ligações com fontes</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1552,16 +1548,12 @@
         <translation>Copiar IP: porta</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Adicionar uma nova fonte...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>País/Região</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Adicionar fontes...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascote do qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Ícone do qBittorrent</translation>
     </message>
 </context>
 <context>

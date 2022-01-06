@@ -144,10 +144,6 @@
         <translation>Тохиргоог хадгалж чадсангүй, qBittorrent-н хандалт таслалдсан байж болно.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: Freenode дээр #qbittorrent</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Тодорхойгүй</translation>
     </message>

@@ -87,9 +87,13 @@
         <translation>Monipuolinen BitTorrent-asiakasohjelmisto, ohjelmoitu C++:lla. Pohjautuu Qt:hen ja libtorrent-rasterbariin.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Tekijänoikeus %1 2006-2021 qBittorrent-projekti</translation>
+        <translation type="vanished">Tekijänoikeus %1 2006-2021 qBittorrent-projekti</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Tekijänoikeus %1 2006-2021 qBittorrent-projekti {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Virhe: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Tärkeysaste</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Virheellinen metadata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Virhe: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Ohjaa qBittorrentia selainkäyttöliittymän kautta osoitteessa %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5343,10 +5339,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Tallennuksen oletussijainti:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Säilytä keskeneräiset torrentit kohteeseen:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopioi .torrent-tiedostot kohteeseen:</translation>
@@ -6057,10 +6049,6 @@ Manuaalinen: Monet torrenttien määritykset (esim. tallennussijainti) on asetet
         <translation>Valitse qBittorrentin käyttöliittymäteeman tiedosto</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrentin käyttöliittymäteeman tiedosto (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation type="unfinished"></translation>
@@ -6451,10 +6439,6 @@ Manuaalinen: Monet torrenttien määritykset (esim. tallennussijainti) on asetet
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Lisää uusi vertainen...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7257,19 +7241,19 @@ Valitut alkuperäisliitännäiset ovat poistettu käytöstä.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Et voi käyttää %1: qBittorrent on jo käynnissä tälle käyttäjälle.</translation>
     </message>
@@ -7444,37 +7428,37 @@ Valitut alkuperäisliitännäiset ovat poistettu käytöstä.</translation>
         <translation>Ohje</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Muita ilmoituksia ei anneta.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7483,22 +7467,22 @@ No further notices will be issued.</source>
 Muita varoituksia ei anneta.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Hyväksy ja jatka painamalla %1...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Oikeudellinen huomautus</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Peruuta</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Hyväksyn</translation>
     </message>
@@ -9422,7 +9406,7 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">Virheellinen metadata</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9440,7 +9424,7 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automaattinen torrentien hallintatila</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10269,10 +10253,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <translation>Sarakkeen näkyvyys</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Valitse tallennussijainti</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Uudelleentarkistuksen vahvistus</translation>
@@ -10391,10 +10371,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <translation>Siirrä jonon viimeiseksi</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Aseta kohdekansio...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Pakota uudelleenjulkaisu</translation>
@@ -10425,10 +10401,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <translation>Kopioi</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Lataa ensin ensimmäinen ja viimeinen osa</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10444,31 +10416,9 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <translation type="unfinished">Infotarkistussumma v2: {2?}</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automaattinen torrentien hallintatila</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automaattinen tila tarkoittaa, että torrentin eri ominaisuudet (kuten tallennuspolku) päätetään torrentiin liitetyn kategorian perusteella</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Muokkaa seurantapalvelimia...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Uusi...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Palauta</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10502,10 +10452,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <source>Rename...</source>
         <translation>Nimeä uudelleen...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Lataa järjestyksessä</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10513,10 +10459,6 @@ Valitse toinen nimi ja yritä uudelleen.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Ulkoasun lataus epäonnistui tiedostosta: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Kohteen &quot;%1&quot; avaus epäonnistui. Syy: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

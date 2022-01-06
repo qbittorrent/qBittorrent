@@ -144,10 +144,6 @@
         <translation>Onmogelijk om programmavoorkeuren op te slaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent op Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Onbekend</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>IP:poort kopiëren</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Nieuwe peer toevoegen...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Land/regio</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Peers toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-mascotte</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-pictogram</translation>
     </message>
 </context>
 <context>

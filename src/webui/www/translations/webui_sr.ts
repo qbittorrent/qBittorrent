@@ -144,10 +144,6 @@
         <translation>Не могу да сачувам програмска подешавања, qBittorrent је вероватно недоступан.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent на мрежи Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Непознато</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Копирај IP:порт</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Додај новог учесника (peer-а)...</translation>
     </message>
     <message>
         <source>Country/Region</source>

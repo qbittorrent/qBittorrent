@@ -144,10 +144,6 @@
         <translation>Не выйшла захаваць настáўленні. Магчыма, qBittorrent недасяжны.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Невядомы</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Капіяваць IP:порт</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Дадаць новы пір...</translation>
     </message>
     <message>
         <source>Country/Region</source>

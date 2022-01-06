@@ -87,9 +87,13 @@
         <translation>Ein fortschrittlicher BitTorrent-Client erstellt in C++ und basierend auf dem Qt Toolkit sowie libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 - Das qBittorrent Projekt</translation>
+        <translation type="vanished">Copyright %1 2006-2021 - Das qBittorrent Projekt</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 - Das qBittorrent Projekt {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Fehler: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Priorität</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Ungültige Metadaten</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Fehler: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Um qBittorrent zu steuern benutze das Webinterface unter %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5356,10 +5352,6 @@ Platzhalter &apos;*&apos; kann verwendet werden.</translation>
         <translation>Standardspeicherpfad:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Unvollständige Torrents speichern in:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent Dateien kopieren nach:</translation>
@@ -6070,10 +6062,6 @@ Manuell: diverse Torrent-Eigenschaften (z.B. der Speicherpfad) müssen händisch
         <translation>Wähle qBittorrent UI-Thema-Datei</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent UI-Thema-Datei (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Wähle Dateispeicherort für alternatives UI</translation>
@@ -6464,10 +6452,6 @@ Manuell: diverse Torrent-Eigenschaften (z.B. der Speicherpfad) müssen händisch
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Füge einen neuen Peer hinzu ...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7271,19 +7255,19 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 ist ein unbekannter Kommandozeilen-Parameter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 muss der einzige Kommandozeilen-Parameter sein.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>%1 kann nicht verwendet werden. qBittorrent läuft für diesen Benutzer bereits.</translation>
     </message>
@@ -7458,37 +7442,37 @@ Diese Plugins wurden jetzt aber deaktiviert.</translation>
         <translation>Hilfe</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Programm mit -h starten um Info über Kommandozeilen-Parameter zu erhalten.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Falsche Kommandozeile</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Falsche Kommandozeile:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Rechtshinweis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent ist ein Filesharing Programm. Sobald ein Torrent im Programm läuft wird der Inhalt auch anderen durch Upload zur Verfügung gestellt. Das Teilen jeglicher Inhalte geschieht auf eigene Verantwortung.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Es werden keine weiteren Meldungen ausgegeben.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7497,22 +7481,22 @@ No further notices will be issued.</source>
 Selbstverständlich geschieht dieses Teilen jeglicher Inhalte auf eigene Verantwortung und es erfolgt auch kein weiterer Hinweis diesbezüglich.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Zum Bestätigen und Fortfahren bitte %1-Taste drücken ...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Rechtshinweis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Abbrechen</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Ich stimme zu</translation>
     </message>
@@ -9457,7 +9441,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatisches Torrent-Management</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10291,10 +10275,6 @@ Please choose a different name and try again.</source>
         <translation>Sichtbarkeit der Spalten</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Speicherpfad wählen</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Überprüfe Bestätigung</translation>
@@ -10413,10 +10393,6 @@ Please choose a different name and try again.</source>
         <translation>An das Ende</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Speicherort setzen ...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Erzwinge erneute Anmeldung</translation>
@@ -10447,10 +10423,6 @@ Please choose a different name and try again.</source>
         <translation>Kopieren</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Erste und letzte Teile zuerst laden</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrent-Optionen ...</translation>
@@ -10466,31 +10438,9 @@ Please choose a different name and try again.</source>
         <translation>Info-Hash V2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatisches Torrent-Management</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatischer Modus bedeutet, daß diverse Torrent-Eigenschaften (z.B. der Speicherpfad) durch die gewählte Kategorie vorgegeben werden.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Tracker editieren ...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorie</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Neu ...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Zurücksetzen</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10524,10 +10474,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>Umbenennen ...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Der Reihe nach downloaden</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10535,14 +10481,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Fehler beim Laden des Anzeige-Themas von Datei: %1</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Konnte das Thema-Stylesheet nicht ausführen. &apos;stylesheet.qss&apos; konnte nicht geöffnet werden. Grund: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Fehler beim Öffnen von &quot;%1&quot;. Grund: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

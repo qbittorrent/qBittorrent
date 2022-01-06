@@ -144,10 +144,6 @@
         <translation>לא ניתן לשמור את העדפות התכנית, qBittorrent כנראה בלתי נגיש.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: ערוץ #qbittorrent על Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>לא ידוע</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>העתק IP:פתחה</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">הוסף עמית חדש…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>מדינה/אזור</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>הוסף עמיתים…</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Mascot</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>איקון של qBittorrent</translation>
     </message>
 </context>
 <context>

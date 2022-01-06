@@ -87,9 +87,13 @@
         <translation>یک کلاینت بیت‌تورنت پیشرفته که با سی++ و بر پایه ابزارهای Qt و  libtorrent-rasterbar ساخته شده است.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>کپی رایت %1 2006-2021 - پروژه کیوبیت‌تورنت</translation>
+        <translation type="vanished">کپی رایت %1 2006-2021 - پروژه کیوبیت‌تورنت</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">کپی رایت %1 2006-2021 - پروژه کیوبیت‌تورنت {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>اولویت</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">متادیتا نامعتبر</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">برای کنترل کیو بیت‌تورنت، از طریق رابط کاربری وب در %1 دسترسی پیدا کنید</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5340,10 +5336,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">نگهداری تورنت‌های نا تمام در:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>کپی فایل های .torrent به:</translation>
@@ -7245,19 +7237,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7414,7 +7406,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="566"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ابتدا بخش های اول و آخر را دانلود کن</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="572"/>
@@ -7432,59 +7424,59 @@ Those plugins were disabled.</source>
         <translation>کمک</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>اطلاعات قانونی</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>اطلاعات قانونی</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>لغو</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>موافقم</translation>
     </message>
@@ -9407,7 +9399,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">متادیتا نامعتبر</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9425,7 +9417,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">مدیریت خودکار تورنت</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9512,7 +9504,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">دانلود با ترتیب پی در پی</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -9522,7 +9514,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ابتدا بخش های اول و آخر را دانلود کن</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -10254,10 +10246,6 @@ Please choose a different name and try again.</source>
         <translation>نمایش ستون</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">انتخاب مسیر ذخیره سازی</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation type="unfinished"></translation>
@@ -10406,10 +10394,6 @@ Please choose a different name and try again.</source>
         <translation>کپی</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">ابتدا قطعه های اول و آخر را بارگیری کن</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>تنظیمات تورنت...</translation>
@@ -10425,27 +10409,9 @@ Please choose a different name and try again.</source>
         <translation type="unfinished">هش اطلاعات v2: {2?}</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">مدیریت خودکار تورنت</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>ویرایش ترکر ها...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">دسته بندی:</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">جدید...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">بازنشانی</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10478,10 +10444,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>تغییر نام...</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">بارگیری به ترتیب پی در پی</translation>
     </message>
 </context>
 <context>

@@ -16,7 +16,7 @@
     <message>
         <location filename="../gui/aboutdialog.ui" line="81"/>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoriai</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.ui" line="87"/>
@@ -87,9 +87,13 @@
         <translation>Pažangus BitTorrent klientas, parašytas C++ programavimo kalba, naudojant Qt bei libtorrent-rasterbar bibliotekas.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Visos teisės saugomos %1 2006-2021 The qBittorrent project</translation>
+        <translation type="vanished">Visos teisės saugomos %1 2006-2021 The qBittorrent project</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Visos teisės saugomos %1 2006-2021 The qBittorrent project {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -141,22 +145,22 @@
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="82"/>
         <source>The file already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Failas jau yra: „%1“.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="86"/>
         <source>No such file: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra tokio failo: „%1“.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="127"/>
         <source>The folder already exists: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplankas jau yra: „%1“.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="131"/>
         <source>No such folder: &apos;%1&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nėra tokio aplanko: „%1“.</translation>
     </message>
 </context>
 <context>
@@ -499,10 +503,6 @@ Klaida: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Svarba</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Netaisyklingi metaduomenys</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1061,10 +1061,6 @@ Klaida: %2</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Norėdami valdyti qBittorrent, prisijunkite prie tinklo naudotojo sąsajos, adresu %1</translation>
-    </message>
-    <message>
         <location filename="../app/application.cpp" line="658"/>
         <source>The Web UI administrator username is: %1</source>
         <translation>Tinklo naudotojo sąsajos administratoriaus naudotojo vardas yra: %1</translation>
@@ -1234,12 +1230,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="357"/>
         <source>Create subfolder</source>
-        <translation type="unfinished">Sukurti poaplankį</translation>
+        <translation>Sukurti poaplankį</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="362"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished">Nesukurti poaplankio</translation>
+        <translation>Nekurti poaplankio</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.ui" line="383"/>
@@ -1601,7 +1597,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="281"/>
         <source>Not found.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nerasta.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="285"/>
@@ -1612,7 +1608,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="380"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="385"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Duomenų bazė yra pažeista.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="569"/>
@@ -2073,7 +2069,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="102"/>
         <source>Operation aborted</source>
-        <translation type="unfinished"></translation>
+        <translation>Operacija nutraukta</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentcreatorthread.cpp" line="219"/>
@@ -2481,12 +2477,12 @@ Užklausta operacija šiam protokolui yra neteisinga</translation>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="94"/>
         <source>Copy</source>
-        <translation type="unfinished">Kopijuoti</translation>
+        <translation>Kopijuoti</translation>
     </message>
     <message>
         <location filename="../gui/executionlogwidget.cpp" line="98"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Išvalyti</translation>
     </message>
 </context>
 <context>
@@ -2646,7 +2642,7 @@ Užklausta operacija šiam protokolui yra neteisinga</translation>
     <message>
         <location filename="../base/http/connection.cpp" line="82"/>
         <source>Http request size exceeds limitation, closing socket. Limit: %1, IP: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Http užklausos dydis viršija ribą, lizdas uždaromas. Riba: %1, IP: %2</translation>
     </message>
     <message>
         <location filename="../base/http/connection.cpp" line="96"/>
@@ -2803,7 +2799,7 @@ Užklausta operacija šiam protokolui yra neteisinga</translation>
     <message>
         <location filename="../gui/mainwindow.ui" line="393"/>
         <source>&amp;Do nothing</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nieko nedaryti</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.ui" line="469"/>
@@ -5133,7 +5129,7 @@ Bet kokiam IPv6 adresui galite nurodyti &quot;::&quot;, arba galite nurodyti &qu
     <message>
         <location filename="../gui/optionsdialog.ui" line="3100"/>
         <source>Never</source>
-        <translation type="unfinished">Niekada</translation>
+        <translation>Niekada</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3110"/>
@@ -5353,10 +5349,6 @@ pakaitos simbolį &quot;*&quot;.</translation>
         <translation>Numatytasis išsaugojimo kelias:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Nebaigtus siuntimus laikyti čia:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopijuoti .torrent failus į:</translation>
@@ -5557,7 +5549,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1267"/>
         <source>Receiver</source>
-        <translation type="unfinished"></translation>
+        <translation>Gavėjas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1270"/>
@@ -5573,7 +5565,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1290"/>
         <source>Sender</source>
-        <translation type="unfinished"></translation>
+        <translation>Siuntėjas</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1293"/>
@@ -5611,7 +5603,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1366"/>
         <source>Show console window</source>
-        <translation type="unfinished"></translation>
+        <translation>Rodyti pulto langą</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1428"/>
@@ -6458,10 +6450,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pridėti siuntėją...</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Adding peers</source>
@@ -7263,19 +7251,19 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 yra nežinomas komandų eilutės parametras.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 privalo būti vienas komandų eilutės parametras.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Jūs negalite naudoti %1: programa qBittorrent šiam naudotojui jau yra vykdoma.</translation>
     </message>
@@ -7450,37 +7438,37 @@ Atsiprašome, tačiau negalime parodyti šio failo: &quot;%1&quot;.</translation
         <translation>Žinynas</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Vykdykite programą su -h parinktimi, norėdami skaityti apie komandų eilutės parametrus.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Bloga komandų eilutė</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Bloga komandų eilutė:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Teisinis pranešimas</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent yra dalijimosi failais programa. Vykdant torento siuntimą, jo duomenys bus prieinami kitiems išsiuntimo tikslais. Visas turinys, kuriuo dalinsitės, yra jūsų asmeninė atsakomybė.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Daugiau apie tai nebus rodoma jokių pranešimų.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7489,22 +7477,22 @@ No further notices will be issued.</source>
 Daugiau apie tai nebus rodoma jokių pranešimų.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Spauskite mygtuką %1, jei sutinkate ir norite tęsti...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Teisinis pranešimas</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Atšaukti</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Sutinku</translation>
     </message>
@@ -8257,12 +8245,12 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="172"/>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Užverti kortelę</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="173"/>
         <source>Close all tabs</source>
-        <translation type="unfinished"></translation>
+        <translation>Užverti visas korteles</translation>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.cpp" line="208"/>
@@ -8971,17 +8959,17 @@ Norėdami juos įdiegti, spustelėkite lango apatinėje dešinėje mygtuką &quo
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Taip</translation>
+        <translation>Taip</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Ne</translation>
+        <translation>Ne</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished">Kelias:</translation>
+        <translation>Kelias:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
@@ -9431,7 +9419,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">Netaisyklingi metaduomenys</translation>
+        <translation>Neteisingi metaduomenys</translation>
     </message>
 </context>
 <context>
@@ -9449,7 +9437,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatinis torento tvarkymas</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9464,7 +9452,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
         <source>Category:</source>
-        <translation type="unfinished">Kategorija:</translation>
+        <translation>Kategorija:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -9480,13 +9468,13 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <location filename="../gui/torrentoptionsdialog.ui" line="99"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="112"/>
         <source>∞</source>
-        <translation type="unfinished">∞</translation>
+        <translation>∞</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="102"/>
         <location filename="../gui/torrentoptionsdialog.ui" line="115"/>
         <source> KiB/s</source>
-        <translation type="unfinished"> KiB/s</translation>
+        <translation> KiB/s</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="125"/>
@@ -10278,10 +10266,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Stulpelio matomumas</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Pasirinkite išsaugojimo kelią</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Pertikrinimo patvirtinimas</translation>
@@ -10400,10 +10384,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Į apačią</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nustatyti saugojimo vietą...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Priverstinai siųsti atnaujinimus</translation>
@@ -10434,10 +10414,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Kopijuoti</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Visų pirma siųsti pirmas ir paskutines dalis</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10453,31 +10429,9 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatinis torento tvarkymas</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatinė veiksena reiškia, kad įvairios torento savybės (pvz., išsaugojimo kelias) bus nuspręstos pagal priskirtą kategoriją.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Redaguoti seklius...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nauja...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Atstatyti</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10510,10 +10464,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>Pervadinti...</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Siųsti dalis iš eilės</translation>
     </message>
 </context>
 <context>
@@ -10613,7 +10563,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="148"/>
         <source>Category:</source>
-        <translation type="unfinished">Kategorija:</translation>
+        <translation>Kategorija:</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="188"/>
@@ -10628,7 +10578,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="236"/>
         <source>Content layout:</source>
-        <translation type="unfinished">Turinio išdėstymas</translation>
+        <translation>Turinio išdėstymas:</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="247"/>
@@ -10638,12 +10588,12 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="252"/>
         <source>Create subfolder</source>
-        <translation type="unfinished">Sukurti poaplankį</translation>
+        <translation>Sukurti poaplankį</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="257"/>
         <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished">Nesukurti poaplankio</translation>
+        <translation>Nekurti poaplankio</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="53"/>
@@ -10667,7 +10617,7 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="111"/>
         <source>Folder &apos;%1&apos; doesn&apos;t exist.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aplanko „%1“ nėra.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="113"/>

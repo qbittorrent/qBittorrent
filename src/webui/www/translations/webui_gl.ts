@@ -144,10 +144,6 @@
         <translation>Non foi posíbel gardar as preferencias do programa, probabelmente o qBittorrent estea inaccesíbel.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent en Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Descoñecido</translation>
     </message>
@@ -1551,10 +1547,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Copy IP:port</source>
         <translation>Copiar IP:porto</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Engadir un par novo...</translation>
     </message>
     <message>
         <source>Country/Region</source>

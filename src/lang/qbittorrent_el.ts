@@ -87,9 +87,13 @@
         <translation>Ένας προηγμένος BitTorrent client προγραμματισμένος σε C++, βασισμένος σε Qt toolkit και libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Πνευματικά δικαιώματα %1 2006-2021 Εγχείρημα qBittorrent </translation>
+        <translation type="vanished">Πνευματικά δικαιώματα %1 2006-2021 Εγχείρημα qBittorrent </translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Πνευματικά δικαιώματα %1 2006-2021 Εγχείρημα qBittorrent  {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -204,7 +208,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="176"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Προτεραιότητα</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Μη έγκυρα μεταδεδομένα</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1058,11 +1058,8 @@ Error: %2</source>
         <location filename="../app/application.cpp" line="653"/>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Για τον έλεγχο του qBittorrent, επισκεφτείτε το Web UI στο %1</translation>
+        <translation>Για τον έλεγχο του qBittorrent επισκεφτείτε το WebUI στο: %1
+</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -1613,7 +1610,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="380"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="385"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Η βάση δεδομένων έχει καταστραφεί.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="569"/>
@@ -1708,7 +1705,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/session.cpp" line="2029"/>
         <location filename="../base/bittorrent/session.cpp" line="4296"/>
         <source>Couldn&apos;t load torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ήταν δυνατή η φόρτωση torrent: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2359"/>
@@ -1771,22 +1768,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4141"/>
         <source>Couldn&apos;t store Categories configuration to %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ήταν δυνατή η αποθήκευση της διαμόρφωσης των Κατηγοριών στο %1. Σφάλμα: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4178"/>
         <source>Couldn&apos;t load Categories from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ήταν δυνατή η φόρτωση των Κατηγοριών από το %1. Σφάλμα: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4187"/>
         <source>Couldn&apos;t parse Categories configuration from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ήταν δυνατή η ανάλυση της διαμόρφωσης των Κατηγοριών από το %1. Σφάλμα: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4194"/>
         <source>Couldn&apos;t load Categories configuration from %1. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν ήταν δυνατή η φόρτωση της διαμόρφωσης των Κατηγοριών από το %1. Μη έγκυρη μορφή δεδομένων.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4284"/>
@@ -3197,7 +3194,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.cpp" line="1238"/>
         <source>qBittorrent is shutting down...</source>
-        <translation type="unfinished"></translation>
+        <translation>Το qBittorrent κλείνει...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1464"/>
@@ -5355,10 +5352,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Προεπιλεγμένη Διαδρομή Αποθήκευσης:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Διατήρηση μη ολοκληρωμένων torrent στο:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Αντιγραφή αρχείων .torrent στο:</translation>
@@ -5428,7 +5421,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="318"/>
         <location filename="../gui/optionsdialog.ui" line="354"/>
         <source>Show torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Εμφάνιση επιλογών torrent</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="409"/>
@@ -5550,7 +5543,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1121"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1156"/>
@@ -6069,10 +6062,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>Επιλέξτε αρχείο Θέματος του qBittorrent UI</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Αρχείο Θέματος qBittorrent UI (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Επιλέξτε εναλλακτική τοποθεσία αρχείων του UI</translation>
@@ -6194,7 +6183,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="259"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>Αρχείο Θέματος qBittorrent UI (*.qbtheme config.json)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="395"/>
@@ -6462,11 +6451,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Προσθήκη νέου peer...</translation>
+        <translation>Προσθήκη peers...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -6493,22 +6478,22 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="299"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η προσθήκη peers σε ένα ιδιωτικό torrent</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="301"/>
         <source>Cannot add peers when the torrent is checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η προσθήκη peers όταν το torrent ελέγχεται</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <source>Cannot add peers when the torrent is queued</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η προσθήκη peers όταν το torrent είναι στην ουρά</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="307"/>
         <source>No peer was selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν επιλέχθηκε peer</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="332"/>
@@ -7269,19 +7254,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>Το %1 είναι μια άγνωστη παράμετρος γραμμής εντολών.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>Το %1 πρέπει να είναι ενιαία παράμετρος γραμμής εντολών.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Δεν μπορείτε να χρησιμοποιήσετε το %1: το qBittorrent τρέχει ήδη για αυτόν τον χρήστη.</translation>
     </message>
@@ -7456,37 +7441,37 @@ Those plugins were disabled.</source>
         <translation>Βοήθεια</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Εκτελέστε την εφαρμογή με την επιλογή -h για να διαβάσετε σχετικά με τις παραμέτρους της γραμμής εντολών.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Κακή γραμμή εντολών</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Κακή γραμμή εντολών:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Νομική Σημείωση</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>Το qBittorrent είναι ένα πρόγραμμα κοινής χρήσης αρχείων. Όταν εκτελείτε ένα torrent, τα δεδομένα του θα είναι διαθέσιμα σε άλλους μέσω αποστολής. Οποιοδήποτε περιεχόμενο μοιράζεστε είναι αποκλειστικά δική σας ευθύνη.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Δεν θα υπάρξουν περαιτέρω προειδοποιήσεις.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7495,22 +7480,22 @@ No further notices will be issued.</source>
 Δεν θα εκδοθούν περαιτέρω ανακοινώσεις.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Πατήστε το πλήκτρο %1 για αποδοχή και συνέχεια…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Νομική Σημείωση</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Άκυρο</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Συμφωνώ</translation>
     </message>
@@ -7549,7 +7534,7 @@ No further notices will be issued.</source>
         <location filename="../app/upgrade.cpp" line="193"/>
         <location filename="../app/upgrade.cpp" line="224"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Βρέθηκε μη έγκυρη τιμή στο αρχείο διαμόρφωσης, γίνεται επαναφορά του στην προεπιλεγμένη . Κλειδί: &quot;%1&quot;. Μη έγκυρη τιμή: &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -8030,7 +8015,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="398"/>
         <source>Open download window</source>
-        <translation type="unfinished"></translation>
+        <translation>Άνοιγμα παράθυρου λήψης</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="400"/>
@@ -8962,32 +8947,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Διαδρομή αποθήκευσης για ημιτελή torrents:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Προεπιλογή</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Ναι</translation>
+        <translation>Ναι</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Όχι</translation>
+        <translation>Όχι</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished">Διαδρομή:</translation>
+        <translation>Διαδρομή:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
@@ -9002,7 +8987,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="48"/>
         <source>Choose download path</source>
-        <translation type="unfinished"></translation>
+        <translation>Επιλέξτε διαδρομή λήψης</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="72"/>
@@ -9450,27 +9435,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="20"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Η αυτόματη λειτουργία σημαίνει ότι διάφορες ιδιότητες του torrent (π.χ. διαδρομή αποθήκευσης) θα καθοριστούν από την συσχετισμένη κατηγορία.</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Αυτόματη Διαχείριση Torrent</translation>
+        <translation>Αυτόματη Διαχείριση Torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
         <source>Save at</source>
-        <translation type="unfinished">Αποθήκευση σε</translation>
+        <translation>Αποθήκευση σε</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="39"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
         <source>Category:</source>
-        <translation type="unfinished">Κατηγορία:</translation>
+        <translation>Κατηγορία:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -9542,7 +9527,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Λήψη σε διαδοχική σειρά</translation>
+        <translation>Λήψη σε διαδοχική σειρά</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -9552,7 +9537,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Λήψη των πρώτων και των τελευταίων κομματιών πρώτα</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -9562,13 +9547,13 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="66"/>
         <source>Currently used categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Κατηγορίες που χρησιμοποιούνται αυτήν τη στιγμή</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Επιλέξτε διαδρομή αποθήκευσης</translation>
+        <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -9636,7 +9621,7 @@ Please choose a different name and try again.</source>
         <location filename="../webui/api/torrentscontroller.cpp" line="1123"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1147"/>
         <source>Cannot create target directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Δεν είναι δυνατή η δημιουργία του καταλόγου προορισμού</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1228"/>
@@ -10289,10 +10274,6 @@ Please choose a different name and try again.</source>
         <translation>Ορατότητα στήλης</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Επιλέξτε διαδρομή αποθήκευσης</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Επιβεβαίωση επανέλεγχου</translation>
@@ -10411,10 +10392,6 @@ Please choose a different name and try again.</source>
         <translation>Μετακίνηση στο τέλος</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ρύθμιση τοποθεσίας…</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Εξαναγκαστικό reannounce</translation>
@@ -10445,10 +10422,6 @@ Please choose a different name and try again.</source>
         <translation>Αντιγραφή</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Λήψη πρώτων και τελευταίων κομματιών πρώτα</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Επιλογές torrent...</translation>
@@ -10464,31 +10437,9 @@ Please choose a different name and try again.</source>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Αυτόματη Διαχείριση Torrent</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Η Αυτόματη λειτουργία σημαίνει ότι διάφορες ιδιότητες του torrent (π.χ. διαδρομή αποθήκευσης) θα αποφασιστούν από την συσχετισμένη κατηγορία.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Επεξεργασία trackers...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Κατηγορία</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Νέα...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Επαναφορά</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10522,10 +10473,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>Μετονομασία…</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Λήψη σε διαδοχική σειρά</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10535,17 +10482,9 @@ Please choose a different name and try again.</source>
         <translation>Αποτυχία φόρτωσης θέματος του UI από το αρχείο: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Δεν ήταν δυνατή η εφαρμογή του stylesheet του θέματος. Δεν ήταν δυνατό το άνοιγμα του stylesheet.qss. Αιτία: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Αδυναμία ανοίγματος του &quot;%1&quot;. Αιτία: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>
         <source>UITheme - Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>UITheme - Αδυναμία ανοίγματος &quot;%1&quot;. Αιτία: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="324"/>
@@ -10627,7 +10566,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="125"/>
         <source>Use another path for incomplete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Χρήση άλλης διαδρομής για ημιτελή torrents</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="148"/>

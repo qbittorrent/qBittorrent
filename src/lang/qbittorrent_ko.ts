@@ -87,9 +87,13 @@
         <translation>C++로 짠 강력한 비트토렌트 클라이언트로 Qt 툴킷과 libtorrent-rasterbar를 기반으로 만들었습니다.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>저작권 %1 2006-2021 qBittorrent 프로젝트</translation>
+        <translation type="vanished">저작권 %1 2006-2021 qBittorrent 프로젝트</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">저작권 %1 2006-2021 qBittorrent 프로젝트 {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>우선순위</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">잘못된 메타데이터</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">qBittorrent를 제어하려면 %1 로 웹 UI에 접속하세요</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5353,10 +5349,6 @@ DNS 재결합 공격을 방어하기 위해,
         <translation>기본 저장 경로:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">완료 못한 토렌트 보관 위치:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent 파일 복사 위치:</translation>
@@ -6067,10 +6059,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>qBittorrent UI 테마 파일 선택</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent UI 테마 파일(*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>대체 UI 파일 위치 선택</translation>
@@ -6461,10 +6449,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">새 피어 추가...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7267,19 +7251,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1은 알 수 없는 명령행 매개변수입니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1은 단일 명령행 매개변수여야 합니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>%1을 사용할 수 없음: 이 사용자에 대해 qBittorrent를 실행하고 있습니다.</translation>
     </message>
@@ -7454,37 +7438,37 @@ Those plugins were disabled.</source>
         <translation>도움말</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>명령행 매개변수에 대해 읽으려면 -h 옵션을 사용하여 응용 프로그램을 실행합니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>잘못된 명령행</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>잘못된 명령행:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>법적 공지</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent는 파일 공유 프로그램입니다. 토렌트를 실행하면 올리기를 통해 토렌트 데이터를 다른 사용자가 이용할 수 있게 됩니다. 공유한 어떤 내용이라도 전적으로 사용자 책임입니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>더 이상 알리지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7493,22 +7477,22 @@ No further notices will be issued.</source>
 더 이상 이 알림을 표시하지 않습니다.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>수락 및 계속하려면 %1 키 누르기...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>법적 공지</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>취소</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>동의</translation>
     </message>
@@ -9453,7 +9437,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">자동 토렌트 관리</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9540,7 +9524,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">차례로 받기</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10287,10 +10271,6 @@ Please choose a different name and try again.</source>
         <translation>열 선택</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">저장 경로 선택</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>재검사 확인</translation>
@@ -10409,10 +10389,6 @@ Please choose a different name and try again.</source>
         <translation>가장 아래로 이동</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">위치 지정...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>강제 다시 알림</translation>
@@ -10443,10 +10419,6 @@ Please choose a different name and try again.</source>
         <translation>복사</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">첫/끝 조각 먼저 받기</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>토렌트 옵션...</translation>
@@ -10462,31 +10434,9 @@ Please choose a different name and try again.</source>
         <translation>정보 해시 v2:</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">자동 토렌트 관리</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">자동 모드는 관련 범주에 의해 다양한 토렌트 속성(예: 저장 경로)이 결정됨을 의미합니다.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>트래커 편집...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">범주</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">신규...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">모두 제거</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10520,10 +10470,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>이름 변경...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">차례대로 받기</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10531,14 +10477,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>파일에서 UI 테마 읽기 실패: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">테마 서식을 적용할 수 없습니다. stylesheet.qss를 열 수 없습니다. 이유: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">&quot;%1&quot; 열기 실패. 이유: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

@@ -144,10 +144,6 @@
         <translation>No es poden desar les preferències del programa, probablement el qBittorrent no és accessible.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent a Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Desconegut</translation>
     </message>
@@ -1551,10 +1547,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Copy IP:port</source>
         <translation>Copia IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Afegeix un client nou...</translation>
     </message>
     <message>
         <source>Country/Region</source>

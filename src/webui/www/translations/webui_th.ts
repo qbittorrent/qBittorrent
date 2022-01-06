@@ -144,10 +144,6 @@
         <translation>ไม่สามารถบันทึกการตั้งค่าโปรแกรมได้ qBittorrent อาจไม่สามารถเข้าถึงได้</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent บน Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>ไม่ทราบ</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>คัดลอก IP:พอร์ต</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">เพิ่มเพียร์ใหม่...</translation>
     </message>
     <message>
         <source>Country/Region</source>

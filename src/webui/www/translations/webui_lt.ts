@@ -144,10 +144,6 @@
         <translation>Nepavyko išsaugoti programos nuostatų, qBittorrent tikriausiai yra nepasiekiama.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent Freenode serveryje</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nežinoma</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopijuoti IP:prievadą</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pridėti siuntėją...</translation>
     </message>
     <message>
         <source>Country/Region</source>
@@ -3026,7 +3018,7 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autoriai</translation>
     </message>
     <message>
         <source>France</source>
@@ -3426,7 +3418,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Sukurti poaplankį</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3434,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Nesukurti poaplankio</translation>
     </message>
 </context>
 <context>

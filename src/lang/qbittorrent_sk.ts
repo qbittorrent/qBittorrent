@@ -87,9 +87,13 @@
         <translation>Pokročilý BitTorrent klient naprogramovaný v jazyku C++, založený na Qt toolkit a libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 The qBittorrent projekt</translation>
+        <translation type="vanished">Copyright %1 2006-2021 The qBittorrent projekt</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 The qBittorrent projekt {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Chyba: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Priorita</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Neplatné metadáta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Chyba: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">qBittorrent môžete ovládať z webového rozhrania na %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5352,10 +5348,6 @@ Použite &apos;;&apos; pre oddelenie viacerých položiek. Môžete použiť mas
         <translation>Predvolená cesta pre ukladanie:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Ponechať neúplné torrenty v:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopírovať .torrent súbory do:</translation>
@@ -6066,10 +6058,6 @@ Ručne: Rôzne vlastnosti torrentu (napr. cesta uloženia) musia byť priradené
         <translation>Vyberte súbor motívu používateľského rozhrania qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Súbor motívu používateľského rozhrania qBittorrent (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Vybrať umiestnenie súborov Alternatívneho UI</translation>
@@ -6460,10 +6448,6 @@ Ručne: Rôzne vlastnosti torrentu (napr. cesta uloženia) musia byť priradené
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pridať nového rovesníka...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7267,19 +7251,19 @@ Tieto moduly však boli vypnuté.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 je neznámy parameter príkazového riadka</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 musí byť jediný parameter príkazového riadka</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Nemožno použiť %1: qBitorrent bol už pre tohto užívateľa spustený.</translation>
     </message>
@@ -7454,37 +7438,37 @@ Tieto moduly však boli vypnuté.</translation>
         <translation>Nápoveda</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Spustite aplikáciu s parametrom -h pre zobrazenie nápovedy o prípustných parametroch.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Chyba v príkazovom riadku</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Chyba v príkazovom riadku:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Právne upozornenie</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent je program na zdieľanie súborov. Keď spustíte torrent, jeho dáta sa sprístupnia iným prostredníctvom nahrávania. Za akýkoľvek obsah, ktorý zdieľate, nesiete zodpovednosť vy.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Už vás nebudeme ďalej upozorňovať.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7493,22 +7477,22 @@ No further notices will be issued.</source>
 Žiadne ďalšie upozornenie už nebude zobrazené.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Pre akceptovanie a pokračovanie stlačte kláves %1....</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Právne upozornenie</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Zrušiť</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Súhlasím</translation>
     </message>
@@ -9434,7 +9418,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">Neplatné metadáta</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9452,7 +9436,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatické spravovanie torrentu</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9539,7 +9523,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stiahnuť v sekvenčnom poradí</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -9565,7 +9549,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte cestu pre uloženie</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -10286,10 +10270,6 @@ Please choose a different name and try again.</source>
         <translation>Viditeľnosť stĺpca</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Zvoľte cieľový adresár</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Znovu skontrolovať potvrdenie</translation>
@@ -10408,10 +10388,6 @@ Please choose a different name and try again.</source>
         <translation>Presunúť na spodok</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nastaviť cieľ...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Vynútiť znovuohlásenie</translation>
@@ -10442,10 +10418,6 @@ Please choose a different name and try again.</source>
         <translation>Kopírovať</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Sťahovať najprv prvú a poslednú časť</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10461,31 +10433,9 @@ Please choose a different name and try again.</source>
         <translation type="unfinished">Info hash v2: {2?}</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatické spravovanie torrentu</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatický režim znamená, že niektoré vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Upraviť trackery...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategória</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nová...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Vrátiť pôvodné</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10519,10 +10469,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>Premenovať...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Sťahovať v poradí</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10530,10 +10476,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Zlyhalo načítanie vzhľadu UI zo súboru: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Nie je možné použiť šablónu štýlov motívu. stylesheet.qss nemohol byť otvorený. Príčina: % 1</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>
@@ -10600,7 +10542,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="84"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Automatický režim znamená, že rôzne vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="88"/>
@@ -10661,7 +10603,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="53"/>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="58"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vyberte cestu pre uloženie</translation>
     </message>
 </context>
 <context>

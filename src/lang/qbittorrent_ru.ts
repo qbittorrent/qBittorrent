@@ -87,9 +87,13 @@
         <translation>Продвинутый клиент сети БитТоррент, написанный на языке C++ с использованием фреймворка Qt и библиотеки libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 The qBittorrent project</translation>
+        <translation type="vanished">Copyright %1 2006-2021 The qBittorrent project</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 The qBittorrent project {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -204,7 +208,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другой путь для незавершённого торрента</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="176"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Приоритет</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Недопустимые метаданные</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1058,11 +1058,8 @@ Error: %2</source>
         <location filename="../app/application.cpp" line="653"/>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Войдите в веб-интерфейс для управления qBittorrent: %1</translation>
+        <translation>Войдите в веб-интерфейс для управления qBittorrent: %1
+</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -1613,7 +1610,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="380"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="385"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>База данных повреждена.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="569"/>
@@ -1708,7 +1705,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/session.cpp" line="2029"/>
         <location filename="../base/bittorrent/session.cpp" line="4296"/>
         <source>Couldn&apos;t load torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить торрент: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2359"/>
@@ -1771,22 +1768,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4141"/>
         <source>Couldn&apos;t store Categories configuration to %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось сохранить настройки категорий в %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4178"/>
         <source>Couldn&apos;t load Categories from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить категории из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4187"/>
         <source>Couldn&apos;t parse Categories configuration from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось разобрать настройки категорий из %1. Ошибка: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4194"/>
         <source>Couldn&apos;t load Categories configuration from %1. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удалось загрузить настройки категорий из %1. Неверный формат данных.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4284"/>
@@ -3197,7 +3194,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/mainwindow.cpp" line="1238"/>
         <source>qBittorrent is shutting down...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent завершает работу…</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1464"/>
@@ -5355,10 +5352,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Путь сохранения по умолчанию:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Хранить незавершённые торренты в:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Копировать торрент-файлы в:</translation>
@@ -5428,7 +5421,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <location filename="../gui/optionsdialog.ui" line="318"/>
         <location filename="../gui/optionsdialog.ui" line="354"/>
         <source>Show torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Показать параметры торрента</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="409"/>
@@ -5550,7 +5543,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1121"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другой путь для незавершённых торрентов:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1156"/>
@@ -6069,10 +6062,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>Выбрать файл темы интерфейса qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Файл темы интерфейса qBittorrent (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Использовать расположение файлов альтернативного интерфейса</translation>
@@ -6194,7 +6183,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="259"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл темы интерфейса qBittorrent (*.qbtheme config.json)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="395"/>
@@ -6462,11 +6451,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Добавить нового пира…</translation>
+        <translation>Добавить пиров…</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -6493,22 +6478,22 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="299"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно добавить пиров в приватный торрент</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="301"/>
         <source>Cannot add peers when the torrent is checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно добавить пиров, пока торрент проверяется</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <source>Cannot add peers when the torrent is queued</source>
-        <translation type="unfinished"></translation>
+        <translation>Невозможно добавить пиров, пока торрент в очереди</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="307"/>
         <source>No peer was selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Нет выбранных пиров</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="332"/>
@@ -7270,19 +7255,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>Неизвестный параметр командной строки %1.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 должен быть единственным параметром командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Нельзя использовать %1: qBittorrent уже выполняется для этого пользователя.</translation>
     </message>
@@ -7457,37 +7442,37 @@ Those plugins were disabled.</source>
         <translation>Справка</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Запустите программу с параметром -h, чтобы получить справку по параметрам командной строки.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Неверная командная строка</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Неверная командная строка:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent — это программа для обмена файлами. При запуске торрента его данные становятся доступны другим пользователям посредством раздачи. Вы несёте персональную ответственность за всю информацию, которой делитесь.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Никаких дальнейших уведомлений выводиться не будет.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7496,22 +7481,22 @@ No further notices will be issued.</source>
 Никаких дальнейших уведомлений выводиться не будет.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Нажмите %1, чтобы принять и продолжить…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Официальное уведомление</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Я согласен</translation>
     </message>
@@ -7550,7 +7535,7 @@ No further notices will be issued.</source>
         <location filename="../app/upgrade.cpp" line="193"/>
         <location filename="../app/upgrade.cpp" line="224"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Найдено недопустимое значение в файле конфигурации, запущен возврат к стандартному. Ключ: «%1». Недопустимое значение: «%2».</translation>
     </message>
 </context>
 <context>
@@ -8031,7 +8016,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="398"/>
         <source>Open download window</source>
-        <translation type="unfinished"></translation>
+        <translation>Открыть окно загрузки</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="400"/>
@@ -8963,32 +8948,32 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Путь сохранения для незавершённых торрентов:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другой путь для незавершённых торрентов:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Стандартный</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Да</translation>
+        <translation>Да</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Нет</translation>
+        <translation>Нет</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished">Путь:</translation>
+        <translation>Путь:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
@@ -9003,7 +8988,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="48"/>
         <source>Choose download path</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать путь загрузки</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="72"/>
@@ -9397,7 +9382,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="388"/>
         <source>Couldn&apos;t store Watched Folders configuration to %1. Error: %2</source>
-        <translation>Не удалось сохранить настройки наблюдаемой папки из %1. Ошибка: %2</translation>
+        <translation>Не удалось сохранить настройки наблюдаемых папок в %1. Ошибка: %2</translation>
     </message>
 </context>
 <context>
@@ -9451,27 +9436,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="20"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматический режим означает, что настройки торрентов (напр. путь сохранения) будут выбраны в зависимости от их категории</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Автоматическое управление</translation>
+        <translation>Автоматическое управление торрентом</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
         <source>Save at</source>
-        <translation type="unfinished">Путь сохранения</translation>
+        <translation>Путь сохранения</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="39"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другой путь для незавершённого торрента</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
         <source>Category:</source>
-        <translation type="unfinished">Категория:</translation>
+        <translation>Категория:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -9543,7 +9528,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Загружать последовательно</translation>
+        <translation>Загружать последовательно</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -9553,7 +9538,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished">Загружать с первой и последней части</translation>
+        <translation>Загружать с первой и последней части</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -9563,13 +9548,13 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="66"/>
         <source>Currently used categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Текущие используемые категории</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Выбрать путь сохранения</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -9637,7 +9622,7 @@ Please choose a different name and try again.</source>
         <location filename="../webui/api/torrentscontroller.cpp" line="1123"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1147"/>
         <source>Cannot create target directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Не удаётся создать целевой каталог</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1228"/>
@@ -10290,10 +10275,6 @@ Please choose a different name and try again.</source>
         <translation>Отображение столбцов</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Выберите путь сохранения</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Подтверждение проверки</translation>
@@ -10412,10 +10393,6 @@ Please choose a different name and try again.</source>
         <translation>В конец</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Переместить…</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Переанонсировать принудительно</translation>
@@ -10446,10 +10423,6 @@ Please choose a different name and try again.</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Загружать с первой и последней части</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Параметры торрента…</translation>
@@ -10465,31 +10438,9 @@ Please choose a different name and try again.</source>
         <translation>Инфо-хеш v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Автоматическое управление</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Автоматический режим выбирает настройки торрентов (напр. путь сохранения) в зависимости от их категории</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Изменить трекеры…</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Категория</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Новая…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Сбросить</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10523,10 +10474,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>Переименовать…</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Загружать последовательно</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10536,17 +10483,9 @@ Please choose a different name and try again.</source>
         <translation>Не удалось загрузить тему интерфейса из файла: «%1»</translation>
     </message>
     <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Не удалось применить таблицу стилей из темы. Невозможно открыть stylesheet.qss. Причина: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Не удалось открыть «%1». Причина: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>
         <source>UITheme - Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Тема интерфейса — не удалось открыть «%1». Причина: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="324"/>
@@ -10628,7 +10567,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="125"/>
         <source>Use another path for incomplete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Использовать другой путь для незавершённых торрентов</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="148"/>

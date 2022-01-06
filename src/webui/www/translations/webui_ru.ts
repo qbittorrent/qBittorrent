@@ -144,10 +144,6 @@
         <translation>Не удалось сохранить настройки, возможно, qBittorrent недоступен.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Неизвестно</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Копировать IP:порт</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Добавить нового пира…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Страна/регион</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Добавить пиров…</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Талисман qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Значок qBittorrent</translation>
     </message>
 </context>
 <context>

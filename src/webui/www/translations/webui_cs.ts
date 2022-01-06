@@ -144,10 +144,6 @@
         <translation>Nelze uložit nastavení programu, qBittorrent klient je pravděpodobně nedostupný.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent na Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Neznámý</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopírovat IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Přidat nový peer...</translation>
     </message>
     <message>
         <source>Country/Region</source>

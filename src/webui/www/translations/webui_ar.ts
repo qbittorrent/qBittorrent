@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>الفئة:</translation>
+        <translation>التصنيف:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -142,10 +142,6 @@
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
         <translation>لا يمكن حفظ تفضيلات البرنامج, والسبب على الأرجح هو عدم إمكانية الوصول إلى كيوبت‎تورنت.</translation>
-    </message>
-    <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent على Freenode</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -365,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>المؤلف الاصلي</translation>
     </message>
 </context>
 <context>
@@ -1470,7 +1466,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>تم الإبلاغ عن عنوان IP للمتتبعين (يتطلب إعادة التشغيل):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1478,7 +1474,7 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>التخفيف من تزوير الطلب من جانب الخادم (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1552,16 +1548,12 @@
         <translation>نسخ الآي بي: المنفذ</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">إضافة قرين جديد...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>الدولة/المنطقة</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>إضافة قرناء ...</translation>
     </message>
 </context>
 <context>
@@ -2058,7 +2050,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2355,7 +2347,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>الفئات</translation>
+        <translation>التصنيفات</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2446,7 +2438,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>New...</source>
@@ -2785,11 +2777,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>النتائج</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>عرض</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>تميمة كيوبت‎تورنت</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>رمز كيوبت‎تورنت</translation>
     </message>
 </context>
 <context>

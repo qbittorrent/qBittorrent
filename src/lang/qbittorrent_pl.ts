@@ -87,9 +87,13 @@
         <translation>Zaawansowany klient BitTorrent napisany w języku C++ z wykorzystaniem bibliotek Qt i libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 Projekt qBittorrent</translation>
+        <translation type="vanished">Copyright %1 2006-2021 Projekt qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 Projekt qBittorrent {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -204,7 +208,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj innej ścieżki dla niekompletnego torrenta</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="176"/>
@@ -499,10 +503,6 @@ Błąd: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Priorytet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Nieprawidłowe metadane</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1058,11 +1058,8 @@ Błąd: %2</translation>
         <location filename="../app/application.cpp" line="653"/>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Aby kontrolować qBittorrent, należy uzyskać dostęp do interfejsu WWW pod adresem %1</translation>
+        <translation>Aby kontrolować qBittorrent, należy uzyskać dostęp do interfejsu WWW pod adresem: %1
+</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -1613,7 +1610,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="380"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="385"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Baza danych jest uszkodzona.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="569"/>
@@ -1708,7 +1705,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
         <location filename="../base/bittorrent/session.cpp" line="2029"/>
         <location filename="../base/bittorrent/session.cpp" line="4296"/>
         <source>Couldn&apos;t load torrent: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować torrenta: %1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2359"/>
@@ -1771,22 +1768,22 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4141"/>
         <source>Couldn&apos;t store Categories configuration to %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zapisać konfiguracji kategorii w %1. Błąd: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4178"/>
         <source>Couldn&apos;t load Categories from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować kategorii z %1. Błąd: %2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4187"/>
         <source>Couldn&apos;t parse Categories configuration from %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można przetworzyć konfiguracji kategorii z %1. Błąd: % 2</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4194"/>
         <source>Couldn&apos;t load Categories configuration from %1. Invalid data format.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można załadować konfiguracji kategorii z %1. Nieprawidłowy format danych.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4284"/>
@@ -3197,7 +3194,7 @@ Obsługuje formaty: S01E01, 1x1, 2017.12.31 oraz 31.12.2017 (Formaty daty równi
     <message>
         <location filename="../gui/mainwindow.cpp" line="1238"/>
         <source>qBittorrent is shutting down...</source>
-        <translation type="unfinished"></translation>
+        <translation>qBittorrent wyłącza się...</translation>
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="1464"/>
@@ -5355,10 +5352,6 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <translation>Domyślna ścieżka zapisu:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Zachowaj niekompletne torrenty w:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopiuj pliki .torrent do:</translation>
@@ -5428,7 +5421,7 @@ Użyj &apos;;&apos; do rozdzielania wielu wpisów. Można użyć wieloznacznika 
         <location filename="../gui/optionsdialog.ui" line="318"/>
         <location filename="../gui/optionsdialog.ui" line="354"/>
         <source>Show torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Pokaż opcje torrenta</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="409"/>
@@ -5550,7 +5543,7 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
     <message>
         <location filename="../gui/optionsdialog.ui" line="1121"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj innej ścieżki dla niekompletnych torrentów:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1156"/>
@@ -6069,10 +6062,6 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
         <translation>Wybierz plik motywu interfejsu qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Plik motywu interfejsu qBittorrent (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Wybierz położenie plików alternatywnego interfejsu</translation>
@@ -6194,7 +6183,7 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
     <message>
         <location filename="../gui/optionsdialog.cpp" line="259"/>
         <source>qBittorrent UI Theme file (*.qbtheme config.json)</source>
-        <translation type="unfinished"></translation>
+        <translation>Plik motywu interfejsu qBittorrent (*.qbtheme config.json)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="395"/>
@@ -6462,11 +6451,7 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Dodaj nowego partnera...</translation>
+        <translation>Dodaj partnerów...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -6493,22 +6478,22 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="299"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można dodać partnerów do prywatnego torrenta</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="301"/>
         <source>Cannot add peers when the torrent is checking</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można dodać partnerów, gdy torrent jest sprawdzany</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <source>Cannot add peers when the torrent is queued</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można dodać partnerów, gdy torrent jest w kolejce</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="307"/>
         <source>No peer was selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie wybrano partnera</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="332"/>
@@ -7269,19 +7254,19 @@ Te wtyczki zostały wyłączone.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 to nieznany parametr linii poleceń.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 musi być pojedynczym parametrem linii poleceń.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Nie możesz użyć %1: qBittorrent jest już uruchomiony dla tego użytkownika.</translation>
     </message>
@@ -7456,37 +7441,37 @@ Te wtyczki zostały wyłączone.</translation>
         <translation>Pomoc</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Uruchom aplikację z opcją -h, aby przeczytać o parametrach linii komend.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Niewłaściwy wiersz poleceń</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Niewłaściwy wiersz poleceń: </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Nota prawna</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent jest programem do wymiany plików. Uruchomienie torrenta powoduje, że jego zawartość jest dostępna dla innych. Użytkownik ponosi pełną odpowiedzialność za udostępniane treści.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Żadne dodatkowe zawiadomienia nie będą wydawane.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7495,22 +7480,22 @@ No further notices will be issued.</source>
 W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Nacisnij klawisz %1, aby zaakceptować i kontynuować...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Nota prawna</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Zgadzam się</translation>
     </message>
@@ -7549,7 +7534,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
         <location filename="../app/upgrade.cpp" line="193"/>
         <location filename="../app/upgrade.cpp" line="224"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>W pliku konfiguracyjnym znaleziono nieprawidłową wartość, przywracanie jej do wartości domyślnej. Klucz: &quot;%1&quot;. Nieprawidłowa wartość: &quot;%2&quot;.</translation>
     </message>
 </context>
 <context>
@@ -8030,7 +8015,7 @@ W przyszłości powiadomienie nie będzie wyświetlane.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="398"/>
         <source>Open download window</source>
-        <translation type="unfinished"></translation>
+        <translation>Otwórz okno pobierania</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="400"/>
@@ -8962,32 +8947,32 @@ Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, 
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ścieżka zapisu dla niekompletnych torrentów:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj innej ścieżki dla niekompletnych torrentów:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Tak</translation>
+        <translation>Tak</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Nie</translation>
+        <translation>Nie</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished">Ścieżka:</translation>
+        <translation>Ścieżka:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
@@ -9002,7 +8987,7 @@ Kliknij przycisk &quot;Wtyczki wyszukiwania...&quot; w prawym dolnym rogu okna, 
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="48"/>
         <source>Choose download path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz ścieżkę pobierania</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="72"/>
@@ -9450,27 +9435,27 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="20"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation>Tryb automatyczny oznacza, że różne właściwości torrenta (np. ścieżka zapisu) będą ustalane przez przyporządkowaną kategorię</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatyczne zarządzanie torrentem</translation>
+        <translation>Automatyczne zarządzanie torrentem</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
         <source>Save at</source>
-        <translation type="unfinished">Zapisz w</translation>
+        <translation>Zapisz w</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="39"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj innej ścieżki dla niekompletnego torrenta</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
         <source>Category:</source>
-        <translation type="unfinished">Kategoria:</translation>
+        <translation>Kategoria:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -9542,7 +9527,7 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Pobierz w kolejności sekwencyjnej</translation>
+        <translation>Pobierz w kolejności sekwencyjnej</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -9552,7 +9537,7 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished">Pobierz najpierw część pierwszą i ostatnią</translation>
+        <translation>Pobierz najpierw część pierwszą i ostatnią</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -9562,13 +9547,13 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="66"/>
         <source>Currently used categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualnie używane kategorie</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz ścieżkę zapisu</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -9636,7 +9621,7 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <location filename="../webui/api/torrentscontroller.cpp" line="1123"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1147"/>
         <source>Cannot create target directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można utworzyć katalogu docelowego</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1228"/>
@@ -10289,10 +10274,6 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Widoczność kolumn</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Wybierz katalog docelowy</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Potwierdzenie ponownego sprawdzania</translation>
@@ -10411,10 +10392,6 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Przenieś na koniec</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ustaw położenie...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Wymuś rozgłoszenie</translation>
@@ -10445,10 +10422,6 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Pobierz najpierw część pierwszą i ostatnią</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Opcje torrenta...</translation>
@@ -10464,31 +10437,9 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatyczne zarządzanie torrentem</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Tryb automatyczny oznacza, że różne właściwości torrenta (np. ścieżka zapisu) będą ustalane przez przyporządkowaną kategorię</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Edytuj trackery...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nowa...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Resetuj</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10522,10 +10473,6 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <source>Rename...</source>
         <translation>Zmień nazwę...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Pobierz w kolejności sekwencyjnej</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10535,17 +10482,9 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
         <translation>Nie udało się załadować motywu interfejsu użytkownika z pliku: &quot;%1&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Nie można zastosować arkusza stylów motywu. stylesheet.qss nie mógł zostać otwarty. Powód: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Nie udało się otworzyć &quot;%1&quot;. Powód: %2</translation>
-    </message>
-    <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>
         <source>UITheme - Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Motyw interfejsu użytkownika - nie udało się otworzyć &quot;%1&quot;. Powód: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="324"/>
@@ -10627,7 +10566,7 @@ Wybierz inną nazwę i spróbuj ponownie.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="125"/>
         <source>Use another path for incomplete torrents</source>
-        <translation type="unfinished"></translation>
+        <translation>Użyj innej ścieżki dla niekompletnych torrentów</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="148"/>

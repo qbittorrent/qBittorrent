@@ -144,10 +144,6 @@
         <translation>プログラム設定の保存ができません。qBittorrent はおそらく通信可能状態にありません。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: Freenode 上で #qbittorrent</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>不明</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>IP:ポートをコピー</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">新しいピアの追加</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>国・地域</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>ピアを追加...</translation>
     </message>
 </context>
 <context>

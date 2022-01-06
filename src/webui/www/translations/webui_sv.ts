@@ -144,10 +144,6 @@
         <translation>Det gick inte att spara programinställningarna. qBittorrent är antagligen inte nåbar.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent på Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Okänd</translation>
     </message>
@@ -1552,10 +1548,6 @@
         <translation>Kopiera IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Lägg till en ny jämlike...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Land/region</translation>
     </message>
@@ -2684,7 +2676,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1y %2d</translation>
+        <translation>%1å %2d</translation>
     </message>
 </context>
 <context>

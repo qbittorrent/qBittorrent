@@ -144,10 +144,6 @@
         <translation>Không thể lưu tùy chọn chương trình, qBittorrent có thể không truy cập được.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent trên Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Không rõ</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Sao chép IP:cổng</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Thêm máy ngang hàng mới...</translation>
     </message>
     <message>
         <source>Country/Region</source>

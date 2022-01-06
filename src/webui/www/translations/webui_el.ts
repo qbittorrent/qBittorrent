@@ -144,10 +144,6 @@
         <translation>Δεν είναι δυνατή η αποθήκευση των προτιμήσεων του προγράμματος, το qBittorrent είναι πιθανώς μη διαθέσιμο.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent στο Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Άγνωστο</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Αντιγραφή IP:θύρα</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Προσθήκη νέου peer...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Χώρα/Περιοχή</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Προσθήκη peers...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Μασκότ του qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Εικονίδιο του qBittorrent</translation>
     </message>
 </context>
 <context>

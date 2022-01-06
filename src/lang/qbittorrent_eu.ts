@@ -87,9 +87,13 @@
         <translation>BitTorrent bezero aurreratua C++-rekin programatua, Qt toolkit-ean eta libtorrent-rasterbar-en ohinarrituta.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyrighta %1 2006-2021 qBittorrent egitasmoa</translation>
+        <translation type="vanished">Copyrighta %1 2006-2021 qBittorrent egitasmoa</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyrighta %1 2006-2021 qBittorrent egitasmoa {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Akatsa: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Lehentasuna</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Metadatu baliogabeak</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Akatsa: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">qBittorrent agintzeko, sartu Web EI-ra hemen %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5352,10 +5348,6 @@ Erabili &apos;;&apos; sarrera ugari banantzeko. &apos;*&apos; ordez-hizkia erabi
         <translation>Berezko Gordetze Helbura:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Gorde osatugabeko torrentak hemen:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopiatu .torrent agiriak hona:</translation>
@@ -6066,10 +6058,6 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
         <translation>Hautatu qBittorrent EI Azalgai agiria</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent EI Azalgai Agiria (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Hautatu EI agiri kokaleku alternatiboa</translation>
@@ -6460,10 +6448,6 @@ Eskuzkoa: Torrent ezaugarri ugari (adib. gordetze helburua) eskuz esleitu behar 
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Gehitu hartzaile berri bat...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7266,19 +7250,19 @@ Plugin hauek ezgaituta daude.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 agindu lerro parametro ezezaguna da.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 agindu lerro parametro soila izan behar da.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Ezin duzu %1 erabili: qBittorrent jadanik ekinean dago erabiltzaile honentzat.</translation>
     </message>
@@ -7453,37 +7437,37 @@ Plugin hauek ezgaituta daude.</translation>
         <translation>Laguntza</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Ekin aplikazioa -h aukerarekin agindu lerro parametroei buruz irakurtzeko.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Agindu lerro okerra</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Agindu lerro okerra:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Legezko Jakinarazpena</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent agiri elkarbanatze programa bat da. Torrent bati ekiten diozunean, datu hauek eskuragarriak izango dira besteentzako igoeraren bidez. Elkarbanatzen duzun edozein eduki zure erantzunkizunekoa da.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Ez da berri gehiago jaulkiko.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7491,22 +7475,22 @@ No further notices will be issued.</source>
 Ez dira jakinarazpen gehiago egingo.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Sakatu %1 tekla onartu eta jarraitzeko...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Legezko Jakinarazpena</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Ezeztatu</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Onartzen dut</translation>
     </message>
@@ -9451,7 +9435,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Berezgaitasunezko Torrent Kudeaketa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9538,7 +9522,7 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jeitsi hurrenkera sekuentzialean</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10285,10 +10269,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Zutabe ikusgarritasuna</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Hautatu gordetzeko helburua</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Berregiaztatu baieztapena</translation>
@@ -10407,10 +10387,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Mugitu beheren</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ezarri kokalekua...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Behartu berriragarpena</translation>
@@ -10441,10 +10417,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Kopiatu</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Jeitsi lehen eta azken atalak lehenik</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrentaren aukerak...</translation>
@@ -10460,31 +10432,9 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Berezgaitasunezko Torrent Kudeaketa</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Berezgaitasunezko moduak esanahi du torrent ezaugarri ugari (adib. gordetze helburua) elkartutako kategoriaren arabera erabakiko direla</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Editatu aztarnariak...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Berria...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Berrezarri</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10518,10 +10468,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <source>Rename...</source>
         <translation>Berrizendatu...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Jeitsi sekuentzialki</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10529,14 +10475,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Hutsegitea EI azalgaia agiritik gertatzerakoan: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Ezinezkoa azalgai estilo-orria ezartzea. stylesheet.qss ezin da ireki. Zergaitia: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Hutsegitea &quot;%1&quot; irekitzean. Zergaitia: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

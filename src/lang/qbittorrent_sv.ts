@@ -87,9 +87,13 @@
         <translation>En avancerad BitTorrent-klient programmerad i C++, baserad på Qt-verktygslåda och libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 qBittorrent-projektet</translation>
+        <translation type="vanished">Copyright %1 2006-2021 qBittorrent-projektet</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 qBittorrent-projektet {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Fel: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Ogiltiga metadata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Fel: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">För att styra qBittorrent, öppna webbgränssnittet på %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5355,10 +5351,6 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
         <translation>Standard sparningssökväg:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behåll ofullständiga torrenter i:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopiera .torrent-filer till:</translation>
@@ -6069,10 +6061,6 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <translation>Välj qBittorrent-temafil för användargränssnitt</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent-temafil (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Välj alternativ plats för användargränssnitts filer</translation>
@@ -6463,10 +6451,6 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Lägg till en ny jämlike...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7269,19 +7253,19 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 är en okänd parameter</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 måste vara den enda kommandoradsparametern.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Du kan inte använda %1: qBittorrent körs redan för denna användare.</translation>
     </message>
@@ -7456,37 +7440,37 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Hjälp</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Kör programmet med -h optionen för att läsa om kommando parametrar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Ogiltig kommandorad</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Ogiltig kommandorad:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent är ett fildelningsprogram. När du kör en torrent kommer dess data att göras tillgängliga för andra genom sändning. Allt innehåll som du delar är fullständigt på ditt eget ansvar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Inga ytterligare meddelanden kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7495,22 +7479,22 @@ No further notices will be issued.</source>
 Inga ytterligare meddelanden kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tryck på %1-tangenten för att godkänna och fortsätta...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Jag godkänner</translation>
     </message>
@@ -9056,7 +9040,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
         <source>Download Priority</source>
-        <translation>Prioritet</translation>
+        <translation>Hämtningsprioritet</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="193"/>
@@ -9455,7 +9439,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatisk torrenthantering</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10289,10 +10273,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <translation>Kolumnsynlighet</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Välj sparningssökväg</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Bekräftelse för återkontroll</translation>
@@ -10411,10 +10391,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <translation>Flytta nederst</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ange plats...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Tvinga återannonsera</translation>
@@ -10445,10 +10421,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <translation>Kopiera</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Hämta första och sista delarna först</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrentalternativ...</translation>
@@ -10464,31 +10436,9 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatisk torrenthantering</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatiskt läge betyder att vissa torrentegenskaper (t.ex. var filen ska sparas) bestäms av filens kategori</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Redigera spårare...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Ny...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Återställ</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10522,10 +10472,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <source>Rename...</source>
         <translation>Byt namn...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Hämta i sekventiell ordning</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10533,14 +10479,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Det gick inte att läsa in gränssnittstema från fil: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Det gick inte att tillämpa temastilmall. stylesheet.css kunde inte öppnas. Orsak: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Det gick inte att öppna &quot;%1&quot;. Orsak: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>
@@ -10834,19 +10772,19 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../base/utils/misc.cpp" line="374"/>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 h %2 min</translation>
+        <translation>%1h %2m</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="381"/>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 d %2 h</translation>
+        <translation>%1d %2h</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="386"/>
         <source>%1y %2d</source>
         <comment>e.g: 2years 10days</comment>
-        <translation>%1 år %2 d</translation>
+        <translation>%1å %2d</translation>
     </message>
     <message>
         <location filename="../base/utils/misc.cpp" line="265"/>

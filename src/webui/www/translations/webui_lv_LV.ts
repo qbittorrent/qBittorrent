@@ -144,10 +144,6 @@
         <translation>Neizdevās saglabāt programmas iestatījumus, qBittorrent droši vien nav sasniedzams.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent uz Freenode servera</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nezināms</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopēt IP un portu</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pievienot jaunu koplietotāju...</translation>
     </message>
     <message>
         <source>Country/Region</source>

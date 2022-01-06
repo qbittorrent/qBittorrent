@@ -87,9 +87,13 @@
         <translation>Egy kifinomult, C++-ban fejlesztett BitTorrent kliens, Qt és libtorrent-rasterbar programkönyvtárakra alapozva.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Szerzői joggal védve %1 2006-2021 A qBittorrent projekt</translation>
+        <translation type="vanished">Szerzői joggal védve %1 2006-2021 A qBittorrent projekt</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Szerzői joggal védve %1 2006-2021 A qBittorrent projekt {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Hiba: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Priorítás</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Érvénytelen metadata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1058,10 +1058,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">qBittorrent irányításához nyissa meg a webes felületet itt: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5351,10 +5347,6 @@ Használja a &apos;;&apos; karaktert az elválasztásra, ha több is van. A &apo
         <translation>Alapértelmezett mentési útvonal:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Átmeneti fájlok helye:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent fájlok másolása ide:</translation>
@@ -6065,10 +6057,6 @@ Kézi: A különböző torrenttulajdonságokat (például a mentési útvonalat)
         <translation>qBittorrent felülettémafájl kiválasztása</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent felülettémafájl (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Válasszon helyet az alternatív felhasználóifelület-fájloknak</translation>
@@ -6459,10 +6447,6 @@ Kézi: A különböző torrenttulajdonságokat (például a mentési útvonalat)
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Új peer hozzáadása...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7266,19 +7250,19 @@ Azok a modulok kikapcsolásra kerültek.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>A %1 egy ismeretlen parancssori paraméter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 egyedüli parancssori paraméter lehet csak.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Nem lehet használni %1: a qBittorrent már fut ennél a felhasználónál.</translation>
     </message>
@@ -7453,37 +7437,37 @@ Azok a modulok kikapcsolásra kerültek.</translation>
         <translation>Súgó</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Az alkalmazást a -h paraméterrel indítva ismerkedhet meg a parancssori paraméterekkel.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Rossz parancs</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Rossz parancs sor:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Jogi figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>A qBittorrent egy fájlmegosztó program. Amikor egy torrentet futtat, a benne lévő adatok az Ön feltöltése által lesznek elérhetőek mások számára. Minden tartalom amit megoszt, kizárólag az Ön felelőssége.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Ez az üzenet többször nem fog megjelenni.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7492,22 +7476,22 @@ No further notices will be issued.</source>
 Több ilyen figyelmeztetést nem fog kapni.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Nyomja meg a %1 billentyűt az elfogadás és folytatáshoz...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Jogi figyelmeztetés</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Mégse</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Elfogadom</translation>
     </message>
@@ -8969,22 +8953,22 @@ A telepítéshez kattintson a „Modulok keresése…” gombra az ablak jobb al
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Alapértelmezett</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Igen</translation>
+        <translation>Igen</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Nem</translation>
+        <translation>Nem</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
         <source>Path:</source>
-        <translation type="unfinished">Útvonal:</translation>
+        <translation>Útvonal:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
@@ -9452,7 +9436,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Alapértelmezett torrentkezelés</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9467,7 +9451,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
         <source>Category:</source>
-        <translation type="unfinished">Kategória:</translation>
+        <translation>Kategória:</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="86"/>
@@ -9539,7 +9523,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Letöltés egymás utáni sorrendben</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10286,10 +10270,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Oszlop beállítások</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Mentés helye</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Újraellenőrzés megerősítése</translation>
@@ -10408,10 +10388,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Legalúlra mozgat</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Hely megadása...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Kényszerített újrajelentés</translation>
@@ -10442,10 +10418,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Másolás</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Első és utolsó szelet letöltése először</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrent beállításai…</translation>
@@ -10461,31 +10433,9 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Információ-ujjlenyomat v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Alapértelmezett torrentkezelés</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Az automatikus mód azt jelenti, hogy a különböző torrenttulajdonságok (pl. a mentési útvonal) a hozzátartozó kategória alapján kerülnek eldöntésre</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Trackerek szerkesztése...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategória</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Új…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Reset</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10519,10 +10469,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <source>Rename...</source>
         <translation>Átnevezés...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Letöltés sorrendben</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10530,14 +10476,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Nem sikerült UI téma betöltése a fájlból: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Nem sikerült alkalmazni a téma stíluslapot. stylesheet.qss nem lehetett megnyitni. Oka: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">A(z) „%1” megnyitása sikertelen. Ok: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

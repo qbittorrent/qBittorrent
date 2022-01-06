@@ -144,10 +144,6 @@
         <translation>Nem sikerült menteni a beállításokat. A qBittorrent valószínüleg nem elérhető.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent a Freenode-on</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Ismeretlen</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>IP:port másolása</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Új ügyfél hozzáadása...</translation>
     </message>
     <message>
         <source>Country/Region</source>

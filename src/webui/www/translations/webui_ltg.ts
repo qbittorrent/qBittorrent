@@ -144,10 +144,6 @@
         <translation>Nāisadevās saglabuot īstatejumus, varams, ka qBittorrent navā dasnēdzuoms.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent iz Freenode servera</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nazynoms</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Puorspīst IP i portu</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pīlikt jaunu kūplītuotuoju...</translation>
     </message>
     <message>
         <source>Country/Region</source>

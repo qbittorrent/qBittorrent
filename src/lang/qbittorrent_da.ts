@@ -87,9 +87,13 @@
         <translation>En avanceret BitTorrent-klient, programmeret in C++, baseret på Qt toolkit og libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Ophavsret %1 2006-2021 qBittorrent-projektet</translation>
+        <translation type="vanished">Ophavsret %1 2006-2021 qBittorrent-projektet</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Ophavsret %1 2006-2021 qBittorrent-projektet {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Fejl: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Ugyldig metadata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Fejl: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Styr qBittorrent, ved at tilgå webgrænsefladen på %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5349,10 +5345,6 @@ Brug &apos;;&apos; til af adskille flere indtastninger. Jokertegnet &apos;*&apos
         <translation>Standardgemmesti:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behold ufærdige torrents i:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopiér .torrent-filer til:</translation>
@@ -6454,10 +6446,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Tilføj en ny modpart...</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Adding peers</source>
@@ -7258,19 +7246,19 @@ Pluginsne blev deaktiveret.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 er en ukendt kommandolinjeparameter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 skal være en enkelt kommandolinjeparameter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Du kan ikke bruge %1: qBittorrent kører allerede for denne bruger.</translation>
     </message>
@@ -7445,37 +7433,37 @@ Pluginsne blev deaktiveret.</translation>
         <translation>Hjælp</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Kør programmet med tilvalget -h for at læse om kommandolinjeparametre.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Ugyldig kommandolinje</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Ugyldig kommandolinje: </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Juridisk notits</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent er et fildelingsprogram. Når du kører en torrent, vil dens data blive gjort tilgængelig til andre via upload. Du har alene ansvaret for det indhold du deler.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Der udstedes ingen yderligere notitser.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7484,22 +7472,22 @@ No further notices will be issued.</source>
 Der udstedes ingen yderlige notitser.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tryk på %1 for at acceptere og forsætte...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Juridisk notits</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Annuller</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Jeg accepterer</translation>
     </message>
@@ -9426,7 +9414,7 @@ Vælg venligst et andet navn og prøv igen.</translation>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">Ugyldig metadata</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9444,7 +9432,7 @@ Vælg venligst et andet navn og prøv igen.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatisk håndtering af torrent</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10278,10 +10266,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Synlighed for kolonne</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Vælg gemmesti</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Bekræftelse for gentjek</translation>
@@ -10400,10 +10384,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Flyt til bunden</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Sæt placering...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Tving genannoncer</translation>
@@ -10434,10 +10414,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Kopiér</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Download første og sidste stykker først</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10453,31 +10429,9 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatisk håndtering af torrent</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatisk tilstand betyder at diverse torrent-egenskaber (f.eks. gemmesti) vil blive besluttet af den tilknyttede kategori</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Rediger trackere...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Ny...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Nulstil</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10511,10 +10465,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <source>Rename...</source>
         <translation>Omdøb...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Download i fortløbende rækkefølge</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10522,10 +10472,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Kunne ikke indlæse brugefladetema fra fil: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Kunne ikke anvende tematypografiark. stylesheet.qss kunne ikke åbnes. Årsag: %1</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

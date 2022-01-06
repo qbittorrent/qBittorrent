@@ -1548,10 +1548,6 @@
         <translation>Copiar l'IP:pòrt</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Apondre un novèl par…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation type="unfinished" />
     </message>

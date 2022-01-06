@@ -87,9 +87,13 @@
         <translation>C++ कोड प्रयुक्त कर क्यूटी टूलकिट व libtorrent-rasterbar आधारित, एक उन्नत बिट टोरेंट साधन।</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>कॉपीराइट %1 2006-2021 क्यूबिटटाॅरेंट परियोजना</translation>
+        <translation type="vanished">कॉपीराइट %1 2006-2021 क्यूबिटटाॅरेंट परियोजना</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">कॉपीराइट %1 2006-2021 क्यूबिटटाॅरेंट परियोजना {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>प्राथमिकता</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">अमान्य मेटाडेटा</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">क्यूबिटटोरेंट प्रबंधन हेतु, %1 से वेब उपयोक्ता अंतरफलक अभिगम करें</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5343,10 +5339,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>पूर्व निर्धारित संचय पथ:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">अपूर्ण टौरेंटों को यहाँ रखें:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent फाइलों को यहां प्रतिलिपि करें:</translation>
@@ -6057,10 +6049,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>क्यूबिटटोरेंट उपयोक्ता अंतरफलक थीम फाइल चयन</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">क्यूबिटटोरेंट उपयोक्ता अंतरफलक थीम फाइल (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation type="unfinished"></translation>
@@ -6451,10 +6439,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">नया सहकर्मी जोड़े...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7257,19 +7241,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 अज्ञात कमाण्ड लाइन शब्द है।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 एकल कमाण्ड लाइन शब्द हो।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>%1 उपयोग करना संभव नहीं है : इस उपयोक्ता हेतु क्यूबिटटोरेंट पहले से सक्रिय है।</translation>
     </message>
@@ -7444,37 +7428,37 @@ Those plugins were disabled.</source>
         <translation>सहायता</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>गलत कमाण्ड लाइन</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>गलत कमाण्ड लाइन:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>कानूनी सूचना</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>क्यूबिटटोरेंट एक फाइल सहभाजन प्रोग्राम है। टोरेंट आरंभ करने के उपरांत सम्मिलित डेटा अपलोड के माध्यम से अन्य व्यक्तियों को उपलब्ध होगा। इस सहभाजित सामग्री हेतु उत्तरदायित्व केवल आपका है।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7483,22 +7467,22 @@ No further notices will be issued.</source>
 इस विषय पर पुनः सूचित नहीं किया जाएगा।</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>स्वीकार करने और जारी रखने के लिए %1 कुंजी दबाएँ...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>कानूनी सूचना</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>रद्द करें</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>मै सहमत हूँ</translation>
     </message>
@@ -9441,7 +9425,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">स्वतः टाॅरेंट प्रबन्धन</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10270,10 +10254,6 @@ Please choose a different name and try again.</source>
         <translation>स्तंभ दृश्यता</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">संचय पथ चुनें</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>पुन: जाँच हेतु पु‍ष्टि</translation>
@@ -10392,10 +10372,6 @@ Please choose a different name and try again.</source>
         <translation>अंत में ले जाएँ</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">स्थान निर्धारण...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>पुनः बलपूर्वक घोषणा करें</translation>
@@ -10426,10 +10402,6 @@ Please choose a different name and try again.</source>
         <translation>प्रतिलिपि बनाए</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">प्रथम व अंतिम खण्ड सबसे पहले डाउनलोड करें</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>टाॅरेंट विकल्प...</translation>
@@ -10445,27 +10417,9 @@ Please choose a different name and try again.</source>
         <translation>जानकारी हैश v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">स्वतः टाॅरेंट प्रबन्धन</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>ट्रैकर संशोधित करें</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">श्रेणी</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">नया...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">मूल स्थिति में लाएं</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10498,10 +10452,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>नाम बदलें...</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">क्रमबद्ध डाउनलोड करें</translation>
     </message>
 </context>
 <context>

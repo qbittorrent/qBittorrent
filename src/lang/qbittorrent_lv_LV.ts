@@ -87,9 +87,13 @@
         <translation>Moderns BitTorrent klients programmēts C++ valodā, veidots uz Qt toolkit un libtorrent-rasterbar bāzes.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Autortiesības %1 2006-2021 The qBittorrent project</translation>
+        <translation type="vanished">Autortiesības %1 2006-2021 The qBittorrent project</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Autortiesības %1 2006-2021 The qBittorrent project {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Kļūda: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritāte</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Nederīgi metadati</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Kļūda: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Lai piekļūtu qBittorrent Web UI kontroles panelim, atveriet %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5355,10 +5351,6 @@ Izmantojiet &apos;;&apos; lai atdalītu vairākus vārdus. Varat izmantot viettu
         <translation>Noklusētā saglabāšanas vieta:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Glabāt nepabeigtos failus šeit:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Izveidot .torrent failu kopijas šeit:</translation>
@@ -6069,10 +6061,6 @@ Manuāli: Nozīmē, ka torrenta uzstādījumi (piem. saglabāšanas vieta) būs 
         <translation>Izvēlēties qBittorrent saskarnes failu</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent saskarnes fails (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Izvēlieties interfeisa failu atrašanās vietu</translation>
@@ -6463,10 +6451,6 @@ Manuāli: Nozīmē, ka torrenta uzstādījumi (piem. saglabāšanas vieta) būs 
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Pievienot jaunu koplietotāju...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7269,19 +7253,19 @@ Esošie spraudņi tika atslēgti. </translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 ir nezināms komandlīnijas parametrs.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 ir jābūt vienrindiņas komandlīnijas paramateram.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Tu nevari atvērt %1: qBittorrent šim lietotājam jau ir atvērts.</translation>
     </message>
@@ -7456,37 +7440,37 @@ Esošie spraudņi tika atslēgti. </translation>
         <translation>Palīdzība</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Palaist programmu ar -h parametru, lai iegūtu informāciju par komandlīnijas parametriem</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Slikta komandlīnija</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Slikta komandlīnija:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Juridiskais ziņojums</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent ir failu koplietošanas programma. Katra aktīvi koplietotā torrenta saturs caur augšupielādi būs pieejams citiem lietotājiem internetā. Katrs fails, kuru jūs dalāt ir uz jūsu pašu atbildību. </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Tālāki atgādinājumi netiks izsniegti.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7495,22 +7479,22 @@ No further notices will be issued.</source>
 Tālāki atgādinājumi netiks izsniegti. </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Nospiediet taustiņu %1 lai turpinātu...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Juridiskais ziņojums</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Atcelt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Es piekrītu</translation>
     </message>
@@ -9455,7 +9439,7 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automātiska torrentu pārvaldība</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10289,10 +10273,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Kolonnas redzamība</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Izvēlieties vietu, kur saglabāt</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Pārbaudes apstiprināšana</translation>
@@ -10411,10 +10391,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Novietot saraksta apakšā</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nomainīt failu atrašanās vietu...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Piespiedu datu atjaunināšana ar trakeriem</translation>
@@ -10445,10 +10421,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Kopēt</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Vispirms ielādēt pirmās un pēdējās daļiņas</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrenta iestatījumi...</translation>
@@ -10464,31 +10436,9 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Jaucējkods v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automātiska torrentu pārvaldība</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automātiskais režīms nozīmē, ka torrenta īpašības (piem. saglabāšanas vieta), tiks piešķirta atbilstoši izvēlētajai kategorijai. </translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Rediģēt trakerus...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Jaunu...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Atiestatīt</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10522,10 +10472,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <source>Rename...</source>
         <translation>Pārdēvēt...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Lejupielādēt secīgā kārtībā</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10533,14 +10479,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Neizdevās ielādēt saskarni no faila: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Neizdevās pielietot tēmas stylesheet. Nevar atvērt stylesheet.qss. Iemesls: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Neizdevās atvērt &quot;%1&quot;. Iemesls: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

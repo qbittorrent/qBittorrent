@@ -144,10 +144,6 @@
         <translation>Tidak boleh simpan keutamaan program, qBittorrent berkemungkinan tidak boleh dicapai.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent di Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Tidak diketahui</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Salin IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Tambah satu rakan baharu...</translation>
     </message>
     <message>
         <source>Country/Region</source>

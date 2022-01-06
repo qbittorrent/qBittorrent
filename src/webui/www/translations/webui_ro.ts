@@ -144,10 +144,6 @@
         <translation>Nu se pot salva preferințele programului, probabil qBittorrent nu poate fi contactat.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent pe Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Necunoscut</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Copiază IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Adăugare un partener nou...</translation>
     </message>
     <message>
         <source>Country/Region</source>

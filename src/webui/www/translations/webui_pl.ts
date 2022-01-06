@@ -144,10 +144,6 @@
         <translation>Nie można zapisać ustawień, prawdopodobnie qBittorrent jest nieosiągalny.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent w sieci Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nieznany</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Kopiuj IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Dodaj nowego partnera...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Kraj/Region</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Dodaj partnerów...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Maskotka qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona qBittorrent</translation>
     </message>
 </context>
 <context>

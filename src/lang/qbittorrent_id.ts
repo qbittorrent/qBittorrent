@@ -87,9 +87,13 @@
         <translation>Aplikasi BitTorrent tingkat lanjut yang diprogram menggunakan C++, berbasis toolkit Qt dan libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Hak Cipta %1 2006-2021 Proyek qBittorrent</translation>
+        <translation type="vanished">Hak Cipta %1 2006-2021 Proyek qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Hak Cipta %1 2006-2021 Proyek qBittorrent {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Galat: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritas</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Metadata tidak valid</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Galat: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Untuk mengontrol qBittorrent, akses Web UI di %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5351,10 +5347,6 @@ Gunakan &apos;;&apos; untuk memisahkan banyak kata. Dapat menggunakan wildcard &
         <translation>Tempat penyimpanan biasa:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Biarkan torrent belum selesai di:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Salin berkas .torrent ke:</translation>
@@ -6064,10 +6056,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>Pilih berkas Tema UI qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Berkas Tema UI qBittorrent (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Pilih lokasi berkas UI Alternatif</translation>
@@ -6458,10 +6446,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Tambah rekan baru...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7264,19 +7248,19 @@ Plugin ini semua dinonaktifkan.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 adalah parameter baris perintah yang tidak dikenal.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 harus sebagai parameter baris perintah tunggal.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Anda tidak bisa menggunakan %1: qBittorrent telah berjalan untuk pengguna ini.</translation>
     </message>
@@ -7451,37 +7435,37 @@ Plugin ini semua dinonaktifkan.</translation>
         <translation>Bantuan</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Jalankan aplikasi dengan opsi -h untuk membaca tentang parameter baris perintah.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Baris perintah buruk</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Baris perintah buruk:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Catatan Hukum</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent adalah program berbagi berkas. Ketika menjalankan torrent, data akan tersedia dan  dibagikan dengan menunggah. Konten apapun yang dibagikan adalah resiko Anda sendiri.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Tidak adap peringatan lanjutan yang akan diangkat.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7490,22 +7474,22 @@ No further notices will be issued.</source>
 Tidak ada pemberitahuan lebih lanjut yang akan dikeluarkan.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tekan tombol %1 untuk menerima dan melanjutkan...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Catatan hukum</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Saya Setuju</translation>
     </message>
@@ -9450,7 +9434,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Manajemen Torrent Otomatis</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9537,7 +9521,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Unduh dengan urutan sekuensial</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10279,10 +10263,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Keterlihatan kolom</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Pilih jalur penyimpanan</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Komfirmasi pemeriksaan ulang</translation>
@@ -10401,10 +10381,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Pindahkan ke dasar</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Tetapkan lokasi...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Paksa umumkan ulang</translation>
@@ -10435,10 +10411,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Salin</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Unduh bagian-bagian pertama dan akhir terlebih dahulu</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Opsi torrent...</translation>
@@ -10454,31 +10426,9 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Informasi hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Manajemen Torrent Otomatis</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Mode otomatis berarti aneka properti torrent (misal tempat penyimpanan) akan diatur dengan kategori terhubung.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Ubah pelacak...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Baru ....</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Setel ulang</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10511,10 +10461,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>Ubah nama...</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Unduh berurutan</translation>
     </message>
 </context>
 <context>
@@ -10589,7 +10535,7 @@ Mohon memilih nama lain dan coba lagi.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="84"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mode otomatis artinya berbagai properti torrent (mis jalur penyimpanan) akan ditentukan oleh kategori terkait</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="88"/>

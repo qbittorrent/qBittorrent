@@ -144,10 +144,6 @@
         <translation>Не мога да съхраня предпочитанията за програмата, qBittorrent е вероятно недостъпен.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
@@ -1551,10 +1547,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Копирай IP:порт</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Добави нов участник...</translation>
     </message>
     <message>
         <source>Country/Region</source>

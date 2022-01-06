@@ -144,10 +144,6 @@
         <translation>Kan ikke gemme programpræferencer, qBittorrent er formodentligt ikke til at få kontakt med.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent på Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Ukendt</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopiér IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Tilføj en ny modpart...</translation>
     </message>
     <message>
         <source>Country/Region</source>

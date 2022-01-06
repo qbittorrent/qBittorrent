@@ -87,9 +87,13 @@
         <translation>โปรแกรมบิตทอร์เรนต์ขั้นสูงถูกสร้างด้วยโปรแกรมภาษา C++, ขึ้นกับชุดเครื่องมือ Qt และ libtorrent-rasterbar</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>สงวนลิขสิทธิ์ %1 2006-2021 โครงการ qBittorrent</translation>
+        <translation type="vanished">สงวนลิขสิทธิ์ %1 2006-2021 โครงการ qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">สงวนลิขสิทธิ์ %1 2006-2021 โครงการ qBittorrent {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>ความสำคัญ</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">ข้อมูลไม่ถูกต้อง</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">ควบคุม qBittorrent, เข้าถึงเว็บ UI at %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5344,10 +5340,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>ตำแหน่งที่บันทึกเริ่มต้น</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">เก็บทอร์เรนต์ที่ไม่สมบูรณ์ใน:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>คัดลอกไฟล์ .torrent ไปที่:</translation>
@@ -6057,10 +6049,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>เลือก qBittorrent UI ธีมไฟล์</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent UI ธีมไฟล์ (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation type="unfinished"></translation>
@@ -6451,10 +6439,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">เพิ่มเพียร์ใหม่...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7256,19 +7240,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -7425,7 +7409,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="566"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ดาวน์โหลดเป็นอันดับแรก และชิ้นสุดท้ายก่อน</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="572"/>
@@ -7443,59 +7427,59 @@ Those plugins were disabled.</source>
         <translation>ช่วยเหลือ</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>ยกเลิก</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>ฉันยอมรับ</translation>
     </message>
@@ -9421,7 +9405,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">ข้อมูลไม่ถูกต้อง</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9439,7 +9423,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">การจัดการทอร์เรนต์อัตโนมัติ</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9536,7 +9520,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ดาวน์โหลดเป็นอันดับแรก และชิ้นสุดท้ายก่อน</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -10268,10 +10252,6 @@ Please choose a different name and try again.</source>
         <translation>การเปิดเผยคอลัมน์</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">เลือกบันทึกเส้นทาง</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>ตรวจสอบการยืนยันอีกครั้ง</translation>
@@ -10390,10 +10370,6 @@ Please choose a different name and try again.</source>
         <translation>ย้ายไปด้านล่าง</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">กำหนดตำแหน่ง...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>บังคับให้ประกาศอีกครั้ง</translation>
@@ -10424,10 +10400,6 @@ Please choose a different name and try again.</source>
         <translation>คัดลอก</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">ดาวน์โหลดชิ้นแรกและชิ้นสุดท้ายก่อน</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>ตัวเลือกทอร์เรนต์...</translation>
@@ -10443,31 +10415,9 @@ Please choose a different name and try again.</source>
         <translation>ข้อมูลแฮช v2:</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">การจัดการทอร์เรนต์อัตโนมัติ</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">โหมดอัตโนมัติหมายความว่าคุณสมบัติทอร์เรนต์ต่างๆ (เช่นบันทึกเส้นทาง) จะถูกกำหนดโดยหมวดหมู่ที่เกี่ยวข้อง</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>แก้ไข การติดตาม...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">หมวดหมู่</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">ใหม่...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">รีเซ็ต</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10501,10 +10451,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>เปลี่ยนชื่อ...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">ดาวน์โหลดตามลำดับ</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10512,14 +10458,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>ไม่สามารถโหลดธีมจากไฟล์: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">ไม่สามารถใช้สไตล์ชีตของธีม. ไม่สามารถเปิด stylesheet.qss ได้. เหตุผล: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">เปิดไฟล์ไม่สำเร็จ &quot;%1&quot;. เหตุผล: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

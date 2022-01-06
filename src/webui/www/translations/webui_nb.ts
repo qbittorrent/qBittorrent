@@ -144,10 +144,6 @@
         <translation>Ikke i stand til å lagre programinnstillinger, qBittorrent er sannsynligvis unåelig.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent på Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Ukjent</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopier IP:port</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Legg til ny likemann …</translation>
     </message>
     <message>
         <source>Country/Region</source>

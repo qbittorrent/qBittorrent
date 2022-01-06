@@ -87,9 +87,13 @@
         <translation>Un client BitTorrent évolué programmé en C++, basé sur les bibliothèques Qt et libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Copyright %1 2006-2021 Le projet qBittorrent</translation>
+        <translation type="vanished">Copyright %1 2006-2021 Le projet qBittorrent</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Copyright %1 2006-2021 Le projet qBittorrent {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Erreur : %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Priorité</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Metadata invalides.</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Motif: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">Pour contrôler qBittorrent, accédez à l&apos;interface web via %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5354,10 +5350,6 @@ Utiliser &apos;;&apos; pour diviser plusieurs entrées. Le caractère génériqu
         <translation>Chemin de sauvegarde par défaut :</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Conserver les torrents incomplets dans&#x202f;:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Copier les fichiers .torrent dans :</translation>
@@ -6068,10 +6060,6 @@ Manuel : Certaines propriétés du torrent (p. ex. le répertoire de destination
         <translation>Sélectionner le fichier de thème d&apos;interface qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">Fichier de thème d&apos;interface qBittorrent (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Choisir l&apos;emplacement des fichiers d&apos;interface alternative</translation>
@@ -6462,10 +6450,6 @@ Manuel : Certaines propriétés du torrent (p. ex. le répertoire de destination
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Ajouter un nouveau pair…</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7267,19 +7251,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation> %1 est un paramètre de ligne de commande inconnu.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 doit être le paramètre de ligne de commande unique.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Vous ne pouvez pas utiliser% 1: qBittorrent est déjà en cours d&apos;exécution pour cet utilisateur.</translation>
     </message>
@@ -7454,37 +7438,37 @@ Those plugins were disabled.</source>
         <translation>Aide</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Exécuter le programme avec l&apos;option -h pour afficher les paramètres de ligne de commande.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Mauvaise ligne de commande</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Mauvaise ligne de commande :</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Information légale</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent est un logiciel de partage de fichiers. Lorsque vous ajoutez un torrent, ses données sont mises à la disposition des autres pour leur envoyer. Tout contenu que vous partagez est de votre unique responsabilité.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7493,22 +7477,22 @@ No further notices will be issued.</source>
 Ce message d&apos;avertissement ne sera plus affiché.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Appuyez sur la touche %1 pour accepter et continuer…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Information légale</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Annuler</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>J&apos;accepte</translation>
     </message>
@@ -8975,12 +8959,12 @@ Cliquez sur le bouton « Recherche de greffons... » en bas à droite de la fen�
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Oui</translation>
+        <translation>Oui</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Non</translation>
+        <translation>Non</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
@@ -9453,7 +9437,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Gestion de torrent automatique</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9540,7 +9524,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Télécharger en ordre séquentiel</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10287,10 +10271,6 @@ Veuillez en choisir un autre.</translation>
         <translation>Visibilité des colonnes</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Choix du répertoire de destination</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Revérifier la confirmation</translation>
@@ -10409,10 +10389,6 @@ Veuillez en choisir un autre.</translation>
         <translation>Déplacer tout en bas</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Chemin de sauvegarde…</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Forcer une nouvelle annonce</translation>
@@ -10443,10 +10419,6 @@ Veuillez en choisir un autre.</translation>
         <translation>Copier</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Télécharger les premières et dernières pièces d&apos;abord</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Options torrent...</translation>
@@ -10462,31 +10434,9 @@ Veuillez en choisir un autre.</translation>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Gestion de torrent automatique</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Le mode automatique signifie que certaines propriétés du torrent (p. ex. le répertoire de destination) seront décidés via la catégorie associée</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Éditer les trackers...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Catégorie</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nouvelle…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Réinitialiser</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10520,10 +10470,6 @@ Veuillez en choisir un autre.</translation>
         <source>Rename...</source>
         <translation>Renommer…</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Téléchargement séquentiel</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10531,14 +10477,6 @@ Veuillez en choisir un autre.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Échec du chargement du thème de l&apos;interface depuis le fichier : &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">La feuille de style du thème n&apos;a pas pu être appliquée : stylesheet.qss n&apos;a pas pu être ouvert. Raison&#xa0;: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Échec de l&apos;ouverture &quot;%1&quot;. Motif : %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

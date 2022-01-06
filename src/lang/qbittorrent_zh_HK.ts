@@ -88,7 +88,7 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
-        <source>Copyright %1 2006-2021 The qBittorrent project</source>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -499,10 +499,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>優先權</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">無效元資料</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1058,10 +1054,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">遙控qBittorrent，從「%1」存取Web UI遠端控制</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5348,10 +5340,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>預設儲存路徑：</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">未完成Torrent存放於：</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>複製「.torrent」檔到：</translation>
@@ -6453,10 +6441,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">加入同路人…</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Adding peers</source>
@@ -7256,19 +7240,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1是未知的指令行參數。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1必須是單一指令行參數。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>無法使用%1：qBittorrent正由此用戶執行。</translation>
     </message>
@@ -7443,37 +7427,37 @@ Those plugins were disabled.</source>
         <translation>說明</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>以-h選項執行應用程式以閱讀關於指令行參數的資訊。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>錯誤指令行</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>錯誤指令行：</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>法律聲明</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent 是一個檔案分享程式。當你運行一個Torrent時，資料會上載予其他人，而你須自行對分享的內容負責。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>往後不會再有提醒。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7482,22 +7466,22 @@ No further notices will be issued.</source>
 往後不會再有提醒。</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>按%1表示接受並繼續…</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>法律聲明</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>我同意</translation>
     </message>
@@ -9424,7 +9408,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">無效元資料</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9442,7 +9426,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">自動Torrent管理</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10271,10 +10255,6 @@ Please choose a different name and try again.</source>
         <translation>欄位顯示</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">選取儲存路徑</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>確認重新檢查</translation>
@@ -10393,10 +10373,6 @@ Please choose a different name and try again.</source>
         <translation>移到最下</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">設定存放位置…</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>強制重新公告</translation>
@@ -10427,10 +10403,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">先下載首片段和最後片段</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10446,31 +10418,9 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">自動Torrent管理</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">自動模式代表多個Torrent屬性（例如儲存路徑）將由相關分類決定</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">分類</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">新…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">重設</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10503,10 +10453,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>重新命名…</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">按順序下載</translation>
     </message>
 </context>
 <context>

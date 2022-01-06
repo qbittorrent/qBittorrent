@@ -1548,10 +1548,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Ավելացնել նոր մասնակցի…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Երկիր/տարածաշրջան</translation>
     </message>

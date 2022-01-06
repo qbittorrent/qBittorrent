@@ -144,10 +144,6 @@
         <translation>कार्यक्रम वरीयताओं को सहेजने में असमर्थ, क्यूबिटटाॅरेंट शायद अगम्य है।</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #क्यूबिटटाॅरेंट फ्रीनोड पर</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>अज्ञात</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>IP:पोर्ट की प्रतिलिपि बनायें</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">नया सहकर्मी जोड़े...</translation>
     </message>
     <message>
         <source>Country/Region</source>

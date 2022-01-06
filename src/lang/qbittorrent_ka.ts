@@ -87,9 +87,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>ყველა უფლება დაცულია %1 2006-2021 qBittorrent პროექტი</translation>
+        <translation type="vanished">ყველა უფლება დაცულია %1 2006-2021 qBittorrent პროექტი</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">ყველა უფლება დაცულია %1 2006-2021 qBittorrent პროექტი {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -284,7 +288,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="200"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">თანმიმდევრობით ჩამოტვირთვა</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="186"/>
@@ -1054,10 +1058,6 @@ Error: %2</source>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">qBittorrent სამართავად, გახსენით ვებ ინტერფეისი მისამართზე: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5338,10 +5338,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>ჩვეულებრივი შენახვის გზა:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">არასრული ტორენტების შენახვა მისამართით:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>.torrent ფაილების კომირება მისამართით:</translation>
@@ -6051,10 +6047,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation>ამოირჩიეთ qBittorrent-ის ინტერფეისის თემის ფაილი</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent-ის ინტერფეისის თემის ფაილი (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation type="unfinished"></translation>
@@ -6445,10 +6437,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">ახალი პირის დამატება...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7250,19 +7238,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>თქვენ არ შეგიძლიათ %1 გამოყენება. qBittorrent-ი უკვე გამოიყენება ამ მომხმარებლისთვის.</translation>
     </message>
@@ -7437,37 +7425,37 @@ Those plugins were disabled.</source>
         <translation>დახმარება</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>იურიდიული ცნობა</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7476,22 +7464,22 @@ No further notices will be issued.</source>
 შემდგომ ეს შეყტობინება აღარ გამოჩნდება</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>დააჭირეთ %1 ღილაკს რათა დაეთანხმოთ და განაგრძოთ...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>იურიდიული ცნობა</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>გაუქმება</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>მე ვეთანხმები</translation>
     </message>
@@ -9432,7 +9420,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">ტორენტის ავტომატური მართვა</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9519,7 +9507,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="258"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">თანმიმდევრობით ჩამოტვირთვა</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="278"/>
@@ -10261,10 +10249,6 @@ Please choose a different name and try again.</source>
         <translation>სვეტის ხილვადობა</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">აირჩიეთ შესანახი მდებარეობა</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>დასტურის გადამოწმება</translation>
@@ -10383,10 +10367,6 @@ Please choose a different name and try again.</source>
         <translation>ბოლოში გადატანა</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">მდებაროების დაყენება...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
@@ -10417,10 +10397,6 @@ Please choose a different name and try again.</source>
         <translation>ასლი</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">პირველ რიგში ჩამოიტვირთოს პირველი და ბოლო ნაწილი</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>ტორენტის პარამეტრები...</translation>
@@ -10436,26 +10412,9 @@ Please choose a different name and try again.</source>
         <translation>ჰეშის ინფორმაცია v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">ტორენტის ავტომატური მართვა</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">ავტომატური რეჟიმის დროს ტორენტის რამდენიმე თვისება (მაგ. შესანახი მდებარეობა) გადაწყდება ასოცირებული კატეგორიით.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>ტრეკერების რედაქტირება...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">კატეგორია</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">ახალი...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10489,10 +10448,6 @@ Please choose a different name and try again.</source>
         <source>Rename...</source>
         <translation>გადარქმევა...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">თანმიმდევრობით ჩამოტვირთვა</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10500,10 +10455,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">&quot;%1&quot; გახსნა ვერ მოხერხდა. მიზეზი: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

@@ -144,10 +144,6 @@
         <translation>无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC：#qbittorrent on Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>复制 IP:端口</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">添加新用户...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>国家/地区</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>添加 peers 用户...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 吉祥物</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 图标</translation>
     </message>
 </context>
 <context>

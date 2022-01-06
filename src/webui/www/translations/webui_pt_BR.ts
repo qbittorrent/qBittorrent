@@ -144,10 +144,6 @@
         <translation>Incapaz de salvar as preferências do programa, o qBittorrent provavelmente é inalcançável.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent no Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Desconhecido</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Copiar IP:porta</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Adicionar um novo peer...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>País/Região</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Adicionar peers...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascote do qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Ícone do qBittorrent</translation>
     </message>
 </context>
 <context>

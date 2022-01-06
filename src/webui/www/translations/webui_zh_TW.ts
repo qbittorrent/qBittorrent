@@ -144,10 +144,6 @@
         <translation>無法儲存程式偏好設定，qBittorrent 可能無法連線。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC：#qbittorrent 在 Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>複製 IP:埠</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">新增下載者……</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>國家／區域</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>新增下載者……</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 吉祥物</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 圖示</translation>
     </message>
 </context>
 <context>

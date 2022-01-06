@@ -88,7 +88,7 @@
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
-        <source>Copyright %1 2006-2021 The qBittorrent project</source>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -498,10 +498,6 @@ Error: %2</source>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Nevažeći metapodaci</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -6438,10 +6434,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Dodaj novi peer...</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
         <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Adding peers</source>
@@ -7241,19 +7233,19 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 je nepoznat parametar naredbenog retka.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 mora biti jedinstven parametar naredbenog retka.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Nemoguće koristiti %1: qBittorrent je već pokrenut za ovog korisnika.</translation>
     </message>
@@ -7428,37 +7420,37 @@ Those plugins were disabled.</source>
         <translation>Pomoć</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Pokreni aplikaciju sa -h argumentom kako bi pročitali o parametrima naredbenog retka.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Loš naredbeni redak</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Loš naredbeni redak:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Pravna obavijest</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7467,22 +7459,22 @@ No further notices will be issued.</source>
 Više neće biti obavijesti o ovome.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Pritisnite %1 tipku da prihvatite i nastavite...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Pravna obavijest</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Odustani</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Slažem se</translation>
     </message>
@@ -8968,7 +8960,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="45"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izaberite putanju spremanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="48"/>
@@ -9405,7 +9397,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../base/bittorrent/torrentinfo.cpp" line="139"/>
         <source>Invalid metadata</source>
-        <translation type="unfinished">Nevažeći metapodaci</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -9520,7 +9512,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="285"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Preuzmi prve i zadnje dijelove prije ostalih.</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
@@ -9536,7 +9528,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izaberite putanju spremanja</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -10252,10 +10244,6 @@ Please choose a different name and try again.</source>
         <translation>Vidljivost stupca</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Izaberi putanju spremanja</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Ponovno provjeri potvrđivanje</translation>
@@ -10374,10 +10362,6 @@ Please choose a different name and try again.</source>
         <translation>Na dno</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Postavi mjesto...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
@@ -10408,10 +10392,6 @@ Please choose a different name and try again.</source>
         <translation>Kopiraj</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Preuzmi prve i zadnje dijelove prije drugih.</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation type="unfinished"></translation>
@@ -10430,20 +10410,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Novo...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Poništi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10476,10 +10442,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="840"/>
         <source>Rename...</source>
         <translation>Preimenuj...</translation>
-    </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Preuzmi u sekvencijskom poretku</translation>
     </message>
 </context>
 <context>
@@ -10615,7 +10577,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="53"/>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="58"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Izaberite putanju spremanja</translation>
     </message>
 </context>
 <context>

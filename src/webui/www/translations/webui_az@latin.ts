@@ -144,10 +144,6 @@
         <translation>Proqram tərcihlərini saxlamaq olmadı. qBittorrent ola bilsin ki, əlçatmazdır.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">İRC: Freenode üzərindən #qbittorrent</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Naməlum</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>İP portunu kopyalamaq</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Yeni iştirakçı əlavə edin...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Ölkə/Bölgə</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>İştirakçı əlavə edin...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent talismanı</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent nişanı</translation>
     </message>
 </context>
 <context>

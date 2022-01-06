@@ -144,10 +144,6 @@
         <translation>Ezinezkoa programa hobespenak gordetzea, qBittorrent zihurrenik erdietsiezina da.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent Freenode-an</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Ezezaguna</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopiatu IP:ataka</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Gehitu pareko berri bat...</translation>
     </message>
     <message>
         <source>Country/Region</source>

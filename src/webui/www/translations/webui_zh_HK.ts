@@ -144,10 +144,6 @@
         <translation>無法儲存喜好設定：可能連接不到qBittorrent。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC：#qbittorrent於Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>複製「IP:埠」</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">加入同路人…</translation>
     </message>
     <message>
         <source>Country/Region</source>

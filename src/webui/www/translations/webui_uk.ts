@@ -144,10 +144,6 @@
         <translation>Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Невідомо</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Копіювати IP:порт</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Додати нового піра…</translation>
     </message>
     <message>
         <source>Country/Region</source>

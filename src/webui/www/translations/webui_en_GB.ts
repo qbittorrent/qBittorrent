@@ -1548,10 +1548,6 @@
         <translation>Copy IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Add a new peer...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation type="unfinished" />
     </message>

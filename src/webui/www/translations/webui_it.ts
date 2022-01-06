@@ -144,10 +144,6 @@
         <translation>Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent su Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Copia: IP:porta</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Aggiungi nuovo peer...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Nazione/regione</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi peers...</translation>
     </message>
 </context>
 <context>
@@ -3035,11 +3027,11 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascottte qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Icona qBittorrent</translation>
     </message>
 </context>
 <context>

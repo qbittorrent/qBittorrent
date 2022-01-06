@@ -87,9 +87,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Autoriõigused %1 2006-2021 The qBittorrent project</translation>
+        <translation type="vanished">Autoriõigused %1 2006-2021 The qBittorrent project</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Autoriõigused %1 2006-2021 The qBittorrent project {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -204,7 +208,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="89"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasuta muud asukohta poolikutel torrentitel</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="176"/>
@@ -499,10 +503,6 @@ Viga: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioriteet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Vigased metaandmed</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -919,7 +919,7 @@ Viga: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="730"/>
         <source>Confirm removal of all tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Kinnita üle, enne kõikide siltide eemaldamist</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="734"/>
@@ -1276,7 +1276,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
         <source>Episode filter rules: </source>
-        <translation type="unfinished"></translation>
+        <translation>Episoodide filtrite reeglid:</translation>
     </message>
     <message>
         <location filename="../gui/rss/automatedrssdownloader.cpp" line="93"/>
@@ -1608,7 +1608,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="380"/>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="385"/>
         <source>Database is corrupted.</source>
-        <translation type="unfinished"></translation>
+        <translation>Andmebaas on vigane.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/dbresumedatastorage.cpp" line="569"/>
@@ -1926,7 +1926,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="1092"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
+        <translation>HTTP User-Agent on &apos;%1&apos;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="509"/>
@@ -3484,7 +3484,7 @@ Do you want to make qBittorrent the default application for these?</source>
         <location filename="../base/net/geoipmanager.cpp" line="101"/>
         <location filename="../base/net/geoipmanager.cpp" line="474"/>
         <source>Couldn&apos;t load IP geolocation database. Reason: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saanud laadida IP geolocation andmebaasi. Selgitus: %1</translation>
     </message>
     <message>
         <location filename="../base/net/geoipmanager.cpp" line="150"/>
@@ -4854,7 +4854,7 @@ Do you want to make qBittorrent the default application for these?</source>
         <location filename="../gui/optionsdialog.ui" line="323"/>
         <location filename="../gui/optionsdialog.ui" line="359"/>
         <source>No action</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei tehta midagi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="331"/>
@@ -4939,7 +4939,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1351"/>
         <source>Run e&amp;xternal program on torrent completion</source>
-        <translation type="unfinished"></translation>
+        <translation>Käivita v&amp;äline programm pärast torrenti valmimist</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1420"/>
@@ -5183,7 +5183,7 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="3316"/>
         <source>Upda&amp;te my dynamic domain name</source>
-        <translation type="unfinished"></translation>
+        <translation>Uue&amp;nda minu dünaamilise domeeni nime</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="454"/>
@@ -5338,10 +5338,6 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
         <translation>Tava Salvestamise Asukoht:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Hoia poolikud torrentid asukohas:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopeeri .torrent failid asukohta:</translation>
@@ -5399,19 +5395,19 @@ Use &apos;;&apos; to split multiple entries. Can use wildcard &apos;*&apos;.</so
     <message>
         <location filename="../gui/optionsdialog.ui" line="225"/>
         <source>Shows a confirmation dialog upon torrent deletion</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuvab kinnitamiseks dialoogi enne torrenti kustutamist</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="313"/>
         <location filename="../gui/optionsdialog.ui" line="349"/>
         <source>Preview file, otherwise open destination folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuva faili eelvaade, muidu ava faili kaust</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="318"/>
         <location filename="../gui/optionsdialog.ui" line="354"/>
         <source>Show torrent options</source>
-        <translation type="unfinished"></translation>
+        <translation>Kuva torrenti valikuid</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="409"/>
@@ -5532,7 +5528,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1121"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kasuta muud asukohta poolikutel torrentitel:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1156"/>
@@ -5983,7 +5979,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3206"/>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished"></translation>
+        <translation>Luba clickjacking&apos;ute kaitse</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3213"/>
@@ -6008,7 +6004,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="3286"/>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished"></translation>
+        <translation>Luba reverse proxy tugi</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="3297"/>
@@ -6049,10 +6045,6 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
         <location filename="../gui/optionsdialog.cpp" line="258"/>
         <source>Select qBittorrent UI Theme file</source>
         <translation>Vali qBittorrenti UI Teema fail</translation>
-    </message>
-    <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrenti UI Teema fail (*.qbtheme)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
@@ -6181,7 +6173,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.cpp" line="395"/>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished"></translation>
+        <translation>%G: Sildid (eraldatud komaga)</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.cpp" line="402"/>
@@ -6439,16 +6431,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="184"/>
         <source>Column visibility</source>
-        <translation type="unfinished">Veeru nähtavus</translation>
+        <translation>Veeru nähtavus</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Lisa uus partner...</translation>
+        <translation>Lisa partnereid...</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -6475,7 +6463,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="299"/>
         <source>Cannot add peers to a private torrent</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saa lisada partnereid privaatsetele torrentitele</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="301"/>
@@ -6543,7 +6531,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peersadditiondialog.cpp" line="77"/>
         <source>The peer &apos;%1&apos; is invalid.</source>
-        <translation type="unfinished"></translation>
+        <translation>Partner &apos;%1&apos; on sobimatu.</translation>
     </message>
 </context>
 <context>
@@ -6806,7 +6794,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="63"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
-        <translation type="unfinished"></translation>
+        <translation>Antud failid, mis on torrentil &quot;%1&quot;, toetatavad eelvaatamist, palun valige üks neist:</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="66"/>
@@ -7250,21 +7238,21 @@ Those plugins were disabled.</source>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ei saa kasutada %1: qBittorrent on juba käivitatud, samal kasutajal.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="529"/>
@@ -7348,7 +7336,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="547"/>
         <source>Store configuration files in &lt;dir&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoiusta konfiguratsiooni faile asukohas &lt;dir&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="548"/>
@@ -7359,7 +7347,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="549"/>
         <source>Store configuration files in directories qBittorrent_&lt;name&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Hoia konfiguratsiooni faile asukohtades qBittorrent_&lt;name&gt;</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="551"/>
@@ -7379,7 +7367,7 @@ Those plugins were disabled.</source>
     <message>
         <location filename="../app/cmdoptions.cpp" line="568"/>
         <source>Specify whether the &quot;Add New Torrent&quot; dialog opens when adding a torrent.</source>
-        <translation type="unfinished"></translation>
+        <translation>Määra, et kas avatakse dialoog &quot;Lisa Uus Torrent&quot;, torrentite lisamisel.</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="557"/>
@@ -7437,37 +7425,37 @@ Those plugins were disabled.</source>
         <translation>Abi</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent on failide jagamise programm. Kui käivitate torrenti, siis selle andmeid edastatakse teistele. Kõik mida jagad on su enda vastutada.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Rohkem teid sellest ei teavitata.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7476,29 +7464,29 @@ No further notices will be issued.</source>
 Rohkem teid ei teavitata.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Vajuta %1 klahvi, et nõustuda ja jätkata...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Tühista</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Mina Nõustun</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="166"/>
         <source>Detected unclean program exit. Using fallback file to restore settings: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Tuvastati ebapuhas programmi sulgumine. Kasutatakse sätete taastamiseks fallback faili: %1</translation>
     </message>
     <message>
         <location filename="../base/settingsstorage.cpp" line="240"/>
@@ -8011,7 +7999,7 @@ Rohkem teid ei teavitata.</translation>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="398"/>
         <source>Open download window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ava allalaadimise aken</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="400"/>
@@ -8861,7 +8849,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfiltermodel.cpp" line="262"/>
         <source>Untagged</source>
-        <translation type="unfinished"></translation>
+        <translation>Sildistamata</translation>
     </message>
 </context>
 <context>
@@ -8869,17 +8857,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="110"/>
         <source>Add tag...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa silt...</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="116"/>
         <source>Remove tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Eemalda silt</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="120"/>
         <source>Remove unused tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Eemalda kasutamata sildid</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="123"/>
@@ -8899,17 +8887,17 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="171"/>
         <source>New Tag</source>
-        <translation type="unfinished"></translation>
+        <translation>Uus Silt</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="171"/>
         <source>Tag:</source>
-        <translation type="unfinished"></translation>
+        <translation>Silt:</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="177"/>
         <source>Invalid tag name</source>
-        <translation type="unfinished"></translation>
+        <translation>Sobimatu sildi nimi</translation>
     </message>
     <message>
         <location filename="../gui/tagfilterwidget.cpp" line="178"/>
@@ -8947,7 +8935,7 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
         <source>Use another path for incomplete torrents:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kasuta muud asukohta poolikutel torrentitel:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="83"/>
@@ -8957,12 +8945,12 @@ Click the &quot;Search plugins...&quot; button at the bottom right of the window
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="88"/>
         <source>Yes</source>
-        <translation type="unfinished">Jah</translation>
+        <translation>Jah</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="93"/>
         <source>No</source>
-        <translation type="unfinished">Ei</translation>
+        <translation>Ei</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="124"/>
@@ -9433,7 +9421,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automaatne Torrenti Haldamine</translation>
+        <translation>Automaatne Torrenti Haldamine</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -9443,7 +9431,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="39"/>
         <source>Use another path for incomplete torrent</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kasuta muud asukohta poolikutel torrentitel</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="77"/>
@@ -9960,7 +9948,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="705"/>
         <source>Tags</source>
-        <translation type="unfinished">Sildid</translation>
+        <translation>Sildid</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="723"/>
@@ -10127,7 +10115,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="183"/>
         <source>Tags</source>
-        <translation type="unfinished">Sildid</translation>
+        <translation>Sildid</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="184"/>
@@ -10262,10 +10250,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Veeru nähtavus</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Vali salvestamise asukoht</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Ülekontrollimise kinnitamine</translation>
@@ -10316,7 +10300,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="665"/>
         <source>Add Tags</source>
-        <translation type="unfinished"></translation>
+        <translation>Lisa silte</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="708"/>
@@ -10331,7 +10315,7 @@ Palun vali teine nimi ja proovi uuesti.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="723"/>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished"></translation>
+        <translation>Komaga eraldatud sildid:</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="732"/>
@@ -10384,10 +10368,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Liiguta täitsa alla</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Määra asukoht...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation type="unfinished"></translation>
@@ -10418,10 +10398,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Kopeeri</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Lae alla esmalt esimene ja viimane tükk</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrenti valikud...</translation>
@@ -10437,22 +10413,9 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automaatne Torrenti Haldamine</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Muuda jälitajaid...</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategooria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Uus...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10486,10 +10449,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <source>Rename...</source>
         <translation>Ümbernimeta...</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Järjestikuses allalaadimine</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10497,10 +10456,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Nurjus &quot;%1&quot; avamine. Selgitus: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

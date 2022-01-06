@@ -87,9 +87,13 @@
         <translation>En avansert BitTorrent-klient programmert i C++, basert på Qt toolkit og libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>
-        <translation>Opphavsrett %1 2006-2021 qBittorrent-prosjektet</translation>
+        <translation type="vanished">Opphavsrett %1 2006-2021 qBittorrent-prosjektet</translation>
+    </message>
+    <message>
+        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <source>Copyright %1 2006-2022 The qBittorrent project</source>
+        <translation type="unfinished">Opphavsrett %1 2006-2021 qBittorrent-prosjektet {1 2006-2022 ?}</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
@@ -499,10 +503,6 @@ Feil: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="713"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
-    </message>
-    <message>
-        <source>Invalid metadata</source>
-        <translation type="vanished">Feilaktig metadata</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="830"/>
@@ -1059,10 +1059,6 @@ Feil: %2</translation>
         <source>To control qBittorrent, access the WebUI at: %1
 </source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the Web UI at %1</source>
-        <translation type="vanished">For å styre qBittorrent, få tilgang til nettgrensesnittet hos %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -5355,10 +5351,6 @@ Bruk &quot;;&quot; for å splitte flerfoldige oppføringer. Jokertegnet &quot;*&
         <translation>Forvalgt lagringsmappe:</translation>
     </message>
     <message>
-        <source>Keep incomplete torrents in:</source>
-        <translation type="vanished">Behold ufullstendige torrenter i:</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopier .torrent-filer til:</translation>
@@ -6069,10 +6061,6 @@ Manuelt: Diverse torrent-egenskaper (f.eks. lagringssti) må tilordnes manuelt</
         <translation>Velg draktfil for qBittorrent</translation>
     </message>
     <message>
-        <source>qBittorrent UI Theme file (*.qbtheme)</source>
-        <translation type="vanished">qBittorrent draktfil (*.qbtheme)</translation>
-    </message>
-    <message>
         <location filename="../gui/optionsdialog.cpp" line="295"/>
         <source>Choose Alternative UI files location</source>
         <translation>Plasseringen til «Alternativt grensesnitt»-filene</translation>
@@ -6463,10 +6451,6 @@ Manuelt: Diverse torrent-egenskaper (f.eks. lagringssti) må tilordnes manuelt</
         <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Legg til ny likemann …</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
@@ -7270,19 +7254,19 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 er et ukjent kommandolinje-parameter.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 må være det enkle kommandolinje-parametret.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="219"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Du kan ikke bruke %1: qBittorrent kjører allerede for denne brukeren.</translation>
     </message>
@@ -7457,37 +7441,37 @@ De uavinstallerbare programtilleggene ble avskrudd.</translation>
         <translation>Hjelp</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="406"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Kjør programmet med -h flagg for å lese om kommandolinje-parametre.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="408"/>
         <source>Bad command line</source>
         <translation>Dårlig kommandolinje</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="414"/>
         <source>Bad command line: </source>
         <translation>Dårlig kommandolinje: </translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="427"/>
         <source>Legal Notice</source>
         <translation>Juridisk notis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="428"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent er et fildelingsprogram. Når du driver en torrent, blir dataene gjort tilgjengelig for andre ved hjelp av opplasting. Alt innhold du deler, er ditt eget ansvar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="429"/>
         <source>No further notices will be issued.</source>
         <translation>Ingen flere beskjeder om dette vil bli gitt.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="442"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7496,22 +7480,22 @@ No further notices will be issued.</source>
 Ingen flere notiser vil bli gitt.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="430"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Trykk %1-tasten for å akseptere og fortsette …</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="443"/>
         <source>Legal notice</source>
         <translation>Juridisk notis</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="444"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="445"/>
         <source>I Agree</source>
         <translation>Jeg samtykker</translation>
     </message>
@@ -9456,7 +9440,7 @@ Velg et annet navn og prøv igjen.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatisk torrentbehandling</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="30"/>
@@ -10290,10 +10274,6 @@ Velg et annet navn og prøv igjen.</translation>
         <translation>Kolonnesynlighet</translation>
     </message>
     <message>
-        <source>Choose save path</source>
-        <translation type="vanished">Velg lagringsmappe</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="581"/>
         <source>Recheck confirmation</source>
         <translation>Bekreftelse av ny gjennomsjekking</translation>
@@ -10412,10 +10392,6 @@ Velg et annet navn og prøv igjen.</translation>
         <translation>Flytt til bunnen</translation>
     </message>
     <message>
-        <source>Set location...</source>
-        <translation type="vanished">Velg plassering …</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="826"/>
         <source>Force reannounce</source>
         <translation>Tving reannonsering</translation>
@@ -10446,10 +10422,6 @@ Velg et annet navn og prøv igjen.</translation>
         <translation>Kopier</translation>
     </message>
     <message>
-        <source>Download first and last pieces first</source>
-        <translation type="vanished">Last ned de første og siste delene først</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="812"/>
         <source>Torrent options...</source>
         <translation>Torrentinnstillinger …</translation>
@@ -10465,31 +10437,9 @@ Velg et annet navn og prøv igjen.</translation>
         <translation>Info-hash v2</translation>
     </message>
     <message>
-        <source>Automatic Torrent Management</source>
-        <translation type="vanished">Automatisk torrentbehandling</translation>
-    </message>
-    <message>
-        <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation type="vanished">Automatisk modus betyr at diverse torrent-egenskaper (f.eks. lagringsmappe) vil bli bestemt av tilknyttet kategori</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="842"/>
         <source>Edit trackers...</source>
         <translation>Rediger sporere …</translation>
-    </message>
-    <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Ny …</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Tilbakestill</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="967"/>
@@ -10523,10 +10473,6 @@ Velg et annet navn og prøv igjen.</translation>
         <source>Rename...</source>
         <translation>Gi nytt navn …</translation>
     </message>
-    <message>
-        <source>Download in sequential order</source>
-        <translation type="vanished">Last ned i rekkefølge</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>
@@ -10534,14 +10480,6 @@ Velg et annet navn og prøv igjen.</translation>
         <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Klarte ikke laste draktfil for brukergrensesnitt: «%1»</translation>
-    </message>
-    <message>
-        <source>Couldn&apos;t apply theme stylesheet. stylesheet.qss couldn&apos;t be opened. Reason: %1</source>
-        <translation type="vanished">Klarte ikke ta i bruk draktstilarket. Klarte ikke åpne stylesheet.qss fordi: %1</translation>
-    </message>
-    <message>
-        <source>Failed to open &quot;%1&quot;. Reason: %2</source>
-        <translation type="vanished">Klarte ikke åpne «%1» fordi: %2</translation>
     </message>
     <message>
         <location filename="../gui/uithememanager.cpp" line="75"/>

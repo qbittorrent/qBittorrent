@@ -144,10 +144,6 @@
         <translation>Program tercihleri kaydedilemiyor, qBittorrent'e muhtemelen ulaşılamıyor.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: Freenode üzerinde #qbittorrent kanalı</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Bilinmiyor</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>IP:b.noktasını kopyala</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Yeni bir kişi ekle...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Ülke/Bölge</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Kişileri ekle...</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Maskotu</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent simgesi</translation>
     </message>
 </context>
 <context>

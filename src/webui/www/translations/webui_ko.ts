@@ -144,10 +144,6 @@
         <translation>프로그램 기본설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: Freenode #qbittorrent 채널</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>알 수 없음</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>IP:포트 복사</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">새 피어 추가...</translation>
     </message>
     <message>
         <source>Country/Region</source>

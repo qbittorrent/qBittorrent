@@ -144,10 +144,6 @@
         <translation>Ni mogoče shraniti možnosti programa, qBittorrent je verjetno nedosegljiv.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent na Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nezano</translation>
     </message>
@@ -1550,10 +1546,6 @@
     <message>
         <source>Copy IP:port</source>
         <translation>Kopiraj IP: vrata</translation>
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Dodaj novega soležnika ...</translation>
     </message>
     <message>
         <source>Country/Region</source>

@@ -157,7 +157,7 @@
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Port peab Web UI kasutuseks olema vahemikus 1 kuni 65535.</translation>
+        <translation>Port Web UI jaoks peab olema vahemikus 1 kuni 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Port sissetulevate ühenduste jaoks peab olema vahemikus 0 ja 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -974,7 +974,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Luba clickjacking'ute kaitse</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1098,7 +1098,7 @@
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G: Sildid (eraldatud komaga)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1454,7 +1454,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Luba reverse proxy tugi</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1548,16 +1548,12 @@
         <translation>Kopeeri IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Lisa uus partner...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Riik/Regioon</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Lisa partnereid...</translation>
     </message>
 </context>
 <context>
@@ -2058,7 +2054,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Sildid</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -2355,7 +2351,7 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Sildid</translation>
     </message>
     <message>
         <source>Trackers</source>
@@ -2504,11 +2500,11 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Komaga eraldatud sildid:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Lisa silte</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2757,7 +2753,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation type="unfinished" />
+        <translation>Ainult lubatud</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2781,11 +2777,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Tulemusi</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>kuvatakse</translation>
     </message>
 </context>
 <context>
@@ -2862,7 +2858,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Lubatud</translation>
     </message>
     <message>
         <source>Version</source>
@@ -2904,11 +2900,11 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Uus Silt</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Lisa silt...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
@@ -2916,7 +2912,7 @@
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Silt:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -2928,15 +2924,15 @@
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>Eemalda kasutamata sildid</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>Sobimatu sildi nimi</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Eemalda silt</translation>
     </message>
 </context>
 <context>
@@ -2947,7 +2943,7 @@
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Sildistamata</translation>
     </message>
 </context>
 <context>
@@ -3030,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBitorrenti maskott</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBitorrenti ikoon</translation>
     </message>
 </context>
 <context>
@@ -3209,7 +3205,7 @@
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Episoodide filtrite reeglid:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>

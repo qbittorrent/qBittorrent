@@ -144,10 +144,6 @@
         <translation>Error al guardar las preferencias del programa, imposible conectar a qBittorrent.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="vanished">IRC: #qbittorrent en Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Desconocido</translation>
     </message>
@@ -1552,16 +1548,12 @@
         <translation>Copiar IP: puerto</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation type="vanished">Agregar nuevo par...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>País/Región</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Añadir pares</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascota de qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Icono de qBittorrent</translation>
     </message>
 </context>
 <context>
