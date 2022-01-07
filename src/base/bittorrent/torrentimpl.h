@@ -158,7 +158,6 @@ namespace BitTorrent
         qlonglong totalUpload() const override;
         qlonglong activeTime() const override;
         qlonglong finishedTime() const override;
-        qlonglong seedingTime() const override;
         qlonglong eta() const override;
         QVector<qreal> filesProgress() const override;
         int seedsCount() const override;

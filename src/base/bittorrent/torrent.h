@@ -223,7 +223,6 @@ namespace BitTorrent
         virtual qlonglong totalUpload() const = 0;
         virtual qlonglong activeTime() const = 0;
         virtual qlonglong finishedTime() const = 0;
-        virtual qlonglong seedingTime() const = 0;
         virtual qlonglong eta() const = 0;
         virtual QVector<qreal> filesProgress() const = 0;
         virtual int seedsCount() const = 0;

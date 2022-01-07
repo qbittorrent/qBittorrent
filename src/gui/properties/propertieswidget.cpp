@@ -439,7 +439,7 @@ void PropertiesWidget::loadDynamicData()
             if (m_torrent->isSeed())
                 elapsedString = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
                     .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime())
-                        , Utils::Misc::userFriendlyDuration(m_torrent->seedingTime()));
+                        , Utils::Misc::userFriendlyDuration(m_torrent->finishedTime()));
             else
                 elapsedString = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
             m_ui->labelElapsedVal->setText(elapsedString);

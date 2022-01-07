@@ -1651,7 +1651,7 @@ void Session::processShareLimits()
 
             if (torrent->seedingTimeLimit() != Torrent::NO_SEEDING_TIME_LIMIT)
             {
-                const qlonglong seedingTimeInMinutes = torrent->seedingTime() / 60;
+                const qlonglong seedingTimeInMinutes = torrent->finishedTime() / 60;
                 int seedingTimeLimit = torrent->seedingTimeLimit();
                 if (seedingTimeLimit == Torrent::USE_GLOBAL_SEEDING_TIME)
                 {
