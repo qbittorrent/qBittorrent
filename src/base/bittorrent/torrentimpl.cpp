@@ -280,7 +280,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         {
             const lt::file_index_t nativeIndex = m_torrentInfo.nativeIndexes().at(i);
             const QString filePath = Utils::Fs::toUniformPath(QString::fromStdString(fileStorage.file_path(nativeIndex)));
-            m_filePaths.append(filePath);
+            m_filePaths.append(filePath.endsWith(QB_EXT, Qt::CaseInsensitive) ? filePath.chopped(QB_EXT.size()) : filePath);
         }
     }
 
@@ -798,6 +798,12 @@ QString TorrentImpl::filePath(const int index) const
     return m_filePaths.at(index);
 }
 
+QString TorrentImpl::actualFilePath(const int index) const
+{
+    const auto nativeIndex = m_torrentInfo.nativeIndexes().at(index);
+    return QString::fromStdString(m_nativeHandle.torrent_file()->files().file_path(nativeIndex));
+}
+
 qlonglong TorrentImpl::fileSize(const int index) const
 {
     return m_torrentInfo.fileSize(index);
@@ -806,20 +812,6 @@ qlonglong TorrentImpl::fileSize(const int index) const
 QStringList TorrentImpl::filePaths() const
 {
     return m_filePaths;
-}
-
-// Return a list of absolute paths corresponding
-// to all files in a torrent
-QStringList TorrentImpl::absoluteFilePaths() const
-{
-    if (!hasMetadata()) return {};
-
-    const QDir saveDir {actualStorageLocation()};
-    QStringList res;
-    res.reserve(filesCount());
-    for (int i = 0; i < filesCount(); ++i)
-        res << Utils::Fs::expandPathAbs(saveDir.absoluteFilePath(filePath(i)));
-    return res;
 }
 
 QVector<DownloadPriority> TorrentImpl::filePriorities() const
@@ -1494,14 +1486,19 @@ void TorrentImpl::fileSearchFinished(const QString &savePath, const QStringList 
 
 void TorrentImpl::endReceivedMetadataHandling(const QString &savePath, const QStringList &fileNames)
 {
+    Q_ASSERT(m_filePaths.isEmpty());
+
     lt::add_torrent_params &p = m_ltAddTorrentParams;
 
     const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
     m_torrentInfo = TorrentInfo(*metadata);
-    m_filePaths = fileNames;
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     for (int i = 0; i < fileNames.size(); ++i)
-        p.renamed_files[nativeIndexes[i]] = fileNames[i].toStdString();
+    {
+        const QString filePath = fileNames.at(i);
+        m_filePaths.append(filePath.endsWith(QB_EXT, Qt::CaseInsensitive) ? filePath.chopped(QB_EXT.size()) : filePath);
+        p.renamed_files[nativeIndexes[i]] = filePath.toStdString();
+    }
     p.save_path = Utils::Fs::toNativePath(savePath).toStdString();
     p.ti = metadata;
 
@@ -1865,31 +1862,35 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     const QString oldFilePath = m_filePaths.at(fileIndex);
     const QString newFilePath = Utils::Fs::toUniformPath(p->new_name());
 
-    m_filePaths[fileIndex] = newFilePath;
+    // Check if ".!qB" extension was just added or removed
+    if ((oldFilePath != newFilePath) && (oldFilePath != newFilePath.chopped(QB_EXT.size())))
+    {
+        m_filePaths[fileIndex] = newFilePath;
 
-    QList<QStringView> oldPathParts = QStringView(oldFilePath).split('/', Qt::SkipEmptyParts);
-    oldPathParts.removeLast();  // drop file name part
-    QList<QStringView> newPathParts = QStringView(newFilePath).split('/', Qt::SkipEmptyParts);
-    newPathParts.removeLast();  // drop file name part
+        QList<QStringView> oldPathParts = QStringView(oldFilePath).split('/', Qt::SkipEmptyParts);
+        oldPathParts.removeLast();  // drop file name part
+        QList<QStringView> newPathParts = QStringView(newFilePath).split('/', Qt::SkipEmptyParts);
+        newPathParts.removeLast();  // drop file name part
 
 #if defined(Q_OS_WIN)
-    const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseInsensitive;
 #else
-    const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
+        const Qt::CaseSensitivity caseSensitivity = Qt::CaseSensitive;
 #endif
 
-    int pathIdx = 0;
-    while ((pathIdx < oldPathParts.size()) && (pathIdx < newPathParts.size()))
-    {
-        if (oldPathParts[pathIdx].compare(newPathParts[pathIdx], caseSensitivity) != 0)
-            break;
-        ++pathIdx;
-    }
+        int pathIdx = 0;
+        while ((pathIdx < oldPathParts.size()) && (pathIdx < newPathParts.size()))
+        {
+            if (oldPathParts[pathIdx].compare(newPathParts[pathIdx], caseSensitivity) != 0)
+                break;
+            ++pathIdx;
+        }
 
-    for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i)
-    {
-        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QString::fromLatin1("/")));
-        oldPathParts.removeLast();
+        for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i)
+        {
+            QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QString::fromLatin1("/")));
+            oldPathParts.removeLast();
+        }
     }
 
     --m_renameCount;
@@ -1922,13 +1923,12 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
-        QString name = filePath(fileIndex);
-        if (name.endsWith(QB_EXT))
+        const QString path = filePath(fileIndex);
+        const QString actualPath = actualFilePath(fileIndex);
+        if (actualPath != path)
         {
-            const QString oldName = name;
-            name.chop(QB_EXT.size());
-            qDebug("Renaming %s to %s", qUtf8Printable(oldName), qUtf8Printable(name));
-            renameFile(fileIndex, name);
+            qDebug("Renaming %s to %s", qUtf8Printable(actualPath), qUtf8Printable(path));
+            renameFile(fileIndex, path);
         }
     }
 }
@@ -2046,24 +2046,23 @@ void TorrentImpl::manageIncompleteFiles()
 
     for (int i = 0; i < filesCount(); ++i)
     {
-        QString name = filePath(i);
+        const QString path = filePath(i);
+        const QString actualPath = actualFilePath(i);
         if (isAppendExtensionEnabled && (fileSize(i) > 0) && (fp[i] < 1))
         {
-            if (!name.endsWith(QB_EXT, Qt::CaseInsensitive))
+            const QString wantedPath = path + QB_EXT;
+            if (actualPath != wantedPath)
             {
-                const QString newName = name + QB_EXT;
-                qDebug() << "Renaming" << name << "to" << newName;
-                renameFile(i, newName);
+                qDebug() << "Renaming" << actualPath << "to" << wantedPath;
+                renameFile(i, wantedPath);
             }
         }
         else
         {
-            if (name.endsWith(QB_EXT, Qt::CaseInsensitive))
+            if (actualPath != path)
             {
-                const QString oldName = name;
-                name.chop(QB_EXT.size());
-                qDebug() << "Renaming" << oldName << "to" << name;
-                renameFile(i, name);
+                qDebug() << "Renaming" << actualPath << "to" << path;
+                renameFile(i, path);
             }
         }
     }
