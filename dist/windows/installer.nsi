@@ -76,9 +76,7 @@ SectionEnd
 
 Section $(inst_startmenu) ;"Create Start Menu Shortcut"
 
-  CreateDirectory "$SMPROGRAMS\qBittorrent"
-  CreateShortCut "$SMPROGRAMS\qBittorrent\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
-  CreateShortCut "$SMPROGRAMS\qBittorrent\$(inst_uninstall_link_description).lnk" "$INSTDIR\uninst.exe"
+  CreateShortCut "$SMPROGRAMS\qBittorrent.lnk" "$INSTDIR\qbittorrent.exe"
 
 SectionEnd
 

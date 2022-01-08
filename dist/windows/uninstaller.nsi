@@ -15,7 +15,7 @@ SectionEnd
 Section "un.$(remove_shortcuts)" ;"un.Remove shortcuts"
   SectionIn RO
 ; Remove shortcuts, if any
-  RMDir /r "$SMPROGRAMS\qBittorrent"
+  Delete "$SMPROGRAMS\qBittorrent.lnk"
   Delete "$DESKTOP\qBittorrent.lnk"
 SectionEnd
 
