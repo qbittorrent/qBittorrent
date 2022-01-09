@@ -519,6 +519,9 @@ void TorrentOptionsDialog::handleCategoryChanged(const int index)
         {
             const QString savePath = BitTorrent::Session::instance()->categorySavePath(m_ui->comboCategory->currentText());
             m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
+            const QString downloadPath = BitTorrent::Session::instance()->categoryDownloadPath(m_ui->comboCategory->currentText());
+            m_ui->downloadPath->setSelectedPath(Utils::Fs::toNativePath(downloadPath));
+            m_ui->checkUseDownloadPath->setChecked(!downloadPath.isEmpty());
         }
     }
 
