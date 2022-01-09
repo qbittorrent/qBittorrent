@@ -2081,7 +2081,8 @@ void TorrentImpl::adjustStorageLocation()
     const bool isFinished = isSeed() || m_hasSeedStatus;
     const QDir targetDir {((isFinished || downloadPath.isEmpty()) ? savePath() : downloadPath)};
 
-    moveStorage(targetDir.absolutePath(), MoveStorageMode::Overwrite);
+    if ((targetDir != QDir(actualStorageLocation())) || isMoveInProgress())
+        moveStorage(targetDir.absolutePath(), MoveStorageMode::Overwrite);
 }
 
 lt::torrent_handle TorrentImpl::nativeHandle() const
