@@ -443,7 +443,7 @@ QString TorrentImpl::rootPath() const
     if (!hasMetadata())
         return {};
 
-    const QString relativeRootPath = m_torrentInfo.rootFolder();
+    const QString relativeRootPath = Utils::Fs::findRootFolder(filePaths());
     if (relativeRootPath.isEmpty())
         return {};
 
