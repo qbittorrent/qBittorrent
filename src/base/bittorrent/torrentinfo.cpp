@@ -409,19 +409,6 @@ int TorrentInfo::fileIndex(const QString &fileName) const
     return -1;
 }
 
-QString TorrentInfo::rootFolder() const
-{
-    if (!isValid())
-        return {};
-
-    return Utils::Fs::findRootFolder(filePaths());
-}
-
-bool TorrentInfo::hasRootFolder() const
-{
-    return !rootFolder().isEmpty();
-}
-
 TorrentContentLayout TorrentInfo::contentLayout() const
 {
     if (!isValid())
