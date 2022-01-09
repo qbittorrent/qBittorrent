@@ -511,7 +511,8 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
         if (path != watchedFolderPath)
         {
             const QString subdirPath = watchedDir.relativeFilePath(path);
-            if (addTorrentParams.useAutoTMM)
+            const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+            if (useAutoTMM)
             {
                 addTorrentParams.category = addTorrentParams.category.isEmpty()
                         ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
@@ -590,7 +591,8 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                 if (exactDirPath != dir.path())
                 {
                     const QString subdirPath = dir.relativeFilePath(exactDirPath);
-                    if (addTorrentParams.useAutoTMM)
+                    const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+                    if (useAutoTMM)
                     {
                         addTorrentParams.category = addTorrentParams.category.isEmpty()
                                 ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
