@@ -412,7 +412,7 @@ void TorrentImpl::setSavePath(const QString &path)
     m_session->handleTorrentNeedSaveResumeData(this);
 
     const bool isFinished = isSeed() || m_hasSeedStatus;
-    if (isFinished)
+    if (isFinished || downloadPath().isEmpty())
         moveStorage(savePath(), MoveStorageMode::KeepExistingFiles);
 }
 
