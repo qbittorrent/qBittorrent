@@ -2260,7 +2260,9 @@ bool Session::loadTorrent(LoadTorrentParams params)
     m_loadingTorrents.insert(id, params);
 
     // Adding torrent to BitTorrent session
-    m_nativeSession->async_add_torrent(p);
+    // We should prevent `p` from being modified so we explicitly pass it as const
+    // to ensure the proper overload of `async_add_torrent()` is called.
+    m_nativeSession->async_add_torrent(std::as_const(p));
 
     return true;
 }
