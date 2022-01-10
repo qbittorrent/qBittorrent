@@ -11,6 +11,7 @@ Type=Application
 StartupNotify=false
 StartupWMClass=qbittorrent
 Keywords=bittorrent;torrent;magnet;download;p2p;
+SingleMainWindow=true
 
 # Translations
 
