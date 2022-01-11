@@ -92,9 +92,6 @@ namespace BitTorrent
         PieceRange filePieces(const QString &file) const;
         PieceRange filePieces(int fileIndex) const;
 
-        QString rootFolder() const;
-        bool hasRootFolder() const;
-
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
         QVector<lt::file_index_t> nativeIndexes() const;
 
