@@ -32,6 +32,7 @@
 
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/logger.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/settingsstorage.h"
@@ -42,7 +43,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 2;
+    const int MIGRATION_VERSION = 3;
     const char MIGRATION_VERSION_KEY[] = "Meta/MigrationVersion";
 
     void exportWebUIHttpsFiles()
@@ -326,6 +327,46 @@ namespace
             }
         }
     }
+
+    void migrateProxySettingsEnum()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto key = QString::fromLatin1("Network/Proxy/Type");
+        const auto value = settingsStorage->loadValue<QString>(key);
+
+        bool ok = false;
+        const auto number = value.toInt(&ok);
+
+        if (ok)
+        {
+            switch (number)
+            {
+            case 0:
+                settingsStorage->storeValue(key, Net::ProxyType::None);
+                break;
+            case 1:
+                settingsStorage->storeValue(key, Net::ProxyType::HTTP);
+                break;
+            case 2:
+                settingsStorage->storeValue(key, Net::ProxyType::SOCKS5);
+                break;
+            case 3:
+                settingsStorage->storeValue(key, Net::ProxyType::HTTP_PW);
+                break;
+            case 4:
+                settingsStorage->storeValue(key, Net::ProxyType::SOCKS5_PW);
+                break;
+            case 5:
+                settingsStorage->storeValue(key, Net::ProxyType::SOCKS4);
+                break;
+            default:
+                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                           .arg(key, QString::number(number)), Log::WARNING);
+                settingsStorage->removeValue(key);
+                break;
+            }
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
@@ -343,8 +384,12 @@ bool upgrade(const bool /*ask*/)
             upgradeDNSServiceSettings();
             upgradeTrayIconStyleSettings();
         }
+
         if (version < 2)
             migrateSettingKeys();
+
+        if (version < 3)
+            migrateProxySettingsEnum();
 
         version = MIGRATION_VERSION;
     }
