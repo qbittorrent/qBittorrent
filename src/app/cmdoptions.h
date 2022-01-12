@@ -54,6 +54,7 @@ struct QBtCommandLineParameters
 #elif !defined(Q_OS_WIN)
     bool shouldDaemonize;
 #endif
+    bool debugToLog;
     int webUiPort;
     std::optional<bool> addPaused;
     std::optional<bool> skipDialog;

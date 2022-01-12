@@ -114,6 +114,33 @@ namespace
 #if !defined(DISABLE_GUI)
     const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 #endif
+
+    void dispatchDebugMessage(const QtMsgType type, const QMessageLogContext &context, const QString &msg)
+    {
+        const QString fileName {context.file ? context.file : ""};
+        const QString function {context.function ? context.function : ""};
+        const auto contextInfo = (fileName.isEmpty()
+                ? QString()
+                : QString::fromLatin1(" (%1:%2, %3)").arg(fileName, QString::number(context.line), function));
+        switch (type)
+        {
+        case QtDebugMsg:
+            LogMsg(QString::fromLatin1("[DEBUG] %1%2").arg(msg, contextInfo), Log::NORMAL);
+            break;
+        case QtInfoMsg:
+            LogMsg(QString::fromLatin1("[INFO] %1%2").arg(msg, contextInfo), Log::INFO);
+            break;
+        case QtWarningMsg:
+            LogMsg(QString::fromLatin1("[WARNING] %1%2").arg(msg, contextInfo), Log::WARNING);
+            break;
+        case QtCriticalMsg:
+            LogMsg(QString::fromLatin1("[CRITICAL] %1%2").arg(msg, contextInfo), Log::CRITICAL);
+            break;
+        case QtFatalMsg:
+            LogMsg(QString::fromLatin1("[FATAL] %1%2").arg(msg, contextInfo), Log::CRITICAL);
+            break;
+        }
+    }
 }
 
 Application::Application(int &argc, char **argv)
@@ -155,6 +182,10 @@ Application::Application(int &argc, char **argv)
     m_instanceManager = new ApplicationInstanceManager {Profile::instance()->location(SpecialFolder::Config), this};
 
     Logger::initInstance();
+
+    if (m_commandLineArgs.debugToLog)
+        qInstallMessageHandler(dispatchDebugMessage);
+
     SettingsStorage::initInstance();
     Preferences::initInstance();
 

@@ -334,6 +334,7 @@ namespace
     constexpr const BoolOption SEQUENTIAL_OPTION {"sequential"};
     constexpr const BoolOption FIRST_AND_LAST_OPTION {"first-and-last"};
     constexpr const TriStateBoolOption SKIP_DIALOG_OPTION {"skip-dialog", true};
+    constexpr const BoolOption DEBUG_TO_LOG_OPTION {"debug-to-log"};
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
@@ -350,6 +351,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #elif !defined(Q_OS_WIN)
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
+    , debugToLog(DEBUG_TO_LOG_OPTION.value(env))
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
     , addPaused(PAUSED_OPTION.value(env))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
@@ -406,7 +408,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 
         if ((arg.startsWith("--") && !arg.endsWith(".torrent"))
             || (arg.startsWith('-') && (arg.size() == 2)))
-            {
+        {
             // Parse known parameters
             if (arg == SHOW_HELP_OPTION)
             {
@@ -436,6 +438,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 result.shouldDaemonize = true;
             }
 #endif
+            else if (arg == DEBUG_TO_LOG_OPTION)
+            {
+                result.debugToLog = true;
+            }
             else if (arg == PROFILE_OPTION)
             {
                 result.profileDir = PROFILE_OPTION.value(arg);
@@ -542,6 +548,7 @@ QString makeUsage(const QString &prgName)
 #elif !defined(Q_OS_WIN)
         << DAEMON_OPTION.usage() << wrapText(QObject::tr("Run in daemon-mode (background)")) << '\n'
 #endif
+        << DEBUG_TO_LOG_OPTION.usage() << wrapText(QObject::tr("Redirect debug messages to qBittorrent log")) << '\n'
     //: Use appropriate short form or abbreviation of "directory"
         << PROFILE_OPTION.usage(QObject::tr("dir"))
         << wrapText(QObject::tr("Store configuration files in <dir>")) << '\n'
