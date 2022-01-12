@@ -9539,7 +9539,7 @@ Veuillez en choisir un autre.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="292"/>
         <source>Disable LSD for this torrent</source>
-        <translation>Désactivier LSD pour ce torrent</translation>
+        <translation>Désactiver LSD pour ce torrent</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="66"/>
