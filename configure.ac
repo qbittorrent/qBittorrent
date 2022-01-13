@@ -187,9 +187,6 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
     [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
 
-AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
-    [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
-
 PKG_CHECK_MODULES(libtorrent,
                   [libtorrent-rasterbar >= 2.0.4],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_LIBTORRENT2"],
