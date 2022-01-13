@@ -4489,6 +4489,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::file_prio_alert::alert_type:
 #endif
         case lt::file_renamed_alert::alert_type:
+        case lt::file_rename_failed_alert::alert_type:
         case lt::file_completed_alert::alert_type:
         case lt::torrent_finished_alert::alert_type:
         case lt::save_resume_data_alert::alert_type:
@@ -4501,6 +4502,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
+        case lt::performance_alert::alert_type:
             dispatchTorrentAlert(a);
             break;
         case lt::state_update_alert::alert_type:
