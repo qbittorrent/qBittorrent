@@ -591,15 +591,15 @@ void Parser::parse_impl(const QByteArray &feedData)
         xml.skipCurrentElement();
     }
 
-    if (!foundChannel)
-    {
-        m_result.error = tr("Invalid RSS feed.");
-    }
-    else if (xml.hasError())
+    if (xml.hasError())
     {
         m_result.error = tr("%1 (line: %2, column: %3, offset: %4).")
                 .arg(xml.errorString()).arg(xml.lineNumber())
                 .arg(xml.columnNumber()).arg(xml.characterOffset());
+    }
+    else if (!foundChannel)
+    {
+        m_result.error = tr("Invalid RSS feed.");
     }
 
     emit finished(m_result);
