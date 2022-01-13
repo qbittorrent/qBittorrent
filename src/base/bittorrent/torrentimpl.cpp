@@ -1028,10 +1028,9 @@ QString TorrentImpl::error() const
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
         const QString writeErrorStr = tr("Couldn't write to file.");
-        const QString uploadModeStr = tr("Torrent is currently in \"upload only\" mode.");
-        const QString errorMessage = QString::fromLocal8Bit(m_lastFileError.error.message().c_str());
-
-        return writeErrorStr + QLatin1Char(' ') + errorMessage + QLatin1String(". ") + uploadModeStr;
+        const QString uploadModeStr = tr("Torrent is now in \"upload only\" mode.");
+        const QString errorMessage = tr("Reason:") + QLatin1Char(' ') + QString::fromLocal8Bit(m_lastFileError.error.message().c_str());
+        return QString::fromLatin1("%1 %2 %3").arg(writeErrorStr, errorMessage, uploadModeStr);
     }
 
     return {};
