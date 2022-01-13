@@ -1892,9 +1892,10 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
         ++pathIdx;
     }
 
+    QDir storageDir {actualStorageLocation()};
     for (int i = (oldPathParts.size() - 1); i >= pathIdx; --i)
     {
-        QDir().rmdir(savePath() + Utils::String::join(oldPathParts, QString::fromLatin1("/")));
+        storageDir.rmdir(Utils::String::join(oldPathParts, QString::fromLatin1("/")));
         oldPathParts.removeLast();
     }
 
