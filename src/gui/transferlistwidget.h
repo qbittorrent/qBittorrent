@@ -65,6 +65,7 @@ public slots:
     void addSelectionTag(const QString &tag);
     void removeSelectionTag(const QString &tag);
     void clearSelectionTags();
+    void setSelectedTorrentsLocation();
     void pauseAllTorrents();
     void resumeAllTorrents();
     void startSelectedTorrents();
@@ -90,7 +91,7 @@ public slots:
     void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
-    void displayDLHoSMenu(const QPoint&);
+    void displayDLHoSMenu(const QPoint &);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
@@ -108,6 +109,8 @@ private slots:
     void displayListMenu(const QPoint &);
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
+    void setSelectedTorrentsSequentialDownload(bool enabled) const;
+    void setSelectedFirstLastPiecePrio(bool enabled) const;
     void setSelectedAutoTMMEnabled(bool enabled) const;
     void askNewCategoryForSelection();
     void saveSettings();
