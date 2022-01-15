@@ -101,7 +101,7 @@ void PortForwarderImpl::start()
         // quint16 port = i.key();
         i.value() = {m_provider->add_port_mapping(lt::session::tcp, i.key(), i.key())};
     }
-    LogMsg(tr("UPnP / NAT-PMP support [ON]"), Log::INFO);
+    LogMsg(tr("UPnP/NAT-PMP support: ON"), Log::INFO);
 }
 
 void PortForwarderImpl::stop()
@@ -111,5 +111,5 @@ void PortForwarderImpl::stop()
     settingsPack.set_bool(lt::settings_pack::enable_upnp, false);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
     m_provider->apply_settings(settingsPack);
-    LogMsg(tr("UPnP / NAT-PMP support [OFF]"), Log::INFO);
+    LogMsg(tr("UPnP/NAT-PMP support: OFF"), Log::INFO);
 }
