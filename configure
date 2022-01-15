@@ -6020,25 +6020,6 @@ LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 # taken from ax_boost_base.m4
 
 
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-#include <boost/version.hpp>
-int
-main (void)
-{
-(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < (106000))]));
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_cxx_try_compile "$LINENO"
-then :
-
-else $as_nop
-  QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
-
 
 pkg_failed=no
 { printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 2.0.4" >&5

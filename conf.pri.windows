@@ -37,8 +37,8 @@ DEFINES += BOOST_ALL_NO_LIB
 # Use one of the following options
 DEFINES += BOOST_SYSTEM_STATIC_LINK
 #DEFINES += BOOST_SYSTEM_DYN_LINK
-# Enable if encountered build error with boost version <= 1.59
-#DEFINES += BOOST_NO_CXX11_RVALUE_REFERENCES
+# Enable it if compiling with libtorrent 3.x
+#DEFINES += BOOST_SYSTEM_USE_UTF8
 
 # Enable if libtorrent was built with this flag defined
 #DEFINES += TORRENT_NO_DEPRECATE
