@@ -41,6 +41,7 @@ namespace
 NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrentHandle)
     : m_torrentHandle {torrentHandle}
 {
+    on_state(m_torrentHandle.status({}).state);
 }
 
 bool NativeTorrentExtension::on_pause()
@@ -56,7 +57,10 @@ bool NativeTorrentExtension::on_pause()
 void NativeTorrentExtension::on_state(const lt::torrent_status::state_t state)
 {
     if (m_state == lt::torrent_status::downloading_metadata)
-        m_torrentHandle.set_flags(lt::torrent_flags::stop_when_ready);
+    {
+        m_torrentHandle.unset_flags(lt::torrent_flags::auto_managed);
+        m_torrentHandle.pause();
+    }
 
     m_state = state;
 }
