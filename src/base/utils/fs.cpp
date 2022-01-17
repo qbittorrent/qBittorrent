@@ -59,7 +59,6 @@
 #include <QStorageInfo>
 #include <QRegularExpression>
 
-#include "base/bittorrent/common.h"
 #include "base/global.h"
 
 QString Utils::Fs::toNativePath(const QString &path)
@@ -72,15 +71,17 @@ QString Utils::Fs::toUniformPath(const QString &path)
     return QDir::fromNativeSeparators(path);
 }
 
-/**
- * Returns the file extension part of a file name.
- */
+QString Utils::Fs::resolvePath(const QString &relativePath, const QString &basePath)
+{
+    Q_ASSERT(QDir::isRelativePath(relativePath));
+    Q_ASSERT(QDir::isAbsolutePath(basePath));
+
+    return (relativePath.isEmpty() ? basePath : QDir(basePath).absoluteFilePath(relativePath));
+}
+
 QString Utils::Fs::fileExtension(const QString &filename)
 {
-    const QString name = filename.endsWith(QB_EXT)
-        ? filename.chopped(QB_EXT.length())
-        : filename;
-    return QMimeDatabase().suffixForFileName(name);
+    return QMimeDatabase().suffixForFileName(filename);
 }
 
 QString Utils::Fs::fileName(const QString &filePath)
@@ -347,15 +348,9 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
         file += '/';
     file += '.';
 
-#if defined(Q_OS_MACOS)
-    struct statfs64 buf {};
-    if (statfs64(file.toLocal8Bit().constData(), &buf) != 0)
-        return false;
-#else
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;
-#endif
 
 #if defined(Q_OS_OPENBSD)
     return ((strncmp(buf.f_fstypename, "cifs", sizeof(buf.f_fstypename)) == 0)
@@ -404,3 +399,40 @@ bool Utils::Fs::isNetworkFileSystem(const QString &path)
 #endif
 }
 #endif // Q_OS_HAIKU
+
+QString Utils::Fs::findRootFolder(const QStringList &filePaths)
+{
+    QString rootFolder;
+    for (const QString &filePath : filePaths)
+    {
+        const auto filePathElements = QStringView(filePath).split(u'/');
+        // if at least one file has no root folder, no common root folder exists
+        if (filePathElements.count() <= 1)
+            return {};
+
+        if (rootFolder.isEmpty())
+            rootFolder = filePathElements.at(0).toString();
+        else if (rootFolder != filePathElements.at(0))
+            return {};
+    }
+
+    return rootFolder;
+}
+
+void Utils::Fs::stripRootFolder(QStringList &filePaths)
+{
+    const QString commonRootFolder = findRootFolder(filePaths);
+    if (commonRootFolder.isEmpty())
+        return;
+
+    for (QString &filePath : filePaths)
+        filePath = filePath.mid(commonRootFolder.size() + 1);
+}
+
+void Utils::Fs::addRootFolder(QStringList &filePaths, const QString &rootFolder)
+{
+    Q_ASSERT(!rootFolder.isEmpty());
+
+    for (QString &filePath : filePaths)
+        filePath = rootFolder + QLatin1Char('/') + filePath;
+}

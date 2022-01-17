@@ -97,7 +97,7 @@ window.qBittorrent.PropTrackers = (function() {
 
                         const row = {
                             rowId: tracker.url,
-                            tier: tracker.tier,
+                            tier: (tracker.tier >= 0) ? tracker.tier : "",
                             url: tracker.url,
                             status: status,
                             peers: tracker.num_peers,

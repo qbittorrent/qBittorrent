@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ko" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="ko" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>폴더 생성</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
 </context>
@@ -139,11 +141,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>프로그램 설정을 저장할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
-    </message>
-    <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: Freenode #qbittorrent 채널</translation>
+        <translation>프로그램 기본설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +180,6 @@
         <translation>로그인</translation>
     </message>
     <message>
-        <source>Original authors</source>
-        <translation>원 제작자</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>적용</translation>
     </message>
@@ -216,7 +210,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>설정 위치</translation>
+        <translation>위치 지정</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -364,6 +358,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>수신 연결에 사용되는 포트는 0에서 65535 사이여야 합니다.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation>원본 작성자</translation>
     </message>
 </context>
 <context>
@@ -936,7 +934,7 @@
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: 루트 경로(첫 토렌트의 하위 디렉토리 경로)</translation>
+        <translation>%R: 루트 경로(첫 토렌트의 하위 디렉터리 경로)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -955,8 +953,8 @@
         <translation>%T: 현재 트래커</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1181,10 +1179,6 @@
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>나가는 포트(최소) [0: 사용 안 함]:</translation>
-    </message>
-    <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>트래커에 보고할 IP 주소(다시 시작):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1431,7 +1425,7 @@
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
     <message>
@@ -1460,7 +1454,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>역방향 프록시 지원 활성화</translation>
+        <translation>역방향 프록시 지원 사용</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1469,6 +1463,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: 정보 해시 v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation>트래커에 보고된 IP 주소(다시 시작해야 함):</translation>
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation>시스템이 사용하지 않는 포트를 선택하도록 하려면 0으로 지정</translation>
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>SSRF(서버 측 요청 위조) 완화:</translation>
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>IP:포트 복사</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>새 피어 추가...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>국가/지역</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1765,6 +1771,10 @@
     <message>
         <source>N/A</source>
         <translation>해당 없음</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>진행률:</translation>
     </message>
 </context>
 <context>
@@ -2549,7 +2559,7 @@
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation>공유 제한 없음 설정</translation>
+        <translation>공유 제한 없음 지정</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -2688,7 +2698,7 @@
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>URL 또는 로컬 디렉토리</translation>
+        <translation>URL 또는 로컬 디렉터리</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -2734,10 +2744,6 @@
         <translation>찾기:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>결과 (보기</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>필터</translation>
     </message>
@@ -2747,7 +2753,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>사용중인 것만</translation>
+        <translation>사용된 경우에만</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2768,6 +2774,14 @@
     <message>
         <source>to</source>
         <translation>~</translation>
+    </message>
+    <message>
+        <source>Results</source>
+        <translation>결과</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>표시</translation>
     </message>
 </context>
 <context>
@@ -2794,10 +2808,10 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>경고: 검색 엔진으로 토렌트를 받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
@@ -2844,7 +2858,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
         <source>Version</source>
@@ -2995,16 +3009,28 @@
         <translation>국적:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>제작자</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>사용된 소프트웨어</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>DB-IP의 IP/국가 변환 데이터베이스를 피어 국가 분석에 사용합니다. 이 DB는 CCA(Creative Commons Attribution) 4.0 국제 라이선스 하에서 사용됩니다.</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>작성자</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>프랑스</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3140,7 +3166,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 피드 가져오기를 중지합니다! 프로그램 설정에서 다시 설정할 수 있습니다.</translation>
+        <translation>RSS 피드 가져오기가 이제 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3183,7 +3209,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 토렌트 자동 받기를 사용 중지했습니다! 프로그램 옵션에서 사용으로 설정할 수 있습니다.</translation>
+        <translation>지금 RSS 토렌트의 자동 다운로드가 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3259,7 +3285,7 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation>다른 디렉토리에 저장</translation>
+        <translation>다른 디렉터리에 저장</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
@@ -3399,7 +3425,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>폴더 생성 안 함</translation>
     </message>
 </context>

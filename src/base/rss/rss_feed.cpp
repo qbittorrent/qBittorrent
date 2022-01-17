@@ -31,6 +31,7 @@
 #include "rss_feed.h"
 
 #include <algorithm>
+#include <utility>
 #include <vector>
 
 #include <QDir>
@@ -461,19 +462,19 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     if (newArticles.empty())
         return 0;
 
-    using ArticleSortAdaptor = QPair<QDateTime, const QVariantHash *>;
+    using ArticleSortAdaptor = std::pair<QDateTime, const QVariantHash *>;
     std::vector<ArticleSortAdaptor> sortData;
     const QList<Article *> existingArticles = articles();
     sortData.reserve(existingArticles.size() + newArticles.size());
     std::transform(existingArticles.begin(), existingArticles.end(), std::back_inserter(sortData)
                    , [](const Article *article)
     {
-        return qMakePair(article->date(), nullptr);
+        return std::make_pair(article->date(), nullptr);
     });
     std::transform(newArticles.begin(), newArticles.end(), std::back_inserter(sortData)
                    , [](const QVariantHash &article)
     {
-        return qMakePair(article[Article::KeyDate].toDateTime(), &article);
+        return std::make_pair(article[Article::KeyDate].toDateTime(), &article);
     });
 
     // Sort article list in reverse chronological order

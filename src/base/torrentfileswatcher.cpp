@@ -74,6 +74,8 @@ const QString OPTION_RECURSIVE {QStringLiteral("recursive")};
 const QString PARAM_CATEGORY {QStringLiteral("category")};
 const QString PARAM_TAGS {QStringLiteral("tags")};
 const QString PARAM_SAVEPATH {QStringLiteral("save_path")};
+const QString PARAM_USEDOWNLOADPATH {QStringLiteral("use_download_path")};
+const QString PARAM_DOWNLOADPATH {QStringLiteral("download_path")};
 const QString PARAM_OPERATINGMODE {QStringLiteral("operating_mode")};
 const QString PARAM_STOPPED {QStringLiteral("stopped")};
 const QString PARAM_SKIPCHECKING {QStringLiteral("skip_checking")};
@@ -136,6 +138,8 @@ namespace
         params.category = jsonObj.value(PARAM_CATEGORY).toString();
         params.tags = parseTagSet(jsonObj.value(PARAM_TAGS).toArray());
         params.savePath = jsonObj.value(PARAM_SAVEPATH).toString();
+        params.useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH);
+        params.downloadPath = jsonObj.value(PARAM_DOWNLOADPATH).toString();
         params.addForced = (getEnum<BitTorrent::TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == BitTorrent::TorrentOperatingMode::Forced);
         params.addPaused = getOptionalBool(jsonObj, PARAM_STOPPED);
         params.skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool();
@@ -155,6 +159,7 @@ namespace
             {PARAM_CATEGORY, params.category},
             {PARAM_TAGS, serializeTagSet(params.tags)},
             {PARAM_SAVEPATH, params.savePath},
+            {PARAM_DOWNLOADPATH, params.downloadPath},
             {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
                 ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged)},
             {PARAM_SKIPCHECKING, params.skipChecking},
@@ -170,6 +175,8 @@ namespace
             jsonObj[PARAM_CONTENTLAYOUT] = Utils::String::fromEnum(*params.contentLayout);
         if (params.useAutoTMM)
             jsonObj[PARAM_AUTOTMM] = *params.useAutoTMM;
+        if (params.useDownloadPath)
+            jsonObj[PARAM_USEDOWNLOADPATH] = *params.useDownloadPath;
 
         return jsonObj;
     }
@@ -504,7 +511,16 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
         if (path != watchedFolderPath)
         {
             const QString subdirPath = watchedDir.relativeFilePath(path);
-            addTorrentParams.savePath = QDir::cleanPath(QDir(addTorrentParams.savePath).filePath(subdirPath));
+            const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+            if (useAutoTMM)
+            {
+                addTorrentParams.category = addTorrentParams.category.isEmpty()
+                        ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
+            }
+            else
+            {
+                addTorrentParams.savePath = QDir::cleanPath(QDir(addTorrentParams.savePath).filePath(subdirPath));
+            }
         }
 
         if (filePath.endsWith(QLatin1String(".magnet"), Qt::CaseInsensitive))
@@ -526,10 +542,10 @@ void TorrentFilesWatcher::Worker::processFolder(const QString &path, const QStri
         }
         else
         {
-            const auto torrentInfo = BitTorrent::TorrentInfo::loadFromFile(filePath);
-            if (torrentInfo.isValid())
+            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(filePath);
+            if (result)
             {
-                emit torrentFound(torrentInfo, addTorrentParams);
+                emit torrentFound(result.value(), addTorrentParams);
                 Utils::Fs::forceRemove(filePath);
             }
             else
@@ -567,18 +583,27 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
             if (!QFile::exists(torrentPath))
                 return true;
 
-            const auto torrentInfo = BitTorrent::TorrentInfo::loadFromFile(torrentPath);
-            if (torrentInfo.isValid())
+            const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(torrentPath);
+            if (result)
             {
                 BitTorrent::AddTorrentParams addTorrentParams = options.addTorrentParams;
                 const QString exactDirPath = QFileInfo(torrentPath).canonicalPath();
                 if (exactDirPath != dir.path())
                 {
                     const QString subdirPath = dir.relativeFilePath(exactDirPath);
-                    addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
+                    const bool useAutoTMM = addTorrentParams.useAutoTMM.value_or(!BitTorrent::Session::instance()->isAutoTMMDisabledByDefault());
+                    if (useAutoTMM)
+                    {
+                        addTorrentParams.category = addTorrentParams.category.isEmpty()
+                                ? subdirPath : (addTorrentParams.category + QLatin1Char('/') + subdirPath);
+                    }
+                    else
+                    {
+                        addTorrentParams.savePath = QDir(addTorrentParams.savePath).filePath(subdirPath);
+                    }
                 }
 
-                emit torrentFound(torrentInfo, addTorrentParams);
+                emit torrentFound(result.value(), addTorrentParams);
                 Utils::Fs::forceRemove(torrentPath);
 
                 return true;

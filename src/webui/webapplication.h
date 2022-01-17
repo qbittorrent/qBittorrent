@@ -43,7 +43,7 @@
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
-inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 3};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 5};
 
 class APIController;
 class WebApplication;

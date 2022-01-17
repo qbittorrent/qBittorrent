@@ -1,1 +1,42 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><clipPath id="a"><path d="m0 0h600v300h-600z"/></clipPath><clipPath id="b"><path d="m0 0 300 150h-300zm300 0h300l-300 150zm0 150h300v150zm0 0v150h-300z"/></clipPath><g id="c"><g id="d"><path d="m0 0v.5l1-.5z" transform="translate(0 -.3)"/><path d="m0 0v-.5l1 .5z" transform="matrix(.80901699 -.58778525 .58778525 .80901699 .213049 .255696)"/></g><use transform="scale(-1 1)" xlink:href="#d"/><use transform="matrix(.30901699 .95105652 -.95105652 .30901699 0 0)" xlink:href="#d"/><use transform="matrix(.30901699 -.95105652 .95105652 .30901699 0 0)" xlink:href="#d"/><use transform="matrix(-.30901699 .95105652 .95105652 .30901699 0 0)" xlink:href="#d"/></g></defs><path d="m0 0h640v480h-640z" fill="#00247d" fill-rule="evenodd"/><g transform="matrix(.66825 0 0 .66825 -93 36.1)"><use fill="#fff" height="100%" transform="matrix(45.4 0 0 45.4 900 120)" width="100%" xlink:href="#c"/><use fill="#cc142b" height="100%" transform="matrix(30 0 0 30 900 120)" width="100%" xlink:href="#c"/></g><g transform="matrix(.09300242 .66174664 -.66174664 .09300242 583.637238 -421.39784)"><use fill="#fff" height="100%" transform="matrix(5.62259328 -40.00682998 40.00682998 5.62259328 900.014856 119.948656)" width="100%" xlink:href="#c"/><use fill="#cc142b" height="100%" transform="matrix(3.47932752 -24.75670172 24.75670172 3.47932752 900.014856 119.948656)" width="100%" xlink:href="#c"/></g><g transform="matrix(.09300242 .66174664 -.66174664 .09300242 583.637238 -421.39784)"><use fill="#fff" height="100%" transform="matrix(6.31845878 -44.95817032 44.95817032 6.31845878 900.059711 380.000256)" width="100%" xlink:href="#c"/><use fill="#cc142b" height="100%" transform="matrix(4.17519303 -29.70804206 29.70804206 4.17519303 900.059711 380.000256)" width="100%" xlink:href="#c"/></g><g transform="matrix(.66825 0 0 .66825 -93 36.1)"><use fill="#fff" height="100%" transform="matrix(50.4 0 0 50.4 900 480)" width="100%" xlink:href="#c"/><use fill="#cc142b" height="100%" transform="matrix(35 0 0 35 900 480)" width="100%" xlink:href="#c"/></g><path clip-path="url(#a)" d="m0 0 600 300m-600 0 600-300" stroke="#fff" stroke-width="60" transform="scale(.60681 .73139)"/><path clip-path="url(#b)" d="m0 0 600 300m-600 0 600-300" stroke="#cc142b" stroke-width="40" transform="scale(.60681 .73139)"/><path clip-path="url(#a)" d="m151.7 0v79.4h-151.7v60.6h151.7v79.4h60.7v-79.3h151.6v-60.7h-151.6v-79.4z" fill="#fff"/><path d="m163.8 0v91.5h-163.8v36.4h163.8v91.5h36.4v-91.4h163.9v-36.5h-163.9v-91.5z" fill="#cc142b"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-nz" viewBox="0 0 640 480">
+  <defs id="defs30">
+    <clipPath id="nz-c">
+      <path id="path10" d="M0 0h600v300H0z"/>
+    </clipPath>
+    <clipPath id="nz-d">
+      <path id="path13" d="m0 0 300 150H0zm300 0h300L300 150zm0 150h300v150zm0 0v150H0z"/>
+    </clipPath>
+    <g id="b">
+      <g id="a">
+        <path id="path16" d="M0 0v.5L1 0z" transform="translate(0 -.3)"/>
+        <path id="path18" d="M0 0v-.5L1 0z" transform="rotate(-36 .5 -.2)"/>
+      </g>
+      <use xlink:href="#a" id="use21" transform="scale(-1 1)"/>
+      <use xlink:href="#a" id="use23" transform="rotate(72 0 0)"/>
+      <use xlink:href="#a" id="use25" transform="rotate(-72 0 0)"/>
+      <use xlink:href="#a" id="use27" transform="scale(-1 1) rotate(72)"/>
+    </g>
+  </defs>
+  <path id="path32" fill="#00247d" fill-rule="evenodd" d="M0 0h640v480H0z"/>
+  <g id="g38" transform="translate(-111 36.1) scale(.66825)">
+    <use xlink:href="#b" id="use34" width="100%" height="100%" x="0" y="0" fill="#fff" transform="matrix(45.4 0 0 45.4 900 120)"/>
+    <use xlink:href="#b" id="use36" width="100%" height="100%" x="0" y="0" fill="#cc142b" transform="matrix(30 0 0 30 900 120)"/>
+  </g>
+  <g id="g44" transform="rotate(82 525.2 114.6) scale(.66825)">
+    <use xlink:href="#b" id="use40" width="100%" height="100%" x="0" y="0" fill="#fff" transform="rotate(-82 519 -457.7) scale(40.4)"/>
+    <use xlink:href="#b" id="use42" width="100%" height="100%" x="0" y="0" fill="#cc142b" transform="rotate(-82 519 -457.7) scale(25)"/>
+  </g>
+  <g id="g50" transform="rotate(82 525.2 114.6) scale(.66825)">
+    <use xlink:href="#b" id="use46" width="100%" height="100%" x="0" y="0" fill="#fff" transform="rotate(-82 668.6 -327.7) scale(45.4)"/>
+    <use xlink:href="#b" id="use48" width="100%" height="100%" x="0" y="0" fill="#cc142b" transform="rotate(-82 668.6 -327.7) scale(30)"/>
+  </g>
+  <g id="g56" transform="translate(-111 36.1) scale(.66825)">
+    <use xlink:href="#b" id="use52" width="100%" height="100%" x="0" y="0" fill="#fff" transform="matrix(50.4 0 0 50.4 900 480)"/>
+    <use xlink:href="#b" id="use54" width="100%" height="100%" x="0" y="0" fill="#cc142b" transform="matrix(35 0 0 35 900 480)"/>
+  </g>
+  <path id="path1592" fill="#012169" stroke-width=".5" d="M0 0h320v240H0z"/>
+  <path id="path1594" fill="#fff" stroke-width=".5" d="m37.5 0 122 90.5L281 0h39v31l-120 89.5 120 89V240h-40l-120-89.5L40.5 240H0v-30l119.5-89L0 32V0z"/>
+  <path id="path1596" fill="#c8102e" stroke-width=".5" d="M212 140.5 320 220v20l-135.5-99.5zm-92 10 3 17.5-96 72H0zM320 0v1.5l-124.5 94 1-22L295 0zM0 0l119.5 88h-30L0 21z"/>
+  <path id="path1598" fill="#fff" stroke-width=".5" d="M120.5 0v240h80V0zM0 80v80h320V80z"/>
+  <path id="path1600" fill="#c8102e" stroke-width=".5" d="M0 96.5v48h320v-48zM136.5 0v240h48V0z"/>
+</svg>

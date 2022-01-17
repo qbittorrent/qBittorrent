@@ -50,7 +50,9 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
+        int currentDBVersion() const;
         void createDB() const;
+        void updateDBFromVersion1() const;
 
         QThread *m_ioThread = nullptr;
 

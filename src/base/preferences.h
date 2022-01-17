@@ -29,9 +29,9 @@
 
 #pragma once
 
+#include <QObject>
 #include <QtContainerFwd>
 #include <QtGlobal>
-#include <QVariant>
 
 #include "base/utils/net.h"
 
@@ -40,38 +40,50 @@ class QNetworkCookie;
 class QSize;
 class QTime;
 
-enum SchedulerDays
+namespace Scheduler
 {
-    EVERY_DAY,
-    WEEK_DAYS,
-    WEEK_ENDS,
-    MON,
-    TUE,
-    WED,
-    THU,
-    FRI,
-    SAT,
-    SUN
-};
+    Q_NAMESPACE
 
-namespace TrayIcon
-{
-    enum Style
+    enum class Days : int
     {
-        NORMAL = 0,
-        MONO_DARK,
-        MONO_LIGHT
+        EveryDay = 0,
+        Weekday = 1,
+        Weekend = 2,
+        Monday = 3,
+        Tuesday = 4,
+        Wednesday = 5,
+        Thursday = 6,
+        Friday = 7,
+        Saturday = 8,
+        Sunday = 9
     };
+    Q_ENUM_NS(Days)
 }
 
 namespace DNS
 {
-    enum Service
+    Q_NAMESPACE
+
+    enum class Service : int
     {
-        DYNDNS,
-        NOIP,
-        NONE = -1
+        DynDNS = 0,
+        NoIP = 1,
+        None = -1
     };
+    Q_ENUM_NS(Service)
+}
+
+namespace TrayIcon
+{
+    Q_NAMESPACE
+
+    enum class Style : int
+    {
+        Normal = 0,
+        MonoDark = 1,
+        MonoLight = 2
+    };
+    Q_ENUM_NS(Style)
 }
 
 class Preferences : public QObject
@@ -80,9 +92,6 @@ class Preferences : public QObject
     Q_DISABLE_COPY_MOVE(Preferences)
 
     Preferences();
-
-    QVariant value(const QString &key, const QVariant &defaultValue = {}) const;
-    void setValue(const QString &key, const QVariant &value);
 
     static Preferences *m_instance;
 
@@ -161,8 +170,8 @@ public:
     void setSchedulerStartTime(const QTime &time);
     QTime getSchedulerEndTime() const;
     void setSchedulerEndTime(const QTime &time);
-    SchedulerDays getSchedulerDays() const;
-    void setSchedulerDays(SchedulerDays days);
+    Scheduler::Days getSchedulerDays() const;
+    void setSchedulerDays(Scheduler::Days days);
 
     // Search
     bool isSearchEnabled() const;
@@ -236,7 +245,7 @@ public:
     bool isDynDNSEnabled() const;
     void setDynDNSEnabled(bool enabled);
     DNS::Service getDynDNSService() const;
-    void setDynDNSService(int service);
+    void setDynDNSService(DNS::Service service);
     QString getDynDomainName() const;
     void setDynDomainName(const QString &name);
     QString getDynDNSUsername() const;
@@ -306,8 +315,8 @@ public:
     bool confirmRemoveAllTags() const;
     void setConfirmRemoveAllTags(bool enabled);
 #ifndef Q_OS_MACOS
-    bool systrayIntegration() const;
-    void setSystrayIntegration(bool enabled);
+    bool systemTrayEnabled() const;
+    void setSystemTrayEnabled(bool enabled);
     bool minimizeToTrayNotified() const;
     void setMinimizeToTrayNotified(bool b);
     bool minimizeToTray() const;

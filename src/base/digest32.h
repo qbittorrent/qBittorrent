@@ -41,7 +41,6 @@ public:
     using UnderlyingType = lt::digest32<N>;
 
     Digest32() = default;
-    Digest32(const Digest32 &other) = default;
 
     Digest32(const UnderlyingType &nativeDigest)
         : m_valid {true}

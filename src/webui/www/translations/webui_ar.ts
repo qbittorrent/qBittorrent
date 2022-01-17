@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="ar" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -10,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>الفئة:</translation>
+        <translation>التصنيف:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -37,7 +39,7 @@
         <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
@@ -142,10 +144,6 @@
         <translation>لا يمكن حفظ تفضيلات البرنامج, والسبب على الأرجح هو عدم إمكانية الوصول إلى كيوبت‎تورنت.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent على Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>غير معروف</translation>
     </message>
@@ -180,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>ولوج</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation>المؤلفين الأصليين</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -364,6 +358,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 0 و 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation>المؤلف الاصلي</translation>
     </message>
 </context>
 <context>
@@ -955,8 +953,8 @@
         <translation>%T: المتتبع الحالي</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1181,10 +1179,6 @@
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>منافذ الخروج (دقيقة) [0: معطلة]</translation>
-    </message>
-    <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>عنوان الآي بي الذي يتم إعلانه للمتتبع (يتطلب إعادة التشغيل)</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1431,7 +1425,7 @@
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
     <message>
@@ -1469,6 +1463,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: معلومات التحقق من البيانات (الهاش) الإصدار 1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation>تم الإبلاغ عن عنوان IP للمتتبعين (يتطلب إعادة التشغيل):</translation>
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation>قم بالتعيين إلى 0 للسماح للنظام الخاص بك باختيار منفذ غير مستخدم</translation>
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>التخفيف من تزوير الطلب من جانب الخادم (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>نسخ الآي بي: المنفذ</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>إضافة قرين جديد...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>الدولة/المنطقة</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>إضافة قرناء ...</translation>
     </message>
 </context>
 <context>
@@ -1765,6 +1771,10 @@
     <message>
         <source>N/A</source>
         <translation>لا يوجد</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>التقدم:</translation>
     </message>
 </context>
 <context>
@@ -2040,7 +2050,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2337,7 +2347,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>الفئات</translation>
+        <translation>التصنيفات</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2428,7 +2438,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>New...</source>
@@ -2734,10 +2744,6 @@
         <translation>البحث في:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>النتائج (تظهر</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>تصفية</translation>
     </message>
@@ -2769,6 +2775,14 @@
         <source>to</source>
         <translation>إلى</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation>النتائج</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>عرض</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2811,7 @@
         <translation>مُفعّل</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>تحذير: تأكد من الامتثال لقوانين حقوق الطبع والنشر في بلدك عند تنزيل التورنت من أي من محركات البحث هذه.</translation>
     </message>
     <message>
@@ -2995,16 +3009,28 @@
         <translation>الجنسية:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>المؤلف</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>البرمجيات المستخدمة</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>تُستخدم قاعدة بيانات IP to Country Lite المجانية بواسطة DB-IP لفصل بلدان القرناء. قاعدة البيانات مُرخصة بموجب ترخيص Creative Commons Attribution 4.0 International License</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>المؤلفون</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>فرنسا</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>تميمة كيوبت‎تورنت</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>رمز كيوبت‎تورنت</translation>
     </message>
 </context>
 <context>
@@ -3400,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>

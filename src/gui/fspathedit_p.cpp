@@ -240,6 +240,16 @@ void Private::FileLineEdit::setValidator(QValidator *validator)
     QLineEdit::setValidator(validator);
 }
 
+QString Private::FileLineEdit::placeholder() const
+{
+    return placeholderText();
+}
+
+void Private::FileLineEdit::setPlaceholder(const QString &val)
+{
+    setPlaceholderText(val);
+}
+
 QWidget *Private::FileLineEdit::widget()
 {
     return this;
@@ -344,6 +354,16 @@ void Private::FileComboEdit::setBrowseAction(QAction *action)
 void Private::FileComboEdit::setValidator(QValidator *validator)
 {
     lineEdit()->setValidator(validator);
+}
+
+QString Private::FileComboEdit::placeholder() const
+{
+    return lineEdit()->placeholderText();
+}
+
+void Private::FileComboEdit::setPlaceholder(const QString &val)
+{
+    lineEdit()->setPlaceholderText(val);
 }
 
 void Private::FileComboEdit::setFilenameFilters(const QStringList &filters)

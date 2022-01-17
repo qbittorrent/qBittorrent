@@ -6,14 +6,80 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
-    <height>450</height>
+    <width>450</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Torrent Options</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <widget class="QCheckBox" name="checkAutoTMM">
+     <property name="toolTip">
+      <string>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</string>
+     </property>
+     <property name="text">
+      <string>Automatic Torrent Management</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBoxSavePath">
+     <property name="title">
+      <string>Save at</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
+       <widget class="FileSystemPathComboEdit" name="savePath" native="true"/>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="checkUseDownloadPath">
+        <property name="text">
+         <string>Use another path for incomplete torrent</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="FileSystemPathComboEdit" name="downloadPath" native="true">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="1">
+      <widget class="QComboBox" name="comboCategory">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="editable">
+        <bool>true</bool>
+       </property>
+       <property name="maxVisibleItems">
+        <number>2147483647</number>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtTop</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelCategory">
+       <property name="text">
+        <string>Category:</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
@@ -187,6 +253,13 @@
       </widget>
      </item>
      <item row="0" column="1">
+      <widget class="QCheckBox" name="checkSequential">
+       <property name="text">
+        <string>Download in sequential order</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -203,6 +276,13 @@
       <widget class="QCheckBox" name="checkDisablePEX">
        <property name="text">
         <string>Disable PeX for this torrent</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QCheckBox" name="checkFirstLastPieces">
+       <property name="text">
+        <string>Download first and last pieces first</string>
        </property>
       </widget>
      </item>
@@ -237,6 +317,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileSystemPathComboEdit</class>
+   <extends>QWidget</extends>
+   <header>gui/fspathedit.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

@@ -25,6 +25,12 @@ macro(qbt_common_config)
         $<$<NOT:$<CONFIG:Debug>>:QT_NO_DEBUG_OUTPUT>
     )
 
+    if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        target_compile_definitions(qbt_common_cfg INTERFACE
+            _DARWIN_FEATURE_64_BIT_INODE
+        )
+    endif()
+
     if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
         target_compile_definitions(qbt_common_cfg INTERFACE
             NTDDI_VERSION=0x06010000

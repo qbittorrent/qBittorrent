@@ -38,6 +38,12 @@
 
 #include "utils/string.h"
 
+template <typename T>
+struct IsQFlags : std::false_type {};
+
+template <typename T>
+struct IsQFlags<QFlags<T>> : std::true_type {};
+
 class SettingsStorage : public QObject
 {
     Q_OBJECT
@@ -54,11 +60,17 @@ public:
     {
         if constexpr (std::is_enum_v<T>)
         {
-            const auto value = loadValueImpl(key).toString();
+            const auto value = loadValue<QString>(key);
             return Utils::String::toEnum(value, defaultValue);
+        }
+        else if constexpr (IsQFlags<T>::value)
+        {
+            const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
+            return T {value};
         }
         else if constexpr (std::is_same_v<T, QVariant>)
         {
+            // fast path for loading QVariant
             return loadValueImpl(key, defaultValue);
         }
         else
@@ -74,6 +86,8 @@ public:
     {
         if constexpr (std::is_enum_v<T>)
             storeValueImpl(key, Utils::String::fromEnum(value));
+        else if constexpr (IsQFlags<T>::value)
+            storeValueImpl(key, static_cast<typename T::Int>(value));
         else
             storeValueImpl(key, value);
     }

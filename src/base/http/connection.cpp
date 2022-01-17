@@ -45,8 +45,18 @@ Connection::Connection(QTcpSocket *socket, IRequestHandler *requestHandler, QObj
     , m_requestHandler(requestHandler)
 {
     m_socket->setParent(this);
+
+    // reset timer when there are activity
     m_idleTimer.start();
-    connect(m_socket, &QTcpSocket::readyRead, this, &Connection::read);
+    connect(m_socket, &QIODevice::readyRead, this, [this]()
+    {
+        m_idleTimer.start();
+        read();
+    });
+    connect(m_socket, &QIODevice::bytesWritten, this, [this]()
+    {
+        m_idleTimer.start();
+    });
 }
 
 Connection::~Connection()
@@ -56,7 +66,6 @@ Connection::~Connection()
 
 void Connection::read()
 {
-    m_idleTimer.restart();
     m_receivedData.append(m_socket->readAll());
 
     while (!m_receivedData.isEmpty())
@@ -66,7 +75,7 @@ void Connection::read()
         switch (result.status)
         {
         case RequestParser::ParseStatus::Incomplete:
-        {
+            {
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit)
                 {
@@ -83,7 +92,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::BadRequest:
-        {
+            {
                 Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
@@ -96,7 +105,7 @@ void Connection::read()
             return;
 
         case RequestParser::ParseStatus::OK:
-        {
+            {
                 const Environment env {m_socket->localAddress(), m_socket->localPort(), m_socket->peerAddress(), m_socket->peerPort()};
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
@@ -125,7 +134,9 @@ void Connection::sendResponse(const Response &response) const
 
 bool Connection::hasExpired(const qint64 timeout) const
 {
-    return m_idleTimer.hasExpired(timeout);
+    return (m_socket->bytesAvailable() == 0)
+        && (m_socket->bytesToWrite() == 0)
+        && m_idleTimer.hasExpired(timeout);
 }
 
 bool Connection::isClosed() const

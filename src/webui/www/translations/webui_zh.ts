@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="zh" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>创建子文件夹</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>
@@ -142,10 +144,6 @@
         <translation>无法保存程序偏好选项，可能是无法连接到 qBttorrent。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC：#qbittorrent on Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -180,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>登录</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation>原作者</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -343,7 +337,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript 未启用! 你必须启用 JavaScript 以确保 Web UI 工作正常</translation>
+        <translation>需要 JavaScript！您必须启用 JavaScript 以确保 Web UI 正常运行</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -364,6 +358,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>用于传入连接的端口必须介于 0 和 65535 之间。</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation>原始作者</translation>
     </message>
 </context>
 <context>
@@ -955,8 +953,8 @@
         <translation>%T：当前 tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如：&quot;%N&quot;）</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如："%N"）</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1088,7 +1086,7 @@
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation>提示：密码未加密</translation>
+        <translation>提示：储存的密码未被加密</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1181,10 +1179,6 @@
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
         <translation>传出端口 (下限) [0: 禁用]:</translation>
-    </message>
-    <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>向 Tracker 汇报的 IP 地址 (需要重启):</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1356,7 +1350,7 @@
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation>下载下载 REPACK/PROPER 版剧集</translation>
+        <translation>下载 REPACK/PROPER 版剧集</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1372,7 +1366,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>最大并发 HTTP 发布（需要libtorrent&gt; = 1.2.7）：</translation>
+        <translation>最大并发 HTTP 发布（需要 libtorrent &gt; = 1.2.7）：</translation>
     </message>
     <message>
         <source> min</source>
@@ -1384,7 +1378,7 @@
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation>绑定到的可选IP地址：</translation>
+        <translation>绑定到的可选 IP 地址：</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -1400,11 +1394,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>磁盘缓存（需要libtorrent &lt;2.0）：</translation>
+        <translation>磁盘缓存（需要 libtorrent  &lt; 2.0）：</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>磁盘缓存过期时间间隔（要求libtorrent &lt;2.0）：</translation>
+        <translation>磁盘缓存过期时间间隔（要求 libtorrent &lt; 2.0）：</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1416,7 +1410,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>支持国际化域名（IDN） (需要 libtorrent &gt;= 1.2.12):</translation>
+        <translation>支持国际化域名（IDN）（需要 libtorrent &gt;= 1.2.12）：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1431,7 +1425,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
     <message>
@@ -1469,6 +1463,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: 信息哈希值 v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation>IP 地址已报告给 Trackers (需要重启)</translation>
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation>设为 0，让系统选择一个未使用的端口</translation>
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>服务器端请求伪造（SSRF）攻击缓解：</translation>
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>复制 IP:端口</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>添加新用户...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>国家/地区</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>添加 peers 用户...</translation>
     </message>
 </context>
 <context>
@@ -1765,6 +1771,10 @@
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>进度：</translation>
     </message>
 </context>
 <context>
@@ -2734,10 +2744,6 @@
         <translation>在以下范围搜索：</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>结果 (显示</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>过滤器</translation>
     </message>
@@ -2769,6 +2775,14 @@
         <source>to</source>
         <translation>到</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation>结果</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>显示</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2811,7 @@
         <translation>启用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：在下载来自这些搜索引擎的 torrent 时，请确认它符合您所在国家的版权法。</translation>
     </message>
     <message>
@@ -2995,16 +3009,28 @@
         <translation>国籍：</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>作者</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>使用的软件</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>DB-IP提供的免费IP to Country Lite数据库用于解析节点所在的国家。 该数据库已根据知识共享署名4.0国际许可协议获得许可</translation>
+        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析节点所在的国家。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>作者</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>法国</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent 吉祥物</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent 图标</translation>
     </message>
 </context>
 <context>
@@ -3171,7 +3197,7 @@
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation>* —— 匹配 0 个或多个任意字符</translation>
+        <translation>* ——匹配 0 个或多个任意字符</translation>
     </message>
     <message>
         <source> will match all articles.</source>
@@ -3207,7 +3233,7 @@
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation>? —— 匹配任意单个字符</translation>
+        <translation>? ——匹配任意单个字符</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
@@ -3223,7 +3249,7 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| —— &quot;或&quot; 运算符</translation>
+        <translation>| —— "或" 运算符</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3231,7 +3257,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>空格 —— &quot;与&quot; 运算符 (所有关键词，任意顺序)</translation>
+        <translation>空格 —— "与" 运算符 (所有关键词，任意顺序)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3263,7 +3289,7 @@
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation>必须不含：</translation>
+        <translation>不可包含：</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -3385,7 +3411,7 @@
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation>智能剧集过滤器会检查集数以避免重复下载。
-支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 &quot;-&quot; 符号)</translation>
+支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 "-" 符号)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3400,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>

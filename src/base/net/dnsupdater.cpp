@@ -41,7 +41,7 @@ using namespace Net;
 DNSUpdater::DNSUpdater(QObject *parent)
     : QObject(parent)
     , m_state(OK)
-    , m_service(DNS::NONE)
+    , m_service(DNS::Service::None)
 {
     updateCredentials();
 
@@ -143,15 +143,16 @@ QString DNSUpdater::getUpdateUrl() const
     // Service specific
     switch (m_service)
     {
-    case DNS::DYNDNS:
+    case DNS::Service::DynDNS:
         url.setHost("members.dyndns.org");
         break;
-    case DNS::NOIP:
+    case DNS::Service::NoIP:
         url.setHost("dynupdate.no-ip.com");
         break;
     default:
         qWarning() << "Unrecognized Dynamic DNS service!";
-        Q_ASSERT(0);
+        Q_ASSERT(false);
+        break;
     }
     url.setPath("/nic/update");
 
@@ -295,16 +296,17 @@ void DNSUpdater::updateCredentials()
     }
 }
 
-QUrl DNSUpdater::getRegistrationUrl(const int service)
+QUrl DNSUpdater::getRegistrationUrl(const DNS::Service service)
 {
     switch (service)
     {
-    case DNS::DYNDNS:
+    case DNS::Service::DynDNS:
         return {"https://account.dyn.com/entrance/"};
-    case DNS::NOIP:
+    case DNS::Service::NoIP:
         return {"https://www.noip.com/remote-access"};
     default:
-        Q_ASSERT(0);
+        Q_ASSERT(false);
+        break;
     }
     return {};
 }

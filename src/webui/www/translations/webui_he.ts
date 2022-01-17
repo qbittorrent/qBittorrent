@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="he" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>צור תת־תיקייה</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>
@@ -142,10 +144,6 @@
         <translation>לא ניתן לשמור את העדפות התכנית, qBittorrent כנראה בלתי נגיש.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: ערוץ #qbittorrent על Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>לא ידוע</translation>
     </message>
@@ -180,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>היכנס</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation>מחברים מקוריים</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -364,6 +358,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>הפתחה המשמשת לחיבורים נכנסים חייבת להיות בין 0 לבין 65535.</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation>מחבר מקורי</translation>
     </message>
 </context>
 <context>
@@ -955,8 +953,8 @@
         <translation>%T: גשש נוכחי</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1183,10 +1181,6 @@
         <translation>פתחות יוצאות (מיזער) [0: מושבת]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>כתובת IP לדיווח לגששים (דורש הפעלה מחדש):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>בדוק מחדש טורנטים בעת השלמה:</translation>
     </message>
@@ -1216,7 +1210,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation>ש&apos;</translation>
+        <translation>ש'</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1236,7 +1230,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation>דק&apos;</translation>
+        <translation>דק'</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1376,7 +1370,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation>דק&apos;</translation>
+        <translation>דק'</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1431,7 +1425,7 @@
         <translation>מקורי</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
     <message>
@@ -1469,6 +1463,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I: גיבוב מידע גרסה 1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation>כתובת IP דווחה אל גששים (דורש הפעלה מחדש):</translation>
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation>הגדר אל 0 כדי לתת למערכת שלך לבחור פתחה שאינה בשימוש</translation>
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>שיכוך של זיוף בקשות צד־שרת (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>העתק IP:פתחה</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>הוסף עמית חדש…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>מדינה/אזור</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>הוסף עמיתים…</translation>
     </message>
 </context>
 <context>
@@ -1765,6 +1771,10 @@
     <message>
         <source>N/A</source>
         <translation>לא זמין</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>התקדמות:</translation>
     </message>
 </context>
 <context>
@@ -2642,12 +2652,12 @@
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 ש&apos; %2 ד&apos;</translation>
+        <translation>%1 ש' %2 ד'</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 י&apos; %2 ש&apos;</translation>
+        <translation>%1 י' %2 ש'</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2734,10 +2744,6 @@
         <translation>חפש ב:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>תוצאות (מראה</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>סנן</translation>
     </message>
@@ -2769,6 +2775,14 @@
         <source>to</source>
         <translation>אל</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation>תוצאות</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>מראה</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2811,7 @@
         <translation>מאופשר</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בזמן הורדת טורנטים מכל אחד ממנועי החיפוש האלו.</translation>
     </message>
     <message>
@@ -2995,16 +3009,28 @@
         <translation>לאום:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>מחבר</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>תוכנות בשימוש</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>מסד־הנתונים החינמי IP to Country Lite מאת DB-IP משמש עבור פתירת מדינות של עמיתים. מסד־הנתונים ברישיון תחת הרישיון הבינלאומי Creative Commons Attribution 4.0</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>מחברים</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>צרפת</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent Mascot</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>איקון של qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -3400,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>מקורי</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>

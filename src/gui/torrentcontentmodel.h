@@ -41,7 +41,7 @@ class TorrentContentModelFile;
 
 namespace BitTorrent
 {
-    class TorrentInfo;
+    class AbstractFileStorage;
 }
 
 class TorrentContentModel final : public QAbstractItemModel
@@ -74,7 +74,7 @@ public:
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = {}) const override;
     void clear();
-    void setupModelData(const BitTorrent::TorrentInfo &info);
+    void setupModelData(const BitTorrent::AbstractFileStorage &info);
 
 signals:
     void filteredFilesChanged();

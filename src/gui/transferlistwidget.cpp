@@ -43,7 +43,6 @@
 #include <QVector>
 #include <QWheelEvent>
 
-#include "base/bittorrent/common.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -93,9 +92,7 @@ namespace
 
         for (const QString &filePath : asConst(torrent->filePaths()))
         {
-            QString fileName = Utils::Fs::fileName(filePath);
-            if (fileName.endsWith(QB_EXT))
-                fileName.chop(QB_EXT.length());
+            const QString fileName = Utils::Fs::fileName(filePath);
             if (Utils::Misc::isPreviewable(fileName))
                 return true;
         }
@@ -106,12 +103,12 @@ namespace
     void openDestinationFolder(const BitTorrent::Torrent *const torrent)
     {
 #ifdef Q_OS_MACOS
-        MacUtils::openFiles({torrent->contentPath(true)});
+        MacUtils::openFiles({torrent->contentPath()});
 #else
         if (torrent->filesCount() == 1)
-            Utils::Gui::openFolderSelect(torrent->contentPath(true));
+            Utils::Gui::openFolderSelect(torrent->contentPath());
         else
-            Utils::Gui::openPath(torrent->contentPath(true));
+            Utils::Gui::openPath(torrent->contentPath());
 #endif
     }
 
@@ -303,6 +300,9 @@ void TransferListWidget::torrentDoubleClicked()
     case OPEN_DEST:
         openDestinationFolder(torrent);
         break;
+    case SHOW_OPTIONS:
+        setTorrentOptions();
+        break;
     }
 }
 
@@ -335,12 +335,15 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
     const QString oldLocation = torrents[0]->savePath();
     const QString newLocation = QFileDialog::getExistingDirectory(this, tr("Choose save path"), oldLocation,
-                                            QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
+                                            (QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails));
     if (newLocation.isEmpty() || !QDir(newLocation).exists()) return;
 
     // Actually move storage
     for (BitTorrent::Torrent *const torrent : torrents)
-        torrent->move(Utils::Fs::expandPathAbs(newLocation));
+    {
+        torrent->setAutoTMMEnabled(false);
+        torrent->setSavePath(Utils::Fs::expandPathAbs(newLocation));
+    }
 }
 
 void TransferListWidget::pauseAllTorrents()
@@ -537,22 +540,22 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        QString path = torrent->contentPath(true);
-        pathsList.insert(path);
+        const QString contentPath = QDir(torrent->actualStorageLocation()).absoluteFilePath(torrent->contentPath());
+        pathsList.insert(contentPath);
     }
     MacUtils::openFiles(pathsList);
 #else
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        QString path = torrent->contentPath(true);
-        if (!pathsList.contains(path))
+        const QString contentPath = torrent->contentPath();
+        if (!pathsList.contains(contentPath))
         {
             if (torrent->filesCount() == 1)
-                Utils::Gui::openFolderSelect(path);
+                Utils::Gui::openFolderSelect(contentPath);
             else
-                Utils::Gui::openPath(path);
+                Utils::Gui::openPath(contentPath);
         }
-        pathsList.insert(path);
+        pathsList.insert(contentPath);
     }
 #endif // Q_OS_MACOS
 }
@@ -870,7 +873,6 @@ void TransferListWidget::displayListMenu(const QPoint &)
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
     connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
     auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
-    actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties(eg save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
@@ -918,7 +920,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
         }
 
         if (firstAutoTMM != torrent->isAutoTMMEnabled())
-            allSameAutoTMM = false;
+             allSameAutoTMM = false;
 
         if (torrent->hasMetadata())
             oneHasMetadata = true;
@@ -1001,7 +1003,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     listMenu->addAction(actionEditTracker);
 
     // Category Menu
-    QStringList categories = BitTorrent::Session::instance()->categories().keys();
+    QStringList categories = BitTorrent::Session::instance()->categories();
     std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
     QMenu *categoryMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon("view-categories"), tr("Category"));
@@ -1015,13 +1017,13 @@ void TransferListWidget::displayListMenu(const QPoint &)
     for (const QString &category : asConst(categories))
     {
         const QString escapedCategory = QString(category).replace('&', "&&");  // avoid '&' becomes accelerator key
-        QAction *cat = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
+        QAction *categoryAction = categoryMenu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), escapedCategory
             , this, [this, category]() { setSelectionCategory(category); });
 
         if (allSameCategory && (category == firstCategory))
         {
-            cat->setCheckable(true);
-            cat->setChecked(true);
+            categoryAction->setCheckable(true);
+            categoryAction->setChecked(true);
         }
     }
 
@@ -1095,9 +1097,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
             ? (prioritizeFirstLast ? Qt::Checked : Qt::Unchecked)
             : Qt::PartiallyChecked);
         listMenu->addAction(actionFirstLastPiecePrio);
-
-        addedPreviewAction = true;
     }
+        addedPreviewAction = true;
 
     if (addedPreviewAction)
         listMenu->addSeparator();

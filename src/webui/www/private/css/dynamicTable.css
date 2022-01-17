@@ -51,11 +51,7 @@ tr.dynamicTableHeader {
 
 .dynamicTable th {
     background-color: #eee;
-    border-right-color: #ccc;
-    border-right-style: solid;
-    border-right-width: 1px;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+    border-right: 1px solid #ccc;
     box-sizing: border-box;
     padding: 4px;
     white-space: nowrap;
@@ -78,14 +74,14 @@ tr.dynamicTableHeader {
 }
 
 .dynamicTable th.sorted {
-    background-image: url(../icons/go-up.svg);
+    background-image: url("../icons/go-up.svg");
     background-position: right;
     background-repeat: no-repeat;
     background-size: 15px;
 }
 
 .dynamicTable th.sorted.reverse {
-    background-image: url(../icons/go-down.svg);
+    background-image: url("../icons/go-down.svg");
 }
 
 .dynamicTable td img.flags {

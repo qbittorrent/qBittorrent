@@ -51,10 +51,8 @@ namespace
         const bool isLeftValid = left.isValid();
         const bool isRightValid = right.isValid();
 
-        if (isLeftValid && isRightValid)
+        if (isLeftValid == isRightValid)
             return threeWayCompare(left, right);
-        if (!isLeftValid && !isRightValid)
-            return 0;
         return isLeftValid ? -1 : 1;
     }
 
@@ -222,7 +220,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         }
 
     default:
-        Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparsion case");
+        Q_ASSERT_X(false, Q_FUNC_INFO, "Missing comparison case");
         break;
     }
 

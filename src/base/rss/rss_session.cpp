@@ -53,25 +53,21 @@ const QString ConfFolderName(QStringLiteral("rss"));
 const QString DataFolderName(QStringLiteral("rss/articles"));
 const QString FeedsFileName(QStringLiteral("feeds.json"));
 
-const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/Session/EnableProcessing"));
-const QString SettingsKey_RefreshInterval(QStringLiteral("RSS/Session/RefreshInterval"));
-const QString SettingsKey_MaxArticlesPerFeed(QStringLiteral("RSS/Session/MaxArticlesPerFeed"));
-
 using namespace RSS;
 
 QPointer<Session> Session::m_instance = nullptr;
 
 Session::Session()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
+    : m_storeProcessingEnabled("RSS/Session/EnableProcessing")
+    , m_storeRefreshInterval("RSS/Session/RefreshInterval", 30)
+    , m_storeMaxArticlesPerFeed("RSS/Session/MaxArticlesPerFeed", 50)
     , m_workingThread(new QThread(this))
-    , m_refreshInterval(SettingsStorage::instance()->loadValue(SettingsKey_RefreshInterval, 30))
-    , m_maxArticlesPerFeed(SettingsStorage::instance()->loadValue(SettingsKey_MaxArticlesPerFeed, 50))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
     m_confFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
     m_confFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_confFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
@@ -81,7 +77,7 @@ Session::Session()
     });
 
     m_dataFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + DataFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + QLatin1Char('/') + DataFolderName));
     m_dataFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
@@ -96,9 +92,9 @@ Session::Session()
     load();
 
     connect(&m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
-    if (m_processingEnabled)
+    if (isProcessingEnabled())
     {
-        m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+        m_refreshTimer.start(refreshInterval() * MsecsPerMin);
         refresh();
     }
 
@@ -142,67 +138,59 @@ Session *Session::instance()
     return m_instance;
 }
 
-bool Session::addFolder(const QString &path, QString *error)
+nonstd::expected<void, QString> Session::addFolder(const QString &path)
 {
-    Folder *destFolder = prepareItemDest(path, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
+    if (!result)
+        return result.get_unexpected();
 
+    const auto destFolder = result.value();
     addItem(new Folder(path), destFolder);
     store();
-    return true;
+    return {};
 }
 
-bool Session::addFeed(const QString &url, const QString &path, QString *error)
+nonstd::expected<void, QString> Session::addFeed(const QString &url, const QString &path)
 {
     if (m_feedsByURL.contains(url))
-    {
-        if (error)
-            *error = tr("RSS feed with given URL already exists: %1.").arg(url);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("RSS feed with given URL already exists: %1.").arg(url));
 
-    Folder *destFolder = prepareItemDest(path, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(path);
+    if (!result)
+        return result.get_unexpected();
 
+    const auto destFolder = result.value();
     addItem(new Feed(generateUID(), url, path, this), destFolder);
     store();
-    if (m_processingEnabled)
+    if (isProcessingEnabled())
         feedByURL(url)->refresh();
-    return true;
+
+    return {};
 }
 
-bool Session::moveItem(const QString &itemPath, const QString &destPath, QString *error)
+nonstd::expected<void, QString> Session::moveItem(const QString &itemPath, const QString &destPath)
 {
     if (itemPath.isEmpty())
-    {
-        if (error)
-            *error = tr("Cannot move root folder.");
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Cannot move root folder."));
 
     auto item = m_itemsByPath.value(itemPath);
     if (!item)
-    {
-        if (error)
-            *error = tr("Item doesn't exist: %1.").arg(itemPath);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Item doesn't exist: %1.").arg(itemPath));
 
-    return moveItem(item, destPath, error);
+    return moveItem(item, destPath);
 }
 
-bool Session::moveItem(Item *item, const QString &destPath, QString *error)
+nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &destPath)
 {
     Q_ASSERT(item);
     Q_ASSERT(item != rootFolder());
 
-    Folder *destFolder = prepareItemDest(destPath, error);
-    if (!destFolder)
-        return false;
+    const nonstd::expected<Folder *, QString> result = prepareItemDest(destPath);
+    if (!result)
+        return result.get_unexpected();
 
     auto srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
+    const auto destFolder = result.value();
     if (srcFolder != destFolder)
     {
         srcFolder->removeItem(item);
@@ -211,25 +199,17 @@ bool Session::moveItem(Item *item, const QString &destPath, QString *error)
     m_itemsByPath.insert(destPath, m_itemsByPath.take(item->path()));
     item->setPath(destPath);
     store();
-    return true;
+    return {};
 }
 
-bool Session::removeItem(const QString &itemPath, QString *error)
+nonstd::expected<void, QString> Session::removeItem(const QString &itemPath)
 {
     if (itemPath.isEmpty())
-    {
-        if (error)
-            *error = tr("Cannot delete root folder.");
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Cannot delete root folder."));
 
-    auto item = m_itemsByPath.value(itemPath);
+    auto *item = m_itemsByPath.value(itemPath);
     if (!item)
-    {
-        if (error)
-            *error = tr("Item doesn't exist: %1.").arg(itemPath);
-        return false;
-    }
+        return nonstd::make_unexpected(tr("Item doesn't exist: %1.").arg(itemPath));
 
     emit itemAboutToBeRemoved(item);
     item->cleanup();
@@ -238,7 +218,7 @@ bool Session::removeItem(const QString &itemPath, QString *error)
     folder->removeItem(item);
     delete item;
     store();
-    return true;
+    return {};
 }
 
 QList<Item *> Session::items() const
@@ -395,30 +375,18 @@ void Session::store()
     m_confFileStorage->store(FeedsFileName, QJsonDocument(rootFolder()->toJsonValue().toObject()).toJson());
 }
 
-Folder *Session::prepareItemDest(const QString &path, QString *error)
+nonstd::expected<Folder *, QString> Session::prepareItemDest(const QString &path)
 {
     if (!Item::isValidPath(path))
-    {
-        if (error)
-            *error = tr("Incorrect RSS Item path: %1.").arg(path);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("Incorrect RSS Item path: %1.").arg(path));
 
     if (m_itemsByPath.contains(path))
-    {
-        if (error)
-            *error = tr("RSS item with given path already exists: %1.").arg(path);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("RSS item with given path already exists: %1.").arg(path));
 
     const QString destFolderPath = Item::parentPath(path);
-    auto destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
+    const auto destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
     if (!destFolder)
-    {
-        if (error)
-            *error = tr("Parent folder doesn't exist: %1.").arg(destFolderPath);
-        return nullptr;
-    }
+        return nonstd::make_unexpected(tr("Parent folder doesn't exist: %1.").arg(destFolderPath));
 
     return destFolder;
 }
@@ -457,18 +425,17 @@ void Session::addItem(Item *item, Folder *destFolder)
 
 bool Session::isProcessingEnabled() const
 {
-    return m_processingEnabled;
+    return m_storeProcessingEnabled;
 }
 
-void Session::setProcessingEnabled(bool enabled)
+void Session::setProcessingEnabled(const bool enabled)
 {
-    if (m_processingEnabled != enabled)
+    if (m_storeProcessingEnabled != enabled)
     {
-        m_processingEnabled = enabled;
-        SettingsStorage::instance()->storeValue(SettingsKey_ProcessingEnabled, m_processingEnabled);
-        if (m_processingEnabled)
+        m_storeProcessingEnabled = enabled;
+        if (enabled)
         {
-            m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+            m_refreshTimer.start(refreshInterval() * MsecsPerMin);
             refresh();
         }
         else
@@ -476,7 +443,7 @@ void Session::setProcessingEnabled(bool enabled)
             m_refreshTimer.stop();
         }
 
-        emit processingStateChanged(m_processingEnabled);
+        emit processingStateChanged(enabled);
     }
 }
 
@@ -507,16 +474,15 @@ Feed *Session::feedByURL(const QString &url) const
 
 int Session::refreshInterval() const
 {
-    return m_refreshInterval;
+    return m_storeRefreshInterval;
 }
 
 void Session::setRefreshInterval(const int refreshInterval)
 {
-    if (m_refreshInterval != refreshInterval)
+    if (m_storeRefreshInterval != refreshInterval)
     {
-        SettingsStorage::instance()->storeValue(SettingsKey_RefreshInterval, refreshInterval);
-        m_refreshInterval = refreshInterval;
-        m_refreshTimer.start(m_refreshInterval * MsecsPerMin);
+        m_storeRefreshInterval = refreshInterval;
+        m_refreshTimer.start(m_storeRefreshInterval * MsecsPerMin);
     }
 }
 
@@ -555,15 +521,14 @@ QUuid Session::generateUID() const
 
 int Session::maxArticlesPerFeed() const
 {
-    return m_maxArticlesPerFeed;
+    return m_storeMaxArticlesPerFeed;
 }
 
 void Session::setMaxArticlesPerFeed(const int n)
 {
-    if (m_maxArticlesPerFeed != n)
+    if (m_storeMaxArticlesPerFeed != n)
     {
-        m_maxArticlesPerFeed = n;
-        SettingsStorage::instance()->storeValue(SettingsKey_MaxArticlesPerFeed, n);
+        m_storeMaxArticlesPerFeed = n;
         emit maxArticlesPerFeedChanged(n);
     }
 }

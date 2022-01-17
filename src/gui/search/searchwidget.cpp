@@ -32,6 +32,8 @@
 
 #include <QtGlobal>
 
+#include <utility>
+
 #ifdef Q_OS_WIN
 #include <cstdlib>
 #endif
@@ -182,10 +184,10 @@ void SearchWidget::fillCatCombobox()
     m_ui->comboCategory->clear();
     m_ui->comboCategory->addItem(SearchPluginManager::categoryFullName("all"), "all");
 
-    using QStrPair = QPair<QString, QString>;
+    using QStrPair = std::pair<QString, QString>;
     QVector<QStrPair> tmpList;
     for (const QString &cat : asConst(SearchPluginManager::instance()->getPluginCategories(selectedPlugin())))
-        tmpList << qMakePair(SearchPluginManager::categoryFullName(cat), cat);
+        tmpList << std::make_pair(SearchPluginManager::categoryFullName(cat), cat);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (QString::localeAwareCompare(l.first, r.first) < 0); });
 
     for (const QStrPair &p : asConst(tmpList))
@@ -205,10 +207,10 @@ void SearchWidget::fillPluginComboBox()
     m_ui->selectPlugin->addItem(tr("All plugins"), "all");
     m_ui->selectPlugin->addItem(tr("Select..."), "multi");
 
-    using QStrPair = QPair<QString, QString>;
+    using QStrPair = std::pair<QString, QString>;
     QVector<QStrPair> tmpList;
     for (const QString &name : asConst(SearchPluginManager::instance()->enabledPlugins()))
-        tmpList << qMakePair(SearchPluginManager::instance()->pluginFullName(name), name);
+        tmpList << std::make_pair(SearchPluginManager::instance()->pluginFullName(name), name);
     std::sort(tmpList.begin(), tmpList.end(), [](const QStrPair &l, const QStrPair &r) { return (l.first < r.first); } );
 
     for (const QStrPair &p : asConst(tmpList))
@@ -304,7 +306,7 @@ void SearchWidget::on_searchButton_clicked()
 {
     if (!Utils::ForeignApps::pythonInfo().isValid())
     {
-        m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
@@ -373,9 +375,9 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
         if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         {
             if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
-                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has failed"));
+                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has failed"));
             else
-                m_mainWindow->showNotificationBaloon(tr("Search Engine"), tr("Search has finished"));
+                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has finished"));
         }
 
         m_activeSearchTab = nullptr;

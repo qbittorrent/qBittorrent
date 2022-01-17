@@ -28,24 +28,27 @@
 
 #include "applicationinstancemanager.h"
 
+#include <QtGlobal>
+
 #ifdef Q_OS_WIN
 #include <windows.h>
-#endif
 
 #include <QDebug>
 #include <QSharedMemory>
+#endif
 
 #include "qtlocalpeer/qtlocalpeer.h"
 
-ApplicationInstanceManager::ApplicationInstanceManager(const QString &appId, QObject *parent)
+ApplicationInstanceManager::ApplicationInstanceManager(const QString &instancePath, QObject *parent)
     : QObject {parent}
-    , m_peer {new QtLocalPeer {this, appId}}
+    , m_peer {new QtLocalPeer {instancePath, this}}
     , m_isFirstInstance {!m_peer->isClient()}
 {
     connect(m_peer, &QtLocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
 
 #ifdef Q_OS_WIN
-    auto sharedMem = new QSharedMemory {appId + QLatin1String {"-shared-memory-key"}, this};
+    const QString sharedMemoryKey = instancePath + QLatin1String {"/shared-memory"};
+    auto sharedMem = new QSharedMemory {sharedMemoryKey, this};
     if (m_isFirstInstance)
     {
         // First instance creates shared memory and store PID
@@ -78,9 +81,4 @@ bool ApplicationInstanceManager::isFirstInstance() const
 bool ApplicationInstanceManager::sendMessage(const QString &message, const int timeout)
 {
     return m_peer->sendMessage(message, timeout);
-}
-
-QString ApplicationInstanceManager::appId() const
-{
-    return m_peer->applicationId();
 }

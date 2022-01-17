@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="zh_TW" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="zh_TW" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>建立子資料夾</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
 </context>
@@ -142,10 +144,6 @@
         <translation>無法儲存程式偏好設定，qBittorrent 可能無法連線。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC：#qbittorrent 在 Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -180,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>登入</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation>原始作者</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -364,6 +358,10 @@
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
         <translation>用於連入連線的埠號必須介於 0 至 65535 之間。</translation>
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation>原始作者</translation>
     </message>
 </context>
 <context>
@@ -955,8 +953,8 @@
         <translation>%T：目前的追蹤者</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如：&quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：把參數以引號包起來以避免被空格切斷 (例如："%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1048,7 +1046,7 @@
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation>啟用主機檔頭驗證</translation>
+        <translation>啟用主機標頭驗證</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1183,10 +1181,6 @@
         <translation>連出埠（最小）[0：停用]：</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>回報至追蹤者的 IP 位置（需要重新啟動）：</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>完成後重新檢查 torrent：</translation>
     </message>
@@ -1308,7 +1302,7 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation>標投：鍵值對，一行一個</translation>
+        <translation>標頭：鍵值對，一行一個</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
@@ -1431,7 +1425,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
     <message>
@@ -1469,6 +1463,18 @@
     <message>
         <source>%I: Info hash v1</source>
         <translation>%I：資訊雜湊值 v1</translation>
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation>向追蹤器回報的 IP 位置（需要重新啟動）：</translation>
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation>設定為 0 讓您的系統挑選未使用的連接埠</translation>
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>伺服器端請求偽造 (SSRF) 緩解：</translation>
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>複製 IP:埠</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>新增下載者……</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>國家／區域</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>新增下載者……</translation>
     </message>
 </context>
 <context>
@@ -1765,6 +1771,10 @@
     <message>
         <source>N/A</source>
         <translation>N/A</translation>
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>進度：</translation>
     </message>
 </context>
 <context>
@@ -2734,10 +2744,6 @@
         <translation>搜尋：</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>搜尋結果 (顯示</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>過濾器</translation>
     </message>
@@ -2769,6 +2775,14 @@
         <source>to</source>
         <translation>到</translation>
     </message>
+    <message>
+        <source>Results</source>
+        <translation>結果</translation>
+    </message>
+    <message>
+        <source>showing</source>
+        <translation>正在顯示</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -2797,7 +2811,7 @@
         <translation>已啟用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：請確保您從這些搜尋引擎中下載 torrent 時遵守您所在國家的版權法規。</translation>
     </message>
     <message>
@@ -2995,16 +3009,28 @@
         <translation>國籍：</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>作者</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>使用的軟體</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>由 DB-IP 提供，用於解析 peer 的所在國家的免費 IP 對國家 Lite 資料庫。此資料庫以創用 CC 姓名標示 4.0 國際授權條款授權</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>作者</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>法國</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent 吉祥物</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent 圖示</translation>
     </message>
 </context>
 <context>
@@ -3275,7 +3301,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>您確定要移除所選的下載原則嗎？</translation>
+        <translation>您確定要移除所選的下載規則嗎？</translation>
     </message>
     <message>
         <source>Use global settings</source>
@@ -3307,7 +3333,7 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation>原則刪除確認</translation>
+        <translation>規則刪除確認</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3400,7 +3426,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不要建立子資料夾</translation>
     </message>
 </context>

@@ -91,7 +91,7 @@ public slots:
     void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
-    void displayDLHoSMenu(const QPoint&);
+    void displayDLHoSMenu(const QPoint &);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);

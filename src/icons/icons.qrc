@@ -40,6 +40,7 @@
         <file>filterinactive.svg</file>
         <file>filterstalled.svg</file>
         <file>firewalled.svg</file>
+        <file>flags/ac.svg</file>
         <file>flags/ad.svg</file>
         <file>flags/ae.svg</file>
         <file>flags/af.svg</file>
@@ -89,6 +90,7 @@
         <file>flags/cm.svg</file>
         <file>flags/cn.svg</file>
         <file>flags/co.svg</file>
+        <file>flags/cp.svg</file>
         <file>flags/cr.svg</file>
         <file>flags/cu.svg</file>
         <file>flags/cv.svg</file>
@@ -97,17 +99,21 @@
         <file>flags/cy.svg</file>
         <file>flags/cz.svg</file>
         <file>flags/de.svg</file>
+        <file>flags/dg.svg</file>
         <file>flags/dj.svg</file>
         <file>flags/dk.svg</file>
         <file>flags/dm.svg</file>
         <file>flags/do.svg</file>
         <file>flags/dz.svg</file>
+        <file>flags/ea.svg</file>
         <file>flags/ec.svg</file>
         <file>flags/ee.svg</file>
         <file>flags/eg.svg</file>
         <file>flags/eh.svg</file>
         <file>flags/er.svg</file>
         <file>flags/es.svg</file>
+        <file>flags/es-ct.svg</file>
+        <file>flags/es-ga.svg</file>
         <file>flags/et.svg</file>
         <file>flags/eu.svg</file>
         <file>flags/fi.svg</file>
@@ -118,6 +124,10 @@
         <file>flags/fr.svg</file>
         <file>flags/ga.svg</file>
         <file>flags/gb.svg</file>
+        <file>flags/gb-eng.svg</file>
+        <file>flags/gb-nir.svg</file>
+        <file>flags/gb-sct.svg</file>
+        <file>flags/gb-wls.svg</file>
         <file>flags/gd.svg</file>
         <file>flags/ge.svg</file>
         <file>flags/gf.svg</file>
@@ -141,6 +151,7 @@
         <file>flags/hr.svg</file>
         <file>flags/ht.svg</file>
         <file>flags/hu.svg</file>
+        <file>flags/ic.svg</file>
         <file>flags/id.svg</file>
         <file>flags/ie.svg</file>
         <file>flags/il.svg</file>
@@ -254,6 +265,7 @@
         <file>flags/sx.svg</file>
         <file>flags/sy.svg</file>
         <file>flags/sz.svg</file>
+        <file>flags/ta.svg</file>
         <file>flags/tc.svg</file>
         <file>flags/td.svg</file>
         <file>flags/tf.svg</file>
@@ -287,6 +299,7 @@
         <file>flags/wf.svg</file>
         <file>flags/ws.svg</file>
         <file>flags/xk.svg</file>
+        <file>flags/xx.svg</file>
         <file>flags/ye.svg</file>
         <file>flags/yt.svg</file>
         <file>flags/za.svg</file>

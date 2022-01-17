@@ -1,0 +1,55 @@
+repos:
+  - repo: local
+    hooks:
+      - id: check-translation-tag
+        name: Check newline characters in <translation> tag
+        entry: .github/workflows/check_translation_tag.py
+        language: script
+        types_or:
+          - ts
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks.git
+    rev: v4.0.1
+    hooks:
+    - id: check-json
+      name: Check JSON files
+
+    - id: check-yaml
+      name: Check YAML files
+
+    - id: fix-byte-order-marker
+      name: Check file encoding (UTF-8 without BOM)
+      exclude: |
+        (?x)^(
+          src/base/unicodestrings.h
+        )$
+
+    - id: mixed-line-ending
+      name: Check line ending character (LF)
+      args: ["--fix=lf"]
+      exclude: |
+        (?x)^(
+          compile_commands.json |
+          src/webui/www/private/scripts/lib/.*
+        )$
+
+    - id: end-of-file-fixer
+      name: Check trailing newlines
+      exclude: |
+        (?x)^(
+          compile_commands.json |
+          configure |
+          src/webui/www/private/scripts/lib/.*
+        )$
+      exclude_types:
+        - svg
+        - ts
+
+    - id: trailing-whitespace
+      name: Check trailing whitespaces
+      exclude: |
+        (?x)^(
+          src/webui/www/private/scripts/lib/.*
+        )$
+      exclude_types:
+        - ts

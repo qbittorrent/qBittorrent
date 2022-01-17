@@ -1,1 +1,26 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><g id="a" transform="translate(0 -36)"><g id="b"><g id="c"><path id="d" d="m0-5-1.5 4.8 2.8.9z" fill="#fff"/><use height="120" transform="scale(-1 1)" width="180" xlink:href="#d"/></g><use height="120" transform="matrix(.30901699 .95105652 -.95105652 .30901699 0 0)" width="180" xlink:href="#c"/></g><use height="120" transform="matrix(.30901699 -.95105652 .95105652 .30901699 0 0)" width="180" xlink:href="#c"/><use height="120" transform="matrix(-.80901699 .58778525 -.58778525 -.80901699 0 0)" width="180" xlink:href="#b"/></g></defs><path d="m0 0h640v480h-640z" fill="#cf142b"/><path d="m0 0h640v320h-640z" fill="#00247d"/><path d="m0 0h640v160h-640z" fill="#fc0"/><g id="e" transform="matrix(4 0 0 4 320 336)"><g id="f"><use height="120" transform="matrix(.98480775 .17364818 -.17364818 .98480775 0 0)" width="180" xlink:href="#a"/><use height="120" transform="matrix(.8660254 .5 -.5 .8660254 0 0)" width="180" xlink:href="#a"/></g><use height="120" transform="matrix(.76604444 .64278761 -.64278761 .76604444 0 0)" width="180" xlink:href="#f"/></g><use height="120" transform="matrix(.17364818 -.98480775 .98480775 .17364818 -66.462822 592.792693)" width="180" xlink:href="#e"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="flag-icons-ve" viewBox="0 0 640 480">
+  <defs>
+    <g id="d" transform="translate(0 -36)">
+      <g id="c">
+        <g id="b">
+          <path id="a" fill="#fff" d="M0-5-1.5-.2l2.8.9z"/>
+          <use xlink:href="#a" width="180" height="120" transform="scale(-1 1)"/>
+        </g>
+        <use xlink:href="#b" width="180" height="120" transform="rotate(72)"/>
+      </g>
+      <use xlink:href="#b" width="180" height="120" transform="rotate(-72)"/>
+      <use xlink:href="#c" width="180" height="120" transform="rotate(144)"/>
+    </g>
+  </defs>
+  <path fill="#cf142b" d="M0 0h640v480H0z"/>
+  <path fill="#00247d" d="M0 0h640v320H0z"/>
+  <path fill="#fc0" d="M0 0h640v160H0z"/>
+  <g id="f" transform="matrix(4 0 0 4 320 336)">
+    <g id="e">
+      <use xlink:href="#d" width="180" height="120" transform="rotate(10)"/>
+      <use xlink:href="#d" width="180" height="120" transform="rotate(30)"/>
+    </g>
+    <use xlink:href="#e" width="180" height="120" transform="rotate(40)"/>
+  </g>
+  <use xlink:href="#f" width="180" height="120" transform="rotate(-80 320 336)"/>
+</svg>

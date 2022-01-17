@@ -45,7 +45,7 @@ public:
 
 public slots:
     void search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
-                , const QString &completeSavePath, const QString &incompleteSavePath);
+                , const QString &savePath, const QString &downloadPath);
 
 signals:
     void searchFinished(const BitTorrent::TorrentID &id, const QString &savePath, const QStringList &fileNames);

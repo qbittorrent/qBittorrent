@@ -256,7 +256,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->customThemeFilePath->setSelectedPath(Preferences::instance()->customUIThemePath());
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
-    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme)"));
+    m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     m_ui->checkUseSystemIcon->setChecked(Preferences::instance()->useSystemIconTheme());
@@ -354,7 +354,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboTorrentCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryDefaultPathChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->comboCategoryChanged, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textTempPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->textDownloadPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAppendqB, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreallocateAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -372,8 +372,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->textExportDirFin, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkTempFolder, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkTempFolder, &QAbstractButton::toggled, m_ui->textTempPath, &QWidget::setEnabled);
+    connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, m_ui->textDownloadPath, &QWidget::setEnabled);
     connect(m_ui->addWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
@@ -421,8 +421,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkLimitTransportOverhead, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLimitLocalPeerRate, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     // Bittorrent tab
-    connect(m_ui->checkMaxConnecs, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkMaxConnecsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkMaxConnectionsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploads, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMaxUploadsPerTorrent, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxConnec, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
@@ -446,7 +446,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinProxyPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkProxyPeerConnecs, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxyPeerConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->isProxyOnlyForTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -559,8 +559,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
-    m_ui->textTempPath->setDialogCaption(tr("Choose a save directory"));
-    m_ui->textTempPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->textDownloadPath->setDialogCaption(tr("Choose a save directory"));
+    m_ui->textDownloadPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
 
     // disable mouse wheel event on widgets to avoid mis-selection
     auto *wheelEventEater = new WheelEventEater(this);
@@ -677,7 +677,7 @@ void OptionsDialog::saveOptions()
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MACOS
-    pref->setSystrayIntegration(systrayIntegration());
+    pref->setSystemTrayEnabled(systemTrayEnabled());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(closeToTray());
     pref->setMinimizeToTray(minimizeToTray());
@@ -731,14 +731,14 @@ void OptionsDialog::saveOptions()
     auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
-    session->setDefaultSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
+    session->setSavePath(Utils::Fs::expandPathAbs(m_ui->textSavePath->selectedPath()));
     session->setSubcategoriesEnabled(m_ui->checkUseSubcategories->isChecked());
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenCategorySavePathChanged(m_ui->comboCategoryChanged->currentIndex() == 1);
     session->setDisableAutoTMMWhenDefaultSavePathChanged(m_ui->comboCategoryDefaultPathChanged->currentIndex() == 1);
-    session->setTempPathEnabled(m_ui->checkTempFolder->isChecked());
-    session->setTempPath(Utils::Fs::expandPathAbs(m_ui->textTempPath->selectedPath()));
+    session->setDownloadPathEnabled(m_ui->checkUseDownloadPath->isChecked());
+    session->setDownloadPath(Utils::Fs::expandPathAbs(m_ui->textDownloadPath->selectedPath()));
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
     session->setPreallocationEnabled(preAllocateAllFiles());
     pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
@@ -763,8 +763,8 @@ void OptionsDialog::saveOptions()
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
-    pref->setActionOnDblClOnTorrentDl(getActionOnDblClOnTorrentDl());
-    pref->setActionOnDblClOnTorrentFn(getActionOnDblClOnTorrentFn());
+    pref->setActionOnDblClOnTorrentDl(m_ui->actionTorrentDlOnDblClBox->currentData().toInt());
+    pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
@@ -783,7 +783,7 @@ void OptionsDialog::saveOptions()
     session->setIgnoreLimitsOnLAN(!m_ui->checkLimitLocalPeerRate->isChecked());
     pref->setSchedulerStartTime(m_ui->timeEditScheduleFrom->time());
     pref->setSchedulerEndTime(m_ui->timeEditScheduleTo->time());
-    pref->setSchedulerDays(static_cast<SchedulerDays>(m_ui->comboBoxScheduleDays->currentIndex()));
+    pref->setSchedulerDays(static_cast<Scheduler::Days>(m_ui->comboBoxScheduleDays->currentIndex()));
     session->setBandwidthSchedulerEnabled(m_ui->groupBoxSchedule->isChecked());
 
     auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
@@ -796,12 +796,12 @@ void OptionsDialog::saveOptions()
     proxyConfigManager->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
-    session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnecs->isChecked());
+    session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
     // End Connection preferences
 
     // Bittorrent preferences
-    session->setMaxConnections(getMaxConnecs());
-    session->setMaxConnectionsPerTorrent(getMaxConnecsPerTorrent());
+    session->setMaxConnections(getMaxConnections());
+    session->setMaxConnectionsPerTorrent(getMaxConnectionsPerTorrent());
     session->setMaxUploads(getMaxUploads());
     session->setMaxUploadsPerTorrent(getMaxUploadsPerTorrent());
     session->setDHTEnabled(isDHTEnabled());
@@ -867,7 +867,7 @@ void OptionsDialog::saveOptions()
         pref->setWebUIHostHeaderValidationEnabled(m_ui->groupHostHeaderValidation->isChecked());
         // DynDNS
         pref->setDynDNSEnabled(m_ui->checkDynDNS->isChecked());
-        pref->setDynDNSService(m_ui->comboDNSService->currentIndex());
+        pref->setDynDNSService(static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex()));
         pref->setDynDomainName(m_ui->domainNameTxt->text());
         pref->setDynDNSUsername(m_ui->DNSUsernameTxt->text());
         pref->setDynDNSPassword(m_ui->DNSPasswordTxt->text());
@@ -936,12 +936,12 @@ void OptionsDialog::loadOptions()
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
 
 #ifndef Q_OS_MACOS
-    m_ui->checkShowSystray->setChecked(pref->systrayIntegration());
+    m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
     if (m_ui->checkShowSystray->isChecked())
     {
         m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
         m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-        m_ui->comboTrayIcon->setCurrentIndex(pref->trayIconStyle());
+        m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
     }
 #endif
 
@@ -997,16 +997,16 @@ void OptionsDialog::loadOptions()
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
 
-    m_ui->textSavePath->setSelectedPath(session->defaultSavePath());
+    m_ui->textSavePath->setSelectedPath(session->savePath());
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
     m_ui->comboCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategorySavePathChanged());
     m_ui->comboCategoryDefaultPathChanged->setCurrentIndex(session->isDisableAutoTMMWhenDefaultSavePathChanged());
-    m_ui->checkTempFolder->setChecked(session->isTempPathEnabled());
-    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->textTempPath->setEnabled(m_ui->checkTempFolder->isChecked());
-    m_ui->textTempPath->setSelectedPath(Utils::Fs::toNativePath(session->tempPath()));
+    m_ui->checkUseDownloadPath->setChecked(session->isDownloadPathEnabled());
+    m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
+    m_ui->textDownloadPath->setEnabled(m_ui->checkUseDownloadPath->isChecked());
+    m_ui->textDownloadPath->setSelectedPath(Utils::Fs::toNativePath(session->downloadPath()));
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());
@@ -1057,14 +1057,26 @@ void OptionsDialog::loadOptions()
 #else
     m_ui->autoRunConsole->hide();
 #endif
-    intValue = pref->getActionOnDblClOnTorrentDl();
-    if (intValue >= m_ui->actionTorrentDlOnDblClBox->count())
-        intValue = 0;
-    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(intValue);
-    intValue = pref->getActionOnDblClOnTorrentFn();
-    if (intValue >= m_ui->actionTorrentFnOnDblClBox->count())
-        intValue = 1;
-    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(intValue);
+
+    m_ui->actionTorrentDlOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentDlOnDblClBox->setItemData(4, NO_ACTION);
+    int actionDownloading = pref->getActionOnDblClOnTorrentDl();
+    if ((actionDownloading < 0) || (actionDownloading >= m_ui->actionTorrentDlOnDblClBox->count()))
+        actionDownloading = TOGGLE_PAUSE;
+    m_ui->actionTorrentDlOnDblClBox->setCurrentIndex(m_ui->actionTorrentDlOnDblClBox->findData(actionDownloading));
+
+    m_ui->actionTorrentFnOnDblClBox->setItemData(0, TOGGLE_PAUSE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(1, OPEN_DEST);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(2, PREVIEW_FILE);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(3, SHOW_OPTIONS);
+    m_ui->actionTorrentFnOnDblClBox->setItemData(4, NO_ACTION);
+    int actionSeeding = pref->getActionOnDblClOnTorrentFn();
+    if ((actionSeeding < 0) || (actionSeeding >= m_ui->actionTorrentFnOnDblClBox->count()))
+        actionSeeding = OPEN_DEST;
+    m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
     // End Downloads preferences
 
     // Connection preferences
@@ -1076,28 +1088,28 @@ void OptionsDialog::loadOptions()
     if (intValue > 0)
     {
         // enable
-        m_ui->checkMaxConnecs->setChecked(true);
+        m_ui->checkMaxConnections->setChecked(true);
         m_ui->spinMaxConnec->setEnabled(true);
         m_ui->spinMaxConnec->setValue(intValue);
     }
     else
     {
         // disable
-        m_ui->checkMaxConnecs->setChecked(false);
+        m_ui->checkMaxConnections->setChecked(false);
         m_ui->spinMaxConnec->setEnabled(false);
     }
     intValue = session->maxConnectionsPerTorrent();
     if (intValue > 0)
     {
         // enable
-        m_ui->checkMaxConnecsPerTorrent->setChecked(true);
+        m_ui->checkMaxConnectionsPerTorrent->setChecked(true);
         m_ui->spinMaxConnecPerTorrent->setEnabled(true);
         m_ui->spinMaxConnecPerTorrent->setValue(intValue);
     }
     else
     {
         // disable
-        m_ui->checkMaxConnecsPerTorrent->setChecked(false);
+        m_ui->checkMaxConnectionsPerTorrent->setChecked(false);
         m_ui->spinMaxConnecPerTorrent->setEnabled(false);
     }
     intValue = session->maxUploads();
@@ -1162,7 +1174,7 @@ void OptionsDialog::loadOptions()
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
 
-    m_ui->checkProxyPeerConnecs->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
     m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
     enableProxy(m_ui->comboProxyType->currentIndex());
 
@@ -1346,10 +1358,11 @@ bool OptionsDialog::startMinimized() const
 }
 
 #ifndef Q_OS_MACOS
-bool OptionsDialog::systrayIntegration() const
+bool OptionsDialog::systemTrayEnabled() const
 {
-    if (!QSystemTrayIcon::isSystemTrayAvailable()) return false;
-    return m_ui->checkShowSystray->isChecked();
+    return QSystemTrayIcon::isSystemTrayAvailable()
+        ? m_ui->checkShowSystray->isChecked()
+        : false;
 }
 
 bool OptionsDialog::minimizeToTray() const
@@ -1382,17 +1395,17 @@ int OptionsDialog::getMaxSeedingMinutes() const
 }
 
 // Return max connections number
-int OptionsDialog::getMaxConnecs() const
+int OptionsDialog::getMaxConnections() const
 {
-    if (!m_ui->checkMaxConnecs->isChecked())
+    if (!m_ui->checkMaxConnections->isChecked())
         return -1;
 
     return m_ui->spinMaxConnec->value();
 }
 
-int OptionsDialog::getMaxConnecsPerTorrent() const
+int OptionsDialog::getMaxConnectionsPerTorrent() const
 {
-    if (!m_ui->checkMaxConnecsPerTorrent->isChecked())
+    if (!m_ui->checkMaxConnectionsPerTorrent->isChecked())
         return -1;
 
     return m_ui->spinMaxConnecPerTorrent->value();
@@ -1498,7 +1511,7 @@ void OptionsDialog::enableProxy(const int index)
         m_ui->textProxyIP->setEnabled(true);
         m_ui->lblProxyPort->setEnabled(true);
         m_ui->spinProxyPort->setEnabled(true);
-        m_ui->checkProxyPeerConnecs->setEnabled(true);
+        m_ui->checkProxyPeerConnections->setEnabled(true);
         if (index >= 2)
         { // SOCKS5 or HTTP
             m_ui->checkProxyAuth->setEnabled(true);
@@ -1518,7 +1531,7 @@ void OptionsDialog::enableProxy(const int index)
         m_ui->textProxyIP->setEnabled(false);
         m_ui->lblProxyPort->setEnabled(false);
         m_ui->spinProxyPort->setEnabled(false);
-        m_ui->checkProxyPeerConnecs->setEnabled(false);
+        m_ui->checkProxyPeerConnections->setEnabled(false);
         m_ui->isProxyOnlyForTorrents->setEnabled(false);
         m_ui->checkProxyAuth->setEnabled(false);
     }
@@ -1640,22 +1653,6 @@ QString OptionsDialog::getFinishedTorrentExportDir() const
     if (m_ui->checkExportDirFin->isChecked())
         return Utils::Fs::expandPathAbs(m_ui->textExportDirFin->selectedPath());
     return {};
-}
-
-// Return action on double-click on a downloading torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentDl() const
-{
-    if (m_ui->actionTorrentDlOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentDlOnDblClBox->currentIndex();
-}
-
-// Return action on double-click on a finished torrent set in options
-int OptionsDialog::getActionOnDblClOnTorrentFn() const
-{
-    if (m_ui->actionTorrentFnOnDblClBox->currentIndex() < 1)
-        return 0;
-    return m_ui->actionTorrentFnOnDblClBox->currentIndex();
 }
 
 void OptionsDialog::on_addWatchedFolderButton_clicked()
@@ -1832,7 +1829,8 @@ void OptionsDialog::showConnectionTab()
 
 void OptionsDialog::on_registerDNSBtn_clicked()
 {
-    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(m_ui->comboDNSService->currentIndex()));
+    const auto service = static_cast<DNS::Service>(m_ui->comboDNSService->currentIndex());
+    QDesktopServices::openUrl(Net::DNSUpdater::getRegistrationUrl(service));
 }
 
 void OptionsDialog::on_IpFilterRefreshBtn_clicked()

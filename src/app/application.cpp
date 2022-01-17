@@ -100,22 +100,10 @@
 namespace
 {
 #define SETTINGS_KEY(name) "Application/" name
-
-    // FileLogger properties keys
-#define FILELOGGER_SETTINGS_KEY(name) QStringLiteral(SETTINGS_KEY("FileLogger/") name)
-    const QString KEY_FILELOGGER_ENABLED = FILELOGGER_SETTINGS_KEY("Enabled");
-    const QString KEY_FILELOGGER_PATH = FILELOGGER_SETTINGS_KEY("Path");
-    const QString KEY_FILELOGGER_BACKUP = FILELOGGER_SETTINGS_KEY("Backup");
-    const QString KEY_FILELOGGER_DELETEOLD = FILELOGGER_SETTINGS_KEY("DeleteOld");
-    const QString KEY_FILELOGGER_MAXSIZEBYTES = FILELOGGER_SETTINGS_KEY("MaxSizeBytes");
-    const QString KEY_FILELOGGER_AGE = FILELOGGER_SETTINGS_KEY("Age");
-    const QString KEY_FILELOGGER_AGETYPE = FILELOGGER_SETTINGS_KEY("AgeType");
-
-    // just a shortcut
-    inline SettingsStorage *settings() { return  SettingsStorage::instance(); }
+#define FILELOGGER_SETTINGS_KEY(name) (SETTINGS_KEY("FileLogger/") name)
 
     const QString LOG_FOLDER = QStringLiteral("logs");
-    const QChar PARAMS_SEPARATOR = '|';
+    const QChar PARAMS_SEPARATOR = QLatin1Char('|');
 
     const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QStringLiteral("profile");
 
@@ -133,6 +121,13 @@ Application::Application(int &argc, char **argv)
     , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
+    , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY("Enabled"))
+    , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY("Backup"))
+    , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY("DeleteOld"))
+    , m_storeFileLoggerMaxSize(FILELOGGER_SETTINGS_KEY("MaxSizeBytes"))
+    , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY("Age"))
+    , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY("AgeType"))
+    , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY("Path"))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
@@ -141,7 +136,9 @@ Application::Application(int &argc, char **argv)
     setOrganizationDomain("qbittorrent.org");
 #if !defined(DISABLE_GUI)
     setDesktopFileName("org.qbittorrent.qBittorrent");
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
+#endif
     setQuitOnLastWindowClosed(false);
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
@@ -152,16 +149,10 @@ Application::Application(int &argc, char **argv)
     const QString profileDir = portableModeEnabled
         ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
         : m_commandLineArgs.profileDir;
-#ifdef Q_OS_WIN
-    const QString instanceId = (profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName))).toLower();
-#else
-    const QString instanceId = profileDir + (m_commandLineArgs.configurationName.isEmpty() ? QString {} : ('/' + m_commandLineArgs.configurationName));
-#endif
-    const QString appId = QLatin1String("qBittorrent-") + Utils::Misc::getUserIDString() + '@' + instanceId;
-    m_instanceManager = new ApplicationInstanceManager {appId, this};
-
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
                         (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
+
+    m_instanceManager = new ApplicationInstanceManager {Profile::instance()->location(SpecialFolder::Config), this};
 
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -215,7 +206,7 @@ const QBtCommandLineParameters &Application::commandLineArgs() const
 
 bool Application::isFileLoggerEnabled() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_ENABLED, true);
+    return m_storeFileLoggerEnabled.get(true);
 }
 
 void Application::setFileLoggerEnabled(const bool value)
@@ -224,49 +215,48 @@ void Application::setFileLoggerEnabled(const bool value)
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
     else if (!value)
         delete m_fileLogger;
-    settings()->storeValue(KEY_FILELOGGER_ENABLED, value);
+    m_storeFileLoggerEnabled = value;
 }
 
 QString Application::fileLoggerPath() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_PATH
-        , QString {specialFolderLocation(SpecialFolder::Data) + LOG_FOLDER});
+    return m_storeFileLoggerPath.get(QDir(specialFolderLocation(SpecialFolder::Data)).absoluteFilePath(LOG_FOLDER));
 }
 
 void Application::setFileLoggerPath(const QString &path)
 {
     if (m_fileLogger)
         m_fileLogger->changePath(path);
-    settings()->storeValue(KEY_FILELOGGER_PATH, path);
+    m_storeFileLoggerPath = path;
 }
 
 bool Application::isFileLoggerBackup() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_BACKUP, true);
+    return m_storeFileLoggerBackup.get(true);
 }
 
 void Application::setFileLoggerBackup(const bool value)
 {
     if (m_fileLogger)
         m_fileLogger->setBackup(value);
-    settings()->storeValue(KEY_FILELOGGER_BACKUP, value);
+    m_storeFileLoggerBackup = value;
 }
 
 bool Application::isFileLoggerDeleteOld() const
 {
-    return settings()->loadValue(KEY_FILELOGGER_DELETEOLD, true);
+    return m_storeFileLoggerDeleteOld.get(true);
 }
 
 void Application::setFileLoggerDeleteOld(const bool value)
 {
     if (value && m_fileLogger)
         m_fileLogger->deleteOld(fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
-    settings()->storeValue(KEY_FILELOGGER_DELETEOLD, value);
+    m_storeFileLoggerDeleteOld = value;
 }
 
 int Application::fileLoggerMaxSize() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_MAXSIZEBYTES, DEFAULT_FILELOG_SIZE);
+    const int val = m_storeFileLoggerMaxSize.get(DEFAULT_FILELOG_SIZE);
     return std::min(std::max(val, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
 }
 
@@ -275,29 +265,29 @@ void Application::setFileLoggerMaxSize(const int bytes)
     const int clampedValue = std::min(std::max(bytes, MIN_FILELOG_SIZE), MAX_FILELOG_SIZE);
     if (m_fileLogger)
         m_fileLogger->setMaxSize(clampedValue);
-    settings()->storeValue(KEY_FILELOGGER_MAXSIZEBYTES, clampedValue);
+    m_storeFileLoggerMaxSize = clampedValue;
 }
 
 int Application::fileLoggerAge() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGE, 1);
+    const int val = m_storeFileLoggerAge.get(1);
     return std::min(std::max(val, 1), 365);
 }
 
 void Application::setFileLoggerAge(const int value)
 {
-    settings()->storeValue(KEY_FILELOGGER_AGE, std::min(std::max(value, 1), 365));
+    m_storeFileLoggerAge = std::min(std::max(value, 1), 365);
 }
 
 int Application::fileLoggerAgeType() const
 {
-    const int val = settings()->loadValue(KEY_FILELOGGER_AGETYPE, 1);
+    const int val = m_storeFileLoggerAgeType.get(1);
     return ((val < 0) || (val > 2)) ? 1 : val;
 }
 
 void Application::setFileLoggerAgeType(const int value)
 {
-    settings()->storeValue(KEY_FILELOGGER_AGETYPE, ((value < 0) || (value > 2)) ? 1 : value);
+    m_storeFileLoggerAgeType = ((value < 0) || (value > 2)) ? 1 : value;
 }
 
 void Application::processMessage(const QString &message)
@@ -655,12 +645,13 @@ int Application::exec(const QStringList &params)
 
 #ifdef DISABLE_GUI
 #ifndef DISABLE_WEBUI
-    Preferences *const pref = Preferences::instance();
-    // Display some information to the user
+    const Preferences *pref = Preferences::instance();
+
+    const auto scheme = QString::fromLatin1(pref->isWebUiHttpsEnabled() ? "https" : "http");
+    const auto url = QString::fromLatin1("%1://localhost:%2\n").arg(scheme, QString::number(pref->getWebUiPort()));
     const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
-        + tr("To control qBittorrent, access the Web UI at %1")
-            .arg(QString("http://localhost:") + QString::number(pref->getWebUiPort())) + '\n';
-    printf("%s", qUtf8Printable(mesg));
+        + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
+    printf("%s\n", qUtf8Printable(mesg));
 
     if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")
     {

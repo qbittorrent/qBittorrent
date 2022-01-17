@@ -28,6 +28,7 @@
 
 #include "previewselectdialog.h"
 
+#include <QDir>
 #include <QFile>
 #include <QHeaderView>
 #include <QMessageBox>
@@ -36,7 +37,6 @@
 #include <QStandardItemModel>
 #include <QTableView>
 
-#include "base/bittorrent/common.h"
 #include "base/bittorrent/torrent.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
@@ -52,7 +52,11 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)
     , m_storeDialogSize(SETTINGS_KEY("Size"))
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    , m_storeTreeHeaderState("GUI/Qt6/" SETTINGS_KEY("HeaderState"))
+#else
     , m_storeTreeHeaderState(SETTINGS_KEY("HeaderState"))
+#endif
 {
     m_ui->setupUi(this);
 
@@ -85,11 +89,9 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     // Fill list in
     const QVector<qreal> fp = torrent->filesProgress();
-    for (int i = 0; i <= torrent->filesCount(); ++i)
+    for (int i = 0; i < torrent->filesCount(); ++i)
     {
-        QString fileName = Utils::Fs::fileName(torrent->filePath(i));
-        if (fileName.endsWith(QB_EXT))
-            fileName.chop(QB_EXT.length());
+        const QString fileName = Utils::Fs::fileName(torrent->filePath(i));
         if (Utils::Misc::isPreviewable(fileName))
         {
             int row = m_previewListModel->rowCount();
@@ -124,9 +126,9 @@ void PreviewSelectDialog::previewButtonClicked()
     // Flush data
     m_torrent->flushCache();
 
-    const QStringList absolutePaths = m_torrent->absoluteFilePaths();
     // Only one file should be selected
-    const QString path = absolutePaths.at(selectedIndexes.at(0).data().toInt());
+    const int fileIndex = selectedIndexes.at(0).data().toInt();
+    const QString path = QDir(m_torrent->actualStorageLocation()).absoluteFilePath(m_torrent->actualFilePath(fileIndex));
     // File
     if (!QFile::exists(path))
     {

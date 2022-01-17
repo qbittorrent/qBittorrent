@@ -1,1 +1,11 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><clipPath id="a"><path d="m-85.3 0h682.6v512h-682.6z"/></clipPath><g clip-path="url(#a)" fill-rule="evenodd" transform="matrix(.9375 0 0 .9375 80 0)"><path d="m-128 0h768v512h-768z" fill="#ec0015"/><path d="m349.6 381-89.6-66.7-89 67.3 33-109.6-89-67.7 110.1-1 34.2-109.4 34.7 109.1 110.1.1-88.5 68.4 33.9 109.6z" fill="#ff0"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-vn" viewBox="0 0 640 480">
+  <defs>
+    <clipPath id="vn-a">
+      <path fill-opacity=".7" d="M-85.3 0h682.6v512H-85.3z"/>
+    </clipPath>
+  </defs>
+  <g fill-rule="evenodd" clip-path="url(#vn-a)" transform="translate(80) scale(.9375)">
+    <path fill="#ec0015" d="M-128 0h768v512h-768z"/>
+    <path fill="#ff0" d="M349.6 381 260 314.3l-89 67.3L204 272l-89-67.7 110.1-1 34.2-109.4L294 203l110.1.1-88.5 68.4 33.9 109.6z"/>
+  </g>
+</svg>

@@ -42,6 +42,7 @@ namespace Utils::Fs
      * with the OS being run.
      */
     QString toNativePath(const QString &path);
+
     /**
      * Converts a path to a string suitable for processing.
      * This function makes sure the directory separator used is independent
@@ -50,7 +51,16 @@ namespace Utils::Fs
      */
     QString toUniformPath(const QString &path);
 
+    /**
+     * If `path is relative then resolves it against `basePath`, otherwise returns the `path` itself
+     */
+    QString resolvePath(const QString &relativePath, const QString &basePath);
+
+    /**
+     * Returns the file extension part of a file name.
+     */
     QString fileExtension(const QString &filename);
+
     QString fileName(const QString &filePath);
     QString folderName(const QString &filePath);
     qint64 computePathSize(const QString &path);
@@ -70,6 +80,10 @@ namespace Utils::Fs
     void removeDirRecursive(const QString &path);
 
     QString tempPath();
+
+    QString findRootFolder(const QStringList &filePaths);
+    void stripRootFolder(QStringList &filePaths);
+    void addRootFolder(QStringList &filePaths, const QString &name);
 
 #if !defined Q_OS_HAIKU
     bool isNetworkFileSystem(const QString &path);

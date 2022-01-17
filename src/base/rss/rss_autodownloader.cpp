@@ -45,7 +45,6 @@
 #include "../global.h"
 #include "../logger.h"
 #include "../profile.h"
-#include "../settingsstorage.h"
 #include "../utils/fs.h"
 #include "rss_article.h"
 #include "rss_autodownloadrule.h"
@@ -61,10 +60,6 @@ struct ProcessingJob
 
 const QString ConfFolderName(QStringLiteral("rss"));
 const QString RulesFileName(QStringLiteral("download_rules.json"));
-
-const QString SettingsKey_ProcessingEnabled(QStringLiteral("RSS/AutoDownloader/EnableProcessing"));
-const QString SettingsKey_SmartEpisodeFilter(QStringLiteral("RSS/AutoDownloader/SmartEpisodeFilter"));
-const QString SettingsKey_DownloadRepacks(QStringLiteral("RSS/AutoDownloader/DownloadRepacks"));
 
 namespace
 {
@@ -103,7 +98,9 @@ QString computeSmartFilterRegex(const QStringList &filters)
 }
 
 AutoDownloader::AutoDownloader()
-    : m_processingEnabled(SettingsStorage::instance()->loadValue(SettingsKey_ProcessingEnabled, false))
+    : m_storeProcessingEnabled("RSS/AutoDownloader/EnableProcessing", false)
+    , m_storeSmartEpisodeFilter("RSS/AutoDownloader/SmartEpisodeFilter")
+    , m_storeDownloadRepacks("RSS/AutoDownloader/DownloadRepacks")
     , m_processingTimer(new QTimer(this))
     , m_ioThread(new QThread(this))
 {
@@ -111,7 +108,7 @@ AutoDownloader::AutoDownloader()
     m_instance = this;
 
     m_fileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + ConfFolderName));
+                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
     if (!m_fileStorage)
         throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 
@@ -142,7 +139,7 @@ AutoDownloader::AutoDownloader()
     m_processingTimer->setSingleShot(true);
     connect(m_processingTimer, &QTimer::timeout, this, &AutoDownloader::process);
 
-    if (m_processingEnabled)
+    if (isProcessingEnabled())
         startProcessing();
 }
 
@@ -288,22 +285,19 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
 
 QStringList AutoDownloader::smartEpisodeFilters() const
 {
-    const auto filtersSetting = SettingsStorage::instance()->loadValue<QVariant>(SettingsKey_SmartEpisodeFilter);
-
-    if (filtersSetting.isNull())
+    const QVariant filter = m_storeSmartEpisodeFilter.get();
+    if (filter.isNull())
     {
-        QStringList filters =
+        const QStringList defaultFilters =
         {
             "s(\\d+)e(\\d+)",                       // Format 1: s01e01
             "(\\d+)x(\\d+)",                        // Format 2: 01x01
             "(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})", // Format 3: 2017.01.01
             "(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"  // Format 4: 01.01.2017
         };
-
-        return filters;
+        return defaultFilters;
     }
-
-    return filtersSetting.toStringList();
+    return filter.toStringList();
 }
 
 QRegularExpression AutoDownloader::smartEpisodeRegex() const
@@ -313,7 +307,7 @@ QRegularExpression AutoDownloader::smartEpisodeRegex() const
 
 void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
 {
-    SettingsStorage::instance()->storeValue(SettingsKey_SmartEpisodeFilter, filters);
+    m_storeSmartEpisodeFilter = filters;
 
     const QString regex = computeSmartFilterRegex(filters);
     m_smartEpisodeRegex.setPattern(regex);
@@ -321,12 +315,12 @@ void AutoDownloader::setSmartEpisodeFilters(const QStringList &filters)
 
 bool AutoDownloader::downloadRepacks() const
 {
-    return SettingsStorage::instance()->loadValue(SettingsKey_DownloadRepacks, true);
+    return m_storeDownloadRepacks.get(true);
 }
 
-void AutoDownloader::setDownloadRepacks(const bool downloadRepacks)
+void AutoDownloader::setDownloadRepacks(const bool enabled)
 {
-    SettingsStorage::instance()->storeValue(SettingsKey_DownloadRepacks, downloadRepacks);
+    m_storeDownloadRepacks = enabled;
 }
 
 void AutoDownloader::process()
@@ -480,13 +474,13 @@ void AutoDownloader::storeDeferred()
 
 bool AutoDownloader::isProcessingEnabled() const
 {
-    return m_processingEnabled;
+    return m_storeProcessingEnabled;
 }
 
 void AutoDownloader::resetProcessingQueue()
 {
     m_processingQueue.clear();
-    if (!m_processingEnabled) return;
+    if (!isProcessingEnabled()) return;
 
     for (Article *article : asConst(Session::instance()->rootFolder()->articles()))
     {
@@ -503,11 +497,10 @@ void AutoDownloader::startProcessing()
 
 void AutoDownloader::setProcessingEnabled(const bool enabled)
 {
-    if (m_processingEnabled != enabled)
+    if (m_storeProcessingEnabled != enabled)
     {
-        m_processingEnabled = enabled;
-        SettingsStorage::instance()->storeValue(SettingsKey_ProcessingEnabled, m_processingEnabled);
-        if (m_processingEnabled)
+        m_storeProcessingEnabled = enabled;
+        if (enabled)
         {
             startProcessing();
         }
@@ -517,7 +510,7 @@ void AutoDownloader::setProcessingEnabled(const bool enabled)
             disconnect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
         }
 
-        emit processingStateChanged(m_processingEnabled);
+        emit processingStateChanged(enabled);
     }
 }
 

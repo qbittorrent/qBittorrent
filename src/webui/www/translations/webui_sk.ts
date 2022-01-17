@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="sk" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS language="sk" version="2.1">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -26,19 +28,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished"/>
+        <translation>Rozloženie obsahu:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished"/>
+        <translation>Originál</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished"/>
+        <translation>Vytvoriť podpriečinok</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"/>
+        <source>Don't create subfolder</source>
+        <translation>Nevytvárať podpriečinok</translation>
     </message>
 </context>
 <context>
@@ -142,10 +144,6 @@
         <translation>Nepodarilo sa uložiť nastavenia programu, qBittorrent je pravdepodobne nedostupný.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent na Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Neznámy</translation>
     </message>
@@ -180,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Prihlasovacie meno</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation>Pôvodní autori</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -359,11 +353,15 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original author</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -567,11 +565,11 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"/>
+        <translation>RSS</translation>
     </message>
 </context>
 <context>
@@ -955,8 +953,8 @@
         <translation>%T: Aktuálny tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tip: Ohraničiť parameter úvodzovkami, aby nedošlo k odstrihnutiu textu za medzerou (napr. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1183,10 +1181,6 @@
         <translation>Odcházajúce porty (min) [0: Vypnuté]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation>Akú IP adresu oznamovať trackeru (vyžaduje reštart):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Znovu skontrolovať torrenty po dokončení:</translation>
     </message>
@@ -1316,159 +1310,171 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished"/>
+        <translation>Filtre:</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation type="unfinished"/>
+        <translation>Zapnúť načítanie RSS kanálov</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation type="unfinished"/>
+        <translation>Automatické RSS sťahovanie torrentov</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished"/>
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished"/>
+        <translation>RSS čítačka</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation type="unfinished"/>
+        <translation>Upraviť pravidlá automatického sťahovania...</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation type="unfinished"/>
+        <translation>Stiahnuť REPACK/PROPER epizódy</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished"/>
+        <translation>Interval obnovovania kanálov:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished"/>
+        <translation>Maximálny počet článkov na kanál:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished"/>
+        <translation>min</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation type="unfinished"/>
+        <translation>Zapnúť automatické RSS sťahovanie torrentov</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
-        <translation type="unfinished"/>
+        <translation>RSS inteligentný filter epizód</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"/>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished"/>
+        <translation>Náhodný</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP address reported to trackers (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Set to 0 to let your system pick an unused port</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1542,12 +1548,12 @@
         <translation>Kopírovať IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Pridať nového rovesníka...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Krajina/Oblasť</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1752,19 +1758,23 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Progress:</source>
+        <translation>Priebeh:</translation>
     </message>
 </context>
 <context>
@@ -1787,11 +1797,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1976,11 +1986,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2322,11 +2332,11 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2345,7 +2355,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished"/>
+        <translation>Trackery</translation>
     </message>
 </context>
 <context>
@@ -2526,15 +2536,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2666,7 +2676,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2734,10 +2744,6 @@
         <translation>Hľadať v:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation>Výsledky</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -2759,15 +2765,23 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2797,7 +2811,7 @@
         <translation>Zapnuté</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Varovanie: Uistite sa, že dodržiavate zákony Vašej krajiny o ochrane duševného vlastníctva keď sťahujete torrenty z ktoréhokoľvek z týchto vyhľadávačov.</translation>
     </message>
     <message>
@@ -2995,16 +3009,28 @@
         <translation>Národonosť:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation>Autor</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Použitý software</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>Bezplatná databáza IP to Country Lite od DB-IP sa používa na riešenie krajín peerov. Databáza je licencovaná podľa medzinárodnej licencie Creative Commons Attribution 4.0</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>Autori</translation>
+    </message>
+    <message>
+        <source>France</source>
+        <translation>Francúzsko</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3064,377 +3090,378 @@
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished"/>
+        <translation>Dátum: </translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished"/>
+        <translation>Prosím, vyberte nový názov pre tento RSS kanál</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished"/>
+        <translation>Prosím, vyberte názov priečinka</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished"/>
+        <translation>Nový názov kanála:</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať všetky</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"/>
+        <translation>Vymazať</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished"/>
+        <translation>Sťahovanie RSS kanálov...</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished"/>
+        <translation>Označiť položku ako prečítané</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať všetky kanály</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished"/>
+        <translation>Skopírovať URL kanála</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished"/>
+        <translation>Torrenty: (dvojklik pre stiahnutie)</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished"/>
+        <translation>Otvoriť adresu URL správ</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished"/>
+        <translation>Premenovať...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation type="unfinished"/>
+        <translation>URL kanálu:</translation>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished"/>
+        <translation>Nový priečinok...</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished"/>
+        <translation>Nový odber</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished"/>
+        <translation>Aktualizovať</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished"/>
+        <translation>Názov priečinka:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished"/>
+        <translation>Prosím, zadajte URL RSS kanálu</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished"/>
+        <translation>Získanie RSS kanálov je teraz vypnuté! Môžete ho zapnúť v nastaveniach aplikácie.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Potvrdenie zmazania</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished"/>
+        <translation>Ste si istý, že chcete vymazať označené RSS kanály?</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished"/>
+        <translation>Nový odber...</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished"/>
+        <translation>Stiahnuť torrent</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished"/>
+        <translation>Pravidlá sťahovania</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished"/>
+        <translation>Zodpovedajúce články RSS</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished"/>
+        <translation>* pre zhodu so žiadnym alebo viac s akýmikoľvek znakmi</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished"/>
+        <translation>zahrnie všetky položky.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished"/>
+        <translation>Pravidlá pre filtrovanie epizód:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished"/>
+        <translation>Autosťahovanie RSS torrentov je teraz vypnuté! Môžete ho zapnúť v nastaveniach aplikácie.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished"/>
+        <translation>Definícia pravidla</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť do:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished"/>
+        <translation>Používať regulárne výrazy</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished"/>
+        <translation>Nový názov pravidla</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished"/>
+        <translation>Filter musí končiť bodkočiarkou</translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished"/>
+        <translation>? pre zhodu s ľubovoľným jediným znakom</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished"/>
+        <translation>Nájde články podľa filtra epizód.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished"/>
+        <translation>Priradiť kategóriu:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished"/>
+        <translation>Regex mód: použite regulárny výraz komatibilní s Perlom</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished"/>
+        <translation>| slúži ako operátor OR</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť stiahnuté epizódy</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished"/>
+        <translation>Medzera slúži ako operátor AND (všetky slová v akomkoľvek poradí)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished"/>
+        <translation>Príklad:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished"/>
+        <translation>Pridať nové pravidlo...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished"/>
+        <translation>Naozaj chcete vymazať zoznam stiahnutých epizód pre vybrané pravidlo?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished"/>
+        <translation>Musí obsahovať:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished"/>
+        <translation>Neohraničený rozsah: &lt;b&gt;1x25-;&lt;/b&gt; zodpovedá epizóde 25 a všetkým nasledujúcim z prvej sezóny a všetkým nasledujúcim</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished"/>
+        <translation>Uložiť do iného adresára</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished"/>
+        <translation>Nesmie obsahovať:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished"/>
+        <translation>Jedno číslo: &lt;b&gt;1x25;&lt;/b&gt; zodpovedá epizóde 25 prvej sezóny</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished"/>
+        <translation>Tri druhy rozsahov pre epizódy sú podporované:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished"/>
+        <translation>Ste si istý, že chcete odstrániť vybrané pravidlá sťahovania?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished"/>
+        <translation>Použiť globálne nastavenie</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished"/>
+        <translation>Normálny rozsah: &lt;b&gt;1x25-40;&lt;/b&gt; zodpovedá epizódam 25 až 40 prvej sezóny</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished"/>
+        <translation>Prosím, napíšte názov nového pravidla</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished"/>
+        <translation>Premenovanie pravidiel</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished"/>
+        <translation>Vždy</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished"/>
+        <translation>Číslo epizódy je povinná pozitívna hodnota</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished"/>
+        <translation>Potvrdenie zmazania pravidla</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished"/>
+        <translation>Naposledy nájdené: pred %1 dňami</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished"/>
+        <translation>Filter epizód:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished"/>
+        <translation>Číslo sezóny je povinná, nenulová hodnota</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"/>
+        <translation>Nikdy</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished"/>
+        <translation>Použiť pravidlo na kanály:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished"/>
+        <translation>dní</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished"/>
+        <translation>Použite inteligentný filter epizód</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished"/>
+        <translation>Ak je dôležité poradie slov, použite * namiesto medzery.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished"/>
+        <translation>Pridať pozastavený:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished"/>
+        <translation>Prosím, napíšte nový názov pre tonto pravidlo sťahovania.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished"/>
+        <translation>Mód zástupných znakov: môžete použiť</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished"/>
+        <translation>vylúči všetky položky</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished"/>
+        <translation>Zmazať pravidlo</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished"/>
+        <translation>Ignorovať následné zhody po dobu (0 pre vypnutie)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished"/>
+        <translation>Premenovať pravidlo...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished"/>
+        <translation>Naposledy nájdené: neznáme</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished"/>
+        <translation>Odstrániť stiahnuté epizódy...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished"/>
+        <translation>Chytrý Filter Epizód skontroluje číslo epizódy pre zabránenie sťahovanie duplikátov. 
+Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty dátumu - ako oddeľovač)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished"/>
+        <translation>Rozvrhnutie obsahu torrentu:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished"/>
+        <translation>Vytvoriť podzložku</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished"/>
+        <translation>Pôvodný</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation type="unfinished"/>
+        <source>Don't create subfolder</source>
+        <translation>Nevytvárať podzložku</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished"/>
+        <translation>Zmazať torrenty</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished"/>
+        <translation>Obnov torrenty</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished"/>
+        <translation>Bez trackeru (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished"/>
+        <translation>Pozastaviť torrenty</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished"/>
+        <translation>RSS kanály</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished"/>
+        <translation>Neprečítané</translation>
     </message>
 </context>
 </TS>

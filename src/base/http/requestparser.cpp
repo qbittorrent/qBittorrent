@@ -109,9 +109,18 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
         return {ParseStatus::OK, m_request, headerLength};
     if (m_request.method == HEADER_REQUEST_METHOD_POST)
     {
-        bool ok = false;
-        const int contentLength = m_request.headers[HEADER_CONTENT_LENGTH].toInt(&ok);
-        if (!ok || (contentLength < 0))
+        const auto parseContentLength = [this]() -> int
+        {
+            // [rfc7230] 3.3.2. Content-Length
+
+            const QString rawValue = m_request.headers.value(HEADER_CONTENT_LENGTH);
+            if (rawValue.isNull())  // `HEADER_CONTENT_LENGTH` does not exist
+                return 0;
+            return Utils::String::parseInt(rawValue).value_or(-1);
+        };
+
+        const int contentLength = parseContentLength();
+        if (contentLength < 0)
         {
             qWarning() << Q_FUNC_INFO << "bad request: content-length invalid";
             return {ParseStatus::BadRequest, Request(), 0};

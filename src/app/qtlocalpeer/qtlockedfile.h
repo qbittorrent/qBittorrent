@@ -71,6 +71,7 @@
 #include <QFile>
 
 #ifdef Q_OS_WIN
+#include <QString>
 #include <QVector>
 #endif
 
@@ -100,14 +101,14 @@ namespace QtLP_Private
     private:
 #ifdef Q_OS_WIN
         Qt::HANDLE getMutexHandle(int idx, bool doCreate);
-        bool waitMutex(Qt::HANDLE mutex, bool doBlock);
+        bool waitMutex(Qt::HANDLE mutex, bool doBlock) const;
 
-        Qt::HANDLE wmutex = nullptr;
-        Qt::HANDLE rmutex = nullptr;
-        QVector<Qt::HANDLE> rmutexes;
-        QString mutexname;
+        Qt::HANDLE m_writeMutex = nullptr;
+        Qt::HANDLE m_readMutex = nullptr;
+        QVector<Qt::HANDLE> m_readMutexes;
+        QString m_mutexName;
 #endif
 
-        LockMode m_lock_mode;
+        LockMode m_lockMode = NoLock;
     };
 }

@@ -34,7 +34,7 @@
 #include "base/bittorrent/infohash.h"
 
 void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
-                          , const QString &completeSavePath, const QString &incompleteSavePath)
+                          , const QString &savePath, const QString &downloadPath)
 {
     const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool
     {
@@ -56,14 +56,14 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &or
         return found;
     };
 
-    QString savePath = completeSavePath;
+    QString usedPath = savePath;
     QStringList adjustedFileNames = originalFileNames;
-    const bool found = findInDir(savePath, adjustedFileNames);
-    if (!found && !incompleteSavePath.isEmpty())
+    const bool found = findInDir(usedPath, adjustedFileNames);
+    if (!found && !downloadPath.isEmpty())
     {
-        savePath = incompleteSavePath;
-        findInDir(savePath, adjustedFileNames);
+        usedPath = downloadPath;
+        findInDir(usedPath, adjustedFileNames);
     }
 
-    emit searchFinished(id, savePath, adjustedFileNames);
+    emit searchFinished(id, usedPath, adjustedFileNames);
 }

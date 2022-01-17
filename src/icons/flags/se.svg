@@ -1,1 +1,5 @@
-<svg viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg"><path d="m0 0h640v480h-640z" fill="#066aa7"/><g fill="#fecc00"><path d="m0 192h640v96h-640z"/><path d="m176 0h96v480h-96z"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-se" viewBox="0 0 640 480">
+  <path fill="#066aa7" d="M0 0h640v480H0z"/>
+  <path fill="#fecc00" d="M0 192h640v96H0z"/>
+  <path fill="#fecc00" d="M176 0h96v480h-96z"/>
+</svg>
