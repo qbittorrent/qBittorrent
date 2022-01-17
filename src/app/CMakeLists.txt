@@ -110,10 +110,17 @@ if (STACKTRACE)
         target_sources(qbt_app PRIVATE stacktrace_win.h)
 
         if (GUI)
+            qt_wrap_ui(STACKTRACE_UI_HEADERS stacktracedialog.ui)
+
             target_sources(qbt_app PRIVATE
                 stacktracedialog.h
                 stacktracedialog.cpp
-                stacktracedialog.ui
+                ${STACKTRACE_UI_HEADERS}
+            )
+
+            # UI headers will be generated in ${CMAKE_CURRENT_BINARY_DIR}
+            target_include_directories(qbt_app PRIVATE
+                ${CMAKE_CURRENT_BINARY_DIR}
             )
         endif()
 
