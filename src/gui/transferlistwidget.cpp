@@ -195,8 +195,10 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     //end up being size 0 when the new version is launched with
     //a conf file from the previous version.
     for (int i = 0; i < TransferListModel::NB_COLUMNS; ++i)
+    {
         if ((columnWidth(i) <= 0) && (!isColumnHidden(i)))
             resizeColumnToContents(i);
+    }
 
     setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -204,7 +206,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(this, &QAbstractItemView::doubleClicked, this, &TransferListWidget::torrentDoubleClicked);
     connect(this, &QWidget::customContextMenuRequested, this, &TransferListWidget::displayListMenu);
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &TransferListWidget::displayDLHoSMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &TransferListWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionMoved, this, &TransferListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &TransferListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TransferListWidget::saveSettings);
@@ -623,48 +625,46 @@ void TransferListWidget::reannounceSelectedTorrents()
         torrent->forceReannounce();
 }
 
+int TransferListWidget::visibleColumnsCount() const
+{
+    int count = 0;
+    for (int i = 0, iMax = header()->count(); i < iMax; ++i)
+    {
+        if (!isColumnHidden(i))
+            ++count;
+    }
+
+    return count;
+}
+
 // hide/show columns menu
-void TransferListWidget::displayDLHoSMenu(const QPoint&)
+void TransferListWidget::displayColumnHeaderMenu()
 {
     auto menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
 
-    for (int i = 0; i < m_listModel->columnCount(); ++i)
+    for (int i = 0; i < TransferListModel::NB_COLUMNS; ++i)
     {
         if (!BitTorrent::Session::instance()->isQueueingSystemEnabled() && (i == TransferListModel::TR_QUEUE_POSITION))
             continue;
 
-        QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!isColumnHidden(i));
-        myAct->setData(i);
-    }
-
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
-    {
-        int visibleCols = 0;
-        for (int i = 0; i < TransferListModel::NB_COLUMNS; ++i)
+        const auto columnName = m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
         {
-            if (!isColumnHidden(i))
-                ++visibleCols;
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
 
-            if (visibleCols > 1)
-                break;
-        }
+            setColumnHidden(i, !checked);
 
-        const int col = action->data().toInt();
+            if (checked && (columnWidth(i) <= 5))
+                resizeColumnToContents(i);
 
-        if (!isColumnHidden(col) && visibleCols == 1)
-            return;
-
-        setColumnHidden(col, !isColumnHidden(col));
-
-        if (!isColumnHidden(col) && columnWidth(col) <= 5)
-            resizeColumnToContents(col);
-
-        saveSettings();
-    });
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!isColumnHidden(i));
+    }
 
     menu->popup(QCursor::pos());
 }

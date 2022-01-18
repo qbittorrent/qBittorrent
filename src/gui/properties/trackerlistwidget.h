@@ -61,8 +61,6 @@ public:
     explicit TrackerListWidget(PropertiesWidget *properties);
     ~TrackerListWidget();
 
-    int visibleColumnsCount() const;
-
 public slots:
     void setRowColor(int row, const QColor &color);
 
@@ -78,14 +76,18 @@ public slots:
     void deleteSelectedTrackers();
     void editSelectedTracker();
     void showTrackerListMenu(const QPoint &);
-    void displayToggleColumnsMenu(const QPoint &);
     void loadSettings();
     void saveSettings() const;
 
 protected:
     QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
+private slots:
+    void displayColumnHeaderMenu();
+
 private:
+    int visibleColumnsCount() const;
+
     static QStringList headerLabels();
 
     PropertiesWidget *m_properties;

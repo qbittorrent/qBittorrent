@@ -116,11 +116,13 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
     for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    {
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
+    }
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &SearchJobWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &SearchJobWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionResized, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sectionMoved, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchJobWidget::saveSettings);
@@ -450,7 +452,19 @@ void SearchJobWidget::saveSettings() const
     Preferences::instance()->setSearchTabHeaderState(header()->saveState());
 }
 
-void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
+int SearchJobWidget::visibleColumnsCount() const
+{
+    int count = 0;
+    for (int i = 0, iMax = m_ui->resultsBrowser->header()->count(); i < iMax; ++i)
+    {
+        if (!m_ui->resultsBrowser->isColumnHidden(i))
+            ++count;
+    }
+
+    return count;
+}
+
+void SearchJobWidget::displayColumnHeaderMenu()
 {
     auto menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
@@ -458,36 +472,22 @@ void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
 
     for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
     {
-        QAction *myAct = menu->addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
-        myAct->setData(i);
-    }
-
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
-    {
-        int visibleCols = 0;
-        for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+        const auto columnName = m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
         {
-            if (!m_ui->resultsBrowser->isColumnHidden(i))
-                ++visibleCols;
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
 
-            if (visibleCols > 1)
-                break;
-        }
+            m_ui->resultsBrowser->setColumnHidden(i, !checked);
 
-        const int col = action->data().toInt();
+            if (checked && (m_ui->resultsBrowser->columnWidth(i) <= 5))
+                m_ui->resultsBrowser->resizeColumnToContents(i);
 
-        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (visibleCols == 1))
-            return;
-
-        m_ui->resultsBrowser->setColumnHidden(col, !m_ui->resultsBrowser->isColumnHidden(col));
-
-        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (m_ui->resultsBrowser->columnWidth(col) <= 5))
-            m_ui->resultsBrowser->resizeColumnToContents(col);
-
-        saveSettings();
-    });
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
+    }
 
     menu->popup(QCursor::pos());
 }

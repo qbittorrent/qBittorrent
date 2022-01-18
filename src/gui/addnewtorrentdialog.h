@@ -79,6 +79,7 @@ public:
 
 private slots:
     void displayContentTreeMenu(const QPoint &);
+    void displayColumnHeaderMenu();
     void updateDiskSpaceLabel();
     void onSavePathChanged(const QString &newPath);
     void onDownloadPathChanged(const QString &newPath);

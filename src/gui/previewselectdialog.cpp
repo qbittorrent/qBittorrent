@@ -82,11 +82,11 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_ui->previewList->header()->setParent(m_ui->previewList);
     unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 
+    m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_ui->previewList->setModel(m_previewListModel);
     m_ui->previewList->hideColumn(FILE_INDEX);
     m_listDelegate = new PreviewListDelegate(this);
     m_ui->previewList->setItemDelegate(m_listDelegate);
-    m_ui->previewList->setAlternatingRowColors(pref->useAlternatingRowColors());
     // Fill list in
     const QVector<qreal> fp = torrent->filesProgress();
     for (int i = 0; i < torrent->filesCount(); ++i)

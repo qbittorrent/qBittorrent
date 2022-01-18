@@ -111,7 +111,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
             , m_ui->filesList, qOverload<const QModelIndex &>(&QAbstractItemView::edit));
     connect(m_ui->filesList, &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFilesListMenu);
     connect(m_ui->filesList, &QAbstractItemView::doubleClicked, this, &PropertiesWidget::openItem);
-    connect(m_ui->filesList->header(), &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayFileListHeaderMenu);
+    connect(m_ui->filesList->header(), &QWidget::customContextMenuRequested, this, &PropertiesWidget::displayColumnHeaderMenu);
     connect(m_ui->filesList->header(), &QHeaderView::sectionMoved, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sectionResized, this, &PropertiesWidget::saveSettings);
     connect(m_ui->filesList->header(), &QHeaderView::sortIndicatorChanged, this, &PropertiesWidget::saveSettings);
@@ -177,28 +177,29 @@ PropertiesWidget::~PropertiesWidget()
     delete m_ui;
 }
 
-void PropertiesWidget::displayFileListHeaderMenu()
+void PropertiesWidget::displayColumnHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
+    menu->setTitle(tr("Column visibility"));
 
     for (int i = 0; i < TorrentContentModelItem::TreeItemColumns::NB_COL; ++i)
     {
-        QAction *myAct = menu->addAction(m_propListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!m_ui->filesList->isColumnHidden(i));
-        if (i == TorrentContentModelItem::TreeItemColumns::COL_NAME)
-            myAct->setEnabled(false);
-
-        connect(myAct, &QAction::toggled, this, [this, i](const bool checked)
+        const auto columnName = m_propListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
         {
             m_ui->filesList->setColumnHidden(i, !checked);
 
-            if (!m_ui->filesList->isColumnHidden(i) && (m_ui->filesList->columnWidth(i) <= 5))
+            if (checked && (m_ui->filesList->columnWidth(i) <= 5))
                 m_ui->filesList->resizeColumnToContents(i);
 
             saveSettings();
         });
+        action->setCheckable(true);
+        action->setChecked(!m_ui->filesList->isColumnHidden(i));
+
+        if (i == TorrentContentModelItem::TreeItemColumns::COL_NAME)
+            action->setEnabled(false);
     }
 
     menu->popup(QCursor::pos());
