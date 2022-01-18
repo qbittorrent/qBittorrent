@@ -68,6 +68,7 @@ signals:
 
 private slots:
     void previewButtonClicked();
+    void displayColumnHeaderMenu();
 
 private:
     void showEvent(QShowEvent *event) override;

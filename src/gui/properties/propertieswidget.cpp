@@ -182,6 +182,7 @@ void PropertiesWidget::displayColumnHeaderMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < TorrentContentModelItem::TreeItemColumns::NB_COL; ++i)
     {
@@ -201,6 +202,18 @@ void PropertiesWidget::displayColumnHeaderMenu()
         if (i == TorrentContentModelItem::TreeItemColumns::COL_NAME)
             action->setEnabled(false);
     }
+
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
+    {
+        for (int i = 0, count = m_ui->filesList->header()->count(); i < count; ++i)
+        {
+            if (!m_ui->filesList->isColumnHidden(i))
+                m_ui->filesList->resizeColumnToContents(i);
+        }
+        saveSettings();
+    });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
 }
