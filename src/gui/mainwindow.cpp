@@ -28,6 +28,7 @@
 
 #include "mainwindow.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <QActionGroup>
@@ -1279,15 +1280,9 @@ bool MainWindow::event(QEvent *e)
             {
                 qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
-                bool hasModalWindow = false;
-                for (QWidget *widget : asConst(QApplication::allWidgets()))
-                {
-                    if (widget->isModal())
-                    {
-                        hasModalWindow = true;
-                        break;
-                    }
-                }
+                const QWidgetList allWidgets = QApplication::allWidgets();
+                const bool hasModalWindow = std::any_of(allWidgets.cbegin(), allWidgets.cend()
+                    , [](const QWidget *widget) { return widget->isModal(); });
                 // Iconify if there is no modal window
                 if (!hasModalWindow)
                 {
