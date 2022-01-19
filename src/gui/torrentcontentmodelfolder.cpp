@@ -81,17 +81,6 @@ TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
 {
     return m_childItems.value(row, nullptr);
 }
-
-TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const QString &name) const
-{
-    for (TorrentContentModelItem *child : asConst(m_childItems))
-    {
-        if ((child->itemType() == FolderType) && (child->name() == name))
-            return static_cast<TorrentContentModelFolder *>(child);
-    }
-    return nullptr;
-}
-
 int TorrentContentModelFolder::childCount() const
 {
     return m_childItems.count();

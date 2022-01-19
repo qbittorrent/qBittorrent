@@ -498,6 +498,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     m_filesIndex.reserve(filesCount);
 
     TorrentContentModelFolder *currentParent;
+    QHash<TorrentContentModelFolder *, QHash<QString, TorrentContentModelFolder *>> folderMap;
     // Iterate over files
     for (int i = 0; i < filesCount; ++i)
     {
@@ -510,13 +511,14 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
 
         for (const QStringView pathPart : asConst(pathFolders))
         {
-            const QString folderPath = pathPart.toString();
-            TorrentContentModelFolder *newParent = currentParent->childFolderWithName(folderPath);
+            const QString folderName = pathPart.toString();
+            TorrentContentModelFolder *&newParent = folderMap[currentParent][folderName];
             if (!newParent)
             {
-                newParent = new TorrentContentModelFolder(folderPath, currentParent);
+                newParent = new TorrentContentModelFolder(folderName, currentParent);
                 currentParent->appendChild(newParent);
             }
+
             currentParent = newParent;
         }
         // Actually create the file
