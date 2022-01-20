@@ -97,11 +97,11 @@ const initializeWindows = function() {
     };
 
     loadWindowWidth = function(windowId, defaultValue) {
-        return LocalPreferences.get('window_' + windowId + '_width', defaultValue);
+        return Math.min(window.innerWidth, LocalPreferences.get('window_' + windowId + '_width', defaultValue));
     };
 
     loadWindowHeight = function(windowId, defaultValue) {
-        return LocalPreferences.get('window_' + windowId + '_height', defaultValue);
+        return Math.min(window.innerHeight, LocalPreferences.get('window_' + windowId + '_height', defaultValue));
     };
 
     function addClickEvent(el, fn) {
