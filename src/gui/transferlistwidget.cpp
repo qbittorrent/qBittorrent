@@ -1116,8 +1116,9 @@ void TransferListWidget::displayListMenu(const QPoint &)
             ? (prioritizeFirstLast ? Qt::Checked : Qt::Unchecked)
             : Qt::PartiallyChecked);
         listMenu->addAction(actionFirstLastPiecePrio);
-    }
+
         addedPreviewAction = true;
+    }
 
     if (addedPreviewAction)
         listMenu->addSeparator();
