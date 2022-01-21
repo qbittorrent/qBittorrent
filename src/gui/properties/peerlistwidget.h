@@ -89,7 +89,7 @@ private slots:
     void loadSettings();
     void saveSettings() const;
     void displayColumnHeaderMenu();
-    void showPeerListMenu(const QPoint &);
+    void showPeerListMenu();
     void banSelectedPeers();
     void copySelectedPeers();
     void handleSortColumnChanged(int col);

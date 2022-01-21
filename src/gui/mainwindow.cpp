@@ -602,9 +602,9 @@ void MainWindow::manageCookies()
     cookieDialog->open();
 }
 
-void MainWindow::toolbarMenuRequested(const QPoint &point)
+void MainWindow::toolbarMenuRequested()
 {
-    m_toolbarMenu->popup(m_ui->toolBar->mapToGlobal(point));
+    m_toolbarMenu->popup(QCursor::pos());
 }
 
 void MainWindow::toolbarIconsOnly()
@@ -709,7 +709,7 @@ void MainWindow::displayRSSTab(bool enable)
     }
 }
 
-void MainWindow::showFilterContextMenu(const QPoint &)
+void MainWindow::showFilterContextMenu()
 {
     const Preferences *pref = Preferences::instance();
 

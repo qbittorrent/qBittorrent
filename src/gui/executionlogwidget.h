@@ -52,7 +52,7 @@ public:
     void setMessageTypes(Log::MsgTypes types);
 
 private:
-    void displayContextMenu(const QPoint &pos, const LogListView *view, const BaseLogModel *model) const;
+    void displayContextMenu(const LogListView *view, const BaseLogModel *model) const;
 
     Ui::ExecutionLogWidget *m_ui;
     LogFilterModel *m_messageFilterModel;

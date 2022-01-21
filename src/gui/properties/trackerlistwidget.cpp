@@ -575,7 +575,7 @@ void TrackerListWidget::reannounceSelected()
     loadTrackers();
 }
 
-void TrackerListWidget::showTrackerListMenu(const QPoint &)
+void TrackerListWidget::showTrackerListMenu()
 {
     BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;

@@ -102,7 +102,7 @@ void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QMod
     emit tagChanged(getTagFilter(static_cast<TagFilterProxyModel *>(model()), current));
 }
 
-void TagFilterWidget::showMenu(QPoint)
+void TagFilterWidget::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);

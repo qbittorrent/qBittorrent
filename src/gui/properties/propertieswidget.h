@@ -91,8 +91,8 @@ protected slots:
     void deleteSelectedUrlSeeds();
     void copySelectedWebSeedsToClipboard() const;
     void editWebSeed();
-    void displayFilesListMenu(const QPoint &);
-    void displayWebSeedListMenu(const QPoint &);
+    void displayFilesListMenu();
+    void displayWebSeedListMenu();
     void filteredFilesChanged();
     void showPiecesDownloaded(bool show);
     void showPiecesAvailability(bool show);

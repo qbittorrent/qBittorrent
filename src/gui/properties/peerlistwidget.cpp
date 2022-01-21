@@ -259,7 +259,7 @@ void PeerListWidget::updatePeerCountryResolutionState()
     }
 }
 
-void PeerListWidget::showPeerListMenu(const QPoint &)
+void PeerListWidget::showPeerListMenu()
 {
     BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;

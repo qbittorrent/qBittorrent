@@ -105,7 +105,7 @@ signals:
 
 private slots:
     void torrentDoubleClicked();
-    void displayListMenu(const QPoint &);
+    void displayListMenu();
     void displayColumnHeaderMenu();
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;

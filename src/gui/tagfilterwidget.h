@@ -47,7 +47,7 @@ signals:
 
 private slots:
     void onCurrentRowChanged(const QModelIndex &current, const QModelIndex &previous);
-    void showMenu(QPoint);
+    void showMenu();
     void callUpdateGeometry();
     void addTag();
     void removeTag();

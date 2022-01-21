@@ -661,7 +661,7 @@ void AddNewTorrentDialog::populateSavePaths()
     m_ui->groupBoxDownloadPath->blockSignals(false);
 }
 
-void AddNewTorrentDialog::displayContentTreeMenu(const QPoint &)
+void AddNewTorrentDialog::displayContentTreeMenu()
 {
     const QModelIndexList selectedRows = m_ui->contentTreeView->selectionModel()->selectedRows(0);
 

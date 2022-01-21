@@ -286,7 +286,7 @@ void StatusFilterWidget::updateTorrentNumbers()
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(nbErrored));
 }
 
-void StatusFilterWidget::showMenu(const QPoint &) {}
+void StatusFilterWidget::showMenu() {}
 
 void StatusFilterWidget::applyFilter(int row)
 {
@@ -558,7 +558,7 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     }
 }
 
-void TrackerFiltersList::showMenu(const QPoint &)
+void TrackerFiltersList::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);

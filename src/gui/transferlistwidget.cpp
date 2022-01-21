@@ -845,7 +845,7 @@ void TransferListWidget::clearSelectionTags()
     applyToSelectedTorrents([](BitTorrent::Torrent *const torrent) { torrent->removeAllTags(); });
 }
 
-void TransferListWidget::displayListMenu(const QPoint &)
+void TransferListWidget::displayListMenu()
 {
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     if (selectedIndexes.isEmpty()) return;

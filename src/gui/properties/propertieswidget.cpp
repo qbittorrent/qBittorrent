@@ -635,7 +635,7 @@ void PropertiesWidget::openParentFolder(const QModelIndex &index) const
 #endif
 }
 
-void PropertiesWidget::displayFilesListMenu(const QPoint &)
+void PropertiesWidget::displayFilesListMenu()
 {
     if (!m_torrent) return;
 
@@ -742,7 +742,7 @@ void PropertiesWidget::displayFilesListMenu(const QPoint &)
     menu->popup(QCursor::pos());
 }
 
-void PropertiesWidget::displayWebSeedListMenu(const QPoint &)
+void PropertiesWidget::displayWebSeedListMenu()
 {
     if (!m_torrent) return;
 

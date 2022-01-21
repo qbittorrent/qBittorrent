@@ -375,7 +375,7 @@ void SearchJobWidget::filterSearchResults(const QString &name)
     updateResultsCount();
 }
 
-void SearchJobWidget::showFilterContextMenu(const QPoint &)
+void SearchJobWidget::showFilterContextMenu()
 {
     const Preferences *pref = Preferences::instance();
 
