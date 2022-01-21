@@ -43,6 +43,8 @@ public:
     using UnderlyingType = lt::digest32<N>;
 
     Digest32() = default;
+    Digest32(const Digest32 &other) = default;
+    Digest32(Digest32 &&other) = default;
 
     Digest32(const UnderlyingType &nativeDigest)
     {
@@ -61,6 +63,9 @@ public:
     {
         return m_dataPtr->valid;
     }
+
+    Digest32 &operator=(const Digest32 &other) = default;
+    Digest32 &operator=(Digest32 &&other) = default;
 
     operator UnderlyingType() const
     {

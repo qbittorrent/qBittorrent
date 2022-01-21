@@ -65,6 +65,9 @@ namespace BitTorrent
 
         InfoHash() = default;
         InfoHash(const WrappedType &nativeHash);
+#ifdef QBT_USES_LIBTORRENT2
+        InfoHash(const SHA1Hash &v1, const SHA256Hash &v2);
+#endif
 
         bool isValid() const;
         SHA1Hash v1() const;

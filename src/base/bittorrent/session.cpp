@@ -4346,53 +4346,114 @@ void Session::startUpTorrents()
     const QVector<TorrentID> torrents = startupStorage->registeredTorrents();
     int resumedTorrentsCount = 0;
     QVector<TorrentID> queue;
-    for (const TorrentID &torrentID : torrents)
+#ifdef QBT_USES_LIBTORRENT2
+    const QSet<TorrentID> indexedTorrents {torrents.cbegin(), torrents.cend()};
+    QSet<TorrentID> skippedIDs;
+#endif
+    for (TorrentID torrentID : torrents)
     {
+#ifdef QBT_USES_LIBTORRENT2
+        if (skippedIDs.contains(torrentID))
+            continue;
+#endif
+
         const std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
-        if (loadResumeDataResult)
-        {
-            LoadTorrentParams resumeData = *loadResumeDataResult;
-            bool needStore = false;
-
-            if (m_resumeDataStorage != startupStorage)
-            {
-               needStore = true;
-               if (isQueueingSystemEnabled() && !resumeData.hasSeedStatus)
-                    queue.append(torrentID);
-            }
-
-            // TODO: Remove the following upgrade code in v4.5
-            // == BEGIN UPGRADE CODE ==
-            if (m_needUpgradeDownloadPath && isDownloadPathEnabled())
-            {
-                if (!resumeData.useAutoTMM)
-                {
-                    resumeData.downloadPath = downloadPath();
-                    needStore = true;
-                }
-            }
-            // == END UPGRADE CODE ==
-
-            if (needStore)
-                 m_resumeDataStorage->store(torrentID, resumeData);
-
-            qDebug() << "Starting up torrent" << torrentID.toString() << "...";
-            if (!loadTorrent(resumeData))
-            {
-                LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                       .arg(torrentID.toString()), Log::CRITICAL);
-            }
-
-            // process add torrent messages before message queue overflow
-            if ((resumedTorrentsCount % 100) == 0) readAlerts();
-
-            ++resumedTorrentsCount;
-        }
-        else
+        if (!loadResumeDataResult)
         {
             LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
                        .arg(torrentID.toString()), Log::CRITICAL);
+            continue;
         }
+
+        LoadTorrentParams resumeData = *loadResumeDataResult;
+        bool needStore = false;
+
+#ifdef QBT_USES_LIBTORRENT2
+        const lt::info_hash_t infoHash = (resumeData.ltAddTorrentParams.ti
+                                          ? resumeData.ltAddTorrentParams.ti->info_hashes()
+                                          : resumeData.ltAddTorrentParams.info_hashes);
+        if (infoHash.has_v1() && infoHash.has_v2())
+        {
+            const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
+            const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
+            if (torrentID == torrentIDv2)
+            {
+                if (indexedTorrents.contains(torrentIDv1))
+                {
+                    // if we has no metadata trying to find it in alternative "resume data"
+                    if (!resumeData.ltAddTorrentParams.ti)
+                    {
+                        const std::optional<LoadTorrentParams> loadAltResumeDataResult = startupStorage->load(torrentIDv1);
+                        if (loadAltResumeDataResult)
+                        {
+                            LoadTorrentParams altResumeData = *loadAltResumeDataResult;
+                            resumeData.ltAddTorrentParams.ti = altResumeData.ltAddTorrentParams.ti;
+                        }
+                    }
+
+                    // remove alternative "resume data" and skip the attempt to load it
+                    m_resumeDataStorage->remove(torrentIDv1);
+                    skippedIDs.insert(torrentIDv1);
+                }
+            }
+            else
+            {
+                torrentID = torrentIDv2;
+                needStore = true;
+                m_resumeDataStorage->remove(torrentIDv1);
+
+                if (indexedTorrents.contains(torrentID))
+                {
+                    skippedIDs.insert(torrentID);
+
+                    const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
+                    if (loadPreferredResumeDataResult)
+                    {
+                        LoadTorrentParams preferredResumeData = *loadPreferredResumeDataResult;
+                        std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
+                        if (!preferredResumeData.ltAddTorrentParams.ti)
+                            preferredResumeData.ltAddTorrentParams.ti = ti;
+
+                        resumeData = preferredResumeData;
+                    }
+                }
+            }
+        }
+#endif
+
+        if (m_resumeDataStorage != startupStorage)
+        {
+           needStore = true;
+           if (isQueueingSystemEnabled() && !resumeData.hasSeedStatus)
+                queue.append(torrentID);
+        }
+
+        // TODO: Remove the following upgrade code in v4.6
+        // == BEGIN UPGRADE CODE ==
+        if (m_needUpgradeDownloadPath && isDownloadPathEnabled())
+        {
+            if (!resumeData.useAutoTMM)
+            {
+                resumeData.downloadPath = downloadPath();
+                needStore = true;
+            }
+        }
+        // == END UPGRADE CODE ==
+
+        if (needStore)
+             m_resumeDataStorage->store(torrentID, resumeData);
+
+        qDebug() << "Starting up torrent" << torrentID.toString() << "...";
+        if (!loadTorrent(resumeData))
+        {
+            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
+                   .arg(torrentID.toString()), Log::CRITICAL);
+        }
+
+        // process add torrent messages before message queue overflow
+        if ((resumedTorrentsCount % 100) == 0) readAlerts();
+
+        ++resumedTorrentsCount;
     }
 
     if (m_resumeDataStorage != startupStorage)
