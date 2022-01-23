@@ -690,8 +690,16 @@ void TransferListWidget::setSelectedFirstLastPiecePrio(const bool enabled) const
         torrent->setFirstLastPiecePriority(enabled);
 }
 
-void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled) const
+void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled)
 {
+    if (enabled)
+    {
+        const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Enable automatic torrent management")
+                , tr("Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.")
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+        if (btn != QMessageBox::Yes) return;
+    }
+
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
         torrent->setAutoTMMEnabled(enabled);
 }
