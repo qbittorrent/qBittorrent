@@ -31,6 +31,7 @@
 #include <algorithm>
 
 #include <QApplication>
+#include <QBitArray>
 #include <QClipboard>
 #include <QHeaderView>
 #include <QHostAddress>
@@ -41,6 +42,7 @@
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
 #include <QTableView>
+#include <QThreadPool>
 #include <QVector>
 #include <QWheelEvent>
 
@@ -389,6 +391,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
     for (auto i = m_peerItems.cbegin(); i != m_peerItems.cend(); ++i)
         existingPeers << i.key();
 
+    m_peerRelevanceTasks.clear();
     for (const BitTorrent::PeerInfo &peer : peers)
     {
         if (peer.address().ip.isNull()) continue;
@@ -469,7 +472,29 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::TOT_DOWN, totalDown, peer.totalDownload(), intDataTextAlignment);
     const QString totalUp = (hideValues && (peer.totalUpload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalUpload());
     setModelData(row, PeerListColumns::TOT_UP, totalUp, peer.totalUpload(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + '%'), peer.relevance(), intDataTextAlignment);
+
+
+    const quint64 taskID = ++m_peerRelevanceTaskCounter;
+    m_peerRelevanceTasks.insert(taskID);
+    QThreadPool::globalInstance()->start([parent = QPointer<PeerListWidget> {this}
+                                         , index = QPersistentModelIndex {m_listModel->index(row, PeerListColumns::RELEVANCE)}
+                                         , torrentPieces = torrent->pieces(), peerPieces = peer.pieces()
+                                         , taskID]
+    {
+        const qreal relevance = BitTorrent::PeerInfo::calculatePeerRelevance(torrentPieces, peerPieces);
+        const QString relevanceTxt = Utils::String::fromDouble(relevance * 100, 1) + '%';
+        QMetaObject::invokeMethod(qApp, [=]()
+        {
+            if (parent && index.isValid() && (parent->m_peerRelevanceTasks.contains(taskID)))
+            {
+                parent->m_listModel->setData(index, relevanceTxt, Qt::DisplayRole);
+                parent->m_listModel->setData(index, relevance, PeerListSortModel::UnderlyingDataRole);
+                parent->m_peerRelevanceTasks.remove(taskID);
+            }
+        });
+    });
+
+    setModelData(row, PeerListColumns::RELEVANCE, tr("Calculating"), 0, intDataTextAlignment);
 
     const QStringList downloadingFiles {torrent->hasMetadata()
                 ? torrent->info().filesForPiece(peer.downloadingPieceIndex())

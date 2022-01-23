@@ -37,10 +37,31 @@
 
 using namespace BitTorrent;
 
+qreal PeerInfo::calculatePeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces)
+{
+    int localMissing = 0;
+    int remoteHaves = 0;
+
+    for (int i = 0; i < allPieces.size(); ++i)
+    {
+        if (!allPieces[i])
+        {
+            ++localMissing;
+            if (peerPieces[i])
+                ++remoteHaves;
+        }
+    }
+
+    if (localMissing == 0)
+        return 0.0;
+    else
+        return static_cast<qreal>(remoteHaves) / localMissing;
+
+}
+
 PeerInfo::PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
 {
-    calcRelevance(torrent);
     determineFlags();
 }
 
@@ -224,35 +245,6 @@ QString PeerInfo::connectionType() const
     return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
         ? QLatin1String {"BT"}
         : QLatin1String {"Web"};
-}
-
-void PeerInfo::calcRelevance(const Torrent *torrent)
-{
-    const QBitArray allPieces = torrent->pieces();
-    const QBitArray peerPieces = pieces();
-
-    int localMissing = 0;
-    int remoteHaves = 0;
-
-    for (int i = 0; i < allPieces.size(); ++i)
-    {
-        if (!allPieces[i])
-        {
-            ++localMissing;
-            if (peerPieces[i])
-                ++remoteHaves;
-        }
-    }
-
-    if (localMissing == 0)
-        m_relevance = 0.0;
-    else
-        m_relevance = static_cast<qreal>(remoteHaves) / localMissing;
-}
-
-qreal PeerInfo::relevance() const
-{
-    return m_relevance;
 }
 
 void PeerInfo::determineFlags()

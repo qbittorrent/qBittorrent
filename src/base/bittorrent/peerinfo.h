@@ -44,6 +44,8 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(PeerInfo)
 
     public:
+        static qreal calculatePeerRelevance(const QBitArray &allPieces, const QBitArray &peerPieces);
+
         PeerInfo() = default;
         PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo);
 
@@ -92,11 +94,9 @@ namespace BitTorrent
         int downloadingPieceIndex() const;
 
     private:
-        void calcRelevance(const Torrent *torrent);
         void determineFlags();
 
         lt::peer_info m_nativeInfo = {};
-        qreal m_relevance = 0;
         QString m_flags;
         QString m_flagsDescription;
 

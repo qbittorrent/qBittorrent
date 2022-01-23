@@ -106,5 +106,7 @@ private:
     Net::ReverseResolution *m_resolver = nullptr;
     QHash<PeerEndpoint, QStandardItem *> m_peerItems;
     QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
+    quint64 m_peerRelevanceTaskCounter;
+    QSet<quint64> m_peerRelevanceTasks;
     bool m_resolveCountries;
 };

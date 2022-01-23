@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include <QBitArray>
 #include <QJsonObject>
 #include <QMetaObject>
 #include <QThread>
@@ -562,6 +563,9 @@ void SyncController::torrentPeersAction()
     {
         if (pi.address().ip.isNull()) continue;
 
+        const qreal peerRelevance = BitTorrent::PeerInfo::calculatePeerRelevance(
+                    torrent->pieces(), pi.pieces());
+
         QVariantMap peer =
         {
             {KEY_PEER_IP, pi.address().ip.toString()},
@@ -575,7 +579,7 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_CONNECTION_TYPE, pi.connectionType()},
             {KEY_PEER_FLAGS, pi.flags()},
             {KEY_PEER_FLAGS_DESCRIPTION, pi.flagsDescription()},
-            {KEY_PEER_RELEVANCE, pi.relevance()}
+            {KEY_PEER_RELEVANCE, peerRelevance}
         };
 
         if (torrent->hasMetadata())
