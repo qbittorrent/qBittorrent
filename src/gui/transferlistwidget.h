@@ -111,7 +111,7 @@ private slots:
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
     void setSelectedFirstLastPiecePrio(bool enabled) const;
-    void setSelectedAutoTMMEnabled(bool enabled) const;
+    void setSelectedAutoTMMEnabled(bool enabled);
     void askNewCategoryForSelection();
     void saveSettings();
 
