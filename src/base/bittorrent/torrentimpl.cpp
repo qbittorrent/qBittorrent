@@ -44,7 +44,6 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
-#include <QBitArray>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -1250,13 +1249,17 @@ QVector<PeerInfo> TorrentImpl::peers() const
 
 QBitArray TorrentImpl::pieces() const
 {
-    QBitArray result(m_nativeStatus.pieces.size());
-    for (int i = 0; i < result.size(); ++i)
+    if (m_pieces.isEmpty())
     {
-        if (m_nativeStatus.pieces[lt::piece_index_t {i}])
-            result.setBit(i, true);
+        m_pieces.resize(m_nativeStatus.pieces.size());
+        for (int i = 0; i < m_pieces.size(); ++i)
+        {
+            if (m_nativeStatus.pieces[lt::piece_index_t(i)])
+                m_pieces.setBit(i, true);
+        }
     }
-    return result;
+
+    return m_pieces;
 }
 
 QBitArray TorrentImpl::downloadingPieces() const
@@ -2094,6 +2097,7 @@ void TorrentImpl::updateStatus()
 
 void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 {
+    m_pieces.clear();
     m_nativeStatus = nativeStatus;
     updateState();
 
