@@ -85,3 +85,6 @@ namespace BitTorrent
 }
 
 Q_DECLARE_METATYPE(BitTorrent::TorrentID)
+// We can declare it as Q_MOVABLE_TYPE to improve performance
+// since base type uses QSharedDataPointer as the only member
+Q_DECLARE_TYPEINFO(BitTorrent::TorrentID, Q_MOVABLE_TYPE);
