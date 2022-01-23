@@ -847,6 +847,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
     auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);
+    listMenu->setToolTipsVisible(true);
 
     // Create actions
 
@@ -897,6 +898,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
     connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
     auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
+    actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
