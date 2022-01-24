@@ -30,6 +30,7 @@
 
 #include <QBitArray>
 
+#include "base/bittorrent/ltqbitarray.h"
 #include "base/bittorrent/torrent.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
@@ -207,13 +208,7 @@ qlonglong PeerInfo::totalDownload() const
 
 QBitArray PeerInfo::pieces() const
 {
-    QBitArray result(m_nativeInfo.pieces.size());
-    for (int i = 0; i < result.size(); ++i)
-    {
-        if (m_nativeInfo.pieces[lt::piece_index_t {i}])
-            result.setBit(i, true);
-    }
-    return result;
+    return LT::toQBitArray(m_nativeInfo.pieces);
 }
 
 QString PeerInfo::connectionType() const

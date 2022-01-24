@@ -16,6 +16,7 @@ HEADERS += \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/loadtorrentparams.h \
+    $$PWD/bittorrent/ltqbitarray.h \
     $$PWD/bittorrent/ltqhash.h \
     $$PWD/bittorrent/lttypecast.h \
     $$PWD/bittorrent/magneturi.h \
@@ -108,6 +109,7 @@ SOURCES += \
     $$PWD/bittorrent/filesearcher.cpp \
     $$PWD/bittorrent/filterparserthread.cpp \
     $$PWD/bittorrent/infohash.cpp \
+    $$PWD/bittorrent/ltqbitarray.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/nativesessionextension.cpp \
     $$PWD/bittorrent/nativetorrentextension.cpp \
