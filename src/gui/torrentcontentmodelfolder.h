@@ -59,7 +59,6 @@ public:
     const QVector<TorrentContentModelItem*> &children() const;
     void appendChild(TorrentContentModelItem *item);
     TorrentContentModelItem *child(int row) const;
-    TorrentContentModelFolder *childFolderWithName(const QString &name) const;
     int childCount() const;
 
 private:
