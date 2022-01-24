@@ -86,7 +86,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(this, &QWidget::customContextMenuRequested, this, &TrackerListWidget::showTrackerListMenu);
     // Header
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &TrackerListWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &TrackerListWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionMoved, this, &TrackerListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &TrackerListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TrackerListWidget::saveSettings);
@@ -575,7 +575,7 @@ void TrackerListWidget::reannounceSelected()
     loadTrackers();
 }
 
-void TrackerListWidget::showTrackerListMenu(const QPoint &)
+void TrackerListWidget::showTrackerListMenu()
 {
     BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
@@ -641,45 +641,52 @@ QStringList TrackerListWidget::headerLabels()
 
 int TrackerListWidget::visibleColumnsCount() const
 {
-    int visibleCols = 0;
-    for (int i = 0; i < COL_COUNT; ++i)
+    int count = 0;
+    for (int i = 0, iMax = header()->count(); i < iMax; ++i)
     {
         if (!isColumnHidden(i))
-            ++visibleCols;
+            ++count;
     }
 
-    return visibleCols;
+    return count;
 }
 
-void TrackerListWidget::displayToggleColumnsMenu(const QPoint &)
+void TrackerListWidget::displayColumnHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < COL_COUNT; ++i)
     {
-        QAction *myAct = menu->addAction(headerLabels().at(i));
-        myAct->setCheckable(true);
-        myAct->setChecked(!isColumnHidden(i));
-        myAct->setData(i);
+        QAction *action = menu->addAction(headerLabels().at(i), this, [this, i](const bool checked)
+        {
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
+
+            setColumnHidden(i, !checked);
+
+            if (checked && (columnWidth(i) <= 5))
+                resizeColumnToContents(i);
+
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!isColumnHidden(i));
     }
 
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
     {
-        const int col = action->data().toInt();
-        Q_ASSERT(visibleColumnsCount() > 0);
-
-        if (!isColumnHidden(col) && (visibleColumnsCount() == 1))
-            return;
-
-        setColumnHidden(col, !isColumnHidden(col));
-
-        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-            resizeColumnToContents(col);
-
+        for (int i = 0, count = header()->count(); i < count; ++i)
+        {
+            if (!isColumnHidden(i))
+                resizeColumnToContents(i);
+        }
         saveSettings();
     });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
 }

@@ -28,6 +28,7 @@
 
 #include "mainwindow.h"
 
+#include <algorithm>
 #include <chrono>
 
 #include <QActionGroup>
@@ -601,9 +602,9 @@ void MainWindow::manageCookies()
     cookieDialog->open();
 }
 
-void MainWindow::toolbarMenuRequested(const QPoint &point)
+void MainWindow::toolbarMenuRequested()
 {
-    m_toolbarMenu->popup(m_ui->toolBar->mapToGlobal(point));
+    m_toolbarMenu->popup(QCursor::pos());
 }
 
 void MainWindow::toolbarIconsOnly()
@@ -708,7 +709,7 @@ void MainWindow::displayRSSTab(bool enable)
     }
 }
 
-void MainWindow::showFilterContextMenu(const QPoint &)
+void MainWindow::showFilterContextMenu()
 {
     const Preferences *pref = Preferences::instance();
 
@@ -1279,15 +1280,9 @@ bool MainWindow::event(QEvent *e)
             {
                 qDebug() << "Has active window:" << (qApp->activeWindow() != nullptr);
                 // Check if there is a modal window
-                bool hasModalWindow = false;
-                for (QWidget *widget : asConst(QApplication::allWidgets()))
-                {
-                    if (widget->isModal())
-                    {
-                        hasModalWindow = true;
-                        break;
-                    }
-                }
+                const QWidgetList allWidgets = QApplication::allWidgets();
+                const bool hasModalWindow = std::any_of(allWidgets.cbegin(), allWidgets.cend()
+                    , [](const QWidget *widget) { return widget->isModal(); });
                 // Iconify if there is no modal window
                 if (!hasModalWindow)
                 {

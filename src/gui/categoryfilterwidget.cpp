@@ -104,7 +104,7 @@ void CategoryFilterWidget::onCurrentRowChanged(const QModelIndex &current, const
     emit categoryChanged(getCategoryFilter(static_cast<CategoryFilterProxyModel *>(model()), current));
 }
 
-void CategoryFilterWidget::showMenu(const QPoint &)
+void CategoryFilterWidget::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);

@@ -91,7 +91,6 @@ public slots:
     void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
-    void displayDLHoSMenu(const QPoint &);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
@@ -106,7 +105,8 @@ signals:
 
 private slots:
     void torrentDoubleClicked();
-    void displayListMenu(const QPoint &);
+    void displayListMenu();
+    void displayColumnHeaderMenu();
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
     void setSelectedTorrentsSequentialDownload(bool enabled) const;
@@ -127,6 +127,7 @@ private:
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
+    int visibleColumnsCount() const;
 
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;

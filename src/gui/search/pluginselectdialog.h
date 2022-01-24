@@ -71,7 +71,7 @@ private slots:
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
     void setRowColor(int row, const QString &color);
-    void displayContextMenu(const QPoint &);
+    void displayContextMenu();
     void enableSelection(bool enable);
     void askForLocalPlugin();
     void askForPluginUrl();

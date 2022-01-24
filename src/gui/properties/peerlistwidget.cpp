@@ -155,7 +155,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     updatePeerHostNameResolutionState();
     // SIGNAL/SLOT
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionClicked, this, &PeerListWidget::handleSortColumnChanged);
     connect(header(), &QHeaderView::sectionMoved, this, &PeerListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &PeerListWidget::saveSettings);
@@ -177,47 +177,46 @@ PeerListWidget::~PeerListWidget()
     saveSettings();
 }
 
-void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
+void PeerListWidget::displayColumnHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
     {
         if ((i == PeerListColumns::COUNTRY) && !Preferences::instance()->resolvePeerCountries())
             continue;
 
-        QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!isColumnHidden(i));
-        myAct->setData(i);
+        const auto columnName = m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
+        {
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
+
+            setColumnHidden(i, !checked);
+
+            if (checked && (columnWidth(i) <= 5))
+                resizeColumnToContents(i);
+
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!isColumnHidden(i));
     }
 
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
     {
-        int visibleCols = 0;
-        for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+        for (int i = 0, count = header()->count(); i < count; ++i)
         {
             if (!isColumnHidden(i))
-                ++visibleCols;
-
-            if (visibleCols > 1)
-                break;
+                resizeColumnToContents(i);
         }
-
-        const int col = action->data().toInt();
-
-        if (!isColumnHidden(col) && (visibleCols == 1))
-            return;
-
-        setColumnHidden(col, !isColumnHidden(col));
-
-        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-            resizeColumnToContents(col);
-
         saveSettings();
     });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
 }
@@ -260,7 +259,7 @@ void PeerListWidget::updatePeerCountryResolutionState()
     }
 }
 
-void PeerListWidget::showPeerListMenu(const QPoint &)
+void PeerListWidget::showPeerListMenu()
 {
     BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
@@ -490,6 +489,18 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
             m_listModel->setData(m_listModel->index(row, PeerListColumns::COUNTRY), countryName, Qt::ToolTipRole);
         }
     }
+}
+
+int PeerListWidget::visibleColumnsCount() const
+{
+    int count = 0;
+    for (int i = 0, iMax = header()->count(); i < iMax; ++i)
+    {
+        if (!isColumnHidden(i))
+            ++count;
+    }
+
+    return count;
 }
 
 void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const

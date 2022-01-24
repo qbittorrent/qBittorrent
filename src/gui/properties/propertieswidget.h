@@ -81,7 +81,6 @@ public slots:
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void displayFileListHeaderMenu();
     void openItem(const QModelIndex &index) const;
     void loadTrackers(BitTorrent::Torrent *const torrent);
 
@@ -92,8 +91,8 @@ protected slots:
     void deleteSelectedUrlSeeds();
     void copySelectedWebSeedsToClipboard() const;
     void editWebSeed();
-    void displayFilesListMenu(const QPoint &);
-    void displayWebSeedListMenu(const QPoint &);
+    void displayFilesListMenu();
+    void displayWebSeedListMenu();
     void filteredFilesChanged();
     void showPiecesDownloaded(bool show);
     void showPiecesAvailability(bool show);
@@ -101,6 +100,7 @@ protected slots:
 
 private slots:
     void configure();
+    void displayColumnHeaderMenu();
     void filterText(const QString &filter);
     void updateSavePath(BitTorrent::Torrent *const torrent);
 

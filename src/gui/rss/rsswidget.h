@@ -62,8 +62,8 @@ private slots:
     void on_newFeedButton_clicked();
     void refreshAllFeeds();
     void on_markReadButton_clicked();
-    void displayRSSListMenu(const QPoint &);
-    void displayItemsListMenu(const QPoint &);
+    void displayRSSListMenu(const QPoint &pos);
+    void displayItemsListMenu();
     void renameSelectedRSSItem();
     void refreshSelectedItems();
     void copySelectedFeedsURL();

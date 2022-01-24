@@ -192,7 +192,7 @@ void RSSWidget::displayRSSListMenu(const QPoint &pos)
     menu->popup(QCursor::pos());
 }
 
-void RSSWidget::displayItemsListMenu(const QPoint &)
+void RSSWidget::displayItemsListMenu()
 {
     bool hasTorrent = false;
     bool hasLink = false;
