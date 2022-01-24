@@ -229,25 +229,16 @@ QString PeerInfo::connectionType() const
 void PeerInfo::calcRelevance(const Torrent *torrent)
 {
     const QBitArray allPieces = torrent->pieces();
-    const QBitArray peerPieces = pieces();
-
-    int localMissing = 0;
-    int remoteHaves = 0;
-
-    for (int i = 0; i < allPieces.size(); ++i)
+    const int localMissing = allPieces.count(false);
+    if (localMissing <= 0)
     {
-        if (!allPieces[i])
-        {
-            ++localMissing;
-            if (peerPieces[i])
-                ++remoteHaves;
-        }
+        m_relevance = 0;
+        return;
     }
 
-    if (localMissing == 0)
-        m_relevance = 0.0;
-    else
-        m_relevance = static_cast<qreal>(remoteHaves) / localMissing;
+    const QBitArray peerPieces = pieces();
+    const int remoteHaves = (peerPieces & (~allPieces)).count(true);
+    m_relevance = static_cast<qreal>(remoteHaves) / localMissing;
 }
 
 qreal PeerInfo::relevance() const
