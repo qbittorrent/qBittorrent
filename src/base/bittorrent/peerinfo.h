@@ -92,7 +92,7 @@ namespace BitTorrent
         int downloadingPieceIndex() const;
 
     private:
-        void calcRelevance(const Torrent *torrent);
+        qreal calcRelevance(const Torrent *torrent) const;
         void determineFlags();
 
         lt::peer_info m_nativeInfo = {};
