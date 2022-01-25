@@ -37,6 +37,7 @@
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_status.hpp>
 
+#include <QBitArray>
 #include <QDateTime>
 #include <QHash>
 #include <QMap>
@@ -320,5 +321,7 @@ namespace BitTorrent
         bool m_unchecked = false;
 
         lt::add_torrent_params m_ltAddTorrentParams;
+
+        mutable QBitArray m_pieces;
     };
 }
