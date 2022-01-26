@@ -36,6 +36,13 @@ BitTorrent::InfoHash::InfoHash(const WrappedType &nativeHash)
 {
 }
 
+#ifdef QBT_USES_LIBTORRENT2
+BitTorrent::InfoHash::InfoHash(const SHA1Hash &v1, const SHA256Hash &v2)
+    : InfoHash {WrappedType(v1, v2)}
+{
+}
+#endif
+
 bool BitTorrent::InfoHash::isValid() const
 {
     return m_valid;
