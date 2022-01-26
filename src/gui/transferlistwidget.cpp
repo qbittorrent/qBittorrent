@@ -703,8 +703,16 @@ void TransferListWidget::setSelectedFirstLastPiecePrio(const bool enabled) const
         torrent->setFirstLastPiecePriority(enabled);
 }
 
-void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled) const
+void TransferListWidget::setSelectedAutoTMMEnabled(const bool enabled)
 {
+    if (enabled)
+    {
+        const QMessageBox::StandardButton btn = QMessageBox::question(this, tr("Enable automatic torrent management")
+                , tr("Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.")
+                , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+        if (btn != QMessageBox::Yes) return;
+    }
+
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
         torrent->setAutoTMMEnabled(enabled);
 }
@@ -852,6 +860,7 @@ void TransferListWidget::displayListMenu()
 
     auto *listMenu = new QMenu(this);
     listMenu->setAttribute(Qt::WA_DeleteOnClose);
+    listMenu->setToolTipsVisible(true);
 
     // Create actions
 
@@ -902,6 +911,7 @@ void TransferListWidget::displayListMenu()
     auto *actionFirstLastPiecePrio = new TriStateAction(tr("Download first and last pieces first"), listMenu);
     connect(actionFirstLastPiecePrio, &QAction::triggered, this, &TransferListWidget::setSelectedFirstLastPiecePrio);
     auto *actionAutoTMM = new TriStateAction(tr("Automatic Torrent Management"), listMenu);
+    actionAutoTMM->setToolTip(tr("Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category"));
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
