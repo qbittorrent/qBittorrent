@@ -47,9 +47,22 @@ namespace BitTorrent::LT
 {
     QBitArray toQBitArray(const lt::bitfield &bits)
     {
+        const int STACK_ALLOC_SIZE = 10 * 1024;
+
         const char *bitsData = bits.data();
         const int dataLength = (bits.size() + 7) / 8;
 
+        if (dataLength <= STACK_ALLOC_SIZE)
+        {
+            // fast path for small bitfields
+            char tmp[STACK_ALLOC_SIZE];  // uninitialized for faster allocation
+            for (int i = 0; i < dataLength; ++i)
+                tmp[i] = reverseByte(bitsData[i]);
+
+            return QBitArray::fromBits(tmp, bits.size());
+        }
+
+        // slow path for big bitfields
         auto tmp = std::make_unique<char []>(dataLength);
         for (int i = 0; i < dataLength; ++i)
             tmp[i] = reverseByte(bitsData[i]);
