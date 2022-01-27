@@ -111,8 +111,12 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
 void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
 {
     Q_Q(FileSystemPathEdit);
+
+    const QFileInfo fileInfo {q->selectedPath()};
+    const QString directory = (m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave)
+            ? fileInfo.absoluteFilePath()
+            : fileInfo.absolutePath();
     QString filter = q->fileNameFilter();
-    QString directory = q->currentDirectory().isEmpty() ? QDir::homePath() : q->currentDirectory();
 
     QString selectedPath;
     switch (m_mode)
@@ -306,11 +310,6 @@ void FileSystemPathEdit::setDialogCaption(const QString &caption)
 {
     Q_D(FileSystemPathEdit);
     d->m_dialogCaption = caption;
-}
-
-QString FileSystemPathEdit::currentDirectory() const
-{
-    return QFileInfo(selectedPath()).absoluteDir().absolutePath();
 }
 
 QWidget *FileSystemPathEdit::editWidgetImpl() const

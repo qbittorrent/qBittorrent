@@ -64,7 +64,6 @@ public:
     Mode mode() const;
     void setMode(Mode mode);
 
-    QString currentDirectory() const;
     QString selectedPath() const;
     void setSelectedPath(const QString &val);
 
