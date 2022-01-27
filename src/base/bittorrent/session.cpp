@@ -4033,7 +4033,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newP
 
     if (m_moveStorageQueue.size() > 1)
     {
-        const auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
+        auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
                                  , [&torrentHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == torrentHandle;
@@ -4042,8 +4042,16 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newP
         if (iter != m_moveStorageQueue.end())
         {
             // remove existing inactive job
-            m_moveStorageQueue.erase(iter);
             LogMsg(tr("Cancelled moving \"%1\" from \"%2\" to \"%3\".").arg(torrent->name(), currentLocation, iter->path));
+            iter = m_moveStorageQueue.erase(iter);
+
+            iter = std::find_if(iter, m_moveStorageQueue.end(), [&torrentHandle](const MoveStorageJob &job)
+            {
+                return job.torrentHandle == torrentHandle;
+            });
+
+            const bool torrentHasOutstandingJob = (iter != m_moveStorageQueue.end());
+            torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
         }
     }
 
