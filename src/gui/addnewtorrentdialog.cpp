@@ -201,7 +201,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
 
-    m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does it job at this point
+    m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does its job at this point
     m_ui->comboTTM->setCurrentIndex(session->isAutoTMMDisabledByDefault() ? 0 : 1);
     m_ui->comboTTM->blockSignals(false);
 
@@ -899,6 +899,8 @@ void AddNewTorrentDialog::setupTreeview()
         connect(m_ui->contentTreeView, &QAbstractItemView::clicked, m_ui->contentTreeView
                 , qOverload<const QModelIndex &>(&QAbstractItemView::edit));
         connect(m_ui->contentTreeView, &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::displayContentTreeMenu);
+        connect(m_ui->buttonSelectAll, &QPushButton::clicked, m_contentModel, &TorrentContentFilterModel::selectAll);
+        connect(m_ui->buttonSelectNone, &QPushButton::clicked, m_contentModel, &TorrentContentFilterModel::selectNone);
 
         const auto contentLayout = ((m_ui->contentLayoutComboBox->currentIndex() == 0)
                                     ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
