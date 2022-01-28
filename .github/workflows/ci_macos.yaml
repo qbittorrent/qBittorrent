@@ -9,9 +9,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.5", "1.2.15"]
-        qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.2.0"]
+        libt_version: ["2.0.5"]
+        qbt_gui: ["GUI=OFF"]
+        qt_version: ["6.2.0"]
         exclude:
           - libt_version: "1.2.15"
             qt_version: "6.2.0"
@@ -55,7 +55,8 @@ jobs:
             -DCMAKE_CXX_STANDARD=17 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -Ddeprecated-functions=OFF \
-            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
+            -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
+            -DCMAKE_OSX_ARCHITECTURES=arm64
           cmake --build build
           sudo cmake --install build
 
@@ -70,7 +71,8 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
+            -D${{ matrix.qbt_gui }} \
+            -DCMAKE_OSX_ARCHITECTURES=arm64
           cmake --build build
 
       - name: Build qBittorrent (Qt6)
@@ -85,7 +87,8 @@ jobs:
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON \
-            -D${{ matrix.qbt_gui }}
+            -D${{ matrix.qbt_gui }} \
+            -DCMAKE_OSX_ARCHITECTURES=arm64
           cmake --build build
 
       - name: Prepare build artifacts
@@ -100,5 +103,5 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}_arm64
           path: upload
