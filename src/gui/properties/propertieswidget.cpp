@@ -600,7 +600,7 @@ QString PropertiesWidget::getFullPath(const QModelIndex &index) const
     if (m_propListModel->itemType(index) == TorrentContentModelItem::FileType)
     {
         const int fileIdx = m_propListModel->getFileIndex(index);
-        const QString filename {m_torrent->filePath(fileIdx)};
+        const QString filename {m_torrent->actualFilePath(fileIdx)};
         const QString fullPath {Utils::Fs::expandPath(saveDir.absoluteFilePath(filename))};
         return fullPath;
     }
