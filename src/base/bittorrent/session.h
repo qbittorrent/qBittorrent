@@ -232,6 +232,8 @@ namespace BitTorrent
         bool removeCategory(const QString &name);
         bool isSubcategoriesEnabled() const;
         void setSubcategoriesEnabled(bool value);
+        bool useCategoryPathsInManualMode() const;
+        void setUseCategoryPathsInManualMode(bool value);
 
         static bool isValidTag(const QString &tag);
         QSet<QString> tags() const;
@@ -740,8 +742,9 @@ namespace BitTorrent
         CachedSettingValue<int> m_maxRatioAction;
         CachedSettingValue<QString> m_savePath;
         CachedSettingValue<QString> m_downloadPath;
-        CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
+        CachedSettingValue<bool> m_isSubcategoriesEnabled;
+        CachedSettingValue<bool> m_useCategoryPathsInManualMode;
         CachedSettingValue<bool> m_isAutoTMMDisabledByDefault;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenCategoryChanged;
         CachedSettingValue<bool> m_isDisableAutoTMMWhenDefaultSavePathChanged;

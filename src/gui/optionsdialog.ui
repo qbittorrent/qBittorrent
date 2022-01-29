@@ -1104,6 +1104,16 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkUseCategoryPaths">
+                 <property name="text">
+                  <string>Use Category paths in Manual Mode</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QGridLayout" name="gridLayout_4">
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelSavePath">

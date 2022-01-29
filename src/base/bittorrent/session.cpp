@@ -396,8 +396,9 @@ Session::Session(QObject *parent)
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
     , m_savePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads), Utils::Fs::toUniformPath)
     , m_downloadPath(BITTORRENT_SESSION_KEY("TempPath"), specialFolderLocation(SpecialFolder::Downloads) + QLatin1String("/temp"), Utils::Fs::toUniformPath)
-    , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
+    , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
+    , m_useCategoryPathsInManualMode(BITTORRENT_SESSION_KEY("UseCategoryPathsInManualMode"), false)
     , m_isAutoTMMDisabledByDefault(BITTORRENT_SESSION_KEY("DisableAutoTMMByDefault"), true)
     , m_isDisableAutoTMMWhenCategoryChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/CategoryChanged"), false)
     , m_isDisableAutoTMMWhenDefaultSavePathChanged(BITTORRENT_SESSION_KEY("DisableAutoTMMTriggers/DefaultSavePathChanged"), true)
@@ -819,6 +820,16 @@ void Session::setSubcategoriesEnabled(const bool value)
 
     m_isSubcategoriesEnabled = value;
     emit subcategoriesSupportChanged();
+}
+
+bool Session::useCategoryPathsInManualMode() const
+{
+    return m_useCategoryPathsInManualMode;
+}
+
+void Session::setUseCategoryPathsInManualMode(const bool value)
+{
+    m_useCategoryPathsInManualMode = value;
 }
 
 QSet<QString> Session::tags() const
@@ -2060,26 +2071,38 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
-    if (!loadTorrentParams.useAutoTMM)
-    {
-        loadTorrentParams.savePath = (QDir::isAbsolutePath(addTorrentParams.savePath)
-                                      ? addTorrentParams.savePath
-                                      : Utils::Fs::resolvePath(addTorrentParams.savePath, savePath()));
-
-        const bool useDownloadPath = addTorrentParams.useDownloadPath.value_or(isDownloadPathEnabled());
-        if (useDownloadPath)
-        {
-            loadTorrentParams.downloadPath = (QDir::isAbsolutePath(addTorrentParams.downloadPath)
-                                              ? addTorrentParams.downloadPath
-                                              : Utils::Fs::resolvePath(addTorrentParams.downloadPath, downloadPath()));
-        }
-    }
-
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
         loadTorrentParams.category = "";
     else
         loadTorrentParams.category = category;
+
+    if (!loadTorrentParams.useAutoTMM)
+    {
+        if (QDir::isAbsolutePath(addTorrentParams.savePath))
+        {
+            loadTorrentParams.savePath = addTorrentParams.savePath;
+        }
+        else
+        {
+            const QString basePath = useCategoryPathsInManualMode() ? categorySavePath(loadTorrentParams.category) : savePath();
+            loadTorrentParams.savePath = Utils::Fs::resolvePath(addTorrentParams.savePath, basePath);
+        }
+
+        const bool useDownloadPath = addTorrentParams.useDownloadPath.value_or(isDownloadPathEnabled());
+        if (useDownloadPath)
+        {
+            if (QDir::isAbsolutePath(addTorrentParams.downloadPath))
+            {
+                loadTorrentParams.downloadPath = addTorrentParams.downloadPath;
+            }
+            else
+            {
+                const QString basePath = useCategoryPathsInManualMode() ? categoryDownloadPath(loadTorrentParams.category) : downloadPath();
+                loadTorrentParams.downloadPath = Utils::Fs::resolvePath(addTorrentParams.downloadPath, basePath);
+            }
+        }
+    }
 
     for (const QString &tag : addTorrentParams.tags)
     {
