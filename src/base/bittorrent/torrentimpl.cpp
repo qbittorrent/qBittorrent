@@ -2046,10 +2046,16 @@ void TorrentImpl::manageIncompleteFiles()
         return;
     }
 
+    const lt::file_storage &nativeFiles = m_nativeHandle.torrent_file()->files();
+
     for (int i = 0; i < filesCount(); ++i)
     {
         const QString path = filePath(i);
-        const QString actualPath = actualFilePath(i);
+
+        const auto nativeIndex = m_torrentInfo.nativeIndexes().at(i);
+        const QString actualPath = Utils::Fs::toUniformPath(
+                    QString::fromStdString(nativeFiles.file_path(nativeIndex)));
+
         if (isAppendExtensionEnabled && (fileSize(i) > 0) && (fp[i] < 1))
         {
             const QString wantedPath = path + QB_EXT;
