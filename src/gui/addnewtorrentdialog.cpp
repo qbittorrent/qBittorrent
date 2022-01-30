@@ -991,9 +991,9 @@ void AddNewTorrentDialog::TMMChanged(int index)
 
         m_ui->groupBoxDownloadPath->blockSignals(true);
         m_ui->groupBoxDownloadPath->setChecked(!downloadPath.isEmpty());
-
-        updateDiskSpaceLabel();
     }
+
+    updateDiskSpaceLabel();
 }
 
 void AddNewTorrentDialog::doNotDeleteTorrentClicked(bool checked)
