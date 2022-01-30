@@ -801,7 +801,8 @@ QString TorrentImpl::filePath(const int index) const
 QString TorrentImpl::actualFilePath(const int index) const
 {
     const auto nativeIndex = m_torrentInfo.nativeIndexes().at(index);
-    return QString::fromStdString(m_nativeHandle.torrent_file()->files().file_path(nativeIndex));
+    const std::string filePath = m_nativeHandle.torrent_file()->files().file_path(nativeIndex);
+    return Utils::Fs::toUniformPath(QString::fromStdString(filePath));
 }
 
 qlonglong TorrentImpl::fileSize(const int index) const
