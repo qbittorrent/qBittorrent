@@ -1923,12 +1923,12 @@ void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
 void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 {
-    const int fileIndex = m_torrentInfo.nativeIndexes().indexOf(p->index);
-    Q_ASSERT(fileIndex >= 0);
-
     qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
+        const int fileIndex = m_torrentInfo.nativeIndexes().indexOf(p->index);
+        Q_ASSERT(fileIndex >= 0);
+
         const QString path = filePath(fileIndex);
         const QString actualPath = actualFilePath(fileIndex);
         if (actualPath != path)
