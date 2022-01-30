@@ -78,10 +78,10 @@ namespace
     }
 
 #ifdef QBT_USES_LIBTORRENT2
-    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry
+    TrackerEntry fromNativeAnnounceEntry(const lt::announce_entry &nativeEntry
         , const lt::info_hash_t &hashes, const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
 #else
-    TrackerEntry fromNativeAnnouncerEntry(const lt::announce_entry &nativeEntry
+    TrackerEntry fromNativeAnnounceEntry(const lt::announce_entry &nativeEntry
         , const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
 #endif
     {
@@ -509,9 +509,9 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     {
         const QString trackerURL = QString::fromStdString(tracker.url);
 #ifdef QBT_USES_LIBTORRENT2
-        entries << fromNativeAnnouncerEntry(tracker, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
+        entries << fromNativeAnnounceEntry(tracker, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
 #else
-        entries << fromNativeAnnouncerEntry(tracker, m_trackerPeerCounts[trackerURL]);
+        entries << fromNativeAnnounceEntry(tracker, m_trackerPeerCounts[trackerURL]);
 #endif
     }
 
@@ -1667,18 +1667,28 @@ void TorrentImpl::handleTrackerWarningAlert(const lt::tracker_warning_alert *p)
 
 void TorrentImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
 {
-    const QString trackerUrl = p->tracker_url();
-
     // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
     // an announce is attempted. Some endpoints might succeed while others might fail.
     // Emit the signal only if all endpoints have failed.
-    const QVector<TrackerEntry> trackerList = trackers();
-    const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [&trackerUrl](const TrackerEntry &entry)
+    const std::vector<lt::announce_entry> trackerList = m_nativeHandle.trackers();
+    const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [p](const lt::announce_entry &entry)
     {
-        return (entry.url == trackerUrl);
+        return (entry.url == p->tracker_url());
     });
-    if ((iter != trackerList.cend()) && (iter->status == TrackerEntry::NotWorking))
-        m_session->handleTorrentTrackerError(this, trackerUrl);
+
+    if (iter == trackerList.cend())
+        return;
+
+    const QString trackerURL = QString::fromStdString(iter->url);
+
+#ifdef QBT_USES_LIBTORRENT2
+    const TrackerEntry entry = fromNativeAnnounceEntry(*iter, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
+#else
+    const TrackerEntry entry = fromNativeAnnounceEntry(*iter, m_trackerPeerCounts[trackerURL]);
+#endif
+
+    if (entry.status == TrackerEntry::NotWorking)
+        m_session->handleTorrentTrackerError(this, trackerURL);
 }
 
 void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
