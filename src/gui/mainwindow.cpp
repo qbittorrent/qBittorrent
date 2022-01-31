@@ -1235,6 +1235,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
 #ifndef Q_OS_MACOS
     if (m_systrayIcon)
     {
+        m_systrayIcon->disconnect();
         m_systrayIcon->setToolTip(tr("qBittorrent is shutting down..."));
         m_trayIconMenu->setEnabled(false);
     }
