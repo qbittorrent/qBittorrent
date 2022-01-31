@@ -1931,7 +1931,6 @@ void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
 void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 {
-    qDebug("A file completed download in torrent \"%s\"", qUtf8Printable(name()));
     if (m_session->isAppendExtensionEnabled())
     {
         const int fileIndex = m_indexMap.value(p->index, -1);
