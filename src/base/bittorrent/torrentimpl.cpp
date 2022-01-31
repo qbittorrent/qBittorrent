@@ -69,7 +69,7 @@ using namespace BitTorrent;
 
 namespace
 {
-    lt::announce_entry makeNativeAnnouncerEntry(const QString &url, const int tier)
+    lt::announce_entry makeNativeAnnounceEntry(const QString &url, const int tier)
     {
         lt::announce_entry entry {url.toStdString()};
         entry.tier = tier;
@@ -536,7 +536,7 @@ void TorrentImpl::addTrackers(const QVector<TrackerEntry> &trackers)
     {
         if (!currentTrackers.contains(tracker))
         {
-            m_nativeHandle.add_tracker(makeNativeAnnouncerEntry(tracker.url, tracker.tier));
+            m_nativeHandle.add_tracker(makeNativeAnnounceEntry(tracker.url, tracker.tier));
             newTrackers << tracker;
         }
     }
@@ -560,7 +560,7 @@ void TorrentImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
 
     for (const TrackerEntry &tracker : trackers)
     {
-        nativeTrackers.emplace_back(makeNativeAnnouncerEntry(tracker.url, tracker.tier));
+        nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
 
         if (!currentTrackers.removeOne(tracker))
             newTrackers << tracker;
@@ -1484,6 +1484,11 @@ void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileN
     endReceivedMetadataHandling(savePath, fileNames);
 }
 
+void TorrentImpl::updatePeerCount(const QString &trackerUrl, const lt::tcp::endpoint &endpoint, const int count)
+{
+    m_trackerPeerCounts[trackerUrl][endpoint] = count;
+}
+
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
 {
     Q_ASSERT(m_filePaths.isEmpty());
@@ -1663,46 +1668,6 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
         while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
             m_moveFinishedTriggers.takeFirst()();
     }
-}
-
-void TorrentImpl::handleTrackerReplyAlert(const lt::tracker_reply_alert *p)
-{
-    const QString trackerUrl = p->tracker_url();
-    m_trackerPeerCounts[trackerUrl][p->local_endpoint] = p->num_peers;
-
-    m_session->handleTorrentTrackerReply(this, trackerUrl);
-}
-
-void TorrentImpl::handleTrackerWarningAlert(const lt::tracker_warning_alert *p)
-{
-    const QString trackerUrl = p->tracker_url();
-    m_session->handleTorrentTrackerWarning(this, trackerUrl);
-}
-
-void TorrentImpl::handleTrackerErrorAlert(const lt::tracker_error_alert *p)
-{
-    // Starting with libtorrent 1.2.x each tracker has multiple local endpoints from which
-    // an announce is attempted. Some endpoints might succeed while others might fail.
-    // Emit the signal only if all endpoints have failed.
-    const std::vector<lt::announce_entry> trackerList = m_nativeHandle.trackers();
-    const auto iter = std::find_if(trackerList.cbegin(), trackerList.cend(), [p](const lt::announce_entry &entry)
-    {
-        return (entry.url == p->tracker_url());
-    });
-
-    if (iter == trackerList.cend())
-        return;
-
-    const QString trackerURL = QString::fromStdString(iter->url);
-
-#ifdef QBT_USES_LIBTORRENT2
-    const TrackerEntry entry = fromNativeAnnounceEntry(*iter, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
-#else
-    const TrackerEntry entry = fromNativeAnnounceEntry(*iter, m_trackerPeerCounts[trackerURL]);
-#endif
-
-    if (entry.status == TrackerEntry::NotWorking)
-        m_session->handleTorrentTrackerError(this, trackerURL);
 }
 
 void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
@@ -2013,15 +1978,6 @@ void TorrentImpl::handleAlert(const lt::alert *a)
         break;
     case lt::torrent_resumed_alert::alert_type:
         handleTorrentResumedAlert(static_cast<const lt::torrent_resumed_alert*>(a));
-        break;
-    case lt::tracker_error_alert::alert_type:
-        handleTrackerErrorAlert(static_cast<const lt::tracker_error_alert*>(a));
-        break;
-    case lt::tracker_reply_alert::alert_type:
-        handleTrackerReplyAlert(static_cast<const lt::tracker_reply_alert*>(a));
-        break;
-    case lt::tracker_warning_alert::alert_type:
-        handleTrackerWarningAlert(static_cast<const lt::tracker_warning_alert*>(a));
         break;
     case lt::metadata_received_alert::alert_type:
         handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));

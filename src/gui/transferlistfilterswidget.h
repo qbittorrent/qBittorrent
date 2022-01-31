@@ -33,6 +33,7 @@
 #include <QtContainerFwd>
 
 #include "base/bittorrent/infohash.h"
+#include "base/bittorrent/session.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/path.h"
 
@@ -40,11 +41,6 @@ class QCheckBox;
 class QResizeEvent;
 
 class TransferListWidget;
-
-namespace BitTorrent
-{
-    class Torrent;
-}
 
 namespace Net
 {
@@ -107,14 +103,10 @@ public:
 
     // Redefine addItem() to make sure the list stays sorted
     void addItem(const QString &tracker, const BitTorrent::TorrentID &id);
-    void removeItem(const QString &tracker, const BitTorrent::TorrentID &id);
+    void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);
     void changeTrackerless(bool trackerless, const BitTorrent::TorrentID &id);
     void setDownloadTrackerFavicon(bool value);
-
-public slots:
-    void trackerSuccess(const BitTorrent::TorrentID &id, const QString &tracker);
-    void trackerError(const BitTorrent::TorrentID &id, const QString &tracker);
-    void trackerWarning(const BitTorrent::TorrentID &id, const QString &tracker);
+    void handleTrackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QHash<QString, BitTorrent::TrackerEntryUpdateInfo>> &updateInfos);
 
 private slots:
     void handleFavicoDownloadFinished(const Net::DownloadResult &result);
@@ -155,14 +147,7 @@ public slots:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void removeTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerSuccess(const BitTorrent::Torrent *torrent, const QString &tracker);
-    void trackerWarning(const BitTorrent::Torrent *torrent, const QString &tracker);
-    void trackerError(const BitTorrent::Torrent *torrent, const QString &tracker);
-
-signals:
-    void trackerSuccess(const BitTorrent::TorrentID &id, const QString &tracker);
-    void trackerError(const BitTorrent::TorrentID &id, const QString &tracker);
-    void trackerWarning(const BitTorrent::TorrentID &id, const QString &tracker);
+    void trackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QHash<QString, BitTorrent::TrackerEntryUpdateInfo>> &updateInfos);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
