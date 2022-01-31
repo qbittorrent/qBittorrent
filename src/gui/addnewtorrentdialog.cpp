@@ -55,6 +55,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
+#include "lineedit.h"
 #include "properties/proplistdelegate.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
@@ -168,6 +169,7 @@ const int AddNewTorrentDialog::maxPathHistoryLength;
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AddNewTorrentDialog)
+    , m_filterLine(new LineEdit(this))
     , m_torrentParams(inParams)
     , m_storeDialogSize(SETTINGS_KEY("DialogSize"))
     , m_storeDefaultCategory(SETTINGS_KEY("DefaultCategory"))
@@ -240,6 +242,12 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->contentTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
 
     connect(m_ui->contentTreeView->header(), &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::displayColumnHeaderMenu);
+
+    // Torrent content filtering
+    m_filterLine->setPlaceholderText(tr("Filter files..."));
+    m_filterLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    connect(m_filterLine, &LineEdit::textChanged, this, &AddNewTorrentDialog::handleFilterTextChanged);
+    m_ui->contentFilterLayout->insertWidget(3, m_filterLine);
 
     loadState();
     // Signal / slots
@@ -880,6 +888,8 @@ void AddNewTorrentDialog::setupTreeview()
     {
         m_ui->labelCommentData->setText(tr("Not Available", "This comment is unavailable"));
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
+        // Prevent crash if something is typed in the filter. m_contentModel is not initialized at this point
+        m_filterLine->blockSignals(true);
     }
     else
     {
@@ -912,6 +922,8 @@ void AddNewTorrentDialog::setupTreeview()
         m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
             m_ui->contentTreeView->header()->restoreState(state);
+
+        m_filterLine->blockSignals(false);
 
         // Hide useless columns after loading the header state
         m_ui->contentTreeView->hideColumn(PROGRESS);
@@ -1007,5 +1019,20 @@ void AddNewTorrentDialog::renameSelectedFile()
     {
         FileStorageAdaptor fileStorageAdaptor {m_torrentInfo, m_torrentParams.filePaths};
         m_ui->contentTreeView->renameSelectedFile(fileStorageAdaptor);
+    }
+}
+
+void AddNewTorrentDialog::handleFilterTextChanged(const QString &filter)
+{
+    const QString pattern = Utils::String::wildcardToRegexPattern(filter);
+    m_contentModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    if (filter.isEmpty())
+    {
+        m_ui->contentTreeView->collapseAll();
+        m_ui->contentTreeView->expand(m_contentModel->index(0, 0));
+    }
+    else
+    {
+        m_ui->contentTreeView->expandAll();
     }
 }
