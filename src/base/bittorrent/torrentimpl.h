@@ -286,6 +286,7 @@ namespace BitTorrent
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         QStringList m_filePaths;
+        QHash<lt::file_index_t, int> m_indexMap;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_infoHash;
