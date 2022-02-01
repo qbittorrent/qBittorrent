@@ -69,6 +69,7 @@ HEADERS += \
     $$PWD/preferences.h \
     $$PWD/profile.h \
     $$PWD/profile_p.h \
+    $$PWD/rss/feed_serializer.h \
     $$PWD/rss/rss_article.h \
     $$PWD/rss/rss_autodownloader.h \
     $$PWD/rss/rss_autodownloadrule.h \
@@ -152,6 +153,7 @@ SOURCES += \
     $$PWD/preferences.cpp \
     $$PWD/profile.cpp \
     $$PWD/profile_p.cpp \
+    $$PWD/rss/feed_serializer.cpp \
     $$PWD/rss/rss_article.cpp \
     $$PWD/rss/rss_autodownloader.cpp \
     $$PWD/rss/rss_autodownloadrule.cpp \

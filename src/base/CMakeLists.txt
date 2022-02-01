@@ -70,6 +70,7 @@ add_library(qbt_base STATIC
     preferences.h
     profile.h
     profile_p.h
+    rss/feed_serializer.h
     rss/rss_article.h
     rss/rss_autodownloader.h
     rss/rss_autodownloadrule.h
@@ -152,6 +153,7 @@ add_library(qbt_base STATIC
     preferences.cpp
     profile.cpp
     profile_p.cpp
+    rss/feed_serializer.cpp
     rss/rss_article.cpp
     rss/rss_autodownloader.cpp
     rss/rss_autodownloadrule.cpp
