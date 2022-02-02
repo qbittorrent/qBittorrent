@@ -115,6 +115,7 @@ void AppController::preferencesAction()
     data["save_path"] = Utils::Fs::toNativePath(session->savePath());
     data["temp_path_enabled"] = session->isDownloadPathEnabled();
     data["temp_path"] = Utils::Fs::toNativePath(session->downloadPath());
+    data["use_category_paths_in_manual_mode"] = session->useCategoryPathsInManualMode();
     data["export_dir"] = Utils::Fs::toNativePath(session->torrentExportDirectory());
     data["export_dir_fin"] = Utils::Fs::toNativePath(session->finishedTorrentExportDirectory());
 
@@ -404,6 +405,8 @@ void AppController::setPreferencesAction()
         session->setDownloadPathEnabled(it.value().toBool());
     if (hasKey("temp_path"))
         session->setDownloadPath(it.value().toString());
+    if (hasKey("use_category_paths_in_manual_mode"))
+        session->setUseCategoryPathsInManualMode(it.value().toBool());
     if (hasKey("export_dir"))
         session->setTorrentExportDirectory(it.value().toString());
     if (hasKey("export_dir_fin"))

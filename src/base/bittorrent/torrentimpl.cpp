@@ -405,7 +405,9 @@ void TorrentImpl::setSavePath(const QString &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
 
-    const QString resolvedPath = (QDir::isAbsolutePath(path) ? path : Utils::Fs::resolvePath(path, m_session->savePath()));
+    const QString basePath = m_session->useCategoryPathsInManualMode()
+            ? m_session->categorySavePath(category()) : m_session->savePath();
+    const QString resolvedPath = (QDir::isAbsolutePath(path) ? path : Utils::Fs::resolvePath(path, basePath));
     if (resolvedPath == savePath())
         return;
 
@@ -427,8 +429,9 @@ void TorrentImpl::setDownloadPath(const QString &path)
 {
     Q_ASSERT(!isAutoTMMEnabled());
 
-    const QString resolvedPath = ((path.isEmpty() || QDir::isAbsolutePath(path))
-                                  ? path : Utils::Fs::resolvePath(path, m_session->downloadPath()));
+    const QString basePath = m_session->useCategoryPathsInManualMode()
+            ? m_session->categoryDownloadPath(category()) : m_session->downloadPath();
+    const QString resolvedPath = ((path.isEmpty() || QDir::isAbsolutePath(path)) ? path : Utils::Fs::resolvePath(path, basePath));
     if (resolvedPath == m_downloadPath)
         return;
 
