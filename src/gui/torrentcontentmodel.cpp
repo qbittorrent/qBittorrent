@@ -505,34 +505,46 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
 
-    TorrentContentModelFolder *currentParent;
     QHash<TorrentContentModelFolder *, QHash<QString, TorrentContentModelFolder *>> folderMap;
+    QVector<QString> lastParentPath;
+    TorrentContentModelFolder *lastParent = m_rootItem;
     // Iterate over files
     for (int i = 0; i < filesCount; ++i)
     {
-        currentParent = m_rootItem;
         const QString path = info.filePath(i).data();
 
         // Iterate of parts of the path to create necessary folders
         QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
-        pathFolders.removeLast();
+        const QString fileName = pathFolders.takeLast().toString();
 
-        for (const QStringView pathPart : asConst(pathFolders))
+        if (!std::equal(lastParentPath.begin(), lastParentPath.end()
+                        , pathFolders.begin(), pathFolders.end()))
         {
-            const QString folderName = pathPart.toString();
-            TorrentContentModelFolder *&newParent = folderMap[currentParent][folderName];
-            if (!newParent)
-            {
-                newParent = new TorrentContentModelFolder(folderName, currentParent);
-                currentParent->appendChild(newParent);
-            }
+            lastParentPath.clear();
+            lastParentPath.reserve(pathFolders.size());
 
-            currentParent = newParent;
+            // rebuild the path from the root
+            lastParent = m_rootItem;
+            for (const QStringView pathPart : asConst(pathFolders))
+            {
+                const QString folderName = pathPart.toString();
+                lastParentPath.push_back(folderName);
+
+                TorrentContentModelFolder *&newParent = folderMap[lastParent][folderName];
+                if (!newParent)
+                {
+                    newParent = new TorrentContentModelFolder(folderName, lastParent);
+                    lastParent->appendChild(newParent);
+                }
+
+                lastParent = newParent;
+            }
         }
+
         // Actually create the file
         TorrentContentModelFile *fileItem = new TorrentContentModelFile(
-                    info.filePath(i).filename(), info.fileSize(i), currentParent, i);
-        currentParent->appendChild(fileItem);
+                    fileName, info.fileSize(i), lastParent, i);
+        lastParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
     emit layoutChanged();
