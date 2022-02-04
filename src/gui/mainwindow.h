@@ -261,6 +261,8 @@ private:
     SettingValue<bool> m_storeNotificationTorrentAdded;
     CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
 
+    bool m_rssUnreadUpdateEnqueued = false;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
     SettingValue<int> m_storeNotificationTimeOut;
 #endif
