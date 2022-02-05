@@ -10,6 +10,7 @@ project(qBittorrent
 
 # use CONFIG mode first in find_package
 set(CMAKE_FIND_PACKAGE_PREFER_CONFIG ON)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 # version requirements - older versions may work, but you are on your own
 set(minBoostVersion 1.65)
 set(minQt5Version 5.15.2)
