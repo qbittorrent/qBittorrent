@@ -32,6 +32,7 @@
 
 #include <QString>
 
+#include "base/path.h"
 #include "base/tagset.h"
 #include "torrent.h"
 #include "torrentcontentlayout.h"
@@ -45,8 +46,8 @@ namespace BitTorrent
         QString name;
         QString category;
         TagSet tags;
-        QString savePath;
-        QString downloadPath;
+        Path savePath;
+        Path downloadPath;
         TorrentContentLayout contentLayout = TorrentContentLayout::Original;
         TorrentOperatingMode operatingMode = TorrentOperatingMode::AutoManaged;
         bool useAutoTMM = false;

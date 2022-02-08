@@ -81,7 +81,7 @@ namespace
     class FileStorageAdaptor final : public BitTorrent::AbstractFileStorage
     {
     public:
-        FileStorageAdaptor(const BitTorrent::TorrentInfo &torrentInfo, QStringList &filePaths)
+        FileStorageAdaptor(const BitTorrent::TorrentInfo &torrentInfo, PathList &filePaths)
             : m_torrentInfo {torrentInfo}
             , m_filePaths {filePaths}
         {
@@ -99,16 +99,16 @@ namespace
             return m_torrentInfo.fileSize(index);
         }
 
-        QString filePath(const int index) const override
+        Path filePath(const int index) const override
         {
             Q_ASSERT((index >= 0) && (index < filesCount()));
             return (m_filePaths.isEmpty() ? m_torrentInfo.filePath(index) : m_filePaths.at(index));
         }
 
-        void renameFile(const int index, const QString &newFilePath) override
+        void renameFile(const int index, const Path &newFilePath) override
         {
             Q_ASSERT((index >= 0) && (index < filesCount()));
-            const QString currentFilePath = filePath(index);
+            const Path currentFilePath = filePath(index);
             if (currentFilePath == newFilePath)
                 return;
 
@@ -120,22 +120,21 @@ namespace
 
     private:
         const BitTorrent::TorrentInfo &m_torrentInfo;
-        QStringList &m_filePaths;
+        PathList &m_filePaths;
     };
 
     // savePath is a folder, not an absolute file path
-    int indexOfPath(const FileSystemPathComboEdit *fsPathEdit, const QString &savePath)
+    int indexOfPath(const FileSystemPathComboEdit *fsPathEdit, const Path &savePath)
     {
-        const QDir saveDir {savePath};
         for (int i = 0; i < fsPathEdit->count(); ++i)
         {
-            if (QDir(fsPathEdit->item(i)) == saveDir)
+            if (fsPathEdit->item(i) == savePath)
                 return i;
         }
         return -1;
     }
 
-    void setPath(FileSystemPathComboEdit *fsPathEdit, const QString &newPath)
+    void setPath(FileSystemPathComboEdit *fsPathEdit, const Path &newPath)
     {
         int existingIndex = indexOfPath(fsPathEdit, newPath);
         if (existingIndex < 0)
@@ -148,16 +147,18 @@ namespace
         fsPathEdit->setCurrentIndex(existingIndex);
     }
 
-    void updatePathHistory(const QString &settingsKey, const QString &path, const int maxLength)
+    void updatePathHistory(const QString &settingsKey, const Path &path, const int maxLength)
     {
         // Add last used save path to the front of history
 
         auto pathList = settings()->loadValue<QStringList>(settingsKey);
-        const int selectedSavePathIndex = pathList.indexOf(path);
+
+        const int selectedSavePathIndex = pathList.indexOf(path.toString());
         if (selectedSavePathIndex > -1)
             pathList.move(selectedSavePathIndex, 0);
         else
-            pathList.prepend(path);
+            pathList.prepend(path.toString());
+
         settings()->storeValue(settingsKey, QStringList(pathList.mid(0, maxLength)));
     }
 }
@@ -325,7 +326,7 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
         return;
     }
 
-    const BitTorrent::MagnetUri magnetUri(source);
+    const BitTorrent::MagnetUri magnetUri {source};
     const bool isLoaded = magnetUri.isValid()
         ? dlg->loadMagnet(magnetUri)
         : dlg->loadTorrentFile(source);
@@ -341,18 +342,18 @@ void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
     show(source, BitTorrent::AddTorrentParams(), parent);
 }
 
-bool AddNewTorrentDialog::loadTorrentFile(const QString &torrentPath)
+bool AddNewTorrentDialog::loadTorrentFile(const QString &source)
 {
-    const QString decodedPath = torrentPath.startsWith("file://", Qt::CaseInsensitive)
-        ? QUrl::fromEncoded(torrentPath.toLocal8Bit()).toLocalFile()
-        : torrentPath;
+    const Path decodedPath {source.startsWith("file://", Qt::CaseInsensitive)
+                ? QUrl::fromEncoded(source.toLocal8Bit()).toLocalFile()
+                : source};
 
     const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::loadFromFile(decodedPath);
     if (!result)
     {
         RaisedMessageBox::critical(this, tr("Invalid torrent")
             , tr("Failed to load the torrent: %1.\nError: %2", "Don't remove the '\n' characters. They insert a newline.")
-                .arg(Utils::Fs::toNativePath(decodedPath), result.error()));
+                .arg(decodedPath.toString(), result.error()));
         return false;
     }
 
@@ -489,7 +490,7 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
     m_ui->labelSizeData->setText(sizeString);
 }
 
-void AddNewTorrentDialog::onSavePathChanged(const QString &newPath)
+void AddNewTorrentDialog::onSavePathChanged(const Path &newPath)
 {
     Q_UNUSED(newPath);
     // Remember index
@@ -497,7 +498,7 @@ void AddNewTorrentDialog::onSavePathChanged(const QString &newPath)
     updateDiskSpaceLabel();
 }
 
-void AddNewTorrentDialog::onDownloadPathChanged(const QString &newPath)
+void AddNewTorrentDialog::onDownloadPathChanged(const Path &newPath)
 {
     Q_UNUSED(newPath);
     // Remember index
@@ -521,11 +522,11 @@ void AddNewTorrentDialog::categoryChanged(int index)
         const auto *btSession = BitTorrent::Session::instance();
         const QString categoryName = m_ui->categoryComboBox->currentText();
 
-        const QString savePath = btSession->categorySavePath(categoryName);
-        m_ui->savePath->setSelectedPath(Utils::Fs::toNativePath(savePath));
+        const Path savePath = btSession->categorySavePath(categoryName);
+        m_ui->savePath->setSelectedPath(savePath);
 
-        const QString downloadPath = btSession->categoryDownloadPath(categoryName);
-        m_ui->downloadPath->setSelectedPath(Utils::Fs::toNativePath(downloadPath));
+        const Path downloadPath = btSession->categoryDownloadPath(categoryName);
+        m_ui->downloadPath->setSelectedPath(downloadPath);
 
         m_ui->groupBoxDownloadPath->setChecked(!m_ui->downloadPath->selectedPath().isEmpty());
 
@@ -545,7 +546,7 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
     const auto contentLayout = ((index == 0)
                                 ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
                                 : static_cast<BitTorrent::TorrentContentLayout>(index));
-    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
+    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
     m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
     m_contentModel->model()->updateFilesPriorities(filePriorities);
 
@@ -574,7 +575,7 @@ void AddNewTorrentDialog::saveTorrentFile()
     if (!path.endsWith(torrentFileExtension, Qt::CaseInsensitive))
         path += torrentFileExtension;
 
-    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(path);
+    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(Path(path));
     if (!result)
     {
         QMessageBox::critical(this, tr("I/O Error")
@@ -597,7 +598,7 @@ void AddNewTorrentDialog::populateSavePaths()
     if (savePathHistory.size() > 0)
     {
         for (const QString &path : savePathHistory)
-            m_ui->savePath->addItem(path);
+            m_ui->savePath->addItem(Path(path));
     }
     else
     {
@@ -628,7 +629,7 @@ void AddNewTorrentDialog::populateSavePaths()
     if (downloadPathHistory.size() > 0)
     {
         for (const QString &path : downloadPathHistory)
-            m_ui->downloadPath->addItem(path);
+            m_ui->downloadPath->addItem(Path(path));
     }
     else
     {
@@ -806,14 +807,14 @@ void AddNewTorrentDialog::accept()
     m_torrentParams.useAutoTMM = useAutoTMM;
     if (!useAutoTMM)
     {
-        const QString savePath = m_ui->savePath->selectedPath();
+        const Path savePath = m_ui->savePath->selectedPath();
         m_torrentParams.savePath = savePath;
         updatePathHistory(KEY_SAVEPATHHISTORY, savePath, savePathHistoryLength());
 
         m_torrentParams.useDownloadPath = m_ui->groupBoxDownloadPath->isChecked();
         if (m_torrentParams.useDownloadPath)
         {
-            const QString downloadPath = m_ui->downloadPath->selectedPath();
+            const Path downloadPath = m_ui->downloadPath->selectedPath();
             m_torrentParams.downloadPath = downloadPath;
             updatePathHistory(KEY_DOWNLOADPATHHISTORY, downloadPath, savePathHistoryLength());
         }
@@ -907,7 +908,7 @@ void AddNewTorrentDialog::setupTreeview()
                                     : static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
         if (m_torrentParams.filePaths.isEmpty())
             m_torrentParams.filePaths = m_torrentInfo.filePaths();
-        BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Utils::Fs::findRootFolder(m_torrentInfo.filePaths()));
+        BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
         // List files in torrent
         m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
@@ -981,12 +982,12 @@ void AddNewTorrentDialog::TMMChanged(int index)
 
         m_ui->savePath->blockSignals(true);
         m_ui->savePath->clear();
-        const QString savePath = session->categorySavePath(m_ui->categoryComboBox->currentText());
+        const Path savePath = session->categorySavePath(m_ui->categoryComboBox->currentText());
         m_ui->savePath->addItem(savePath);
 
         m_ui->downloadPath->blockSignals(true);
         m_ui->downloadPath->clear();
-        const QString downloadPath = session->categoryDownloadPath(m_ui->categoryComboBox->currentText());
+        const Path downloadPath = session->categoryDownloadPath(m_ui->categoryComboBox->currentText());
         m_ui->downloadPath->addItem(downloadPath);
 
         m_ui->groupBoxDownloadPath->blockSignals(true);

@@ -392,7 +392,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TIME_ELAPSED:
         return timeElapsedString(torrent->activeTime(), torrent->finishedTime());
     case TR_SAVE_PATH:
-        return Utils::Fs::toNativePath(torrent->savePath());
+        return torrent->savePath().toString();
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
@@ -461,7 +461,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_TIME_ELAPSED:
         return !alt ? torrent->activeTime() : torrent->finishedTime();
     case TR_SAVE_PATH:
-        return Utils::Fs::toNativePath(torrent->savePath());
+        return torrent->savePath().toString();
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:

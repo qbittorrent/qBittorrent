@@ -42,14 +42,14 @@ const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
 namespace
 {
-    nonstd::expected<QString, QString> saveToTempFile(const QByteArray &data)
+    nonstd::expected<Path, QString> saveToTempFile(const QByteArray &data)
     {
-        QTemporaryFile file {Utils::Fs::tempPath()};
+        QTemporaryFile file {Utils::Fs::tempPath().data()};
         if (!file.open() || (file.write(data) != data.length()) || !file.flush())
             return nonstd::make_unexpected(file.errorString());
 
         file.setAutoRemove(false);
-        return file.fileName();
+        return Path(file.fileName());
     }
 }
 
@@ -127,10 +127,10 @@ void DownloadHandlerImpl::processFinishedDownload()
 
     if (m_downloadRequest.saveToFile())
     {
-        const QString destinationPath = m_downloadRequest.destFileName();
+        const Path destinationPath = m_downloadRequest.destFileName();
         if (destinationPath.isEmpty())
         {
-            const nonstd::expected<QString, QString> result = saveToTempFile(m_result.data);
+            const nonstd::expected<Path, QString> result = saveToTempFile(m_result.data);
             if (result)
                 m_result.filePath = result.value();
             else

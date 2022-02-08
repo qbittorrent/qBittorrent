@@ -32,6 +32,7 @@
 #include <QDialog>
 
 #include "base/bittorrent/torrentcreatorthread.h"
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 namespace Ui
@@ -42,11 +43,12 @@ namespace Ui
 class TorrentCreatorDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TorrentCreatorDialog)
 
 public:
-    TorrentCreatorDialog(QWidget *parent = nullptr, const QString &defaultPath = {});
+    TorrentCreatorDialog(QWidget *parent = nullptr, const Path &defaultPath = {});
     ~TorrentCreatorDialog() override;
-    void updateInputPath(const QString &path);
+    void updateInputPath(const Path &path);
 
 private slots:
     void updateProgressBar(int progress);
@@ -55,7 +57,7 @@ private slots:
     void onAddFileButtonClicked();
     void onAddFolderButtonClicked();
     void handleCreationFailure(const QString &msg);
-    void handleCreationSuccess(const QString &path, const QString &branchPath);
+    void handleCreationSuccess(const Path &path, const Path &branchPath);
 
 private:
     void dropEvent(QDropEvent *event) override;
@@ -87,10 +89,10 @@ private:
     SettingValue<bool> m_storeOptimizeAlignment;
     SettingValue<int> m_paddedFileSizeLimit;
 #endif
-    SettingValue<QString> m_storeLastAddPath;
+    SettingValue<Path> m_storeLastAddPath;
     SettingValue<QString> m_storeTrackerList;
     SettingValue<QString> m_storeWebSeedList;
     SettingValue<QString> m_storeComments;
-    SettingValue<QString> m_storeLastSavePath;
+    SettingValue<Path> m_storeLastSavePath;
     SettingValue<QString> m_storeSource;
 };

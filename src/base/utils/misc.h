@@ -37,6 +37,8 @@
 
 #include <QString>
 
+#include "base/pathfwd.h"
+
 enum class ShutdownDialogAction;
 
 /*  Miscellaneous functions that can be useful */
@@ -77,7 +79,7 @@ namespace Utils::Misc
     int friendlyUnitPrecision(SizeUnit unit);
     qint64 sizeInBytes(qreal size, SizeUnit unit);
 
-    bool isPreviewable(const QString &filename);
+    bool isPreviewable(const Path &filePath);
 
     // Take a number of seconds and return a user-friendly
     // time duration like "1d 2h 10m".

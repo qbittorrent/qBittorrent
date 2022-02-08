@@ -40,6 +40,7 @@
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
 #include "base/http/types.h"
+#include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
 
@@ -100,7 +101,7 @@ private:
     void registerAPIController(const QString &scope, APIController *controller);
     void declarePublicAPI(const QString &apiPath);
 
-    void sendFile(const QString &path);
+    void sendFile(const Path &path);
     void sendWebUIFile();
 
     void translateDocument(QString &data) const;
@@ -131,7 +132,7 @@ private:
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
-    QString m_rootFolder;
+    Path m_rootFolder;
 
     struct TranslatedFile
     {
@@ -139,7 +140,7 @@ private:
         QString mimeType;
         QDateTime lastModified;
     };
-    QHash<QString, TranslatedFile> m_translatedFiles;
+    QHash<Path, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;

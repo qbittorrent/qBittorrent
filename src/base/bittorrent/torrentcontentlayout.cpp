@@ -32,36 +32,35 @@
 
 namespace
 {
-    QString removeExtension(const QString &fileName)
+    Path removeExtension(const Path &fileName)
     {
-        const QString extension = Utils::Fs::fileExtension(fileName);
-        return extension.isEmpty()
-                ? fileName
-                : fileName.chopped(extension.size() + 1);
+        Path result = fileName;
+        result.removeExtension();
+        return result;
     }
 }
 
-BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const QStringList &filePaths)
+BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const PathList &filePaths)
 {
-    const QString rootFolder = Utils::Fs::findRootFolder(filePaths);
+    const Path rootFolder = Path::findRootFolder(filePaths);
     return (rootFolder.isEmpty()
             ? TorrentContentLayout::NoSubfolder
             : TorrentContentLayout::Subfolder);
 }
 
-void BitTorrent::applyContentLayout(QStringList &filePaths, const BitTorrent::TorrentContentLayout contentLayout, const QString &rootFolder)
+void BitTorrent::applyContentLayout(PathList &filePaths, const BitTorrent::TorrentContentLayout contentLayout, const Path &rootFolder)
 {
     Q_ASSERT(!filePaths.isEmpty());
 
     switch (contentLayout)
     {
     case TorrentContentLayout::Subfolder:
-        if (Utils::Fs::findRootFolder(filePaths).isEmpty())
-            Utils::Fs::addRootFolder(filePaths, !rootFolder.isEmpty() ? rootFolder : removeExtension(filePaths.at(0)));
+        if (Path::findRootFolder(filePaths).isEmpty())
+            Path::addRootFolder(filePaths, !rootFolder.isEmpty() ? rootFolder : removeExtension(filePaths.at(0)));
         break;
 
     case TorrentContentLayout::NoSubfolder:
-        Utils::Fs::stripRootFolder(filePaths);
+        Path::stripRootFolder(filePaths);
         break;
 
     default:

@@ -31,6 +31,7 @@
 #include <QDir>
 #include <QVector>
 
+#include "base/path.h"
 #include "resumedatastorage.h"
 
 class QByteArray;
@@ -44,7 +45,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(BencodeResumeDataStorage)
 
     public:
-        explicit BencodeResumeDataStorage(const QString &path, QObject *parent = nullptr);
+        explicit BencodeResumeDataStorage(const Path &path, QObject *parent = nullptr);
         ~BencodeResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;
@@ -54,10 +55,10 @@ namespace BitTorrent
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
-        void loadQueue(const QString &queueFilename);
+        void loadQueue(const Path &queueFilename);
         std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
 
-        const QDir m_resumeDataDir;
+        const Path m_resumeDataPath;
         QVector<TorrentID> m_registeredTorrents;
         QThread *m_ioThread = nullptr;
 

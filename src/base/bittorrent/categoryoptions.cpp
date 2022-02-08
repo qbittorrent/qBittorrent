@@ -37,13 +37,13 @@ const QString OPTION_DOWNLOADPATH {QStringLiteral("download_path")};
 BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObject &jsonObj)
 {
     CategoryOptions options;
-    options.savePath = jsonObj.value(OPTION_SAVEPATH).toString();
+    options.savePath = Path(jsonObj.value(OPTION_SAVEPATH).toString());
 
     const QJsonValue downloadPathValue = jsonObj.value(OPTION_DOWNLOADPATH);
     if (downloadPathValue.isBool())
         options.downloadPath = {downloadPathValue.toBool(), {}};
     else if (downloadPathValue.isString())
-        options.downloadPath = {true, downloadPathValue.toString()};
+        options.downloadPath = {true, Path(downloadPathValue.toString())};
 
     return options;
 }
@@ -54,13 +54,13 @@ QJsonObject BitTorrent::CategoryOptions::toJSON() const
     if (downloadPath)
     {
         if (downloadPath->enabled)
-            downloadPathValue = downloadPath->path;
+            downloadPathValue = downloadPath->path.data();
         else
             downloadPathValue = false;
     }
 
     return {
-        {OPTION_SAVEPATH, savePath},
+        {OPTION_SAVEPATH, savePath.data()},
         {OPTION_DOWNLOADPATH, downloadPathValue}
     };
 }

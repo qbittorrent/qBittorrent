@@ -49,9 +49,9 @@
 #include "rss_item.h"
 
 const int MsecsPerMin = 60000;
-const QString ConfFolderName(QStringLiteral("rss"));
-const QString DataFolderName(QStringLiteral("rss/articles"));
-const QString FeedsFileName(QStringLiteral("feeds.json"));
+const QString CONF_FOLDER_NAME(QStringLiteral("rss"));
+const QString DATA_FOLDER_NAME(QStringLiteral("rss/articles"));
+const QString FEEDS_FILE_NAME(QStringLiteral("feeds.json"));
 
 using namespace RSS;
 
@@ -66,24 +66,22 @@ Session::Session()
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
-    m_confFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
+    m_confFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
     m_confFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_confFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    connect(m_confFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
-        Logger::instance()->addMessage(QString("Couldn't save RSS Session configuration in %1. Error: %2")
-                                       .arg(fileName, errorString), Log::WARNING);
+        LogMsg(tr("Couldn't save RSS Session configuration in %1. Error: %2")
+               .arg(fileName.toString(), errorString), Log::WARNING);
     });
 
-    m_dataFileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Data) + QLatin1Char('/') + DataFolderName));
+    m_dataFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Data) / Path(DATA_FOLDER_NAME));
     m_dataFileStorage->moveToThread(m_workingThread);
     connect(m_workingThread, &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
-        Logger::instance()->addMessage(QString("Couldn't save RSS Session data in %1. Error: %2")
-                                       .arg(fileName, errorString), Log::WARNING);
+        LogMsg(tr("Couldn't save RSS Session data in %1. Error: %2")
+               .arg(fileName.toString(), errorString), Log::WARNING);
     });
 
     m_itemsByPath.insert("", new Folder); // root folder
@@ -233,7 +231,7 @@ Item *Session::itemByPath(const QString &path) const
 
 void Session::load()
 {
-    QFile itemsFile(m_confFileStorage->storageDir().absoluteFilePath(FeedsFileName));
+    QFile itemsFile {(m_confFileStorage->storageDir() / Path(FEEDS_FILE_NAME)).data()};
     if (!itemsFile.exists())
     {
         loadLegacy();
@@ -372,7 +370,8 @@ void Session::loadLegacy()
 
 void Session::store()
 {
-    m_confFileStorage->store(FeedsFileName, QJsonDocument(rootFolder()->toJsonValue().toObject()).toJson());
+    m_confFileStorage->store(Path(FEEDS_FILE_NAME)
+                             , QJsonDocument(rootFolder()->toJsonValue().toObject()).toJson());
 }
 
 nonstd::expected<Folder *, QString> Session::prepareItemDest(const QString &path)

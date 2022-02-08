@@ -58,8 +58,8 @@ struct ProcessingJob
     QVariantHash articleData;
 };
 
-const QString ConfFolderName(QStringLiteral("rss"));
-const QString RulesFileName(QStringLiteral("download_rules.json"));
+const QString CONF_FOLDER_NAME {QStringLiteral("rss")};
+const QString RULES_FILE_NAME {QStringLiteral("download_rules.json")};
 
 namespace
 {
@@ -107,17 +107,16 @@ AutoDownloader::AutoDownloader()
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
-    m_fileStorage = new AsyncFileStorage(
-                Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config) + QLatin1Char('/') + ConfFolderName));
+    m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
     if (!m_fileStorage)
         throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    connect(m_fileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS AutoDownloader data in %1. Error: %2")
-               .arg(fileName, errorString), Log::CRITICAL);
+               .arg(fileName.toString(), errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
@@ -414,7 +413,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 
 void AutoDownloader::load()
 {
-    QFile rulesFile(m_fileStorage->storageDir().absoluteFilePath(RulesFileName));
+    QFile rulesFile {(m_fileStorage->storageDir() / Path(RULES_FILE_NAME)).data()};
 
     if (!rulesFile.exists())
         loadRulesLegacy();
@@ -463,7 +462,7 @@ void AutoDownloader::store()
     for (const auto &rule : asConst(m_rules))
         jsonObj.insert(rule.name(), rule.toJsonObject());
 
-    m_fileStorage->store(RulesFileName, QJsonDocument(jsonObj).toJson());
+    m_fileStorage->store(Path(RULES_FILE_NAME), QJsonDocument(jsonObj).toJson());
 }
 
 void AutoDownloader::storeDeferred()

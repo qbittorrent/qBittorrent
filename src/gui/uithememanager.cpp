@@ -38,42 +38,43 @@
 #include <QResource>
 
 #include "base/logger.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
 
 namespace
 {
-    const QString CONFIG_FILE_NAME = QStringLiteral("config.json");
-    const QString DEFAULT_ICONS_DIR = QStringLiteral(":icons/");
-    const QString STYLESHEET_FILE_NAME = QStringLiteral("stylesheet.qss");
+    const Path DEFAULT_ICONS_DIR {":icons"};
+    const QString CONFIG_FILE_NAME {QStringLiteral("config.json")};
+    const QString STYLESHEET_FILE_NAME {QStringLiteral("stylesheet.qss")};
 
     // Directory used by stylesheet to reference internal resources
     // for example `icon: url(:/uitheme/file.svg)` will be expected to
     // point to a file `file.svg` in root directory of CONFIG_FILE_NAME
-    const QString STYLESHEET_RESOURCES_DIR = QStringLiteral(":/uitheme/");
+    const QString STYLESHEET_RESOURCES_DIR {QStringLiteral(":/uitheme")};
 
-    const QString THEME_ICONS_DIR = QStringLiteral("icons/");
+    const Path THEME_ICONS_DIR {"icons"};
 
-    QString findIcon(const QString &iconId, const QString &dir)
+    Path findIcon(const QString &iconId, const Path &dir)
     {
-        const QString pathSvg = dir + iconId + QLatin1String(".svg");
-        if (QFile::exists(pathSvg))
+        const Path pathSvg = dir / Path(iconId + QLatin1String(".svg"));
+        if (pathSvg.exists())
             return pathSvg;
 
-        const QString pathPng = dir + iconId + QLatin1String(".png");
-        if (QFile::exists(pathPng))
+        const Path pathPng = dir / Path(iconId + QLatin1String(".png"));
+        if (pathPng.exists())
             return pathPng;
 
         return {};
     }
 
-    QByteArray readFile(const QString &fileName)
+    QByteArray readFile(const Path &filePath)
     {
-        QFile file {fileName};
+        QFile file {filePath.data()};
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
-                    .arg(QFileInfo(fileName).fileName(), file.errorString())
+                    .arg(filePath.filename(), file.errorString())
                    , Log::WARNING);
             return {};
         }
@@ -86,64 +87,62 @@ namespace
     public:
         QByteArray readStyleSheet() override
         {
-            return readFile(m_qrcThemeDir + STYLESHEET_FILE_NAME);
+            return readFile(m_qrcThemeDir / Path(STYLESHEET_FILE_NAME));
         }
 
         QByteArray readConfig() override
         {
-            return readFile(m_qrcThemeDir + CONFIG_FILE_NAME);
+            return readFile(m_qrcThemeDir / Path(CONFIG_FILE_NAME));
         }
 
-        QString iconPath(const QString &iconId) const override
+        Path iconPath(const QString &iconId) const override
         {
             return findIcon(iconId, m_qrcIconsDir);
         }
 
     private:
-        const QString m_qrcThemeDir {":/uitheme/"};
-        const QString m_qrcIconsDir = m_qrcThemeDir + THEME_ICONS_DIR;
+        const Path m_qrcThemeDir {":/uitheme"};
+        const Path m_qrcIconsDir = m_qrcThemeDir / THEME_ICONS_DIR;
     };
 
     class FolderThemeSource final : public UIThemeSource
     {
     public:
-        explicit FolderThemeSource(const QDir &dir)
-            : m_folder {dir}
-            , m_iconsDir {m_folder.absolutePath() + '/' + THEME_ICONS_DIR}
+        explicit FolderThemeSource(const Path &folderPath)
+            : m_folder {folderPath}
+            , m_iconsDir {m_folder / THEME_ICONS_DIR}
         {
         }
 
         QByteArray readStyleSheet() override
         {
-            QByteArray styleSheetData = readFile(m_folder.absoluteFilePath(STYLESHEET_FILE_NAME));
-            return styleSheetData.replace(STYLESHEET_RESOURCES_DIR.toUtf8(), (m_folder.absolutePath() + '/').toUtf8());
+            QByteArray styleSheetData = readFile(m_folder / Path(STYLESHEET_FILE_NAME));
+            return styleSheetData.replace(STYLESHEET_RESOURCES_DIR.toUtf8(), m_folder.data().toUtf8());
         }
 
         QByteArray readConfig() override
         {
-            return readFile(m_folder.absoluteFilePath(CONFIG_FILE_NAME));
+            return readFile(m_folder / Path(CONFIG_FILE_NAME));
         }
 
-        QString iconPath(const QString &iconId) const override
+        Path iconPath(const QString &iconId) const override
         {
             return findIcon(iconId, m_iconsDir);
         }
 
     private:
-        const QDir m_folder;
-        const QString m_iconsDir;
+        const Path m_folder;
+        const Path m_iconsDir;
     };
 
 
-    std::unique_ptr<UIThemeSource> createUIThemeSource(const QString &themePath)
+    std::unique_ptr<UIThemeSource> createUIThemeSource(const Path &themePath)
     {
-        const QFileInfo themeInfo {themePath};
+        if (themePath.filename() == CONFIG_FILE_NAME)
+            return std::make_unique<FolderThemeSource>(themePath);
 
-        if (themeInfo.fileName() == CONFIG_FILE_NAME)
-            return std::make_unique<FolderThemeSource>(themeInfo.dir());
-
-        if ((themeInfo.suffix() == QLatin1String {"qbtheme"})
-                && QResource::registerResource(themePath, QLatin1String {"/uitheme"}))
+        if ((themePath.extension() == QLatin1String(".qbtheme"))
+                && QResource::registerResource(themePath.data(), QLatin1String("/uitheme")))
         {
             return std::make_unique<QRCThemeSource>();
         }
@@ -174,11 +173,11 @@ UIThemeManager::UIThemeManager()
 {
     if (m_useCustomTheme)
     {
-        const QString themePath = Preferences::instance()->customUIThemePath();
+        const Path themePath = Preferences::instance()->customUIThemePath();
         m_themeSource = createUIThemeSource(themePath);
         if (!m_themeSource)
         {
-            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath), Log::WARNING);
+            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
         }
         else
         {
@@ -206,7 +205,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     {
         QIcon icon = QIcon::fromTheme(iconId);
         if (icon.name() != iconId)
-            icon = QIcon::fromTheme(fallback, QIcon(getIconPathFromResources(iconId, fallback)));
+            icon = QIcon::fromTheme(fallback, QIcon(getIconPathFromResources(iconId, fallback).toString()));
         return icon;
     }
 #endif
@@ -217,7 +216,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
     if (iter != m_iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPathFromResources(iconId, fallback)};
+    const QIcon icon {getIconPathFromResources(iconId, fallback).data()};
     m_iconCache[iconId] = icon;
     return icon;
 }
@@ -271,17 +270,17 @@ QIcon UIThemeManager::getSystrayIcon() const
 }
 #endif
 
-QString UIThemeManager::getIconPath(const QString &iconId) const
+Path UIThemeManager::getIconPath(const QString &iconId) const
 {
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme)
     {
-        QString path = Utils::Fs::tempPath() + iconId + QLatin1String(".png");
-        if (!QFile::exists(path))
+        Path path = Utils::Fs::tempPath() / Path(iconId + QLatin1String(".png"));
+        if (!path.exists())
         {
             const QIcon icon = QIcon::fromTheme(iconId);
             if (!icon.isNull())
-                icon.pixmap(32).save(path);
+                icon.pixmap(32).save(path.toString());
             else
                 path = getIconPathFromResources(iconId);
         }
@@ -292,17 +291,17 @@ QString UIThemeManager::getIconPath(const QString &iconId) const
     return getIconPathFromResources(iconId, {});
 }
 
-QString UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
+Path UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
 {
     if (m_useCustomTheme && m_themeSource)
     {
-        const QString customIcon = m_themeSource->iconPath(iconId);
+        const Path customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
             return customIcon;
 
         if (!fallback.isEmpty())
         {
-            const QString fallbackIcon = m_themeSource->iconPath(fallback);
+            const Path fallbackIcon = m_themeSource->iconPath(fallback);
             if (!fallbackIcon.isEmpty())
                 return fallbackIcon;
         }

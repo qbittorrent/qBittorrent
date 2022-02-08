@@ -29,10 +29,11 @@
 
 #pragma once
 
+#include <QtContainerFwd>
 #include <QMetaType>
 #include <QString>
-#include <QtContainerFwd>
 
+#include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "abstractfilestorage.h"
 
@@ -169,13 +170,13 @@ namespace BitTorrent
 
         virtual bool isAutoTMMEnabled() const = 0;
         virtual void setAutoTMMEnabled(bool enabled) = 0;
-        virtual QString savePath() const = 0;
-        virtual void setSavePath(const QString &savePath) = 0;
-        virtual QString downloadPath() const = 0;
-        virtual void setDownloadPath(const QString &downloadPath) = 0;
-        virtual QString actualStorageLocation() const = 0;
-        virtual QString rootPath() const = 0;
-        virtual QString contentPath() const = 0;
+        virtual Path savePath() const = 0;
+        virtual void setSavePath(const Path &savePath) = 0;
+        virtual Path downloadPath() const = 0;
+        virtual void setDownloadPath(const Path &downloadPath) = 0;
+        virtual Path actualStorageLocation() const = 0;
+        virtual Path rootPath() const = 0;
+        virtual Path contentPath() const = 0;
         virtual QString category() const = 0;
         virtual bool belongsToCategory(const QString &category) const = 0;
         virtual bool setCategory(const QString &category) = 0;
@@ -193,8 +194,8 @@ namespace BitTorrent
         virtual qreal ratioLimit() const = 0;
         virtual int seedingTimeLimit() const = 0;
 
-        virtual QString actualFilePath(int index) const = 0;
-        virtual QStringList filePaths() const = 0;
+        virtual Path actualFilePath(int index) const = 0;
+        virtual PathList filePaths() const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
 
         virtual TorrentInfo info() const = 0;

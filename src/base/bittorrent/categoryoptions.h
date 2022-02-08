@@ -32,6 +32,8 @@
 
 #include <QString>
 
+#include "base/path.h"
+
 class QJsonObject;
 
 namespace BitTorrent
@@ -41,10 +43,10 @@ namespace BitTorrent
         struct DownloadPathOption
         {
             bool enabled;
-            QString path;
+            Path path;
         };
 
-        QString savePath;
+        Path savePath;
         std::optional<DownloadPathOption> downloadPath;
 
         static CategoryOptions fromJSON(const QJsonObject &jsonObj);

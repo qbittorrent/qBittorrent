@@ -28,6 +28,7 @@
 
 #pragma once
 
+#include "base/pathfwd.h"
 #include "resumedatastorage.h"
 
 class QThread;
@@ -40,7 +41,7 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(DBResumeDataStorage)
 
     public:
-        explicit DBResumeDataStorage(const QString &dbPath, QObject *parent = nullptr);
+        explicit DBResumeDataStorage(const Path &dbPath, QObject *parent = nullptr);
         ~DBResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;

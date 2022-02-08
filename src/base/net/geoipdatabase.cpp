@@ -26,13 +26,15 @@
  * exception statement from your version.
  */
 
+#include "geoipdatabase.h"
+
 #include <QDateTime>
 #include <QDebug>
 #include <QFile>
 #include <QHostAddress>
 #include <QVariant>
 
-#include "geoipdatabase.h"
+#include "base/path.h"
 
 namespace
 {
@@ -84,10 +86,10 @@ GeoIPDatabase::GeoIPDatabase(const quint32 size)
 {
 }
 
-GeoIPDatabase *GeoIPDatabase::load(const QString &filename, QString &error)
+GeoIPDatabase *GeoIPDatabase::load(const Path &filename, QString &error)
 {
     GeoIPDatabase *db = nullptr;
-    QFile file(filename);
+    QFile file {filename.data()};
     if (file.size() > MAX_FILE_SIZE)
     {
         error = tr("Unsupported database file size.");

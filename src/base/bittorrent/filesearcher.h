@@ -30,6 +30,8 @@
 
 #include <QObject>
 
+#include "base/path.h"
+
 namespace BitTorrent
 {
     class TorrentID;
@@ -44,9 +46,9 @@ public:
     FileSearcher() = default;
 
 public slots:
-    void search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
-                , const QString &savePath, const QString &downloadPath);
+    void search(const BitTorrent::TorrentID &id, const PathList &originalFileNames
+                , const Path &savePath, const Path &downloadPath);
 
 signals:
-    void searchFinished(const BitTorrent::TorrentID &id, const QString &savePath, const QStringList &fileNames);
+    void searchFinished(const BitTorrent::TorrentID &id, const Path &savePath, const PathList &fileNames);
 };

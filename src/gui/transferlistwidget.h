@@ -34,6 +34,7 @@
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
+#include "base/path.h"
 
 class MainWindow;
 class TransferListModel;
@@ -97,7 +98,7 @@ public slots:
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
-    void previewFile(const QString &filePath);
+    void previewFile(const Path &filePath);
     void renameSelectedTorrent();
 
 signals:

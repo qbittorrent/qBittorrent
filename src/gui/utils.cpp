@@ -48,6 +48,7 @@
 #include <QWidget>
 #include <QWindow>
 
+#include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
@@ -72,23 +73,23 @@ QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const
     return icon.pixmap(scaledHeight);
 }
 
-QPixmap Utils::Gui::scaledPixmap(const QString &path, const QWidget *widget, const int height)
+QPixmap Utils::Gui::scaledPixmap(const Path &path, const QWidget *widget, const int height)
 {
-    const QPixmap pixmap(path);
+    const QPixmap pixmap {path.data()};
     const int scaledHeight = ((height > 0) ? height : pixmap.height()) * Utils::Gui::screenScalingFactor(widget);
     return pixmap.scaledToHeight(scaledHeight, Qt::SmoothTransformation);
 }
 
-QPixmap Utils::Gui::scaledPixmapSvg(const QString &path, const QWidget *widget, const int baseHeight)
+QPixmap Utils::Gui::scaledPixmapSvg(const Path &path, const QWidget *widget, const int baseHeight)
 {
     const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
-    const QString normalizedKey = path + '@' + QString::number(scaledHeight);
+    const QString normalizedKey = path.data() + '@' + QString::number(scaledHeight);
 
     QPixmap pm;
     QPixmapCache cache;
     if (!cache.find(normalizedKey, &pm))
     {
-        pm = QIcon(path).pixmap(scaledHeight);
+        pm = QIcon(path.data()).pixmap(scaledHeight);
         cache.insert(normalizedKey, pm);
     }
     return pm;
@@ -143,32 +144,29 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 }
 
 // Open the given path with an appropriate application
-void Utils::Gui::openPath(const QString &absolutePath)
+void Utils::Gui::openPath(const Path &path)
 {
-    const QString path = Utils::Fs::toUniformPath(absolutePath);
     // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.startsWith("//"))
-        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
+    if (path.data().startsWith("//"))
+        QDesktopServices::openUrl(QUrl(QString::fromLatin1("file:") + path.toString()));
     else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+        QDesktopServices::openUrl(QUrl::fromLocalFile(path.data()));
 }
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Gui::openFolderSelect(const QString &absolutePath)
+void Utils::Gui::openFolderSelect(const Path &path)
 {
-    QString path {Utils::Fs::toUniformPath(absolutePath)};
-    const QFileInfo pathInfo {path};
     // If the item to select doesn't exist, try to open its parent
-    if (!pathInfo.exists(path))
+    if (!path.exists())
     {
-        openPath(path.left(path.lastIndexOf('/')));
+        openPath(path.parentPath());
         return;
     }
 
 #ifdef Q_OS_WIN
     HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
+    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(path.toString().utf16()));
     if (pidl)
     {
         ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
@@ -183,38 +181,34 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
     const QString output = proc.readLine().simplified();
     if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
     {
-        proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
+        proc.startDetached("dolphin", {"--select", path.toString()});
     }
     else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
                  || (output == "nautilus-folder-handler.desktop"))
-                 {
-        if (pathInfo.isDir())
-            path = path.left(path.lastIndexOf('/'));
+    {
         proc.start("nautilus", {"--version"});
         proc.waitForFinished();
         const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
         using NautilusVersion = Utils::Version<int, 3>;
         if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
-            proc.startDetached("nautilus", {Utils::Fs::toNativePath(path)});
+            proc.startDetached("nautilus", {(Fs::isDir(path) ? path.parentPath() : path).toString()});
         else
-            proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
+            proc.startDetached("nautilus", {"--no-desktop", (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
     else if (output == "nemo.desktop")
     {
-        if (pathInfo.isDir())
-            path = path.left(path.lastIndexOf('/'));
-        proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
+        proc.startDetached("nemo", {"--no-desktop", (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
     else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
     {
-        proc.startDetached("konqueror", {"--select", Utils::Fs::toNativePath(path)});
+        proc.startDetached("konqueror", {"--select", path.toString()});
     }
     else
     {
         // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.left(path.lastIndexOf('/')));
+        openPath(path.parentPath());
     }
 #else
-    openPath(path.left(path.lastIndexOf('/')));
+    openPath(path.parentPath());
 #endif
 }

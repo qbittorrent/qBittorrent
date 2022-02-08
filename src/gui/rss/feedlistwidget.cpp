@@ -67,9 +67,9 @@ namespace
         }
     };
 
-    QIcon loadIcon(const QString &path, const QString &fallbackId)
+    QIcon loadIcon(const Path &path, const QString &fallbackId)
     {
-        const QPixmap pixmap {path};
+        const QPixmap pixmap {path.data()};
         if (!pixmap.isNull())
             return {pixmap};
 

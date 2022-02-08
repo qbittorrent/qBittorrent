@@ -322,8 +322,8 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 
 TrackerFiltersList::~TrackerFiltersList()
 {
-    for (const QString &iconPath : asConst(m_iconPaths))
-        Utils::Fs::forceRemove(iconPath);
+    for (const Path &iconPath : asConst(m_iconPaths))
+        Utils::Fs::removeFile(iconPath);
 }
 
 void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::TorrentID &id)
@@ -534,14 +534,14 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
 
     if (!m_trackers.contains(host))
     {
-        Utils::Fs::forceRemove(result.filePath);
+        Utils::Fs::removeFile(result.filePath);
         return;
     }
 
     QListWidgetItem *trackerItem = item(rowFromTracker(host));
     if (!trackerItem) return;
 
-    QIcon icon(result.filePath);
+    const QIcon icon {result.filePath.data()};
     //Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
@@ -549,11 +549,11 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     {
         if (result.url.endsWith(".ico", Qt::CaseInsensitive))
             downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
-        Utils::Fs::forceRemove(result.filePath);
+        Utils::Fs::removeFile(result.filePath);
     }
     else
     {
-        trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath));
+        trackerItem->setData(Qt::DecorationRole, QIcon(result.filePath.data()));
         m_iconPaths.append(result.filePath);
     }
 }

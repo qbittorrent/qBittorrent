@@ -28,11 +28,11 @@
 
 #pragma once
 
-#include <QDir>
 #include <QFile>
 #include <QObject>
 
 #include "base/exceptions.h"
+#include "base/path.h"
 
 class AsyncFileStorageError : public RuntimeError
 {
@@ -46,19 +46,19 @@ class AsyncFileStorage : public QObject
     Q_DISABLE_COPY_MOVE(AsyncFileStorage)
 
 public:
-    explicit AsyncFileStorage(const QString &storageFolderPath, QObject *parent = nullptr);
+    explicit AsyncFileStorage(const Path &storageFolderPath, QObject *parent = nullptr);
     ~AsyncFileStorage() override;
 
-    void store(const QString &fileName, const QByteArray &data);
+    void store(const Path &filePath, const QByteArray &data);
 
-    QDir storageDir() const;
+    Path storageDir() const;
 
 signals:
-    void failed(const QString &fileName, const QString &errorString);
+    void failed(const Path &filePath, const QString &errorString);
 
 private:
-    Q_INVOKABLE void store_impl(const QString &fileName, const QByteArray &data);
+    Q_INVOKABLE void store_impl(const Path &fileName, const QByteArray &data);
 
-    QDir m_storageDir;
+    Path m_storageDir;
     QFile m_lockFile;
 };

@@ -43,6 +43,7 @@
 #include <QtContainerFwd>
 #include <QVector>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
 #include "addtorrentparams.h"
@@ -202,7 +203,7 @@ namespace BitTorrent
         } disk;
     };
 
-    class Session : public QObject
+    class Session final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Session)
@@ -212,10 +213,10 @@ namespace BitTorrent
         static void freeInstance();
         static Session *instance();
 
-        QString savePath() const;
-        void setSavePath(const QString &path);
-        QString downloadPath() const;
-        void setDownloadPath(const QString &path);
+        Path savePath() const;
+        void setSavePath(const Path &path);
+        Path downloadPath() const;
+        void setDownloadPath(const Path &path);
         bool isDownloadPathEnabled() const;
         void setDownloadPathEnabled(bool enabled);
 
@@ -225,8 +226,8 @@ namespace BitTorrent
 
         QStringList categories() const;
         CategoryOptions categoryOptions(const QString &categoryName) const;
-        QString categorySavePath(const QString &categoryName) const;
-        QString categoryDownloadPath(const QString &categoryName) const;
+        Path categorySavePath(const QString &categoryName) const;
+        Path categoryDownloadPath(const QString &categoryName) const;
         bool addCategory(const QString &name, const CategoryOptions &options = {});
         bool editCategory(const QString &name, const CategoryOptions &options);
         bool removeCategory(const QString &name);
@@ -283,10 +284,10 @@ namespace BitTorrent
         void setRefreshInterval(int value);
         bool isPreallocationEnabled() const;
         void setPreallocationEnabled(bool enabled);
-        QString torrentExportDirectory() const;
-        void setTorrentExportDirectory(QString path);
-        QString finishedTorrentExportDirectory() const;
-        void setFinishedTorrentExportDirectory(QString path);
+        Path torrentExportDirectory() const;
+        void setTorrentExportDirectory(const Path &path);
+        Path finishedTorrentExportDirectory() const;
+        void setFinishedTorrentExportDirectory(const Path &path);
 
         int globalDownloadSpeedLimit() const;
         void setGlobalDownloadSpeedLimit(int limit);
@@ -329,8 +330,8 @@ namespace BitTorrent
         void setAdditionalTrackers(const QString &trackers);
         bool isIPFilteringEnabled() const;
         void setIPFilteringEnabled(bool enabled);
-        QString IPFilterFile() const;
-        void setIPFilterFile(QString path);
+        Path IPFilterFile() const;
+        void setIPFilterFile(const Path &path);
         bool announceToAllTrackers() const;
         void setAnnounceToAllTrackers(bool val);
         bool announceToAllTiers() const;
@@ -501,10 +502,10 @@ namespace BitTorrent
         void handleTorrentTrackerWarning(TorrentImpl *const torrent, const QString &trackerUrl);
         void handleTorrentTrackerError(TorrentImpl *const torrent, const QString &trackerUrl);
 
-        bool addMoveTorrentStorageJob(TorrentImpl *torrent, const QString &newPath, MoveStorageMode mode);
+        bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode);
 
-        void findIncompleteFiles(const TorrentInfo &torrentInfo, const QString &savePath
-                                 , const QString &downloadPath, const QStringList &filePaths = {}) const;
+        void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
+                                 , const Path &downloadPath, const PathList &filePaths = {}) const;
 
     signals:
         void allTorrentsFinished();
@@ -553,7 +554,7 @@ namespace BitTorrent
         void handleIPFilterParsed(int ruleCount);
         void handleIPFilterError();
         void handleDownloadFinished(const Net::DownloadResult &result);
-        void fileSearchFinished(const TorrentID &id, const QString &savePath, const QStringList &fileNames);
+        void fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames);
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
         // Session reconfiguration triggers
@@ -565,14 +566,14 @@ namespace BitTorrent
         struct MoveStorageJob
         {
             lt::torrent_handle torrentHandle;
-            QString path;
+            Path path;
             MoveStorageMode mode;
         };
 
         struct RemovingTorrentData
         {
             QString name;
-            QString pathToRemove;
+            Path pathToRemove;
             DeleteOption deleteOption;
         };
 
@@ -611,7 +612,7 @@ namespace BitTorrent
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
-        void exportTorrentFile(const TorrentInfo &torrentInfo, const QString &folderPath, const QString &baseName);
+        void exportTorrentFile(const TorrentInfo &torrentInfo, const Path &folderPath, const QString &baseName);
 
         void handleAlert(const lt::alert *a);
         void dispatchTorrentAlert(const lt::alert *a);
@@ -663,7 +664,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isPeXEnabled;
         CachedSettingValue<bool> m_isIPFilteringEnabled;
         CachedSettingValue<bool> m_isTrackerFilteringEnabled;
-        CachedSettingValue<QString> m_IPFilterFile;
+        CachedSettingValue<Path> m_IPFilterFile;
         CachedSettingValue<bool> m_announceToAllTrackers;
         CachedSettingValue<bool> m_announceToAllTiers;
         CachedSettingValue<int> m_asyncIOThreads;
@@ -721,8 +722,8 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<int> m_refreshInterval;
         CachedSettingValue<bool> m_isPreallocationEnabled;
-        CachedSettingValue<QString> m_torrentExportDirectory;
-        CachedSettingValue<QString> m_finishedTorrentExportDirectory;
+        CachedSettingValue<Path> m_torrentExportDirectory;
+        CachedSettingValue<Path> m_finishedTorrentExportDirectory;
         CachedSettingValue<int> m_globalDownloadSpeedLimit;
         CachedSettingValue<int> m_globalUploadSpeedLimit;
         CachedSettingValue<int> m_altGlobalDownloadSpeedLimit;
@@ -740,8 +741,8 @@ namespace BitTorrent
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
         CachedSettingValue<int> m_maxRatioAction;
-        CachedSettingValue<QString> m_savePath;
-        CachedSettingValue<QString> m_downloadPath;
+        CachedSettingValue<Path> m_savePath;
+        CachedSettingValue<Path> m_downloadPath;
         CachedSettingValue<bool> m_isDownloadPathEnabled;
         CachedSettingValue<bool> m_isSubcategoriesEnabled;
         CachedSettingValue<bool> m_useCategoryPathsInManualMode;

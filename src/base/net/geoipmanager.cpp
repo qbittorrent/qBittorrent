@@ -30,7 +30,6 @@
 #include "geoipmanager.h"
 
 #include <QDateTime>
-#include <QDir>
 #include <QHostAddress>
 #include <QLocale>
 
@@ -43,9 +42,9 @@
 #include "downloadmanager.h"
 #include "geoipdatabase.h"
 
-static const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
-static const char GEODB_FOLDER[] = "GeoDB";
-static const char GEODB_FILENAME[] = "dbip-country-lite.mmdb";
+const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
+const char GEODB_FOLDER[] = "GeoDB";
+const char GEODB_FILENAME[] = "dbip-country-lite.mmdb";
 
 using namespace Net;
 
@@ -88,17 +87,21 @@ void GeoIPManager::loadDatabase()
     delete m_geoIPDatabase;
     m_geoIPDatabase = nullptr;
 
-    const QString filepath = Utils::Fs::expandPathAbs(
-        QString::fromLatin1("%1/%2/%3").arg(specialFolderLocation(SpecialFolder::Data), GEODB_FOLDER, GEODB_FILENAME));
+    const Path filepath = specialFolderLocation(SpecialFolder::Data)
+            / Path(GEODB_FOLDER) / Path(GEODB_FILENAME);
 
     QString error;
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
     if (m_geoIPDatabase)
+    {
         Logger::instance()->addMessage(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
-            .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
-            Log::INFO);
+                                       .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
+                                       Log::INFO);
+    }
     else
+    {
         Logger::instance()->addMessage(tr("Couldn't load IP geolocation database. Reason: %1").arg(error), Log::WARNING);
+    }
 
     manageDatabaseUpdate();
 }
@@ -445,14 +448,13 @@ void GeoIPManager::downloadFinished(const DownloadResult &result)
             delete m_geoIPDatabase;
             m_geoIPDatabase = geoIPDatabase;
             LogMsg(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
-                .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
-                Log::INFO);
-            const QString targetPath = Utils::Fs::expandPathAbs(
-                        QDir(specialFolderLocation(SpecialFolder::Data)).absoluteFilePath(GEODB_FOLDER));
-            if (!QDir(targetPath).exists())
-                QDir().mkpath(targetPath);
+                .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString())
+                   , Log::INFO);
+            const Path targetPath = specialFolderLocation(SpecialFolder::Data) / Path(GEODB_FOLDER);
+            if (!targetPath.exists())
+                Utils::Fs::mkpath(targetPath);
 
-            const auto path = QString::fromLatin1("%1/%2").arg(targetPath, GEODB_FILENAME);
+            const auto path = targetPath / Path(GEODB_FILENAME);
             const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, data);
             if (result)
             {

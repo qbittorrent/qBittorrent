@@ -35,6 +35,7 @@
 #include <QVariant>
 
 #include "base/bittorrent/torrentcontentlayout.h"
+#include "base/pathfwd.h"
 
 class QDateTime;
 class QJsonObject;
@@ -77,8 +78,8 @@ namespace RSS
         QStringList previouslyMatchedEpisodes() const;
         void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
-        QString savePath() const;
-        void setSavePath(const QString &savePath);
+        Path savePath() const;
+        void setSavePath(const Path &savePath);
         std::optional<bool> addPaused() const;
         void setAddPaused(std::optional<bool> addPaused);
         std::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;

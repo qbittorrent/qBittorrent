@@ -29,11 +29,13 @@
 
 #include "profile.h"
 
+#include "base/path.h"
+#include "base/utils/fs.h"
 #include "profile_p.h"
 
 Profile *Profile::m_instance = nullptr;
 
-Profile::Profile(const QString &rootProfilePath, const QString &configurationName, const bool convertPathsToProfileRelative)
+Profile::Profile(const Path &rootProfilePath, const QString &configurationName, const bool convertPathsToProfileRelative)
 {
     if (rootProfilePath.isEmpty())
         m_profileImpl = std::make_unique<Private::DefaultProfile>(configurationName);
@@ -50,7 +52,7 @@ Profile::Profile(const QString &rootProfilePath, const QString &configurationNam
         m_pathConverterImpl = std::make_unique<Private::NoConvertConverter>();
 }
 
-void Profile::initInstance(const QString &rootProfilePath, const QString &configurationName,
+void Profile::initInstance(const Path &rootProfilePath, const QString &configurationName,
     const bool convertPathsToProfileRelative)
 {
     if (m_instance)
@@ -69,29 +71,29 @@ const Profile *Profile::instance()
     return m_instance;
 }
 
-QString Profile::location(const SpecialFolder folder) const
+Path Profile::location(const SpecialFolder folder) const
 {
-    QString result;
     switch (folder)
     {
     case SpecialFolder::Cache:
-        result = m_profileImpl->cacheLocation();
-        break;
+        return m_profileImpl->cacheLocation();
+
     case SpecialFolder::Config:
-        result = m_profileImpl->configLocation();
-        break;
+        return m_profileImpl->configLocation();
+
     case SpecialFolder::Data:
-        result = m_profileImpl->dataLocation();
-        break;
+        return m_profileImpl->dataLocation();
+
     case SpecialFolder::Downloads:
-        result = m_profileImpl->downloadLocation();
-        break;
+        return m_profileImpl->downloadLocation();
+
     }
 
-    return result;
+    Q_ASSERT_X(false, Q_FUNC_INFO, "Unknown SpecialFolder value.");
+    return {};
 }
 
-QString Profile::rootPath() const
+Path Profile::rootPath() const
 {
     return m_profileImpl->rootPath();
 }
@@ -113,22 +115,22 @@ SettingsPtr Profile::applicationSettings(const QString &name) const
 
 void Profile::ensureDirectoryExists(const SpecialFolder folder) const
 {
-    const QString locationPath = location(folder);
-    if (!locationPath.isEmpty() && !QDir().mkpath(locationPath))
-        qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath));
+    const Path locationPath = location(folder);
+    if (!locationPath.isEmpty() && !Utils::Fs::mkpath(locationPath))
+        qFatal("Could not create required directory '%s'", qUtf8Printable(locationPath.toString()));
 }
 
-QString Profile::toPortablePath(const QString &absolutePath) const
+Path Profile::toPortablePath(const Path &absolutePath) const
 {
     return m_pathConverterImpl->toPortablePath(absolutePath);
 }
 
-QString Profile::fromPortablePath(const QString &portablePath) const
+Path Profile::fromPortablePath(const Path &portablePath) const
 {
     return m_pathConverterImpl->fromPortablePath(portablePath);
 }
 
-QString specialFolderLocation(const SpecialFolder folder)
+Path specialFolderLocation(const SpecialFolder folder)
 {
     return Profile::instance()->location(folder);
 }

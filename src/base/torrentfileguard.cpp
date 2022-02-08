@@ -31,7 +31,7 @@
 #include "settingvalue.h"
 #include "utils/fs.h"
 
-FileGuard::FileGuard(const QString &path)
+FileGuard::FileGuard(const Path &path)
     : m_path {path}
     , m_remove {true}
 {
@@ -45,17 +45,17 @@ void FileGuard::setAutoRemove(const bool remove) noexcept
 FileGuard::~FileGuard()
 {
     if (m_remove && !m_path.isEmpty())
-        Utils::Fs::forceRemove(m_path); // forceRemove() checks for file existence
+        Utils::Fs::removeFile(m_path); // removeFile() checks for file existence
 }
 
-TorrentFileGuard::TorrentFileGuard(const QString &path, const TorrentFileGuard::AutoDeleteMode mode)
-    : FileGuard {mode != Never ? path : QString()}
+TorrentFileGuard::TorrentFileGuard(const Path &path, const TorrentFileGuard::AutoDeleteMode mode)
+    : FileGuard {mode != Never ? path : Path()}
     , m_mode {mode}
     , m_wasAdded {false}
 {
 }
 
-TorrentFileGuard::TorrentFileGuard(const QString &path)
+TorrentFileGuard::TorrentFileGuard(const Path &path)
     : TorrentFileGuard {path, autoDeleteMode()}
 {
 }

@@ -31,6 +31,8 @@
 #include <QList>
 #include <QWidget>
 
+#include "base/pathfwd.h"
+
 class QPushButton;
 class QTreeView;
 
@@ -108,7 +110,7 @@ private:
     QPushButton *getButtonFromIndex(int index);
     void applyPriorities();
     void openParentFolder(const QModelIndex &index) const;
-    QString getFullPath(const QModelIndex &index) const;
+    Path getFullPath(const QModelIndex &index) const;
 
     Ui::PropertiesWidget *m_ui;
     BitTorrent::Torrent *m_torrent;

@@ -61,6 +61,7 @@
 #include <QDBusInterface>
 #endif
 
+#include "base/path.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -292,9 +293,9 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
     return size;
 }
 
-bool Utils::Misc::isPreviewable(const QString &filename)
+bool Utils::Misc::isPreviewable(const Path &filePath)
 {
-    const QString mime = QMimeDatabase().mimeTypeForFile(filename, QMimeDatabase::MatchExtension).name();
+    const QString mime = QMimeDatabase().mimeTypeForFile(filePath.data(), QMimeDatabase::MatchExtension).name();
 
     if (mime.startsWith(QLatin1String("audio"), Qt::CaseInsensitive)
         || mime.startsWith(QLatin1String("video"), Qt::CaseInsensitive))
@@ -304,50 +305,50 @@ bool Utils::Misc::isPreviewable(const QString &filename)
 
     const QSet<QString> multimediaExtensions =
     {
-        "3GP",
-        "AAC",
-        "AC3",
-        "AIF",
-        "AIFC",
-        "AIFF",
-        "ASF",
-        "AU",
-        "AVI",
-        "FLAC",
-        "FLV",
-        "M3U",
-        "M4A",
-        "M4P",
-        "M4V",
-        "MID",
-        "MKV",
-        "MOV",
-        "MP2",
-        "MP3",
-        "MP4",
-        "MPC",
-        "MPE",
-        "MPEG",
-        "MPG",
-        "MPP",
-        "OGG",
-        "OGM",
-        "OGV",
-        "QT",
-        "RA",
-        "RAM",
-        "RM",
-        "RMV",
-        "RMVB",
-        "SWA",
-        "SWF",
-        "TS",
-        "VOB",
-        "WAV",
-        "WMA",
-        "WMV"
+        ".3GP",
+        ".AAC",
+        ".AC3",
+        ".AIF",
+        ".AIFC",
+        ".AIFF",
+        ".ASF",
+        ".AU",
+        ".AVI",
+        ".FLAC",
+        ".FLV",
+        ".M3U",
+        ".M4A",
+        ".M4P",
+        ".M4V",
+        ".MID",
+        ".MKV",
+        ".MOV",
+        ".MP2",
+        ".MP3",
+        ".MP4",
+        ".MPC",
+        ".MPE",
+        ".MPEG",
+        ".MPG",
+        ".MPP",
+        ".OGG",
+        ".OGM",
+        ".OGV",
+        ".QT",
+        ".RA",
+        ".RAM",
+        ".RM",
+        ".RMV",
+        ".RMVB",
+        ".SWA",
+        ".SWF",
+        ".TS",
+        ".VOB",
+        ".WAV",
+        ".WMA",
+        ".WMV"
     };
-    return multimediaExtensions.contains(Utils::Fs::fileExtension(filename).toUpper());
+    return multimediaExtensions.contains(filePath.extension().toUpper());
 }
 
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)

@@ -61,7 +61,7 @@ QVariant WatchedFoldersModel::data(const QModelIndex &index, const int role) con
         return {};
 
     if (role == Qt::DisplayRole)
-        return Utils::Fs::toNativePath(m_watchedFolders.at(index.row()));
+        return m_watchedFolders.at(index.row()).toString();
 
     return {};
 }
@@ -91,7 +91,7 @@ bool WatchedFoldersModel::removeRows(const int row, const int count, const QMode
     beginRemoveRows(parent, firstRow, lastRow);
     for (int i = firstRow; i <= lastRow; ++i)
     {
-        const QString folderPath = m_watchedFolders.takeAt(i);
+        const Path folderPath = m_watchedFolders.takeAt(i);
         m_watchedFoldersOptions.remove(folderPath);
         m_deletedFolders.insert(folderPath);
     }
@@ -100,23 +100,28 @@ bool WatchedFoldersModel::removeRows(const int row, const int count, const QMode
     return true;
 }
 
-void WatchedFoldersModel::addFolder(const QString &path, const TorrentFilesWatcher::WatchedFolderOptions &options)
+void WatchedFoldersModel::addFolder(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
-    const QString cleanWatchPath = m_fsWatcher->makeCleanPath(path);
-    if (m_watchedFoldersOptions.contains(cleanWatchPath))
-        throw RuntimeError(tr("Folder '%1' is already in watch list.").arg(path));
+    if (path.isEmpty())
+        throw InvalidArgument(tr("Watched folder path cannot be empty."));
 
-    const QDir watchDir {cleanWatchPath};
+    if (path.isRelative())
+        throw InvalidArgument(tr("Watched folder path cannot be relative."));
+
+    if (m_watchedFoldersOptions.contains(path))
+        throw RuntimeError(tr("Folder '%1' is already in watch list.").arg(path.toString()));
+
+    const QDir watchDir {path.data()};
     if (!watchDir.exists())
-        throw RuntimeError(tr("Folder '%1' doesn't exist.").arg(path));
+        throw RuntimeError(tr("Folder '%1' doesn't exist.").arg(path.toString()));
     if (!watchDir.isReadable())
-        throw RuntimeError(tr("Folder '%1' isn't readable.").arg(path));
+        throw RuntimeError(tr("Folder '%1' isn't readable.").arg(path.toString()));
 
-    m_deletedFolders.remove(cleanWatchPath);
+    m_deletedFolders.remove(path);
 
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
-    m_watchedFolders.append(cleanWatchPath);
-    m_watchedFoldersOptions[cleanWatchPath] = options;
+    m_watchedFolders.append(path);
+    m_watchedFoldersOptions[path] = options;
     endInsertRows();
 }
 
@@ -124,7 +129,7 @@ TorrentFilesWatcher::WatchedFolderOptions WatchedFoldersModel::folderOptions(con
 {
     Q_ASSERT((row >= 0) && (row < rowCount()));
 
-    const QString folderPath = m_watchedFolders.at(row);
+    const Path folderPath = m_watchedFolders.at(row);
     return m_watchedFoldersOptions[folderPath];
 }
 
@@ -132,24 +137,24 @@ void WatchedFoldersModel::setFolderOptions(const int row, const TorrentFilesWatc
 {
     Q_ASSERT((row >= 0) && (row < rowCount()));
 
-    const QString folderPath = m_watchedFolders.at(row);
+    const Path folderPath = m_watchedFolders.at(row);
     m_watchedFoldersOptions[folderPath] = options;
 }
 
 void WatchedFoldersModel::apply()
 {
-    const QSet<QString> deletedFolders {m_deletedFolders};
+    const QSet<Path> deletedFolders {m_deletedFolders};
     // We have to clear `m_deletedFolders` for optimization reason, otherwise
     // it will be cleared one element at a time in `onFolderRemoved()` handler
     m_deletedFolders.clear();
-    for (const QString &path : deletedFolders)
+    for (const Path &path : deletedFolders)
         m_fsWatcher->removeWatchedFolder(path);
 
-    for (const QString &path : asConst(m_watchedFolders))
+    for (const Path &path : asConst(m_watchedFolders))
         m_fsWatcher->setWatchedFolder(path, m_watchedFoldersOptions.value(path));
 }
 
-void WatchedFoldersModel::onFolderSet(const QString &path, const TorrentFilesWatcher::WatchedFolderOptions &options)
+void WatchedFoldersModel::onFolderSet(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
     if (!m_watchedFoldersOptions.contains(path))
     {
@@ -166,7 +171,7 @@ void WatchedFoldersModel::onFolderSet(const QString &path, const TorrentFilesWat
     }
 }
 
-void WatchedFoldersModel::onFolderRemoved(const QString &path)
+void WatchedFoldersModel::onFolderRemoved(const Path &path)
 {
     const int row = m_watchedFolders.indexOf(path);
     if (row >= 0)

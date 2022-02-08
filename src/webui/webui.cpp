@@ -34,6 +34,7 @@
 #include "base/logger.h"
 #include "base/net/dnsupdater.h"
 #include "base/net/portforwarder.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/utils/net.h"
 #include "webapplication.h"
@@ -88,9 +89,9 @@ void WebUI::configure()
 
         if (pref->isWebUiHttpsEnabled())
         {
-            const auto readData = [](const QString &path) -> QByteArray
+            const auto readData = [](const Path &path) -> QByteArray
             {
-                QFile file(path);
+                QFile file {path.data()};
                 if (!file.open(QIODevice::ReadOnly))
                     return {};
                 return file.read(Utils::Net::MAX_SSL_FILE_SIZE);

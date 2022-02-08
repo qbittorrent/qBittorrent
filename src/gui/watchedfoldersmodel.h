@@ -34,6 +34,7 @@
 #include <QSet>
 #include <QStringList>
 
+#include "base/path.h"
 #include "base/torrentfileswatcher.h"
 
 class WatchedFoldersModel final : public QAbstractListModel
@@ -50,7 +51,7 @@ public:
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
 
-    void addFolder(const QString &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
+    void addFolder(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
 
     TorrentFilesWatcher::WatchedFolderOptions folderOptions(int row) const;
     void setFolderOptions(int row, const TorrentFilesWatcher::WatchedFolderOptions &options);
@@ -58,11 +59,11 @@ public:
     void apply();
 
 private:
-    void onFolderSet(const QString &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
-    void onFolderRemoved(const QString &path);
+    void onFolderSet(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
+    void onFolderRemoved(const Path &path);
 
     TorrentFilesWatcher *m_fsWatcher;
-    QStringList m_watchedFolders;
-    QHash<QString, TorrentFilesWatcher::WatchedFolderOptions> m_watchedFoldersOptions;
-    QSet<QString> m_deletedFolders;
+    PathList m_watchedFolders;
+    QHash<Path, TorrentFilesWatcher::WatchedFolderOptions> m_watchedFoldersOptions;
+    QSet<Path> m_deletedFolders;
 };

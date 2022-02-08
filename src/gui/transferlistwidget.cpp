@@ -90,10 +90,9 @@ namespace
         if (!torrent->hasMetadata())
             return false;
 
-        for (const QString &filePath : asConst(torrent->filePaths()))
+        for (const Path &filePath : asConst(torrent->filePaths()))
         {
-            const QString fileName = Utils::Fs::fileName(filePath);
-            if (Utils::Misc::isPreviewable(fileName))
+            if (Utils::Misc::isPreviewable(filePath))
                 return true;
         }
 
@@ -243,7 +242,7 @@ TransferListModel *TransferListWidget::getSourceModel() const
     return m_listModel;
 }
 
-void TransferListWidget::previewFile(const QString &filePath)
+void TransferListWidget::previewFile(const Path &filePath)
 {
     Utils::Gui::openPath(filePath);
 }
@@ -336,9 +335,9 @@ void TransferListWidget::setSelectedTorrentsLocation()
     if (torrents.isEmpty())
         return;
 
-    const QString oldLocation = torrents[0]->savePath();
+    const Path oldLocation = torrents[0]->savePath();
 
-    auto fileDialog = new QFileDialog(this, tr("Choose save path"), oldLocation);
+    auto fileDialog = new QFileDialog(this, tr("Choose save path"), oldLocation.data());
     fileDialog->setAttribute(Qt::WA_DeleteOnClose);
     fileDialog->setFileMode(QFileDialog::Directory);
     fileDialog->setModal(true);
@@ -349,8 +348,8 @@ void TransferListWidget::setSelectedTorrentsLocation()
         if (torrents.isEmpty())
             return;
 
-        const QString newLocation = fileDialog->selectedFiles().constFirst();
-        if (newLocation.isEmpty() || !QDir(newLocation).exists())
+        const Path newLocation {fileDialog->selectedFiles().constFirst()};
+        if (newLocation.exists())
             return;
 
         // Actually move storage
@@ -552,28 +551,28 @@ void TransferListWidget::hideQueuePosColumn(bool hide)
 
 void TransferListWidget::openSelectedTorrentsFolder() const
 {
-    QSet<QString> pathsList;
+    QSet<Path> paths;
 #ifdef Q_OS_MACOS
     // On macOS you expect both the files and folders to be opened in their parent
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        const QString contentPath = QDir(torrent->actualStorageLocation()).absoluteFilePath(torrent->contentPath());
-        pathsList.insert(contentPath);
+        const Path contentPath = torrent->actualStorageLocation() / torrent->contentPath();
+        paths.insert(contentPath);
     }
-    MacUtils::openFiles(pathsList);
+    MacUtils::openFiles(PathList(paths.cbegin(), paths.cend()));
 #else
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        const QString contentPath = torrent->contentPath();
-        if (!pathsList.contains(contentPath))
+        const Path contentPath = torrent->contentPath();
+        if (!paths.contains(contentPath))
         {
             if (torrent->filesCount() == 1)
                 Utils::Gui::openFolderSelect(contentPath);
             else
                 Utils::Gui::openPath(contentPath);
         }
-        pathsList.insert(contentPath);
+        paths.insert(contentPath);
     }
 #endif // Q_OS_MACOS
 }

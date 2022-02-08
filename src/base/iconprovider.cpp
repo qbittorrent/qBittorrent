@@ -29,7 +29,7 @@
 
 #include "iconprovider.h"
 
-#include <QFileInfo>
+#include "base/path.h"
 
 IconProvider::IconProvider(QObject *parent)
     : QObject(parent)
@@ -55,14 +55,14 @@ IconProvider *IconProvider::instance()
     return m_instance;
 }
 
-QString IconProvider::getIconPath(const QString &iconId) const
+Path IconProvider::getIconPath(const QString &iconId) const
 {
     // there are a few icons not available in svg
-    const QString pathSvg = ":/icons/" + iconId + ".svg";
-    if (QFileInfo::exists(pathSvg))
+    const Path pathSvg {":/icons/" + iconId + ".svg"};
+    if (pathSvg.exists())
         return pathSvg;
 
-    const QString pathPng = ":/icons/" + iconId + ".png";
+    const Path pathPng {":/icons/" + iconId + ".png"};
     return pathPng;
 }
 

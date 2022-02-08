@@ -32,16 +32,19 @@
 
 #include <QThread>
 
+#include "base/path.h"
+
 class QDataStream;
 
 class FilterParserThread final : public QThread
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(FilterParserThread)
 
 public:
     FilterParserThread(QObject *parent = nullptr);
     ~FilterParserThread();
-    void processFilterFile(const QString &filePath);
+    void processFilterFile(const Path &filePath);
     lt::ip_filter IPfilter();
 
 signals:
@@ -60,6 +63,6 @@ private:
     int parseP2BFilterFile();
 
     bool m_abort;
-    QString m_filePath;
+    Path m_filePath;
     lt::ip_filter m_filter;
 };

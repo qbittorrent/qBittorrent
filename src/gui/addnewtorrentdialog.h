@@ -81,8 +81,8 @@ private slots:
     void displayContentTreeMenu();
     void displayColumnHeaderMenu();
     void updateDiskSpaceLabel();
-    void onSavePathChanged(const QString &newPath);
-    void onDownloadPathChanged(const QString &newPath);
+    void onSavePathChanged(const Path &newPath);
+    void onDownloadPathChanged(const Path &newPath);
     void onUseDownloadPathChanged(bool checked);
     void updateMetadata(const BitTorrent::TorrentInfo &metadata);
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
@@ -97,7 +97,7 @@ private slots:
 
 private:
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    bool loadTorrentFile(const QString &torrentPath);
+    bool loadTorrentFile(const QString &source);
     bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
     void populateSavePaths();

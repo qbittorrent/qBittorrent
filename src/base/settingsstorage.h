@@ -36,6 +36,7 @@
 #include <QTimer>
 #include <QVariantHash>
 
+#include "path.h"
 #include "utils/string.h"
 
 template <typename T>
@@ -68,6 +69,11 @@ public:
             const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
             return T {value};
         }
+        else if constexpr (std::is_same_v<T, Path>)
+        {
+            const auto value = loadValue<QString>(key, defaultValue.toString());
+            return Path(value);
+        }
         else if constexpr (std::is_same_v<T, QVariant>)
         {
             // fast path for loading QVariant
@@ -88,8 +94,10 @@ public:
             storeValueImpl(key, Utils::String::fromEnum(value));
         else if constexpr (IsQFlags<T>::value)
             storeValueImpl(key, static_cast<typename T::Int>(value));
+        else if constexpr (std::is_same_v<T, Path>)
+            storeValueImpl(key, value.toString());
         else
-            storeValueImpl(key, value);
+            storeValueImpl(key, QVariant::fromValue(value));
     }
 
     void removeValue(const QString &key);

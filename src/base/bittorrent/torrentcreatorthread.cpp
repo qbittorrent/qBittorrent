@@ -52,7 +52,7 @@ namespace
     // name starts with a .
     bool fileFilter(const std::string &f)
     {
-        return !Utils::Fs::fileName(QString::fromStdString(f)).startsWith('.');
+        return !Path(f).filename().startsWith('.');
     }
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -108,50 +108,50 @@ void TorrentCreatorThread::run()
 
     try
     {
-        const QString parentPath = Utils::Fs::branchPath(m_params.inputPath) + '/';
+        const Path parentPath = m_params.inputPath.parentPath();
         const Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> naturalLessThan {};
 
         // Adding files to the torrent
         lt::file_storage fs;
-        if (QFileInfo(m_params.inputPath).isFile())
+        if (QFileInfo(m_params.inputPath.data()).isFile())
         {
-            lt::add_files(fs, Utils::Fs::toNativePath(m_params.inputPath).toStdString(), fileFilter);
+            lt::add_files(fs, m_params.inputPath.toString().toStdString(), fileFilter);
         }
         else
         {
             // need to sort the file names by natural sort order
-            QStringList dirs = {m_params.inputPath};
+            QStringList dirs = {m_params.inputPath.data()};
 
-            QDirIterator dirIter {m_params.inputPath, (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
+            QDirIterator dirIter {m_params.inputPath.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
             while (dirIter.hasNext())
             {
                 dirIter.next();
-                dirs += dirIter.filePath();
+                dirs.append(dirIter.filePath());
             }
             std::sort(dirs.begin(), dirs.end(), naturalLessThan);
 
             QStringList fileNames;
             QHash<QString, qint64> fileSizeMap;
 
-            for (const auto &dir : asConst(dirs))
+            for (const QString &dir : asConst(dirs))
             {
                 QStringList tmpNames;  // natural sort files within each dir
 
-                QDirIterator fileIter(dir, QDir::Files);
+                QDirIterator fileIter {dir, QDir::Files};
                 while (fileIter.hasNext())
                 {
                     fileIter.next();
 
-                    const QString relFilePath = fileIter.filePath().mid(parentPath.length());
-                    tmpNames += relFilePath;
-                    fileSizeMap[relFilePath] = fileIter.fileInfo().size();
+                    const auto relFilePath = parentPath.relativePathOf(Path(fileIter.filePath()));
+                    tmpNames.append(relFilePath.toString());
+                    fileSizeMap[tmpNames.last()] = fileIter.fileInfo().size();
                 }
 
                 std::sort(tmpNames.begin(), tmpNames.end(), naturalLessThan);
                 fileNames += tmpNames;
             }
 
-            for (const auto &fileName : asConst(fileNames))
+            for (const QString &fileName : asConst(fileNames))
                 fs.add_file(fileName.toStdString(), fileSizeMap[fileName]);
         }
 
@@ -182,7 +182,7 @@ void TorrentCreatorThread::run()
         }
 
         // calculate the hash for all pieces
-        lt::set_piece_hashes(newTorrent, Utils::Fs::toNativePath(parentPath).toStdString()
+        lt::set_piece_hashes(newTorrent, parentPath.toString().toStdString()
             , [this, &newTorrent](const lt::piece_index_t n)
         {
             checkInterruptionRequested();
@@ -225,16 +225,16 @@ void TorrentCreatorThread::run()
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
+int TorrentCreatorThread::calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat)
 #else
-int TorrentCreatorThread::calculateTotalPieces(const QString &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
+int TorrentCreatorThread::calculateTotalPieces(const Path &inputPath, const int pieceSize, const bool isAlignmentOptimized, const int paddedFileSizeLimit)
 #endif
 {
     if (inputPath.isEmpty())
         return 0;
 
     lt::file_storage fs;
-    lt::add_files(fs, Utils::Fs::toNativePath(inputPath).toStdString(), fileFilter);
+    lt::add_files(fs, inputPath.toString().toStdString(), fileFilter);
 
 #ifdef QBT_USES_LIBTORRENT2
     return lt::create_torrent {fs, pieceSize, toNativeTorrentFormatFlag(torrentFormat)}.num_pieces();

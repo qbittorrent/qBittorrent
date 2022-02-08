@@ -45,7 +45,6 @@
 
 #include <QAtomicInt>
 #include <QDebug>
-#include <QDir>
 #include <QLibraryInfo>
 #include <QProcess>
 
@@ -80,6 +79,7 @@
 #include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
+#include "base/path.h"
 #include "base/utils/misc.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
@@ -105,7 +105,7 @@ namespace
     const QString LOG_FOLDER = QStringLiteral("logs");
     const QChar PARAMS_SEPARATOR = QLatin1Char('|');
 
-    const QString DEFAULT_PORTABLE_MODE_PROFILE_DIR = QStringLiteral("profile");
+    const Path DEFAULT_PORTABLE_MODE_PROFILE_DIR {QStringLiteral("profile")};
 
     const int MIN_FILELOG_SIZE = 1024; // 1KiB
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
@@ -143,16 +143,16 @@ Application::Application(int &argc, char **argv)
     QPixmapCache::setCacheLimit(PIXMAP_CACHE_SIZE);
 #endif
 
-    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty()
-            && QDir(QCoreApplication::applicationDirPath()).exists(DEFAULT_PORTABLE_MODE_PROFILE_DIR);
+    const auto portableProfilePath = Path(QCoreApplication::applicationDirPath()) / DEFAULT_PORTABLE_MODE_PROFILE_DIR;
+    const bool portableModeEnabled = m_commandLineArgs.profileDir.isEmpty() && portableProfilePath.exists();
 
-    const QString profileDir = portableModeEnabled
-        ? QDir(QCoreApplication::applicationDirPath()).absoluteFilePath(DEFAULT_PORTABLE_MODE_PROFILE_DIR)
+    const Path profileDir = portableModeEnabled
+        ? portableProfilePath
         : m_commandLineArgs.profileDir;
     Profile::initInstance(profileDir, m_commandLineArgs.configurationName,
                         (m_commandLineArgs.relativeFastresumePaths || portableModeEnabled));
 
-    m_instanceManager = new ApplicationInstanceManager {Profile::instance()->location(SpecialFolder::Config), this};
+    m_instanceManager = new ApplicationInstanceManager(Profile::instance()->location(SpecialFolder::Config), this);
 
     Logger::initInstance();
     SettingsStorage::initInstance();
@@ -175,13 +175,13 @@ Application::Application(int &argc, char **argv)
     Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
     if (portableModeEnabled)
     {
-        Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir));
+        Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
         if (m_commandLineArgs.relativeFastresumePaths)
             Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg("--relative-fastresume"), Log::WARNING); // to avoid translating the `--relative-fastresume` string
     }
     else
     {
-        Logger::instance()->addMessage(tr("Using config directory: %1").arg(Profile::instance()->location(SpecialFolder::Config)));
+        Logger::instance()->addMessage(tr("Using config directory: %1").arg(Profile::instance()->location(SpecialFolder::Config).toString()));
     }
 }
 
@@ -218,12 +218,12 @@ void Application::setFileLoggerEnabled(const bool value)
     m_storeFileLoggerEnabled = value;
 }
 
-QString Application::fileLoggerPath() const
+Path Application::fileLoggerPath() const
 {
-    return m_storeFileLoggerPath.get(QDir(specialFolderLocation(SpecialFolder::Data)).absoluteFilePath(LOG_FOLDER));
+    return m_storeFileLoggerPath.get(specialFolderLocation(SpecialFolder::Data) / Path(LOG_FOLDER));
 }
 
-void Application::setFileLoggerPath(const QString &path)
+void Application::setFileLoggerPath(const Path &path)
 {
     if (m_fileLogger)
         m_fileLogger->changePath(path);
@@ -327,16 +327,16 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             break;
         case u'D':
 #if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->savePath())));
+            program.replace(i, 2, chopPathSep(torrent->savePath().toString()));
 #else
-            program.replace(i, 2, Utils::Fs::toNativePath(torrent->savePath()));
+            program.replace(i, 2, torrent->savePath().toString());
 #endif
             break;
         case u'F':
 #if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->contentPath())));
+            program.replace(i, 2, chopPathSep(torrent->contentPath().toString()));
 #else
-            program.replace(i, 2, Utils::Fs::toNativePath(torrent->contentPath()));
+            program.replace(i, 2, torrent->contentPath().toString());
 #endif
             break;
         case u'G':
@@ -359,9 +359,9 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             break;
         case u'R':
 #if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(Utils::Fs::toNativePath(torrent->rootPath())));
+            program.replace(i, 2, chopPathSep(torrent->rootPath().toString()));
 #else
-            program.replace(i, 2, Utils::Fs::toNativePath(torrent->rootPath()));
+            program.replace(i, 2, torrent->rootPath().toString());
 #endif
             break;
         case u'T':
@@ -439,7 +439,7 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
     // Prepare mail content
     const QString content = tr("Torrent name: %1").arg(torrent->name()) + '\n'
         + tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + '\n'
-        + tr("Save path: %1").arg(torrent->savePath()) + "\n\n"
+        + tr("Save path: %1").arg(torrent->savePath().toString()) + "\n\n"
         + tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds")
             .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n"
         + tr("Thank you for using qBittorrent.") + '\n';
@@ -545,7 +545,7 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(QLatin1String("@savePath=")))
         {
-            torrentParams.savePath = param.mid(10);
+            torrentParams.savePath = Path(param.mid(10));
             continue;
         }
 
@@ -821,7 +821,7 @@ void Application::cleanup()
     Logger::freeInstance();
     IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
-    Utils::Fs::removeDirRecursive(Utils::Fs::tempPath());
+    Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
 
 #ifndef DISABLE_GUI
     if (m_window)

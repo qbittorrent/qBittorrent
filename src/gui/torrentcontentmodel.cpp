@@ -53,6 +53,7 @@
 #include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/downloadpriority.h"
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/fs.h"
 #include "torrentcontentmodelfile.h"
 #include "torrentcontentmodelfolder.h"
@@ -503,7 +504,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     for (int i = 0; i < filesCount; ++i)
     {
         currentParent = m_rootItem;
-        const QString path = Utils::Fs::toUniformPath(info.filePath(i));
+        const QString path = info.filePath(i).data();
 
         // Iterate of parts of the path to create necessary folders
         QList<QStringView> pathFolders = QStringView(path).split(u'/', Qt::SkipEmptyParts);
@@ -523,7 +524,7 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
         }
         // Actually create the file
         TorrentContentModelFile *fileItem = new TorrentContentModelFile(
-                    Utils::Fs::fileName(info.filePath(i)), info.fileSize(i), currentParent, i);
+                    info.filePath(i).filename(), info.fileSize(i), currentParent, i);
         currentParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }

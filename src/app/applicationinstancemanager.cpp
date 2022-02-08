@@ -37,18 +37,19 @@
 #include <QSharedMemory>
 #endif
 
+#include "base/path.h"
 #include "qtlocalpeer/qtlocalpeer.h"
 
-ApplicationInstanceManager::ApplicationInstanceManager(const QString &instancePath, QObject *parent)
+ApplicationInstanceManager::ApplicationInstanceManager(const Path &instancePath, QObject *parent)
     : QObject {parent}
-    , m_peer {new QtLocalPeer {instancePath, this}}
+    , m_peer {new QtLocalPeer(instancePath.data(), this)}
     , m_isFirstInstance {!m_peer->isClient()}
 {
     connect(m_peer, &QtLocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
 
 #ifdef Q_OS_WIN
-    const QString sharedMemoryKey = instancePath + QLatin1String {"/shared-memory"};
-    auto sharedMem = new QSharedMemory {sharedMemoryKey, this};
+    const QString sharedMemoryKey = instancePath.data() + QLatin1String("/shared-memory");
+    auto sharedMem = new QSharedMemory(sharedMemoryKey, this);
     if (m_isFirstInstance)
     {
         // First instance creates shared memory and store PID
