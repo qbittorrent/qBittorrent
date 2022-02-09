@@ -42,7 +42,7 @@ const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseInsensitive;
 const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
 #endif
 
-const int PATHLIST_TYPEID = qRegisterMetaType<PathList>();
+const int PATHLIST_TYPEID = qRegisterMetaType<PathList>("PathList");
 
 Path::Path(const QString &pathStr)
     : m_pathStr {QDir::cleanPath(pathStr)}
