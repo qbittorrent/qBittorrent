@@ -192,7 +192,7 @@ div.mochaToolbarWrapper.bottom {
 .zIndexFix {
     border: 1px solid transparent;
     display: block;
-    filter: mask();
+    /*filter: mask();*/
     height: 100px;
     left: 0;
     position: absolute;
