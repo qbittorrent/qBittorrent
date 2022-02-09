@@ -28,11 +28,10 @@
 
 #include "ltqbitarray.h"
 
-#include <memory>
-
 #include <libtorrent/bitfield.hpp>
 
 #include <QBitArray>
+#include <QVarLengthArray>
 
 namespace
 {
@@ -52,21 +51,10 @@ namespace BitTorrent::LT
         const char *bitsData = bits.data();
         const int dataLength = (bits.size() + 7) / 8;
 
-        if (dataLength <= STACK_ALLOC_SIZE)
-        {
-            // fast path for small bitfields
-            char tmp[STACK_ALLOC_SIZE];  // uninitialized for faster allocation
-            for (int i = 0; i < dataLength; ++i)
-                tmp[i] = reverseByte(bitsData[i]);
-
-            return QBitArray::fromBits(tmp, bits.size());
-        }
-
-        // slow path for big bitfields
-        auto tmp = std::make_unique<char []>(dataLength);
+        QVarLengthArray<char, STACK_ALLOC_SIZE> tmp(dataLength);
         for (int i = 0; i < dataLength; ++i)
             tmp[i] = reverseByte(bitsData[i]);
 
-        return QBitArray::fromBits(tmp.get(), bits.size());
+        return QBitArray::fromBits(tmp.data(), tmp.size());
     }
 }
