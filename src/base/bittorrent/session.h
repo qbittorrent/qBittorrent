@@ -203,6 +203,12 @@ namespace BitTorrent
         } disk;
     };
 
+    struct TrackerEntryUpdateInfo
+    {
+        TrackerEntry::Status status = TrackerEntry::NotContacted;
+        bool hasMessages = false;
+    };
+
     class Session final : public QObject
     {
         Q_OBJECT
@@ -498,9 +504,6 @@ namespace BitTorrent
         void handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data);
-        void handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl);
-        void handleTorrentTrackerWarning(TorrentImpl *const torrent, const QString &trackerUrl);
-        void handleTorrentTrackerError(TorrentImpl *const torrent, const QString &trackerUrl);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode);
 
@@ -544,6 +547,7 @@ namespace BitTorrent
         void trackersRemoved(Torrent *torrent, const QVector<TrackerEntry> &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
+        void trackerEntriesUpdated(const QHash<Torrent *, QHash<QString, TrackerEntryUpdateInfo>> &updateInfos);
 
     private slots:
         void configureDeferred();
@@ -606,6 +610,7 @@ namespace BitTorrent
 #if defined(Q_OS_WIN)
         void applyOSMemoryPriority() const;
 #endif
+        void processTrackerStatuses();
 
         bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
@@ -636,6 +641,7 @@ namespace BitTorrent
         void handleStorageMovedAlert(const lt::storage_moved_alert *p);
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleSocks5Alert(const lt::socks5_alert *p) const;
+        void handleTrackerAlert(const lt::tracker_alert *a);
 
         void createTorrent(const lt::torrent_handle &nativeHandle);
 
@@ -792,6 +798,8 @@ namespace BitTorrent
         QSet<TorrentID> m_needSaveResumeDataTorrents;
         QMap<QString, CategoryOptions> m_categories;
         QSet<QString> m_tags;
+
+        QHash<TorrentImpl *, QSet<QByteArray>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

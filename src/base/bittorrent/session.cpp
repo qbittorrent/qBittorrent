@@ -291,6 +291,67 @@ namespace
         return {};
     }
 #endif
+
+#ifdef QBT_USES_LIBTORRENT2
+    TrackerEntryUpdateInfo getTrackerEntryUpdateInfo(const lt::announce_entry &nativeEntry, const lt::info_hash_t &hashes)
+#else
+    TrackerEntryUpdateInfo getTrackerEntryUpdateInfo(const lt::announce_entry &nativeEntry)
+#endif
+    {
+        TrackerEntryUpdateInfo result {};
+        int numUpdating = 0;
+        int numWorking = 0;
+        int numNotWorking = 0;
+#ifdef QBT_USES_LIBTORRENT2
+        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
+        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
+        {
+            for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
+            {
+                if (hashes.has(protocolVersion))
+                {
+                    const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
+
+                    if (!result.hasMessages)
+                        result.hasMessages = !infoHash.message.empty();
+
+                    if (infoHash.updating)
+                        ++numUpdating;
+                    else if (infoHash.fails > 0)
+                        ++numNotWorking;
+                    else if (nativeEntry.verified)
+                        ++numWorking;
+                }
+            }
+        }
+#else
+        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
+        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
+        {
+            if (!result.hasMessages)
+                result.hasMessages = !endpoint.message.empty();
+
+            if (endpoint.updating)
+                ++numUpdating;
+            else if (endpoint.fails > 0)
+                ++numNotWorking;
+            else if (nativeEntry.verified)
+                ++numWorking;
+        }
+#endif
+
+        if (numEndpoints > 0)
+        {
+            if (numUpdating > 0)
+                result.status = TrackerEntry::Updating;
+            else if (numWorking > 0)
+                result.status = TrackerEntry::Working;
+            else if (numNotWorking == numEndpoints)
+                result.status = TrackerEntry::NotWorking;
+        }
+
+        return result;
+    }
 }
 
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
@@ -4033,16 +4094,6 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const Loa
     m_resumeDataStorage->store(torrent->id(), data);
 }
 
-void Session::handleTorrentTrackerReply(TorrentImpl *const torrent, const QString &trackerUrl)
-{
-    emit trackerSuccess(torrent, trackerUrl);
-}
-
-void Session::handleTorrentTrackerError(TorrentImpl *const torrent, const QString &trackerUrl)
-{
-    emit trackerError(torrent, trackerUrl);
-}
-
 bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
 {
     Q_ASSERT(torrent);
@@ -4231,11 +4282,6 @@ void Session::loadCategories()
         const auto categoryOptions = CategoryOptions::fromJSON(it.value().toObject());
         m_categories[categoryName] = categoryOptions;
     }
-}
-
-void Session::handleTorrentTrackerWarning(TorrentImpl *const torrent, const QString &trackerUrl)
-{
-    emit trackerWarning(torrent, trackerUrl);
 }
 
 bool Session::hasPerTorrentRatioLimit() const
@@ -4562,6 +4608,8 @@ void Session::readAlerts()
     const std::vector<lt::alert *> alerts = getPendingAlerts();
     for (const lt::alert *a : alerts)
         handleAlert(a);
+
+    processTrackerStatuses();
 }
 
 void Session::handleAlert(const lt::alert *a)
@@ -4581,9 +4629,6 @@ void Session::handleAlert(const lt::alert *a)
         case lt::save_resume_data_failed_alert::alert_type:
         case lt::torrent_paused_alert::alert_type:
         case lt::torrent_resumed_alert::alert_type:
-        case lt::tracker_error_alert::alert_type:
-        case lt::tracker_reply_alert::alert_type:
-        case lt::tracker_warning_alert::alert_type:
         case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
@@ -4595,6 +4640,11 @@ void Session::handleAlert(const lt::alert *a)
             break;
         case lt::session_stats_alert::alert_type:
             handleSessionStatsAlert(static_cast<const lt::session_stats_alert*>(a));
+            break;
+        case lt::tracker_error_alert::alert_type:
+        case lt::tracker_reply_alert::alert_type:
+        case lt::tracker_warning_alert::alert_type:
+            handleTrackerAlert(static_cast<const lt::tracker_alert *>(a));
             break;
         case lt::file_error_alert::alert_type:
             handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
@@ -5132,4 +5182,51 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
         LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
             , Log::WARNING);
     }
+}
+
+void Session::handleTrackerAlert(const lt::tracker_alert *a)
+{
+    TorrentImpl *torrent = m_torrents.value(a->handle.info_hash());
+    if (!torrent)
+        return;
+
+    const QByteArray trackerURL {a->tracker_url()};
+    m_updatedTrackerEntries[torrent].insert(trackerURL);
+
+    if (a->type() == lt::tracker_reply_alert::alert_type)
+    {
+        const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
+        torrent->updatePeerCount(trackerURL, a->local_endpoint, numPeers);
+    }
+}
+
+void Session::processTrackerStatuses()
+{
+    QHash<Torrent *, QHash<QString, TrackerEntryUpdateInfo>> updateInfos;
+
+    for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
+    {
+        TorrentImpl *torrent = it.key();
+        const QSet<QByteArray> &updatedTrackers = it.value();
+
+        const std::vector<lt::announce_entry> trackerList = torrent->nativeHandle().trackers();
+        for (const lt::announce_entry &announceEntry : trackerList)
+        {
+            const auto trackerURL = QByteArray::fromRawData(announceEntry.url.c_str(), announceEntry.url.size());
+            if (!updatedTrackers.contains(trackerURL))
+                continue;
+
+#ifdef QBT_USES_LIBTORRENT2
+            const TrackerEntryUpdateInfo updateInfo = getTrackerEntryUpdateInfo(announceEntry, torrent->nativeHandle().info_hashes());
+#else
+            const TrackerEntryUpdateInfo updateInfo = getTrackerEntryUpdateInfo(announceEntry);
+#endif
+            if ((updateInfo.status == TrackerEntry::Working) || (updateInfo.status == TrackerEntry::NotWorking))
+                updateInfos[torrent][QString::fromUtf8(trackerURL)] = updateInfo;
+        }
+    }
+
+    m_updatedTrackerEntries.clear();
+    if (!updateInfos.isEmpty())
+        emit trackerEntriesUpdated(updateInfos);
 }
