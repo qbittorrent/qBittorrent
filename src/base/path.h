@@ -76,7 +76,6 @@ public:
     static void stripRootFolder(PathList &filePaths);
     static void addRootFolder(PathList &filePaths, const Path &rootFolder);
 
-    friend bool operator==(const Path &lhs, const Path &rhs);
     friend Path operator/(const Path &lhs, const Path &rhs);
     friend Path operator+(const Path &lhs, const QString &rhs);
 
@@ -90,6 +89,7 @@ private:
 
 Q_DECLARE_METATYPE(Path)
 
+bool operator==(const Path &lhs, const Path &rhs);
 bool operator!=(const Path &lhs, const Path &rhs);
 Path operator+(const Path &lhs, const char rhs[]);
 Path operator+(const Path &lhs, const std::string &rhs);

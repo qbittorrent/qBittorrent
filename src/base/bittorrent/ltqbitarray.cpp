@@ -28,18 +28,27 @@
 
 #include "ltqbitarray.h"
 
-#include <memory>
-
 #include <libtorrent/bitfield.hpp>
 
 #include <QBitArray>
+#include <QVarLengthArray>
 
 namespace
 {
     unsigned char reverseByte(const unsigned char byte)
     {
-        // https://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64Bits
-        return (((byte * 0x80200802ULL) & 0x0884422110ULL) * 0x0101010101ULL) >> 32;
+        // https://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable
+        static const unsigned char table[] =
+        {
+#define R2(n) n, (n + (2 * 64)), (n + 64), (n + (3 * 64))
+#define R4(n) R2(n), R2(n + (2 * 16)), R2(n + 16), R2(n + (3 * 16))
+#define R6(n) R4(n), R4(n + (2 * 4)), R4(n + 4), R4(n + (3 * 4))
+            R6(0), R6(2), R6(1), R6(3)
+#undef R6
+#undef R4
+#undef R2
+        };
+        return table[byte];
     }
 }
 
@@ -52,21 +61,10 @@ namespace BitTorrent::LT
         const char *bitsData = bits.data();
         const int dataLength = (bits.size() + 7) / 8;
 
-        if (dataLength <= STACK_ALLOC_SIZE)
-        {
-            // fast path for small bitfields
-            char tmp[STACK_ALLOC_SIZE];  // uninitialized for faster allocation
-            for (int i = 0; i < dataLength; ++i)
-                tmp[i] = reverseByte(bitsData[i]);
-
-            return QBitArray::fromBits(tmp, bits.size());
-        }
-
-        // slow path for big bitfields
-        auto tmp = std::make_unique<char []>(dataLength);
+        QVarLengthArray<char, STACK_ALLOC_SIZE> tmp(dataLength);
         for (int i = 0; i < dataLength; ++i)
             tmp[i] = reverseByte(bitsData[i]);
 
-        return QBitArray::fromBits(tmp.get(), bits.size());
+        return QBitArray::fromBits(tmp.data(), tmp.size());
     }
 }
