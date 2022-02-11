@@ -29,6 +29,8 @@
 
 #include "path.h"
 
+#include <algorithm>
+
 #include <QDataStream>
 #include <QDir>
 #include <QFileInfo>
@@ -44,8 +46,20 @@ const Qt::CaseSensitivity CASE_SENSITIVITY = Qt::CaseSensitive;
 
 const int PATHLIST_TYPEID = qRegisterMetaType<PathList>("PathList");
 
+namespace
+{
+    QString cleanPath(const QString &path)
+    {
+        const bool hasSeparator = std::any_of(path.cbegin(), path.cend(), [](const QChar c)
+        {
+            return (c == u'/') || (c == u'\\');
+        });
+        return hasSeparator ? QDir::cleanPath(path) : path;
+    }
+}
+
 Path::Path(const QString &pathStr)
-    : m_pathStr {QDir::cleanPath(pathStr)}
+    : m_pathStr {cleanPath(pathStr)}
 {
 }
 
