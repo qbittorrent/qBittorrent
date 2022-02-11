@@ -65,6 +65,6 @@ namespace BitTorrent::LT
         for (int i = 0; i < dataLength; ++i)
             tmp[i] = reverseByte(bitsData[i]);
 
-        return QBitArray::fromBits(tmp.data(), tmp.size());
+        return QBitArray::fromBits(tmp.data(), bits.size());
     }
 }
