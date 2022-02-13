@@ -288,7 +288,9 @@ Path operator/(const Path &lhs, const Path &rhs)
     if (lhs.isEmpty())
         return rhs;
 
-    return Path(lhs.m_pathStr + QLatin1Char('/') + rhs.m_pathStr);
+    return Path::createUnchecked(rhs.isAbsolute()
+        ? QString(lhs.m_pathStr + rhs.m_pathStr)
+        : QString(lhs.m_pathStr + QLatin1Char('/') + rhs.m_pathStr));
 }
 
 Path operator+(const Path &lhs, const QString &rhs)
