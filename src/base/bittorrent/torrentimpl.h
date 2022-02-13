@@ -272,7 +272,7 @@ namespace BitTorrent
         void adjustStorageLocation();
         void moveStorage(const Path &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
-        void applyFirstLastPiecePriority(bool enabled, const QVector<DownloadPriority> &updatedFilePrio = {});
+        void applyFirstLastPiecePriority(bool enabled);
 
         void prepareResumeData(const lt::add_torrent_params &params);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
@@ -286,6 +286,7 @@ namespace BitTorrent
         TorrentInfo m_torrentInfo;
         PathList m_filePaths;
         QHash<lt::file_index_t, int> m_indexMap;
+        QVector<DownloadPriority> m_filePriorities;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_infoHash;
