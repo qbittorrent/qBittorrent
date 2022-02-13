@@ -81,12 +81,19 @@ bool Path::isEmpty() const
 
 bool Path::isAbsolute() const
 {
-    return QDir::isAbsolutePath(m_pathStr);
+    // https://doc.qt.io/qt-6/qdir.html#isAbsolutePath
+    // QDir::isAbsolutePath() is heavy as it requires a lot of internal data
+
+    if (isEmpty())
+        return false;
+
+    const QChar firstChar = m_pathStr[0];
+    return (firstChar == u':') || (firstChar == u'/');
 }
 
 bool Path::isRelative() const
 {
-    return QDir::isRelativePath(m_pathStr);
+    return !isAbsolute();
 }
 
 bool Path::exists() const
