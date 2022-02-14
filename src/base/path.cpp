@@ -155,7 +155,9 @@ QString Path::extension() const
 
 bool Path::hasExtension(const QString &ext) const
 {
-    return (extension().compare(ext, Qt::CaseInsensitive) == 0);
+    Q_ASSERT(ext.startsWith(QLatin1Char('.')));
+
+    return m_pathStr.endsWith(ext, Qt::CaseInsensitive);
 }
 
 bool Path::hasAncestor(const Path &other) const

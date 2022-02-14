@@ -141,7 +141,7 @@ namespace
         if (themePath.filename() == CONFIG_FILE_NAME)
             return std::make_unique<FolderThemeSource>(themePath);
 
-        if ((themePath.extension() == QLatin1String(".qbtheme"))
+        if ((themePath.hasExtension(QLatin1String(".qbtheme")))
                 && QResource::registerResource(themePath.data(), QLatin1String("/uitheme")))
         {
             return std::make_unique<QRCThemeSource>();
