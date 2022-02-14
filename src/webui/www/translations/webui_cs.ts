@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="cs" version="2.1">
+<TS version="2.1" language="cs">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Původní autor</translation>
     </message>
 </context>
 <context>
@@ -1466,7 +1466,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP adresa hlášená trackerům (vyžaduje restart)</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1474,7 +1474,7 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Zamezení falšování požadavků na straně serveru (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Přidání peerů...</translation>
     </message>
 </context>
 <context>
@@ -2777,11 +2777,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Výsledky</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>zobrazeno</translation>
     </message>
 </context>
 <context>
@@ -3026,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Mascot</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>ikona qBittorrent</translation>
     </message>
 </context>
 <context>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="sk" version="2.1">
+<TS version="2.1" language="sk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -353,15 +353,15 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Port používaný pre prichádzajúce pripojenia musí byť medzi 0 a 65535</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Pôvodný autor</translation>
     </message>
 </context>
 <context>
@@ -565,7 +565,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS čítačka</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -1318,15 +1318,15 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Hašovanie vlákien (vyžaduje libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Zlúčiť čítanie a zápis (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation type="unfinished" />
+        <translation>Percento prahovej hodnoty fluktuácie partnerov:</translation>
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1338,7 +1338,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Sieťové rozhranie:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1358,7 +1358,7 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation type="unfinished" />
+        <translation>Percentuálny podiel odpojenia obratu partnerov:</translation>
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
@@ -1366,7 +1366,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="unfinished" />
+        <translation>Maximálny počet súbežných oznámení HTTP (vyžaduje libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1374,15 +1374,15 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval odpojenia obratu partnerov:</translation>
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation>Voliteľná IP adresa, na ktorú sa má viazať:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation type="unfinished" />
+        <translation>Zakázať pripojenie k partnerom na privilegovaných portoch:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1394,47 +1394,47 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Disková vyrovnávacia pamäť (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Interval vypršania platnosti diskovej vyrovnávacej pamäte (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation type="unfinished" />
+        <translation>Overenie certifikátu sledovania HTTPS:</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Protokol partnerského pripojenia:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="unfinished" />
+        <translation>Podpora internacionalizovaného názvu domény (IDN) (vyžaduje libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Rozloženie obsahu torrentu:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Vytvorte podpriečinok</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originál</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Nevytvárajte podpriečinok</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Typ služby (ToS) pre pripojenia k rovesníkom</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Odchádzajúce pripojenia za sekundu:</translation>
     </message>
     <message>
         <source>Random</source>
@@ -1442,39 +1442,39 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Torrent ID</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Znova oznámiť všetkým sledovačom pri zmene IP alebo portu:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Zoznam dôveryhodných serverov proxy:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Povoliť podporu reverzného servera proxy</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>%J: Info hash v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>%I: Info hash v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP adresa nahlásená sledovačom (vyžaduje reštart):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Nastavte na 0, aby váš systém vybral nepoužívaný port</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation type="unfinished" />
+        <translation>Zmiernenie falšovania požiadaviek na strane servera (SSRF):</translation>
     </message>
 </context>
 <context>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Pridať rovesníkov...</translation>
     </message>
 </context>
 <context>
@@ -1758,19 +1758,19 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (nasadené pre %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Info Hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -1797,11 +1797,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Iné...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Tu zadajte priečinok</translation>
     </message>
 </context>
 <context>
@@ -1986,11 +1986,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kontrola (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Kontrola (0)</translation>
     </message>
 </context>
 <context>
@@ -2332,11 +2332,11 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (nasadené pre %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Sťahovanie metadát</translation>
     </message>
 </context>
 <context>
@@ -2536,11 +2536,11 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
@@ -2765,11 +2765,11 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Upozornenie</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Zväčšite šírku okna pre zobrazenie ďalších filtrov</translation>
     </message>
     <message>
         <source>to</source>
@@ -2777,7 +2777,7 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Výsledky</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3030,7 +3030,7 @@
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Ikona qBittorrentu</translation>
     </message>
 </context>
 <context>
@@ -3345,7 +3345,7 @@
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>Sťahovanie kanálov RSS</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>

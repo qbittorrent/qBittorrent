@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="fr" version="2.1">
+<TS version="2.1" language="fr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -970,7 +970,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation>KiB/s</translation>
+        <translation>Kio/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -982,7 +982,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation>Supprimer ultérieurement les fichers .torrent</translation>
+        <translation>Supprimer les fichiers .torrent par la suite</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1370,7 +1370,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation>min</translation>
+        <translation> min</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Ajouter des pairs...</translation>
     </message>
 </context>
 <context>
@@ -2885,7 +2885,7 @@
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Liste des pairs à ajouter (une IP par ligne)</translation>
+        <translation>Liste des pairs à ajouter (une IP par ligne) :</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2950,7 +2950,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Suivi des bugs : </translation>
+        <translation>Suivi des bogues :</translation>
     </message>
     <message>
         <source>About</source>
@@ -3026,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascotte de qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Icône de qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -3265,7 +3265,7 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation>Exemple :</translation>
+        <translation>Exemple : </translation>
     </message>
     <message>
         <source>Add new rule...</source>
@@ -3297,7 +3297,7 @@
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Trois types d'intervalles d'épisodes sont pris en charge :</translation>
+        <translation>Trois types d'intervalles d'épisodes sont pris en charge : </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3411,7 +3411,7 @@
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation>Le filtre d'épisodes intelligent vérifiera le numéro de l'épisode afin d'éviter le téléchargement de doublons.
-Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date supportent également - comme séparateur) </translation>
+Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date supportent également - comme séparateur)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="et" version="2.1">
+<TS version="2.1" language="et">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1030,7 +1030,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished" />
+        <translation>Määra kiiruse limiit partneritele LAN'is</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -3150,7 +3150,7 @@
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation>Uus tellimus</translation>
     </message>
     <message>
         <source>Update</source>
@@ -3178,7 +3178,7 @@
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>Uus tellimus...</translation>
     </message>
     <message>
         <source>Download torrent</source>

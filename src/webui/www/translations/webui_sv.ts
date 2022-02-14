@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="sv" version="2.1">
+<TS version="2.1" language="sv">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Lägg till jämlikar...</translation>
     </message>
 </context>
 <context>
@@ -1698,7 +1698,7 @@
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Slutfördes:</translation>
+        <translation>Slutförd den:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -2064,7 +2064,7 @@
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Slutfördes</translation>
+        <translation>Slutförd den</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -3026,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-maskot</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-ikon</translation>
     </message>
 </context>
 <context>

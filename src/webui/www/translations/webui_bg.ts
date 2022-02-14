@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="bg" version="2.1">
+<TS version="2.1" language="bg">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1554,7 +1554,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Добави участници...</translation>
     </message>
 </context>
 <context>
@@ -3027,11 +3027,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Талисман</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent икона</translation>
     </message>
 </context>
 <context>
