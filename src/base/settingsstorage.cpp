@@ -70,7 +70,7 @@ namespace
 SettingsStorage *SettingsStorage::m_instance = nullptr;
 
 SettingsStorage::SettingsStorage()
-    : m_data {TransactionalSettings(QLatin1String("qBittorrent")).read()}
+    : m_data {TransactionalSettings(u"qBittorrent"_qs).read()}
 {
     m_timer.setSingleShot(true);
     m_timer.setInterval(5 * 1000);
@@ -104,7 +104,7 @@ bool SettingsStorage::save()
     const QWriteLocker locker(&m_lock);  // guard for `m_dirty` too
     if (!m_dirty) return true;
 
-    const TransactionalSettings settings(QLatin1String("qBittorrent"));
+    const TransactionalSettings settings(u"qBittorrent"_qs);
     if (!settings.write(m_data))
     {
         m_timer.start();
@@ -157,7 +157,7 @@ QVariantHash TransactionalSettings::read() const
 {
     QVariantHash res;
 
-    const Path newPath = deserialize(m_name + QLatin1String("_new"), res);
+    const Path newPath = deserialize(m_name + u"_new", res);
     if (!newPath.isEmpty())
     { // "_new" file is NOT empty
         // This means that the PC closed either due to power outage
@@ -169,7 +169,7 @@ QVariantHash TransactionalSettings::read() const
             , Log::WARNING);
 
         QString finalPathStr = newPath.data();
-        const int index = finalPathStr.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+        const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
         finalPathStr.remove(index, 4);
 
         const Path finalPath {finalPathStr};
@@ -191,7 +191,7 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     // between deleting the file and recreating it. This is a safety measure.
     // Write everything to qBittorrent_new.ini/qBittorrent_new.conf and if it succeeds
     // replace qBittorrent.ini/qBittorrent.conf with it.
-    const Path newPath = serialize(m_name + QLatin1String("_new"), data);
+    const Path newPath = serialize(m_name + u"_new", data);
     if (newPath.isEmpty())
     {
         Utils::Fs::removeFile(newPath);
@@ -199,7 +199,7 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     }
 
     QString finalPathStr = newPath.data();
-    const int index = finalPathStr.lastIndexOf("_new", -1, Qt::CaseInsensitive);
+    const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
     finalPathStr.remove(index, 4);
 
     const Path finalPath {finalPathStr};
