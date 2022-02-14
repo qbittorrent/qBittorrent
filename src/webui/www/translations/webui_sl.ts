@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="sl" version="2.1">
+<TS version="2.1" language="sl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Dodaj soležnike ...</translation>
     </message>
 </context>
 <context>
@@ -3018,7 +3018,7 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Avtorji</translation>
     </message>
     <message>
         <source>France</source>

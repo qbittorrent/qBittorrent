@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ko" version="2.1">
+<TS version="2.1" language="ko">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>사용되지 않는 카테고리 제거</translation>
+        <translation>사용하지 않는 범주 제거</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>피어 추가...</translation>
     </message>
 </context>
 <context>
@@ -2347,7 +2347,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>카테고리</translation>
+        <translation>범주</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2737,7 +2737,7 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation>모든 카테고리</translation>
+        <translation>모든 범주</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -3026,11 +3026,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 마스코트</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent 아이콘</translation>
     </message>
 </context>
 <context>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="tr" version="2.1">
+<TS version="2.1" language="tr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1442,7 +1442,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation>%K: Torrent Kimliği</translation>
+        <translation>%K: Torrent kimliği</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -2544,7 +2544,7 @@
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>Torrent Kimliği</translation>
+        <translation>Torrent kimliği</translation>
     </message>
 </context>
 <context>

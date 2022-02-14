@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ru" version="2.1">
+<TS version="2.1" language="ru">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -1106,7 +1106,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Задействовать режим суперсида для торрента</translation>
+        <translation>Включить режим суперсида для торрента</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1398,7 +1398,7 @@
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Интервал очистки дискового кэша (требуется libtorrent &gt;= 2.0):</translation>
+        <translation>Интервал очистки дискового кэша (требуется libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1990,7 +1990,7 @@
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation>Проверяется (0)</translation>
+        <translation>Проверяются (0)</translation>
     </message>
 </context>
 <context>
@@ -3229,7 +3229,7 @@
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation>Фильтр должен заканчиваться точкой с запятой</translation>
+        <translation>Фильтр должен оканчиваться точкой с запятой</translation>
     </message>
     <message>
         <source>? to match any single character</source>

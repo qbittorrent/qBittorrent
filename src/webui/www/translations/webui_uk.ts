@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="uk" version="2.1">
+<TS version="2.1" language="uk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -32,7 +32,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation>Оригінал</translation>
+        <translation>Як задано</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -357,7 +357,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Порт для вхідних з'єднань повинен бути між 0 та 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -1406,7 +1406,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Протокол підключення пірів:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1553,7 +1553,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Додати пірів...</translation>
     </message>
 </context>
 <context>
@@ -2544,7 +2544,7 @@
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>Торрент ID</translation>
+        <translation>ID торрента</translation>
     </message>
 </context>
 <context>

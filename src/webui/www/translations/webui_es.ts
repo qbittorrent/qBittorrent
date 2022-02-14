@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="es" version="2.1">
+<TS version="2.1" language="es">
 <context>
     <name>AboutDlg</name>
     <message>
