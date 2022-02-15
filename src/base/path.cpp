@@ -149,13 +149,13 @@ QString Path::extension() const
 
     const int slashIndex = m_pathStr.lastIndexOf(QLatin1Char('/'));
     const auto filename = QStringView(m_pathStr).mid(slashIndex + 1);
-    const int dotIndex = filename.lastIndexOf(QLatin1Char('.'));
+    const int dotIndex = filename.lastIndexOf(QLatin1Char('.'), -2);
     return ((dotIndex == -1) ? QString() : filename.mid(dotIndex).toString());
 }
 
 bool Path::hasExtension(const QString &ext) const
 {
-    Q_ASSERT(ext.startsWith(QLatin1Char('.')));
+    Q_ASSERT(ext.startsWith(QLatin1Char('.')) && (ext.size() >= 2));
 
     return m_pathStr.endsWith(ext, Qt::CaseInsensitive);
 }
@@ -181,6 +181,12 @@ Path Path::relativePathOf(const Path &childPath) const
 void Path::removeExtension()
 {
     m_pathStr.chop(extension().size());
+}
+
+void Path::removeExtension(const QString &ext)
+{
+    if (hasExtension(ext))
+        m_pathStr.chop(ext.size());
 }
 
 QString Path::data() const
