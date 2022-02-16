@@ -140,6 +140,15 @@ namespace
         }
     }
 
+    std::optional<QString> getOptionalString(const StringMap &params, const QString &name)
+    {
+        const auto it = params.constFind(name);
+        if (it == params.cend())
+            return std::nullopt;
+
+        return it.value();
+    }
+
     QJsonArray getStickyTrackers(const BitTorrent::Torrent *const torrent)
     {
         int seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, leechesDHT = 0, leechesPeX = 0, leechesLSD = 0;
@@ -255,19 +264,23 @@ namespace
 void TorrentsController::infoAction()
 {
     const QString filter {params()["filter"]};
-    const QString category {params()["category"]};
-    const QString tag {params()["tag"]};
+    const std::optional<QString> category = getOptionalString(params(), QLatin1String("category"));
+    const std::optional<QString> tag = getOptionalString(params(), QLatin1String("tag"));
     const QString sortedColumn {params()["sort"]};
     const bool reverse {parseBool(params()["reverse"]).value_or(false)};
     int limit {params()["limit"].toInt()};
     int offset {params()["offset"].toInt()};
     const QStringList hashes {params()["hashes"].split('|', Qt::SkipEmptyParts)};
 
-    TorrentIDSet idSet;
-    for (const QString &hash : hashes)
-        idSet.insert(BitTorrent::TorrentID::fromString(hash));
+    std::optional<TorrentIDSet> idSet;
+    if (!hashes.isEmpty())
+    {
+        idSet = TorrentIDSet();
+        for (const QString &hash : hashes)
+            idSet->insert(BitTorrent::TorrentID::fromString(hash));
+    }
 
-    const TorrentFilter torrentFilter(filter, (hashes.isEmpty() ? TorrentFilter::AnyID : idSet), category, tag);
+    const TorrentFilter torrentFilter {filter, idSet, category, tag};
     QVariantList torrentList;
     for (const BitTorrent::Torrent *torrent : asConst(BitTorrent::Session::instance()->torrents()))
     {

@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <optional>
+
 #include <QSet>
 #include <QString>
 
@@ -61,9 +63,9 @@ public:
     };
 
     // These mean any permutation, including no category / tag.
-    static const QString AnyCategory;
-    static const TorrentIDSet AnyID;
-    static const QString AnyTag;
+    static const std::optional<QString> AnyCategory;
+    static const std::optional<TorrentIDSet> AnyID;
+    static const std::optional<QString> AnyTag;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -80,15 +82,16 @@ public:
 
     TorrentFilter() = default;
     // category & tags: pass empty string for uncategorized / untagged torrents.
-    // Pass null string (QString()) to disable filtering (i.e. all torrents).
-    TorrentFilter(Type type, const TorrentIDSet &idSet = AnyID, const QString &category = AnyCategory, const QString &tag = AnyTag);
-    TorrentFilter(const QString &filter, const TorrentIDSet &idSet = AnyID, const QString &category = AnyCategory, const QString &tags = AnyTag);
+    TorrentFilter(Type type, const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory, const std::optional<QString> &tag = AnyTag);
+    TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet = AnyID
+            , const std::optional<QString> &category = AnyCategory, const std::optional<QString> &tags = AnyTag);
 
     bool setType(Type type);
     bool setTypeByName(const QString &filter);
-    bool setTorrentIDSet(const TorrentIDSet &idSet);
-    bool setCategory(const QString &category);
-    bool setTag(const QString &tag);
+    bool setTorrentIDSet(const std::optional<TorrentIDSet> &idSet);
+    bool setCategory(const std::optional<QString> &category);
+    bool setTag(const std::optional<QString> &tag);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -99,7 +102,7 @@ private:
     bool matchTag(const BitTorrent::Torrent *torrent) const;
 
     Type m_type {All};
-    QString m_category;
-    QString m_tag;
-    TorrentIDSet m_idSet;
+    std::optional<QString> m_category;
+    std::optional<QString> m_tag;
+    std::optional<TorrentIDSet> m_idSet;
 };

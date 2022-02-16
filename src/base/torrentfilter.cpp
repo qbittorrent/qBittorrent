@@ -31,9 +31,9 @@
 #include "bittorrent/infohash.h"
 #include "bittorrent/torrent.h"
 
-const QString TorrentFilter::AnyCategory;
-const TorrentIDSet TorrentFilter::AnyID {{}};
-const QString TorrentFilter::AnyTag;
+const std::optional<QString> TorrentFilter::AnyCategory;
+const std::optional<TorrentIDSet> TorrentFilter::AnyID;
+const std::optional<QString> TorrentFilter::AnyTag;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -50,7 +50,8 @@ const TorrentFilter TorrentFilter::ErroredTorrent(TorrentFilter::Errored);
 
 using BitTorrent::Torrent;
 
-TorrentFilter::TorrentFilter(const Type type, const TorrentIDSet &idSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> &idSet
+                             , const std::optional<QString> &category, const std::optional<QString> &tag)
     : m_type(type)
     , m_category(category)
     , m_tag(tag)
@@ -58,7 +59,8 @@ TorrentFilter::TorrentFilter(const Type type, const TorrentIDSet &idSet, const Q
 {
 }
 
-TorrentFilter::TorrentFilter(const QString &filter, const TorrentIDSet &idSet, const QString &category, const QString &tag)
+TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
+                             , const std::optional<QString> &category, const std::optional<QString> &tag)
     : m_type(All)
     , m_category(category)
     , m_tag(tag)
@@ -110,7 +112,7 @@ bool TorrentFilter::setTypeByName(const QString &filter)
     return setType(type);
 }
 
-bool TorrentFilter::setTorrentIDSet(const TorrentIDSet &idSet)
+bool TorrentFilter::setTorrentIDSet(const std::optional<TorrentIDSet> &idSet)
 {
     if (m_idSet != idSet)
     {
@@ -121,12 +123,9 @@ bool TorrentFilter::setTorrentIDSet(const TorrentIDSet &idSet)
     return false;
 }
 
-bool TorrentFilter::setCategory(const QString &category)
+bool TorrentFilter::setCategory(const std::optional<QString> &category)
 {
-    // QString::operator==() doesn't distinguish between empty and null strings.
-    if ((m_category != category)
-            || (m_category.isNull() && !category.isNull())
-            || (!m_category.isNull() && category.isNull()))
+    if (m_category != category)
     {
         m_category = category;
         return true;
@@ -135,12 +134,9 @@ bool TorrentFilter::setCategory(const QString &category)
     return false;
 }
 
-bool TorrentFilter::setTag(const QString &tag)
+bool TorrentFilter::setTag(const std::optional<QString> &tag)
 {
-    // QString::operator==() doesn't distinguish between empty and null strings.
-    if ((m_tag != tag)
-        || (m_tag.isNull() && !tag.isNull())
-        || (!m_tag.isNull() && tag.isNull()))
+    if (m_tag != tag)
     {
         m_tag = tag;
         return true;
@@ -196,23 +192,28 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
 {
-    if (m_idSet == AnyID) return true;
+    if (!m_idSet)
+        return true;
 
-    return m_idSet.contains(torrent->id());
+    return m_idSet->contains(torrent->id());
 }
 
 bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const
 {
-    if (m_category.isNull()) return true;
+    if (!m_category)
+        return true;
 
-    return (torrent->belongsToCategory(m_category));
+    return (torrent->belongsToCategory(*m_category));
 }
 
 bool TorrentFilter::matchTag(const BitTorrent::Torrent *const torrent) const
 {
-    // Empty tag is a special value to indicate we're filtering for untagged torrents.
-    if (m_tag.isNull()) return true;
-    if (m_tag.isEmpty()) return torrent->tags().isEmpty();
+    if (!m_tag)
+        return true;
 
-    return (torrent->hasTag(m_tag));
+    // Empty tag is a special value to indicate we're filtering for untagged torrents.
+    if (m_tag->isEmpty())
+        return torrent->tags().isEmpty();
+
+    return torrent->hasTag(*m_tag);
 }
