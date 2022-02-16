@@ -4416,6 +4416,7 @@ void Session::startUpTorrents()
     const QVector<TorrentID> torrents = startupStorage->registeredTorrents();
     int resumedTorrentsCount = 0;
     QVector<TorrentID> queue;
+    QSet<QString> recoveredCategories;
 #ifdef QBT_USES_LIBTORRENT2
     const QSet<TorrentID> indexedTorrents {torrents.cbegin(), torrents.cend()};
     QSet<TorrentID> skippedIDs;
@@ -4512,6 +4513,43 @@ void Session::startUpTorrents()
 
         if (needStore)
              m_resumeDataStorage->store(torrentID, resumeData);
+
+        const QString category = resumeData.category;
+        bool isCategoryRecovered = recoveredCategories.contains(category);
+        if (!category.isEmpty() && (isCategoryRecovered || !m_categories.contains(category)))
+        {
+            if (!isCategoryRecovered)
+            {
+                if (addCategory(category))
+                {
+                    recoveredCategories.insert(category);
+                    isCategoryRecovered = true;
+                    LogMsg(tr("Inconsistent data is detected. Category '%1' is assigned to some torrent(s) but it doesn't exist in the configuration file."
+                              " Its settings will be reset to default.").arg(category), Log::WARNING);
+                }
+                else
+                {
+                    resumeData.category.clear();
+                    LogMsg(tr("Inconsistent data is detected. Invalid category '%1' is assigned to torrent '%2'.")
+                           .arg(category, torrentID.toString()), Log::WARNING);
+                }
+            }
+
+            // We should check isCategoryRecovered again since the category
+            // can be just recovered by the code above
+            if (isCategoryRecovered && resumeData.useAutoTMM)
+            {
+                const Path storageLocation {resumeData.ltAddTorrentParams.save_path};
+                if ((storageLocation != categorySavePath(resumeData.category)) && (storageLocation != categoryDownloadPath(resumeData.category)))
+                {
+                    resumeData.useAutoTMM = false;
+                    resumeData.savePath = storageLocation;
+                    resumeData.downloadPath = {};
+                    LogMsg(tr("Torrent '%1' is assigned the recovered category '%2' whose paths don't match the torrent's path."
+                              " Torrent is switched to \"Manual\" mode.").arg(torrentID.toString(), category), Log::WARNING);
+                }
+            }
+        }
 
         qDebug() << "Starting up torrent" << torrentID.toString() << "...";
         if (!loadTorrent(resumeData))
