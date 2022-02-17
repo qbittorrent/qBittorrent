@@ -40,7 +40,7 @@ endif()
 
 # force variable type so that it always shows up in ccmake/cmake-gui frontends
 set_property(CACHE LibtorrentRasterbar_DIR PROPERTY TYPE PATH)
-find_package(Boost ${minBoostVersion} REQUIRED)
+find_package(Boost ${minBoostVersion} REQUIRED COMPONENTS system)
 find_package(OpenSSL ${minOpenSSLVersion} REQUIRED)
 find_package(ZLIB ${minZlibVersion} REQUIRED)
 if (QT6)
