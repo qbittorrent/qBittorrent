@@ -5,11 +5,15 @@ repos:
         name: Check newline characters in <translation> tag
         entry: .github/workflows/check_translation_tag.py
         language: script
+        exclude: |
+          (?x)^(
+            src/lang/.*
+          )$
         types_or:
           - ts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v4.0.1
+    rev: v4.1.0
     hooks:
     - id: check-json
       name: Check JSON files
