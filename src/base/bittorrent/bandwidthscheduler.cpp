@@ -56,12 +56,12 @@ void BandwidthScheduler::start()
 
 bool BandwidthScheduler::isTimeForAlternative() const
 {
-    const Preferences *const pref = Preferences::instance();
+    const Preferences pref;
 
-    QTime start = pref->getSchedulerStartTime();
-    QTime end = pref->getSchedulerEndTime();
+    QTime start = pref.getSchedulerStartTime();
+    QTime end = pref.getSchedulerEndTime();
     const QTime now = QTime::currentTime();
-    const Scheduler::Days schedulerDays = pref->getSchedulerDays();
+    const Scheduler::Days schedulerDays = pref.getSchedulerDays();
     const int day = QDate::currentDate().dayOfWeek();
     bool alternative = false;
 

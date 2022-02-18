@@ -92,17 +92,8 @@ class Preferences : public QObject
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(Preferences)
 
-    Preferences();
-
-    static Preferences *m_instance;
-
-signals:
-    void changed();
-
 public:
-    static void initInstance();
-    static void freeInstance();
-    static Preferences *instance();
+    Preferences() = default;
 
     // General options
     QString getLocale() const;
@@ -404,6 +395,9 @@ public:
     void setSpeedWidgetPeriod(int period);
     bool getSpeedWidgetGraphEnable(int id) const;
     void setSpeedWidgetGraphEnable(int id, bool enable);
+
+signals:
+    void changed();
 
 public slots:
     void setStatusFilterState(bool checked);

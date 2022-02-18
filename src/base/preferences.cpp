@@ -83,27 +83,6 @@ namespace
 #endif
 }
 
-Preferences *Preferences::m_instance = nullptr;
-
-Preferences::Preferences() = default;
-
-Preferences *Preferences::instance()
-{
-    return m_instance;
-}
-
-void Preferences::initInstance()
-{
-    if (!m_instance)
-        m_instance = new Preferences;
-}
-
-void Preferences::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
 // General options
 QString Preferences::getLocale() const
 {
