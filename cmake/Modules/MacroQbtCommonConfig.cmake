@@ -33,14 +33,18 @@ macro(qbt_common_config)
 
     if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
         target_compile_definitions(qbt_common_cfg INTERFACE
-            NTDDI_VERSION=0x06010000
-            _WIN32_WINNT=0x0601
-            _WIN32_IE=0x0601
             WIN32_LEAN_AND_MEAN
             NOMINMAX
             UNICODE
             _UNICODE
         )
+        if (NOT QT6)
+            target_compile_definitions(qbt_common_cfg INTERFACE
+                NTDDI_VERSION=0x06010000
+                _WIN32_WINNT=0x0601
+                _WIN32_IE=0x0601
+            )
+        endif()
     endif()
 
     if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
