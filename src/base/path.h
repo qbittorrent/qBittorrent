@@ -58,6 +58,7 @@ public:
     QString extension() const;
     bool hasExtension(const QString &ext) const;
     void removeExtension();
+    void removeExtension(const QString &ext);
 
     bool hasAncestor(const Path &other) const;
     Path relativePathOf(const Path &childPath) const;
