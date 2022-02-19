@@ -53,6 +53,6 @@ void asConst(const T &&) = delete;
 // https://doc.qt.io/qt-6/qstring.html#operator-22-22_qs
 inline QString operator"" _qs(const char16_t *str, const std::size_t size)
 {
-    return QString::fromRawData(reinterpret_cast<const QChar *>(str), size);
+    return QString::fromRawData(reinterpret_cast<const QChar *>(str), static_cast<int>(size));
 }
 #endif
