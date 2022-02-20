@@ -62,6 +62,7 @@ public:
 
     bool hasAncestor(const Path &other) const;
     Path relativePathOf(const Path &childPath) const;
+    const int depth() const;
 
     QString data() const;
     QString toString() const;
@@ -76,6 +77,7 @@ public:
     static Path findRootFolder(const PathList &filePaths);
     static void stripRootFolder(PathList &filePaths);
     static void addRootFolder(PathList &filePaths, const Path &rootFolder);
+    static const int depth(const PathList &filePaths);
 
     friend Path operator/(const Path &lhs, const Path &rhs);
     friend Path operator+(const Path &lhs, const QString &rhs);

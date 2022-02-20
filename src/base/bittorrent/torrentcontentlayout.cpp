@@ -48,17 +48,27 @@ BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const PathList 
             : TorrentContentLayout::Subfolder);
 }
 
-void BitTorrent::applyContentLayout(PathList &filePaths, const BitTorrent::TorrentContentLayout contentLayout, const Path &rootFolder)
+void BitTorrent::applyContentLayout(PathList &filePaths, const BitTorrent::TorrentContentLayout contentLayout, const PathList &infoFilePaths)
 {
     Q_ASSERT(!filePaths.isEmpty());
 
     switch (contentLayout)
     {
     case TorrentContentLayout::Subfolder:
-        if (Path::findRootFolder(filePaths).isEmpty())
-            Path::addRootFolder(filePaths, !rootFolder.isEmpty() ? rootFolder : removeExtension(filePaths.at(0)));
-        break;
+    {
+        const Path paramsRootFolder = Path::findRootFolder(filePaths);
+        const Path infoRootFolder = Path::findRootFolder(infoFilePaths);
 
+        if (paramsRootFolder.isEmpty())
+        {
+            Path::addRootFolder(filePaths, !infoRootFolder.isEmpty() ? infoRootFolder : removeExtension(filePaths.at(0)));
+        }
+        else if (Path::depth(filePaths) != Path::depth(infoFilePaths))
+        {
+            Path::addRootFolder(filePaths, infoRootFolder);
+        }
+        break;
+    }
     case TorrentContentLayout::NoSubfolder:
         Path::stripRootFolder(filePaths);
         break;

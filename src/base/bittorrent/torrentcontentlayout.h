@@ -53,5 +53,5 @@ namespace BitTorrent
     }
 
     TorrentContentLayout detectContentLayout(const PathList &filePaths);
-    void applyContentLayout(PathList &filePaths, TorrentContentLayout contentLayout, const Path &rootFolder = {});
+    void applyContentLayout(PathList &filePaths, TorrentContentLayout contentLayout, const PathList &infoFilePaths = {});
 }

@@ -2236,7 +2236,7 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         const TorrentContentLayout contentLayout = ((loadTorrentParams.contentLayout == TorrentContentLayout::Original)
                                                     ? detectContentLayout(torrentInfo.filePaths()) : loadTorrentParams.contentLayout);
         PathList filePaths = (!addTorrentParams.filePaths.isEmpty() ? addTorrentParams.filePaths : torrentInfo.filePaths());
-        applyContentLayout(filePaths, contentLayout, Path::findRootFolder(torrentInfo.filePaths()));
+        applyContentLayout(filePaths, contentLayout, torrentInfo.filePaths());
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly

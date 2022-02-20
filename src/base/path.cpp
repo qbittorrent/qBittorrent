@@ -199,6 +199,12 @@ QString Path::toString() const
     return QDir::toNativeSeparators(m_pathStr);
 }
 
+const int Path::depth() const
+{
+    const QList<QStringView> pathItems = QStringView(m_pathStr).split(u'/', Qt::SkipEmptyParts);
+    return pathItems.count();
+}
+
 Path &Path::operator/=(const Path &other)
 {
     *this = *this / other;
@@ -282,6 +288,18 @@ void Path::addRootFolder(PathList &filePaths, const Path &rootFolder)
 
     for (Path &filePath : filePaths)
         filePath = rootFolder / filePath;
+}
+
+const int Path::depth(const PathList &filePaths)
+{
+    int maxDepth = 0;
+    for (const Path &filePath : filePaths)
+    {
+        int depth = filePath.depth();
+        if (depth > maxDepth)
+            maxDepth = depth;
+    }
+    return maxDepth;
 }
 
 Path Path::createUnchecked(const QString &pathStr)

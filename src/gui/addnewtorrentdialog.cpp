@@ -546,7 +546,7 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
     const auto contentLayout = ((index == 0)
                                 ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
                                 : static_cast<BitTorrent::TorrentContentLayout>(index));
-    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
+    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, m_torrentInfo.filePaths());
     m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
     m_contentModel->model()->updateFilesPriorities(filePriorities);
 
@@ -908,7 +908,7 @@ void AddNewTorrentDialog::setupTreeview()
                                     : static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
         if (m_torrentParams.filePaths.isEmpty())
             m_torrentParams.filePaths = m_torrentInfo.filePaths();
-        BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
+        BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, m_torrentInfo.filePaths());
         // List files in torrent
         m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
