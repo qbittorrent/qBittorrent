@@ -568,7 +568,7 @@ void Session::setDHTEnabled(bool enabled)
     {
         m_isDHTEnabled = enabled;
         configureDeferred();
-        LogMsg(tr("DHT support [%1]").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
+        LogMsg(tr("Distributed Hash Table (DHT) support: %1").arg(enabled ? tr("ON") : tr("OFF")), Log::INFO);
     }
 }
 
@@ -583,7 +583,7 @@ void Session::setLSDEnabled(const bool enabled)
     {
         m_isLSDEnabled = enabled;
         configureDeferred();
-        LogMsg(tr("Local Peer Discovery support [%1]").arg(enabled ? tr("ON") : tr("OFF"))
+        LogMsg(tr("Local Peer Discovery support: %1").arg(enabled ? tr("ON") : tr("OFF"))
             , Log::INFO);
     }
 }
@@ -597,7 +597,7 @@ void Session::setPeXEnabled(const bool enabled)
 {
     m_isPeXEnabled = enabled;
     if (m_wasPexEnabled != enabled)
-        LogMsg(tr("Restart is required to toggle PeX support"), Log::WARNING);
+        LogMsg(tr("Restart is required to toggle Peer Exchange (PeX) support"), Log::WARNING);
 }
 
 bool Session::isDownloadPathEnabled() const
@@ -1158,14 +1158,13 @@ void Session::initializeNativeSession()
 #endif
     m_nativeSession = new lt::session {sessionParams};
 
-    LogMsg(tr("Peer ID: ") + QString::fromStdString(peerId));
-    LogMsg(tr("HTTP User-Agent is '%1'").arg(USER_AGENT));
-    LogMsg(tr("DHT support [%1]").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    LogMsg(tr("Local Peer Discovery support [%1]").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    LogMsg(tr("PeX support [%1]").arg(isPeXEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    LogMsg(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
-    LogMsg(tr("Encryption support [%1]").arg((encryption() == 0) ? tr("ON") :
-        ((encryption() == 1) ? tr("FORCED") : tr("OFF"))), Log::INFO);
+    LogMsg(tr("Peer ID: \"%1\"").arg(QString::fromStdString(peerId)), Log::INFO);
+    LogMsg(tr("HTTP User-Agent: \"%1\"").arg(USER_AGENT), Log::INFO);
+    LogMsg(tr("Distributed Hash Table (DHT) support: %1").arg(isDHTEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Local Peer Discovery support: %1").arg(isLSDEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Peer Exchange (PeX) support: %1").arg(isPeXEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Anonymous mode: %1").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF")), Log::INFO);
+    LogMsg(tr("Encryption support: %1").arg((encryption() == 0) ? tr("ON") : ((encryption() == 1) ? tr("FORCED") : tr("OFF"))), Log::INFO);
 
     m_nativeSession->set_alert_notify([this]()
     {
@@ -1530,7 +1529,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
             }
             else
             {
-                LogMsg(tr("Could not get GUID of network interface: %1").arg(ip) , Log::WARNING);
+                LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
                 // Since we can't get the GUID, we'll pass the interface name instead.
                 // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
                 endpoints << (ip + portString);
@@ -1545,8 +1544,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 
     const QString finalEndpoints = endpoints.join(',');
     settingsPack.set_str(lt::settings_pack::listen_interfaces, finalEndpoints.toStdString());
-    LogMsg(tr("Trying to listen on: %1", "e.g: Trying to listen on: 192.168.0.1:6881")
-           .arg(finalEndpoints), Log::INFO);
+    LogMsg(tr("Trying to listen on the following list of IP addresses: \"%1\"").arg(finalEndpoints));
 
     settingsPack.set_str(lt::settings_pack::outgoing_interfaces, outgoingInterfaces.join(',').toStdString());
     m_listenInterfaceConfigured = true;
@@ -1694,26 +1692,30 @@ void Session::processShareLimits()
 
                     if ((ratio <= Torrent::MAX_RATIO) && (ratio >= ratioLimit))
                     {
+                        const QString description = tr("Torrent reached the share ratio limit.");
+                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
                         if (m_maxRatioAction == Remove)
                         {
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent."), torrentName));
                             deleteTorrent(torrent->id());
                         }
                         else if (m_maxRatioAction == DeleteFiles)
                         {
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Removed torrent and its files.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent and deleted its content."), torrentName));
                             deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
                         }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
                         {
                             torrent->pause();
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Paused.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Torrent paused."), torrentName));
                         }
                         else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
                         {
                             torrent->setSuperSeeding(true);
-                            LogMsg(tr("'%1' reached the maximum ratio you set. Enabled super seeding for it.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Super seeding enabled."), torrentName));
                         }
+
                         continue;
                     }
                 }
@@ -1733,25 +1735,28 @@ void Session::processShareLimits()
                 {
                     if ((seedingTimeInMinutes <= Torrent::MAX_SEEDING_TIME) && (seedingTimeInMinutes >= seedingTimeLimit))
                     {
+                        const QString description = tr("Torrent reached the seeding time limit.");
+                        const QString torrentName = tr("Torrent: \"%1\".").arg(torrent->name());
+
                         if (m_maxRatioAction == Remove)
                         {
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent."), torrentName));
                             deleteTorrent(torrent->id());
                         }
                         else if (m_maxRatioAction == DeleteFiles)
                         {
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Removed torrent and its files.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent and deleted its content."), torrentName));
                             deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
                         }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
                         {
                             torrent->pause();
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Paused.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Torrent paused."), torrentName));
                         }
                         else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
                         {
                             torrent->setSuperSeeding(true);
-                            LogMsg(tr("'%1' reached the maximum seeding time you set. Enabled super seeding for it.").arg(torrent->name()));
+                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Super seeding enabled."), torrentName));
                         }
                     }
                 }
@@ -1770,7 +1775,7 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
         if (const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::load(result.data); loadResult)
             addTorrent(loadResult.value(), m_downloadedTorrents.take(result.url));
         else
-            LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
+            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(loadResult.error()), Log::WARNING);
         break;
     case Net::DownloadStatus::RedirectedToMagnet:
         emit downloadFromUrlFinished(result.url);
@@ -2080,7 +2085,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
-        LogMsg(tr("Downloading '%1', please wait...", "e.g: Downloading 'xxx.torrent', please wait...").arg(source));
+        LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
         // Launch downloader
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
                                                    , this, &Session::handleDownloadFinished);
@@ -2097,7 +2102,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
     const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::loadFromFile(path);
     if (!loadResult)
     {
-       LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
+       LogMsg(tr("Failed to load torrent. Source: \"%1\". Reason: \"%2\"").arg(source, loadResult.error()), Log::WARNING);
        return false;
     }
 
@@ -2439,8 +2444,8 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const Path &fold
     const nonstd::expected<void, QString> result = torrentInfo.saveToFile(newTorrentPath);
     if (!result)
     {
-        LogMsg(tr("Couldn't export torrent metadata file '%1'. Reason: %2.")
-               .arg(newTorrentPath.toString(), result.error()), Log::WARNING);
+        LogMsg(tr("Failed to export torrent. Torrent: \"%1\". Destination: \"%2\". Reason: \"%3\"")
+               .arg(torrentInfo.name(), newTorrentPath.toString(), result.error()), Log::WARNING);
     }
 }
 
@@ -2473,7 +2478,7 @@ void Session::saveResumeData()
         const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds {30});
         if (alerts.empty())
         {
-            LogMsg(tr("Error: Aborted saving resume data for %1 outstanding torrents.").arg(QString::number(m_numResumeData))
+            LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
                 , Log::CRITICAL);
             break;
         }
@@ -2581,7 +2586,7 @@ QStringList Session::getListeningIPs() const
 
     if (!ifaceAddr.isEmpty() && !allIPv4 && !allIPv6 && configuredAddr.isNull())
     {
-        LogMsg(tr("Configured network interface address %1 isn't valid.", "Configured network interface address 124.5.158.1 isn't valid.").arg(ifaceAddr), Log::CRITICAL);
+        LogMsg(tr("The configured network address is invalid. Address: \"%1\"").arg(ifaceAddr), Log::CRITICAL);
         // Pass the invalid user configured interface name/address to libtorrent
         // in hopes that it will come online later.
         // This will not cause IP leak but allow user to reconnect the interface
@@ -2622,8 +2627,7 @@ QStringList Session::getListeningIPs() const
         // If IPs.isEmpty() it means the configured Address was not found
         if (IPs.isEmpty())
         {
-            LogMsg(tr("Can't find the configured address '%1' to listen on"
-                    , "Can't find the configured address '192.168.1.3' to listen on")
+            LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"")
                 .arg(ifaceAddr), Log::CRITICAL);
             IPs.append(ifaceAddr);
         }
@@ -2636,7 +2640,7 @@ QStringList Session::getListeningIPs() const
     if (!networkIFace.isValid())
     {
         qDebug("Invalid network interface: %s", qUtf8Printable(ifaceName));
-        LogMsg(tr("The network interface defined is invalid: %1").arg(ifaceName), Log::CRITICAL);
+        LogMsg(tr("The configured network interface is invalid. Interface: \"%1\"").arg(ifaceName), Log::CRITICAL);
         IPs.append(ifaceName);
         return IPs;
     }
@@ -2657,8 +2661,7 @@ QStringList Session::getListeningIPs() const
     // and the address should have been found
     if (IPs.isEmpty())
     {
-        LogMsg(tr("Can't find the configured address '%1' to listen on"
-                  , "Can't find the configured address '192.168.1.3' to listen on")
+        LogMsg(tr("Failed to find the configured network address to listen on. Address: \"%1\"")
             .arg(ifaceAddr), Log::CRITICAL);
         IPs.append(ifaceAddr);
     }
@@ -2926,7 +2929,7 @@ void Session::setEncryption(const int state)
     {
         m_encryption = state;
         configureDeferred();
-        LogMsg(tr("Encryption support [%1]").arg(
+        LogMsg(tr("Encryption support: %1").arg(
             state == 0 ? tr("ON") : ((state == 1) ? tr("FORCED") : tr("OFF")))
             , Log::INFO);
     }
@@ -3043,7 +3046,7 @@ void Session::setBannedIPs(const QStringList &newList)
         }
         else
         {
-            LogMsg(tr("%1 is not a valid IP address and was rejected while applying the list of banned IP addresses.")
+            LogMsg(tr("Rejected invalid IP address while applying the list of banned IP addresses. IP: \"%1\"")
                    .arg(ip)
                 , Log::WARNING);
         }
@@ -3483,7 +3486,7 @@ void Session::setAnonymousModeEnabled(const bool enabled)
     {
         m_isAnonymousModeEnabled = enabled;
         configureDeferred();
-        LogMsg(tr("Anonymous mode [%1]").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF"))
+        LogMsg(tr("Anonymous mode: %1").arg(isAnonymousModeEnabled() ? tr("ON") : tr("OFF"))
             , Log::INFO);
     }
 }
@@ -3980,7 +3983,7 @@ void Session::handleTorrentSavingModeChanged(TorrentImpl *const torrent)
 void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVector<TrackerEntry> &newTrackers)
 {
     for (const TrackerEntry &newTracker : newTrackers)
-        LogMsg(tr("Tracker '%1' was added to torrent '%2'").arg(newTracker.url, torrent->name()));
+        LogMsg(tr("Added tracker to torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), newTracker.url));
     emit trackersAdded(torrent, newTrackers);
     if (torrent->trackers().size() == newTrackers.size())
         emit trackerlessStateChanged(torrent, false);
@@ -3990,7 +3993,7 @@ void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVect
 void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QVector<TrackerEntry> &deletedTrackers)
 {
     for (const TrackerEntry &deletedTracker : deletedTrackers)
-        LogMsg(tr("Tracker '%1' was deleted from torrent '%2'").arg(deletedTracker.url, torrent->name()));
+        LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker.url));
     emit trackersRemoved(torrent, deletedTrackers);
     if (torrent->trackers().empty())
         emit trackerlessStateChanged(torrent, true);
@@ -4005,13 +4008,13 @@ void Session::handleTorrentTrackersChanged(TorrentImpl *const torrent)
 void Session::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds)
 {
     for (const QUrl &newUrlSeed : newUrlSeeds)
-        LogMsg(tr("URL seed '%1' was added to torrent '%2'").arg(newUrlSeed.toString(), torrent->name()));
+        LogMsg(tr("Added URL seed to torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), newUrlSeed.toString()));
 }
 
 void Session::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds)
 {
     for (const QUrl &urlSeed : urlSeeds)
-        LogMsg(tr("URL seed '%1' was removed from torrent '%2'").arg(urlSeed.toString(), torrent->name()));
+        LogMsg(tr("Removed URL seed from torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), urlSeed.toString()));
 }
 
 void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
@@ -4032,11 +4035,13 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 
 void Session::handleTorrentPaused(TorrentImpl *const torrent)
 {
+    LogMsg(tr("Torrent paused. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentPaused(torrent);
 }
 
 void Session::handleTorrentResumed(TorrentImpl *const torrent)
 {
+    LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentResumed(torrent);
 }
 
@@ -4047,6 +4052,7 @@ void Session::handleTorrentChecked(TorrentImpl *const torrent)
 
 void Session::handleTorrentFinished(TorrentImpl *const torrent)
 {
+    LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentFinished(torrent);
 
     qDebug("Checking if the torrent contains torrent files to download");
@@ -4067,7 +4073,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
             else
             {
                 qDebug("Caught error loading torrent");
-                LogMsg(tr("Unable to decode '%1' torrent file.").arg(torrentFullpath.toString()), Log::CRITICAL);
+                LogMsg(tr("Unable to load torrent. File: \"%1\"").arg(torrentFullpath.toString()), Log::CRITICAL);
             }
         }
     }
@@ -4112,7 +4118,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
         if (iter != m_moveStorageQueue.end())
         {
             // remove existing inactive job
-            LogMsg(tr("Cancelled moving \"%1\" from \"%2\" to \"%3\".").arg(torrent->name(), currentLocation.toString(), iter->path.toString()));
+            LogMsg(tr("Torrent move canceled. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\"").arg(torrent->name(), currentLocation.toString(), iter->path.toString()));
             iter = m_moveStorageQueue.erase(iter);
 
             iter = std::find_if(iter, m_moveStorageQueue.end(), [&torrentHandle](const MoveStorageJob &job)
@@ -4131,8 +4137,8 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
         // job that will move torrent to the same location as current one
         if (m_moveStorageQueue.first().path == newPath)
         {
-            LogMsg(tr("Couldn't enqueue move of \"%1\" to \"%2\". Torrent is currently moving to the same destination location.")
-                   .arg(torrent->name(), newPath.toString()));
+            LogMsg(tr("Failed to enqueue torrent move. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: torrent is currently moving to the destination")
+                   .arg(torrent->name(), currentLocation.toString(), newPath.toString()));
             return false;
         }
     }
@@ -4140,7 +4146,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
     {
         if (currentLocation == newPath)
         {
-            LogMsg(tr("Couldn't enqueue move of \"%1\" from \"%2\" to \"%3\". Both paths point to the same location.")
+            LogMsg(tr("Failed to enqueue torrent move. Torrent: \"%1\". Source: \"%2\" Destination: \"%3\". Reason: both paths point to the same location")
                    .arg(torrent->name(), currentLocation.toString(), newPath.toString()));
             return false;
         }
@@ -4148,7 +4154,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
 
     const MoveStorageJob moveStorageJob {torrentHandle, newPath, mode};
     m_moveStorageQueue << moveStorageJob;
-    LogMsg(tr("Enqueued to move \"%1\" from \"%2\" to \"%3\".").arg(torrent->name(), currentLocation.toString(), newPath.toString()));
+    LogMsg(tr("Enqueued torrent move. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\"").arg(torrent->name(), currentLocation.toString(), newPath.toString()));
 
     if (m_moveStorageQueue.size() == 1)
         moveTorrentStorage(moveStorageJob);
@@ -4165,7 +4171,7 @@ void Session::moveTorrentStorage(const MoveStorageJob &job) const
 #endif
     const TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
-    LogMsg(tr("Moving \"%1\" to \"%2\"...").arg(torrentName, job.path.toString()));
+    LogMsg(tr("Start moving torrent. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, job.path.toString()));
 
     job.torrentHandle.move_storage(job.path.toString().toStdString()
                             , ((job.mode == MoveStorageMode::Overwrite)
@@ -4216,7 +4222,7 @@ void Session::storeCategories() const
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, data);
     if (!result)
     {
-        LogMsg(tr("Couldn't store Categories configuration to %1. Error: %2")
+        LogMsg(tr("Failed to save Categories configuration. File: \"%1\". Error: \"%2\"")
                .arg(path.toString(), result.error()), Log::WARNING);
     }
 }
@@ -4253,7 +4259,7 @@ void Session::loadCategories()
 
     if (!confFile.open(QFile::ReadOnly))
     {
-        LogMsg(tr("Couldn't load Categories from %1. Error: %2")
+        LogMsg(tr("Failed to load Categories. File: \"%1\". Error: \"%2\"")
                .arg(confFile.fileName(), confFile.errorString()), Log::CRITICAL);
         return;
     }
@@ -4262,18 +4268,17 @@ void Session::loadCategories()
     const QJsonDocument jsonDoc = QJsonDocument::fromJson(confFile.readAll(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
-        LogMsg(tr("Couldn't parse Categories configuration from %1. Error: %2")
+        LogMsg(tr("Failed to parse Categories configuration. File: \"%1\". Error: \"%2\"")
                .arg(confFile.fileName(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isObject())
     {
-        LogMsg(tr("Couldn't load Categories configuration from %1. Invalid data format.")
+        LogMsg(tr("Failed to load Categories configuration. File: \"%1\". Reason: invalid data format")
                .arg(confFile.fileName()), Log::WARNING);
         return;
     }
-
 
     const QJsonObject jsonObj = jsonDoc.object();
     for (auto it = jsonObj.constBegin(); it != jsonObj.constEnd(); ++it)
@@ -4354,9 +4359,8 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
     {
         if (torrentRelpath.hasExtension(QLatin1String(".torrent")))
         {
-            LogMsg(tr("Recursive download of file '%1' embedded in torrent '%2'"
-                    , "Recursive download of 'test.torrent' embedded in torrent 'test2'")
-                .arg(torrentRelpath.toString(), torrent->name()));
+            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
+                .arg(torrent->name(), torrentRelpath.toString()));
             const Path torrentFullpath = torrent->savePath() / torrentRelpath;
 
             AddTorrentParams params;
@@ -4366,7 +4370,7 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
             if (loadResult)
                 addTorrent(loadResult.value(), params);
             else
-                LogMsg(tr("Couldn't load torrent: %1").arg(loadResult.error()), Log::WARNING);
+                LogMsg(tr("Failed to load torrent. Error: \"%1\"").arg(loadResult.error()), Log::WARNING);
         }
     }
 }
@@ -4431,8 +4435,7 @@ void Session::startUpTorrents()
         const std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
         if (!loadResumeDataResult)
         {
-            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                       .arg(torrentID.toString()), Log::CRITICAL);
+            LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
             continue;
         }
 
@@ -4524,14 +4527,15 @@ void Session::startUpTorrents()
                 {
                     recoveredCategories.insert(category);
                     isCategoryRecovered = true;
-                    LogMsg(tr("Inconsistent data is detected. Category '%1' is assigned to some torrent(s) but it doesn't exist in the configuration file."
-                              " Its settings will be reset to default.").arg(category), Log::WARNING);
+                    LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
+                              " Category will be recovered but its settings will be reset to default."
+                              " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
                 }
                 else
                 {
                     resumeData.category.clear();
-                    LogMsg(tr("Inconsistent data is detected. Invalid category '%1' is assigned to torrent '%2'.")
-                           .arg(category, torrentID.toString()), Log::WARNING);
+                    LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
+                           .arg(torrentID.toString(), category), Log::WARNING);
                 }
             }
 
@@ -4545,18 +4549,16 @@ void Session::startUpTorrents()
                     resumeData.useAutoTMM = false;
                     resumeData.savePath = storageLocation;
                     resumeData.downloadPath = {};
-                    LogMsg(tr("Torrent '%1' is assigned the recovered category '%2' whose paths don't match the torrent's path."
-                              " Torrent is switched to \"Manual\" mode.").arg(torrentID.toString(), category), Log::WARNING);
+                    LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
+                              " Torrent is now switched to Manual mode."
+                              " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
                 }
             }
         }
 
         qDebug() << "Starting up torrent" << torrentID.toString() << "...";
         if (!loadTorrent(resumeData))
-        {
-            LogMsg(tr("Unable to resume torrent '%1'.", "e.g: Unable to resume torrent 'hash'.")
-                   .arg(torrentID.toString()), Log::CRITICAL);
-        }
+            LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
 
         // process add torrent messages before message queue overflow
         if ((resumedTorrentsCount % 100) == 0) readAlerts();
@@ -4606,7 +4608,7 @@ void Session::handleIPFilterParsed(const int ruleCount)
         processBannedIPs(filter);
         m_nativeSession->set_ip_filter(filter);
     }
-    LogMsg(tr("Successfully parsed the provided IP filter: %1 rules were applied.", "%1 is a number").arg(ruleCount));
+    LogMsg(tr("Successfully parsed the IP filter file. Number of rules applied: %1").arg(ruleCount));
     emit IPFilterParsed(false, ruleCount);
 }
 
@@ -4616,7 +4618,7 @@ void Session::handleIPFilterError()
     processBannedIPs(filter);
     m_nativeSession->set_ip_filter(filter);
 
-    LogMsg(tr("Error: Failed to parse the provided IP filter."), Log::CRITICAL);
+    LogMsg(tr("Failed to parse the IP filter file"), Log::WARNING);
     emit IPFilterParsed(true, 0);
 }
 
@@ -4777,11 +4779,7 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
     const bool hasMetadata = torrent->hasMetadata();
 
-    if (params.restored)
-    {
-        LogMsg(tr("'%1' restored.", "'torrent name' restored.").arg(torrent->name()));
-    }
-    else
+    if (!params.restored)
     {
         m_resumeDataStorage->store(torrent->id(), params);
 
@@ -4798,9 +4796,6 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
         if (isAddTrackersEnabled() && !torrent->isPrivate())
             torrent->addTrackers(m_additionalTrackerList);
-
-        LogMsg(tr("'%1' added to download list.", "'torrent name' was added to download list.")
-            .arg(torrent->name()));
     }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
@@ -4810,12 +4805,19 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
     // Send torrent addition signal
     emit torrentLoaded(torrent);
     // Send new torrent signal
-    if (!params.restored)
+    if (params.restored)
+    {
+        LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
+    }
+    else
+    {
+        LogMsg(tr("Added new torrent. Torrent: \"%1\"").arg(torrent->name()));
         emit torrentAdded(torrent);
+    }
 
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
-        LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: %2.").arg(torrent->name(), torrent->error()), Log::WARNING);
+        LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: \"%2\"").arg(torrent->name(), torrent->error()), Log::WARNING);
 }
 
 void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
@@ -4823,7 +4825,7 @@ void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
     if (p->error)
     {
         const QString msg = QString::fromStdString(p->message());
-        LogMsg(tr("Couldn't load torrent. Reason: %1.").arg(msg), Log::WARNING);
+        LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
         emit loadTorrentFailed(msg);
 
         const lt::add_torrent_params &params = p->params;
@@ -4854,7 +4856,7 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
     {
         if (removingTorrentDataIter->deleteOption == DeleteTorrent)
         {
-            LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+            LogMsg(tr("Removed torrent. Torrent: \"%1\"").arg(removingTorrentDataIter->name));
             m_removingTorrents.erase(removingTorrentDataIter);
         }
     }
@@ -4874,7 +4876,7 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
         return;
 
     Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
-    LogMsg(tr("'%1' was removed from the transfer list and hard disk.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+    LogMsg(tr("Removed torrent and deleted its content. Torrent: \"%1\"").arg(removingTorrentDataIter->name));
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
@@ -4897,13 +4899,13 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
         // so we remove the directory ourselves
         Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
 
-        LogMsg(tr("'%1' was removed from the transfer list but the files couldn't be deleted. Error: %2", "'xxx.avi' was removed...")
+        LogMsg(tr("Removed torrent but failed to delete its content. Torrent: \"%1\". Error: \"%2\"")
                 .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
     else // torrent without metadata, hence no files on disk
     {
-        LogMsg(tr("'%1' was removed from the transfer list.", "'xxx.avi' was removed...").arg(removingTorrentDataIter->name));
+        LogMsg(tr("Removed torrent. Torrent: \"%1\"").arg(removingTorrentDataIter->name));
     }
     m_removingTorrents.erase(removingTorrentDataIter);
 }
@@ -4945,7 +4947,7 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
         m_recentErroredTorrents.insert(id);
 
         const QString msg = QString::fromStdString(p->message());
-        LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: %3")
+        LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
                 .arg(torrent->name(), p->filename(), msg)
             , Log::WARNING);
         emit fullDiskError(torrent, msg);
@@ -4956,13 +4958,13 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 
 void Session::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
 {
-    LogMsg(tr("UPnP/NAT-PMP: Port mapping failure, message: %1").arg(QString::fromStdString(p->message())), Log::CRITICAL);
+    LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::WARNING);
 }
 
 void Session::handlePortmapAlert(const lt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
-    LogMsg(tr("UPnP/NAT-PMP: Port mapping successful, message: %1").arg(QString::fromStdString(p->message())), Log::INFO);
+    LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
 void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
@@ -5010,13 +5012,13 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 
     if (p->error)
     {
-        LogMsg(tr("URL seed name lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
+        LogMsg(tr("URL seed DNS lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
             .arg(torrent->name(), p->server_url(), QString::fromStdString(p->message()))
             , Log::WARNING);
     }
     else
     {
-        LogMsg(tr("Received error message from a URL seed. Torrent: \"%1\". URL: \"%2\". Message: \"%3\"")
+        LogMsg(tr("Received error message from URL seed. Torrent: \"%1\". URL: \"%2\". Message: \"%3\"")
             .arg(torrent->name(), p->server_url(), p->error_message())
             , Log::WARNING);
     }
@@ -5025,8 +5027,7 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 {
     const QString proto {toString(p->socket_type)};
-    LogMsg(tr("Successfully listening on IP: %1, port: %2/%3"
-              , "e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881")
+    LogMsg(tr("Successfully listening on IP. IP: \"%1\". Port: \"%2/%3\"")
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 
     // Force reannounce on all torrents because some trackers blacklist some ports
@@ -5036,8 +5037,7 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 {
     const QString proto {toString(p->socket_type)};
-    LogMsg(tr("Failed to listen on IP: %1, port: %2/%3. Reason: %4"
-              , "e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use")
+    LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
         .arg(toString(p->address), proto, QString::number(p->port)
             , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
@@ -5045,7 +5045,7 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
 void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
     const QString externalIP {toString(p->external_address)};
-    LogMsg(tr("Detected external IP: %1", "e.g. Detected external IP: 1.1.1.1")
+    LogMsg(tr("Detected external IP. IP: \"%1\"")
         .arg(externalIP), Log::INFO);
 
     if (m_lastExternalIP != externalIP)
@@ -5134,7 +5134,7 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 
 void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
 {
-    LogMsg(tr("Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2")
+    LogMsg(tr("Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: \"%1\". Message: \"%2\"")
         .arg(QString::fromStdString(p->dropped_alerts.to_string()), QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
@@ -5156,7 +5156,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
 
     TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
-    LogMsg(tr("\"%1\" is successfully moved to \"%2\".").arg(torrentName, newPath.toString()));
+    LogMsg(tr("Moved torrent successfully. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, newPath.toString()));
 
     handleMoveTorrentStorageJobFinished();
 }
@@ -5178,8 +5178,8 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
     const QString errorMessage = QString::fromStdString(p->message());
-    LogMsg(tr("Failed to move \"%1\" from \"%2\" to \"%3\". Reason: %4.")
-           .arg(torrentName, currentLocation, currentJob.path.toString(), errorMessage), Log::CRITICAL);
+    LogMsg(tr("Failed to move torrent. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: \"%4\"")
+           .arg(torrentName, currentLocation, currentJob.path.toString(), errorMessage), Log::WARNING);
 
     handleMoveTorrentStorageJobFinished();
 }
@@ -5217,7 +5217,7 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
 {
     if (p->error)
     {
-        LogMsg(tr("SOCKS5 proxy error. Message: %1").arg(QString::fromStdString(p->message()))
+        LogMsg(tr("SOCKS5 proxy error. Message: \"%1\"").arg(QString::fromStdString(p->message()))
             , Log::WARNING);
     }
 }
