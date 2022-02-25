@@ -2,6 +2,10 @@ name: CI - WebUI
 
 on: [pull_request, push]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref }}
+  cancel-in-progress: ${{ github.head_ref != '' }}
+
 jobs:
   ci:
     name: Check
