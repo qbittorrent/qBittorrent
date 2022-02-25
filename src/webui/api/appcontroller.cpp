@@ -306,6 +306,8 @@ void AppController::preferencesAction()
     // Disk write cache
     data["disk_cache"] = session->diskCacheSize();
     data["disk_cache_ttl"] = session->diskCacheTTL();
+    // Disk queue size
+    data["disk_queue_size"] = session->diskQueueSize();
     // Enable OS cache
     data["enable_os_cache"] = session->useOSCache();
     // Coalesce reads & writes
@@ -358,6 +360,8 @@ void AppController::preferencesAction()
     data["peer_turnover"] = session->peerTurnover();
     data["peer_turnover_cutoff"] = session->peerTurnoverCutoff();
     data["peer_turnover_interval"] = session->peerTurnoverInterval();
+    // Maximum outstanding requests to a single peer
+    data["request_queue_size"] = session->requestQueueSize();
 
     setResult(data);
 }
@@ -777,6 +781,9 @@ void AppController::setPreferencesAction()
         session->setDiskCacheSize(it.value().toInt());
     if (hasKey("disk_cache_ttl"))
         session->setDiskCacheTTL(it.value().toInt());
+    // Disk queue size
+    if (hasKey("disk_queue_size"))
+        session->setDiskQueueSize(it.value().toLongLong());
     // Enable OS cache
     if (hasKey("enable_os_cache"))
         session->setUseOSCache(it.value().toBool());
@@ -863,6 +870,9 @@ void AppController::setPreferencesAction()
         session->setPeerTurnoverCutoff(it.value().toInt());
     if (hasKey("peer_turnover_interval"))
         session->setPeerTurnoverInterval(it.value().toInt());
+    // Maximum outstanding requests to a single peer
+    if (hasKey("request_queue_size"))
+        session->setRequestQueueSize(it.value().toInt());
 
     // Save preferences
     pref->apply();
