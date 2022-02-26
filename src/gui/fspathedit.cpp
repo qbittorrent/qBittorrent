@@ -130,7 +130,7 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::browseActionTriggered()
     case FileSystemPathEdit::Mode::DirectoryOpen:
     case FileSystemPathEdit::Mode::DirectorySave:
         selectedPath = QFileDialog::getExistingDirectory(q, dialogCaptionOrDefault(),
-                                directory, QFileDialog::DontResolveSymlinks | QFileDialog::ShowDirsOnly);
+                                directory, QFileDialog::ShowDirsOnly);
         break;
     default:
         throw std::logic_error("Unknown FileSystemPathEdit mode");
