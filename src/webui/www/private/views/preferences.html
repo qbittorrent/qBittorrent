@@ -472,6 +472,11 @@
         </div>
     </fieldset>
 
+    <div class="formRow">
+        <label for="maxActiveCheckingTorrents">QBT_TR(Max active checking torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="number" id="maxActiveCheckingTorrents" style="width: 4em;" min="-1" />
+    </div>
+
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="queueing_checkbox" onclick="qBittorrent.Preferences.updateQueueingSystem();" />
@@ -1814,6 +1819,8 @@
                         $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
                         $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
 
+                        $('maxActiveCheckingTorrents').setProperty('value', pref.max_active_checking_torrents);
+
                         // Torrent Queueing
                         $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
                         $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
@@ -2159,6 +2166,8 @@
             settings.set('lsd', $('lsd_checkbox').getProperty('checked'));
             settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
             settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
+
+            settings.set('max_active_checking_torrents', $('maxActiveCheckingTorrents').getProperty('value'));
 
             // Torrent Queueing
             settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));

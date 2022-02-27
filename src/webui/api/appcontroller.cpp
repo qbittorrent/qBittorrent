@@ -207,6 +207,8 @@ void AppController::preferencesAction()
     data["lsd"] = session->isLSDEnabled();
     data["encryption"] = session->encryption();
     data["anonymous_mode"] = session->isAnonymousModeEnabled();
+    // Max active checking torrents
+    data["max_active_checking_torrents"] = session->maxActiveCheckingTorrents();
     // Torrent Queueing
     data["queueing_enabled"] = session->isQueueingSystemEnabled();
     data["max_active_downloads"] = session->maxActiveDownloads();
@@ -574,6 +576,9 @@ void AppController::setPreferencesAction()
         session->setEncryption(it.value().toInt());
     if (hasKey("anonymous_mode"))
         session->setAnonymousModeEnabled(it.value().toBool());
+    // Max active checking torrents
+    if (hasKey("max_active_checking_torrents"))
+        session->setMaxActiveCheckingTorrents(it.value().toInt());
     // Torrent Queueing
     if (hasKey("queueing_enabled"))
         session->setQueueingSystemEnabled(it.value().toBool());

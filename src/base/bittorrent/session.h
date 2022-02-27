@@ -315,6 +315,8 @@ namespace BitTorrent
         void setNetworkInterfaceAddress(const QString &address);
         int encryption() const;
         void setEncryption(int state);
+        int maxActiveCheckingTorrents() const;
+        void setMaxActiveCheckingTorrents(int val);
         bool isProxyPeerConnectionsEnabled() const;
         void setProxyPeerConnectionsEnabled(bool enabled);
         ChokingAlgorithm chokingAlgorithm() const;
@@ -733,6 +735,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_networkInterfaceName;
         CachedSettingValue<QString> m_networkInterfaceAddress;
         CachedSettingValue<int> m_encryption;
+        CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
