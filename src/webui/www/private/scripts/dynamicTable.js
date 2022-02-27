@@ -1812,7 +1812,7 @@ window.qBittorrent.DynamicTable = (function() {
         initColumns: function() {
             this.newColumn('checked', '', '', 50, true);
             this.newColumn('name', '', 'QBT_TR(Name)QBT_TR[CONTEXT=TrackerListWidget]', 300, true);
-            this.newColumn('size', '', 'QBT_TR(Size)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
+            this.newColumn('size', '', 'QBT_TR(Total Size)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
             this.newColumn('progress', '', 'QBT_TR(Progress)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
             this.newColumn('priority', '', 'QBT_TR(Download Priority)QBT_TR[CONTEXT=TrackerListWidget]', 150, true);
             this.newColumn('remaining', '', 'QBT_TR(Remaining)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
