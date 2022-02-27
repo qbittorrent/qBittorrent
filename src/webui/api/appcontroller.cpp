@@ -299,6 +299,8 @@ void AppController::preferencesAction()
     data["async_io_threads"] = session->asyncIOThreads();
     // Hashing threads
     data["hashing_threads"] = session->hashingThreads();
+    // Max active checking torrents
+    data["max_active_checking_torrents"] = session->maxActiveCheckingTorrents();
     // File pool size
     data["file_pool_size"] = session->filePoolSize();
     // Checking memory usage
@@ -770,6 +772,9 @@ void AppController::setPreferencesAction()
     // Hashing threads
     if (hasKey("hashing_threads"))
         session->setHashingThreads(it.value().toInt());
+    // Max active checking torrents
+    if (hasKey("max_active_checking_torrents"))
+        session->setMaxActiveCheckingTorrents(it.value().toInt());
     // File pool size
     if (hasKey("file_pool_size"))
         session->setFilePoolSize(it.value().toInt());

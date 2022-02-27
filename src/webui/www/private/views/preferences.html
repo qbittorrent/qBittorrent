@@ -982,6 +982,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="maxActiveCheckingTorrents">QBT_TR(Max active checking torrents:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#active_checking" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="maxActiveCheckingTorrents" style="width: 15em;" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="filePoolSize">QBT_TR(File pool size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#file_pool_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1943,6 +1951,7 @@
                         // libtorrent section
                         $('asyncIOThreads').setProperty('value', pref.async_io_threads);
                         $('hashingThreads').setProperty('value', pref.hashing_threads);
+                        $('maxActiveCheckingTorrents').setProperty('value', pref.max_active_checking_torrents);
                         $('filePoolSize').setProperty('value', pref.file_pool_size);
                         $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
                         $('diskCache').setProperty('value', pref.disk_cache);
@@ -2340,6 +2349,7 @@
             // libtorrent section
             settings.set('async_io_threads', $('asyncIOThreads').getProperty('value'));
             settings.set('hashing_threads', $('hashingThreads').getProperty('value'));
+            settings.set('max_active_checking_torrents', $('maxActiveCheckingTorrents').getProperty('value'));
             settings.set('file_pool_size', $('filePoolSize').getProperty('value'));
             settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
             settings.set('disk_cache', $('diskCache').getProperty('value'));

@@ -375,6 +375,7 @@ Session::Session(QObject *parent)
     , m_announceToAllTiers(BITTORRENT_SESSION_KEY("AnnounceToAllTiers"), true)
     , m_asyncIOThreads(BITTORRENT_SESSION_KEY("AsyncIOThreadsCount"), 10)
     , m_hashingThreads(BITTORRENT_SESSION_KEY("HashingThreadsCount"), 2)
+    , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY("maxActiveCheckingTorrents"), 1)
     , m_filePoolSize(BITTORRENT_SESSION_KEY("FilePoolSize"), 5000)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
@@ -1338,6 +1339,9 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
 #endif
+    // Max active checking torrents
+    settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
+
     settingsPack.set_int(lt::settings_pack::file_pool_size, filePoolSize());
 
     const int checkingMemUsageSize = checkingMemUsage() * 64;
@@ -3304,6 +3308,20 @@ void Session::setHashingThreads(const int num)
         return;
 
     m_hashingThreads = num;
+    configureDeferred();
+}
+
+int Session::maxActiveCheckingTorrents() const
+{
+    return m_maxActiveCheckingTorrents;
+}
+
+void Session::setMaxActiveCheckingTorrents(const int val)
+{
+    if (val == m_maxActiveCheckingTorrents)
+        return;
+
+    m_maxActiveCheckingTorrents = val;
     configureDeferred();
 }
 

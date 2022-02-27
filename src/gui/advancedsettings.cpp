@@ -99,6 +99,7 @@ namespace
 #ifdef QBT_USES_LIBTORRENT2
         HASHING_THREADS,
 #endif
+        MAX_ACTIVE_CHECKING_TORRENTS,
         FILE_POOL_SIZE,
         CHECKING_MEM_USAGE,
 #ifndef QBT_USES_LIBTORRENT2
@@ -205,6 +206,8 @@ void AdvancedSettings::saveAdvancedSettings()
     // Hashing threads
     session->setHashingThreads(m_spinBoxHashingThreads.value());
 #endif
+    // Max active rechecking torrents
+    session->setMaxActiveCheckingTorrents(m_spinBoxMaxActiveCheckingTorrents.value());
     // File pool size
     session->setFilePoolSize(m_spinBoxFilePoolSize.value());
     // Checking Memory Usage
@@ -459,7 +462,13 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(HASHING_THREADS, (tr("Hashing threads") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#hashing_threads", "(?)"))
             , &m_spinBoxHashingThreads);
 #endif
-
+    // Max active rechecking torrents
+    m_spinBoxMaxActiveCheckingTorrents.setMinimum(-1);
+    m_spinBoxMaxActiveCheckingTorrents.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMaxActiveCheckingTorrents.setValue(session->maxActiveCheckingTorrents());
+    m_spinBoxMaxActiveCheckingTorrents.setSpecialValueText(QString::fromUtf8(C_INFINITY));
+    addRow(MAX_ACTIVE_CHECKING_TORRENTS, (tr("Maximum active checking torrents") + ' ' + makeLink("https://www.libtorrent.org/reference-Settings.html#active_checking", "(?)"))
+            , &m_spinBoxMaxActiveCheckingTorrents);
     // File pool size
     m_spinBoxFilePoolSize.setMinimum(1);
     m_spinBoxFilePoolSize.setMaximum(std::numeric_limits<int>::max());
