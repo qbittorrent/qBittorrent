@@ -1644,11 +1644,6 @@ void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
     updateStatus(nativeStatus);
 }
 
-void TorrentImpl::handleDownloadPathChanged()
-{
-    adjustStorageLocation();
-}
-
 void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
 {
     m_session->handleTorrentNeedSaveResumeData(this);

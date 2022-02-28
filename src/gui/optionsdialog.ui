@@ -1015,7 +1015,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                  <item row="2" column="0">
                   <widget class="QLabel" name="labelCategoryDefaultPathChanged">
                    <property name="text">
-                    <string>When Default Save Path changed:</string>
+                    <string>When Default Save/Incomplete Path changed:</string>
                    </property>
                   </widget>
                  </item>
