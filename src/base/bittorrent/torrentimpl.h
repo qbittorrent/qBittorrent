@@ -233,7 +233,6 @@ namespace BitTorrent
 
         void handleAlert(const lt::alert *a);
         void handleStateUpdate(const lt::torrent_status &nativeStatus);
-        void handleDownloadPathChanged();
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();

@@ -613,7 +613,7 @@ void Session::setDownloadPathEnabled(const bool enabled)
     {
         m_isDownloadPathEnabled = enabled;
         for (TorrentImpl *const torrent : asConst(m_torrents))
-            torrent->handleDownloadPathChanged();
+            torrent->handleCategoryOptionsChanged();
     }
 }
 
@@ -2557,13 +2557,32 @@ void Session::setSavePath(const Path &path)
 void Session::setDownloadPath(const Path &path)
 {
     const Path newPath = (path.isAbsolute() ? path : (savePath() / Path("temp") / path));
-    if (newPath != m_downloadPath)
+    if (newPath == m_downloadPath)
+        return;
+
+    if (isDisableAutoTMMWhenDefaultSavePathChanged())
     {
-        m_downloadPath = newPath;
+        QSet<QString> affectedCatogories {{}}; // includes default (unnamed) category
+        for (auto it = m_categories.cbegin(); it != m_categories.cend(); ++it)
+        {
+            const QString &categoryName = it.key();
+            const CategoryOptions &categoryOptions = it.value();
+            const CategoryOptions::DownloadPathOption downloadPathOption =
+                    categoryOptions.downloadPath.value_or(CategoryOptions::DownloadPathOption {isDownloadPathEnabled(), downloadPath()});
+            if (downloadPathOption.enabled && downloadPathOption.path.isRelative())
+                affectedCatogories.insert(categoryName);
+        }
 
         for (TorrentImpl *const torrent : asConst(m_torrents))
-            torrent->handleDownloadPathChanged();
+        {
+            if (affectedCatogories.contains(torrent->category()))
+                torrent->setAutoTMMEnabled(false);
+        }
     }
+
+    m_downloadPath = newPath;
+    for (TorrentImpl *const torrent : asConst(m_torrents))
+        torrent->handleCategoryOptionsChanged();
 }
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
