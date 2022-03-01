@@ -77,7 +77,7 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     if (m_properties)
     {
         const BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
-        if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
+        if (!torrent || !torrent->hasMetadata())
             return nullptr;
     }
 
