@@ -37,7 +37,6 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QTableView>
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -69,15 +68,9 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(m_ui->pluginsTree->header());
-    m_ui->pluginsTree->header()->setParent(m_ui->pluginsTree);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
+    m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
     m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("list-remove"));

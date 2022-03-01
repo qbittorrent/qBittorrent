@@ -34,7 +34,6 @@
 #include <QPushButton>
 #include <QShowEvent>
 #include <QStandardItemModel>
-#include <QTableView>
 
 #include "base/bittorrent/common.h"
 #include "base/bittorrent/torrent.h"
@@ -75,13 +74,6 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     m_previewListModel->setHeaderData(SIZE, Qt::Horizontal, tr("Size"));
     m_previewListModel->setHeaderData(PROGRESS, Qt::Horizontal, tr("Progress"));
 
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(m_ui->previewList->header());
-    m_ui->previewList->header()->setParent(m_ui->previewList);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-
     m_ui->previewList->setModel(m_previewListModel);
     m_ui->previewList->hideColumn(FILE_INDEX);
     m_listDelegate = new PreviewListDelegate(this);
@@ -106,6 +98,7 @@ PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torr
     }
 
     m_previewListModel->sort(NAME);
+    m_ui->previewList->header()->setFirstSectionMovable(true);
     m_ui->previewList->header()->setSortIndicator(0, Qt::AscendingOrder);
     m_ui->previewList->selectionModel()->select(m_previewListModel->index(0, NAME), QItemSelectionModel::Select | QItemSelectionModel::Rows);
 

@@ -39,7 +39,6 @@
 #include <QRegularExpression>
 #include <QSet>
 #include <QShortcut>
-#include <QTableView>
 #include <QVector>
 #include <QWheelEvent>
 
@@ -156,6 +155,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
 #if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
+    header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
     header()->setTextElideMode(Qt::ElideRight);
 
@@ -224,13 +224,6 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(doubleClickHotkeyEnter, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
     const auto *recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
-
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(header());
-    header()->setParent(this);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
 TransferListWidget::~TransferListWidget()
