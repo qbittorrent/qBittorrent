@@ -64,6 +64,7 @@ namespace
         RESUME_DATA_STORAGE,
 #if defined(Q_OS_WIN)
         OS_MEMORY_PRIORITY,
+        MEMORY_WORKING_SET_LIMIT,
 #endif
         // network interface
         NETWORK_IFACE,
@@ -198,6 +199,8 @@ void AdvancedSettings::saveAdvancedSettings()
         break;
     }
     session->setOSMemoryPriority(prio);
+
+    static_cast<Application *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
@@ -442,6 +445,15 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
         + ' ' + makeLink("https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", "(?)"))
         , &m_comboBoxOSMemoryPriority);
+
+    m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
+    m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMemoryWorkingSetLimit.setSuffix(tr(" MiB"));
+    m_spinBoxMemoryWorkingSetLimit.setValue(static_cast<Application *>(QCoreApplication::instance())->memoryWorkingSetLimit());
+
+    addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit")
+        + ' ' + makeLink("https://wikipedia.org/wiki/Working_set", "(?)"))
+        , &m_spinBoxMemoryWorkingSetLimit);
 #endif
 
     // Async IO threads
