@@ -30,8 +30,6 @@
 
 #pragma once
 
-#include <QtGlobal>
-
 class QString;
 
 class Path;
@@ -58,8 +56,6 @@ public:
     virtual int fileLoggerAgeType() const = 0;
     virtual void setFileLoggerAgeType(int value) = 0;
 
-#ifdef Q_OS_WIN
     virtual int memoryWorkingSetLimit() const = 0;
     virtual void setMemoryWorkingSetLimit(int size) = 0;
-#endif
 };

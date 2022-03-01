@@ -39,6 +39,8 @@
 #include <memory>
 #include <Windows.h>
 #include <Shellapi.h>
+#elif defined(Q_OS_UNIX)
+#include <sys/resource.h>
 #endif
 
 #include <QAtomicInt>
@@ -127,9 +129,7 @@ Application::Application(int &argc, char **argv)
     , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY(u"Age"_qs))
     , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY(u"AgeType"_qs))
     , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_qs))
-#ifdef Q_OS_WIN
     , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
-#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
@@ -206,7 +206,6 @@ const QBtCommandLineParameters &Application::commandLineArgs() const
     return m_commandLineArgs;
 }
 
-#ifdef Q_OS_WIN
 int Application::memoryWorkingSetLimit() const
 {
     return m_storeMemoryWorkingSetLimit.get(512);
@@ -220,7 +219,6 @@ void Application::setMemoryWorkingSetLimit(const int size)
     m_storeMemoryWorkingSetLimit = size;
     applyMemoryWorkingSetLimit();
 }
-#endif
 
 bool Application::isFileLoggerEnabled() const
 {
@@ -598,9 +596,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
-#ifdef Q_OS_WIN
     applyMemoryWorkingSetLimit();
-#endif
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
@@ -771,28 +767,43 @@ void Application::shutdownCleanup(QSessionManager &manager)
 }
 #endif
 
-#ifdef Q_OS_WIN
 void Application::applyMemoryWorkingSetLimit()
 {
-    const SIZE_T UNIT_SIZE = 1024 * 1024; // MiB
-    const SIZE_T maxSize = memoryWorkingSetLimit() * UNIT_SIZE;
-    const SIZE_T minSize = std::min<SIZE_T>((64 * UNIT_SIZE), (maxSize / 2));
+    const size_t MiB = 1024 * 1024;
+    const QString logMessage = tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"");
+
+#ifdef Q_OS_WIN
+    const SIZE_T maxSize = memoryWorkingSetLimit() * MiB;
+    const SIZE_T minSize = std::min((64 * MiB), (maxSize / 2));
     if (!::SetProcessWorkingSetSizeEx(::GetCurrentProcess(), minSize, maxSize, QUOTA_LIMITS_HARDWS_MAX_ENABLE))
     {
         const DWORD errorCode = ::GetLastError();
         QString message;
         LPVOID lpMsgBuf = nullptr;
-        if (::FormatMessageW((FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS)
-                         , nullptr, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), reinterpret_cast<LPWSTR>(&lpMsgBuf), 0, nullptr))
+        const DWORD msgLength = ::FormatMessageW((FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS)
+            , nullptr, errorCode, LANG_USER_DEFAULT, reinterpret_cast<LPWSTR>(&lpMsgBuf), 0, nullptr);
+        if (msgLength > 0)
         {
             message = QString::fromWCharArray(reinterpret_cast<LPWSTR>(lpMsgBuf)).trimmed();
             ::LocalFree(lpMsgBuf);
         }
-        LogMsg(tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"")
-               .arg(QString::number(errorCode), message), Log::WARNING);
+        LogMsg(logMessage.arg(QString::number(errorCode), message), Log::WARNING);
     }
-}
+#elif defined(Q_OS_UNIX)
+    // has no effect on linux but it might be meaningful for other OS
+    rlimit limit {};
+
+    if (::getrlimit(RLIMIT_RSS, &limit) != 0)
+        return;
+
+    limit.rlim_cur = memoryWorkingSetLimit() * MiB;
+    if (::setrlimit(RLIMIT_RSS, &limit) != 0)
+    {
+        const auto message = QString::fromLocal8Bit(strerror(errno));
+        LogMsg(logMessage.arg(QString::number(errno), message), Log::WARNING);
+    }
 #endif
+}
 
 void Application::cleanup()
 {
