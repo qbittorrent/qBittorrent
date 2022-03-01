@@ -34,7 +34,6 @@
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QModelIndexList>
-#include <QTableView>
 #include <QThread>
 
 #include "base/bittorrent/abstractfilestorage.h"
@@ -66,15 +65,7 @@ TorrentContentTreeView::TorrentContentTreeView(QWidget *parent)
     : QTreeView(parent)
 {
     setExpandsOnDoubleClick(false);
-
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(header());
-    header()->setParent(this);
-    header()->setStretchLastSection(false);
-    header()->setTextElideMode(Qt::ElideRight);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
+    header()->setFirstSectionMovable(true);
 }
 
 void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)

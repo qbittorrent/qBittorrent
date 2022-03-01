@@ -38,7 +38,6 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QStringList>
-#include <QTableView>
 #include <QTreeWidgetItem>
 #include <QUrl>
 #include <QVector>
@@ -70,6 +69,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     setAllColumnsShowFocus(true);
     setItemsExpandable(false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
     header()->setTextElideMode(Qt::ElideRight);
     // Ensure that at least one column is visible at all times
@@ -133,13 +133,6 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(copyHotkey, &QShortcut::activated, this, &TrackerListWidget::copyTrackerUrl);
 
     connect(this, &QAbstractItemView::doubleClicked, this, &TrackerListWidget::editSelectedTracker);
-
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(header());
-    header()->setParent(this);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
 TrackerListWidget::~TrackerListWidget()
