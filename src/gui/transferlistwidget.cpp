@@ -1178,8 +1178,8 @@ void TransferListWidget::currentChanged(const QModelIndex &current, const QModel
     if (current.isValid())
     {
         torrent = m_listModel->torrentHandle(mapToSource(current));
-        // Scroll Fix
-        scrollTo(current);
+        // Fix scrolling to the lowermost visible torrent
+        QMetaObject::invokeMethod(this, [this, current] { scrollTo(current); }, Qt::QueuedConnection);
     }
     emit currentTorrentChanged(torrent);
 }
