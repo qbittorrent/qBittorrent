@@ -152,7 +152,7 @@ void WebApplication::sendWebUIFile()
         if (request().path.startsWith(PATH_PREFIX_ICONS))
         {
             const Path imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
-            sendFile(Path(":/icons") / imageFilename);
+            sendFile(Path(u":/icons"_qs) / imageFilename);
             return;
         }
     }
@@ -332,7 +332,7 @@ void WebApplication::configure()
         m_currentLocale = newLocale;
         m_translatedFiles.clear();
 
-        m_translationFileLoaded = m_translator.load((m_rootFolder / Path("translations/webui_") + newLocale).data());
+        m_translationFileLoaded = m_translator.load((m_rootFolder / Path(u"translations/webui_"_qs) + newLocale).data());
         if (m_translationFileLoaded)
         {
             LogMsg(tr("Web UI translation for selected locale (%1) has been successfully loaded.")
@@ -358,15 +358,15 @@ void WebApplication::configure()
     m_isHttpsEnabled = pref->isWebUiHttpsEnabled();
 
     m_prebuiltHeaders.clear();
-    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_XSS_PROTECTION), QLatin1String("1; mode=block")});
-    m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_CONTENT_TYPE_OPTIONS), QLatin1String("nosniff")});
+    m_prebuiltHeaders.push_back({Http::HEADER_X_XSS_PROTECTION, QLatin1String("1; mode=block")});
+    m_prebuiltHeaders.push_back({Http::HEADER_X_CONTENT_TYPE_OPTIONS, QLatin1String("nosniff")});
 
     if (!m_isAltUIUsed)
-        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_REFERRER_POLICY), QLatin1String("same-origin")});
+        m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, QLatin1String("same-origin")});
 
     const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     if (isClickjackingProtectionEnabled)
-        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_X_FRAME_OPTIONS), QLatin1String("SAMEORIGIN")});
+        m_prebuiltHeaders.push_back({Http::HEADER_X_FRAME_OPTIONS, QLatin1String("SAMEORIGIN")});
 
     const QString contentSecurityPolicy =
         (m_isAltUIUsed
@@ -375,7 +375,7 @@ void WebApplication::configure()
         + (isClickjackingProtectionEnabled ? QLatin1String(" frame-ancestors 'self';") : QLatin1String(""))
         + (m_isHttpsEnabled ? QLatin1String(" upgrade-insecure-requests;") : QLatin1String(""));
     if (!contentSecurityPolicy.isEmpty())
-        m_prebuiltHeaders.push_back({QLatin1String(Http::HEADER_CONTENT_SECURITY_POLICY), contentSecurityPolicy});
+        m_prebuiltHeaders.push_back({Http::HEADER_CONTENT_SECURITY_POLICY, contentSecurityPolicy});
 
     if (pref->isWebUICustomHTTPHeadersEnabled())
     {

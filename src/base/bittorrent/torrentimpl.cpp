@@ -324,8 +324,8 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
 
             // Remove .unwanted directory if empty
             const Path newPath = spath / newRelPath;
-            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(".unwanted")).toString();
-            Utils::Fs::rmdir(newPath / Path(".unwanted"));
+            qDebug() << "Attempting to remove \".unwanted\" folder at " << (newPath / Path(u".unwanted"_qs)).toString();
+            Utils::Fs::rmdir(newPath / Path(u".unwanted"_qs));
         }
     }
     // == END UPGRADE CODE ==

@@ -114,7 +114,7 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
              m_registeredTorrents.append(TorrentID::fromString(rxMatch.captured(1)));
     }
 
-    loadQueue(m_resumeDataPath / Path("queue"));
+    loadQueue(m_resumeDataPath / Path(u"queue"_qs));
 
     qDebug() << "Registered torrents count: " << m_registeredTorrents.size();
 
@@ -403,7 +403,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::storeQueue(const QVector<Torr
     for (const BitTorrent::TorrentID &torrentID : queue)
         data += (torrentID.toString().toLatin1() + '\n');
 
-    const Path filepath = m_resumeDataDir / Path("queue");
+    const Path filepath = m_resumeDataDir / Path(u"queue"_qs);
     const nonstd::expected<void, QString> result = Utils::IO::saveToFile(filepath, data);
     if (!result)
     {

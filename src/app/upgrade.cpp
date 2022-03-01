@@ -31,6 +31,7 @@
 #include <QMetaEnum>
 
 #include "base/bittorrent/torrentcontentlayout.h"
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
@@ -75,10 +76,10 @@ namespace
         const Path configPath = specialFolderLocation(SpecialFolder::Config);
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Certificate")
             , QLatin1String("Preferences/WebUI/HTTPS/CertificatePath")
-            , (configPath / Path("WebUICertificate.crt")));
+            , (configPath / Path(u"WebUICertificate.crt"_qs)));
         migrate(QLatin1String("Preferences/WebUI/HTTPS/Key")
             , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
-            , (configPath / Path("WebUIPrivateKey.pem")));
+            , (configPath / Path(u"WebUIPrivateKey.pem"_qs)));
     }
 
     void upgradeTorrentContentLayout()

@@ -78,7 +78,7 @@ void FileLogger::changePath(const Path &newPath)
 
     closeLogFile();
 
-    m_path = newPath / Path("qbittorrent.log");
+    m_path = newPath / Path(u"qbittorrent.log"_qs);
     m_logFile.setFileName(m_path.data());
 
     Utils::Fs::mkpath(newPath);

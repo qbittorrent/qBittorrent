@@ -68,7 +68,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     const QStringList params
     {
-        (m_manager->engineLocation() / Path("nova2.py")).toString(),
+        (m_manager->engineLocation() / Path(u"nova2.py"_qs)).toString(),
         m_usedPlugins.join(','),
         m_category
     };
