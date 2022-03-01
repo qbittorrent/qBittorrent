@@ -343,11 +343,13 @@ namespace BitTorrent
         bool announceToAllTiers() const;
         void setAnnounceToAllTiers(bool val);
         int peerTurnover() const;
-        void setPeerTurnover(int num);
+        void setPeerTurnover(int val);
         int peerTurnoverCutoff() const;
-        void setPeerTurnoverCutoff(int num);
+        void setPeerTurnoverCutoff(int val);
         int peerTurnoverInterval() const;
-        void setPeerTurnoverInterval(int num);
+        void setPeerTurnoverInterval(int val);
+        int requestQueueSize() const;
+        void setRequestQueueSize(int val);
         int asyncIOThreads() const;
         void setAsyncIOThreads(int num);
         int hashingThreads() const;
@@ -360,6 +362,8 @@ namespace BitTorrent
         void setDiskCacheSize(int size);
         int diskCacheTTL() const;
         void setDiskCacheTTL(int ttl);
+        qint64 diskQueueSize() const;
+        void setDiskQueueSize(qint64 size);
         bool useOSCache() const;
         void setUseOSCache(bool use);
         bool isCoalesceReadWriteEnabled() const;
@@ -679,6 +683,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_checkingMemUsage;
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
+        CachedSettingValue<qint64> m_diskQueueSize;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
         CachedSettingValue<bool> m_usePieceExtentAffinity;
@@ -760,6 +765,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnover;
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
+        CachedSettingValue<int> m_requestQueueSize;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
 #if defined(Q_OS_WIN)

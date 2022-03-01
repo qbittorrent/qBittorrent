@@ -379,6 +379,7 @@ Session::Session(QObject *parent)
     , m_checkingMemUsage(BITTORRENT_SESSION_KEY("CheckingMemUsageSize"), 32)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY("DiskCacheSize"), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY("DiskCacheTTL"), 60)
+    , m_diskQueueSize(BITTORRENT_SESSION_KEY("DiskQueueSize"), (1024 * 1024))
     , m_useOSCache(BITTORRENT_SESSION_KEY("UseOSCache"), true)
 #ifdef Q_OS_WIN
     , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY("CoalesceReadWrite"), true)
@@ -468,6 +469,7 @@ Session::Session(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY("PeerTurnover"), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY("PeerTurnoverCutOff"), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY("PeerTurnoverInterval"), 300)
+    , m_requestQueueSize(BITTORRENT_SESSION_KEY("RequestQueueSize"), 500)
     , m_bannedIPs("State/BannedIPs"
                   , QStringList()
                   , [](const QStringList &value)
@@ -1330,6 +1332,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::peer_turnover_cutoff, peerTurnoverCutoff());
     settingsPack.set_int(lt::settings_pack::peer_turnover_interval, peerTurnoverInterval());
 
+    settingsPack.set_int(lt::settings_pack::max_out_request_queue, requestQueueSize());
+
     settingsPack.set_int(lt::settings_pack::aio_threads, asyncIOThreads());
 #ifdef QBT_USES_LIBTORRENT2
     settingsPack.set_int(lt::settings_pack::hashing_threads, hashingThreads());
@@ -1344,6 +1348,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     settingsPack.set_int(lt::settings_pack::cache_size, cacheSize);
     settingsPack.set_int(lt::settings_pack::cache_expiry, diskCacheTTL());
 #endif
+
+    settingsPack.set_int(lt::settings_pack::max_queued_disk_bytes, diskQueueSize());
 
     lt::settings_pack::io_buffer_mode_t mode = useOSCache() ? lt::settings_pack::enable_os_cache
                                                               : lt::settings_pack::disable_os_cache;
@@ -3259,6 +3265,20 @@ void Session::setPeerTurnoverInterval(const int val)
     configureDeferred();
 }
 
+int Session::requestQueueSize() const
+{
+    return m_requestQueueSize;
+}
+
+void Session::setRequestQueueSize(const int val)
+{
+    if (val == m_requestQueueSize)
+        return;
+
+    m_requestQueueSize = val;
+    configureDeferred();
+}
+
 int Session::asyncIOThreads() const
 {
     return std::clamp(m_asyncIOThreads.get(), 1, 1024);
@@ -3355,6 +3375,20 @@ void Session::setDiskCacheTTL(const int ttl)
         m_diskCacheTTL = ttl;
         configureDeferred();
     }
+}
+
+qint64 Session::diskQueueSize() const
+{
+    return m_diskQueueSize;
+}
+
+void Session::setDiskQueueSize(const qint64 size)
+{
+    if (size == m_diskQueueSize)
+        return;
+
+    m_diskQueueSize = size;
+    configureDeferred();
 }
 
 bool Session::useOSCache() const
