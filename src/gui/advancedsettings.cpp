@@ -62,9 +62,9 @@ namespace
         // qBittorrent section
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
+        MEMORY_WORKING_SET_LIMIT,
 #if defined(Q_OS_WIN)
         OS_MEMORY_PRIORITY,
-        MEMORY_WORKING_SET_LIMIT,
 #endif
         // network interface
         NETWORK_IFACE,
@@ -199,9 +199,9 @@ void AdvancedSettings::saveAdvancedSettings()
         break;
     }
     session->setOSMemoryPriority(prio);
-
-    static_cast<Application *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
+    // Physical memory (RAM) usage limit
+    static_cast<Application *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
 #ifdef QBT_USES_LIBTORRENT2
@@ -419,6 +419,14 @@ void AdvancedSettings::loadAdvancedSettings()
     m_comboBoxResumeDataStorage.setCurrentIndex((session->resumeDataStorageType() == BitTorrent::ResumeDataStorageType::Legacy) ? 0 : 1);
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
+    // Physical memory (RAM) usage limit
+    m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
+    m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxMemoryWorkingSetLimit.setSuffix(tr(" MiB"));
+    m_spinBoxMemoryWorkingSetLimit.setValue(static_cast<Application *>(QCoreApplication::instance())->memoryWorkingSetLimit());
+    addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit")
+        + ' ' + makeLink("https://wikipedia.org/wiki/Working_set", "(?)"))
+        , &m_spinBoxMemoryWorkingSetLimit);
 #if defined(Q_OS_WIN)
     m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
     int OSMemoryPriorityIndex = 0;
@@ -445,17 +453,7 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
         + ' ' + makeLink("https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", "(?)"))
         , &m_comboBoxOSMemoryPriority);
-
-    m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
-    m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxMemoryWorkingSetLimit.setSuffix(tr(" MiB"));
-    m_spinBoxMemoryWorkingSetLimit.setValue(static_cast<Application *>(QCoreApplication::instance())->memoryWorkingSetLimit());
-
-    addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit")
-        + ' ' + makeLink("https://wikipedia.org/wiki/Working_set", "(?)"))
-        , &m_spinBoxMemoryWorkingSetLimit);
 #endif
-
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);

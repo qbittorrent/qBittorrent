@@ -59,6 +59,7 @@
 #include "base/utils/password.h"
 #include "base/utils/string.h"
 #include "base/version.h"
+#include "app/application.h"
 #include "../webapplication.h"
 
 void AppController::webapiVersionAction()
@@ -281,6 +282,8 @@ void AppController::preferencesAction()
 
     // Advanced settings
     // qBitorrent preferences
+    // Physical memory (RAM) usage limit
+    data["memory_working_set_limit"] = static_cast<Application *>(QCoreApplication::instance())->memoryWorkingSetLimit();
     // Current network interface
     data["current_network_interface"] = session->networkInterface();
     // Current network interface address
@@ -729,6 +732,9 @@ void AppController::setPreferencesAction()
 
     // Advanced settings
     // qBittorrent preferences
+    // Physical memory (RAM) usage limit
+    if (hasKey("memory_working_set_limit"))
+        static_cast<Application *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(it.value().toInt());
     // Current network interface
     if (hasKey("current_network_interface"))
     {

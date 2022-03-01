@@ -89,10 +89,8 @@ public:
 
     const QBtCommandLineParameters &commandLineArgs() const;
 
-#ifdef Q_OS_WIN
     int memoryWorkingSetLimit() const;
     void setMemoryWorkingSetLimit(int size);
-#endif
 
     // FileLogger properties
     bool isFileLoggerEnabled() const;
@@ -127,9 +125,8 @@ private slots:
 #endif
 
 private:
-#ifdef Q_OS_WIN
     void applyMemoryWorkingSetLimit();
-#endif
+
     void initializeTranslation();
     void processParams(const QStringList &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
@@ -155,9 +152,7 @@ private:
     QTranslator m_translator;
     QStringList m_paramsQueue;
 
-#ifdef Q_OS_WIN
     SettingValue<int> m_storeMemoryWorkingSetLimit;
-#endif
     SettingValue<bool> m_storeFileLoggerEnabled;
     SettingValue<bool> m_storeFileLoggerBackup;
     SettingValue<bool> m_storeFileLoggerDeleteOld;
