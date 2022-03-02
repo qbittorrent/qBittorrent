@@ -87,7 +87,11 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
 
     loadState();
 
-    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setFocus();
+    // Default focus
+    if (m_ui->comboTTM->currentIndex() == 0) // 0 is Manual mode
+        m_ui->savePath->setFocus();
+    else
+        m_ui->categoryComboBox->setFocus();
 }
 
 WatchedFolderOptionsDialog::~WatchedFolderOptionsDialog()
