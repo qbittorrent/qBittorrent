@@ -4480,52 +4480,61 @@ void Session::startUpTorrents()
         const lt::info_hash_t infoHash = (resumeData.ltAddTorrentParams.ti
                                           ? resumeData.ltAddTorrentParams.ti->info_hashes()
                                           : resumeData.ltAddTorrentParams.info_hashes);
-        if (infoHash.has_v1() && infoHash.has_v2())
+        const bool isHybrid = infoHash.has_v1() && infoHash.has_v2();
+        const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
+        const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
+        if (torrentID == torrentIDv2)
         {
-            const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
-            const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
-            if (torrentID == torrentIDv2)
+            if (isHybrid && indexedTorrents.contains(torrentIDv1))
             {
-                if (indexedTorrents.contains(torrentIDv1))
+                // if we don't have metadata, try to find it in alternative "resume data"
+                if (!resumeData.ltAddTorrentParams.ti)
                 {
-                    // if we has no metadata trying to find it in alternative "resume data"
-                    if (!resumeData.ltAddTorrentParams.ti)
-                    {
-                        const std::optional<LoadTorrentParams> loadAltResumeDataResult = startupStorage->load(torrentIDv1);
-                        if (loadAltResumeDataResult)
-                        {
-                            LoadTorrentParams altResumeData = *loadAltResumeDataResult;
-                            resumeData.ltAddTorrentParams.ti = altResumeData.ltAddTorrentParams.ti;
-                        }
-                    }
-
-                    // remove alternative "resume data" and skip the attempt to load it
-                    m_resumeDataStorage->remove(torrentIDv1);
-                    skippedIDs.insert(torrentIDv1);
+                    const std::optional<LoadTorrentParams> loadAltResumeDataResult = startupStorage->load(torrentIDv1);
+                    if (loadAltResumeDataResult)
+                        resumeData.ltAddTorrentParams.ti = loadAltResumeDataResult->ltAddTorrentParams.ti;
                 }
-            }
-            else
-            {
-                torrentID = torrentIDv2;
-                needStore = true;
+
+                // remove alternative "resume data" and skip the attempt to load it
                 m_resumeDataStorage->remove(torrentIDv1);
+                skippedIDs.insert(torrentIDv1);
+            }
+        }
+        else if (torrentID == torrentIDv1)
+        {
+            torrentID = torrentIDv2;
+            needStore = true;
+            m_resumeDataStorage->remove(torrentIDv1);
 
-                if (indexedTorrents.contains(torrentID))
+            if (indexedTorrents.contains(torrentID))
+            {
+                skippedIDs.insert(torrentID);
+
+                const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
+                if (loadPreferredResumeDataResult)
                 {
-                    skippedIDs.insert(torrentID);
-
-                    const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
-                    if (loadPreferredResumeDataResult)
-                    {
-                        LoadTorrentParams preferredResumeData = *loadPreferredResumeDataResult;
-                        std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
-                        if (!preferredResumeData.ltAddTorrentParams.ti)
-                            preferredResumeData.ltAddTorrentParams.ti = ti;
-
-                        resumeData = preferredResumeData;
-                    }
+                    std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
+                    resumeData = *loadPreferredResumeDataResult;
+                    if (!resumeData.ltAddTorrentParams.ti)
+                        resumeData.ltAddTorrentParams.ti = ti;
                 }
             }
+        }
+        else
+        {
+            LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
+                   .arg(torrentID.toString()), Log::WARNING);
+            continue;
+        }
+#else
+        const lt::sha1_hash infoHash = (resumeData.ltAddTorrentParams.ti
+                                          ? resumeData.ltAddTorrentParams.ti->info_hash()
+                                          : resumeData.ltAddTorrentParams.info_hash);
+        if (torrentID != TorrentID::fromInfoHash(infoHash))
+        {
+            LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
+                   .arg(torrentID.toString()), Log::WARNING);
+            continue;
         }
 #endif
 
