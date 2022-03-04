@@ -308,16 +308,16 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
 
 bool RequestParser::parseFormData(const QByteArray &data)
 {
-    const QVector<QByteArray> list = splitToViews(data, EOH, Qt::KeepEmptyParts);
+    const int eohPos = data.indexOf(EOH);
 
-    if (list.size() != 2)
+    if (eohPos < 0)
     {
         qWarning() << Q_FUNC_INFO << "multipart/form-data format error";
         return false;
     }
 
-    const QString headers = QString::fromLatin1(list[0]);
-    const QByteArray payload = viewWithoutEndingWith(list[1], CRLF);
+    const QString headers = QString::fromLatin1(Utils::ByteArray::midView(data, 0, eohPos));
+    const QByteArray payload = viewWithoutEndingWith(Utils::ByteArray::midView(data, (eohPos + EOH.size()), data.size()), CRLF);
 
     HeaderMap headersMap;
     const QList<QStringView> headerLines = QStringView(headers).split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
