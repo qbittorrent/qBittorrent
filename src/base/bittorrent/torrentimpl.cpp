@@ -954,10 +954,6 @@ void TorrentImpl::updateState()
     {
         m_state = TorrentState::Moving;
     }
-    else if (hasMissingFiles())
-    {
-        m_state = TorrentState::MissingFiles;
-    }
     else if (hasError())
     {
         m_state = TorrentState::Error;
@@ -1009,11 +1005,6 @@ void TorrentImpl::updateState()
 bool TorrentImpl::hasMetadata() const
 {
     return m_torrentInfo.isValid();
-}
-
-bool TorrentImpl::hasMissingFiles() const
-{
-    return m_hasMissingFiles;
 }
 
 bool TorrentImpl::hasError() const
@@ -1403,7 +1394,6 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
-    m_hasMissingFiles = false;
     m_unchecked = false;
 
     if (isPaused())
@@ -1594,16 +1584,6 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
 
     m_operatingMode = mode;
 
-    if (m_hasMissingFiles)
-    {
-        m_hasMissingFiles = false;
-        m_isStopped = false;
-        m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
-        reload();
-        updateStatus();
-        return;
-    }
-
     if (m_isStopped)
     {
         // Torrent may have been temporarily resumed to perform checking files
@@ -1654,16 +1634,6 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
 
     if (!m_storageIsMoving)
     {
-        if (m_hasMissingFiles)
-        {
-            // it can be moved to the proper location
-            m_hasMissingFiles = false;
-            m_ltAddTorrentParams.save_path = m_nativeStatus.save_path;
-            m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
-            reload();
-            updateStatus();
-        }
-
         while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
             m_moveFinishedTriggers.takeFirst()();
     }
@@ -1685,21 +1655,15 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
     if (m_nativeHandle.need_save_resume_data())
         m_session->handleTorrentNeedSaveResumeData(this);
 
-    if (m_fastresumeDataRejected && !m_hasMissingFiles)
-        m_fastresumeDataRejected = false;
-
     updateStatus();
 
-    if (!m_hasMissingFiles)
-    {
-        if ((progress() < 1.0) && (wantedSize() > 0))
-            m_hasSeedStatus = false;
-        else if (progress() == 1.0)
-            m_hasSeedStatus = true;
+    if ((progress() < 1.0) && (wantedSize() > 0))
+        m_hasSeedStatus = false;
+    else if (progress() == 1.0)
+        m_hasSeedStatus = true;
 
-        adjustStorageLocation();
-        manageIncompleteFiles();
-    }
+    adjustStorageLocation();
+    manageIncompleteFiles();
 
     m_session->handleTorrentChecked(this);
 }
@@ -1709,7 +1673,6 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
     Q_UNUSED(p);
     qDebug("Got a torrent finished alert for \"%s\"", qUtf8Printable(name()));
     qDebug("Torrent has seed status: %s", m_hasSeedStatus ? "yes" : "no");
-    m_hasMissingFiles = false;
     if (m_hasSeedStatus) return;
 
     updateStatus();
@@ -1768,23 +1731,8 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
 void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
 {
-    if (m_hasMissingFiles)
-    {
-        const auto havePieces = m_ltAddTorrentParams.have_pieces;
-        const auto unfinishedPieces = m_ltAddTorrentParams.unfinished_pieces;
-        const auto verifiedPieces = m_ltAddTorrentParams.verified_pieces;
-
-        // Update recent resume data but preserve existing progress
-        m_ltAddTorrentParams = params;
-        m_ltAddTorrentParams.have_pieces = havePieces;
-        m_ltAddTorrentParams.unfinished_pieces = unfinishedPieces;
-        m_ltAddTorrentParams.verified_pieces = verifiedPieces;
-    }
-    else
-    {
-        // Update recent resume data
-        m_ltAddTorrentParams = params;
-    }
+    // Update recent resume data
+    m_ltAddTorrentParams = params;
 
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
     m_ltAddTorrentParams.flags &= ~lt::torrent_flags::upload_mode;
@@ -1815,23 +1763,6 @@ void TorrentImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
 {
     Q_UNUSED(p);
     Q_ASSERT_X(false, Q_FUNC_INFO, "This point should be unreachable since libtorrent 1.2.11");
-}
-
-void TorrentImpl::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
-{
-    m_fastresumeDataRejected = true;
-
-    if (p->error.value() == lt::errors::mismatching_file_size)
-    {
-        // Mismatching file size (files were probably moved)
-        m_hasMissingFiles = true;
-        LogMsg(tr("File sizes mismatch for torrent '%1'. Cannot proceed further.").arg(name()), Log::CRITICAL);
-    }
-    else
-    {
-        LogMsg(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-            .arg(name(), QString::fromStdString(p->message())), Log::WARNING);
-    }
 }
 
 void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
@@ -1980,9 +1911,6 @@ void TorrentImpl::handleAlert(const lt::alert *a)
         break;
     case lt::metadata_received_alert::alert_type:
         handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
-        break;
-    case lt::fastresume_rejected_alert::alert_type:
-        handleFastResumeRejectedAlert(static_cast<const lt::fastresume_rejected_alert*>(a));
         break;
     case lt::torrent_checked_alert::alert_type:
         handleTorrentCheckedAlert(static_cast<const lt::torrent_checked_alert*>(a));

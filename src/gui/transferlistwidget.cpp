@@ -992,7 +992,7 @@ void TransferListWidget::displayListMenu()
         else
             needsPause = true;
 
-        if (torrent->isErrored() || torrent->hasMissingFiles())
+        if (torrent->isErrored())
         {
             // If torrent is in "errored" or "missing files" state
             // it cannot keep further processing until you restart it.

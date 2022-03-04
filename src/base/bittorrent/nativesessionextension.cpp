@@ -27,39 +27,9 @@
  */
 
 #include "nativesessionextension.h"
-
-#include <libtorrent/alert_types.hpp>
-
 #include "nativetorrentextension.h"
-
-namespace
-{
-    void handleFastresumeRejectedAlert(const lt::fastresume_rejected_alert *alert)
-    {
-        if (alert->error.value() == lt::errors::mismatching_file_size)
-        {
-            alert->handle.unset_flags(lt::torrent_flags::auto_managed);
-            alert->handle.pause();
-        }
-    }
-}
-
-lt::feature_flags_t NativeSessionExtension::implemented_features()
-{
-    return alert_feature;
-}
 
 std::shared_ptr<lt::torrent_plugin> NativeSessionExtension::new_torrent(const lt::torrent_handle &torrentHandle, ClientData)
 {
     return std::make_shared<NativeTorrentExtension>(torrentHandle);
-}
-
-void NativeSessionExtension::on_alert(const lt::alert *alert)
-{
-    switch (alert->type())
-    {
-    case lt::fastresume_rejected_alert::alert_type:
-        handleFastresumeRejectedAlert(static_cast<const lt::fastresume_rejected_alert *>(alert));
-        break;
-    }
 }

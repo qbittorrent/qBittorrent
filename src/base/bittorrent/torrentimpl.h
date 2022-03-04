@@ -150,7 +150,6 @@ namespace BitTorrent
         bool hasFirstLastPiecePriority() const override;
         TorrentState state() const override;
         bool hasMetadata() const override;
-        bool hasMissingFiles() const override;
         bool hasError() const override;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
@@ -247,7 +246,6 @@ namespace BitTorrent
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
 
-        void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
         void handleFileCompletedAlert(const lt::file_completed_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
 #ifdef QBT_USES_LIBTORRENT2
@@ -312,8 +310,6 @@ namespace BitTorrent
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
         bool m_hasSeedStatus;
-        bool m_fastresumeDataRejected = false;
-        bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;

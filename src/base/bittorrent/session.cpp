@@ -4619,6 +4619,7 @@ void Session::startUpTorrents()
         }
 
         qDebug() << "Starting up torrent" << torrentID.toString() << "...";
+        resumeData.ltAddTorrentParams.flags |= lt::torrent_flags::no_verify_files;
         if (!loadTorrent(resumeData))
             LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
 
@@ -4731,7 +4732,6 @@ void Session::handleAlert(const lt::alert *a)
         case lt::save_resume_data_failed_alert::alert_type:
         case lt::torrent_paused_alert::alert_type:
         case lt::torrent_resumed_alert::alert_type:
-        case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
         case lt::performance_alert::alert_type:

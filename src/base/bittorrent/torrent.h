@@ -214,7 +214,6 @@ namespace BitTorrent
         virtual bool hasFirstLastPiecePriority() const = 0;
         virtual TorrentState state() const = 0;
         virtual bool hasMetadata() const = 0;
-        virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
