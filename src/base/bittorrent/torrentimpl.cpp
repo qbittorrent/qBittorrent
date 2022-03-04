@@ -746,7 +746,7 @@ bool TorrentImpl::belongsToCategory(const QString &category) const
 
     if (m_category == category) return true;
 
-    if (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + '/'))
+    if (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + u'/'))
         return true;
 
     return false;
@@ -1843,7 +1843,7 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
     const Path oldFilePath = m_filePaths.at(fileIndex);
-    const Path newFilePath {QString(p->new_name())};
+    const Path newFilePath {QString::fromUtf8(p->new_name())};
 
     // Check if ".!qB" extension was just added or removed
     // We should compare path in a case sensitive manner even on case insensitive

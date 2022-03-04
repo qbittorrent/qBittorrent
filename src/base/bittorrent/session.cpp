@@ -113,7 +113,7 @@ const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
 namespace
 {
     const char PEER_ID[] = "qB";
-    const char USER_AGENT[] = "qBittorrent/" QBT_VERSION_2;
+    const auto USER_AGENT = QStringLiteral("qBittorrent/" QBT_VERSION_2);
 
     void torrentQueuePositionUp(const lt::torrent_handle &handle)
     {
@@ -691,7 +691,7 @@ Path Session::downloadPath() const
 
 bool Session::isValidCategoryName(const QString &name)
 {
-    static const QRegularExpression re(R"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)");
+    static const QRegularExpression re(uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs);
     if (!name.isEmpty() && (name.indexOf(re) != 0))
     {
         qDebug() << "Incorrect category name:" << name;
@@ -708,7 +708,7 @@ QStringList Session::expandCategory(const QString &category)
         return result;
 
     int index = 0;
-    while ((index = category.indexOf('/', index)) >= 0)
+    while ((index = category.indexOf(u'/', index)) >= 0)
     {
         result << category.left(index);
         ++index;
@@ -824,7 +824,7 @@ bool Session::removeCategory(const QString &name)
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
         if (torrent->belongsToCategory(name))
-            torrent->setCategory("");
+            torrent->setCategory(u""_qs);
     }
 
     // remove stored category and its subcategories if exist
@@ -832,7 +832,7 @@ bool Session::removeCategory(const QString &name)
     if (isSubcategoriesEnabled())
     {
         // remove subcategories
-        const QString test = name + '/';
+        const QString test = name + u'/';
         Algorithm::removeIf(m_categories, [this, &test, &result](const QString &category, const CategoryOptions &)
         {
             if (category.startsWith(test))
@@ -900,7 +900,7 @@ QSet<QString> Session::tags() const
 
 bool Session::isValidTag(const QString &tag)
 {
-    return (!tag.trimmed().isEmpty() && !tag.contains(','));
+    return (!tag.trimmed().isEmpty() && !tag.contains(u','));
 }
 
 bool Session::hasTag(const QString &tag) const
@@ -1138,7 +1138,7 @@ void Session::initializeNativeSession()
     pack.set_int(lt::settings_pack::alert_mask, alertMask);
     pack.set_str(lt::settings_pack::peer_fingerprint, peerId);
     pack.set_bool(lt::settings_pack::listen_system_port_fallback, false);
-    pack.set_str(lt::settings_pack::user_agent, USER_AGENT);
+    pack.set_str(lt::settings_pack::user_agent, USER_AGENT.toStdString());
     pack.set_bool(lt::settings_pack::use_dht_as_fallback, false);
     // Speed up exit
     pack.set_int(lt::settings_pack::auto_scrape_interval, 1200); // 20 minutes
@@ -1503,7 +1503,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 
     QStringList endpoints;
     QStringList outgoingInterfaces;
-    const QString portString = ':' + QString::number(port());
+    const QString portString = u':' + QString::number(port());
 
     for (const QString &ip : asConst(getListeningIPs()))
     {
@@ -1515,7 +1515,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
                           ? Utils::Net::canonicalIPv6Addr(addr).toString()
                           : addr.toString();
 
-            endpoints << ((isIPv6 ? ('[' + ip + ']') : ip) + portString);
+            endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
 
             if ((ip != QLatin1String("0.0.0.0")) && (ip != QLatin1String("::")))
                 outgoingInterfaces << ip;
@@ -1548,11 +1548,11 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
         }
     }
 
-    const QString finalEndpoints = endpoints.join(',');
+    const QString finalEndpoints = endpoints.join(u',');
     settingsPack.set_str(lt::settings_pack::listen_interfaces, finalEndpoints.toStdString());
     LogMsg(tr("Trying to listen on the following list of IP addresses: \"%1\"").arg(finalEndpoints));
 
-    settingsPack.set_str(lt::settings_pack::outgoing_interfaces, outgoingInterfaces.join(',').toStdString());
+    settingsPack.set_str(lt::settings_pack::outgoing_interfaces, outgoingInterfaces.join(u',').toStdString());
     m_listenInterfaceConfigured = true;
 }
 
@@ -2144,7 +2144,7 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 
     const QString category = addTorrentParams.category;
     if (!category.isEmpty() && !m_categories.contains(category) && !addCategory(category))
-        loadTorrentParams.category = "";
+        loadTorrentParams.category = u""_qs;
     else
         loadTorrentParams.category = category;
 
@@ -5010,7 +5010,7 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 
         const QString msg = QString::fromStdString(p->message());
         LogMsg(tr("File error alert. Torrent: \"%1\". File: \"%2\". Reason: \"%3\"")
-                .arg(torrent->name(), p->filename(), msg)
+                .arg(torrent->name(), QString::fromLocal8Bit(p->filename()), msg)
             , Log::WARNING);
         emit fullDiskError(torrent, msg);
     }
@@ -5041,7 +5041,7 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         reason = tr("port filter", "this peer was blocked. Reason: port filter.");
         break;
     case lt::peer_blocked_alert::i2p_mixed:
-        reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg("I2P"); // don't translate I2P
+        reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg(u"I2P"_qs); // don't translate I2P
         break;
     case lt::peer_blocked_alert::privileged_ports:
         reason = tr("use of privileged port", "this peer was blocked. Reason: use of privileged port.");
@@ -5050,7 +5050,7 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
         break;
     case lt::peer_blocked_alert::tcp_disabled:
-        reason = tr("%1 is disabled", "this peer was blocked. Reason: TCP is disabled.").arg("TCP"); // don't translate TCP
+        reason = tr("%1 is disabled", "this peer was blocked. Reason: TCP is disabled.").arg(u"TCP"_qs); // don't translate TCP
         break;
     }
 
@@ -5075,13 +5075,13 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
     if (p->error)
     {
         LogMsg(tr("URL seed DNS lookup failed. Torrent: \"%1\". URL: \"%2\". Error: \"%3\"")
-            .arg(torrent->name(), p->server_url(), QString::fromStdString(p->message()))
+            .arg(torrent->name(), QString::fromUtf8(p->server_url()), QString::fromStdString(p->message()))
             , Log::WARNING);
     }
     else
     {
         LogMsg(tr("Received error message from URL seed. Torrent: \"%1\". URL: \"%2\". Message: \"%3\"")
-            .arg(torrent->name(), p->server_url(), p->error_message())
+            .arg(torrent->name(), QString::fromUtf8(p->server_url()), QString::fromUtf8(p->error_message()))
             , Log::WARNING);
     }
 }
@@ -5296,7 +5296,7 @@ void Session::handleTrackerAlert(const lt::tracker_alert *a)
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
         const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
-        torrent->updatePeerCount(trackerURL, a->local_endpoint, numPeers);
+        torrent->updatePeerCount(QString::fromUtf8(trackerURL), a->local_endpoint, numPeers);
     }
 }
 

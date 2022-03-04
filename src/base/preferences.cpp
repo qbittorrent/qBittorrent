@@ -572,7 +572,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 
 QString Preferences::getServerDomains() const
 {
-    return value<QString>(u"Preferences/WebUI/ServerDomains"_qs, QChar('*'));
+    return value<QString>(u"Preferences/WebUI/ServerDomains"_qs, u"*"_qs);
 }
 
 void Preferences::setServerDomains(const QString &str)
@@ -582,7 +582,7 @@ void Preferences::setServerDomains(const QString &str)
 
 QString Preferences::getWebUiAddress() const
 {
-    return value<QString>(u"Preferences/WebUI/Address"_qs, QChar('*')).trimmed();
+    return value<QString>(u"Preferences/WebUI/Address"_qs, u"*"_qs).trimmed();
 }
 
 void Preferences::setWebUiAddress(const QString &addr)
@@ -1614,7 +1614,7 @@ void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
     QStringList rawCookies;
     rawCookies.reserve(cookies.size());
     for (const QNetworkCookie &cookie : cookies)
-        rawCookies << cookie.toRawForm();
+        rawCookies << QString::fromLatin1(cookie.toRawForm());
     setValue(u"Network/Cookies"_qs, rawCookies);
 }
 

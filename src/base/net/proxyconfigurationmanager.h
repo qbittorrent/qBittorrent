@@ -30,6 +30,7 @@
 
 #include <QObject>
 
+#include "base/global.h"
 #include "base/settingvalue.h"
 
 namespace Net
@@ -50,7 +51,7 @@ namespace Net
     struct ProxyConfiguration
     {
         ProxyType type = ProxyType::None;
-        QString ip = "0.0.0.0";
+        QString ip = u"0.0.0.0"_qs;
         ushort port = 8080;
         QString username;
         QString password;

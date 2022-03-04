@@ -89,10 +89,10 @@ namespace
     public:
         static QString padUsageText(const QString &usage)
         {
-            QString res = QString(USAGE_INDENTATION, ' ') + usage;
+            QString res = QString(USAGE_INDENTATION, u' ') + usage;
 
             if ((USAGE_TEXT_COLUMN - usage.length() - 4) > 0)
-                return res + QString(USAGE_TEXT_COLUMN - usage.length() - 4, ' ');
+                return res + QString((USAGE_TEXT_COLUMN - usage.length() - 4), u' ');
 
             return res;
         }
@@ -284,7 +284,7 @@ namespace
 
         std::optional<bool> value(const QProcessEnvironment &env) const
         {
-            const QString val = env.value(envVarName(), "-1");
+            const QString val = env.value(envVarName(), u"-1"_qs);
 
             if (val.isEmpty())
             {
@@ -404,8 +404,8 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
     {
         const QString &arg = args[i];
 
-        if ((arg.startsWith("--") && !arg.endsWith(".torrent"))
-            || (arg.startsWith('-') && (arg.size() == 2)))
+        if ((arg.startsWith(u"--") && !arg.endsWith(u".torrent"))
+            || (arg.startsWith(u'-') && (arg.size() == 2)))
             {
             // Parse known parameters
             if (arg == SHOW_HELP_OPTION)
@@ -500,7 +500,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
 
 QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN, int wrapAtColumn = WRAP_AT_COLUMN)
 {
-    QStringList words = text.split(' ');
+    QStringList words = text.split(u' ');
     QStringList lines = {words.first()};
     int currentLineMaxLength = wrapAtColumn - initialIndentation;
 
@@ -508,23 +508,23 @@ QString wrapText(const QString &text, int initialIndentation = USAGE_TEXT_COLUMN
     {
         if (lines.last().length() + word.length() + 1 < currentLineMaxLength)
         {
-            lines.last().append(' ' + word);
+            lines.last().append(u' ' + word);
         }
         else
         {
-            lines.append(QString(initialIndentation, ' ') + word);
+            lines.append(QString(initialIndentation, u' ') + word);
             currentLineMaxLength = wrapAtColumn;
         }
     }
 
-    return lines.join('\n');
+    return lines.join(u'\n');
 }
 
 QString makeUsage(const QString &prgName)
 {
     QString text;
     QTextStream stream(&text, QIODevice::WriteOnly);
-    QString indentation = QString(USAGE_INDENTATION, ' ');
+    QString indentation = QString(USAGE_INDENTATION, u' ');
 
     stream << QObject::tr("Usage:") << '\n'
         << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n'

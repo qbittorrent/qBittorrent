@@ -149,9 +149,9 @@ QStringList SearchPluginManager::supportedCategories() const
 QStringList SearchPluginManager::getPluginCategories(const QString &pluginName) const
 {
     QStringList plugins;
-    if (pluginName == "all")
+    if (pluginName == u"all")
         plugins = allPlugins();
-    else if ((pluginName == "enabled") || (pluginName == "multi"))
+    else if ((pluginName == u"enabled") || (pluginName == u"multi"))
         plugins = enabledPlugins();
     else
         plugins << pluginName.trimmed();
@@ -211,12 +211,12 @@ void SearchPluginManager::installPlugin(const QString &source)
     }
     else
     {
-        const Path path {source.startsWith("file:", Qt::CaseInsensitive) ? QUrl(source).toLocalFile() : source};
+        const Path path {source.startsWith(u"file:", Qt::CaseInsensitive) ? QUrl(source).toLocalFile() : source};
 
         QString pluginName = path.filename();
-        if (pluginName.endsWith(".py", Qt::CaseInsensitive))
+        if (pluginName.endsWith(u".py", Qt::CaseInsensitive))
         {
-            pluginName.chop(pluginName.size() - pluginName.lastIndexOf('.'));
+            pluginName.chop(pluginName.size() - pluginName.lastIndexOf(u'.'));
             installPlugin_impl(pluginName, path);
         }
         else
@@ -322,7 +322,7 @@ void SearchPluginManager::checkForUpdates()
 {
     // Download version file from update server
     using namespace Net;
-    DownloadManager::instance()->download({m_updateUrl + "versions.txt"}
+    DownloadManager::instance()->download({m_updateUrl + u"versions.txt"}
                                           , this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
@@ -343,15 +343,15 @@ QString SearchPluginManager::categoryFullName(const QString &categoryName)
 {
     const QHash<QString, QString> categoryTable
     {
-        {"all", tr("All categories")},
-        {"movies", tr("Movies")},
-        {"tv", tr("TV shows")},
-        {"music", tr("Music")},
-        {"games", tr("Games")},
-        {"anime", tr("Anime")},
-        {"software", tr("Software")},
-        {"pictures", tr("Pictures")},
-        {"books", tr("Books")}
+        {u"all"_qs, tr("All categories")},
+        {u"movies"_qs, tr("Movies")},
+        {u"tv"_qs, tr("TV shows")},
+        {u"music"_qs, tr("Music")},
+        {u"games"_qs, tr("Games")},
+        {u"anime"_qs, tr("Anime")},
+        {u"software"_qs, tr("Software")},
+        {u"pictures"_qs, tr("Pictures")},
+        {u"books"_qs, tr("Books")}
     };
     return categoryTable.value(categoryName);
 }
@@ -400,8 +400,8 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
     else
     {
         const QString url = result.url;
-        QString pluginName = url.mid(url.lastIndexOf('/') + 1);
-        pluginName.replace(".py", "", Qt::CaseInsensitive);
+        QString pluginName = url.mid(url.lastIndexOf(u'/') + 1);
+        pluginName.replace(u".py"_qs, u""_qs, Qt::CaseInsensitive);
 
         if (pluginInfo(pluginName))
             emit pluginUpdateFailed(pluginName, tr("Failed to download the plugin file. %1").arg(result.errorString));
@@ -456,7 +456,7 @@ void SearchPluginManager::update()
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 
-    const QString capabilities = nova.readAll();
+    const auto capabilities = QString::fromUtf8(nova.readAll());
     QDomDocument xmlDoc;
     if (!xmlDoc.setContent(capabilities))
     {
@@ -466,7 +466,7 @@ void SearchPluginManager::update()
     }
 
     const QDomElement root = xmlDoc.documentElement();
-    if (root.tagName() != "capabilities")
+    if (root.tagName() != u"capabilities")
     {
         qWarning() << "Invalid XML file for Nova search engine capabilities, msg: " << capabilities.toLocal8Bit().data();
         return;
@@ -482,10 +482,10 @@ void SearchPluginManager::update()
             auto plugin = std::make_unique<PluginInfo>();
             plugin->name = pluginName;
             plugin->version = getPluginVersion(pluginPath(pluginName));
-            plugin->fullName = engineElem.elementsByTagName("name").at(0).toElement().text();
-            plugin->url = engineElem.elementsByTagName("url").at(0).toElement().text();
+            plugin->fullName = engineElem.elementsByTagName(u"name"_qs).at(0).toElement().text();
+            plugin->url = engineElem.elementsByTagName(u"url"_qs).at(0).toElement().text();
 
-            const QStringList categories = engineElem.elementsByTagName("categories").at(0).toElement().text().split(' ');
+            const QStringList categories = engineElem.elementsByTagName(u"categories"_qs).at(0).toElement().text().split(u' ');
             for (QString cat : categories)
             {
                 cat = cat.trimmed();
@@ -528,7 +528,7 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         const QVector<QByteArray> list = Utils::ByteArray::splitToViews(line, ":", Qt::SkipEmptyParts);
         if (list.size() != 2) continue;
 
-        const QString pluginName = list.first().trimmed();
+        const auto pluginName = QString::fromUtf8(list.first().trimmed());
         const PluginVersion version = PluginVersion::tryParse(list.last().trimmed(), {});
 
         if (!version.isValid()) continue;
@@ -574,8 +574,8 @@ PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
 
     while (!pluginFile.atEnd())
     {
-        const QString line = QString(pluginFile.readLine()).remove(' ');
-        if (!line.startsWith("#VERSION:", Qt::CaseInsensitive)) continue;
+        const auto line = QString::fromUtf8(pluginFile.readLine()).remove(u' ');
+        if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive)) continue;
 
         const QString versionStr = line.mid(9);
         const PluginVersion version = PluginVersion::tryParse(versionStr, {});

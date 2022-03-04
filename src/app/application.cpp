@@ -136,10 +136,10 @@ Application::Application(int &argc, char **argv)
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
 
-    setApplicationName("qBittorrent");
-    setOrganizationDomain("qbittorrent.org");
+    setApplicationName(u"qBittorrent"_qs);
+    setOrganizationDomain(u"qbittorrent.org"_qs);
 #if !defined(DISABLE_GUI)
-    setDesktopFileName("org.qbittorrent.qBittorrent");
+    setDesktopFileName(u"org.qbittorrent.qBittorrent"_qs);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     setAttribute(Qt::AA_UseHighDpiPixmaps, true);  // opt-in to the high DPI pixmap support
 #endif
@@ -176,12 +176,12 @@ Application::Application(int &argc, char **argv)
     if (isFileLoggerEnabled())
         m_fileLogger = new FileLogger(fileLoggerPath(), isFileLoggerBackup(), fileLoggerMaxSize(), isFileLoggerDeleteOld(), fileLoggerAge(), static_cast<FileLogger::FileLogAgeType>(fileLoggerAgeType()));
 
-    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QBT_VERSION));
+    Logger::instance()->addMessage(tr("qBittorrent %1 started", "qBittorrent v3.2.0alpha started").arg(QStringLiteral(QBT_VERSION)));
     if (portableModeEnabled)
     {
         Logger::instance()->addMessage(tr("Running in portable mode. Auto detected profile folder at: %1").arg(profileDir.toString()));
         if (m_commandLineArgs.relativeFastresumePaths)
-            Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg("--relative-fastresume"), Log::WARNING); // to avoid translating the `--relative-fastresume` string
+            Logger::instance()->addMessage(tr("Redundant command line flag detected: \"%1\". Portable mode implies relative fastresume.").arg(u"--relative-fastresume"_qs), Log::WARNING); // to avoid translating the `--relative-fastresume` string
     }
     else
     {
@@ -457,12 +457,12 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
 {
     // Prepare mail content
-    const QString content = tr("Torrent name: %1").arg(torrent->name()) + '\n'
-        + tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + '\n'
-        + tr("Save path: %1").arg(torrent->savePath().toString()) + "\n\n"
+    const QString content = tr("Torrent name: %1").arg(torrent->name()) + u'\n'
+        + tr("Torrent size: %1").arg(Utils::Misc::friendlyUnit(torrent->wantedSize())) + u'\n'
+        + tr("Save path: %1").arg(torrent->savePath().toString()) + u"\n\n"
         + tr("The torrent was downloaded in %1.", "The torrent was downloaded in 1 hour and 20 seconds")
-            .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + "\n\n\n"
-        + tr("Thank you for using qBittorrent.") + '\n';
+            .arg(Utils::Misc::userFriendlyDuration(torrent->activeTime())) + u"\n\n\n"
+        + tr("Thank you for using qBittorrent.") + u'\n';
 
     // Send the notification email
     const Preferences *pref = Preferences::instance();
@@ -755,7 +755,7 @@ void Application::initializeTranslation()
     installTranslator(&m_translator);
 
 #ifndef DISABLE_GUI
-    if (localeStr.startsWith("ar") || localeStr.startsWith("he"))
+    if (localeStr.startsWith(u"ar") || localeStr.startsWith(u"he"))
     {
         qDebug("Right to Left mode");
         setLayoutDirection(Qt::RightToLeft);

@@ -30,6 +30,7 @@
 
 #include <QDateTime>
 
+#include "base/global.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
@@ -94,9 +95,9 @@ void Statistics::save() const
 
     SettingsPtr s = Profile::instance()->applicationSettings(QLatin1String("qBittorrent-data"));
     QVariantHash v;
-    v.insert("AlltimeDL", m_alltimeDL + m_sessionDL);
-    v.insert("AlltimeUL", m_alltimeUL + m_sessionUL);
-    s->setValue("Stats/AllStats", v);
+    v.insert(u"AlltimeDL"_qs, m_alltimeDL + m_sessionDL);
+    v.insert(u"AlltimeUL"_qs, m_alltimeUL + m_sessionUL);
+    s->setValue(u"Stats/AllStats"_qs, v);
     m_dirty = false;
     m_lastWrite = now;
 }
@@ -104,8 +105,8 @@ void Statistics::save() const
 void Statistics::load()
 {
     const SettingsPtr s = Profile::instance()->applicationSettings(QLatin1String("qBittorrent-data"));
-    const QVariantHash v = s->value("Stats/AllStats").toHash();
+    const QVariantHash v = s->value(u"Stats/AllStats"_qs).toHash();
 
-    m_alltimeDL = v["AlltimeDL"].toULongLong();
-    m_alltimeUL = v["AlltimeUL"].toULongLong();
+    m_alltimeDL = v[u"AlltimeDL"_qs].toULongLong();
+    m_alltimeUL = v[u"AlltimeUL"_qs].toULongLong();
 }

@@ -71,9 +71,9 @@ QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 
 std::optional<bool> Utils::String::parseBool(const QString &string)
 {
-    if (string.compare("true", Qt::CaseInsensitive) == 0)
+    if (string.compare(u"true", Qt::CaseInsensitive) == 0)
         return true;
-    if (string.compare("false", Qt::CaseInsensitive) == 0)
+    if (string.compare(u"false", Qt::CaseInsensitive) == 0)
         return false;
 
     return std::nullopt;

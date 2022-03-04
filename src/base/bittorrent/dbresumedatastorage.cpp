@@ -58,14 +58,14 @@
 
 namespace
 {
-    const char DB_CONNECTION_NAME[] = "ResumeDataStorage";
+    const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_qs;
 
     const int DB_VERSION = 2;
 
-    const char DB_TABLE_META[] = "meta";
-    const char DB_TABLE_TORRENTS[] = "torrents";
+    const QString DB_TABLE_META = u"meta"_qs;
+    const QString DB_TABLE_TORRENTS = u"torrents"_qs;
 
-    const char META_VERSION[] = "version";
+    const QString META_VERSION = u"version"_qs;
 
     struct Column
     {
@@ -370,7 +370,7 @@ int BitTorrent::DBResumeDataStorage::currentDBVersion() const
     if (!query.prepare(selectDBVersionStatement))
         throw RuntimeError(query.lastError().text());
 
-    query.bindValue(DB_COLUMN_NAME.placeholder, QString::fromLatin1(META_VERSION));
+    query.bindValue(DB_COLUMN_NAME.placeholder, META_VERSION);
 
     if (!query.exec())
         throw RuntimeError(query.lastError().text());
@@ -410,7 +410,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
         if (!query.prepare(insertMetaVersionQuery))
             throw RuntimeError(query.lastError().text());
 
-        query.bindValue(DB_COLUMN_NAME.placeholder, QString::fromLatin1(META_VERSION));
+        query.bindValue(DB_COLUMN_NAME.placeholder, META_VERSION);
         query.bindValue(DB_COLUMN_VALUE.placeholder, DB_VERSION);
 
         if (!query.exec())
@@ -468,7 +468,7 @@ void BitTorrent::DBResumeDataStorage::updateDBFromVersion1() const
         if (!query.prepare(updateMetaVersionQuery))
             throw RuntimeError(query.lastError().text());
 
-        query.bindValue(DB_COLUMN_NAME.placeholder, QString::fromLatin1(META_VERSION));
+        query.bindValue(DB_COLUMN_NAME.placeholder, META_VERSION);
         query.bindValue(DB_COLUMN_VALUE.placeholder, DB_VERSION);
 
         if (!query.exec())

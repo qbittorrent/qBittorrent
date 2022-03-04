@@ -324,7 +324,7 @@ void TorrentFilesWatcher::load()
 
 void TorrentFilesWatcher::loadLegacy()
 {
-    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>("Preferences/Downloads/ScanDirsV2");
+    const auto dirs = SettingsStorage::instance()->loadValue<QVariantHash>(u"Preferences/Downloads/ScanDirsV2"_qs);
 
     for (auto it = dirs.cbegin(); it != dirs.cend(); ++it)
     {
@@ -356,7 +356,7 @@ void TorrentFilesWatcher::loadLegacy()
     }
 
     store();
-    SettingsStorage::instance()->removeValue("Preferences/Downloads/ScanDirsV2");
+    SettingsStorage::instance()->removeValue(u"Preferences/Downloads/ScanDirsV2"_qs);
 }
 
 void TorrentFilesWatcher::store() const
@@ -497,7 +497,7 @@ void TorrentFilesWatcher::Worker::processWatchedFolder(const Path &path)
 void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &watchedFolderPath
                                               , const TorrentFilesWatcher::WatchedFolderOptions &options)
 {
-    QDirIterator dirIter {path.data(), {"*.torrent", "*.magnet"}, QDir::Files};
+    QDirIterator dirIter {path.data(), {u"*.torrent"_qs, u"*.magnet"_qs}, QDir::Files};
     while (dirIter.hasNext())
     {
         const Path filePath {dirIter.next()};

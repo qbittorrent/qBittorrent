@@ -122,7 +122,7 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const Path &pat
     }
     catch (const std::bad_alloc &e)
     {
-        return nonstd::make_unexpected(tr("Torrent file read error: %1").arg(e.what()));
+        return nonstd::make_unexpected(tr("Torrent file read error: %1").arg(QString::fromLocal8Bit(e.what())));
     }
 
     if (data.size() != file.size())
@@ -294,7 +294,7 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
     for (const lt::web_seed_entry &webSeed : nativeWebSeeds)
     {
         if (webSeed.type == lt::web_seed_entry::url_seed)
-            urlSeeds.append(QUrl(webSeed.url.c_str()));
+            urlSeeds.append(QUrl(QString::fromStdString(webSeed.url)));
     }
 
     return urlSeeds;

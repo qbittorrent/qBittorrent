@@ -285,9 +285,9 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
     if (queueFile.open(QFile::ReadOnly))
     {
         const QRegularExpression hashPattern {QLatin1String("^([A-Fa-f0-9]{40})$")};
-        QByteArray line;
+        QString line;
         int start = 0;
-        while (!(line = queueFile.readLine().trimmed()).isEmpty())
+        while (!(line = QString::fromLatin1(queueFile.readLine().trimmed())).isEmpty())
         {
             const QRegularExpressionMatch rxMatch = hashPattern.match(line);
             if (rxMatch.hasMatch())

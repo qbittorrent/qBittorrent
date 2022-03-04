@@ -52,7 +52,7 @@ namespace
     // name starts with a .
     bool fileFilter(const std::string &f)
     {
-        return !Path(f).filename().startsWith('.');
+        return !Path(f).filename().startsWith(u'.');
     }
 
 #ifdef QBT_USES_LIBTORRENT2
