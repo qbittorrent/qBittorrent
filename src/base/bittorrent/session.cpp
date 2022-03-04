@@ -108,7 +108,7 @@
 
 using namespace BitTorrent;
 
-const Path CATEGORIES_FILE_NAME {"categories.json"};
+const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
 
 namespace
 {
@@ -457,7 +457,7 @@ Session::Session(QObject *parent)
     , m_storedTags(BITTORRENT_SESSION_KEY("Tags"))
     , m_maxRatioAction(BITTORRENT_SESSION_KEY("MaxRatioAction"), Pause)
     , m_savePath(BITTORRENT_SESSION_KEY("DefaultSavePath"), specialFolderLocation(SpecialFolder::Downloads))
-    , m_downloadPath(BITTORRENT_SESSION_KEY("TempPath"), (savePath() / Path("temp")))
+    , m_downloadPath(BITTORRENT_SESSION_KEY("TempPath"), (savePath() / Path(u"temp"_qs)))
     , m_isDownloadPathEnabled(BITTORRENT_SESSION_KEY("TempPathEnabled"), false)
     , m_isSubcategoriesEnabled(BITTORRENT_SESSION_KEY("SubcategoriesEnabled"), false)
     , m_useCategoryPathsInManualMode(BITTORRENT_SESSION_KEY("UseCategoryPathsInManualMode"), false)
@@ -2556,7 +2556,7 @@ void Session::setSavePath(const Path &path)
 
 void Session::setDownloadPath(const Path &path)
 {
-    const Path newPath = (path.isAbsolute() ? path : (savePath() / Path("temp") / path));
+    const Path newPath = (path.isAbsolute() ? path : (savePath() / Path(u"temp"_qs) / path));
     if (newPath == m_downloadPath)
         return;
 
@@ -4451,7 +4451,7 @@ void Session::startUpTorrents()
 {
     qDebug("Initializing torrents resume data storage...");
 
-    const Path dbPath = specialFolderLocation(SpecialFolder::Data) / Path("torrents.db");
+    const Path dbPath = specialFolderLocation(SpecialFolder::Data) / Path(u"torrents.db"_qs);
     const bool dbStorageExists = dbPath.exists();
 
     ResumeDataStorage *startupStorage = nullptr;
@@ -4461,13 +4461,13 @@ void Session::startUpTorrents()
 
         if (!dbStorageExists)
         {
-            const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path("BT_backup");
+            const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
             startupStorage = new BencodeResumeDataStorage(dataPath, this);
         }
     }
     else
     {
-        const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path("BT_backup");
+        const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
         m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
 
         if (dbStorageExists)

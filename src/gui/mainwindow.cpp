@@ -116,7 +116,7 @@ namespace
     bool isTorrentLink(const QString &str)
     {
         return str.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive)
-            || str.endsWith(QLatin1String(C_TORRENT_FILE_EXTENSION), Qt::CaseInsensitive)
+            || str.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
             || (!str.startsWith(QLatin1String("file:"), Qt::CaseInsensitive)
                 && Net::DownloadManager::hasSupportedScheme(str));
     }
@@ -1421,7 +1421,7 @@ void MainWindow::on_actionOpen_triggered()
     // Note: it is possible to select more than one file
     const QStringList pathsList =
         QFileDialog::getOpenFileNames(this, tr("Open Torrent Files"), pref->getMainLastDir().data(),
-                                      tr("Torrent Files") + " (*" + C_TORRENT_FILE_EXTENSION + ')');
+                                      tr("Torrent Files") + u" (*" + TORRENT_FILE_EXTENSION + u')');
 
     if (pathsList.isEmpty())
         return;

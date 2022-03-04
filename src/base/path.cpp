@@ -68,11 +68,6 @@ Path::Path(const std::string &pathStr)
 {
 }
 
-Path::Path(const char pathStr[])
-    : Path(QString::fromLatin1(pathStr))
-{
-}
-
 bool Path::isValid() const
 {
     if (isEmpty())
@@ -209,11 +204,6 @@ Path &Path::operator+=(const QString &str)
 {
     *this = *this + str;
     return *this;
-}
-
-Path &Path::operator+=(const char str[])
-{
-    return (*this += QString::fromLatin1(str));
 }
 
 Path &Path::operator+=(const std::string &str)

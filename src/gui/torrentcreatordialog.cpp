@@ -188,8 +188,8 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), savePath.data(), tr("Torrent Files (*.torrent)"))};
     if (destPath.isEmpty())
         return;
-    if (!destPath.hasExtension(C_TORRENT_FILE_EXTENSION))
-        destPath += C_TORRENT_FILE_EXTENSION;
+    if (!destPath.hasExtension(TORRENT_FILE_EXTENSION))
+        destPath += TORRENT_FILE_EXTENSION;
     m_storeLastSavePath = destPath.parentPath();
 
     // Disable dialog & set busy cursor

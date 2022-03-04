@@ -33,6 +33,7 @@
 #include <QHostAddress>
 #include <QLocale>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/profile.h"
@@ -43,8 +44,8 @@
 #include "geoipdatabase.h"
 
 const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
-const char GEODB_FOLDER[] = "GeoDB";
-const char GEODB_FILENAME[] = "dbip-country-lite.mmdb";
+const QString GEODB_FOLDER = u"GeoDB"_qs;
+const QString GEODB_FILENAME = u"dbip-country-lite.mmdb"_qs;
 
 using namespace Net;
 

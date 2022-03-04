@@ -40,7 +40,6 @@ public:
     Path() = default;
 
     explicit Path(const QString &pathStr);
-    explicit Path(const char pathStr[]);
     explicit Path(const std::string &pathStr);
 
     bool isValid() const;
@@ -68,7 +67,6 @@ public:
 
     Path &operator/=(const Path &other);
     Path &operator+=(const QString &str);
-    Path &operator+=(const char str[]);
     Path &operator+=(const std::string &str);
 
     static Path commonPath(const Path &left, const Path &right);

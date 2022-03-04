@@ -363,7 +363,7 @@ QString SearchPluginManager::pluginFullName(const QString &pluginName)
 
 Path SearchPluginManager::pluginsLocation()
 {
-    return (engineLocation() / Path("engines"));
+    return (engineLocation() / Path(u"engines"_qs));
 }
 
 Path SearchPluginManager::engineLocation()
@@ -371,7 +371,7 @@ Path SearchPluginManager::engineLocation()
     static Path location;
     if (location.isEmpty())
     {
-        location = specialFolderLocation(SpecialFolder::Data) / Path("nova3");
+        location = specialFolderLocation(SpecialFolder::Data) / Path(u"nova3"_qs);
         Utils::Fs::mkpath(location);
     }
 
@@ -416,20 +416,20 @@ void SearchPluginManager::updateNova()
     // create nova directory if necessary
     const Path enginePath = engineLocation();
 
-    QFile packageFile {(enginePath / Path("__init__.py")).data()};
+    QFile packageFile {(enginePath / Path(u"__init__.py"_qs)).data()};
     packageFile.open(QIODevice::WriteOnly);
     packageFile.close();
 
-    Utils::Fs::mkdir(enginePath / Path("engines"));
+    Utils::Fs::mkdir(enginePath / Path(u"engines"_qs));
 
-    QFile packageFile2 {(enginePath / Path("engines/__init__.py")).data()};
+    QFile packageFile2 {(enginePath / Path(u"engines/__init__.py"_qs)).data()};
     packageFile2.open(QIODevice::WriteOnly);
     packageFile2.close();
 
     // Copy search plugin files (if necessary)
     const auto updateFile = [&enginePath](const Path &filename, const bool compareVersion)
     {
-        const Path filePathBundled = Path(":/searchengine/nova3") / filename;
+        const Path filePathBundled = Path(u":/searchengine/nova3"_qs) / filename;
         const Path filePathDisk = enginePath / filename;
 
         if (compareVersion && (getPluginVersion(filePathBundled) <= getPluginVersion(filePathDisk)))
@@ -439,12 +439,12 @@ void SearchPluginManager::updateNova()
         Utils::Fs::copyFile(filePathBundled, filePathDisk);
     };
 
-    updateFile(Path("helpers.py"), true);
-    updateFile(Path("nova2.py"), true);
-    updateFile(Path("nova2dl.py"), true);
-    updateFile(Path("novaprinter.py"), true);
-    updateFile(Path("sgmllib3.py"), false);
-    updateFile(Path("socks.py"), false);
+    updateFile(Path(u"helpers.py"_qs), true);
+    updateFile(Path(u"nova2.py"_qs), true);
+    updateFile(Path(u"nova2dl.py"_qs), true);
+    updateFile(Path(u"novaprinter.py"_qs), true);
+    updateFile(Path(u"sgmllib3.py"_qs), false);
+    updateFile(Path(u"socks.py"_qs), false);
 }
 
 void SearchPluginManager::update()
@@ -452,7 +452,7 @@ void SearchPluginManager::update()
     QProcess nova;
     nova.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
 
-    const QStringList params {(engineLocation() / Path("/nova2.py")).toString(), QLatin1String("--capabilities")};
+    const QStringList params {(engineLocation() / Path(u"/nova2.py"_qs)).toString(), QLatin1String("--capabilities")};
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 

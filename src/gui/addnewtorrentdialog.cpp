@@ -567,23 +567,21 @@ void AddNewTorrentDialog::saveTorrentFile()
 {
     Q_ASSERT(hasMetadata());
 
-    const QString torrentFileExtension {C_TORRENT_FILE_EXTENSION};
-    const QString filter {tr("Torrent file (*%1)").arg(torrentFileExtension)};
+    const QString filter {tr("Torrent file (*%1)").arg(TORRENT_FILE_EXTENSION)};
 
-    QString path = QFileDialog::getSaveFileName(
-                this, tr("Save as torrent file")
-                , QDir::home().absoluteFilePath(m_torrentInfo.name() + torrentFileExtension)
-                , filter);
+    Path path {QFileDialog::getSaveFileName(this, tr("Save as torrent file")
+                , QDir::home().absoluteFilePath(m_torrentInfo.name() + TORRENT_FILE_EXTENSION)
+                , filter)};
     if (path.isEmpty()) return;
 
-    if (!path.endsWith(torrentFileExtension, Qt::CaseInsensitive))
-        path += torrentFileExtension;
+    if (!path.hasExtension(TORRENT_FILE_EXTENSION))
+        path += TORRENT_FILE_EXTENSION;
 
-    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(Path(path));
+    const nonstd::expected<void, QString> result = m_torrentInfo.saveToFile(path);
     if (!result)
     {
         QMessageBox::critical(this, tr("I/O Error")
-            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path, result.error()));
+            , tr("Couldn't export torrent metadata file '%1'. Reason: %2.").arg(path.toString(), result.error()));
     }
 }
 

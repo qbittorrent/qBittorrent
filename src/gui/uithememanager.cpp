@@ -37,6 +37,7 @@
 #include <QPalette>
 #include <QResource>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
@@ -44,7 +45,7 @@
 
 namespace
 {
-    const Path DEFAULT_ICONS_DIR {":icons"};
+    const Path DEFAULT_ICONS_DIR {u":icons"_qs};
     const QString CONFIG_FILE_NAME {QStringLiteral("config.json")};
     const QString STYLESHEET_FILE_NAME {QStringLiteral("stylesheet.qss")};
 
@@ -53,7 +54,7 @@ namespace
     // point to a file `file.svg` in root directory of CONFIG_FILE_NAME
     const QString STYLESHEET_RESOURCES_DIR {QStringLiteral(":/uitheme")};
 
-    const Path THEME_ICONS_DIR {"icons"};
+    const Path THEME_ICONS_DIR {u"icons"_qs};
 
     Path findIcon(const QString &iconId, const Path &dir)
     {
@@ -101,7 +102,7 @@ namespace
         }
 
     private:
-        const Path m_qrcThemeDir {":/uitheme"};
+        const Path m_qrcThemeDir {u":/uitheme"_qs};
         const Path m_qrcIconsDir = m_qrcThemeDir / THEME_ICONS_DIR;
     };
 

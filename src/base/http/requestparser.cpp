@@ -323,7 +323,7 @@ bool RequestParser::parseFormData(const QByteArray &data)
     const QList<QStringView> headerLines = QStringView(headers).split(QString::fromLatin1(CRLF), Qt::SkipEmptyParts);
     for (const auto &line : headerLines)
     {
-        if (line.trimmed().startsWith(QString::fromLatin1(HEADER_CONTENT_DISPOSITION), Qt::CaseInsensitive))
+        if (line.trimmed().startsWith(HEADER_CONTENT_DISPOSITION, Qt::CaseInsensitive))
         {
             // extract out filename & name
             const QList<QStringView> directives = line.split(u';', Qt::SkipEmptyParts);
