@@ -378,7 +378,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(torrentIDs.size())));
     if (exists)
     {
-        if (currentRow() == rowFromTracker(host))
+        if (trackerFromRow(currentRow()) == host)
             applyFilter(currentRow());
         return;
     }
