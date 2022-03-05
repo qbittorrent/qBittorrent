@@ -97,8 +97,9 @@ void AppController::shutdownAction()
 
 void AppController::preferencesAction()
 {
-    const Preferences *const pref = Preferences::instance();
+    const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
+
     QJsonObject data;
 
     // Downloads
@@ -231,6 +232,7 @@ void AppController::preferencesAction()
     // Web UI
     // Language
     data["locale"] = pref->getLocale();
+    data["performance_warning"] = session->isPerformanceWarningEnabled();
     // HTTP Server
     data["web_ui_domain_list"] = pref->getServerDomains();
     data["web_ui_address"] = pref->getWebUiAddress();
@@ -370,8 +372,8 @@ void AppController::setPreferencesAction()
 {
     requireParams({"json"});
 
-    Preferences *const pref = Preferences::instance();
-    auto session = BitTorrent::Session::instance();
+    auto *pref = Preferences::instance();
+    auto *session = BitTorrent::Session::instance();
     const QVariantHash m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toHash();
 
     QVariantHash::ConstIterator it;
@@ -643,6 +645,8 @@ void AppController::setPreferencesAction()
             pref->setLocale(locale);
         }
     }
+    if (hasKey("performance_warning"))
+        session->setPerformanceWarningEnabled(it.value().toBool());
     // HTTP Server
     if (hasKey("web_ui_domain_list"))
         pref->setServerDomains(it.value().toString());

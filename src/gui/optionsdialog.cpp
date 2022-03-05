@@ -338,6 +338,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkAssociateMagnetLinks, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
+    connect(m_ui->checkBoxPerformanceWarning, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkFileLogBackup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -650,8 +651,11 @@ void OptionsDialog::loadSplitterState()
 
 void OptionsDialog::saveOptions()
 {
+    auto *pref = Preferences::instance();
+    auto *session = BitTorrent::Session::instance();
+
     m_applyButton->setEnabled(false);
-    Preferences *const pref = Preferences::instance();
+
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale)
@@ -713,6 +717,8 @@ void OptionsDialog::saveOptions()
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     pref->setUpdateCheckEnabled(m_ui->checkProgramUpdates->isChecked());
 #endif
+    session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
+
     auto *const app = static_cast<Application *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
@@ -729,8 +735,6 @@ void OptionsDialog::saveOptions()
     RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
     RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', Qt::SkipEmptyParts));
     RSS::AutoDownloader::instance()->setDownloadRepacks(m_ui->checkSmartFilterDownloadRepacks->isChecked());
-
-    auto session = BitTorrent::Session::instance();
 
     // Downloads preferences
     session->setSavePath(Path(m_ui->textSavePath->selectedPath()));
@@ -919,11 +923,8 @@ Net::ProxyType OptionsDialog::getProxyType() const
 
 void OptionsDialog::loadOptions()
 {
-    int intValue;
-    QString strValue;
-    bool fileLogBackup = true;
-    bool fileLogDelete = true;
-    const Preferences *const pref = Preferences::instance();
+    const auto *pref = Preferences::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     // Behavior preferences
     setLocale(pref->getLocale());
@@ -965,14 +966,15 @@ void OptionsDialog::loadOptions()
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
 #endif
+    m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
     const Application *const app = static_cast<Application*>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
     m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
-    fileLogBackup = app->isFileLoggerBackup();
+    const bool fileLogBackup = app->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
-    fileLogDelete = app->isFileLoggerDeleteOld();
+    const bool fileLogDelete = app->isFileLoggerDeleteOld();
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
     m_ui->spinFileLogAge->setEnabled(fileLogDelete);
     m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
@@ -988,8 +990,6 @@ void OptionsDialog::loadOptions()
 
     m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
     m_ui->spinRSSMaxArticlesPerFeed->setValue(RSS::Session::instance()->maxArticlesPerFeed());
-
-    const auto *session = BitTorrent::Session::instance();
 
     // Downloads preferences
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
@@ -1085,7 +1085,7 @@ void OptionsDialog::loadOptions()
     m_ui->spinPort->setValue(session->port());
     m_ui->checkUPnP->setChecked(Net::PortForwarder::instance()->isEnabled());
 
-    intValue = session->maxConnections();
+    int intValue = session->maxConnections();
     if (intValue > 0)
     {
         // enable

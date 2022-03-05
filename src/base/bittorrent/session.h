@@ -312,6 +312,8 @@ namespace BitTorrent
         bool isBandwidthSchedulerEnabled() const;
         void setBandwidthSchedulerEnabled(bool enabled);
 
+        bool isPerformanceWarningEnabled() const;
+        void setPerformanceWarningEnabled(bool enable);
         int saveResumeDataInterval() const;
         void setSaveResumeDataInterval(int value);
         int port() const;
@@ -741,6 +743,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_altGlobalUploadSpeedLimit;
         CachedSettingValue<bool> m_isAltGlobalSpeedLimitEnabled;
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
+        CachedSettingValue<bool> m_isPerformanceWarningEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
         CachedSettingValue<int> m_port;
         CachedSettingValue<QString> m_networkInterface;

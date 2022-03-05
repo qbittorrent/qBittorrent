@@ -693,6 +693,11 @@
         </select>
     </fieldset>
 
+    <div class="formRow">
+        <input type="checkbox" id="performanceWarning" />
+        <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+
     <fieldset class="settings">
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
@@ -1881,6 +1886,7 @@
                         // Web UI tab
                         // Language
                         $('locale_select').setProperty('value', pref.locale);
+                        $('performanceWarning').setProperty('checked', pref.performance_warning);
 
                         // HTTP Server
                         $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
@@ -2259,6 +2265,7 @@
             // Web UI tab
             // Language
             settings.set('locale', $('locale_select').getProperty('value'));
+            settings.set('performance_warning', $('performanceWarning').getProperty('checked'));
 
             // HTTP Server
             settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
