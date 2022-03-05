@@ -517,6 +517,22 @@ void TorrentImpl::setAutoManaged(const bool enable)
         m_nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 }
 
+QVector<QString> TorrentImpl::trackerURLs() const
+{
+    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
+
+    QVector<QString> urls;
+    urls.reserve(static_cast<decltype(urls)::size_type>(nativeTrackers.size()));
+
+    for (const lt::announce_entry &tracker : nativeTrackers)
+    {
+        const QString trackerURL = QString::fromStdString(tracker.url);
+        urls.push_back(trackerURL);
+    }
+
+    return urls;
+}
+
 QVector<TrackerEntry> TorrentImpl::trackers() const
 {
     const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();

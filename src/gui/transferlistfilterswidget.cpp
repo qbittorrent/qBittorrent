@@ -630,12 +630,12 @@ void TrackerFiltersList::applyFilter(const int row)
 void TrackerFiltersList::handleNewTorrent(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID {torrent->id()};
-    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
-    for (const BitTorrent::TrackerEntry &tracker : trackers)
-        addItem(tracker.url, torrentID);
+    const QVector<QString> trackerURLs {torrent->trackerURLs()};
+    for (const QString &trackerURL : trackerURLs)
+        addItem(trackerURL, torrentID);
 
     // Check for trackerless torrent
-    if (trackers.isEmpty())
+    if (trackerURLs.isEmpty())
         addItem(NULL_HOST, torrentID);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
@@ -644,12 +644,12 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::Torrent *const torrent)
 void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID {torrent->id()};
-    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
-    for (const BitTorrent::TrackerEntry &tracker : trackers)
-        removeItem(tracker.url, torrentID);
+    const QVector<QString> trackerURLs {torrent->trackerURLs()};
+    for (const QString &trackerURL : trackerURLs)
+        removeItem(trackerURL, torrentID);
 
     // Check for trackerless torrent
-    if (trackers.isEmpty())
+    if (trackerURLs.isEmpty())
         removeItem(NULL_HOST, torrentID);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));
