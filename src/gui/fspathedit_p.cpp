@@ -109,19 +109,35 @@ QValidator::State Private::FileSystemPathValidator::validate(QString &input, int
 
     // we test path components from beginning to the one with cursor location in strict mode
     // and the one with cursor and beyond in non-strict mode
-    QList<QStringView> components = QStringView(input).split(QDir::separator(), Qt::KeepEmptyParts);
+    QList<QStringView> components;
+
+    // create a list of full path components from input
+    for (int i = 0; i < input.size(); ++i)
+    {
+        // *nix root directory is also the directory separator
+        // add it as the first component for an absolute *unix path
+        if (i == 0 && (input.at(0) == QDir::separator()))
+            if (QDir::separator() == QChar::fromLatin1('/'))
+                components.append(QStringView(input.constBegin(), 1));
+            else
+                components.append(QStringView(input.constBegin(), 0));
+        else if (i == (input.size() - 1))
+            components.append(QStringView(input.constBegin()));
+        else if (input.at(i) == QDir::separator())
+            components.append(QStringView(input.constBegin(), i));
+    }
+
     // find index of the component that contains pos
     int componentWithCursorIndex = 0;
-    int componentWithCursorPosition = 0;
     int pathLength = 0;
 
     // components.size() - 1 because when path ends with QDir::separator(), we will not see the last
     // character in the components array, yet everything past the one before the last delimiter
     // belongs to the last component
+
     for (; (componentWithCursorIndex < (components.size() - 1)) && (pathLength < pos); ++componentWithCursorIndex)
     {
-        pathLength = componentWithCursorPosition + components[componentWithCursorIndex].size();
-        componentWithCursorPosition += components[componentWithCursorIndex].size() + 1;
+        pathLength = components[componentWithCursorIndex].size();
     }
 
     Q_ASSERT(componentWithCursorIndex < components.size());
@@ -151,7 +167,11 @@ QValidator::State Private::FileSystemPathValidator::validate(const QList<QString
         const QStringView componentPath = pathComponents[i];
         if (componentPath.isEmpty()) continue;
 
-        m_lastTestResult = testPath(Path(pathComponents[i].toString()), isFinalPath);
+        // skip paths with separator at the end, unless it is the *nix root directory
+        if (componentPath.right(1) == QDir::separator() && ((componentPath != QChar::fromLatin1('/')) || (QDir::separator() != QChar::fromLatin1('/')))) continue;
+
+        m_lastTestResult = testPath(Path(componentPath.toString()), isFinalPath);
+
         if (m_lastTestResult != TestResult::OK)
         {
             m_lastTestedPath = componentPath.toString();
