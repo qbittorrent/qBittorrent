@@ -142,7 +142,13 @@ private:
     QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &url);
 
-    QHash<QString, QSet<BitTorrent::TorrentID>> m_trackers;  // <tracker host, torrent IDs>
+    struct TrackerData
+    {
+        QSet<BitTorrent::TorrentID> torrents;
+        QListWidgetItem *item = nullptr;
+    };
+
+    QHash<QString, TrackerData> m_trackers;
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
     PathList m_iconPaths;

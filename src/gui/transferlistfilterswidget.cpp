@@ -419,17 +419,18 @@ TrackerFiltersList::~TrackerFiltersList()
 void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::TorrentID &id)
 {
     const QString host {getHost(tracker)};
-    const bool exists {m_trackers.contains(host)};
+    const auto existingDataItr = m_trackers.find(host);
+    const bool exists {existingDataItr != m_trackers.end()};
     QListWidgetItem *trackerItem {nullptr};
 
     if (exists)
     {
-        if (m_trackers.value(host).contains(id))
+        if (existingDataItr->torrents.contains(id))
             return;
 
-        trackerItem = item((host == NULL_HOST)
-            ? TRACKERLESS_ROW
-            : rowFromTracker(host));
+        trackerItem = (host == NULL_HOST)
+                ? item(TRACKERLESS_ROW)
+                : existingDataItr->item;
     }
     else
     {
@@ -441,7 +442,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     }
     if (!trackerItem) return;
 
-    QSet<BitTorrent::TorrentID> &torrentIDs {m_trackers[host]};
+    QSet<BitTorrent::TorrentID> &torrentIDs {m_trackers[host].torrents};
     torrentIDs.insert(id);
 
     if (host == NULL_HOST)
@@ -478,13 +479,12 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
 void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id)
 {
     const QString host = getHost(trackerURL);
-    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host);
+    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host).torrents;
     if (torrentIDs.empty())
         return;
 
     torrentIDs.remove(id);
 
-    int row = 0;
     QListWidgetItem *trackerItem = nullptr;
 
     if (!host.isEmpty())
@@ -518,12 +518,11 @@ void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent:
             }
         }
 
-        row = rowFromTracker(host);
-        trackerItem = item(row);
+        trackerItem = m_trackers.value(host).item;
 
         if (torrentIDs.empty())
         {
-            if (currentRow() == row)
+            if (currentItem() == trackerItem)
                 setCurrentRow(0, QItemSelectionModel::SelectCurrent);
             delete trackerItem;
             m_trackers.remove(host);
@@ -536,15 +535,14 @@ void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent:
     }
     else
     {
-        row = 1;
         trackerItem = item(TRACKERLESS_ROW);
         trackerItem->setText(tr("Trackerless (%1)").arg(torrentIDs.size()));
     }
 
-    m_trackers.insert(host, torrentIDs);
+    m_trackers.insert(host, {torrentIDs, trackerItem});
 
-    if (currentRow() == row)
-        applyFilter(row);
+    if (currentItem() == trackerItem)
+        applyFilter(currentRow());
 }
 
 void TrackerFiltersList::changeTrackerless(const bool trackerless, const BitTorrent::TorrentID &id)
@@ -758,13 +756,13 @@ QSet<BitTorrent::TorrentID> TrackerFiltersList::getTorrentIDs(const int row) con
     switch (row)
     {
     case TRACKERLESS_ROW:
-        return m_trackers.value(NULL_HOST);
+        return m_trackers.value(NULL_HOST).torrents;
     case ERROR_ROW:
         return {m_errors.keyBegin(), m_errors.keyEnd()};
     case WARNING_ROW:
         return {m_warnings.keyBegin(), m_warnings.keyEnd()};
     default:
-        return m_trackers.value(trackerFromRow(row));
+        return m_trackers.value(trackerFromRow(row)).torrents;
     }
 }
 
