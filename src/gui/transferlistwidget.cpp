@@ -915,6 +915,7 @@ void TransferListWidget::displayListMenu(const QPoint &)
     TagSet tagsInAny;
     TagSet tagsInAll;
     bool hasInfohashV1 = false, hasInfohashV2 = false;
+    bool oneCanForceReannounce = false;
 
     for (const QModelIndex &index : selectedIndexes)
     {
@@ -978,7 +979,8 @@ void TransferListWidget::displayListMenu(const QPoint &)
         else
             needsStart = true;
 
-        if (torrent->isPaused())
+        const bool isPaused = torrent->isPaused();
+        if (isPaused)
             needsStart = true;
         else
             needsPause = true;
@@ -1001,10 +1003,16 @@ void TransferListWidget::displayListMenu(const QPoint &)
 
         first = false;
 
+        const bool rechecking = torrent->isChecking();
+        const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
+
+        if (!isPaused && !rechecking && !queued)
+            oneCanForceReannounce = true;
+
         if (oneHasMetadata && oneNotSeed && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
             && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM
-            && hasInfohashV1 && hasInfohashV2)
+            && hasInfohashV1 && hasInfohashV2 && oneCanForceReannounce)
         {
             break;
         }
@@ -1126,11 +1134,14 @@ void TransferListWidget::displayListMenu(const QPoint &)
     if (addedPreviewAction)
         listMenu->addSeparator();
     if (oneHasMetadata)
-    {
         listMenu->addAction(actionForceRecheck);
-        listMenu->addAction(actionForceReannounce);
-        listMenu->addSeparator();
-    }
+    // We can not force reannounce torrents that are paused/errored/checking/missing files/queued.
+    // We may already have the tracker list from magnet url. So we can force reannounce torrents without metadata anyway.
+    listMenu->addAction(actionForceReannounce);
+    actionForceReannounce->setEnabled(oneCanForceReannounce);
+    if (!oneCanForceReannounce)
+        actionForceReannounce->setToolTip(tr("Can not force reannounce if torrent is Paused/Queued/Errored/Checking"));
+    listMenu->addSeparator();
     listMenu->addAction(actionOpenDestinationFolder);
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotSeed)
     {
