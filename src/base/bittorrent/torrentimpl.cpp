@@ -1925,7 +1925,7 @@ void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
 
 void TorrentImpl::handlePerformanceAlert(const lt::performance_alert *p) const
 {
-    LogMsg((tr("Performance alert: ") + QString::fromStdString(p->message()))
+    LogMsg((tr("Performance alert: %1. More info: %2").arg(QString::fromStdString(p->message())), u"https://libtorrent.org/reference-Alerts.html#enum-performance-warning-t"_qs)
            , Log::INFO);
 }
 
