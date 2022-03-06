@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install tools
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
 
       - name: Check files
         uses: pre-commit/action@v2.0.3
