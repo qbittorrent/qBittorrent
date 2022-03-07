@@ -1069,7 +1069,6 @@ void Session::initializeNativeSession()
         | lt::alert::file_progress_notification
         | lt::alert::ip_block_notification
         | lt::alert::peer_notification
-        | lt::alert::performance_warning
         | lt::alert::port_mapping_notification
         | lt::alert::status_notification
         | lt::alert::storage_notification
@@ -4652,9 +4651,6 @@ void Session::handleAlert(const lt::alert *a)
         case lt::fastresume_rejected_alert::alert_type:
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
-        case lt::performance_alert::alert_type:
-            dispatchTorrentAlert(a);
-            break;
         case lt::state_update_alert::alert_type:
             handleStateUpdateAlert(static_cast<const lt::state_update_alert*>(a));
             break;
