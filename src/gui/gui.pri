@@ -12,6 +12,7 @@ HEADERS += \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
     $$PWD/deletionconfirmationdialog.h \
+    $$PWD/doublespinbox.h \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
