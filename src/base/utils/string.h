@@ -41,6 +41,11 @@
 
 namespace Utils::String
 {
+    enum class RoundMethod {
+        ROUND = 1,
+        ROUNDDOWN = 2,
+    };
+
     QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
@@ -63,7 +68,8 @@ namespace Utils::String
 
     QString join(const QList<QStringView> &strings, QStringView separator);
 
-    QString fromDouble(double n, int precision);
+    QString fromDouble(const double n, const int precision);
+    QString fromDouble(const double n, const int precision, const std::function<double (double)>& roundFunc);
 
     template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
     QString fromEnum(const T &value)
