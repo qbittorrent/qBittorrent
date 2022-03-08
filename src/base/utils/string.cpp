@@ -49,7 +49,7 @@ QString Utils::String::fromDouble(double n, int precision)
     ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
-    return fromDouble(n, precision, std::ref(floor));
+    return fromDouble(n, precision, std::floor);
 }
 
 QString Utils::String::fromDouble(double n, int precision, std::function<double(double)> func)
