@@ -95,6 +95,7 @@ SOURCES += \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
     $$PWD/deletionconfirmationdialog.cpp \
+    $$PWD/doublespinbox.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
