@@ -305,7 +305,6 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
             ? firstTorrentRatio : session->globalMaxRatio();
     const int maxSeedingTime = (allSameSeedingTime && (firstTorrentSeedingTime >= 0))
             ? firstTorrentSeedingTime : session->globalMaxSeedingMinutes();
-
     m_ui->spinRatioLimit->setValue(maxRatio);
     m_ui->spinTimeLimit->setValue(maxSeedingTime);
 
