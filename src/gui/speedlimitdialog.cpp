@@ -56,9 +56,9 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    m_ui->labelGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off"))
+    m_ui->labelGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow_off"))
                                                 , this, style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, this)));
-    m_ui->labelAltGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow"))
+    m_ui->labelAltGlobalSpeedIcon->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow"))
                                                 , this, style()->pixelMetric(QStyle::PM_SmallIconSize, nullptr, this)));
 
     const auto initSlider = [](QSlider *slider, const int value, const int maximum)
