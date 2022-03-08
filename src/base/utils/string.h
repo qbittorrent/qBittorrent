@@ -41,6 +41,11 @@
 
 namespace Utils::String
 {
+    enum class RoundMethod {
+        ROUND = 1,
+        ROUNDDOWN = 2,
+    };
+
     QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
