@@ -49,14 +49,10 @@ QString Utils::String::fromDouble(double n, int precision)
     ** our 'wanted' is >= 5. In this case our last digit gets rounded up. So for each
     ** precision we add an extra 0 behind 1 in the below algorithm. */
 
-    return fromDouble(n, precision, std::ref(floor));
+    return fromDouble(n, precision, std::floor);
 }
 
 QString Utils::String::fromDouble(double n, int precision, std::function<double(double)> func)
-{
-    const double prec = std::pow(10.0, precision);
-    return QLocale::system().toString(func(n * prec) / prec, 'f', precision);
-}
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
