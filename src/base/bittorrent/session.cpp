@@ -443,6 +443,7 @@ Session::Session(QObject *parent)
     , m_altGlobalUploadSpeedLimit(BITTORRENT_SESSION_KEY("AlternativeGlobalUPSpeedLimit"), 10, lowerLimited(0))
     , m_isAltGlobalSpeedLimitEnabled(BITTORRENT_SESSION_KEY("UseAlternativeGlobalSpeedLimit"), false)
     , m_isBandwidthSchedulerEnabled(BITTORRENT_SESSION_KEY("BandwidthSchedulerEnabled"), false)
+    , m_isPerformanceWarningEnabled(BITTORRENT_SESSION_KEY("PerformanceWarning"), false)
     , m_saveResumeDataInterval(BITTORRENT_SESSION_KEY("SaveResumeDataInterval"), 60)
     , m_port(BITTORRENT_SESSION_KEY("Port"), -1)
     , m_networkInterface(BITTORRENT_SESSION_KEY("Interface"))
@@ -1123,19 +1124,9 @@ void Session::configureComponents()
 
 void Session::initializeNativeSession()
 {
-    const lt::alert_category_t alertMask = lt::alert::error_notification
-        | lt::alert::file_progress_notification
-        | lt::alert::ip_block_notification
-        | lt::alert::peer_notification
-        | lt::alert::performance_warning
-        | lt::alert::port_mapping_notification
-        | lt::alert::status_notification
-        | lt::alert::storage_notification
-        | lt::alert::tracker_notification;
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
 
     lt::settings_pack pack;
-    pack.set_int(lt::settings_pack::alert_mask, alertMask);
     pack.set_str(lt::settings_pack::peer_fingerprint, peerId);
     pack.set_bool(lt::settings_pack::listen_system_port_fallback, false);
     pack.set_str(lt::settings_pack::user_agent, USER_AGENT);
@@ -1258,6 +1249,17 @@ void Session::initMetrics()
 
 void Session::loadLTSettings(lt::settings_pack &settingsPack)
 {
+    const lt::alert_category_t alertMask = lt::alert::error_notification
+        | lt::alert::file_progress_notification
+        | lt::alert::ip_block_notification
+        | lt::alert::peer_notification
+        | (isPerformanceWarningEnabled() ? lt::alert::performance_warning : lt::alert_category_t())
+        | lt::alert::port_mapping_notification
+        | lt::alert::status_notification
+        | lt::alert::storage_notification
+        | lt::alert::tracker_notification;
+    settingsPack.set_int(lt::settings_pack::alert_mask, alertMask);
+
     settingsPack.set_int(lt::settings_pack::connection_speed, connectionSpeed());
 
     // from libtorrent doc:
@@ -2872,6 +2874,20 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
         else
             delete m_bwScheduler;
     }
+}
+
+bool Session::isPerformanceWarningEnabled() const
+{
+    return m_isPerformanceWarningEnabled;
+}
+
+void Session::setPerformanceWarningEnabled(const bool enable)
+{
+    if (enable == m_isPerformanceWarningEnabled)
+        return;
+
+    m_isPerformanceWarningEnabled = enable;
+    configureDeferred();
 }
 
 int Session::saveResumeDataInterval() const
