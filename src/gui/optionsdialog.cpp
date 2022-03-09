@@ -434,6 +434,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->spinMaxUploadsPerTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkDHT, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAnonymousMode, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->spinBoxMaxActiveCheckingTorrents, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPeX, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkLSD, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboEncryption, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
@@ -816,6 +817,7 @@ void OptionsDialog::saveOptions()
     session->setLSDEnabled(isLSDEnabled());
     session->setEncryption(getEncryptionSetting());
     session->setAnonymousModeEnabled(m_ui->checkAnonymousMode->isChecked());
+    session->setMaxActiveCheckingTorrents(m_ui->spinBoxMaxActiveCheckingTorrents->value());
     session->setAddTrackersEnabled(m_ui->checkEnableAddTrackers->isChecked());
     session->setAdditionalTrackers(m_ui->textTrackers->toPlainText());
     session->setGlobalMaxRatio(getMaxRatio());
@@ -1208,6 +1210,7 @@ void OptionsDialog::loadOptions()
     m_ui->checkLSD->setChecked(session->isLSDEnabled());
     m_ui->comboEncryption->setCurrentIndex(session->encryption());
     m_ui->checkAnonymousMode->setChecked(session->isAnonymousModeEnabled());
+    m_ui->spinBoxMaxActiveCheckingTorrents->setValue(session->maxActiveCheckingTorrents());
     m_ui->checkEnableAddTrackers->setChecked(session->isAddTrackersEnabled());
     m_ui->textTrackers->setPlainText(session->additionalTrackers());
 

@@ -450,6 +450,7 @@ Session::Session(QObject *parent)
     , m_networkInterfaceName(BITTORRENT_SESSION_KEY("InterfaceName"))
     , m_networkInterfaceAddress(BITTORRENT_SESSION_KEY("InterfaceAddress"))
     , m_encryption(BITTORRENT_SESSION_KEY("Encryption"), 0)
+    , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY("MaxActiveCheckingTorrents"), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY("ProxyPeerConnections"), false)
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY("ChokingAlgorithm"), ChokingAlgorithm::FixedSlots
         , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
@@ -1286,6 +1287,8 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
         settingsPack.set_int(lt::settings_pack::out_enc_policy, lt::settings_pack::pe_disabled);
         settingsPack.set_int(lt::settings_pack::in_enc_policy, lt::settings_pack::pe_disabled);
     }
+
+    settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
 
     // proxy
     const auto proxyManager = Net::ProxyConfigurationManager::instance();
@@ -2983,6 +2986,20 @@ void Session::setEncryption(const int state)
             state == 0 ? tr("ON") : ((state == 1) ? tr("FORCED") : tr("OFF")))
             , Log::INFO);
     }
+}
+
+int Session::maxActiveCheckingTorrents() const
+{
+    return m_maxActiveCheckingTorrents;
+}
+
+void Session::setMaxActiveCheckingTorrents(const int val)
+{
+    if (val == m_maxActiveCheckingTorrents)
+        return;
+
+    m_maxActiveCheckingTorrents = val;
+    configureDeferred();
 }
 
 bool Session::isProxyPeerConnectionsEnabled() const
