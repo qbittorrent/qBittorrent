@@ -1967,12 +1967,6 @@ void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
     m_session->handleTorrentNeedSaveResumeData(this);
 }
 
-void TorrentImpl::handlePerformanceAlert(const lt::performance_alert *p) const
-{
-    LogMsg((tr("Performance alert: ") + QString::fromStdString(p->message()))
-           , Log::INFO);
-}
-
 void TorrentImpl::handleCategoryOptionsChanged()
 {
     if (m_useAutoTMM)
@@ -2039,9 +2033,6 @@ void TorrentImpl::handleAlert(const lt::alert *a)
         break;
     case lt::torrent_checked_alert::alert_type:
         handleTorrentCheckedAlert(static_cast<const lt::torrent_checked_alert*>(a));
-        break;
-    case lt::performance_alert::alert_type:
-        handlePerformanceAlert(static_cast<const lt::performance_alert*>(a));
         break;
     }
 }

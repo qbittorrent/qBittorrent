@@ -17,6 +17,7 @@ jobs:
             qt_version: "6.2.0"
 
     env:
+      boost_path: "${{ github.workspace }}/../boost"
       openssl_root: /usr/local/opt/openssl@1.1
 
     steps:
@@ -28,12 +29,21 @@ jobs:
           brew update > /dev/null
           brew install \
             cmake ninja \
-            boost openssl@1.1 zlib
+            openssl@1.1 zlib
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
           update_packager_index: false
+
+      - name: Install boost
+        run: |
+          curl \
+            -L \
+            -o "${{ runner.temp }}/boost.tar.bz2" \
+            "https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2"
+          tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
+          mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
@@ -54,6 +64,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_CXX_STANDARD=17 \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -Ddeprecated-functions=OFF \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}"
           cmake --build build
@@ -68,6 +79,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
@@ -82,6 +94,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
+            -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON \
@@ -91,7 +104,6 @@ jobs:
       - name: Prepare build artifacts
         run: |
           mkdir upload
-          mv build/qbittorrent*.app upload
           mkdir upload/cmake
           cp build/compile_commands.json upload/cmake
           mkdir upload/cmake/libtorrent
@@ -100,5 +112,5 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: qBittorrent-CI_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: build-info_macOS_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload
