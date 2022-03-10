@@ -28,7 +28,10 @@
 
 #pragma once
 
+#include <bitset>
+
 #include <QFrame>
+#include <QHash>
 #include <QListWidget>
 #include <QtContainerFwd>
 
@@ -96,7 +99,8 @@ private:
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
 
-    QMultiHash<const BitTorrent::Torrent *, TorrentFilter::Type> m_torrentsStatus;
+    using TorrentFilterBitset = std::bitset<32>;  // approximated size, this should be the number of TorrentFilter::Type elements
+    QHash<const BitTorrent::Torrent *, TorrentFilterBitset> m_torrentsStatus;
     int m_nbDownloading = 0;
     int m_nbSeeding = 0;
     int m_nbCompleted = 0;
