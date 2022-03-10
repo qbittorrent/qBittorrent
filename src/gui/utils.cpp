@@ -35,7 +35,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QFileInfo>
 #include <QIcon>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -52,47 +51,41 @@
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
-void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
-{
-    if (newSize.isValid())
-        widget->resize(newSize);
-    else  // depends on screen DPI
-        widget->resize(widget->size() * screenScalingFactor(widget));
-}
-
-qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
-{
-    Q_UNUSED(widget);
-    return 1;
-}
-
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
 {
+    Q_UNUSED(widget);  // TODO: remove it
     Q_ASSERT(height > 0);
-    const int scaledHeight = height * Utils::Gui::screenScalingFactor(widget);
-    return icon.pixmap(scaledHeight);
+
+    return icon.pixmap(height);
 }
 
 QPixmap Utils::Gui::scaledPixmap(const Path &path, const QWidget *widget, const int height)
 {
+    Q_UNUSED(widget);
+    Q_ASSERT(height >= 0);
+
     const QPixmap pixmap {path.data()};
-    const int scaledHeight = ((height > 0) ? height : pixmap.height()) * Utils::Gui::screenScalingFactor(widget);
-    return pixmap.scaledToHeight(scaledHeight, Qt::SmoothTransformation);
+    return (height == 0) ? pixmap : pixmap.scaledToHeight(height, Qt::SmoothTransformation);
 }
 
-QPixmap Utils::Gui::scaledPixmapSvg(const Path &path, const QWidget *widget, const int baseHeight)
+QPixmap Utils::Gui::scaledPixmapSvg(const Path &path, const QWidget *widget, const int height)
 {
-    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
-    const QString normalizedKey = path.data() + '@' + QString::number(scaledHeight);
+    // (workaround) svg images require the use of `QIcon()` to load and scale losslessly,
+    // otherwise other image classes will convert it to pixmap first and follow-up scaling will become lossy.
 
-    QPixmap pm;
+    Q_UNUSED(widget);
+    Q_ASSERT(height > 0);
+
+    const QString cacheKey = path.data() + u'@' + QString::number(height);
+
+    QPixmap pixmap;
     QPixmapCache cache;
-    if (!cache.find(normalizedKey, &pm))
+    if (!cache.find(cacheKey, &pixmap))
     {
-        pm = QIcon(path.data()).pixmap(scaledHeight);
-        cache.insert(normalizedKey, pm);
+        pixmap = QIcon(path.data()).pixmap(height);
+        cache.insert(cacheKey, pixmap);
     }
-    return pm;
+    return pixmap;
 }
 
 QSize Utils::Gui::smallIconSize(const QWidget *widget)

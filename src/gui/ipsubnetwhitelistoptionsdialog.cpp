@@ -60,7 +60,7 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonWhitelistIPSubnet->setEnabled(false);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
 }
 
 IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()

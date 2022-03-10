@@ -64,7 +64,7 @@ CookiesDialog::CookiesDialog(QWidget *parent)
                     m_cookiesModel->index(0, 0),
                     QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     m_ui->treeView->header()->restoreState(m_storeViewState);
 }
 

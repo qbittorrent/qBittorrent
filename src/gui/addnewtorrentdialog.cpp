@@ -305,7 +305,7 @@ void AddNewTorrentDialog::setSavePathHistoryLength(const int value)
 
 void AddNewTorrentDialog::loadState()
 {
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     m_ui->splitter->restoreState(m_storeSplitterState);;
 }
 

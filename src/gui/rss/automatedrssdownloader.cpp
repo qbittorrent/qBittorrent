@@ -160,8 +160,8 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
 void AutomatedRssDownloader::loadSettings()
 {
-    const Preferences *const pref = Preferences::instance();
-    Utils::Gui::resize(this, pref->getRssGeometrySize());
+    const auto *pref = Preferences::instance();
+    resize(pref->getRssGeometrySize());
     m_ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
 }
 

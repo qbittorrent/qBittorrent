@@ -575,7 +575,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
     // Have to be called after show(), because splitter width needed
     loadSplitterState();
@@ -639,8 +639,7 @@ void OptionsDialog::changePage(QListWidgetItem *current, QListWidgetItem *previo
 void OptionsDialog::loadSplitterState()
 {
     // width has been modified, use height as width reference instead
-    const int width = Utils::Gui::scaledSize(this
-        , (m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2));
+    const int width = m_ui->tabSelection->item(TAB_UI)->sizeHint().height() * 2;
     const QStringList defaultSizes = {QString::number(width), QString::number(m_ui->hsplitter->width() - width)};
 
     QList<int> splitterSizes;

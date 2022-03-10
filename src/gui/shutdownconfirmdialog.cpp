@@ -66,8 +66,6 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
 
     m_timer.setInterval(1000); // 1sec
     connect(&m_timer, &QTimer::timeout, this, &ShutdownConfirmDialog::updateSeconds);
-
-    Utils::Gui::resize(this);
 }
 
 ShutdownConfirmDialog::~ShutdownConfirmDialog()
