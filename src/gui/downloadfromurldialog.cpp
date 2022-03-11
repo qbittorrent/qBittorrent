@@ -94,7 +94,7 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->textUrls->setText(text);
     m_ui->textUrls->moveCursor(QTextCursor::End);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 

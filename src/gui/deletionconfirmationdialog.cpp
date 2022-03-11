@@ -55,8 +55,6 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
-
-    Utils::Gui::resize(this);
 }
 
 DeletionConfirmationDialog::~DeletionConfirmationDialog()

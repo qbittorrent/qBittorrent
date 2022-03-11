@@ -113,7 +113,7 @@ AboutDialog::AboutDialog(QWidget *parent)
                                      "The database is licensed under the Creative Commons Attribution 4.0 International License"));
     m_ui->labelDBIP->setText(DBIPText);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 

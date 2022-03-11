@@ -344,5 +344,5 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->txtComment->setPlainText(m_storeComments);
     m_ui->lineEditSource->setText(m_storeSource);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
 }

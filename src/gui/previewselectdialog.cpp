@@ -173,7 +173,7 @@ void PreviewSelectDialog::saveWindowState()
 void PreviewSelectDialog::loadWindowState()
 {
     // Restore dialog size
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
 
     // Restore TreeView Header state
     if (!m_storeTreeHeaderState.get().isEmpty())

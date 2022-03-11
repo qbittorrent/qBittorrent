@@ -110,5 +110,5 @@ void TrackerEntriesDialog::saveSettings()
 
 void TrackerEntriesDialog::loadSettings()
 {
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
 }

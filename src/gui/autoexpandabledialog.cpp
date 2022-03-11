@@ -101,6 +101,6 @@ void AutoExpandableDialog::showEvent(QShowEvent *e)
     if (wd > width())
     {
         QSize size = {width() - m_ui->verticalLayout->sizeHint().width() + wd, height()};
-        Utils::Gui::resize(this, size);
+        resize(size);
     }
 }

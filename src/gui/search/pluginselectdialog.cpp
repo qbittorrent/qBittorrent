@@ -88,7 +88,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDialog::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDialog::checkForUpdatesFailed);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 
