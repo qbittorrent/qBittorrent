@@ -88,7 +88,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Дэвшилтэт BitTorrent татагч нь Qt хэрэглүүрүүд болон libtorrent-rasterbar дээр тулгуурлан C++ хэл дээр бичигдсэн.</translation>
+        <translation>Дэвшилтэт BitTorrent татагч нь Qt хэрэглүүрүүд болон libtorrent-rasterbar дээр тулгуурлан C&#8288;+&#8288;+ хэл дээр бичигдсэн.</translation>
     </message>
     <message>
         <source>Copyright %1 2006-2021 The qBittorrent project</source>

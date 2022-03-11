@@ -84,7 +84,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Um cliente BitTorrent avançado programado em C++, baseado no Qt toolkit e libtorrent-rasterbar.</translation>
+        <translation>Um cliente BitTorrent avançado programado em C&#8288;+&#8288;+, baseado no Qt toolkit e libtorrent-rasterbar.</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>

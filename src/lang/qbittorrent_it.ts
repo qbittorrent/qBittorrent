@@ -84,7 +84,7 @@
     <message>
         <location filename="../gui/aboutdialog.cpp" line="67"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>qBittorrent è un avanzato client BitTorrent sviluppato in C++, basato sul toolkit Qt e libtorrent-rasterbar.</translation>
+        <translation>qBittorrent è un avanzato client BitTorrent sviluppato in C&#8288;+&#8288;+, basato sul toolkit Qt e libtorrent-rasterbar.</translation>
     </message>
     <message>
         <location filename="../gui/aboutdialog.cpp" line="68"/>
