@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include <QtGlobal>
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
@@ -70,7 +71,11 @@ bool operator==(const PeerEndpoint &left, const PeerEndpoint &right)
     return (left.address == right.address) && (left.connectionType == right.connectionType);
 }
 
-uint qHash(const PeerEndpoint &peerEndpoint, const uint seed)
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t qHash(const PeerEndpoint &peerEndpoint, const std::size_t seed = 0)
+#else
+uint qHash(const PeerEndpoint &peerEndpoint, const uint seed = 0)
+#endif
 {
     return (qHash(peerEndpoint.address, seed) ^ ::qHash(peerEndpoint.connectionType));
 }

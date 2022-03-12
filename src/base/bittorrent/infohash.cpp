@@ -90,7 +90,11 @@ BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::Info
     return infoHash.toTorrentID();
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t BitTorrent::qHash(const BitTorrent::TorrentID &key, const std::size_t seed)
+#else
 uint BitTorrent::qHash(const BitTorrent::TorrentID &key, const uint seed)
+#endif
 {
     return ::qHash(std::hash<TorrentID::UnderlyingType>()(key), seed);
 }

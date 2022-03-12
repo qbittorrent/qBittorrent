@@ -140,7 +140,11 @@ namespace BitTorrent
         return !(left == right);
     }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    std::size_t qHash(const Peer &key, const std::size_t seed)
+#else
     uint qHash(const Peer &key, const uint seed)
+#endif
     {
         return qHash(key.uniqueID(), seed);
     }

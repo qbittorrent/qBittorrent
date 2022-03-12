@@ -332,7 +332,11 @@ QDataStream &operator>>(QDataStream &in, Path &path)
     return in;
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t qHash(const Path &key, const std::size_t seed)
+#else
 uint qHash(const Path &key, const uint seed)
+#endif
 {
     return ::qHash(key.data(), seed);
 }

@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <QtGlobal>
 #include <QMetaType>
 #include <QString>
 
@@ -96,4 +97,8 @@ Path operator+(const Path &lhs, const std::string &rhs);
 QDataStream &operator<<(QDataStream &out, const Path &path);
 QDataStream &operator>>(QDataStream &in, Path &path);
 
-uint qHash(const Path &key, uint seed);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t qHash(const Path &key, std::size_t seed = 0);
+#else
+uint qHash(const Path &key, uint seed = 0);
+#endif

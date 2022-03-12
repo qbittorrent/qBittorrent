@@ -32,6 +32,7 @@
 
 #include <libtorrent/units.hpp>
 
+#include <QtGlobal>
 #include <QHash>
 
 // From https://doc.qt.io/qt-6/qhash.html#the-hashing-function:
@@ -42,7 +43,11 @@ namespace libtorrent
     namespace aux
     {
         template <typename T, typename Tag>
-        uint qHash(const strong_typedef<T, Tag> &key, const uint seed)
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+        std::size_t qHash(const strong_typedef<T, Tag> &key, const std::size_t seed = 0)
+#else
+        uint qHash(const strong_typedef<T, Tag> &key, const uint seed = 0)
+#endif
         {
             return ::qHash((std::hash<strong_typedef<T, Tag>> {})(key), seed);
         }
