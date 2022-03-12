@@ -96,7 +96,7 @@ std::size_t BitTorrent::qHash(const BitTorrent::TorrentID &key, const std::size_
 uint BitTorrent::qHash(const BitTorrent::TorrentID &key, const uint seed)
 #endif
 {
-    return ::qHash(std::hash<TorrentID::UnderlyingType>()(key), seed);
+    return ::qHash(static_cast<TorrentID::BaseType>(key), seed);
 }
 
 bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)
