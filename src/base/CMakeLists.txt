@@ -185,7 +185,7 @@ target_link_libraries(qbt_base
         ZLIB::ZLIB
     PUBLIC
         LibtorrentRasterbar::torrent-rasterbar
-        Qt::Core Qt::Network Qt::Sql Qt::Xml
+        Qt::Core Qt::Network Qt::Sql Qt::Xml Qt::Concurrent
         qbt_common_cfg
 )
 

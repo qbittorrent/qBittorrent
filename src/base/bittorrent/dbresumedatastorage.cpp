@@ -192,6 +192,7 @@ namespace BitTorrent
 BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
     : ResumeDataStorage {parent}
     , m_ioThread {new QThread(this)}
+    , m_dbPath {dbPath}
 {
     const bool needCreateDB = !dbPath.exists();
 
@@ -267,10 +268,38 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
             QString(QLatin1String("SELECT * FROM %1 WHERE %2 = %3;"))
             .arg(quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_TORRENT_ID.name), DB_COLUMN_TORRENT_ID.placeholder);
 
-    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    QString connection;
+
+    {
+        QReadLocker lock {&m_readMutex};
+        const auto conIter = m_connections.find(std::this_thread::get_id());
+        if (conIter != m_connections.end())
+            connection = *conIter;
+    }
+
+    if (connection.isEmpty())
+    {
+        QWriteLocker lock {&m_readMutex};
+        const QStringList existingConnection = m_connections.values();
+
+        while (connection.isEmpty() || existingConnection.contains(connection))
+        {
+            connection = (DB_CONNECTION_NAME + QString::number(rand()));
+        }
+
+        QSqlDatabase::addDatabase(QLatin1String("QSQLITE"), connection);
+        m_connections.insert(std::this_thread::get_id(), connection);
+    }
+
+    auto db = QSqlDatabase::database(connection);
+    db.setDatabaseName(m_dbPath.data());
+
     QSqlQuery query {db};
     try
     {
+        if (!db.open())
+            throw RuntimeError(db.lastError().text());
+
         if (!query.prepare(selectTorrentStatement))
             throw RuntimeError(query.lastError().text());
 

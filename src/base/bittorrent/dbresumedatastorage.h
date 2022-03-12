@@ -28,8 +28,13 @@
 
 #pragma once
 
-#include "base/pathfwd.h"
+#include "base/path.h"
 #include "resumedatastorage.h"
+
+#include <QHash>
+#include <QReadWriteLock>
+
+#include <thread>
 
 class QThread;
 
@@ -56,8 +61,14 @@ namespace BitTorrent
         void updateDBFromVersion1() const;
 
         QThread *m_ioThread = nullptr;
+        const Path m_dbPath;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;
+
+        using ThreadID = std::thread::id;
+        mutable QHash<ThreadID, QString> m_connections;
+
+        mutable QReadWriteLock m_readMutex;
     };
 }

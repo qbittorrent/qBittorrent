@@ -7,7 +7,7 @@ win32: include(../winconf.pri)
 macx: include(../macxconf.pri)
 unix:!macx: include(../unixconf.pri)
 
-QT += network sql xml
+QT += network sql xml concurrent
 
 macx|*-clang*: QMAKE_CXXFLAGS_WARN_ON += -Wno-range-loop-analysis
 

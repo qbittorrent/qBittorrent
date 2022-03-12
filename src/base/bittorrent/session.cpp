@@ -69,6 +69,7 @@
 #include <QNetworkInterface>
 #include <QRegularExpression>
 #include <QString>
+#include <QtConcurrent/QtConcurrentMap>
 #include <QThread>
 #include <QTimer>
 #include <QUuid>
@@ -4525,6 +4526,14 @@ void Session::startUpTorrents()
     const QSet<TorrentID> indexedTorrents {torrents.cbegin(), torrents.cend()};
     QSet<TorrentID> skippedIDs;
 #endif
+
+    const QFuture<std::optional<LoadTorrentParams>> loadDataParams
+            = QtConcurrent::mapped(torrents, [startupStorage](const TorrentID &torrentID)
+    {
+        return startupStorage->load(torrentID);
+    });
+
+    int i = -1;
     for (TorrentID torrentID : torrents)
     {
 #ifdef QBT_USES_LIBTORRENT2
@@ -4532,7 +4541,8 @@ void Session::startUpTorrents()
             continue;
 #endif
 
-        const std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
+        ++i;
+        const std::optional<LoadTorrentParams> loadResumeDataResult = loadDataParams.resultAt(i);
         if (!loadResumeDataResult)
         {
             LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
