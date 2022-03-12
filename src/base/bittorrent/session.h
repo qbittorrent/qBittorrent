@@ -804,6 +804,7 @@ namespace BitTorrent
 
         QSet<TorrentID> m_downloadedMetadata;
 
+        QHash<lt::torrent_handle, TorrentImpl *> m_torrentsByNativeHandle;
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;

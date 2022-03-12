@@ -1880,6 +1880,8 @@ bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption
     TorrentImpl *const torrent = m_torrents.take(id);
     if (!torrent) return false;
 
+    m_torrentsByNativeHandle.remove(torrent->nativeHandle());
+
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrent->id().toString()));
     emit torrentAboutToBeRemoved(torrent);
 
@@ -4876,6 +4878,7 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
     auto *const torrent = new TorrentImpl {this, m_nativeSession, nativeHandle, params};
     m_torrents.insert(torrent->id(), torrent);
+    m_torrentsByNativeHandle.insert(nativeHandle, torrent);
 
     const bool hasMetadata = torrent->hasMetadata();
 
@@ -5035,7 +5038,7 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
 void Session::handleFileErrorAlert(const lt::file_error_alert *p)
 {
-    TorrentImpl *const torrent = m_torrents.value(p->handle.info_hash());
+    TorrentImpl *const torrent = m_torrentsByNativeHandle.value(p->handle);
     if (!torrent)
         return;
 
@@ -5106,7 +5109,7 @@ void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
 
 void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
-    const TorrentImpl *torrent = m_torrents.value(p->handle.info_hash());
+    const TorrentImpl *torrent = m_torrentsByNativeHandle.value(p->handle);
     if (!torrent)
         return;
 
@@ -5254,7 +5257,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
 #endif
 
-    TorrentImpl *torrent = m_torrents.value(id);
+    TorrentImpl *torrent = m_torrentsByNativeHandle.value(p->handle);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     LogMsg(tr("Moved torrent successfully. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, newPath.toString()));
 
@@ -5274,7 +5277,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     const auto id = TorrentID::fromInfoHash(currentJob.torrentHandle.info_hash());
 #endif
 
-    TorrentImpl *torrent = m_torrents.value(id);
+    TorrentImpl *torrent = m_torrentsByNativeHandle.value(p->handle);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
     const QString errorMessage = QString::fromStdString(p->message());
@@ -5324,7 +5327,7 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
 
 void Session::handleTrackerAlert(const lt::tracker_alert *a)
 {
-    TorrentImpl *torrent = m_torrents.value(a->handle.info_hash());
+    TorrentImpl *torrent = m_torrentsByNativeHandle.value(a->handle);
     if (!torrent)
         return;
 
