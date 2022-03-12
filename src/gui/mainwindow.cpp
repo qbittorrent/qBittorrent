@@ -443,9 +443,18 @@ MainWindow::MainWindow(QWidget *parent)
     m_transferListWidget->setFocus();
 
     // Update the number of torrents (tab)
-    updateNbTorrents();
-    connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsInserted, this, &MainWindow::updateNbTorrents);
-    connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsRemoved, this, &MainWindow::updateNbTorrents);
+    auto setUpNbTorrentsUpdate = [this] ()
+    {
+        updateNbTorrents();
+        connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsInserted, this, &MainWindow::updateNbTorrents);
+        connect(m_transferListWidget->getSourceModel(), &QAbstractItemModel::rowsRemoved, this, &MainWindow::updateNbTorrents);
+    };
+
+    const auto session = BitTorrent::Session::instance();
+    if (session->isStartUpCompleted())
+        setUpNbTorrentsUpdate();
+    else
+        connect(session, &BitTorrent::Session::startUpCompleted, this, setUpNbTorrentsUpdate);
 
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
