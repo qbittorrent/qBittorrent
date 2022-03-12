@@ -364,7 +364,11 @@ Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
     return {url.host(), url.port(80)};
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t Net::qHash(const ServiceID &serviceID, const std::size_t seed)
+#else
 uint Net::qHash(const ServiceID &serviceID, const uint seed)
+#endif
 {
     return ::qHash(serviceID.hostName, seed) ^ ::qHash(serviceID.port);
 }

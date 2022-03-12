@@ -36,7 +36,11 @@ bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
         && QUrl(left.url) == QUrl(right.url));
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t BitTorrent::qHash(const TrackerEntry &key, const std::size_t seed)
+#else
 uint BitTorrent::qHash(const TrackerEntry &key, const uint seed)
+#endif
 {
     return (::qHash(key.url, seed) ^ ::qHash(key.tier));
 }
