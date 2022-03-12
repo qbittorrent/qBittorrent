@@ -4485,8 +4485,24 @@ const CacheStatus &Session::cacheStatus() const
     return m_cacheStatus;
 }
 
+bool Session::isStartUpPending() const
+{
+    return (m_startUpStatus == Pending);
+}
+
+bool Session::isStartUpInProgress() const
+{
+    return (m_startUpStatus == InProgress);
+}
+
+bool Session::isStartUpCompleted() const
+{
+    return (m_startUpStatus == Completed);
+}
+
 void Session::startUpTorrents()
 {
+    m_startUpStatus = InProgress;
     qDebug("Initializing torrents resume data storage...");
 
     const Path dbPath = specialFolderLocation(SpecialFolder::Data) / Path(u"torrents.db"_qs);
@@ -4675,6 +4691,9 @@ void Session::startUpTorrents()
         if (isQueueingSystemEnabled())
             m_resumeDataStorage->storeQueue(queue);
     }
+
+    m_startUpStatus = Completed;
+    emit startUpCompleted();
 }
 
 quint64 Session::getAlltimeDL() const

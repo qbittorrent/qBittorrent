@@ -460,6 +460,9 @@ namespace BitTorrent
         void setOSMemoryPriority(OSMemoryPriority priority);
 #endif
 
+        bool isStartUpPending() const;
+        bool isStartUpInProgress() const;
+        bool isStartUpCompleted() const;
         void startUpTorrents();
         Torrent *findTorrent(const TorrentID &id) const;
         QVector<Torrent *> torrents() const;
@@ -520,6 +523,7 @@ namespace BitTorrent
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
 
     signals:
+        void startUpCompleted();
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
@@ -588,6 +592,13 @@ namespace BitTorrent
             QString name;
             Path pathToRemove;
             DeleteOption deleteOption;
+        };
+
+        enum StartupStatus
+        {
+            Pending,
+            InProgress,
+            Completed
         };
 
         explicit Session(QObject *parent = nullptr);
@@ -832,6 +843,8 @@ namespace BitTorrent
         QString m_lastExternalIP;
 
         bool m_needUpgradeDownloadPath = false;
+
+        StartupStatus m_startUpStatus = Pending;
 
         static Session *m_instance;
     };
