@@ -50,8 +50,7 @@ public:
     {
         m_dataPtr->valid = true;
         m_dataPtr->nativeDigest = nativeDigest;
-        const QByteArray raw = QByteArray::fromRawData(nativeDigest.data(), length());
-        m_dataPtr->hashString = QString::fromLatin1(raw.toHex());
+        m_dataPtr->hashString.clear(); // hashString is created on demand
     }
 
     static constexpr int length()
@@ -91,6 +90,12 @@ public:
 
     QString toString() const
     {
+        if (m_dataPtr->hashString.isEmpty())
+        {
+            const QByteArray raw = QByteArray::fromRawData(m_dataPtr->nativeDigest.data(), length());
+            const_cast<Digest32 *>(this)->m_dataPtr->hashString = QString::fromLatin1(raw.toHex());
+        }
+
         return m_dataPtr->hashString;
     }
 

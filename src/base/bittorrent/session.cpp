@@ -2090,6 +2090,11 @@ QVector<Torrent *> Session::torrents() const
     return result;
 }
 
+qsizetype Session::torrentsCount() const
+{
+    return m_torrents.size();
+}
+
 bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 {
     // `source`: .torrent file path/url or magnet uri

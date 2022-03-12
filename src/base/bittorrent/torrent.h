@@ -217,6 +217,7 @@ namespace BitTorrent
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
+        virtual QVector<QString> trackerURLs() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;

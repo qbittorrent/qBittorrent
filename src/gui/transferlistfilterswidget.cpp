@@ -169,13 +169,6 @@ void BaseFilterWidget::toggleFilter(bool checked)
 StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *transferList)
     : BaseFilterWidget(parent, transferList)
 {
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentLoaded
-            , this, &StatusFilterWidget::updateTorrentNumbers);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
-            , this, &StatusFilterWidget::updateTorrentNumbers);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAboutToBeRemoved
-            , this, &StatusFilterWidget::updateTorrentNumbers);
-
     // Add status filters
     auto *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
@@ -220,6 +213,11 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
     toggleFilter(pref->getStatusFilterState());
+
+    populate();
+
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
+            , this, &StatusFilterWidget::handleTorrentsUpdated);
 }
 
 StatusFilterWidget::~StatusFilterWidget()
@@ -227,63 +225,87 @@ StatusFilterWidget::~StatusFilterWidget()
     Preferences::instance()->setTransSelFilter(currentRow());
 }
 
-void StatusFilterWidget::updateTorrentNumbers()
+void StatusFilterWidget::populate()
 {
-    int nbDownloading = 0;
-    int nbSeeding = 0;
-    int nbCompleted = 0;
-    int nbResumed = 0;
-    int nbPaused = 0;
-    int nbActive = 0;
-    int nbInactive = 0;
-    int nbStalled = 0;
-    int nbStalledUploading = 0;
-    int nbStalledDownloading = 0;
-    int nbChecking = 0;
-    int nbErrored = 0;
+    m_torrentsStatus.clear();
 
     const QVector<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
     for (const BitTorrent::Torrent *torrent : torrents)
     {
-        if (torrent->isDownloading())
-            ++nbDownloading;
-        if (torrent->isUploading())
-            ++nbSeeding;
-        if (torrent->isCompleted())
-            ++nbCompleted;
-        if (torrent->isResumed())
-            ++nbResumed;
-        if (torrent->isPaused())
-            ++nbPaused;
-        if (torrent->isActive())
-            ++nbActive;
-        if (torrent->isInactive())
-            ++nbInactive;
-        if (torrent->state() ==  BitTorrent::TorrentState::StalledUploading)
-            ++nbStalledUploading;
-        if (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading)
-            ++nbStalledDownloading;
-        if (torrent->isChecking())
-            ++nbChecking;
-        if (torrent->isErrored())
-            ++nbErrored;
+        updateTorrentStatus(torrent);
     }
 
-    nbStalled = nbStalledUploading + nbStalledDownloading;
+    updateTexts();
+}
 
-    item(TorrentFilter::All)->setData(Qt::DisplayRole, tr("All (%1)").arg(torrents.count()));
-    item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(nbDownloading));
-    item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, tr("Seeding (%1)").arg(nbSeeding));
-    item(TorrentFilter::Completed)->setData(Qt::DisplayRole, tr("Completed (%1)").arg(nbCompleted));
-    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Resumed (%1)").arg(nbResumed));
-    item(TorrentFilter::Paused)->setData(Qt::DisplayRole, tr("Paused (%1)").arg(nbPaused));
-    item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(nbActive));
-    item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(nbInactive));
-    item(TorrentFilter::Stalled)->setData(Qt::DisplayRole, tr("Stalled (%1)").arg(nbStalled));
-    item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled Uploading (%1)").arg(nbStalledUploading));
-    item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled Downloading (%1)").arg(nbStalledDownloading));
-    item(TorrentFilter::Checking)->setData(Qt::DisplayRole, tr("Checking (%1)").arg(nbChecking));
-    item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(nbErrored));
+void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
+{
+    const auto update = [this, torrent](const TorrentFilter::Type status, const bool insert, int &count)
+    {
+        const bool contains = m_torrentsStatus.contains(torrent, status);
+        if (insert && !contains)
+        {
+            ++count;
+            m_torrentsStatus.insert(torrent, status);
+        }
+        else if (!insert && contains)
+        {
+            --count;
+            m_torrentsStatus.remove(torrent, status);
+        }
+    };
+
+    update(TorrentFilter::Downloading, torrent->isDownloading(), m_nbDownloading);
+
+    update(TorrentFilter::Seeding, torrent->isUploading(), m_nbSeeding);
+
+    update(TorrentFilter::Completed, torrent->isCompleted(), m_nbCompleted);
+
+    update(TorrentFilter::Resumed, torrent->isResumed(), m_nbResumed);
+
+    update(TorrentFilter::Paused, torrent->isPaused(), m_nbPaused);
+
+    update(TorrentFilter::Active, torrent->isActive(), m_nbActive);
+
+    update(TorrentFilter::Inactive, torrent->isInactive(), m_nbInactive);
+
+    const bool isStalledUploading = (torrent->state() ==  BitTorrent::TorrentState::StalledUploading);
+    update(TorrentFilter::StalledUploading, isStalledUploading, m_nbStalledUploading);
+
+    const bool isStalledDownloading = (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
+    update(TorrentFilter::StalledDownloading, isStalledDownloading, m_nbStalledDownloading);
+
+    update(TorrentFilter::Checking, torrent->isChecking(), m_nbChecking);
+
+    update(TorrentFilter::Errored, torrent->isErrored(), m_nbErrored);
+
+    m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
+}
+
+void StatusFilterWidget::updateTexts()
+{
+    const qsizetype torrentsCount = BitTorrent::Session::instance()->torrentsCount();
+    item(TorrentFilter::All)->setData(Qt::DisplayRole, tr("All (%1)").arg(torrentsCount));
+    item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(m_nbDownloading));
+    item(TorrentFilter::Seeding)->setData(Qt::DisplayRole, tr("Seeding (%1)").arg(m_nbSeeding));
+    item(TorrentFilter::Completed)->setData(Qt::DisplayRole, tr("Completed (%1)").arg(m_nbCompleted));
+    item(TorrentFilter::Resumed)->setData(Qt::DisplayRole, tr("Resumed (%1)").arg(m_nbResumed));
+    item(TorrentFilter::Paused)->setData(Qt::DisplayRole, tr("Paused (%1)").arg(m_nbPaused));
+    item(TorrentFilter::Active)->setData(Qt::DisplayRole, tr("Active (%1)").arg(m_nbActive));
+    item(TorrentFilter::Inactive)->setData(Qt::DisplayRole, tr("Inactive (%1)").arg(m_nbInactive));
+    item(TorrentFilter::Stalled)->setData(Qt::DisplayRole, tr("Stalled (%1)").arg(m_nbStalled));
+    item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled Uploading (%1)").arg(m_nbStalledUploading));
+    item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled Downloading (%1)").arg(m_nbStalledDownloading));
+    item(TorrentFilter::Checking)->setData(Qt::DisplayRole, tr("Checking (%1)").arg(m_nbChecking));
+    item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(m_nbErrored));
+}
+
+void StatusFilterWidget::handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents)
+{
+    for (const BitTorrent::Torrent *torrent : torrents)
+        updateTorrentStatus(torrent);
+
+    updateTexts();
 }
 
 void StatusFilterWidget::showMenu()
@@ -306,9 +328,64 @@ void StatusFilterWidget::applyFilter(int row)
     transferList->applyStatusFilter(row);
 }
 
-void StatusFilterWidget::handleNewTorrent(BitTorrent::Torrent *const) {}
+void StatusFilterWidget::handleNewTorrent(BitTorrent::Torrent *const torrent)
+{
+    updateTorrentStatus(torrent);
+    updateTexts();
+}
 
-void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const) {}
+void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
+{
+    for (const TorrentFilter::Type status : m_torrentsStatus.values(torrent))
+    {
+        switch (status)
+        {
+        case TorrentFilter::Downloading:
+            --m_nbDownloading;
+            break;
+        case TorrentFilter::Seeding:
+            --m_nbSeeding;
+            break;
+        case TorrentFilter::Completed:
+            --m_nbCompleted;
+            break;
+        case TorrentFilter::Resumed:
+            --m_nbResumed;
+            break;
+        case TorrentFilter::Paused:
+            --m_nbPaused;
+            break;
+        case TorrentFilter::Active:
+            --m_nbActive;
+            break;
+        case TorrentFilter::Inactive:
+            --m_nbInactive;
+            break;
+        case TorrentFilter::StalledUploading:
+            --m_nbStalledUploading;
+            break;
+        case TorrentFilter::StalledDownloading:
+            --m_nbStalledDownloading;
+            break;
+        case TorrentFilter::Checking:
+            --m_nbChecking;
+            break;
+        case TorrentFilter::Errored:
+            --m_nbErrored;
+            break;
+
+        default:
+            Q_ASSERT(false);
+            break;
+        }
+    }
+
+    m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
+
+    m_torrentsStatus.remove(torrent);
+
+    updateTexts();
+}
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : BaseFilterWidget(parent, transferList)
@@ -342,17 +419,18 @@ TrackerFiltersList::~TrackerFiltersList()
 void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::TorrentID &id)
 {
     const QString host {getHost(tracker)};
-    const bool exists {m_trackers.contains(host)};
+    const auto existingDataItr = m_trackers.find(host);
+    const bool exists {existingDataItr != m_trackers.end()};
     QListWidgetItem *trackerItem {nullptr};
 
     if (exists)
     {
-        if (m_trackers.value(host).contains(id))
+        if (existingDataItr->torrents.contains(id))
             return;
 
-        trackerItem = item((host == NULL_HOST)
-            ? TRACKERLESS_ROW
-            : rowFromTracker(host));
+        trackerItem = (host == NULL_HOST)
+                ? item(TRACKERLESS_ROW)
+                : existingDataItr->item;
     }
     else
     {
@@ -364,7 +442,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     }
     if (!trackerItem) return;
 
-    QSet<BitTorrent::TorrentID> &torrentIDs {m_trackers[host]};
+    QSet<BitTorrent::TorrentID> &torrentIDs {m_trackers[host].torrents};
     torrentIDs.insert(id);
 
     if (host == NULL_HOST)
@@ -378,7 +456,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(torrentIDs.size())));
     if (exists)
     {
-        if (currentRow() == rowFromTracker(host))
+        if (trackerFromRow(currentRow()) == host)
             applyFilter(currentRow());
         return;
     }
@@ -401,13 +479,12 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
 void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id)
 {
     const QString host = getHost(trackerURL);
-    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host);
+    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host).torrents;
     if (torrentIDs.empty())
         return;
 
     torrentIDs.remove(id);
 
-    int row = 0;
     QListWidgetItem *trackerItem = nullptr;
 
     if (!host.isEmpty())
@@ -441,12 +518,11 @@ void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent:
             }
         }
 
-        row = rowFromTracker(host);
-        trackerItem = item(row);
+        trackerItem = m_trackers.value(host).item;
 
         if (torrentIDs.empty())
         {
-            if (currentRow() == row)
+            if (currentItem() == trackerItem)
                 setCurrentRow(0, QItemSelectionModel::SelectCurrent);
             delete trackerItem;
             m_trackers.remove(host);
@@ -459,15 +535,14 @@ void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent:
     }
     else
     {
-        row = 1;
         trackerItem = item(TRACKERLESS_ROW);
         trackerItem->setText(tr("Trackerless (%1)").arg(torrentIDs.size()));
     }
 
-    m_trackers.insert(host, torrentIDs);
+    m_trackers.insert(host, {torrentIDs, trackerItem});
 
-    if (currentRow() == row)
-        applyFilter(row);
+    if (currentItem() == trackerItem)
+        applyFilter(currentRow());
 }
 
 void TrackerFiltersList::changeTrackerless(const bool trackerless, const BitTorrent::TorrentID &id)
@@ -630,12 +705,12 @@ void TrackerFiltersList::applyFilter(const int row)
 void TrackerFiltersList::handleNewTorrent(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID {torrent->id()};
-    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
-    for (const BitTorrent::TrackerEntry &tracker : trackers)
-        addItem(tracker.url, torrentID);
+    const QVector<QString> trackerURLs {torrent->trackerURLs()};
+    for (const QString &trackerURL : trackerURLs)
+        addItem(trackerURL, torrentID);
 
     // Check for trackerless torrent
-    if (trackers.isEmpty())
+    if (trackerURLs.isEmpty())
         addItem(NULL_HOST, torrentID);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(++m_totalTorrents));
@@ -644,12 +719,12 @@ void TrackerFiltersList::handleNewTorrent(BitTorrent::Torrent *const torrent)
 void TrackerFiltersList::torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent)
 {
     const BitTorrent::TorrentID torrentID {torrent->id()};
-    const QVector<BitTorrent::TrackerEntry> trackers {torrent->trackers()};
-    for (const BitTorrent::TrackerEntry &tracker : trackers)
-        removeItem(tracker.url, torrentID);
+    const QVector<QString> trackerURLs {torrent->trackerURLs()};
+    for (const QString &trackerURL : trackerURLs)
+        removeItem(trackerURL, torrentID);
 
     // Check for trackerless torrent
-    if (trackers.isEmpty())
+    if (trackerURLs.isEmpty())
         removeItem(NULL_HOST, torrentID);
 
     item(ALL_ROW)->setText(tr("All (%1)", "this is for the tracker filter").arg(--m_totalTorrents));
@@ -681,13 +756,13 @@ QSet<BitTorrent::TorrentID> TrackerFiltersList::getTorrentIDs(const int row) con
     switch (row)
     {
     case TRACKERLESS_ROW:
-        return m_trackers.value(NULL_HOST);
+        return m_trackers.value(NULL_HOST).torrents;
     case ERROR_ROW:
         return {m_errors.keyBegin(), m_errors.keyEnd()};
     case WARNING_ROW:
         return {m_warnings.keyBegin(), m_warnings.keyEnd()};
     default:
-        return m_trackers.value(trackerFromRow(row));
+        return m_trackers.value(trackerFromRow(row)).torrents;
     }
 }
 

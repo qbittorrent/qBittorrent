@@ -35,6 +35,7 @@
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/torrentfilter.h"
 #include "base/path.h"
 
 class QCheckBox;
@@ -81,7 +82,7 @@ public:
     ~StatusFilterWidget() override;
 
 private slots:
-    void updateTorrentNumbers();
+    void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents);
 
 private:
     // These 4 methods are virtual slots in the base class.
@@ -90,6 +91,24 @@ private:
     void applyFilter(int row) override;
     void handleNewTorrent(BitTorrent::Torrent *const) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *const) override;
+
+    void populate();
+    void updateTorrentStatus(const BitTorrent::Torrent *torrent);
+    void updateTexts();
+
+    QMultiHash<const BitTorrent::Torrent *, TorrentFilter::Type> m_torrentsStatus;
+    int m_nbDownloading = 0;
+    int m_nbSeeding = 0;
+    int m_nbCompleted = 0;
+    int m_nbResumed = 0;
+    int m_nbPaused = 0;
+    int m_nbActive = 0;
+    int m_nbInactive = 0;
+    int m_nbStalled = 0;
+    int m_nbStalledUploading = 0;
+    int m_nbStalledDownloading = 0;
+    int m_nbChecking = 0;
+    int m_nbErrored = 0;
 };
 
 class TrackerFiltersList final : public BaseFilterWidget
@@ -123,7 +142,13 @@ private:
     QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
     void downloadFavicon(const QString &url);
 
-    QHash<QString, QSet<BitTorrent::TorrentID>> m_trackers;  // <tracker host, torrent IDs>
+    struct TrackerData
+    {
+        QSet<BitTorrent::TorrentID> torrents;
+        QListWidgetItem *item = nullptr;
+    };
+
+    QHash<QString, TrackerData> m_trackers;
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
     PathList m_iconPaths;

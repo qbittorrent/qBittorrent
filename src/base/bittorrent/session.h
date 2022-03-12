@@ -463,6 +463,7 @@ namespace BitTorrent
         void startUpTorrents();
         Torrent *findTorrent(const TorrentID &id) const;
         QVector<Torrent *> torrents() const;
+        qsizetype torrentsCount() const;
         bool hasActiveTorrents() const;
         bool hasUnfinishedTorrents() const;
         bool hasRunningSeed() const;
