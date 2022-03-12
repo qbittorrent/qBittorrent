@@ -55,19 +55,19 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->logo->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("qbittorrent-tray")), this, 32));
 
     // About
-    const QString aboutText = QString(
-        "<p style=\"white-space: pre-wrap;\">"
-        "%1\n\n"
-        "%2\n\n"
-        "<table>"
-        "<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
-        "<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
-        "<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
-        "</table>"
-        "</p>")
+    const QString aboutText =
+        u"<p style=\"white-space: pre-wrap;\">"
+        u"%1\n\n"
+        u"%2\n\n"
+        u"<table>"
+        u"<tr><td>%3</td><td><a href=\"https://www.qbittorrent.org\">https://www.qbittorrent.org</a></td></tr>"
+        u"<tr><td>%4</td><td><a href=\"http://forum.qbittorrent.org\">http://forum.qbittorrent.org</a></td></tr>"
+        u"<tr><td>%5</td><td><a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a></td></tr>"
+        u"</table>"
+        u"</p>"_qs
         .arg(tr("An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.")
-                .replace("C++", "C\u2060+\u2060+") // make C++ non-breaking
-            , tr("Copyright %1 2006-2022 The qBittorrent project").arg(QString::fromUtf8(C_COPYRIGHT))
+                .replace(u"C++"_qs, u"C\u2060+\u2060+"_qs) // make C++ non-breaking
+            , tr("Copyright %1 2006-2022 The qBittorrent project").arg(C_COPYRIGHT)
             , tr("Home Page:")
             , tr("Forum:")
             , tr("Bug Tracker:"));
@@ -76,7 +76,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(Path(u":/icons/mascot.png"_qs), this));
 
     // Thanks
-    QFile thanksfile(":/thanks.html");
+    QFile thanksfile(u":/thanks.html"_qs);
     if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         m_ui->textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
@@ -84,7 +84,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     }
 
     // Translation
-    QFile translatorsfile(":/translators.html");
+    QFile translatorsfile(u":/translators.html"_qs);
     if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         m_ui->textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
@@ -92,7 +92,7 @@ AboutDialog::AboutDialog(QWidget *parent)
     }
 
     // License
-    QFile licensefile(":/gpl.html");
+    QFile licensefile(u":/gpl.html"_qs);
     if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         m_ui->textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
@@ -100,16 +100,15 @@ AboutDialog::AboutDialog(QWidget *parent)
     }
 
     // Software Used
-    m_ui->labelQtVer->setText(QT_VERSION_STR);
+    m_ui->labelQtVer->setText(QStringLiteral(QT_VERSION_STR));
     m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
     m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
     m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
     m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
 
-    const QString DBIPText = QString(
-                                 "<html><head/><body><p>"
-                                 "%1"
-                                 " (<a href=\"https://db-ip.com/\">https://db-ip.com/</a>)</p></body></html>")
+    const QString DBIPText = u"<html><head/><body><p>"
+                             u"%1 (<a href=\"https://db-ip.com/\">https://db-ip.com/</a>)"
+                             u"</p></body></html>"_qs
                              .arg(tr("The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. "
                                      "The database is licensed under the Creative Commons Attribution 4.0 International License"));
     m_ui->labelDBIP->setText(DBIPText);

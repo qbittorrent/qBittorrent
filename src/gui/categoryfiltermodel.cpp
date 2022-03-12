@@ -214,13 +214,12 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
-        return UIThemeManager::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole))
     {
-        return QString(QStringLiteral("%1 (%2)"))
-                .arg(item->name()).arg(item->torrentsCount());
+        return u"%1 (%2)"_qs.arg(item->name(), QString::number(item->torrentsCount()));
     }
 
     if ((index.column() == 0) && (role == Qt::UserRole))

@@ -134,5 +134,5 @@ void LogListView::copySelection() const
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     for (const QModelIndex &index : selectedIndexes)
         list.append(logText(index));
-    QApplication::clipboard()->setText(list.join('\n'));
+    QApplication::clipboard()->setText(list.join(u'\n'));
 }

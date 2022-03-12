@@ -49,7 +49,7 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     // Redefining global stylesheet breaks certain elements on mac like tabs.
     // Qt checks whether the stylesheet class inherts("QMacStyle") and this becomes false.
-    setStyleSheet("QStatusBar::item { border-width: 0; }");
+    setStyleSheet(u"QStatusBar::item { border-width: 0; }"_qs);
 #endif
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
@@ -75,7 +75,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_dlSpeedLbl->setStyleSheet("text-align:left;");
+    m_dlSpeedLbl->setStyleSheet(u"text-align:left;"_qs);
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
@@ -84,7 +84,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_upSpeedLbl->setStyleSheet("text-align:left;");
+    m_upSpeedLbl->setStyleSheet(u"text-align:left;"_qs);
     m_upSpeedLbl->setMinimumWidth(200);
 
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
@@ -141,7 +141,7 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
-    setStyleSheet("QWidget {margin: 0;}");
+    setStyleSheet(u"QWidget {margin: 0;}"_qs);
     container->adjustSize();
     adjustSize();
     // Is DHT enabled
@@ -215,15 +215,15 @@ void StatusBar::updateSpeedLabels()
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
     const int dlSpeedLimit = BitTorrent::Session::instance()->downloadSpeedLimit();
     if (dlSpeedLimit > 0)
-        dlSpeedLbl += " [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + ']';
-    dlSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
+        dlSpeedLbl += u" [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + u']';
+    dlSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + u')';
     m_dlSpeedLbl->setText(dlSpeedLbl);
 
     QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
     const int upSpeedLimit = BitTorrent::Session::instance()->uploadSpeedLimit();
     if (upSpeedLimit > 0)
-        upSpeedLbl += " [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + ']';
-    upSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
+        upSpeedLbl += u" [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + u']';
+    upSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + u')';
     m_upSpeedLbl->setText(upSpeedLbl);
 }
 

@@ -33,6 +33,8 @@
 #include <QDBusPendingCall>
 #include <QDBusPendingReply>
 
+#include "base/global.h"
+
 PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     : QObject(parent)
 {
@@ -64,16 +66,16 @@ void PowerManagementInhibitor::requestIdle()
     QDBusMessage call;
     if (!m_useGSM)
         call = QDBusMessage::createMethodCall(
-                "org.freedesktop.PowerManagement",
-                "/org/freedesktop/PowerManagement/Inhibit",
-                "org.freedesktop.PowerManagement.Inhibit",
-                "UnInhibit");
+                u"org.freedesktop.PowerManagement"_qs,
+                u"/org/freedesktop/PowerManagement/Inhibit"_qs,
+                u"org.freedesktop.PowerManagement.Inhibit"_qs,
+                u"UnInhibit"_qs);
     else
         call = QDBusMessage::createMethodCall(
-                "org.gnome.SessionManager",
-                "/org/gnome/SessionManager",
-                "org.gnome.SessionManager",
-                "Uninhibit");
+                u"org.gnome.SessionManager"_qs,
+                u"/org/gnome/SessionManager"_qs,
+                u"org.gnome.SessionManager"_qs,
+                u"Uninhibit"_qs);
 
     m_state = RequestIdle;
 
@@ -98,23 +100,22 @@ void PowerManagementInhibitor::requestBusy()
     QDBusMessage call;
     if (!m_useGSM)
         call = QDBusMessage::createMethodCall(
-                "org.freedesktop.PowerManagement",
-                "/org/freedesktop/PowerManagement/Inhibit",
-                "org.freedesktop.PowerManagement.Inhibit",
-                "Inhibit");
+                u"org.freedesktop.PowerManagement"_qs,
+                u"/org/freedesktop/PowerManagement/Inhibit"_qs,
+                u"org.freedesktop.PowerManagement.Inhibit"_qs,
+                u"Inhibit"_qs);
     else
         call = QDBusMessage::createMethodCall(
-                "org.gnome.SessionManager",
-                "/org/gnome/SessionManager",
-                "org.gnome.SessionManager",
-                "Inhibit");
+                u"org.gnome.SessionManager"_qs,
+                u"/org/gnome/SessionManager"_qs,
+                u"org.gnome.SessionManager"_qs,
+                u"Inhibit"_qs);
 
     m_state = RequestBusy;
 
-    QList<QVariant> args;
-    args << "qBittorrent";
+    QList<QVariant> args = {u"qBittorrent"_qs};
     if (m_useGSM) args << 0u;
-    args << "Active torrents are presented";
+    args << u"Active torrents are presented"_qs;
     if (m_useGSM) args << 8u;
     call.setArguments(args);
 

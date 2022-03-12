@@ -84,29 +84,29 @@ bool TorrentFilter::setTypeByName(const QString &filter)
 {
     Type type = All;
 
-    if (filter == "downloading")
+    if (filter == u"downloading")
         type = Downloading;
-    else if (filter == "seeding")
+    else if (filter == u"seeding")
         type = Seeding;
-    else if (filter == "completed")
+    else if (filter == u"completed")
         type = Completed;
-    else if (filter == "paused")
+    else if (filter == u"paused")
         type = Paused;
-    else if (filter == "resumed")
+    else if (filter == u"resumed")
         type = Resumed;
-    else if (filter == "active")
+    else if (filter == u"active")
         type = Active;
-    else if (filter == "inactive")
+    else if (filter == u"inactive")
         type = Inactive;
-    else if (filter == "stalled")
+    else if (filter == u"stalled")
         type = Stalled;
-    else if (filter == "stalled_uploading")
+    else if (filter == u"stalled_uploading")
         type = StalledUploading;
-    else if (filter == "stalled_downloading")
+    else if (filter == u"stalled_downloading")
         type = StalledDownloading;
-    else if (filter == "checking")
+    else if (filter == u"checking")
         type = Checking;
-    else if (filter == "errored")
+    else if (filter == u"errored")
         type = Errored;
 
     return setType(type);

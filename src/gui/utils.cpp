@@ -47,6 +47,7 @@
 #include <QWidget>
 #include <QWindow>
 
+#include "base/global.h"
 #include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
@@ -140,7 +141,7 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 void Utils::Gui::openPath(const Path &path)
 {
     // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.data().startsWith("//"))
+    if (path.data().startsWith(u"//"))
         QDesktopServices::openUrl(QUrl(QString::fromLatin1("file:") + path.toString()));
     else
         QDesktopServices::openUrl(QUrl::fromLocalFile(path.data()));
@@ -169,32 +170,32 @@ void Utils::Gui::openFolderSelect(const Path &path)
         ::CoUninitialize();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     QProcess proc;
-    proc.start("xdg-mime", {"query", "default", "inode/directory"});
+    proc.start(u"xdg-mime"_qs, {u"query"_qs, u"default"_qs, u"inode/directory"_qs});
     proc.waitForFinished();
-    const QString output = proc.readLine().simplified();
-    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
+    const auto output = QString::fromLocal8Bit(proc.readLine().simplified());
+    if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
     {
-        proc.startDetached("dolphin", {"--select", path.toString()});
+        proc.startDetached(u"dolphin"_qs, {u"--select"_qs, path.toString()});
     }
-    else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-                 || (output == "nautilus-folder-handler.desktop"))
+    else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
+                 || (output == u"nautilus-folder-handler.desktop"))
     {
-        proc.start("nautilus", {"--version"});
+        proc.start(u"nautilus"_qs, {u"--version"_qs});
         proc.waitForFinished();
-        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
+        const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine()).remove(QRegularExpression(u"[^0-9.]"_qs));
         using NautilusVersion = Utils::Version<int, 3>;
         if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
-            proc.startDetached("nautilus", {(Fs::isDir(path) ? path.parentPath() : path).toString()});
+            proc.startDetached(u"nautilus"_qs, {(Fs::isDir(path) ? path.parentPath() : path).toString()});
         else
-            proc.startDetached("nautilus", {"--no-desktop", (Fs::isDir(path) ? path.parentPath() : path).toString()});
+            proc.startDetached(u"nautilus"_qs, {u"--no-desktop"_qs, (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
-    else if (output == "nemo.desktop")
+    else if (output == u"nemo.desktop")
     {
-        proc.startDetached("nemo", {"--no-desktop", (Fs::isDir(path) ? path.parentPath() : path).toString()});
+        proc.startDetached(u"nemo"_qs, {u"--no-desktop"_qs, (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
-    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
+    else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
     {
-        proc.startDetached("konqueror", {"--select", path.toString()});
+        proc.startDetached(u"konqueror"_qs, {u"--select"_qs, path.toString()});
     }
     else
     {

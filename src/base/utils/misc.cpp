@@ -265,7 +265,7 @@ QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed)
     if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
     return Utils::String::fromDouble(result->value, friendlyUnitPrecision(result->unit))
-           + QString::fromUtf8(C_NON_BREAKING_SPACE)
+           + C_NON_BREAKING_SPACE
            + unitString(result->unit, isSpeed);
 }
 
@@ -354,9 +354,9 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
 {
     if (seconds < 0)
-        return QString::fromUtf8(C_INFINITY);
+        return C_INFINITY;
     if ((maxCap >= 0) && (seconds >= maxCap))
-        return QString::fromUtf8(C_INFINITY);
+        return C_INFINITY;
 
     if (seconds == 0)
         return u"0"_qs;

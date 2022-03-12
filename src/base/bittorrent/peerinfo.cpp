@@ -214,7 +214,7 @@ QBitArray PeerInfo::pieces() const
 QString PeerInfo::connectionType() const
 {
     if (m_nativeInfo.flags & lt::peer_info::utp_socket)
-        return QString::fromUtf8(C_UTP);
+        return C_UTP;
 
     return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
         ? QLatin1String {"BT"}
@@ -316,7 +316,7 @@ void PeerInfo::determineFlags()
 
     // P = Peer is using uTorrent uTP
     if (useUTPSocket())
-        updateFlags(QLatin1Char('P'), QString::fromUtf8(C_UTP));
+        updateFlags(QLatin1Char('P'), C_UTP);
 
     m_flags.chop(1);
     m_flagsDescription.chop(1);

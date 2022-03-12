@@ -251,7 +251,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     }
     else
     {
-        m_ui->spinUploadLimit->setSpecialValueText(QString::fromUtf8(C_INEQUALITY));
+        m_ui->spinUploadLimit->setSpecialValueText(C_INEQUALITY);
         m_ui->spinUploadLimit->setMinimum(-1);
         m_ui->spinUploadLimit->setValue(-1);
         connect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
@@ -266,7 +266,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     }
     else
     {
-        m_ui->spinDownloadLimit->setSpecialValueText(QString::fromUtf8(C_INEQUALITY));
+        m_ui->spinDownloadLimit->setSpecialValueText(C_INEQUALITY);
         m_ui->spinDownloadLimit->setMinimum(-1);
         m_ui->spinDownloadLimit->setValue(-1);
         connect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
@@ -607,7 +607,7 @@ void TorrentOptionsDialog::handleRatioTypeChanged()
 void TorrentOptionsDialog::handleUpSpeedLimitChanged()
 {
     m_ui->spinUploadLimit->setMinimum(0);
-    m_ui->spinUploadLimit->setSpecialValueText(QString::fromUtf8(C_INFINITY));
+    m_ui->spinUploadLimit->setSpecialValueText(C_INFINITY);
     disconnect(m_ui->spinUploadLimit, qOverload<int>(&QSpinBox::valueChanged)
                    , this, &TorrentOptionsDialog::handleUpSpeedLimitChanged);
 }
@@ -615,7 +615,7 @@ void TorrentOptionsDialog::handleUpSpeedLimitChanged()
 void TorrentOptionsDialog::handleDownSpeedLimitChanged()
 {
     m_ui->spinDownloadLimit->setMinimum(0);
-    m_ui->spinDownloadLimit->setSpecialValueText(QString::fromUtf8(C_INFINITY));
+    m_ui->spinDownloadLimit->setSpecialValueText(C_INFINITY);
     disconnect(m_ui->spinDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
                    , this, &TorrentOptionsDialog::handleDownSpeedLimitChanged);
 }

@@ -67,9 +67,9 @@ QString PeerAddress::toString() const
         return {};
 
     const QString ipStr = (ip.protocol() == QAbstractSocket::IPv6Protocol)
-        ? ('[' + ip.toString() + ']')
+        ? (u'[' + ip.toString() + u']')
         : ip.toString();
-    return (ipStr + ':' + QString::number(port));
+    return (ipStr + u':' + QString::number(port));
 }
 
 bool BitTorrent::operator==(const BitTorrent::PeerAddress &left, const BitTorrent::PeerAddress &right)

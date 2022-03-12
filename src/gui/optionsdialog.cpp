@@ -83,7 +83,7 @@ namespace
         const QDate date {2018, 11, 5};  // Monday
         QStringList ret;
         for (int i = 0; i < 7; ++i)
-            ret.append(locale.toString(date.addDays(i), "dddd"));
+            ret.append(locale.toString(date.addDays(i), u"dddd"_qs));
         return ret;
     }
 
@@ -91,70 +91,70 @@ namespace
     {
         switch (locale.language())
         {
-        case QLocale::Arabic: return QString::fromUtf8(C_LOCALE_ARABIC);
-        case QLocale::Armenian: return QString::fromUtf8(C_LOCALE_ARMENIAN);
-        case QLocale::Azerbaijani: return QString::fromUtf8(C_LOCALE_AZERBAIJANI);
-        case QLocale::Basque: return QString::fromUtf8(C_LOCALE_BASQUE);
-        case QLocale::Bulgarian: return QString::fromUtf8(C_LOCALE_BULGARIAN);
-        case QLocale::Byelorussian: return QString::fromUtf8(C_LOCALE_BYELORUSSIAN);
-        case QLocale::Catalan: return QString::fromUtf8(C_LOCALE_CATALAN);
+        case QLocale::Arabic: return C_LOCALE_ARABIC;
+        case QLocale::Armenian: return C_LOCALE_ARMENIAN;
+        case QLocale::Azerbaijani: return C_LOCALE_AZERBAIJANI;
+        case QLocale::Basque: return C_LOCALE_BASQUE;
+        case QLocale::Bulgarian: return C_LOCALE_BULGARIAN;
+        case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
+        case QLocale::Catalan: return C_LOCALE_CATALAN;
         case QLocale::Chinese:
             switch (locale.country())
             {
-            case QLocale::China: return QString::fromUtf8(C_LOCALE_CHINESE_SIMPLIFIED);
-            case QLocale::HongKong: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_HK);
-            default: return QString::fromUtf8(C_LOCALE_CHINESE_TRADITIONAL_TW);
+            case QLocale::China: return C_LOCALE_CHINESE_SIMPLIFIED;
+            case QLocale::HongKong: return C_LOCALE_CHINESE_TRADITIONAL_HK;
+            default: return C_LOCALE_CHINESE_TRADITIONAL_TW;
             }
-        case QLocale::Croatian: return QString::fromUtf8(C_LOCALE_CROATIAN);
-        case QLocale::Czech: return QString::fromUtf8(C_LOCALE_CZECH);
-        case QLocale::Danish: return QString::fromUtf8(C_LOCALE_DANISH);
-        case QLocale::Dutch: return QString::fromUtf8(C_LOCALE_DUTCH);
+        case QLocale::Croatian: return C_LOCALE_CROATIAN;
+        case QLocale::Czech: return C_LOCALE_CZECH;
+        case QLocale::Danish: return C_LOCALE_DANISH;
+        case QLocale::Dutch: return C_LOCALE_DUTCH;
         case QLocale::English:
             switch (locale.country())
             {
-            case QLocale::Australia: return QString::fromUtf8(C_LOCALE_ENGLISH_AUSTRALIA);
-            case QLocale::UnitedKingdom: return QString::fromUtf8(C_LOCALE_ENGLISH_UNITEDKINGDOM);
-            default: return QString::fromUtf8(C_LOCALE_ENGLISH);
+            case QLocale::Australia: return C_LOCALE_ENGLISH_AUSTRALIA;
+            case QLocale::UnitedKingdom: return C_LOCALE_ENGLISH_UNITEDKINGDOM;
+            default: return C_LOCALE_ENGLISH;
             }
-        case QLocale::Estonian: return QString::fromUtf8(C_LOCALE_ESTONIAN);
-        case QLocale::Finnish: return QString::fromUtf8(C_LOCALE_FINNISH);
-        case QLocale::French: return QString::fromUtf8(C_LOCALE_FRENCH);
-        case QLocale::Galician: return QString::fromUtf8(C_LOCALE_GALICIAN);
-        case QLocale::Georgian: return QString::fromUtf8(C_LOCALE_GEORGIAN);
-        case QLocale::German: return QString::fromUtf8(C_LOCALE_GERMAN);
-        case QLocale::Greek: return QString::fromUtf8(C_LOCALE_GREEK);
-        case QLocale::Hebrew: return QString::fromUtf8(C_LOCALE_HEBREW);
-        case QLocale::Hindi: return QString::fromUtf8(C_LOCALE_HINDI);
-        case QLocale::Hungarian: return QString::fromUtf8(C_LOCALE_HUNGARIAN);
-        case QLocale::Icelandic: return QString::fromUtf8(C_LOCALE_ICELANDIC);
-        case QLocale::Indonesian: return QString::fromUtf8(C_LOCALE_INDONESIAN);
-        case QLocale::Italian: return QString::fromUtf8(C_LOCALE_ITALIAN);
-        case QLocale::Japanese: return QString::fromUtf8(C_LOCALE_JAPANESE);
-        case QLocale::Korean: return QString::fromUtf8(C_LOCALE_KOREAN);
-        case QLocale::Latvian: return QString::fromUtf8(C_LOCALE_LATVIAN);
-        case QLocale::Lithuanian: return QString::fromUtf8(C_LOCALE_LITHUANIAN);
-        case QLocale::Malay: return QString::fromUtf8(C_LOCALE_MALAY);
-        case QLocale::Mongolian: return QString::fromUtf8(C_LOCALE_MONGOLIAN);
-        case QLocale::NorwegianBokmal: return QString::fromUtf8(C_LOCALE_NORWEGIAN);
-        case QLocale::Occitan: return QString::fromUtf8(C_LOCALE_OCCITAN);
-        case QLocale::Persian: return QString::fromUtf8(C_LOCALE_PERSIAN);
-        case QLocale::Polish: return QString::fromUtf8(C_LOCALE_POLISH);
+        case QLocale::Estonian: return C_LOCALE_ESTONIAN;
+        case QLocale::Finnish: return C_LOCALE_FINNISH;
+        case QLocale::French: return C_LOCALE_FRENCH;
+        case QLocale::Galician: return C_LOCALE_GALICIAN;
+        case QLocale::Georgian: return C_LOCALE_GEORGIAN;
+        case QLocale::German: return C_LOCALE_GERMAN;
+        case QLocale::Greek: return C_LOCALE_GREEK;
+        case QLocale::Hebrew: return C_LOCALE_HEBREW;
+        case QLocale::Hindi: return C_LOCALE_HINDI;
+        case QLocale::Hungarian: return C_LOCALE_HUNGARIAN;
+        case QLocale::Icelandic: return C_LOCALE_ICELANDIC;
+        case QLocale::Indonesian: return C_LOCALE_INDONESIAN;
+        case QLocale::Italian: return C_LOCALE_ITALIAN;
+        case QLocale::Japanese: return C_LOCALE_JAPANESE;
+        case QLocale::Korean: return C_LOCALE_KOREAN;
+        case QLocale::Latvian: return C_LOCALE_LATVIAN;
+        case QLocale::Lithuanian: return C_LOCALE_LITHUANIAN;
+        case QLocale::Malay: return C_LOCALE_MALAY;
+        case QLocale::Mongolian: return C_LOCALE_MONGOLIAN;
+        case QLocale::NorwegianBokmal: return C_LOCALE_NORWEGIAN;
+        case QLocale::Occitan: return C_LOCALE_OCCITAN;
+        case QLocale::Persian: return C_LOCALE_PERSIAN;
+        case QLocale::Polish: return C_LOCALE_POLISH;
         case QLocale::Portuguese:
             if (locale.country() == QLocale::Brazil)
-                return QString::fromUtf8(C_LOCALE_PORTUGUESE_BRAZIL);
-            return QString::fromUtf8(C_LOCALE_PORTUGUESE);
-        case QLocale::Romanian: return QString::fromUtf8(C_LOCALE_ROMANIAN);
-        case QLocale::Russian: return QString::fromUtf8(C_LOCALE_RUSSIAN);
-        case QLocale::Serbian: return QString::fromUtf8(C_LOCALE_SERBIAN);
-        case QLocale::Slovak: return QString::fromUtf8(C_LOCALE_SLOVAK);
-        case QLocale::Slovenian: return QString::fromUtf8(C_LOCALE_SLOVENIAN);
-        case QLocale::Spanish: return QString::fromUtf8(C_LOCALE_SPANISH);
-        case QLocale::Swedish: return QString::fromUtf8(C_LOCALE_SWEDISH);
-        case QLocale::Thai: return QString::fromUtf8(C_LOCALE_THAI);
-        case QLocale::Turkish: return QString::fromUtf8(C_LOCALE_TURKISH);
-        case QLocale::Ukrainian: return QString::fromUtf8(C_LOCALE_UKRAINIAN);
-        case QLocale::Uzbek: return QString::fromUtf8(C_LOCALE_UZBEK);
-        case QLocale::Vietnamese: return QString::fromUtf8(C_LOCALE_VIETNAMESE);
+                return C_LOCALE_PORTUGUESE_BRAZIL;
+            return C_LOCALE_PORTUGUESE;
+        case QLocale::Romanian: return C_LOCALE_ROMANIAN;
+        case QLocale::Russian: return C_LOCALE_RUSSIAN;
+        case QLocale::Serbian: return C_LOCALE_SERBIAN;
+        case QLocale::Slovak: return C_LOCALE_SLOVAK;
+        case QLocale::Slovenian: return C_LOCALE_SLOVENIAN;
+        case QLocale::Spanish: return C_LOCALE_SPANISH;
+        case QLocale::Swedish: return C_LOCALE_SWEDISH;
+        case QLocale::Thai: return C_LOCALE_THAI;
+        case QLocale::Turkish: return C_LOCALE_TURKISH;
+        case QLocale::Ukrainian: return C_LOCALE_UKRAINIAN;
+        case QLocale::Uzbek: return C_LOCALE_UZBEK;
+        case QLocale::Vietnamese: return C_LOCALE_VIETNAMESE;
         default:
             const QString lang = QLocale::languageToString(locale.language());
             qWarning() << "Unrecognized language name: " << lang;
@@ -193,18 +193,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #endif
 
     // Icons
-    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon("preferences-desktop"));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon("preferences-system-network"));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon("network-wired"));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon("folder-download"));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon("speedometer", "chronometer"));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon("rss-config", "application-rss+xml"));
+    m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_qs));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-system-network"_qs));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-wired"_qs));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"folder-download"_qs));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs, u"chronometer"_qs));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"rss-config"_qs, u"application-rss+xml"_qs));
 #ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon("network-server"));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"network-server"_qs));
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon("preferences-other"));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-other"_qs));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -216,10 +216,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
         m_ui->tabSelection->item(i)->setSizeHint(size);
     }
 
-    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
+    m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow_off")), this, Utils::Gui::mediumIconSize(this).height()));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow")), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow_off"_qs), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow"_qs), this, Utils::Gui::mediumIconSize(this).height()));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
@@ -391,7 +391,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->lineEditAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
-    const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14")
+    const auto autoRunStr = u"%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14"_qs
         .arg(tr("Supported parameters (case sensitive):")
             , tr("%N: Torrent name")
             , tr("%L: Category")
@@ -584,22 +584,22 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 void OptionsDialog::initializeLanguageCombo()
 {
     // List language files
-    const QDir langDir(":/lang");
-    const QStringList langFiles = langDir.entryList(QStringList("qbittorrent_*.qm"), QDir::Files);
+    const QDir langDir(u":/lang"_qs);
+    const QStringList langFiles = langDir.entryList(QStringList(u"qbittorrent_*.qm"_qs), QDir::Files);
     for (const QString &langFile : langFiles)
     {
         QString localeStr = langFile.mid(12); // remove "qbittorrent_"
         localeStr.chop(3); // Remove ".qm"
         QString languageName;
-        if (localeStr.startsWith("eo", Qt::CaseInsensitive))
+        if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
         {
             // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
-            languageName = QString::fromUtf8(C_LOCALE_ESPERANTO);
+            languageName = C_LOCALE_ESPERANTO;
         }
-        else if (localeStr.startsWith("ltg", Qt::CaseInsensitive))
+        else if (localeStr.startsWith(u"ltg", Qt::CaseInsensitive))
         {
             // QLocale doesn't work with that locale.
-            languageName = QString::fromUtf8(C_LOCALE_LATGALIAN);
+            languageName = C_LOCALE_LATGALIAN;
         }
         else
         {
@@ -733,7 +733,7 @@ void OptionsDialog::saveOptions()
     RSS::Session::instance()->setMaxArticlesPerFeed(m_ui->spinRSSMaxArticlesPerFeed->value());
     RSS::Session::instance()->setProcessingEnabled(m_ui->checkRSSEnable->isChecked());
     RSS::AutoDownloader::instance()->setProcessingEnabled(m_ui->checkRSSAutoDownloaderEnable->isChecked());
-    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split('\n', Qt::SkipEmptyParts));
+    RSS::AutoDownloader::instance()->setSmartEpisodeFilters(m_ui->textSmartEpisodeFilters->toPlainText().split(u'\n', Qt::SkipEmptyParts));
     RSS::AutoDownloader::instance()->setDownloadRepacks(m_ui->checkSmartFilterDownloadRepacks->isChecked());
 
     // Downloads preferences
@@ -986,7 +986,7 @@ void OptionsDialog::loadOptions()
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
     m_ui->checkRSSAutoDownloaderEnable->setChecked(RSS::AutoDownloader::instance()->isProcessingEnabled());
-    m_ui->textSmartEpisodeFilters->setPlainText(RSS::AutoDownloader::instance()->smartEpisodeFilters().join('\n'));
+    m_ui->textSmartEpisodeFilters->setPlainText(RSS::AutoDownloader::instance()->smartEpisodeFilters().join(u'\n'));
     m_ui->checkSmartFilterDownloadRepacks->setChecked(RSS::AutoDownloader::instance()->downloadRepacks());
 
     m_ui->spinRSSRefreshInterval->setValue(RSS::Session::instance()->refreshInterval());
@@ -1605,21 +1605,21 @@ QString OptionsDialog::getLocale() const
 void OptionsDialog::setLocale(const QString &localeStr)
 {
     QString name;
-    if (localeStr.startsWith("eo", Qt::CaseInsensitive))
+    if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
     {
-        name = "eo";
+        name = u"eo"_qs;
     }
-    else if (localeStr.startsWith("ltg", Qt::CaseInsensitive))
+    else if (localeStr.startsWith(u"ltg", Qt::CaseInsensitive))
     {
-        name = "ltg";
+        name = u"ltg"_qs;
     }
     else
     {
         QLocale locale(localeStr);
         if (locale.language() == QLocale::Uzbek)
-            name = "uz@Latn";
+            name = u"uz@Latn"_qs;
         else if (locale.language() == QLocale::Azerbaijani)
-            name = "az@latin";
+            name = u"az@latin"_qs;
         else
             name = locale.name();
     }
@@ -1628,7 +1628,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     if (index < 0)
     {
         //Attempt to find a language match without a country
-        int pos = name.indexOf('_');
+        int pos = name.indexOf(u'_');
         if (pos > -1)
         {
             QString lang = name.left(pos);
@@ -1638,7 +1638,7 @@ void OptionsDialog::setLocale(const QString &localeStr)
     if (index < 0)
     {
         // Unrecognized, use US English
-        index = m_ui->comboI18n->findData("en", Qt::UserRole);
+        index = m_ui->comboI18n->findData(u"en", Qt::UserRole);
         Q_ASSERT(index >= 0);
     }
     m_ui->comboI18n->setCurrentIndex(index);
