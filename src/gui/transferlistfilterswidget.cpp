@@ -218,6 +218,8 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
             , this, &StatusFilterWidget::handleTorrentsUpdated);
+    connect(BitTorrent::Session::instance(), &BitTorrent::Session::startUpCompleted
+            , this, &StatusFilterWidget::updateTexts);
 }
 
 StatusFilterWidget::~StatusFilterWidget()
@@ -284,6 +286,10 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
 
 void StatusFilterWidget::updateTexts()
 {
+    const auto session = BitTorrent::Session::instance();
+    if (session->isStartUpInProgress())
+        return;
+
     const qsizetype torrentsCount = BitTorrent::Session::instance()->torrentsCount();
     item(TorrentFilter::All)->setData(Qt::DisplayRole, tr("All (%1)").arg(torrentsCount));
     item(TorrentFilter::Downloading)->setData(Qt::DisplayRole, tr("Downloading (%1)").arg(m_nbDownloading));
