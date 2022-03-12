@@ -94,7 +94,7 @@ QPointer<AutoDownloader> AutoDownloader::m_instance = nullptr;
 
 QString computeSmartFilterRegex(const QStringList &filters)
 {
-    return QString::fromLatin1("(?:_|\\b)(?:%1)(?:_|\\b)").arg(filters.join(QString(")|(?:")));
+    return u"(?:_|\\b)(?:%1)(?:_|\\b)"_qs.arg(filters.join(u")|(?:"));
 }
 
 AutoDownloader::AutoDownloader()
@@ -162,7 +162,7 @@ bool AutoDownloader::hasRule(const QString &ruleName) const
 
 AutoDownloadRule AutoDownloader::ruleByName(const QString &ruleName) const
 {
-    return m_rules.value(ruleName, AutoDownloadRule("Unknown Rule"));
+    return m_rules.value(ruleName, AutoDownloadRule(u"Unknown Rule"_qs));
 }
 
 QList<AutoDownloadRule> AutoDownloader::rules() const
@@ -289,10 +289,10 @@ QStringList AutoDownloader::smartEpisodeFilters() const
     {
         const QStringList defaultFilters =
         {
-            "s(\\d+)e(\\d+)",                       // Format 1: s01e01
-            "(\\d+)x(\\d+)",                        // Format 2: 01x01
-            "(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})", // Format 3: 2017.01.01
-            "(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"  // Format 4: 01.01.2017
+            u"s(\\d+)e(\\d+)"_qs,                       // Format 1: s01e01
+            u"(\\d+)x(\\d+)"_qs,                        // Format 2: 01x01
+            u"(\\d{4}[.\\-]\\d{1,2}[.\\-]\\d{1,2})"_qs, // Format 3: 2017.01.01
+            u"(\\d{1,2}[.\\-]\\d{1,2}[.\\-]\\d{4})"_qs  // Format 4: 01.01.2017
         };
         return defaultFilters;
     }

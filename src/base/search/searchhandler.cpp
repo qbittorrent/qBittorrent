@@ -69,13 +69,13 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     const QStringList params
     {
         (m_manager->engineLocation() / Path(u"nova2.py"_qs)).toString(),
-        m_usedPlugins.join(','),
+        m_usedPlugins.join(u','),
         m_category
     };
 
     // Launch search
     m_searchProcess->setProgram(Utils::ForeignApps::pythonInfo().executableName);
-    m_searchProcess->setArguments(params + m_pattern.split(' '));
+    m_searchProcess->setArguments(params + m_pattern.split(u' '));
 
     connect(m_searchProcess, &QProcess::errorOccurred, this, &SearchHandler::processFailed);
     connect(m_searchProcess, &QProcess::readyReadStandardOutput, this, &SearchHandler::readSearchOutput);

@@ -76,6 +76,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/version.h"
@@ -171,7 +172,7 @@ int main(int argc, char *argv[])
         {
             if (isOneArg)
             {
-                displayUsage(argv[0]);
+                displayUsage(QString::fromLocal8Bit(argv[0]));
                 return EXIT_SUCCESS;
             }
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
@@ -377,11 +378,11 @@ void sigAbnormalHandler(int signum)
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splashImg(":/icons/splash.png");
+    QPixmap splashImg(u":/icons/splash.png"_qs);
     QPainter painter(&splashImg);
-    const QString version = QBT_VERSION;
+    const auto version = QStringLiteral(QBT_VERSION);
     painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont("Arial", 22, QFont::Black));
+    painter.setFont(QFont(u"Arial"_qs, 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
@@ -405,9 +406,9 @@ void displayBadArgMessage(const QString &message)
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    const QString errMsg = QObject::tr("Bad command line: ") + '\n'
-        + message + '\n'
-        + help + '\n';
+    const QString errMsg = QObject::tr("Bad command line: ") + u'\n'
+        + message + u'\n'
+        + help + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
 }

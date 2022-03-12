@@ -58,11 +58,11 @@ IconProvider *IconProvider::instance()
 Path IconProvider::getIconPath(const QString &iconId) const
 {
     // there are a few icons not available in svg
-    const Path pathSvg {":/icons/" + iconId + ".svg"};
+    const Path pathSvg {u":/icons/" + iconId + u".svg"};
     if (pathSvg.exists())
         return pathSvg;
 
-    const Path pathPng {":/icons/" + iconId + ".png"};
+    const Path pathPng {u":/icons/" + iconId + u".png"};
     return pathPng;
 }
 

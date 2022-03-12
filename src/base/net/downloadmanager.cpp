@@ -293,7 +293,7 @@ void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSs
     QStringList errorList;
     for (const QSslError &error : errors)
         errorList += error.errorString();
-    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(". ")), Log::WARNING);
+    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
 
     // Ignore all SSL errors
     reply->ignoreSslErrors();

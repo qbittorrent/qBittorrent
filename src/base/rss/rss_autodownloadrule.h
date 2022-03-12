@@ -34,6 +34,7 @@
 #include <QSharedDataPointer>
 #include <QVariant>
 
+#include "base/global.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/pathfwd.h"
 
@@ -48,7 +49,7 @@ namespace RSS
     class AutoDownloadRule
     {
     public:
-        explicit AutoDownloadRule(const QString &name = "");
+        explicit AutoDownloadRule(const QString &name = u""_qs);
         AutoDownloadRule(const AutoDownloadRule &other);
         ~AutoDownloadRule();
 
@@ -95,7 +96,7 @@ namespace RSS
         bool operator!=(const AutoDownloadRule &other) const;
 
         QJsonObject toJsonObject() const;
-        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = "");
+        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = u""_qs);
 
         QVariantHash toLegacyDict() const;
         static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);

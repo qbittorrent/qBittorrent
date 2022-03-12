@@ -71,7 +71,7 @@ Session::Session()
     connect(m_workingThread, &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_confFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
-        LogMsg(tr("Couldn't save RSS Session configuration in %1. Error: %2")
+        LogMsg(tr("Couldn't save RSS session configuration. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);
     });
 
@@ -80,11 +80,11 @@ Session::Session()
     connect(m_workingThread, &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
-        LogMsg(tr("Couldn't save RSS Session data in %1. Error: %2")
+        LogMsg(tr("Couldn't save RSS session data. File: \"%1\". Error: \"%2\"")
                .arg(fileName.toString(), errorString), Log::WARNING);
     });
 
-    m_itemsByPath.insert("", new Folder); // root folder
+    m_itemsByPath.insert(u""_qs, new Folder); // root folder
 
     m_workingThread->start();
     load();
@@ -100,22 +100,22 @@ Session::Session()
     // (at least on Windows, QSettings is case-insensitive and it can get
     // confused when asked about settings that differ only in their case)
     auto settingsStorage = SettingsStorage::instance();
-    settingsStorage->removeValue("Rss/streamList");
-    settingsStorage->removeValue("Rss/streamAlias");
-    settingsStorage->removeValue("Rss/open_folders");
-    settingsStorage->removeValue("Rss/qt5/splitter_h");
-    settingsStorage->removeValue("Rss/qt5/splitterMain");
-    settingsStorage->removeValue("Rss/hosts_cookies");
-    settingsStorage->removeValue("RSS/streamList");
-    settingsStorage->removeValue("RSS/streamAlias");
-    settingsStorage->removeValue("RSS/open_folders");
-    settingsStorage->removeValue("RSS/qt5/splitter_h");
-    settingsStorage->removeValue("RSS/qt5/splitterMain");
-    settingsStorage->removeValue("RSS/hosts_cookies");
-    settingsStorage->removeValue("Rss/Session/EnableProcessing");
-    settingsStorage->removeValue("Rss/Session/RefreshInterval");
-    settingsStorage->removeValue("Rss/Session/MaxArticlesPerFeed");
-    settingsStorage->removeValue("Rss/AutoDownloader/EnableProcessing");
+    settingsStorage->removeValue(u"Rss/streamList"_qs);
+    settingsStorage->removeValue(u"Rss/streamAlias"_qs);
+    settingsStorage->removeValue(u"Rss/open_folders"_qs);
+    settingsStorage->removeValue(u"Rss/qt5/splitter_h"_qs);
+    settingsStorage->removeValue(u"Rss/qt5/splitterMain"_qs);
+    settingsStorage->removeValue(u"Rss/hosts_cookies"_qs);
+    settingsStorage->removeValue(u"RSS/streamList"_qs);
+    settingsStorage->removeValue(u"RSS/streamAlias"_qs);
+    settingsStorage->removeValue(u"RSS/open_folders"_qs);
+    settingsStorage->removeValue(u"RSS/qt5/splitter_h"_qs);
+    settingsStorage->removeValue(u"RSS/qt5/splitterMain"_qs);
+    settingsStorage->removeValue(u"RSS/hosts_cookies"_qs);
+    settingsStorage->removeValue(u"Rss/Session/EnableProcessing"_qs);
+    settingsStorage->removeValue(u"Rss/Session/RefreshInterval"_qs);
+    settingsStorage->removeValue(u"Rss/Session/MaxArticlesPerFeed"_qs);
+    settingsStorage->removeValue(u"Rss/AutoDownloader/EnableProcessing"_qs);
 }
 
 Session::~Session()
@@ -126,7 +126,7 @@ Session::~Session()
     m_workingThread->wait();
 
     //store();
-    delete m_itemsByPath[""]; // deleting root folder
+    delete m_itemsByPath[u""_qs]; // deleting root folder
 
     qDebug() << "RSS Session deleted.";
 }
@@ -240,9 +240,8 @@ void Session::load()
 
     if (!itemsFile.open(QFile::ReadOnly))
     {
-        Logger::instance()->addMessage(
-                    QString("Couldn't read RSS Session data from %1. Error: %2")
-                    .arg(itemsFile.fileName(), itemsFile.errorString()), Log::WARNING);
+        LogMsg(tr("Couldn't read RSS session data. File: \"%1\". Error: \"%2\"")
+            .arg(itemsFile.fileName(), itemsFile.errorString()), Log::WARNING);
         return;
     }
 
@@ -250,17 +249,15 @@ void Session::load()
     const QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
-        Logger::instance()->addMessage(
-                    QString("Couldn't parse RSS Session data from %1. Error: %2")
-                    .arg(itemsFile.fileName(), jsonError.errorString()), Log::WARNING);
+        LogMsg(tr("Couldn't parse RSS session data. File: \"%1\". Error: \"%2\"")
+            .arg(itemsFile.fileName(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isObject())
     {
-        Logger::instance()->addMessage(
-                    QString("Couldn't load RSS Session data from %1. Invalid data format.")
-                    .arg(itemsFile.fileName()), Log::WARNING);
+        LogMsg(tr("Couldn't load RSS session data. File: \"%1\". Error: Invalid data format.")
+            .arg(itemsFile.fileName()), Log::WARNING);
         return;
     }
 
@@ -285,29 +282,29 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         else if (val.isObject())
         {
             const QJsonObject valObj {val.toObject()};
-            if (valObj.contains("url"))
+            if (valObj.contains(u"url"))
             {
-                if (!valObj["url"].isString())
+                if (!valObj[u"url"].isString())
                 {
-                    LogMsg(tr("Couldn't load RSS Feed '%1'. URL is required.")
-                           .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                    LogMsg(tr("Couldn't load RSS feed. Feed: \"%1\". Reason: URL is required.")
+                           .arg(u"%1\\%2"_qs.arg(folder->path(), key)), Log::WARNING);
                     continue;
                 }
 
                 QUuid uid;
-                if (valObj.contains("uid"))
+                if (valObj.contains(u"uid"))
                 {
-                    uid = QUuid {valObj["uid"].toString()};
+                    uid = QUuid {valObj[u"uid"].toString()};
                     if (uid.isNull())
                     {
-                        LogMsg(tr("Couldn't load RSS Feed '%1'. UID is invalid.")
-                               .arg(QString("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                        LogMsg(tr("Couldn't load RSS feed. Feed: \"%1\". Reason: UID is invalid.")
+                               .arg(u"%1\\%2"_qs.arg(folder->path(), key)), Log::WARNING);
                         continue;
                     }
 
                     if (m_feedsByUID.contains(uid))
                     {
-                        LogMsg(tr("Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.")
+                        LogMsg(tr("Duplicate RSS feed found. UID: \"%1\". Error: Configuration seems to be corrupted.")
                                .arg(uid.toString()), Log::WARNING);
                         continue;
                     }
@@ -319,7 +316,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
                     updated = true;
                 }
 
-                addFeedToFolder(uid, valObj["url"].toString(), key, folder);
+                addFeedToFolder(uid, valObj[u"url"].toString(), key, folder);
             }
             else
             {
@@ -328,7 +325,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         }
         else
         {
-            LogMsg(tr("Couldn't load RSS Item '%1'. Invalid data format.")
+            LogMsg(tr("Couldn't load RSS item. Item: \"%1\". Invalid data format.")
                    .arg(QString::fromLatin1("%1\\%2").arg(folder->path(), key)), Log::WARNING);
         }
     }
@@ -339,11 +336,11 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
 
 void Session::loadLegacy()
 {
-    const auto legacyFeedPaths = SettingsStorage::instance()->loadValue<QStringList>("Rss/streamList");
-    const auto feedAliases = SettingsStorage::instance()->loadValue<QStringList>("Rss/streamAlias");
+    const auto legacyFeedPaths = SettingsStorage::instance()->loadValue<QStringList>(u"Rss/streamList"_qs);
+    const auto feedAliases = SettingsStorage::instance()->loadValue<QStringList>(u"Rss/streamAlias"_qs);
     if (legacyFeedPaths.size() != feedAliases.size())
     {
-        Logger::instance()->addMessage("Corrupted RSS list, not loading it.", Log::WARNING);
+        LogMsg(tr("Corrupted RSS list, not loading it."), Log::WARNING);
         return;
     }
 
@@ -458,7 +455,7 @@ AsyncFileStorage *Session::dataFileStorage() const
 
 Folder *Session::rootFolder() const
 {
-    return static_cast<Folder *>(m_itemsByPath.value(""));
+    return static_cast<Folder *>(m_itemsByPath.value(u""_qs));
 }
 
 QList<Feed *> Session::feeds() const

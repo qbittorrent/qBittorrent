@@ -129,7 +129,7 @@ Path Path::parentPath() const
 
 QString Path::filename() const
 {
-    const int slashIndex = m_pathStr.lastIndexOf('/');
+    const int slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return m_pathStr;
 

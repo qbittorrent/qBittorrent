@@ -89,7 +89,7 @@ void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
 {
     const QDateTime date = QDateTime::currentDateTime();
     const QDir dir {m_path.parentPath().data()};
-    const QFileInfoList fileList = dir.entryInfoList(QStringList("qbittorrent.log.bak*")
+    const QFileInfoList fileList = dir.entryInfoList(QStringList(u"qbittorrent.log.bak*"_qs)
         , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
     for (const QFileInfo &file : fileList)

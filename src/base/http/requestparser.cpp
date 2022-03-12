@@ -60,7 +60,7 @@ namespace
     bool parseHeaderLine(const QStringView line, HeaderMap &out)
     {
         // [rfc7230] 3.2. Header Fields
-        const int i = line.indexOf(':');
+        const int i = line.indexOf(u':');
         if (i <= 0)
         {
             qWarning() << Q_FUNC_INFO << "invalid http header:" << line;
@@ -252,7 +252,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
         // [URL Standard] 5.1 application/x-www-form-urlencoded parsing
         const QByteArray processedData = QByteArray(data).replace('+', ' ');
 
-        QListIterator<QStringPair> i(QUrlQuery(processedData).queryItems(QUrl::FullyDecoded));
+        QListIterator<QStringPair> i(QUrlQuery(QString::fromUtf8(processedData)).queryItems(QUrl::FullyDecoded));
         while (i.hasNext())
         {
             const QStringPair pair = i.next();
@@ -330,7 +330,7 @@ bool RequestParser::parseFormData(const QByteArray &data)
 
             for (const auto &directive : directives)
             {
-                const int idx = directive.indexOf('=');
+                const int idx = directive.indexOf(u'=');
                 if (idx < 0)
                     continue;
 
@@ -356,7 +356,7 @@ bool RequestParser::parseFormData(const QByteArray &data)
     }
     else if (headersMap.contains(name))
     {
-        m_request.posts[headersMap[name]] = payload;
+        m_request.posts[headersMap[name]] = QString::fromUtf8(payload);
     }
     else
     {

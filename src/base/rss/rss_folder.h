@@ -31,6 +31,8 @@
 #pragma once
 
 #include <QList>
+
+#include "base/global.h"
 #include "rss_item.h"
 
 namespace RSS
@@ -44,7 +46,7 @@ namespace RSS
 
         friend class Session;
 
-        explicit Folder(const QString &path = "");
+        explicit Folder(const QString &path = u""_qs);
         ~Folder() override;
 
     public:

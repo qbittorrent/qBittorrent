@@ -89,13 +89,13 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
-    QStringList dirList(path.data() + '/');  // get all sub directories paths
+    QStringList dirList(path.data() + u'/');  // get all sub directories paths
     QDirIterator iter {path.data(), (QDir::AllDirs | QDir::NoDotAndDotDot), QDirIterator::Subdirectories};
     while (iter.hasNext())
-        dirList << iter.next() + '/';
+        dirList << iter.next() + u'/';
     // sort descending by directory depth
     std::sort(dirList.begin(), dirList.end()
-              , [](const QString &l, const QString &r) { return l.count('/') > r.count('/'); });
+              , [](const QString &l, const QString &r) { return l.count(u'/') > r.count(u'/'); });
 
     for (const QString &p : asConst(dirList))
     {
@@ -111,7 +111,7 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
         // temp files on linux usually end with '~', e.g. `filename~`
         const bool hasOtherFiles = std::any_of(tmpFileList.cbegin(), tmpFileList.cend(), [&deleteFilesList](const QString &f)
         {
-            return (!f.endsWith('~') && !deleteFilesList.contains(f, Qt::CaseInsensitive));
+            return (!f.endsWith(u'~') && !deleteFilesList.contains(f, Qt::CaseInsensitive));
         });
         if (hasOtherFiles)
             continue;
@@ -220,7 +220,7 @@ bool Utils::Fs::isRegularFile(const Path &path)
         //  analyse erno and log the error
         const auto err = errno;
         qDebug("Could not get file stats for path '%s'. Error: %s"
-               , qUtf8Printable(path.toString()), qUtf8Printable(strerror(err)));
+               , qUtf8Printable(path.toString()), strerror(err));
         return false;
     }
 
