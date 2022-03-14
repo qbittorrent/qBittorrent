@@ -73,7 +73,7 @@ QVariant BaseLogModel::Message::type() const
 BaseLogModel::BaseLogModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_messages(MAX_VISIBLE_MESSAGES)
-    , m_timeForeground(UIThemeManager::instance()->getColor(QLatin1String("Log.TimeStamp"), Qt::darkGray))
+    , m_timeForeground(UIThemeManager::instance()->getColor(QLatin1String("Log.TimeStamp"), QColorConstants::Svg::darkgrey))
 {
 }
 
@@ -142,10 +142,10 @@ LogMessageModel::LogMessageModel(QObject *parent)
     : BaseLogModel(parent)
     , m_foregroundForMessageTypes
     {
-        {Log::NORMAL, UIThemeManager::instance()->getColor(QLatin1String("Log.Normal"), QApplication::palette().color(QPalette::WindowText))},
-        {Log::INFO, UIThemeManager::instance()->getColor(QLatin1String("Log.Info"), Qt::blue)},
-        {Log::WARNING, UIThemeManager::instance()->getColor(QLatin1String("Log.Warning"), QColor {255, 165, 0})}, // orange
-        {Log::CRITICAL, UIThemeManager::instance()->getColor(QLatin1String("Log.Critical"), Qt::red)}
+        {Log::NORMAL, UIThemeManager::instance()->getColor(QLatin1String("Log.Normal"), QColorConstants::Svg::mediumseagreen)},
+        {Log::INFO, UIThemeManager::instance()->getColor(QLatin1String("Log.Info"), QColorConstants::Svg::cornflowerblue)},
+        {Log::WARNING, UIThemeManager::instance()->getColor(QLatin1String("Log.Warning"), QColorConstants::Svg::darkorange)},
+        {Log::CRITICAL, UIThemeManager::instance()->getColor(QLatin1String("Log.Critical"), QColorConstants::Svg::red)}
     }
 {
     for (const Log::Msg &msg : asConst(Logger::instance()->getMessages()))
@@ -164,7 +164,7 @@ void LogMessageModel::handleNewMessage(const Log::Msg &message)
 
 LogPeerModel::LogPeerModel(QObject *parent)
     : BaseLogModel(parent)
-    , m_bannedPeerForeground(UIThemeManager::instance()->getColor(QLatin1String("Log.BannedPeer"), Qt::red))
+    , m_bannedPeerForeground(UIThemeManager::instance()->getColor(QLatin1String("Log.BannedPeer"), QColorConstants::Svg::red))
 {
     for (const Log::Peer &peer : asConst(Logger::instance()->getPeers()))
         handleNewMessage(peer);
