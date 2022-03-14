@@ -102,9 +102,6 @@ PropTabBar::PropTabBar(QWidget *parent)
     // SIGNAL/SLOT
     connect(m_btnGroup, &QButtonGroup::idClicked
             , this, &PropTabBar::setCurrentIndex);
-    // Disable buttons focus
-    for (QAbstractButton *btn : asConst(m_btnGroup->buttons()))
-        btn->setFocusPolicy(Qt::NoFocus);
 }
 
 int PropTabBar::currentIndex() const
