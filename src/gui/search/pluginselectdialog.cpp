@@ -158,12 +158,12 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "green");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), QColorConstants::Svg::green);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "red");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), QColorConstants::Svg::red);
     }
 }
 
@@ -208,7 +208,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
             // Disable it instead
             m_pluginManager->enablePlugin(id, false);
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, "red");
+            setRowColor(index, QColorConstants::Svg::red);
         }
     }
 
@@ -229,23 +229,23 @@ void PluginSelectDialog::enableSelection(bool enable)
         if (enable)
         {
             item->setText(PLUGIN_STATE, tr("Yes"));
-            setRowColor(index, "green");
+            setRowColor(index, QColorConstants::Svg::green);
         }
         else
         {
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, "red");
+            setRowColor(index, QColorConstants::Svg::red);
         }
     }
 }
 
 // Set the color of a row in data model
-void PluginSelectDialog::setRowColor(const int row, const QString &color)
+void PluginSelectDialog::setRowColor(const int row, const QColor &color)
 {
     QTreeWidgetItem *item = m_ui->pluginsTree->topLevelItem(row);
     for (int i = 0; i < m_ui->pluginsTree->columnCount(); ++i)
     {
-        item->setData(i, Qt::ForegroundRole, QColor(color));
+        item->setData(i, Qt::ForegroundRole, color);
     }
 }
 
@@ -294,12 +294,12 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "green");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), QColorConstants::Svg::green);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "red");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), QColorConstants::Svg::red);
     }
     // Handle icon
     if (plugin->iconPath.exists())

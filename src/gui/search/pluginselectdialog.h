@@ -70,7 +70,7 @@ private slots:
     void on_installButton_clicked();
     void on_closeButton_clicked();
     void togglePluginState(QTreeWidgetItem*, int);
-    void setRowColor(int row, const QString &color);
+    void setRowColor(int row, const QColor &color);
     void displayContextMenu();
     void enableSelection(bool enable);
     void askForLocalPlugin();
