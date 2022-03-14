@@ -287,7 +287,8 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         const std::shared_ptr<const lt::torrent_info> currentInfo = m_nativeHandle.torrent_file();
         const lt::file_storage &fileStorage = currentInfo->files();
         const std::vector<lt::download_priority_t> filePriorities =
-                resized(m_ltAddTorrentParams.file_priorities, fileStorage.num_files(), LT::toNative(DownloadPriority::Normal));
+                resized(m_ltAddTorrentParams.file_priorities, fileStorage.num_files()
+                        , LT::toNative(m_ltAddTorrentParams.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
         for (int i = 0; i < filesCount; ++i)
         {
             const lt::file_index_t nativeIndex = m_torrentInfo.nativeIndexes().at(i);
@@ -1491,21 +1492,19 @@ void TorrentImpl::updatePeerCount(const QString &trackerUrl, const lt::tcp::endp
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
 {
     Q_ASSERT(m_filePaths.isEmpty());
-    Q_ASSERT(m_indexMap.isEmpty());
 
     lt::add_torrent_params &p = m_ltAddTorrentParams;
 
     const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
     m_torrentInfo = TorrentInfo(*metadata);
-    m_indexMap.reserve(filesCount());
     m_filePriorities.reserve(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     const std::vector<lt::download_priority_t> filePriorities =
-            resized(p.file_priorities, metadata->files().num_files(), LT::toNative(DownloadPriority::Normal));
+            resized(p.file_priorities, metadata->files().num_files()
+                    , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
     for (int i = 0; i < fileNames.size(); ++i)
     {
         const auto nativeIndex = nativeIndexes.at(i);
-        m_indexMap[nativeIndex] = i;
 
         Path filePath = fileNames.at(i);
         p.renamed_files[nativeIndex] = filePath.toString().toStdString();
@@ -1518,10 +1517,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     }
     p.save_path = savePath.toString().toStdString();
     p.ti = metadata;
-
-    const int internalFilesCount = p.ti->files().num_files(); // including .pad files
-    // Use qBittorrent default priority rather than libtorrent's (4)
-    p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
+    p.file_priorities = filePriorities;
 
     reload();
 
@@ -1563,7 +1559,8 @@ void TorrentImpl::reload()
     }
 
     m_nativeHandle = m_nativeSession->add_torrent(p);
-    m_nativeHandle.queue_position_set(queuePos);
+    if (queuePos >= lt::queue_position_t {})
+        m_nativeHandle.queue_position_set(queuePos);
 }
 
 void TorrentImpl::pause()
@@ -1754,6 +1751,8 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
     {
+        Q_ASSERT(m_indexMap.isEmpty());
+
         m_ltAddTorrentParams = p->params;
 
         m_ltAddTorrentParams.have_pieces.clear();
@@ -1761,8 +1760,21 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
         TorrentInfo metadata = TorrentInfo(*m_nativeHandle.torrent_file());
 
+        const auto nativeIndexes = metadata.nativeIndexes();
         PathList filePaths = metadata.filePaths();
         applyContentLayout(filePaths, m_contentLayout);
+
+        const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
+        m_indexMap.reserve(filePaths.size());
+        for (int i = 0; i < filePaths.size(); ++i)
+        {
+            const auto nativeIndex = nativeIndexes.at(i);
+            m_indexMap[nativeIndex] = i;
+
+            if (const auto it = renamedFiles.find(nativeIndex); it != renamedFiles.cend())
+                filePaths[i] = Path(it->second);
+        }
+
         m_session->findIncompleteFiles(metadata, savePath(), downloadPath(), filePaths);
     }
     else
@@ -1891,6 +1903,9 @@ void TorrentImpl::handleFileRenameFailedAlert(const lt::file_rename_failed_alert
 
 void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
 {
+    if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
+        return;
+
     if (m_session->isAppendExtensionEnabled())
     {
         const int fileIndex = m_indexMap.value(p->index, -1);
