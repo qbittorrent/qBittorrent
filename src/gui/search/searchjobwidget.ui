@@ -10,9 +10,6 @@
     <height>364</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -38,14 +35,8 @@
      </item>
      <item>
       <widget class="QLabel" name="label_5">
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
        <property name="text">
         <string>Search in:</string>
-       </property>
-       <property name="buddy">
-        <cstring>filterMode</cstring>
        </property>
       </widget>
      </item>
@@ -74,14 +65,8 @@
      </item>
      <item>
       <widget class="QLabel" name="label">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Set minimum and maximum allowed number of seeders</string>
        </property>
        <property name="text">
         <string>Seeds:</string>
@@ -91,27 +76,15 @@
      <item>
       <widget class="QSpinBox" name="minSeeds">
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-       </property>
-       <property name="minimum">
-        <number>0</number>
+        <string>Minimum number of seeds</string>
        </property>
        <property name="maximum">
         <number>1000</number>
-       </property>
-       <property name="value">
-        <number>0</number>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_4">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string>to</string>
        </property>
@@ -120,22 +93,13 @@
      <item>
       <widget class="QSpinBox" name="maxSeeds">
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Maximum number of seeds</string>
        </property>
        <property name="specialValueText">
         <string>∞</string>
        </property>
-       <property name="prefix">
-        <string/>
-       </property>
-       <property name="minimum">
-        <number>-1</number>
-       </property>
        <property name="maximum">
         <number>1000</number>
-       </property>
-       <property name="value">
-        <number>-1</number>
        </property>
       </widget>
      </item>
@@ -157,14 +121,8 @@
      </item>
      <item>
       <widget class="QLabel" name="label_3">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="toolTip">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>Set minimum and maximum allowed size of a torrent</string>
        </property>
        <property name="text">
         <string>Size:</string>
@@ -176,25 +134,15 @@
        <item>
         <widget class="QDoubleSpinBox" name="minSize">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="minimum">
-          <double>0.000000000000000</double>
+          <string>Minimum torrent size</string>
          </property>
          <property name="maximum">
           <double>1000.000000000000000</double>
          </property>
-         <property name="value">
-          <double>0.000000000000000</double>
-         </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="minSizeUnit">
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToContents</enum>
-         </property>
-        </widget>
+        <widget class="QComboBox" name="minSizeUnit"/>
        </item>
       </layout>
      </item>
@@ -210,31 +158,18 @@
        <item>
         <widget class="QDoubleSpinBox" name="maxSize">
          <property name="toolTip">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          <string>Maximum torrent size</string>
          </property>
          <property name="specialValueText">
           <string>∞</string>
          </property>
-         <property name="minimum">
-          <double>-1.000000000000000</double>
-         </property>
          <property name="maximum">
-          <double>1000.000000000000000</double>
-         </property>
-         <property name="value">
           <double>1000.000000000000000</double>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QComboBox" name="maxSizeUnit">
-         <property name="currentIndex">
-          <number>-1</number>
-         </property>
-         <property name="sizeAdjustPolicy">
-          <enum>QComboBox::AdjustToContents</enum>
-         </property>
-        </widget>
+        <widget class="QComboBox" name="maxSizeUnit"/>
        </item>
       </layout>
      </item>
