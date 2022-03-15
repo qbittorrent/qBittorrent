@@ -86,6 +86,7 @@ protected:
     QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
 private:
+    void wheelEvent(QWheelEvent *event) override;
     static QStringList headerLabels();
 
     PropertiesWidget *m_properties;
