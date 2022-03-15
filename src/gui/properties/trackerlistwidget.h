@@ -87,6 +87,7 @@ private slots:
 
 private:
     int visibleColumnsCount() const;
+    void wheelEvent(QWheelEvent *event) override;
 
     static QStringList headerLabels();
 

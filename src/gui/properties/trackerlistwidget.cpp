@@ -41,6 +41,7 @@
 #include <QTreeWidgetItem>
 #include <QUrl>
 #include <QVector>
+#include <QWheelEvent>
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -682,4 +683,20 @@ void TrackerListWidget::displayColumnHeaderMenu()
     resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
+}
+
+void TrackerListWidget::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() & Qt::ShiftModifier)
+    {
+        // Shift + scroll = horizontal scroll
+        event->accept();
+        QWheelEvent scrollHEvent {event->position(), event->globalPosition()
+            , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
+            , event->modifiers(), event->phase(), event->inverted(), event->source()};
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
 }
