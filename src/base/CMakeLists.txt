@@ -51,6 +51,7 @@ add_library(qbt_base STATIC
     http/types.h
     iconprovider.h
     indexrange.h
+    interfaces/istringable.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
