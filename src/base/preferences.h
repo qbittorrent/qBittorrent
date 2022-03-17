@@ -340,8 +340,10 @@ public:
     void setAcceptedLegal(bool accepted);
     QByteArray getMainGeometry() const;
     void setMainGeometry(const QByteArray &geometry);
-    QByteArray getMainVSplitterState() const;
-    void setMainVSplitterState(const QByteArray &state);
+    bool isFiltersSidebarVisible() const;
+    void setFiltersSidebarVisible(bool value);
+    int getFiltersSidebarWidth() const;
+    void setFiltersSidebarWidth(int value);
     Path getMainLastDir() const;
     void setMainLastDir(const Path &path);
     QByteArray getPeerListState() const;
