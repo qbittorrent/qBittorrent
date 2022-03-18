@@ -35,6 +35,7 @@
 #include <QMessageBox>
 #include <QModelIndexList>
 #include <QThread>
+#include <QWheelEvent>
 
 #include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/common.h"
@@ -151,4 +152,20 @@ QModelIndex TorrentContentTreeView::currentNameCell()
     }
 
     return model()->index(current.row(), TorrentContentModelItem::COL_NAME, current.parent());
+}
+
+void TorrentContentTreeView::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() & Qt::ShiftModifier)
+    {
+        // Shift + scroll = horizontal scroll
+        event->accept();
+        QWheelEvent scrollHEvent {event->position(), event->globalPosition()
+            , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
+            , event->modifiers(), event->phase(), event->inverted(), event->source()};
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
 }

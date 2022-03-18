@@ -50,4 +50,5 @@ public:
 
 private:
     QModelIndex currentNameCell();
+    void wheelEvent(QWheelEvent *event) override;
 };
