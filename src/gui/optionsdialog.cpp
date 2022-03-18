@@ -217,8 +217,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->IpFilterRefreshBtn->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")), this, 24));
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmap(UIThemeManager::instance()->getIcon(QLatin1String("slow")), this, 24));
+    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow_off")), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("slow")), this, Utils::Gui::mediumIconSize(this).height()));
 
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
