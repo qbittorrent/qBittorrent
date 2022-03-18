@@ -240,7 +240,7 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
 {
     TorrentFilterBitset &torrentStatus = m_torrentsStatus[torrent];
 
-    const auto update = [this, &torrentStatus](const TorrentFilter::Type status, const bool needStatus, int &counter)
+    const auto update = [&torrentStatus](const TorrentFilter::Type status, const bool needStatus, int &counter)
     {
         const bool hasStatus = torrentStatus[status];
         if (needStatus && !hasStatus)
