@@ -86,7 +86,7 @@ void StatsDialog::update()
     m_ui->labelGlobalRatio->setText(
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
-                : "-");
+                : u"-"_qs);
 #ifndef QBT_USES_LIBTORRENT2
     // Cache hits
     const qreal readRatio = cs.readRatio;

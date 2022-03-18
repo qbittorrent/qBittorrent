@@ -196,7 +196,7 @@ UIThemeManager *UIThemeManager::instance()
 
 void UIThemeManager::applyStyleSheet() const
 {
-    qApp->setStyleSheet(m_themeSource->readStyleSheet());
+    qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
@@ -330,7 +330,7 @@ void UIThemeManager::loadColorsFromJSONConfig()
         return;
     }
 
-    const QJsonObject colors = configJsonDoc.object().value("colors").toObject();
+    const QJsonObject colors = configJsonDoc.object().value(u"colors").toObject();
     for (auto color = colors.constBegin(); color != colors.constEnd(); ++color)
     {
         const QColor providedColor(color.value().toString());

@@ -42,6 +42,7 @@
 #include <QDir>
 #endif
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/bytearray.h"
 
@@ -52,7 +53,7 @@ namespace
     bool testPythonInstallation(const QString &exeName, PythonInfo &info)
     {
         QProcess proc;
-        proc.start(exeName, {"--version"}, QIODevice::ReadOnly);
+        proc.start(exeName, {u"--version"_qs}, QIODevice::ReadOnly);
         if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
         {
             QByteArray procOutput = proc.readAllStandardOutput();
@@ -69,8 +70,8 @@ namespace
 
             // User reports: `python --version` -> "Python 3.6.6+"
             // So trim off unrelated characters
-            const QString versionStr = outputSplit[1];
-            const int idx = versionStr.indexOf(QRegularExpression("[^\\.\\d]"));
+            const auto versionStr = QString::fromLocal8Bit(outputSplit[1]);
+            const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_qs));
 
             try
             {
@@ -274,10 +275,10 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     static PythonInfo pyInfo;
     if (!pyInfo.isValid())
     {
-        if (testPythonInstallation("python3", pyInfo))
+        if (testPythonInstallation(u"python3"_qs, pyInfo))
             return pyInfo;
 
-        if (testPythonInstallation("python", pyInfo))
+        if (testPythonInstallation(u"python"_qs, pyInfo))
             return pyInfo;
 
 #if defined(Q_OS_WIN)

@@ -107,7 +107,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_unreadStickyItem = new FeedListItem(this);
     m_unreadStickyItem->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("mail-folder-inbox"));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-folder-inbox"_qs));
     m_unreadStickyItem->setData(0, StickyItemTagRole, true);
 
 

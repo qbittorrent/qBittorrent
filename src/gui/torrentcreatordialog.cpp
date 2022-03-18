@@ -158,7 +158,7 @@ void TorrentCreatorDialog::dropEvent(QDropEvent *event)
         // only take the first one
         const QUrl firstItem = event->mimeData()->urls().first();
         const Path path {
-            (firstItem.scheme().compare("file", Qt::CaseInsensitive) == 0)
+            (firstItem.scheme().compare(u"file", Qt::CaseInsensitive) == 0)
                     ? firstItem.toLocalFile() : firstItem.toString()
         };
         updateInputPath(path);
@@ -167,7 +167,7 @@ void TorrentCreatorDialog::dropEvent(QDropEvent *event)
 
 void TorrentCreatorDialog::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (event->mimeData()->hasFormat("text/plain") || event->mimeData()->hasFormat("text/uri-list"))
+    if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
         event->acceptProposedAction();
 }
 
@@ -197,7 +197,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     setCursor(QCursor(Qt::WaitCursor));
 
     const QStringList trackers = m_ui->trackersList->toPlainText().trimmed()
-        .replace(QRegularExpression("\n\n[\n]+"), "\n\n").split('\n');
+        .replace(QRegularExpression(u"\n\n[\n]+"_qs), u"\n\n"_qs).split(u'\n');
     const BitTorrent::TorrentCreatorParams params
     {
         m_ui->checkPrivate->isChecked()
@@ -213,7 +213,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
         , m_ui->txtComment->toPlainText()
         , m_ui->lineEditSource->text()
         , trackers
-        , m_ui->URLSeedsList->toPlainText().split('\n', Qt::SkipEmptyParts)
+        , m_ui->URLSeedsList->toPlainText().split(u'\n', Qt::SkipEmptyParts)
     };
 
     // run the creator thread

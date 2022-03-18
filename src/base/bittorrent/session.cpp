@@ -5094,7 +5094,7 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         reason = tr("use of privileged port", "this peer was blocked. Reason: use of privileged port.");
         break;
     case lt::peer_blocked_alert::utp_disabled:
-        reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(QString::fromUtf8(C_UTP)); // don't translate μTP
+        reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(C_UTP); // don't translate μTP
         break;
     case lt::peer_blocked_alert::tcp_disabled:
         reason = tr("%1 is disabled", "this peer was blocked. Reason: TCP is disabled.").arg(u"TCP"_qs); // don't translate TCP

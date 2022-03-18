@@ -64,7 +64,7 @@ QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
     {
         QUrl url(name);
         if (url.scheme().isEmpty())
-            url.setScheme("http");
+            url.setScheme(u"http"_qs);
 
         QIODevice *dev = m_diskCache->data(url);
         if (dev)
@@ -108,7 +108,7 @@ void HtmlBrowser::resourceLoaded(QNetworkReply *reply)
         metaData.setUrl(reply->request().url());
         metaData.setSaveToDisk(true);
         atts[QNetworkRequest::HttpStatusCodeAttribute] = 200;
-        atts[QNetworkRequest::HttpReasonPhraseAttribute] = "Ok";
+        atts[QNetworkRequest::HttpReasonPhraseAttribute] = u"Ok"_qs;
         metaData.setAttributes(atts);
         metaData.setLastModified(QDateTime::currentDateTime());
         metaData.setExpirationDate(QDateTime::currentDateTime().addDays(1));

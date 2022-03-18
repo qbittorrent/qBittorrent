@@ -74,7 +74,7 @@ namespace
         QIcon icon(const QFileInfo &info) const override
         {
             Q_UNUSED(info);
-            static QIcon cached = UIThemeManager::instance()->getIcon("text-plain");
+            static QIcon cached = UIThemeManager::instance()->getIcon(u"text-plain"_qs);
             return cached;
         }
     };

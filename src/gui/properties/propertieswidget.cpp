@@ -135,9 +135,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
 
     // Tracker list
     m_trackerList = new TrackerListWidget(this);
-    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon("go-up"));
+    m_ui->trackerUpButton->setIcon(UIThemeManager::instance()->getIcon(u"go-up"_qs));
     m_ui->trackerUpButton->setIconSize(Utils::Gui::smallIconSize());
-    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon("go-down"));
+    m_ui->trackerDownButton->setIcon(UIThemeManager::instance()->getIcon(u"go-down"_qs));
     m_ui->trackerDownButton->setIconSize(Utils::Gui::smallIconSize());
     connect(m_ui->trackerUpButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionUp);
     connect(m_ui->trackerDownButton, &QPushButton::clicked, m_trackerList, &TrackerListWidget::moveSelectionDown);
@@ -385,7 +385,7 @@ void PropertiesWidget::readSettings()
 {
     const Preferences *const pref = Preferences::instance();
     // Restore splitter sizes
-    QStringList sizesStr = pref->getPropSplitterSizes().split(',');
+    QStringList sizesStr = pref->getPropSplitterSizes().split(u',');
     if (sizesStr.size() == 2)
     {
         m_slideSizes << sizesStr.first().toInt();
@@ -414,7 +414,7 @@ void PropertiesWidget::saveSettings()
         sizes = m_slideSizes;
 
     if (sizes.size() == 2)
-        pref->setPropSplitterSizes(QString::number(sizes.first()) + ',' + QString::number(sizes.last()));
+        pref->setPropSplitterSizes(QString::number(sizes.first()) + u',' + QString::number(sizes.last()));
     pref->setPropFileListState(m_ui->filesList->header()->saveState());
     // Remember current tab
     pref->setPropCurTab(m_tabBar->currentIndex());
@@ -445,9 +445,9 @@ void PropertiesWidget::loadDynamicData()
             m_ui->labelDlTotalVal->setText(tr("%1 (%2 this session)").arg(Utils::Misc::friendlyUnit(m_torrent->totalDownload())
                 , Utils::Misc::friendlyUnit(m_torrent->totalPayloadDownload())));
 
-            m_ui->labelUpLimitVal->setText(m_torrent->uploadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
+            m_ui->labelUpLimitVal->setText(m_torrent->uploadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->uploadLimit(), true));
 
-            m_ui->labelDlLimitVal->setText(m_torrent->downloadLimit() <= 0 ? QString::fromUtf8(C_INFINITY) : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true));
+            m_ui->labelDlLimitVal->setText(m_torrent->downloadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true));
 
             QString elapsedString;
             if (m_torrent->isSeed())
@@ -460,7 +460,7 @@ void PropertiesWidget::loadDynamicData()
 
             m_ui->labelConnectionsVal->setText(tr("%1 (%2 max)", "%1 and %2 are numbers, e.g. 3 (10 max)")
                                            .arg(m_torrent->connectionsCount())
-                                           .arg(m_torrent->connectionsLimit() < 0 ? QString::fromUtf8(C_INFINITY) : QString::number(m_torrent->connectionsLimit())));
+                                           .arg(m_torrent->connectionsLimit() < 0 ? C_INFINITY : QString::number(m_torrent->connectionsLimit())));
 
             m_ui->labelETAVal->setText(Utils::Misc::userFriendlyDuration(m_torrent->eta(), MAX_ETA));
 
@@ -469,7 +469,7 @@ void PropertiesWidget::loadDynamicData()
 
             // Update ratio info
             const qreal ratio = m_torrent->realRatio();
-            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(ratio, 2));
+            m_ui->labelShareRatioVal->setText(ratio > BitTorrent::Torrent::MAX_RATIO ? C_INFINITY : Utils::String::fromDouble(ratio, 2));
 
             m_ui->labelSeedsVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
                 .arg(QString::number(m_torrent->seedsCount())
@@ -513,7 +513,7 @@ void PropertiesWidget::loadDynamicData()
 
                 // Progress
                 qreal progress = m_torrent->progress() * 100.;
-                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + '%');
+                m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + u'%');
                 m_downloadedPieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
             }
             else
@@ -646,11 +646,11 @@ void PropertiesWidget::displayFilesListMenu()
     {
         const QModelIndex index = selectedRows[0];
 
-        menu->addAction(UIThemeManager::instance()->getIcon("folder-documents"), tr("Open")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_qs), tr("Open")
             , this, [this, index]() { openItem(index); });
-        menu->addAction(UIThemeManager::instance()->getIcon("inode-directory"), tr("Open Containing Folder")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"inode-directory"_qs), tr("Open Containing Folder")
             , this, [this, index]() { openParentFolder(index); });
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename...")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Rename...")
             , this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });
         menu->addSeparator();
     }
@@ -745,16 +745,16 @@ void PropertiesWidget::displayWebSeedListMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("New Web seed"), this, &PropertiesWidget::askWebSeed);
 
     if (!rows.isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove Web seed")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove Web seed")
             , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy Web seed URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy Web seed URL")
             , this, &PropertiesWidget::copySelectedWebSeedsToClipboard);
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Edit Web seed URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Edit Web seed URL")
             , this, &PropertiesWidget::editWebSeed);
     }
 
@@ -817,7 +817,7 @@ void PropertiesWidget::askWebSeed()
     qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
     if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, "qBittorrent",
+        QMessageBox::warning(this, u"qBittorrent"_qs,
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;
@@ -853,7 +853,7 @@ void PropertiesWidget::copySelectedWebSeedsToClipboard() const
     for (const QListWidgetItem *item : selectedItems)
         urlsToCopy << item->text();
 
-    QApplication::clipboard()->setText(urlsToCopy.join('\n'));
+    QApplication::clipboard()->setText(urlsToCopy.join(u'\n'));
 }
 
 void PropertiesWidget::editWebSeed()

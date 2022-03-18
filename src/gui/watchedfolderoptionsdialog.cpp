@@ -77,7 +77,7 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
 
     if (!torrentParams.category.isEmpty())
         m_ui->categoryComboBox->addItem(torrentParams.category);
-    m_ui->categoryComboBox->addItem("");
+    m_ui->categoryComboBox->addItem(u""_qs);
 
     for (const QString &category : asConst(categories))
     {

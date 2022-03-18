@@ -45,15 +45,15 @@ namespace
 {
     bool isDownloadable(const QString &str)
     {
-        return (str.startsWith("http://", Qt::CaseInsensitive)
-            || str.startsWith("https://", Qt::CaseInsensitive)
-            || str.startsWith("ftp://", Qt::CaseInsensitive)
-            || str.startsWith("magnet:", Qt::CaseInsensitive)
-            || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v1 hex-encoded SHA-1 info-hash
+        return (str.startsWith(u"http://", Qt::CaseInsensitive)
+            || str.startsWith(u"https://", Qt::CaseInsensitive)
+            || str.startsWith(u"ftp://", Qt::CaseInsensitive)
+            || str.startsWith(u"magnet:", Qt::CaseInsensitive)
+            || ((str.size() == 40) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v1 hex-encoded SHA-1 info-hash
 #ifdef QBT_USES_LIBTORRENT2
-            || ((str.size() == 64) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v2 hex-encoded SHA-256 info-hash
+            || ((str.size() == 64) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v2 hex-encoded SHA-256 info-hash
 #endif
-            || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]")))); // v1 Base32 encoded SHA-1 info-hash
+            || ((str.size() == 32) && !str.contains(QRegularExpression(u"[^2-7A-Za-z]"_qs)))); // v1 Base32 encoded SHA-1 info-hash
 
     }
 }

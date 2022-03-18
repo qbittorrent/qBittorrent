@@ -94,7 +94,7 @@ namespace Utils
 
         QString subnetToString(const Subnet &subnet)
         {
-            return subnet.first.toString() + '/' + QString::number(subnet.second);
+            return subnet.first.toString() + u'/' + QString::number(subnet.second);
         }
 
         QHostAddress canonicalIPv6Addr(const QHostAddress &addr)

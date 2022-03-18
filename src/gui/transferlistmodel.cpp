@@ -168,7 +168,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
         {
             switch (section)
             {
-            case TR_QUEUE_POSITION: return QChar('#');
+            case TR_QUEUE_POSITION: return u'#';
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Progress", "% Done");
@@ -266,7 +266,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
 
         return (value > 0)
                 ? Utils::Misc::friendlyUnit(value, true)
-                : QString::fromUtf8(C_INFINITY);
+                : C_INFINITY;
     };
 
     const auto amountString = [hideValues](const qint64 value, const qint64 total) -> QString
@@ -289,7 +289,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
             return {};
 
          return ((static_cast<int>(value) == -1) || (value > BitTorrent::Torrent::MAX_RATIO))
-                  ? QString::fromUtf8(C_INFINITY) : Utils::String::fromDouble(value, 2);
+                  ? C_INFINITY : Utils::String::fromDouble(value, 2);
     };
 
     const auto queuePositionString = [](const qint64 value) -> QString
@@ -335,7 +335,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     const auto statusString = [this](const BitTorrent::TorrentState state, const QString &errorMessage) -> QString
     {
         return (state == BitTorrent::TorrentState::Error)
-                   ? m_statusStrings[state] + ": " + errorMessage
+                   ? m_statusStrings[state] + u": " + errorMessage
                    : m_statusStrings[state];
     };
 

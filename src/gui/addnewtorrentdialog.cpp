@@ -231,7 +231,7 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         m_ui->categoryComboBox->addItem(m_torrentParams.category);
     if (!defaultCategory.isEmpty())
         m_ui->categoryComboBox->addItem(defaultCategory);
-    m_ui->categoryComboBox->addItem("");
+    m_ui->categoryComboBox->addItem(u""_qs);
 
     for (const QString &category : asConst(categories))
         if (category != defaultCategory && category != m_torrentParams.category)
@@ -348,7 +348,7 @@ void AddNewTorrentDialog::show(const QString &source, QWidget *parent)
 
 bool AddNewTorrentDialog::loadTorrentFile(const QString &source)
 {
-    const Path decodedPath {source.startsWith("file://", Qt::CaseInsensitive)
+    const Path decodedPath {source.startsWith(u"file://", Qt::CaseInsensitive)
                 ? QUrl::fromEncoded(source.toLocal8Bit()).toLocalFile()
                 : source};
 
@@ -716,7 +716,7 @@ void AddNewTorrentDialog::displayContentTreeMenu()
 
     if (selectedRows.size() == 1)
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"), tr("Rename..."), this, &AddNewTorrentDialog::renameSelectedFile);
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Rename..."), this, &AddNewTorrentDialog::renameSelectedFile);
         menu->addSeparator();
 
         QMenu *priorityMenu = menu->addMenu(tr("Priority"));

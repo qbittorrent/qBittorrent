@@ -215,7 +215,7 @@ void Smtp::readyRead()
         case EhloSent:
         case HeloSent:
         case EhloGreetReceived:
-            parseEhloResponse(code, (line[3] != ' '), line.mid(4));
+            parseEhloResponse(code, (line[3] != ' '), QString::fromUtf8(line.mid(4)));
             break;
 #ifndef QT_NO_OPENSSL
         case StartTLSSent:

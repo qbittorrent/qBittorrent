@@ -66,14 +66,14 @@ void TrackerEntriesDialog::setTrackers(const QVector<BitTorrent::TrackerEntry> &
 
     for (const BitTorrent::TrackerEntry &entry : trackers)
     {
-        tiers[entry.tier] += (entry.url + '\n');
+        tiers[entry.tier] += (entry.url + u'\n');
         maxTier = std::max(maxTier, entry.tier);
     }
 
     QString text = tiers.value(0);
 
     for (int i = 1; i <= maxTier; ++i)
-        text += ('\n' + tiers.value(i));
+        text += (u'\n' + tiers.value(i));
 
     m_ui->plainTextEdit->setPlainText(text);
 }

@@ -68,7 +68,7 @@ namespace
         const QUrl url {tracker};
         QString scheme = url.scheme();
         if (scheme.isEmpty())
-            scheme = "http";
+            scheme = u"http"_qs;
         return scheme;
     }
 
@@ -82,7 +82,7 @@ namespace
         if (!QHostAddress(host).isNull())
             return host;
 
-        return host.section('.', -2, -1);
+        return host.section(u'.', -2, -1);
     }
 
     class ArrowCheckBox final : public QCheckBox
@@ -109,7 +109,7 @@ namespace
         }
     };
 
-    const QString NULL_HOST {""};
+    const QString NULL_HOST = u""_qs;
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -240,7 +240,7 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
 {
     TorrentFilterBitset &torrentStatus = m_torrentsStatus[torrent];
 
-    const auto update = [this, &torrentStatus](const TorrentFilter::Type status, const bool needStatus, int &counter)
+    const auto update = [&torrentStatus](const TorrentFilter::Type status, const bool needStatus, int &counter)
     {
         const bool hasStatus = torrentStatus[status];
         if (needStatus && !hasStatus)
@@ -306,11 +306,11 @@ void StatusFilterWidget::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs), tr("Resume torrents")
         , transferList, &TransferListWidget::startVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs), tr("Pause torrents")
         , transferList, &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-delete"_qs), tr("Delete torrents")
         , transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());
@@ -366,10 +366,10 @@ TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *tran
 {
     auto *allTrackers = new QListWidgetItem(this);
     allTrackers->setData(Qt::DisplayRole, tr("All (0)", "this is for the tracker filter"));
-    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    allTrackers->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"network-server"_qs));
     auto *noTracker = new QListWidgetItem(this);
     noTracker->setData(Qt::DisplayRole, tr("Trackerless (0)"));
-    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+    noTracker->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"network-server"_qs));
     auto *errorTracker = new QListWidgetItem(this);
     errorTracker->setData(Qt::DisplayRole, tr("Error (0)"));
     errorTracker->setData(Qt::DecorationRole, style()->standardIcon(QStyle::SP_MessageBoxCritical));
@@ -407,10 +407,10 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     else
     {
         trackerItem = new QListWidgetItem();
-        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon("network-server"));
+        trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"network-server"_qs));
 
         const QString scheme = getScheme(tracker);
-        downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith("http") ? scheme : "http"), host));
+        downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), host));
     }
     if (!trackerItem) return;
 
@@ -538,8 +538,8 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
             if (!tracker.isEmpty())
             {
                 const QString scheme = getScheme(tracker);
-                downloadFavicon(QString("%1://%2/favicon.ico")
-                                .arg((scheme.startsWith("http") ? scheme : "http"), getHost(tracker)));
+                downloadFavicon(u"%1://%2/favicon.ico"_qs
+                                .arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), getHost(tracker)));
              }
         }
     }
@@ -618,8 +618,8 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
 {
     if (result.status != Net::DownloadStatus::Success)
     {
-        if (result.url.endsWith(".ico", Qt::CaseInsensitive))
-            downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
+        if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
+            downloadFavicon(result.url.left(result.url.size() - 4) + u".png");
         return;
     }
 
@@ -640,8 +640,8 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
     if (invalid)
     {
-        if (result.url.endsWith(".ico", Qt::CaseInsensitive))
-            downloadFavicon(result.url.left(result.url.size() - 4) + ".png");
+        if (result.url.endsWith(u".ico", Qt::CaseInsensitive))
+            downloadFavicon(result.url.left(result.url.size() - 4) + u".png");
         Utils::Fs::removeFile(result.filePath);
     }
     else
@@ -656,11 +656,11 @@ void TrackerFiltersList::showMenu()
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs), tr("Resume torrents")
         , transferList, &TransferListWidget::startVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs), tr("Pause torrents")
         , transferList, &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-delete"_qs), tr("Delete torrents")
         , transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());
@@ -706,10 +706,10 @@ QString TrackerFiltersList::trackerFromRow(int row) const
 {
     Q_ASSERT(row > 1);
     const QString tracker = item(row)->text();
-    QStringList parts = tracker.split(' ');
+    QStringList parts = tracker.split(u' ');
     Q_ASSERT(parts.size() >= 2);
     parts.removeLast(); // Remove trailing number
-    return parts.join(' ');
+    return parts.join(u' ');
 }
 
 int TrackerFiltersList::rowFromTracker(const QString &tracker) const
@@ -756,8 +756,8 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     scroll->setWidgetResizable(true);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    setStyleSheet("QFrame {background: transparent;}");
-    scroll->setStyleSheet("QFrame {border: none;}");
+    setStyleSheet(u"QFrame {background: transparent;}"_qs);
+    scroll->setStyleSheet(u"QFrame {border: none;}"_qs);
     vLayout->setContentsMargins(0, 0, 0, 0);
     frameLayout->setContentsMargins(0, 2, 0, 0);
     frameLayout->setSpacing(2);
