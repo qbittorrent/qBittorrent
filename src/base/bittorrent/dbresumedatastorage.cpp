@@ -325,9 +325,6 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
     lt::error_code ec;
     const lt::bdecode_node root = lt::bdecode(allData, ec);
 
-    resumeData.downloadPath = Profile::instance()->fromPortablePath(
-                Utils::Fs::toUniformPath(fromLTString(root.dict_find_string_value("qBt-downloadPath"))));
-
     lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
     p = lt::read_resume_data(root, ec);
