@@ -43,7 +43,8 @@
 
 #include <QString>
 
-#include "misc.h"
+#include "base/global.h"
+#include "base/utils/misc.h"
 
 namespace
 {
@@ -55,7 +56,7 @@ namespace
         using result_type = uint32_t;
 
         RandomLayer()
-            : m_rtlGenRandom {Utils::Misc::loadWinAPI<PRTLGENRANDOM>("Advapi32.dll", "SystemFunction036")}
+            : m_rtlGenRandom {Utils::Misc::loadWinAPI<PRTLGENRANDOM>(u"Advapi32.dll"_qs, "SystemFunction036")}
         {
             if (!m_rtlGenRandom)
                 qFatal("Failed to load RtlGenRandom()");

@@ -168,7 +168,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
         {
             switch (section)
             {
-            case TR_QUEUE_POSITION: return u'#';
+            case TR_QUEUE_POSITION: return QChar(u'#');
             case TR_NAME: return tr("Name", "i.e: torrent name");
             case TR_SIZE: return tr("Size", "i.e: torrent size");
             case TR_PROGRESS: return tr("Progress", "% Done");

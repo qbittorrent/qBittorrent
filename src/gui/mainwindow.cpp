@@ -1604,7 +1604,7 @@ void MainWindow::reloadSessionStats()
     }
     else if (!MacUtils::badgeLabelText().isEmpty())
     {
-        MacUtils::setBadgeLabelText("");
+        MacUtils::setBadgeLabelText({});
     }
 #else
     if (m_systrayIcon)
@@ -1905,8 +1905,8 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     const QString newVersion = updater->getNewVersion();
     if (!newVersion.isEmpty())
     {
-        const QString msg {tr("A new version is available.") + "<br/>"
-            + tr("Do you want to download %1?").arg(newVersion) + "<br/><br/>"
+        const QString msg {tr("A new version is available.") + u"<br/>"
+            + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
             + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
@@ -2082,9 +2082,9 @@ void MainWindow::installPython()
     setCursor(QCursor(Qt::WaitCursor));
     // Download python
 #ifdef QBT_APP_64BIT
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe";
+    const auto installerURL = u"https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe"_qs;
 #else
-    const QString installerURL = "https://www.python.org/ftp/python/3.8.10/python-3.8.10.exe";
+    const auto installerURL = u"https://www.python.org/ftp/python/3.8.10/python-3.8.10.exe"_qs;
 #endif
     Net::DownloadManager::instance()->download(
                 Net::DownloadRequest(installerURL).saveToFile(true)
@@ -2109,7 +2109,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
 
     const Path exePath = result.filePath + ".exe";
     Utils::Fs::renameFile(result.filePath, exePath);
-    installer.start(exePath.toString(), {"/passive"});
+    installer.start(exePath.toString(), {u"/passive"_qs});
 
     // Wait for setup to complete
     installer.waitForFinished(10 * 60 * 1000);

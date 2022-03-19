@@ -93,8 +93,8 @@ namespace Utils::Misc
     T loadWinAPI(const QString &source, const char *funcName)
     {
         QString path = windowsSystemPath();
-        if (!path.endsWith('\\'))
-            path += '\\';
+        if (!path.endsWith(u'\\'))
+            path += u'\\';
 
         path += source;
 

@@ -31,6 +31,8 @@
 #include <cxxabi.h>
 #endif
 
+#include "base/global.h"
+
 namespace straceWin
 {
     void loadHelpStackFrame(IMAGEHLP_STACK_FRAME&, const STACKFRAME64&);
@@ -50,7 +52,7 @@ namespace straceWin
 #ifdef __MINGW32__
 void straceWin::demangle(QString& str)
 {
-    char const* inStr = qPrintable("_" + str); // Really need that underline or demangling will fail
+    char const* inStr = qPrintable(u"_" + str); // Really need that underline or demangling will fail
     int status = 0;
     size_t outSz = 0;
     char* demangled_name = abi::__cxa_demangle(inStr, 0, &outSz, &status);
@@ -75,7 +77,7 @@ BOOL CALLBACK straceWin::EnumSymbolsCB(PSYMBOL_INFO symInfo, ULONG size, PVOID u
     Q_UNUSED(size)
     auto params = static_cast<QStringList *>(user);
     if (symInfo->Flags & SYMFLAG_PARAMETER)
-        params->append(symInfo->Name);
+        params->append(QString::fromUtf8(symInfo->Name));
     return TRUE;
 }
 
@@ -97,16 +99,16 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
     {
         QString moduleBase = QString::fromLatin1("0x%1").arg(BaseOfDll, 16, 16, QLatin1Char('0'));
         QString line = QString::fromLatin1("%1 %2 Image: %3")
-                       .arg(mod.ModuleName, -25)
+                       .arg(QString::fromUtf8(mod.ModuleName), -25)
                        .arg(moduleBase, -13)
-                       .arg(mod.LoadedImageName);
+                       .arg(QString::fromUtf8(mod.LoadedImageName));
         context->stream << line << '\n';
 
-        QString pdbName(mod.LoadedPdbName);
+        const auto pdbName = QString::fromUtf8(mod.LoadedPdbName);
         if(!pdbName.isEmpty())
         {
             QString line2 = QString::fromLatin1("%1 %2")
-                            .arg("", 35)
+                            .arg(u""_qs, 35)
                             .arg(pdbName);
             context->stream << line2 << '\n';
         }
@@ -119,7 +121,7 @@ BOOL CALLBACK straceWin::EnumModulesCB(LPCSTR ModuleName, DWORD64 BaseOfDll, PVO
 * Cuts off leading 'dir' path from 'file' path, otherwise leaves it unchanged
 * returns true if 'dir' is an ancestor of 'file', otherwise - false
 */
-bool straceWin::makeRelativePath(const QString& dir, QString& file)
+bool straceWin::makeRelativePath(const QString &dir, QString &file)
 {
     QString d = QDir::toNativeSeparators(QDir(dir).absolutePath());
     QString f = QDir::toNativeSeparators(QFileInfo(file).absoluteFilePath());
@@ -148,7 +150,7 @@ QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
 
     if (SymGetLineFromAddr64(hProcess, addr, &dwDisplacement, &line))
     {
-        QString path(line.FileName);
+        auto path = QString::fromUtf8(line.FileName);
 
 #if defined STACKTRACE_WIN_PROJECT_PATH || defined STACKTRACE_WIN_MAKEFILE_PATH
 
@@ -159,14 +161,14 @@ QString straceWin::getSourcePathAndLineNumber(HANDLE hProcess, DWORD64 addr)
 
         bool success = false;
 #ifdef STACKTRACE_WIN_PROJECT_PATH
-        QString projectPath(STACKTRACE_WIN_STRING(STACKTRACE_WIN_PROJECT_PATH));
+        const auto projectPath = QStringLiteral(STACKTRACE_WIN_STRING(STACKTRACE_WIN_PROJECT_PATH));
         success = makeRelativePath(projectPath, path);
 #endif
 
 #ifdef STACKTRACE_WIN_MAKEFILE_PATH
         if (!success)
         {
-            QString targetPath(STACKTRACE_WIN_STRING(STACKTRACE_WIN_MAKEFILE_PATH));
+            const auto targetPath = QStringLiteral(STACKTRACE_WIN_STRING(STACKTRACE_WIN_MAKEFILE_PATH));
             makeRelativePath(targetPath, path);
         }
 #endif
@@ -285,11 +287,11 @@ const QString straceWin::getBacktrace()
         if(StackFrame.AddrPC.Offset != 0)
         { // Valid frame.
 
-            QString fileName("???");
+            auto fileName = u"???"_qs;
             if(SymGetModuleInfo64(hProcess, ihsf.InstructionOffset, &mod))
             {
-                fileName = QString(mod.ImageName);
-                int slashPos = fileName.lastIndexOf('\\');
+                fileName = QString::fromUtf8(mod.ImageName);
+                int slashPos = fileName.lastIndexOf(u'\\');
                 if(slashPos != -1)
                     fileName = fileName.mid(slashPos + 1);
             }
@@ -297,7 +299,7 @@ const QString straceWin::getBacktrace()
             QString sourceFile;
             if(SymFromAddr(hProcess, ihsf.InstructionOffset, &dwDisplacement, pSymbol))
             {
-                funcName = QString(pSymbol->Name);
+                funcName = QString::fromUtf8(pSymbol->Name);
 #ifdef __MINGW32__
                 demangle(funcName);
 #endif
@@ -317,9 +319,9 @@ const QString straceWin::getBacktrace()
 #endif
 
             QString insOffset = QString::fromLatin1("0x%1").arg(ihsf.InstructionOffset, 16, 16, QLatin1Char('0'));
-            QString formatLine = "#%1 %2 %3 %4";
+            auto formatLine = u"#%1 %2 %3 %4"_qs;
 #ifndef __MINGW32__
-            formatLine += "(%5)";
+            formatLine += u"(%5)"_qs;
 #endif
             QString debugLine = formatLine
                                 .arg(i, 3, 10)
@@ -327,7 +329,7 @@ const QString straceWin::getBacktrace()
                                 .arg(insOffset, -11)
                                 .arg(funcName)
 #ifndef __MINGW32__
-                                .arg(params.join(", "));
+                                .arg(params.join(u", "));
 
             if (!sourceFile.isEmpty())
                 debugLine += QString::fromLatin1("[ %1 ]").arg(sourceFile);

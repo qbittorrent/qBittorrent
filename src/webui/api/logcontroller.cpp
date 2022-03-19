@@ -61,13 +61,13 @@ void LogController::mainAction()
 {
     using Utils::String::parseBool;
 
-    const bool isNormal = parseBool(params()["normal"]).value_or(true);
-    const bool isInfo = parseBool(params()["info"]).value_or(true);
-    const bool isWarning = parseBool(params()["warning"]).value_or(true);
-    const bool isCritical = parseBool(params()["critical"]).value_or(true);
+    const bool isNormal = parseBool(params()[u"normal"_qs]).value_or(true);
+    const bool isInfo = parseBool(params()[u"info"_qs]).value_or(true);
+    const bool isWarning = parseBool(params()[u"warning"_qs]).value_or(true);
+    const bool isCritical = parseBool(params()[u"critical"_qs]).value_or(true);
 
     bool ok = false;
-    int lastKnownId = params()["last_known_id"].toInt(&ok);
+    int lastKnownId = params()[u"last_known_id"_qs].toInt(&ok);
     if (!ok)
         lastKnownId = -1;
 
@@ -107,7 +107,7 @@ void LogController::mainAction()
 void LogController::peersAction()
 {
     bool ok = false;
-    int lastKnownId = params()["last_known_id"].toInt(&ok);
+    int lastKnownId = params()[u"last_known_id"_qs].toInt(&ok);
     if (!ok)
         lastKnownId = -1;
 

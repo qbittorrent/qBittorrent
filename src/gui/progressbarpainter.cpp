@@ -37,10 +37,12 @@
 #include <QProxyStyle>
 #endif
 
+#include "base/global.h"
+
 ProgressBarPainter::ProgressBarPainter()
 {
 #if (defined(Q_OS_WIN) || defined(Q_OS_MACOS))
-    auto *fusionStyle = new QProxyStyle {"fusion"};
+    auto *fusionStyle = new QProxyStyle {u"fusion"_qs};
     fusionStyle->setParent(&m_dummyProgressBar);
     m_dummyProgressBar.setStyle(fusionStyle);
 #endif
