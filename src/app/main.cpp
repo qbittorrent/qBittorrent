@@ -179,10 +179,6 @@ int main(int argc, char *argv[])
                                  .arg(QLatin1String("-h (or --help)")));
         }
 
-        // Set environment variable
-        if (!qputenv("QBITTORRENT", QBT_VERSION))
-            fprintf(stderr, "Couldn't set environment variable...\n");
-
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
         if (firstTimeUser)
         {
