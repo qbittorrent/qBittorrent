@@ -52,7 +52,7 @@ public:
         COL_PEERS,
         COL_SEEDS,
         COL_LEECHES,
-        COL_DOWNLOADED,
+        COL_TIMES_DOWNLOADED,
         COL_MSG,
 
         COL_COUNT
