@@ -514,6 +514,27 @@ QVector<TrackerEntry> TorrentImpl::trackers() const
     return m_trackerEntries;
 }
 
+void TorrentImpl::setHasNoWorkingTracker(const bool enabled)
+{
+    m_hasWorkingTracker = enabled;
+}
+
+bool TorrentImpl::hasNoWorkingTracker() const
+{
+    return !m_hasWorkingTracker;
+}
+
+bool TorrentImpl::hasWorkingTracker() const
+{
+    const QVector<TrackerEntry> currentTrackers = trackers();
+    if (currentTrackers.empty())
+        return true;
+    return std::any_of(currentTrackers.cbegin(), currentTrackers.cend(), [](const TrackerEntry &entry)
+    {
+        return entry.status == TrackerEntry::Working;
+    });
+}
+
 void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
 {
     // TODO: use std::erase_if() in C++20

@@ -97,6 +97,7 @@ namespace BitTorrent
         Moving,
 
         MissingFiles,
+        NoWorkingTracker,
         Error
     };
 
@@ -223,6 +224,8 @@ namespace BitTorrent
         virtual bool hasMetadata() const = 0;
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
+        virtual bool hasNoWorkingTracker() const = 0;
+        virtual void setHasNoWorkingTracker(bool enabled) = 0;
         virtual int queuePosition() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;

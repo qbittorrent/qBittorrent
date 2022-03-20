@@ -112,6 +112,7 @@ private:
     int m_nbStalledUploading = 0;
     int m_nbStalledDownloading = 0;
     int m_nbChecking = 0;
+    int m_nbNoWorkingTracker = 0;
     int m_nbErrored = 0;
 };
 

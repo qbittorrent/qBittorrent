@@ -5444,6 +5444,8 @@ void Session::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
+    torrent->setHasNoWorkingTracker(torrent->hasWorkingTracker());
+
     const auto trackerURL = QString::fromUtf8(a->tracker_url());
     m_updatedTrackerEntries[torrent].insert(trackerURL);
 

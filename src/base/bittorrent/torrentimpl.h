@@ -155,6 +155,9 @@ namespace BitTorrent
         bool hasMetadata() const override;
         bool hasMissingFiles() const override;
         bool hasError() const override;
+        void setHasNoWorkingTracker(bool enabled) override;
+        bool hasNoWorkingTracker() const override;
+        bool hasWorkingTracker() const;
         int queuePosition() const override;
         QVector<TrackerEntry> trackers() const override;
         QVector<QUrl> urlSeeds() const override;
@@ -333,6 +336,7 @@ namespace BitTorrent
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;
+        bool m_hasWorkingTracker = true;
 
         bool m_unchecked = false;
 
