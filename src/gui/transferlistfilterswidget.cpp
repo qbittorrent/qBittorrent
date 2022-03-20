@@ -269,7 +269,9 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
     const bool isStalledDownloading = (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
     update(TorrentFilter::StalledDownloading, isStalledDownloading, m_nbStalledDownloading);
 
-    update(TorrentFilter::Checking, torrent->isChecking(), m_nbChecking);
+    const bool isChecking = (torrent->isChecking() && !torrent->isErrored());
+    update(TorrentFilter::Checking, isChecking, m_nbChecking);
+
     update(TorrentFilter::Errored, torrent->isErrored(), m_nbErrored);
 
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
