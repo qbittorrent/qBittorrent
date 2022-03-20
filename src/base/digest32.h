@@ -48,10 +48,8 @@ public:
     Digest32(Digest32 &&other) = default;
 
     Digest32(const UnderlyingType &nativeDigest)
+        : m_dataPtr {new Data(nativeDigest)}
     {
-        m_dataPtr->valid = true;
-        m_dataPtr->nativeDigest = nativeDigest;
-        m_dataPtr->hashString.clear(); // hashString is created on demand
     }
 
     static constexpr int length()
@@ -61,7 +59,7 @@ public:
 
     bool isValid() const
     {
-        return m_dataPtr->valid;
+        return m_dataPtr->isValid();
     }
 
     Digest32 &operator=(const Digest32 &other) = default;
@@ -69,46 +67,74 @@ public:
 
     operator UnderlyingType() const
     {
-        return m_dataPtr->nativeDigest;
-    }
-
-    static Digest32 fromString(const QString &digestString)
-    {
-        if (digestString.size() != (length() * 2))
-            return {};
-
-        const QByteArray raw = QByteArray::fromHex(digestString.toLatin1());
-        if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
-            return {};
-
-        Digest32 result;
-        result.m_dataPtr->valid = true;
-        result.m_dataPtr->hashString = digestString;
-        result.m_dataPtr->nativeDigest.assign(raw.constData());
-
-        return result;
+        return m_dataPtr->nativeDigest();
     }
 
     QString toString() const
     {
-        if (m_dataPtr->hashString.isEmpty())
-        {
-            const QByteArray raw = QByteArray::fromRawData(m_dataPtr->nativeDigest.data(), length());
-            const_cast<Digest32 *>(this)->m_dataPtr->hashString = QString::fromLatin1(raw.toHex());
-        }
+        return m_dataPtr->hashString();
+    }
 
-        return m_dataPtr->hashString;
+    static Digest32 fromString(const QString &digestString)
+    {
+        return Digest32(QSharedDataPointer<Data>(new Data(digestString)));
     }
 
 private:
-    struct Data : public QSharedData
+    class Data;
+
+    explicit Digest32(QSharedDataPointer<Data> dataPtr)
+        : m_dataPtr {dataPtr}
     {
-        bool valid = false;
-        UnderlyingType nativeDigest;
-        QString hashString;
-    };
+    }
 
     QSharedDataPointer<Data> m_dataPtr {new Data};
+};
+
+template <int N>
+class Digest32<N>::Data : public QSharedData
+{
+public:
+    Data() = default;
+
+    explicit Data(UnderlyingType nativeDigest)
+        : m_isValid {true}
+        , m_nativeDigest {nativeDigest}
+    {
+    }
+
+    explicit Data(const QString &digestString)
+    {
+        if (digestString.size() != (length() * 2))
+            return;
+
+        const QByteArray raw = QByteArray::fromHex(digestString.toLatin1());
+        if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
+            return;
+
+        m_isValid = true;
+        m_hashString = digestString;
+        m_nativeDigest.assign(raw.constData());
+    }
+
+    bool isValid() const { return m_isValid; }
+    UnderlyingType nativeDigest() const { return m_nativeDigest; }
+
+    QString hashString() const
+    {
+        if (m_hashString.isEmpty())
+        {
+            const QByteArray raw = QByteArray::fromRawData(m_nativeDigest.data(), length());
+            m_hashString = QString::fromLatin1(raw.toHex());
+        }
+
+        return m_hashString;
+    }
+
+private:
+    bool m_isValid = false;
+    UnderlyingType m_nativeDigest;
+    mutable QString m_hashString;
 };
 
 template <int N>
