@@ -571,7 +571,7 @@ void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult 
     }
 }
 
-void TrackerFiltersList::showMenu(const QPoint &)
+void TrackerFiltersList::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
