@@ -44,6 +44,7 @@
 #include <QRegularExpression>
 #include <QScreen>
 #include <QStyle>
+#include <QThread>
 #include <QUrl>
 #include <QWidget>
 #include <QWindow>
@@ -167,15 +168,22 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
     }
 
 #ifdef Q_OS_WIN
-    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
-    if (pidl)
+    auto *thread = QThread::create([path]()
     {
-        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
-        ::ILFree(pidl);
-    }
-    if ((hresult == S_OK) || (hresult == S_FALSE))
-        ::CoUninitialize();
+        if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
+        {
+            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<const wchar_t *>(Utils::Fs::toNativePath(path).utf16()));
+            if (pidl)
+            {
+                ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+                ::ILFree(pidl);
+            }
+
+            ::CoUninitialize();
+        }
+    });
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     QProcess proc;
     proc.start("xdg-mime", {"query", "default", "inode/directory"});
