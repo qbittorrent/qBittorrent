@@ -215,8 +215,8 @@ namespace
                 break;
             default:
                 Q_ASSERT_X(false, "processMap"
-                           , QString("Unexpected type: %1")
-                           .arg(QMetaType::typeName(static_cast<QMetaType::Type>(value.type())))
+                           , u"Unexpected type: %1"_qs
+                           .arg(QString::fromLatin1(QMetaType::typeName(static_cast<QMetaType::Type>(value.type()))))
                            .toUtf8().constData());
             }
         }

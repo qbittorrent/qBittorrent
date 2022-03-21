@@ -445,7 +445,7 @@ void TrackerListWidget::copyTrackerUrl()
     for (const QTreeWidgetItem *item : selectedTrackerItems)
     {
         QString trackerURL = item->data(COL_URL, Qt::DisplayRole).toString();
-        qDebug() << "Copy: " + trackerURL;
+        qDebug() << "Copy:" << qUtf8Printable(trackerURL);
         urlsToCopy << trackerURL;
     }
     QApplication::clipboard()->setText(urlsToCopy.join(u'\n'));
