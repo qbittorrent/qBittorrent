@@ -342,7 +342,7 @@ void TransferListWidget::setSelectedTorrentsLocation()
             return;
 
         const Path newLocation {fileDialog->selectedFiles().constFirst()};
-        if (newLocation.exists())
+        if (!newLocation.exists())
             return;
 
         // Actually move storage
