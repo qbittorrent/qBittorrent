@@ -1205,12 +1205,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if (event->matches(QKeySequence::Paste))
     {
-        const QMimeData *mimeData {QGuiApplication::clipboard()->mimeData()};
+        const QMimeData *mimeData = QGuiApplication::clipboard()->mimeData();
 
         if (mimeData->hasText())
         {
-            const bool useTorrentAdditionDialog {AddNewTorrentDialog::isEnabled()};
-            const QStringList lines {mimeData->text().split(u'\n', Qt::SkipEmptyParts)};
+            const bool useTorrentAdditionDialog = AddNewTorrentDialog::isEnabled();
+            const QStringList lines = mimeData->text().split(u'\n', Qt::SkipEmptyParts);
 
             for (QString line : lines)
             {
@@ -1438,6 +1438,7 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 {
     for (const QString &mime : asConst(event->mimeData()->formats()))
         qDebug("mimeData: %s", mime.toLocal8Bit().data());
+
     if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
         event->acceptProposedAction();
 }

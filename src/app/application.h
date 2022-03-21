@@ -41,6 +41,7 @@
 #include <QApplication>
 #endif
 
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/interfaces/iapplication.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -132,8 +133,16 @@ private slots:
 #endif
 
 private:
+    struct AddTorrentParams
+    {
+        QString torrentSource;
+        BitTorrent::AddTorrentParams torrentParams;
+        std::optional<bool> skipTorrentDialog;
+    };
+
     void initializeTranslation();
-    void processParams(const QStringList &params);
+    AddTorrentParams parseParams(const QStringList &params) const;
+    void processParams(const AddTorrentParams &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 #ifdef QBT_USES_LIBTORRENT2
@@ -147,8 +156,8 @@ private:
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
-    bool m_running = false;
     QAtomicInt m_isCleanupRun;
+    bool m_isProcessingParamsAllowed = false;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
 
@@ -157,7 +166,8 @@ private:
 
     QTranslator m_qtTranslator;
     QTranslator m_translator;
-    QStringList m_paramsQueue;
+
+    QList<AddTorrentParams> m_paramsQueue;
 
     SettingValue<bool> m_storeFileLoggerEnabled;
     SettingValue<bool> m_storeFileLoggerBackup;

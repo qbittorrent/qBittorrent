@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,15 +28,25 @@
 
 #pragma once
 
-#include <optional>
-
 #include <QtContainerFwd>
+#include <QMutex>
 #include <QObject>
+#include <QVector>
+
+#include "base/3rdparty/expected.hpp"
+#include "base/path.h"
+#include "infohash.h"
+#include "loadtorrentparams.h"
 
 namespace BitTorrent
 {
-    class TorrentID;
-    struct LoadTorrentParams;
+    using LoadResumeDataResult = nonstd::expected<LoadTorrentParams, QString>;
+
+    struct LoadedResumeData
+    {
+        TorrentID torrentID;
+        LoadResumeDataResult result;
+    };
 
     class ResumeDataStorage : public QObject
     {
@@ -44,12 +54,31 @@ namespace BitTorrent
         Q_DISABLE_COPY_MOVE(ResumeDataStorage)
 
     public:
-        using QObject::QObject;
+        explicit ResumeDataStorage(const Path &path, QObject *parent = nullptr);
+
+        Path path() const;
 
         virtual QVector<TorrentID> registeredTorrents() const = 0;
-        virtual std::optional<LoadTorrentParams> load(const TorrentID &id) const = 0;
+        virtual LoadResumeDataResult load(const TorrentID &id) const = 0;
         virtual void store(const TorrentID &id, const LoadTorrentParams &resumeData) const = 0;
         virtual void remove(const TorrentID &id) const = 0;
         virtual void storeQueue(const QVector<TorrentID> &queue) const = 0;
+
+        void loadAll() const;
+        QVector<LoadedResumeData> fetchLoadedResumeData() const;
+
+    signals:
+        void loadStarted(const QVector<BitTorrent::TorrentID> &torrents);
+        void loadFinished();
+
+    protected:
+        void onResumeDataLoaded(const TorrentID &torrentID, const LoadResumeDataResult &loadResumeDataResult) const;
+
+    private:
+        virtual void doLoadAll() const = 0;
+
+        const Path m_path;
+        mutable QVector<LoadedResumeData> m_loadedResumeData;
+        mutable QMutex m_loadedResumeDataMutex;
     };
 }

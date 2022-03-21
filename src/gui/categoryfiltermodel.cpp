@@ -32,7 +32,6 @@
 #include <QIcon>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "uithememanager.h"
 
@@ -181,7 +180,7 @@ CategoryFilterModel::CategoryFilterModel(QObject *parent)
     connect(session, &Session::categoryRemoved, this, &CategoryFilterModel::categoryRemoved);
     connect(session, &Session::torrentCategoryChanged, this, &CategoryFilterModel::torrentCategoryChanged);
     connect(session, &Session::subcategoriesSupportChanged, this, &CategoryFilterModel::subcategoriesSupportChanged);
-    connect(session, &Session::torrentLoaded, this, &CategoryFilterModel::torrentAdded);
+    connect(session, &Session::torrentsLoaded, this, &CategoryFilterModel::torrentsLoaded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &CategoryFilterModel::torrentAboutToBeRemoved);
 
     populate();
@@ -333,13 +332,16 @@ void CategoryFilterModel::categoryRemoved(const QString &categoryName)
     }
 }
 
-void CategoryFilterModel::torrentAdded(BitTorrent::Torrent *const torrent)
+void CategoryFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    CategoryModelItem *item = findItem(torrent->category());
-    Q_ASSERT(item);
+    for (const BitTorrent::Torrent *torrent : torrents)
+    {
+        CategoryModelItem *item = findItem(torrent->category());
+        Q_ASSERT(item);
 
-    item->increaseTorrentsCount();
-    m_rootItem->childAt(0)->increaseTorrentsCount();
+        item->increaseTorrentsCount();
+        m_rootItem->childAt(0)->increaseTorrentsCount();
+    }
 }
 
 void CategoryFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
