@@ -1256,22 +1256,24 @@ void Preferences::setMainGeometry(const QByteArray &geometry)
     setValue(u"MainWindow/geometry"_qs, geometry);
 }
 
-QByteArray Preferences::getMainVSplitterState() const
+bool Preferences::isFiltersSidebarVisible() const
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value<QByteArray>(u"GUI/Qt6/MainWindow/VSplitterState"_qs);
-#else
-    return value<QByteArray>(u"MainWindow/qt5/vsplitterState"_qs);
-#endif
+    return value(u"GUI/MainWindow/FiltersSidebarVisible"_qs, true);
 }
 
-void Preferences::setMainVSplitterState(const QByteArray &state)
+void Preferences::setFiltersSidebarVisible(const bool value)
 {
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    setValue(u"GUI/Qt6/MainWindow/VSplitterState"_qs, state);
-#else
-    setValue(u"MainWindow/qt5/vsplitterState"_qs, state);
-#endif
+    setValue(u"GUI/MainWindow/FiltersSidebarVisible"_qs, value);
+}
+
+int Preferences::getFiltersSidebarWidth() const
+{
+    return value(u"GUI/MainWindow/FiltersSidebarWidth"_qs, 120);
+}
+
+void Preferences::setFiltersSidebarWidth(const int value)
+{
+    setValue(u"GUI/MainWindow/FiltersSidebarWidth"_qs, value);
 }
 
 Path Preferences::getMainLastDir() const

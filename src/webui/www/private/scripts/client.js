@@ -87,6 +87,12 @@ const loadSelectedTracker = function() {
 };
 loadSelectedTracker();
 
+const getShowFiltersSidebar = function() {
+    // Show Filters Sidebar is enabled by default
+    const show = LocalPreferences.get('show_filters_sidebar');
+    return (show === null) || (show === 'true');
+}
+
 function genHash(string) {
     // origins:
     // https://stackoverflow.com/a/8831937
@@ -282,6 +288,13 @@ window.addEvent('load', function() {
     if (!showStatusBar) {
         $('showStatusBarLink').firstChild.style.opacity = '0';
         $('desktopFooterWrapper').addClass('invisible');
+    }
+
+    const showFiltersSidebar = getShowFiltersSidebar();
+    if (!showFiltersSidebar) {
+        $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+        $('filtersColumn').addClass('invisible');
+        $('filtersColumn_handle').addClass('invisible');
     }
 
     let speedInTitle = LocalPreferences.get('speed_in_browser_title_bar') == "true";
@@ -853,6 +866,22 @@ window.addEvent('load', function() {
 
     $('registerMagnetHandlerLink').addEvent('click', function(e) {
         registerMagnetHandler();
+    });
+
+    $('showFiltersSidebarLink').addEvent('click', function(e) {
+        const showFiltersSidebar = !getShowFiltersSidebar();
+        LocalPreferences.set('show_filters_sidebar', showFiltersSidebar.toString());
+        if (showFiltersSidebar) {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '1';
+            $('filtersColumn').removeClass('invisible');
+            $('filtersColumn_handle').removeClass('invisible');
+        }
+        else {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+            $('filtersColumn').addClass('invisible');
+            $('filtersColumn_handle').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
     });
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {
