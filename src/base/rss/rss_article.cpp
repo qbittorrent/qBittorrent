@@ -33,6 +33,7 @@
 #include <QJsonObject>
 #include <QVariant>
 
+#include "base/global.h"
 #include "rss_feed.h"
 
 using namespace RSS;
@@ -50,14 +51,14 @@ namespace
     }
 }
 
-const QString Article::KeyId(QStringLiteral("id"));
-const QString Article::KeyDate(QStringLiteral("date"));
-const QString Article::KeyTitle(QStringLiteral("title"));
-const QString Article::KeyAuthor(QStringLiteral("author"));
-const QString Article::KeyDescription(QStringLiteral("description"));
-const QString Article::KeyTorrentURL(QStringLiteral("torrentURL"));
-const QString Article::KeyLink(QStringLiteral("link"));
-const QString Article::KeyIsRead(QStringLiteral("isRead"));
+const QString Article::KeyId = u"id"_qs;
+const QString Article::KeyDate = u"date"_qs;
+const QString Article::KeyTitle = u"title"_qs;
+const QString Article::KeyAuthor = u"author"_qs;
+const QString Article::KeyDescription = u"description"_qs;
+const QString Article::KeyTorrentURL = u"torrentURL"_qs;
+const QString Article::KeyLink = u"link"_qs;
+const QString Article::KeyIsRead = u"isRead"_qs;
 
 Article::Article(Feed *feed, const QVariantHash &varHash)
     : QObject(feed)

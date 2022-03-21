@@ -35,6 +35,7 @@
 
 #include <QRegularExpression>
 
+#include "base/global.h"
 #include "infohash.h"
 
 namespace
@@ -52,9 +53,9 @@ namespace
         const int V1_BASE32_SIZE = SHA1Hash::length() * 1.6;
 
         return ((((string.size() == V1_HEX_SIZE))
-                && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]"))))
+                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs)))
             || ((string.size() == V1_BASE32_SIZE)
-                && !string.contains(QRegularExpression(QLatin1String("[^2-7A-Za-z]")))));
+                && !string.contains(QRegularExpression(u"[^2-7A-Za-z]"_qs))));
     }
 
     bool isV2Hash(const QString &string)
@@ -65,7 +66,7 @@ namespace
         const int V2_HEX_SIZE = SHA256Hash::length() * 2;
 
         return (string.size() == V2_HEX_SIZE)
-                && !string.contains(QRegularExpression(QLatin1String("[^0-9A-Fa-f]")));
+                && !string.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs));
     }
 }
 
@@ -80,9 +81,9 @@ MagnetUri::MagnetUri(const QString &source)
     if (source.isEmpty()) return;
 
     if (isV2Hash(source))
-        m_url = QString::fromLatin1("magnet:?xt=urn:btmh:1220") + source; // 0x12 0x20 is the "multihash format" tag for the SHA-256 hashing scheme.
+        m_url = u"magnet:?xt=urn:btmh:1220" + source; // 0x12 0x20 is the "multihash format" tag for the SHA-256 hashing scheme.
     else if (isV1Hash(source))
-        m_url = QString::fromLatin1("magnet:?xt=urn:btih:") + source;
+        m_url = u"magnet:?xt=urn:btih:" + source;
 
     lt::error_code ec;
     lt::parse_magnet_uri(m_url.toStdString(), m_addTorrentParams, ec);

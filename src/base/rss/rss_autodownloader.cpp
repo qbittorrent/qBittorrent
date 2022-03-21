@@ -58,8 +58,8 @@ struct ProcessingJob
     QVariantHash articleData;
 };
 
-const QString CONF_FOLDER_NAME {QStringLiteral("rss")};
-const QString RULES_FILE_NAME {QStringLiteral("download_rules.json")};
+const QString CONF_FOLDER_NAME = u"rss"_qs;
+const QString RULES_FILE_NAME = u"download_rules.json"_qs;
 
 namespace
 {
@@ -441,8 +441,8 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const SettingsPtr settings = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss"));
-    const QVariantHash rules = settings->value(QStringLiteral("download_rules")).toHash();
+    const SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
+    const QVariantHash rules = settings->value(u"download_rules"_qs).toHash();
     for (const QVariant &ruleVar : rules)
     {
         const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());

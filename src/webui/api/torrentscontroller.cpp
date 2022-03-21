@@ -123,7 +123,7 @@ namespace
 
     void applyToTorrents(const QStringList &idList, const std::function<void (BitTorrent::Torrent *torrent)> &func)
     {
-        if ((idList.size() == 1) && (idList[0] == QLatin1String("all")))
+        if ((idList.size() == 1) && (idList[0] == u"all"))
         {
             for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
                 func(torrent);
@@ -264,8 +264,8 @@ namespace
 void TorrentsController::infoAction()
 {
     const QString filter {params()[u"filter"_qs]};
-    const std::optional<QString> category = getOptionalString(params(), QLatin1String("category"));
-    const std::optional<QString> tag = getOptionalString(params(), QLatin1String("tag"));
+    const std::optional<QString> category = getOptionalString(params(), u"category"_qs);
+    const std::optional<QString> tag = getOptionalString(params(), u"tag"_qs);
     const QString sortedColumn {params()[u"sort"_qs]};
     const bool reverse {parseBool(params()[u"reverse"_qs]).value_or(false)};
     int limit {params()[u"limit"_qs].toInt()};
@@ -537,7 +537,7 @@ void TorrentsController::filesAction()
 
     const int filesCount = torrent->filesCount();
     QVector<int> fileIndexes;
-    const auto idxIt = params().constFind(QLatin1String("indexes"));
+    const auto idxIt = params().constFind(u"indexes"_qs);
     if (idxIt != params().cend())
     {
         const QStringList indexStrings = idxIt.value().split(u'|');
@@ -730,9 +730,9 @@ void TorrentsController::addAction()
     }
 
     if (partialSuccess)
-        setResult(QLatin1String("Ok."));
+        setResult(u"Ok."_qs);
     else
-        setResult(QLatin1String("Fails."));
+        setResult(u"Fails."_qs);
 }
 
 void TorrentsController::addTrackersAction()
@@ -1293,8 +1293,8 @@ void TorrentsController::categoriesAction()
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
         // adjust it to be compatible with exisitng WebAPI
-        category[QLatin1String("savePath")] = category.take(QLatin1String("save_path"));
-        category.insert(QLatin1String("name"), categoryName);
+        category[u"savePath"_qs] = category.take(u"save_path"_qs);
+        category.insert(u"name"_qs, categoryName);
         categories[categoryName] = category;
     }
 

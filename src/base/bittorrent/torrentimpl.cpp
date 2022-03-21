@@ -317,7 +317,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         const Path filepath = filePath(i);
         // Move "unwanted" files back to their original folder
         const Path parentRelPath = filepath.parentPath();
-        if (parentRelPath.filename() == QLatin1String(".unwanted"))
+        if (parentRelPath.filename() == u".unwanted")
         {
             const QString oldName = filepath.filename();
             const Path newRelPath = parentRelPath.parentPath();
@@ -1050,10 +1050,8 @@ QString TorrentImpl::error() const
 
     if (m_nativeStatus.flags & lt::torrent_flags::upload_mode)
     {
-        const QString writeErrorStr = tr("Couldn't write to file.");
-        const QString uploadModeStr = tr("Torrent is now in \"upload only\" mode.");
-        const QString errorMessage = tr("Reason:") + QLatin1Char(' ') + QString::fromLocal8Bit(m_lastFileError.error.message().c_str());
-        return QString::fromLatin1("%1 %2 %3").arg(writeErrorStr, errorMessage, uploadModeStr);
+        return tr("Couldn't write to file. Reason: \"%1\". Torrent is now in \"upload only\" mode.")
+            .arg(QString::fromLocal8Bit(m_lastFileError.error.message().c_str()));
     }
 
     return {};

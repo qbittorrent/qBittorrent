@@ -28,6 +28,9 @@
 
 #pragma once
 
+#include <QString>
+
+#include "base/global.h"
 #include "types.h"
 
 namespace Http
@@ -35,7 +38,7 @@ namespace Http
     class ResponseBuilder
     {
     public:
-        void status(uint code = 200, const QString &text = QLatin1String("OK"));
+        void status(uint code = 200, const QString &text = u"OK"_qs);
         void setHeader(const Header &header);
         void print(const QString &text, const QString &type = CONTENT_TYPE_HTML);
         void print(const QByteArray &data, const QString &type = CONTENT_TYPE_HTML);

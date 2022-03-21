@@ -193,7 +193,7 @@ bool RequestParser::parseRequestLine(const QString &line)
 {
     // [rfc7230] 3.1.1. Request Line
 
-    const QRegularExpression re(QLatin1String("^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"));
+    const QRegularExpression re(u"^([A-Z]+)\\s+(\\S+)\\s+HTTP\\/(\\d\\.\\d)$"_qs);
     const QRegularExpressionMatch match = re.match(line);
 
     if (!match.hasMatch())
@@ -268,7 +268,7 @@ bool RequestParser::parsePostMessage(const QByteArray &data)
         // [rfc2046] 5.1.1. Common Syntax
 
         // find boundary delimiter
-        const QLatin1String boundaryFieldName("boundary=");
+        const QString boundaryFieldName = u"boundary="_qs;
         const int idx = contentType.indexOf(boundaryFieldName);
         if (idx < 0)
         {
@@ -347,8 +347,8 @@ bool RequestParser::parseFormData(const QByteArray &data)
     }
 
     // pick data
-    const QLatin1String filename("filename");
-    const QLatin1String name("name");
+    const QString filename = u"filename"_qs;
+    const QString name = u"name"_qs;
 
     if (headersMap.contains(filename))
     {

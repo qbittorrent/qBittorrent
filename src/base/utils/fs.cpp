@@ -80,12 +80,12 @@ bool Utils::Fs::smartRemoveEmptyFolderTree(const Path &path)
     const QStringList deleteFilesList =
     {
         // Windows
-        QLatin1String("Thumbs.db"),
-        QLatin1String("desktop.ini"),
+        u"Thumbs.db"_qs,
+        u"desktop.ini"_qs,
         // Linux
-        QLatin1String(".directory"),
+        u".directory"_qs,
         // Mac OS
-        QLatin1String(".DS_Store")
+        u".DS_Store"_qs
     };
 
     // travel from the deepest folder and remove anything unwanted on the way out.
@@ -182,7 +182,7 @@ bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
 
 QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {QLatin1String("[\\\\/:?\"*<>|]+")};
+    const QRegularExpression regex {u"[\\\\/:?\"*<>|]+"_qs};
 
     QString validName = name.trimmed();
     validName.replace(regex, pad);
@@ -192,7 +192,7 @@ QString Utils::Fs::toValidFileName(const QString &name, const QString &pad)
 
 Path Utils::Fs::toValidPath(const QString &name, const QString &pad)
 {
-    const QRegularExpression regex {QLatin1String("[:?\"*<>|]+")};
+    const QRegularExpression regex {u"[:?\"*<>|]+"_qs};
 
     QString validPathStr = name;
     validPathStr.replace(regex, pad);
@@ -238,7 +238,7 @@ bool Utils::Fs::isNetworkFileSystem(const Path &path)
         return false;
     return (::GetDriveTypeW(volumePath.get()) == DRIVE_REMOTE);
 #else
-    const QString file = path.toString() + QLatin1String("/.");
+    const QString file = (path.toString() + u"/.");
     struct statfs buf {};
     if (statfs(file.toLocal8Bit().constData(), &buf) != 0)
         return false;

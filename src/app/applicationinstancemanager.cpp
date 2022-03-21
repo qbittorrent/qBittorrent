@@ -48,7 +48,7 @@ ApplicationInstanceManager::ApplicationInstanceManager(const Path &instancePath,
     connect(m_peer, &QtLocalPeer::messageReceived, this, &ApplicationInstanceManager::messageReceived);
 
 #ifdef Q_OS_WIN
-    const QString sharedMemoryKey = instancePath.data() + QLatin1String("/shared-memory");
+    const QString sharedMemoryKey = instancePath.data() + u"/shared-memory";
     auto sharedMem = new QSharedMemory(sharedMemoryKey, this);
     if (m_isFirstInstance)
     {

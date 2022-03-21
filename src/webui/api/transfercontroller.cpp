@@ -71,9 +71,9 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
     if (!BitTorrent::Session::instance()->isListening())
-        dict[KEY_TRANSFER_CONNECTION_STATUS] = QLatin1String("disconnected");
+        dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_qs;
     else
-        dict[KEY_TRANSFER_CONNECTION_STATUS] = QLatin1String(sessionStatus.hasIncomingConnections ? "connected" : "firewalled");
+        dict[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? u"connected"_qs : u"firewalled"_qs;
 
     setResult(dict);
 }

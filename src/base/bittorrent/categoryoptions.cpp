@@ -31,8 +31,10 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-const QString OPTION_SAVEPATH {QStringLiteral("save_path")};
-const QString OPTION_DOWNLOADPATH {QStringLiteral("download_path")};
+#include "base/global.h"
+
+const QString OPTION_SAVEPATH = u"save_path"_qs;
+const QString OPTION_DOWNLOADPATH = u"download_path"_qs;
 
 BitTorrent::CategoryOptions BitTorrent::CategoryOptions::fromJSON(const QJsonObject &jsonObj)
 {

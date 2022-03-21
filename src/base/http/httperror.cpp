@@ -28,6 +28,8 @@
 
 #include "httperror.h"
 
+#include "base/global.h"
+
 HTTPError::HTTPError(const int statusCode, const QString &statusText, const QString &message)
     : RuntimeError {message}
     , m_statusCode {statusCode}
@@ -46,41 +48,41 @@ QString HTTPError::statusText() const
 }
 
 BadRequestHTTPError::BadRequestHTTPError(const QString &message)
-    : HTTPError(400, QLatin1String("Bad Request"), message)
+    : HTTPError(400, u"Bad Request"_qs, message)
 {
 }
 
 UnauthorizedHTTPError::UnauthorizedHTTPError(const QString &message)
-    : HTTPError(401, QLatin1String("Unauthorized"), message)
+    : HTTPError(401, u"Unauthorized"_qs, message)
 {
 }
 
 ForbiddenHTTPError::ForbiddenHTTPError(const QString &message)
-    : HTTPError(403, QLatin1String("Forbidden"), message)
+    : HTTPError(403, u"Forbidden"_qs, message)
 {
 }
 
 NotFoundHTTPError::NotFoundHTTPError(const QString &message)
-    : HTTPError(404, QLatin1String("Not Found"), message)
+    : HTTPError(404, u"Not Found"_qs, message)
 {
 }
 
 MethodNotAllowedHTTPError::MethodNotAllowedHTTPError(const QString &message)
-    : HTTPError(405, QLatin1String("Method Not Allowed"), message)
+    : HTTPError(405, u"Method Not Allowed"_qs, message)
 {
 }
 
 ConflictHTTPError::ConflictHTTPError(const QString &message)
-    : HTTPError(409, QLatin1String("Conflict"), message)
+    : HTTPError(409, u"Conflict"_qs, message)
 {
 }
 
 UnsupportedMediaTypeHTTPError::UnsupportedMediaTypeHTTPError(const QString &message)
-    : HTTPError(415, QLatin1String("Unsupported Media Type"), message)
+    : HTTPError(415, u"Unsupported Media Type"_qs, message)
 {
 }
 
 InternalServerErrorHTTPError::InternalServerErrorHTTPError(const QString &message)
-    : HTTPError(500, QLatin1String("Internal Server Error"), message)
+    : HTTPError(500, u"Internal Server Error"_qs, message)
 {
 }

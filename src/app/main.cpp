@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                     .arg(QLatin1String("-v (or --version)")));
+                                     .arg(u"-v (or --version)"_qs));
         }
 #endif
         if (params.showHelp)
@@ -176,7 +176,7 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                 .arg(QLatin1String("-h (or --help)")));
+                                 .arg(u"-h (or --help)"_qs));
         }
 
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
@@ -208,7 +208,7 @@ int main(int argc, char *argv[])
             if (params.shouldDaemonize)
             {
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
-                                     .arg(QLatin1String("-d (or --daemon)")));
+                                     .arg(u"-d (or --daemon)"_qs));
             }
             else
 #endif
@@ -362,7 +362,7 @@ void sigAbnormalHandler(int signum)
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
     StacktraceDialog dlg;  // unsafe
-    dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
+    dlg.setStacktraceString(QString::fromLatin1(sigName), straceWin::getBacktrace());
     dlg.exec();
 #endif
 
@@ -397,7 +397,7 @@ void displayBadArgMessage(const QString &message)
     const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
-                       message + QLatin1Char('\n') + help, QMessageBox::Ok);
+                       (message + u'\n' + help), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
@@ -415,7 +415,7 @@ bool userAgreesWithLegalNotice()
     Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
-    const QString eula = QString::fromLatin1("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
+    const QString eula = u"\n*** %1 ***\n"_qs.arg(QObject::tr("Legal Notice"))
         + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
         + QObject::tr("No further notices will be issued.") + u"\n\n"
         + QObject::tr("Press %1 key to accept and continue...").arg(u"'y'"_qs) + u'\n';
