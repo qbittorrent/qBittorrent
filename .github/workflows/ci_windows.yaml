@@ -77,7 +77,7 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
-          version: "5.15.2"
+          version: "6.2.0"
 
       - name: Install libtorrent
         run: |
@@ -115,6 +115,7 @@ jobs:
             -DBOOST_ROOT="${{ env.boost_path }}" `
             -DLibtorrentRasterbar_DIR="${{ env.libtorrent_path }}/lib/cmake/LibtorrentRasterbar" `
             -DMSVC_RUNTIME_DYNAMIC=OFF `
+            -DQT6=ON `
             -DVCPKG_TARGET_TRIPLET=x64-windows-static-release `
             -DVERBOSE_CONFIGURE=ON `
             --graphviz=build/target_graph.dot
@@ -127,25 +128,24 @@ jobs:
           copy build/qbittorrent.pdb upload
           copy dist/windows/qt.conf upload
           # runtimes
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Core.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Gui.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Network.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Sql.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Svg.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Widgets.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5WinExtras.dll" upload
-          copy "${{ env.Qt5_DIR }}/bin/Qt5Xml.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Core.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Gui.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Network.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Sql.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Svg.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Widgets.dll" upload
+          copy "${{ env.Qt6_DIR }}/bin/Qt6Xml.dll" upload
           mkdir upload/plugins/iconengines
-          copy "${{ env.Qt5_DIR }}/plugins/iconengines/qsvgicon.dll" upload/plugins/iconengines
+          copy "${{ env.Qt6_DIR }}/plugins/iconengines/qsvgicon.dll" upload/plugins/iconengines
           mkdir upload/plugins/imageformats
-          copy "${{ env.Qt5_DIR }}/plugins/imageformats/qico.dll" upload/plugins/imageformats
-          copy "${{ env.Qt5_DIR }}/plugins/imageformats/qsvg.dll" upload/plugins/imageformats
+          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qico.dll" upload/plugins/imageformats
+          copy "${{ env.Qt6_DIR }}/plugins/imageformats/qsvg.dll" upload/plugins/imageformats
           mkdir upload/plugins/platforms
-          copy "${{ env.Qt5_DIR }}/plugins/platforms/qwindows.dll" upload/plugins/platforms
+          copy "${{ env.Qt6_DIR }}/plugins/platforms/qwindows.dll" upload/plugins/platforms
           mkdir upload/plugins/sqldrivers
-          copy "${{ env.Qt5_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/plugins/sqldrivers
+          copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/plugins/sqldrivers
           mkdir upload/plugins/styles
-          copy "${{ env.Qt5_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/plugins/styles
+          copy "${{ env.Qt6_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/plugins/styles
           # cmake additionals
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
