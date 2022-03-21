@@ -68,19 +68,19 @@ void AppController::webapiVersionAction()
 
 void AppController::versionAction()
 {
-    setResult(QBT_VERSION);
+    setResult(QStringLiteral(QBT_VERSION));
 }
 
 void AppController::buildInfoAction()
 {
     const QJsonObject versions =
     {
-        {"qt", QT_VERSION_STR},
-        {"libtorrent", Utils::Misc::libtorrentVersionString()},
-        {"boost", Utils::Misc::boostVersionString()},
-        {"openssl", Utils::Misc::opensslVersionString()},
-        {"zlib", Utils::Misc::zlibVersionString()},
-        {"bitness", (QT_POINTER_SIZE * 8)}
+        {u"qt"_qs, QStringLiteral(QT_VERSION_STR)},
+        {u"libtorrent"_qs, Utils::Misc::libtorrentVersionString()},
+        {u"boost"_qs, Utils::Misc::boostVersionString()},
+        {u"openssl"_qs, Utils::Misc::opensslVersionString()},
+        {u"zlib"_qs, Utils::Misc::zlibVersionString()},
+        {u"bitness"_qs, (QT_POINTER_SIZE * 8)}
     };
     setResult(versions);
 }
@@ -104,22 +104,22 @@ void AppController::preferencesAction()
 
     // Downloads
     // When adding a torrent
-    data["torrent_content_layout"] = Utils::String::fromEnum(session->torrentContentLayout());
-    data["start_paused_enabled"] = session->isAddTorrentPaused();
-    data["auto_delete_mode"] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
-    data["preallocate_all"] = session->isPreallocationEnabled();
-    data["incomplete_files_ext"] = session->isAppendExtensionEnabled();
+    data[u"torrent_content_layout"_qs] = Utils::String::fromEnum(session->torrentContentLayout());
+    data[u"start_paused_enabled"_qs] = session->isAddTorrentPaused();
+    data[u"auto_delete_mode"_qs] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
+    data[u"preallocate_all"_qs] = session->isPreallocationEnabled();
+    data[u"incomplete_files_ext"_qs] = session->isAppendExtensionEnabled();
     // Saving Management
-    data["auto_tmm_enabled"] = !session->isAutoTMMDisabledByDefault();
-    data["torrent_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategoryChanged();
-    data["save_path_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
-    data["category_changed_tmm_enabled"] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
-    data["save_path"] = session->savePath().toString();
-    data["temp_path_enabled"] = session->isDownloadPathEnabled();
-    data["temp_path"] = session->downloadPath().toString();
-    data["use_category_paths_in_manual_mode"] = session->useCategoryPathsInManualMode();
-    data["export_dir"] = session->torrentExportDirectory().toString();
-    data["export_dir_fin"] = session->finishedTorrentExportDirectory().toString();
+    data[u"auto_tmm_enabled"_qs] = !session->isAutoTMMDisabledByDefault();
+    data[u"torrent_changed_tmm_enabled"_qs] = !session->isDisableAutoTMMWhenCategoryChanged();
+    data[u"save_path_changed_tmm_enabled"_qs] = !session->isDisableAutoTMMWhenDefaultSavePathChanged();
+    data[u"category_changed_tmm_enabled"_qs] = !session->isDisableAutoTMMWhenCategorySavePathChanged();
+    data[u"save_path"_qs] = session->savePath().toString();
+    data[u"temp_path_enabled"_qs] = session->isDownloadPathEnabled();
+    data[u"temp_path"_qs] = session->downloadPath().toString();
+    data[u"use_category_paths_in_manual_mode"_qs] = session->useCategoryPathsInManualMode();
+    data[u"export_dir"_qs] = session->torrentExportDirectory().toString();
+    data[u"export_dir_fin"_qs] = session->finishedTorrentExportDirectory().toString();
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
@@ -137,293 +137,293 @@ void AppController::preferencesAction()
         else
             nativeDirs.insert(watchedFolder.toString(), params.savePath.toString());
     }
-    data["scan_dirs"] = nativeDirs;
+    data[u"scan_dirs"_qs] = nativeDirs;
     // === END DEPRECATED CODE === //
 
     // Email notification upon download completion
-    data["mail_notification_enabled"] = pref->isMailNotificationEnabled();
-    data["mail_notification_sender"] = pref->getMailNotificationSender();
-    data["mail_notification_email"] = pref->getMailNotificationEmail();
-    data["mail_notification_smtp"] = pref->getMailNotificationSMTP();
-    data["mail_notification_ssl_enabled"] = pref->getMailNotificationSMTPSSL();
-    data["mail_notification_auth_enabled"] = pref->getMailNotificationSMTPAuth();
-    data["mail_notification_username"] = pref->getMailNotificationSMTPUsername();
-    data["mail_notification_password"] = pref->getMailNotificationSMTPPassword();
+    data[u"mail_notification_enabled"_qs] = pref->isMailNotificationEnabled();
+    data[u"mail_notification_sender"_qs] = pref->getMailNotificationSender();
+    data[u"mail_notification_email"_qs] = pref->getMailNotificationEmail();
+    data[u"mail_notification_smtp"_qs] = pref->getMailNotificationSMTP();
+    data[u"mail_notification_ssl_enabled"_qs] = pref->getMailNotificationSMTPSSL();
+    data[u"mail_notification_auth_enabled"_qs] = pref->getMailNotificationSMTPAuth();
+    data[u"mail_notification_username"_qs] = pref->getMailNotificationSMTPUsername();
+    data[u"mail_notification_password"_qs] = pref->getMailNotificationSMTPPassword();
     // Run an external program on torrent completion
-    data["autorun_enabled"] = pref->isAutoRunEnabled();
-    data["autorun_program"] = pref->getAutoRunProgram();
+    data[u"autorun_enabled"_qs] = pref->isAutoRunEnabled();
+    data[u"autorun_program"_qs] = pref->getAutoRunProgram();
 
     // Connection
     // Listening Port
-    data["listen_port"] = session->port();
-    data["random_port"] = (session->port() == 0);  // deprecated
-    data["upnp"] = Net::PortForwarder::instance()->isEnabled();
+    data[u"listen_port"_qs] = session->port();
+    data[u"random_port"_qs] = (session->port() == 0);  // deprecated
+    data[u"upnp"_qs] = Net::PortForwarder::instance()->isEnabled();
     // Connections Limits
-    data["max_connec"] = session->maxConnections();
-    data["max_connec_per_torrent"] = session->maxConnectionsPerTorrent();
-    data["max_uploads"] = session->maxUploads();
-    data["max_uploads_per_torrent"] = session->maxUploadsPerTorrent();
+    data[u"max_connec"_qs] = session->maxConnections();
+    data[u"max_connec_per_torrent"_qs] = session->maxConnectionsPerTorrent();
+    data[u"max_uploads"_qs] = session->maxUploads();
+    data[u"max_uploads_per_torrent"_qs] = session->maxUploadsPerTorrent();
 
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
-    data["proxy_type"] = static_cast<int>(proxyConf.type);
-    data["proxy_ip"] = proxyConf.ip;
-    data["proxy_port"] = proxyConf.port;
-    data["proxy_auth_enabled"] = proxyManager->isAuthenticationRequired(); // deprecated
-    data["proxy_username"] = proxyConf.username;
-    data["proxy_password"] = proxyConf.password;
+    data[u"proxy_type"_qs] = static_cast<int>(proxyConf.type);
+    data[u"proxy_ip"_qs] = proxyConf.ip;
+    data[u"proxy_port"_qs] = proxyConf.port;
+    data[u"proxy_auth_enabled"_qs] = proxyManager->isAuthenticationRequired(); // deprecated
+    data[u"proxy_username"_qs] = proxyConf.username;
+    data[u"proxy_password"_qs] = proxyConf.password;
 
-    data["proxy_peer_connections"] = session->isProxyPeerConnectionsEnabled();
-    data["proxy_torrents_only"] = proxyManager->isProxyOnlyForTorrents();
+    data[u"proxy_peer_connections"_qs] = session->isProxyPeerConnectionsEnabled();
+    data[u"proxy_torrents_only"_qs] = proxyManager->isProxyOnlyForTorrents();
 
     // IP Filtering
-    data["ip_filter_enabled"] = session->isIPFilteringEnabled();
-    data["ip_filter_path"] = session->IPFilterFile().toString();
-    data["ip_filter_trackers"] = session->isTrackerFilteringEnabled();
-    data["banned_IPs"] = session->bannedIPs().join('\n');
+    data[u"ip_filter_enabled"_qs] = session->isIPFilteringEnabled();
+    data[u"ip_filter_path"_qs] = session->IPFilterFile().toString();
+    data[u"ip_filter_trackers"_qs] = session->isTrackerFilteringEnabled();
+    data[u"banned_IPs"_qs] = session->bannedIPs().join(u'\n');
 
     // Speed
     // Global Rate Limits
-    data["dl_limit"] = session->globalDownloadSpeedLimit();
-    data["up_limit"] = session->globalUploadSpeedLimit();
-    data["alt_dl_limit"] = session->altGlobalDownloadSpeedLimit();
-    data["alt_up_limit"] = session->altGlobalUploadSpeedLimit();
-    data["bittorrent_protocol"] = static_cast<int>(session->btProtocol());
-    data["limit_utp_rate"] = session->isUTPRateLimited();
-    data["limit_tcp_overhead"] = session->includeOverheadInLimits();
-    data["limit_lan_peers"] = !session->ignoreLimitsOnLAN();
+    data[u"dl_limit"_qs] = session->globalDownloadSpeedLimit();
+    data[u"up_limit"_qs] = session->globalUploadSpeedLimit();
+    data[u"alt_dl_limit"_qs] = session->altGlobalDownloadSpeedLimit();
+    data[u"alt_up_limit"_qs] = session->altGlobalUploadSpeedLimit();
+    data[u"bittorrent_protocol"_qs] = static_cast<int>(session->btProtocol());
+    data[u"limit_utp_rate"_qs] = session->isUTPRateLimited();
+    data[u"limit_tcp_overhead"_qs] = session->includeOverheadInLimits();
+    data[u"limit_lan_peers"_qs] = !session->ignoreLimitsOnLAN();
     // Scheduling
-    data["scheduler_enabled"] = session->isBandwidthSchedulerEnabled();
+    data[u"scheduler_enabled"_qs] = session->isBandwidthSchedulerEnabled();
     const QTime start_time = pref->getSchedulerStartTime();
-    data["schedule_from_hour"] = start_time.hour();
-    data["schedule_from_min"] = start_time.minute();
+    data[u"schedule_from_hour"_qs] = start_time.hour();
+    data[u"schedule_from_min"_qs] = start_time.minute();
     const QTime end_time = pref->getSchedulerEndTime();
-    data["schedule_to_hour"] = end_time.hour();
-    data["schedule_to_min"] = end_time.minute();
-    data["scheduler_days"] = static_cast<int>(pref->getSchedulerDays());
+    data[u"schedule_to_hour"_qs] = end_time.hour();
+    data[u"schedule_to_min"_qs] = end_time.minute();
+    data[u"scheduler_days"_qs] = static_cast<int>(pref->getSchedulerDays());
 
     // Bittorrent
     // Privacy
-    data["dht"] = session->isDHTEnabled();
-    data["pex"] = session->isPeXEnabled();
-    data["lsd"] = session->isLSDEnabled();
-    data["encryption"] = session->encryption();
-    data["anonymous_mode"] = session->isAnonymousModeEnabled();
+    data[u"dht"_qs] = session->isDHTEnabled();
+    data[u"pex"_qs] = session->isPeXEnabled();
+    data[u"lsd"_qs] = session->isLSDEnabled();
+    data[u"encryption"_qs] = session->encryption();
+    data[u"anonymous_mode"_qs] = session->isAnonymousModeEnabled();
     // Max active checking torrents
-    data["max_active_checking_torrents"] = session->maxActiveCheckingTorrents();
+    data[u"max_active_checking_torrents"_qs] = session->maxActiveCheckingTorrents();
     // Torrent Queueing
-    data["queueing_enabled"] = session->isQueueingSystemEnabled();
-    data["max_active_downloads"] = session->maxActiveDownloads();
-    data["max_active_torrents"] = session->maxActiveTorrents();
-    data["max_active_uploads"] = session->maxActiveUploads();
-    data["dont_count_slow_torrents"] = session->ignoreSlowTorrentsForQueueing();
-    data["slow_torrent_dl_rate_threshold"] = session->downloadRateForSlowTorrents();
-    data["slow_torrent_ul_rate_threshold"] = session->uploadRateForSlowTorrents();
-    data["slow_torrent_inactive_timer"] = session->slowTorrentsInactivityTimer();
+    data[u"queueing_enabled"_qs] = session->isQueueingSystemEnabled();
+    data[u"max_active_downloads"_qs] = session->maxActiveDownloads();
+    data[u"max_active_torrents"_qs] = session->maxActiveTorrents();
+    data[u"max_active_uploads"_qs] = session->maxActiveUploads();
+    data[u"dont_count_slow_torrents"_qs] = session->ignoreSlowTorrentsForQueueing();
+    data[u"slow_torrent_dl_rate_threshold"_qs] = session->downloadRateForSlowTorrents();
+    data[u"slow_torrent_ul_rate_threshold"_qs] = session->uploadRateForSlowTorrents();
+    data[u"slow_torrent_inactive_timer"_qs] = session->slowTorrentsInactivityTimer();
     // Share Ratio Limiting
-    data["max_ratio_enabled"] = (session->globalMaxRatio() >= 0.);
-    data["max_ratio"] = session->globalMaxRatio();
-    data["max_seeding_time_enabled"] = (session->globalMaxSeedingMinutes() >= 0.);
-    data["max_seeding_time"] = session->globalMaxSeedingMinutes();
-    data["max_ratio_act"] = session->maxRatioAction();
+    data[u"max_ratio_enabled"_qs] = (session->globalMaxRatio() >= 0.);
+    data[u"max_ratio"_qs] = session->globalMaxRatio();
+    data[u"max_seeding_time_enabled"_qs] = (session->globalMaxSeedingMinutes() >= 0.);
+    data[u"max_seeding_time"_qs] = session->globalMaxSeedingMinutes();
+    data[u"max_ratio_act"_qs] = session->maxRatioAction();
     // Add trackers
-    data["add_trackers_enabled"] = session->isAddTrackersEnabled();
-    data["add_trackers"] = session->additionalTrackers();
+    data[u"add_trackers_enabled"_qs] = session->isAddTrackersEnabled();
+    data[u"add_trackers"_qs] = session->additionalTrackers();
 
     // Web UI
     // Language
-    data["locale"] = pref->getLocale();
-    data["performance_warning"] = session->isPerformanceWarningEnabled();
+    data[u"locale"_qs] = pref->getLocale();
+    data[u"performance_warning"_qs] = session->isPerformanceWarningEnabled();
     // HTTP Server
-    data["web_ui_domain_list"] = pref->getServerDomains();
-    data["web_ui_address"] = pref->getWebUiAddress();
-    data["web_ui_port"] = pref->getWebUiPort();
-    data["web_ui_upnp"] = pref->useUPnPForWebUIPort();
-    data["use_https"] = pref->isWebUiHttpsEnabled();
-    data["web_ui_https_cert_path"] = pref->getWebUIHttpsCertificatePath().toString();
-    data["web_ui_https_key_path"] = pref->getWebUIHttpsKeyPath().toString();
+    data[u"web_ui_domain_list"_qs] = pref->getServerDomains();
+    data[u"web_ui_address"_qs] = pref->getWebUiAddress();
+    data[u"web_ui_port"_qs] = pref->getWebUiPort();
+    data[u"web_ui_upnp"_qs] = pref->useUPnPForWebUIPort();
+    data[u"use_https"_qs] = pref->isWebUiHttpsEnabled();
+    data[u"web_ui_https_cert_path"_qs] = pref->getWebUIHttpsCertificatePath().toString();
+    data[u"web_ui_https_key_path"_qs] = pref->getWebUIHttpsKeyPath().toString();
     // Authentication
-    data["web_ui_username"] = pref->getWebUiUsername();
-    data["bypass_local_auth"] = !pref->isWebUiLocalAuthEnabled();
-    data["bypass_auth_subnet_whitelist_enabled"] = pref->isWebUiAuthSubnetWhitelistEnabled();
+    data[u"web_ui_username"_qs] = pref->getWebUiUsername();
+    data[u"bypass_local_auth"_qs] = !pref->isWebUiLocalAuthEnabled();
+    data[u"bypass_auth_subnet_whitelist_enabled"_qs] = pref->isWebUiAuthSubnetWhitelistEnabled();
     QStringList authSubnetWhitelistStringList;
     for (const Utils::Net::Subnet &subnet : asConst(pref->getWebUiAuthSubnetWhitelist()))
         authSubnetWhitelistStringList << Utils::Net::subnetToString(subnet);
-    data["bypass_auth_subnet_whitelist"] = authSubnetWhitelistStringList.join('\n');
-    data["web_ui_max_auth_fail_count"] = pref->getWebUIMaxAuthFailCount();
-    data["web_ui_ban_duration"] = static_cast<int>(pref->getWebUIBanDuration().count());
-    data["web_ui_session_timeout"] = pref->getWebUISessionTimeout();
+    data[u"bypass_auth_subnet_whitelist"_qs] = authSubnetWhitelistStringList.join(u'\n');
+    data[u"web_ui_max_auth_fail_count"_qs] = pref->getWebUIMaxAuthFailCount();
+    data[u"web_ui_ban_duration"_qs] = static_cast<int>(pref->getWebUIBanDuration().count());
+    data[u"web_ui_session_timeout"_qs] = pref->getWebUISessionTimeout();
     // Use alternative Web UI
-    data["alternative_webui_enabled"] = pref->isAltWebUiEnabled();
-    data["alternative_webui_path"] = pref->getWebUiRootFolder().toString();
+    data[u"alternative_webui_enabled"_qs] = pref->isAltWebUiEnabled();
+    data[u"alternative_webui_path"_qs] = pref->getWebUiRootFolder().toString();
     // Security
-    data["web_ui_clickjacking_protection_enabled"] = pref->isWebUiClickjackingProtectionEnabled();
-    data["web_ui_csrf_protection_enabled"] = pref->isWebUiCSRFProtectionEnabled();
-    data["web_ui_secure_cookie_enabled"] = pref->isWebUiSecureCookieEnabled();
-    data["web_ui_host_header_validation_enabled"] = pref->isWebUIHostHeaderValidationEnabled();
+    data[u"web_ui_clickjacking_protection_enabled"_qs] = pref->isWebUiClickjackingProtectionEnabled();
+    data[u"web_ui_csrf_protection_enabled"_qs] = pref->isWebUiCSRFProtectionEnabled();
+    data[u"web_ui_secure_cookie_enabled"_qs] = pref->isWebUiSecureCookieEnabled();
+    data[u"web_ui_host_header_validation_enabled"_qs] = pref->isWebUIHostHeaderValidationEnabled();
     // Custom HTTP headers
-    data["web_ui_use_custom_http_headers_enabled"] = pref->isWebUICustomHTTPHeadersEnabled();
-    data["web_ui_custom_http_headers"] = pref->getWebUICustomHTTPHeaders();
+    data[u"web_ui_use_custom_http_headers_enabled"_qs] = pref->isWebUICustomHTTPHeadersEnabled();
+    data[u"web_ui_custom_http_headers"_qs] = pref->getWebUICustomHTTPHeaders();
     // Reverse proxy
-    data["web_ui_reverse_proxy_enabled"] = pref->isWebUIReverseProxySupportEnabled();
-    data["web_ui_reverse_proxies_list"] = pref->getWebUITrustedReverseProxiesList();
+    data[u"web_ui_reverse_proxy_enabled"_qs] = pref->isWebUIReverseProxySupportEnabled();
+    data[u"web_ui_reverse_proxies_list"_qs] = pref->getWebUITrustedReverseProxiesList();
     // Update my dynamic domain name
-    data["dyndns_enabled"] = pref->isDynDNSEnabled();
-    data["dyndns_service"] = static_cast<int>(pref->getDynDNSService());
-    data["dyndns_username"] = pref->getDynDNSUsername();
-    data["dyndns_password"] = pref->getDynDNSPassword();
-    data["dyndns_domain"] = pref->getDynDomainName();
+    data[u"dyndns_enabled"_qs] = pref->isDynDNSEnabled();
+    data[u"dyndns_service"_qs] = static_cast<int>(pref->getDynDNSService());
+    data[u"dyndns_username"_qs] = pref->getDynDNSUsername();
+    data[u"dyndns_password"_qs] = pref->getDynDNSPassword();
+    data[u"dyndns_domain"_qs] = pref->getDynDomainName();
 
     // RSS settings
-    data["rss_refresh_interval"] = RSS::Session::instance()->refreshInterval();
-    data["rss_max_articles_per_feed"] = RSS::Session::instance()->maxArticlesPerFeed();
-    data["rss_processing_enabled"] = RSS::Session::instance()->isProcessingEnabled();
-    data["rss_auto_downloading_enabled"] = RSS::AutoDownloader::instance()->isProcessingEnabled();
-    data["rss_download_repack_proper_episodes"] = RSS::AutoDownloader::instance()->downloadRepacks();
-    data["rss_smart_episode_filters"] = RSS::AutoDownloader::instance()->smartEpisodeFilters().join('\n');
+    data[u"rss_refresh_interval"_qs] = RSS::Session::instance()->refreshInterval();
+    data[u"rss_max_articles_per_feed"_qs] = RSS::Session::instance()->maxArticlesPerFeed();
+    data[u"rss_processing_enabled"_qs] = RSS::Session::instance()->isProcessingEnabled();
+    data[u"rss_auto_downloading_enabled"_qs] = RSS::AutoDownloader::instance()->isProcessingEnabled();
+    data[u"rss_download_repack_proper_episodes"_qs] = RSS::AutoDownloader::instance()->downloadRepacks();
+    data[u"rss_smart_episode_filters"_qs] = RSS::AutoDownloader::instance()->smartEpisodeFilters().join(u'\n');
 
     // Advanced settings
     // qBitorrent preferences
     // Current network interface
-    data["current_network_interface"] = session->networkInterface();
+    data[u"current_network_interface"_qs] = session->networkInterface();
     // Current network interface address
-    data["current_interface_address"] = BitTorrent::Session::instance()->networkInterfaceAddress();
+    data[u"current_interface_address"_qs] = BitTorrent::Session::instance()->networkInterfaceAddress();
     // Save resume data interval
-    data["save_resume_data_interval"] = session->saveResumeDataInterval();
+    data[u"save_resume_data_interval"_qs] = session->saveResumeDataInterval();
     // Recheck completed torrents
-    data["recheck_completed_torrents"] = pref->recheckTorrentsOnCompletion();
+    data[u"recheck_completed_torrents"_qs] = pref->recheckTorrentsOnCompletion();
     // Resolve peer countries
-    data["resolve_peer_countries"] = pref->resolvePeerCountries();
+    data[u"resolve_peer_countries"_qs] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
-    data["reannounce_when_address_changed"] = session->isReannounceWhenAddressChangedEnabled();
+    data[u"reannounce_when_address_changed"_qs] = session->isReannounceWhenAddressChangedEnabled();
 
     // libtorrent preferences
     // Async IO threads
-    data["async_io_threads"] = session->asyncIOThreads();
+    data[u"async_io_threads"_qs] = session->asyncIOThreads();
     // Hashing threads
-    data["hashing_threads"] = session->hashingThreads();
+    data[u"hashing_threads"_qs] = session->hashingThreads();
     // File pool size
-    data["file_pool_size"] = session->filePoolSize();
+    data[u"file_pool_size"_qs] = session->filePoolSize();
     // Checking memory usage
-    data["checking_memory_use"] = session->checkingMemUsage();
+    data[u"checking_memory_use"_qs] = session->checkingMemUsage();
     // Disk write cache
-    data["disk_cache"] = session->diskCacheSize();
-    data["disk_cache_ttl"] = session->diskCacheTTL();
+    data[u"disk_cache"_qs] = session->diskCacheSize();
+    data[u"disk_cache_ttl"_qs] = session->diskCacheTTL();
     // Disk queue size
-    data["disk_queue_size"] = session->diskQueueSize();
+    data[u"disk_queue_size"_qs] = session->diskQueueSize();
     // Enable OS cache
-    data["enable_os_cache"] = session->useOSCache();
+    data[u"enable_os_cache"_qs] = session->useOSCache();
     // Coalesce reads & writes
-    data["enable_coalesce_read_write"] = session->isCoalesceReadWriteEnabled();
+    data[u"enable_coalesce_read_write"_qs] = session->isCoalesceReadWriteEnabled();
     // Piece Extent Affinity
-    data["enable_piece_extent_affinity"] = session->usePieceExtentAffinity();
+    data[u"enable_piece_extent_affinity"_qs] = session->usePieceExtentAffinity();
     // Suggest mode
-    data["enable_upload_suggestions"] = session->isSuggestModeEnabled();
+    data[u"enable_upload_suggestions"_qs] = session->isSuggestModeEnabled();
     // Send buffer watermark
-    data["send_buffer_watermark"] = session->sendBufferWatermark();
-    data["send_buffer_low_watermark"] = session->sendBufferLowWatermark();
-    data["send_buffer_watermark_factor"] = session->sendBufferWatermarkFactor();
+    data[u"send_buffer_watermark"_qs] = session->sendBufferWatermark();
+    data[u"send_buffer_low_watermark"_qs] = session->sendBufferLowWatermark();
+    data[u"send_buffer_watermark_factor"_qs] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
-    data["connection_speed"] = session->connectionSpeed();
+    data[u"connection_speed"_qs] = session->connectionSpeed();
     // Socket listen backlog size
-    data["socket_backlog_size"] = session->socketBacklogSize();
+    data[u"socket_backlog_size"_qs] = session->socketBacklogSize();
     // Outgoing ports
-    data["outgoing_ports_min"] = session->outgoingPortsMin();
-    data["outgoing_ports_max"] = session->outgoingPortsMax();
+    data[u"outgoing_ports_min"_qs] = session->outgoingPortsMin();
+    data[u"outgoing_ports_max"_qs] = session->outgoingPortsMax();
     // UPnP lease duration
-    data["upnp_lease_duration"] = session->UPnPLeaseDuration();
+    data[u"upnp_lease_duration"_qs] = session->UPnPLeaseDuration();
     // Type of service
-    data["peer_tos"] = session->peerToS();
+    data[u"peer_tos"_qs] = session->peerToS();
     // uTP-TCP mixed mode
-    data["utp_tcp_mixed_mode"] = static_cast<int>(session->utpMixedMode());
+    data[u"utp_tcp_mixed_mode"_qs] = static_cast<int>(session->utpMixedMode());
     // Support internationalized domain name (IDN)
-    data["idn_support_enabled"] = session->isIDNSupportEnabled();
+    data[u"idn_support_enabled"_qs] = session->isIDNSupportEnabled();
     // Multiple connections per IP
-    data["enable_multi_connections_from_same_ip"] = session->multiConnectionsPerIpEnabled();
+    data[u"enable_multi_connections_from_same_ip"_qs] = session->multiConnectionsPerIpEnabled();
     // Validate HTTPS tracker certificate
-    data["validate_https_tracker_certificate"] = session->validateHTTPSTrackerCertificate();
+    data[u"validate_https_tracker_certificate"_qs] = session->validateHTTPSTrackerCertificate();
     // SSRF mitigation
-    data["ssrf_mitigation"] = session->isSSRFMitigationEnabled();
+    data[u"ssrf_mitigation"_qs] = session->isSSRFMitigationEnabled();
     // Disallow connection to peers on privileged ports
-    data["block_peers_on_privileged_ports"] = session->blockPeersOnPrivilegedPorts();
+    data[u"block_peers_on_privileged_ports"_qs] = session->blockPeersOnPrivilegedPorts();
     // Embedded tracker
-    data["enable_embedded_tracker"] = session->isTrackerEnabled();
-    data["embedded_tracker_port"] = pref->getTrackerPort();
+    data[u"enable_embedded_tracker"_qs] = session->isTrackerEnabled();
+    data[u"embedded_tracker_port"_qs] = pref->getTrackerPort();
     // Choking algorithm
-    data["upload_slots_behavior"] = static_cast<int>(session->chokingAlgorithm());
+    data[u"upload_slots_behavior"_qs] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
-    data["upload_choking_algorithm"] = static_cast<int>(session->seedChokingAlgorithm());
+    data[u"upload_choking_algorithm"_qs] = static_cast<int>(session->seedChokingAlgorithm());
     // Announce
-    data["announce_to_all_trackers"] = session->announceToAllTrackers();
-    data["announce_to_all_tiers"] = session->announceToAllTiers();
-    data["announce_ip"] = session->announceIP();
-    data["max_concurrent_http_announces"] = session->maxConcurrentHTTPAnnounces();
-    data["stop_tracker_timeout"] = session->stopTrackerTimeout();
+    data[u"announce_to_all_trackers"_qs] = session->announceToAllTrackers();
+    data[u"announce_to_all_tiers"_qs] = session->announceToAllTiers();
+    data[u"announce_ip"_qs] = session->announceIP();
+    data[u"max_concurrent_http_announces"_qs] = session->maxConcurrentHTTPAnnounces();
+    data[u"stop_tracker_timeout"_qs] = session->stopTrackerTimeout();
     // Peer Turnover
-    data["peer_turnover"] = session->peerTurnover();
-    data["peer_turnover_cutoff"] = session->peerTurnoverCutoff();
-    data["peer_turnover_interval"] = session->peerTurnoverInterval();
+    data[u"peer_turnover"_qs] = session->peerTurnover();
+    data[u"peer_turnover_cutoff"_qs] = session->peerTurnoverCutoff();
+    data[u"peer_turnover_interval"_qs] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
-    data["request_queue_size"] = session->requestQueueSize();
+    data[u"request_queue_size"_qs] = session->requestQueueSize();
 
     setResult(data);
 }
 
 void AppController::setPreferencesAction()
 {
-    requireParams({"json"});
+    requireParams({u"json"_qs});
 
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
-    const QVariantHash m = QJsonDocument::fromJson(params()["json"].toUtf8()).toVariant().toHash();
+    const QVariantHash m = QJsonDocument::fromJson(params()[u"json"_qs].toUtf8()).toVariant().toHash();
 
     QVariantHash::ConstIterator it;
-    const auto hasKey = [&it, &m](const char *key) -> bool
+    const auto hasKey = [&it, &m](const QString &key) -> bool
     {
-        it = m.find(QLatin1String(key));
+        it = m.find(key);
         return (it != m.constEnd());
     };
 
     // Downloads
     // When adding a torrent
-    if (hasKey("torrent_content_layout"))
+    if (hasKey(u"torrent_content_layout"_qs))
         session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
-    if (hasKey("start_paused_enabled"))
+    if (hasKey(u"start_paused_enabled"_qs))
         session->setAddTorrentPaused(it.value().toBool());
-    if (hasKey("auto_delete_mode"))
+    if (hasKey(u"auto_delete_mode"_qs))
         TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
 
-    if (hasKey("preallocate_all"))
+    if (hasKey(u"preallocate_all"_qs))
         session->setPreallocationEnabled(it.value().toBool());
-    if (hasKey("incomplete_files_ext"))
+    if (hasKey(u"incomplete_files_ext"_qs))
         session->setAppendExtensionEnabled(it.value().toBool());
 
     // Saving Management
-    if (hasKey("auto_tmm_enabled"))
+    if (hasKey(u"auto_tmm_enabled"_qs))
         session->setAutoTMMDisabledByDefault(!it.value().toBool());
-    if (hasKey("torrent_changed_tmm_enabled"))
+    if (hasKey(u"torrent_changed_tmm_enabled"_qs))
         session->setDisableAutoTMMWhenCategoryChanged(!it.value().toBool());
-    if (hasKey("save_path_changed_tmm_enabled"))
+    if (hasKey(u"save_path_changed_tmm_enabled"_qs))
         session->setDisableAutoTMMWhenDefaultSavePathChanged(!it.value().toBool());
-    if (hasKey("category_changed_tmm_enabled"))
+    if (hasKey(u"category_changed_tmm_enabled"_qs))
         session->setDisableAutoTMMWhenCategorySavePathChanged(!it.value().toBool());
-    if (hasKey("save_path"))
+    if (hasKey(u"save_path"_qs))
         session->setSavePath(Path(it.value().toString()));
-    if (hasKey("temp_path_enabled"))
+    if (hasKey(u"temp_path_enabled"_qs))
         session->setDownloadPathEnabled(it.value().toBool());
-    if (hasKey("temp_path"))
+    if (hasKey(u"temp_path"_qs))
         session->setDownloadPath(Path(it.value().toString()));
-    if (hasKey("use_category_paths_in_manual_mode"))
+    if (hasKey(u"use_category_paths_in_manual_mode"_qs))
         session->setUseCategoryPathsInManualMode(it.value().toBool());
-    if (hasKey("export_dir"))
+    if (hasKey(u"export_dir"_qs))
         session->setTorrentExportDirectory(Path(it.value().toString()));
-    if (hasKey("export_dir_fin"))
+    if (hasKey(u"export_dir_fin"_qs))
         session->setFinishedTorrentExportDirectory(Path(it.value().toString()));
 
     // TODO: The following code is deprecated. Delete it once replaced by updated API method.
     // === BEGIN DEPRECATED CODE === //
-    if (hasKey("scan_dirs"))
+    if (hasKey(u"scan_dirs"_qs))
     {
         PathList scanDirs;
         TorrentFilesWatcher *fsWatcher = TorrentFilesWatcher::instance();
@@ -472,166 +472,166 @@ void AppController::setPreferencesAction()
     // === END DEPRECATED CODE === //
 
     // Email notification upon download completion
-    if (hasKey("mail_notification_enabled"))
+    if (hasKey(u"mail_notification_enabled"_qs))
         pref->setMailNotificationEnabled(it.value().toBool());
-    if (hasKey("mail_notification_sender"))
+    if (hasKey(u"mail_notification_sender"_qs))
         pref->setMailNotificationSender(it.value().toString());
-    if (hasKey("mail_notification_email"))
+    if (hasKey(u"mail_notification_email"_qs))
         pref->setMailNotificationEmail(it.value().toString());
-    if (hasKey("mail_notification_smtp"))
+    if (hasKey(u"mail_notification_smtp"_qs))
         pref->setMailNotificationSMTP(it.value().toString());
-    if (hasKey("mail_notification_ssl_enabled"))
+    if (hasKey(u"mail_notification_ssl_enabled"_qs))
         pref->setMailNotificationSMTPSSL(it.value().toBool());
-    if (hasKey("mail_notification_auth_enabled"))
+    if (hasKey(u"mail_notification_auth_enabled"_qs))
         pref->setMailNotificationSMTPAuth(it.value().toBool());
-    if (hasKey("mail_notification_username"))
+    if (hasKey(u"mail_notification_username"_qs))
         pref->setMailNotificationSMTPUsername(it.value().toString());
-    if (hasKey("mail_notification_password"))
+    if (hasKey(u"mail_notification_password"_qs))
         pref->setMailNotificationSMTPPassword(it.value().toString());
     // Run an external program on torrent completion
-    if (hasKey("autorun_enabled"))
+    if (hasKey(u"autorun_enabled"_qs))
         pref->setAutoRunEnabled(it.value().toBool());
-    if (hasKey("autorun_program"))
+    if (hasKey(u"autorun_program"_qs))
         pref->setAutoRunProgram(it.value().toString());
 
     // Connection
     // Listening Port
-    if (hasKey("random_port") && it.value().toBool())  // deprecated
+    if (hasKey(u"random_port"_qs) && it.value().toBool())  // deprecated
     {
         session->setPort(0);
     }
-    else if (hasKey("listen_port"))
+    else if (hasKey(u"listen_port"_qs))
     {
         session->setPort(it.value().toInt());
     }
-    if (hasKey("upnp"))
+    if (hasKey(u"upnp"_qs))
         Net::PortForwarder::instance()->setEnabled(it.value().toBool());
     // Connections Limits
-    if (hasKey("max_connec"))
+    if (hasKey(u"max_connec"_qs))
         session->setMaxConnections(it.value().toInt());
-    if (hasKey("max_connec_per_torrent"))
+    if (hasKey(u"max_connec_per_torrent"_qs))
         session->setMaxConnectionsPerTorrent(it.value().toInt());
-    if (hasKey("max_uploads"))
+    if (hasKey(u"max_uploads"_qs))
         session->setMaxUploads(it.value().toInt());
-    if (hasKey("max_uploads_per_torrent"))
+    if (hasKey(u"max_uploads_per_torrent"_qs))
         session->setMaxUploadsPerTorrent(it.value().toInt());
 
     // Proxy Server
     auto proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
-    if (hasKey("proxy_type"))
+    if (hasKey(u"proxy_type"_qs))
         proxyConf.type = static_cast<Net::ProxyType>(it.value().toInt());
-    if (hasKey("proxy_ip"))
+    if (hasKey(u"proxy_ip"_qs))
         proxyConf.ip = it.value().toString();
-    if (hasKey("proxy_port"))
+    if (hasKey(u"proxy_port"_qs))
         proxyConf.port = it.value().toUInt();
-    if (hasKey("proxy_username"))
+    if (hasKey(u"proxy_username"_qs))
         proxyConf.username = it.value().toString();
-    if (hasKey("proxy_password"))
+    if (hasKey(u"proxy_password"_qs))
         proxyConf.password = it.value().toString();
     proxyManager->setProxyConfiguration(proxyConf);
 
-    if (hasKey("proxy_peer_connections"))
+    if (hasKey(u"proxy_peer_connections"_qs))
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
-    if (hasKey("proxy_torrents_only"))
+    if (hasKey(u"proxy_torrents_only"_qs))
         proxyManager->setProxyOnlyForTorrents(it.value().toBool());
 
     // IP Filtering
-    if (hasKey("ip_filter_enabled"))
+    if (hasKey(u"ip_filter_enabled"_qs))
         session->setIPFilteringEnabled(it.value().toBool());
-    if (hasKey("ip_filter_path"))
+    if (hasKey(u"ip_filter_path"_qs))
         session->setIPFilterFile(Path(it.value().toString()));
-    if (hasKey("ip_filter_trackers"))
+    if (hasKey(u"ip_filter_trackers"_qs))
         session->setTrackerFilteringEnabled(it.value().toBool());
-    if (hasKey("banned_IPs"))
-        session->setBannedIPs(it.value().toString().split('\n', Qt::SkipEmptyParts));
+    if (hasKey(u"banned_IPs"_qs))
+        session->setBannedIPs(it.value().toString().split(u'\n', Qt::SkipEmptyParts));
 
     // Speed
     // Global Rate Limits
-    if (hasKey("dl_limit"))
+    if (hasKey(u"dl_limit"_qs))
         session->setGlobalDownloadSpeedLimit(it.value().toInt());
-    if (hasKey("up_limit"))
+    if (hasKey(u"up_limit"_qs))
         session->setGlobalUploadSpeedLimit(it.value().toInt());
-    if (hasKey("alt_dl_limit"))
+    if (hasKey(u"alt_dl_limit"_qs))
         session->setAltGlobalDownloadSpeedLimit(it.value().toInt());
-    if (hasKey("alt_up_limit"))
+    if (hasKey(u"alt_up_limit"_qs))
        session->setAltGlobalUploadSpeedLimit(it.value().toInt());
-    if (hasKey("bittorrent_protocol"))
+    if (hasKey(u"bittorrent_protocol"_qs))
         session->setBTProtocol(static_cast<BitTorrent::BTProtocol>(it.value().toInt()));
-    if (hasKey("limit_utp_rate"))
+    if (hasKey(u"limit_utp_rate"_qs))
         session->setUTPRateLimited(it.value().toBool());
-    if (hasKey("limit_tcp_overhead"))
+    if (hasKey(u"limit_tcp_overhead"_qs))
         session->setIncludeOverheadInLimits(it.value().toBool());
-    if (hasKey("limit_lan_peers"))
+    if (hasKey(u"limit_lan_peers"_qs))
         session->setIgnoreLimitsOnLAN(!it.value().toBool());
     // Scheduling
-    if (hasKey("scheduler_enabled"))
+    if (hasKey(u"scheduler_enabled"_qs))
         session->setBandwidthSchedulerEnabled(it.value().toBool());
-    if (m.contains("schedule_from_hour") && m.contains("schedule_from_min"))
-        pref->setSchedulerStartTime(QTime(m["schedule_from_hour"].toInt(), m["schedule_from_min"].toInt()));
-    if (m.contains("schedule_to_hour") && m.contains("schedule_to_min"))
-        pref->setSchedulerEndTime(QTime(m["schedule_to_hour"].toInt(), m["schedule_to_min"].toInt()));
-    if (hasKey("scheduler_days"))
+    if (m.contains(u"schedule_from_hour"_qs) && m.contains(u"schedule_from_min"_qs))
+        pref->setSchedulerStartTime(QTime(m[u"schedule_from_hour"_qs].toInt(), m[u"schedule_from_min"_qs].toInt()));
+    if (m.contains(u"schedule_to_hour"_qs) && m.contains(u"schedule_to_min"_qs))
+        pref->setSchedulerEndTime(QTime(m[u"schedule_to_hour"_qs].toInt(), m[u"schedule_to_min"_qs].toInt()));
+    if (hasKey(u"scheduler_days"_qs))
         pref->setSchedulerDays(static_cast<Scheduler::Days>(it.value().toInt()));
 
     // Bittorrent
     // Privacy
-    if (hasKey("dht"))
+    if (hasKey(u"dht"_qs))
         session->setDHTEnabled(it.value().toBool());
-    if (hasKey("pex"))
+    if (hasKey(u"pex"_qs))
         session->setPeXEnabled(it.value().toBool());
-    if (hasKey("lsd"))
+    if (hasKey(u"lsd"_qs))
         session->setLSDEnabled(it.value().toBool());
-    if (hasKey("encryption"))
+    if (hasKey(u"encryption"_qs))
         session->setEncryption(it.value().toInt());
-    if (hasKey("anonymous_mode"))
+    if (hasKey(u"anonymous_mode"_qs))
         session->setAnonymousModeEnabled(it.value().toBool());
     // Max active checking torrents
-    if (hasKey("max_active_checking_torrents"))
+    if (hasKey(u"max_active_checking_torrents"_qs))
         session->setMaxActiveCheckingTorrents(it.value().toInt());
     // Torrent Queueing
-    if (hasKey("queueing_enabled"))
+    if (hasKey(u"queueing_enabled"_qs))
         session->setQueueingSystemEnabled(it.value().toBool());
-    if (hasKey("max_active_downloads"))
+    if (hasKey(u"max_active_downloads"_qs))
         session->setMaxActiveDownloads(it.value().toInt());
-    if (hasKey("max_active_torrents"))
+    if (hasKey(u"max_active_torrents"_qs))
         session->setMaxActiveTorrents(it.value().toInt());
-    if (hasKey("max_active_uploads"))
+    if (hasKey(u"max_active_uploads"_qs))
         session->setMaxActiveUploads(it.value().toInt());
-    if (hasKey("dont_count_slow_torrents"))
+    if (hasKey(u"dont_count_slow_torrents"_qs))
         session->setIgnoreSlowTorrentsForQueueing(it.value().toBool());
-    if (hasKey("slow_torrent_dl_rate_threshold"))
+    if (hasKey(u"slow_torrent_dl_rate_threshold"_qs))
         session->setDownloadRateForSlowTorrents(it.value().toInt());
-    if (hasKey("slow_torrent_ul_rate_threshold"))
+    if (hasKey(u"slow_torrent_ul_rate_threshold"_qs))
         session->setUploadRateForSlowTorrents(it.value().toInt());
-    if (hasKey("slow_torrent_inactive_timer"))
+    if (hasKey(u"slow_torrent_inactive_timer"_qs))
         session->setSlowTorrentsInactivityTimer(it.value().toInt());
     // Share Ratio Limiting
-    if (hasKey("max_ratio_enabled"))
+    if (hasKey(u"max_ratio_enabled"_qs))
     {
         if (it.value().toBool())
-            session->setGlobalMaxRatio(m["max_ratio"].toReal());
+            session->setGlobalMaxRatio(m[u"max_ratio"_qs].toReal());
         else
             session->setGlobalMaxRatio(-1);
     }
-    if (hasKey("max_seeding_time_enabled"))
+    if (hasKey(u"max_seeding_time_enabled"_qs))
     {
         if (it.value().toBool())
-            session->setGlobalMaxSeedingMinutes(m["max_seeding_time"].toInt());
+            session->setGlobalMaxSeedingMinutes(m[u"max_seeding_time"_qs].toInt());
         else
             session->setGlobalMaxSeedingMinutes(-1);
     }
-    if (hasKey("max_ratio_act"))
+    if (hasKey(u"max_ratio_act"_qs))
         session->setMaxRatioAction(static_cast<MaxRatioAction>(it.value().toInt()));
     // Add trackers
-    if (hasKey("add_trackers_enabled"))
+    if (hasKey(u"add_trackers_enabled"_qs))
         session->setAddTrackersEnabled(it.value().toBool());
-    if (hasKey("add_trackers"))
+    if (hasKey(u"add_trackers"_qs))
         session->setAdditionalTrackers(it.value().toString());
 
     // Web UI
     // Language
-    if (hasKey("locale"))
+    if (hasKey(u"locale"_qs))
     {
         QString locale = it.value().toString();
         if (pref->getLocale() != locale)
@@ -650,96 +650,96 @@ void AppController::setPreferencesAction()
             pref->setLocale(locale);
         }
     }
-    if (hasKey("performance_warning"))
+    if (hasKey(u"performance_warning"_qs))
         session->setPerformanceWarningEnabled(it.value().toBool());
     // HTTP Server
-    if (hasKey("web_ui_domain_list"))
+    if (hasKey(u"web_ui_domain_list"_qs))
         pref->setServerDomains(it.value().toString());
-    if (hasKey("web_ui_address"))
+    if (hasKey(u"web_ui_address"_qs))
         pref->setWebUiAddress(it.value().toString());
-    if (hasKey("web_ui_port"))
+    if (hasKey(u"web_ui_port"_qs))
         pref->setWebUiPort(it.value().toUInt());
-    if (hasKey("web_ui_upnp"))
+    if (hasKey(u"web_ui_upnp"_qs))
         pref->setUPnPForWebUIPort(it.value().toBool());
-    if (hasKey("use_https"))
+    if (hasKey(u"use_https"_qs))
         pref->setWebUiHttpsEnabled(it.value().toBool());
-    if (hasKey("web_ui_https_cert_path"))
+    if (hasKey(u"web_ui_https_cert_path"_qs))
         pref->setWebUIHttpsCertificatePath(Path(it.value().toString()));
-    if (hasKey("web_ui_https_key_path"))
+    if (hasKey(u"web_ui_https_key_path"_qs))
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
-    if (hasKey("web_ui_username"))
+    if (hasKey(u"web_ui_username"_qs))
         pref->setWebUiUsername(it.value().toString());
-    if (hasKey("web_ui_password"))
+    if (hasKey(u"web_ui_password"_qs))
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
-    if (hasKey("bypass_local_auth"))
+    if (hasKey(u"bypass_local_auth"_qs))
         pref->setWebUiLocalAuthEnabled(!it.value().toBool());
-    if (hasKey("bypass_auth_subnet_whitelist_enabled"))
+    if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_qs))
         pref->setWebUiAuthSubnetWhitelistEnabled(it.value().toBool());
-    if (hasKey("bypass_auth_subnet_whitelist"))
+    if (hasKey(u"bypass_auth_subnet_whitelist"_qs))
     {
         // recognize new lines and commas as delimiters
-        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression("\n|,"), Qt::SkipEmptyParts));
+        pref->setWebUiAuthSubnetWhitelist(it.value().toString().split(QRegularExpression(u"\n|,"_qs), Qt::SkipEmptyParts));
     }
-    if (hasKey("web_ui_max_auth_fail_count"))
+    if (hasKey(u"web_ui_max_auth_fail_count"_qs))
         pref->setWebUIMaxAuthFailCount(it.value().toInt());
-    if (hasKey("web_ui_ban_duration"))
+    if (hasKey(u"web_ui_ban_duration"_qs))
         pref->setWebUIBanDuration(std::chrono::seconds {it.value().toInt()});
-    if (hasKey("web_ui_session_timeout"))
+    if (hasKey(u"web_ui_session_timeout"_qs))
         pref->setWebUISessionTimeout(it.value().toInt());
     // Use alternative Web UI
-    if (hasKey("alternative_webui_enabled"))
+    if (hasKey(u"alternative_webui_enabled"_qs))
         pref->setAltWebUiEnabled(it.value().toBool());
-    if (hasKey("alternative_webui_path"))
+    if (hasKey(u"alternative_webui_path"_qs))
         pref->setWebUiRootFolder(Path(it.value().toString()));
     // Security
-    if (hasKey("web_ui_clickjacking_protection_enabled"))
+    if (hasKey(u"web_ui_clickjacking_protection_enabled"_qs))
         pref->setWebUiClickjackingProtectionEnabled(it.value().toBool());
-    if (hasKey("web_ui_csrf_protection_enabled"))
+    if (hasKey(u"web_ui_csrf_protection_enabled"_qs))
         pref->setWebUiCSRFProtectionEnabled(it.value().toBool());
-    if (hasKey("web_ui_secure_cookie_enabled"))
+    if (hasKey(u"web_ui_secure_cookie_enabled"_qs))
         pref->setWebUiSecureCookieEnabled(it.value().toBool());
-    if (hasKey("web_ui_host_header_validation_enabled"))
+    if (hasKey(u"web_ui_host_header_validation_enabled"_qs))
         pref->setWebUIHostHeaderValidationEnabled(it.value().toBool());
     // Custom HTTP headers
-    if (hasKey("web_ui_use_custom_http_headers_enabled"))
+    if (hasKey(u"web_ui_use_custom_http_headers_enabled"_qs))
         pref->setWebUICustomHTTPHeadersEnabled(it.value().toBool());
-    if (hasKey("web_ui_custom_http_headers"))
+    if (hasKey(u"web_ui_custom_http_headers"_qs))
         pref->setWebUICustomHTTPHeaders(it.value().toString());
     // Reverse proxy
-    if (hasKey("web_ui_reverse_proxy_enabled"))
+    if (hasKey(u"web_ui_reverse_proxy_enabled"_qs))
         pref->setWebUIReverseProxySupportEnabled(it.value().toBool());
-    if (hasKey("web_ui_reverse_proxies_list"))
+    if (hasKey(u"web_ui_reverse_proxies_list"_qs))
         pref->setWebUITrustedReverseProxiesList(it.value().toString());
     // Update my dynamic domain name
-    if (hasKey("dyndns_enabled"))
+    if (hasKey(u"dyndns_enabled"_qs))
         pref->setDynDNSEnabled(it.value().toBool());
-    if (hasKey("dyndns_service"))
+    if (hasKey(u"dyndns_service"_qs))
         pref->setDynDNSService(static_cast<DNS::Service>(it.value().toInt()));
-    if (hasKey("dyndns_username"))
+    if (hasKey(u"dyndns_username"_qs))
         pref->setDynDNSUsername(it.value().toString());
-    if (hasKey("dyndns_password"))
+    if (hasKey(u"dyndns_password"_qs))
         pref->setDynDNSPassword(it.value().toString());
-    if (hasKey("dyndns_domain"))
+    if (hasKey(u"dyndns_domain"_qs))
         pref->setDynDomainName(it.value().toString());
 
-    if (hasKey("rss_refresh_interval"))
+    if (hasKey(u"rss_refresh_interval"_qs))
         RSS::Session::instance()->setRefreshInterval(it.value().toInt());
-    if (hasKey("rss_max_articles_per_feed"))
+    if (hasKey(u"rss_max_articles_per_feed"_qs))
         RSS::Session::instance()->setMaxArticlesPerFeed(it.value().toInt());
-    if (hasKey("rss_processing_enabled"))
+    if (hasKey(u"rss_processing_enabled"_qs))
         RSS::Session::instance()->setProcessingEnabled(it.value().toBool());
-    if (hasKey("rss_auto_downloading_enabled"))
+    if (hasKey(u"rss_auto_downloading_enabled"_qs))
         RSS::AutoDownloader::instance()->setProcessingEnabled(it.value().toBool());
-    if (hasKey("rss_download_repack_proper_episodes"))
+    if (hasKey(u"rss_download_repack_proper_episodes"_qs))
         RSS::AutoDownloader::instance()->setDownloadRepacks(it.value().toBool());
-    if (hasKey("rss_smart_episode_filters"))
-        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split('\n'));
+    if (hasKey(u"rss_smart_episode_filters"_qs))
+        RSS::AutoDownloader::instance()->setSmartEpisodeFilters(it.value().toString().split(u'\n'));
 
     // Advanced settings
     // qBittorrent preferences
     // Current network interface
-    if (hasKey("current_network_interface"))
+    if (hasKey(u"current_network_interface"_qs))
     {
         const QString ifaceValue {it.value().toString()};
 
@@ -754,133 +754,133 @@ void AppController::setPreferencesAction()
         session->setNetworkInterfaceName(ifaceName);
     }
     // Current network interface address
-    if (hasKey("current_interface_address"))
+    if (hasKey(u"current_interface_address"_qs))
     {
         const QHostAddress ifaceAddress {it.value().toString().trimmed()};
         session->setNetworkInterfaceAddress(ifaceAddress.isNull() ? QString {} : ifaceAddress.toString());
     }
     // Save resume data interval
-    if (hasKey("save_resume_data_interval"))
+    if (hasKey(u"save_resume_data_interval"_qs))
         session->setSaveResumeDataInterval(it.value().toInt());
     // Recheck completed torrents
-    if (hasKey("recheck_completed_torrents"))
+    if (hasKey(u"recheck_completed_torrents"_qs))
         pref->recheckTorrentsOnCompletion(it.value().toBool());
     // Resolve peer countries
-    if (hasKey("resolve_peer_countries"))
+    if (hasKey(u"resolve_peer_countries"_qs))
         pref->resolvePeerCountries(it.value().toBool());
     // Reannounce to all trackers when ip/port changed
-    if (hasKey("reannounce_when_address_changed"))
+    if (hasKey(u"reannounce_when_address_changed"_qs))
         session->setReannounceWhenAddressChangedEnabled(it.value().toBool());
 
     // libtorrent preferences
     // Async IO threads
-    if (hasKey("async_io_threads"))
+    if (hasKey(u"async_io_threads"_qs))
         session->setAsyncIOThreads(it.value().toInt());
     // Hashing threads
-    if (hasKey("hashing_threads"))
+    if (hasKey(u"hashing_threads"_qs))
         session->setHashingThreads(it.value().toInt());
     // File pool size
-    if (hasKey("file_pool_size"))
+    if (hasKey(u"file_pool_size"_qs))
         session->setFilePoolSize(it.value().toInt());
     // Checking Memory Usage
-    if (hasKey("checking_memory_use"))
+    if (hasKey(u"checking_memory_use"_qs))
         session->setCheckingMemUsage(it.value().toInt());
     // Disk write cache
-    if (hasKey("disk_cache"))
+    if (hasKey(u"disk_cache"_qs))
         session->setDiskCacheSize(it.value().toInt());
-    if (hasKey("disk_cache_ttl"))
+    if (hasKey(u"disk_cache_ttl"_qs))
         session->setDiskCacheTTL(it.value().toInt());
     // Disk queue size
-    if (hasKey("disk_queue_size"))
+    if (hasKey(u"disk_queue_size"_qs))
         session->setDiskQueueSize(it.value().toLongLong());
     // Enable OS cache
-    if (hasKey("enable_os_cache"))
+    if (hasKey(u"enable_os_cache"_qs))
         session->setUseOSCache(it.value().toBool());
     // Coalesce reads & writes
-    if (hasKey("enable_coalesce_read_write"))
+    if (hasKey(u"enable_coalesce_read_write"_qs))
         session->setCoalesceReadWriteEnabled(it.value().toBool());
     // Piece extent affinity
-    if (hasKey("enable_piece_extent_affinity"))
+    if (hasKey(u"enable_piece_extent_affinity"_qs))
         session->setPieceExtentAffinity(it.value().toBool());
     // Suggest mode
-    if (hasKey("enable_upload_suggestions"))
+    if (hasKey(u"enable_upload_suggestions"_qs))
         session->setSuggestMode(it.value().toBool());
     // Send buffer watermark
-    if (hasKey("send_buffer_watermark"))
+    if (hasKey(u"send_buffer_watermark"_qs))
         session->setSendBufferWatermark(it.value().toInt());
-    if (hasKey("send_buffer_low_watermark"))
+    if (hasKey(u"send_buffer_low_watermark"_qs))
         session->setSendBufferLowWatermark(it.value().toInt());
-    if (hasKey("send_buffer_watermark_factor"))
+    if (hasKey(u"send_buffer_watermark_factor"_qs))
         session->setSendBufferWatermarkFactor(it.value().toInt());
     // Outgoing connections per second
-    if (hasKey("connection_speed"))
+    if (hasKey(u"connection_speed"_qs))
         session->setConnectionSpeed(it.value().toInt());
     // Socket listen backlog size
-    if (hasKey("socket_backlog_size"))
+    if (hasKey(u"socket_backlog_size"_qs))
         session->setSocketBacklogSize(it.value().toInt());
     // Outgoing ports
-    if (hasKey("outgoing_ports_min"))
+    if (hasKey(u"outgoing_ports_min"_qs))
         session->setOutgoingPortsMin(it.value().toInt());
-    if (hasKey("outgoing_ports_max"))
+    if (hasKey(u"outgoing_ports_max"_qs))
         session->setOutgoingPortsMax(it.value().toInt());
     // UPnP lease duration
-    if (hasKey("upnp_lease_duration"))
+    if (hasKey(u"upnp_lease_duration"_qs))
         session->setUPnPLeaseDuration(it.value().toInt());
     // Type of service
-    if (hasKey("peer_tos"))
+    if (hasKey(u"peer_tos"_qs))
         session->setPeerToS(it.value().toInt());
     // uTP-TCP mixed mode
-    if (hasKey("utp_tcp_mixed_mode"))
+    if (hasKey(u"utp_tcp_mixed_mode"_qs))
         session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(it.value().toInt()));
     // Support internationalized domain name (IDN)
-    if (hasKey("idn_support_enabled"))
+    if (hasKey(u"idn_support_enabled"_qs))
         session->setIDNSupportEnabled(it.value().toBool());
     // Multiple connections per IP
-    if (hasKey("enable_multi_connections_from_same_ip"))
+    if (hasKey(u"enable_multi_connections_from_same_ip"_qs))
         session->setMultiConnectionsPerIpEnabled(it.value().toBool());
     // Validate HTTPS tracker certificate
-    if (hasKey("validate_https_tracker_certificate"))
+    if (hasKey(u"validate_https_tracker_certificate"_qs))
         session->setValidateHTTPSTrackerCertificate(it.value().toBool());
     // SSRF mitigation
-    if (hasKey("ssrf_mitigation"))
+    if (hasKey(u"ssrf_mitigation"_qs))
         session->setSSRFMitigationEnabled(it.value().toBool());
     // Disallow connection to peers on privileged ports
-    if (hasKey("block_peers_on_privileged_ports"))
+    if (hasKey(u"block_peers_on_privileged_ports"_qs))
         session->setBlockPeersOnPrivilegedPorts(it.value().toBool());
     // Embedded tracker
-    if (hasKey("embedded_tracker_port"))
+    if (hasKey(u"embedded_tracker_port"_qs))
         pref->setTrackerPort(it.value().toInt());
-    if (hasKey("enable_embedded_tracker"))
+    if (hasKey(u"enable_embedded_tracker"_qs))
         session->setTrackerEnabled(it.value().toBool());
     // Choking algorithm
-    if (hasKey("upload_slots_behavior"))
+    if (hasKey(u"upload_slots_behavior"_qs))
         session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(it.value().toInt()));
     // Seed choking algorithm
-    if (hasKey("upload_choking_algorithm"))
+    if (hasKey(u"upload_choking_algorithm"_qs))
         session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(it.value().toInt()));
     // Announce
-    if (hasKey("announce_to_all_trackers"))
+    if (hasKey(u"announce_to_all_trackers"_qs))
         session->setAnnounceToAllTrackers(it.value().toBool());
-    if (hasKey("announce_to_all_tiers"))
+    if (hasKey(u"announce_to_all_tiers"_qs))
         session->setAnnounceToAllTiers(it.value().toBool());
-    if (hasKey("announce_ip"))
+    if (hasKey(u"announce_ip"_qs))
     {
         const QHostAddress announceAddr {it.value().toString().trimmed()};
         session->setAnnounceIP(announceAddr.isNull() ? QString {} : announceAddr.toString());
     }
-    if (hasKey("max_concurrent_http_announces"))
+    if (hasKey(u"max_concurrent_http_announces"_qs))
         session->setMaxConcurrentHTTPAnnounces(it.value().toInt());
-    if (hasKey("stop_tracker_timeout"))
+    if (hasKey(u"stop_tracker_timeout"_qs))
         session->setStopTrackerTimeout(it.value().toInt());
     // Peer Turnover
-    if (hasKey("peer_turnover"))
+    if (hasKey(u"peer_turnover"_qs))
         session->setPeerTurnover(it.value().toInt());
-    if (hasKey("peer_turnover_cutoff"))
+    if (hasKey(u"peer_turnover_cutoff"_qs))
         session->setPeerTurnoverCutoff(it.value().toInt());
-    if (hasKey("peer_turnover_interval"))
+    if (hasKey(u"peer_turnover_interval"_qs))
         session->setPeerTurnoverInterval(it.value().toInt());
     // Maximum outstanding requests to a single peer
-    if (hasKey("request_queue_size"))
+    if (hasKey(u"request_queue_size"_qs))
         session->setRequestQueueSize(it.value().toInt());
 
     // Save preferences
@@ -901,8 +901,8 @@ void AppController::networkInterfaceListAction()
         {
             ifaceList.append(QJsonObject
             {
-                {"name", iface.humanReadableName()},
-                {"value", iface.name()}
+                {u"name"_qs, iface.humanReadableName()},
+                {u"value"_qs, iface.name()}
             });
         }
     }
@@ -912,9 +912,9 @@ void AppController::networkInterfaceListAction()
 
 void AppController::networkInterfaceAddressListAction()
 {
-    requireParams({"iface"});
+    requireParams({u"iface"_qs});
 
-    const QString ifaceName = params().value("iface");
+    const QString ifaceName = params().value(u"iface"_qs);
     QJsonArray addressList;
 
     const auto appendAddress = [&addressList](const QHostAddress &addr)

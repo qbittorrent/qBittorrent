@@ -3170,7 +3170,7 @@ void Session::setOSMemoryPriority(const OSMemoryPriority priority)
 void Session::applyOSMemoryPriority() const
 {
     using SETPROCESSINFORMATION = BOOL (WINAPI *)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>("Kernel32.dll", "SetProcessInformation");
+    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_qs, "SetProcessInformation");
     if (!setProcessInformation)  // only available on Windows >= 8
         return;
 

@@ -186,7 +186,7 @@ namespace
             bool found = false;
             while (!found && !versions.empty())
             {
-                const QString version = versions.takeLast() + "\\InstallPath";
+                const QString version = versions.takeLast() + u"\\InstallPath";
                 LPWSTR lpSubkey = new WCHAR[version.size() + 1];
                 version.toWCharArray(lpSubkey);
                 lpSubkey[version.size()] = 0;
@@ -205,15 +205,15 @@ namespace
                     {
                         const QDir baseDir {path};
 
-                        if (baseDir.exists("python3.exe"))
+                        if (baseDir.exists(u"python3.exe"_qs))
                         {
                             found = true;
-                            path = baseDir.filePath("python3.exe");
+                            path = baseDir.filePath(u"python3.exe"_qs);
                         }
-                        else if (baseDir.exists("python.exe"))
+                        else if (baseDir.exists(u"python.exe"_qs))
                         {
                             found = true;
-                            path = baseDir.filePath("python.exe");
+                            path = baseDir.filePath(u"python.exe"_qs);
                         }
                     }
                 }
@@ -243,14 +243,14 @@ namespace
             return path;
 
         // Fallback: Detect python from default locations
-        const QFileInfoList dirs = QDir("C:/").entryInfoList({"Python*"}, QDir::Dirs, (QDir::Name | QDir::Reversed));
+        const QFileInfoList dirs = QDir(u"C:/"_qs).entryInfoList({u"Python*"_qs}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
-            const QString py3Path {info.absolutePath() + "/python3.exe"};
+            const QString py3Path {info.absolutePath() + u"/python3.exe"};
             if (QFile::exists(py3Path))
                 return py3Path;
 
-            const QString pyPath {info.absolutePath() + "/python.exe"};
+            const QString pyPath {info.absolutePath() + u"/python.exe"};
             if (QFile::exists(pyPath))
                 return pyPath;
         }

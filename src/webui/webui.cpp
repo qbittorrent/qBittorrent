@@ -112,7 +112,7 @@ void WebUI::configure()
 
         if (!m_httpServer->isListening())
         {
-            const auto address = (serverAddressString == "*" || serverAddressString.isEmpty())
+            const auto address = ((serverAddressString == u"*") || serverAddressString.isEmpty())
                 ? QHostAddress::Any : QHostAddress(serverAddressString);
             bool success = m_httpServer->listen(address, m_port);
             if (success)

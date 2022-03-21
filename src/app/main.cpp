@@ -179,10 +179,6 @@ int main(int argc, char *argv[])
                                  .arg(QLatin1String("-h (or --help)")));
         }
 
-        // Set environment variable
-        if (!qputenv("QBITTORRENT", QBT_VERSION))
-            fprintf(stderr, "Couldn't set environment variable...\n");
-
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
         if (firstTimeUser)
         {
@@ -420,9 +416,9 @@ bool userAgreesWithLegalNotice()
 
 #ifdef DISABLE_GUI
     const QString eula = QString::fromLatin1("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
-        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
-        + QObject::tr("No further notices will be issued.") + "\n\n"
-        + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
+        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
+        + QObject::tr("No further notices will be issued.") + u"\n\n"
+        + QObject::tr("Press %1 key to accept and continue...").arg(u"'y'"_qs) + u'\n';
     printf("%s", qUtf8Printable(eula));
 
     const char ret = getchar(); // Read pressed key

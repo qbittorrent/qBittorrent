@@ -30,6 +30,7 @@
 
 #include <QString>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/password.h"
@@ -45,8 +46,8 @@ void AuthController::loginAction()
     }
 
     const QString clientAddr {sessionManager()->clientId()};
-    const QString usernameFromWeb {params()["username"]};
-    const QString passwordFromWeb {params()["password"]};
+    const QString usernameFromWeb {params()[u"username"_qs]};
+    const QString passwordFromWeb {params()[u"password"_qs]};
 
     if (isBanned())
     {

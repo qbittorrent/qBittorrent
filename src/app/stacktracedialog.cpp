@@ -50,7 +50,7 @@ StacktraceDialog::~StacktraceDialog()
 void StacktraceDialog::setStacktraceString(const QString &sigName, const QString &trace)
 {
     // try to call Qt function as less as possible
-    const QString htmlStr = QString(
+    const QString htmlStr = QStringLiteral(
         "<p align=center><b><font size=7 color=red>"
         "qBittorrent has crashed"
         "</font></b></p>"

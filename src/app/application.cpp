@@ -44,6 +44,7 @@
 #endif
 
 #include <QAtomicInt>
+#include <QByteArray>
 #include <QDebug>
 #include <QLibraryInfo>
 #include <QProcess>
@@ -326,7 +327,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
     {
-        if (str.endsWith('\\'))
+        if (str.endsWith(u'\\'))
             return str.mid(0, (str.length() -1));
         return str;
     };
@@ -677,11 +678,11 @@ int Application::exec(const QStringList &params)
         + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
     printf("%s\n", qUtf8Printable(mesg));
 
-    if (pref->getWebUIPassword() == "ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")
+    if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
     {
-        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + '\n'
-            + tr("The Web UI administrator password has not been changed from the default: %1").arg("adminadmin") + '\n'
-            + tr("This is a security risk, please change your password in program preferences.") + '\n';
+        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
+            + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_qs) + u'\n'
+            + tr("This is a security risk, please change your password in program preferences.") + u'\n';
         printf("%s", qUtf8Printable(warning));
     }
 #endif // DISABLE_WEBUI

@@ -63,7 +63,7 @@
 #include "api/transfercontroller.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
-const char C_SID[] = "SID"; // name of session id cookie
+const auto C_SID = QByteArrayLiteral("SID"); // name of session id cookie
 
 const QString PATH_PREFIX_ICONS {QStringLiteral("/icons/")};
 const QString WWW_FOLDER {QStringLiteral(":/www")};
@@ -80,7 +80,7 @@ namespace
 
         for (const auto &cookie : cookies)
         {
-            const int idx = cookie.indexOf('=');
+            const int idx = cookie.indexOf(u'=');
             if (idx < 0)
                 continue;
 
@@ -143,8 +143,8 @@ WebApplication::~WebApplication()
 
 void WebApplication::sendWebUIFile()
 {
-    const QStringList pathItems {request().path.split('/', Qt::SkipEmptyParts)};
-    if (pathItems.contains(".") || pathItems.contains(".."))
+    const QStringList pathItems {request().path.split(u'/', Qt::SkipEmptyParts)};
+    if (pathItems.contains(u".") || pathItems.contains(u".."))
         throw InternalServerErrorHTTPError();
 
     if (!m_isAltUIUsed)
@@ -178,7 +178,7 @@ void WebApplication::sendWebUIFile()
 #ifdef Q_OS_UNIX
         if (!Utils::Fs::isRegularFile(localPath))
         {
-            status(500, "Internal Server Error");
+            status(500, u"Internal Server Error"_qs);
             print(tr("Unacceptable file type, only regular file is allowed."), Http::CONTENT_TYPE_TXT);
             return;
         }
@@ -199,7 +199,7 @@ void WebApplication::sendWebUIFile()
 
 void WebApplication::translateDocument(QString &data) const
 {
-    const QRegularExpression regex("QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]");
+    const QRegularExpression regex(u"QBT_TR\\((([^\\)]|\\)(?!QBT_TR))+)\\)QBT_TR\\[CONTEXT=([a-zA-Z_][a-zA-Z0-9_]*)\\]"_qs);
 
     int i = 0;
     bool found = true;
@@ -220,8 +220,8 @@ void WebApplication::translateDocument(QString &data) const
             QString translation = loadedText.isEmpty() ? sourceText : loadedText;
 
             // Use HTML code for quotes to prevent issues with JS
-            translation.replace('\'', "&#39;");
-            translation.replace('\"', "&#34;");
+            translation.replace(u'\'', u"&#39;"_qs);
+            translation.replace(u'\"', u"&#34;"_qs);
 
             data.replace(i, regexMatch.capturedLength(), translation);
             i += translation.length();
@@ -349,7 +349,7 @@ void WebApplication::configure()
     m_authSubnetWhitelist = pref->getWebUiAuthSubnetWhitelist();
     m_sessionTimeout = pref->getWebUISessionTimeout();
 
-    m_domainList = pref->getServerDomains().split(';', Qt::SkipEmptyParts);
+    m_domainList = pref->getServerDomains().split(u';', Qt::SkipEmptyParts);
     std::for_each(m_domainList.begin(), m_domainList.end(), [](QString &entry) { entry = entry.trimmed(); });
 
     m_isCSRFProtectionEnabled = pref->isWebUiCSRFProtectionEnabled();
@@ -384,7 +384,7 @@ void WebApplication::configure()
 
         for (const QStringView line : customHeaderLines)
         {
-            const int idx = line.indexOf(':');
+            const int idx = line.indexOf(u':');
             if (idx < 0)
             {
                 // require separator `:` to be present even if `value` field can be empty
@@ -403,7 +403,7 @@ void WebApplication::configure()
     {
         m_trustedReverseProxyList.clear();
 
-        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(';', Qt::SkipEmptyParts);
+        const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
 
         for (const QString &proxy : proxyList)
         {
@@ -466,7 +466,7 @@ void WebApplication::sendFile(const Path &path)
     // Translate the file
     if (isTranslatable)
     {
-        QString dataStr {data};
+        auto dataStr = QString::fromUtf8(data);
         translateDocument(dataStr);
         data = dataStr.toUtf8();
 
@@ -533,7 +533,7 @@ void WebApplication::sessionInitialize()
 {
     Q_ASSERT(!m_currentSession);
 
-    const QString sessionId {parseCookie(m_request.headers.value(QLatin1String("cookie"))).value(C_SID)};
+    const QString sessionId {parseCookie(m_request.headers.value(QLatin1String("cookie"))).value(QString::fromLatin1(C_SID))};
 
     // TODO: Additional session check
 
@@ -572,7 +572,7 @@ QString WebApplication::generateSid() const
         const quint32 tmp[] =
         {Utils::Random::rand(), Utils::Random::rand(), Utils::Random::rand()
                 , Utils::Random::rand(), Utils::Random::rand(), Utils::Random::rand()};
-        sid = QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(tmp)).toBase64();
+        sid = QString::fromLatin1(QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(tmp)).toBase64());
     }
     while (m_sessions.contains(sid));
 
@@ -619,7 +619,7 @@ void WebApplication::sessionStart()
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
-    setHeader({Http::HEADER_SET_COOKIE, cookieRawForm});
+    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookieRawForm)});
 }
 
 void WebApplication::sessionEnd()
@@ -633,7 +633,7 @@ void WebApplication::sessionEnd()
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
 
-    setHeader({Http::HEADER_SET_COOKIE, cookie.toRawForm()});
+    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
 }
 
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
@@ -733,7 +733,7 @@ QHostAddress WebApplication::resolveClientAddress() const
     if (!forwardedFor.isEmpty())
     {
         // client address is the 1st global IP in X-Forwarded-For or, if none available, the 1st IP in the list
-        const QStringList remoteIpList = forwardedFor.split(',', Qt::SkipEmptyParts);
+        const QStringList remoteIpList = forwardedFor.split(u',', Qt::SkipEmptyParts);
 
         if (!remoteIpList.isEmpty())
         {
