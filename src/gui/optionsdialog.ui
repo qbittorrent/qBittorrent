@@ -2798,7 +2798,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item row="1" column="1">
                   <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
                    <property name="maximum">
-                    <number>9999</number>
+                    <number>2147483646</number>
                    </property>
                    <property name="value">
                     <number>100</number>
