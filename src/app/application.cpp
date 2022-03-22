@@ -798,7 +798,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
 #ifdef Q_OS_WIN
 void Application::applyMemoryWorkingSetLimit()
 {
-    const int UNIT_SIZE = 1024 * 1024; // MiB
+    const SIZE_T UNIT_SIZE = 1024 * 1024; // MiB
     const SIZE_T maxSize = memoryWorkingSetLimit() * UNIT_SIZE;
     const SIZE_T minSize = std::min<SIZE_T>((64 * UNIT_SIZE), (maxSize / 2));
     if (!::SetProcessWorkingSetSizeEx(::GetCurrentProcess(), minSize, maxSize, QUOTA_LIMITS_HARDWS_MAX_ENABLE))
