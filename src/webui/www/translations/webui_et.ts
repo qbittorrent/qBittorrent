@@ -571,6 +571,10 @@
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1476,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Suurus</translation>
+        <translation type="vanished">Suurus</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3293,7 +3317,7 @@
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Ühekordne number: &lt;b&gt;1x25;&lt;/b&gt; ühtib osa 25-ga, esimesest hooajast</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
@@ -3309,7 +3333,7 @@
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Tavaline vahemik: &lt;b&gt;1x25-40;&lt;/b&gt; ühtib osadega 25 kuni 40, esimesest hooajast</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>

@@ -198,7 +198,7 @@
     </message>
     <message>
         <source>Cookie:</source>
-        <translation type="unfinished" />
+        <translation>Cookie:</translation>
     </message>
     <message>
         <source>More information</source>
@@ -570,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1442,7 +1446,7 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: ID Torrent </translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
@@ -1475,6 +1479,22 @@
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Giảm thiểu giả mạo yêu cầu phía máy chủ (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Kích cỡ</translation>
+        <translation type="vanished">Kích cỡ</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2676,7 +2700,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1năm %2ngày</translation>
     </message>
 </context>
 <context>
@@ -2854,7 +2878,7 @@
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>Url</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -2982,7 +3006,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Một ứng dụng khách BitTorrent nâng cao được lập trình bằng C ++, dựa trên bộ công cụ Qt và libtorrent-rasterbar.</translation>
+        <translation>Một ứng dụng khách BitTorrent nâng cao được lập trình bằng C++, dựa trên bộ công cụ Qt và libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>

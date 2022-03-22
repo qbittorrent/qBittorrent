@@ -325,7 +325,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation>Avaa dokumentaatio</translation>
+        <translation>Avaa ohje</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -424,7 +424,7 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Keskeytä</translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -521,7 +521,7 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>Siirrä jonon kärkeen</translation>
+        <translation>Siirrä jonon ensimmäiseksi</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -561,15 +561,19 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Yhteyden tila: yhteys katkaistu</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-lukija</translation>
     </message>
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -612,7 +616,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Suorita erillinen ohjelma torrentien valmistuessa</translation>
+        <translation>Suorita ulkoinen sovellus torrentin valmistuessa</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -930,11 +934,11 @@
     </message>
     <message>
         <source>%F: Content path (same as root path for multifile torrent)</source>
-        <translation type="unfinished" />
+        <translation>%F: Sisällön sijainti (vastaa monitiedostoisen torrentin juurikansiota)</translation>
     </message>
     <message>
         <source>%R: Root path (first torrent subdirectory path)</source>
-        <translation>%R: Juuripolku (ensimmäinen torrent-alihakemiston polku)</translation>
+        <translation>%R: Juurisijainti (torrentin ensimmäisen alihakemiston polku)</translation>
     </message>
     <message>
         <source>%D: Save path</source>
@@ -982,7 +986,7 @@
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Poista .torrent-tiedostot lisäämisen jälkeen</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1010,7 +1014,7 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>Vaihtoehtoisen ulkoasun tiedostosijainti ei voi olla tyhjä.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1042,11 +1046,11 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Kun tallennuksen oletussijainti muutetaan:</translation>
+        <translation>Tallennuksen oletussijainnin muuttuessa:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
-        <translation type="unfinished" />
+        <translation>Käytä Host-otsakkeen validointia</translation>
     </message>
     <message>
         <source>Security</source>
@@ -1114,7 +1118,7 @@
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Muistin varaus tarkistettaessa torrent-tiedostoja:</translation>
     </message>
     <message>
         <source>Anti-leech</source>
@@ -1158,7 +1162,7 @@
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Keskeytä torrent</translation>
+        <translation>Pysäytä torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
@@ -1338,7 +1342,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Verkkosovitin:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1476,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1553,7 +1573,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Lisää vertaisia...</translation>
     </message>
 </context>
 <context>
@@ -1910,7 +1930,7 @@
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>Keskeytetty (0)</translation>
+        <translation>Pysäytetty (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -1942,7 +1962,7 @@
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>Keskeytetty (%1)</translation>
+        <translation>Pysäytetty (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
@@ -1986,11 +2006,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Tarkistetaan (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Tarkistetaan (0)</translation>
     </message>
 </context>
 <context>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Koko</translation>
+        <translation type="vanished">Koko</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2272,7 +2296,7 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation>Keskeytetty</translation>
+        <translation>Pysäytetty</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2284,7 +2308,7 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[P] Jaetaan</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -2300,7 +2324,7 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[P] Ladataan</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
@@ -2308,7 +2332,7 @@
     </message>
     <message>
         <source>Checking</source>
-        <translation>Tarkastetaan</translation>
+        <translation>Tarkistetaan</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2316,7 +2340,7 @@
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>Tarkistusjonossa</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2324,7 +2348,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Tarkistetaan jatkotietoja</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2336,7 +2360,7 @@
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[P] Ladataan metatioetoja</translation>
     </message>
 </context>
 <context>
@@ -2385,7 +2409,7 @@
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Keskeytä</translation>
+        <translation>Pysäytä</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -2496,7 +2520,7 @@
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Tallennussijainti</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2604,7 +2628,7 @@
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Lisää torrent-linkkejä</translation>
     </message>
 </context>
 <context>
@@ -2683,7 +2707,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Tallennuspolku on tyhjä</translation>
+        <translation>Tallennussijainti on tyhjä</translation>
     </message>
 </context>
 <context>
@@ -2694,7 +2718,7 @@
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation>Liitännäisen polku:</translation>
+        <translation>Liitännäisen sijainti:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
@@ -2713,7 +2737,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Jakajia:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2765,7 +2789,7 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Varoitus</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -2777,7 +2801,7 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Tulokset</translation>
     </message>
     <message>
         <source>showing</source>
@@ -2796,7 +2820,7 @@
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Saat uusia hakukoneliitännäisiä täältä:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2858,7 +2882,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Käytössä</translation>
     </message>
     <message>
         <source>Version</source>
@@ -2916,7 +2940,7 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Keskeytä torrentit</translation>
+        <translation>Pysäytä torrentit</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3026,11 +3050,11 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-maskotti</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-kuvake</translation>
     </message>
 </context>
 <context>
@@ -3345,7 +3369,7 @@
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>RSS-lataaja</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3373,7 +3397,7 @@
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation>Lisää keskeytetty;</translation>
+        <translation>Lisää pysäytettynä:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3442,7 +3466,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Kaikki (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3450,7 +3474,7 @@ Nämä muodot ovat tuetut: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (päiväysmuodo
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Keskeytä torrentit</translation>
+        <translation>Pysäytä torrentit</translation>
     </message>
 </context>
 <context>

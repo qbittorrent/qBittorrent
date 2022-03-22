@@ -501,15 +501,15 @@
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>대기열 가장 아래로</translation>
+        <translation>대기열 맨 아래</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>대기열에서 가장 아래로 이동합니다</translation>
+        <translation>대기열 맨 아래로 이동</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>대기열 가장 위로</translation>
+        <translation>대기열 맨 위</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
@@ -521,7 +521,7 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>대기열에서 가장 위로 이동합니다</translation>
+        <translation>대기열 맨 위로 이동</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -570,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -668,7 +672,7 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>다운로드가 완료된 .torrent 파일 복사 위치:</translation>
+        <translation>받기가 완료된 .torrent 파일 복사 위치:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1476,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>SSRF(서버 측 요청 위조) 완화:</translation>
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1839,11 +1859,11 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>총 공유 비율:</translation>
+        <translation>전시간 공유 비율:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>총 받기:</translation>
+        <translation>전시간 받기:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -1851,7 +1871,7 @@
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>총 올리기:</translation>
+        <translation>전시간 올리기:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -1875,7 +1895,7 @@
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation>총 대기열 크기:</translation>
+        <translation>전체 대기열 크기:</translation>
     </message>
 </context>
 <context>
@@ -2138,7 +2158,7 @@
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>총 크기</translation>
+        <translation>전체 크기</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>크기</translation>
+        <translation type="vanished">크기</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2422,7 +2446,7 @@
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>최하단으로 이동</translation>
+        <translation>맨 아래로 이동</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -2596,7 +2620,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>URL로부터 받기</translation>
+        <translation>URL에서 받기</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3209,7 +3233,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>지금 RSS 토렌트의 자동 다운로드가 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
+        <translation>지금 RSS 토렌트의 자동 받기가 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
