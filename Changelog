@@ -1,3 +1,13 @@
+Tue Mar 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.2
+    - FEATURE: Allow to limit max memory working set size (glassez)
+    - BUGFIX: Fix UI crash when torrent is in a non-existent category (Kevin Cox)
+    - BUGFIX: Correctly handle changing of global save paths (glassez)
+    - BUGFIX: Disable performance alert (Chocobo1)
+    - BUGFIX: Prevent loading resume data with inconsistent ID (glassez)
+    - BUGFIX: Properly handle metadata download for an existing torrent (glassez)
+    - BUGFIX: Prevent crash when open torrent destination folder (glassez)
+    - WINDOWS: NSIS: Update Spanish, Spanish International and French translations(Juanjo Jiménez, RqndomHax)
+
 Tue Feb 15 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.1
     - FEATURE: Restore all torrent settings to the torrent's main context menu (thalieht)
     - FEATURE: Add confirmation for enabling Auto TMM from context menu (thalieht)
