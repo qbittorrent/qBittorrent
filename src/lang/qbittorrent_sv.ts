@@ -82,32 +82,32 @@
         <translation>qBittorrent byggdes med följande bibliotek:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="67"/>
+        <location filename="../gui/aboutdialog.cpp" line="68"/>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
         <translation>En avancerad BitTorrent-klient programmerad i C++, baserad på Qt-verktygslåda och libtorrent-rasterbar.</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="68"/>
+        <location filename="../gui/aboutdialog.cpp" line="70"/>
         <source>Copyright %1 2006-2022 The qBittorrent project</source>
         <translation>Copyright %1 2006-2022 The qBittorrent project</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="69"/>
+        <location filename="../gui/aboutdialog.cpp" line="71"/>
         <source>Home Page:</source>
         <translation>Webbplats:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="70"/>
+        <location filename="../gui/aboutdialog.cpp" line="72"/>
         <source>Forum:</source>
         <translation>Forum:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="71"/>
+        <location filename="../gui/aboutdialog.cpp" line="73"/>
         <source>Bug Tracker:</source>
         <translation>Felsökare:</translation>
     </message>
     <message>
-        <location filename="../gui/aboutdialog.cpp" line="111"/>
+        <location filename="../gui/aboutdialog.cpp" line="112"/>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
         <translation>Den fria databasen IP to Country Lite av DB-IP används för att slå upp jämlikarnas länder. Databasen är licensierad enligt Creative Commons Attribution 4.0 International License</translation>
     </message>
@@ -125,10 +125,6 @@
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
         <translation>Den nya sökvägen är ogiltig: &quot;%1&quot;.</translation>
-    </message>
-    <message>
-        <source>Invalid file path: &apos;%1&apos;.</source>
-        <translation type="vanished">Ogiltig filsökväg: &quot;%1&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="46"/>
@@ -257,7 +253,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="48"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Automatiskt läge betyder att vissa torrentegenskaper (t.ex. var filen ska sparas) bestäms av filens kategori</translation>
+        <translation>Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparsökväg) kommer att bestämmas av den tillhörande kategorin</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="52"/>
@@ -277,7 +273,7 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="179"/>
         <source>Do not delete .torrent file</source>
-        <translation>Radera inte .torrent-fil</translation>
+        <translation>Ta inte bort .torrent-fil</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="200"/>
@@ -297,12 +293,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="402"/>
         <source>Select All</source>
-        <translation type="unfinished">Markera alla</translation>
+        <translation>Markera alla</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="409"/>
         <source>Select None</source>
-        <translation type="unfinished">Markera ingen</translation>
+        <translation>Markera ingen</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="508"/>
@@ -310,61 +306,61 @@
         <translation>Spara som .torrent-fil...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="725"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="727"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="729"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="731"/>
         <source>High</source>
         <translation>Hög</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="733"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="735"/>
         <source>Maximum</source>
         <translation>Högsta</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="721"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="742"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="723"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="744"/>
         <source>Do not download</source>
         <translation>Hämta inte</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="581"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="583"/>
         <source>I/O Error</source>
         <translation>In/ut-fel</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="354"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="943"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="358"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="945"/>
         <source>Invalid torrent</source>
         <translation>Ogiltig torrent</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="882"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="884"/>
         <source>Not Available</source>
         <comment>This comment is unavailable</comment>
         <translation>Inte tillgänglig</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="883"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="885"/>
         <source>Not Available</source>
         <comment>This date is unavailable</comment>
         <translation>Inte tillgängligt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="892"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="894"/>
         <source>Not available</source>
         <translation>Inte tillgänglig</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="406"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="410"/>
         <source>Invalid magnet link</source>
         <translation>Ogiltig magnetlänk</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="355"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="359"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
         <comment>Don&apos;t remove the &apos;
@@ -373,17 +369,17 @@ Error: %2</source>
 Fel: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="406"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="410"/>
         <source>This magnet link was not recognized</source>
         <translation>Denna magnetlänk känns ej igen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="441"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="445"/>
         <source>Magnet link</source>
         <translation>Magnetlänk</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="447"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="451"/>
         <source>Retrieving metadata...</source>
         <translation>Hämtar metadata...</translation>
     </message>
@@ -391,152 +387,152 @@ Fel: %2</translation>
         <location filename="../gui/addnewtorrentdialog.cpp" line="194"/>
         <location filename="../gui/addnewtorrentdialog.cpp" line="200"/>
         <source>Choose save path</source>
-        <translation>Välj sparningssökväg</translation>
+        <translation>Välj sparsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="378"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="384"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="389"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="421"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="432"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="382"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="388"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="393"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="425"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="431"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
         <source>Torrent is already present</source>
         <translation>Torrent är redan närvarande</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="378"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="421"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="382"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="425"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers haven&apos;t been merged because it is a private torrent.</source>
         <translation>Torrenten &quot;%1&quot; finns redan i överföringslistan. Spårare slogs inte samman eftersom det är en privat torrent.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="384"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="388"/>
         <source>Torrent &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
         <translation>Torrenten &quot;%1&quot; finns redan i överföringslistan. Spårare har slagits samman.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="389"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="393"/>
         <source>Torrent is already queued for processing.</source>
         <translation>Torrenten är redan i kö för bearbetning.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="394"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="395"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="448"/>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="449"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="398"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="399"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="452"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="453"/>
         <source>N/A</source>
         <translation>Ingen</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="427"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="431"/>
         <source>Magnet link &apos;%1&apos; is already in the transfer list. Trackers have been merged.</source>
         <translation>Magnetlänken %1 finns redan i överföringslistan. Spårare har slagits samman.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="432"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="436"/>
         <source>Magnet link is already queued for processing.</source>
         <translation>Magnetlänken är redan i kö för bearbetning.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="487"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="491"/>
         <source>%1 (Free space on disk: %2)</source>
         <translation>%1 (Ledigt utrymme på disken: %2)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="488"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="492"/>
         <source>Not available</source>
         <comment>This size is unavailable.</comment>
         <translation>Inte tillgängligt</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="567"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="570"/>
         <source>Torrent file (*%1)</source>
         <translation>Torrentfil (*%1)</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="570"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="572"/>
         <source>Save as torrent file</source>
         <translation>Spara som torrentfil</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="582"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="584"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
         <translation>Det gick inte att exportera torrentmetadatafil: &quot;%1&quot;. Orsak: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="738"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="740"/>
         <source>By shown file order</source>
         <translation>Efter visad filordning</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="746"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="748"/>
         <source>Normal priority</source>
         <translation>Normal prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="750"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="752"/>
         <source>High priority</source>
         <translation>Hög prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="754"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="756"/>
         <source>Maximum priority</source>
         <translation>Maximal prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="759"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="761"/>
         <source>Priority by shown file order</source>
         <translation>Prioritet med visad filordning</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="771"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="773"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="779"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="781"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="866"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="868"/>
         <source>Cannot create v2 torrent until its data is fully downloaded.</source>
         <translation>Det går inte att skapa v2-torrent förrän dess data har hämtats helt.</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="965"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="967"/>
         <source>Cannot download &apos;%1&apos;: %2</source>
         <translation>Det går inte att hämta &quot;%1&quot;: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="717"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="719"/>
         <source>Rename...</source>
         <translation>Byt namn...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="720"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="722"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="856"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="858"/>
         <source>Parsing metadata...</source>
         <translation>Tolkar metadata...</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="860"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="862"/>
         <source>Metadata retrieval complete</source>
         <translation>Hämtning av metadata klar</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="943"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="945"/>
         <source>Failed to load from URL: %1.
 Error: %2</source>
         <translation>Det gick inte att läsa in från webbadress: %1.
 Fel: %2</translation>
     </message>
     <message>
-        <location filename="../gui/addnewtorrentdialog.cpp" line="964"/>
+        <location filename="../gui/addnewtorrentdialog.cpp" line="966"/>
         <source>Download Error</source>
         <translation>Hämtningsfel</translation>
     </message>
@@ -544,452 +540,469 @@ Fel: %2</translation>
 <context>
     <name>AdvancedSettings</name>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="332"/>
-        <location filename="../gui/advancedsettings.cpp" line="474"/>
+        <location filename="../gui/advancedsettings.cpp" line="341"/>
+        <location filename="../gui/advancedsettings.cpp" line="451"/>
+        <location filename="../gui/advancedsettings.cpp" line="492"/>
         <source> MiB</source>
         <translation> MiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="561"/>
+        <location filename="../gui/advancedsettings.cpp" line="586"/>
         <source>Outgoing ports (Min) [0: Disabled]</source>
         <translation>Utgående portar (min) [0: Inaktiverat]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="568"/>
+        <location filename="../gui/advancedsettings.cpp" line="593"/>
         <source>Outgoing ports (Max) [0: Disabled]</source>
         <translation>Utgående portar (max) [0: Inaktiverat]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="615"/>
+        <location filename="../gui/advancedsettings.cpp" line="640"/>
         <source>Recheck torrents on completion</source>
         <translation>Kontrollera torrenter vid slutföring</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="621"/>
+        <location filename="../gui/advancedsettings.cpp" line="646"/>
         <source>Transfer list refresh interval</source>
         <translation>Uppdateringsintervall för överföringslista</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="620"/>
-        <location filename="../gui/advancedsettings.cpp" line="684"/>
+        <location filename="../gui/advancedsettings.cpp" line="645"/>
+        <location filename="../gui/advancedsettings.cpp" line="709"/>
         <source> ms</source>
         <comment> milliseconds</comment>
         <translation> ms</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="153"/>
+        <location filename="../gui/advancedsettings.cpp" line="156"/>
         <source>Setting</source>
         <translation>Inställning</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="153"/>
+        <location filename="../gui/advancedsettings.cpp" line="156"/>
         <source>Value</source>
         <comment>Value set for this setting</comment>
         <translation>Värde</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="328"/>
-        <location filename="../gui/advancedsettings.cpp" line="341"/>
+        <location filename="../gui/advancedsettings.cpp" line="337"/>
+        <location filename="../gui/advancedsettings.cpp" line="350"/>
         <source> (disabled)</source>
         <translation>(inaktiverad)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="330"/>
+        <location filename="../gui/advancedsettings.cpp" line="339"/>
         <source> (auto)</source>
         <translation>(automatisk)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="339"/>
+        <location filename="../gui/advancedsettings.cpp" line="348"/>
         <source> min</source>
         <comment> minutes</comment>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="352"/>
+        <location filename="../gui/advancedsettings.cpp" line="361"/>
         <source>All addresses</source>
         <translation>Alla adresser</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="398"/>
+        <location filename="../gui/advancedsettings.cpp" line="407"/>
         <source>qBittorrent Section</source>
         <translation>qBittorrent-avsnitt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="395"/>
-        <location filename="../gui/advancedsettings.cpp" line="403"/>
+        <location filename="../gui/advancedsettings.cpp" line="404"/>
+        <location filename="../gui/advancedsettings.cpp" line="412"/>
         <source>Open documentation</source>
         <translation>Öppna dokumentationen</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="353"/>
+        <location filename="../gui/advancedsettings.cpp" line="362"/>
         <source>All IPv4 addresses</source>
         <translation>Alla IPv4-adresser</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="354"/>
+        <location filename="../gui/advancedsettings.cpp" line="363"/>
         <source>All IPv6 addresses</source>
         <translation>Alla IPv6-adresser</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="406"/>
+        <location filename="../gui/advancedsettings.cpp" line="415"/>
         <source>libtorrent Section</source>
         <translation>libtorrent-avsnitt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="409"/>
+        <location filename="../gui/advancedsettings.cpp" line="418"/>
         <source>Fastresume files</source>
         <translation>Snabbåteruppta filer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="409"/>
+        <location filename="../gui/advancedsettings.cpp" line="418"/>
         <source>SQLite database (experimental)</source>
         <translation>SQLite-databas (experimentell)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="411"/>
+        <location filename="../gui/advancedsettings.cpp" line="420"/>
         <source>Resume data storage type (requires restart)</source>
         <translation>Återuppta datalagringstyp (kräver omstart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Below normal</source>
         <translation>Under normal</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Medium</source>
         <translation>Medel</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Low</source>
         <translation>Låg</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="414"/>
+        <location filename="../gui/advancedsettings.cpp" line="423"/>
         <source>Very low</source>
         <translation>Mycket låg</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="436"/>
+        <location filename="../gui/advancedsettings.cpp" line="445"/>
         <source>Process memory priority (Windows &gt;= 8 only)</source>
         <translation>Processen minnesprioritet (Windows &gt;= 8)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="445"/>
+        <location filename="../gui/advancedsettings.cpp" line="454"/>
+        <source>Physical memory (RAM) usage limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="463"/>
         <source>Asynchronous I/O threads</source>
         <translation>Asynkrona in/ut-trådar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="453"/>
+        <location filename="../gui/advancedsettings.cpp" line="471"/>
         <source>Hashing threads</source>
         <translation>Hashing-trådar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="461"/>
+        <location filename="../gui/advancedsettings.cpp" line="479"/>
         <source>File pool size</source>
         <translation>Filpool storlek</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="475"/>
+        <location filename="../gui/advancedsettings.cpp" line="493"/>
         <source>Outstanding memory when checking torrents</source>
         <translation>Enastående minne när du kontrollerar torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="491"/>
+        <location filename="../gui/advancedsettings.cpp" line="509"/>
         <source>Disk cache</source>
         <translation>Diskcache</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="497"/>
-        <location filename="../gui/advancedsettings.cpp" line="575"/>
-        <location filename="../gui/advancedsettings.cpp" line="667"/>
-        <location filename="../gui/advancedsettings.cpp" line="758"/>
+        <location filename="../gui/advancedsettings.cpp" line="515"/>
+        <location filename="../gui/advancedsettings.cpp" line="600"/>
+        <location filename="../gui/advancedsettings.cpp" line="692"/>
+        <location filename="../gui/advancedsettings.cpp" line="783"/>
         <source> s</source>
         <comment> seconds</comment>
         <translation> s</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="498"/>
+        <location filename="../gui/advancedsettings.cpp" line="516"/>
         <source>Disk cache expiry interval</source>
         <translation>Intervall för diskcache utgångsdatum:</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="503"/>
+        <location filename="../gui/advancedsettings.cpp" line="524"/>
+        <source>Disk queue size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="528"/>
         <source>Enable OS cache</source>
         <translation>Aktivera OS-cache</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="508"/>
+        <location filename="../gui/advancedsettings.cpp" line="533"/>
         <source>Coalesce reads &amp; writes</source>
         <translation>Koalitionsläsningar &amp; -skrivningar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="513"/>
+        <location filename="../gui/advancedsettings.cpp" line="538"/>
         <source>Use piece extent affinity</source>
         <translation>Använd delutsträckningsaffinitet</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="516"/>
+        <location filename="../gui/advancedsettings.cpp" line="541"/>
         <source>Send upload piece suggestions</source>
         <translation>Skicka förslag på sändningsdelar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="521"/>
-        <location filename="../gui/advancedsettings.cpp" line="527"/>
+        <location filename="../gui/advancedsettings.cpp" line="791"/>
+        <source>Maximum outstanding requests to a single peer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/advancedsettings.cpp" line="523"/>
+        <location filename="../gui/advancedsettings.cpp" line="546"/>
+        <location filename="../gui/advancedsettings.cpp" line="552"/>
         <source> KiB</source>
         <translation>KiB</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="523"/>
+        <location filename="../gui/advancedsettings.cpp" line="548"/>
         <source>Send buffer watermark</source>
         <translation>Skicka buffertvattenstämpel</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="529"/>
+        <location filename="../gui/advancedsettings.cpp" line="554"/>
         <source>Send buffer low watermark</source>
         <translation>Skicka låg buffertvattenstämpel</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="535"/>
+        <location filename="../gui/advancedsettings.cpp" line="560"/>
         <source>Send buffer watermark factor</source>
         <translation>Skicka buffertvattenstämplingsfaktor</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="541"/>
+        <location filename="../gui/advancedsettings.cpp" line="566"/>
         <source>Outgoing connections per second</source>
         <translation>Utgående anslutningar per sekund</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="547"/>
+        <location filename="../gui/advancedsettings.cpp" line="572"/>
         <source>Socket backlog size</source>
         <translation>Uttagets bakloggsstorlek</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="576"/>
+        <location filename="../gui/advancedsettings.cpp" line="601"/>
         <source>UPnP lease duration [0: Permanent lease]</source>
         <translation>UPnP-anslutningstid [0: Permanent anslutning]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="582"/>
+        <location filename="../gui/advancedsettings.cpp" line="607"/>
         <source>Type of service (ToS) for connections to peers</source>
         <translation>Typ av tjänst (ToS) för anslutningar till jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="585"/>
+        <location filename="../gui/advancedsettings.cpp" line="610"/>
         <source>Prefer TCP</source>
         <translation>Föredra TCP</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="585"/>
+        <location filename="../gui/advancedsettings.cpp" line="610"/>
         <source>Peer proportional (throttles TCP)</source>
         <translation>Proportionell jämlike (stryper TCP)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="592"/>
+        <location filename="../gui/advancedsettings.cpp" line="617"/>
         <source>Support internationalized domain name (IDN)</source>
         <translation>Stöd internationaliserat domännamn (IDN)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="597"/>
+        <location filename="../gui/advancedsettings.cpp" line="622"/>
         <source>Allow multiple connections from the same IP address</source>
         <translation>Tillåt flera anslutningar från samma IP-adress</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="602"/>
+        <location filename="../gui/advancedsettings.cpp" line="627"/>
         <source>Validate HTTPS tracker certificates</source>
         <translation>Validera HTTPS-spårarcertifikat</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="607"/>
+        <location filename="../gui/advancedsettings.cpp" line="632"/>
         <source>Server-side request forgery (SSRF) mitigation</source>
         <translation>Begränsning av förfalskning på serversidan (SSRF)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="612"/>
+        <location filename="../gui/advancedsettings.cpp" line="637"/>
         <source>Disallow connection to peers on privileged ports</source>
         <translation>Tillåt inte anslutning till jämlikar på privilegierade portar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="627"/>
+        <location filename="../gui/advancedsettings.cpp" line="652"/>
         <source>Resolve peer host names</source>
         <translation>Slå upp jämlikarnas värdnamn</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="657"/>
+        <location filename="../gui/advancedsettings.cpp" line="682"/>
         <source>IP address reported to trackers (requires restart)</source>
         <translation>IP-adress rapporterad till spårare (kräver omstart)</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="683"/>
+        <location filename="../gui/advancedsettings.cpp" line="708"/>
         <source>System default</source>
         <translation>Systemets standard</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="685"/>
+        <location filename="../gui/advancedsettings.cpp" line="710"/>
         <source>Notification timeout [0: infinite]</source>
         <translation>Tidsgräns för avisering [0: oändlig]</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="689"/>
+        <location filename="../gui/advancedsettings.cpp" line="714"/>
         <source>Reannounce to all trackers when IP or port changed</source>
         <translation>Återannonsera alla spårare när IP eller port ändrats</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="703"/>
+        <location filename="../gui/advancedsettings.cpp" line="728"/>
         <source>Enable icons in menus</source>
         <translation>Aktivera ikoner i menyer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="748"/>
+        <location filename="../gui/advancedsettings.cpp" line="773"/>
         <source>Peer turnover disconnect percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="754"/>
+        <location filename="../gui/advancedsettings.cpp" line="779"/>
         <source>Peer turnover threshold percentage</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="760"/>
+        <location filename="../gui/advancedsettings.cpp" line="785"/>
         <source>Peer turnover disconnect interval</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="668"/>
+        <location filename="../gui/advancedsettings.cpp" line="693"/>
         <source>Stop tracker timeout</source>
         <translation>Stopptidsgräns för spårare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="674"/>
+        <location filename="../gui/advancedsettings.cpp" line="699"/>
         <source>Display notifications</source>
         <translation>Visa aviseringar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="677"/>
+        <location filename="../gui/advancedsettings.cpp" line="702"/>
         <source>Display notifications for added torrents</source>
         <translation>Visa aviseringar för tillagda torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="692"/>
+        <location filename="../gui/advancedsettings.cpp" line="717"/>
         <source>Download tracker&apos;s favicon</source>
         <translation>Hämta spårarens favicon</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="696"/>
+        <location filename="../gui/advancedsettings.cpp" line="721"/>
         <source>Save path history length</source>
-        <translation>Historiklängd för sparningssökväg</translation>
+        <translation>Historiklängd för sparsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="699"/>
+        <location filename="../gui/advancedsettings.cpp" line="724"/>
         <source>Enable speed graphs</source>
         <translation>Aktivera hastighetsdiagram</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="714"/>
+        <location filename="../gui/advancedsettings.cpp" line="739"/>
         <source>Fixed slots</source>
         <translation>Fasta platser</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="714"/>
+        <location filename="../gui/advancedsettings.cpp" line="739"/>
         <source>Upload rate based</source>
         <translation>Sändning betygbaserad</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="716"/>
+        <location filename="../gui/advancedsettings.cpp" line="741"/>
         <source>Upload slots behavior</source>
         <translation>Beteende för sändningsplatser</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="719"/>
+        <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Round-robin</source>
         <translation>Round Robin</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="719"/>
+        <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Fastest upload</source>
         <translation>Snabbaste sändning</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="719"/>
+        <location filename="../gui/advancedsettings.cpp" line="744"/>
         <source>Anti-leech</source>
         <translation>Anti-reciprokör</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="721"/>
+        <location filename="../gui/advancedsettings.cpp" line="746"/>
         <source>Upload choking algorithm</source>
         <translation>Strypningsalgoritm för sändning</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="726"/>
+        <location filename="../gui/advancedsettings.cpp" line="751"/>
         <source>Confirm torrent recheck</source>
         <translation>Bekräfta återkoll av torrent</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="730"/>
+        <location filename="../gui/advancedsettings.cpp" line="755"/>
         <source>Confirm removal of all tags</source>
         <translation>Bekräfta borttagning av alla taggar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="734"/>
+        <location filename="../gui/advancedsettings.cpp" line="759"/>
         <source>Always announce to all trackers in a tier</source>
         <translation>Annonsera alla spårare i en nivå</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="740"/>
+        <location filename="../gui/advancedsettings.cpp" line="765"/>
         <source>Always announce to all tiers</source>
         <translation>Annonsera alltid alla nivåer</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="629"/>
+        <location filename="../gui/advancedsettings.cpp" line="654"/>
         <source>Any interface</source>
         <comment>i.e. Any network interface</comment>
         <translation>Alla gränssnitt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="556"/>
+        <location filename="../gui/advancedsettings.cpp" line="581"/>
         <source>Save resume data interval</source>
         <comment>How often the fastresume file is saved.</comment>
         <translation>Intervall för att spara återupptagningsdata:</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="587"/>
+        <location filename="../gui/advancedsettings.cpp" line="612"/>
         <source>%1-TCP mixed mode algorithm</source>
         <comment>uTP-TCP mixed mode algorithm</comment>
         <translation>%1-TCP blandad lägesalgoritm</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="624"/>
+        <location filename="../gui/advancedsettings.cpp" line="649"/>
         <source>Resolve peer countries</source>
         <translation>Slå upp jämlikarnas länder</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="651"/>
+        <location filename="../gui/advancedsettings.cpp" line="676"/>
         <source>Network interface</source>
         <translation>Nätverksgränssnitt</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="654"/>
+        <location filename="../gui/advancedsettings.cpp" line="679"/>
         <source>Optional IP address to bind to</source>
         <translation>Valfri IP-adress att binda till</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="663"/>
+        <location filename="../gui/advancedsettings.cpp" line="688"/>
         <source>Max concurrent HTTP announces</source>
         <translation>Maximalt antal samtidiga HTTP-annonseringar</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="707"/>
+        <location filename="../gui/advancedsettings.cpp" line="732"/>
         <source>Enable embedded tracker</source>
         <translation>Aktivera inbäddad spårare</translation>
     </message>
     <message>
-        <location filename="../gui/advancedsettings.cpp" line="712"/>
+        <location filename="../gui/advancedsettings.cpp" line="737"/>
         <source>Embedded tracker port</source>
         <translation>Port för inbäddad spårare</translation>
     </message>
@@ -997,106 +1010,104 @@ Fel: %2</translation>
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="175"/>
+        <location filename="../app/application.cpp" line="180"/>
         <source>qBittorrent %1 started</source>
         <comment>qBittorrent v3.2.0alpha started</comment>
         <translation>qBittorrent %1 startad</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="178"/>
+        <location filename="../app/application.cpp" line="183"/>
         <source>Running in portable mode. Auto detected profile folder at: %1</source>
         <translation>Körs i bärbart läge. Automatisk upptäckt profilmapp i: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="180"/>
+        <location filename="../app/application.cpp" line="185"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
         <translation>Redundant kommandoradsflagga upptäckt: &quot;%1&quot;. Bärbartläge innebär relativ fastresume.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="184"/>
+        <location filename="../app/application.cpp" line="189"/>
         <source>Using config directory: %1</source>
         <translation>Använder konfigurationsmapp: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="382"/>
+        <location filename="../app/application.cpp" line="403"/>
         <source>Torrent: %1, running external program, command: %2</source>
         <translation>Torrent: %1, kör externt program, kommando: %2</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="440"/>
+        <location filename="../app/application.cpp" line="461"/>
         <source>Torrent name: %1</source>
         <translation>Torrentnamn: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="441"/>
+        <location filename="../app/application.cpp" line="462"/>
         <source>Torrent size: %1</source>
         <translation>Torrentstorlek: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="442"/>
+        <location filename="../app/application.cpp" line="463"/>
         <source>Save path: %1</source>
-        <translation>Sparningssökväg: %1</translation>
+        <translation>Sparsökväg: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="443"/>
+        <location filename="../app/application.cpp" line="464"/>
         <source>The torrent was downloaded in %1.</source>
         <comment>The torrent was downloaded in 1 hour and 20 seconds</comment>
         <translation>Torrent hämtades i %1.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="445"/>
+        <location filename="../app/application.cpp" line="466"/>
         <source>Thank you for using qBittorrent.</source>
         <translation>Tack för att ni använde qBittorrent.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="452"/>
+        <location filename="../app/application.cpp" line="473"/>
         <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
         <translation>[qBittorrent] &quot;%1&quot; har slutfört hämtningen</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="467"/>
+        <location filename="../app/application.cpp" line="488"/>
         <source>Torrent: %1, sending mail notification</source>
         <translation>Torrent: %1, skickar e-postavisering</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="637"/>
+        <location filename="../app/application.cpp" line="662"/>
         <source>Application failed to start.</source>
         <translation>Programmet kunde inte starta.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="652"/>
+        <location filename="../app/application.cpp" line="677"/>
         <source>Information</source>
         <translation>Information</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="653"/>
+        <location filename="../app/application.cpp" line="678"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
-        <translation type="unfinished">För att kontrollera qBittorrent, gå till webbgränssnittet på: %1
- {1?}</translation>
+        <translation>För att kontrollera qBittorrent, gå till webbgränssnittet på: %1</translation>
     </message>
     <message>
-        <source>To control qBittorrent, access the WebUI at: %1
-</source>
-        <translation type="vanished">För att kontrollera qBittorrent, gå till webbgränssnittet på: %1
-</translation>
-    </message>
-    <message>
-        <location filename="../app/application.cpp" line="658"/>
+        <location filename="../app/application.cpp" line="683"/>
         <source>The Web UI administrator username is: %1</source>
         <translation>Administratörens användarnamn för webbanvändargränssnittet är: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="659"/>
+        <location filename="../app/application.cpp" line="684"/>
         <source>The Web UI administrator password has not been changed from the default: %1</source>
         <translation>Webbgränssnittets administratörslösenord har inte ändrats från standard: %1</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="660"/>
+        <location filename="../app/application.cpp" line="685"/>
         <source>This is a security risk, please change your password in program preferences.</source>
         <translation>Detta är en säkerhetsrisk, vänligen ändra ditt lösenord i programinställningarna.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="792"/>
+        <location filename="../app/application.cpp" line="816"/>
+        <source>Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/application.cpp" line="840"/>
         <source>Saving torrent progress...</source>
         <translation>Sparar torrent förlopp...</translation>
     </message>
@@ -1112,22 +1123,22 @@ Fel: %2</translation>
 <context>
     <name>AuthController</name>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="53"/>
+        <location filename="../webui/api/authcontroller.cpp" line="54"/>
         <source>WebAPI login failure. Reason: IP has been banned, IP: %1, username: %2</source>
         <translation>WebAPI-inloggningsfel. Orsak: IP-adressen har förbjudits, IP: %1, användarnamn: %2</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="57"/>
+        <location filename="../webui/api/authcontroller.cpp" line="58"/>
         <source>Your IP address has been banned after too many failed authentication attempts.</source>
         <translation>Din IP-adress har förbjudits efter alltför många misslyckade autentiseringsförsök.</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="73"/>
+        <location filename="../webui/api/authcontroller.cpp" line="74"/>
         <source>WebAPI login success. IP: %1</source>
         <translation>WebAPI-inloggningsframgång. IP: %1</translation>
     </message>
     <message>
-        <location filename="../webui/api/authcontroller.cpp" line="80"/>
+        <location filename="../webui/api/authcontroller.cpp" line="81"/>
         <source>WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3</source>
         <translation>WebAPI-inloggningsfel. Orsak: ogiltiga referenser, antal försök: %1, IP: %2, användarnamn: %3</translation>
     </message>
@@ -1655,433 +1666,725 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>BitTorrent::Session</name>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="600"/>
         <source>Restart is required to toggle PeX support</source>
-        <translation>Omstart krävs för att växla PeX-stöd</translation>
+        <translation type="vanished">Omstart krävs för att växla PeX-stöd</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2552"/>
+        <location filename="../base/bittorrent/session.cpp" line="2601"/>
         <source>System network status changed to %1</source>
         <comment>e.g: System network status changed to ONLINE</comment>
         <translation>Systemnätverksstatus ändrad till %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2552"/>
+        <location filename="../base/bittorrent/session.cpp" line="2601"/>
         <source>ONLINE</source>
         <translation>ONLINE</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2552"/>
+        <location filename="../base/bittorrent/session.cpp" line="2601"/>
         <source>OFFLINE</source>
         <translation>OFFLINE</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2566"/>
+        <location filename="../base/bittorrent/session.cpp" line="2615"/>
         <source>Network configuration of %1 has changed, refreshing session binding</source>
         <comment>e.g: Network configuration of tun0 has changed, refreshing session binding</comment>
         <translation>Nätverkskonfigurationen för %1 har ändrats, uppdaterar sessionsbindning</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1167"/>
-        <location filename="../base/bittorrent/session.cpp" line="2929"/>
         <source>Encryption support [%1]</source>
-        <translation>Krypteringsstöd [%1]</translation>
+        <translation type="vanished">Krypteringsstöd [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1168"/>
-        <location filename="../base/bittorrent/session.cpp" line="2930"/>
+        <location filename="../base/bittorrent/session.cpp" line="1161"/>
+        <location filename="../base/bittorrent/session.cpp" line="2991"/>
         <source>FORCED</source>
         <translation>TVINGAD</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1166"/>
-        <location filename="../base/bittorrent/session.cpp" line="3486"/>
         <source>Anonymous mode [%1]</source>
-        <translation>Anonymitetsläge [%1]</translation>
+        <translation type="vanished">Anonymitetsläge [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1704"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed torrent and its files.</source>
-        <translation>&quot;%1&quot; nådde den högsta kvoten du ställt in. Tog bort torrenten och dess filer.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta kvoten du ställt in. Tog bort torrenten och dess filer.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1715"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Enabled super seeding for it.</source>
-        <translation>&quot;%1&quot; nådde den högsta kvoten du ställde in. Aktiverade superdistribution för den.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta kvoten du ställde in. Aktiverade superdistribution för den.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1743"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed torrent and its files.</source>
-        <translation>&quot;%1&quot; nådde den högsta delningstiden du ställt in. Tog bort torrenten och dess filer.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta delningstiden du ställt in. Tog bort torrenten och dess filer.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1754"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Enabled super seeding for it.</source>
-        <translation>&quot;%1&quot; nådde det högsta distributionstiden du ställde in. Aktiverade superdistribuering för det.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde det högsta distributionstiden du ställde in. Aktiverade superdistribuering för det.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1773"/>
-        <location filename="../base/bittorrent/session.cpp" line="2100"/>
-        <location filename="../base/bittorrent/session.cpp" line="4369"/>
         <source>Couldn&apos;t load torrent: %1</source>
-        <translation>Det gick inte att läsa in torrent: %1</translation>
+        <translation type="vanished">Det gick inte att läsa in torrent: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2442"/>
         <source>Couldn&apos;t export torrent metadata file &apos;%1&apos;. Reason: %2.</source>
-        <translation>Det gick inte att exportera torrentmetadatafil: &quot;%1&quot;. Orsak: %2</translation>
+        <translation type="vanished">Det gick inte att exportera torrentmetadatafil: &quot;%1&quot;. Orsak: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2476"/>
         <source>Error: Aborted saving resume data for %1 outstanding torrents.</source>
-        <translation>Fel: Avbröt spara återupptagningsdata för %1 utestående torrenter.</translation>
+        <translation type="vanished">Fel: Avbröt spara återupptagningsdata för %1 utestående torrenter.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2584"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
         <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
-        <translation>Konfigurerad nätverksgränssnittsadress %1 är inte giltig.</translation>
+        <translation type="vanished">Konfigurerad nätverksgränssnittsadress %1 är inte giltig.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2625"/>
-        <location filename="../base/bittorrent/session.cpp" line="2660"/>
         <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
         <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
-        <translation>Det går inte att hitta den konfigurerade adressen &quot;%1&quot; att lyssna på</translation>
+        <translation type="vanished">Det går inte att hitta den konfigurerade adressen &quot;%1&quot; att lyssna på</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3046"/>
         <source>%1 is not a valid IP address and was rejected while applying the list of banned IP addresses.</source>
-        <translation>%1 är inte en giltig IP-adress och avvisades när listan över förbjudna IP-adresser tillämpades.</translation>
+        <translation type="vanished">%1 är inte en giltig IP-adress och avvisades när listan över förbjudna IP-adresser tillämpades.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4070"/>
         <source>Unable to decode &apos;%1&apos; torrent file.</source>
-        <translation>Det gick inte att avkoda &quot;%1&quot; torrentfilen.</translation>
+        <translation type="vanished">Det gick inte att avkoda &quot;%1&quot; torrentfilen.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4115"/>
         <source>Cancelled moving &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
-        <translation>Avbruten flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;.</translation>
+        <translation type="vanished">Avbruten flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4134"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; to &quot;%2&quot;. Torrent is currently moving to the same destination location.</source>
-        <translation>Det gick inte köa flyttning av &quot;%1&quot; till &quot;%2&quot;. Torrent flyttar för närvarande till samma destinationsplats.</translation>
+        <translation type="vanished">Det gick inte köa flyttning av &quot;%1&quot; till &quot;%2&quot;. Torrent flyttar för närvarande till samma destinationsplats.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4143"/>
         <source>Couldn&apos;t enqueue move of &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Both paths point to the same location.</source>
-        <translation>Det gick inte att köa flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;. Båda sökvägarna pekar på samma plats.</translation>
+        <translation type="vanished">Det gick inte att köa flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;. Båda sökvägarna pekar på samma plats.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4151"/>
         <source>Enqueued to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;.</source>
-        <translation>Köa flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;.</translation>
+        <translation type="vanished">Köa flyttning av &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4168"/>
         <source>Moving &quot;%1&quot; to &quot;%2&quot;...</source>
-        <translation>Flyttar &quot;%1&quot; till &quot;%2&quot;...</translation>
+        <translation type="vanished">Flyttar &quot;%1&quot; till &quot;%2&quot;...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4219"/>
         <source>Couldn&apos;t store Categories configuration to %1. Error: %2</source>
-        <translation>Det gick inte att lagra kategorikonfigurationen till %1. Fel: %2</translation>
+        <translation type="vanished">Det gick inte att lagra kategorikonfigurationen till %1. Fel: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4256"/>
         <source>Couldn&apos;t load Categories from %1. Error: %2</source>
-        <translation>Det gick inte att läsa in kategorier från %1. Fel: %2</translation>
+        <translation type="vanished">Det gick inte att läsa in kategorier från %1. Fel: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4265"/>
         <source>Couldn&apos;t parse Categories configuration from %1. Error: %2</source>
-        <translation>Det gick inte att tolka kategorikonfigurationen från %1. Fel: %2</translation>
+        <translation type="vanished">Det gick inte att tolka kategorikonfigurationen från %1. Fel: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4272"/>
         <source>Couldn&apos;t load Categories configuration from %1. Invalid data format.</source>
-        <translation>Det gick inte att läsa in kategorikonfigurationen från %1. Ogiltigt dataformat.</translation>
+        <translation type="vanished">Det gick inte att läsa in kategorikonfigurationen från %1. Ogiltigt dataformat.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4357"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
         <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
-        <translation>Rekursiv hämtning av filen &quot;%1&quot; inbäddad i torrenten %2</translation>
+        <translation type="vanished">Rekursiv hämtning av filen &quot;%1&quot; inbäddad i torrenten %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4788"/>
         <source>Couldn&apos;t load torrent. Reason: %1.</source>
-        <translation>Det gick inte att läsa in torrent. Orsak: %1.</translation>
+        <translation type="vanished">Det gick inte att läsa in torrent. Orsak: %1.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4936"/>
+        <location filename="../base/bittorrent/session.cpp" line="575"/>
+        <location filename="../base/bittorrent/session.cpp" line="1157"/>
+        <source>Distributed Hash Table (DHT) support: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="590"/>
+        <location filename="../base/bittorrent/session.cpp" line="1158"/>
+        <source>Local Peer Discovery support: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="604"/>
+        <source>Restart is required to toggle Peer Exchange (PeX) support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1155"/>
+        <source>Peer ID: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1156"/>
+        <source>HTTP User-Agent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1159"/>
+        <source>Peer Exchange (PeX) support: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1160"/>
+        <location filename="../base/bittorrent/session.cpp" line="3589"/>
+        <source>Anonymous mode: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1161"/>
+        <location filename="../base/bittorrent/session.cpp" line="2990"/>
+        <source>Encryption support: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1543"/>
+        <source>Could not find GUID of network interface. Interface: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1558"/>
+        <source>Trying to listen on the following list of IP addresses: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1706"/>
+        <source>Torrent reached the share ratio limit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1707"/>
+        <location filename="../base/bittorrent/session.cpp" line="1750"/>
+        <source>Torrent: &quot;%1&quot;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1711"/>
+        <location filename="../base/bittorrent/session.cpp" line="1754"/>
+        <source>Removed torrent.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1716"/>
+        <location filename="../base/bittorrent/session.cpp" line="1759"/>
+        <source>Removed torrent and deleted its content.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1722"/>
+        <location filename="../base/bittorrent/session.cpp" line="1765"/>
+        <source>Torrent paused.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1727"/>
+        <location filename="../base/bittorrent/session.cpp" line="1770"/>
+        <source>Super seeding enabled.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1749"/>
+        <source>Torrent reached the seeding time limit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="1789"/>
+        <location filename="../base/bittorrent/session.cpp" line="4937"/>
+        <source>Failed to load torrent. Reason: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2104"/>
+        <source>Downloading torrent, please wait... Source: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2121"/>
+        <source>Failed to load torrent. Source: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2463"/>
+        <source>Failed to export torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2497"/>
+        <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2633"/>
+        <source>The configured network address is invalid. Address: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2674"/>
+        <location filename="../base/bittorrent/session.cpp" line="2708"/>
+        <source>Failed to find the configured network address to listen on. Address: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="2687"/>
+        <source>The configured network interface is invalid. Interface: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="3121"/>
+        <source>Rejected invalid IP address while applying the list of banned IP addresses. IP: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4086"/>
+        <source>Added tracker to torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4096"/>
+        <source>Removed tracker from torrent. Torrent: &quot;%1&quot;. Tracker: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4111"/>
+        <source>Added URL seed to torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4117"/>
+        <source>Removed URL seed from torrent. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4138"/>
+        <source>Torrent paused. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4144"/>
+        <source>Torrent resumed. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4155"/>
+        <source>Torrent download finished. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4176"/>
+        <source>Unable to load torrent. File: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4221"/>
+        <source>Torrent move canceled. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4240"/>
+        <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: torrent is currently moving to the destination</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4249"/>
+        <source>Failed to enqueue torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot; Destination: &quot;%3&quot;. Reason: both paths point to the same location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4257"/>
+        <source>Enqueued torrent move. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4274"/>
+        <source>Start moving torrent. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4325"/>
+        <source>Failed to save Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4362"/>
+        <source>Failed to load Categories. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4371"/>
+        <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4378"/>
+        <source>Failed to load Categories configuration. File: &quot;%1&quot;. Reason: invalid data format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4462"/>
+        <source>Recursive download .torrent file within torrent. Source torrent: &quot;%1&quot;. File: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4473"/>
+        <source>Failed to load torrent. Error: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4538"/>
+        <location filename="../base/bittorrent/session.cpp" line="4670"/>
+        <source>Failed to resume torrent. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4591"/>
+        <location filename="../base/bittorrent/session.cpp" line="4601"/>
+        <source>Failed to resume torrent: inconsistent torrent ID is detected. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4639"/>
+        <source>Detected inconsistent data: category is missing from the configuration file. Category will be recovered but its settings will be reset to default. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4646"/>
+        <source>Detected inconsistent data: invalid category. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4661"/>
+        <source>Detected mismatch between the save paths of the recovered category and the current save path of the torrent. Torrent is now switched to Manual mode. Torrent: &quot;%1&quot;. Category: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4720"/>
+        <source>Successfully parsed the IP filter file. Number of rules applied: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4730"/>
+        <source>Failed to parse the IP filter file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4919"/>
+        <source>Restored torrent. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4923"/>
+        <source>Added new torrent. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4929"/>
+        <source>Torrent errored. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4968"/>
+        <location filename="../base/bittorrent/session.cpp" line="5017"/>
+        <source>Removed torrent. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="4988"/>
+        <source>Removed torrent and deleted its content. Torrent: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5011"/>
+        <source>Removed torrent but failed to delete its content. Torrent: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5059"/>
+        <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5070"/>
+        <source>UPnP/NAT-PMP port mapping failed. Message: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5076"/>
+        <source>UPnP/NAT-PMP port mapping succeeded. Message: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5085"/>
         <source>IP filter</source>
         <comment>this peer was blocked. Reason: IP filter.</comment>
         <translation>IP-filter</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4939"/>
+        <location filename="../base/bittorrent/session.cpp" line="5088"/>
         <source>port filter</source>
         <comment>this peer was blocked. Reason: port filter.</comment>
         <translation>portfilter</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4942"/>
+        <location filename="../base/bittorrent/session.cpp" line="5091"/>
         <source>%1 mixed mode restrictions</source>
         <comment>this peer was blocked. Reason: I2P mixed mode restrictions.</comment>
         <translation>%1 begränsningar för blandat läge</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4945"/>
+        <location filename="../base/bittorrent/session.cpp" line="5094"/>
         <source>use of privileged port</source>
         <comment>this peer was blocked. Reason: use of privileged port.</comment>
         <translation>användning av privilegierad port</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4948"/>
+        <location filename="../base/bittorrent/session.cpp" line="5097"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: uTP is disabled.</comment>
         <translation>%1 är inaktiverad</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4951"/>
+        <location filename="../base/bittorrent/session.cpp" line="5100"/>
         <source>%1 is disabled</source>
         <comment>this peer was blocked. Reason: TCP is disabled.</comment>
         <translation>%1 är inaktiverad</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4780"/>
-        <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
-        <translation>Torrentfel. Torrent: &quot;%1&quot;. Fel: %2.</translation>
+        <location filename="../base/bittorrent/session.cpp" line="5124"/>
+        <source>URL seed DNS lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4819"/>
-        <location filename="../base/bittorrent/session.cpp" line="4868"/>
+        <location filename="../base/bittorrent/session.cpp" line="5130"/>
+        <source>Received error message from URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5139"/>
+        <source>Successfully listening on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5149"/>
+        <source>Failed to listen on IP. IP: &quot;%1&quot;. Port: &quot;%2/%3&quot;. Reason: &quot;%4&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5157"/>
+        <source>Detected external IP. IP: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5246"/>
+        <source>Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: &quot;%1&quot;. Message: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5268"/>
+        <source>Moved torrent successfully. Torrent: &quot;%1&quot;. Destination: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5290"/>
+        <source>Failed to move torrent. Torrent: &quot;%1&quot;. Source: &quot;%2&quot;. Destination: &quot;%3&quot;. Reason: &quot;%4&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/session.cpp" line="5329"/>
+        <source>SOCKS5 proxy error. Message: &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torrent errored. Torrent: &quot;%1&quot;. Error: %2.</source>
+        <translation type="vanished">Torrentfel. Torrent: &quot;%1&quot;. Fel: %2.</translation>
+    </message>
+    <message>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&quot;%1&quot; har tagits bort från överföringslistan.</translation>
+        <translation type="vanished">&quot;%1&quot; har tagits bort från överföringslistan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4839"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&quot;%1&quot; har tagits bort från överföringslistan och hårddisken.</translation>
+        <translation type="vanished">&quot;%1&quot; har tagits bort från överföringslistan och hårddisken.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4862"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
         <comment>&apos;xxx.avi&apos; was removed...</comment>
-        <translation>&quot;%1&quot; har tagits bort från överföringslistan men filerna kunde inte tas bort. Fel: %2</translation>
+        <translation type="vanished">&quot;%1&quot; har tagits bort från överföringslistan men filerna kunde inte tas bort. Fel: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4910"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: %3</source>
-        <translation>Filfelvarning. Torrent: &quot;%1&quot;. Fil: &quot;%2&quot;. Orsak: %3</translation>
+        <translation type="vanished">Filfelvarning. Torrent: &quot;%1&quot;. Fil: &quot;%2&quot;. Orsak: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4975"/>
         <source>URL seed name lookup failed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Error: &quot;%3&quot;</source>
-        <translation>Det gick inte att slå upp webbadressdistributionsnamn. Torrent: &quot;%1&quot;. Webbadress: &quot;%2&quot;. Fel: &quot;%3&quot;</translation>
+        <translation type="vanished">Det gick inte att slå upp webbadressdistributionsnamn. Torrent: &quot;%1&quot;. Webbadress: &quot;%2&quot;. Fel: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4981"/>
         <source>Received error message from a URL seed. Torrent: &quot;%1&quot;. URL: &quot;%2&quot;. Message: &quot;%3&quot;</source>
-        <translation>Mottaget felmeddelande från en webbadressdistribution. Torrent: &quot;%1&quot;. Webbadress: &quot;%2&quot;. Meddelande: &quot;%3&quot;</translation>
+        <translation type="vanished">Mottaget felmeddelande från en webbadressdistribution. Torrent: &quot;%1&quot;. Webbadress: &quot;%2&quot;. Meddelande: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4990"/>
         <source>Successfully listening on IP: %1, port: %2/%3</source>
         <comment>e.g: Successfully listening on IP: 192.168.0.1, port: TCP/6881</comment>
-        <translation>Lyssnar på IP: %1, port: %2/%3</translation>
+        <translation type="vanished">Lyssnar på IP: %1, port: %2/%3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5001"/>
         <source>Failed to listen on IP: %1, port: %2/%3. Reason: %4</source>
         <comment>e.g: Failed to listen on IP: 192.168.0.1, port: TCP/6881. Reason: already in use</comment>
-        <translation>Det gick inte att lyssna på IP: %1, port: %2/%3. Orsak: %4</translation>
+        <translation type="vanished">Det gick inte att lyssna på IP: %1, port: %2/%3. Orsak: %4</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5010"/>
         <source>Detected external IP: %1</source>
         <comment>e.g. Detected external IP: 1.1.1.1</comment>
-        <translation>Detekterad extern IP: %1</translation>
+        <translation type="vanished">Detekterad extern IP: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5099"/>
         <source>Error: Internal alert queue full and alerts were dropped, you might see degraded performance. Dropped alert types: %1. Message: %2</source>
-        <translation>Fel: Intern varningskö full och varningar tappades, du kan se försämrad prestanda. Tappade varningstyper: %1. Meddelande: %2</translation>
+        <translation type="vanished">Fel: Intern varningskö full och varningar tappades, du kan se försämrad prestanda. Tappade varningstyper: %1. Meddelande: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5121"/>
         <source>&quot;%1&quot; is successfully moved to &quot;%2&quot;.</source>
-        <translation>&quot;%1&quot; har flyttats till &quot;%2&quot;.</translation>
+        <translation type="vanished">&quot;%1&quot; har flyttats till &quot;%2&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5143"/>
         <source>Failed to move &quot;%1&quot; from &quot;%2&quot; to &quot;%3&quot;. Reason: %4.</source>
-        <translation>Det gick inte att flytta &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;. Orsak: %4.</translation>
+        <translation type="vanished">Det gick inte att flytta &quot;%1&quot; från &quot;%2&quot; till &quot;%3&quot;. Orsak: %4.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="5182"/>
         <source>SOCKS5 proxy error. Message: %1</source>
-        <translation>SOCKS5-proxy fel. Meddelande: %1</translation>
+        <translation type="vanished">SOCKS5-proxy fel. Meddelande: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2083"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
         <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
-        <translation>Hämtar &quot;%1&quot;, vänligen vänta...</translation>
+        <translation type="vanished">Hämtar &quot;%1&quot;, vänligen vänta...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="2639"/>
         <source>The network interface defined is invalid: %1</source>
-        <translation>Nätverksgränssnittet som definierats är ogiltig: %1</translation>
+        <translation type="vanished">Nätverksgränssnittet som definierats är ogiltig: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1161"/>
         <source>Peer ID: </source>
-        <translation>Jämlike-ID: </translation>
+        <translation type="vanished">Jämlike-ID: </translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1162"/>
         <source>HTTP User-Agent is &apos;%1&apos;</source>
-        <translation>HTTP-användaragent är &quot;%1&quot;</translation>
+        <translation type="vanished">HTTP-användaragent är &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="571"/>
-        <location filename="../base/bittorrent/session.cpp" line="1163"/>
         <source>DHT support [%1]</source>
-        <translation>DHT-stöd [%1]</translation>
+        <translation type="vanished">DHT-stöd [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="571"/>
-        <location filename="../base/bittorrent/session.cpp" line="586"/>
-        <location filename="../base/bittorrent/session.cpp" line="1163"/>
-        <location filename="../base/bittorrent/session.cpp" line="1164"/>
-        <location filename="../base/bittorrent/session.cpp" line="1165"/>
-        <location filename="../base/bittorrent/session.cpp" line="1166"/>
-        <location filename="../base/bittorrent/session.cpp" line="1167"/>
-        <location filename="../base/bittorrent/session.cpp" line="2930"/>
-        <location filename="../base/bittorrent/session.cpp" line="3486"/>
+        <location filename="../base/bittorrent/session.cpp" line="575"/>
+        <location filename="../base/bittorrent/session.cpp" line="590"/>
+        <location filename="../base/bittorrent/session.cpp" line="1157"/>
+        <location filename="../base/bittorrent/session.cpp" line="1158"/>
+        <location filename="../base/bittorrent/session.cpp" line="1159"/>
+        <location filename="../base/bittorrent/session.cpp" line="1160"/>
+        <location filename="../base/bittorrent/session.cpp" line="1161"/>
+        <location filename="../base/bittorrent/session.cpp" line="2991"/>
+        <location filename="../base/bittorrent/session.cpp" line="3589"/>
         <source>ON</source>
         <translation>PÅ</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="571"/>
-        <location filename="../base/bittorrent/session.cpp" line="586"/>
-        <location filename="../base/bittorrent/session.cpp" line="1163"/>
-        <location filename="../base/bittorrent/session.cpp" line="1164"/>
-        <location filename="../base/bittorrent/session.cpp" line="1165"/>
-        <location filename="../base/bittorrent/session.cpp" line="1166"/>
-        <location filename="../base/bittorrent/session.cpp" line="1168"/>
-        <location filename="../base/bittorrent/session.cpp" line="2930"/>
-        <location filename="../base/bittorrent/session.cpp" line="3486"/>
+        <location filename="../base/bittorrent/session.cpp" line="575"/>
+        <location filename="../base/bittorrent/session.cpp" line="590"/>
+        <location filename="../base/bittorrent/session.cpp" line="1157"/>
+        <location filename="../base/bittorrent/session.cpp" line="1158"/>
+        <location filename="../base/bittorrent/session.cpp" line="1159"/>
+        <location filename="../base/bittorrent/session.cpp" line="1160"/>
+        <location filename="../base/bittorrent/session.cpp" line="1161"/>
+        <location filename="../base/bittorrent/session.cpp" line="2991"/>
+        <location filename="../base/bittorrent/session.cpp" line="3589"/>
         <source>OFF</source>
         <translation>AV</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="586"/>
-        <location filename="../base/bittorrent/session.cpp" line="1164"/>
         <source>Local Peer Discovery support [%1]</source>
-        <translation>Stöd för upptäckt av lokala jämlikar [%1]</translation>
+        <translation type="vanished">Stöd för upptäckt av lokala jämlikar [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1165"/>
         <source>PeX support [%1]</source>
-        <translation>PeX-stöd [%1]</translation>
+        <translation type="vanished">PeX-stöd [%1]</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1533"/>
         <source>Could not get GUID of network interface: %1</source>
-        <translation>Det gick inte att få GUID av nätverksgränssnitt: %1</translation>
+        <translation type="vanished">Det gick inte att få GUID av nätverksgränssnitt: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1548"/>
         <source>Trying to listen on: %1</source>
         <comment>e.g: Trying to listen on: 192.168.0.1:6881</comment>
-        <translation>Försöker lyssna på: %1</translation>
+        <translation type="vanished">Försöker lyssna på: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1699"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Removed.</source>
-        <translation>&quot;%1&quot; nådde den högsta kvoten du ställde in. Borttagen.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta kvoten du ställde in. Borttagen.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1710"/>
         <source>&apos;%1&apos; reached the maximum ratio you set. Paused.</source>
-        <translation>&quot;%1&quot; nådde de högsta kvoten du ställde in. Pausad.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde de högsta kvoten du ställde in. Pausad.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1738"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Removed.</source>
-        <translation>&quot;%1&quot; nådde den högsta distributionstiden du ställde in. Togs bort.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta distributionstiden du ställde in. Togs bort.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="1749"/>
         <source>&apos;%1&apos; reached the maximum seeding time you set. Paused.</source>
-        <translation>&quot;%1&quot; nådde den högsta distributionstiden du ställde in. Pausad.</translation>
+        <translation type="vanished">&quot;%1&quot; nådde den högsta distributionstiden du ställde in. Pausad.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3983"/>
         <source>Tracker &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>Spåraren &quot;%1&quot; lades till torrenten &quot;%2&quot;</translation>
+        <translation type="vanished">Spåraren &quot;%1&quot; lades till torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="3993"/>
         <source>Tracker &apos;%1&apos; was deleted from torrent &apos;%2&apos;</source>
-        <translation>Spåraren &quot;%1&quot; togs bort från torrenten &quot;%2&quot;</translation>
+        <translation type="vanished">Spåraren &quot;%1&quot; togs bort från torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4008"/>
         <source>URL seed &apos;%1&apos; was added to torrent &apos;%2&apos;</source>
-        <translation>Webbadressdistribution &quot;%1&quot; lades till torrenten &quot;%2&quot;</translation>
+        <translation type="vanished">Webbadressdistribution &quot;%1&quot; lades till torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4014"/>
         <source>URL seed &apos;%1&apos; was removed from torrent &apos;%2&apos;</source>
-        <translation>Webbadressdistribution &quot;%1&quot; togs bort från torrenten &quot;%2&quot;</translation>
+        <translation type="vanished">Webbadressdistribution &quot;%1&quot; togs bort från torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4433"/>
-        <location filename="../base/bittorrent/session.cpp" line="4519"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
         <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
-        <translation>Det gick inte att återuppta torrent &quot;%1&quot;.</translation>
+        <translation type="vanished">Det gick inte att återuppta torrent &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4571"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
-        <translation>Tolkade det angivna IP-filtret: %1 regler tillämpades.</translation>
+        <translation type="vanished">Tolkade det angivna IP-filtret: %1 regler tillämpades.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4581"/>
         <source>Error: Failed to parse the provided IP filter.</source>
-        <translation>Fel: Det gick inte att tolka medföljande IP-filter.</translation>
+        <translation type="vanished">Fel: Det gick inte att tolka medföljande IP-filter.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4744"/>
         <source>&apos;%1&apos; restored.</source>
         <comment>&apos;torrent name&apos; restored.</comment>
-        <translation>&quot;%1&quot; återställd.</translation>
+        <translation type="vanished">&quot;%1&quot; återställd.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4764"/>
         <source>&apos;%1&apos; added to download list.</source>
         <comment>&apos;torrent name&apos; was added to download list.</comment>
-        <translation>&quot;%1&quot; lades till i hämtningslistan.</translation>
+        <translation type="vanished">&quot;%1&quot; lades till i hämtningslistan.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4921"/>
         <source>UPnP/NAT-PMP: Port mapping failure, message: %1</source>
-        <translation>UPnP/NAT-PMP: Portmappningsfel, meddelande: %1</translation>
+        <translation type="vanished">UPnP/NAT-PMP: Portmappningsfel, meddelande: %1</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/session.cpp" line="4927"/>
         <source>UPnP/NAT-PMP: Port mapping successful, message: %1</source>
-        <translation>UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
+        <translation type="vanished">UPnP/NAT-PMP: Portmappning lyckades, meddelande: %1</translation>
     </message>
 </context>
 <context>
@@ -2101,79 +2404,79 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>BitTorrent::TorrentImpl</name>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="687"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="703"/>
         <source>Failed to add peer &quot;%1&quot; to torrent &quot;%2&quot;. Reason: %3</source>
         <translation>Det gick inte att lägga till jämliken &quot;%1&quot; till torrenten &quot;%2&quot;. Orsak: %3</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="692"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="708"/>
         <source>Peer &quot;%1&quot; is added to torrent &quot;%2&quot;</source>
         <translation>Jämliken &quot;%1&quot; läggs till torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1037"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1053"/>
         <source>Couldn&apos;t write to file.</source>
         <translation>Det gick inte att skriva till fil</translation>
     </message>
     <message>
-        <source>Torrent is currently in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrenten är för närvarande i &quot;endast uppladdning&quot;-läge.</translation>
-    </message>
-    <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1038"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1054"/>
         <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrenten är nu i &quot;endast uppladdningsläge&quot;.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1039"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1055"/>
         <source>Reason:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orsak:</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1443"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1459"/>
         <source>Download first and last piece first: %1, torrent: &apos;%2&apos;</source>
         <translation>Hämta första och sista delarna först: %1, torrent: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1444"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1460"/>
         <source>On</source>
         <translation>På</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1444"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1460"/>
         <source>Off</source>
         <translation>Av</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1835"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1856"/>
         <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
         <translation>Filstorlekar överensstämmer inte med torrenten &quot;%1&quot;. Kan inte gå vidare.</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1839"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1860"/>
         <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
         <translation>Snabb återupptagning av data avvisades för torrenten &quot;%1&quot;. Orsak: %2. Kontrollerar igen...</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1884"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1905"/>
         <source>File rename failed. Torrent: &quot;%1&quot;, file: &quot;%2&quot;, reason: &quot;%3&quot;</source>
         <translation>Det gick inte att byta namn på fil. Torrent: &quot;%1&quot;, fil: &quot;%2&quot;, orsak: &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/torrentimpl.cpp" line="1935"/>
+        <location filename="../base/bittorrent/torrentimpl.cpp" line="1959"/>
+        <source>Performance alert: %1. More info: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Performance alert: </source>
-        <translation>Prestandavarning: </translation>
+        <translation type="vanished">Prestandavarning: </translation>
     </message>
 </context>
 <context>
     <name>BitTorrent::Tracker</name>
     <message>
-        <location filename="../base/bittorrent/tracker.cpp" line="222"/>
+        <location filename="../base/bittorrent/tracker.cpp" line="226"/>
         <source>Embedded Tracker: Now listening on IP: %1, port: %2</source>
         <translation>Inbäddad spårare: Lyssnar nu på IP: %1, port: %2</translation>
     </message>
     <message>
-        <location filename="../base/bittorrent/tracker.cpp" line="227"/>
+        <location filename="../base/bittorrent/tracker.cpp" line="231"/>
         <source>Embedded Tracker: Unable to bind to IP: %1, port: %2. Reason: %3</source>
         <translation>Inbäddad spårare: Det gick inte att binda till IP: %1, port: %2. Orsak: %3</translation>
     </message>
@@ -2181,17 +2484,17 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>CategoryFilterModel</name>
     <message>
-        <location filename="../gui/categoryfiltermodel.cpp" line="245"/>
+        <location filename="../gui/categoryfiltermodel.cpp" line="244"/>
         <source>Categories</source>
         <translation>Kategorier</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfiltermodel.cpp" line="403"/>
+        <location filename="../gui/categoryfiltermodel.cpp" line="402"/>
         <source>All</source>
         <translation>Alla</translation>
     </message>
     <message>
-        <location filename="../gui/categoryfiltermodel.cpp" line="409"/>
+        <location filename="../gui/categoryfiltermodel.cpp" line="408"/>
         <source>Uncategorized</source>
         <translation>Utan kategorier</translation>
     </message>
@@ -2293,13 +2596,13 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Ta också bort filerna från hårddisken</translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.cpp" line="44"/>
+        <location filename="../gui/deletionconfirmationdialog.cpp" line="45"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
         <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
         <translation>Är du säker på att du vill ta bort &quot;%1&quot; från överföringslistan?</translation>
     </message>
     <message>
-        <location filename="../gui/deletionconfirmationdialog.cpp" line="46"/>
+        <location filename="../gui/deletionconfirmationdialog.cpp" line="47"/>
         <source>Are you sure you want to delete these %1 torrents from the transfer list?</source>
         <comment>Are you sure you want to delete these 5 torrents from the transfer list?</comment>
         <translation>Är du säker på att du vill ta bort de här %1 torrenterna från överföringslistan?</translation>
@@ -2503,12 +2806,12 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Blockerade IP-adresser</translation>
     </message>
     <message>
-        <location filename="../gui/executionlogwidget.cpp" line="94"/>
+        <location filename="../gui/executionlogwidget.cpp" line="95"/>
         <source>Copy</source>
         <translation>Kopiera</translation>
     </message>
     <message>
-        <location filename="../gui/executionlogwidget.cpp" line="98"/>
+        <location filename="../gui/executionlogwidget.cpp" line="99"/>
         <source>Clear</source>
         <translation>Rensa</translation>
     </message>
@@ -2629,38 +2932,38 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>GeoIPDatabase</name>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="95"/>
-        <location filename="../base/net/geoipdatabase.cpp" line="129"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="96"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="130"/>
         <source>Unsupported database file size.</source>
         <translation>Ostödd databasfilstorlek.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="238"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="239"/>
         <source>Metadata error: &apos;%1&apos; entry not found.</source>
         <translation>Metadatafel: posten &quot;%1&quot; hittades inte.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="239"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="240"/>
         <source>Metadata error: &apos;%1&apos; entry has invalid type.</source>
         <translation>Metadatafel: posten &quot;%1&quot; har ogiltig typ.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="249"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="250"/>
         <source>Unsupported database version: %1.%2</source>
         <translation>Icke-stödd databasversion: %1.%2</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="257"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="258"/>
         <source>Unsupported IP version: %1</source>
         <translation>Icke-stödd IP-version: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="265"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="266"/>
         <source>Unsupported record size: %1</source>
         <translation>icke-stödd poststorlek: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipdatabase.cpp" line="296"/>
+        <location filename="../base/net/geoipdatabase.cpp" line="297"/>
         <source>Database corrupted: no data section found.</source>
         <translation>Databas skadad: ingen datasektion hittades.</translation>
     </message>
@@ -2759,113 +3062,118 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>&amp;Visa</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="180"/>
+        <location filename="../gui/mainwindow.ui" line="181"/>
         <source>&amp;Options...</source>
         <translation>A&amp;lternativ...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="190"/>
+        <location filename="../gui/mainwindow.ui" line="191"/>
         <source>&amp;Resume</source>
         <translation>&amp;Återuppta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="223"/>
+        <location filename="../gui/mainwindow.ui" line="224"/>
         <source>Torrent &amp;Creator</source>
         <translation>&amp;Torrentskapare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="285"/>
-        <location filename="../gui/mainwindow.ui" line="288"/>
+        <location filename="../gui/mainwindow.ui" line="286"/>
+        <location filename="../gui/mainwindow.ui" line="289"/>
         <source>Alternative Speed Limits</source>
         <translation>Alternativa hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="296"/>
+        <location filename="../gui/mainwindow.ui" line="297"/>
         <source>&amp;Top Toolbar</source>
         <translation>&amp;Översta verktygsfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="299"/>
+        <location filename="../gui/mainwindow.ui" line="300"/>
         <source>Display Top Toolbar</source>
         <translation>Visa översta verktygsfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="307"/>
+        <location filename="../gui/mainwindow.ui" line="308"/>
         <source>Status &amp;Bar</source>
         <translation>Status&amp;fält</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="315"/>
+        <location filename="../gui/mainwindow.ui" line="316"/>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.ui" line="324"/>
         <source>S&amp;peed in Title Bar</source>
         <translation>H&amp;astighet i titelfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="318"/>
+        <location filename="../gui/mainwindow.ui" line="327"/>
         <source>Show Transfer Speed in Title Bar</source>
         <translation>Visa överföringshastighet i titelfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="326"/>
+        <location filename="../gui/mainwindow.ui" line="335"/>
         <source>&amp;RSS Reader</source>
         <translation>&amp;RSS-läsare</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="334"/>
+        <location filename="../gui/mainwindow.ui" line="343"/>
         <source>Search &amp;Engine</source>
         <translation>Sök&amp;motor</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="339"/>
+        <location filename="../gui/mainwindow.ui" line="348"/>
         <source>L&amp;ock qBittorrent</source>
         <translation>L&amp;ås qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="350"/>
+        <location filename="../gui/mainwindow.ui" line="359"/>
         <source>Do&amp;nate!</source>
         <translation>Do&amp;nera!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="393"/>
+        <location filename="../gui/mainwindow.ui" line="402"/>
         <source>&amp;Do nothing</source>
         <translation>&amp;Gör ingenting</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="469"/>
+        <location filename="../gui/mainwindow.ui" line="478"/>
         <source>Close Window</source>
         <translation>Stäng fönster</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="200"/>
+        <location filename="../gui/mainwindow.ui" line="201"/>
         <source>R&amp;esume All</source>
         <translation>Åt&amp;eruppta alla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="421"/>
+        <location filename="../gui/mainwindow.ui" line="430"/>
         <source>Manage Cookies...</source>
         <translation>Hantera kakor...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="424"/>
+        <location filename="../gui/mainwindow.ui" line="433"/>
         <source>Manage stored network cookies</source>
         <translation>Hantera lagrade nätverkskakor</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="440"/>
+        <location filename="../gui/mainwindow.ui" line="449"/>
         <source>Normal Messages</source>
         <translation>Normala meddelanden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="448"/>
+        <location filename="../gui/mainwindow.ui" line="457"/>
         <source>Information Messages</source>
         <translation>Informationsmeddelanden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="456"/>
+        <location filename="../gui/mainwindow.ui" line="465"/>
         <source>Warning Messages</source>
         <translation>Varningsmeddelanden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="464"/>
+        <location filename="../gui/mainwindow.ui" line="473"/>
         <source>Critical Messages</source>
         <translation>Kritiska meddelanden</translation>
     </message>
@@ -2875,165 +3183,165 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>&amp;Logg</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="233"/>
+        <location filename="../gui/mainwindow.ui" line="234"/>
         <source>Set Global Speed Limits...</source>
         <translation>Ställ in globala hastighetsgränser...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="238"/>
+        <location filename="../gui/mainwindow.ui" line="239"/>
         <source>Bottom of Queue</source>
         <translation>Längst bak i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="241"/>
+        <location filename="../gui/mainwindow.ui" line="242"/>
         <source>Move to the bottom of the queue</source>
         <translation>Flytta till slutet av kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="249"/>
+        <location filename="../gui/mainwindow.ui" line="250"/>
         <source>Top of Queue</source>
         <translation>Längst fram i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="252"/>
+        <location filename="../gui/mainwindow.ui" line="253"/>
         <source>Move to the top of the queue</source>
         <translation>Flytta till början av kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="260"/>
+        <location filename="../gui/mainwindow.ui" line="261"/>
         <source>Move Down Queue</source>
         <translation>Flytta bak i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="263"/>
+        <location filename="../gui/mainwindow.ui" line="264"/>
         <source>Move down in the queue</source>
         <translation>Flytta bak i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="271"/>
+        <location filename="../gui/mainwindow.ui" line="272"/>
         <source>Move Up Queue</source>
         <translation>Flytta fram i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="274"/>
+        <location filename="../gui/mainwindow.ui" line="275"/>
         <source>Move up in the queue</source>
         <translation>Flytta fram i kön</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="361"/>
+        <location filename="../gui/mainwindow.ui" line="370"/>
         <source>&amp;Exit qBittorrent</source>
         <translation>&amp;Avsluta qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="369"/>
+        <location filename="../gui/mainwindow.ui" line="378"/>
         <source>&amp;Suspend System</source>
         <translation>&amp;Försätt systemet i viloläge</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="377"/>
+        <location filename="../gui/mainwindow.ui" line="386"/>
         <source>&amp;Hibernate System</source>
         <translation>&amp;Försätt i viloläge</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="385"/>
+        <location filename="../gui/mainwindow.ui" line="394"/>
         <source>S&amp;hutdown System</source>
         <translation>S&amp;täng av systemet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="408"/>
+        <location filename="../gui/mainwindow.ui" line="417"/>
         <source>&amp;Statistics</source>
         <translation>&amp;Statistik</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="413"/>
+        <location filename="../gui/mainwindow.ui" line="422"/>
         <source>Check for Updates</source>
         <translation>Sök efter uppdateringar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="416"/>
+        <location filename="../gui/mainwindow.ui" line="425"/>
         <source>Check for Program Updates</source>
         <translation>Sök efter programuppdateringar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="185"/>
+        <location filename="../gui/mainwindow.ui" line="186"/>
         <source>&amp;About</source>
         <translation>&amp;Om</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="195"/>
+        <location filename="../gui/mainwindow.ui" line="196"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausa</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="210"/>
+        <location filename="../gui/mainwindow.ui" line="211"/>
         <source>&amp;Delete</source>
         <translation>&amp;Ta bort</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="205"/>
+        <location filename="../gui/mainwindow.ui" line="206"/>
         <source>P&amp;ause All</source>
         <translation>P&amp;ausa alla</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="167"/>
+        <location filename="../gui/mainwindow.ui" line="168"/>
         <source>&amp;Add Torrent File...</source>
         <translation>Lägg till &amp;torrentfil...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="170"/>
+        <location filename="../gui/mainwindow.ui" line="171"/>
         <source>Open</source>
         <translation>Öppna</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="175"/>
+        <location filename="../gui/mainwindow.ui" line="176"/>
         <source>E&amp;xit</source>
         <translation>A&amp;vsluta</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="218"/>
+        <location filename="../gui/mainwindow.ui" line="219"/>
         <source>Open URL</source>
         <translation>Öppna URL</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="228"/>
+        <location filename="../gui/mainwindow.ui" line="229"/>
         <source>&amp;Documentation</source>
         <translation>&amp;Dokumentation</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="342"/>
+        <location filename="../gui/mainwindow.ui" line="351"/>
         <source>Lock</source>
         <translation>Lås</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="398"/>
-        <location filename="../gui/mainwindow.ui" line="432"/>
-        <location filename="../gui/mainwindow.cpp" line="1744"/>
+        <location filename="../gui/mainwindow.ui" line="407"/>
+        <location filename="../gui/mainwindow.ui" line="441"/>
+        <location filename="../gui/mainwindow.cpp" line="1778"/>
         <source>Show</source>
         <translation>Visa</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1896"/>
+        <location filename="../gui/mainwindow.cpp" line="1937"/>
         <source>Check for program updates</source>
         <translation>Sök efter programuppdateringar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="215"/>
+        <location filename="../gui/mainwindow.ui" line="216"/>
         <source>Add Torrent &amp;Link...</source>
         <translation>Lägg till torrent&amp;länk...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.ui" line="353"/>
+        <location filename="../gui/mainwindow.ui" line="362"/>
         <source>If you like qBittorrent, please donate!</source>
         <translation>Vänligen donera om du tycker om qBittorrent!</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1974"/>
-        <location filename="../gui/mainwindow.cpp" line="1976"/>
+        <location filename="../gui/mainwindow.cpp" line="2015"/>
+        <location filename="../gui/mainwindow.cpp" line="2017"/>
         <source>Execution Log</source>
         <translation>Driftlogg</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="655"/>
+        <location filename="../gui/mainwindow.cpp" line="663"/>
         <source>Clear the password</source>
         <translation>Rensa lösenordet</translation>
     </message>
@@ -3058,202 +3366,212 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Filtrera torrentnamn...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="237"/>
+        <location filename="../gui/mainwindow.cpp" line="234"/>
         <source>Transfers</source>
         <translation>Överföringar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="414"/>
-        <location filename="../gui/mainwindow.cpp" line="1292"/>
+        <location filename="../gui/mainwindow.cpp" line="407"/>
+        <location filename="../gui/mainwindow.cpp" line="1299"/>
         <source>qBittorrent is minimized to tray</source>
         <translation>qBittorrent minimerad till systemfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="414"/>
-        <location filename="../gui/mainwindow.cpp" line="1195"/>
-        <location filename="../gui/mainwindow.cpp" line="1292"/>
+        <location filename="../gui/mainwindow.cpp" line="407"/>
+        <location filename="../gui/mainwindow.cpp" line="1202"/>
+        <location filename="../gui/mainwindow.cpp" line="1299"/>
         <source>This behavior can be changed in the settings. You won&apos;t be reminded again.</source>
         <translation>Detta beteende kan ändras i inställningarna. Du kommer inte att bli påmind igen.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="456"/>
+        <location filename="../gui/mainwindow.cpp" line="463"/>
         <source>Torrent file association</source>
         <translation>Associering av torrentfiler</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="553"/>
+        <location filename="../gui/mainwindow.cpp" line="561"/>
         <source>Icons Only</source>
         <translation>Endast ikoner</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="554"/>
+        <location filename="../gui/mainwindow.cpp" line="562"/>
         <source>Text Only</source>
         <translation>Endast text</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="555"/>
+        <location filename="../gui/mainwindow.cpp" line="563"/>
         <source>Text Alongside Icons</source>
         <translation>Text längs med ikoner</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="556"/>
+        <location filename="../gui/mainwindow.cpp" line="564"/>
         <source>Text Under Icons</source>
         <translation>Text under ikoner</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="557"/>
+        <location filename="../gui/mainwindow.cpp" line="565"/>
         <source>Follow System Style</source>
         <translation>Använd systemets utseende</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="638"/>
-        <location filename="../gui/mainwindow.cpp" line="1039"/>
+        <location filename="../gui/mainwindow.cpp" line="646"/>
+        <location filename="../gui/mainwindow.cpp" line="1046"/>
         <source>UI lock password</source>
         <translation>Lösenord för gränssnittslås</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="639"/>
-        <location filename="../gui/mainwindow.cpp" line="1040"/>
+        <location filename="../gui/mainwindow.cpp" line="647"/>
+        <location filename="../gui/mainwindow.cpp" line="1047"/>
         <source>Please type the UI lock password:</source>
         <translation>Vänligen skriv lösenordet för gränssnittslås:</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="656"/>
+        <location filename="../gui/mainwindow.cpp" line="664"/>
         <source>Are you sure you want to clear the password?</source>
         <translation>Är du säker att du vill rensa lösenordet?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="715"/>
+        <location filename="../gui/mainwindow.cpp" line="723"/>
         <source>Use regular expressions</source>
         <translation>Använd reguljära uttryck</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="737"/>
+        <location filename="../gui/mainwindow.cpp" line="745"/>
         <source>Search</source>
         <translation>Sök</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="754"/>
+        <location filename="../gui/mainwindow.cpp" line="762"/>
         <source>Transfers (%1)</source>
         <translation>Överföringar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="849"/>
+        <location filename="../gui/mainwindow.cpp" line="856"/>
         <source>Error</source>
         <translation>Fel</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="849"/>
+        <location filename="../gui/mainwindow.cpp" line="856"/>
         <source>Failed to add torrent: %1</source>
         <translation>Det gick inte att lägga till torrent: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="856"/>
+        <location filename="../gui/mainwindow.cpp" line="863"/>
         <source>Torrent added</source>
         <translation>Torrent tillagd</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="856"/>
+        <location filename="../gui/mainwindow.cpp" line="863"/>
         <source>&apos;%1&apos; was added.</source>
         <comment>e.g: xxx.avi was added.</comment>
         <translation>&quot;%1&quot; lades till.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="868"/>
+        <location filename="../gui/mainwindow.cpp" line="875"/>
         <source>I/O Error</source>
         <comment>i.e: Input/Output Error</comment>
         <translation>In/ut-fel</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="963"/>
+        <location filename="../gui/mainwindow.cpp" line="970"/>
         <source>Recursive download confirmation</source>
         <translation>Bekräftelse för rekursiv hämtning</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="969"/>
+        <location filename="../gui/mainwindow.cpp" line="976"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="970"/>
+        <location filename="../gui/mainwindow.cpp" line="977"/>
         <source>No</source>
         <translation>Nej</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="971"/>
+        <location filename="../gui/mainwindow.cpp" line="978"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1062"/>
+        <location filename="../gui/mainwindow.cpp" line="1069"/>
         <source>qBittorrent was just updated and needs to be restarted for the changes to be effective.</source>
         <translation>qBittorrent uppdaterades nyss och behöver startas om för att ändringarna ska vara effektiva..</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1195"/>
+        <location filename="../gui/mainwindow.cpp" line="1202"/>
         <source>qBittorrent is closed to tray</source>
         <translation>qBittorrent stängd till systemfältet</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1210"/>
+        <location filename="../gui/mainwindow.cpp" line="1217"/>
         <source>Some files are currently transferring.</source>
         <translation>Några filer överförs för närvarande.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1210"/>
+        <location filename="../gui/mainwindow.cpp" line="1217"/>
         <source>Are you sure you want to quit qBittorrent?</source>
         <translation>Är du säker på att du vill avsluta qBittorrent?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1212"/>
+        <location filename="../gui/mainwindow.cpp" line="1219"/>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1213"/>
+        <location filename="../gui/mainwindow.cpp" line="1220"/>
         <source>&amp;Yes</source>
         <translation>&amp;Ja</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1214"/>
+        <location filename="../gui/mainwindow.cpp" line="1221"/>
         <source>&amp;Always Yes</source>
         <translation>&amp;Alltid Ja</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1235"/>
+        <location filename="../gui/mainwindow.cpp" line="1242"/>
         <source>qBittorrent is shutting down...</source>
         <translation>qBittorrent stängs...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1457"/>
+        <location filename="../gui/mainwindow.cpp" line="1464"/>
         <source>Options saved.</source>
         <translation>Alternativen sparade.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1602"/>
+        <location filename="../gui/mainwindow.cpp" line="1636"/>
         <source>%1/s</source>
         <comment>s is a shorthand for seconds</comment>
         <translation>%1/s</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1833"/>
-        <location filename="../gui/mainwindow.cpp" line="1839"/>
+        <location filename="../gui/mainwindow.cpp" line="1752"/>
+        <source>System tray icon is not available, retrying...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1761"/>
+        <source>System tray icon is still not available after retries. Disabling it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/mainwindow.cpp" line="1874"/>
+        <location filename="../gui/mainwindow.cpp" line="1880"/>
         <source>Missing Python Runtime</source>
         <translation>Saknar Python Runtime</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1911"/>
+        <location filename="../gui/mainwindow.cpp" line="1952"/>
         <source>qBittorrent Update Available</source>
         <translation>qBittorrent uppdatering tillgänglig</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="862"/>
+        <location filename="../gui/mainwindow.cpp" line="869"/>
         <source>&apos;%1&apos; has finished downloading.</source>
         <comment>e.g: xxx.avi has finished downloading.</comment>
         <translation>&quot;%1&quot; har hämtats.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="869"/>
+        <location filename="../gui/mainwindow.cpp" line="876"/>
         <source>An I/O error occurred for torrent &apos;%1&apos;.
  Reason: %2</source>
         <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
@@ -3262,171 +3580,171 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
  Orsak: %2</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="964"/>
+        <location filename="../gui/mainwindow.cpp" line="971"/>
         <source>The torrent &apos;%1&apos; contains torrent files, do you want to proceed with their download?</source>
         <translation>Torrenten &quot;%1&quot; innehåller flera torrentfiler. Vill du fortsätta med att hämta dem?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="986"/>
+        <location filename="../gui/mainwindow.cpp" line="993"/>
         <source>Couldn&apos;t download file at URL &apos;%1&apos;, reason: %2.</source>
         <translation>Det gick inte att hämta fil från webbadressen &quot;%1&quot;, orsak: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1834"/>
+        <location filename="../gui/mainwindow.cpp" line="1875"/>
         <source>Python is required to use the search engine but it does not seem to be installed.
 Do you want to install it now?</source>
         <translation>Python krävs för att använda sökmotorn, men det verkar inte vara installerat.
 Vill du installera det nu?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1840"/>
+        <location filename="../gui/mainwindow.cpp" line="1881"/>
         <source>Python is required to use the search engine but it does not seem to be installed.</source>
         <translation>Python krävs för att använda sökmotorn, men det verkar inte vara installerat.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1852"/>
-        <location filename="../gui/mainwindow.cpp" line="1859"/>
+        <location filename="../gui/mainwindow.cpp" line="1893"/>
+        <location filename="../gui/mainwindow.cpp" line="1900"/>
         <source>Old Python Runtime</source>
         <translation>Gammal Python Runtime</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1908"/>
+        <location filename="../gui/mainwindow.cpp" line="1949"/>
         <source>A new version is available.</source>
         <translation>En ny version är tillgänglig.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1909"/>
+        <location filename="../gui/mainwindow.cpp" line="1950"/>
         <source>Do you want to download %1?</source>
         <translation>Vill du hämta %1?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1910"/>
+        <location filename="../gui/mainwindow.cpp" line="1951"/>
         <source>Open changelog...</source>
         <translation>Öppna ändringslogg...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1931"/>
+        <location filename="../gui/mainwindow.cpp" line="1972"/>
         <source>No updates available.
 You are already using the latest version.</source>
         <translation>Inga uppdateringar tillgängliga.
 Du använder redan den senaste versionen.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1895"/>
+        <location filename="../gui/mainwindow.cpp" line="1936"/>
         <source>&amp;Check for Updates</source>
         <translation>&amp;Sök efter uppdateringar</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1853"/>
+        <location filename="../gui/mainwindow.cpp" line="1894"/>
         <source>Your Python version (%1) is outdated. Minimum requirement: %2.
 Do you want to install a newer version now?</source>
         <translation>Din Python-version (%1) är föråldrad. Minimikrav: %2.
 Vill du installera en nyare version nu?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1860"/>
+        <location filename="../gui/mainwindow.cpp" line="1901"/>
         <source>Your Python version (%1) is outdated. Please upgrade to latest version for search engines to work.
 Minimum requirement: %2.</source>
         <translation>Din Python-version (%1) är föråldrad. Vänligen uppgradera till den senaste versionen för att sökmotorerna ska fungera.
 Minimikrav: %2.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2066"/>
+        <location filename="../gui/mainwindow.cpp" line="2107"/>
         <source>Checking for Updates...</source>
         <translation>Söker efter uppdateringar...</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2067"/>
+        <location filename="../gui/mainwindow.cpp" line="2108"/>
         <source>Already checking for program updates in the background</source>
         <translation>Söker redan efter programuppdateringar i bakgrunden</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2100"/>
+        <location filename="../gui/mainwindow.cpp" line="2141"/>
         <source>Download error</source>
         <translation>Hämtningsfel</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="2101"/>
+        <location filename="../gui/mainwindow.cpp" line="2142"/>
         <source>Python setup could not be downloaded, reason: %1.
 Please install it manually.</source>
         <translation>Python-installationen kunde inte hämtas. Orsak: %1.
 Vänligen installera den manuellt.</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="645"/>
-        <location filename="../gui/mainwindow.cpp" line="1048"/>
+        <location filename="../gui/mainwindow.cpp" line="653"/>
+        <location filename="../gui/mainwindow.cpp" line="1055"/>
         <source>Invalid password</source>
         <translation>Ogiltigt lösenord</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="457"/>
+        <location filename="../gui/mainwindow.cpp" line="464"/>
         <source>qBittorrent is not the default application for opening torrent files or Magnet links.
 Do you want to make qBittorrent the default application for these?</source>
         <translation>qBittorrent är inte standardprogrammet för att öppna torrentfiler eller magnetlänkar.
 Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="645"/>
+        <location filename="../gui/mainwindow.cpp" line="653"/>
         <source>The password must be at least 3 characters long</source>
         <translation>Lösenordet måste vara minst 3 tecken långt</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="681"/>
-        <location filename="../gui/mainwindow.cpp" line="694"/>
-        <location filename="../gui/mainwindow.cpp" line="696"/>
+        <location filename="../gui/mainwindow.cpp" line="689"/>
+        <location filename="../gui/mainwindow.cpp" line="702"/>
+        <location filename="../gui/mainwindow.cpp" line="704"/>
         <source>RSS (%1)</source>
         <translation>RSS (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="862"/>
+        <location filename="../gui/mainwindow.cpp" line="869"/>
         <source>Download completed</source>
         <translation>Hämtningen slutförd</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="985"/>
+        <location filename="../gui/mainwindow.cpp" line="992"/>
         <source>URL download error</source>
         <translation>Webbadress-hämtningsfel</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1048"/>
+        <location filename="../gui/mainwindow.cpp" line="1055"/>
         <source>The password is invalid</source>
         <translation>Lösenordet är ogiltigt</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1613"/>
+        <location filename="../gui/mainwindow.cpp" line="1647"/>
         <source>DL speed: %1</source>
         <comment>e.g: Download speed: 10 KiB/s</comment>
         <translation>Hämtning: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1614"/>
+        <location filename="../gui/mainwindow.cpp" line="1648"/>
         <source>UP speed: %1</source>
         <comment>e.g: Upload speed: 10 KiB/s</comment>
         <translation>Sändning: %1</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1621"/>
+        <location filename="../gui/mainwindow.cpp" line="1655"/>
         <source>[D: %1, U: %2] qBittorrent %3</source>
         <comment>D = Download; U = Upload; %3 is qBittorrent version</comment>
         <translation>[N: %1/s, U: %2/s] qBittorrent %3</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1744"/>
+        <location filename="../gui/mainwindow.cpp" line="1778"/>
         <source>Hide</source>
         <translation>Dölj</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1208"/>
+        <location filename="../gui/mainwindow.cpp" line="1215"/>
         <source>Exiting qBittorrent</source>
         <translation>Avslutar qBittorrent</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1423"/>
+        <location filename="../gui/mainwindow.cpp" line="1430"/>
         <source>Open Torrent Files</source>
         <translation>Öppna torrentfiler</translation>
     </message>
     <message>
-        <location filename="../gui/mainwindow.cpp" line="1424"/>
+        <location filename="../gui/mainwindow.cpp" line="1431"/>
         <source>Torrent Files</source>
         <translation>Torrentfiler</translation>
     </message>
@@ -3434,52 +3752,52 @@ Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
 <context>
     <name>Net::DNSUpdater</name>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="186"/>
+        <location filename="../base/net/dnsupdater.cpp" line="187"/>
         <source>Your dynamic DNS was successfully updated.</source>
         <translation>Din dynamiska DNS har uppdaterats.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="192"/>
+        <location filename="../base/net/dnsupdater.cpp" line="193"/>
         <source>Dynamic DNS error: The service is temporarily unavailable, it will be retried in 30 minutes.</source>
         <translation>Dynamiskt DNS-fel: Tjänsten är tillfälligt otillgänglig, den kommer att försöka återupptas om 30 minuter.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="203"/>
+        <location filename="../base/net/dnsupdater.cpp" line="204"/>
         <source>Dynamic DNS error: hostname supplied does not exist under specified account.</source>
         <translation>Dynamiskt DNS-fel: Värdnamnet som medföljer finns inte under angivet konto.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="210"/>
+        <location filename="../base/net/dnsupdater.cpp" line="211"/>
         <source>Dynamic DNS error: Invalid username/password.</source>
         <translation>Dynamiskt DNS-fel: ogiltigt användarnamn/lösenord.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="217"/>
+        <location filename="../base/net/dnsupdater.cpp" line="218"/>
         <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
         <translation>Dynamiskt DNS-fel: qBittorrent svartlistades av tjänsten, vänligen skicka en felrapport på http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="225"/>
+        <location filename="../base/net/dnsupdater.cpp" line="226"/>
         <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
         <translation>Dynamiskt DNS-fel: %1 returnerades av tjänsten, vänligen skicka en felrapport på http://bugs.qbittorrent.org.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="233"/>
+        <location filename="../base/net/dnsupdater.cpp" line="234"/>
         <source>Dynamic DNS error: Your username was blocked due to abuse.</source>
         <translation>Dynamiskt DNS-fel: Ditt användarnamn blockerades på grund av missbruk.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="256"/>
+        <location filename="../base/net/dnsupdater.cpp" line="257"/>
         <source>Dynamic DNS error: supplied domain name is invalid.</source>
         <translation>Dynamiskt DNS-fel: medföljande domännamn är ogiltigt.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="269"/>
+        <location filename="../base/net/dnsupdater.cpp" line="270"/>
         <source>Dynamic DNS error: supplied username is too short.</source>
         <translation>Dynamiskt DNS-fel: medföljande användarnamn är för kort.</translation>
     </message>
     <message>
-        <location filename="../base/net/dnsupdater.cpp" line="282"/>
+        <location filename="../base/net/dnsupdater.cpp" line="283"/>
         <source>Dynamic DNS error: supplied password is too short.</source>
         <translation>Dynamiskt DNS-fel: medföljande lösenord är för kort.</translation>
     </message>
@@ -3495,1285 +3813,1285 @@ Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
 <context>
     <name>Net::GeoIPManager</name>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="389"/>
+        <location filename="../base/net/geoipmanager.cpp" line="390"/>
         <source>Venezuela, Bolivarian Republic of</source>
         <translation>Venezuela</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="402"/>
-        <location filename="../base/net/geoipmanager.cpp" line="405"/>
+        <location filename="../base/net/geoipmanager.cpp" line="403"/>
+        <location filename="../base/net/geoipmanager.cpp" line="406"/>
         <source>N/A</source>
         <translation>Ingen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="152"/>
+        <location filename="../base/net/geoipmanager.cpp" line="153"/>
         <source>Andorra</source>
         <translation>Andorra</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="97"/>
-        <location filename="../base/net/geoipmanager.cpp" line="450"/>
+        <location filename="../base/net/geoipmanager.cpp" line="98"/>
+        <location filename="../base/net/geoipmanager.cpp" line="451"/>
         <source>IP geolocation database loaded. Type: %1. Build time: %2.</source>
         <translation>IP-geolokaliseringsdatabasen inläst. Typ: %1. Byggtid: %2.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="103"/>
-        <location filename="../base/net/geoipmanager.cpp" line="476"/>
+        <location filename="../base/net/geoipmanager.cpp" line="104"/>
+        <location filename="../base/net/geoipmanager.cpp" line="477"/>
         <source>Couldn&apos;t load IP geolocation database. Reason: %1</source>
         <translation>Det gick inte att läsa in IP-geolokaliseringsdatabasfilen. Orsak: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="153"/>
+        <location filename="../base/net/geoipmanager.cpp" line="154"/>
         <source>United Arab Emirates</source>
         <translation>Förenade Arabemiraten</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="154"/>
+        <location filename="../base/net/geoipmanager.cpp" line="155"/>
         <source>Afghanistan</source>
         <translation>Afghanistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="155"/>
+        <location filename="../base/net/geoipmanager.cpp" line="156"/>
         <source>Antigua and Barbuda</source>
         <translation>Antigua och Barbuda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="156"/>
+        <location filename="../base/net/geoipmanager.cpp" line="157"/>
         <source>Anguilla</source>
         <translation>Anguilla</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="157"/>
+        <location filename="../base/net/geoipmanager.cpp" line="158"/>
         <source>Albania</source>
         <translation>Albanien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="158"/>
+        <location filename="../base/net/geoipmanager.cpp" line="159"/>
         <source>Armenia</source>
         <translation>Armenien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="159"/>
+        <location filename="../base/net/geoipmanager.cpp" line="160"/>
         <source>Angola</source>
         <translation>Angola</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="160"/>
+        <location filename="../base/net/geoipmanager.cpp" line="161"/>
         <source>Antarctica</source>
         <translation>Antarktis</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="161"/>
+        <location filename="../base/net/geoipmanager.cpp" line="162"/>
         <source>Argentina</source>
         <translation>Argentina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="162"/>
+        <location filename="../base/net/geoipmanager.cpp" line="163"/>
         <source>American Samoa</source>
         <translation>Amerikanska Samoa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="163"/>
+        <location filename="../base/net/geoipmanager.cpp" line="164"/>
         <source>Austria</source>
         <translation>Österrike</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="164"/>
+        <location filename="../base/net/geoipmanager.cpp" line="165"/>
         <source>Australia</source>
         <translation>Australien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="165"/>
+        <location filename="../base/net/geoipmanager.cpp" line="166"/>
         <source>Aruba</source>
         <translation>Aruba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="167"/>
+        <location filename="../base/net/geoipmanager.cpp" line="168"/>
         <source>Azerbaijan</source>
         <translation>Azerbajdzjan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="168"/>
+        <location filename="../base/net/geoipmanager.cpp" line="169"/>
         <source>Bosnia and Herzegovina</source>
         <translation>Bosnien och Hercegovina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="169"/>
+        <location filename="../base/net/geoipmanager.cpp" line="170"/>
         <source>Barbados</source>
         <translation>Barbados</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="170"/>
+        <location filename="../base/net/geoipmanager.cpp" line="171"/>
         <source>Bangladesh</source>
         <translation>Bangladesh</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="171"/>
+        <location filename="../base/net/geoipmanager.cpp" line="172"/>
         <source>Belgium</source>
         <translation>Belgien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="172"/>
+        <location filename="../base/net/geoipmanager.cpp" line="173"/>
         <source>Burkina Faso</source>
         <translation>Burkina Faso</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="173"/>
+        <location filename="../base/net/geoipmanager.cpp" line="174"/>
         <source>Bulgaria</source>
         <translation>Bulgarien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="174"/>
+        <location filename="../base/net/geoipmanager.cpp" line="175"/>
         <source>Bahrain</source>
         <translation>Bahrain</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="175"/>
+        <location filename="../base/net/geoipmanager.cpp" line="176"/>
         <source>Burundi</source>
         <translation>Burundi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="176"/>
+        <location filename="../base/net/geoipmanager.cpp" line="177"/>
         <source>Benin</source>
         <translation>Benin</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="178"/>
+        <location filename="../base/net/geoipmanager.cpp" line="179"/>
         <source>Bermuda</source>
         <translation>Bermuda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="179"/>
+        <location filename="../base/net/geoipmanager.cpp" line="180"/>
         <source>Brunei Darussalam</source>
         <translation>Brunei</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="182"/>
+        <location filename="../base/net/geoipmanager.cpp" line="183"/>
         <source>Brazil</source>
         <translation>Brasilien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="183"/>
+        <location filename="../base/net/geoipmanager.cpp" line="184"/>
         <source>Bahamas</source>
         <translation>Bahamas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="184"/>
+        <location filename="../base/net/geoipmanager.cpp" line="185"/>
         <source>Bhutan</source>
         <translation>Bhutan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="185"/>
+        <location filename="../base/net/geoipmanager.cpp" line="186"/>
         <source>Bouvet Island</source>
         <translation>Bouvetön</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="186"/>
+        <location filename="../base/net/geoipmanager.cpp" line="187"/>
         <source>Botswana</source>
         <translation>Botswana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="187"/>
+        <location filename="../base/net/geoipmanager.cpp" line="188"/>
         <source>Belarus</source>
         <translation>Vitryssland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="188"/>
+        <location filename="../base/net/geoipmanager.cpp" line="189"/>
         <source>Belize</source>
         <translation>Belize</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="189"/>
+        <location filename="../base/net/geoipmanager.cpp" line="190"/>
         <source>Canada</source>
         <translation>Kanada</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="190"/>
+        <location filename="../base/net/geoipmanager.cpp" line="191"/>
         <source>Cocos (Keeling) Islands</source>
         <translation>Kokosöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="191"/>
+        <location filename="../base/net/geoipmanager.cpp" line="192"/>
         <source>Congo, The Democratic Republic of the</source>
         <translation>Demokratiska republiken Kongo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="192"/>
+        <location filename="../base/net/geoipmanager.cpp" line="193"/>
         <source>Central African Republic</source>
         <translation>Centralafrikanska republiken</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="193"/>
+        <location filename="../base/net/geoipmanager.cpp" line="194"/>
         <source>Congo</source>
         <translation>Kongo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="194"/>
+        <location filename="../base/net/geoipmanager.cpp" line="195"/>
         <source>Switzerland</source>
         <translation>Schweiz</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="196"/>
+        <location filename="../base/net/geoipmanager.cpp" line="197"/>
         <source>Cook Islands</source>
         <translation>Cooköarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="197"/>
+        <location filename="../base/net/geoipmanager.cpp" line="198"/>
         <source>Chile</source>
         <translation>Chile</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="198"/>
+        <location filename="../base/net/geoipmanager.cpp" line="199"/>
         <source>Cameroon</source>
         <translation>Kamerun</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="199"/>
+        <location filename="../base/net/geoipmanager.cpp" line="200"/>
         <source>China</source>
         <translation>Kina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="200"/>
+        <location filename="../base/net/geoipmanager.cpp" line="201"/>
         <source>Colombia</source>
         <translation>Colombia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="201"/>
+        <location filename="../base/net/geoipmanager.cpp" line="202"/>
         <source>Costa Rica</source>
         <translation>Costa Rica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="202"/>
+        <location filename="../base/net/geoipmanager.cpp" line="203"/>
         <source>Cuba</source>
         <translation>Kuba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="203"/>
+        <location filename="../base/net/geoipmanager.cpp" line="204"/>
         <source>Cape Verde</source>
         <translation>Kap Verde</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="204"/>
+        <location filename="../base/net/geoipmanager.cpp" line="205"/>
         <source>Curacao</source>
         <translation>Curacao</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="205"/>
+        <location filename="../base/net/geoipmanager.cpp" line="206"/>
         <source>Christmas Island</source>
         <translation>Julön</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="206"/>
+        <location filename="../base/net/geoipmanager.cpp" line="207"/>
         <source>Cyprus</source>
         <translation>Cypern</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="207"/>
+        <location filename="../base/net/geoipmanager.cpp" line="208"/>
         <source>Czech Republic</source>
         <translation>Tjeckien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="208"/>
+        <location filename="../base/net/geoipmanager.cpp" line="209"/>
         <source>Germany</source>
         <translation>Tyskland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="209"/>
+        <location filename="../base/net/geoipmanager.cpp" line="210"/>
         <source>Djibouti</source>
         <translation>Djibouti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="210"/>
+        <location filename="../base/net/geoipmanager.cpp" line="211"/>
         <source>Denmark</source>
         <translation>Danmark</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="211"/>
+        <location filename="../base/net/geoipmanager.cpp" line="212"/>
         <source>Dominica</source>
         <translation>Dominica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="212"/>
+        <location filename="../base/net/geoipmanager.cpp" line="213"/>
         <source>Dominican Republic</source>
         <translation>Dominikanska republiken</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="213"/>
+        <location filename="../base/net/geoipmanager.cpp" line="214"/>
         <source>Algeria</source>
         <translation>Algeriet</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="214"/>
+        <location filename="../base/net/geoipmanager.cpp" line="215"/>
         <source>Ecuador</source>
         <translation>Ecuador</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="215"/>
+        <location filename="../base/net/geoipmanager.cpp" line="216"/>
         <source>Estonia</source>
         <translation>Estland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="216"/>
+        <location filename="../base/net/geoipmanager.cpp" line="217"/>
         <source>Egypt</source>
         <translation>Egypten</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="217"/>
+        <location filename="../base/net/geoipmanager.cpp" line="218"/>
         <source>Western Sahara</source>
         <translation>Västsahara</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="218"/>
+        <location filename="../base/net/geoipmanager.cpp" line="219"/>
         <source>Eritrea</source>
         <translation>Eritrea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="219"/>
+        <location filename="../base/net/geoipmanager.cpp" line="220"/>
         <source>Spain</source>
         <translation>Spanien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="220"/>
+        <location filename="../base/net/geoipmanager.cpp" line="221"/>
         <source>Ethiopia</source>
         <translation>Etiopien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="221"/>
+        <location filename="../base/net/geoipmanager.cpp" line="222"/>
         <source>Finland</source>
         <translation>Finland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="222"/>
+        <location filename="../base/net/geoipmanager.cpp" line="223"/>
         <source>Fiji</source>
         <translation>Fiji</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="223"/>
+        <location filename="../base/net/geoipmanager.cpp" line="224"/>
         <source>Falkland Islands (Malvinas)</source>
         <translation>Falklandsöarna (Malvinas)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="224"/>
+        <location filename="../base/net/geoipmanager.cpp" line="225"/>
         <source>Micronesia, Federated States of</source>
         <translation>Mikronesien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="225"/>
+        <location filename="../base/net/geoipmanager.cpp" line="226"/>
         <source>Faroe Islands</source>
         <translation>Färöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="226"/>
+        <location filename="../base/net/geoipmanager.cpp" line="227"/>
         <source>France</source>
         <translation>Frankrike</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="227"/>
+        <location filename="../base/net/geoipmanager.cpp" line="228"/>
         <source>Gabon</source>
         <translation>Gabon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="228"/>
+        <location filename="../base/net/geoipmanager.cpp" line="229"/>
         <source>United Kingdom</source>
         <translation>Storbritannien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="229"/>
+        <location filename="../base/net/geoipmanager.cpp" line="230"/>
         <source>Grenada</source>
         <translation>Grenada</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="230"/>
+        <location filename="../base/net/geoipmanager.cpp" line="231"/>
         <source>Georgia</source>
         <translation>Georgien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="231"/>
+        <location filename="../base/net/geoipmanager.cpp" line="232"/>
         <source>French Guiana</source>
         <translation>Franska Guyana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="233"/>
+        <location filename="../base/net/geoipmanager.cpp" line="234"/>
         <source>Ghana</source>
         <translation>Ghana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="234"/>
+        <location filename="../base/net/geoipmanager.cpp" line="235"/>
         <source>Gibraltar</source>
         <translation>Gibraltar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="235"/>
+        <location filename="../base/net/geoipmanager.cpp" line="236"/>
         <source>Greenland</source>
         <translation>Grönland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="236"/>
+        <location filename="../base/net/geoipmanager.cpp" line="237"/>
         <source>Gambia</source>
         <translation>Gambia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="237"/>
+        <location filename="../base/net/geoipmanager.cpp" line="238"/>
         <source>Guinea</source>
         <translation>Guinea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="238"/>
+        <location filename="../base/net/geoipmanager.cpp" line="239"/>
         <source>Guadeloupe</source>
         <translation>Guadeloupe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="239"/>
+        <location filename="../base/net/geoipmanager.cpp" line="240"/>
         <source>Equatorial Guinea</source>
         <translation>Ekvatorialguinea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="240"/>
+        <location filename="../base/net/geoipmanager.cpp" line="241"/>
         <source>Greece</source>
         <translation>Grekland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="241"/>
+        <location filename="../base/net/geoipmanager.cpp" line="242"/>
         <source>South Georgia and the South Sandwich Islands</source>
         <translation>Sydgeorgien och Sydsandwichöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="242"/>
+        <location filename="../base/net/geoipmanager.cpp" line="243"/>
         <source>Guatemala</source>
         <translation>Guatemala</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="243"/>
+        <location filename="../base/net/geoipmanager.cpp" line="244"/>
         <source>Guam</source>
         <translation>Guam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="244"/>
+        <location filename="../base/net/geoipmanager.cpp" line="245"/>
         <source>Guinea-Bissau</source>
         <translation>Guinea-Bissau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="245"/>
+        <location filename="../base/net/geoipmanager.cpp" line="246"/>
         <source>Guyana</source>
         <translation>Guyana</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="246"/>
+        <location filename="../base/net/geoipmanager.cpp" line="247"/>
         <source>Hong Kong</source>
         <translation>Hong Kong</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="247"/>
+        <location filename="../base/net/geoipmanager.cpp" line="248"/>
         <source>Heard Island and McDonald Islands</source>
         <translation>Heard- och McDonaldöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="248"/>
+        <location filename="../base/net/geoipmanager.cpp" line="249"/>
         <source>Honduras</source>
         <translation>Honduras</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="249"/>
+        <location filename="../base/net/geoipmanager.cpp" line="250"/>
         <source>Croatia</source>
         <translation>Kroatien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="250"/>
+        <location filename="../base/net/geoipmanager.cpp" line="251"/>
         <source>Haiti</source>
         <translation>Haiti</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="251"/>
+        <location filename="../base/net/geoipmanager.cpp" line="252"/>
         <source>Hungary</source>
         <translation>Ungern</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="252"/>
+        <location filename="../base/net/geoipmanager.cpp" line="253"/>
         <source>Indonesia</source>
         <translation>Indonesien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="253"/>
+        <location filename="../base/net/geoipmanager.cpp" line="254"/>
         <source>Ireland</source>
         <translation>Irland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="254"/>
+        <location filename="../base/net/geoipmanager.cpp" line="255"/>
         <source>Israel</source>
         <translation>Israel</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="256"/>
+        <location filename="../base/net/geoipmanager.cpp" line="257"/>
         <source>India</source>
         <translation>Indien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="257"/>
+        <location filename="../base/net/geoipmanager.cpp" line="258"/>
         <source>British Indian Ocean Territory</source>
         <translation>Brittiska territoriet i Indiska oceanen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="258"/>
+        <location filename="../base/net/geoipmanager.cpp" line="259"/>
         <source>Iraq</source>
         <translation>Irak</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="259"/>
+        <location filename="../base/net/geoipmanager.cpp" line="260"/>
         <source>Iran, Islamic Republic of</source>
         <translation>Iran</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="260"/>
+        <location filename="../base/net/geoipmanager.cpp" line="261"/>
         <source>Iceland</source>
         <translation>Island</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="261"/>
+        <location filename="../base/net/geoipmanager.cpp" line="262"/>
         <source>Italy</source>
         <translation>Italien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="263"/>
+        <location filename="../base/net/geoipmanager.cpp" line="264"/>
         <source>Jamaica</source>
         <translation>Jamaica</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="264"/>
+        <location filename="../base/net/geoipmanager.cpp" line="265"/>
         <source>Jordan</source>
         <translation>Jordanien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="265"/>
+        <location filename="../base/net/geoipmanager.cpp" line="266"/>
         <source>Japan</source>
         <translation>Japan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="266"/>
+        <location filename="../base/net/geoipmanager.cpp" line="267"/>
         <source>Kenya</source>
         <translation>Kenya</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="267"/>
+        <location filename="../base/net/geoipmanager.cpp" line="268"/>
         <source>Kyrgyzstan</source>
         <translation>Kirgizistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="268"/>
+        <location filename="../base/net/geoipmanager.cpp" line="269"/>
         <source>Cambodia</source>
         <translation>Kambodja</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="269"/>
+        <location filename="../base/net/geoipmanager.cpp" line="270"/>
         <source>Kiribati</source>
         <translation>Kiribati</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="270"/>
+        <location filename="../base/net/geoipmanager.cpp" line="271"/>
         <source>Comoros</source>
         <translation>Komorerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="271"/>
+        <location filename="../base/net/geoipmanager.cpp" line="272"/>
         <source>Saint Kitts and Nevis</source>
         <translation>Saint Kitts och Nevis</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="272"/>
+        <location filename="../base/net/geoipmanager.cpp" line="273"/>
         <source>Korea, Democratic People&apos;s Republic of</source>
         <translation>Nordkorea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="273"/>
+        <location filename="../base/net/geoipmanager.cpp" line="274"/>
         <source>Korea, Republic of</source>
         <translation>Sydkorea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="274"/>
+        <location filename="../base/net/geoipmanager.cpp" line="275"/>
         <source>Kuwait</source>
         <translation>Kuwait</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="275"/>
+        <location filename="../base/net/geoipmanager.cpp" line="276"/>
         <source>Cayman Islands</source>
         <translation>Caymanöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="276"/>
+        <location filename="../base/net/geoipmanager.cpp" line="277"/>
         <source>Kazakhstan</source>
         <translation>Kazakstan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="277"/>
+        <location filename="../base/net/geoipmanager.cpp" line="278"/>
         <source>Lao People&apos;s Democratic Republic</source>
         <translation>Laos</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="278"/>
+        <location filename="../base/net/geoipmanager.cpp" line="279"/>
         <source>Lebanon</source>
         <translation>Libanon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="279"/>
+        <location filename="../base/net/geoipmanager.cpp" line="280"/>
         <source>Saint Lucia</source>
         <translation>Saint Lucia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="280"/>
+        <location filename="../base/net/geoipmanager.cpp" line="281"/>
         <source>Liechtenstein</source>
         <translation>Liechtenstein</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="281"/>
+        <location filename="../base/net/geoipmanager.cpp" line="282"/>
         <source>Sri Lanka</source>
         <translation>Sri Lanka</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="282"/>
+        <location filename="../base/net/geoipmanager.cpp" line="283"/>
         <source>Liberia</source>
         <translation>Liberia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="283"/>
+        <location filename="../base/net/geoipmanager.cpp" line="284"/>
         <source>Lesotho</source>
         <translation>Lesotho</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="284"/>
+        <location filename="../base/net/geoipmanager.cpp" line="285"/>
         <source>Lithuania</source>
         <translation>Litauen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="285"/>
+        <location filename="../base/net/geoipmanager.cpp" line="286"/>
         <source>Luxembourg</source>
         <translation>Luxemburg</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="286"/>
+        <location filename="../base/net/geoipmanager.cpp" line="287"/>
         <source>Latvia</source>
         <translation>Lettland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="288"/>
+        <location filename="../base/net/geoipmanager.cpp" line="289"/>
         <source>Morocco</source>
         <translation>Marocko</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="289"/>
+        <location filename="../base/net/geoipmanager.cpp" line="290"/>
         <source>Monaco</source>
         <translation>Monaco</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="290"/>
+        <location filename="../base/net/geoipmanager.cpp" line="291"/>
         <source>Moldova, Republic of</source>
         <translation>Moldavien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="293"/>
+        <location filename="../base/net/geoipmanager.cpp" line="294"/>
         <source>Madagascar</source>
         <translation>Madagaskar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="294"/>
+        <location filename="../base/net/geoipmanager.cpp" line="295"/>
         <source>Marshall Islands</source>
         <translation>Marshallöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="296"/>
+        <location filename="../base/net/geoipmanager.cpp" line="297"/>
         <source>Mali</source>
         <translation>Mali</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="297"/>
+        <location filename="../base/net/geoipmanager.cpp" line="298"/>
         <source>Myanmar</source>
         <translation>Myanmar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="298"/>
+        <location filename="../base/net/geoipmanager.cpp" line="299"/>
         <source>Mongolia</source>
         <translation>Mongoliet</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="300"/>
+        <location filename="../base/net/geoipmanager.cpp" line="301"/>
         <source>Northern Mariana Islands</source>
         <translation>Nordmarianerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="301"/>
+        <location filename="../base/net/geoipmanager.cpp" line="302"/>
         <source>Martinique</source>
         <translation>Martinique</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="302"/>
+        <location filename="../base/net/geoipmanager.cpp" line="303"/>
         <source>Mauritania</source>
         <translation>Mauretanien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="303"/>
+        <location filename="../base/net/geoipmanager.cpp" line="304"/>
         <source>Montserrat</source>
         <translation>Montserrat</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="304"/>
+        <location filename="../base/net/geoipmanager.cpp" line="305"/>
         <source>Malta</source>
         <translation>Malta</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="305"/>
+        <location filename="../base/net/geoipmanager.cpp" line="306"/>
         <source>Mauritius</source>
         <translation>Mauritius</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="306"/>
+        <location filename="../base/net/geoipmanager.cpp" line="307"/>
         <source>Maldives</source>
         <translation>Maldiverna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="307"/>
+        <location filename="../base/net/geoipmanager.cpp" line="308"/>
         <source>Malawi</source>
         <translation>Malawi</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="308"/>
+        <location filename="../base/net/geoipmanager.cpp" line="309"/>
         <source>Mexico</source>
         <translation>Mexico</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="309"/>
+        <location filename="../base/net/geoipmanager.cpp" line="310"/>
         <source>Malaysia</source>
         <translation>Malaysia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="310"/>
+        <location filename="../base/net/geoipmanager.cpp" line="311"/>
         <source>Mozambique</source>
         <translation>Moçambique</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="311"/>
+        <location filename="../base/net/geoipmanager.cpp" line="312"/>
         <source>Namibia</source>
         <translation>Namibia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="312"/>
+        <location filename="../base/net/geoipmanager.cpp" line="313"/>
         <source>New Caledonia</source>
         <translation>Nya Kaledonien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="313"/>
+        <location filename="../base/net/geoipmanager.cpp" line="314"/>
         <source>Niger</source>
         <translation>Niger</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="314"/>
+        <location filename="../base/net/geoipmanager.cpp" line="315"/>
         <source>Norfolk Island</source>
         <translation>Norfolkön</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="315"/>
+        <location filename="../base/net/geoipmanager.cpp" line="316"/>
         <source>Nigeria</source>
         <translation>Nigeria</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="316"/>
+        <location filename="../base/net/geoipmanager.cpp" line="317"/>
         <source>Nicaragua</source>
         <translation>Nicaragua</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="317"/>
+        <location filename="../base/net/geoipmanager.cpp" line="318"/>
         <source>Netherlands</source>
         <translation>Nederländerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="318"/>
+        <location filename="../base/net/geoipmanager.cpp" line="319"/>
         <source>Norway</source>
         <translation>Norge</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="319"/>
+        <location filename="../base/net/geoipmanager.cpp" line="320"/>
         <source>Nepal</source>
         <translation>Nepalesiska</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="320"/>
+        <location filename="../base/net/geoipmanager.cpp" line="321"/>
         <source>Nauru</source>
         <translation>Nauru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="321"/>
+        <location filename="../base/net/geoipmanager.cpp" line="322"/>
         <source>Niue</source>
         <translation>Niue</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="322"/>
+        <location filename="../base/net/geoipmanager.cpp" line="323"/>
         <source>New Zealand</source>
         <translation>Nya Zeeland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="323"/>
+        <location filename="../base/net/geoipmanager.cpp" line="324"/>
         <source>Oman</source>
         <translation>Oman</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="324"/>
+        <location filename="../base/net/geoipmanager.cpp" line="325"/>
         <source>Panama</source>
         <translation>Panama</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="325"/>
+        <location filename="../base/net/geoipmanager.cpp" line="326"/>
         <source>Peru</source>
         <translation>Peru</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="326"/>
+        <location filename="../base/net/geoipmanager.cpp" line="327"/>
         <source>French Polynesia</source>
         <translation>Franska Polynesien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="327"/>
+        <location filename="../base/net/geoipmanager.cpp" line="328"/>
         <source>Papua New Guinea</source>
         <translation>Papua Nya Guinea</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="328"/>
+        <location filename="../base/net/geoipmanager.cpp" line="329"/>
         <source>Philippines</source>
         <translation>Filippinerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="329"/>
+        <location filename="../base/net/geoipmanager.cpp" line="330"/>
         <source>Pakistan</source>
         <translation>Pakistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="330"/>
+        <location filename="../base/net/geoipmanager.cpp" line="331"/>
         <source>Poland</source>
         <translation>Polen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="331"/>
+        <location filename="../base/net/geoipmanager.cpp" line="332"/>
         <source>Saint Pierre and Miquelon</source>
         <translation>Saint-Pierre och Miquelon</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="333"/>
+        <location filename="../base/net/geoipmanager.cpp" line="334"/>
         <source>Puerto Rico</source>
         <translation>Puerto Rico</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="335"/>
+        <location filename="../base/net/geoipmanager.cpp" line="336"/>
         <source>Portugal</source>
         <translation>Portugal</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="336"/>
+        <location filename="../base/net/geoipmanager.cpp" line="337"/>
         <source>Palau</source>
         <translation>Palau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="337"/>
+        <location filename="../base/net/geoipmanager.cpp" line="338"/>
         <source>Paraguay</source>
         <translation>Paraguay</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="338"/>
+        <location filename="../base/net/geoipmanager.cpp" line="339"/>
         <source>Qatar</source>
         <translation>Qatar</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="339"/>
+        <location filename="../base/net/geoipmanager.cpp" line="340"/>
         <source>Reunion</source>
         <translation>Återförening</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="340"/>
+        <location filename="../base/net/geoipmanager.cpp" line="341"/>
         <source>Romania</source>
         <translation>Rumänien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="342"/>
+        <location filename="../base/net/geoipmanager.cpp" line="343"/>
         <source>Russian Federation</source>
         <translation>Ryssland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="343"/>
+        <location filename="../base/net/geoipmanager.cpp" line="344"/>
         <source>Rwanda</source>
         <translation>Rwanda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="344"/>
+        <location filename="../base/net/geoipmanager.cpp" line="345"/>
         <source>Saudi Arabia</source>
         <translation>Saudiarabien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="345"/>
+        <location filename="../base/net/geoipmanager.cpp" line="346"/>
         <source>Solomon Islands</source>
         <translation>Salomonöarnas</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="346"/>
+        <location filename="../base/net/geoipmanager.cpp" line="347"/>
         <source>Seychelles</source>
         <translation>Seychellerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="347"/>
+        <location filename="../base/net/geoipmanager.cpp" line="348"/>
         <source>Sudan</source>
         <translation>Sudan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="348"/>
+        <location filename="../base/net/geoipmanager.cpp" line="349"/>
         <source>Sweden</source>
         <translation>Sverige</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="349"/>
+        <location filename="../base/net/geoipmanager.cpp" line="350"/>
         <source>Singapore</source>
         <translation>Singapore</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="351"/>
+        <location filename="../base/net/geoipmanager.cpp" line="352"/>
         <source>Slovenia</source>
         <translation>Slovenien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="352"/>
+        <location filename="../base/net/geoipmanager.cpp" line="353"/>
         <source>Svalbard and Jan Mayen</source>
         <translation>Svalbard och Jan Mayen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="353"/>
+        <location filename="../base/net/geoipmanager.cpp" line="354"/>
         <source>Slovakia</source>
         <translation>Slovakien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="354"/>
+        <location filename="../base/net/geoipmanager.cpp" line="355"/>
         <source>Sierra Leone</source>
         <translation>Sierra Leone</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="355"/>
+        <location filename="../base/net/geoipmanager.cpp" line="356"/>
         <source>San Marino</source>
         <translation>San Marino</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="356"/>
+        <location filename="../base/net/geoipmanager.cpp" line="357"/>
         <source>Senegal</source>
         <translation>Senegal</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="357"/>
+        <location filename="../base/net/geoipmanager.cpp" line="358"/>
         <source>Somalia</source>
         <translation>Somalia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="358"/>
+        <location filename="../base/net/geoipmanager.cpp" line="359"/>
         <source>Suriname</source>
         <translation>Surinam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="360"/>
+        <location filename="../base/net/geoipmanager.cpp" line="361"/>
         <source>Sao Tome and Principe</source>
         <translation>São Tomé och Príncipe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="361"/>
+        <location filename="../base/net/geoipmanager.cpp" line="362"/>
         <source>El Salvador</source>
         <translation>El Salvador</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="363"/>
+        <location filename="../base/net/geoipmanager.cpp" line="364"/>
         <source>Syrian Arab Republic</source>
         <translation>Syriska arabiska republiken</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="364"/>
+        <location filename="../base/net/geoipmanager.cpp" line="365"/>
         <source>Swaziland</source>
         <translation>Swaziland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="365"/>
+        <location filename="../base/net/geoipmanager.cpp" line="366"/>
         <source>Turks and Caicos Islands</source>
         <translation>Turks- och Caicosöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="366"/>
+        <location filename="../base/net/geoipmanager.cpp" line="367"/>
         <source>Chad</source>
         <translation>Tchad</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="367"/>
+        <location filename="../base/net/geoipmanager.cpp" line="368"/>
         <source>French Southern Territories</source>
         <translation>Franska sydterritorierna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="368"/>
+        <location filename="../base/net/geoipmanager.cpp" line="369"/>
         <source>Togo</source>
         <translation>Togo</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="369"/>
+        <location filename="../base/net/geoipmanager.cpp" line="370"/>
         <source>Thailand</source>
         <translation>Thailand</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="370"/>
+        <location filename="../base/net/geoipmanager.cpp" line="371"/>
         <source>Tajikistan</source>
         <translation>Tadzjikistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="371"/>
+        <location filename="../base/net/geoipmanager.cpp" line="372"/>
         <source>Tokelau</source>
         <translation>Tokelau</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="373"/>
+        <location filename="../base/net/geoipmanager.cpp" line="374"/>
         <source>Turkmenistan</source>
         <translation>Turkmenistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="374"/>
+        <location filename="../base/net/geoipmanager.cpp" line="375"/>
         <source>Tunisia</source>
         <translation>Tunisien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="375"/>
+        <location filename="../base/net/geoipmanager.cpp" line="376"/>
         <source>Tonga</source>
         <translation>Tonga</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="392"/>
+        <location filename="../base/net/geoipmanager.cpp" line="393"/>
         <source>Vietnam</source>
         <translation>Vietnam</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="430"/>
+        <location filename="../base/net/geoipmanager.cpp" line="431"/>
         <source>Couldn&apos;t download IP geolocation database file. Reason: %1</source>
         <translation>Det gick inte att hämta IP-geolokaliseringsdatabasfilen. Orsak: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="438"/>
+        <location filename="../base/net/geoipmanager.cpp" line="439"/>
         <source>Could not decompress IP geolocation database file.</source>
         <translation>Det gick inte att dekomprimera IP-geolokaliseringsdatabasfilen.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="465"/>
+        <location filename="../base/net/geoipmanager.cpp" line="466"/>
         <source>Couldn&apos;t save downloaded IP geolocation database file. Reason: %1</source>
         <translation>Det gick inte att spara hämtad IP-geolokaliseringsdatabasfil. Orsak: %1</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="461"/>
+        <location filename="../base/net/geoipmanager.cpp" line="462"/>
         <source>Successfully updated IP geolocation database.</source>
         <translation>Uppdaterade IP-geolokaliseringsdatabasen.</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="372"/>
+        <location filename="../base/net/geoipmanager.cpp" line="373"/>
         <source>Timor-Leste</source>
         <translation>Östtimor</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="180"/>
+        <location filename="../base/net/geoipmanager.cpp" line="181"/>
         <source>Bolivia, Plurinational State of</source>
         <translation>Bolivia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="181"/>
+        <location filename="../base/net/geoipmanager.cpp" line="182"/>
         <source>Bonaire, Sint Eustatius and Saba</source>
         <translation>Bonaire, Sint Eustatius och Saba</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="195"/>
+        <location filename="../base/net/geoipmanager.cpp" line="196"/>
         <source>Cote d&apos;Ivoire</source>
         <translation>Elfenbenskusten</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="287"/>
+        <location filename="../base/net/geoipmanager.cpp" line="288"/>
         <source>Libya</source>
         <translation>Libyen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="292"/>
+        <location filename="../base/net/geoipmanager.cpp" line="293"/>
         <source>Saint Martin (French part)</source>
         <translation>Saint Martin (franska delen)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="295"/>
+        <location filename="../base/net/geoipmanager.cpp" line="296"/>
         <source>Macedonia, The Former Yugoslav Republic of</source>
         <translation>Makedonien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="299"/>
+        <location filename="../base/net/geoipmanager.cpp" line="300"/>
         <source>Macao</source>
         <translation>Macao</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="332"/>
+        <location filename="../base/net/geoipmanager.cpp" line="333"/>
         <source>Pitcairn</source>
         <translation>Pitcairnöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="334"/>
+        <location filename="../base/net/geoipmanager.cpp" line="335"/>
         <source>Palestine, State of</source>
         <translation>Staten Palestina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="350"/>
+        <location filename="../base/net/geoipmanager.cpp" line="351"/>
         <source>Saint Helena, Ascension and Tristan da Cunha</source>
         <translation>Saint Helena, Ascension och Tristan da Cunha</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="359"/>
+        <location filename="../base/net/geoipmanager.cpp" line="360"/>
         <source>South Sudan</source>
         <translation>Sydsudan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="362"/>
+        <location filename="../base/net/geoipmanager.cpp" line="363"/>
         <source>Sint Maarten (Dutch part)</source>
         <translation>Sint Maarten (Nederländska delen)</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="376"/>
+        <location filename="../base/net/geoipmanager.cpp" line="377"/>
         <source>Turkey</source>
         <translation>Turkiet</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="377"/>
+        <location filename="../base/net/geoipmanager.cpp" line="378"/>
         <source>Trinidad and Tobago</source>
         <translation>Trinidad och Tobago</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="378"/>
+        <location filename="../base/net/geoipmanager.cpp" line="379"/>
         <source>Tuvalu</source>
         <translation>Tuvalu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="379"/>
+        <location filename="../base/net/geoipmanager.cpp" line="380"/>
         <source>Taiwan</source>
         <translation>Taiwan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="380"/>
+        <location filename="../base/net/geoipmanager.cpp" line="381"/>
         <source>Tanzania, United Republic of</source>
         <translation>Tanzania</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="381"/>
+        <location filename="../base/net/geoipmanager.cpp" line="382"/>
         <source>Ukraine</source>
         <translation>Ukraina</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="382"/>
+        <location filename="../base/net/geoipmanager.cpp" line="383"/>
         <source>Uganda</source>
         <translation>Uganda</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="383"/>
+        <location filename="../base/net/geoipmanager.cpp" line="384"/>
         <source>United States Minor Outlying Islands</source>
         <translation>Förenta staternas mindre öar i Oceanien och Västindien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="384"/>
+        <location filename="../base/net/geoipmanager.cpp" line="385"/>
         <source>United States</source>
         <translation>Förenta staterna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="385"/>
+        <location filename="../base/net/geoipmanager.cpp" line="386"/>
         <source>Uruguay</source>
         <translation>Uruguay</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="386"/>
+        <location filename="../base/net/geoipmanager.cpp" line="387"/>
         <source>Uzbekistan</source>
         <translation>Uzbekistan</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="387"/>
+        <location filename="../base/net/geoipmanager.cpp" line="388"/>
         <source>Holy See (Vatican City State)</source>
         <translation>Heliga stolen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="388"/>
+        <location filename="../base/net/geoipmanager.cpp" line="389"/>
         <source>Saint Vincent and the Grenadines</source>
         <translation>Saint Vincent och Grenadinerna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="390"/>
+        <location filename="../base/net/geoipmanager.cpp" line="391"/>
         <source>Virgin Islands, British</source>
         <translation>Brittiska Jungfruöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="391"/>
+        <location filename="../base/net/geoipmanager.cpp" line="392"/>
         <source>Virgin Islands, U.S.</source>
         <translation>Amerikanska Jungfruöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="393"/>
+        <location filename="../base/net/geoipmanager.cpp" line="394"/>
         <source>Vanuatu</source>
         <translation>Vanuatu</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="394"/>
+        <location filename="../base/net/geoipmanager.cpp" line="395"/>
         <source>Wallis and Futuna</source>
         <translation>Wallis- och Futunaöarna</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="395"/>
+        <location filename="../base/net/geoipmanager.cpp" line="396"/>
         <source>Samoa</source>
         <translation>Samoa</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="396"/>
+        <location filename="../base/net/geoipmanager.cpp" line="397"/>
         <source>Yemen</source>
         <translation>Jemen</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="397"/>
+        <location filename="../base/net/geoipmanager.cpp" line="398"/>
         <source>Mayotte</source>
         <translation>Mayotte</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="341"/>
+        <location filename="../base/net/geoipmanager.cpp" line="342"/>
         <source>Serbia</source>
         <translation>Serbien</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="398"/>
+        <location filename="../base/net/geoipmanager.cpp" line="399"/>
         <source>South Africa</source>
         <translation>Sydafrika</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="399"/>
+        <location filename="../base/net/geoipmanager.cpp" line="400"/>
         <source>Zambia</source>
         <translation>Zambia</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="291"/>
+        <location filename="../base/net/geoipmanager.cpp" line="292"/>
         <source>Montenegro</source>
         <translation>Montenegro</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="400"/>
+        <location filename="../base/net/geoipmanager.cpp" line="401"/>
         <source>Zimbabwe</source>
         <translation>Zimbabwe</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="166"/>
+        <location filename="../base/net/geoipmanager.cpp" line="167"/>
         <source>Aland Islands</source>
         <translation>Åland</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="232"/>
+        <location filename="../base/net/geoipmanager.cpp" line="233"/>
         <source>Guernsey</source>
         <translation>Guernsey</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="255"/>
+        <location filename="../base/net/geoipmanager.cpp" line="256"/>
         <source>Isle of Man</source>
         <translation>Isle of Man</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="262"/>
+        <location filename="../base/net/geoipmanager.cpp" line="263"/>
         <source>Jersey</source>
         <translation>Jersey</translation>
     </message>
     <message>
-        <location filename="../base/net/geoipmanager.cpp" line="177"/>
+        <location filename="../base/net/geoipmanager.cpp" line="178"/>
         <source>Saint Barthelemy</source>
         <translation>Saint-Barthélemy</translation>
     </message>
@@ -4781,9 +5099,53 @@ Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
 <context>
     <name>Net::Smtp</name>
     <message>
-        <location filename="../base/net/smtp.cpp" line="561"/>
         <source>Email Notification Error:</source>
-        <translation>E-postaviseringsfel:</translation>
+        <translation type="vanished">E-postaviseringsfel:</translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="211"/>
+        <source>Connection failed, unrecognized reply: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="251"/>
+        <source>Authentication failed, msg: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="264"/>
+        <source>&lt;mail from&gt; was rejected by server, msg: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="277"/>
+        <source>&lt;Rcpt to&gt; was rejected by server, msg: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="290"/>
+        <source>&lt;data&gt; was rejected by server, msg: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="304"/>
+        <source>Message was rejected by the server, error: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="392"/>
+        <source>Both EHLO and HELO failed, msg: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="473"/>
+        <source>The SMTP server does not seem to support any of the authentications modes we support [CRAM-MD5|PLAIN|LOGIN], skipping authentication, knowing it is likely to fail... Server Auth Modes: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/net/smtp.cpp" line="561"/>
+        <source>Email Notification Error: %1</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4933,89 +5295,89 @@ Vill du göra qBittorrent till standardprogrammet för dessa?</translation>
         <translation> KiB</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="791"/>
+        <location filename="../gui/optionsdialog.ui" line="798"/>
         <source>Torrent content layout:</source>
         <translation>Layout för torrentinnehåll:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="802"/>
+        <location filename="../gui/optionsdialog.ui" line="809"/>
         <source>Original</source>
         <translation>Original</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="807"/>
+        <location filename="../gui/optionsdialog.ui" line="814"/>
         <source>Create subfolder</source>
         <translation>Skapa undermapp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="812"/>
+        <location filename="../gui/optionsdialog.ui" line="819"/>
         <source>Don&apos;t create subfolder</source>
         <translation>Skapa inte undermapp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1213"/>
+        <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Add...</source>
         <translation>Lägg till...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1223"/>
+        <location filename="../gui/optionsdialog.ui" line="1230"/>
         <source>Options..</source>
         <translation>Alternativ...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1233"/>
+        <location filename="../gui/optionsdialog.ui" line="1240"/>
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1260"/>
+        <location filename="../gui/optionsdialog.ui" line="1267"/>
         <source>Email notification &amp;upon download completion</source>
         <translation>E-postmeddelande &amp;efter slutförd hämtning</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1361"/>
+        <location filename="../gui/optionsdialog.ui" line="1368"/>
         <source>Run e&amp;xternal program on torrent completion</source>
         <translation>Kör e&amp;xterna program vid slutföring av torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1430"/>
+        <location filename="../gui/optionsdialog.ui" line="1437"/>
         <source>Peer connection protocol:</source>
         <translation>Jämlikeanslutningsprotokoll:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1489"/>
+        <location filename="../gui/optionsdialog.ui" line="1496"/>
         <source>Any</source>
         <translation>Vilket som helst</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1808"/>
+        <location filename="../gui/optionsdialog.ui" line="1815"/>
         <source>IP Fi&amp;ltering</source>
         <translation>IP-fi&amp;ltrering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2008"/>
+        <location filename="../gui/optionsdialog.ui" line="2009"/>
         <source>Schedule &amp;the use of alternative rate limits</source>
         <translation>Schemalägg &amp;användning av alternativa hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2023"/>
+        <location filename="../gui/optionsdialog.ui" line="2024"/>
         <source>From:</source>
         <comment>From start time</comment>
         <translation>Från:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2050"/>
+        <location filename="../gui/optionsdialog.ui" line="2051"/>
         <source>To:</source>
         <comment>To end time</comment>
         <translation>Till:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2255"/>
+        <location filename="../gui/optionsdialog.ui" line="2256"/>
         <source>Find peers on the DHT network</source>
         <translation>Hitta jämlikar på DHT-nätverket</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2303"/>
+        <location filename="../gui/optionsdialog.ui" line="2304"/>
         <source>Allow encryption: Connect to peers regardless of setting
 Require encryption: Only connect to peers with protocol encryption
 Disable encryption: Only connect to peers without protocol encryption</source>
@@ -5024,129 +5386,134 @@ Kräv kryptering: Anslut endast till jämlikar med protokollkryptering
 Inaktivera kryptering: Anslut endast till jämlikar utan protokollkryptering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2309"/>
+        <location filename="../gui/optionsdialog.ui" line="2310"/>
         <source>Allow encryption</source>
         <translation>Tillåt kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2354"/>
+        <location filename="../gui/optionsdialog.ui" line="2355"/>
         <source>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;More information&lt;/a&gt;)</source>
         <translation>(&lt;a href=&quot;https://github.com/qbittorrent/qBittorrent/wiki/Anonymous-Mode&quot;&gt;Mer information&lt;/a&gt;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2382"/>
+        <location filename="../gui/optionsdialog.ui" line="2385"/>
+        <source>Maximum active checking torrents:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="2420"/>
         <source>&amp;Torrent Queueing</source>
         <translation>&amp;Torrentkö</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2675"/>
+        <location filename="../gui/optionsdialog.ui" line="2713"/>
         <source>A&amp;utomatically add these trackers to new downloads:</source>
         <translation>Lägg a&amp;utomatiskt till de här spårarna till nya hämtningar:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2741"/>
+        <location filename="../gui/optionsdialog.ui" line="2779"/>
         <source>RSS Reader</source>
         <translation>RSS-läsare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2747"/>
+        <location filename="../gui/optionsdialog.ui" line="2785"/>
         <source>Enable fetching RSS feeds</source>
         <translation>Aktivera hämtning av RSS-flöden</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2756"/>
+        <location filename="../gui/optionsdialog.ui" line="2794"/>
         <source>Feeds refresh interval:</source>
         <translation>Uppdateringsintervall för flöden:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2773"/>
+        <location filename="../gui/optionsdialog.ui" line="2811"/>
         <source>Maximum number of articles per feed:</source>
         <translation>Högst antal artiklar per flöde:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2579"/>
-        <location filename="../gui/optionsdialog.ui" line="2780"/>
+        <location filename="../gui/optionsdialog.ui" line="2617"/>
+        <location filename="../gui/optionsdialog.ui" line="2818"/>
         <source> min</source>
         <extracomment>minutes</extracomment>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2570"/>
+        <location filename="../gui/optionsdialog.ui" line="2608"/>
         <source>Seeding Limits</source>
         <translation>Distributionsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2592"/>
+        <location filename="../gui/optionsdialog.ui" line="2630"/>
         <source>When seeding time reaches</source>
         <translation>När distributionstiden når</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2613"/>
+        <location filename="../gui/optionsdialog.ui" line="2651"/>
         <source>Pause torrent</source>
         <translation>Pausa torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2618"/>
+        <location filename="../gui/optionsdialog.ui" line="2656"/>
         <source>Remove torrent</source>
         <translation>Ta bort torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2623"/>
+        <location filename="../gui/optionsdialog.ui" line="2661"/>
         <source>Remove torrent and its files</source>
         <translation>Ta bort torrent och dess filer</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2628"/>
+        <location filename="../gui/optionsdialog.ui" line="2666"/>
         <source>Enable super seeding for torrent</source>
         <translation>Aktivera superdistribution för torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2636"/>
+        <location filename="../gui/optionsdialog.ui" line="2674"/>
         <source>When ratio reaches</source>
         <translation>När kvoten når</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2814"/>
+        <location filename="../gui/optionsdialog.ui" line="2852"/>
         <source>RSS Torrent Auto Downloader</source>
         <translation>Automatisk RSS-torrenthämtare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2820"/>
+        <location filename="../gui/optionsdialog.ui" line="2858"/>
         <source>Enable auto downloading of RSS torrents</source>
         <translation>Aktivera automatisk hämtning av RSS-torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2827"/>
+        <location filename="../gui/optionsdialog.ui" line="2865"/>
         <source>Edit auto downloading rules...</source>
         <translation>Redigera regler för automatisk hämtning...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2837"/>
+        <location filename="../gui/optionsdialog.ui" line="2875"/>
         <source>RSS Smart Episode Filter</source>
         <translation>Smart RSS-avsnittsfilter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2843"/>
+        <location filename="../gui/optionsdialog.ui" line="2881"/>
         <source>Download REPACK/PROPER episodes</source>
         <translation>Hämta REPACK-/PROPER-avsnitt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2850"/>
+        <location filename="../gui/optionsdialog.ui" line="2888"/>
         <source>Filters:</source>
         <translation>Filter:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2911"/>
+        <location filename="../gui/optionsdialog.ui" line="2949"/>
         <source>Web User Interface (Remote control)</source>
         <translation>Webbgränssnittet (fjärrstyrning)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2925"/>
+        <location filename="../gui/optionsdialog.ui" line="2963"/>
         <source>IP address:</source>
         <translation>IP-adress:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2932"/>
+        <location filename="../gui/optionsdialog.ui" line="2970"/>
         <source>IP address that the Web UI will bind to.
 Specify an IPv4 or IPv6 address. You can specify &quot;0.0.0.0&quot; for any IPv4 address,
 &quot;::&quot; for any IPv6 address, or &quot;*&quot; for both IPv4 and IPv6.</source>
@@ -5155,42 +5522,42 @@ Ange en IPv4- eller IPv6-adress. Du kan ange &quot;0.0.0.0&quot; för någon IPv
 &quot;::&quot; för alla IPv6-adresser, eller &quot;*&quot; för både IPv4 och IPv6.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3090"/>
+        <location filename="../gui/optionsdialog.ui" line="3128"/>
         <source>Ban client after consecutive failures:</source>
         <translation>Förbud mot klient efter påföljande misslyckanden:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3110"/>
+        <location filename="../gui/optionsdialog.ui" line="3148"/>
         <source>Never</source>
         <translation>Aldrig</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3120"/>
+        <location filename="../gui/optionsdialog.ui" line="3158"/>
         <source>ban for:</source>
         <translation>förbud för:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3147"/>
+        <location filename="../gui/optionsdialog.ui" line="3185"/>
         <source>Session timeout:</source>
         <translation>Sessionen löpte ut:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3154"/>
+        <location filename="../gui/optionsdialog.ui" line="3192"/>
         <source>Disabled</source>
         <translation>Inaktiverad</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3230"/>
+        <location filename="../gui/optionsdialog.ui" line="3268"/>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Aktivera säker flagga för kakor (kräver HTTPS)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3248"/>
+        <location filename="../gui/optionsdialog.ui" line="3286"/>
         <source>Server domains:</source>
         <translation>Serverdomäner:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3255"/>
+        <location filename="../gui/optionsdialog.ui" line="3293"/>
         <source>Whitelist for filtering HTTP Host header values.
 In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
@@ -5203,27 +5570,27 @@ domännamn som används av servern för webbanvändargränssnittet.
 Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertecknet &quot;*&quot;.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2973"/>
+        <location filename="../gui/optionsdialog.ui" line="3011"/>
         <source>&amp;Use HTTPS instead of HTTP</source>
         <translation>&amp;Använd HTTPS istället för HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3061"/>
+        <location filename="../gui/optionsdialog.ui" line="3099"/>
         <source>Bypass authentication for clients on localhost</source>
         <translation>Kringgå autentisering för klienter på localhost</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3068"/>
+        <location filename="../gui/optionsdialog.ui" line="3106"/>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
         <translation>Kringgå autentisering för klienter i vitlistade IP-undernät</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3081"/>
+        <location filename="../gui/optionsdialog.ui" line="3119"/>
         <source>IP subnet whitelist...</source>
         <translation>IP-delnätvitlista...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3326"/>
+        <location filename="../gui/optionsdialog.ui" line="3364"/>
         <source>Upda&amp;te my dynamic domain name</source>
         <translation>Uppda&amp;tera mitt dynamiska domännamn</translation>
     </message>
@@ -5280,7 +5647,7 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
     <message>
         <location filename="../gui/optionsdialog.ui" line="596"/>
         <source>Save path:</source>
-        <translation>Sparningssökväg:</translation>
+        <translation>Sparsökväg:</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="613"/>
@@ -5293,94 +5660,93 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
         <translation>Ta bort säkerhetskopieringsloggar äldre än:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="761"/>
+        <location filename="../gui/optionsdialog.ui" line="768"/>
         <source>When adding a torrent</source>
         <translation>När en torrent läggs till</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="776"/>
+        <location filename="../gui/optionsdialog.ui" line="783"/>
         <source>Bring torrent dialog to the front</source>
         <translation>Flytta torrentdialogrutan längst fram</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="860"/>
+        <location filename="../gui/optionsdialog.ui" line="867"/>
         <source>Also delete .torrent files whose addition was cancelled</source>
         <translation>Ta också bort .torrentfiler vars tillägg avbröts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="863"/>
+        <location filename="../gui/optionsdialog.ui" line="870"/>
         <source>Also when addition is cancelled</source>
         <translation>Även när tilläggning avbryts</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="885"/>
+        <location filename="../gui/optionsdialog.ui" line="892"/>
         <source>Warning! Data loss possible!</source>
         <translation>Varning! Dataförlust möjlig!</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="927"/>
+        <location filename="../gui/optionsdialog.ui" line="934"/>
         <source>Saving Management</source>
         <translation>Spara hantering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="935"/>
+        <location filename="../gui/optionsdialog.ui" line="942"/>
         <source>Default Torrent Management Mode:</source>
         <translation>Standard torrenthanteringsläge:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="952"/>
+        <location filename="../gui/optionsdialog.ui" line="959"/>
         <source>Manual</source>
         <translation>Manuell</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="957"/>
+        <location filename="../gui/optionsdialog.ui" line="964"/>
         <source>Automatic</source>
         <translation>Automatisk</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="980"/>
+        <location filename="../gui/optionsdialog.ui" line="987"/>
         <source>When Torrent Category changed:</source>
         <translation>När torrentkategorin ändras:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="990"/>
+        <location filename="../gui/optionsdialog.ui" line="997"/>
         <source>Relocate torrent</source>
         <translation>Flytta torrent</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="995"/>
+        <location filename="../gui/optionsdialog.ui" line="1002"/>
         <source>Switch torrent to Manual Mode</source>
         <translation>Växla torrent till manuellt läge</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1018"/>
         <source>When Default Save Path changed:</source>
-        <translation>När standardsparningssökvägen ändras:</translation>
+        <translation type="vanished">När standardsparsökvägen ändras:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1031"/>
-        <location filename="../gui/optionsdialog.ui" line="1072"/>
+        <location filename="../gui/optionsdialog.ui" line="1038"/>
+        <location filename="../gui/optionsdialog.ui" line="1079"/>
         <source>Relocate affected torrents</source>
         <translation>Flytta påverkade torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1036"/>
-        <location filename="../gui/optionsdialog.ui" line="1077"/>
+        <location filename="../gui/optionsdialog.ui" line="1043"/>
+        <location filename="../gui/optionsdialog.ui" line="1084"/>
         <source>Switch affected torrents to Manual Mode</source>
         <translation>Växla påverkade torrenter till manuellt läge</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1102"/>
+        <location filename="../gui/optionsdialog.ui" line="1109"/>
         <source>Use Subcategories</source>
         <translation>Använd underkategorier</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1121"/>
+        <location filename="../gui/optionsdialog.ui" line="1128"/>
         <source>Default Save Path:</source>
-        <translation>Standard sparningssökväg:</translation>
+        <translation>Standard sparsökväg:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1141"/>
+        <location filename="../gui/optionsdialog.ui" line="1148"/>
         <source>Copy .torrent files to:</source>
         <translation>Kopiera .torrent-filer till:</translation>
     </message>
@@ -5395,22 +5761,22 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
         <translation>&amp;Loggfil</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="767"/>
+        <location filename="../gui/optionsdialog.ui" line="774"/>
         <source>Display &amp;torrent content and some options</source>
         <translation>Visa &amp;torrentinnehåll och några alternativ</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="848"/>
+        <location filename="../gui/optionsdialog.ui" line="855"/>
         <source>De&amp;lete .torrent files afterwards </source>
         <translation>T&amp;a bort .torrent-filer efteråt </translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1154"/>
+        <location filename="../gui/optionsdialog.ui" line="1161"/>
         <source>Copy .torrent files for finished downloads to:</source>
         <translation>Kopiera .torrent-filer för slutförda hämtningar till:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="903"/>
+        <location filename="../gui/optionsdialog.ui" line="910"/>
         <source>Pre-allocate disk space for all files</source>
         <translation>Förallokera diskutrymme för alla filer</translation>
     </message>
@@ -5521,566 +5887,576 @@ Använd &quot;;&quot; för att dela upp i flera poster. Du kan använda jokertec
         <translation>år</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="835"/>
+        <location filename="../gui/optionsdialog.ui" line="713"/>
+        <source>Log performance warnings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="842"/>
         <source>The torrent will be added to download list in a paused state</source>
         <translation>Torrenten kommer att läggas till i hämtningslistan i ett pausat tillstånd</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="838"/>
+        <location filename="../gui/optionsdialog.ui" line="845"/>
         <source>Do not start the download automatically</source>
         <extracomment>The torrent will be added to download list in a paused state</extracomment>
         <translation>Starta inte hämtningen automatiskt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="845"/>
+        <location filename="../gui/optionsdialog.ui" line="852"/>
         <source>Whether the .torrent file should be deleted after adding it</source>
         <translation>Om .torrent-filen ska tas bort efter att den lagts till</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="900"/>
+        <location filename="../gui/optionsdialog.ui" line="907"/>
         <source>Allocate full file sizes on disk before starting downloads, to minimize fragmentation. Only useful for HDDs.</source>
         <translation>Allokera fullständiga filstorlekar på disken innan hämtningar startas för att minimera fragmentering. Endast användbart för hårddiskar.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="910"/>
+        <location filename="../gui/optionsdialog.ui" line="917"/>
         <source>Append .!qB extension to incomplete files</source>
         <translation>Lägg till ändelsen .!qB till ofullständiga filer</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="917"/>
+        <location filename="../gui/optionsdialog.ui" line="924"/>
         <source>When a torrent is downloaded, offer to add torrents from any .torrent files found inside it</source>
         <translation>När en torrent hämtas, erbjud att lägga till torrenter från alla .torrent-filer som finns inuti den</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="920"/>
+        <location filename="../gui/optionsdialog.ui" line="927"/>
         <source>Enable recursive download dialog</source>
         <translation>Aktivera rekursiv hämtningsdialogruta</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="947"/>
+        <location filename="../gui/optionsdialog.ui" line="954"/>
         <source>Automatic: Various torrent properties (e.g. save path) will be decided by the associated category
 Manual: Various torrent properties (e.g. save path) must be assigned manually</source>
-        <translation>Automatisk: Olika torrentegenskaper (t.ex. sparningssökväg) kommer att avgöras av den tillhörande kategorin
+        <translation>Automatisk: Olika torrentegenskaper (t.ex. sparsökväg) kommer att avgöras av den tillhörande kategorin
 Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1059"/>
+        <location filename="../gui/optionsdialog.ui" line="1025"/>
+        <source>When Default Save/Incomplete Path changed:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/optionsdialog.ui" line="1066"/>
         <source>When Category Save Path changed:</source>
         <translation>När kategorisparsningssökvägen ändras:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1109"/>
+        <location filename="../gui/optionsdialog.ui" line="1116"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd kategorisökvägar i manuellt läge</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1112"/>
+        <location filename="../gui/optionsdialog.ui" line="1119"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished"></translation>
+        <translation>Lös relativ sparsökväg mot lämplig kategorisökväg istället för standardsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1131"/>
+        <location filename="../gui/optionsdialog.ui" line="1138"/>
         <source>Use another path for incomplete torrents:</source>
         <translation>Använd en annan sökväg för ofullständiga torrenter:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1166"/>
+        <location filename="../gui/optionsdialog.ui" line="1173"/>
         <source>Automatically add torrents from:</source>
         <translation>Lägg automatiskt till torrenter från:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1277"/>
+        <location filename="../gui/optionsdialog.ui" line="1284"/>
         <source>Receiver</source>
         <translation>Mottagare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1280"/>
+        <location filename="../gui/optionsdialog.ui" line="1287"/>
         <source>To:</source>
         <comment>To receiver</comment>
         <translation>Till:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1287"/>
+        <location filename="../gui/optionsdialog.ui" line="1294"/>
         <source>SMTP server:</source>
         <translation>SMTP-server:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1300"/>
+        <location filename="../gui/optionsdialog.ui" line="1307"/>
         <source>Sender</source>
         <translation>Sändare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1303"/>
+        <location filename="../gui/optionsdialog.ui" line="1310"/>
         <source>From:</source>
         <comment>From sender</comment>
         <translation>Från:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1312"/>
+        <location filename="../gui/optionsdialog.ui" line="1319"/>
         <source>This server requires a secure connection (SSL)</source>
         <translation>Den här servern kräver en säker anslutning (SSL)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1319"/>
-        <location filename="../gui/optionsdialog.ui" line="3024"/>
+        <location filename="../gui/optionsdialog.ui" line="1326"/>
+        <location filename="../gui/optionsdialog.ui" line="3062"/>
         <source>Authentication</source>
         <translation>Autentisering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1331"/>
-        <location filename="../gui/optionsdialog.ui" line="1769"/>
-        <location filename="../gui/optionsdialog.ui" line="3032"/>
-        <location filename="../gui/optionsdialog.ui" line="3384"/>
+        <location filename="../gui/optionsdialog.ui" line="1338"/>
+        <location filename="../gui/optionsdialog.ui" line="1776"/>
+        <location filename="../gui/optionsdialog.ui" line="3070"/>
+        <location filename="../gui/optionsdialog.ui" line="3422"/>
         <source>Username:</source>
         <translation>Användarnamn:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1341"/>
-        <location filename="../gui/optionsdialog.ui" line="1779"/>
-        <location filename="../gui/optionsdialog.ui" line="3042"/>
-        <location filename="../gui/optionsdialog.ui" line="3394"/>
+        <location filename="../gui/optionsdialog.ui" line="1348"/>
+        <location filename="../gui/optionsdialog.ui" line="1786"/>
+        <location filename="../gui/optionsdialog.ui" line="3080"/>
+        <location filename="../gui/optionsdialog.ui" line="3432"/>
         <source>Password:</source>
         <translation>Lösenord:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1376"/>
+        <location filename="../gui/optionsdialog.ui" line="1383"/>
         <source>Show console window</source>
         <translation>Visa konsolfönster</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1438"/>
+        <location filename="../gui/optionsdialog.ui" line="1445"/>
         <source>TCP and μTP</source>
         <translation>TCP och μTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1471"/>
+        <location filename="../gui/optionsdialog.ui" line="1478"/>
         <source>Listening Port</source>
         <translation>Lyssningsport</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1479"/>
+        <location filename="../gui/optionsdialog.ui" line="1486"/>
         <source>Port used for incoming connections:</source>
         <translation>Port som används för inkommande anslutningar:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1486"/>
+        <location filename="../gui/optionsdialog.ui" line="1493"/>
         <source>Set to 0 to let your system pick an unused port</source>
         <translation>Ställ in på 0 för att låta ditt system välja en oanvänd port</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1499"/>
+        <location filename="../gui/optionsdialog.ui" line="1506"/>
         <source>Random</source>
         <translation>Slumpmässig</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1521"/>
+        <location filename="../gui/optionsdialog.ui" line="1528"/>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
         <translation>Använd UPnP / NAT-PMP-portomdirigering från min router</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1534"/>
+        <location filename="../gui/optionsdialog.ui" line="1541"/>
         <source>Connections Limits</source>
         <translation>Anslutningsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1550"/>
+        <location filename="../gui/optionsdialog.ui" line="1557"/>
         <source>Maximum number of connections per torrent:</source>
         <translation>Högst antal anslutningar per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1560"/>
+        <location filename="../gui/optionsdialog.ui" line="1567"/>
         <source>Global maximum number of connections:</source>
         <translation>Högst antal anslutningar globalt:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1599"/>
+        <location filename="../gui/optionsdialog.ui" line="1606"/>
         <source>Maximum number of upload slots per torrent:</source>
         <translation>Högst antal sändningsplatser per torrent:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1606"/>
+        <location filename="../gui/optionsdialog.ui" line="1613"/>
         <source>Global maximum number of upload slots:</source>
         <translation>Globalt högst antal sändningsplatser:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1642"/>
+        <location filename="../gui/optionsdialog.ui" line="1649"/>
         <source>Proxy Server</source>
         <translation>Proxyserver</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1650"/>
+        <location filename="../gui/optionsdialog.ui" line="1657"/>
         <source>Type:</source>
         <translation>Typ:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1658"/>
+        <location filename="../gui/optionsdialog.ui" line="1665"/>
         <source>(None)</source>
         <translation>(Ingen)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1663"/>
+        <location filename="../gui/optionsdialog.ui" line="1670"/>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1668"/>
+        <location filename="../gui/optionsdialog.ui" line="1675"/>
         <source>SOCKS5</source>
         <translation>SOCKS5</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1673"/>
+        <location filename="../gui/optionsdialog.ui" line="1680"/>
         <source>HTTP</source>
         <translation>HTTP</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1684"/>
+        <location filename="../gui/optionsdialog.ui" line="1691"/>
         <source>Host:</source>
         <translation>Värd:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1701"/>
-        <location filename="../gui/optionsdialog.ui" line="2941"/>
+        <location filename="../gui/optionsdialog.ui" line="1708"/>
+        <location filename="../gui/optionsdialog.ui" line="2979"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1729"/>
+        <location filename="../gui/optionsdialog.ui" line="1736"/>
         <source>Otherwise, the proxy server is only used for tracker connections</source>
         <translation>Annars används proxyservern endast för spåraranslutningar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1732"/>
+        <location filename="../gui/optionsdialog.ui" line="1739"/>
         <source>Use proxy for peer connections</source>
         <translation>Använd proxy för jämlikeanslutningar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1739"/>
+        <location filename="../gui/optionsdialog.ui" line="1746"/>
         <source>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</source>
         <translation>RSS-flöden, sökmotor, programuppdateringar eller något annat än torrentöverföringar och relaterade åtgärder (t.ex. jämlikeutbyten) kommer att använda en direktanslutning</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1742"/>
+        <location filename="../gui/optionsdialog.ui" line="1749"/>
         <source>Use proxy only for torrents</source>
         <translation>Använd proxy endast för torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1755"/>
+        <location filename="../gui/optionsdialog.ui" line="1762"/>
         <source>A&amp;uthentication</source>
         <translation>A&amp;utentisering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1795"/>
+        <location filename="../gui/optionsdialog.ui" line="1802"/>
         <source>Info: The password is saved unencrypted</source>
         <translation>Info: Lösenordet sparas okrypterat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1816"/>
+        <location filename="../gui/optionsdialog.ui" line="1823"/>
         <source>Filter path (.dat, .p2p, .p2b):</source>
         <translation>Filtersökväg (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1832"/>
+        <location filename="../gui/optionsdialog.ui" line="1833"/>
         <source>Reload the filter</source>
         <translation>Uppdatera filtret</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1847"/>
+        <location filename="../gui/optionsdialog.ui" line="1848"/>
         <source>Manually banned IP addresses...</source>
         <translation>Manuellt förbjudna IP-adresser...</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1854"/>
+        <location filename="../gui/optionsdialog.ui" line="1855"/>
         <source>Apply to trackers</source>
         <translation>Tillämpa på spårare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1912"/>
+        <location filename="../gui/optionsdialog.ui" line="1913"/>
         <source>Global Rate Limits</source>
         <translation>Globala hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1918"/>
-        <location filename="../gui/optionsdialog.ui" line="1934"/>
-        <location filename="../gui/optionsdialog.ui" line="1989"/>
-        <location filename="../gui/optionsdialog.ui" line="2125"/>
-        <location filename="../gui/optionsdialog.ui" line="2401"/>
-        <location filename="../gui/optionsdialog.ui" line="2424"/>
-        <location filename="../gui/optionsdialog.ui" line="2447"/>
+        <location filename="../gui/optionsdialog.ui" line="1919"/>
+        <location filename="../gui/optionsdialog.ui" line="1935"/>
+        <location filename="../gui/optionsdialog.ui" line="1990"/>
+        <location filename="../gui/optionsdialog.ui" line="2126"/>
+        <location filename="../gui/optionsdialog.ui" line="2439"/>
+        <location filename="../gui/optionsdialog.ui" line="2462"/>
+        <location filename="../gui/optionsdialog.ui" line="2485"/>
         <source>∞</source>
         <translation>∞</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1921"/>
-        <location filename="../gui/optionsdialog.ui" line="1937"/>
-        <location filename="../gui/optionsdialog.ui" line="1992"/>
-        <location filename="../gui/optionsdialog.ui" line="2128"/>
-        <location filename="../gui/optionsdialog.ui" line="2488"/>
-        <location filename="../gui/optionsdialog.ui" line="2501"/>
+        <location filename="../gui/optionsdialog.ui" line="1922"/>
+        <location filename="../gui/optionsdialog.ui" line="1938"/>
+        <location filename="../gui/optionsdialog.ui" line="1993"/>
+        <location filename="../gui/optionsdialog.ui" line="2129"/>
+        <location filename="../gui/optionsdialog.ui" line="2526"/>
+        <location filename="../gui/optionsdialog.ui" line="2539"/>
         <source> KiB/s</source>
         <translation> KiB/s</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1966"/>
-        <location filename="../gui/optionsdialog.ui" line="2154"/>
+        <location filename="../gui/optionsdialog.ui" line="1967"/>
+        <location filename="../gui/optionsdialog.ui" line="2155"/>
         <source>Upload:</source>
         <translation>Sändning:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1973"/>
-        <location filename="../gui/optionsdialog.ui" line="2161"/>
+        <location filename="../gui/optionsdialog.ui" line="1974"/>
+        <location filename="../gui/optionsdialog.ui" line="2162"/>
         <source>Download:</source>
         <translation>Hämtning:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="1983"/>
+        <location filename="../gui/optionsdialog.ui" line="1984"/>
         <source>Alternative Rate Limits</source>
         <translation>Alternativa hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2020"/>
+        <location filename="../gui/optionsdialog.ui" line="2021"/>
         <source>Start time</source>
         <translation>Starttid</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2047"/>
+        <location filename="../gui/optionsdialog.ui" line="2048"/>
         <source>End time</source>
         <translation>Sluttid</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2077"/>
+        <location filename="../gui/optionsdialog.ui" line="2078"/>
         <source>When:</source>
         <translation>När:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2091"/>
+        <location filename="../gui/optionsdialog.ui" line="2092"/>
         <source>Every day</source>
         <translation>Varje dag</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2096"/>
+        <location filename="../gui/optionsdialog.ui" line="2097"/>
         <source>Weekdays</source>
         <translation>Vardagar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2101"/>
+        <location filename="../gui/optionsdialog.ui" line="2102"/>
         <source>Weekends</source>
         <translation>Helger</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2171"/>
+        <location filename="../gui/optionsdialog.ui" line="2172"/>
         <source>Rate Limits Settings</source>
         <translation>Inställningar för hastighetsgränser</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2191"/>
+        <location filename="../gui/optionsdialog.ui" line="2192"/>
         <source>Apply rate limit to peers on LAN</source>
         <translation>Tillämpa hastighetsgräns för LAN-jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2184"/>
+        <location filename="../gui/optionsdialog.ui" line="2185"/>
         <source>Apply rate limit to transport overhead</source>
         <translation>Tillämpa hastighetsgräns för transportoverhead</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2177"/>
+        <location filename="../gui/optionsdialog.ui" line="2178"/>
         <source>Apply rate limit to µTP protocol</source>
         <translation>Tillämpa hastighetsgräns för µTP-protokoll</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2249"/>
+        <location filename="../gui/optionsdialog.ui" line="2250"/>
         <source>Privacy</source>
         <translation>Integritet</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2258"/>
+        <location filename="../gui/optionsdialog.ui" line="2259"/>
         <source>Enable DHT (decentralized network) to find more peers</source>
         <translation>Aktivera DHT (decentraliserat nätverk) för att hitta fler jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2268"/>
+        <location filename="../gui/optionsdialog.ui" line="2269"/>
         <source>Exchange peers with compatible Bittorrent clients (µTorrent, Vuze, ...)</source>
         <translation>Utbyta jämlikar med kompatibla BitTorrent-klienter (µTorrent, Vuze, ...)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2271"/>
+        <location filename="../gui/optionsdialog.ui" line="2272"/>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
         <translation>Aktivera jämlikeutbyte (PeX) för att hitta fler jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2281"/>
+        <location filename="../gui/optionsdialog.ui" line="2282"/>
         <source>Look for peers on your local network</source>
         <translation>Leta efter jämlikar på ditt lokala nätverk</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2284"/>
+        <location filename="../gui/optionsdialog.ui" line="2285"/>
         <source>Enable Local Peer Discovery to find more peers</source>
         <translation>Aktivera upptäckt av lokala jämlikar för att hitta fler jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2296"/>
+        <location filename="../gui/optionsdialog.ui" line="2297"/>
         <source>Encryption mode:</source>
         <translation>Krypteringsläge:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2314"/>
+        <location filename="../gui/optionsdialog.ui" line="2315"/>
         <source>Require encryption</source>
         <translation>Kräv kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2319"/>
+        <location filename="../gui/optionsdialog.ui" line="2320"/>
         <source>Disable encryption</source>
         <translation>Inaktivera kryptering</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2344"/>
+        <location filename="../gui/optionsdialog.ui" line="2345"/>
         <source>Enable when using a proxy or a VPN connection</source>
         <translation>Aktivera när en proxy eller VPN-anslutning används</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2347"/>
+        <location filename="../gui/optionsdialog.ui" line="2348"/>
         <source>Enable anonymous mode</source>
         <translation>Aktivera anonymt läge</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2394"/>
+        <location filename="../gui/optionsdialog.ui" line="2432"/>
         <source>Maximum active downloads:</source>
         <translation>Högst antal aktiva hämtningar:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2417"/>
+        <location filename="../gui/optionsdialog.ui" line="2455"/>
         <source>Maximum active uploads:</source>
         <translation>Högst antal aktiva sändningar:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2440"/>
+        <location filename="../gui/optionsdialog.ui" line="2478"/>
         <source>Maximum active torrents:</source>
         <translation>Högst antal aktiva torrenter:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2476"/>
+        <location filename="../gui/optionsdialog.ui" line="2514"/>
         <source>Do not count slow torrents in these limits</source>
         <translation>Räkna inte långsamma torrenter med de här gränserna</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2514"/>
+        <location filename="../gui/optionsdialog.ui" line="2552"/>
         <source>Upload rate threshold:</source>
         <translation>Sändningshastighetsgräns:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2521"/>
+        <location filename="../gui/optionsdialog.ui" line="2559"/>
         <source>Download rate threshold:</source>
         <translation>Hämtningshastighetsgräns:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2541"/>
-        <location filename="../gui/optionsdialog.ui" line="3130"/>
-        <location filename="../gui/optionsdialog.ui" line="3157"/>
+        <location filename="../gui/optionsdialog.ui" line="2579"/>
+        <location filename="../gui/optionsdialog.ui" line="3168"/>
+        <location filename="../gui/optionsdialog.ui" line="3195"/>
         <source> sec</source>
         <extracomment>seconds</extracomment>
         <translation>sek</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2557"/>
+        <location filename="../gui/optionsdialog.ui" line="2595"/>
         <source>Torrent inactivity timer:</source>
         <translation>Torrentinaktivitetstidtagare:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2599"/>
+        <location filename="../gui/optionsdialog.ui" line="2637"/>
         <source>then</source>
         <translation>därefter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2963"/>
+        <location filename="../gui/optionsdialog.ui" line="3001"/>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
         <translation>Använd UPnP / NAT-PMP för att vidarebefordra porten från min router</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2992"/>
+        <location filename="../gui/optionsdialog.ui" line="3030"/>
         <source>Certificate:</source>
         <translation>Certifikat:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="2985"/>
+        <location filename="../gui/optionsdialog.ui" line="3023"/>
         <source>Key:</source>
         <translation>Nyckel:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3005"/>
+        <location filename="../gui/optionsdialog.ui" line="3043"/>
         <source>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information about certificates&lt;/a&gt;</source>
         <translation>&lt;a href=https://httpd.apache.org/docs/current/ssl/ssl_faq.html#aboutcerts&gt;Information om certifikat&lt;/a&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3052"/>
+        <location filename="../gui/optionsdialog.ui" line="3090"/>
         <source>Change current password</source>
         <translation>Ändra nuvarande lösenord</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3185"/>
+        <location filename="../gui/optionsdialog.ui" line="3223"/>
         <source>Use alternative Web UI</source>
         <translation>Använd alternativt webbgränssnitt</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3197"/>
+        <location filename="../gui/optionsdialog.ui" line="3235"/>
         <source>Files location:</source>
         <translation>Filplats:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3210"/>
+        <location filename="../gui/optionsdialog.ui" line="3248"/>
         <source>Security</source>
         <translation>Säkerhet</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3216"/>
+        <location filename="../gui/optionsdialog.ui" line="3254"/>
         <source>Enable clickjacking protection</source>
         <translation>Aktivera skydd för clickjacking</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3223"/>
+        <location filename="../gui/optionsdialog.ui" line="3261"/>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
         <translation>Aktivera Cross-Site Request Forgery (CSRF)-skydd</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3237"/>
+        <location filename="../gui/optionsdialog.ui" line="3275"/>
         <source>Enable Host header validation</source>
         <translation>Aktivera validering av värdrubrik</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3274"/>
+        <location filename="../gui/optionsdialog.ui" line="3312"/>
         <source>Add custom HTTP headers</source>
         <translation>Lägg till anpassade HTTP-rubriker</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3286"/>
+        <location filename="../gui/optionsdialog.ui" line="3324"/>
         <source>Header: value pairs, one per line</source>
         <translation>Rubrik: värdepar, en per rad</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3296"/>
+        <location filename="../gui/optionsdialog.ui" line="3334"/>
         <source>Enable reverse proxy support</source>
         <translation>Aktivera support för omvänd proxy</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3307"/>
+        <location filename="../gui/optionsdialog.ui" line="3345"/>
         <source>Trusted proxies list:</source>
         <translation>Lista över betrodda proxyer:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3314"/>
+        <location filename="../gui/optionsdialog.ui" line="3352"/>
         <source>Specify reverse proxy IPs in order to use forwarded client address (X-Forwarded-For attribute), use &apos;;&apos; to split multiple entries.</source>
         <translation>Ange omvända proxy-IP:er för att använda vidarebefordrad klientadress (X-Forwarded-For attribute), använd &quot;;&quot; för att dela upp flera poster.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3338"/>
+        <location filename="../gui/optionsdialog.ui" line="3376"/>
         <source>Service:</source>
         <translation>Tjänst:</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3361"/>
+        <location filename="../gui/optionsdialog.ui" line="3399"/>
         <source>Register</source>
         <translation>Registrera</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.ui" line="3370"/>
+        <location filename="../gui/optionsdialog.ui" line="3408"/>
         <source>Domain name:</source>
         <translation>Domännamn:</translation>
     </message>
@@ -6105,109 +6481,109 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <translation>Välj alternativ plats för användargränssnitts filer</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="394"/>
+        <location filename="../gui/optionsdialog.cpp" line="395"/>
         <source>Supported parameters (case sensitive):</source>
         <translation>Parametrar som stöds (skiftlägeskänslig):</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="395"/>
+        <location filename="../gui/optionsdialog.cpp" line="396"/>
         <source>%N: Torrent name</source>
         <translation>%N: Torrentnamn</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="396"/>
+        <location filename="../gui/optionsdialog.cpp" line="397"/>
         <source>%L: Category</source>
         <translation>%L: Kategori</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="398"/>
+        <location filename="../gui/optionsdialog.cpp" line="399"/>
         <source>%F: Content path (same as root path for multifile torrent)</source>
         <translation>%F: Innehållssökväg (samma som root-sökväg för flerfilig torrent)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="399"/>
+        <location filename="../gui/optionsdialog.cpp" line="400"/>
         <source>%R: Root path (first torrent subdirectory path)</source>
         <translation>%R: Root-sökväg (första torrentundermappsökväg)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="400"/>
+        <location filename="../gui/optionsdialog.cpp" line="401"/>
         <source>%D: Save path</source>
-        <translation>%D: Sparningssökväg</translation>
+        <translation>%D: Sparsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="401"/>
+        <location filename="../gui/optionsdialog.cpp" line="402"/>
         <source>%C: Number of files</source>
         <translation>%C: Antal filer</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="402"/>
+        <location filename="../gui/optionsdialog.cpp" line="403"/>
         <source>%Z: Torrent size (bytes)</source>
         <translation>%Z: Torrentstorlek (byte)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="403"/>
+        <location filename="../gui/optionsdialog.cpp" line="404"/>
         <source>%T: Current tracker</source>
         <translation>%T: Aktuell spårare</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="407"/>
+        <location filename="../gui/optionsdialog.cpp" line="408"/>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
         <translation>Tips: Inkapsla parametern med citattecken för att undvika att text skärs av vid blanktecknet (t. ex. &quot;%N&quot;)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="474"/>
+        <location filename="../gui/optionsdialog.cpp" line="476"/>
         <source>A torrent will be considered slow if its download and upload rates stay below these values for &quot;Torrent inactivity timer&quot; seconds</source>
         <translation>En torrent kommer att anses långsam om dess hämtnings- och sändningshastigheter stannar under de här värdena för &quot;torrentinaktivitetstidtagare&quot; sekunder</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="483"/>
+        <location filename="../gui/optionsdialog.cpp" line="485"/>
         <source>Certificate</source>
         <translation>Certifikat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="484"/>
+        <location filename="../gui/optionsdialog.cpp" line="486"/>
         <source>Select certificate</source>
         <translation>Välj certifikat</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="486"/>
+        <location filename="../gui/optionsdialog.cpp" line="488"/>
         <source>Private key</source>
         <translation>Privat nyckel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="487"/>
+        <location filename="../gui/optionsdialog.cpp" line="489"/>
         <source>Select private key</source>
         <translation>Välj privat nyckel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1663"/>
+        <location filename="../gui/optionsdialog.cpp" line="1665"/>
         <source>Select folder to monitor</source>
         <translation>Välj mapp för övervakning</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1686"/>
+        <location filename="../gui/optionsdialog.cpp" line="1688"/>
         <source>Adding entry failed</source>
         <translation>Det gick inte att lägga till post</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1775"/>
-        <location filename="../gui/optionsdialog.cpp" line="1801"/>
+        <location filename="../gui/optionsdialog.cpp" line="1777"/>
+        <location filename="../gui/optionsdialog.cpp" line="1803"/>
         <source>Invalid path</source>
         <translation>Ogiltig sökväg</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1879"/>
+        <location filename="../gui/optionsdialog.cpp" line="1881"/>
         <source>Location Error</source>
         <translation>Platsfel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1879"/>
+        <location filename="../gui/optionsdialog.cpp" line="1881"/>
         <source>The alternative Web UI files location cannot be blank.</source>
         <translation>Platsen för alternativa webbgränssnittsfiler kan inte vara tom.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="551"/>
-        <location filename="../gui/optionsdialog.cpp" line="554"/>
+        <location filename="../gui/optionsdialog.cpp" line="553"/>
+        <location filename="../gui/optionsdialog.cpp" line="556"/>
         <source>Choose export directory</source>
         <translation>Välj exportmapp</translation>
     </message>
@@ -6222,75 +6598,75 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <translation>qBittorrent-temafil för användargränssnitt (*.qbtheme config.json)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="397"/>
+        <location filename="../gui/optionsdialog.cpp" line="398"/>
         <source>%G: Tags (separated by comma)</source>
         <translation>%G: Taggar (separerade med kommatecken)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="404"/>
+        <location filename="../gui/optionsdialog.cpp" line="405"/>
         <source>%I: Info hash v1 (or &apos;-&apos; if unavailable)</source>
         <translation>%I: Info hash v1 (eller &quot;-&quot; om otillgänglig)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="405"/>
+        <location filename="../gui/optionsdialog.cpp" line="406"/>
         <source>%J: Info hash v2 (or &apos;-&apos; if unavailable)</source>
         <translation>%J: Info hash v2 (eller &quot;-&quot; om otillgänglig)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="406"/>
+        <location filename="../gui/optionsdialog.cpp" line="407"/>
         <source>%K: Torrent ID (either sha-1 info hash for v1 torrent or truncated sha-256 info hash for v2/hybrid torrent)</source>
         <translation>%K: Torrent-ID (antingen sha-1 infohash för v1-torrent eller avkortad sha-256 infohash för v2/hybridtorrent)</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="548"/>
-        <location filename="../gui/optionsdialog.cpp" line="561"/>
-        <location filename="../gui/optionsdialog.cpp" line="564"/>
+        <location filename="../gui/optionsdialog.cpp" line="550"/>
+        <location filename="../gui/optionsdialog.cpp" line="563"/>
+        <location filename="../gui/optionsdialog.cpp" line="566"/>
         <source>Choose a save directory</source>
         <translation>Välj en sparmapp</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="557"/>
+        <location filename="../gui/optionsdialog.cpp" line="559"/>
         <source>Choose an IP filter file</source>
         <translation>Välj en IP-filterfil</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="558"/>
+        <location filename="../gui/optionsdialog.cpp" line="560"/>
         <source>All supported filters</source>
         <translation>Alla stödda filter</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1843"/>
+        <location filename="../gui/optionsdialog.cpp" line="1845"/>
         <source>Parsing error</source>
         <translation>Tolkningsfel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1843"/>
+        <location filename="../gui/optionsdialog.cpp" line="1845"/>
         <source>Failed to parse the provided IP filter</source>
         <translation>Det gick inte att tolka det medföljande IP-filtret</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1845"/>
+        <location filename="../gui/optionsdialog.cpp" line="1847"/>
         <source>Successfully refreshed</source>
         <translation>Uppdaterad</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1845"/>
+        <location filename="../gui/optionsdialog.cpp" line="1847"/>
         <source>Successfully parsed the provided IP filter: %1 rules were applied.</source>
         <comment>%1 is a number</comment>
         <translation>Tolkade det angivna IP-filtret: %1-reglerna tillämpades.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1808"/>
+        <location filename="../gui/optionsdialog.cpp" line="1810"/>
         <source>Invalid key</source>
         <translation>Ogiltig nyckel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1808"/>
+        <location filename="../gui/optionsdialog.cpp" line="1810"/>
         <source>This is not a valid SSL key.</source>
         <translation>Detta är inte en giltig SSL-nyckel.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1782"/>
+        <location filename="../gui/optionsdialog.cpp" line="1784"/>
         <source>Invalid certificate</source>
         <translation>Ogiltigt certifikat</translation>
     </message>
@@ -6300,33 +6676,33 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <translation>Inställningar</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1782"/>
+        <location filename="../gui/optionsdialog.cpp" line="1784"/>
         <source>This is not a valid SSL certificate.</source>
         <translation>Detta är inte ett giltigt SSL-certifikat.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1854"/>
+        <location filename="../gui/optionsdialog.cpp" line="1856"/>
         <source>Time Error</source>
         <translation>Tidsfel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1854"/>
+        <location filename="../gui/optionsdialog.cpp" line="1856"/>
         <source>The start time and the end time can&apos;t be the same.</source>
         <translation>Starttiden och sluttiden kan inte vara densamma.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
-        <location filename="../gui/optionsdialog.cpp" line="1869"/>
+        <location filename="../gui/optionsdialog.cpp" line="1866"/>
+        <location filename="../gui/optionsdialog.cpp" line="1871"/>
         <source>Length Error</source>
         <translation>Längdfel</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1864"/>
+        <location filename="../gui/optionsdialog.cpp" line="1866"/>
         <source>The Web UI username must be at least 3 characters long.</source>
         <translation>Webbanvändarnamnet måste vara minst 3 tecken långt.</translation>
     </message>
     <message>
-        <location filename="../gui/optionsdialog.cpp" line="1869"/>
+        <location filename="../gui/optionsdialog.cpp" line="1871"/>
         <source>The Web UI password must be at least 6 characters long.</source>
         <translation>Webbanvändarlösenordet måste vara minst 6 tecken långt.</translation>
     </message>
@@ -6407,152 +6783,152 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
 <context>
     <name>PeerListWidget</name>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="97"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="105"/>
         <source>Country/Region</source>
         <translation>Land/region</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="98"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="106"/>
         <source>IP</source>
         <translation>IP</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="99"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="107"/>
         <source>Port</source>
         <translation>Port</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="100"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="108"/>
         <source>Flags</source>
         <translation>Flaggor</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="101"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="109"/>
         <source>Connection</source>
         <translation>Anslutning</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="102"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="110"/>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
         <translation>Klient</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="103"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="111"/>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
         <translation>Förlopp</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="104"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="112"/>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
         <translation>Hämtningshastighet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="105"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="113"/>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
         <translation>Sändningshastighet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="106"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="114"/>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
         <translation>Hämtat</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="107"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="115"/>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
         <translation>Skickat</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="108"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="116"/>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
         <translation>Relevans</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="109"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="117"/>
         <source>Files</source>
         <comment>i.e. files that are being downloaded right now</comment>
         <translation>Filer</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="184"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="185"/>
         <source>Column visibility</source>
         <translation>Kolumnsynlighet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="210"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="211"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="219"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="220"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="271"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="272"/>
         <source>Add peers...</source>
         <translation>Lägg till jämlikar...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Adding peers</source>
         <translation>Lägger till jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="280"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="281"/>
         <source>Some peers cannot be added. Check the Log for details.</source>
         <translation>Vissa kamrater kan inte läggas till. Kontrollera loggen för detaljer.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="282"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="283"/>
         <source>Peers are added to this torrent.</source>
         <translation>Jämlikar läggs till i denna torrent.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="287"/>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="330"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="288"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="331"/>
         <source>Ban peer permanently</source>
         <translation>Förbjud jämliken permanent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="298"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="299"/>
         <source>Cannot add peers to a private torrent</source>
         <translation>Det går inte att lägga till jämlikar i en privat torrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="300"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="301"/>
         <source>Cannot add peers when the torrent is checking</source>
         <translation>Det går inte att lägga till jämlikar när torrenten kontrollerar</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="302"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="303"/>
         <source>Cannot add peers when the torrent is queued</source>
         <translation>Det går inte att lägga till jämlikar när torrenten är i kö</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="306"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="307"/>
         <source>No peer was selected</source>
         <translation>Ingen jämlike vald</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="331"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="332"/>
         <source>Are you sure you want to permanently ban the selected peers?</source>
         <translation>Är du säker på att du vill permanent förbjuda de valda jämlikarna?</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="337"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="338"/>
         <source>Peer &quot;%1&quot; is manually banned</source>
         <translation>Jämliken &quot;%1 &quot; är manuellt förbjuden</translation>
     </message>
     <message>
-        <location filename="../gui/properties/peerlistwidget.cpp" line="284"/>
+        <location filename="../gui/properties/peerlistwidget.cpp" line="285"/>
         <source>Copy IP:port</source>
         <translation>Kopiera IP:port</translation>
     </message>
@@ -6700,109 +7076,109 @@ Manuell: Olika torrentegenskaper (t.ex. sparsökväg) måste tilldelas manuellt<
         <translation>Avinstallera</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="167"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="238"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="303"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="160"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="231"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="296"/>
         <source>Yes</source>
         <translation>Ja</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="172"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="217"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="243"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="308"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="165"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="210"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="236"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="301"/>
         <source>No</source>
         <translation>Nej</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="223"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="216"/>
         <source>Uninstall warning</source>
         <translation>Avinstallera varning</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="223"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="216"/>
         <source>Some plugins could not be uninstalled because they are included in qBittorrent. Only the ones you added yourself can be uninstalled.
 Those plugins were disabled.</source>
         <translation>Vissa insticksmoduler kunde inte avinstalleras eftersom de ingår i qBittorrent. Endast de du har lagt till dig själv kan avinstalleras.
 De här insticksmodulerna inaktiverades.</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="225"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="218"/>
         <source>Uninstall success</source>
         <translation>Avinstallering lyckades</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="225"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="218"/>
         <source>All selected plugins were uninstalled successfully</source>
         <translation>Alla valda insticksmoduler avinstallerades</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="454"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="469"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="501"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="341"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="447"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="462"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="494"/>
         <source>Search plugin update</source>
         <translation>Sökinsticksmoduls uppdatering</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="348"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="341"/>
         <source>Plugins installed or updated: %1</source>
         <translation>Insticksmoduler installerade eller uppdaterade: %1</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="368"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="376"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="361"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="369"/>
         <source>New search engine plugin URL</source>
         <translation>Ny webbadress för sökmotorinsticksmodul</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="369"/>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="377"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="362"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="370"/>
         <source>URL:</source>
         <translation>Webbadress:</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="374"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="367"/>
         <source>Invalid link</source>
         <translation>Ogiltig länk</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="374"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="367"/>
         <source>The link doesn&apos;t seem to point to a search engine plugin.</source>
         <translation>Länken verkar inte peka på en sökmotorinsticksmodul.</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="391"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="384"/>
         <source>Select search plugins</source>
         <translation>Välj sökinsticksmoduler</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="392"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="385"/>
         <source>qBittorrent search plugin</source>
         <translation>qBittorrent-sökinsticksmodul</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="454"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="447"/>
         <source>All your plugins are already up to date.</source>
         <translation>Alla dina insticksmoduler är redan uppdaterade.</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="469"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="462"/>
         <source>Sorry, couldn&apos;t check for plugin updates. %1</source>
         <translation>Tyvärr, det gick inte att söka efter uppdateringar för insticksmoduler. %1</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="483"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="476"/>
         <source>Search plugin install</source>
         <translation>Sökinsticksmodul installation</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="484"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="477"/>
         <source>Couldn&apos;t install &quot;%1&quot; search engine plugin. %2</source>
         <translation>Det gick inte att installera sökinsticksmodulen &quot;%1&quot;. %2</translation>
     </message>
     <message>
-        <location filename="../gui/search/pluginselectdialog.cpp" line="502"/>
+        <location filename="../gui/search/pluginselectdialog.cpp" line="495"/>
         <source>Couldn&apos;t update &quot;%1&quot; search engine plugin. %2</source>
         <translation>Det gick inte att uppdatera sökinsticksmodulen &quot;%1&quot;. %2</translation>
     </message>
@@ -6833,14 +7209,22 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>PortForwarderImpl</name>
     <message>
-        <location filename="../base/bittorrent/portforwarderimpl.cpp" line="104"/>
         <source>UPnP / NAT-PMP support [ON]</source>
-        <translation>UPnP / NAT-PMP-stöd [PÅ]</translation>
+        <translation type="vanished">UPnP / NAT-PMP-stöd [PÅ]</translation>
+    </message>
+    <message>
+        <source>UPnP / NAT-PMP support [OFF]</source>
+        <translation type="vanished">UPnP / NAT-PMP-stöd [AV]</translation>
+    </message>
+    <message>
+        <location filename="../base/bittorrent/portforwarderimpl.cpp" line="104"/>
+        <source>UPnP/NAT-PMP support: ON</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/bittorrent/portforwarderimpl.cpp" line="114"/>
-        <source>UPnP / NAT-PMP support [OFF]</source>
-        <translation>UPnP / NAT-PMP-stöd [AV]</translation>
+        <source>UPnP/NAT-PMP support: OFF</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -6854,49 +7238,49 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>PreviewSelectDialog</name>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="65"/>
+        <location filename="../gui/previewselectdialog.cpp" line="64"/>
         <source>The following files from torrent &quot;%1&quot; support previewing, please select one of them:</source>
         <translation>Följande filer från torrenten &quot;%1&quot; stöder granskning, vänligen välj en av dem:</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="68"/>
+        <location filename="../gui/previewselectdialog.cpp" line="67"/>
         <source>Preview</source>
         <translation>Förhandsvisning</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="76"/>
+        <location filename="../gui/previewselectdialog.cpp" line="75"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="77"/>
+        <location filename="../gui/previewselectdialog.cpp" line="76"/>
         <source>Size</source>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="78"/>
+        <location filename="../gui/previewselectdialog.cpp" line="77"/>
         <source>Progress</source>
         <translation>Förlopp</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="142"/>
+        <location filename="../gui/previewselectdialog.cpp" line="135"/>
         <source>Preview impossible</source>
         <translation>Förhandsgranskning omöjlig</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="143"/>
+        <location filename="../gui/previewselectdialog.cpp" line="136"/>
         <source>Sorry, we can&apos;t preview this file: &quot;%1&quot;.</source>
         <translation>Tyvärr kan vi inte förhandsgranska den här filen: &quot;%1&quot;.</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="159"/>
+        <location filename="../gui/previewselectdialog.cpp" line="152"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/previewselectdialog.cpp" line="167"/>
+        <location filename="../gui/previewselectdialog.cpp" line="160"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.ui" line="14"/>
@@ -6935,28 +7319,34 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>PropListDelegate</name>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="88"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="87"/>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="87"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="86"/>
         <source>Do not download</source>
         <comment>Do not download (priority)</comment>
         <translation>Hämta inte</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="89"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="88"/>
         <source>High</source>
         <comment>High (priority)</comment>
         <translation>Hög</translation>
     </message>
     <message>
-        <location filename="../gui/properties/proplistdelegate.cpp" line="90"/>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="89"/>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
         <translation>Högsta</translation>
+    </message>
+    <message>
+        <location filename="../gui/properties/proplistdelegate.cpp" line="95"/>
+        <source>Mixed</source>
+        <comment>Mixed (priorities)</comment>
+        <translation type="unfinished">Blandad</translation>
     </message>
 </context>
 <context>
@@ -7101,12 +7491,12 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Markera ingen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="679"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="677"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="683"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="681"/>
         <source>High</source>
         <translation>Hög</translation>
     </message>
@@ -7158,15 +7548,15 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.ui" line="847"/>
         <source>Save Path:</source>
-        <translation>Sparningssökväg:</translation>
+        <translation>Sparsökväg:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="687"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="685"/>
         <source>Maximum</source>
         <translation>Högsta</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="675"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="673"/>
         <source>Do not download</source>
         <translation>Hämta inte</translation>
     </message>
@@ -7190,17 +7580,17 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="184"/>
         <source>Column visibility</source>
-        <translation type="unfinished"></translation>
+        <translation>Kolumnsynlighet</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="207"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="216"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="362"/>
@@ -7250,32 +7640,32 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Byt namn...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="673"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="671"/>
         <source>Priority</source>
         <translation>Prioritet</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="692"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="690"/>
         <source>By shown file order</source>
         <translation>Efter visad filordning</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="751"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="748"/>
         <source>New Web seed</source>
         <translation>Ny webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="755"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="752"/>
         <source>Remove Web seed</source>
         <translation>Ta bort webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="758"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="755"/>
         <source>Copy Web seed URL</source>
         <translation>Kopiera webbadress för webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="760"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="757"/>
         <source>Edit Web seed URL</source>
         <translation>Ändra webbadress för webbdistribution</translation>
     </message>
@@ -7285,39 +7675,39 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Filtrera filer...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="803"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="800"/>
         <source>Speed graphs are disabled</source>
         <translation>Hastighetsdiagram är inaktiverade</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="803"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="800"/>
         <source>You can enable it in Advanced Options</source>
         <translation>Du kan aktivera det i Avancerade alternativ</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="816"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="813"/>
         <source>New URL seed</source>
         <comment>New HTTP source</comment>
         <translation>Ny webbadressdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="817"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="814"/>
         <source>New URL seed:</source>
         <translation>Ny webbadressdistribution:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="824"/>
-        <location filename="../gui/properties/propertieswidget.cpp" line="878"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="821"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="875"/>
         <source>This URL seed is already in the list.</source>
         <translation>Den här webbadressdistributionen finns redan i listan.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="870"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="867"/>
         <source>Web seed editing</source>
         <translation>Redigering av webbdistribution</translation>
     </message>
     <message>
-        <location filename="../gui/properties/propertieswidget.cpp" line="871"/>
+        <location filename="../gui/properties/propertieswidget.cpp" line="868"/>
         <source>Web seed URL:</source>
         <translation>Webbadress för webbdistribution:</translation>
     </message>
@@ -7325,19 +7715,19 @@ De här insticksmodulerna inaktiverades.</translation>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/main.cpp" line="154"/>
+        <location filename="../app/main.cpp" line="155"/>
         <source>%1 is an unknown command line parameter.</source>
         <comment>--random-parameter is an unknown command line parameter.</comment>
         <translation>%1 är en okänd parameter</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="166"/>
-        <location filename="../app/main.cpp" line="177"/>
+        <location filename="../app/main.cpp" line="167"/>
+        <location filename="../app/main.cpp" line="178"/>
         <source>%1 must be the single command line parameter.</source>
         <translation>%1 måste vara den enda kommandoradsparametern.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="213"/>
+        <location filename="../app/main.cpp" line="210"/>
         <source>You cannot use %1: qBittorrent is already running for this user.</source>
         <translation>Du kan inte använda %1: qBittorrent körs redan för denna användare.</translation>
     </message>
@@ -7469,7 +7859,7 @@ De här insticksmodulerna inaktiverades.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="558"/>
         <source>Torrent save path</source>
-        <translation>Torrent-sparningssökväg</translation>
+        <translation>Torrent-sparsökväg</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="559"/>
@@ -7512,37 +7902,37 @@ De här insticksmodulerna inaktiverades.</translation>
         <translation>Hjälp</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="400"/>
+        <location filename="../app/main.cpp" line="397"/>
         <source>Run application with -h option to read about command line parameters.</source>
         <translation>Kör programmet med -h optionen för att läsa om kommando parametrar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="402"/>
+        <location filename="../app/main.cpp" line="399"/>
         <source>Bad command line</source>
         <translation>Ogiltig kommandorad</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="408"/>
+        <location filename="../app/main.cpp" line="405"/>
         <source>Bad command line: </source>
         <translation>Ogiltig kommandorad:</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="421"/>
+        <location filename="../app/main.cpp" line="418"/>
         <source>Legal Notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="422"/>
+        <location filename="../app/main.cpp" line="419"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.</source>
         <translation>qBittorrent är ett fildelningsprogram. När du kör en torrent kommer dess data att göras tillgängliga för andra genom sändning. Allt innehåll som du delar är fullständigt på ditt eget ansvar.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="423"/>
+        <location filename="../app/main.cpp" line="420"/>
         <source>No further notices will be issued.</source>
         <translation>Inga ytterligare meddelanden kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="436"/>
+        <location filename="../app/main.cpp" line="433"/>
         <source>qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.
 
 No further notices will be issued.</source>
@@ -7551,22 +7941,22 @@ No further notices will be issued.</source>
 Inga ytterligare meddelanden kommer att utfärdas.</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="424"/>
+        <location filename="../app/main.cpp" line="421"/>
         <source>Press %1 key to accept and continue...</source>
         <translation>Tryck på %1-tangenten för att godkänna och fortsätta...</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="437"/>
+        <location filename="../app/main.cpp" line="434"/>
         <source>Legal notice</source>
         <translation>Juridisk information</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="438"/>
+        <location filename="../app/main.cpp" line="435"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="../app/main.cpp" line="439"/>
+        <location filename="../app/main.cpp" line="436"/>
         <source>I Agree</source>
         <translation>Jag godkänner</translation>
     </message>
@@ -7591,20 +7981,20 @@ Inga ytterligare meddelanden kommer att utfärdas.</translation>
         <translation>Ett okänt fel uppstod medan konfigurationsfilen försökte skrivas.</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.cpp" line="56"/>
+        <location filename="../app/upgrade.cpp" line="57"/>
         <source>Migrate preferences failed: WebUI https, file: &quot;%1&quot;, error: &quot;%2&quot;</source>
         <translation>Det gick inte att migrera inställningar: Webbgränssnitt-https, fil: &quot;%1&quot;, fel: &quot;%2&quot;</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.cpp" line="71"/>
+        <location filename="../app/upgrade.cpp" line="72"/>
         <source>Migrated preferences: WebUI https, exported data to file: &quot;%1&quot;</source>
         <translation>Migrera inställningar: Webbgränssnitt-https, exporterade data till fil: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../app/upgrade.cpp" line="163"/>
-        <location filename="../app/upgrade.cpp" line="194"/>
-        <location filename="../app/upgrade.cpp" line="225"/>
-        <location filename="../app/upgrade.cpp" line="363"/>
+        <location filename="../app/upgrade.cpp" line="164"/>
+        <location filename="../app/upgrade.cpp" line="195"/>
+        <location filename="../app/upgrade.cpp" line="226"/>
+        <location filename="../app/upgrade.cpp" line="364"/>
         <source>Invalid value found in configuration file, reverting it to default. Key: &quot;%1&quot;. Invalid value: &quot;%2&quot;.</source>
         <translation>Ogiltigt värde hittades i konfigurationsfilen, återställer det till standard. Nyckel: &quot;%1&quot;. Ogiltigt värde: &quot;%2&quot;.</translation>
     </message>
@@ -7689,12 +8079,12 @@ Inga ytterligare meddelanden kommer att utfärdas.</translation>
 <context>
     <name>RSS::Private::Parser</name>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="602"/>
+        <location filename="../base/rss/rss_parser.cpp" line="603"/>
         <source>Invalid RSS feed.</source>
         <translation>Ogiltigt RSS-flöde.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_parser.cpp" line="596"/>
+        <location filename="../base/rss/rss_parser.cpp" line="597"/>
         <source>%1 (line: %2, column: %3, offset: %4).</source>
         <translation>%1 (rad: %2, kolumn: %3, offset: %4).</translation>
     </message>
@@ -7702,13 +8092,21 @@ Inga ytterligare meddelanden kommer att utfärdas.</translation>
 <context>
     <name>RSS::Session</name>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="74"/>
         <source>Couldn&apos;t save RSS Session configuration in %1. Error: %2</source>
+        <translation type="vanished">Det gick inte att spara RSS-sessionskonfigurationen i %1. Fel: %2</translation>
+    </message>
+    <message>
+        <source>Couldn&apos;t save RSS Session data in %1. Error: %2</source>
+        <translation type="vanished">Det gick inte att spara RSS-sessionsdata i %1. Fel: %2</translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="74"/>
+        <source>Couldn&apos;t save RSS session configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="83"/>
-        <source>Couldn&apos;t save RSS Session data in %1. Error: %2</source>
+        <source>Couldn&apos;t save RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -7733,37 +8131,73 @@ Inga ytterligare meddelanden kommer att utfärdas.</translation>
         <translation>Kan inte ta bort root-mapp.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="292"/>
+        <location filename="../base/rss/rss_session.cpp" line="243"/>
+        <source>Couldn&apos;t read RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="252"/>
+        <source>Couldn&apos;t parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="259"/>
+        <source>Couldn&apos;t load RSS session data. File: &quot;%1&quot;. Error: Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="289"/>
+        <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: URL is required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="300"/>
+        <source>Couldn&apos;t load RSS feed. Feed: &quot;%1&quot;. Reason: UID is invalid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="307"/>
+        <source>Duplicate RSS feed found. UID: &quot;%1&quot;. Error: Configuration seems to be corrupted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="328"/>
+        <source>Couldn&apos;t load RSS item. Item: &quot;%1&quot;. Invalid data format.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../base/rss/rss_session.cpp" line="343"/>
+        <source>Corrupted RSS list, not loading it.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Couldn&apos;t load RSS Feed &apos;%1&apos;. URL is required.</source>
-        <translation>Det gick inte att läsa in RSS-flödet &quot;%1&quot;. Webbadress krävs.</translation>
+        <translation type="vanished">Det gick inte att läsa in RSS-flödet &quot;%1&quot;. Webbadress krävs.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="303"/>
         <source>Couldn&apos;t load RSS Feed &apos;%1&apos;. UID is invalid.</source>
-        <translation>Det gick inte att läsa in RSS-flödet &quot;%1&quot;. UID är ogiltigt.</translation>
+        <translation type="vanished">Det gick inte att läsa in RSS-flödet &quot;%1&quot;. UID är ogiltigt.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="310"/>
         <source>Duplicate RSS Feed UID: %1. Configuration seems to be corrupted.</source>
-        <translation>Dubbla RSS-flödes UID: %1. Konfigurationen verkar vara skadad.</translation>
+        <translation type="vanished">Dubbla RSS-flödes UID: %1. Konfigurationen verkar vara skadad.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="331"/>
         <source>Couldn&apos;t load RSS Item &apos;%1&apos;. Invalid data format.</source>
-        <translation>Det gick inte att läsa in RSS-objektet &quot;%1&quot;. Ogiltigt dataformat.</translation>
+        <translation type="vanished">Det gick inte att läsa in RSS-objektet &quot;%1&quot;. Ogiltigt dataformat.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="380"/>
+        <location filename="../base/rss/rss_session.cpp" line="377"/>
         <source>Incorrect RSS Item path: %1.</source>
         <translation>Felaktig sökväg för RSS-objekt: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="383"/>
+        <location filename="../base/rss/rss_session.cpp" line="380"/>
         <source>RSS item with given path already exists: %1.</source>
         <translation>RSS-objekt med given sökväg finns redan: %1.</translation>
     </message>
     <message>
-        <location filename="../base/rss/rss_session.cpp" line="388"/>
+        <location filename="../base/rss/rss_session.cpp" line="385"/>
         <source>Parent folder doesn&apos;t exist: %1.</source>
         <translation>Den överordnade mappen finns inte: %1.</translation>
     </message>
@@ -7968,206 +8402,229 @@ Inga ytterligare meddelanden kommer att utfärdas.</translation>
 <context>
     <name>SearchJobWidget</name>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="14"/>
         <source>Form</source>
-        <translation>Formulär</translation>
+        <translation type="vanished">Formulär</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="22"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="19"/>
         <source>Results(xxx)</source>
         <translation>Resultat(xxx)</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="45"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="39"/>
         <source>Search in:</source>
         <translation>Sök i:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="55"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="46"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Some search engines search in torrent description and in torrent file names too. Whether such results will be shown in the list below is controlled by this mode.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Everywhere &lt;/span&gt;disables filtering and shows everything returned by the search engines.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Torrent names only&lt;/span&gt; shows only torrents whose names match the search query.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vissa sökmotorer söker i torrentbeskrivningar och torrentfilnamn också. Om sådana resultat kommer att visas i listan nedan styrs det av detta läge.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Överallt &lt;/span&gt;inaktiveras filtrering och allt visar som returneras av sökmotorerna.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Endast torrentnamn&lt;/span&gt; visar endast torrenter vars namn matchar sökfrågan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="84"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ange lägst och högst tillåtna antal distributörer&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <location filename="../gui/search/searchjobwidget.ui" line="69"/>
+        <source>Set minimum and maximum allowed number of seeders</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="87"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="79"/>
+        <source>Minimum number of seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.ui" line="96"/>
+        <source>Maximum number of seeds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.ui" line="125"/>
+        <source>Set minimum and maximum allowed size of a torrent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.ui" line="137"/>
+        <source>Minimum torrent size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.ui" line="161"/>
+        <source>Maximum torrent size</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed number of seeders&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ange lägst och högst tillåtna antal distributörer&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../gui/search/searchjobwidget.ui" line="72"/>
         <source>Seeds:</source>
         <translation>Distributioner:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="94"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Högst antal distributioner&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Högst antal distributioner&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="116"/>
-        <location filename="../gui/search/searchjobwidget.ui" line="204"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="89"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="152"/>
         <source>to</source>
         <translation>till</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal number of seeds&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Högst antal distributioner&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Högst antal distributioner&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="126"/>
-        <location filename="../gui/search/searchjobwidget.ui" line="216"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="99"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="164"/>
         <source>∞</source>
         <translation>∞</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="167"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Set minimal and maximal allowed size of a torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ange minsta och största tillåten storlek på en torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ange minsta och största tillåten storlek på en torrent&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="170"/>
+        <location filename="../gui/search/searchjobwidget.ui" line="128"/>
         <source>Size:</source>
         <translation>Storlek:</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="179"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minimal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minsta torrentstorlek&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Minsta torrentstorlek&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.ui" line="213"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent size&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent storlek&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Maximal torrent storlek&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="78"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="71"/>
         <source>Name</source>
         <comment>i.e: file name</comment>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="79"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="72"/>
         <source>Size</source>
         <comment>i.e: file size</comment>
         <translation>Storlek</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="80"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="73"/>
         <source>Seeders</source>
         <comment>i.e: Number of full sources</comment>
         <translation>Distributörer</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="81"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="74"/>
         <source>Leechers</source>
         <comment>i.e: Number of partial sources</comment>
         <translation>Reciprokörer</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="82"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="75"/>
         <source>Search engine</source>
         <translation>Sökmotor</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="135"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="128"/>
         <source>Filter search results...</source>
         <translation>Filtrera sökresultat...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="311"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="304"/>
         <source>Results (showing &lt;i&gt;%1&lt;/i&gt; out of &lt;i&gt;%2&lt;/i&gt;):</source>
         <comment>i.e: Search results</comment>
         <translation>Reslutat (visar &lt;i&gt;%1&lt;/i&gt; av &lt;i&gt;%2&lt;/i&gt;):</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="362"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="355"/>
         <source>Torrent names only</source>
         <translation>Endast torrentnamn</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="363"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="356"/>
         <source>Everywhere</source>
         <translation>Överallt</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="386"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="379"/>
         <source>Use regular expressions</source>
         <translation>Använd reguljära uttryck</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="400"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="393"/>
         <source>Open download window</source>
         <translation>Öppna hämtningsfönstret</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="402"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="395"/>
         <source>Download</source>
         <translation>Hämta</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="405"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="398"/>
         <source>Open description page</source>
         <translation>Öppna beskrivningssidan</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="409"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="402"/>
         <source>Copy</source>
         <translation>Kopiera</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="411"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="404"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="413"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="406"/>
         <source>Download link</source>
         <translation>Hämtningslänk</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="415"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="408"/>
         <source>Description page URL</source>
         <translation>Beskrivningssidans webbadress</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="426"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="419"/>
         <source>Searching...</source>
         <translation>Söker...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="428"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="421"/>
         <source>Search has finished</source>
         <translation>Sökningen är klar</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="430"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="423"/>
         <source>Search aborted</source>
         <translation>Sökningen avbruten</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="432"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="425"/>
         <source>An error occurred during search...</source>
         <translation>Ett fel uppstod under sökningen...</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="434"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="427"/>
         <source>Search returned no results</source>
         <translation>Sökningen gav inga resultat</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="471"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="464"/>
         <source>Column visibility</source>
         <translation>Kolumnens synlighet</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="494"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="487"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/search/searchjobwidget.cpp" line="503"/>
+        <location filename="../gui/search/searchjobwidget.cpp" line="496"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
 </context>
 <context>
@@ -8398,67 +8855,67 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
         <translation>Visa inte igen</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="114"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="112"/>
         <source>qBittorrent will now exit.</source>
         <translation>qBittorrent kommer nu att avslutas.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="115"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="113"/>
         <source>E&amp;xit Now</source>
         <translation>A&amp;vsluta nu</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="116"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="114"/>
         <source>Exit confirmation</source>
         <translation>Bekräftelse för avslutning</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="119"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="117"/>
         <source>The computer is going to shutdown.</source>
         <translation>Datorn kommer att stängas av.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="120"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="118"/>
         <source>&amp;Shutdown Now</source>
         <translation>&amp;Stäng av nu</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="121"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="119"/>
         <source>Shutdown confirmation</source>
         <translation>Bekräftelse för avstängning</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="124"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="122"/>
         <source>The computer is going to enter suspend mode.</source>
         <translation>Datorn går i viloläge.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="125"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="123"/>
         <source>&amp;Suspend Now</source>
         <translation>&amp;Försätt i viloläge nu</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="126"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="124"/>
         <source>Suspend confirmation</source>
         <translation>Avbryt bekräftelsen</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="129"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="127"/>
         <source>The computer is going to enter hibernation mode.</source>
         <translation>Datorn kommer att gå in i viloläge.</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="130"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="128"/>
         <source>&amp;Hibernate Now</source>
         <translation>&amp;Försätt i viloläge nu</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="131"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="129"/>
         <source>Hibernate confirmation</source>
         <translation>Bekräftelse för försättning i viloläge</translation>
     </message>
     <message>
-        <location filename="../gui/shutdownconfirmdialog.cpp" line="141"/>
+        <location filename="../gui/shutdownconfirmdialog.cpp" line="139"/>
         <source>You can cancel the action within %1 seconds.</source>
         <translation>Du kan avbryta åtgärden inom %1 sekunder.</translation>
     </message>
@@ -8812,133 +9269,148 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
 <context>
     <name>StatusFilterWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="181"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="174"/>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
         <translation>Alla (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="184"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="177"/>
         <source>Downloading (0)</source>
         <translation>Hämtar (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="187"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="180"/>
         <source>Seeding (0)</source>
         <translation>Distribuerar (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="190"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="183"/>
         <source>Completed (0)</source>
         <translation>Slutförda (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="193"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="186"/>
         <source>Resumed (0)</source>
         <translation>Återupptagna (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="196"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="189"/>
         <source>Paused (0)</source>
         <translation>Pausade (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="199"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="192"/>
         <source>Active (0)</source>
         <translation>Aktiva (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="202"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="195"/>
         <source>Inactive (0)</source>
         <translation>Inaktiva (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="205"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="198"/>
         <source>Stalled (0)</source>
         <translation>Avstannade (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="208"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="201"/>
         <source>Stalled Uploading (0)</source>
         <translation>Avstannade sändningar (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="211"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="204"/>
         <source>Stalled Downloading (0)</source>
         <translation>Avstannade hämtningar (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="214"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="207"/>
         <source>Checking (0)</source>
         <translation>Kontrollerar (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="217"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="210"/>
         <source>Errored (0)</source>
         <translation>Fallerande (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="274"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="281"/>
         <source>All (%1)</source>
         <translation>Alla (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="275"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="282"/>
         <source>Downloading (%1)</source>
         <translation>Hämtar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="276"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="283"/>
         <source>Seeding (%1)</source>
         <translation>Distribuerar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="277"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="284"/>
         <source>Completed (%1)</source>
         <translation>Slutförda (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="279"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="286"/>
         <source>Paused (%1)</source>
         <translation>Pausade (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="278"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="309"/>
+        <source>Resume torrents</source>
+        <translation type="unfinished">Återuppta torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="311"/>
+        <source>Pause torrents</source>
+        <translation type="unfinished">Pausa torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="313"/>
+        <source>Delete torrents</source>
+        <translation type="unfinished">Ta bort torrenter</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="285"/>
         <source>Resumed (%1)</source>
         <translation>Återupptagna (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="280"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="287"/>
         <source>Active (%1)</source>
         <translation>Aktiva (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="281"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="288"/>
         <source>Inactive (%1)</source>
         <translation>Inaktiva (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="282"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="289"/>
         <source>Stalled (%1)</source>
         <translation>Avstannade (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="283"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="290"/>
         <source>Stalled Uploading (%1)</source>
         <translation>Avstannade sändningar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="284"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="291"/>
         <source>Stalled Downloading (%1)</source>
         <translation>Avstannade hämtningar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="285"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="292"/>
         <source>Checking (%1)</source>
         <translation>Kontrollerar (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="286"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="293"/>
         <source>Errored (%1)</source>
         <translation>Fallerande (%1)</translation>
     </message>
@@ -9039,7 +9511,7 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="64"/>
         <source>Save path for incomplete torrents:</source>
-        <translation>Sparningssökväg för ofullständiga torrenter:</translation>
+        <translation>Sparsökväg för ofullständiga torrenter:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="72"/>
@@ -9069,12 +9541,12 @@ Klicka på knappen &quot;Sökinsticksmoduler...&quot; längst ner till höger av
     <message>
         <location filename="../gui/torrentcategorydialog.ui" line="48"/>
         <source>Save path:</source>
-        <translation>Sparningssökväg:</translation>
+        <translation>Sparsökväg:</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="45"/>
         <source>Choose save path</source>
-        <translation>Välj sparningssökväg</translation>
+        <translation>Välj sparsökväg</translation>
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="48"/>
@@ -9121,9 +9593,8 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontentmodel.cpp" line="194"/>
         <source>Size</source>
-        <translation>Storlek</translation>
+        <translation type="vanished">Storlek</translation>
     </message>
     <message>
         <location filename="../gui/torrentcontentmodel.cpp" line="194"/>
@@ -9144,6 +9615,11 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../gui/torrentcontentmodel.cpp" line="194"/>
         <source>Availability</source>
         <translation>Tillgänglighet</translation>
+    </message>
+    <message>
+        <location filename="../gui/torrentcontentmodel.cpp" line="194"/>
+        <source>Total Size</source>
+        <translation type="unfinished">Total storlek</translation>
     </message>
 </context>
 <context>
@@ -9186,17 +9662,17 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="126"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="118"/>
         <source>Renaming</source>
         <translation>Byter namn</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="126"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="118"/>
         <source>New name:</source>
         <translation>Nytt namn:</translation>
     </message>
     <message>
-        <location filename="../gui/torrentcontenttreeview.cpp" line="149"/>
+        <location filename="../gui/torrentcontenttreeview.cpp" line="141"/>
         <source>Rename error</source>
         <translation>Fel vid namnbyte</translation>
     </message>
@@ -9446,14 +9922,6 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TorrentFilesWatcher</name>
     <message>
-        <source>Watched folder path cannot be empty.</source>
-        <translation type="vanished">Sökvägen till bevakad mapp kan inte vara tom.</translation>
-    </message>
-    <message>
-        <source>Watched folder path cannot be relative.</source>
-        <translation type="vanished">Sökvägen till bevakad mapp kan inte vara relativ.</translation>
-    </message>
-    <message>
         <location filename="../base/torrentfileswatcher.cpp" line="288"/>
         <source>Couldn&apos;t load Watched Folders configuration from %1. Error: %2</source>
         <translation>Det gick inte att läsa in konfigurationen för bevakad mapp från %1. Fel: %2</translation>
@@ -9476,12 +9944,12 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="396"/>
         <source>Watched folder Path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökvägen till bevakad mapp kan inte vara tom.</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="399"/>
         <source>Watched folder Path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökvägen till bevakad mapp kan inte vara relativ.</translation>
     </message>
 </context>
 <context>
@@ -9535,7 +10003,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="20"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation>Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparningssökväg) kommer att avgöras av den tillhörande kategorin</translation>
+        <translation>Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparsökväg) kommer att avgöras av den tillhörande kategorin</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.ui" line="23"/>
@@ -9653,7 +10121,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../gui/torrentoptionsdialog.cpp" line="73"/>
         <location filename="../gui/torrentoptionsdialog.cpp" line="75"/>
         <source>Choose save path</source>
-        <translation>Välj sparningssökväg</translation>
+        <translation>Välj sparsökväg</translation>
     </message>
     <message>
         <location filename="../gui/torrentoptionsdialog.cpp" line="338"/>
@@ -9674,111 +10142,111 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TorrentsController</name>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="713"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="726"/>
         <source>Error: &apos;%1&apos; is not a valid torrent file.</source>
         <translation>Fel: &quot;%1&quot; är inte en giltig torrentfil.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="876"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="889"/>
         <source>Priority must be an integer</source>
         <translation>Prioritet måste vara ett heltal</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="879"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="892"/>
         <source>Priority is not valid</source>
         <translation>Prioritet är inte giltigt</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="885"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="898"/>
         <source>Torrent&apos;s metadata has not yet downloaded</source>
         <translation>Torrentens metadata har inte hämtats ännu</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="894"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="907"/>
         <source>File IDs must be integers</source>
         <translation>Fil-ID:n måste vara heltal</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="896"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="909"/>
         <source>File ID is not valid</source>
         <translation>Fil-ID är inte giltigt</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1039"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1050"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1061"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1072"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1052"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1063"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1074"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1085"/>
         <source>Torrent queueing must be enabled</source>
         <translation>Torrentkö måste aktiveras</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1086"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1113"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1099"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1126"/>
         <source>Save path cannot be empty</source>
-        <translation>Sparningssökvägen kan inte vara tom</translation>
+        <translation>Sparsökvägen kan inte vara tom</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1117"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1141"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1130"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1154"/>
         <source>Cannot create target directory</source>
         <translation>Det går inte att skapa målmapp</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1222"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1247"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1235"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1260"/>
         <source>Category cannot be empty</source>
         <translation>Kategorin kan inte vara tom</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1238"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1251"/>
         <source>Unable to create category</source>
         <translation>Det går inte att skapa kategori</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1260"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1273"/>
         <source>Unable to edit category</source>
         <translation>Det går inte att redigera kategori</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1090"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1103"/>
         <source>Cannot make save path</source>
-        <translation>Det går inte att skapa sparningssökväg</translation>
+        <translation>Det går inte att skapa sparsökväg</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="287"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="300"/>
         <source>&apos;sort&apos; parameter is invalid</source>
         <translation>parametern &quot;sort&quot; är ogiltig</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="538"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="551"/>
         <source>&quot;%1&quot; is not a valid file index.</source>
         <translation>&quot;%1&quot; är inte ett giltigt filindex.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="540"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="553"/>
         <source>Index %1 is out of bounds.</source>
         <translation>Index %1 är utanför gränserna.</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1094"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1121"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1145"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1107"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1134"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1158"/>
         <source>Cannot write to directory</source>
         <translation>Kan inte skriva till mapp</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1098"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1111"/>
         <source>WebUI Set location: moving &quot;%1&quot;, from &quot;%2&quot; to &quot;%3&quot;</source>
         <translation>Webbgränssnitt platsinställning: flyttar &quot;%1&quot;, från &quot;%2&quot; till &quot;%3&quot;</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1163"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1176"/>
         <source>Incorrect torrent name</source>
         <translation>Felaktigt torrentnamn</translation>
     </message>
     <message>
-        <location filename="../webui/api/torrentscontroller.cpp" line="1212"/>
         <location filename="../webui/api/torrentscontroller.cpp" line="1225"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="1238"/>
         <source>Incorrect category name</source>
         <translation>Felaktigt kategorinamn</translation>
     </message>
@@ -9809,62 +10277,62 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="306"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="368"/>
         <source>All (0)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Alla (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="309"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="371"/>
         <source>Trackerless (0)</source>
         <translation>Utan spårare (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="312"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="374"/>
         <source>Error (0)</source>
         <translation>Fel (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="315"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="377"/>
         <source>Warning (0)</source>
         <translation>Varning (0)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="359"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="451"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="422"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="511"/>
         <source>Trackerless (%1)</source>
         <translation>Utan spårare (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="411"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="540"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="473"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="600"/>
         <source>Error (%1)</source>
         <translation>Fel (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="425"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="541"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="487"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="601"/>
         <source>Warning (%1)</source>
         <translation>Varning (%1)</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="599"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="659"/>
         <source>Resume torrents</source>
         <translation>Återuppta torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="601"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="661"/>
         <source>Pause torrents</source>
         <translation>Pausa torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="603"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="663"/>
         <source>Delete torrents</source>
         <translation>Ta bort torrenter</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="628"/>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="642"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="688"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="702"/>
         <source>All (%1)</source>
         <comment>this is for the tracker filter</comment>
         <translation>Alla (%1)</translation>
@@ -9873,158 +10341,158 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TrackerListWidget</name>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="282"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="391"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="276"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="385"/>
         <source>Working</source>
         <translation>Arbetar</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="283"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="277"/>
         <source>Disabled</source>
         <translation>Inaktiverad</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="284"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="278"/>
         <source>Disabled for this torrent</source>
         <translation>Inaktiverad för denna torrent</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="313"/>
-        <location filename="../webui/api/torrentscontroller.cpp" line="173"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="307"/>
+        <location filename="../webui/api/torrentscontroller.cpp" line="182"/>
         <source>This torrent is private</source>
         <translation>Denna torrent är privat</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="394"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="388"/>
         <source>Updating...</source>
         <translation>Uppdaterar...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="397"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="391"/>
         <source>Not working</source>
         <translation>Fungerar inte</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="400"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="394"/>
         <source>Not contacted yet</source>
         <translation>Inte ännu kontaktad</translation>
     </message>
     <message>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="402"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="405"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="408"/>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="411"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="414"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="417"/>
         <source>N/A</source>
         <translation>Ingen</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="511"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="505"/>
         <source>Tracker editing</source>
         <translation>Redigera spårare</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="511"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="505"/>
         <source>Tracker URL:</source>
         <translation>Spårarwebbadress:</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="517"/>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="528"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="511"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="522"/>
         <source>Tracker editing failed</source>
         <translation>Det gick inte att redigera spåraren</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="517"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="511"/>
         <source>The tracker URL entered is invalid.</source>
         <translation>Den angivna spårarens webbadress är ogiltig.</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="528"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="522"/>
         <source>The tracker URL already exists.</source>
         <translation>Spårarwebbadressen finns redan. </translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="587"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="581"/>
         <source>Add a new tracker...</source>
         <translation>Lägg till ny spårare...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="592"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="586"/>
         <source>Edit tracker URL...</source>
         <translation>Ändra spårarwebbadress...</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="594"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="588"/>
         <source>Remove tracker</source>
         <translation>Ta bort spårare</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="596"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="590"/>
         <source>Copy tracker URL</source>
         <translation>Kopiera webbadress för spårare</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="602"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="596"/>
         <source>Force reannounce to selected trackers</source>
         <translation>Tvinga återannonsera till valda spårare</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="605"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="599"/>
         <source>Force reannounce to all trackers</source>
         <translation>Tvinga återannonsera till alla spårare</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="631"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="625"/>
         <source>Tier</source>
         <translation>Nivå</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="632"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="626"/>
         <source>URL</source>
         <translation>Webbadress</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="633"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="627"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="635"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="629"/>
         <source>Seeds</source>
         <translation>Distributioner</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="680"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="674"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="689"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="683"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="634"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="628"/>
         <source>Peers</source>
         <translation>Jämlikar</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="636"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="630"/>
         <source>Leeches</source>
         <translation>Reciprokörer</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="637"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="631"/>
         <source>Downloaded</source>
         <translation>Hämtat</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="638"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="632"/>
         <source>Message</source>
         <translation>Meddelande</translation>
     </message>
     <message>
-        <location filename="../gui/properties/trackerlistwidget.cpp" line="658"/>
+        <location filename="../gui/properties/trackerlistwidget.cpp" line="652"/>
         <source>Column visibility</source>
         <translation>Kolumnens synlighet</translation>
     </message>
@@ -10070,22 +10538,22 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TransferListFiltersWidget</name>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="711"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="771"/>
         <source>Status</source>
         <translation>Status</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="719"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="779"/>
         <source>Categories</source>
         <translation>Kategorier</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="738"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="798"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistfilterswidget.cpp" line="756"/>
+        <location filename="../gui/transferlistfilterswidget.cpp" line="816"/>
         <source>Trackers</source>
         <translation>Spårare</translation>
     </message>
@@ -10320,7 +10788,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../gui/transferlistmodel.cpp" line="195"/>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Sparningssökväg</translation>
+        <translation>Sparsökväg</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="196"/>
@@ -10379,274 +10847,279 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>TransferListWidget</name>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="644"/>
+        <location filename="../gui/transferlistwidget.cpp" line="637"/>
         <source>Column visibility</source>
         <translation>Kolumnsynlighet</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="613"/>
+        <location filename="../gui/transferlistwidget.cpp" line="606"/>
         <source>Recheck confirmation</source>
         <translation>Bekräftelse för återkontroll</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="613"/>
+        <location filename="../gui/transferlistwidget.cpp" line="606"/>
         <source>Are you sure you want to recheck the selected torrent(s)?</source>
         <translation>Är du säker på att du vill kontrollera den valda torrenten/de valda torrenterna igen?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="825"/>
+        <location filename="../gui/transferlistwidget.cpp" line="818"/>
         <source>Rename</source>
         <translation>Byt namn</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="825"/>
+        <location filename="../gui/transferlistwidget.cpp" line="818"/>
         <source>New name:</source>
         <translation>Nytt namn:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="866"/>
+        <location filename="../gui/transferlistwidget.cpp" line="859"/>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
         <translation>Återuppta</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="870"/>
+        <location filename="../gui/transferlistwidget.cpp" line="863"/>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
         <translation>Tvinga återuppta</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="868"/>
+        <location filename="../gui/transferlistwidget.cpp" line="861"/>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Pausa</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="340"/>
+        <location filename="../gui/transferlistwidget.cpp" line="333"/>
         <source>Choose save path</source>
-        <translation type="unfinished">Välj sparningssökväg</translation>
+        <translation>Välj sparsökväg</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="593"/>
+        <location filename="../gui/transferlistwidget.cpp" line="586"/>
         <source>Unable to preview</source>
         <translation>Det går inte att förhandsgranska</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="593"/>
+        <location filename="../gui/transferlistwidget.cpp" line="586"/>
         <source>The selected torrent &quot;%1&quot; does not contain previewable files</source>
         <translation>Den valda torrenten &quot;%1&quot; innehåller inte förhandsgranskningsbara filer</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="670"/>
+        <location filename="../gui/transferlistwidget.cpp" line="663"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på kolumner</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="679"/>
+        <location filename="../gui/transferlistwidget.cpp" line="672"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra storlek på alla icke-dolda kolumner till storleken på deras innehåll</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="709"/>
+        <location filename="../gui/transferlistwidget.cpp" line="702"/>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktivera automatisk torrenthantering</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="710"/>
+        <location filename="../gui/transferlistwidget.cpp" line="703"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Är du säker på att du vill aktivera automatisk torrenthantering för de valda torrenterna? De kan komma att flyttas.</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="728"/>
+        <location filename="../gui/transferlistwidget.cpp" line="721"/>
         <source>Add Tags</source>
         <translation>Lägg till taggar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="771"/>
+        <location filename="../gui/transferlistwidget.cpp" line="764"/>
         <source>Remove All Tags</source>
         <translation>Ta bort alla taggar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="771"/>
+        <location filename="../gui/transferlistwidget.cpp" line="764"/>
         <source>Remove all tags from selected torrents?</source>
         <translation>Ta bort alla taggar från valda torrenter?</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="786"/>
+        <location filename="../gui/transferlistwidget.cpp" line="779"/>
         <source>Comma-separated tags:</source>
         <translation>Kommaseparerade taggar:</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="795"/>
+        <location filename="../gui/transferlistwidget.cpp" line="788"/>
         <source>Invalid tag</source>
         <translation>Ogiltig tagg</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="796"/>
+        <location filename="../gui/transferlistwidget.cpp" line="789"/>
         <source>Tag name: &apos;%1&apos; is invalid</source>
         <translation>Taggnamn: &quot;%1&quot; är ogiltig</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="872"/>
+        <location filename="../gui/transferlistwidget.cpp" line="865"/>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="874"/>
+        <location filename="../gui/transferlistwidget.cpp" line="867"/>
         <source>Preview file...</source>
         <translation>Förhandsgranska fil...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="878"/>
+        <location filename="../gui/transferlistwidget.cpp" line="871"/>
         <source>Open destination folder</source>
         <translation>Öppna destinationsmapp</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="880"/>
+        <location filename="../gui/transferlistwidget.cpp" line="873"/>
         <source>Move up</source>
         <comment>i.e. move up in the queue</comment>
         <translation>Flytta uppåt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="882"/>
+        <location filename="../gui/transferlistwidget.cpp" line="875"/>
         <source>Move down</source>
         <comment>i.e. Move down in the queue</comment>
         <translation>Flytta nedåt</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="884"/>
+        <location filename="../gui/transferlistwidget.cpp" line="877"/>
         <source>Move to top</source>
         <comment>i.e. Move to top of the queue</comment>
         <translation>Flytta överst</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="886"/>
+        <location filename="../gui/transferlistwidget.cpp" line="879"/>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
         <translation>Flytta nederst</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="888"/>
+        <location filename="../gui/transferlistwidget.cpp" line="881"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange plats...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="892"/>
+        <location filename="../gui/transferlistwidget.cpp" line="885"/>
         <source>Force reannounce</source>
         <translation>Tvinga återannonsera</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="894"/>
+        <location filename="../gui/transferlistwidget.cpp" line="887"/>
         <source>Magnet link</source>
         <translation>Magnetlänk</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="896"/>
+        <location filename="../gui/transferlistwidget.cpp" line="889"/>
         <source>Torrent ID</source>
         <translation>Torrent-ID</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="898"/>
+        <location filename="../gui/transferlistwidget.cpp" line="891"/>
         <source>Name</source>
         <translation>Namn</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="908"/>
+        <location filename="../gui/transferlistwidget.cpp" line="901"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished">Hämta i sekventiell ordning</translation>
+        <translation>Hämta i sekventiell ordning</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="910"/>
+        <location filename="../gui/transferlistwidget.cpp" line="903"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished">Hämta första och sista delarna först</translation>
+        <translation>Hämta första och sista delarna först</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="912"/>
+        <location filename="../gui/transferlistwidget.cpp" line="905"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Automatisk torrenthantering</translation>
+        <translation>Automatisk torrenthantering</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="913"/>
+        <location filename="../gui/transferlistwidget.cpp" line="906"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished">Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparningssökväg) kommer att avgöras av den tillhörande kategorin</translation>
+        <translation>Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparsökväg) kommer att avgöras av den tillhörande kategorin</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1047"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1048"/>
         <source>Category</source>
-        <translation type="unfinished">Kategori</translation>
+        <translation>Kategori</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1049"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1050"/>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Ny...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1051"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1052"/>
         <source>Reset</source>
         <comment>Reset category</comment>
+        <translation>Återställ</translation>
+    </message>
+    <message>
+        <location filename="../gui/transferlistwidget.cpp" line="1152"/>
+        <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1154"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1158"/>
         <source>Queue</source>
         <translation>Kö</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1162"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1166"/>
         <source>Copy</source>
         <translation>Kopiera</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="876"/>
+        <location filename="../gui/transferlistwidget.cpp" line="869"/>
         <source>Torrent options...</source>
         <translation>Torrentalternativ...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="900"/>
+        <location filename="../gui/transferlistwidget.cpp" line="893"/>
         <source>Info hash v1</source>
         <translation>Info hash v1</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="902"/>
+        <location filename="../gui/transferlistwidget.cpp" line="895"/>
         <source>Info hash v2</source>
         <translation>Info hash v2</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="915"/>
+        <location filename="../gui/transferlistwidget.cpp" line="908"/>
         <source>Edit trackers...</source>
         <translation>Redigera spårare...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1072"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1073"/>
         <source>Tags</source>
         <translation>Taggar</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1074"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1075"/>
         <source>Add...</source>
         <comment>Add / assign multiple tags...</comment>
         <translation>Lägg till...</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="1076"/>
+        <location filename="../gui/transferlistwidget.cpp" line="1077"/>
         <source>Remove All</source>
         <comment>Remove all tags</comment>
         <translation>Ta bort alla</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="890"/>
+        <location filename="../gui/transferlistwidget.cpp" line="883"/>
         <source>Force recheck</source>
         <translation>Tvinga återkontroll</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="904"/>
+        <location filename="../gui/transferlistwidget.cpp" line="897"/>
         <source>Super seeding mode</source>
         <translation>Superdistributionsläge</translation>
     </message>
     <message>
-        <location filename="../gui/transferlistwidget.cpp" line="906"/>
+        <location filename="../gui/transferlistwidget.cpp" line="899"/>
         <source>Rename...</source>
         <translation>Byt namn...</translation>
     </message>
@@ -10654,28 +11127,28 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>UIThemeManager</name>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="180"/>
+        <location filename="../gui/uithememanager.cpp" line="181"/>
         <source>Failed to load UI theme from file: &quot;%1&quot;</source>
         <translation>Det gick inte att läsa in gränssnittstema från fil: &quot;%1&quot;</translation>
     </message>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="76"/>
+        <location filename="../gui/uithememanager.cpp" line="77"/>
         <source>UITheme - Failed to open &quot;%1&quot;. Reason: %2</source>
         <translation>UITheme - Det gick inte att öppna &quot;%1&quot;. Orsak: %2</translation>
     </message>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="323"/>
-        <location filename="../gui/uithememanager.cpp" line="328"/>
+        <location filename="../gui/uithememanager.cpp" line="324"/>
+        <location filename="../gui/uithememanager.cpp" line="329"/>
         <source>&quot;%1&quot; has invalid format. Reason: %2</source>
         <translation>&quot;%1&quot; har ogiltigt format. Orsak: %2</translation>
     </message>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="328"/>
+        <location filename="../gui/uithememanager.cpp" line="329"/>
         <source>Root JSON value is not an object</source>
         <translation>Rot JSON-värde är inte en post</translation>
     </message>
     <message>
-        <location filename="../gui/uithememanager.cpp" line="338"/>
+        <location filename="../gui/uithememanager.cpp" line="339"/>
         <source>Invalid color for ID &quot;%1&quot; is provided by theme</source>
         <translation>Ogiltig färg för ID &quot;%1&quot; tillhandahålls av temat</translation>
     </message>
@@ -10683,12 +11156,12 @@ Vänligen välj ett annat namn och försök igen.</translation>
 <context>
     <name>Utils::ForeignApps</name>
     <message>
-        <location filename="../base/utils/foreignapps.cpp" line="84"/>
+        <location filename="../base/utils/foreignapps.cpp" line="85"/>
         <source>Python detected, executable name: &apos;%1&apos;, version: %2</source>
         <translation>Python upptäckt, körbart namn: &quot;%1&quot;, version: %2</translation>
     </message>
     <message>
-        <location filename="../base/utils/foreignapps.cpp" line="288"/>
+        <location filename="../base/utils/foreignapps.cpp" line="289"/>
         <source>Python not detected</source>
         <translation>Python detekteras inte</translation>
     </message>
@@ -10703,7 +11176,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="22"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Will watch the folder and all its subfolders. In Manual torrent management mode it will also add subfolder name to the selected Save path.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kommer att bevaka mappen och alla dess undermappar. I manuellt torrenthanteringsläge lägger det till undermappens namn till den valda Sparningssökvägen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kommer att bevaka mappen och alla dess undermappar. I manuellt torrenthanteringsläge lägger det till undermappens namn till den valda sparsökvägen.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="25"/>
@@ -10723,7 +11196,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="84"/>
         <source>Automatic mode means that various torrent properties(eg save path) will be decided by the associated category</source>
-        <translation>Automatiskt läge betyder att vissa torrentegenskaper (t.ex. sparningssökväg) bestäms av filens kategori</translation>
+        <translation>Automatiskt läge betyder att vissa torrentegenskaper (t.ex. sparsökväg) bestäms av filens kategori</translation>
     </message>
     <message>
         <location filename="../gui/watchedfolderoptionsdialog.ui" line="88"/>
@@ -10784,7 +11257,7 @@ Vänligen välj ett annat namn och försök igen.</translation>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="53"/>
         <location filename="../gui/watchedfolderoptionsdialog.cpp" line="58"/>
         <source>Choose save path</source>
-        <translation>Välj sparningssökväg</translation>
+        <translation>Välj sparsökväg</translation>
     </message>
 </context>
 <context>
@@ -10797,12 +11270,12 @@ Vänligen välj ett annat namn och försök igen.</translation>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="106"/>
         <source>Watched folder path cannot be empty.</source>
-        <translation type="unfinished">Sökvägen till bevakad mapp kan inte vara tom.</translation>
+        <translation>Sökvägen till bevakad mapp kan inte vara tom.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="109"/>
         <source>Watched folder path cannot be relative.</source>
-        <translation type="unfinished">Sökvägen till bevakad mapp kan inte vara relativ.</translation>
+        <translation>Sökvägen till bevakad mapp kan inte vara relativ.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="112"/>

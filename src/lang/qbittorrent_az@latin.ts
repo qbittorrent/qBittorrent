@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="az@latin">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az@latin">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -125,10 +123,6 @@
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="70"/>
         <source>The new path is invalid: &apos;%1&apos;.</source>
         <translation>Yeni yol səhvdir: &quot;%1&quot;</translation>
-    </message>
-    <message>
-        <source>Invalid file path: &apos;%1&apos;.</source>
-        <translation type="vanished">Səhv fayl yolu: &quot;%1&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/abstractfilestorage.cpp" line="46"/>
@@ -297,12 +291,12 @@
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="402"/>
         <source>Select All</source>
-        <translation type="unfinished">Hamısını seçmək</translation>
+        <translation>Hamısını seçin</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="409"/>
         <source>Select None</source>
-        <translation type="unfinished">Heç birini seçməmək</translation>
+        <translation>Heç birini seçməyin</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.ui" line="508"/>
@@ -367,8 +361,8 @@
         <location filename="../gui/addnewtorrentdialog.cpp" line="355"/>
         <source>Failed to load the torrent: %1.
 Error: %2</source>
-        <comment>Don&apos;t remove the &apos;
-&apos; characters. They insert a newline.</comment>
+        <comment>Don't remove the '
+' characters. They insert a newline.</comment>
         <translation>Torrent&apos;i yükləmə uğursuz: %1.
 Xəta: %2</translation>
     </message>
@@ -491,12 +485,12 @@ Xəta: %2</translation>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="771"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="779"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/addnewtorrentdialog.cpp" line="866"/>
@@ -1071,14 +1065,7 @@ Xəta: %2</translation>
     <message>
         <location filename="../app/application.cpp" line="653"/>
         <source>To control qBittorrent, access the WebUI at: %1</source>
-        <translation type="unfinished">qBittorrent&apos;i idarə etmək üçün, bu ünvandan Veb istifadəçi interfeysinə daxil olun: %1
- {1?}</translation>
-    </message>
-    <message>
-        <source>To control qBittorrent, access the WebUI at: %1
-</source>
-        <translation type="vanished">qBittorrent&apos;i idarə etmək üçün, bu ünvandan Veb istifadəçi interfeysinə daxil olun: %1
-</translation>
+        <translation>qBittorrent&apos;i idarə etmək üçün, bu ünvandan Veb istifadəçi interfeysinə daxil olun: %1</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="658"/>
@@ -1739,14 +1726,14 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2584"/>
         <source>Configured network interface address %1 isn&apos;t valid.</source>
-        <comment>Configured network interface address 124.5.158.1 isn&apos;t valid.</comment>
+        <comment>Configured network interface address 124.5.158.1 isn't valid.</comment>
         <translation>Ayarlanmış %1 şəbəkə interfeysi ünvanı etibarlı deyil.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2625"/>
         <location filename="../base/bittorrent/session.cpp" line="2660"/>
         <source>Can&apos;t find the configured address &apos;%1&apos; to listen on</source>
-        <comment>Can&apos;t find the configured address &apos;192.168.1.3&apos; to listen on</comment>
+        <comment>Can't find the configured address '192.168.1.3' to listen on</comment>
         <translation>Dinləmək üçün ayarlanmış &quot;%1&quot; ünvanı tapılmadı.</translation>
     </message>
     <message>
@@ -1807,7 +1794,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4357"/>
         <source>Recursive download of file &apos;%1&apos; embedded in torrent &apos;%2&apos;</source>
-        <comment>Recursive download of &apos;test.torrent&apos; embedded in torrent &apos;test2&apos;</comment>
+        <comment>Recursive download of 'test.torrent' embedded in torrent 'test2'</comment>
         <translation>&quot;%1&quot; faylının təkrarlanan yüklənməsi &quot;%2&quot; daxilində yerləşdirildi</translation>
     </message>
     <message>
@@ -1860,19 +1847,19 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <location filename="../base/bittorrent/session.cpp" line="4819"/>
         <location filename="../base/bittorrent/session.cpp" line="4868"/>
         <source>&apos;%1&apos; was removed from the transfer list.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&quot;%1&quot; köşürmə siyahısından silindi.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4839"/>
         <source>&apos;%1&apos; was removed from the transfer list and hard disk.</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&quot;%1&quot; köçürmə siyahısından və sərt diskdən silindi.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4862"/>
         <source>&apos;%1&apos; was removed from the transfer list but the files couldn&apos;t be deleted. Error: %2</source>
-        <comment>&apos;xxx.avi&apos; was removed...</comment>
+        <comment>'xxx.avi' was removed...</comment>
         <translation>&quot;%1&quot; köçürülmə ssiyahısından silindi, lakin, fayllar silinə bilmədi. Xəta: %2</translation>
     </message>
     <message>
@@ -1931,7 +1918,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="2083"/>
         <source>Downloading &apos;%1&apos;, please wait...</source>
-        <comment>e.g: Downloading &apos;xxx.torrent&apos;, please wait...</comment>
+        <comment>e.g: Downloading 'xxx.torrent', please wait...</comment>
         <translation>&quot;%1&quot; endirilir, lütfən gözləyin...</translation>
     </message>
     <message>
@@ -2047,7 +2034,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <location filename="../base/bittorrent/session.cpp" line="4433"/>
         <location filename="../base/bittorrent/session.cpp" line="4519"/>
         <source>Unable to resume torrent &apos;%1&apos;.</source>
-        <comment>e.g: Unable to resume torrent &apos;hash&apos;.</comment>
+        <comment>e.g: Unable to resume torrent 'hash'.</comment>
         <translation>&quot;%1&quot; terrentini davam etdirilə bilmədi.</translation>
     </message>
     <message>
@@ -2064,13 +2051,13 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4744"/>
         <source>&apos;%1&apos; restored.</source>
-        <comment>&apos;torrent name&apos; restored.</comment>
+        <comment>'torrent name' restored.</comment>
         <translation>&quot;%1&quot; bərpa edildi.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/session.cpp" line="4764"/>
         <source>&apos;%1&apos; added to download list.</source>
-        <comment>&apos;torrent name&apos; was added to download list.</comment>
+        <comment>'torrent name' was added to download list.</comment>
         <translation>&quot;%1&quot; yükləmə siyahısına əlavə edilidi.</translation>
     </message>
     <message>
@@ -2116,18 +2103,14 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>Fayla yazıla bilmədi.</translation>
     </message>
     <message>
-        <source>Torrent is currently in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrent hal-hazırda &quot;yalnız göndərmək&quot; rejimindədir.</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1038"/>
         <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent indi &quot;yalnız göndərmək&quot; rejimindədir.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1039"/>
         <source>Reason:</source>
-        <translation type="unfinished"></translation>
+        <translation>Səbəbi:</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1443"/>
@@ -2295,7 +2278,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <location filename="../gui/deletionconfirmationdialog.cpp" line="44"/>
         <source>Are you sure you want to delete &apos;%1&apos; from the transfer list?</source>
-        <comment>Are you sure you want to delete &apos;ubuntu-linux-iso&apos; from the transfer list?</comment>
+        <comment>Are you sure you want to delete 'ubuntu-linux-iso' from the transfer list?</comment>
         <translation>&quot;%1&quot; faylını köçürmə siyahısından silmək istədiyinizə əminsiniz?</translation>
     </message>
     <message>
@@ -3254,9 +3237,9 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     </message>
     <message>
         <location filename="../gui/mainwindow.cpp" line="869"/>
-        <source>An I/O error occurred for torrent &apos;%1&apos;.
+        <source>An I/O error occurred for torrent '%1'.
  Reason: %2</source>
-        <comment>e.g: An error occurred for torrent &apos;xxx.avi&apos;.
+        <comment>e.g: An error occurred for torrent 'xxx.avi'.
  Reason: disk is full.</comment>
         <translation>&quot;%1&quot; torrenti üçün Giriş/Çıxış xətası baş verdi
  Səbəb: %2</translation>
@@ -5570,12 +5553,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/optionsdialog.ui" line="1109"/>
         <source>Use Category paths in Manual Mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Kateqoriya yollarını Əl ilə Rejimində istifadə edin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1112"/>
         <source>Resolve relative Save Path against appropriate Category path instead of Default one</source>
-        <translation type="unfinished"></translation>
+        <translation>Nisbi saxlama yolunu, standarta yola görə deyil, uyğun kateqriya yoluna görə təyin edin</translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1131"/>
@@ -6469,7 +6452,7 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="108"/>
         <source>Relevance</source>
-        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don&apos;t.</comment>
+        <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
         <translation>Uyğunluq</translation>
     </message>
     <message>
@@ -6486,12 +6469,12 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="210"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="219"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/properties/peerlistwidget.cpp" line="271"/>
@@ -6890,12 +6873,12 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="159"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.cpp" line="167"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/previewselectdialog.ui" line="14"/>
@@ -7189,17 +7172,17 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="184"/>
         <source>Column visibility</source>
-        <translation type="unfinished">Sütunun görünməsi</translation>
+        <translation>Sütunun görünməsi</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="207"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="216"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/properties/propertieswidget.cpp" line="362"/>
@@ -7353,13 +7336,13 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="161"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=value&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'</comment>
         <translation>&quot;%1&quot; parametri &apos;%1=%2&apos; sintaksisin ilə uzlaşmalıdır</translation>
     </message>
     <message>
         <location filename="../app/cmdoptions.cpp" line="207"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--webui-port&apos; must follow syntax &apos;--webui-port=&lt;value&gt;&apos;</comment>
+        <comment>e.g. Parameter '--webui-port' must follow syntax '--webui-port=&lt;value&gt;'</comment>
         <translation>&quot;%1&quot; parametri &apos;%1=%2&apos; sintaksisi ilə uzlaşmalıdır</translation>
     </message>
     <message>
@@ -7370,7 +7353,7 @@ Bu qoşmalar söndürülüb.</translation>
     <message>
         <location filename="../app/cmdoptions.cpp" line="279"/>
         <source>Parameter &apos;%1&apos; must follow syntax &apos;%1=%2&apos;</source>
-        <comment>e.g. Parameter &apos;--add-paused&apos; must follow syntax &apos;--add-paused=&lt;true|false&gt;&apos;</comment>
+        <comment>e.g. Parameter '--add-paused' must follow syntax '--add-paused=&lt;true|false&gt;'</comment>
         <translation>&quot;%1&quot; parametri &apos;%1=%2&apos; sintaksisi ilə uzlaşmalıdır</translation>
     </message>
     <message>
@@ -7701,12 +7684,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="74"/>
         <source>Couldn&apos;t save RSS Session configuration in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS sessiyası tənzimləməsi %1-da saxlanıla bilməz. Xəta: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="83"/>
         <source>Couldn&apos;t save RSS Session data in %1. Error: %2</source>
-        <translation type="unfinished"></translation>
+        <translation>RSS sessiyası verilənləri %1-da saxlanıla bilməz. Xəta: %2</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="154"/>
@@ -8159,12 +8142,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="494"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/search/searchjobwidget.cpp" line="503"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
 </context>
 <context>
@@ -8286,7 +8269,7 @@ No further notices will be issued.</source>
     </message>
     <message>
         <location filename="../gui/search/searchwidget.ui" line="79"/>
-        <source>There aren&apos;t any search plugins installed.
+        <source>There aren't any search plugins installed.
 Click the &quot;Search plugins...&quot; button at the bottom right of the window to install some.</source>
         <translation>Quraşdırılmış axtarış qoşması yoxdur.
 Onlardan bəzilərini quraşdırmaq üçün pəncərənin aşağı-sağındakı &quot;Axtarış qoşmaları...&quot; düyməsinə vurun.</translation>
@@ -9090,8 +9073,8 @@ Onlardan bəzilərini quraşdırmaq üçün pəncərənin aşağı-sağındakı 
     </message>
     <message>
         <location filename="../gui/torrentcategorydialog.cpp" line="84"/>
-        <source>Category name cannot contain &apos;\&apos;.
-Category name cannot start/end with &apos;/&apos;.
+        <source>Category name cannot contain '\'.
+Category name cannot start/end with '/'.
 Category name cannot contain &apos;//&apos; sequence.</source>
         <translation>Kateqoriya adında &apos;\&apos; ola bilməz
 Kateqoriya adı &apos;/&apos; ilə başlaya və bitə bilməz
@@ -9443,14 +9426,6 @@ Başqa ad verin və yenidən cəhd edin.</translation>
 <context>
     <name>TorrentFilesWatcher</name>
     <message>
-        <source>Watched folder path cannot be empty.</source>
-        <translation type="vanished">İzlənilən qovluq yolu boş ola bilməz</translation>
-    </message>
-    <message>
-        <source>Watched folder path cannot be relative.</source>
-        <translation type="vanished">İzlənilən qovluq yolu nisbi ola bilməz.</translation>
-    </message>
-    <message>
         <location filename="../base/torrentfileswatcher.cpp" line="288"/>
         <source>Couldn&apos;t load Watched Folders configuration from %1. Error: %2</source>
         <translation>İzlənən Qovluqlar konfiqurasiyası% 1-dən yüklənmədi: Xəta: %2</translation>
@@ -9473,12 +9448,12 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="396"/>
         <source>Watched folder Path cannot be empty.</source>
-        <translation type="unfinished"></translation>
+        <translation>İzlənilən qovluq yolu boş ola bilməz.</translation>
     </message>
     <message>
         <location filename="../base/torrentfileswatcher.cpp" line="399"/>
         <source>Watched folder Path cannot be relative.</source>
-        <translation type="unfinished"></translation>
+        <translation>İzlənilən qovluq yolu nisbi ola bilməz.</translation>
     </message>
 </context>
 <context>
@@ -9993,12 +9968,12 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="680"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="689"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="634"/>
@@ -10109,13 +10084,13 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="115"/>
         <source>[F] Downloading metadata</source>
-        <comment>Used when forced to load a magnet link. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when forced to load a magnet link. You probably shouldn't translate the F.</comment>
         <translation>[F] Meta verilənləri endirilir</translation>
     </message>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="116"/>
         <source>[F] Downloading</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] Endirilir</translation>
     </message>
     <message>
@@ -10128,7 +10103,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistmodel.cpp" line="119"/>
         <source>[F] Seeding</source>
-        <comment>Used when the torrent is forced started. You probably shouldn&apos;t translate the F.</comment>
+        <comment>Used when the torrent is forced started. You probably shouldn't translate the F.</comment>
         <translation>[F] Göndərilir</translation>
     </message>
     <message>
@@ -10421,7 +10396,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="340"/>
         <source>Choose save path</source>
-        <translation type="unfinished"></translation>
+        <translation>Saxlama yolunu seçmək</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="593"/>
@@ -10436,22 +10411,22 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="670"/>
         <source>Resize columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Sütunların ölçüsünü dəyişin</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="679"/>
         <source>Resize all non-hidden columns to the size of their contents</source>
-        <translation type="unfinished"></translation>
+        <translation>Bütün gizli olmayan sütunların ölçüsünü tərkiblərinin ölçüsünə görə dəyişmək</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="709"/>
         <source>Enable automatic torrent management</source>
-        <translation type="unfinished"></translation>
+        <translation>Avtomatik Torrent İdarəetməsini aktiv edin</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="710"/>
         <source>Are you sure you want to enable Automatic Torrent Management for the selected torrent(s)? They may be relocated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçilmiş torrent(lər) üçün avtomatik torrent idarəetməsini aktiv etmək istədiyinizə əminsiniz? Torrentlər başqa yerə köçürülə bilər.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="728"/>
@@ -10526,7 +10501,7 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="888"/>
         <source>Set location...</source>
-        <translation type="unfinished"></translation>
+        <translation>Yer təyin edin...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="892"/>
@@ -10551,39 +10526,39 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="908"/>
         <source>Download in sequential order</source>
-        <translation type="unfinished"></translation>
+        <translation>Ardıcıl şəkildə yükləmək</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="910"/>
         <source>Download first and last pieces first</source>
-        <translation type="unfinished"></translation>
+        <translation>Öncə İlk və son hissələri endirmək</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="912"/>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished">Avtomatik Torrent İdarəetməsi</translation>
+        <translation>Avtomatik Torrent İdarəetməsi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="913"/>
         <source>Automatic mode means that various torrent properties (e.g. save path) will be decided by the associated category</source>
-        <translation type="unfinished">Avtomatik rejim o deməkdir ki, müxtəlif torrent ayarları (məs., saxlama yolu) kateqoriyay uyğun olaraq təyoin olunacaq.</translation>
+        <translation>Avtomatik rejim o deməkdir ki, müxtəlif torrent xüsusiyyətləri (məs., saxlama yolu) uyğun kateqoriyalara görə müəyyən ediləcəkdir</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1047"/>
         <source>Category</source>
-        <translation type="unfinished">Kateqoriya</translation>
+        <translation>Kateqoriya</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1049"/>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Yeni...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1051"/>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sıfırlamaq</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1154"/>
@@ -10794,12 +10769,12 @@ Başqa ad verin və yenidən cəhd edin.</translation>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="106"/>
         <source>Watched folder path cannot be empty.</source>
-        <translation type="unfinished">İzlənilən qovluq yolu boş ola bilməz</translation>
+        <translation>İzlənilən qovluq yolu boş ola bilməz</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="109"/>
         <source>Watched folder path cannot be relative.</source>
-        <translation type="unfinished">İzlənilən qovluq yolu nisbi ola bilməz.</translation>
+        <translation>İzlənilən qovluq yolu nisbi ola bilməz.</translation>
     </message>
     <message>
         <location filename="../gui/watchedfoldersmodel.cpp" line="112"/>

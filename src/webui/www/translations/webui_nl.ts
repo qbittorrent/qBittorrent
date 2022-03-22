@@ -571,6 +571,10 @@
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1476,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Beperking van verzoekvervalsing aan de serverzijde (SSRF):</translation>
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="vanished">Grootte</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

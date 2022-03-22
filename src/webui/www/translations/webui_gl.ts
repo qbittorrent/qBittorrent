@@ -572,6 +572,10 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1477,6 +1481,22 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Mitigación da falsificación de solicitudes no servidor (SSRF):</translation>
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2250,7 +2270,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Tamaño</translation>
+        <translation type="vanished">Tamaño</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

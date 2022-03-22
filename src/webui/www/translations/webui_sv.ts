@@ -571,6 +571,10 @@
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -938,7 +942,7 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation>%D: Sparningssökväg</translation>
+        <translation>%D: Sparsökväg</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
@@ -1006,7 +1010,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Standardsparningssökväg:</translation>
+        <translation>Standardsparsökväg:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1042,7 +1046,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>När standardsparningssökvägen ändras:</translation>
+        <translation>När standardsparsökvägen ändras:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1054,7 +1058,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>När kategorisparningssökvägen ändras:</translation>
+        <translation>När kategorisparsökvägen ändras:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1476,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Begränsning av förfalskning på serversidan (SSRF):</translation>
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1706,7 +1726,7 @@
     </message>
     <message>
         <source>Save Path:</source>
-        <translation>Sparningssökväg:</translation>
+        <translation>Sparsökväg:</translation>
     </message>
     <message>
         <source>Never</source>
@@ -2113,7 +2133,7 @@
     <message>
         <source>Save path</source>
         <comment>Torrent save path</comment>
-        <translation>Sparningssökväg</translation>
+        <translation>Sparsökväg</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Storlek</translation>
+        <translation type="vanished">Storlek</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2496,7 +2520,7 @@
     </message>
     <message>
         <source>Save path</source>
-        <translation>Sparningssökväg</translation>
+        <translation>Sparsökväg</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2683,7 +2707,7 @@
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation>Sparningssökväg är tom</translation>
+        <translation>Sparsökväg är tom</translation>
     </message>
 </context>
 <context>

@@ -117,27 +117,27 @@
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>Максимальное число активных загрузок должно быть больше -1.</translation>
+        <translation>Максимум активных загрузок должен быть больше -1.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation>Максимальное число активных отдач должно быть больше -1.</translation>
+        <translation>Максимум активных отдач должен быть больше -1.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>Максимальное число активных торрентов должно быть больше -1.</translation>
+        <translation>Максимум активных торрентов должен быть больше -1.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Максимальное число соединений должно быть больше 0 или отключено.</translation>
+        <translation>Максимум соединений должен быть больше 0 или отключён.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальное число соединений на торрент должно быть больше 0 или отключено.</translation>
+        <translation>Максимум соединений на торрент должен быть больше 0 или отключён.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Максимальное число слотов отдачи на торрент должно быть больше 0 или отключено.</translation>
+        <translation>Максимум слотов отдачи на торрент должен быть больше 0 или отключён.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -493,7 +493,7 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation>Переместить вверх по очереди</translation>
+        <translation>Перенести вверх по очереди</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
@@ -505,7 +505,7 @@
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>Переместить в конец очереди</translation>
+        <translation>Поместить в конец очереди</translation>
     </message>
     <message>
         <source>Top of Queue</source>
@@ -517,11 +517,11 @@
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation>Переместить вниз по очереди</translation>
+        <translation>Перенести вниз по очереди</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>Переместить в начало очереди</translation>
+        <translation>Поместить в начало очереди</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -570,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -668,7 +672,7 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>По завершению копировать торрент-файлы в:</translation>
+        <translation>По завершении копировать торрент-файлы в:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -724,7 +728,7 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation>Максимальное число соединений на торрент:</translation>
+        <translation>Максимум соединений на торрент:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
@@ -732,7 +736,7 @@
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Максимальное число слотов отдачи на торрент:</translation>
+        <translation>Максимум слотов отдачи на торрент:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -878,15 +882,15 @@
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation>Максимальное число активных загрузок:</translation>
+        <translation>Максимум активных загрузок:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Максимальное число активных отдач:</translation>
+        <translation>Максимум активных отдач:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation>Максимальное число активных торрентов:</translation>
+        <translation>Максимум активных торрентов:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
@@ -954,7 +958,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр. "%N")</translation>
+        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1126,11 +1130,11 @@
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>По достижению рейтинга раздачи</translation>
+        <translation>По достижении рейтинга раздачи</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>По достижению времени раздачи</translation>
+        <translation>По достижении времени раздачи</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1290,7 +1294,7 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>Блокировать клиента после серии сбоев:</translation>
+        <translation>Блокировать клиента после серии сбоёв:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
@@ -1362,7 +1366,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Максимальное число статей на канал:</translation>
+        <translation>Максимум статей на канал:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
@@ -1446,7 +1450,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Переанонсировать на все трекеры при смене IP или порта:</translation>
+        <translation>Реанонсировать на все трекеры при смене IP или порта:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1475,6 +1479,22 @@
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Предотвращать серверную подделку запроса (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1831,7 +1851,7 @@
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation>Среднее время в очереди: </translation>
+        <translation>Среднее время в очереди:</translation>
     </message>
     <message>
         <source>Connected peers:</source>
@@ -2237,7 +2257,7 @@
     </message>
     <message>
         <source>Download Priority</source>
-        <translation>Приоритет</translation>
+        <translation>Приоритет загрузки</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2249,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="vanished">Размер</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
