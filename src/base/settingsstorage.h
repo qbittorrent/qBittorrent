@@ -34,9 +34,10 @@
 #include <QObject>
 #include <QReadWriteLock>
 #include <QTimer>
+#include <QVariant>
 #include <QVariantHash>
 
-#include "path.h"
+#include "base/interfaces/istringable.h"
 #include "utils/string.h"
 
 template <typename T>
@@ -45,7 +46,11 @@ struct IsQFlags : std::false_type {};
 template <typename T>
 struct IsQFlags<QFlags<T>> : std::true_type {};
 
-class SettingsStorage : public QObject
+// There are 2 ways for class `T` provide serialization support into `SettingsStorage`:
+// 1. If the `T` state is intended for users to edit (via a text editor), then
+//    implement `IStringable` interface
+// 2. Otherwise, use `Q_DECLARE_METATYPE(T)` and let `QMetaType` handle the serialization
+class SettingsStorage final : public QObject
 {
     Q_OBJECT
     SettingsStorage();
@@ -59,7 +64,12 @@ public:
     template <typename T>
     T loadValue(const QString &key, const T &defaultValue = {}) const
     {
-        if constexpr (std::is_enum_v<T>)
+        if constexpr (std::is_base_of_v<IStringable, T>)
+        {
+            const QString value = loadValue(key, defaultValue.toString());
+            return T {value};
+        }
+        else if constexpr (std::is_enum_v<T>)
         {
             const auto value = loadValue<QString>(key);
             return Utils::String::toEnum(value, defaultValue);
@@ -68,11 +78,6 @@ public:
         {
             const typename T::Int value = loadValue(key, static_cast<typename T::Int>(defaultValue));
             return T {value};
-        }
-        else if constexpr (std::is_same_v<T, Path>)
-        {
-            const auto value = loadValue<QString>(key, defaultValue.toString());
-            return Path(value);
         }
         else if constexpr (std::is_same_v<T, QVariant>)
         {
@@ -90,12 +95,12 @@ public:
     template <typename T>
     void storeValue(const QString &key, const T &value)
     {
-        if constexpr (std::is_enum_v<T>)
+        if constexpr (std::is_base_of_v<IStringable, T>)
+            storeValueImpl(key, value.toString());
+        else if constexpr (std::is_enum_v<T>)
             storeValueImpl(key, Utils::String::fromEnum(value));
         else if constexpr (IsQFlags<T>::value)
             storeValueImpl(key, static_cast<typename T::Int>(value));
-        else if constexpr (std::is_same_v<T, Path>)
-            storeValueImpl(key, value.toString());
         else
             storeValueImpl(key, QVariant::fromValue(value));
     }
