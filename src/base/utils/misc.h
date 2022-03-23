@@ -31,7 +31,6 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
-#include <memory>
 #include <Windows.h>
 #endif
 
@@ -92,9 +91,8 @@ namespace Utils::Misc
     template <typename T>
     T loadWinAPI(const QString &source, const char *funcName)
     {
-        const QString path = (windowsSystemPath() / Path(source)).toString();
-        return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(
-            path.toStdWString().c_str()), funcName));
+        const std::wstring path = (windowsSystemPath() / Path(source)).toString().toStdWString();
+        return reinterpret_cast<T>(::GetProcAddress(::LoadLibraryW(path.c_str()), funcName));
     }
 #endif // Q_OS_WIN
 }
