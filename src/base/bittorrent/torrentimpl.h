@@ -51,6 +51,7 @@
 #include "infohash.h"
 #include "speedmonitor.h"
 #include "torrent.h"
+#include "torrentcontentlayout.h"
 #include "torrentinfo.h"
 
 namespace BitTorrent

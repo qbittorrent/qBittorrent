@@ -51,7 +51,4 @@ namespace BitTorrent
 
         Q_ENUM_NS(TorrentContentLayout)
     }
-
-    TorrentContentLayout detectContentLayout(const PathList &filePaths);
-    void applyContentLayout(PathList &filePaths, TorrentContentLayout contentLayout, const Path &rootFolder = {});
 }

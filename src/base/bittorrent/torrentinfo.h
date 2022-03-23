@@ -36,7 +36,6 @@
 #include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
 #include "base/pathfwd.h"
-#include "torrentcontentlayout.h"
 
 class QByteArray;
 class QDateTime;
@@ -99,7 +98,6 @@ namespace BitTorrent
     private:
         // returns file index or -1 if fileName is not found
         int fileIndex(const Path &filePath) const;
-        TorrentContentLayout contentLayout() const;
 
         std::shared_ptr<const lt::torrent_info> m_nativeInfo;
 

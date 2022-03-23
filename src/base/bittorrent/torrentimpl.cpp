@@ -1771,11 +1771,24 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 
         TorrentInfo metadata = TorrentInfo(*m_nativeHandle.torrent_file());
 
-        const auto nativeIndexes = metadata.nativeIndexes();
-        PathList filePaths = metadata.filePaths();
-        applyContentLayout(filePaths, m_contentLayout);
-
         const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
+        PathList filePaths = metadata.filePaths();
+        if (renamedFiles.empty() && (m_contentLayout != TorrentContentLayout::Original))
+        {
+            const Path originalRootFolder = Path::findRootFolder(filePaths);
+            const auto originalContentLayout = (originalRootFolder.isEmpty()
+                                                ? TorrentContentLayout::NoSubfolder
+                                                : TorrentContentLayout::Subfolder);
+            if (m_contentLayout != originalContentLayout)
+            {
+                if (m_contentLayout == TorrentContentLayout::NoSubfolder)
+                    Path::stripRootFolder(filePaths);
+                else
+                    Path::addRootFolder(filePaths, filePaths.at(0).removedExtension());
+            }
+        }
+
+        const auto nativeIndexes = metadata.nativeIndexes();
         m_indexMap.reserve(filePaths.size());
         for (int i = 0; i < filePaths.size(); ++i)
         {
