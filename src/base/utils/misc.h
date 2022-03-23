@@ -31,7 +31,6 @@
 #include <QtGlobal>
 
 #ifdef Q_OS_WIN
-#include <memory>
 #include <Windows.h>
 #endif
 
@@ -93,14 +92,11 @@ namespace Utils::Misc
         QString path = windowsSystemPath();
         if (!path.endsWith('\\'))
             path += '\\';
-
         path += source;
 
-        auto pathWchar = std::make_unique<wchar_t[]>(path.length() + 1);
-        path.toWCharArray(pathWchar.get());
-
+        const std::wstring pathWStr = path.toStdWString();
         return reinterpret_cast<T>(
-            ::GetProcAddress(::LoadLibraryW(pathWchar.get()), funcName));
+            ::GetProcAddress(::LoadLibraryW(pathWStr.c_str()), funcName));
     }
 #endif // Q_OS_WIN
 }

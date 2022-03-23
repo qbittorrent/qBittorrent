@@ -255,9 +255,10 @@ const QString straceWin::getBacktrace()
     QTextStream logStream(&log);
     logStream << "```\n";
 
+    const std::wstring appPath = QCoreApplication::applicationDirPath().toStdWString();
     HANDLE hProcess = GetCurrentProcess();
     HANDLE hThread = GetCurrentThread();
-    SymInitializeW(hProcess, QCoreApplication::applicationDirPath().toStdWString().c_str(), TRUE);
+    SymInitializeW(hProcess, appPath.c_str(), TRUE);
 
     DWORD64 dwDisplacement;
 

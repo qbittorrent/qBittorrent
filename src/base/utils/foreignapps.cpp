@@ -127,26 +127,17 @@ namespace
 
     QString getRegValue(const HKEY handle, const QString &name = {})
     {
-        QString result;
-
+        const std::wstring nameWStr = name.toStdWString();
         DWORD type = 0;
         DWORD cbData = 0;
-        LPWSTR lpValueName = NULL;
-        if (!name.isEmpty())
-        {
-            lpValueName = new WCHAR[name.size() + 1];
-            name.toWCharArray(lpValueName);
-            lpValueName[name.size()] = 0;
-        }
 
         // Discover the size of the value
-        ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
+        ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
         DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
         LPWSTR lpData = new WCHAR[cBuffer];
-        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
-        if (lpValueName)
-            delete[] lpValueName;
+        LONG res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, (LPBYTE)lpData, &cbData);
 
+        QString result;
         if (res == ERROR_SUCCESS)
         {
             lpData[cBuffer - 1] = 0;
@@ -185,18 +176,14 @@ namespace
             bool found = false;
             while (!found && !versions.empty())
             {
-                const QString version = versions.takeLast() + "\\InstallPath";
-                LPWSTR lpSubkey = new WCHAR[version.size() + 1];
-                version.toWCharArray(lpSubkey);
-                lpSubkey[version.size()] = 0;
+                const std::wstring version = QString(versions.takeLast() + "\\InstallPath").toStdWString();
 
                 HKEY hkInstallPath;
-                res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
-                delete[] lpSubkey;
+                res = ::RegOpenKeyExW(hkPythonCore, version.c_str(), 0, samDesired, &hkInstallPath);
 
                 if (res == ERROR_SUCCESS)
                 {
-                    qDebug("Detected possible Python v%s location", qUtf8Printable(version));
+                    qDebug("Detected possible Python v%ls location", version.c_str());
                     path = getRegValue(hkInstallPath);
                     ::RegCloseKey(hkInstallPath);
 
