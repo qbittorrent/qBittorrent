@@ -1742,7 +1742,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('peers', '', 'QBT_TR(Peers)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
             this.newColumn('seeds', '', 'QBT_TR(Seeds)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
             this.newColumn('leeches', '', 'QBT_TR(Leeches)QBT_TR[CONTEXT=TrackerListWidget]', 75, true);
-            this.newColumn('downloaded', '', 'QBT_TR(Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
+            this.newColumn('downloaded', '', 'QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
             this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
         },
     });

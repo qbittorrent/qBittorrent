@@ -114,16 +114,16 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     m_DHTItem->setTextAlignment(COL_LEECHES, alignment);
     m_PEXItem->setTextAlignment(COL_LEECHES, alignment);
     m_LSDItem->setTextAlignment(COL_LEECHES, alignment);
-    m_DHTItem->setTextAlignment(COL_DOWNLOADED, alignment);
-    m_PEXItem->setTextAlignment(COL_DOWNLOADED, alignment);
-    m_LSDItem->setTextAlignment(COL_DOWNLOADED, alignment);
+    m_DHTItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+    m_PEXItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+    m_LSDItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
 
     // Set header alignment
     headerItem()->setTextAlignment(COL_TIER, alignment);
     headerItem()->setTextAlignment(COL_PEERS, alignment);
     headerItem()->setTextAlignment(COL_SEEDS, alignment);
     headerItem()->setTextAlignment(COL_LEECHES, alignment);
-    headerItem()->setTextAlignment(COL_DOWNLOADED, alignment);
+    headerItem()->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
 
     // Set hotkeys
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
@@ -406,7 +406,7 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_LEECHES, ((entry.numLeeches > -1)
             ? QString::number(entry.numLeeches)
             : tr("N/A")));
-        item->setText(COL_DOWNLOADED, ((entry.numDownloaded > -1)
+        item->setText(COL_TIMES_DOWNLOADED, ((entry.numDownloaded > -1)
             ? QString::number(entry.numDownloaded)
             : tr("N/A")));
 
@@ -415,7 +415,7 @@ void TrackerListWidget::loadTrackers()
         item->setTextAlignment(COL_PEERS, alignment);
         item->setTextAlignment(COL_SEEDS, alignment);
         item->setTextAlignment(COL_LEECHES, alignment);
-        item->setTextAlignment(COL_DOWNLOADED, alignment);
+        item->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
     }
 
     // Remove old trackers
@@ -628,7 +628,7 @@ QStringList TrackerListWidget::headerLabels()
         , tr("Peers")
         , tr("Seeds")
         , tr("Leeches")
-        , tr("Downloaded")
+        , tr("Times Downloaded")
         , tr("Message")
     };
 }
