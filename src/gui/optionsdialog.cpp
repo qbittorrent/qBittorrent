@@ -71,7 +71,7 @@
 #include "watchedfolderoptionsdialog.h"
 #include "watchedfoldersmodel.h"
 
-#define SETTINGS_KEY(name) "OptionsDialog/" name
+#define SETTINGS_KEY(name) u"OptionsDialog/" name
 
 namespace
 {
@@ -179,9 +179,9 @@ private:
 OptionsDialog::OptionsDialog(QWidget *parent)
     : QDialog {parent}
     , m_ui {new Ui::OptionsDialog}
-    , m_storeDialogSize {SETTINGS_KEY("Size")}
-    , m_storeHSplitterSize {SETTINGS_KEY("HorizontalSplitterSizes")}
-    , m_storeLastViewedPage {SETTINGS_KEY("LastViewedPage")}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
+    , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_qs)}
+    , m_storeLastViewedPage {SETTINGS_KEY(u"LastViewedPage"_qs)}
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);

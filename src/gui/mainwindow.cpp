@@ -104,9 +104,9 @@ using namespace std::chrono_literals;
 
 namespace
 {
-#define SETTINGS_KEY(name) "GUI/" name
-#define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY("Log/") name)
-#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY("Notifications/") name)
+#define SETTINGS_KEY(name) u"GUI/" name
+#define EXECUTIONLOG_SETTINGS_KEY(name) (SETTINGS_KEY(u"Log/"_qs) name)
+#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"Notifications/"_qs) name)
 
     const std::chrono::seconds PREVENT_SUSPEND_INTERVAL {60};
 #if !defined(Q_OS_MACOS)
@@ -125,13 +125,13 @@ namespace
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , m_ui(new Ui::MainWindow)
-    , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY("Enabled"))
-    , m_storeDownloadTrackerFavicon(SETTINGS_KEY("DownloadTrackerFavicon"))
-    , m_storeNotificationEnabled(NOTIFICATIONS_SETTINGS_KEY("Enabled"))
-    , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY("TorrentAdded"))
-    , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY("Types"), Log::MsgType::ALL)
+    , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_qs))
+    , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_qs))
+    , m_storeNotificationEnabled(NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_qs))
+    , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_qs))
+    , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY(u"Types"_qs), Log::MsgType::ALL)
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    , m_storeNotificationTimeOut(NOTIFICATIONS_SETTINGS_KEY("Timeout"))
+    , m_storeNotificationTimeOut(NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_qs))
 #endif
 {
     m_ui->setupUi(this);
@@ -2148,7 +2148,7 @@ void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)
     QProcess installer;
     qDebug("Launching Python installer in passive mode...");
 
-    const Path exePath = result.filePath + ".exe";
+    const Path exePath = result.filePath + u".exe";
     Utils::Fs::renameFile(result.filePath, exePath);
     installer.start(exePath.toString(), {u"/passive"_qs});
 

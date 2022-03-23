@@ -36,7 +36,7 @@
 
 PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
     : Net::PortForwarder {parent}
-    , m_storeActive {"Network/PortForwardingEnabled", true}
+    , m_storeActive {u"Network/PortForwardingEnabled"_qs, true}
     , m_provider {provider}
 {
     if (isEnabled())

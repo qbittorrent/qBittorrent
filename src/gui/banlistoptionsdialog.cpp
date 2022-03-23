@@ -38,12 +38,12 @@
 #include "ui_banlistoptionsdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "BanListOptionsDialog/" name
+#define SETTINGS_KEY(name) u"BanListOptionsDialog/" name
 
 BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::BanListOptionsDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
     , m_model(new QStringListModel(BitTorrent::Session::instance()->bannedIPs(), this))
 {
     m_ui->setupUi(this);

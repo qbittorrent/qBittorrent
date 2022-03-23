@@ -28,7 +28,7 @@
 
 #include "proxyconfigurationmanager.h"
 
-#define SETTINGS_KEY(name) ("Network/Proxy/" name)
+#define SETTINGS_KEY(name) (u"Network/Proxy/" name)
 
 bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &right)
 {
@@ -50,12 +50,12 @@ ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     : QObject {parent}
-    , m_storeProxyOnlyForTorrents {SETTINGS_KEY("OnlyForTorrents")}
-    , m_storeProxyType {SETTINGS_KEY("Type")}
-    , m_storeProxyIP {SETTINGS_KEY("IP")}
-    , m_storeProxyPort {SETTINGS_KEY("Port")}
-    , m_storeProxyUsername {SETTINGS_KEY("Username")}
-    , m_storeProxyPassword {SETTINGS_KEY("Password")}
+    , m_storeProxyOnlyForTorrents {SETTINGS_KEY(u"OnlyForTorrents"_qs)}
+    , m_storeProxyType {SETTINGS_KEY(u"Type"_qs)}
+    , m_storeProxyIP {SETTINGS_KEY(u"IP"_qs)}
+    , m_storeProxyPort {SETTINGS_KEY(u"Port"_qs)}
+    , m_storeProxyUsername {SETTINGS_KEY(u"Username"_qs)}
+    , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
 {
     m_config.type = m_storeProxyType.get(ProxyType::None);
     if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))

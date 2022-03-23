@@ -37,7 +37,7 @@
 #include "uithememanager.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "SpeedLimitDialog/" name
+#define SETTINGS_KEY(name) u"SpeedLimitDialog/" name
 
 namespace
 {
@@ -52,7 +52,7 @@ namespace
 SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     : QDialog {parent}
     , m_ui {new Ui::SpeedLimitDialog}
-    , m_storeDialogSize {SETTINGS_KEY("Size")}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
 {
     m_ui->setupUi(this);
 

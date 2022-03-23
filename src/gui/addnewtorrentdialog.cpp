@@ -65,12 +65,12 @@
 
 namespace
 {
-#define SETTINGS_KEY(name) "AddNewTorrentDialog/" name
-    const QString KEY_ENABLED = QStringLiteral(SETTINGS_KEY("Enabled"));
-    const QString KEY_TOPLEVEL = QStringLiteral(SETTINGS_KEY("TopLevel"));
-    const QString KEY_SAVEPATHHISTORY = QStringLiteral(SETTINGS_KEY("SavePathHistory"));
-    const QString KEY_DOWNLOADPATHHISTORY = QStringLiteral(SETTINGS_KEY("DownloadPathHistory"));
-    const QString KEY_SAVEPATHHISTORYLENGTH = QStringLiteral(SETTINGS_KEY("SavePathHistoryLength"));
+#define SETTINGS_KEY(name) u"AddNewTorrentDialog/" name
+    const QString KEY_ENABLED = SETTINGS_KEY(u"Enabled"_qs);
+    const QString KEY_TOPLEVEL = SETTINGS_KEY(u"TopLevel"_qs);
+    const QString KEY_SAVEPATHHISTORY = SETTINGS_KEY(u"SavePathHistory"_qs);
+    const QString KEY_DOWNLOADPATHHISTORY = SETTINGS_KEY(u"DownloadPathHistory"_qs);
+    const QString KEY_SAVEPATHHISTORYLENGTH = SETTINGS_KEY(u"SavePathHistoryLength"_qs);
 
     // just a shortcut
     inline SettingsStorage *settings()
@@ -170,15 +170,15 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     : QDialog(parent)
     , m_ui(new Ui::AddNewTorrentDialog)
     , m_torrentParams(inParams)
-    , m_storeDialogSize(SETTINGS_KEY("DialogSize"))
-    , m_storeDefaultCategory(SETTINGS_KEY("DefaultCategory"))
-    , m_storeRememberLastSavePath(SETTINGS_KEY("RememberLastSavePath"))
+    , m_storeDialogSize(SETTINGS_KEY(u"DialogSize"_qs))
+    , m_storeDefaultCategory(SETTINGS_KEY(u"DefaultCategory"_qs))
+    , m_storeRememberLastSavePath(SETTINGS_KEY(u"RememberLastSavePath"_qs))
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeTreeHeaderState("GUI/Qt6/" SETTINGS_KEY("TreeHeaderState"))
-    , m_storeSplitterState("GUI/Qt6/" SETTINGS_KEY("SplitterState"))
+    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"TreeHeaderState"_qs))
+    , m_storeSplitterState(u"GUI/Qt6/" SETTINGS_KEY(u"SplitterState"_qs))
 #else
-    , m_storeTreeHeaderState(SETTINGS_KEY("TreeHeaderState"))
-    , m_storeSplitterState(SETTINGS_KEY("SplitterState"))
+    , m_storeTreeHeaderState(SETTINGS_KEY(u"TreeHeaderState"_qs))
+    , m_storeSplitterState(SETTINGS_KEY(u"SplitterState"_qs))
 #endif
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities

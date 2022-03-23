@@ -37,7 +37,7 @@
 #include "ui_watchedfolderoptionsdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "WatchedFolderOptionsDialog/" name
+#define SETTINGS_KEY(name) u"WatchedFolderOptionsDialog/" name
 
 WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
         const TorrentFilesWatcher::WatchedFolderOptions &watchedFolderOptions, QWidget *parent)
@@ -45,7 +45,7 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
     , m_ui {new Ui::WatchedFolderOptionsDialog}
     , m_savePath {watchedFolderOptions.addTorrentParams.savePath}
     , m_downloadPath {watchedFolderOptions.addTorrentParams.downloadPath}
-    , m_storeDialogSize {SETTINGS_KEY("DialogSize")}
+    , m_storeDialogSize {SETTINGS_KEY(u"DialogSize"_qs)}
 {
     m_ui->setupUi(this);
 

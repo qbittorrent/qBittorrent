@@ -39,7 +39,7 @@
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "DownloadFromURLDialog/" name
+#define SETTINGS_KEY(name) u"DownloadFromURLDialog/" name
 
 namespace
 {
@@ -61,7 +61,7 @@ namespace
 DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::DownloadFromURLDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);

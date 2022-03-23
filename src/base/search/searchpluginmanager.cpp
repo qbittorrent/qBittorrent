@@ -239,7 +239,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &pa
 
     // Process with install
     const Path destPath = pluginPath(name);
-    const Path backupPath = destPath + ".bak";
+    const Path backupPath = destPath + u".bak";
     bool updated = false;
     if (destPath.exists())
     {

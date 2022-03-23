@@ -45,7 +45,7 @@
 #include "ui_torrentoptionsdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "TorrentOptionsDialog/" name
+#define SETTINGS_KEY(name) u"TorrentOptionsDialog/" name
 
 namespace
 {
@@ -62,7 +62,7 @@ namespace
 TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTorrent::Torrent *> &torrents)
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
-    , m_storeDialogSize {SETTINGS_KEY("Size")}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
     , m_currentCategoriesString {QString::fromLatin1("--%1--").arg(tr("Currently used categories"))}
 {
     Q_ASSERT(!torrents.empty());

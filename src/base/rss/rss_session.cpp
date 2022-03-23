@@ -58,9 +58,9 @@ using namespace RSS;
 QPointer<Session> Session::m_instance = nullptr;
 
 Session::Session()
-    : m_storeProcessingEnabled("RSS/Session/EnableProcessing")
-    , m_storeRefreshInterval("RSS/Session/RefreshInterval", 30)
-    , m_storeMaxArticlesPerFeed("RSS/Session/MaxArticlesPerFeed", 50)
+    : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_qs)
+    , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_qs, 30)
+    , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_qs, 50)
     , m_workingThread(new QThread(this))
 {
     Q_ASSERT(!m_instance); // only one instance is allowed

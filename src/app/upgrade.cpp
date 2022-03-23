@@ -45,7 +45,7 @@
 namespace
 {
     const int MIGRATION_VERSION = 3;
-    const char MIGRATION_VERSION_KEY[] = "Meta/MigrationVersion";
+    const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_qs;
 
     void exportWebUIHttpsFiles()
     {
@@ -400,7 +400,7 @@ bool upgrade(const bool /*ask*/)
 
 void setCurrentMigrationVersion()
 {
-    SettingsStorage::instance()->storeValue(QString::fromLatin1(MIGRATION_VERSION_KEY), MIGRATION_VERSION);
+    SettingsStorage::instance()->storeValue(MIGRATION_VERSION_KEY, MIGRATION_VERSION);
 }
 
 void handleChangedDefaults(const DefaultPreferencesMode mode)
