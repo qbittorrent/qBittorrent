@@ -61,7 +61,6 @@
 #include <QDBusInterface>
 #endif
 
-#include "base/path.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -510,13 +509,13 @@ QString Utils::Misc::zlibVersionString()
 }
 
 #ifdef Q_OS_WIN
-QString Utils::Misc::windowsSystemPath()
+Path Utils::Misc::windowsSystemPath()
 {
-    static const QString path = []() -> QString
+    static const Path path = []() -> Path
     {
         WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return QString::fromWCharArray(systemPath);
+        return Path(QString::fromWCharArray(systemPath));
     }();
     return path;
 }
