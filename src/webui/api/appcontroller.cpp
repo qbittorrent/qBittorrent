@@ -303,6 +303,8 @@ void AppController::preferencesAction()
     data[u"save_resume_data_interval"_qs] = session->saveResumeDataInterval();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_qs] = pref->recheckTorrentsOnCompletion();
+    // Refresh interval
+    data[u"refresh_interval"_qs] = session->refreshInterval();
     // Resolve peer countries
     data[u"resolve_peer_countries"_qs] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
@@ -786,6 +788,9 @@ void AppController::setPreferencesAction()
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_qs))
         pref->recheckTorrentsOnCompletion(it.value().toBool());
+    // Refresh interval
+    if (hasKey(u"refresh_interval"_qs))
+        session->setRefreshInterval(it.value().toInt());
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_qs))
         pref->resolvePeerCountries(it.value().toBool());

@@ -624,12 +624,13 @@ void AdvancedSettings::loadAdvancedSettings()
     // Recheck completed torrents
     m_checkBoxRecheckCompleted.setChecked(pref->recheckTorrentsOnCompletion());
     addRow(RECHECK_COMPLETED, tr("Recheck torrents on completion"), &m_checkBoxRecheckCompleted);
-    // Transfer list refresh interval
+    // Refresh interval
     m_spinBoxListRefresh.setMinimum(30);
     m_spinBoxListRefresh.setMaximum(99999);
     m_spinBoxListRefresh.setValue(session->refreshInterval());
     m_spinBoxListRefresh.setSuffix(tr(" ms", " milliseconds"));
-    addRow(LIST_REFRESH, tr("Transfer list refresh interval"), &m_spinBoxListRefresh);
+    m_spinBoxListRefresh.setToolTip(tr("It controls the internal state update interval which in turn will affect UI updates"));
+    addRow(LIST_REFRESH, tr("Refresh interval"), &m_spinBoxListRefresh);
     // Resolve Peer countries
     m_checkBoxResolveCountries.setChecked(pref->resolvePeerCountries());
     addRow(RESOLVE_COUNTRIES, tr("Resolve peer countries"), &m_checkBoxResolveCountries);
