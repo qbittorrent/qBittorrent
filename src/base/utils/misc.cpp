@@ -31,6 +31,8 @@
 #include <optional>
 
 #ifdef Q_OS_WIN
+#include <memory>
+
 #include <windows.h>
 #include <powrprof.h>
 #include <Shlobj.h>
@@ -61,7 +63,6 @@
 #include <QDBusInterface>
 #endif
 
-#include "base/path.h"
 #include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
@@ -394,7 +395,7 @@ QString Utils::Misc::getUserIDString()
     const int UNLEN = 256;
     WCHAR buffer[UNLEN + 1] = {0};
     DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
-    if (GetUserNameW(buffer, &buffer_len))
+    if (::GetUserNameW(buffer, &buffer_len))
         uid = QString::fromWCharArray(buffer);
 #else
     uid = QString::number(getuid());
@@ -510,13 +511,13 @@ QString Utils::Misc::zlibVersionString()
 }
 
 #ifdef Q_OS_WIN
-QString Utils::Misc::windowsSystemPath()
+Path Utils::Misc::windowsSystemPath()
 {
-    static const QString path = []() -> QString
+    static const Path path = []() -> Path
     {
         WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return QString::fromWCharArray(systemPath);
+        return Path(QString::fromWCharArray(systemPath));
     }();
     return path;
 }
