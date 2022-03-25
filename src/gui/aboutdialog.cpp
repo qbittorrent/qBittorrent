@@ -100,11 +100,24 @@ AboutDialog::AboutDialog(QWidget *parent)
     }
 
     // Software Used
-    m_ui->labelQtVer->setText(QStringLiteral(QT_VERSION_STR));
-    m_ui->labelLibtVer->setText(Utils::Misc::libtorrentVersionString());
-    m_ui->labelBoostVer->setText(Utils::Misc::boostVersionString());
-    m_ui->labelOpensslVer->setText(Utils::Misc::opensslVersionString());
-    m_ui->labelZlibVer->setText(Utils::Misc::zlibVersionString());
+    const QString softwareUsedText = u"<center><p>"
+                                     u"%1%2<br>"
+                                     u"%3%4<br>"
+                                     u"%5%6<br>"
+                                     u"%7%8<br>"
+                                     u"%9%10"
+                                     u"</p></center>"_qs
+                                     .arg(tr("Qt: ")
+                                         , QStringLiteral(QT_VERSION_STR)
+                                         , tr("Libtorrent: ")
+                                         , Utils::Misc::libtorrentVersionString()
+                                         , tr("Boost: ")
+                                         , Utils::Misc::boostVersionString()
+                                         , tr("OpenSSL: ")
+                                         , Utils::Misc::opensslVersionString()
+                                         , tr("zlib: ")
+                                         , Utils::Misc::zlibVersionString());
+    m_ui->labelSoftwareUsedText->setText(softwareUsedText);
 
     const QString DBIPText = u"<html><head/><body><p>"
                              u"%1 (<a href=\"https://db-ip.com/\">https://db-ip.com/</a>)"
