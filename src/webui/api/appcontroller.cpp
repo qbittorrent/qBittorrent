@@ -63,7 +63,7 @@
 
 void AppController::webapiVersionAction()
 {
-    setResult(static_cast<QString>(API_VERSION));
+    setResult(API_VERSION.toString());
 }
 
 void AppController::versionAction()

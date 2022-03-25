@@ -388,7 +388,7 @@ QJsonArray SearchController::getPluginsInfo(const QStringList &plugins) const
         pluginsArray << QJsonObject
         {
             {u"name"_qs, pluginInfo->name},
-            {u"version"_qs, QString(pluginInfo->version)},
+            {u"version"_qs, pluginInfo->version.toString()},
             {u"fullName"_qs, pluginInfo->fullName},
             {u"url"_qs, pluginInfo->url},
             {u"supportedCategories"_qs, getPluginCategories(pluginInfo->supportedCategories)},

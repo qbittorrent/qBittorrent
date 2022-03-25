@@ -232,7 +232,7 @@ void SearchPluginManager::installPlugin_impl(const QString &name, const Path &pa
     const PluginInfo *plugin = pluginInfo(name);
     if (plugin && !(plugin->version < newVersion))
     {
-        LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version, newVersion), Log::INFO);
+        LogMsg(tr("Plugin already at version %1, which is greater than %2").arg(plugin->version.toString(), newVersion.toString()), Log::INFO);
         emit pluginUpdateFailed(name, tr("A more recent version of this plugin is already installed."));
         return;
     }
@@ -536,7 +536,7 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         ++numCorrectData;
         if (isUpdateNeeded(pluginName, version))
         {
-            LogMsg(tr("Plugin \"%1\" is outdated, updating to version %2").arg(pluginName, version), Log::INFO);
+            LogMsg(tr("Plugin \"%1\" is outdated, updating to version %2").arg(pluginName, version.toString()), Log::INFO);
             updateInfo[pluginName] = version;
         }
     }

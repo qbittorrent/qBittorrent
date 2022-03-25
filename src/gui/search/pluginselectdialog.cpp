@@ -315,7 +315,7 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
                     DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
                     , this, &PluginSelectDialog::iconDownloadFinished);
     }
-    item->setText(PLUGIN_VERSION, plugin->version);
+    item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
 
 void PluginSelectDialog::startAsyncOp()
@@ -483,7 +483,7 @@ void PluginSelectDialog::pluginUpdated(const QString &name)
     finishAsyncOp();
     PluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
-    item->setText(PLUGIN_VERSION, version);
+    item->setText(PLUGIN_VERSION, version.toString());
     m_updatedPlugins.append(name);
     finishPluginUpdate();
 }
