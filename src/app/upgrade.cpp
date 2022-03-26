@@ -74,18 +74,18 @@ namespace
         };
 
         const Path configPath = specialFolderLocation(SpecialFolder::Config);
-        migrate(QLatin1String("Preferences/WebUI/HTTPS/Certificate")
-            , QLatin1String("Preferences/WebUI/HTTPS/CertificatePath")
+        migrate(u"Preferences/WebUI/HTTPS/Certificate"_qs
+            , u"Preferences/WebUI/HTTPS/CertificatePath"_qs
             , (configPath / Path(u"WebUICertificate.crt"_qs)));
-        migrate(QLatin1String("Preferences/WebUI/HTTPS/Key")
-            , QLatin1String("Preferences/WebUI/HTTPS/KeyPath")
+        migrate(u"Preferences/WebUI/HTTPS/Key"_qs
+            , u"Preferences/WebUI/HTTPS/KeyPath"_qs
             , (configPath / Path(u"WebUIPrivateKey.pem"_qs)));
     }
 
     void upgradeTorrentContentLayout()
     {
-        const QString oldKey {QLatin1String {"BitTorrent/Session/CreateTorrentSubfolder"}};
-        const QString newKey {QLatin1String {"BitTorrent/Session/TorrentContentLayout"}};
+        const QString oldKey = u"BitTorrent/Session/CreateTorrentSubfolder"_qs;
+        const QString newKey = u"BitTorrent/Session/TorrentContentLayout"_qs;
 
         SettingsStorage *settingsStorage {SettingsStorage::instance()};
         const auto oldData {settingsStorage->loadValue<QVariant>(oldKey)};
@@ -104,8 +104,8 @@ namespace
 
     void upgradeListenPortSettings()
     {
-        const auto oldKey = QString::fromLatin1("BitTorrent/Session/UseRandomPort");
-        const auto newKey = QString::fromLatin1("Preferences/Connection/PortRangeMin");
+        const auto oldKey = u"BitTorrent/Session/UseRandomPort"_qs;
+        const auto newKey = u"Preferences/Connection/PortRangeMin"_qs;
         auto *settingsStorage = SettingsStorage::instance();
 
         if (settingsStorage->hasKey(oldKey))
@@ -120,7 +120,7 @@ namespace
     void upgradeSchedulerDaysSettings()
     {
         auto *settingsStorage = SettingsStorage::instance();
-        const auto key = QString::fromLatin1("Preferences/Scheduler/days");
+        const auto key = u"Preferences/Scheduler/days"_qs;
         const auto value = settingsStorage->loadValue<QString>(key);
 
         bool ok = false;
@@ -172,7 +172,7 @@ namespace
     void upgradeDNSServiceSettings()
     {
         auto *settingsStorage = SettingsStorage::instance();
-        const auto key = QString::fromLatin1("Preferences/DynDNS/Service");
+        const auto key = u"Preferences/DynDNS/Service"_qs;
         const auto value = settingsStorage->loadValue<QString>(key);
 
         bool ok = false;
@@ -203,7 +203,7 @@ namespace
     void upgradeTrayIconStyleSettings()
     {
         auto *settingsStorage = SettingsStorage::instance();
-        const auto key = QString::fromLatin1("Preferences/Advanced/TrayIconStyle");
+        const auto key = u"Preferences/Advanced/TrayIconStyle"_qs;
         const auto value = settingsStorage->loadValue<QString>(key);
 
         bool ok = false;
@@ -332,7 +332,7 @@ namespace
     void migrateProxySettingsEnum()
     {
         auto *settingsStorage = SettingsStorage::instance();
-        const auto key = QString::fromLatin1("Network/Proxy/Type");
+        const auto key = u"Network/Proxy/Type"_qs;
         const auto value = settingsStorage->loadValue<QString>(key);
 
         bool ok = false;
@@ -400,7 +400,7 @@ bool upgrade(const bool /*ask*/)
 
 void setCurrentMigrationVersion()
 {
-    SettingsStorage::instance()->storeValue(QLatin1String(MIGRATION_VERSION_KEY), MIGRATION_VERSION);
+    SettingsStorage::instance()->storeValue(QString::fromLatin1(MIGRATION_VERSION_KEY), MIGRATION_VERSION);
 }
 
 void handleChangedDefaults(const DefaultPreferencesMode mode)
@@ -414,7 +414,7 @@ void handleChangedDefaults(const DefaultPreferencesMode mode)
 
     const DefaultValue changedDefaults[] =
     {
-        {QLatin1String {"BitTorrent/Session/QueueingSystemEnabled"}, true, false}
+        {u"BitTorrent/Session/QueueingSystemEnabled"_qs, true, false}
     };
 
     auto *settingsStorage = SettingsStorage::instance();

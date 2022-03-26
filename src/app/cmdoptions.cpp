@@ -67,12 +67,12 @@ namespace
 
         QString fullParameter() const
         {
-            return QLatin1String("--") + QLatin1String(m_name);
+            return u"--" + QString::fromLatin1(m_name);
         }
 
         QString shortcutParameter() const
         {
-            return QLatin1String("-") + QLatin1Char(m_shortcut);
+            return u"-" + QChar::fromLatin1(m_shortcut);
         }
 
         bool hasShortcut() const
@@ -82,8 +82,8 @@ namespace
 
         QString envVarName() const
         {
-            return QLatin1String("QBT_")
-                   + QString::fromLatin1(m_name).toUpper().replace(QLatin1Char('-'), QLatin1Char('_'));
+            return u"QBT_"
+                   + QString::fromLatin1(m_name).toUpper().replace(u'-', u'_');
         }
 
     public:
@@ -121,14 +121,14 @@ namespace
         {
             QString val = env.value(envVarName());
             // we accept "1" and "true" (upper or lower cased) as boolean 'true' values
-            return ((val == QLatin1String("1")) || (val.toUpper() == QLatin1String("TRUE")));
+            return ((val == u"1") || (val.toUpper() == u"TRUE"));
         }
 
         QString usage() const
         {
             QString res;
             if (hasShortcut())
-                res += shortcutParameter() + QLatin1String(" | ");
+                res += shortcutParameter() + u" | ";
             res += fullParameter();
             return padUsageText(res);
         }
@@ -155,29 +155,29 @@ namespace
 
         QString value(const QString &arg) const
         {
-            QStringList parts = arg.split(QLatin1Char('='));
+            QStringList parts = arg.split(u'=');
             if (parts.size() == 2)
-                return Utils::String::unquote(parts[1], QLatin1String("'\""));
+                return Utils::String::unquote(parts[1], u"'\""_qs);
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--webui-port' must follow syntax '--webui-port=value'")
-                                            .arg(fullParameter(), QLatin1String("<value>")));
+                                            .arg(fullParameter(), u"<value>"_qs));
         }
 
         QString value(const QProcessEnvironment &env, const QString &defaultValue = {}) const
         {
             QString val = env.value(envVarName());
-            return val.isEmpty() ? defaultValue : Utils::String::unquote(val, QLatin1String("'\""));
+            return val.isEmpty() ? defaultValue : Utils::String::unquote(val, u"'\""_qs);
         }
 
         QString usage(const QString &valueName) const
         {
-            return padUsageText(parameterAssignment() + QLatin1Char('<') + valueName + QLatin1Char('>'));
+            return padUsageText(parameterAssignment() + u'<' + valueName + u'>');
         }
 
     private:
         QString parameterAssignment() const
         {
-            return fullParameter() + QLatin1Char('=');
+            return fullParameter() + u'=';
         }
     };
 
@@ -206,7 +206,7 @@ namespace
             if (!ok)
                 throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                             "e.g. Parameter '--webui-port' must follow syntax '--webui-port=<value>'")
-                                                .arg(fullParameter(), QLatin1String("<integer value>")));
+                                                .arg(fullParameter(), u"<integer value>"_qs));
             return res;
         }
 
@@ -245,18 +245,18 @@ namespace
 
         bool operator==(const QString &arg) const
         {
-            QStringList parts = arg.split(QLatin1Char('='));
+            QStringList parts = arg.split(u'=');
             return parts[0] == fullParameter();
         }
 
         QString usage() const
         {
-            return padUsageText(fullParameter() + QLatin1String("=<true|false>"));
+            return padUsageText(fullParameter() + u"=<true|false>");
         }
 
         std::optional<bool> value(const QString &arg) const
         {
-            QStringList parts = arg.split(QLatin1Char('='));
+            QStringList parts = arg.split(u'=');
 
             if (parts.size() == 1)
             {
@@ -266,11 +266,11 @@ namespace
             {
                 QString val = parts[1];
 
-                if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1")))
+                if ((val.toUpper() == u"TRUE") || (val == u"1"))
                 {
                     return true;
                 }
-                if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0")))
+                if ((val.toUpper() == u"FALSE") || (val == u"0"))
                 {
                     return false;
                 }
@@ -279,7 +279,7 @@ namespace
             throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                         "e.g. Parameter '--add-paused' must follow syntax "
                                                         "'--add-paused=<true|false>'")
-                                            .arg(fullParameter(), QLatin1String("<true|false>")));
+                                            .arg(fullParameter(), u"<true|false>"_qs));
         }
 
         std::optional<bool> value(const QProcessEnvironment &env) const
@@ -290,21 +290,21 @@ namespace
             {
                 return m_defaultValue;
             }
-            if (val == QLatin1String("-1"))
+            if (val == u"-1")
             {
                 return std::nullopt;
             }
-            if ((val.toUpper() == QLatin1String("TRUE")) || (val == QLatin1String("1")))
+            if ((val.toUpper() == u"TRUE") || (val == u"1"))
             {
                 return true;
             }
-            if ((val.toUpper() == QLatin1String("FALSE")) || (val == QLatin1String("0")))
+            if ((val.toUpper() == u"FALSE") || (val == u"0"))
             {
                 return false;
             }
 
             qDebug() << QObject::tr("Expected %1 in environment variable '%2', but got '%3'")
-                .arg(QLatin1String("true|false"), envVarName(), val);
+                .arg(u"true|false"_qs, envVarName(), val);
             return std::nullopt;
         }
 
@@ -372,25 +372,25 @@ QStringList QBtCommandLineParameters::paramList() const
     // torrent paths or URLs.
 
     if (!savePath.isEmpty())
-        result.append(QLatin1String("@savePath=") + savePath.data());
+        result.append(u"@savePath=" + savePath.data());
 
     if (addPaused.has_value())
-        result.append(*addPaused ? QLatin1String {"@addPaused=1"} : QLatin1String {"@addPaused=0"});
+        result.append(*addPaused ? u"@addPaused=1"_qs : u"@addPaused=0"_qs);
 
     if (skipChecking)
-        result.append(QLatin1String("@skipChecking"));
+        result.append(u"@skipChecking"_qs);
 
     if (!category.isEmpty())
-        result.append(QLatin1String("@category=") + category);
+        result.append(u"@category=" + category);
 
     if (sequential)
-        result.append(QLatin1String("@sequential"));
+        result.append(u"@sequential"_qs);
 
     if (firstLastPiecePriority)
-        result.append(QLatin1String("@firstLastPiecePriority"));
+        result.append(u"@firstLastPiecePriority"_qs);
 
     if (skipDialog.has_value())
-        result.append(*skipDialog ? QLatin1String {"@skipDialog=1"} : QLatin1String {"@skipDialog=0"});
+        result.append(*skipDialog ? u"@skipDialog=1"_qs : u"@skipDialog=0"_qs);
 
     result += torrents;
     return result;
@@ -423,7 +423,7 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 result.webUiPort = WEBUI_PORT_OPTION.value(arg);
                 if ((result.webUiPort < 1) || (result.webUiPort > 65535))
                     throw CommandLineParameterError(QObject::tr("%1 must specify a valid port (1 to 65535).")
-                                                    .arg(QLatin1String("--webui-port")));
+                                                    .arg(u"--webui-port"_qs));
             }
 #ifndef DISABLE_GUI
             else if (arg == NO_SPLASH_OPTION)
@@ -527,7 +527,7 @@ QString makeUsage(const QString &prgName)
     QString indentation = QString(USAGE_INDENTATION, u' ');
 
     stream << QObject::tr("Usage:") << '\n'
-        << indentation << prgName << QLatin1String(" [options] [(<filename> | <url>)...]") << '\n'
+        << indentation << prgName << u" [options] [(<filename> | <url>)...]"_qs << '\n'
 
         << QObject::tr("Options:") << '\n'
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
@@ -573,7 +573,7 @@ QString makeUsage(const QString &prgName)
                                 "'parameter-name', environment variable name is 'QBT_PARAMETER_NAME' (in upper "
                                 "case, '-' replaced with '_'). To pass flag values, set the variable to '1' or "
                                 "'TRUE'. For example, to disable the splash screen: "), 0) << "\n"
-        << QLatin1String("QBT_NO_SPLASH=1 ") << prgName << '\n'
+        << u"QBT_NO_SPLASH=1 "_qs << prgName << '\n'
         << wrapText(QObject::tr("Command line parameters take precedence over environment variables"), 0) << '\n';
 
     return text;

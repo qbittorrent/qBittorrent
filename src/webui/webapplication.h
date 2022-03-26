@@ -36,13 +36,14 @@
 #include <QSet>
 #include <QTranslator>
 
-#include "api/isessionmanager.h"
+#include "base/global.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
 #include "base/http/types.h"
 #include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
+#include "api/isessionmanager.h"
 
 inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 9};
 
@@ -127,7 +128,7 @@ private:
     QHash<QString, QString> m_params;
     const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
+    const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_qs};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;

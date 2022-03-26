@@ -50,8 +50,8 @@ using SearchHandlerDict = QMap<int, SearchHandlerPtr>;
 
 namespace
 {
-    const QLatin1String ACTIVE_SEARCHES("activeSearches");
-    const QLatin1String SEARCH_HANDLERS("searchHandlers");
+    const QString ACTIVE_SEARCHES = u"activeSearches"_qs;
+    const QString SEARCH_HANDLERS = u"searchHandlers"_qs;
 
     void removeActiveSearch(ISession *session, const int id)
     {
@@ -72,8 +72,8 @@ namespace
     {
         QJsonArray categoriesInfo
         {QJsonObject {
-            {QLatin1String("id"), u"all"_qs},
-            {QLatin1String("name"), SearchPluginManager::categoryFullName(u"all"_qs)}
+            {u"id"_qs, u"all"_qs},
+            {u"name"_qs, SearchPluginManager::categoryFullName(u"all"_qs)}
         }};
 
         categories.sort(Qt::CaseInsensitive);
@@ -81,8 +81,8 @@ namespace
         {
             categoriesInfo << QJsonObject
             {
-                {QLatin1String("id"), category},
-                {QLatin1String("name"), SearchPluginManager::categoryFullName(category)}
+                {u"id"_qs, category},
+                {u"name"_qs, SearchPluginManager::categoryFullName(category)}
             };
         }
 

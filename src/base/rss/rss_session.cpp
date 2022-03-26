@@ -49,9 +49,9 @@
 #include "rss_item.h"
 
 const int MsecsPerMin = 60000;
-const QString CONF_FOLDER_NAME(QStringLiteral("rss"));
-const QString DATA_FOLDER_NAME(QStringLiteral("rss/articles"));
-const QString FEEDS_FILE_NAME(QStringLiteral("feeds.json"));
+const QString CONF_FOLDER_NAME = u"rss"_qs;
+const QString DATA_FOLDER_NAME = u"rss/articles"_qs;
+const QString FEEDS_FILE_NAME = u"feeds.json"_qs;
 
 using namespace RSS;
 
@@ -326,7 +326,7 @@ void Session::loadFolder(const QJsonObject &jsonObj, Folder *folder)
         else
         {
             LogMsg(tr("Couldn't load RSS item. Item: \"%1\". Invalid data format.")
-                   .arg(QString::fromLatin1("%1\\%2").arg(folder->path(), key)), Log::WARNING);
+                   .arg(u"%1\\%2"_qs.arg(folder->path(), key)), Log::WARNING);
         }
     }
 
@@ -347,7 +347,7 @@ void Session::loadLegacy()
     uint i = 0;
     for (QString legacyPath : legacyFeedPaths)
     {
-        if (Item::PathSeparator == QString(legacyPath[0]))
+        if (Item::PathSeparator == legacyPath[0])
             legacyPath.remove(0, 1);
         const QString parentFolderPath = Item::parentPath(legacyPath);
         const QString feedUrl = Item::relativeName(legacyPath);

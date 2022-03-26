@@ -64,7 +64,7 @@ namespace
         for (const Path &dir : asConst(dirs))
         {
             // python 3: remove "__pycache__" folders
-            if (dir.filename() == QLatin1String("__pycache__"))
+            if (dir.filename() == u"__pycache__")
             {
                 Utils::Fs::removeDirRecursively(dir);
                 continue;
@@ -75,7 +75,7 @@ namespace
             for (const QString &file : files)
             {
                 const Path path {file};
-                if (path.hasExtension(QLatin1String(".pyc")))
+                if (path.hasExtension(u".pyc"_qs))
                     Utils::Fs::removeFile(path);
             }
         }
@@ -85,7 +85,7 @@ namespace
 QPointer<SearchPluginManager> SearchPluginManager::m_instance = nullptr;
 
 SearchPluginManager::SearchPluginManager()
-    : m_updateUrl(QLatin1String("http://searchplugins.qbittorrent.org/nova3/engines/"))
+    : m_updateUrl(u"http://searchplugins.qbittorrent.org/nova3/engines/"_qs)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
@@ -195,7 +195,7 @@ void SearchPluginManager::enablePlugin(const QString &name, const bool enabled)
 // Updates shipped plugin
 void SearchPluginManager::updatePlugin(const QString &name)
 {
-    installPlugin(QString::fromLatin1("%1%2.py").arg(m_updateUrl, name));
+    installPlugin(u"%1%2.py"_qs.arg(m_updateUrl, name));
 }
 
 // Install or update plugin from file or url
@@ -289,7 +289,7 @@ bool SearchPluginManager::uninstallPlugin(const QString &name)
 
     // remove it from hard drive
     const Path pluginsPath = pluginsLocation();
-    const QStringList filters {name + QLatin1String(".*")};
+    const QStringList filters {name + u".*"};
     const QStringList files = QDir(pluginsPath.data()).entryList(filters, QDir::Files, QDir::Unsorted);
     for (const QString &file : files)
         Utils::Fs::removeFile(pluginsPath / Path(file));
@@ -305,14 +305,14 @@ void SearchPluginManager::updateIconPath(PluginInfo *const plugin)
     if (!plugin) return;
 
     const Path pluginsPath = pluginsLocation();
-    Path iconPath = pluginsPath / Path(plugin->name + QLatin1String(".png"));
+    Path iconPath = pluginsPath / Path(plugin->name + u".png");
     if (iconPath.exists())
     {
         plugin->iconPath = iconPath;
     }
     else
     {
-        iconPath = pluginsPath / Path(plugin->name + QLatin1String(".ico"));
+        iconPath = pluginsPath / Path(plugin->name + u".ico");
         if (iconPath.exists())
             plugin->iconPath = iconPath;
     }
@@ -452,7 +452,7 @@ void SearchPluginManager::update()
     QProcess nova;
     nova.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
 
-    const QStringList params {(engineLocation() / Path(u"/nova2.py"_qs)).toString(), QLatin1String("--capabilities")};
+    const QStringList params {(engineLocation() / Path(u"/nova2.py"_qs)).toString(), u"--capabilities"_qs};
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 
@@ -563,7 +563,7 @@ bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const Plugin
 
 Path SearchPluginManager::pluginPath(const QString &name)
 {
-    return (pluginsLocation() / Path(name + QLatin1String(".py")));
+    return (pluginsLocation() / Path(name + u".py"));
 }
 
 PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)

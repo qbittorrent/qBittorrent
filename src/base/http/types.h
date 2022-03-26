@@ -123,7 +123,7 @@ namespace Http
         HeaderMap headers;
         QByteArray content;
 
-        Response(uint code = 200, const QString &text = QLatin1String("OK"))
+        Response(uint code = 200, const QString &text = u"OK"_qs)
             : status {code, text}
         {
         }

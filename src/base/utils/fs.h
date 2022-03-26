@@ -35,6 +35,7 @@
 
 #include <QString>
 
+#include "base/global.h"
 #include "base/pathfwd.h"
 
 class QDateTime;
@@ -52,8 +53,8 @@ namespace Utils::Fs
     QDateTime lastModified(const Path &path);
     bool sameFiles(const Path &path1, const Path &path2);
 
-    QString toValidFileName(const QString &name, const QString &pad = QLatin1String(" "));
-    Path toValidPath(const QString &name, const QString &pad = QLatin1String(" "));
+    QString toValidFileName(const QString &name, const QString &pad = u" "_qs);
+    Path toValidPath(const QString &name, const QString &pad = u" "_qs);
     Path toCanonicalPath(const Path &path);
 
     bool copyFile(const Path &from, const Path &to);

@@ -60,7 +60,7 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     m_config.type = m_storeProxyType.get(ProxyType::None);
     if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
         m_config.type = ProxyType::None;
-    m_config.ip = m_storeProxyIP.get(QLatin1String("0.0.0.0"));
+    m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_qs);
     m_config.port = m_storeProxyPort.get(8080);
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
@@ -130,17 +130,17 @@ void ProxyConfigurationManager::configureProxy()
         switch (m_config.type)
         {
         case ProxyType::HTTP_PW:
-            proxyStrHTTP = QString::fromLatin1("http://%1:%2@%3:%4").arg(m_config.username
+            proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(m_config.username
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::HTTP:
-            proxyStrHTTP = QString::fromLatin1("http://%1:%2").arg(m_config.ip, QString::number(m_config.port));
+            proxyStrHTTP = u"http://%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5:
-            proxyStrSOCK = QString::fromLatin1("%1:%2").arg(m_config.ip, QString::number(m_config.port));
+            proxyStrSOCK = u"%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
             break;
         case ProxyType::SOCKS5_PW:
-            proxyStrSOCK = QString::fromLatin1("%1:%2@%3:%4").arg(m_config.username
+            proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(m_config.username
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
         default:

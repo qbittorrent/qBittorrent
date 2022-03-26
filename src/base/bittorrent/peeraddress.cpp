@@ -36,9 +36,9 @@ PeerAddress PeerAddress::parse(const QStringView address)
 {
     QList<QStringView> ipPort;
 
-    if (address.startsWith(u'[') && address.contains(QLatin1String("]:")))
+    if (address.startsWith(u'[') && address.contains(u"]:"))
     {  // IPv6
-        ipPort = address.split(QString::fromLatin1("]:"));
+        ipPort = address.split(u"]:");
         ipPort[0] = ipPort[0].mid(1);  // chop '['
     }
     else if (address.contains(u':'))

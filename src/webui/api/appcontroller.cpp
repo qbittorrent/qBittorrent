@@ -637,7 +637,7 @@ void AppController::setPreferencesAction()
         if (pref->getLocale() != locale)
         {
             auto *translator = new QTranslator;
-            if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale))
+            if (translator->load(u":/lang/qbittorrent_"_qs + locale))
             {
                 qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
             }

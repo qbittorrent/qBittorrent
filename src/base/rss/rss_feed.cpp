@@ -51,13 +51,13 @@
 #include "rss_parser.h"
 #include "rss_session.h"
 
-const QString KEY_UID(QStringLiteral("uid"));
-const QString KEY_URL(QStringLiteral("url"));
-const QString KEY_TITLE(QStringLiteral("title"));
-const QString KEY_LASTBUILDDATE(QStringLiteral("lastBuildDate"));
-const QString KEY_ISLOADING(QStringLiteral("isLoading"));
-const QString KEY_HASERROR(QStringLiteral("hasError"));
-const QString KEY_ARTICLES(QStringLiteral("articles"));
+const QString KEY_UID = u"uid"_qs;
+const QString KEY_URL = u"url"_qs;
+const QString KEY_TITLE = u"title"_qs;
+const QString KEY_LASTBUILDDATE = u"lastBuildDate"_qs;
+const QString KEY_ISLOADING = u"isLoading"_qs;
+const QString KEY_HASERROR = u"hasError"_qs;
+const QString KEY_ARTICLES = u"articles"_qs;
 
 using namespace RSS;
 
@@ -68,16 +68,16 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     , m_url(url)
 {
     const auto uidHex = QString::fromLatin1(m_uid.toRfc4122().toHex());
-    m_dataFileName = Path(uidHex + QLatin1String(".json"));
+    m_dataFileName = Path(uidHex + u".json");
 
     // Move to new file naming scheme (since v4.1.2)
-    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, QLatin1String("_")) + QLatin1String(".json");
+    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, u"_"_qs) + u".json";
     const Path storageDir = m_session->dataFileStorage()->storageDir();
     const Path dataFilePath = storageDir / m_dataFileName;
     if (!dataFilePath.exists())
         Utils::Fs::renameFile((storageDir / Path(legacyFilename)), dataFilePath);
 
-    m_iconPath = storageDir / Path(uidHex + QLatin1String(".ico"));
+    m_iconPath = storageDir / Path(uidHex + u".ico");
 
     m_parser = new Private::Parser(m_lastBuildDate);
     m_parser->moveToThread(m_session->workingThread());
@@ -323,16 +323,16 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
+    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(u"qBittorrent-rss-feeds"_qs);
     const QVariantHash allOldItems = qBTRSSFeeds->value(u"old_items"_qs).toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList()))
     {
         auto hash = var.toHash();
         // update legacy keys
-        hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));
-        hash[Article::KeyTorrentURL] = hash.take(QLatin1String("torrent_url"));
-        hash[Article::KeyIsRead] = hash.take(QLatin1String("read"));
+        hash[Article::KeyLink] = hash.take(u"news_link"_qs);
+        hash[Article::KeyTorrentURL] = hash.take(u"torrent_url"_qs);
+        hash[Article::KeyIsRead] = hash.take(u"read"_qs);
         try
         {
             auto article = new Article(this, hash);
@@ -425,7 +425,7 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    const auto iconUrl = u"%1://%2/favicon.ico"_qs.arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
                 , this, &Feed::handleIconDownloadFinished);

@@ -399,8 +399,8 @@ namespace
         {
             // Check that if date has '-' separators, both separators are '-'.
             parts = rxMatch.capturedTexts();
-            const bool h1 = (parts[3] == QLatin1String("-"));
-            const bool h2 = (parts[5] == QLatin1String("-"));
+            const bool h1 = (parts[3] == u"-");
+            const bool h2 = (parts[5] == u"-");
             if (h1 != h2)
                 return QDateTime::currentDateTime();
         }
@@ -476,7 +476,7 @@ namespace
                 if (!ok[0] || !ok[1] || offsetMin > 59)
                     return {};
                 offset += offsetMin * 60;
-                negOffset = (parts[1] == QLatin1String("-"));
+                negOffset = (parts[1] == u"-");
                 if (negOffset)
                     offset = -offset;
             }
@@ -564,12 +564,12 @@ void Parser::parse_impl(const QByteArray &feedData)
 
     while (xml.readNextStartElement())
     {
-        if (xml.name() == QLatin1String("rss"))
+        if (xml.name() == u"rss")
         {
             // Find channels
             while (xml.readNextStartElement())
             {
-                if (xml.name() == QLatin1String("channel"))
+                if (xml.name() == u"channel")
                 {
                     parseRSSChannel(xml);
                     foundChannel = true;
@@ -581,7 +581,7 @@ void Parser::parse_impl(const QByteArray &feedData)
             }
             break;
         }
-        if (xml.name() == QLatin1String("feed"))
+        if (xml.name() == u"feed")
         { // Atom feed
             parseAtomChannel(xml);
             foundChannel = true;
@@ -618,43 +618,43 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
         xml.readNext();
         const QString name(xml.name().toString());
 
-        if (xml.isEndElement() && (name == QLatin1String("item")))
+        if (xml.isEndElement() && (name == u"item"))
             break;
 
         if (xml.isStartElement())
         {
-            if (name == QLatin1String("title"))
+            if (name == u"title")
             {
                 article[Article::KeyTitle] = xml.readElementText().trimmed();
             }
-            else if (name == QLatin1String("enclosure"))
+            else if (name == u"enclosure")
             {
-                if (xml.attributes().value(u"type"_qs) == QLatin1String("application/x-bittorrent"))
-                    article[Article::KeyTorrentURL] = xml.attributes().value(QLatin1String("url")).toString();
+                if (xml.attributes().value(u"type"_qs) == u"application/x-bittorrent")
+                    article[Article::KeyTorrentURL] = xml.attributes().value(u"url"_qs).toString();
                 else if (xml.attributes().value(u"type"_qs).isEmpty())
-                    altTorrentUrl = xml.attributes().value(QLatin1String("url")).toString();
+                    altTorrentUrl = xml.attributes().value(u"url"_qs).toString();
             }
-            else if (name == QLatin1String("link"))
+            else if (name == u"link")
             {
                 const QString text {xml.readElementText().trimmed()};
-                if (text.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive))
+                if (text.startsWith(u"magnet:", Qt::CaseInsensitive))
                     article[Article::KeyTorrentURL] = text; // magnet link instead of a news URL
                 else
                     article[Article::KeyLink] = text;
             }
-            else if (name == QLatin1String("description"))
+            else if (name == u"description")
             {
                 article[Article::KeyDescription] = xml.readElementText(QXmlStreamReader::IncludeChildElements);
             }
-            else if (name == QLatin1String("pubDate"))
+            else if (name == u"pubDate")
             {
                 article[Article::KeyDate] = parseDate(xml.readElementText().trimmed());
             }
-            else if (name == QLatin1String("author"))
+            else if (name == u"author")
             {
                 article[Article::KeyAuthor] = xml.readElementText().trimmed();
             }
-            else if (name == QLatin1String("guid"))
+            else if (name == u"guid")
             {
                 article[Article::KeyId] = xml.readElementText().trimmed();
             }
@@ -679,11 +679,11 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
 
         if (xml.isStartElement())
         {
-            if (xml.name() == QLatin1String("title"))
+            if (xml.name() == u"title")
             {
                 m_result.title = xml.readElementText();
             }
-            else if (xml.name() == QLatin1String("lastBuildDate"))
+            else if (xml.name() == u"lastBuildDate")
             {
                 const QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty())
@@ -696,7 +696,7 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
                     m_result.lastBuildDate = lastBuildDate;
                 }
             }
-            else if (xml.name() == QLatin1String("item"))
+            else if (xml.name() == u"item")
             {
                 parseRssArticle(xml);
             }
@@ -714,22 +714,22 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
         xml.readNext();
         const QString name(xml.name().toString());
 
-        if (xml.isEndElement() && (name == QLatin1String("entry")))
+        if (xml.isEndElement() && (name == u"entry"))
             break;
 
         if (xml.isStartElement())
         {
-            if (name == QLatin1String("title"))
+            if (name == u"title")
             {
                 article[Article::KeyTitle] = xml.readElementText().trimmed();
             }
-            else if (name == QLatin1String("link"))
+            else if (name == u"link")
             {
                 const QString link = (xml.attributes().isEmpty()
                                 ? xml.readElementText().trimmed()
-                                : xml.attributes().value(QLatin1String("href")).toString());
+                                : xml.attributes().value(u"href"_qs).toString());
 
-                if (link.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive))
+                if (link.startsWith(u"magnet:", Qt::CaseInsensitive))
                     article[Article::KeyTorrentURL] = link; // magnet link instead of a news URL
                 else
                     // Atom feeds can have relative links, work around this and
@@ -738,7 +738,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                     article[Article::KeyLink] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
 
             }
-            else if ((name == QLatin1String("summary")) || (name == QLatin1String("content")))
+            else if ((name == u"summary") || (name == u"content"))
             {
                 if (doubleContent)
                 { // Duplicate content -> ignore
@@ -755,23 +755,23 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
                     doubleContent = true;
                 }
             }
-            else if (name == QLatin1String("updated"))
+            else if (name == u"updated")
             {
                 // ATOM uses standard compliant date, don't do fancy stuff
                 const QDateTime articleDate = QDateTime::fromString(xml.readElementText().trimmed(), Qt::ISODate);
                 article[Article::KeyDate] = (articleDate.isValid() ? articleDate : QDateTime::currentDateTime());
             }
-            else if (name == QLatin1String("author"))
+            else if (name == u"author")
             {
                 while (xml.readNextStartElement())
                 {
-                    if (xml.name() == QLatin1String("name"))
+                    if (xml.name() == u"name")
                         article[Article::KeyAuthor] = xml.readElementText().trimmed();
                     else
                         xml.skipCurrentElement();
                 }
             }
-            else if (name == QLatin1String("id"))
+            else if (name == u"id")
             {
                 article[Article::KeyId] = xml.readElementText().trimmed();
             }
@@ -795,11 +795,11 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
 
         if (xml.isStartElement())
         {
-            if (xml.name() == QLatin1String("title"))
+            if (xml.name() == u"title")
             {
                 m_result.title = xml.readElementText();
             }
-            else if (xml.name() == QLatin1String("updated"))
+            else if (xml.name() == u"updated")
             {
                 const QString lastBuildDate = xml.readElementText();
                 if (!lastBuildDate.isEmpty())
@@ -812,7 +812,7 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
                     m_result.lastBuildDate = lastBuildDate;
                 }
             }
-            else if (xml.name() == QLatin1String("entry"))
+            else if (xml.name() == u"entry")
             {
                 parseAtomArticle(xml);
             }

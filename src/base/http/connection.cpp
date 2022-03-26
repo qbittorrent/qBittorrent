@@ -176,11 +176,11 @@ bool Connection::acceptsGzipEncoding(QString codings)
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, QString::fromLatin1("gzip"));
+    const bool canGzip = isCodingAvailable(list, u"gzip"_qs);
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, QString::fromLatin1("*"));
+    const bool canAny = isCodingAvailable(list, u"*"_qs);
     if (canAny)
         return true;
 

@@ -80,7 +80,7 @@ Qt::HANDLE QtLockedFile::getMutexHandle(const int idx, const bool doCreate)
     if (m_mutexName.isEmpty())
     {
         QFileInfo fi(*this);
-        m_mutexName = QString::fromLatin1("QtLockedFile mutex ") + fi.absoluteFilePath().toLower();
+        m_mutexName = u"QtLockedFile mutex " + fi.absoluteFilePath().toLower();
     }
 
     QString mname = m_mutexName;

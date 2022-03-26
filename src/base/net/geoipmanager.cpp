@@ -43,7 +43,7 @@
 #include "downloadmanager.h"
 #include "geoipdatabase.h"
 
-const QString DATABASE_URL = QStringLiteral("https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz");
+const QString DATABASE_URL = u"https://download.db-ip.com/free/dbip-country-lite-%1.mmdb.gz"_qs;
 const QString GEODB_FOLDER = u"GeoDB"_qs;
 const QString GEODB_FILENAME = u"dbip-country-lite.mmdb"_qs;
 

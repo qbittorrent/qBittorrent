@@ -46,7 +46,7 @@ QString Private::Profile::configurationName() const
 
 QString Private::Profile::configurationSuffix() const
 {
-    return (m_configurationName.isEmpty() ? QString() : QLatin1Char('_') + m_configurationName);
+    return (m_configurationName.isEmpty() ? QString() : (u'_' + m_configurationName));
 }
 
 QString Private::Profile::profileName() const
@@ -172,11 +172,11 @@ SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) con
 {
     // here we force QSettings::IniFormat format always because we need it to be portable across platforms
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    const char CONF_FILE_EXTENSION[] = ".ini";
+    const auto CONF_FILE_EXTENSION = u".ini"_qs;
 #else
-    const char CONF_FILE_EXTENSION[] = ".conf";
+    const auto CONF_FILE_EXTENSION = u".conf"_qs;
 #endif
-    const Path settingsFilePath = configLocation() / Path(name + QLatin1String(CONF_FILE_EXTENSION));
+    const Path settingsFilePath = configLocation() / Path(name + CONF_FILE_EXTENSION);
     return SettingsPtr(new QSettings(settingsFilePath.data(), QSettings::IniFormat));
 }
 

@@ -186,33 +186,33 @@ namespace
         {
 #ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::http:
-            return QLatin1String("HTTP");
+            return u"HTTP"_qs;
         case lt::socket_type_t::http_ssl:
-            return QLatin1String("HTTP_SSL");
+            return u"HTTP_SSL"_qs;
 #endif
         case lt::socket_type_t::i2p:
-            return QLatin1String("I2P");
+            return u"I2P"_qs;
         case lt::socket_type_t::socks5:
-            return QLatin1String("SOCKS5");
+            return u"SOCKS5"_qs;
 #ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::socks5_ssl:
-            return QLatin1String("SOCKS5_SSL");
+            return u"SOCKS5_SSL"_qs;
 #endif
         case lt::socket_type_t::tcp:
-            return QLatin1String("TCP");
+            return u"TCP"_qs;
         case lt::socket_type_t::tcp_ssl:
-            return QLatin1String("TCP_SSL");
+            return u"TCP_SSL"_qs;
 #ifdef QBT_USES_LIBTORRENT2
         case lt::socket_type_t::utp:
-            return QLatin1String("UTP");
+            return u"UTP"_qs;
 #else
         case lt::socket_type_t::udp:
-            return QLatin1String("UDP");
+            return u"UDP"_qs;
 #endif
         case lt::socket_type_t::utp_ssl:
-            return QLatin1String("UTP_SSL");
+            return u"UTP_SSL"_qs;
         }
-        return QLatin1String("INVALID");
+        return u"INVALID"_qs;
     }
 
     QString toString(const lt::address &address)
@@ -1523,7 +1523,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 
             endpoints << ((isIPv6 ? (u'[' + ip + u']') : ip) + portString);
 
-            if ((ip != QLatin1String("0.0.0.0")) && (ip != QLatin1String("::")))
+            if ((ip != u"0.0.0.0") && (ip != u"::"))
                 outgoingInterfaces << ip;
         }
         else
@@ -1709,23 +1709,23 @@ void Session::processShareLimits()
 
                         if (m_maxRatioAction == Remove)
                         {
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Removed torrent."), torrentName));
                             deleteTorrent(torrent->id());
                         }
                         else if (m_maxRatioAction == DeleteFiles)
                         {
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Removed torrent and deleted its content."), torrentName));
                             deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
                         }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
                         {
                             torrent->pause();
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Torrent paused."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Torrent paused."), torrentName));
                         }
                         else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
                         {
                             torrent->setSuperSeeding(true);
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Super seeding enabled."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Super seeding enabled."), torrentName));
                         }
 
                         continue;
@@ -1752,23 +1752,23 @@ void Session::processShareLimits()
 
                         if (m_maxRatioAction == Remove)
                         {
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Removed torrent."), torrentName));
                             deleteTorrent(torrent->id());
                         }
                         else if (m_maxRatioAction == DeleteFiles)
                         {
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Removed torrent and deleted its content."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Removed torrent and deleted its content."), torrentName));
                             deleteTorrent(torrent->id(), DeleteTorrentAndFiles);
                         }
                         else if ((m_maxRatioAction == Pause) && !torrent->isPaused())
                         {
                             torrent->pause();
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Torrent paused."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Torrent paused."), torrentName));
                         }
                         else if ((m_maxRatioAction == EnableSuperSeeding) && !torrent->isPaused() && !torrent->superSeeding())
                         {
                             torrent->setSuperSeeding(true);
-                            LogMsg(QString::fromLatin1("%1 %2 %3").arg(description, tr("Super seeding enabled."), torrentName));
+                            LogMsg(u"%1 %2 %3"_qs.arg(description, tr("Super seeding enabled."), torrentName));
                         }
                     }
                 }
@@ -2448,13 +2448,13 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const Path &fold
         return;
 
     const QString validName = Utils::Fs::toValidFileName(baseName);
-    QString torrentExportFilename = QString::fromLatin1("%1.torrent").arg(validName);
+    QString torrentExportFilename = u"%1.torrent"_qs.arg(validName);
     Path newTorrentPath = folderPath / Path(torrentExportFilename);
     int counter = 0;
     while (newTorrentPath.exists())
     {
         // Append number to torrent name to make it unique
-        torrentExportFilename = QString::fromLatin1("%1 %2.torrent").arg(validName).arg(++counter);
+        torrentExportFilename = u"%1 %2.torrent"_qs.arg(validName).arg(++counter);
         newTorrentPath = folderPath / Path(torrentExportFilename);
     }
 
@@ -2626,8 +2626,8 @@ QStringList Session::getListeningIPs() const
     const QString ifaceName = networkInterface();
     const QString ifaceAddr = networkInterfaceAddress();
     const QHostAddress configuredAddr(ifaceAddr);
-    const bool allIPv4 = (ifaceAddr == QLatin1String("0.0.0.0")); // Means All IPv4 addresses
-    const bool allIPv6 = (ifaceAddr == QLatin1String("::")); // Means All IPv6 addresses
+    const bool allIPv4 = (ifaceAddr == u"0.0.0.0"); // Means All IPv4 addresses
+    const bool allIPv6 = (ifaceAddr == u"::"); // Means All IPv6 addresses
 
     if (!ifaceAddr.isEmpty() && !allIPv4 && !allIPv6 && configuredAddr.isNull())
     {
@@ -2643,13 +2643,13 @@ QStringList Session::getListeningIPs() const
     if (ifaceName.isEmpty())
     {
         if (ifaceAddr.isEmpty())
-            return {QLatin1String("0.0.0.0"), QLatin1String("::")}; // Indicates all interfaces + all addresses (aka default)
+            return {u"0.0.0.0"_qs, u"::"_qs}; // Indicates all interfaces + all addresses (aka default)
 
         if (allIPv4)
-            return {QLatin1String("0.0.0.0")};
+            return {u"0.0.0.0"_qs};
 
         if (allIPv6)
-            return {QLatin1String("::")};
+            return {u"::"_qs};
     }
 
     const auto checkAndAddIP = [allIPv4, allIPv6, &IPs](const QHostAddress &addr, const QHostAddress &match)
@@ -4160,7 +4160,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     // Check if there are torrent files inside
     for (const Path &torrentRelpath : asConst(torrent->filePaths()))
     {
-        if (torrentRelpath.hasExtension(QLatin1String(".torrent")))
+        if (torrentRelpath.hasExtension(u".torrent"_qs))
         {
             qDebug("Found possible recursive torrent download.");
             const Path torrentFullpath = torrent->actualStorageLocation() / torrentRelpath;
@@ -4458,7 +4458,7 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
 
     for (const Path &torrentRelpath : asConst(torrent->filePaths()))
     {
-        if (torrentRelpath.hasExtension(QLatin1String(".torrent")))
+        if (torrentRelpath.hasExtension(u".torrent"_qs))
         {
             LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
                 .arg(torrent->name(), torrentRelpath.toString()));

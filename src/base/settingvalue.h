@@ -39,7 +39,7 @@ class SettingValue
 {
 public:
     explicit SettingValue(const char *keyName)
-        : m_keyName {QLatin1String {keyName}}
+        : m_keyName {QString::fromLatin1(keyName)}
     {
     }
 

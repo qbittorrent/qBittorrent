@@ -66,25 +66,25 @@ using namespace std::chrono_literals;
 
 const std::chrono::duration WATCH_INTERVAL = 10s;
 const int MAX_FAILED_RETRIES = 5;
-const QString CONF_FILE_NAME {QStringLiteral("watched_folders.json")};
+const QString CONF_FILE_NAME = u"watched_folders.json"_qs;
 
-const QString OPTION_ADDTORRENTPARAMS {QStringLiteral("add_torrent_params")};
-const QString OPTION_RECURSIVE {QStringLiteral("recursive")};
+const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_qs;
+const QString OPTION_RECURSIVE = u"recursive"_qs;
 
-const QString PARAM_CATEGORY {QStringLiteral("category")};
-const QString PARAM_TAGS {QStringLiteral("tags")};
-const QString PARAM_SAVEPATH {QStringLiteral("save_path")};
-const QString PARAM_USEDOWNLOADPATH {QStringLiteral("use_download_path")};
-const QString PARAM_DOWNLOADPATH {QStringLiteral("download_path")};
-const QString PARAM_OPERATINGMODE {QStringLiteral("operating_mode")};
-const QString PARAM_STOPPED {QStringLiteral("stopped")};
-const QString PARAM_SKIPCHECKING {QStringLiteral("skip_checking")};
-const QString PARAM_CONTENTLAYOUT {QStringLiteral("content_layout")};
-const QString PARAM_AUTOTMM {QStringLiteral("use_auto_tmm")};
-const QString PARAM_UPLOADLIMIT {QStringLiteral("upload_limit")};
-const QString PARAM_DOWNLOADLIMIT {QStringLiteral("download_limit")};
-const QString PARAM_SEEDINGTIMELIMIT {QStringLiteral("seeding_time_limit")};
-const QString PARAM_RATIOLIMIT {QStringLiteral("ratio_limit")};
+const QString PARAM_CATEGORY = u"category"_qs;
+const QString PARAM_TAGS = u"tags"_qs;
+const QString PARAM_SAVEPATH = u"save_path"_qs;
+const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_qs;
+const QString PARAM_DOWNLOADPATH = u"download_path"_qs;
+const QString PARAM_OPERATINGMODE = u"operating_mode"_qs;
+const QString PARAM_STOPPED = u"stopped"_qs;
+const QString PARAM_SKIPCHECKING = u"skip_checking"_qs;
+const QString PARAM_CONTENTLAYOUT = u"content_layout"_qs;
+const QString PARAM_AUTOTMM = u"use_auto_tmm"_qs;
+const QString PARAM_UPLOADLIMIT = u"upload_limit"_qs;
+const QString PARAM_DOWNLOADLIMIT = u"download_limit"_qs;
+const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_qs;
+const QString PARAM_RATIOLIMIT = u"ratio_limit"_qs;
 
 namespace
 {
@@ -509,7 +509,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             if (useAutoTMM)
             {
                 addTorrentParams.category = addTorrentParams.category.isEmpty()
-                        ? subdirPath.data() : (addTorrentParams.category + QLatin1Char('/') + subdirPath.data());
+                        ? subdirPath.data() : (addTorrentParams.category + u'/' + subdirPath.data());
             }
             else
             {
@@ -517,7 +517,7 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             }
         }
 
-        if (filePath.hasExtension(QLatin1String(".magnet")))
+        if (filePath.hasExtension(u".magnet"_qs))
         {
             QFile file {filePath.data()};
             if (file.open(QIODevice::ReadOnly | QIODevice::Text))
@@ -587,7 +587,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
                     if (useAutoTMM)
                     {
                         addTorrentParams.category = addTorrentParams.category.isEmpty()
-                                ? subdirPath.data() : (addTorrentParams.category + QLatin1Char('/') + subdirPath.data());
+                                ? subdirPath.data() : (addTorrentParams.category + u'/' + subdirPath.data());
                     }
                     else
                     {

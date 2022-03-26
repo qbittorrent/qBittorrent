@@ -45,43 +45,43 @@ namespace
         switch (state)
         {
         case BitTorrent::TorrentState::Error:
-            return QLatin1String("error");
+            return u"error"_qs;
         case BitTorrent::TorrentState::MissingFiles:
-            return QLatin1String("missingFiles");
+            return u"missingFiles"_qs;
         case BitTorrent::TorrentState::Uploading:
-            return QLatin1String("uploading");
+            return u"uploading"_qs;
         case BitTorrent::TorrentState::PausedUploading:
-            return QLatin1String("pausedUP");
+            return u"pausedUP"_qs;
         case BitTorrent::TorrentState::QueuedUploading:
-            return QLatin1String("queuedUP");
+            return u"queuedUP"_qs;
         case BitTorrent::TorrentState::StalledUploading:
-            return QLatin1String("stalledUP");
+            return u"stalledUP"_qs;
         case BitTorrent::TorrentState::CheckingUploading:
-            return QLatin1String("checkingUP");
+            return u"checkingUP"_qs;
         case BitTorrent::TorrentState::ForcedUploading:
-            return QLatin1String("forcedUP");
+            return u"forcedUP"_qs;
         case BitTorrent::TorrentState::Downloading:
-            return QLatin1String("downloading");
+            return u"downloading"_qs;
         case BitTorrent::TorrentState::DownloadingMetadata:
-            return QLatin1String("metaDL");
+            return u"metaDL"_qs;
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-            return QLatin1String("forcedMetaDL");
+            return u"forcedMetaDL"_qs;
         case BitTorrent::TorrentState::PausedDownloading:
-            return QLatin1String("pausedDL");
+            return u"pausedDL"_qs;
         case BitTorrent::TorrentState::QueuedDownloading:
-            return QLatin1String("queuedDL");
+            return u"queuedDL"_qs;
         case BitTorrent::TorrentState::StalledDownloading:
-            return QLatin1String("stalledDL");
+            return u"stalledDL"_qs;
         case BitTorrent::TorrentState::CheckingDownloading:
-            return QLatin1String("checkingDL");
+            return u"checkingDL"_qs;
         case BitTorrent::TorrentState::ForcedDownloading:
-            return QLatin1String("forcedDL");
+            return u"forcedDL"_qs;
         case BitTorrent::TorrentState::CheckingResumeData:
-            return QLatin1String("checkingResumeData");
+            return u"checkingResumeData"_qs;
         case BitTorrent::TorrentState::Moving:
-            return QLatin1String("moving");
+            return u"moving"_qs;
         default:
-            return QLatin1String("unknown");
+            return u"unknown"_qs;
         }
     }
 }
@@ -128,7 +128,7 @@ QVariantMap serialize(const BitTorrent::Torrent &torrent)
         {KEY_TORRENT_FIRST_LAST_PIECE_PRIO, torrent.hasFirstLastPiecePriority()},
 
         {KEY_TORRENT_CATEGORY, torrent.category()},
-        {KEY_TORRENT_TAGS, torrent.tags().join(QLatin1String(", "))},
+        {KEY_TORRENT_TAGS, torrent.tags().join(u", "_qs)},
         {KEY_TORRENT_SUPER_SEEDING, torrent.superSeeding()},
         {KEY_TORRENT_FORCE_START, torrent.isForced()},
         {KEY_TORRENT_SAVE_PATH, torrent.savePath().toString()},

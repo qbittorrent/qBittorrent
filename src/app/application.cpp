@@ -104,10 +104,10 @@ namespace
 #define SETTINGS_KEY(name) "Application/" name
 #define FILELOGGER_SETTINGS_KEY(name) (SETTINGS_KEY("FileLogger/") name)
 
-    const QString LOG_FOLDER = QStringLiteral("logs");
-    const QChar PARAMS_SEPARATOR = QLatin1Char('|');
+    const QString LOG_FOLDER = u"logs"_qs;
+    const QChar PARAMS_SEPARATOR = u'|';
 
-    const Path DEFAULT_PORTABLE_MODE_PROFILE_DIR {QStringLiteral("profile")};
+    const Path DEFAULT_PORTABLE_MODE_PROFILE_DIR {u"profile"_qs};
 
     const int MIN_FILELOG_SIZE = 1024; // 1KiB
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
@@ -337,7 +337,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 
     for (int i = (program.length() - 2); i >= 0; --i)
     {
-        if (program[i] != QLatin1Char('%'))
+        if (program[i] != u'%')
             continue;
 
         const ushort specifier = program[i + 1].unicode();
@@ -361,13 +361,13 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 #endif
             break;
         case u'G':
-            program.replace(i, 2, torrent->tags().join(QLatin1String(",")));
+            program.replace(i, 2, torrent->tags().join(u","_qs));
             break;
         case u'I':
-            program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : QLatin1String("-")));
+            program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_qs));
             break;
         case u'J':
-            program.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : QLatin1String("-")));
+            program.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : u"-"_qs));
             break;
         case u'K':
             program.replace(i, 2, torrent->id().toString());
@@ -563,43 +563,43 @@ void Application::processParams(const QStringList &params)
 
         // Process strings indicating options specified by the user.
 
-        if (param.startsWith(QLatin1String("@savePath=")))
+        if (param.startsWith(u"@savePath="))
         {
             torrentParams.savePath = Path(param.mid(10));
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@addPaused=")))
+        if (param.startsWith(u"@addPaused="))
         {
             torrentParams.addPaused = (QStringView(param).mid(11).toInt() != 0);
             continue;
         }
 
-        if (param == QLatin1String("@skipChecking"))
+        if (param == u"@skipChecking")
         {
             torrentParams.skipChecking = true;
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@category=")))
+        if (param.startsWith(u"@category="))
         {
             torrentParams.category = param.mid(10);
             continue;
         }
 
-        if (param == QLatin1String("@sequential"))
+        if (param == u"@sequential")
         {
             torrentParams.sequential = true;
             continue;
         }
 
-        if (param == QLatin1String("@firstLastPiecePriority"))
+        if (param == u"@firstLastPiecePriority")
         {
             torrentParams.firstLastPiecePriority = true;
             continue;
         }
 
-        if (param.startsWith(QLatin1String("@skipDialog=")))
+        if (param.startsWith(u"@skipDialog="))
         {
             skipTorrentDialog = (QStringView(param).mid(12).toInt() != 0);
             continue;
@@ -671,9 +671,9 @@ int Application::exec(const QStringList &params)
 #ifndef DISABLE_WEBUI
     const Preferences *pref = Preferences::instance();
 
-    const auto scheme = QString::fromLatin1(pref->isWebUiHttpsEnabled() ? "https" : "http");
-    const auto url = QString::fromLatin1("%1://localhost:%2\n").arg(scheme, QString::number(pref->getWebUiPort()));
-    const QString mesg = QString::fromLatin1("\n******** %1 ********\n").arg(tr("Information"))
+    const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_qs : u"http"_qs;
+    const auto url = u"%1://localhost:%2\n"_qs.arg(scheme, QString::number(pref->getWebUiPort()));
+    const QString mesg = u"\n******** %1 ********\n"_qs.arg(tr("Information"))
         + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
     printf("%s\n", qUtf8Printable(mesg));
 
@@ -740,15 +740,15 @@ void Application::initializeTranslation()
     // Load translation
     const QString localeStr = pref->getLocale();
 
-    if (m_qtTranslator.load(QLatin1String("qtbase_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
-        m_qtTranslator.load(QLatin1String("qt_") + localeStr, QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
+    if (m_qtTranslator.load((u"qtbase_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)) ||
+        m_qtTranslator.load((u"qt_" + localeStr), QLibraryInfo::location(QLibraryInfo::TranslationsPath)))
             qDebug("Qt %s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
         qDebug("Qt %s locale unrecognized, using default (en).", qUtf8Printable(localeStr));
 
     installTranslator(&m_qtTranslator);
 
-    if (m_translator.load(QLatin1String(":/lang/qbittorrent_") + localeStr))
+    if (m_translator.load(u":/lang/qbittorrent_" + localeStr))
         qDebug("%s locale recognized, using translation.", qUtf8Printable(localeStr));
     else
         qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(localeStr));

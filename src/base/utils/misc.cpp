@@ -298,8 +298,8 @@ bool Utils::Misc::isPreviewable(const Path &filePath)
 {
     const QString mime = QMimeDatabase().mimeTypeForFile(filePath.data(), QMimeDatabase::MatchExtension).name();
 
-    if (mime.startsWith(QLatin1String("audio"), Qt::CaseInsensitive)
-        || mime.startsWith(QLatin1String("video"), Qt::CaseInsensitive))
+    if (mime.startsWith(u"audio", Qt::CaseInsensitive)
+        || mime.startsWith(u"video", Qt::CaseInsensitive))
     {
         return true;
     }

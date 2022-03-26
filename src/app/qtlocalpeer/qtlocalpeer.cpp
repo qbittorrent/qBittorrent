@@ -94,12 +94,12 @@ const char ACK[] = "ack";
 
 QtLocalPeer::QtLocalPeer(const QString &path, QObject *parent)
     : QObject(parent)
-    , m_socketName(path + QLatin1String("/ipc-socket"))
+    , m_socketName(path + u"/ipc-socket")
     , m_server(new QLocalServer(this))
 {
     m_server->setSocketOptions(QLocalServer::UserAccessOption);
 
-    m_lockFile.setFileName(path + QLatin1String("/lockfile"));
+    m_lockFile.setFileName(path + u"/lockfile");
     m_lockFile.open(QIODevice::ReadWrite);
 }
 

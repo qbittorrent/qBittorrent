@@ -93,7 +93,7 @@ void Statistics::save() const
     if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
         return;
 
-    SettingsPtr s = Profile::instance()->applicationSettings(QLatin1String("qBittorrent-data"));
+    SettingsPtr s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
     QVariantHash v;
     v.insert(u"AlltimeDL"_qs, m_alltimeDL + m_sessionDL);
     v.insert(u"AlltimeUL"_qs, m_alltimeUL + m_sessionUL);
@@ -104,7 +104,7 @@ void Statistics::save() const
 
 void Statistics::load()
 {
-    const SettingsPtr s = Profile::instance()->applicationSettings(QLatin1String("qBittorrent-data"));
+    const SettingsPtr s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
     const QVariantHash v = s->value(u"Stats/AllStats"_qs).toHash();
 
     m_alltimeDL = v[u"AlltimeDL"_qs].toULongLong();
