@@ -361,6 +361,12 @@ window.addEvent('load', function() {
         let added = false;
         for (let i = 0; i < tags.length; ++i) {
             const tagHash = genHash(tags[i].trim());
+            if (!tagList[tagHash]) { // This should not happen
+                tagList[tagHash] = {
+                    name: tags,
+                    torrents: []
+                };
+            }
             if (!Object.contains(tagList[tagHash].torrents, torrent['hash'])) {
                 added = true;
                 tagList[tagHash].torrents.push(torrent['hash']);
