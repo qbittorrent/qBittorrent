@@ -172,7 +172,8 @@ void Utils::Gui::openFolderSelect(const QString &absolutePath)
     {
         if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
         {
-            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<const wchar_t *>(Utils::Fs::toNativePath(path).utf16()));
+            const std::wstring pathWStr = Utils::Fs::toNativePath(path).toStdWString();
+            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(pathWStr.c_str());
             if (pidl)
             {
                 ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);

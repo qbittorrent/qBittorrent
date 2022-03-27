@@ -113,9 +113,9 @@ namespace
     {
         QPixmap pixmapForExtension(const QString &ext) const override
         {
-            const QString extWithDot = QLatin1Char('.') + ext;
+            const std::wstring extWStr = QString(QLatin1Char('.') + ext).toStdWString();
             SHFILEINFO sfi {};
-            HRESULT hr = ::SHGetFileInfoW(extWithDot.toStdWString().c_str(),
+            HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
                 FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
             if (FAILED(hr))
                 return {};

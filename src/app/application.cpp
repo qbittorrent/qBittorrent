@@ -402,14 +402,13 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     LogMsg(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
 
 #if defined(Q_OS_WIN)
-    auto programWchar = std::make_unique<wchar_t[]>(program.length() + 1);
-    program.toWCharArray(programWchar.get());
+    const std::wstring programWStr = program.toStdWString();
 
     // Need to split arguments manually because QProcess::startDetached(QString)
     // will strip off empty parameters.
     // E.g. `python.exe "1" "" "3"` will become `python.exe "1" "3"`
     int argCount = 0;
-    std::unique_ptr<LPWSTR[], decltype(&::LocalFree)> args {::CommandLineToArgvW(programWchar.get(), &argCount), ::LocalFree};
+    std::unique_ptr<LPWSTR[], decltype(&::LocalFree)> args {::CommandLineToArgvW(programWStr.c_str(), &argCount), ::LocalFree};
 
     QStringList argList;
     for (int i = 1; i < argCount; ++i)
@@ -835,8 +834,9 @@ void Application::cleanup()
         m_window->hide();
 
 #ifdef Q_OS_WIN
+        const std::wstring msg = tr("Saving torrent progress...").toStdWString();
         ::ShutdownBlockReasonCreate(reinterpret_cast<HWND>(m_window->effectiveWinId())
-            , tr("Saving torrent progress...").toStdWString().c_str());
+            , msg.c_str());
 #endif // Q_OS_WIN
 
         // Do manual cleanup in MainWindow to force widgets

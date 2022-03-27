@@ -279,8 +279,9 @@ namespace
         if (!uuid.isNull())
             return uuid.toString().toUpper(); // Libtorrent expects the GUID in uppercase
 
+        const std::wstring nameWStr = name.toStdWString();
         NET_LUID luid {};
-        const LONG res = ::ConvertInterfaceNameToLuidW(name.toStdWString().c_str(), &luid);
+        const LONG res = ::ConvertInterfaceNameToLuidW(nameWStr.c_str(), &luid);
         if (res == 0)
         {
             GUID guid;
