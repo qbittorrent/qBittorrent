@@ -184,7 +184,7 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     }
 
     // get save path
-    const Path savePath = m_storeLastSavePath.get(Utils::Fs::homePath() / Path(inputPath.filename() + QLatin1String(".torrent")));
+    const Path savePath = m_storeLastSavePath.get(Utils::Fs::homePath() / Path(inputPath.filename() + u".torrent"));
     Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), savePath.data(), tr("Torrent Files (*.torrent)"))};
     if (destPath.isEmpty())
         return;
@@ -255,7 +255,7 @@ void TorrentCreatorDialog::handleCreationSuccess(const Path &path, const Path &b
         BitTorrent::Session::instance()->addTorrent(result.value(), params);
     }
     QMessageBox::information(this, tr("Torrent creator")
-        , QString::fromLatin1("%1\n%2").arg(tr("Torrent created:"), path.toString()));
+        , u"%1\n%2"_qs.arg(tr("Torrent created:"), path.toString()));
     setInteractionEnabled(true);
 }
 

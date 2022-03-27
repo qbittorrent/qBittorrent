@@ -64,20 +64,20 @@
 
 namespace
 {
-    QString statusIconName(SearchJobWidget::Status st)
+    QString statusIconName(const SearchJobWidget::Status st)
     {
         switch (st)
         {
         case SearchJobWidget::Status::Ongoing:
-            return QLatin1String("task-ongoing");
+            return u"task-ongoing"_qs;
         case SearchJobWidget::Status::Finished:
-            return QLatin1String("task-complete");
+            return u"task-complete"_qs;
         case SearchJobWidget::Status::Aborted:
-            return QLatin1String("task-reject");
+            return u"task-reject"_qs;
         case SearchJobWidget::Status::Error:
-            return QLatin1String("task-attention");
+            return u"task-attention"_qs;
         case SearchJobWidget::Status::NoResults:
-            return QLatin1String("task-attention");
+            return u"task-attention"_qs;
         default:
             return {};
         }

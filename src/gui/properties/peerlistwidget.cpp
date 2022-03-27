@@ -477,7 +477,7 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     for (const Path &filePath : filePaths)
         downloadingFiles.append(filePath.toString());
     const QString downloadingFilesDisplayValue = downloadingFiles.join(u';');
-    setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(QLatin1Char('\n')));
+    setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(u'\n'));
 
     if (m_resolver)
         m_resolver->resolve(peerEndpoint.address.ip);

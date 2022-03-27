@@ -188,10 +188,11 @@ void DownloadedPiecesBar::clear()
 QString DownloadedPiecesBar::simpleToolTipText() const
 {
     const QString borderColor = colorBoxBorderColor().name();
-    const QString rowHTML = QString::fromLatin1("<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>");
-    return QLatin1String("<table cellspacing=4>")
+    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_qs;
+    return u"<table cellspacing=4>"
            + rowHTML.arg(backgroundColor().name(), borderColor, tr("Missing pieces"))
            + rowHTML.arg(m_dlPieceColor.name(), borderColor, tr("Partial pieces"))
            + rowHTML.arg(pieceColor().name(), borderColor, tr("Completed pieces"))
-           + QLatin1String("</table>");
+           + u"</table>";
+
 }

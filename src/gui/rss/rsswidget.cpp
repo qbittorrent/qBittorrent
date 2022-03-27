@@ -483,12 +483,12 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
     const QString alternateBaseColor = m_ui->textBrowser->palette().color(QPalette::AlternateBase).name();
 
     QString html =
-        QString::fromLatin1("<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>") +
-        QString::fromLatin1("<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>").arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
+        u"<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>" +
+        u"<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>"_qs.arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
     if (article->date().isValid())
-        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_qs.arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
     if (!article->author().isEmpty())
-        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Author: "), article->author());
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_qs.arg(alternateBaseColor, tr("Author: "), article->author());
     html += u"</div>"
             u"<div style='margin-left: 5px; margin-right: 5px;'>";
     if (Qt::mightBeRichText(article->description()))

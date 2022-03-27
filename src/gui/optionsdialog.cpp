@@ -224,18 +224,18 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->deleteTorrentWarningIcon->setPixmap(QApplication::style()->standardIcon(QStyle::SP_MessageBoxCritical).pixmap(16, 16));
     m_ui->deleteTorrentWarningIcon->hide();
     m_ui->deleteTorrentWarningLabel->hide();
-    m_ui->deleteTorrentWarningLabel->setToolTip(QLatin1String("<html><body><p>") +
+    m_ui->deleteTorrentWarningLabel->setToolTip(u"<html><body><p>" +
         tr("By enabling these options, you can <strong>irrevocably lose</strong> your .torrent files!") +
-        QLatin1String("</p><p>") +
+        u"</p><p>" +
         tr("When these options are enabled, qBittorrent will <strong>delete</strong> .torrent files "
         "after they were successfully (the first option) or not (the second option) added to its "
         "download queue. This will be applied <strong>not only</strong> to the files opened via "
         "&ldquo;Add torrent&rdquo; menu action but to those opened via <strong>file type association</strong> as well") +
-        QLatin1String("</p><p>") +
+        u"</p><p>" +
         tr("If you enable the second option (&ldquo;Also when addition is cancelled&rdquo;) the "
         ".torrent file <strong>will be deleted</strong> even if you press &ldquo;<strong>Cancel</strong>&rdquo; in "
         "the &ldquo;Add torrent&rdquo; dialog") +
-        QLatin1String("</p></body></html>"));
+        u"</p></body></html>");
 
     m_ui->hsplitter->setCollapsible(0, false);
     m_ui->hsplitter->setCollapsible(1, false);
@@ -472,9 +472,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkEnableAddTrackers, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textTrackers, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
 
-    const QString slowTorrentsExplanation = QLatin1String("<html><body><p>")
+    const QString slowTorrentsExplanation = u"<html><body><p>"
             + tr("A torrent will be considered slow if its download and upload rates stay below these values for \"Torrent inactivity timer\" seconds")
-            + QLatin1String("</p></body></html>");
+            + u"</p></body></html>";
     m_ui->labelDownloadRateForSlowTorrents->setToolTip(slowTorrentsExplanation);
     m_ui->labelUploadRateForSlowTorrents->setToolTip(slowTorrentsExplanation);
     m_ui->labelSlowTorrentInactivityTimer->setToolTip(slowTorrentsExplanation);
@@ -482,10 +482,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 #ifndef DISABLE_WEBUI
     // Web UI tab
     m_ui->textWebUIHttpsCert->setMode(FileSystemPathEdit::Mode::FileOpen);
-    m_ui->textWebUIHttpsCert->setFileNameFilter(tr("Certificate") + QLatin1String(" (*.cer *.crt *.pem)"));
+    m_ui->textWebUIHttpsCert->setFileNameFilter(tr("Certificate") + u" (*.cer *.crt *.pem)");
     m_ui->textWebUIHttpsCert->setDialogCaption(tr("Select certificate"));
     m_ui->textWebUIHttpsKey->setMode(FileSystemPathEdit::Mode::FileOpen);
-    m_ui->textWebUIHttpsKey->setFileNameFilter(tr("Private key") + QLatin1String(" (*.key *.pem)"));
+    m_ui->textWebUIHttpsKey->setFileNameFilter(tr("Private key") + u" (*.key *.pem)");
     m_ui->textWebUIHttpsKey->setDialogCaption(tr("Select private key"));
 
     connect(m_ui->textServerDomains, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -558,7 +558,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->textFilterPath->setDialogCaption(tr("Choose an IP filter file"));
     m_ui->textFilterPath->setFileNameFilter(tr("All supported filters")
-        + QLatin1String(" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)"));
+        + u" (*.dat *.p2p *.p2b);;.dat (*.dat);;.p2p (*.p2p);;.p2b (*.p2b)");
 
     m_ui->textSavePath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textSavePath->setMode(FileSystemPathEdit::Mode::DirectorySave);
@@ -661,7 +661,7 @@ void OptionsDialog::saveOptions()
     if (pref->getLocale() != locale)
     {
         auto *translator = new QTranslator;
-        if (translator->load(QLatin1String(":/lang/qbittorrent_") + locale))
+        if (translator->load(u":/lang/qbittorrent_"_qs + locale))
             qDebug("%s locale recognized, using translation.", qUtf8Printable(locale));
         else
             qDebug("%s locale unrecognized, using default (en).", qUtf8Printable(locale));
@@ -1765,7 +1765,7 @@ QString OptionsDialog::webUiPassword() const
 void OptionsDialog::webUIHttpsCertChanged(const Path &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-low"_qs), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1785,13 +1785,13 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path, const ShowError show
         return;
     }
 
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-high"_qs), this, 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path, const ShowError showError)
 {
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-low")), this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-low"_qs), this, 24));
 
     if (path.isEmpty())
         return;
@@ -1811,7 +1811,7 @@ void OptionsDialog::webUIHttpsKeyChanged(const Path &path, const ShowError showE
         return;
     }
 
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(QLatin1String("security-high")), this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-high"_qs), this, 24));
 }
 
 void OptionsDialog::showConnectionTab()

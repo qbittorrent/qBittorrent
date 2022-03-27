@@ -63,7 +63,7 @@ TorrentOptionsDialog::TorrentOptionsDialog(QWidget *parent, const QVector<BitTor
     : QDialog {parent}
     , m_ui {new Ui::TorrentOptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
-    , m_currentCategoriesString {QString::fromLatin1("--%1--").arg(tr("Currently used categories"))}
+    , m_currentCategoriesString {u"--%1--"_qs.arg(tr("Currently used categories"))}
 {
     Q_ASSERT(!torrents.empty());
 

@@ -139,7 +139,7 @@ void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
-    if (event->mimeData()->hasFormat(QLatin1String("text/plain")) || event->mimeData()->hasFormat(QLatin1String("text/uri-list")))
+    if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
     {
         event->acceptProposedAction();
     }
@@ -382,8 +382,7 @@ void PluginSelectDialog::askForLocalPlugin()
 {
     const QStringList pathsList = QFileDialog::getOpenFileNames(
                 nullptr, tr("Select search plugins"), QDir::homePath(),
-                tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
-                );
+                (tr("qBittorrent search plugin") + u" (*.py)"));
     for (const QString &path : pathsList)
     {
         startAsyncOp();
@@ -414,7 +413,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
-            const QString ext = result.url.endsWith(QLatin1String(".ico"), Qt::CaseInsensitive) ? QLatin1String(".ico") : QLatin1String(".png");
+            const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_qs : u".png"_qs;
             const Path iconPath = SearchPluginManager::pluginsLocation() / Path(id + ext);
             if (Utils::Fs::copyFile(filePath, iconPath))
             {

@@ -115,9 +115,9 @@ namespace
 
     bool isTorrentLink(const QString &str)
     {
-        return str.startsWith(QLatin1String("magnet:"), Qt::CaseInsensitive)
+        return str.startsWith(u"magnet:", Qt::CaseInsensitive)
             || str.endsWith(TORRENT_FILE_EXTENSION, Qt::CaseInsensitive)
-            || (!str.startsWith(QLatin1String("file:"), Qt::CaseInsensitive)
+            || (!str.startsWith(u"file:", Qt::CaseInsensitive)
                 && Net::DownloadManager::hasSupportedScheme(str));
     }
 }
@@ -1643,7 +1643,7 @@ void MainWindow::reloadSessionStats()
 #else
     if (m_systrayIcon)
     {
-        const auto toolTip = QString::fromLatin1("%1\n%2").arg(
+        const auto toolTip = u"%1\n%2"_qs.arg(
             tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
             , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
         m_systrayIcon->setToolTip(toolTip); // tray icon
@@ -1674,8 +1674,8 @@ void MainWindow::showNotificationBalloon(const QString &title, const QString &ms
         return;
 
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    OrgFreedesktopNotificationsInterface notifications(QLatin1String("org.freedesktop.Notifications")
-        , QLatin1String("/org/freedesktop/Notifications")
+    OrgFreedesktopNotificationsInterface notifications(u"org.freedesktop.Notifications"_qs
+        , u"/org/freedesktop/Notifications"_qs
         , QDBusConnection::sessionBus());
 
     // Testing for 'notifications.isValid()' isn't helpful here.
@@ -1687,9 +1687,9 @@ void MainWindow::showNotificationBalloon(const QString &title, const QString &ms
     // some inactivity shuts it down. Other DEs, like GNOME, choose
     // to start their daemons at the session startup and have it sit
     // idling for the whole session.
-    const QVariantMap hints {{QLatin1String("desktop-entry"), QLatin1String("org.qbittorrent.qBittorrent")}};
-    QDBusPendingReply<uint> reply = notifications.Notify(QLatin1String("qBittorrent"), 0
-        , QLatin1String("qbittorrent"), title, msg, {}, hints, getNotificationTimeout());
+    const QVariantMap hints {{u"desktop-entry"_qs, u"org.qbittorrent.qBittorrent"_qs}};
+    QDBusPendingReply<uint> reply = notifications.Notify(u"qBittorrent"_qs, 0
+        , u"qbittorrent"_qs, title, msg, {}, hints, getNotificationTimeout());
 
     reply.waitForFinished();
     if (!reply.isError())
@@ -1948,7 +1948,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     {
         const QString msg {tr("A new version is available.") + u"<br/>"
             + tr("Do you want to download %1?").arg(newVersion) + u"<br/><br/>"
-            + QString::fromLatin1("<a href=\"https://www.qbittorrent.org/news.php\">%1</a>").arg(tr("Open changelog..."))};
+            + u"<a href=\"https://www.qbittorrent.org/news.php\">%1</a>"_qs.arg(tr("Open changelog..."))};
         auto *msgBox = new QMessageBox {QMessageBox::Question, tr("qBittorrent Update Available"), msg
             , (QMessageBox::Yes | QMessageBox::No), this};
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
@@ -1968,7 +1968,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
     {
         if (invokedByUser)
         {
-            auto *msgBox = new QMessageBox {QMessageBox::Information, QLatin1String("qBittorrent")
+            auto *msgBox = new QMessageBox {QMessageBox::Information, u"qBittorrent"_qs
                 , tr("No updates available.\nYou are already using the latest version.")
                 , QMessageBox::Ok, this};
             msgBox->setAttribute(Qt::WA_DeleteOnClose);

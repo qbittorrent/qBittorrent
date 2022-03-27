@@ -168,9 +168,10 @@ void PieceAvailabilityBar::clear()
 QString PieceAvailabilityBar::simpleToolTipText() const
 {
     const QString borderColor = colorBoxBorderColor().name();
-    const QString rowHTML = QString::fromLatin1("<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>");
-    return QLatin1String("<table cellspacing=4>")
+    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_qs;
+    return u"<table cellspacing=4>"
            + rowHTML.arg(backgroundColor().name(), borderColor, tr("Unavailable pieces"))
            + rowHTML.arg(pieceColor().name(), borderColor, tr("Available pieces"))
-           + QLatin1String("</table>");
+           + u"</table>";
+
 }

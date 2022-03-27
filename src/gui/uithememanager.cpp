@@ -46,23 +46,23 @@
 namespace
 {
     const Path DEFAULT_ICONS_DIR {u":icons"_qs};
-    const QString CONFIG_FILE_NAME {QStringLiteral("config.json")};
-    const QString STYLESHEET_FILE_NAME {QStringLiteral("stylesheet.qss")};
+    const QString CONFIG_FILE_NAME = u"config.json"_qs;
+    const QString STYLESHEET_FILE_NAME = u"stylesheet.qss"_qs;
 
     // Directory used by stylesheet to reference internal resources
     // for example `icon: url(:/uitheme/file.svg)` will be expected to
     // point to a file `file.svg` in root directory of CONFIG_FILE_NAME
-    const QString STYLESHEET_RESOURCES_DIR {QStringLiteral(":/uitheme")};
+    const QString STYLESHEET_RESOURCES_DIR = u":/uitheme"_qs;
 
     const Path THEME_ICONS_DIR {u"icons"_qs};
 
     Path findIcon(const QString &iconId, const Path &dir)
     {
-        const Path pathSvg = dir / Path(iconId + QLatin1String(".svg"));
+        const Path pathSvg = dir / Path(iconId + u".svg");
         if (pathSvg.exists())
             return pathSvg;
 
-        const Path pathPng = dir / Path(iconId + QLatin1String(".png"));
+        const Path pathPng = dir / Path(iconId + u".png");
         if (pathPng.exists())
             return pathPng;
 
@@ -142,8 +142,8 @@ namespace
         if (themePath.filename() == CONFIG_FILE_NAME)
             return std::make_unique<FolderThemeSource>(themePath);
 
-        if ((themePath.hasExtension(QLatin1String(".qbtheme")))
-                && QResource::registerResource(themePath.data(), QLatin1String("/uitheme")))
+        if ((themePath.hasExtension(u".qbtheme"_qs))
+                && QResource::registerResource(themePath.data(), u"/uitheme"_qs))
         {
             return std::make_unique<QRCThemeSource>();
         }
@@ -231,7 +231,7 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     if (iter != m_flagCache.end())
         return *iter;
 
-    const QIcon icon {QLatin1String(":/icons/flags/") + key + QLatin1String(".svg")};
+    const QIcon icon {u":/icons/flags/" + key + u".svg"};
     m_flagCache[key] = icon;
     return icon;
 }
@@ -249,25 +249,25 @@ QIcon UIThemeManager::getSystrayIcon() const
     {
 #if defined(Q_OS_UNIX)
     case TrayIcon::Style::Normal:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray"));
+        return QIcon::fromTheme(u"qbittorrent-tray"_qs);
     case TrayIcon::Style::MonoDark:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-dark"));
+        return QIcon::fromTheme(u"qbittorrent-tray-dark"_qs);
     case TrayIcon::Style::MonoLight:
-        return QIcon::fromTheme(QLatin1String("qbittorrent-tray-light"));
+        return QIcon::fromTheme(u"qbittorrent-tray-light"_qs);
 #else
     case TrayIcon::Style::Normal:
-        return getIcon(QLatin1String("qbittorrent-tray"));
+        return getIcon(u"qbittorrent-tray"_qs);
     case TrayIcon::Style::MonoDark:
-        return getIcon(QLatin1String("qbittorrent-tray-dark"));
+        return getIcon(u"qbittorrent-tray-dark"_qs);
     case TrayIcon::Style::MonoLight:
-        return getIcon(QLatin1String("qbittorrent-tray-light"));
+        return getIcon(u"qbittorrent-tray-light"_qs);
 #endif
     default:
         break;
     }
 
     // As a failsafe in case the enum is invalid
-    return getIcon(QLatin1String("qbittorrent-tray"));
+    return getIcon(u"qbittorrent-tray"_qs);
 }
 #endif
 
@@ -276,7 +276,7 @@ Path UIThemeManager::getIconPath(const QString &iconId) const
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     if (m_useSystemTheme)
     {
-        Path path = Utils::Fs::tempPath() / Path(iconId + QLatin1String(".png"));
+        Path path = Utils::Fs::tempPath() / Path(iconId + u".png");
         if (!path.exists())
         {
             const QIcon icon = QIcon::fromTheme(iconId);
@@ -354,31 +354,31 @@ void UIThemeManager::applyPalette() const
 
     const ColorDescriptor paletteColorDescriptors[] =
     {
-        {QLatin1String("Palette.Window"), QPalette::Window, QPalette::Normal},
-        {QLatin1String("Palette.WindowText"), QPalette::WindowText, QPalette::Normal},
-        {QLatin1String("Palette.Base"), QPalette::Base, QPalette::Normal},
-        {QLatin1String("Palette.AlternateBase"), QPalette::AlternateBase, QPalette::Normal},
-        {QLatin1String("Palette.Text"), QPalette::Text, QPalette::Normal},
-        {QLatin1String("Palette.ToolTipBase"), QPalette::ToolTipBase, QPalette::Normal},
-        {QLatin1String("Palette.ToolTipText"), QPalette::ToolTipText, QPalette::Normal},
-        {QLatin1String("Palette.BrightText"), QPalette::BrightText, QPalette::Normal},
-        {QLatin1String("Palette.Highlight"), QPalette::Highlight, QPalette::Normal},
-        {QLatin1String("Palette.HighlightedText"), QPalette::HighlightedText, QPalette::Normal},
-        {QLatin1String("Palette.Button"), QPalette::Button, QPalette::Normal},
-        {QLatin1String("Palette.ButtonText"), QPalette::ButtonText, QPalette::Normal},
-        {QLatin1String("Palette.Link"), QPalette::Link, QPalette::Normal},
-        {QLatin1String("Palette.LinkVisited"), QPalette::LinkVisited, QPalette::Normal},
-        {QLatin1String("Palette.Light"), QPalette::Light, QPalette::Normal},
-        {QLatin1String("Palette.Midlight"), QPalette::Midlight, QPalette::Normal},
-        {QLatin1String("Palette.Mid"), QPalette::Mid, QPalette::Normal},
-        {QLatin1String("Palette.Dark"), QPalette::Dark, QPalette::Normal},
-        {QLatin1String("Palette.Shadow"), QPalette::Shadow, QPalette::Normal},
-        {QLatin1String("Palette.WindowTextDisabled"), QPalette::WindowText, QPalette::Disabled},
-        {QLatin1String("Palette.TextDisabled"), QPalette::Text, QPalette::Disabled},
-        {QLatin1String("Palette.ToolTipTextDisabled"), QPalette::ToolTipText, QPalette::Disabled},
-        {QLatin1String("Palette.BrightTextDisabled"), QPalette::BrightText, QPalette::Disabled},
-        {QLatin1String("Palette.HighlightedTextDisabled"), QPalette::HighlightedText, QPalette::Disabled},
-        {QLatin1String("Palette.ButtonTextDisabled"), QPalette::ButtonText, QPalette::Disabled}
+        {u"Palette.Window"_qs, QPalette::Window, QPalette::Normal},
+        {u"Palette.WindowText"_qs, QPalette::WindowText, QPalette::Normal},
+        {u"Palette.Base"_qs, QPalette::Base, QPalette::Normal},
+        {u"Palette.AlternateBase"_qs, QPalette::AlternateBase, QPalette::Normal},
+        {u"Palette.Text"_qs, QPalette::Text, QPalette::Normal},
+        {u"Palette.ToolTipBase"_qs, QPalette::ToolTipBase, QPalette::Normal},
+        {u"Palette.ToolTipText"_qs, QPalette::ToolTipText, QPalette::Normal},
+        {u"Palette.BrightText"_qs, QPalette::BrightText, QPalette::Normal},
+        {u"Palette.Highlight"_qs, QPalette::Highlight, QPalette::Normal},
+        {u"Palette.HighlightedText"_qs, QPalette::HighlightedText, QPalette::Normal},
+        {u"Palette.Button"_qs, QPalette::Button, QPalette::Normal},
+        {u"Palette.ButtonText"_qs, QPalette::ButtonText, QPalette::Normal},
+        {u"Palette.Link"_qs, QPalette::Link, QPalette::Normal},
+        {u"Palette.LinkVisited"_qs, QPalette::LinkVisited, QPalette::Normal},
+        {u"Palette.Light"_qs, QPalette::Light, QPalette::Normal},
+        {u"Palette.Midlight"_qs, QPalette::Midlight, QPalette::Normal},
+        {u"Palette.Mid"_qs, QPalette::Mid, QPalette::Normal},
+        {u"Palette.Dark"_qs, QPalette::Dark, QPalette::Normal},
+        {u"Palette.Shadow"_qs, QPalette::Shadow, QPalette::Normal},
+        {u"Palette.WindowTextDisabled"_qs, QPalette::WindowText, QPalette::Disabled},
+        {u"Palette.TextDisabled"_qs, QPalette::Text, QPalette::Disabled},
+        {u"Palette.ToolTipTextDisabled"_qs, QPalette::ToolTipText, QPalette::Disabled},
+        {u"Palette.BrightTextDisabled"_qs, QPalette::BrightText, QPalette::Disabled},
+        {u"Palette.HighlightedTextDisabled"_qs, QPalette::HighlightedText, QPalette::Disabled},
+        {u"Palette.ButtonTextDisabled"_qs, QPalette::ButtonText, QPalette::Disabled}
     };
 
     QPalette palette = qApp->palette();
