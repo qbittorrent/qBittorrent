@@ -547,7 +547,7 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 
 SettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFilteringModeSetting()
 {
-    static SettingValue<NameFilteringMode> setting {"Search/FilteringMode"};
+    static SettingValue<NameFilteringMode> setting {u"Search/FilteringMode"_qs};
     return setting;
 }
 

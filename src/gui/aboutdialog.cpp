@@ -39,12 +39,12 @@
 #include "uithememanager.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "AboutDialog/" name
+#define SETTINGS_KEY(name) u"AboutDialog/" name
 
 AboutDialog::AboutDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AboutDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);

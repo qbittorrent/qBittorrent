@@ -46,17 +46,17 @@
 #include "ui_previewselectdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "PreviewSelectDialog/" name
+#define SETTINGS_KEY(name) u"PreviewSelectDialog/" name
 
 PreviewSelectDialog::PreviewSelectDialog(QWidget *parent, const BitTorrent::Torrent *torrent)
     : QDialog(parent)
     , m_ui(new Ui::PreviewSelectDialog)
     , m_torrent(torrent)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    , m_storeTreeHeaderState("GUI/Qt6/" SETTINGS_KEY("HeaderState"))
+    , m_storeTreeHeaderState(u"GUI/Qt6/" SETTINGS_KEY(u"HeaderState"_qs))
 #else
-    , m_storeTreeHeaderState(SETTINGS_KEY("HeaderState"))
+    , m_storeTreeHeaderState(SETTINGS_KEY(u"HeaderState"_qs))
 #endif
 {
     m_ui->setupUi(this);

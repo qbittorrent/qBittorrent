@@ -42,29 +42,29 @@
 #include "ui_torrentcreatordialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "TorrentCreator/" name
+#define SETTINGS_KEY(name) u"TorrentCreator/" name
 
 TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultPath)
     : QDialog(parent)
     , m_ui(new Ui::TorrentCreatorDialog)
     , m_creatorThread(new BitTorrent::TorrentCreatorThread(this))
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
-    , m_storePieceSize(SETTINGS_KEY("PieceSize"))
-    , m_storePrivateTorrent(SETTINGS_KEY("PrivateTorrent"))
-    , m_storeStartSeeding(SETTINGS_KEY("StartSeeding"))
-    , m_storeIgnoreRatio(SETTINGS_KEY("IgnoreRatio"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+    , m_storePieceSize(SETTINGS_KEY(u"PieceSize"_qs))
+    , m_storePrivateTorrent(SETTINGS_KEY(u"PrivateTorrent"_qs))
+    , m_storeStartSeeding(SETTINGS_KEY(u"StartSeeding"_qs))
+    , m_storeIgnoreRatio(SETTINGS_KEY(u"IgnoreRatio"_qs))
 #ifdef QBT_USES_LIBTORRENT2
-    , m_storeTorrentFormat(SETTINGS_KEY("TorrentFormat"))
+    , m_storeTorrentFormat(SETTINGS_KEY(u"TorrentFormat"_qs))
 #else
-    , m_storeOptimizeAlignment(SETTINGS_KEY("OptimizeAlignment"))
-    , m_paddedFileSizeLimit(SETTINGS_KEY("PaddedFileSizeLimit"))
+    , m_storeOptimizeAlignment(SETTINGS_KEY(u"OptimizeAlignment"_qs))
+    , m_paddedFileSizeLimit(SETTINGS_KEY(u"PaddedFileSizeLimit"_qs))
 #endif
-    , m_storeLastAddPath(SETTINGS_KEY("LastAddPath"))
-    , m_storeTrackerList(SETTINGS_KEY("TrackerList"))
-    , m_storeWebSeedList(SETTINGS_KEY("WebSeedList"))
-    , m_storeComments(SETTINGS_KEY("Comments"))
-    , m_storeLastSavePath(SETTINGS_KEY("LastSavePath"))
-    , m_storeSource(SETTINGS_KEY("Source"))
+    , m_storeLastAddPath(SETTINGS_KEY(u"LastAddPath"_qs))
+    , m_storeTrackerList(SETTINGS_KEY(u"TrackerList"_qs))
+    , m_storeWebSeedList(SETTINGS_KEY(u"WebSeedList"_qs))
+    , m_storeComments(SETTINGS_KEY(u"Comments"_qs))
+    , m_storeLastSavePath(SETTINGS_KEY(u"LastSavePath"_qs))
+    , m_storeSource(SETTINGS_KEY(u"Source"_qs))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);

@@ -98,9 +98,9 @@ QString computeSmartFilterRegex(const QStringList &filters)
 }
 
 AutoDownloader::AutoDownloader()
-    : m_storeProcessingEnabled("RSS/AutoDownloader/EnableProcessing", false)
-    , m_storeSmartEpisodeFilter("RSS/AutoDownloader/SmartEpisodeFilter")
-    , m_storeDownloadRepacks("RSS/AutoDownloader/DownloadRepacks")
+    : m_storeProcessingEnabled(u"RSS/AutoDownloader/EnableProcessing"_qs, false)
+    , m_storeSmartEpisodeFilter(u"RSS/AutoDownloader/SmartEpisodeFilter"_qs)
+    , m_storeDownloadRepacks(u"RSS/AutoDownloader/DownloadRepacks"_qs)
     , m_processingTimer(new QTimer(this))
     , m_ioThread(new QThread(this))
 {

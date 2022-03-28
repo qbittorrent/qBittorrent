@@ -48,7 +48,7 @@
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
 
-#define SETTINGS_KEY(name) "SearchPluginSelectDialog/" name
+#define SETTINGS_KEY(name) u"SearchPluginSelectDialog/" name
 
 enum PluginColumns
 {
@@ -62,7 +62,7 @@ enum PluginColumns
 PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::PluginSelectDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
     , m_pluginManager(pluginManager)
 {
     m_ui->setupUi(this);
@@ -315,7 +315,7 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
                     DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
                     , this, &PluginSelectDialog::iconDownloadFinished);
     }
-    item->setText(PLUGIN_VERSION, plugin->version);
+    item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
 
 void PluginSelectDialog::startAsyncOp()
@@ -483,7 +483,7 @@ void PluginSelectDialog::pluginUpdated(const QString &name)
     finishAsyncOp();
     PluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
-    item->setText(PLUGIN_VERSION, version);
+    item->setText(PLUGIN_VERSION, version.toString());
     m_updatedPlugins.append(name);
     finishPluginUpdate();
 }

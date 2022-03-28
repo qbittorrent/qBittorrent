@@ -35,11 +35,12 @@
 
 #include "base/exceptions.h"
 #include "base/global.h"
+#include "base/interfaces/istringable.h"
 
 namespace Utils
 {
     template <typename T, std::size_t N, std::size_t Mandatory = N>
-    class Version
+    class Version final : public IStringable
     {
         static_assert(N > 0, "The number of version components may not be smaller than 1");
         static_assert(N >= Mandatory,
@@ -108,7 +109,7 @@ namespace Utils
             return m_components.at(i);
         }
 
-        operator QString() const
+        QString toString() const override
         {
             // find the last one non-zero component
             std::size_t lastSignificantIndex = N - 1;

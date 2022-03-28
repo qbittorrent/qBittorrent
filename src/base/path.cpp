@@ -37,6 +37,7 @@
 #include <QList>
 #include <QMimeDatabase>
 #include <QRegularExpression>
+#include <QStringView>
 
 #include "base/global.h"
 
@@ -202,15 +203,10 @@ Path &Path::operator/=(const Path &other)
     return *this;
 }
 
-Path &Path::operator+=(const QString &str)
+Path &Path::operator+=(const QStringView str)
 {
     *this = *this + str;
     return *this;
-}
-
-Path &Path::operator+=(const std::string &str)
-{
-    return (*this += QString::fromStdString(str));
 }
 
 Path Path::commonPath(const Path &left, const Path &right)
@@ -305,19 +301,9 @@ Path operator/(const Path &lhs, const Path &rhs)
     return Path(lhs.m_pathStr + u'/' + rhs.m_pathStr);
 }
 
-Path operator+(const Path &lhs, const QString &rhs)
+Path operator+(const Path &lhs, const QStringView rhs)
 {
-    return Path(lhs.m_pathStr + rhs);
-}
-
-Path operator+(const Path &lhs, const char rhs[])
-{
-    return lhs + QString::fromLatin1(rhs);
-}
-
-Path operator+(const Path &lhs, const std::string &rhs)
-{
-    return lhs + QString::fromStdString(rhs);
+    return Path(lhs.data() + rhs);
 }
 
 QDataStream &operator<<(QDataStream &out, const Path &path)

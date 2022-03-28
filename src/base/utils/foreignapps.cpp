@@ -83,7 +83,7 @@ namespace
             }
 
             LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, executable name: '%1', version: %2")
-                .arg(info.executableName, info.version), Log::INFO);
+                .arg(info.executableName, info.version.toString()), Log::INFO);
             return true;
         }
 

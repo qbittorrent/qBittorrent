@@ -101,8 +101,8 @@
 
 namespace
 {
-#define SETTINGS_KEY(name) "Application/" name
-#define FILELOGGER_SETTINGS_KEY(name) (SETTINGS_KEY("FileLogger/") name)
+#define SETTINGS_KEY(name) u"Application/" name
+#define FILELOGGER_SETTINGS_KEY(name) (SETTINGS_KEY(u"FileLogger/") name)
 
     const QString LOG_FOLDER = u"logs"_qs;
     const QChar PARAMS_SEPARATOR = u'|';
@@ -124,15 +124,15 @@ Application::Application(int &argc, char **argv)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
 #ifdef Q_OS_WIN
-    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY("MemoryWorkingSetLimit"))
+    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
 #endif
-    , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY("Enabled"))
-    , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY("Backup"))
-    , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY("DeleteOld"))
-    , m_storeFileLoggerMaxSize(FILELOGGER_SETTINGS_KEY("MaxSizeBytes"))
-    , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY("Age"))
-    , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY("AgeType"))
-    , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY("Path"))
+    , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_qs))
+    , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_qs))
+    , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY(u"DeleteOld"_qs))
+    , m_storeFileLoggerMaxSize(FILELOGGER_SETTINGS_KEY(u"MaxSizeBytes"_qs))
+    , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY(u"Age"_qs))
+    , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY(u"AgeType"_qs))
+    , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_qs))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");

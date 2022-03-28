@@ -83,6 +83,6 @@ void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
 
 SettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
 {
-    static SettingValue<AutoDeleteMode> setting {"Core/AutoDeleteAddedTorrentFile"};
+    static SettingValue<AutoDeleteMode> setting {u"Core/AutoDeleteAddedTorrentFile"_qs};
     return setting;
 }

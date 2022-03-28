@@ -604,7 +604,7 @@ void TorrentFilesWatcher::Worker::processFailedTorrents()
             if (value >= MAX_FAILED_RETRIES)
             {
                 LogMsg(tr("Rejecting failed torrent file: %1").arg(torrentPath.toString()));
-                Utils::Fs::renameFile(torrentPath, (torrentPath + ".qbt_rejected"));
+                Utils::Fs::renameFile(torrentPath, (torrentPath + u".qbt_rejected"));
                 return true;
             }
 

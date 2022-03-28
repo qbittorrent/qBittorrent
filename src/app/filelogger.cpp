@@ -152,12 +152,12 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
     {
         closeLogFile();
         int counter = 0;
-        Path backupLogFilename = m_path + ".bak";
+        Path backupLogFilename = m_path + u".bak";
 
         while (backupLogFilename.exists())
         {
             ++counter;
-            backupLogFilename = m_path + ".bak" + QString::number(counter);
+            backupLogFilename = m_path + u".bak" + QString::number(counter);
         }
 
         Utils::Fs::renameFile(m_path, backupLogFilename);

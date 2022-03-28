@@ -69,8 +69,7 @@ public:
     QString toString() const override;
 
     Path &operator/=(const Path &other);
-    Path &operator+=(const QString &str);
-    Path &operator+=(const std::string &str);
+    Path &operator+=(QStringView str);
 
     static Path commonPath(const Path &left, const Path &right);
 
@@ -79,7 +78,6 @@ public:
     static void addRootFolder(PathList &filePaths, const Path &rootFolder);
 
     friend Path operator/(const Path &lhs, const Path &rhs);
-    friend Path operator+(const Path &lhs, const QString &rhs);
 
 private:
     // this constructor doesn't perform any checks
@@ -93,8 +91,7 @@ Q_DECLARE_METATYPE(Path)
 
 bool operator==(const Path &lhs, const Path &rhs);
 bool operator!=(const Path &lhs, const Path &rhs);
-Path operator+(const Path &lhs, const char rhs[]);
-Path operator+(const Path &lhs, const std::string &rhs);
+Path operator+(const Path &lhs, QStringView rhs);
 
 QDataStream &operator<<(QDataStream &out, const Path &path);
 QDataStream &operator>>(QDataStream &in, Path &path);

@@ -37,12 +37,12 @@
 #include "ui_trackerentriesdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "TrackerEntriesDialog/" name
+#define SETTINGS_KEY(name) u"TrackerEntriesDialog/" name
 
 TrackerEntriesDialog::TrackerEntriesDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::TrackerEntriesDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
 
