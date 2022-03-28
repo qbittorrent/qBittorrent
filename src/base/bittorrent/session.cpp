@@ -2479,7 +2479,7 @@ void Session::setDownloadPath(const QString &path)
 {
     const QString baseDownloadPath = specialFolderLocation(SpecialFolder::Downloads) + QLatin1String("/temp");
     const QString resolvedPath = (QDir::isAbsolutePath(path) ? path  : Utils::Fs::resolvePath(path, baseDownloadPath));
-    if (resolvedPath != m_downloadPath)
+    if (resolvedPath == m_downloadPath)
         return;
 
     if (isDisableAutoTMMWhenDefaultSavePathChanged())
