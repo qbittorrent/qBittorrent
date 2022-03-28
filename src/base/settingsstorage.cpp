@@ -31,6 +31,7 @@
 
 #include <memory>
 #include <QFile>
+#include <QFileInfo>
 #include <QHash>
 
 #include "global.h"
@@ -202,7 +203,8 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
     finalPathStr.remove(index, 4);
 
-    const Path finalPath {finalPathStr};
+    // preserve symbolic link on file
+    const Path finalPath {QFileInfo(finalPathStr).canonicalFilePath()};
     Utils::Fs::removeFile(finalPath);
     return Utils::Fs::renameFile(newPath, finalPath);
 }
