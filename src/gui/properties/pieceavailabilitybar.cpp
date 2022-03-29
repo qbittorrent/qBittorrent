@@ -33,6 +33,8 @@
 
 #include <QDebug>
 
+#include "base/global.h"
+
 PieceAvailabilityBar::PieceAvailabilityBar(QWidget *parent)
     : base {parent}
 {
