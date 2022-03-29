@@ -51,6 +51,7 @@ public:
 
     void setTorrent(const BitTorrent::Torrent *torrent);
 
+    void paintEvent(QPainter *painter);
     virtual void clear();
 
     // QObject interface

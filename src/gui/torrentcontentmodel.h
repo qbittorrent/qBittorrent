@@ -41,6 +41,7 @@ class TorrentContentModelFile;
 
 namespace BitTorrent
 {
+    class Torrent;
     class AbstractFileStorage;
 }
 
@@ -61,6 +62,7 @@ public:
     void updateFilesProgress(const QVector<qreal> &fp);
     void updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio);
     void updateFilesAvailability(const QVector<qreal> &fa);
+    void updateFilesPieces(const BitTorrent::Torrent *torrent);
     QVector<BitTorrent::DownloadPriority> getFilePriorities() const;
     bool allFiltered() const;
     int columnCount(const QModelIndex &parent = {}) const override;

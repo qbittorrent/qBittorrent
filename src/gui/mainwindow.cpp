@@ -1565,6 +1565,7 @@ void MainWindow::loadPreferences()
 
     m_transferListWidget->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
+    m_propertiesWidget->getPiecesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getTrackerList()->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getPeerList()->setAlternatingRowColors(pref->useAlternatingRowColors());
 

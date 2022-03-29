@@ -67,6 +67,7 @@ add_library(qbt_gui STATIC
     properties/peersadditiondialog.h
     properties/pieceavailabilitybar.h
     properties/piecesbar.h
+    properties/piecesdelegate.h
     properties/propertieswidget.h
     properties/proplistdelegate.h
     properties/proptabbar.h
@@ -101,6 +102,8 @@ add_library(qbt_gui STATIC
     torrentcontenttreeview.h
     torrentcreatordialog.h
     torrentoptionsdialog.h
+    torrentpiecesmodel.h
+    torrentpiecestreeview.h
     trackerentriesdialog.h
     transferlistdelegate.h
     transferlistfilterswidget.h
@@ -148,6 +151,7 @@ add_library(qbt_gui STATIC
     properties/peersadditiondialog.cpp
     properties/pieceavailabilitybar.cpp
     properties/piecesbar.cpp
+    properties/piecesdelegate.cpp
     properties/propertieswidget.cpp
     properties/proplistdelegate.cpp
     properties/proptabbar.cpp
@@ -182,6 +186,8 @@ add_library(qbt_gui STATIC
     torrentcontenttreeview.cpp
     torrentcreatordialog.cpp
     torrentoptionsdialog.cpp
+    torrentpiecesmodel.cpp
+    torrentpiecestreeview.cpp
     trackerentriesdialog.cpp
     transferlistdelegate.cpp
     transferlistfilterswidget.cpp

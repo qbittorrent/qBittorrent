@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include <QBitArray>
 #include <QFileIconProvider>
 #include <QFileInfo>
 #include <QIcon>
@@ -50,8 +51,9 @@
 #include <QPixmapCache>
 #endif
 
-#include "base/bittorrent/abstractfilestorage.h"
 #include "base/bittorrent/downloadpriority.h"
+#include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/path.h"
 #include "base/utils/fs.h"
@@ -188,7 +190,7 @@ namespace
 
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
-    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
+    , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability"), tr("Pieces") })))
 {
 #if defined(Q_OS_WIN)
     m_fileIconProvider = new WinShellFileIconProvider();
@@ -245,6 +247,31 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
+    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+}
+
+void TorrentContentModel::updateFilesPieces(const BitTorrent::Torrent *torrent)
+{
+    Q_ASSERT(torrent);
+    auto info = torrent->info();
+
+    emit layoutAboutToBeChanged();
+    for (int i = 0; i < m_filesIndex.size(); ++i)
+    {
+        auto range = info.filePieces(i);
+        auto pieces = QBitArray(range.size());
+        auto allPieces = torrent->pieces();
+        auto it = range.begin();
+        auto c = 0;
+        while (it != range.end())
+        {
+            pieces[c] = allPieces[*it];
+            ++it;
+            ++c;
+        }
+
+        m_filesIndex[i]->setPieces(pieces);
+    }
     emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
 }
 

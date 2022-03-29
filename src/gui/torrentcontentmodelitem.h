@@ -29,7 +29,7 @@
 #pragma once
 
 #include <QCoreApplication>
-#include <QVector>
+#include <QBitArray>
 
 #include "base/bittorrent/downloadpriority.h"
 
@@ -50,6 +50,7 @@ public:
         COL_PRIO,
         COL_REMAINING,
         COL_AVAILABILITY,
+        COL_PIECES,
         NB_COL
     };
 
@@ -74,6 +75,7 @@ public:
     qulonglong remaining() const;
 
     qreal availability() const;
+    QBitArray pieces() const;
 
     BitTorrent::DownloadPriority priority() const;
     virtual void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) = 0;
@@ -94,4 +96,5 @@ protected:
     BitTorrent::DownloadPriority m_priority;
     qreal m_progress;
     qreal m_availability;
+    QBitArray m_pieces;
 };

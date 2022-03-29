@@ -62,3 +62,33 @@ private:
     QBitArray m_pieces;
     QBitArray m_downloadedPieces;
 };
+
+
+class PieceStatusBar final : public PiecesBar
+{
+    using base = PiecesBar;
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PieceStatusBar)
+
+public:
+    PieceStatusBar(QWidget *parent);
+
+    void setStatus(const QBitArray &downloaded, const QBitArray &downloading,
+                   const QBitArray &available, const QBitArray &enabled);
+
+    // PiecesBar interface
+    void clear() override;
+
+private:
+    // scale bitfield vector to float vector
+    QVector<float> bitfieldToFloatVector(const QBitArray &vecin, int reqSize);
+    bool updateImage(QImage &image) override;
+    QString simpleToolTipText() const override;
+
+    // last used int vector, uses to better resize redraw
+    // TODO: make a diff pieces to new pieces and update only changed pixels, speedup when update > 20x faster
+    QBitArray m_downloaded;
+    QBitArray m_downloading;
+    QBitArray m_available;
+    QBitArray m_enabled;
+};

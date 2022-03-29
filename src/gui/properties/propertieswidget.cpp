@@ -55,11 +55,13 @@
 #include "gui/raisedmessagebox.h"
 #include "gui/torrentcontentfiltermodel.h"
 #include "gui/torrentcontentmodel.h"
+#include "gui/torrentpiecesmodel.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "downloadedpiecesbar.h"
 #include "peerlistwidget.h"
 #include "pieceavailabilitybar.h"
+#include "piecesdelegate.h"
 #include "proplistdelegate.h"
 #include "proptabbar.h"
 #include "speedwidget.h"
@@ -88,6 +90,7 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     m_propListModel = new TorrentContentFilterModel(this);
     m_ui->filesList->setModel(m_propListModel);
     m_propListDelegate = new PropListDelegate(this);
+    m_ui->filesList->setItemDelegateForColumn(PropColumn::PIECES, new TorrentFilePiecesDelegate(m_ui->filesList));
     m_ui->filesList->setItemDelegate(m_propListDelegate);
     m_ui->filesList->setSortingEnabled(true);
 
@@ -330,6 +333,11 @@ QTreeView *PropertiesWidget::getFilesList() const
     return m_ui->filesList;
 }
 
+QTreeView *PropertiesWidget::getPiecesList() const
+{
+    return m_ui->piecesList;
+}
+
 void PropertiesWidget::updateSavePath(BitTorrent::Torrent *const torrent)
 {
     if (torrent == m_torrent)
@@ -354,6 +362,9 @@ void PropertiesWidget::loadTorrentInfos(BitTorrent::Torrent *const torrent)
     m_torrent = torrent;
     m_downloadedPieces->setTorrent(m_torrent);
     m_piecesAvailability->setTorrent(m_torrent);
+    auto del = static_cast<TorrentFilePiecesDelegate*>(m_ui->filesList->itemDelegateForColumn(PropColumn::PIECES));
+    del->m_torrent = torrent;
+
     if (!m_torrent) return;
 
     // Save path
@@ -545,9 +556,10 @@ void PropertiesWidget::loadDynamicData()
                 m_propListModel->model()->setupModelData(*m_torrent);
                 // Load file priorities
                 m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
-                // Update file progress/availability
+                // Update file progress/availability/pieces
                 m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
                 m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+                m_propListModel->model()->updateFilesPieces(m_torrent);
 
                 // Expand single-item folders recursively.
                 // This will trigger sorting and filtering so do it after all relevant data is loaded.
@@ -564,6 +576,7 @@ void PropertiesWidget::loadDynamicData()
 
                 m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
                 m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
+                m_propListModel->model()->updateFilesPieces(m_torrent);
                 // XXX: We don't update file priorities regularly for performance
                 // reasons. This means that priorities will not be updated if
                 // set from the Web UI.
@@ -571,6 +584,66 @@ void PropertiesWidget::loadDynamicData()
             }
 
             m_ui->filesList->setUpdatesEnabled(true);
+        }
+        break;
+    case PropTabBar::PiecesTab:
+        // Pieces progress
+        if (m_torrent->hasMetadata())
+        {
+            if (!m_ui->piecesList->model())
+            {
+                m_ui->piecesList->setUpdatesEnabled(false);
+                auto treeModel = new TorrentPiecesTreeModel();
+                auto piecesCount = m_torrent->piecesCount();
+                treeModel->m_root = new TorrentPiecesModel(m_torrent, 0, piecesCount - 1);
+                auto c = new TorrentPiecesModel(m_torrent, 0, piecesCount - 1);
+                treeModel->m_root->appendChild(c);
+
+                auto remainingNodes = QVector<std::tuple<TorrentPiecesModel *, int>>();
+                auto test = 1;
+                while (test < piecesCount)
+                {
+                    auto nextTest = test * 10;
+                    test = nextTest;
+                    if (nextTest > piecesCount)
+                        break;
+                }
+
+                remainingNodes.push_back(std::make_tuple(c, test));
+
+                while (remainingNodes.size() > 0)
+                {
+                    auto parent = std::get<0>(remainingNodes[0]);
+                    auto i = std::get<1>(remainingNodes[0]);
+                    remainingNodes.pop_front();
+
+                    auto parentSize = parent->m_rangeEnd - parent->m_rangeStart;
+                    Q_ASSERT(parentSize >= 0);
+                    auto nextI = i / 10;
+
+                    for (int j = 0; j < 10; ++j)
+                    {
+                        auto start = parent->m_rangeStart + (nextI * j);
+                        auto end = parent->m_rangeStart + (nextI * (j + 1)) - 1;
+                        auto stop = end >= parent->m_rangeEnd;
+                        if (stop)
+                            end = parent->m_rangeEnd;
+                        auto child = new TorrentPiecesModel(m_torrent, start, end);
+                        parent->appendChild(child);
+                        if (nextI >= 10)
+                            remainingNodes.push_back(std::make_tuple(child, nextI));
+                        if (stop)
+                            break;
+                    }
+                }
+
+                m_ui->piecesList->setItemDelegateForColumn(TorrentPiecesTreeModel::Columns::STATUSBAR, new TorrentPiecesModelDelegate(m_ui->piecesList));
+
+                m_propPiecesModel = treeModel;
+                m_ui->piecesList->setModel(treeModel);
+                m_ui->piecesList->setUpdatesEnabled(true);
+                m_ui->piecesList->update();
+            }
         }
         break;
     default:;

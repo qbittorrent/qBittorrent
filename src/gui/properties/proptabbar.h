@@ -45,6 +45,7 @@ public:
         PeersTab,
         URLSeedsTab,
         FilesTab,
+        PiecesTab,
         SpeedTab
     };
 

@@ -855,6 +855,18 @@ QVector<DownloadPriority> TorrentImpl::filePriorities() const
     return m_filePriorities;
 }
 
+QVector<DownloadPriority> TorrentImpl::piecePriorities() const
+{
+    auto a = m_nativeHandle.get_piece_priorities();
+    auto priorities = QVector<DownloadPriority>();
+    priorities.reserve(a.size());
+    std::transform(a.begin(), a.end(), std::back_inserter(priorities), [](auto v)
+    {
+        return LT::fromNative(v);
+    });
+    return priorities;
+}
+
 TorrentInfo TorrentImpl::info() const
 {
     return m_torrentInfo;

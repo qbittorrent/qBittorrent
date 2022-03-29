@@ -72,6 +72,7 @@ public:
         TOT_UP,
         RELEVANCE,
         DOWNLOADING_PIECE,
+        PIECES,
         IP_HIDDEN,
 
         COL_COUNT

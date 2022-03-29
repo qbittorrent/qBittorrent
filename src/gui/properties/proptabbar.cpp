@@ -88,6 +88,14 @@ PropTabBar::PropTabBar(QWidget *parent)
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
     addWidget(filesButton);
     m_btnGroup->addButton(filesButton, FilesTab);
+    // Pieces tab
+    QPushButton *piecesButton = new QPushButton(
+#ifndef Q_OS_MACOS
+        UIThemeManager::instance()->getIcon(u"inode-directory"_qs),
+#endif
+        tr("Pieces"), parent);
+    addWidget(piecesButton);
+    m_btnGroup->addButton(piecesButton, PiecesTab);
     // Spacer
     addItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Fixed));
     // Speed tab

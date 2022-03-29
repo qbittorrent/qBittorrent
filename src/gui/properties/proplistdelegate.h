@@ -46,7 +46,8 @@ enum PropColumn
     PROGRESS,
     PRIORITY,
     REMAINING,
-    AVAILABILITY
+    AVAILABILITY,
+    PIECES
 };
 
 class PropListDelegate final : public QStyledItemDelegate

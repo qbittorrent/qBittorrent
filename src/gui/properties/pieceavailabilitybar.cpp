@@ -148,6 +148,15 @@ bool PieceAvailabilityBar::updateImage(QImage &image)
         float piecesToValue = scaledPieces.at(x);
         image2.setPixel(x, 0, pieceColors()[piecesToValue * 255]);
     }
+
+    if (false && image2.width() >= m_pieces.size() * 3)
+    {
+        for (int i = 1; i < m_pieces.size(); i++) {
+            auto x = (double)image2.width() / m_pieces.size() * i;
+            image2.setPixel(x, 0, qRgb(0, 0, 0));
+        }
+    }
+
     image = image2;
     return true;
 }

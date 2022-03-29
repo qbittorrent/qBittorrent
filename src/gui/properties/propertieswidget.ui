@@ -1099,6 +1099,32 @@
        </item>
       </layout>
      </widget>
+     <widget class="QWidget" name="pagePieces">
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>3</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="TorrentPiecesTreeView" name="piecesList">
+         <property name="allColumnsShowFocus">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="pageSpeed">
       <layout class="QVBoxLayout" name="speedLayout">
        <property name="leftMargin">
@@ -1124,6 +1150,11 @@
    <class>TorrentContentTreeView</class>
    <extends>QTreeView</extends>
    <header location="global">gui/torrentcontenttreeview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TorrentPiecesTreeView</class>
+   <extends>QTreeView</extends>
+   <header location="global">gui/torrentpiecestreeview.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

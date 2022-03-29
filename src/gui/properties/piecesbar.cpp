@@ -170,17 +170,25 @@ void PiecesBar::mouseMoveEvent(QMouseEvent *e)
 void PiecesBar::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
+    paintEvent(&painter);
+}
+
+void PiecesBar::paintEvent(QPainter *painter)
+{
+    requestImageUpdate();
+
+    //QRect imageRect(borderWidth, borderWidth, width(), height());
     QRect imageRect(borderWidth, borderWidth, width() - 2 * borderWidth, height() - 2 * borderWidth);
     if (m_image.isNull())
     {
-        painter.setBrush(backgroundColor());
-        painter.drawRect(imageRect);
+        painter->setBrush(backgroundColor());
+        painter->drawRect(imageRect);
     }
     else
     {
         if (m_image.width() != imageRect.width())
             updateImage(m_image);
-        painter.drawImage(imageRect, m_image);
+        painter->drawImage(imageRect, m_image);
     }
 
     if (!m_highlightedRegion.isNull())
@@ -188,13 +196,23 @@ void PiecesBar::paintEvent(QPaintEvent *)
         QColor highlightColor {this->palette().color(QPalette::Active, QPalette::Highlight)};
         highlightColor.setAlphaF(0.35f);
         QRect targetHighlightRect {m_highlightedRegion.adjusted(borderWidth, borderWidth, borderWidth, height() - 2 * borderWidth)};
-        painter.fillRect(targetHighlightRect, highlightColor);
+        painter->fillRect(targetHighlightRect, highlightColor);
     }
 
     QPainterPath border;
-    border.addRect(0, 0, width(), height());
-    painter.setPen(borderColor());
-    painter.drawPath(border);
+    Q_ASSERT(borderWidth == 1);
+    border.addRect(0, 0, width() - 1, height() - 1);
+    painter->setPen(borderColor());
+    painter->drawPath(border);
+
+//    float halfBorder = borderWidth / 2.0;
+//    painter->save();
+//    QPen pen;
+//    pen.setWidth(borderWidth);
+//    pen.setColor(QColor::fromRgb(255, 0, 255).rgb());
+//    painter->setPen(pen);
+//    painter->drawRect(QRectF(halfBorder, halfBorder, width() - halfBorder, height() - halfBorder));
+//    painter->restore();
 }
 
 void PiecesBar::requestImageUpdate()

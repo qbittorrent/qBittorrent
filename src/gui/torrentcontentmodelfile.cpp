@@ -73,6 +73,11 @@ void TorrentContentModelFile::setAvailability(const qreal availability)
     Q_ASSERT(m_availability <= 1.);
 }
 
+void TorrentContentModelFile::setPieces(const QBitArray pieces)
+{
+    m_pieces = pieces;
+}
+
 TorrentContentModelItem::ItemType TorrentContentModelFile::itemType() const
 {
     return FileType;

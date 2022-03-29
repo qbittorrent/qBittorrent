@@ -133,6 +133,7 @@ namespace BitTorrent
         qlonglong fileSize(int index) const override;
         PathList filePaths() const override;
         QVector<DownloadPriority> filePriorities() const override;
+        QVector<DownloadPriority> piecePriorities() const override;
 
         TorrentInfo info() const override;
         bool isSeed() const override;
@@ -287,6 +288,7 @@ namespace BitTorrent
         PathList m_filePaths;
         QHash<lt::file_index_t, int> m_indexMap;
         QVector<DownloadPriority> m_filePriorities;
+        QVector<DownloadPriority> m_piecePriorities;
         SpeedMonitor m_speedMonitor;
 
         InfoHash m_infoHash;

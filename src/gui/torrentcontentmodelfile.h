@@ -30,6 +30,8 @@
 
 #include "torrentcontentmodelitem.h"
 
+#include <QBitArray>
+
 namespace BitTorrent
 {
     enum class DownloadPriority;
@@ -45,6 +47,7 @@ public:
     void setPriority(BitTorrent::DownloadPriority newPriority, bool updateParent = true) override;
     void setProgress(qreal progress);
     void setAvailability(qreal availability);
+    void setPieces(QBitArray pieces);
     ItemType itemType() const override;
 
 private:

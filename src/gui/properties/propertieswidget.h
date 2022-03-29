@@ -43,6 +43,7 @@ class PieceAvailabilityBar;
 class PropListDelegate;
 class PropTabBar;
 class TorrentContentFilterModel;
+class TorrentPiecesTreeModel;
 class TrackerListWidget;
 
 namespace BitTorrent
@@ -74,6 +75,7 @@ public:
     TrackerListWidget *getTrackerList() const;
     PeerListWidget *getPeerList() const;
     QTreeView *getFilesList() const;
+    QTreeView *getPiecesList() const;
 
 public slots:
     void setVisibility(bool visible);
@@ -116,6 +118,7 @@ private:
     BitTorrent::Torrent *m_torrent;
     SlideState m_state;
     TorrentContentFilterModel *m_propListModel;
+    TorrentPiecesTreeModel *m_propPiecesModel;
     PropListDelegate *m_propListDelegate;
     PeerListWidget *m_peerList;
     TrackerListWidget *m_trackerList;

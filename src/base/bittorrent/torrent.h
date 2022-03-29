@@ -202,6 +202,7 @@ namespace BitTorrent
         virtual Path actualFilePath(int index) const = 0;
         virtual PathList filePaths() const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
+        virtual QVector<DownloadPriority> piecePriorities() const = 0;
 
         virtual TorrentInfo info() const = 0;
         virtual bool isSeed() const = 0;

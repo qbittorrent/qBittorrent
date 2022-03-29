@@ -43,6 +43,7 @@
 #include <QStandardItemModel>
 #include <QVector>
 #include <QWheelEvent>
+#include <QBitArray>
 
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
@@ -58,6 +59,7 @@
 #include "gui/uithememanager.h"
 #include "peerlistsortmodel.h"
 #include "peersadditiondialog.h"
+#include "piecesdelegate.h"
 #include "propertieswidget.h"
 
 struct PeerEndpoint
@@ -115,6 +117,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, tr("Uploaded", "i.e: total data uploaded"));
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, tr("Relevance", "i.e: How relevant this peer is to us. How many pieces it has that we don't."));
     m_listModel->setHeaderData(PeerListColumns::DOWNLOADING_PIECE, Qt::Horizontal, tr("Files", "i.e. files that are being downloaded right now"));
+    m_listModel->setHeaderData(PeerListColumns::PIECES, Qt::Horizontal, tr("Peer pieces", ""));
     // Set header text alignment
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::PROGRESS, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
@@ -123,6 +126,8 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::TOT_DOWN, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::TOT_UP, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
     m_listModel->setHeaderData(PeerListColumns::RELEVANCE, Qt::Horizontal, QVariant(Qt::AlignRight | Qt::AlignVCenter), Qt::TextAlignmentRole);
+    auto del = new PiecesDelegate(this);
+    setItemDelegateForColumn(PeerListColumns::PIECES, del);
     // Proxy model to support sorting without actually altering the underlying model
     m_proxyModel = new PeerListSortModel(this);
     m_proxyModel->setDynamicSortFilter(true);
@@ -478,6 +483,7 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
         downloadingFiles.append(filePath.toString());
     const QString downloadingFilesDisplayValue = downloadingFiles.join(u';');
     setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(u'\n'));
+    setModelData(row, PeerListColumns::PIECES, u""_qs, peer.pieces(), {});
 
     if (m_resolver)
         m_resolver->resolve(peerEndpoint.address.ip);

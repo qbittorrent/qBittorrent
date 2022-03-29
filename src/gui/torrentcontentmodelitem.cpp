@@ -29,6 +29,7 @@
 #include "torrentcontentmodelitem.h"
 
 #include <QVariant>
+#include <QVector>
 
 #include "base/unicodestrings.h"
 #include "base/utils/misc.h"
@@ -91,6 +92,13 @@ qreal TorrentContentModelItem::availability() const
     return (m_size > 0) ? m_availability : 0;
 }
 
+QBitArray TorrentContentModelItem::pieces() const
+{
+    Q_ASSERT(!isRootItem());
+
+    return m_pieces;
+}
+
 BitTorrent::DownloadPriority TorrentContentModelItem::priority() const
 {
     Q_ASSERT(!isRootItem());
@@ -144,6 +152,8 @@ QString TorrentContentModelItem::displayData(const int column) const
                                   : Utils::String::fromDouble((avail * 100), 1);
             return (value + C_THIN_SPACE + u'%');
         }
+    case COL_PIECES:
+        return {};
     default:
         Q_ASSERT(false);
         return {};
@@ -169,6 +179,8 @@ QVariant TorrentContentModelItem::underlyingData(const int column) const
         return remaining();
     case COL_AVAILABILITY:
         return availability();
+    case COL_PIECES:
+        return pieces();
     default:
         Q_ASSERT(false);
         return {};
