@@ -34,6 +34,8 @@
 #include <QDebug>
 #include <QVector>
 
+#include "base/global.h"
+
 namespace
 {
     QColor dlPieceColor(const QColor &pieceColor)
