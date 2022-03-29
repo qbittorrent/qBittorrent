@@ -796,7 +796,7 @@ void PropertiesWidget::configure()
                 delete m_speedWidget;
             }
 
-            const auto displayText = QString::fromLatin1("<center><b>%1</b><p>%2</p></center>")
+            const auto displayText = u"<center><b>%1</b><p>%2</p></center>"_qs
                 .arg(tr("Speed graphs are disabled"), tr("You can enable it in Advanced Options"));
             auto *label = new QLabel(displayText, this);
             label->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -812,7 +812,7 @@ void PropertiesWidget::askWebSeed()
     // Ask user for a new url seed
     const QString urlSeed = AutoExpandableDialog::getText(this, tr("New URL seed", "New HTTP source"),
                                                            tr("New URL seed:"), QLineEdit::Normal,
-                                                           QLatin1String("http://www."), &ok);
+                                                           u"http://www."_qs, &ok);
     if (!ok) return;
     qDebug("Adding %s web seed", qUtf8Printable(urlSeed));
     if (!m_ui->listWebSeeds->findItems(urlSeed, Qt::MatchFixedString).empty())
@@ -871,7 +871,7 @@ void PropertiesWidget::editWebSeed()
 
     if (!m_ui->listWebSeeds->findItems(newSeed, Qt::MatchFixedString).empty())
     {
-        QMessageBox::warning(this, QLatin1String("qBittorrent"),
+        QMessageBox::warning(this, u"qBittorrent"_qs,
                              tr("This URL seed is already in the list."),
                              QMessageBox::Ok);
         return;

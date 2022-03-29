@@ -88,8 +88,8 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
             uniqueURLs << str;
     }
 
-    const QString text = uniqueURLs.values().join(QLatin1Char('\n'))
-        + (!uniqueURLs.isEmpty() ? QLatin1String("\n") : QLatin1String(""));
+    const QString text = uniqueURLs.values().join(u'\n')
+        + (!uniqueURLs.isEmpty() ? u"\n" : u"");
 
     m_ui->textUrls->setText(text);
     m_ui->textUrls->moveCursor(QTextCursor::End);

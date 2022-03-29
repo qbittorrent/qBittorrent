@@ -76,7 +76,7 @@ public:
         if (!m_parent || m_parent->name().isEmpty())
             return m_name;
 
-        return QString::fromLatin1("%1/%2").arg(m_parent->fullName(), m_name);
+        return u"%1/%2"_qs.arg(m_parent->fullName(), m_name);
     }
 
     CategoryModelItem *parent() const
@@ -165,7 +165,7 @@ namespace
 {
     QString shortName(const QString &fullName)
     {
-        int pos = fullName.lastIndexOf(QLatin1Char('/'));
+        int pos = fullName.lastIndexOf(u'/');
         if (pos >= 0)
             return fullName.mid(pos + 1);
         return fullName;

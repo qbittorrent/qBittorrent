@@ -68,7 +68,7 @@ QString TorrentCategoryDialog::createCategory(QWidget *parent, const QString &pa
 
     QString newCategoryName = parentCategoryName;
     if (!newCategoryName.isEmpty())
-        newCategoryName += QLatin1Char('/');
+        newCategoryName += u'/';
     newCategoryName += tr("New Category");
 
     TorrentCategoryDialog dialog {parent};

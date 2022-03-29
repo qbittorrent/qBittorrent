@@ -172,43 +172,43 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     // Add status filters
     auto *all = new QListWidgetItem(this);
     all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
-    all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterall")));
+    all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filterall"_qs));
     auto *downloading = new QListWidgetItem(this);
     downloading->setData(Qt::DisplayRole, tr("Downloading (0)"));
-    downloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("downloading")));
+    downloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"downloading"_qs));
     auto *seeding = new QListWidgetItem(this);
     seeding->setData(Qt::DisplayRole, tr("Seeding (0)"));
-    seeding->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("uploading")));
+    seeding->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"uploading"_qs));
     auto *completed = new QListWidgetItem(this);
     completed->setData(Qt::DisplayRole, tr("Completed (0)"));
-    completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("completed")));
+    completed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"completed"_qs));
     auto *resumed = new QListWidgetItem(this);
     resumed->setData(Qt::DisplayRole, tr("Resumed (0)"));
-    resumed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("resumed")));
+    resumed->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"resumed"_qs));
     auto *paused = new QListWidgetItem(this);
     paused->setData(Qt::DisplayRole, tr("Paused (0)"));
-    paused->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("paused")));
+    paused->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"paused"_qs));
     auto *active = new QListWidgetItem(this);
     active->setData(Qt::DisplayRole, tr("Active (0)"));
-    active->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filteractive")));
+    active->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filteractive"_qs));
     auto *inactive = new QListWidgetItem(this);
     inactive->setData(Qt::DisplayRole, tr("Inactive (0)"));
-    inactive->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterinactive")));
+    inactive->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filterinactive"_qs));
     auto *stalled = new QListWidgetItem(this);
     stalled->setData(Qt::DisplayRole, tr("Stalled (0)"));
-    stalled->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("filterstalled")));
+    stalled->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filterstalled"_qs));
     auto *stalledUploading = new QListWidgetItem(this);
     stalledUploading->setData(Qt::DisplayRole, tr("Stalled Uploading (0)"));
-    stalledUploading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("stalledUP")));
+    stalledUploading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledUP"_qs));
     auto *stalledDownloading = new QListWidgetItem(this);
     stalledDownloading->setData(Qt::DisplayRole, tr("Stalled Downloading (0)"));
-    stalledDownloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("stalledDL")));
+    stalledDownloading->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"stalledDL"_qs));
     auto *checking = new QListWidgetItem(this);
     checking->setData(Qt::DisplayRole, tr("Checking (0)"));
-    checking->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("checking")));
+    checking->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"checking"_qs));
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
-    errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(QLatin1String("error")));
+    errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_qs));
 
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
@@ -410,7 +410,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"network-server"_qs));
 
         const QString scheme = getScheme(tracker);
-        downloadFavicon(QString::fromLatin1("%1://%2/favicon.ico").arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), host));
+        downloadFavicon(u"%1://%2/favicon.ico"_qs.arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), host));
     }
     if (!trackerItem) return;
 
@@ -425,7 +425,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
         return;
     }
 
-    trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(torrentIDs.size())));
+    trackerItem->setText(u"%1 (%2)"_qs.arg(host, QString::number(torrentIDs.size())));
     if (exists)
     {
         if (trackerFromRow(currentRow()) == host)
@@ -503,7 +503,7 @@ void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent:
         }
 
         if (trackerItem)
-            trackerItem->setText(QString::fromLatin1("%1 (%2)").arg(host, QString::number(torrentIDs.size())));
+            trackerItem->setText(u"%1 (%2)"_qs.arg(host, QString::number(torrentIDs.size())));
     }
     else
     {

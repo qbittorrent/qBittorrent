@@ -143,7 +143,7 @@ void Utils::Gui::openPath(const Path &path)
 {
     // Hack to access samba shares with QDesktopServices::openUrl
     if (path.data().startsWith(u"//"))
-        QDesktopServices::openUrl(QUrl(QString::fromLatin1("file:") + path.toString()));
+        QDesktopServices::openUrl(QUrl(u"file:" + path.toString()));
     else
         QDesktopServices::openUrl(QUrl::fromLocalFile(path.data()));
 }

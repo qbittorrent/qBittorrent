@@ -98,10 +98,10 @@ FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
 {
     m_browseAction->setIconText(browseButtonBriefText.tr());
     m_browseAction->setText(browseButtonFullText.tr());
-    m_browseAction->setToolTip(browseButtonFullText.tr().remove(QLatin1Char('&')));
+    m_browseAction->setToolTip(browseButtonFullText.tr().remove(u'&'));
     m_browseAction->setShortcut(Qt::CTRL + Qt::Key_B);
     m_browseBtn->setDefaultAction(m_browseAction);
-    m_fileNameFilter = tr("Any file") + QLatin1String(" (*)");
+    m_fileNameFilter = tr("Any file") + u" (*)";
     m_editor->setBrowseAction(m_browseAction);
     m_validator->setStrictMode(false);
     m_editor->setValidator(m_validator);
@@ -233,18 +233,18 @@ void FileSystemPathEdit::setFileNameFilter(const QString &val)
     // QFileSystemModel applies name filters to directories too.
     // To use the filters we have to subclass QFileSystemModel and skip directories while filtering
     // extract file masks
-    const int openBracePos = val.indexOf(QLatin1Char('('), 0);
-    const int closeBracePos = val.indexOf(QLatin1Char(')'), openBracePos + 1);
+    const int openBracePos = val.indexOf(u'(');
+    const int closeBracePos = val.indexOf(u')', (openBracePos + 1));
     if ((openBracePos > 0) && (closeBracePos > 0) && (closeBracePos > openBracePos + 2))
     {
         QString filterString = val.mid(openBracePos + 1, closeBracePos - openBracePos - 1);
-        if (filterString == QLatin1String("*"))
+        if (filterString == u"*")
         {        // no filters
             d->m_editor->setFilenameFilters({});
         }
         else
         {
-            QStringList filters = filterString.split(QLatin1Char(' '), Qt::SkipEmptyParts);
+            QStringList filters = filterString.split(u' ', Qt::SkipEmptyParts);
             d->m_editor->setFilenameFilters(filters);
         }
     }
