@@ -487,7 +487,7 @@ const initializeWindows = function() {
                 id: 'setLocationPage',
                 title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: 'iframe',
-                contentURL: new URI("setlocation.html").setData("hashes", hashes.join('|')).setData("path", row.full_data.save_path).toString(),
+                contentURL: new URI("setlocation.html").setData("hashes", hashes.join('|')).setData("path", encodeURIComponent(row.full_data.save_path)).toString(),
                 scrollbars: false,
                 resizable: false,
                 maximizable: false,

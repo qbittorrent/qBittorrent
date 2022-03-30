@@ -31,16 +31,17 @@
 
         window.addEvent('domready', function() {
             const path = new URI().getData('path');
+
             // set text field to current value
             if (path)
-                $('setLocation').value = window.qBittorrent.Misc.escapeHtml(path);
+                $('setLocation').value = decodeURIComponent(path);
 
             $('setLocation').focus();
             $('setLocationButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 // check field
                 const location = $('setLocation').value.trim();
-                if (location === null || location === "") {
+                if ((location === null) || (location === "")) {
                     $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
                     return false;
                 }
