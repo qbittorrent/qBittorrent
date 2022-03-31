@@ -30,6 +30,7 @@
 #include "settingsstorage.h"
 
 #include <memory>
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QHash>
@@ -63,6 +64,7 @@ namespace
         // if serialization operation was not successful we return empty string
         Path deserialize(const QString &name, QVariantHash &data) const;
         Path serialize(const QString &name, const QVariantHash &data) const;
+        bool safeCopyFile(const Path &from, const Path &to) const;
 
         const QString m_name;
     };
@@ -172,10 +174,9 @@ QVariantHash TransactionalSettings::read() const
         QString finalPathStr = newPath.data();
         const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
         finalPathStr.remove(index, 4);
+        const Path finalPath(finalPathStr);
 
-        const Path finalPath {finalPathStr};
-        Utils::Fs::removeFile(finalPath);
-        Utils::Fs::renameFile(newPath, finalPath);
+        safeCopyFile(newPath, finalPath);
     }
     else
     {
@@ -202,11 +203,36 @@ bool TransactionalSettings::write(const QVariantHash &data) const
     QString finalPathStr = newPath.data();
     const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
     finalPathStr.remove(index, 4);
+    const Path finalPath(finalPathStr);
 
-    // preserve symbolic link on file
-    const Path finalPath {QFileInfo(finalPathStr).canonicalFilePath()};
-    Utils::Fs::removeFile(finalPath);
-    return Utils::Fs::renameFile(newPath, finalPath);
+    return safeCopyFile(newPath, finalPath);
+}
+
+bool TransactionalSettings::safeCopyFile(const Path &from, const Path &to) const
+{
+    const Path toSymLinkTarget = Path(QFile::symLinkTarget(to.data()));
+
+    if (toSymLinkTarget.isEmpty() || (QFileInfo(from.data()).canonicalPath() == QFileInfo(toSymLinkTarget.data()).canonicalPath()))
+    {
+        // Remove, rename when source and target files are at the same location
+        Utils::Fs::removeFile(to);
+        return Utils::Fs::renameFile(from, to);
+    }
+    else
+    {
+        // Preserve symbolic link when target is at a different location
+        // Allocate space in temporary file next to symlink target
+        // Copy file instead of rename to make it work across different file systems
+        const Path tmp(Path(QFileInfo(toSymLinkTarget.data()).dir().path()) / Path(from.filename()));
+
+        Utils::Fs::removeFile(tmp);
+        if (!Utils::Fs::copyFile(from, tmp))
+            return false;
+        Utils::Fs::removeFile(toSymLinkTarget);
+        if (!Utils::Fs::renameFile(tmp, toSymLinkTarget))
+            return false;
+        return Utils::Fs::removeFile(from);
+    }
 }
 
 Path TransactionalSettings::deserialize(const QString &name, QVariantHash &data) const
