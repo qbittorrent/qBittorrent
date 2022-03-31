@@ -100,6 +100,15 @@ elseif (CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_sources(qbt_app PRIVATE ${qBittorrent_SOURCE_DIR}/src/qbittorrent.exe.manifest)
 endif()
 
+# Add RISC-V support
+# -----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+if (CMAKE_SYSTEM_PROCESSOR STREQUAL "riscv64")
+    target_link_libraries(qbt_app PUBLIC
+        atomic
+    )
+endif()
+
 # Additional feature dependent configuration
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
