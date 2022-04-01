@@ -2255,10 +2255,25 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
 
         Q_ASSERT(addTorrentParams.filePaths.isEmpty() || (addTorrentParams.filePaths.size() == torrentInfo.filesCount()));
 
-        const TorrentContentLayout contentLayout = ((loadTorrentParams.contentLayout == TorrentContentLayout::Original)
-                                                    ? detectContentLayout(torrentInfo.filePaths()) : loadTorrentParams.contentLayout);
-        PathList filePaths = (!addTorrentParams.filePaths.isEmpty() ? addTorrentParams.filePaths : torrentInfo.filePaths());
-        applyContentLayout(filePaths, contentLayout, Path::findRootFolder(torrentInfo.filePaths()));
+        PathList filePaths = addTorrentParams.filePaths;
+        if (filePaths.isEmpty())
+        {
+            filePaths = torrentInfo.filePaths();
+            if (loadTorrentParams.contentLayout != TorrentContentLayout::Original)
+            {
+                const Path originalRootFolder = Path::findRootFolder(filePaths);
+                const auto originalContentLayout = (originalRootFolder.isEmpty()
+                                                    ? TorrentContentLayout::NoSubfolder
+                                                    : TorrentContentLayout::Subfolder);
+                if (loadTorrentParams.contentLayout != originalContentLayout)
+                {
+                    if (loadTorrentParams.contentLayout == TorrentContentLayout::NoSubfolder)
+                        Path::stripRootFolder(filePaths);
+                    else
+                        Path::addRootFolder(filePaths, filePaths.at(0).removedExtension());
+                }
+            }
+        }
 
         // if torrent name wasn't explicitly set we handle the case of
         // initial renaming of torrent content and rename torrent accordingly

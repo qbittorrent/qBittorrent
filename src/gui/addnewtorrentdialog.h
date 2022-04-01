@@ -35,6 +35,7 @@
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 namespace BitTorrent
@@ -88,7 +89,7 @@ private slots:
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
-    void contentLayoutChanged(int index);
+    void contentLayoutChanged();
     void doNotDeleteTorrentClicked(bool checked);
     void renameSelectedFile();
 
@@ -97,6 +98,8 @@ private slots:
 
 private:
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
+
+    void applyContentLayout();
     bool loadTorrentFile(const QString &source);
     bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
@@ -115,6 +118,8 @@ private:
     PropListDelegate *m_contentDelegate = nullptr;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
+    Path m_originalRootFolder;
+    BitTorrent::TorrentContentLayout m_currentContentLayout;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;

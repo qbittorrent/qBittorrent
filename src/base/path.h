@@ -60,6 +60,7 @@ public:
     QString extension() const;
     bool hasExtension(const QString &ext) const;
     void removeExtension();
+    Path removedExtension() const;
     void removeExtension(const QString &ext);
 
     bool hasAncestor(const Path &other) const;

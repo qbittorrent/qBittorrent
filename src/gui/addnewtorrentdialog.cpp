@@ -256,6 +256,38 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
         m_ui->categoryComboBox->setFocus();
 }
 
+void AddNewTorrentDialog::applyContentLayout()
+{
+    Q_ASSERT(hasMetadata());
+    Q_ASSERT(!m_torrentParams.filePaths.isEmpty());
+
+    const auto originalContentLayout = (m_originalRootFolder.isEmpty()
+                                        ? BitTorrent::TorrentContentLayout::NoSubfolder
+                                        : BitTorrent::TorrentContentLayout::Subfolder);
+    const int currentIndex = m_ui->contentLayoutComboBox->currentIndex();
+    const auto contentLayout = ((currentIndex == 0)
+                                  ? originalContentLayout
+                                  : static_cast<BitTorrent::TorrentContentLayout>(currentIndex));
+    if (contentLayout != m_currentContentLayout)
+    {
+        PathList &filePaths = m_torrentParams.filePaths;
+
+        if (contentLayout == BitTorrent::TorrentContentLayout::NoSubfolder)
+        {
+            Path::stripRootFolder(filePaths);
+        }
+        else
+        {
+            const auto rootFolder = ((originalContentLayout == BitTorrent::TorrentContentLayout::Subfolder)
+                                     ? m_originalRootFolder
+                                     : filePaths.at(0).removedExtension());
+            Path::addRootFolder(filePaths, rootFolder);
+        }
+
+        m_currentContentLayout = contentLayout;
+    }
+}
+
 AddNewTorrentDialog::~AddNewTorrentDialog()
 {
     saveState();
@@ -538,7 +570,7 @@ void AddNewTorrentDialog::categoryChanged(int index)
     }
 }
 
-void AddNewTorrentDialog::contentLayoutChanged(const int index)
+void AddNewTorrentDialog::contentLayoutChanged()
 {
     if (!hasMetadata())
         return;
@@ -546,11 +578,8 @@ void AddNewTorrentDialog::contentLayoutChanged(const int index)
     const auto filePriorities = m_contentModel->model()->getFilePriorities();
     m_contentModel->model()->clear();
 
-    Q_ASSERT(!m_torrentParams.filePaths.isEmpty());
-    const auto contentLayout = ((index == 0)
-                                ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
-                                : static_cast<BitTorrent::TorrentContentLayout>(index));
-    BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
+    applyContentLayout();
+
     m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
     m_contentModel->model()->updateFilesPriorities(filePriorities);
 
@@ -905,12 +934,16 @@ void AddNewTorrentDialog::setupTreeview()
         connect(m_ui->buttonSelectAll, &QPushButton::clicked, m_contentModel, &TorrentContentFilterModel::selectAll);
         connect(m_ui->buttonSelectNone, &QPushButton::clicked, m_contentModel, &TorrentContentFilterModel::selectNone);
 
-        const auto contentLayout = ((m_ui->contentLayoutComboBox->currentIndex() == 0)
-                                    ? BitTorrent::detectContentLayout(m_torrentInfo.filePaths())
-                                    : static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
+
         if (m_torrentParams.filePaths.isEmpty())
             m_torrentParams.filePaths = m_torrentInfo.filePaths();
-        BitTorrent::applyContentLayout(m_torrentParams.filePaths, contentLayout, Path::findRootFolder(m_torrentInfo.filePaths()));
+
+        m_originalRootFolder = Path::findRootFolder(m_torrentInfo.filePaths());
+        m_currentContentLayout = (m_originalRootFolder.isEmpty()
+                                            ? BitTorrent::TorrentContentLayout::NoSubfolder
+                                            : BitTorrent::TorrentContentLayout::Subfolder);
+        applyContentLayout();
+
         // List files in torrent
         m_contentModel->model()->setupModelData(FileStorageAdaptor(m_torrentInfo, m_torrentParams.filePaths));
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())

@@ -41,6 +41,7 @@
 #include <QVector>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
@@ -406,14 +407,6 @@ int TorrentInfo::fileIndex(const Path &filePath) const
     }
 
     return -1;
-}
-
-TorrentContentLayout TorrentInfo::contentLayout() const
-{
-    if (!isValid())
-        return TorrentContentLayout::Original;
-
-    return detectContentLayout(filePaths());
 }
 
 std::shared_ptr<lt::torrent_info> TorrentInfo::nativeInfo() const

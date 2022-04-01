@@ -181,6 +181,11 @@ void Path::removeExtension()
     m_pathStr.chop(extension().size());
 }
 
+Path Path::removedExtension() const
+{
+    return createUnchecked(m_pathStr.chopped(extension().size()));
+}
+
 void Path::removeExtension(const QString &ext)
 {
     if (hasExtension(ext))
