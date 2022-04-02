@@ -145,12 +145,6 @@ bool operator==(const Digest32<N> &left, const Digest32<N> &right)
 }
 
 template <int N>
-bool operator!=(const Digest32<N> &left, const Digest32<N> &right)
-{
-    return !(left == right);
-}
-
-template <int N>
 bool operator<(const Digest32<N> &left, const Digest32<N> &right)
 {
     return static_cast<typename Digest32<N>::UnderlyingType>(left)

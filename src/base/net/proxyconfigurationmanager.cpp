@@ -41,11 +41,6 @@ bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &r
             && (left.hostnameLookupEnabled == right.hostnameLookupEnabled);
 }
 
-bool Net::operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right)
-{
-    return !(left == right);
-}
-
 using namespace Net;
 
 ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;

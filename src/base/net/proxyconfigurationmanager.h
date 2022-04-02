@@ -57,7 +57,6 @@ namespace Net
         bool hostnameLookupEnabled = true;
     };
     bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
-    bool operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right);
 
     class ProxyConfigurationManager final : public QObject
     {

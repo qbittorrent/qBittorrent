@@ -134,11 +134,6 @@ namespace
         }
     };
 
-    bool operator==(const QString &arg, const BoolOption &option)
-    {
-        return (option == arg);
-    }
-
     // Option with string value. May not have a shortcut
     struct StringOption : protected Option
     {
@@ -180,11 +175,6 @@ namespace
             return fullParameter() + u'=';
         }
     };
-
-    bool operator==(const QString &arg, const StringOption &option)
-    {
-        return (option == arg);
-    }
 
     // Option with integer value. May not have a shortcut
     class IntOption : protected StringOption
@@ -232,11 +222,6 @@ namespace
             return (static_cast<StringOption>(option) == arg);
         }
     };
-
-    bool operator==(const QString &arg, const IntOption &option)
-    {
-        return (option == arg);
-    }
 
     // Option that is explicitly set to true or false, and whose value is undefined when unspecified.
     // May not have a shortcut.
@@ -315,11 +300,6 @@ namespace
 
         bool m_defaultValue;
     };
-
-    bool operator==(const QString &arg, const TriStateBoolOption &option)
-    {
-        return (option == arg);
-    }
 
     constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
     constexpr const BoolOption SHOW_VERSION_OPTION {"version", 'v'};

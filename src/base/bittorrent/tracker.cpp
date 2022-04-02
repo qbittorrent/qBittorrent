@@ -135,11 +135,6 @@ namespace BitTorrent
         return (left.uniqueID() == right.uniqueID());
     }
 
-    bool operator!=(const Peer &left, const Peer &right)
-    {
-        return !(left == right);
-    }
-
     std::size_t qHash(const Peer &key, const std::size_t seed)
     {
         return qHash(key.uniqueID(), seed);

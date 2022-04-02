@@ -124,13 +124,12 @@ namespace Utils
             return res;
         }
 
-        // TODO: remove manually defined operators and use compiler generated `operator<=>()` in C++20
-        friend bool operator==(const ThisType &left, const ThisType &right)
+        friend constexpr bool operator==(const ThisType &left, const ThisType &right)
         {
             return (left.m_components == right.m_components);
         }
 
-        friend bool operator<(const ThisType &left, const ThisType &right)
+        friend constexpr bool operator<(const ThisType &left, const ThisType &right)
         {
             return (left.m_components < right.m_components);
         }
@@ -158,12 +157,6 @@ namespace Utils
     private:
         std::array<int, N> m_components {{}};
     };
-
-    template <int N, int Mandatory>
-    constexpr bool operator!=(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
-    {
-        return !(left == right);
-    }
 
     template <int N, int Mandatory>
     constexpr bool operator>(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
