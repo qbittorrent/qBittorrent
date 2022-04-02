@@ -36,7 +36,7 @@
 #include "base/path.h"
 #include "base/utils/version.h"
 
-using PluginVersion = Utils::Version<unsigned short, 2>;
+using PluginVersion = Utils::Version<short, 2>;
 Q_DECLARE_METATYPE(PluginVersion)
 
 namespace Net
