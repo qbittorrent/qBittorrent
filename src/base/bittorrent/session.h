@@ -469,8 +469,8 @@ namespace BitTorrent
         bool hasRunningSeed() const;
         const SessionStatus &status() const;
         const CacheStatus &cacheStatus() const;
-        quint64 getAlltimeDL() const;
-        quint64 getAlltimeUL() const;
+        qint64 getAlltimeDL() const;
+        qint64 getAlltimeUL() const;
         bool isListening() const;
 
         MaxRatioAction maxRatioAction() const;
