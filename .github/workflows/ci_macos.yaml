@@ -23,7 +23,7 @@ jobs:
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
-      openssl_root: /usr/local/opt/openssl@1.1
+      openssl_root: /usr/local/opt/openssl@3
 
     steps:
       - name: Checkout repository
@@ -41,7 +41,7 @@ jobs:
             brew update > /dev/null
             brew install \
               cmake ninja \
-              openssl@1.1 zlib
+              openssl@3 zlib
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
