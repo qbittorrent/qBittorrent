@@ -31,16 +31,17 @@
 
         window.addEvent('domready', function() {
             const path = new URI().getData('path');
+
             // set text field to current value
             if (path)
-                $('setLocation').value = window.qBittorrent.Misc.escapeHtml(path);
+                $('setLocation').value = decodeURIComponent(path);
 
             $('setLocation').focus();
             $('setLocationButton').addEvent('click', function(e) {
                 new Event(e).stop();
                 // check field
                 const location = $('setLocation').value.trim();
-                if (location === null || location === "") {
+                if ((location === null) || (location === "")) {
                     $('error_div').set('text', 'QBT_TR(Save path is empty)QBT_TR[CONTEXT=TorrentsController]');
                     return false;
                 }
@@ -68,8 +69,8 @@
 <body>
     <div style="padding: 10px 10px 0px 10px;">
         <p style="font-weight: bold;">QBT_TR(Location)QBT_TR[CONTEXT=TransferListWidget]:</p>
-        <input type="text" id="setLocation" autocorrect="off" autocapitalize="none" style="width: 370px;" />
-        <div style="float: none; width: 370px;" id="error_div">&nbsp;</div>
+        <input type="text" id="setLocation" autocorrect="off" autocapitalize="none" style="width: 99%;" />
+        <div style="float: none; width: 99%;" id="error_div">&nbsp;</div>
         <div style="text-align: center; padding-top: 10px;">
             <input type="button" value="QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]" id="setLocationButton" />
         </div>
