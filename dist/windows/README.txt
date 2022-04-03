@@ -38,10 +38,12 @@ installer-translations
 translations
 	qt_ar.qm
 	...
-        (all the .qm files found in the 'translations' folder of your Qt install. Those files differ between Qt4 and Qt5.
-	 If you want to distribute Qt4 translations it is better to use the ones found in this repo under the path "dist/qt-translations".
-	 They contain extra languages not distributed via the official qt4 sources.
-	 Don't forget to edit the filelist in installer.nsi + uninstaller.nsi to include all your .qm files.)
+    (All the .qm files found in the 'translations' folder of your Qt install. Those files differ between Qt5 and Qt6.
+     You will need the files that conform to this globbing expression 'qt_??.qm qt_??_??.qm qtbase_??.qm qtbase_??_??.qm'.
+     Some of those files will be stubs. Filter any file that is smaller than 10KB in size.
+     Alternatively you can use the 'gather_qt_translations.py' script found in the same folder as this file.
+     Run it with '--help' to see its usage.
+     **YOU MUST** edit the list of .qm files in the 'installer.nsi' to match whatever files are in the 'translations' subfolder.)
 	qt_zh_TW.qm
 installer.nsi
 license.txt
