@@ -308,8 +308,7 @@ namespace
 
         friend bool operator==(const TriStateBoolOption &option, const QString &arg)
         {
-            const QStringList parts = arg.split(u'=');
-            return parts[0] == option.fullParameter();
+            return arg.section(u'=', 0, 0) == option.fullParameter();
         }
 
         bool m_defaultValue;

@@ -142,10 +142,10 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 void Utils::Gui::openPath(const Path &path)
 {
     // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.data().startsWith(u"//"))
-        QDesktopServices::openUrl(QUrl(u"file:" + path.toString()));
-    else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path.data()));
+    const QUrl url = path.data().startsWith(u"//")
+        ? QUrl(u"file:" + path.data())
+        : QUrl::fromLocalFile(path.data());
+    QDesktopServices::openUrl(url);
 }
 
 // Open the parent directory of the given path with a file manager and select
