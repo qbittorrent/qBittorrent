@@ -4702,12 +4702,12 @@ void Session::startUpTorrents()
     }
 }
 
-quint64 Session::getAlltimeDL() const
+qint64 Session::getAlltimeDL() const
 {
     return m_statistics->getAlltimeDL();
 }
 
-quint64 Session::getAlltimeUL() const
+qint64 Session::getAlltimeUL() const
 {
     return m_statistics->getAlltimeUL();
 }
@@ -5201,10 +5201,10 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     const int64_t dhtDownload = stats[m_metricIndices.dht.dhtBytesIn];
     const int64_t dhtUpload = stats[m_metricIndices.dht.dhtBytesOut];
 
-    auto calcRate = [interval](const quint64 previous, const quint64 current)
+    const auto calcRate = [interval](const qint64 previous, const qint64 current) -> qint64
     {
         Q_ASSERT(current >= previous);
-        return static_cast<quint64>((current - previous) / interval);
+        return ((current - previous) / interval);
     };
 
     m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);

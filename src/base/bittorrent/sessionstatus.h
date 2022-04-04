@@ -39,37 +39,37 @@ namespace BitTorrent
         // Current download rate for the BT
         // session. Payload means that it only take into
         // account "useful" part of the rate
-        quint64 payloadDownloadRate = 0;
+        qint64 payloadDownloadRate = 0;
 
         // Current upload rate for the BT
         // session. Payload means that it only take into
         // account "useful" part of the rate
-        quint64 payloadUploadRate = 0;
+        qint64 payloadUploadRate = 0;
 
         // Additional download/upload rates
-        quint64 uploadRate = 0;
-        quint64 downloadRate = 0;
-        quint64 ipOverheadUploadRate = 0;
-        quint64 ipOverheadDownloadRate = 0;
-        quint64 dhtUploadRate = 0;
-        quint64 dhtDownloadRate = 0;
-        quint64 trackerUploadRate = 0;
-        quint64 trackerDownloadRate = 0;
+        qint64 uploadRate = 0;
+        qint64 downloadRate = 0;
+        qint64 ipOverheadUploadRate = 0;
+        qint64 ipOverheadDownloadRate = 0;
+        qint64 dhtUploadRate = 0;
+        qint64 dhtDownloadRate = 0;
+        qint64 trackerUploadRate = 0;
+        qint64 trackerDownloadRate = 0;
 
-        quint64 totalDownload = 0;
-        quint64 totalUpload = 0;
-        quint64 totalPayloadDownload = 0;
-        quint64 totalPayloadUpload = 0;
-        quint64 ipOverheadUpload = 0;
-        quint64 ipOverheadDownload = 0;
-        quint64 dhtUpload = 0;
-        quint64 dhtDownload = 0;
-        quint64 trackerUpload = 0;
-        quint64 trackerDownload = 0;
-        quint64 totalWasted = 0;
-        quint64 diskReadQueue = 0;
-        quint64 diskWriteQueue = 0;
-        quint64 dhtNodes = 0;
-        quint64 peersCount = 0;
+        qint64 totalDownload = 0;
+        qint64 totalUpload = 0;
+        qint64 totalPayloadDownload = 0;
+        qint64 totalPayloadUpload = 0;
+        qint64 ipOverheadUpload = 0;
+        qint64 ipOverheadDownload = 0;
+        qint64 dhtUpload = 0;
+        qint64 dhtDownload = 0;
+        qint64 trackerUpload = 0;
+        qint64 trackerDownload = 0;
+        qint64 totalWasted = 0;
+        qint64 diskReadQueue = 0;
+        qint64 diskWriteQueue = 0;
+        qint64 dhtNodes = 0;
+        qint64 peersCount = 0;
     };
 }

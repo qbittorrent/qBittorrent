@@ -47,7 +47,7 @@ ArticleListWidget::ArticleListWidget(QWidget *parent)
 RSS::Article *ArticleListWidget::getRSSArticle(QListWidgetItem *item) const
 {
     Q_ASSERT(item);
-    return reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+    return item->data(Qt::UserRole).value<RSS::Article *>();
 }
 
 QListWidgetItem *ArticleListWidget::mapRSSArticle(RSS::Article *rssArticle) const
@@ -127,7 +127,7 @@ QListWidgetItem *ArticleListWidget::createItem(RSS::Article *article) const
     auto *item = new QListWidgetItem;
 
     item->setData(Qt::DisplayRole, article->title());
-    item->setData(Qt::UserRole, reinterpret_cast<quintptr>(article));
+    item->setData(Qt::UserRole, QVariant::fromValue(article));
     if (article->isRead())
     {
         const QColor defaultColor {palette().color(QPalette::Inactive, QPalette::WindowText)};

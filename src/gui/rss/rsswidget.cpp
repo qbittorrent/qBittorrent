@@ -198,7 +198,7 @@ void RSSWidget::displayItemsListMenu()
     bool hasLink = false;
     for (const QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         if (!article->torrentUrl().isEmpty())
@@ -359,7 +359,7 @@ void RSSWidget::downloadSelectedTorrents()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
@@ -380,7 +380,7 @@ void RSSWidget::openSelectedArticlesUrls()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
