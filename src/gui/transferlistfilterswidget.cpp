@@ -390,31 +390,35 @@ TrackerFiltersList::~TrackerFiltersList()
 
 void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::TorrentID &id)
 {
-    const QString host {getHost(tracker)};
-    const auto existingDataItr = m_trackers.find(host);
-    const bool exists {existingDataItr != m_trackers.end()};
-    QListWidgetItem *trackerItem {nullptr};
+    const QString host = getHost(tracker);
+    auto trackersIt = m_trackers.find(host);
+    const bool exists = (trackersIt != m_trackers.end());
+    QListWidgetItem *trackerItem = nullptr;
 
     if (exists)
     {
-        if (existingDataItr->torrents.contains(id))
+        if (trackersIt->torrents.contains(id))
             return;
 
         trackerItem = (host == NULL_HOST)
                 ? item(TRACKERLESS_ROW)
-                : existingDataItr->item;
+                : trackersIt->item;
     }
     else
     {
         trackerItem = new QListWidgetItem();
         trackerItem->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"network-server"_qs));
 
+        TrackerData trackerData {{}, trackerItem};
+        trackersIt = m_trackers.insert(host, trackerData);
+
         const QString scheme = getScheme(tracker);
         downloadFavicon(u"%1://%2/favicon.ico"_qs.arg((scheme.startsWith(u"http") ? scheme : u"http"_qs), host));
     }
-    if (!trackerItem) return;
 
-    QSet<BitTorrent::TorrentID> &torrentIDs {m_trackers[host].torrents};
+    Q_ASSERT(trackerItem);
+
+    QSet<BitTorrent::TorrentID> &torrentIDs = trackersIt->torrents;
     torrentIDs.insert(id);
 
     if (host == NULL_HOST)
@@ -428,7 +432,7 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
     trackerItem->setText(u"%1 (%2)"_qs.arg(host, QString::number(torrentIDs.size())));
     if (exists)
     {
-        if (trackerFromRow(currentRow()) == host)
+        if (item(currentRow()) == trackerItem)
             applyFilter(currentRow());
         return;
     }
