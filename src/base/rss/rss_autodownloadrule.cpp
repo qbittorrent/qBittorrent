@@ -144,24 +144,35 @@ namespace RSS
         mutable QStringList lastComputedEpisodes;
         mutable QHash<QString, QRegularExpression> cachedRegexes;
 
-        bool operator==(const AutoDownloadRuleData &other) const
+        friend bool operator==(const AutoDownloadRuleData &left, const AutoDownloadRuleData &right)
         {
-            return (name == other.name)
-                    && (enabled == other.enabled)
-                    && (mustContain == other.mustContain)
-                    && (mustNotContain == other.mustNotContain)
-                    && (episodeFilter == other.episodeFilter)
-                    && (feedURLs == other.feedURLs)
-                    && (useRegex == other.useRegex)
-                    && (ignoreDays == other.ignoreDays)
-                    && (lastMatch == other.lastMatch)
-                    && (savePath == other.savePath)
-                    && (category == other.category)
-                    && (addPaused == other.addPaused)
-                    && (contentLayout == other.contentLayout)
-                    && (smartFilter == other.smartFilter);
+            return (left.name == right.name)
+                    && (left.enabled == right.enabled)
+                    && (left.mustContain == right.mustContain)
+                    && (left.mustNotContain == right.mustNotContain)
+                    && (left.episodeFilter == right.episodeFilter)
+                    && (left.feedURLs == right.feedURLs)
+                    && (left.useRegex == right.useRegex)
+                    && (left.ignoreDays == right.ignoreDays)
+                    && (left.lastMatch == right.lastMatch)
+                    && (left.savePath == right.savePath)
+                    && (left.category == right.category)
+                    && (left.addPaused == right.addPaused)
+                    && (left.contentLayout == right.contentLayout)
+                    && (left.smartFilter == right.smartFilter);
         }
     };
+
+    bool operator==(const AutoDownloadRule &left, const AutoDownloadRule &right)
+    {
+        return (left.m_dataPtr == right.m_dataPtr) // optimization
+                || (*(left.m_dataPtr) == *(right.m_dataPtr));
+    }
+
+    bool operator!=(const AutoDownloadRule &left, const AutoDownloadRule &right)
+    {
+        return !(left == right);
+    }
 }
 
 using namespace RSS;
@@ -446,17 +457,6 @@ AutoDownloadRule &AutoDownloadRule::operator=(const AutoDownloadRule &other)
         m_dataPtr = other.m_dataPtr;
     }
     return *this;
-}
-
-bool AutoDownloadRule::operator==(const AutoDownloadRule &other) const
-{
-    return (m_dataPtr == other.m_dataPtr) // optimization
-            || (*m_dataPtr == *other.m_dataPtr);
-}
-
-bool AutoDownloadRule::operator!=(const AutoDownloadRule &other) const
-{
-    return !operator==(other);
 }
 
 QJsonObject AutoDownloadRule::toJsonObject() const

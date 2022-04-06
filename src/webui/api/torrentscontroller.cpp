@@ -717,7 +717,8 @@ void TorrentsController::addAction()
         }
     }
 
-    for (auto it = data().constBegin(); it != data().constEnd(); ++it)
+    const DataMap torrents = data();
+    for (auto it = torrents.constBegin(); it != torrents.constEnd(); ++it)
     {
         const nonstd::expected<BitTorrent::TorrentInfo, QString> result = BitTorrent::TorrentInfo::load(it.value());
         if (!result)

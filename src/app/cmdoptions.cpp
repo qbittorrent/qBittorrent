@@ -111,12 +111,6 @@ namespace
         {
         }
 
-        bool operator==(const QString &arg) const
-        {
-            return (hasShortcut() && ((arg.size() == 2) && (arg == shortcutParameter())))
-                   || (arg == fullParameter());
-        }
-
         bool value(const QProcessEnvironment &env) const
         {
             QString val = env.value(envVarName());
@@ -132,11 +126,17 @@ namespace
             res += fullParameter();
             return padUsageText(res);
         }
+
+        friend bool operator==(const BoolOption &option, const QString &arg)
+        {
+            return (option.hasShortcut() && ((arg.size() == 2) && (option.shortcutParameter() == arg)))
+                   || (option.fullParameter() == arg);
+        }
     };
 
-    bool operator==(const QString &s, const BoolOption &o)
+    bool operator==(const QString &arg, const BoolOption &option)
     {
-        return o == s;
+        return (option == arg);
     }
 
     // Option with string value. May not have a shortcut
@@ -146,11 +146,6 @@ namespace
         explicit constexpr StringOption(const char *name)
             : Option {name, 0}
         {
-        }
-
-        bool operator==(const QString &arg) const
-        {
-            return arg.startsWith(parameterAssignment());
         }
 
         QString value(const QString &arg) const
@@ -174,6 +169,11 @@ namespace
             return padUsageText(parameterAssignment() + u'<' + valueName + u'>');
         }
 
+        friend bool operator==(const StringOption &option, const QString &arg)
+        {
+            return arg.startsWith(option.parameterAssignment());
+        }
+
     private:
         QString parameterAssignment() const
         {
@@ -181,9 +181,9 @@ namespace
         }
     };
 
-    bool operator==(const QString &s, const StringOption &o)
+    bool operator==(const QString &arg, const StringOption &option)
     {
-        return o == s;
+        return (option == arg);
     }
 
     // Option with integer value. May not have a shortcut
@@ -195,7 +195,6 @@ namespace
         {
         }
 
-        using StringOption::operator==;
         using StringOption::usage;
 
         int value(const QString &arg) const
@@ -225,11 +224,16 @@ namespace
             }
             return res;
         }
+
+        friend bool operator==(const IntOption &option, const QString &arg)
+        {
+            return (static_cast<StringOption>(option) == arg);
+        }
     };
 
-    bool operator==(const QString &s, const IntOption &o)
+    bool operator==(const QString &arg, const IntOption &option)
     {
-        return o == s;
+        return (option == arg);
     }
 
     // Option that is explicitly set to true or false, and whose value is undefined when unspecified.
@@ -241,12 +245,6 @@ namespace
             : Option {name, 0}
             , m_defaultValue(defaultValue)
         {
-        }
-
-        bool operator==(const QString &arg) const
-        {
-            QStringList parts = arg.split(u'=');
-            return parts[0] == fullParameter();
         }
 
         QString usage() const
@@ -308,12 +306,17 @@ namespace
             return std::nullopt;
         }
 
+        friend bool operator==(const TriStateBoolOption &option, const QString &arg)
+        {
+            return arg.section(u'=', 0, 0) == option.fullParameter();
+        }
+
         bool m_defaultValue;
     };
 
-    bool operator==(const QString &s, const TriStateBoolOption &o)
+    bool operator==(const QString &arg, const TriStateBoolOption &option)
     {
-        return o == s;
+        return (option == arg);
     }
 
     constexpr const BoolOption SHOW_HELP_OPTION {"help", 'h'};
