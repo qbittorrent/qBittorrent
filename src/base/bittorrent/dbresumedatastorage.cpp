@@ -43,6 +43,7 @@
 #include <QSqlDatabase>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QThread>
 #include <QVector>
 
@@ -206,7 +207,7 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const QString &dbPath, QObj
     else
     {
         const int dbVersion = currentDBVersion();
-        if (dbVersion == 1)
+        if ((dbVersion == 1) || !db.record(DB_TABLE_TORRENTS).contains(DB_COLUMN_DOWNLOAD_PATH.name))
             updateDBFromVersion1();
     }
 
@@ -422,6 +423,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_CATEGORY, "TEXT"),
             makeColumnDefinition(DB_COLUMN_TAGS, "TEXT"),
             makeColumnDefinition(DB_COLUMN_TARGET_SAVE_PATH, "TEXT"),
+            makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"),
             makeColumnDefinition(DB_COLUMN_CONTENT_LAYOUT, "TEXT NOT NULL"),
             makeColumnDefinition(DB_COLUMN_RATIO_LIMIT, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_SEEDING_TIME_LIMIT, "INTEGER NOT NULL"),
