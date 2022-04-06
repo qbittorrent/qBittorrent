@@ -342,7 +342,6 @@ void TransferListWidget::setSelectedTorrentsLocation()
     auto fileDialog = new QFileDialog(this, tr("Choose save path"), oldLocation);
     fileDialog->setAttribute(Qt::WA_DeleteOnClose);
     fileDialog->setFileMode(QFileDialog::Directory);
-    fileDialog->setModal(true);
     fileDialog->setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
     connect(fileDialog, &QDialog::accepted, this, [this, fileDialog]()
     {
@@ -362,7 +361,7 @@ void TransferListWidget::setSelectedTorrentsLocation()
         }
     });
 
-    fileDialog->show();
+    fileDialog->open();
 }
 
 void TransferListWidget::pauseAllTorrents()
