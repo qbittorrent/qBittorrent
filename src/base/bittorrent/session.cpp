@@ -2192,8 +2192,8 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         const auto nativeIndexes = torrentInfo.nativeIndexes();
         if (!filePaths.isEmpty())
         {
-            for (int index = 0; index < addTorrentParams.filePaths.size(); ++index)
-                p.renamed_files[nativeIndexes[index]] = Utils::Fs::toNativePath(addTorrentParams.filePaths.at(index)).toStdString();
+            for (int index = 0; index < filePaths.size(); ++index)
+                p.renamed_files[nativeIndexes[index]] = Utils::Fs::toNativePath(filePaths.at(index)).toStdString();
         }
 
         Q_ASSERT(p.file_priorities.empty());
