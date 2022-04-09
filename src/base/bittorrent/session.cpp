@@ -4445,21 +4445,24 @@ void Session::startUpTorrents()
         }
         else if (torrentID == torrentIDv2)
         {
-            torrentID = torrentIDv1;
-            needStore = true;
-            m_resumeDataStorage->remove(torrentIDv2);
-
-            if (indexedTorrents.contains(torrentID))
+            if (isHybrid)
             {
-                skippedIDs.insert(torrentID);
+                torrentID = torrentIDv1;
+                needStore = true;
+                m_resumeDataStorage->remove(torrentIDv2);
 
-                const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
-                if (loadPreferredResumeDataResult)
+                if (indexedTorrents.contains(torrentID))
                 {
-                    std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
-                    resumeData = *loadPreferredResumeDataResult;
-                    if (!resumeData.ltAddTorrentParams.ti)
-                        resumeData.ltAddTorrentParams.ti = ti;
+                    skippedIDs.insert(torrentID);
+
+                    const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
+                    if (loadPreferredResumeDataResult)
+                    {
+                        std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
+                        resumeData = *loadPreferredResumeDataResult;
+                        if (!resumeData.ltAddTorrentParams.ti)
+                            resumeData.ltAddTorrentParams.ti = ti;
+                    }
                 }
             }
         }
