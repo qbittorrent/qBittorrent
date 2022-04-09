@@ -29,10 +29,9 @@
 #pragma once
 
 #include <QElapsedTimer>
+#include <QVariantMap>
 
 #include "apicontroller.h"
-
-struct ISessionManager;
 
 class QThread;
 
@@ -46,7 +45,7 @@ class SyncController : public APIController
 public:
     using APIController::APIController;
 
-    explicit SyncController(ISessionManager *sessionManager, QObject *parent = nullptr);
+    explicit SyncController(QObject *parent = nullptr);
     ~SyncController() override;
 
 private slots:
@@ -62,4 +61,9 @@ private:
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
     QThread *m_freeDiskSpaceThread = nullptr;
     QElapsedTimer m_freeDiskSpaceElapsedTimer;
+
+    QVariantMap m_lastMaindataResponse;
+    QVariantMap m_lastAcceptedMaindataResponse;
+    QVariantMap m_lastPeersResponse;
+    QVariantMap m_lastAcceptedPeersResponse;
 };
