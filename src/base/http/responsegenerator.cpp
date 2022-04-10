@@ -74,13 +74,13 @@ QString Http::httpDate()
     // [RFC 7231] 7.1.1.1. Date/Time Formats
     // example: "Sun, 06 Nov 1994 08:49:37 GMT"
 
-    return QLocale::c().toString(QDateTime::currentDateTimeUtc(), QLatin1String("ddd, dd MMM yyyy HH:mm:ss"))
-        .append(QLatin1String(" GMT"));
+    return QLocale::c().toString(QDateTime::currentDateTimeUtc(), u"ddd, dd MMM yyyy HH:mm:ss"_qs)
+        .append(u" GMT");
 }
 
 void Http::compressContent(Response &response)
 {
-    if (response.headers.value(HEADER_CONTENT_ENCODING) != QLatin1String("gzip"))
+    if (response.headers.value(HEADER_CONTENT_ENCODING) != u"gzip")
         return;
 
     response.headers.remove(HEADER_CONTENT_ENCODING);
@@ -106,5 +106,5 @@ void Http::compressContent(Response &response)
         return;
 
     response.content = compressedData;
-    response.headers[HEADER_CONTENT_ENCODING] = QLatin1String("gzip");
+    response.headers[HEADER_CONTENT_ENCODING] = u"gzip"_qs;
 }

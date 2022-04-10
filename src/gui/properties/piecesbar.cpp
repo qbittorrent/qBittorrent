@@ -37,9 +37,10 @@
 #include <QTextStream>
 #include <QToolTip>
 
-#include "base/indexrange.h"
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/indexrange.h"
+#include "base/path.h"
 #include "base/utils/misc.h"
 
 namespace
@@ -53,9 +54,8 @@ namespace
     {
     public:
         PieceIndexToImagePos(const BitTorrent::TorrentInfo &torrentInfo, const QImage &image)
-            : m_bytesPerPixel
-            {((image.width() > 0) && (torrentInfo.totalSize() >= image.width()))
-                ? torrentInfo.totalSize() / image.width() : -1}
+            : m_bytesPerPixel {((image.width() > 0) && (torrentInfo.totalSize() >= image.width()))
+                               ? torrentInfo.totalSize() / image.width() : -1}
             , m_torrentInfo {torrentInfo}
         {
             if ((m_bytesPerPixel > 0) && (m_bytesPerPixel < 10))
@@ -100,9 +100,9 @@ namespace
             m_stream << "</table>";
         }
 
-        void operator()(const QString &size, const QString &path)
+        void operator()(const QString &size, const Path &path)
         {
-            m_stream << R"(<tr><td style="white-space:nowrap">)" << size << "</td><td>" << path << "</td></tr>";
+            m_stream << R"(<tr><td style="white-space:nowrap">)" << size << "</td><td>" << path.toString() << "</td></tr>";
         }
 
     private:
@@ -282,7 +282,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
             for (int f : files)
             {
-                const QString filePath {torrentInfo.filePath(f)};
+                const Path filePath = torrentInfo.filePath(f);
                 renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(f)), filePath);
             }
             stream << "</body></html>";

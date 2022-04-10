@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="he" version="2.1">
+<TS version="2.1" language="he">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>לא ניתן לשמור את העדפות התכנית, qBittorrent כנראה בלתי נגיש.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: ערוץ #qbittorrent על Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>לא ידוע</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>היכנס</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">מחברים מקוריים</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>מחבר מקורי</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>פתחות יוצאות (מיזער) [0: מושבת]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">כתובת IP לדיווח לגששים (דורש הפעלה מחדש):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>בדוק מחדש טורנטים בעת השלמה:</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>כתובת IP דווחה אל גששים (דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>הגדר אל 0 כדי לתת למערכת שלך לבחור פתחה שאינה בשימוש</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>שיכוך של זיוף בקשות צד־שרת (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>העתק IP:פתחה</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>הוסף עמית חדש…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>מדינה/אזור</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>הוסף עמיתים…</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>התקדמות:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>גודל</translation>
+        <translation type="vanished">גודל</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>חפש ב:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">תוצאות (מראה</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>סנן</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>תוצאות</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>מראה</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>לאום:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">מחבר</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>תוכנות בשימוש</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>מחברים</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>צרפת</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent Mascot</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>איקון של qBittorrent</translation>
     </message>
 </context>
 <context>

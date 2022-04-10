@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ar" version="2.1">
+<TS version="2.1" language="ar">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation>الفئة:</translation>
+        <translation>التصنيف:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -144,10 +144,6 @@
         <translation>لا يمكن حفظ تفضيلات البرنامج, والسبب على الأرجح هو عدم إمكانية الوصول إلى كيوبت‎تورنت.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent على Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>غير معروف</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>ولوج</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">المؤلفين الأصليين</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>المؤلف الاصلي</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>منافذ الخروج (دقيقة) [0: معطلة]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">عنوان الآي بي الذي يتم إعلانه للمتتبع (يتطلب إعادة التشغيل)</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>أعد فحص التورنتات عند الانتهاء:</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>تم الإبلاغ عن عنوان IP للمتتبعين (يتطلب إعادة التشغيل):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>قم بالتعيين إلى 0 للسماح للنظام الخاص بك باختيار منفذ غير مستخدم</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>التخفيف من تزوير الطلب من جانب الخادم (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>نسخ الآي بي: المنفذ</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>إضافة قرين جديد...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>الدولة/المنطقة</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>إضافة قرناء ...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>التقدم:</translation>
     </message>
 </context>
 <context>
@@ -2062,7 +2070,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>الحجم</translation>
+        <translation type="vanished">الحجم</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2359,7 +2371,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>الفئات</translation>
+        <translation>التصنيفات</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2450,7 +2462,7 @@
     </message>
     <message>
         <source>Category</source>
-        <translation>الفئة</translation>
+        <translation>التصنيف</translation>
     </message>
     <message>
         <source>New...</source>
@@ -2756,10 +2768,6 @@
         <translation>البحث في:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">النتائج (تظهر</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>تصفية</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>النتائج</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>عرض</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>الجنسية:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">المؤلف</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>البرمجيات المستخدمة</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>المؤلفون</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>فرنسا</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>تميمة كيوبت‎تورنت</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>رمز كيوبت‎تورنت</translation>
     </message>
 </context>
 <context>

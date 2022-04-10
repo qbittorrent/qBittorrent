@@ -37,7 +37,6 @@
 #include <QMenu>
 #include <QPalette>
 #include <QStandardItemModel>
-#include <QTableView>
 #include <QUrl>
 
 #include "base/bittorrent/session.h"
@@ -61,15 +60,9 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(m_ui->resultsBrowser->header());
-    m_ui->resultsBrowser->header()->setParent(m_ui->resultsBrowser);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-
     loadSettings();
 
+    header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
     header()->setTextElideMode(Qt::ElideRight);
 
@@ -116,11 +109,13 @@ SearchJobWidget::SearchJobWidget(SearchHandler *searchHandler, QWidget *parent)
     // its size is 0, because explicitly 'showing' the column isn't enough
     // in the above scenario.
     for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+    {
         if ((m_ui->resultsBrowser->columnWidth(i) <= 0) && !m_ui->resultsBrowser->isColumnHidden(i))
             m_ui->resultsBrowser->resizeColumnToContents(i);
+    }
 
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &SearchJobWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &SearchJobWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionResized, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sectionMoved, this, &SearchJobWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &SearchJobWidget::saveSettings);
@@ -259,7 +254,7 @@ void SearchJobWidget::copyField(const int column) const
     }
 
     if (!list.empty())
-        QApplication::clipboard()->setText(list.join('\n'));
+        QApplication::clipboard()->setText(list.join(u'\n'));
 }
 
 void SearchJobWidget::setStatus(Status value)
@@ -278,7 +273,7 @@ void SearchJobWidget::downloadTorrent(const QModelIndex &rowIndex, const AddTorr
     const QString siteUrl = m_proxyModel->data(
                 m_proxyModel->index(rowIndex.row(), SearchSortModel::ENGINE_URL)).toString();
 
-    if (torrentUrl.startsWith("magnet:", Qt::CaseInsensitive))
+    if (torrentUrl.startsWith(u"magnet:", Qt::CaseInsensitive))
     {
         addTorrentToSession(torrentUrl, option);
     }
@@ -373,7 +368,7 @@ void SearchJobWidget::filterSearchResults(const QString &name)
     updateResultsCount();
 }
 
-void SearchJobWidget::showFilterContextMenu(const QPoint &)
+void SearchJobWidget::showFilterContextMenu()
 {
     const Preferences *pref = Preferences::instance();
 
@@ -395,22 +390,22 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Open download window")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_qs), tr("Open download window")
         , this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
-    menu->addAction(UIThemeManager::instance()->getIcon("download"), tr("Download")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_qs), tr("Download")
         , this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon("application-x-mswinurl"), tr("Open description page")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
-        UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy"));
+        UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy"));
 
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Name")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Name")
         , this, &SearchJobWidget::copyTorrentNames);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Download link")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Download link")
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Description page URL")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Description page URL")
         , this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());
@@ -450,44 +445,55 @@ void SearchJobWidget::saveSettings() const
     Preferences::instance()->setSearchTabHeaderState(header()->saveState());
 }
 
-void SearchJobWidget::displayToggleColumnsMenu(const QPoint &)
+int SearchJobWidget::visibleColumnsCount() const
+{
+    int count = 0;
+    for (int i = 0, iMax = m_ui->resultsBrowser->header()->count(); i < iMax; ++i)
+    {
+        if (!m_ui->resultsBrowser->isColumnHidden(i))
+            ++count;
+    }
+
+    return count;
+}
+
+void SearchJobWidget::displayColumnHeaderMenu()
 {
     auto menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
     {
-        QAction *myAct = menu->addAction(m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
-        myAct->setData(i);
+        const auto columnName = m_searchListModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
+        {
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
+
+            m_ui->resultsBrowser->setColumnHidden(i, !checked);
+
+            if (checked && (m_ui->resultsBrowser->columnWidth(i) <= 5))
+                m_ui->resultsBrowser->resizeColumnToContents(i);
+
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!m_ui->resultsBrowser->isColumnHidden(i));
     }
 
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
     {
-        int visibleCols = 0;
-        for (int i = 0; i < SearchSortModel::DL_LINK; ++i)
+        for (int i = 0, count = m_ui->resultsBrowser->header()->count(); i < count; ++i)
         {
             if (!m_ui->resultsBrowser->isColumnHidden(i))
-                ++visibleCols;
-
-            if (visibleCols > 1)
-                break;
+                m_ui->resultsBrowser->resizeColumnToContents(i);
         }
-
-        const int col = action->data().toInt();
-
-        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (visibleCols == 1))
-            return;
-
-        m_ui->resultsBrowser->setColumnHidden(col, !m_ui->resultsBrowser->isColumnHidden(col));
-
-        if ((!m_ui->resultsBrowser->isColumnHidden(col)) && (m_ui->resultsBrowser->columnWidth(col) <= 5))
-            m_ui->resultsBrowser->resizeColumnToContents(col);
-
         saveSettings();
     });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
 }
@@ -541,7 +547,7 @@ void SearchJobWidget::appendSearchResults(const QVector<SearchResult> &results)
 
 SettingValue<SearchJobWidget::NameFilteringMode> &SearchJobWidget::nameFilteringModeSetting()
 {
-    static SettingValue<NameFilteringMode> setting {"Search/FilteringMode"};
+    static SettingValue<NameFilteringMode> setting {u"Search/FilteringMode"_qs};
     return setting;
 }
 

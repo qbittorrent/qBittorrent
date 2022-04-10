@@ -57,8 +57,8 @@ void PreviewListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &o
         {
             const qreal progress = (index.data().toReal() * 100);
             const QString text = (progress >= 100)
-                ? QString::fromLatin1("100%")
-                : (Utils::String::fromDouble(progress, 1) + '%');
+                ? u"100%"_qs
+                : (Utils::String::fromDouble(progress, 1) + u'%');
 
             m_progressBarPainter.paint(painter, option, text, static_cast<int>(progress));
         }

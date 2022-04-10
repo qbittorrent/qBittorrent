@@ -30,8 +30,11 @@
 
 #include <libtorrent/sha1_hash.hpp>
 
+#include <QtGlobal>
 #include <QByteArray>
 #include <QHash>
+#include <QSharedData>
+#include <QSharedDataPointer>
 #include <QString>
 
 template <int N>
@@ -41,13 +44,12 @@ public:
     using UnderlyingType = lt::digest32<N>;
 
     Digest32() = default;
+    Digest32(const Digest32 &other) = default;
+    Digest32(Digest32 &&other) = default;
 
     Digest32(const UnderlyingType &nativeDigest)
-        : m_valid {true}
-        , m_nativeDigest {nativeDigest}
+        : m_dataPtr {new Data(nativeDigest)}
     {
-        const QByteArray raw = QByteArray::fromRawData(nativeDigest.data(), length());
-        m_hashString = QString::fromLatin1(raw.toHex());
     }
 
     static constexpr int length()
@@ -57,40 +59,82 @@ public:
 
     bool isValid() const
     {
-        return m_valid;
+        return m_dataPtr->isValid();
     }
+
+    Digest32 &operator=(const Digest32 &other) = default;
+    Digest32 &operator=(Digest32 &&other) = default;
 
     operator UnderlyingType() const
     {
-        return m_nativeDigest;
-    }
-
-    static Digest32 fromString(const QString &digestString)
-    {
-        if (digestString.size() != (length() * 2))
-            return {};
-
-        const QByteArray raw = QByteArray::fromHex(digestString.toLatin1());
-        if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
-            return {};
-
-        Digest32 result;
-        result.m_valid = true;
-        result.m_hashString = digestString;
-        result.m_nativeDigest.assign(raw.constData());
-
-        return result;
+        return m_dataPtr->nativeDigest();
     }
 
     QString toString() const
     {
+        return m_dataPtr->hashString();
+    }
+
+    static Digest32 fromString(const QString &digestString)
+    {
+        return Digest32(QSharedDataPointer<Data>(new Data(digestString)));
+    }
+
+private:
+    class Data;
+
+    explicit Digest32(QSharedDataPointer<Data> dataPtr)
+        : m_dataPtr {dataPtr}
+    {
+    }
+
+    QSharedDataPointer<Data> m_dataPtr {new Data};
+};
+
+template <int N>
+class Digest32<N>::Data : public QSharedData
+{
+public:
+    Data() = default;
+
+    explicit Data(UnderlyingType nativeDigest)
+        : m_isValid {true}
+        , m_nativeDigest {nativeDigest}
+    {
+    }
+
+    explicit Data(const QString &digestString)
+    {
+        if (digestString.size() != (length() * 2))
+            return;
+
+        const QByteArray raw = QByteArray::fromHex(digestString.toLatin1());
+        if (raw.size() != length())  // QByteArray::fromHex() will skip over invalid characters
+            return;
+
+        m_isValid = true;
+        m_hashString = digestString;
+        m_nativeDigest.assign(raw.constData());
+    }
+
+    bool isValid() const { return m_isValid; }
+    UnderlyingType nativeDigest() const { return m_nativeDigest; }
+
+    QString hashString() const
+    {
+        if (m_hashString.isEmpty() && isValid())
+        {
+            const QByteArray raw = QByteArray::fromRawData(m_nativeDigest.data(), length());
+            m_hashString = QString::fromLatin1(raw.toHex());
+        }
+
         return m_hashString;
     }
 
 private:
-    bool m_valid = false;
+    bool m_isValid = false;
     UnderlyingType m_nativeDigest;
-    QString m_hashString;
+    mutable QString m_hashString;
 };
 
 template <int N>
@@ -113,8 +157,16 @@ bool operator<(const Digest32<N> &left, const Digest32<N> &right)
             < static_cast<typename Digest32<N>::UnderlyingType>(right);
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 template <int N>
-uint qHash(const Digest32<N> &key, const uint seed)
+std::size_t qHash(const Digest32<N> &key, const std::size_t seed = 0)
 {
-    return ::qHash(std::hash<typename Digest32<N>::UnderlyingType>()(key), seed);
+    return ::qHash(static_cast<typename Digest32<N>::UnderlyingType>(key), seed);
 }
+#else
+template <int N>
+uint qHash(const Digest32<N> &key, const uint seed = 0)
+{
+    return static_cast<uint>((std::hash<typename Digest32<N>::UnderlyingType> {})(key)) ^ seed;
+}
+#endif

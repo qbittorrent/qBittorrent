@@ -60,6 +60,9 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     case BitTorrent::DownloadPriority::Maximum:
         combobox->setCurrentIndex(3);
         break;
+    case BitTorrent::DownloadPriority::Mixed:
+        combobox->setCurrentIndex(4);
+        break;
     default:
         combobox->setCurrentIndex(1);
         break;
@@ -74,13 +77,9 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     if (m_properties)
     {
         const BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
-        if (!torrent || !torrent->hasMetadata() || torrent->isSeed())
+        if (!torrent || !torrent->hasMetadata())
             return nullptr;
     }
-
-    const int priority = index.data(TorrentContentModel::UnderlyingDataRole).toInt();
-    if (static_cast<BitTorrent::DownloadPriority>(priority) == BitTorrent::DownloadPriority::Mixed)
-        return nullptr;
 
     auto *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
@@ -88,6 +87,13 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
     editor->addItem(tr("Normal", "Normal (priority)"));
     editor->addItem(tr("High", "High (priority)"));
     editor->addItem(tr("Maximum", "Maximum (priority)"));
+
+    // add Mixed priority item to the new combobox only for those items with Mixed priority
+    const auto priority = static_cast<BitTorrent::DownloadPriority>(index.data(TorrentContentModel::UnderlyingDataRole).toInt());
+    if (priority == BitTorrent::DownloadPriority::Mixed)
+    {
+        editor->addItem(tr("Mixed", "Mixed (priorities)"));
+    }
 
     connect(editor, qOverload<int>(&QComboBox::currentIndexChanged), this, [this, editor]()
     {
@@ -112,6 +118,9 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
         break;
     case 3:
         prio = BitTorrent::DownloadPriority::Maximum; // MAX
+        break;
+    case 4:
+        prio = BitTorrent::DownloadPriority::Mixed; // MIXED
         break;
     }
 

@@ -42,6 +42,7 @@
 #include <QDir>
 #endif
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/bytearray.h"
 
@@ -52,7 +53,7 @@ namespace
     bool testPythonInstallation(const QString &exeName, PythonInfo &info)
     {
         QProcess proc;
-        proc.start(exeName, {"--version"}, QIODevice::ReadOnly);
+        proc.start(exeName, {u"--version"_qs}, QIODevice::ReadOnly);
         if (proc.waitForFinished() && (proc.exitCode() == QProcess::NormalExit))
         {
             QByteArray procOutput = proc.readAllStandardOutput();
@@ -69,8 +70,8 @@ namespace
 
             // User reports: `python --version` -> "Python 3.6.6+"
             // So trim off unrelated characters
-            const QString versionStr = outputSplit[1];
-            const int idx = versionStr.indexOf(QRegularExpression("[^\\.\\d]"));
+            const auto versionStr = QString::fromLocal8Bit(outputSplit[1]);
+            const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_qs));
 
             try
             {
@@ -82,7 +83,7 @@ namespace
             }
 
             LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, executable name: '%1', version: %2")
-                .arg(info.executableName, info.version), Log::INFO);
+                .arg(info.executableName, info.version.toString()), Log::INFO);
             return true;
         }
 
@@ -127,26 +128,17 @@ namespace
 
     QString getRegValue(const HKEY handle, const QString &name = {})
     {
-        QString result;
-
+        const std::wstring nameWStr = name.toStdWString();
         DWORD type = 0;
         DWORD cbData = 0;
-        LPWSTR lpValueName = NULL;
-        if (!name.isEmpty())
-        {
-            lpValueName = new WCHAR[name.size() + 1];
-            name.toWCharArray(lpValueName);
-            lpValueName[name.size()] = 0;
-        }
 
         // Discover the size of the value
-        ::RegQueryValueExW(handle, lpValueName, NULL, &type, NULL, &cbData);
+        ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
         DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
         LPWSTR lpData = new WCHAR[cBuffer];
-        LONG res = ::RegQueryValueExW(handle, lpValueName, NULL, &type, (LPBYTE)lpData, &cbData);
-        if (lpValueName)
-            delete[] lpValueName;
+        LONG res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, (LPBYTE)lpData, &cbData);
 
+        QString result;
         if (res == ERROR_SUCCESS)
         {
             lpData[cBuffer - 1] = 0;
@@ -185,18 +177,14 @@ namespace
             bool found = false;
             while (!found && !versions.empty())
             {
-                const QString version = versions.takeLast() + "\\InstallPath";
-                LPWSTR lpSubkey = new WCHAR[version.size() + 1];
-                version.toWCharArray(lpSubkey);
-                lpSubkey[version.size()] = 0;
+                const std::wstring version = QString(versions.takeLast() + u"\\InstallPath").toStdWString();
 
                 HKEY hkInstallPath;
-                res = ::RegOpenKeyExW(hkPythonCore, lpSubkey, 0, samDesired, &hkInstallPath);
-                delete[] lpSubkey;
+                res = ::RegOpenKeyExW(hkPythonCore, version.c_str(), 0, samDesired, &hkInstallPath);
 
                 if (res == ERROR_SUCCESS)
                 {
-                    qDebug("Detected possible Python v%s location", qUtf8Printable(version));
+                    qDebug("Detected possible Python v%ls location", version.c_str());
                     path = getRegValue(hkInstallPath);
                     ::RegCloseKey(hkInstallPath);
 
@@ -204,15 +192,15 @@ namespace
                     {
                         const QDir baseDir {path};
 
-                        if (baseDir.exists("python3.exe"))
+                        if (baseDir.exists(u"python3.exe"_qs))
                         {
                             found = true;
-                            path = baseDir.filePath("python3.exe");
+                            path = baseDir.filePath(u"python3.exe"_qs);
                         }
-                        else if (baseDir.exists("python.exe"))
+                        else if (baseDir.exists(u"python.exe"_qs))
                         {
                             found = true;
-                            path = baseDir.filePath("python.exe");
+                            path = baseDir.filePath(u"python.exe"_qs);
                         }
                     }
                 }
@@ -242,14 +230,14 @@ namespace
             return path;
 
         // Fallback: Detect python from default locations
-        const QFileInfoList dirs = QDir("C:/").entryInfoList({"Python*"}, QDir::Dirs, (QDir::Name | QDir::Reversed));
+        const QFileInfoList dirs = QDir(u"C:/"_qs).entryInfoList({u"Python*"_qs}, QDir::Dirs, (QDir::Name | QDir::Reversed));
         for (const QFileInfo &info : dirs)
         {
-            const QString py3Path {info.absolutePath() + "/python3.exe"};
+            const QString py3Path {info.absolutePath() + u"/python3.exe"};
             if (QFile::exists(py3Path))
                 return py3Path;
 
-            const QString pyPath {info.absolutePath() + "/python.exe"};
+            const QString pyPath {info.absolutePath() + u"/python.exe"};
             if (QFile::exists(pyPath))
                 return pyPath;
         }
@@ -274,10 +262,10 @@ PythonInfo Utils::ForeignApps::pythonInfo()
     static PythonInfo pyInfo;
     if (!pyInfo.isValid())
     {
-        if (testPythonInstallation("python3", pyInfo))
+        if (testPythonInstallation(u"python3"_qs, pyInfo))
             return pyInfo;
 
-        if (testPythonInstallation("python", pyInfo))
+        if (testPythonInstallation(u"python"_qs, pyInfo))
             return pyInfo;
 
 #if defined(Q_OS_WIN)

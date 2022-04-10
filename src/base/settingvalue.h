@@ -38,8 +38,8 @@ template <typename T>
 class SettingValue
 {
 public:
-    explicit SettingValue(const char *keyName)
-        : m_keyName {QLatin1String {keyName}}
+    explicit SettingValue(const QString &keyName)
+        : m_keyName {keyName}
     {
     }
 
@@ -67,7 +67,7 @@ template <typename T>
 class CachedSettingValue
 {
 public:
-    explicit CachedSettingValue(const char *keyName, const T &defaultValue = {})
+    explicit CachedSettingValue(const QString &keyName, const T &defaultValue = {})
         : m_setting {keyName}
         , m_cache {m_setting.get(defaultValue)}
     {
@@ -76,7 +76,7 @@ public:
     // The signature of the ProxyFunc should be equivalent to the following:
     // T proxyFunc(const T &a);
     template <typename ProxyFunc>
-    explicit CachedSettingValue(const char *keyName, const T &defaultValue, ProxyFunc &&proxyFunc)
+    explicit CachedSettingValue(const QString &keyName, const T &defaultValue, ProxyFunc &&proxyFunc)
         : m_setting {keyName}
         , m_cache {proxyFunc(m_setting.get(defaultValue))}
     {

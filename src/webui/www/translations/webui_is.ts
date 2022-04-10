@@ -144,10 +144,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Unknown</source>
         <translation type="unfinished">Óþekkt</translation>
     </message>
@@ -602,6 +598,10 @@
     </message>
     <message>
         <source>RSS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1509,6 +1509,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1581,11 +1597,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new peer...</source>
+        <source>Country/Region</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Country/Region</source>
+        <source>Add peers...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2297,7 +2313,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
+        <source>Total Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3083,6 +3099,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>

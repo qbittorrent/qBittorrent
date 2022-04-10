@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="hi_IN" version="2.1">
+<TS version="2.1" language="hi_IN">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>कार्यक्रम वरीयताओं को सहेजने में असमर्थ, क्यूबिटटाॅरेंट शायद अगम्य है।</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #क्यूबिटटाॅरेंट फ्रीनोड पर</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>अज्ञात</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>लॉगिन</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">मूल रचियता</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -579,6 +571,10 @@
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -744,7 +740,7 @@
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation type="unfinished" />
+        <translation>अधिकतम सार्वभौम अपलोड स्लॉटों की संख्या:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -1050,7 +1046,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>जब पूर्व निर्धारित सञ्चय पथ बदले:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1070,7 +1066,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>प्रभावित टाॅरेंटों को स्वयं प्रबन्धित करें</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1286,7 +1282,7 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>के लिए प्रतिबन्ध:</translation>
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
@@ -1484,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1556,12 +1568,12 @@
         <translation>IP:पोर्ट की प्रतिलिपि बनायें</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>नया सहकर्मी जोड़े...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>देश/छेत्र</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1569,7 +1581,7 @@
     <message>
         <source>Normal</source>
         <comment>Normal (priority)</comment>
-        <translation>साधारण</translation>
+        <translation>सामान्य</translation>
     </message>
     <message>
         <source>High</source>
@@ -1782,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>प्रगति:</translation>
     </message>
 </context>
 <context>
@@ -2257,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>आकार</translation>
+        <translation type="vanished">आकार</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2508,7 +2524,7 @@
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>अल्पविराम द्वारा विभाजित उपनाम:</translation>
     </message>
     <message>
         <source>Add Tags</source>
@@ -2901,7 +2917,7 @@
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>प्रारूप: IPv4:पोर्ट / [IPv6]:पोर्ट</translation>
     </message>
 </context>
 <context>
@@ -2990,7 +3006,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>C++ कोड प्रयुक्त कर क्यूटी टूलकिट व libtorrent-rasterbar आधारित, एक उन्नत बिट टोरेंट साधन।</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3017,23 +3033,27 @@
         <translation>नागरिकता:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">रचनाकार</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>प्रयुक्त सॉफ्टवेयर</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>पीयर देशों के समन्वय हेतु DB-IP द्वारा प्रदान निशुल्क IP to Country Lite डेटाबेस उपयोग में है। यह डेटाबेस Creative Commons Attribution 4.0 अंतर्राष्ट्रीय लाइसेंस के तहत है।</translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>निर्माता</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>फ्रांस</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3201,7 +3221,7 @@
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>शून्य या अधिक अक्षरों का मिलान करनें के लिए *</translation>
     </message>
     <message>
         <source> will match all articles.</source>
@@ -3225,7 +3245,7 @@
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>रेग्यूलर एक्सप्रेशनों का उपयोग करें</translation>
     </message>
     <message>
         <source>New rule name</source>
@@ -3237,7 +3257,7 @@
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>केवल एक अक्षर का मिलान करने के लिए ?</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
@@ -3313,7 +3333,7 @@
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>सामान्य चाप: &lt;b&gt;1x25-40;&lt;/b&gt; सीजन एक के 25 से 40 तक एपिसोडों का मिलान करता है</translation>
+        <translation>सामान्य सीमा: &lt;b&gt;1x25-40;&lt;/b&gt; सीजन एक के 25 से 40 तक एपिसोडों का मिलान करता है</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
@@ -3353,7 +3373,7 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>सीजन क्रमांक एक अनिवार्य व अशून्य संख्या है</translation>
     </message>
     <message>
         <source>Never</source>
@@ -3381,7 +3401,7 @@
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>नए डाउनलोड नियम का नाम टाइप करें।</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>

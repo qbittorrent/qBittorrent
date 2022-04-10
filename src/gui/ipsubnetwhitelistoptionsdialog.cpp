@@ -38,12 +38,12 @@
 #include "ui_ipsubnetwhitelistoptionsdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "IPSubnetWhitelistOptionsDialog/" name
+#define SETTINGS_KEY(name) u"IPSubnetWhitelistOptionsDialog/" name
 
 IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::IPSubnetWhitelistOptionsDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
 
@@ -60,7 +60,7 @@ IPSubnetWhitelistOptionsDialog::IPSubnetWhitelistOptionsDialog(QWidget *parent)
     m_ui->whitelistedIPSubnetList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonWhitelistIPSubnet->setEnabled(false);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
 }
 
 IPSubnetWhitelistOptionsDialog::~IPSubnetWhitelistOptionsDialog()

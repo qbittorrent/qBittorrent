@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/bittorrent/addtorrentparams.h \
     $$PWD/bittorrent/bencoderesumedatastorage.h \
     $$PWD/bittorrent/cachestatus.h \
+    $$PWD/bittorrent/categoryoptions.h \
     $$PWD/bittorrent/common.h \
     $$PWD/bittorrent/customstorage.h \
     $$PWD/bittorrent/downloadpriority.h \
@@ -14,6 +15,7 @@ HEADERS += \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
     $$PWD/bittorrent/loadtorrentparams.h \
+    $$PWD/bittorrent/ltqbitarray.h \
     $$PWD/bittorrent/ltqhash.h \
     $$PWD/bittorrent/lttypecast.h \
     $$PWD/bittorrent/magneturi.h \
@@ -50,6 +52,7 @@ HEADERS += \
     $$PWD/http/types.h \
     $$PWD/iconprovider.h \
     $$PWD/indexrange.h \
+    $$PWD/interfaces/istringable.h \
     $$PWD/logger.h \
     $$PWD/net/dnsupdater.h \
     $$PWD/net/downloadhandlerimpl.h \
@@ -61,6 +64,8 @@ HEADERS += \
     $$PWD/net/reverseresolution.h \
     $$PWD/net/smtp.h \
     $$PWD/orderedset.h \
+    $$PWD/path.h \
+    $$PWD/pathfwd.h \
     $$PWD/preferences.h \
     $$PWD/profile.h \
     $$PWD/profile_p.h \
@@ -101,12 +106,14 @@ SOURCES += \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
     $$PWD/bittorrent/bencoderesumedatastorage.cpp \
+    $$PWD/bittorrent/categoryoptions.cpp \
     $$PWD/bittorrent/customstorage.cpp \
     $$PWD/bittorrent/dbresumedatastorage.cpp \
     $$PWD/bittorrent/downloadpriority.cpp \
     $$PWD/bittorrent/filesearcher.cpp \
     $$PWD/bittorrent/filterparserthread.cpp \
     $$PWD/bittorrent/infohash.cpp \
+    $$PWD/bittorrent/ltqbitarray.cpp \
     $$PWD/bittorrent/magneturi.cpp \
     $$PWD/bittorrent/nativesessionextension.cpp \
     $$PWD/bittorrent/nativetorrentextension.cpp \
@@ -120,7 +127,6 @@ SOURCES += \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \
     $$PWD/bittorrent/torrent.cpp \
-    $$PWD/bittorrent/torrentcontentlayout.cpp \
     $$PWD/bittorrent/torrentcreatorthread.cpp \
     $$PWD/bittorrent/torrentimpl.cpp \
     $$PWD/bittorrent/torrentinfo.cpp \
@@ -144,6 +150,7 @@ SOURCES += \
     $$PWD/net/proxyconfigurationmanager.cpp \
     $$PWD/net/reverseresolution.cpp \
     $$PWD/net/smtp.cpp \
+    $$PWD/path.cpp \
     $$PWD/preferences.cpp \
     $$PWD/profile.cpp \
     $$PWD/profile_p.cpp \

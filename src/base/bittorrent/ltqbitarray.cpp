@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020-2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,45 +26,45 @@
  * exception statement from your version.
  */
 
-#include "torrentcontentlayout.h"
+#include "ltqbitarray.h"
 
-#include "base/utils/fs.h"
+#include <libtorrent/bitfield.hpp>
+
+#include <QBitArray>
+#include <QVarLengthArray>
 
 namespace
 {
-    QString removeExtension(const QString &fileName)
+    unsigned char reverseByte(const unsigned char byte)
     {
-        const QString extension = Utils::Fs::fileExtension(fileName);
-        return extension.isEmpty()
-                ? fileName
-                : fileName.chopped(extension.size() + 1);
+        // https://graphics.stanford.edu/~seander/bithacks.html#BitReverseTable
+        static const unsigned char table[] =
+        {
+#define R2(n) n, (n + (2 * 64)), (n + 64), (n + (3 * 64))
+#define R4(n) R2(n), R2(n + (2 * 16)), R2(n + 16), R2(n + (3 * 16))
+#define R6(n) R4(n), R4(n + (2 * 4)), R4(n + 4), R4(n + (3 * 4))
+            R6(0), R6(2), R6(1), R6(3)
+#undef R6
+#undef R4
+#undef R2
+        };
+        return table[byte];
     }
 }
 
-BitTorrent::TorrentContentLayout BitTorrent::detectContentLayout(const QStringList &filePaths)
+namespace BitTorrent::LT
 {
-    const QString rootFolder = Utils::Fs::findRootFolder(filePaths);
-    return (rootFolder.isEmpty()
-            ? TorrentContentLayout::NoSubfolder
-            : TorrentContentLayout::Subfolder);
-}
-
-void BitTorrent::applyContentLayout(QStringList &filePaths, const TorrentContentLayout contentLayout, const QString &rootFolder)
-{
-    Q_ASSERT(!filePaths.isEmpty());
-
-    switch (contentLayout)
+    QBitArray toQBitArray(const lt::bitfield &bits)
     {
-    case TorrentContentLayout::Subfolder:
-        if (Utils::Fs::findRootFolder(filePaths).isEmpty())
-            Utils::Fs::addRootFolder(filePaths, !rootFolder.isEmpty() ? rootFolder : removeExtension(filePaths.at(0)));
-        break;
+        const int STACK_ALLOC_SIZE = 10 * 1024;
 
-    case TorrentContentLayout::NoSubfolder:
-        Utils::Fs::stripRootFolder(filePaths);
-        break;
+        const char *bitsData = bits.data();
+        const int dataLength = (bits.size() + 7) / 8;
 
-    default:
-        break;
+        QVarLengthArray<char, STACK_ALLOC_SIZE> tmp(dataLength);
+        for (int i = 0; i < dataLength; ++i)
+            tmp[i] = reverseByte(bitsData[i]);
+
+        return QBitArray::fromBits(tmp.data(), bits.size());
     }
 }

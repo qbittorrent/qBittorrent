@@ -30,4 +30,6 @@
 
 #include <QString>
 
-inline const QString QB_EXT {QStringLiteral(".!qB")};
+#include "base/global.h"
+
+inline const QString QB_EXT = u".!qB"_qs;

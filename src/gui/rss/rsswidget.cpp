@@ -62,21 +62,21 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->setupUi(this);
 
     // Icons
-    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon("edit-copy"));
-    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon("edit-delete"));
-    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon("download"));
-    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon("mail-mark-read"));
-    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon("folder-new"));
-    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon("list-add"));
-    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon("application-x-mswinurl"));
-    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon("edit-rename"));
-    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
-    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
+    m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_qs));
+    m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-delete"_qs));
+    m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
+    m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"mail-mark-read"_qs));
+    m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_qs));
+    m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
+    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs));
+    m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_qs));
+    m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
+    m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 #ifndef Q_OS_MACOS
-    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon("list-add"));
-    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon("mail-mark-read"));
-    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon("view-refresh"));
-    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon("download"));
+    m_ui->newFeedButton->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
+    m_ui->markReadButton->setIcon(UIThemeManager::instance()->getIcon(u"mail-mark-read"_qs));
+    m_ui->updateAllButton->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
+    m_ui->rssDownloaderBtn->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
 #endif
 
     m_articleListWidget = new ArticleListWidget(m_ui->splitterMain);
@@ -192,13 +192,13 @@ void RSSWidget::displayRSSListMenu(const QPoint &pos)
     menu->popup(QCursor::pos());
 }
 
-void RSSWidget::displayItemsListMenu(const QPoint &)
+void RSSWidget::displayItemsListMenu()
 {
     bool hasTorrent = false;
     bool hasLink = false;
     for (const QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         if (!article->torrentUrl().isEmpty())
@@ -249,7 +249,7 @@ void RSSWidget::askNewFolder()
     const QString newFolderPath = RSS::Item::joinPath(rssDestFolder->path(), newName);
     const nonstd::expected<void, QString> result = RSS::Session::instance()->addFolder(newFolderPath);
     if (!result)
-        QMessageBox::warning(this, "qBittorrent", result.error(), QMessageBox::Ok);
+        QMessageBox::warning(this, u"qBittorrent"_qs, result.error(), QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
@@ -263,7 +263,7 @@ void RSSWidget::on_newFeedButton_clicked()
 {
     // Ask for feed URL
     const QString clipText = qApp->clipboard()->text();
-    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : "http://";
+    const QString defaultURL = Net::DownloadManager::hasSupportedScheme(clipText) ? clipText : u"http://"_qs;
 
     bool ok = false;
     QString newURL = AutoExpandableDialog::getText(
@@ -291,7 +291,7 @@ void RSSWidget::on_newFeedButton_clicked()
     const QString newFeedPath = RSS::Item::joinPath(rssDestFolder->path(), newURL);
     const nonstd::expected<void, QString> result = RSS::Session::instance()->addFeed(newURL, newFeedPath);
     if (!result)
-        QMessageBox::warning(this, "qBittorrent", result.error(), QMessageBox::Ok);
+        QMessageBox::warning(this, u"qBittorrent"_qs, result.error(), QMessageBox::Ok);
 
     // Expand destination folder to display new feed
     if (destItem && (destItem != m_feedListWidget->stickyUnreadItem()))
@@ -325,7 +325,7 @@ void RSSWidget::loadFoldersOpenState()
     for (const QString &varPath : openedFolders)
     {
         QTreeWidgetItem *parent = nullptr;
-        for (const QString &name : asConst(varPath.split('\\')))
+        for (const QString &name : asConst(varPath.split(u'\\')))
         {
             int nbChildren = (parent ? parent->childCount() : m_feedListWidget->topLevelItemCount());
             for (int i = 0; i < nbChildren; ++i)
@@ -359,7 +359,7 @@ void RSSWidget::downloadSelectedTorrents()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
@@ -380,7 +380,7 @@ void RSSWidget::openSelectedArticlesUrls()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = reinterpret_cast<RSS::Article *>(item->data(Qt::UserRole).value<quintptr>());
+        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
@@ -442,7 +442,7 @@ void RSSWidget::copySelectedFeedsURL()
         if (auto feed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item)))
             URLs << feed->url();
     }
-    qApp->clipboard()->setText(URLs.join('\n'));
+    qApp->clipboard()->setText(URLs.join(u'\n'));
 }
 
 void RSSWidget::handleCurrentFeedItemChanged(QTreeWidgetItem *currentItem)
@@ -483,14 +483,14 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
     const QString alternateBaseColor = m_ui->textBrowser->palette().color(QPalette::AlternateBase).name();
 
     QString html =
-        QString::fromLatin1("<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>") +
-        QString::fromLatin1("<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>").arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
+        u"<div style='border: 2px solid red; margin-left: 5px; margin-right: 5px; margin-bottom: 5px;'>" +
+        u"<div style='background-color: \"%1\"; font-weight: bold; color: \"%2\";'>%3</div>"_qs.arg(highlightedBaseColor, highlightedBaseTextColor, article->title());
     if (article->date().isValid())
-        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_qs.arg(alternateBaseColor, tr("Date: "), QLocale::system().toString(article->date().toLocalTime()));
     if (!article->author().isEmpty())
-        html += QString::fromLatin1("<div style='background-color: \"%1\";'><b>%2</b>%3</div>").arg(alternateBaseColor, tr("Author: "), article->author());
-    html += "</div>"
-            "<div style='margin-left: 5px; margin-right: 5px;'>";
+        html += u"<div style='background-color: \"%1\";'><b>%2</b>%3</div>"_qs.arg(alternateBaseColor, tr("Author: "), article->author());
+    html += u"</div>"
+            u"<div style='margin-left: 5px; margin-right: 5px;'>";
     if (Qt::mightBeRichText(article->description()))
     {
         html += article->description();
@@ -503,27 +503,27 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
         rx.setPatternOptions(QRegularExpression::InvertedGreedinessOption
             | QRegularExpression::CaseInsensitiveOption);
 
-        rx.setPattern("\\[img\\](.+)\\[/img\\]");
-        description = description.replace(rx, "<img src=\"\\1\">");
+        rx.setPattern(u"\\[img\\](.+)\\[/img\\]"_qs);
+        description = description.replace(rx, u"<img src=\"\\1\">"_qs);
 
-        rx.setPattern("\\[url=(\")?(.+)\\1\\]");
-        description = description.replace(rx, "<a href=\"\\2\">");
-        description = description.replace("[/url]", "</a>", Qt::CaseInsensitive);
+        rx.setPattern(u"\\[url=(\")?(.+)\\1\\]"_qs);
+        description = description.replace(rx, u"<a href=\"\\2\">"_qs);
+        description = description.replace(u"[/url]"_qs, u"</a>"_qs, Qt::CaseInsensitive);
 
-        rx.setPattern("\\[(/)?([bius])\\]");
-        description = description.replace(rx, "<\\1\\2>");
+        rx.setPattern(u"\\[(/)?([bius])\\]"_qs);
+        description = description.replace(rx, u"<\\1\\2>"_qs);
 
-        rx.setPattern("\\[color=(\")?(.+)\\1\\]");
-        description = description.replace(rx, "<span style=\"color:\\2\">");
-        description = description.replace("[/color]", "</span>", Qt::CaseInsensitive);
+        rx.setPattern(u"\\[color=(\")?(.+)\\1\\]"_qs);
+        description = description.replace(rx, u"<span style=\"color:\\2\">"_qs);
+        description = description.replace(u"[/color]"_qs, u"</span>"_qs, Qt::CaseInsensitive);
 
-        rx.setPattern("\\[size=(\")?(.+)\\d\\1\\]");
-        description = description.replace(rx, "<span style=\"font-size:\\2px\">");
-        description = description.replace("[/size]", "</span>", Qt::CaseInsensitive);
+        rx.setPattern(u"\\[size=(\")?(.+)\\d\\1\\]"_qs);
+        description = description.replace(rx, u"<span style=\"font-size:\\2px\">"_qs);
+        description = description.replace(u"[/size]"_qs, u"</span>"_qs, Qt::CaseInsensitive);
 
-        html += "<pre>" + description + "</pre>";
+        html += u"<pre>" + description + u"</pre>";
     }
-    html += "</div>";
+    html += u"</div>";
     m_ui->textBrowser->setHtml(html);
 }
 

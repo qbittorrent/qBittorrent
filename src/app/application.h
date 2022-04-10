@@ -47,6 +47,7 @@ class QSessionManager;
 using BaseApplication = QCoreApplication;
 #endif // DISABLE_GUI
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
 #include "cmdoptions.h"
@@ -88,11 +89,16 @@ public:
 
     const QBtCommandLineParameters &commandLineArgs() const;
 
+#ifdef Q_OS_WIN
+    int memoryWorkingSetLimit() const;
+    void setMemoryWorkingSetLimit(int size);
+#endif
+
     // FileLogger properties
     bool isFileLoggerEnabled() const;
     void setFileLoggerEnabled(bool value);
-    QString fileLoggerPath() const;
-    void setFileLoggerPath(const QString &path);
+    Path fileLoggerPath() const;
+    void setFileLoggerPath(const Path &path);
     bool isFileLoggerBackup() const;
     void setFileLoggerBackup(bool value);
     bool isFileLoggerDeleteOld() const;
@@ -121,6 +127,9 @@ private slots:
 #endif
 
 private:
+#ifdef Q_OS_WIN
+    void applyMemoryWorkingSetLimit();
+#endif
     void initializeTranslation();
     void processParams(const QStringList &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
@@ -146,11 +155,14 @@ private:
     QTranslator m_translator;
     QStringList m_paramsQueue;
 
+#ifdef Q_OS_WIN
+    SettingValue<int> m_storeMemoryWorkingSetLimit;
+#endif
     SettingValue<bool> m_storeFileLoggerEnabled;
     SettingValue<bool> m_storeFileLoggerBackup;
     SettingValue<bool> m_storeFileLoggerDeleteOld;
     SettingValue<int> m_storeFileLoggerMaxSize;
     SettingValue<int> m_storeFileLoggerAge;
     SettingValue<int> m_storeFileLoggerAgeType;
-    SettingValue<QString> m_storeFileLoggerPath;
+    SettingValue<Path> m_storeFileLoggerPath;
 };

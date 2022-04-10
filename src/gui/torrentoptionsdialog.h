@@ -32,6 +32,7 @@
 
 #include <QDialog>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 class QAbstractButton;
@@ -62,6 +63,7 @@ public slots:
 private slots:
     void handleCategoryChanged(int index);
     void handleTMMChanged();
+    void handleUseDownloadPathChanged();
 
     void handleUpSpeedLimitChanged();
     void handleDownSpeedLimitChanged();
@@ -81,13 +83,15 @@ private:
     QAbstractButton *m_previousRadio = nullptr;
     struct
     {
-        QString savePath;
+        Path savePath;
+        Path downloadPath;
         QString category;
         qreal ratio;
         int seedingTime;
         int upSpeedLimit;
         int downSpeedLimit;
         Qt::CheckState autoTMM;
+        Qt::CheckState useDownloadPath;
         Qt::CheckState disableDHT;
         Qt::CheckState disablePEX;
         Qt::CheckState disableLSD;

@@ -67,9 +67,9 @@ namespace
         }
     };
 
-    QIcon loadIcon(const QString &path, const QString &fallbackId)
+    QIcon loadIcon(const Path &path, const QString &fallbackId)
     {
-        const QPixmap pixmap {path};
+        const QPixmap pixmap {path.data()};
         if (!pixmap.isNull())
             return {pixmap};
 
@@ -79,11 +79,11 @@ namespace
     QIcon rssFeedIcon(const RSS::Feed *feed)
     {
         if (feed->isLoading())
-            return UIThemeManager::instance()->getIcon(QLatin1String("loading"));
+            return UIThemeManager::instance()->getIcon(u"loading"_qs);
         if (feed->hasError())
-            return UIThemeManager::instance()->getIcon(QLatin1String("unavailable"));
+            return UIThemeManager::instance()->getIcon(u"unavailable"_qs);
 
-        return loadIcon(feed->iconPath(), QLatin1String("application-rss+xml"));
+        return loadIcon(feed->iconPath(), u"application-rss+xml"_qs);
     }
 }
 
@@ -105,9 +105,9 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_rssToTreeItemMapping[RSS::Session::instance()->rootFolder()] = invisibleRootItem();
 
     m_unreadStickyItem = new FeedListItem(this);
-    m_unreadStickyItem->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(RSS::Session::instance()->rootFolder()));
+    m_unreadStickyItem->setData(0, Qt::UserRole, QVariant::fromValue(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon("mail-folder-inbox"));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-folder-inbox"_qs));
     m_unreadStickyItem->setData(0, StickyItemTagRole, true);
 
 
@@ -156,7 +156,7 @@ void FeedListWidget::handleItemUnreadCountChanged(RSS::Item *rssItem)
     {
         QTreeWidgetItem *item = mapRSSItem(rssItem);
         Q_ASSERT(item);
-        item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
+        item->setData(0, Qt::DisplayRole, u"%1  (%2)"_qs.arg(rssItem->name(), QString::number(rssItem->unreadCount())));
     }
 }
 
@@ -165,7 +165,7 @@ void FeedListWidget::handleItemPathChanged(RSS::Item *rssItem)
     QTreeWidgetItem *item = mapRSSItem(rssItem);
     Q_ASSERT(item);
 
-    item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
+    item->setData(0, Qt::DisplayRole, u"%1  (%2)"_qs.arg(rssItem->name(), QString::number(rssItem->unreadCount())));
 
     RSS::Item *parentRssItem = RSS::Session::instance()->itemByPath(RSS::Item::parentPath(rssItem->path()));
     QTreeWidgetItem *parentItem = mapRSSItem(parentRssItem);
@@ -213,7 +213,7 @@ RSS::Item *FeedListWidget::getRSSItem(QTreeWidgetItem *item) const
 {
     if (!item) return nullptr;
 
-    return reinterpret_cast<RSS::Item *>(item->data(0, Qt::UserRole).value<quintptr>());
+    return item->data(0, Qt::UserRole).value<RSS::Item *>();
 }
 
 QTreeWidgetItem *FeedListWidget::mapRSSItem(RSS::Item *rssItem) const
@@ -274,15 +274,15 @@ void FeedListWidget::dropEvent(QDropEvent *event)
 QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem *parentItem)
 {
     auto *item = new FeedListItem;
-    item->setData(0, Qt::DisplayRole, QString::fromLatin1("%1  (%2)").arg(rssItem->name(), QString::number(rssItem->unreadCount())));
-    item->setData(0, Qt::UserRole, reinterpret_cast<quintptr>(rssItem));
+    item->setData(0, Qt::DisplayRole, u"%1  (%2)"_qs.arg(rssItem->name(), QString::number(rssItem->unreadCount())));
+    item->setData(0, Qt::UserRole, QVariant::fromValue(rssItem));
     m_rssToTreeItemMapping[rssItem] = item;
 
     QIcon icon;
     if (auto feed = qobject_cast<RSS::Feed *>(rssItem))
         icon = rssFeedIcon(feed);
     else
-        icon = UIThemeManager::instance()->getIcon(QLatin1String("inode-directory"));
+        icon = UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
     item->setData(0, Qt::DecorationRole, icon);
 
     connect(rssItem, &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);

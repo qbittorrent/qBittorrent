@@ -30,6 +30,8 @@
 
 #include <QObject>
 
+#include "base/pathfwd.h"
+
 class QtLocalPeer;
 
 class ApplicationInstanceManager final : public QObject
@@ -38,7 +40,7 @@ class ApplicationInstanceManager final : public QObject
     Q_DISABLE_COPY_MOVE(ApplicationInstanceManager)
 
 public:
-    explicit ApplicationInstanceManager(const QString &instancePath, QObject *parent = nullptr);
+    explicit ApplicationInstanceManager(const Path &instancePath, QObject *parent = nullptr);
 
     bool isFirstInstance() const;
 

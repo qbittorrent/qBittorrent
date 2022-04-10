@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ms_MY" version="2.1">
+<TS version="2.1" language="ms_MY">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Tidak boleh simpan keutamaan program, qBittorrent berkemungkinan tidak boleh dicapai.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent di Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Tidak diketahui</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Daftar Masuk</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Pengarang asal</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Port keluar (Min) [0: Dilumpuhkan]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Alamat IP untuk dilaporkan kepada penjejak (perlu mula semula):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Semak semula torrent seusai lengkap:</translation>
     </message>
@@ -1450,7 +1442,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Rawak</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1486,6 +1478,22 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>Salin IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Tambah satu rakan baharu...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Negara/Wilayah</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Kemajuan:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Saiz</translation>
+        <translation type="vanished">Saiz</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Gelintar dalam:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Keputusan (menunjukkan</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Penapis</translation>
     </message>
@@ -3025,10 +3033,6 @@
         <translation>Kerakyatan:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Pengarang</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Perisian Digunakan</translation>
     </message>
@@ -3042,6 +3046,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation>Perancis</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3178,7 +3190,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Mendapatkan suapan RSS dilumpuhkan sekarang! Anda boleh benarkannya di dalam tetapan aplikasi.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3194,82 +3206,82 @@
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>Muat turun torrent</translation>
     </message>
 </context>
 <context>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Peraturan Muat Turun</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>Artikel RSS Sepadan</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>* untuk padankan sifar atau lagi mana-mana aksara</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation>akan padankan semua artikel.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Peraturan penapis episod:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Auto muat turun torrent RSS dilumpuhkan sekarang! Anda boleh benarkannya di dalam tetapan aplikasi.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Takrifan Peraturan</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Simpan ke:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>Guna Ungkapan Nalar</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Nama peraturan baharu</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>Penapis mesti diakhir dengan tanda titik bertindih</translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>? untuk padankan mana-mana aksara tunggal</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>Artikel sepadan berdasarkan penapis episod.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>Kategori Umpuk:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Mod ungkapan nalar: guna ungkapan nalar serasi-Perl</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished" />
+        <translation>digunakan sebagai operator OR</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>Kosongkan episod dimuat turun</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation>Kiraan ruang putih dan operator AND (semua perkataan, mana-mana tertib)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3277,67 +3289,67 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Contoh:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Tambah peraturan baharu...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>Anda pasti mahu kosongkan senarai episod dimuat turun untuk peraturan terpilih?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Mesti Kandungi:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation>Julat tak terhingga: &lt;b&gt;1x25-;&lt;/b&gt; sepadan 25 episod dan ke atas bagi musim pertama, dan semua episod bagi musim berikutnya</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Simpan dalam Direktori Berlainan</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Tidak Boleh Kandungi:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Nombor tunggal: &lt;b&gt;1x25;&lt;/b&gt; sepadan episod 25 bagi musim pertama</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Tiga jenis julat untuk episod disokong:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Anda pasti mahu buang peraturan muat turun terpilih?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Guna tetapan sejagat</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Julat biasa: &lt;b&gt;1x25-40;&lt;/b&gt; sepadan 25 hingga 40 episod bagi musim pertama</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Sila taip nama peraturan yang baharu</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Penamaan semula peraturan</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Sentiasa</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation>Bilangan episod adalah nilai positif yang mandatori</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3345,15 +3357,15 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Pengesahan pemadaman peraturan</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Padanan Terakhir: %1 hari yang lalu</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Penapis Episod:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3361,63 +3373,63 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Bilangan musim adalah nilai bukan-sifar yang mandatori</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Tidak Sesekali</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>Laksana Peraturan pada Suapan:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>hari</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation>Guna Penapis Episod Pintar</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished" />
+        <translation>Jika tertib perkataan adalah mustahak guna * selain dari ruang putih.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Tambah Dijeda:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Sila taip nama bagi peraturan muat turun baharu.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>Mod kad liar: anda boleh gunakan</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation>akan asingkan semua artikel.</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Padam peraturan</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Abai Padanan Berturutan (0 untuk Lumpuhkan)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>Nama semula peraturan...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>Padanan Terakhir: Tidak diketahui</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>Kosongkan episod dimuat turun...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -3445,11 +3457,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Padam torrent</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Sambung semula torrent</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3457,22 +3469,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation>Tanpa Penjejak (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Jeda torrent</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>Suapan RSS</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Belum Baca</translation>
     </message>
 </context>
 </TS>

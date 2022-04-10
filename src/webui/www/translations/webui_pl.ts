@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="pl" version="2.1">
+<TS version="2.1" language="pl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Nie można zapisać ustawień, prawdopodobnie qBittorrent jest nieosiągalny.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent w sieci Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Nieznany</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Login</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Pierwotni autorzy</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Pierwotny autor</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Porty wychodzące (min.) [0: wyłączone]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Adres IP zgłaszany trackerom (wymaga ponownego uruchomienia):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Sprawdzaj torrenty po zakończeniu:</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Adres IP zgłoszony trackerom (wymaga ponownego uruchomienia):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Ustaw na 0, aby system mógł wybrać nieużywany port</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Zapobieganie fałszowaniu żądań po stronie serwera (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>Kopiuj IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Dodaj nowego partnera...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Kraj/Region</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Dodaj partnerów...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Postęp:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Rozmiar</translation>
+        <translation type="vanished">Rozmiar</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Wyszukaj w:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Wyniki (pokazanie</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtr</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Wyniki</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>pokazywanie</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>Narodowość:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autor</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Użyte oprogramowanie</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autorzy</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Francja</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>Maskotka qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>Ikona qBittorrent</translation>
     </message>
 </context>
 <context>

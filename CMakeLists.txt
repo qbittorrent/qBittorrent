@@ -34,7 +34,7 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
         ON "GUI" OFF
     )
     feature_option_dependent(SYSTEMD
-        "Install systemd service file to a directory manually overridable with Systemd_SERVICES_INSTALL_DIR"
+        "Install systemd service file to a directory manually overridable with SYSTEMD_SERVICES_INSTALL_DIR"
         OFF "NOT GUI" OFF
     )
     if (STACKTRACE)

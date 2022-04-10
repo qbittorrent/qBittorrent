@@ -76,7 +76,7 @@ public:
         if (!m_parent || m_parent->name().isEmpty())
             return m_name;
 
-        return QString::fromLatin1("%1/%2").arg(m_parent->fullName(), m_name);
+        return u"%1/%2"_qs.arg(m_parent->fullName(), m_name);
     }
 
     CategoryModelItem *parent() const
@@ -165,7 +165,7 @@ namespace
 {
     QString shortName(const QString &fullName)
     {
-        int pos = fullName.lastIndexOf(QLatin1Char('/'));
+        int pos = fullName.lastIndexOf(u'/');
         if (pos >= 0)
             return fullName.mid(pos + 1);
         return fullName;
@@ -214,13 +214,12 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
-        return UIThemeManager::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
     }
 
     if ((index.column() == 0) && (role == Qt::DisplayRole))
     {
-        return QString(QStringLiteral("%1 (%2)"))
-                .arg(item->name()).arg(item->torrentsCount());
+        return u"%1 (%2)"_qs.arg(item->name(), QString::number(item->torrentsCount()));
     }
 
     if ((index.column() == 0) && (role == Qt::UserRole))
@@ -404,40 +403,33 @@ void CategoryFilterModel::populate()
 
     // Uncategorized torrents
     using Torrent = BitTorrent::Torrent;
-    m_rootItem->addChild(
-                UID_UNCATEGORIZED
-                , new CategoryModelItem(
-                    nullptr, tr("Uncategorized")
-                    , std::count_if(torrents.begin(), torrents.end()
-                                    , [](Torrent *torrent) { return torrent->category().isEmpty(); })));
+    const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
+                                            , [](Torrent *torrent) { return torrent->category().isEmpty(); });
+    m_rootItem->addChild(UID_UNCATEGORIZED, new CategoryModelItem(nullptr, tr("Uncategorized"), torrentsCount));
 
-    using Torrent = BitTorrent::Torrent;
-    const QStringMap categories = session->categories();
-    for (auto i = categories.cbegin(); i != categories.cend(); ++i)
+    using BitTorrent::Torrent;
+    for (const QString &categoryName : asConst(session->categories()))
     {
-        const QString &category = i.key();
         if (m_isSubcategoriesEnabled)
         {
             CategoryModelItem *parent = m_rootItem;
-            for (const QString &subcat : asConst(session->expandCategory(category)))
+            for (const QString &subcat : asConst(session->expandCategory(categoryName)))
             {
                 const QString subcatName = shortName(subcat);
                 if (!parent->hasChild(subcatName))
                 {
-                    new CategoryModelItem(
-                                parent, subcatName
-                                , std::count_if(torrents.cbegin(), torrents.cend()
-                                                , [subcat](Torrent *torrent) { return torrent->category() == subcat; }));
+                    const int torrentsCount = std::count_if(torrents.cbegin(), torrents.cend()
+                                                            , [subcat](Torrent *torrent) { return torrent->category() == subcat; });
+                    new CategoryModelItem(parent, subcatName, torrentsCount);
                 }
                 parent = parent->child(subcatName);
             }
         }
         else
         {
-            new CategoryModelItem(
-                        m_rootItem, category
-                        , std::count_if(torrents.begin(), torrents.end()
-                                        , [category](Torrent *torrent) { return torrent->belongsToCategory(category); }));
+            const int torrentsCount = std::count_if(torrents.begin(), torrents.end()
+                                                    , [categoryName](Torrent *torrent) { return torrent->belongsToCategory(categoryName); });
+            new CategoryModelItem(m_rootItem, categoryName, torrentsCount);
         }
     }
 }

@@ -41,14 +41,14 @@ namespace
 {
     QString getSpecialAllTag()
     {
-        const QString ALL_TAG = QLatin1String(" ");
+        const QString ALL_TAG = u" "_qs;
         Q_ASSERT(!BitTorrent::Session::isValidTag(ALL_TAG));
         return ALL_TAG;
     }
 
     QString getSpecialUntaggedTag()
     {
-        const QString UNTAGGED_TAG = QLatin1String("  ");
+        const QString UNTAGGED_TAG = u"  "_qs;
         Q_ASSERT(!BitTorrent::Session::isValidTag(UNTAGGED_TAG));
         return UNTAGGED_TAG;
     }
@@ -124,10 +124,9 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     switch (role)
     {
     case Qt::DecorationRole:
-        return UIThemeManager::instance()->getIcon("inode-directory");
+        return UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
     case Qt::DisplayRole:
-        return QString::fromLatin1("%1 (%2)")
-               .arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
+        return u"%1 (%2)"_qs.arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
         return item.torrentsCount();
     default:
@@ -324,7 +323,7 @@ QVector<TagModelItem *> TagFilterModel::findItems(const TagSet &tags)
         if (item)
             items.push_back(item);
         else
-            qWarning() << QString::fromLatin1("Requested tag '%1' missing from the model.").arg(tag);
+            qWarning() << u"Requested tag '%1' missing from the model."_qs.arg(tag);
     }
     return items;
 }

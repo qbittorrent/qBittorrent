@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="sr" version="2.1">
+<TS version="2.1" language="sr">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Не могу да сачувам програмска подешавања, qBittorrent је вероватно недоступан.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent на мрежи Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Непознато</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Логовање</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Оригинални аутори</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -579,6 +571,10 @@
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -850,7 +846,7 @@
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished" />
+        <translation>Примени ограничење на µTP протокол</translation>
     </message>
     <message>
         <source>Privacy</source>
@@ -950,11 +946,11 @@
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: Количина фајлова</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: Величина торента (у бајтовима)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
@@ -966,11 +962,11 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>Веб UI име корисника мора имати најмање 3 карактера.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
-        <translation type="unfinished" />
+        <translation>Веб UI шифра корисника мора имати најмање 6 карактера.</translation>
     </message>
     <message>
         <source>minutes</source>
@@ -1002,15 +998,15 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation type="unfinished" />
+        <translation>Промени тренутно шифру</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Аутоматски</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished" />
+        <translation>Користи алтернативни веб интерфејс</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1034,7 +1030,7 @@
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation type="unfinished" />
+        <translation>Релоцирај обухваћене торенте</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
@@ -1046,7 +1042,7 @@
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation type="unfinished" />
+        <translation>Релоцирај торент</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
@@ -1246,7 +1242,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>Ограничења донирања</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1318,7 +1314,7 @@
     </message>
     <message>
         <source>Filters:</source>
-        <translation type="unfinished" />
+        <translation>Филтери:</translation>
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
@@ -1378,7 +1374,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>мин</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1484,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1556,12 +1568,12 @@
         <translation>Копирај IP:порт</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Додај новог учесника (peer-а)...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Држава/регион</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1762,7 +1774,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Преименуј...</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1770,19 +1782,19 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Инфо хеш v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Инфо хеш v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Недоступно</translation>
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Напредак:</translation>
     </message>
 </context>
 <context>
@@ -1823,15 +1835,15 @@
     <name>StatsDialog</name>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>Статистика</translation>
     </message>
     <message>
         <source>User statistics</source>
-        <translation type="unfinished" />
+        <translation>Корисничка статистика</translation>
     </message>
     <message>
         <source>Cache statistics</source>
-        <translation type="unfinished" />
+        <translation>Кеш статистика</translation>
     </message>
     <message>
         <source>Read cache hits:</source>
@@ -1898,107 +1910,107 @@
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished" />
+        <translation>Укупно (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Преузима се (0)</translation>
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation type="unfinished" />
+        <translation>Донира се (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation type="unfinished" />
+        <translation>Завршено (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation type="unfinished" />
+        <translation>Настављено (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation type="unfinished" />
+        <translation>Паузирано (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
-        <translation type="unfinished" />
+        <translation>Активно (0)</translation>
     </message>
     <message>
         <source>Inactive (0)</source>
-        <translation type="unfinished" />
+        <translation>Неактивно (0)</translation>
     </message>
     <message>
         <source>Errored (0)</source>
-        <translation type="unfinished" />
+        <translation>Грешке (0)</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Укупно (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Преузима се (%1)</translation>
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation type="unfinished" />
+        <translation>Донира се (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation type="unfinished" />
+        <translation>Завршено (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation type="unfinished" />
+        <translation>Паузирано (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation type="unfinished" />
+        <translation>Настављено (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
-        <translation type="unfinished" />
+        <translation>Активно (%1)</translation>
     </message>
     <message>
         <source>Inactive (%1)</source>
-        <translation type="unfinished" />
+        <translation>Неактивно (%1)</translation>
     </message>
     <message>
         <source>Errored (%1)</source>
-        <translation type="unfinished" />
+        <translation>Грешке (%1)</translation>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Стоји у отпремању (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>Стоји у преузимању (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>Стоји у преузимању (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>Стоји (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>Стоји у отпремању (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>Стоји (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Проверава се (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Проверава се (0)</translation>
     </message>
 </context>
 <context>
@@ -2058,11 +2070,11 @@
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>Категорија</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Тагови</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -2111,7 +2123,7 @@
     <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Преостало</translation>
     </message>
     <message>
         <source>Time Active</source>
@@ -2141,12 +2153,12 @@
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation type="unfinished" />
+        <translation>Последња активност</translation>
     </message>
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation type="unfinished" />
+        <translation>Укупна величина</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2256,7 +2268,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
+        <source>Total Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2280,7 +2292,7 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Паузиран</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2328,7 +2340,7 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Преузимање</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -2351,15 +2363,15 @@
     <name>TransferListFiltersWidget</name>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Статус</translation>
     </message>
     <message>
         <source>Categories</source>
-        <translation type="unfinished" />
+        <translation>Категорије</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Тагови</translation>
     </message>
     <message>
         <source>Trackers</source>
@@ -2446,17 +2458,17 @@
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>Категорија</translation>
     </message>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>Нова...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
+        <translation>Ресету</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -2516,11 +2528,11 @@
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Тагови</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Магнет линк</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2528,15 +2540,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Име</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Копирај</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>Ред</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -2552,7 +2564,7 @@
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>ID торента</translation>
     </message>
 </context>
 <context>
@@ -2575,11 +2587,11 @@
     </message>
     <message>
         <source>ratio</source>
-        <translation type="unfinished" />
+        <translation>однос</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>минута</translation>
     </message>
 </context>
 <context>
@@ -2889,11 +2901,11 @@
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Додај учеснике (peers)</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>Листа за додавање пратилаца (један по линији):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2908,69 +2920,69 @@
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation type="unfinished" />
+        <translation>Нова ознака</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation type="unfinished" />
+        <translation>Додај таг...</translation>
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Обриши торенте</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation type="unfinished" />
+        <translation>Ознака:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Паузирај торенте</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Настави торенте</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation type="unfinished" />
+        <translation>Уклони некоришћене тагове</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation type="unfinished" />
+        <translation>Неважеће име ознаке</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation type="unfinished" />
+        <translation>Уклони так...</translation>
     </message>
 </context>
 <context>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Све</translation>
     </message>
     <message>
         <source>Untagged</source>
-        <translation type="unfinished" />
+        <translation>Без ознаке</translation>
     </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Пријава грешака:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>О програму</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Форум:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>Е-маил:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -2978,58 +2990,66 @@
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Веб сајт:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Грчка</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Посебна захвалност</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Напредни БитТорент клијент програмиран у C++, заснован на Qt окружењу и libtorrent-rasterbar библиотеци.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Име:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>O qBittorrent-у</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Лиценца</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Преводиоци</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>Ова верзија qBittorrentа је изграђена користећи наведене библиотеке:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Националност:</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Коришћени софтвер</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Бесплатна IP-држава база података од DB-IP се користи за налажење држава учесника. База података је лиценцирана под лиценцом Creative Commons Attribution 4.0 International License </translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Аутори</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Француска</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3052,7 +3072,7 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Копирај</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3060,7 +3080,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Име</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3079,18 +3099,18 @@
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Преименовање</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Ново име:</translation>
     </message>
 </context>
 <context>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>Датум:</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
@@ -3106,15 +3126,15 @@
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation>Ажурирај све</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Обриши</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished" />
+        <translation>RSS преузимач порука...</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -3138,7 +3158,7 @@
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Преименуј...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3150,15 +3170,15 @@
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation>Нова претплата</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Ажурирај</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Име фасцикле:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3189,23 +3209,23 @@
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Правила преузимања</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>Усклађивање RSS чланака</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>* уместо нула или више било којих карактера</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation>ће заменити све артикле.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Правила филтера епизода:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -3213,35 +3233,35 @@
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Дефиниција правила</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Сачувај у:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>Користите регуларне изразе</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Назив новог правила</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>Филтер се мора завршавати са ;</translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>? уместо било ког једног карактера</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>Усклађује чланке на основу филтера епизода.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>Додели категорију:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
@@ -3257,7 +3277,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation>Размаци се рачунају као И/AND оператори (све речи, било који редослед)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3265,11 +3285,11 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Пример:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Додај ново правило...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3277,7 +3297,7 @@
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Мора да садржи:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3285,11 +3305,11 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Сачувај у другу фасциклу</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Не сме да садржи:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -3301,11 +3321,11 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Да ли сте сигурни да желите да уклоните изабрана правила преузимања?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Користи глобална подешавања</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
@@ -3313,15 +3333,15 @@
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Молим упишите назив за ново правило</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Преименовање правила</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Увек</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3333,7 +3353,7 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Потврда брисања - правила</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3341,7 +3361,7 @@
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Филтер епизода:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3349,31 +3369,31 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Број сезоне је обавезан број који није нула</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Никад</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>Примени правило на поруке:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>дани</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation>Користи Паметни филтер епизода</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished" />
+        <translation>Ако је редослед речи битан, користите * уместо размака.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Додај паузирано:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
@@ -3381,15 +3401,15 @@
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>Режим џокера: можете користити</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation>ће изузети све артикле.</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Обриши правило</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
@@ -3397,7 +3417,7 @@
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>Преименуј правило...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
@@ -3410,15 +3430,16 @@
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Паметни филтер епизода ће проверавати бројеве епизода да би се избегло преузимање дупликата.
+Подржава формате: S01E01, 1x1, 2017.12.31 и 31.12.2017 (формати у виду датума такође подржавају - као сепаратор)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Приказ садржаја торента:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Креирај потфасциклу</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3426,18 +3447,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Не креирај потфасциклу</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Обриши торенте</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Пусти торенте</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3449,18 +3470,18 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Паузирај торенте</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSS поруке</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Непрочитане</translation>
     </message>
 </context>
 </TS>

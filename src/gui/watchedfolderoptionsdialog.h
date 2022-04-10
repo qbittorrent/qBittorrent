@@ -30,6 +30,7 @@
 
 #include <QDialog>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/torrentfileswatcher.h"
 
@@ -50,13 +51,15 @@ public:
     TorrentFilesWatcher::WatchedFolderOptions watchedFolderOptions() const;
 
 private:
-    void populateSavePathComboBox();
+    void populateSavePaths();
     void loadState();
     void saveState();
     void onTMMChanged(int index);
     void onCategoryChanged(int index);
 
     Ui::WatchedFolderOptionsDialog *m_ui;
-    QString m_savePath;
+    Path m_savePath;
+    Path m_downloadPath;
+    bool m_useDownloadPath = false;
     SettingValue<QSize> m_storeDialogSize;
 };

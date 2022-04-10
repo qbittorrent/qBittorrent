@@ -101,14 +101,15 @@ public:
             return iter;
         }
 
-        constexpr bool operator==(const Iterator &other) const
+        // comparing iterators from different containers is undefined behavior in C++ standard library
+        friend constexpr bool operator==(const Iterator &left, const Iterator &right)
         {
-            return (*(*this) == *other);
+            return (*left == *right);
         }
 
-        constexpr bool operator!=(const Iterator &other) const
+        friend constexpr bool operator!=(const Iterator &left, const Iterator &right)
         {
-            return !(*this == other);
+            return !(left == right);
         }
 
     private:

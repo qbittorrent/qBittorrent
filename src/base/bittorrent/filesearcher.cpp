@@ -27,43 +27,39 @@
  */
 
 #include "filesearcher.h"
-
-#include <QDir>
-
 #include "base/bittorrent/common.h"
 #include "base/bittorrent/infohash.h"
 
-void FileSearcher::search(const BitTorrent::TorrentID &id, const QStringList &originalFileNames
-                          , const QString &completeSavePath, const QString &incompleteSavePath)
+void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &originalFileNames
+                          , const Path &savePath, const Path &downloadPath)
 {
-    const auto findInDir = [](const QString &dirPath, QStringList &fileNames) -> bool
+    const auto findInDir = [](const Path &dirPath, PathList &fileNames) -> bool
     {
-        const QDir dir {dirPath};
         bool found = false;
-        for (QString &fileName : fileNames)
+        for (Path &fileName : fileNames)
         {
-            if (dir.exists(fileName))
+            if ((dirPath / fileName).exists())
             {
                 found = true;
             }
-            else if (dir.exists(fileName + QB_EXT))
+            else if ((dirPath / fileName + QB_EXT).exists())
             {
                 found = true;
-                fileName += QB_EXT;
+                fileName = fileName + QB_EXT;
             }
         }
 
         return found;
     };
 
-    QString savePath = completeSavePath;
-    QStringList adjustedFileNames = originalFileNames;
-    const bool found = findInDir(savePath, adjustedFileNames);
-    if (!found && !incompleteSavePath.isEmpty())
+    Path usedPath = savePath;
+    PathList adjustedFileNames = originalFileNames;
+    const bool found = findInDir(usedPath, adjustedFileNames);
+    if (!found && !downloadPath.isEmpty())
     {
-        savePath = incompleteSavePath;
-        findInDir(savePath, adjustedFileNames);
+        usedPath = downloadPath;
+        findInDir(usedPath, adjustedFileNames);
     }
 
-    emit searchFinished(id, savePath, adjustedFileNames);
+    emit searchFinished(id, usedPath, adjustedFileNames);
 }

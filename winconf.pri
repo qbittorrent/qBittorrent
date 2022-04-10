@@ -1,3 +1,5 @@
+CONFIG += c++17
+
 # After 1.55 some Windows users reported regular UI freezes.
 # This makes ASIO use the pre-1.56 way of doing things. See issue #2003
 DEFINES += BOOST_ASIO_DISABLE_CONNECTEX
@@ -32,15 +34,14 @@ win32-g++*|win32-clang-g++* {
     DEFINES += _FILE_OFFSET_BITS=64
     DEFINES += __USE_W32_SOCKETS
 
-    QMAKE_CXXFLAGS += -std=c++17
-
     RC_FILE = qbittorrent_mingw.rc
 
     LIBS += libadvapi32 libiphlpapi libole32 libpowrprof libshell32 libuser32 libwsock32 libws2_32
 }
 else:win32-msvc* {
     CONFIG -= embed_manifest_exe
-    QMAKE_CXXFLAGS += /std:c++17 /utf-8
+
+    QMAKE_CXXFLAGS += /utf-8
     QMAKE_LFLAGS += "/MANIFEST:EMBED /MANIFESTINPUT:$$quote($${PWD}/src/qbittorrent.exe.manifest) /STACK:0x800000"
 
     RC_FILE = qbittorrent.rc

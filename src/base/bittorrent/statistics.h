@@ -45,8 +45,8 @@ public:
     explicit Statistics(BitTorrent::Session *session);
     ~Statistics();
 
-    quint64 getAlltimeDL() const;
-    quint64 getAlltimeUL() const;
+    qint64 getAlltimeDL() const;
+    qint64 getAlltimeUL() const;
 
 private slots:
     void gather();
@@ -56,13 +56,12 @@ private:
     void load();
 
     BitTorrent::Session *m_session;
-    // Will overflow at 15.9 EiB
-    quint64 m_alltimeUL;
-    quint64 m_alltimeDL;
-    quint64 m_sessionUL;
-    quint64 m_sessionDL;
-    mutable qint64 m_lastWrite;
-    mutable bool m_dirty;
+    qint64 m_alltimeUL = 0;
+    qint64 m_alltimeDL = 0;
+    qint64 m_sessionUL = 0;
+    qint64 m_sessionDL = 0;
+    mutable qint64 m_lastWrite = 0;
+    mutable bool m_dirty = false;
 
     QTimer m_timer;
 };

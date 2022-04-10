@@ -37,12 +37,13 @@
 #include <QStyle>
 #include <QStyledItemDelegate>
 
+#include "base/global.h"
 #include "gui/uithememanager.h"
 #include "logmodel.h"
 
 namespace
 {
-    const QString SEPARATOR = QStringLiteral(" - ");
+    const QString SEPARATOR = u" - "_qs;
 
     int horizontalAdvance(const QFontMetrics &fontMetrics, const QString &text)
     {
@@ -51,8 +52,8 @@ namespace
 
     QString logText(const QModelIndex &index)
     {
-        return QString::fromLatin1("%1%2%3").arg(index.data(BaseLogModel::TimeRole).toString(), SEPARATOR
-                                                 , index.data(BaseLogModel::MessageRole).toString());
+        return u"%1%2%3"_qs.arg(index.data(BaseLogModel::TimeRole).toString(), SEPARATOR
+                                , index.data(BaseLogModel::MessageRole).toString());
     }
 
     class LogItemDelegate final : public QStyledItemDelegate
@@ -134,5 +135,5 @@ void LogListView::copySelection() const
     const QModelIndexList selectedIndexes = selectionModel()->selectedRows();
     for (const QModelIndex &index : selectedIndexes)
         list.append(logText(index));
-    QApplication::clipboard()->setText(list.join('\n'));
+    QApplication::clipboard()->setText(list.join(u'\n'));
 }

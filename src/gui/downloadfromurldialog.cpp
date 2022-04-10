@@ -39,21 +39,21 @@
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "DownloadFromURLDialog/" name
+#define SETTINGS_KEY(name) u"DownloadFromURLDialog/" name
 
 namespace
 {
     bool isDownloadable(const QString &str)
     {
-        return (str.startsWith("http://", Qt::CaseInsensitive)
-            || str.startsWith("https://", Qt::CaseInsensitive)
-            || str.startsWith("ftp://", Qt::CaseInsensitive)
-            || str.startsWith("magnet:", Qt::CaseInsensitive)
-            || ((str.size() == 40) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v1 hex-encoded SHA-1 info-hash
+        return (str.startsWith(u"http://", Qt::CaseInsensitive)
+            || str.startsWith(u"https://", Qt::CaseInsensitive)
+            || str.startsWith(u"ftp://", Qt::CaseInsensitive)
+            || str.startsWith(u"magnet:", Qt::CaseInsensitive)
+            || ((str.size() == 40) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v1 hex-encoded SHA-1 info-hash
 #ifdef QBT_USES_LIBTORRENT2
-            || ((str.size() == 64) && !str.contains(QRegularExpression("[^0-9A-Fa-f]"))) // v2 hex-encoded SHA-256 info-hash
+            || ((str.size() == 64) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v2 hex-encoded SHA-256 info-hash
 #endif
-            || ((str.size() == 32) && !str.contains(QRegularExpression("[^2-7A-Za-z]")))); // v1 Base32 encoded SHA-1 info-hash
+            || ((str.size() == 32) && !str.contains(QRegularExpression(u"[^2-7A-Za-z]"_qs)))); // v1 Base32 encoded SHA-1 info-hash
 
     }
 }
@@ -61,7 +61,7 @@ namespace
 DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::DownloadFromURLDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -88,13 +88,13 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
             uniqueURLs << str;
     }
 
-    const QString text = uniqueURLs.values().join(QLatin1Char('\n'))
-        + (!uniqueURLs.isEmpty() ? QLatin1String("\n") : QLatin1String(""));
+    const QString text = uniqueURLs.values().join(u'\n')
+        + (!uniqueURLs.isEmpty() ? u"\n" : u"");
 
     m_ui->textUrls->setText(text);
     m_ui->textUrls->moveCursor(QTextCursor::End);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 

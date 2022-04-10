@@ -34,9 +34,11 @@
 #include <QRegularExpression>
 #include <QStringList>
 
+#include "base/global.h"
+
 using namespace RSS;
 
-const QChar Item::PathSeparator('\\');
+const QChar Item::PathSeparator = u'\\';
 
 Item::Item(const QString &path)
     : m_path(path)
@@ -67,7 +69,7 @@ QString Item::name() const
 bool Item::isValidPath(const QString &path)
 {
     static const QRegularExpression re(
-                QString(R"(\A[^\%1]+(\%1[^\%1]+)*\z)").arg(Item::PathSeparator)
+                uR"(\A[^\%1]+(\%1[^\%1]+)*\z)"_qs.arg(Item::PathSeparator)
                 , QRegularExpression::DontCaptureOption);
 
     if (path.isEmpty() || !re.match(path).hasMatch())
@@ -107,8 +109,8 @@ QStringList Item::expandPath(const QString &path)
 
 QString Item::parentPath(const QString &path)
 {
-    int pos;
-    return ((pos = path.lastIndexOf(Item::PathSeparator)) >= 0 ? path.left(pos) : "");
+    const int pos = path.lastIndexOf(Item::PathSeparator);
+    return (pos >= 0) ? path.left(pos) : QString();
 }
 
 QString Item::relativeName(const QString &path)

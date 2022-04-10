@@ -457,6 +457,11 @@
         </div>
     </fieldset>
 
+    <div class="formRow">
+        <label for="maxActiveCheckingTorrents">QBT_TR(Max active checking torrents:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <input type="number" id="maxActiveCheckingTorrents" style="width: 4em;" min="-1" />
+    </div>
+
     <fieldset class="settings">
         <legend>
             <input type="checkbox" id="queueing_checkbox" onclick="qBittorrent.Preferences.updateQueueingSystem();" />
@@ -677,6 +682,11 @@
             <option value="zh_TW">正體中文</option>
         </select>
     </fieldset>
+
+    <div class="formRow">
+        <input type="checkbox" id="performanceWarning" />
+        <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
 
     <fieldset class="settings">
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
@@ -999,6 +1009,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="diskQueueSize">QBT_TR(Disk queue size:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_queued_disk_bytes" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="diskQueueSize" style="width: 15em;">&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="enableOSCache">QBT_TR(Enable OS cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -1237,6 +1255,14 @@
                 </td>
                 <td>
                     <input type="text" id="peerTurnoverInterval" style="width: 15em;" />&nbsp;&nbsp;s
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="requestQueueSize">QBT_TR(Maximum outstanding requests to a single peer:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_out_request_queue" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="requestQueueSize" style="width: 15em;" />
                 </td>
             </tr>
         </table>
@@ -2028,6 +2054,8 @@
                         $('encryption_select').getChildren('option')[encryption].setAttribute('selected', '');
                         $('anonymous_mode_checkbox').setProperty('checked', pref.anonymous_mode);
 
+                        $('maxActiveCheckingTorrents').setProperty('value', pref.max_active_checking_torrents);
+
                         // Torrent Queueing
                         $('queueing_checkbox').setProperty('checked', pref.queueing_enabled);
                         $('max_active_dl_value').setProperty('value', pref.max_active_downloads.toInt());
@@ -2079,6 +2107,7 @@
                         // Web UI tab
                         // Language
                         $('locale_select').setProperty('value', pref.locale);
+                        $('performanceWarning').setProperty('checked', pref.performance_warning);
 
                         // HTTP Server
                         $('webui_domain_textarea').setProperty('value', pref.web_ui_domain_list);
@@ -2145,6 +2174,7 @@
                         $('outstandMemoryWhenCheckingTorrents').setProperty('value', pref.checking_memory_use);
                         $('diskCache').setProperty('value', pref.disk_cache);
                         $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
+                        $('diskQueueSize').setProperty('value', (pref.disk_queue_size / 1024));
                         $('enableOSCache').setProperty('checked', pref.enable_os_cache);
                         $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
                         $('pieceExtentAffinity').setProperty('checked', pref.enable_piece_extent_affinity);
@@ -2176,6 +2206,7 @@
                         $('peerTurnover').setProperty('value', pref.peer_turnover);
                         $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
                         $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
+                        $('requestQueueSize').setProperty('value', pref.request_queue_size);
                     }
                 }
             }).send();
@@ -2367,6 +2398,8 @@
             settings.set('encryption', $('encryption_select').getSelected()[0].getProperty('value'));
             settings.set('anonymous_mode', $('anonymous_mode_checkbox').getProperty('checked'));
 
+            settings.set('max_active_checking_torrents', $('maxActiveCheckingTorrents').getProperty('value'));
+
             // Torrent Queueing
             settings.set('queueing_enabled', $('queueing_checkbox').getProperty('checked'));
             if ($('queueing_checkbox').getProperty('checked')) {
@@ -2448,6 +2481,7 @@
             // Web UI tab
             // Language
             settings.set('locale', $('locale_select').getProperty('value'));
+            settings.set('performance_warning', $('performanceWarning').getProperty('checked'));
 
             // HTTP Server
             settings.set('web_ui_domain_list', $('webui_domain_textarea').getProperty('value'));
@@ -2533,6 +2567,7 @@
             settings.set('checking_memory_use', $('outstandMemoryWhenCheckingTorrents').getProperty('value'));
             settings.set('disk_cache', $('diskCache').getProperty('value'));
             settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
+            settings.set('disk_queue_size', ($('diskQueueSize').getProperty('value') * 1024));
             settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
             settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
             settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));
@@ -2564,6 +2599,7 @@
             settings.set('peer_turnover', $('peerTurnover').getProperty('value'));
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
+            settings.set('request_queue_size', $('requestQueueSize').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);

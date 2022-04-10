@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="nl" version="2.1">
+<TS version="2.1" language="nl">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Onmogelijk om programmavoorkeuren op te slaan, qBittorrent is waarschijnlijk onbereikbaar.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent op Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Onbekend</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Login</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Oorspronkelijke auteurs</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Oorspronkelijke auteur</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Uitgaande poorten (min) [0: uitgeschakeld]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP-adres om te melden aan trackers (opnieuw opstarten vereist):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Torrents opnieuw controleren bij voltooiing:</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP-adres gemeld aan trackers (opnieuw starten vereist):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Instellen op 0 om uw systeem een ongebruikte poort te laten kiezen</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Beperking van verzoekvervalsing aan de serverzijde (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>IP:poort kopiëren</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Nieuwe peer toevoegen...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Land/regio</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Peers toevoegen...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Voortgang:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Grootte</translation>
+        <translation type="vanished">Grootte</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Zoeken in:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Resultaten (</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultaten</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>weergeven van</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>Nationaliteit:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Auteur</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Gebruikte software</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Auteurs</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Frankrijk</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent-mascotte</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent-pictogram</translation>
     </message>
 </context>
 <context>

@@ -34,11 +34,13 @@
 #include <QString>
 
 #include "base/exceptions.h"
+#include "base/global.h"
+#include "base/interfaces/istringable.h"
 
 namespace Utils
 {
     template <typename T, std::size_t N, std::size_t Mandatory = N>
-    class Version
+    class Version final : public IStringable
     {
         static_assert(N > 0, "The number of version components may not be smaller than 1");
         static_assert(N >= Mandatory,
@@ -63,7 +65,7 @@ namespace Utils
          * @throws RuntimeError if parsing fails
          */
         Version(const QString &version)
-            : Version {version.split(QLatin1Char('.'))}
+            : Version {version.split(u'.')}
         {
         }
 
@@ -107,7 +109,7 @@ namespace Utils
             return m_components.at(i);
         }
 
-        operator QString() const
+        QString toString() const override
         {
             // find the last one non-zero component
             std::size_t lastSignificantIndex = N - 1;
@@ -119,7 +121,7 @@ namespace Utils
 
             QString res = QString::number((*this)[0]);
             for (std::size_t i = 1; i <= lastSignificantIndex; ++i)
-                res += QLatin1Char('.') + QString::number((*this)[i]);
+                res += (u'.' + QString::number((*this)[i]));
             return res;
         }
 
@@ -162,7 +164,7 @@ namespace Utils
             if ((static_cast<std::size_t>(versionParts.size()) > N)
                 || (static_cast<std::size_t>(versionParts.size()) < Mandatory))
             {
-                throw RuntimeError(QLatin1String("Incorrect number of version components"));
+                throw RuntimeError(u"Incorrect number of version components"_qs);
             }
 
             bool ok = false;
@@ -171,7 +173,7 @@ namespace Utils
             {
                 res[i] = static_cast<T>(versionParts[static_cast<typename StringsList::size_type>(i)].toInt(&ok));
                 if (!ok)
-                    throw RuntimeError(QLatin1String("Can not parse version component"));
+                    throw RuntimeError(u"Can not parse version component"_qs);
             }
             return res;
         }

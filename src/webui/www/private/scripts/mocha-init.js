@@ -487,9 +487,9 @@ const initializeWindows = function() {
                 id: 'setLocationPage',
                 title: "QBT_TR(Set location)QBT_TR[CONTEXT=TransferListWidget]",
                 loadMethod: 'iframe',
-                contentURL: new URI("setlocation.html").setData("hashes", hashes.join('|')).setData("path", row.full_data.save_path).toString(),
+                contentURL: new URI("setlocation.html").setData("hashes", hashes.join('|')).setData("path", encodeURIComponent(row.full_data.save_path)).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
@@ -511,11 +511,11 @@ const initializeWindows = function() {
                     loadMethod: 'iframe',
                     contentURL: new URI("rename.html").setData("hash", hash).setData("name", row.full_data.name).toString(),
                     scrollbars: false,
-                    resizable: false,
+                    resizable: true,
                     maximizable: false,
                     paddingVertical: 0,
                     paddingHorizontal: 0,
-                    width: 250,
+                    width: 400,
                     height: 100
                 });
             }
@@ -532,11 +532,11 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("newcategory.html").setData("action", action).setData("hashes", hashes.join('|')).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
-                width: 250,
+                width: 400,
                 height: 150
             });
         }
@@ -567,11 +567,11 @@ const initializeWindows = function() {
             loadMethod: 'iframe',
             contentURL: new URI("newcategory.html").setData("action", action).toString(),
             scrollbars: false,
-            resizable: false,
+            resizable: true,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 250,
+            width: 400,
             height: 150
         });
         updateMainData();
@@ -587,11 +587,11 @@ const initializeWindows = function() {
             loadMethod: 'iframe',
             contentURL: new URI('newcategory.html').setData("action", action).setData("categoryName", categoryName).setData("savePath", savePath).toString(),
             scrollbars: false,
-            resizable: false,
+            resizable: true,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,
-            width: 250,
+            width: 400,
             height: 150
         });
         updateMainData();
@@ -682,7 +682,7 @@ const initializeWindows = function() {
                 loadMethod: 'iframe',
                 contentURL: new URI("newtag.html").setData("action", action).setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
-                resizable: false,
+                resizable: true,
                 maximizable: false,
                 paddingVertical: 0,
                 paddingHorizontal: 0,
@@ -728,7 +728,7 @@ const initializeWindows = function() {
             loadMethod: 'iframe',
             contentURL: new URI("newtag.html").setData("action", action).toString(),
             scrollbars: false,
-            resizable: false,
+            resizable: true,
             maximizable: false,
             paddingVertical: 0,
             paddingHorizontal: 0,

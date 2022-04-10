@@ -31,6 +31,8 @@
 #include <optional>
 
 #ifdef Q_OS_WIN
+#include <memory>
+
 #include <windows.h>
 #include <powrprof.h>
 #include <Shlobj.h>
@@ -189,59 +191,59 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
     if (action != ShutdownDialogAction::Shutdown)
     {
         // Some recent systems use systemd's logind
-        QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
-                                   "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_qs, u"/org/freedesktop/login1"_qs,
+                                   u"org.freedesktop.login1.Manager"_qs, QDBusConnection::systemBus());
         if (login1Iface.isValid())
         {
             if (action == ShutdownDialogAction::Suspend)
-                login1Iface.call("Suspend", false);
+                login1Iface.call(u"Suspend"_qs, false);
             else
-                login1Iface.call("Hibernate", false);
+                login1Iface.call(u"Hibernate"_qs, false);
             return;
         }
         // Else, other recent systems use UPower
-        QDBusInterface upowerIface("org.freedesktop.UPower", "/org/freedesktop/UPower",
-                                   "org.freedesktop.UPower", QDBusConnection::systemBus());
+        QDBusInterface upowerIface(u"org.freedesktop.UPower"_qs, u"/org/freedesktop/UPower"_qs,
+                                   u"org.freedesktop.UPower"_qs, QDBusConnection::systemBus());
         if (upowerIface.isValid())
         {
             if (action == ShutdownDialogAction::Suspend)
-                upowerIface.call("Suspend");
+                upowerIface.call(u"Suspend"_qs);
             else
-                upowerIface.call("Hibernate");
+                upowerIface.call(u"Hibernate"_qs);
             return;
         }
         // HAL (older systems)
-        QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
-                                "org.freedesktop.Hal.Device.SystemPowerManagement",
+        QDBusInterface halIface(u"org.freedesktop.Hal"_qs, u"/org/freedesktop/Hal/devices/computer"_qs,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_qs,
                                 QDBusConnection::systemBus());
         if (action == ShutdownDialogAction::Suspend)
-            halIface.call("Suspend", 5);
+            halIface.call(u"Suspend"_qs, 5);
         else
-            halIface.call("Hibernate");
+            halIface.call(u"Hibernate"_qs);
     }
     else
     {
         // Some recent systems use systemd's logind
-        QDBusInterface login1Iface("org.freedesktop.login1", "/org/freedesktop/login1",
-                                   "org.freedesktop.login1.Manager", QDBusConnection::systemBus());
+        QDBusInterface login1Iface(u"org.freedesktop.login1"_qs, u"/org/freedesktop/login1"_qs,
+                                   u"org.freedesktop.login1.Manager"_qs, QDBusConnection::systemBus());
         if (login1Iface.isValid())
         {
-            login1Iface.call("PowerOff", false);
+            login1Iface.call(u"PowerOff"_qs, false);
             return;
         }
         // Else, other recent systems use ConsoleKit
-        QDBusInterface consolekitIface("org.freedesktop.ConsoleKit", "/org/freedesktop/ConsoleKit/Manager",
-                                       "org.freedesktop.ConsoleKit.Manager", QDBusConnection::systemBus());
+        QDBusInterface consolekitIface(u"org.freedesktop.ConsoleKit"_qs, u"/org/freedesktop/ConsoleKit/Manager"_qs,
+                                       u"org.freedesktop.ConsoleKit.Manager"_qs, QDBusConnection::systemBus());
         if (consolekitIface.isValid())
         {
-            consolekitIface.call("Stop");
+            consolekitIface.call(u"Stop"_qs);
             return;
         }
         // HAL (older systems)
-        QDBusInterface halIface("org.freedesktop.Hal", "/org/freedesktop/Hal/devices/computer",
-                                "org.freedesktop.Hal.Device.SystemPowerManagement",
+        QDBusInterface halIface(u"org.freedesktop.Hal"_qs, u"/org/freedesktop/Hal/devices/computer"_qs,
+                                u"org.freedesktop.Hal.Device.SystemPowerManagement"_qs,
                                 QDBusConnection::systemBus());
-        halIface.call("Shutdown");
+        halIface.call(u"Shutdown"_qs);
     }
 
 #else
@@ -264,7 +266,7 @@ QString Utils::Misc::friendlyUnit(const qint64 bytes, const bool isSpeed)
     if (!result)
         return QCoreApplication::translate("misc", "Unknown", "Unknown (size)");
     return Utils::String::fromDouble(result->value, friendlyUnitPrecision(result->unit))
-           + QString::fromUtf8(C_NON_BREAKING_SPACE)
+           + C_NON_BREAKING_SPACE
            + unitString(result->unit, isSpeed);
 }
 
@@ -292,73 +294,73 @@ qlonglong Utils::Misc::sizeInBytes(qreal size, const Utils::Misc::SizeUnit unit)
     return size;
 }
 
-bool Utils::Misc::isPreviewable(const QString &filename)
+bool Utils::Misc::isPreviewable(const Path &filePath)
 {
-    const QString mime = QMimeDatabase().mimeTypeForFile(filename, QMimeDatabase::MatchExtension).name();
+    const QString mime = QMimeDatabase().mimeTypeForFile(filePath.data(), QMimeDatabase::MatchExtension).name();
 
-    if (mime.startsWith(QLatin1String("audio"), Qt::CaseInsensitive)
-        || mime.startsWith(QLatin1String("video"), Qt::CaseInsensitive))
+    if (mime.startsWith(u"audio", Qt::CaseInsensitive)
+        || mime.startsWith(u"video", Qt::CaseInsensitive))
     {
         return true;
     }
 
     const QSet<QString> multimediaExtensions =
     {
-        "3GP",
-        "AAC",
-        "AC3",
-        "AIF",
-        "AIFC",
-        "AIFF",
-        "ASF",
-        "AU",
-        "AVI",
-        "FLAC",
-        "FLV",
-        "M3U",
-        "M4A",
-        "M4P",
-        "M4V",
-        "MID",
-        "MKV",
-        "MOV",
-        "MP2",
-        "MP3",
-        "MP4",
-        "MPC",
-        "MPE",
-        "MPEG",
-        "MPG",
-        "MPP",
-        "OGG",
-        "OGM",
-        "OGV",
-        "QT",
-        "RA",
-        "RAM",
-        "RM",
-        "RMV",
-        "RMVB",
-        "SWA",
-        "SWF",
-        "TS",
-        "VOB",
-        "WAV",
-        "WMA",
-        "WMV"
+        u".3GP"_qs,
+        u".AAC"_qs,
+        u".AC3"_qs,
+        u".AIF"_qs,
+        u".AIFC"_qs,
+        u".AIFF"_qs,
+        u".ASF"_qs,
+        u".AU"_qs,
+        u".AVI"_qs,
+        u".FLAC"_qs,
+        u".FLV"_qs,
+        u".M3U"_qs,
+        u".M4A"_qs,
+        u".M4P"_qs,
+        u".M4V"_qs,
+        u".MID"_qs,
+        u".MKV"_qs,
+        u".MOV"_qs,
+        u".MP2"_qs,
+        u".MP3"_qs,
+        u".MP4"_qs,
+        u".MPC"_qs,
+        u".MPE"_qs,
+        u".MPEG"_qs,
+        u".MPG"_qs,
+        u".MPP"_qs,
+        u".OGG"_qs,
+        u".OGM"_qs,
+        u".OGV"_qs,
+        u".QT"_qs,
+        u".RA"_qs,
+        u".RAM"_qs,
+        u".RM"_qs,
+        u".RMV"_qs,
+        u".RMVB"_qs,
+        u".SWA"_qs,
+        u".SWF"_qs,
+        u".TS"_qs,
+        u".VOB"_qs,
+        u".WAV"_qs,
+        u".WMA"_qs,
+        u".WMV"_qs
     };
-    return multimediaExtensions.contains(Utils::Fs::fileExtension(filename).toUpper());
+    return multimediaExtensions.contains(filePath.extension().toUpper());
 }
 
 QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglong maxCap)
 {
     if (seconds < 0)
-        return QString::fromUtf8(C_INFINITY);
+        return C_INFINITY;
     if ((maxCap >= 0) && (seconds >= maxCap))
-        return QString::fromUtf8(C_INFINITY);
+        return C_INFINITY;
 
     if (seconds == 0)
-        return "0";
+        return u"0"_qs;
 
     if (seconds < 60)
         return QCoreApplication::translate("misc", "< 1m", "< 1 minute");
@@ -388,12 +390,12 @@ QString Utils::Misc::userFriendlyDuration(const qlonglong seconds, const qlonglo
 
 QString Utils::Misc::getUserIDString()
 {
-    QString uid = "0";
+    QString uid = u"0"_qs;
 #ifdef Q_OS_WIN
     const int UNLEN = 256;
     WCHAR buffer[UNLEN + 1] = {0};
     DWORD buffer_len = sizeof(buffer) / sizeof(*buffer);
-    if (GetUserNameW(buffer, &buffer_len))
+    if (::GetUserNameW(buffer, &buffer_len))
         uid = QString::fromWCharArray(buffer);
 #else
     uid = QString::number(getuid());
@@ -405,61 +407,61 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
 {
     QString result = rawText;
     static const QRegularExpression reURL(
-        "(\\s|^)"                                             // start with whitespace or beginning of line
-        "("
-        "("                                              // case 1 -- URL with scheme
-        "(http(s?))\\://"                            // start with scheme
-        "([a-zA-Z0-9_-]+\\.)+"                       //  domainpart.  at least one of these must exist
-        "([a-zA-Z0-9\\?%=&/_\\.:#;-]+)"              //  everything to 1st non-URI char, must be at least one char after the previous dot (cannot use ".*" because it can be too greedy)
-        ")"
-        "|"
-        "("                                             // case 2a -- no scheme, contains common TLD  example.com
-        "([a-zA-Z0-9_-]+\\.)+"                      //  domainpart.  at least one of these must exist
-        "(?="                                       //  must be followed by TLD
-        "AERO|aero|"                          // N.B. assertions are non-capturing
-        "ARPA|arpa|"
-        "ASIA|asia|"
-        "BIZ|biz|"
-        "CAT|cat|"
-        "COM|com|"
-        "COOP|coop|"
-        "EDU|edu|"
-        "GOV|gov|"
-        "INFO|info|"
-        "INT|int|"
-        "JOBS|jobs|"
-        "MIL|mil|"
-        "MOBI|mobi|"
-        "MUSEUM|museum|"
-        "NAME|name|"
-        "NET|net|"
-        "ORG|org|"
-        "PRO|pro|"
-        "RO|ro|"
-        "RU|ru|"
-        "TEL|tel|"
-        "TRAVEL|travel"
-        ")"
-        "([a-zA-Z0-9\\?%=&/_\\.:#;-]+)"             //  everything to 1st non-URI char, must be at least one char after the previous dot (cannot use ".*" because it can be too greedy)
-        ")"
-        "|"
-        "("                                             // case 2b no scheme, no TLD, must have at least 2 alphanum strings plus uncommon TLD string  --> del.icio.us
-        "([a-zA-Z0-9_-]+\\.) {2,}"                   // 2 or more domainpart.   --> del.icio.
-        "[a-zA-Z]{2,}"                              // one ab  (2 char or longer) --> us
-        "([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"             // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
-        ")"
-        ")"
+        u"(\\s|^)"                                             // start with whitespace or beginning of line
+        u"("
+        u"("                                              // case 1 -- URL with scheme
+        u"(http(s?))\\://"                            // start with scheme
+        u"([a-zA-Z0-9_-]+\\.)+"                       //  domainpart.  at least one of these must exist
+        u"([a-zA-Z0-9\\?%=&/_\\.:#;-]+)"              //  everything to 1st non-URI char, must be at least one char after the previous dot (cannot use ".*" because it can be too greedy)
+        u")"
+        u"|"
+        u"("                                             // case 2a -- no scheme, contains common TLD  example.com
+        u"([a-zA-Z0-9_-]+\\.)+"                      //  domainpart.  at least one of these must exist
+        u"(?="                                       //  must be followed by TLD
+        u"AERO|aero|"                          // N.B. assertions are non-capturing
+        u"ARPA|arpa|"
+        u"ASIA|asia|"
+        u"BIZ|biz|"
+        u"CAT|cat|"
+        u"COM|com|"
+        u"COOP|coop|"
+        u"EDU|edu|"
+        u"GOV|gov|"
+        u"INFO|info|"
+        u"INT|int|"
+        u"JOBS|jobs|"
+        u"MIL|mil|"
+        u"MOBI|mobi|"
+        u"MUSEUM|museum|"
+        u"NAME|name|"
+        u"NET|net|"
+        u"ORG|org|"
+        u"PRO|pro|"
+        u"RO|ro|"
+        u"RU|ru|"
+        u"TEL|tel|"
+        u"TRAVEL|travel"
+        u")"
+        u"([a-zA-Z0-9\\?%=&/_\\.:#;-]+)"             //  everything to 1st non-URI char, must be at least one char after the previous dot (cannot use ".*" because it can be too greedy)
+        u")"
+        u"|"
+        u"("                                             // case 2b no scheme, no TLD, must have at least 2 alphanum strings plus uncommon TLD string  --> del.icio.us
+        u"([a-zA-Z0-9_-]+\\.) {2,}"                   // 2 or more domainpart.   --> del.icio.
+        u"[a-zA-Z]{2,}"                              // one ab  (2 char or longer) --> us
+        u"([a-zA-Z0-9\\?%=&/_\\.:#;-]*)"             // everything to 1st non-URI char, maybe nothing  in case of del.icio.us/path
+        u")"
+        u")"_qs
         );
 
     // Capture links
-    result.replace(reURL, "\\1<a href=\"\\2\">\\2</a>");
+    result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_qs);
 
     // Capture links without scheme
-    static const QRegularExpression reNoScheme("<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">");
-    result.replace(reNoScheme, "<a href=\"http://\\1\">");
+    static const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
+    result.replace(reNoScheme, u"<a href=\"http://\\1\">"_qs);
 
     // to preserve plain text formatting
-    result = "<p style=\"white-space: pre-wrap;\">" + result + "</p>";
+    result = u"<p style=\"white-space: pre-wrap;\">" + result + u"</p>";
     return result;
 }
 
@@ -467,7 +469,7 @@ QString Utils::Misc::osName()
 {
     // static initialization for usage in signal handler
     static const QString name =
-        QString("%1 %2 %3")
+        u"%1 %2 %3"_qs
         .arg(QSysInfo::prettyProductName()
             , QSysInfo::kernelVersion()
             , QSysInfo::currentCpuArchitecture());
@@ -477,7 +479,7 @@ QString Utils::Misc::osName()
 QString Utils::Misc::boostVersionString()
 {
     // static initialization for usage in signal handler
-    static const QString ver = QString("%1.%2.%3")
+    static const QString ver = u"%1.%2.%3"_qs
         .arg(QString::number(BOOST_VERSION / 100000)
             , QString::number((BOOST_VERSION / 100) % 1000)
             , QString::number(BOOST_VERSION % 100));
@@ -509,13 +511,13 @@ QString Utils::Misc::zlibVersionString()
 }
 
 #ifdef Q_OS_WIN
-QString Utils::Misc::windowsSystemPath()
+Path Utils::Misc::windowsSystemPath()
 {
-    static const QString path = []() -> QString
+    static const Path path = []() -> Path
     {
         WCHAR systemPath[MAX_PATH] = {0};
         GetSystemDirectoryW(systemPath, sizeof(systemPath) / sizeof(WCHAR));
-        return QString::fromWCharArray(systemPath);
+        return Path(QString::fromWCharArray(systemPath));
     }();
     return path;
 }

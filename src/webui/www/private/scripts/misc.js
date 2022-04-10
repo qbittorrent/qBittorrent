@@ -169,7 +169,9 @@ window.qBittorrent.Misc = (function() {
     const escapeHtml = function(str) {
         const div = document.createElement('div');
         div.appendChild(document.createTextNode(str));
-        return div.innerHTML;
+        const escapedString = div.innerHTML;
+        div.remove();
+        return escapedString;
     }
 
     const safeTrim = function(value) {

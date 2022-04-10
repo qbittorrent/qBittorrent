@@ -40,12 +40,12 @@
 #include "ui_statsdialog.h"
 #include "utils.h"
 
-#define SETTINGS_KEY(name) "StatisticsDialog/" name
+#define SETTINGS_KEY(name) u"StatisticsDialog/" name
 
 StatsDialog::StatsDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::StatsDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -60,7 +60,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     m_ui->labelCacheHits->hide();
 #endif
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 
@@ -76,8 +76,8 @@ void StatsDialog::update()
     const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
 
     // All-time DL/UL
-    quint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-    quint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+    const qint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
+    const qint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
     m_ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));
     m_ui->labelAlltimeUL->setText(Utils::Misc::friendlyUnit(atu));
     // Total waste (this session)
@@ -86,13 +86,13 @@ void StatsDialog::update()
     m_ui->labelGlobalRatio->setText(
                 ((atd > 0) && (atu > 0))
                 ? Utils::String::fromDouble(static_cast<qreal>(atu) / atd, 2)
-                : "-");
+                : u"-"_qs);
 #ifndef QBT_USES_LIBTORRENT2
     // Cache hits
     const qreal readRatio = cs.readRatio;
-    m_ui->labelCacheHits->setText(QString::fromLatin1("%1%").arg((readRatio > 0)
-        ? Utils::String::fromDouble(100 * readRatio, 2)
-        : QLatin1String("0")));
+    m_ui->labelCacheHits->setText(u"%1%"_qs.arg((readRatio > 0)
+        ? Utils::String::fromDouble((100 * readRatio), 2)
+        : u"0"_qs));
 #endif
     // Buffers size
     m_ui->labelTotalBuf->setText(Utils::Misc::friendlyUnit(cs.totalUsedBuffers * 16 * 1024));
@@ -100,12 +100,12 @@ void StatsDialog::update()
     // From lt manual: disk_write_queue and disk_read_queue are the number of peers currently waiting on a disk write or disk read
     // to complete before it receives or sends any more data on the socket. It's a metric of how disk bound you are.
 
-    m_ui->labelWriteStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
+    m_ui->labelWriteStarve->setText(u"%1%"_qs.arg(((ss.diskWriteQueue > 0) && (ss.peersCount > 0))
         ? Utils::String::fromDouble((100. * ss.diskWriteQueue / ss.peersCount), 2)
-        : QLatin1String("0")));
-    m_ui->labelReadStarve->setText(QString::fromLatin1("%1%").arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
+        : u"0"_qs));
+    m_ui->labelReadStarve->setText(u"%1%"_qs.arg(((ss.diskReadQueue > 0) && (ss.peersCount > 0))
         ? Utils::String::fromDouble((100. * ss.diskReadQueue / ss.peersCount), 2)
-        : QLatin1String("0")));
+        : u"0"_qs));
 
     // Disk queues
     m_ui->labelQueuedJobs->setText(QString::number(cs.jobQueueLength));

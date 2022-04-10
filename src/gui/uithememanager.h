@@ -36,6 +36,18 @@
 #include <QObject>
 #include <QString>
 
+#include "base/pathfwd.h"
+
+class UIThemeSource
+{
+public:
+    virtual ~UIThemeSource() = default;
+
+    virtual QByteArray readStyleSheet() = 0;
+    virtual QByteArray readConfig() = 0;
+    virtual Path iconPath(const QString &iconId) const = 0;
+};
+
 class UIThemeManager : public QObject
 {
     Q_OBJECT
@@ -46,7 +58,7 @@ public:
     static void freeInstance();
     static UIThemeManager *instance();
 
-    QString getIconPath(const QString &iconId) const;
+    Path getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
@@ -58,16 +70,17 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    QString getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    Path getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
     void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
+    const bool m_useCustomTheme;
+    std::unique_ptr<UIThemeSource> m_themeSource;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;
     mutable QHash<QString, QIcon> m_flagCache;
-    const bool m_useCustomTheme;
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
     const bool m_useSystemTheme;
 #endif

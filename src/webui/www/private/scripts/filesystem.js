@@ -44,20 +44,16 @@ window.qBittorrent.Filesystem = (function() {
         };
     };
 
-    const QB_EXT = '.!qB';
     const PathSeparator = '/';
 
     /**
      * Returns the file extension part of a file name.
      */
     const fileExtension = function(filename) {
-        const name = filename.endsWith(QB_EXT)
-            ? filename.substring(0, filename.length - QB_EXT.length)
-            : filename;
-        const pointIndex = name.lastIndexOf('.');
+        const pointIndex = filename.lastIndexOf('.');
         if (pointIndex === -1)
             return '';
-        return name.substring(pointIndex + 1);
+        return filename.substring(pointIndex + 1);
     };
 
     const fileName = function(filepath) {

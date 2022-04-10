@@ -28,11 +28,15 @@
 
 #pragma once
 
-#include <QCoreApplication>
 #include <QtGlobal>
+#include <QCoreApplication>
+#include <QDateTime>
+#include <QHash>
+#include <QVariant>
+
+#include "base/pathfwd.h"
 
 class QByteArray;
-class QDateTime;
 class QHostAddress;
 class QString;
 
@@ -43,7 +47,7 @@ class GeoIPDatabase
     Q_DECLARE_TR_FUNCTIONS(GeoIPDatabase)
 
 public:
-    static GeoIPDatabase *load(const QString &filename, QString &error);
+    static GeoIPDatabase *load(const Path &filename, QString &error);
     static GeoIPDatabase *load(const QByteArray &data, QString &error);
 
     ~GeoIPDatabase();

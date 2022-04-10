@@ -82,8 +82,8 @@ void Connection::read()
                     Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                    Response resp(413, "Payload Too Large");
-                    resp.headers[HEADER_CONNECTION] = "close";
+                    Response resp(413, u"Payload Too Large"_qs);
+                    resp.headers[HEADER_CONNECTION] = u"close"_qs;
 
                     sendResponse(resp);
                     m_socket->close();
@@ -96,8 +96,8 @@ void Connection::read()
                 Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
-                Response resp(400, "Bad Request");
-                resp.headers[HEADER_CONNECTION] = "close";
+                Response resp(400, u"Bad Request"_qs);
+                resp.headers[HEADER_CONNECTION] = u"close"_qs;
 
                 sendResponse(resp);
                 m_socket->close();
@@ -110,10 +110,10 @@ void Connection::read()
 
                 Response resp = m_requestHandler->processRequest(result.request, env);
 
-                if (acceptsGzipEncoding(result.request.headers["accept-encoding"]))
-                    resp.headers[HEADER_CONTENT_ENCODING] = "gzip";
+                if (acceptsGzipEncoding(result.request.headers[u"accept-encoding"_qs]))
+                    resp.headers[HEADER_CONTENT_ENCODING] = u"gzip"_qs;
 
-                resp.headers[HEADER_CONNECTION] = "keep-alive";
+                resp.headers[HEADER_CONNECTION] = u"keep-alive"_qs;
 
                 sendResponse(resp);
                 m_receivedData = m_receivedData.mid(result.frameSize);
@@ -172,15 +172,15 @@ bool Connection::acceptsGzipEncoding(QString codings)
         return false;
     };
 
-    const QList<QStringView> list = QStringView(codings.remove(' ').remove('\t')).split(u',', Qt::SkipEmptyParts);
+    const QList<QStringView> list = QStringView(codings.remove(u' ').remove(u'\t')).split(u',', Qt::SkipEmptyParts);
     if (list.isEmpty())
         return false;
 
-    const bool canGzip = isCodingAvailable(list, QString::fromLatin1("gzip"));
+    const bool canGzip = isCodingAvailable(list, u"gzip"_qs);
     if (canGzip)
         return true;
 
-    const bool canAny = isCodingAvailable(list, QString::fromLatin1("*"));
+    const bool canAny = isCodingAvailable(list, u"*"_qs);
     if (canAny)
         return true;
 

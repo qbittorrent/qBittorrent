@@ -708,6 +708,13 @@
              </widget>
             </item>
             <item>
+             <widget class="QCheckBox" name="checkBoxPerformanceWarning">
+              <property name="text">
+               <string>Log performance warnings</string>
+              </property>
+             </widget>
+            </item>
+            <item>
              <spacer name="verticalSpacer_4">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1014,7 +1021,7 @@
                  <item row="2" column="0">
                   <widget class="QLabel" name="labelCategoryDefaultPathChanged">
                    <property name="text">
-                    <string>When Default Save Path changed:</string>
+                    <string>When Default Save/Incomplete Path changed:</string>
                    </property>
                   </widget>
                  </item>
@@ -1103,23 +1110,36 @@
                 </widget>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkUseCategoryPaths">
+                 <property name="text">
+                  <string>Use Category paths in Manual Mode</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <layout class="QGridLayout" name="gridLayout_4">
-                 <item row="1" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textTempPath" native="true"/>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QCheckBox" name="checkExportDirFin">
-                   <property name="text">
-                    <string>Copy .torrent files for finished downloads to:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="0">
                   <widget class="QLabel" name="labelSavePath">
                    <property name="text">
                     <string>Default Save Path:</string>
                    </property>
                   </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QCheckBox" name="checkUseDownloadPath">
+                   <property name="text">
+                    <string>Use another path for incomplete torrents:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textDownloadPath" native="true"/>
                  </item>
                  <item row="2" column="0">
                   <widget class="QCheckBox" name="checkExportDir">
@@ -1128,21 +1148,18 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="1" column="0">
-                  <widget class="QCheckBox" name="checkTempFolder">
-                   <property name="text">
-                    <string>Keep incomplete torrents in:</string>
-                   </property>
-                  </widget>
+                 <item row="2" column="1">
+                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
                  </item>
                  <item row="3" column="1">
                   <widget class="FileSystemPathLineEdit" name="textExportDirFin" native="true"/>
                  </item>
-                 <item row="0" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textSavePath" native="true"/>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="FileSystemPathLineEdit" name="textExportDir" native="true"/>
+                 <item row="3" column="0">
+                  <widget class="QCheckBox" name="checkExportDirFin">
+                   <property name="text">
+                    <string>Copy .torrent files for finished downloads to:</string>
+                   </property>
+                  </widget>
                  </item>
                 </layout>
                </item>
@@ -1811,12 +1828,6 @@
                  </item>
                  <item>
                   <widget class="QToolButton" name="IpFilterRefreshBtn">
-                   <property name="minimumSize">
-                    <size>
-                     <width>0</width>
-                     <height>25</height>
-                    </size>
-                   </property>
                    <property name="toolTip">
                     <string>Reload the filter</string>
                    </property>
@@ -2257,6 +2268,43 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                </item>
               </layout>
              </widget>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_20">
+              <item>
+               <widget class="QLabel" name="labelMaxActiveCheckingTorrents">
+                <property name="text">
+                 <string>Maximum active checking torrents:</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="spinBoxMaxActiveCheckingTorrents">
+                <property name="specialValueText">
+                 <string notr="true">∞</string>
+                </property>
+                <property name="minimum">
+                 <number>-1</number>
+                </property>
+                <property name="maximum">
+                 <number>2147483647</number>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="horizontalSpacer_21">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
             </item>
             <item>
              <widget class="QGroupBox" name="checkEnableQueueing">
@@ -3381,8 +3429,8 @@ you should put in domain names used by WebUI server.
   <tabstop>checkAdditionDialog</tabstop>
   <tabstop>checkAdditionDialogFront</tabstop>
   <tabstop>checkPreallocateAll</tabstop>
-  <tabstop>checkTempFolder</tabstop>
-  <tabstop>textTempPath</tabstop>
+  <tabstop>checkUseDownloadPath</tabstop>
+  <tabstop>textDownloadPath</tabstop>
   <tabstop>checkAppendqB</tabstop>
   <tabstop>scanFoldersView</tabstop>
   <tabstop>addWatchedFolderButton</tabstop>

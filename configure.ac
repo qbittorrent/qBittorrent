@@ -1,5 +1,4 @@
-
-AC_INIT([qbittorrent], [v4.4.0alpha], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.5.0alpha], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
@@ -9,7 +8,7 @@ AC_PROG_CXX
 AC_PROG_SED
 AC_LANG(C++)
 AC_CANONICAL_HOST
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([foreign])
 
 # use compiler from env variables if available
 QBT_CC="$CC"
@@ -187,9 +186,6 @@ LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 m4_define([DETECT_BOOST_VERSION_PROGRAM],
     [AC_LANG_PROGRAM([[#include <boost/version.hpp>]],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
-
-AC_COMPILE_IFELSE([DETECT_BOOST_VERSION_PROGRAM(106000)], [],
-    [QBT_ADD_DEFINES="$QBT_ADD_DEFINES BOOST_NO_CXX11_RVALUE_REFERENCES"])
 
 PKG_CHECK_MODULES(libtorrent,
                   [libtorrent-rasterbar >= 2.0.4],

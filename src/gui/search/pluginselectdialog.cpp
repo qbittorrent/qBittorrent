@@ -37,7 +37,6 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QMimeData>
-#include <QTableView>
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
@@ -49,7 +48,7 @@
 #include "searchwidget.h"
 #include "ui_pluginselectdialog.h"
 
-#define SETTINGS_KEY(name) "SearchPluginSelectDialog/" name
+#define SETTINGS_KEY(name) u"SearchPluginSelectDialog/" name
 
 enum PluginColumns
 {
@@ -63,24 +62,18 @@ enum PluginColumns
 PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::PluginSelectDialog)
-    , m_storeDialogSize(SETTINGS_KEY("Size"))
+    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
     , m_pluginManager(pluginManager)
 {
     m_ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
 
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(m_ui->pluginsTree->header());
-    m_ui->pluginsTree->header()->setParent(m_ui->pluginsTree);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
-
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
+    m_ui->pluginsTree->header()->setFirstSectionMovable(true);
     m_ui->pluginsTree->header()->setSortIndicator(0, Qt::AscendingOrder);
 
-    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon("list-remove"));
+    m_ui->actionUninstall->setIcon(UIThemeManager::instance()->getIcon(u"list-remove"_qs));
 
     connect(m_ui->actionEnable, &QAction::toggled, this, &PluginSelectDialog::enableSelection);
     connect(m_ui->pluginsTree, &QTreeWidget::customContextMenuRequested, this, &PluginSelectDialog::displayContextMenu);
@@ -95,7 +88,7 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDialog::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDialog::checkForUpdatesFailed);
 
-    Utils::Gui::resize(this, m_storeDialogSize);
+    resize(m_storeDialogSize);
     show();
 }
 
@@ -116,7 +109,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
         {
             if (!url.isEmpty())
             {
-                if (url.scheme().compare("file", Qt::CaseInsensitive) == 0)
+                if (url.scheme().compare(u"file", Qt::CaseInsensitive) == 0)
                     files << url.toLocalFile();
                 else
                     files << url.toString();
@@ -125,7 +118,7 @@ void PluginSelectDialog::dropEvent(QDropEvent *event)
     }
     else
     {
-        files = event->mimeData()->text().split('\n');
+        files = event->mimeData()->text().split(u'\n');
     }
 
     if (files.isEmpty()) return;
@@ -146,7 +139,7 @@ void PluginSelectDialog::dragEnterEvent(QDragEnterEvent *event)
         qDebug("mimeData: %s", qUtf8Printable(mime));
     }
 
-    if (event->mimeData()->hasFormat(QLatin1String("text/plain")) || event->mimeData()->hasFormat(QLatin1String("text/uri-list")))
+    if (event->mimeData()->hasFormat(u"text/plain"_qs) || event->mimeData()->hasFormat(u"text/uri-list"_qs))
     {
         event->acceptProposedAction();
     }
@@ -165,16 +158,16 @@ void PluginSelectDialog::togglePluginState(QTreeWidgetItem *item, int)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "green");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_qs);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "red");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_qs);
     }
 }
 
-void PluginSelectDialog::displayContextMenu(const QPoint &)
+void PluginSelectDialog::displayContextMenu()
 {
     // Enable/disable pause/start action given the DL state
     const QList<QTreeWidgetItem *> items = m_ui->pluginsTree->selectedItems();
@@ -215,7 +208,7 @@ void PluginSelectDialog::on_actionUninstall_triggered()
             // Disable it instead
             m_pluginManager->enablePlugin(id, false);
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, "red");
+            setRowColor(index, u"red"_qs);
         }
     }
 
@@ -236,12 +229,12 @@ void PluginSelectDialog::enableSelection(bool enable)
         if (enable)
         {
             item->setText(PLUGIN_STATE, tr("Yes"));
-            setRowColor(index, "green");
+            setRowColor(index, u"green"_qs);
         }
         else
         {
             item->setText(PLUGIN_STATE, tr("No"));
-            setRowColor(index, "red");
+            setRowColor(index, u"red"_qs);
         }
     }
 }
@@ -301,28 +294,28 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
     if (plugin->enabled)
     {
         item->setText(PLUGIN_STATE, tr("Yes"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "green");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"green"_qs);
     }
     else
     {
         item->setText(PLUGIN_STATE, tr("No"));
-        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), "red");
+        setRowColor(m_ui->pluginsTree->indexOfTopLevelItem(item), u"red"_qs);
     }
     // Handle icon
-    if (QFile::exists(plugin->iconPath))
+    if (plugin->iconPath.exists())
     {
         // Good, we already have the icon
-        item->setData(PLUGIN_NAME, Qt::DecorationRole, QIcon(plugin->iconPath));
+        item->setData(PLUGIN_NAME, Qt::DecorationRole, QIcon(plugin->iconPath.data()));
     }
     else
     {
         // Icon is missing, we must download it
         using namespace Net;
         DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + "/favicon.ico").saveToFile(true)
+                    DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
                     , this, &PluginSelectDialog::iconDownloadFinished);
     }
-    item->setText(PLUGIN_VERSION, plugin->version);
+    item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
 
 void PluginSelectDialog::startAsyncOp()
@@ -345,7 +338,7 @@ void PluginSelectDialog::finishPluginUpdate()
     if ((m_pendingUpdates == 0) && !m_updatedPlugins.isEmpty())
     {
         m_updatedPlugins.sort(Qt::CaseInsensitive);
-        QMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(", ")));
+        QMessageBox::information(this, tr("Search plugin update"), tr("Plugins installed or updated: %1").arg(m_updatedPlugins.join(u", ")));
         m_updatedPlugins.clear();
     }
 }
@@ -361,15 +354,15 @@ void PluginSelectDialog::askForPluginUrl()
 {
     bool ok = false;
     QString clipTxt = qApp->clipboard()->text();
-    QString defaultUrl = "http://";
-    if (Net::DownloadManager::hasSupportedScheme(clipTxt) && clipTxt.endsWith(".py"))
+    auto defaultUrl = u"http://"_qs;
+    if (Net::DownloadManager::hasSupportedScheme(clipTxt) && clipTxt.endsWith(u".py"))
       defaultUrl = clipTxt;
     QString url = AutoExpandableDialog::getText(
                 this, tr("New search engine plugin URL"),
                 tr("URL:"), QLineEdit::Normal, defaultUrl, &ok
                 );
 
-    while (ok && !url.isEmpty() && !url.endsWith(".py"))
+    while (ok && !url.isEmpty() && !url.endsWith(u".py"))
     {
         QMessageBox::warning(this, tr("Invalid link"), tr("The link doesn't seem to point to a search engine plugin."));
         url = AutoExpandableDialog::getText(
@@ -389,8 +382,7 @@ void PluginSelectDialog::askForLocalPlugin()
 {
     const QStringList pathsList = QFileDialog::getOpenFileNames(
                 nullptr, tr("Select search plugins"), QDir::homePath(),
-                tr("qBittorrent search plugin") + QLatin1String(" (*.py)")
-                );
+                (tr("qBittorrent search plugin") + u" (*.py)"));
     for (const QString &path : pathsList)
     {
         startAsyncOp();
@@ -406,10 +398,10 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         return;
     }
 
-    const QString filePath = Utils::Fs::toUniformPath(result.filePath);
+    const Path filePath = result.filePath;
 
     // Icon downloaded
-    QIcon icon(filePath);
+    QIcon icon {filePath.data()};
     // Detect a non-decodable icon
     QList<QSize> sizes = icon.availableSizes();
     bool invalid = (sizes.isEmpty() || icon.pixmap(sizes.first()).isNull());
@@ -421,21 +413,19 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
             PluginInfo *plugin = m_pluginManager->pluginInfo(id);
             if (!plugin) continue;
 
-            QString iconPath = QString("%1/%2.%3")
-                .arg(SearchPluginManager::pluginsLocation()
-                    , id
-                    , result.url.endsWith(".ico", Qt::CaseInsensitive) ? "ico" : "png");
-            if (QFile::copy(filePath, iconPath))
+            const QString ext = result.url.endsWith(u".ico", Qt::CaseInsensitive) ? u".ico"_qs : u".png"_qs;
+            const Path iconPath = SearchPluginManager::pluginsLocation() / Path(id + ext);
+            if (Utils::Fs::copyFile(filePath, iconPath))
             {
                 // This 2nd check is necessary. Some favicons (eg from piratebay)
                 // decode fine without an ext, but fail to do so when appending the ext
                 // from the url. Probably a Qt bug.
-                QIcon iconWithExt(iconPath);
+                QIcon iconWithExt {iconPath.data()};
                 QList<QSize> sizesExt = iconWithExt.availableSizes();
                 bool invalidExt = (sizesExt.isEmpty() || iconWithExt.pixmap(sizesExt.first()).isNull());
                 if (invalidExt)
                 {
-                    Utils::Fs::forceRemove(iconPath);
+                    Utils::Fs::removeFile(iconPath);
                     continue;
                 }
 
@@ -445,7 +435,7 @@ void PluginSelectDialog::iconDownloadFinished(const Net::DownloadResult &result)
         }
     }
     // Delete tmp file
-    Utils::Fs::forceRemove(filePath);
+    Utils::Fs::removeFile(filePath);
 }
 
 void PluginSelectDialog::checkForUpdatesFinished(const QHash<QString, PluginVersion> &updateInfo)
@@ -492,7 +482,7 @@ void PluginSelectDialog::pluginUpdated(const QString &name)
     finishAsyncOp();
     PluginVersion version = m_pluginManager->pluginInfo(name)->version;
     QTreeWidgetItem *item = findItemWithID(name);
-    item->setText(PLUGIN_VERSION, version);
+    item->setText(PLUGIN_VERSION, version.toString());
     m_updatedPlugins.append(name);
     finishPluginUpdate();
 }

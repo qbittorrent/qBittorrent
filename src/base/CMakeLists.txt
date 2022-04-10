@@ -7,6 +7,7 @@ add_library(qbt_base STATIC
     bittorrent/addtorrentparams.h
     bittorrent/bencoderesumedatastorage.h
     bittorrent/cachestatus.h
+    bittorrent/categoryoptions.h
     bittorrent/common.h
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
@@ -15,6 +16,7 @@ add_library(qbt_base STATIC
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
     bittorrent/loadtorrentparams.h
+    bittorrent/ltqbitarray.h
     bittorrent/ltqhash.h
     bittorrent/lttypecast.h
     bittorrent/magneturi.h
@@ -51,6 +53,7 @@ add_library(qbt_base STATIC
     http/types.h
     iconprovider.h
     indexrange.h
+    interfaces/istringable.h
     logger.h
     net/dnsupdater.h
     net/downloadhandlerimpl.h
@@ -62,6 +65,8 @@ add_library(qbt_base STATIC
     net/reverseresolution.h
     net/smtp.h
     orderedset.h
+    path.h
+    pathfwd.h
     preferences.h
     profile.h
     profile_p.h
@@ -101,12 +106,14 @@ add_library(qbt_base STATIC
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
     bittorrent/bencoderesumedatastorage.cpp
+    bittorrent/categoryoptions.cpp
     bittorrent/customstorage.cpp
     bittorrent/dbresumedatastorage.cpp
     bittorrent/downloadpriority.cpp
     bittorrent/filesearcher.cpp
     bittorrent/filterparserthread.cpp
     bittorrent/infohash.cpp
+    bittorrent/ltqbitarray.cpp
     bittorrent/magneturi.cpp
     bittorrent/nativesessionextension.cpp
     bittorrent/nativetorrentextension.cpp
@@ -120,7 +127,6 @@ add_library(qbt_base STATIC
     bittorrent/speedmonitor.cpp
     bittorrent/statistics.cpp
     bittorrent/torrent.cpp
-    bittorrent/torrentcontentlayout.cpp
     bittorrent/torrentcreatorthread.cpp
     bittorrent/torrentimpl.cpp
     bittorrent/torrentinfo.cpp
@@ -144,6 +150,7 @@ add_library(qbt_base STATIC
     net/proxyconfigurationmanager.cpp
     net/reverseresolution.cpp
     net/smtp.cpp
+    path.cpp
     preferences.cpp
     profile.cpp
     profile_p.cpp

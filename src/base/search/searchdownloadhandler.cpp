@@ -30,8 +30,10 @@
 
 #include <QProcess>
 
-#include "../utils/foreignapps.h"
-#include "../utils/fs.h"
+#include "base/global.h"
+#include "base/path.h"
+#include "base/utils/foreignapps.h"
+#include "base/utils/fs.h"
 #include "searchpluginmanager.h"
 
 SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QString &url, SearchPluginManager *manager)
@@ -44,7 +46,7 @@ SearchDownloadHandler::SearchDownloadHandler(const QString &siteUrl, const QStri
             , this, &SearchDownloadHandler::downloadProcessFinished);
     const QStringList params
     {
-        Utils::Fs::toNativePath(m_manager->engineLocation() + "/nova2dl.py"),
+        (m_manager->engineLocation() / Path(u"nova2dl.py"_qs)).toString(),
         siteUrl,
         url
     };

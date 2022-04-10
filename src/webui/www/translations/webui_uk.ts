@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="uk" version="2.1">
+<TS version="2.1" language="uk">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -32,7 +32,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Як задано</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -144,10 +144,6 @@
         <translation>Не вдалося зберегти налаштування програми, можливо qBittorrent недоступний.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Невідомо</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Логін</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Оригінальні автори</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -365,7 +357,7 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Порт для вхідних з'єднань повинен бути між 0 та 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Мінімум вихідних портів [0: Вимкнено]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP для повідомлення трекерам (потрібно перезапуск):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Перевірити торрент після закінчення завантаження:</translation>
     </message>
@@ -1418,7 +1410,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Протокол підключення пірів:</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
@@ -1434,7 +1426,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Оригінал</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1450,7 +1442,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Випадковий</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1466,7 +1458,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>Увімкнути підтримку зворотного проксі-сервера</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1482,10 +1474,26 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Встановіть рівним 0, щоб ваша система могла обрати невикористаний порт</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>Копіювати IP:порт</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Додати нового піра…</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Країна/Регіон</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Додати пірів...</translation>
     </message>
 </context>
 <context>
@@ -1774,19 +1782,19 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Інфо-хеш v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Інфо-хеш v1:</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>—</translation>
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Прогрес:</translation>
     </message>
 </context>
 <context>
@@ -1998,11 +2006,11 @@
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>Перевірка (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>Перевірка (0)</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Розмір</translation>
+        <translation type="vanished">Розмір</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2548,15 +2560,15 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation type="unfinished" />
+        <translation>Інформаційний хеш версія 1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation type="unfinished" />
+        <translation>Інформаційний хеш версія 2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>ID торрента</translation>
     </message>
 </context>
 <context>
@@ -2754,10 +2766,6 @@
     <message>
         <source>Search in:</source>
         <translation>Шукати у:</translation>
-    </message>
-    <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Результати (показано</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -3025,10 +3033,6 @@
         <translation>Країна:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Автор</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Використовувані програми</translation>
     </message>
@@ -3038,10 +3042,18 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Автори</translation>
     </message>
     <message>
         <source>France</source>
+        <translation>Франція</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3174,7 +3186,7 @@
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished" />
+        <translation>Будь-ласка, введіть URL подачі RSS</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
@@ -3221,7 +3233,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Автоматичний завантажувач RSS торрентів зараз вимкнено! Ви можете увімкнути його у налаштуваннях програми.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3257,7 +3269,7 @@
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Regex режим: використовуйте Perl-сумісні регулярні вирази</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>

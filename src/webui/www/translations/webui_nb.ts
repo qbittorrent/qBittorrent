@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="nb" version="2.1">
+<TS version="2.1" language="nb">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Ikke i stand til å lagre programinnstillinger, qBittorrent er sannsynligvis unåelig.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent på Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Ukjent</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Logg inn</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Opphavspersoner</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Opprinnelig opphavsperson</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Utgående porter (Min) [0: Deaktivert]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP-adressen som skal rapporteres til sporere (krever omstart):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Gjennomsjekk torrenter på nytt ved fullførelse:</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>IP-adressen som skal rapporteres til sporere (krever omstart):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Sett lik 0 for å la systemet velge en port som ikke brukes</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Forebygging av forfalskede forespørsler på tjenersiden (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>Kopier IP:port</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Legg til ny likemann …</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Land/region</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Legg til likemenn …</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Framdrift:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Størrelse</translation>
+        <translation type="vanished">Størrelse</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Søk i:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Resultater (viser</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filter</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultater</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>viser</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>Nasjonalitet:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Opphavsperson</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Programvare som er brukt</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Opphavspersoner</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Frankrike</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent-maskot</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent-ikon</translation>
     </message>
 </context>
 <context>

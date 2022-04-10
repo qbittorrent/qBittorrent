@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="it" version="2.1">
+<TS version="2.1" language="it">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Impossibile salvare le preferenze, qBittorrent potrebbe essere irraggiungibile.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent su Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Sconosciuto</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Login</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Autori originari</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -341,8 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Impossibile aggiungere peer. 
-Assicurati che corrispondano allo standard IP:porta.</translation>
+        <translation>Impossibile aggiungere peer. Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -370,7 +361,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Autore originale</translation>
     </message>
 </context>
 <context>
@@ -579,6 +570,10 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1190,10 +1185,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Porte in uscita (min) [0: disabilitato]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Indirizzo IP da segnalare ai tracker (richiede il riavvio):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Ricontrolla torrent quando completato:</translation>
     </message>
@@ -1479,14 +1470,30 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Indirizzo IP segnalato ai tracker (richiede il riavvio):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Imposta a 0 per consentire al sistema di scegliere una porta non usata</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Mitigazione falsificazione richieste lato server (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1561,12 +1568,12 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Copia: IP:porta</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Aggiungi nuovo peer...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Nazione/regione</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Aggiungi peers...</translation>
     </message>
 </context>
 <context>
@@ -1787,7 +1794,7 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Progresso:</translation>
     </message>
 </context>
 <context>
@@ -2262,7 +2269,11 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation>Dimensione</translation>
+        <translation type="vanished">Dimensione</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2757,10 +2768,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Cerca in:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Risultati (visualizzano</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
@@ -2794,11 +2801,11 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Risultati</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>visualizzando</translation>
     </message>
 </context>
 <context>
@@ -3026,10 +3033,6 @@ Assicurati che corrispondano allo standard IP:porta.</translation>
         <translation>Nazionalità:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autore</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Software usato</translation>
     </message>
@@ -3040,11 +3043,19 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autori</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Francia</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>Mascottte qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>Icona qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -3426,8 +3437,7 @@ Puoi abilitarlo nelle impostazioni dell'applicazione.</translation>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Il Filtro Intelligente Episodi controllerà il numero dell'episodio per evitare il download di duplicati.
-Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
+        <translation>Il Filtro Intelligente Episodi controllerà il numero dell'episodio per evitare il download di duplicati. Supporta i formati: S01E01, 1x1, 2017.12.31 e 31.12.2017 (I formati a data supportano anche - come separatore)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>

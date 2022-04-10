@@ -36,6 +36,13 @@ BitTorrent::InfoHash::InfoHash(const WrappedType &nativeHash)
 {
 }
 
+#ifdef QBT_USES_LIBTORRENT2
+BitTorrent::InfoHash::InfoHash(const SHA1Hash &v1, const SHA256Hash &v2)
+    : InfoHash {WrappedType(v1, v2)}
+{
+}
+#endif
+
 bool BitTorrent::InfoHash::isValid() const
 {
     return m_valid;
@@ -83,9 +90,13 @@ BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::Info
     return infoHash.toTorrentID();
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t BitTorrent::qHash(const BitTorrent::TorrentID &key, const std::size_t seed)
+#else
 uint BitTorrent::qHash(const BitTorrent::TorrentID &key, const uint seed)
+#endif
 {
-    return ::qHash(std::hash<TorrentID::UnderlyingType>()(key), seed);
+    return ::qHash(static_cast<TorrentID::BaseType>(key), seed);
 }
 
 bool BitTorrent::operator==(const BitTorrent::InfoHash &left, const BitTorrent::InfoHash &right)

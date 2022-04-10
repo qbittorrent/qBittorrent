@@ -28,7 +28,10 @@
 
 #pragma once
 
+#include <QtContainerFwd>
 #include <QMetaEnum>
+
+#include "base/path.h"
 
 namespace BitTorrent
 {
@@ -48,7 +51,4 @@ namespace BitTorrent
 
         Q_ENUM_NS(TorrentContentLayout)
     }
-
-    TorrentContentLayout detectContentLayout(const QStringList &filePaths);
-    void applyContentLayout(QStringList &filePaths, TorrentContentLayout contentLayout, const QString &rootFolder = {});
 }

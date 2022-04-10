@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="zh_TW" version="2.1">
+<TS version="2.1" language="zh_TW">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>無法儲存程式偏好設定，qBittorrent 可能無法連線。</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC：#qbittorrent 在 Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>未知</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>登入</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">原始作者</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>原始作者</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>連出埠（最小）[0：停用]：</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">回報至追蹤者的 IP 位置（需要重新啟動）：</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>完成後重新檢查 torrent：</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>向追蹤器回報的 IP 位置（需要重新啟動）：</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>設定為 0 讓您的系統挑選未使用的連接埠</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>伺服器端請求偽造 (SSRF) 緩解：</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>複製 IP:埠</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>新增下載者……</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>國家／區域</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>新增下載者……</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>進度：</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>大小</translation>
+        <translation type="vanished">大小</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>搜尋：</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">搜尋結果 (顯示</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>過濾器</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>結果</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>正在顯示</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>國籍：</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">作者</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>使用的軟體</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>作者</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>法國</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent 吉祥物</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent 圖示</translation>
     </message>
 </context>
 <context>

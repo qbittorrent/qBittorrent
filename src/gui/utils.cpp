@@ -35,7 +35,6 @@
 
 #include <QApplication>
 #include <QDesktopServices>
-#include <QFileInfo>
 #include <QIcon>
 #include <QPixmap>
 #include <QPixmapCache>
@@ -44,54 +43,51 @@
 #include <QRegularExpression>
 #include <QScreen>
 #include <QStyle>
+#include <QThread>
 #include <QUrl>
 #include <QWidget>
 #include <QWindow>
 
+#include "base/global.h"
+#include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
 
-void Utils::Gui::resize(QWidget *widget, const QSize &newSize)
-{
-    if (newSize.isValid())
-        widget->resize(newSize);
-    else  // depends on screen DPI
-        widget->resize(widget->size() * screenScalingFactor(widget));
-}
-
-qreal Utils::Gui::screenScalingFactor(const QWidget *widget)
-{
-    Q_UNUSED(widget);
-    return 1;
-}
-
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
 {
+    Q_UNUSED(widget);  // TODO: remove it
     Q_ASSERT(height > 0);
-    const int scaledHeight = height * Utils::Gui::screenScalingFactor(widget);
-    return icon.pixmap(scaledHeight);
+
+    return icon.pixmap(height);
 }
 
-QPixmap Utils::Gui::scaledPixmap(const QString &path, const QWidget *widget, const int height)
+QPixmap Utils::Gui::scaledPixmap(const Path &path, const QWidget *widget, const int height)
 {
-    const QPixmap pixmap(path);
-    const int scaledHeight = ((height > 0) ? height : pixmap.height()) * Utils::Gui::screenScalingFactor(widget);
-    return pixmap.scaledToHeight(scaledHeight, Qt::SmoothTransformation);
+    Q_UNUSED(widget);
+    Q_ASSERT(height >= 0);
+
+    const QPixmap pixmap {path.data()};
+    return (height == 0) ? pixmap : pixmap.scaledToHeight(height, Qt::SmoothTransformation);
 }
 
-QPixmap Utils::Gui::scaledPixmapSvg(const QString &path, const QWidget *widget, const int baseHeight)
+QPixmap Utils::Gui::scaledPixmapSvg(const Path &path, const QWidget *widget, const int height)
 {
-    const int scaledHeight = baseHeight * Utils::Gui::screenScalingFactor(widget);
-    const QString normalizedKey = path + '@' + QString::number(scaledHeight);
+    // (workaround) svg images require the use of `QIcon()` to load and scale losslessly,
+    // otherwise other image classes will convert it to pixmap first and follow-up scaling will become lossy.
 
-    QPixmap pm;
+    Q_UNUSED(widget);
+    Q_ASSERT(height > 0);
+
+    const QString cacheKey = path.data() + u'@' + QString::number(height);
+
+    QPixmap pixmap;
     QPixmapCache cache;
-    if (!cache.find(normalizedKey, &pm))
+    if (!cache.find(cacheKey, &pixmap))
     {
-        pm = QIcon(path).pixmap(scaledHeight);
-        cache.insert(normalizedKey, pm);
+        pixmap = QIcon(path.data()).pixmap(height);
+        cache.insert(cacheKey, pixmap);
     }
-    return pm;
+    return pixmap;
 }
 
 QSize Utils::Gui::smallIconSize(const QWidget *widget)
@@ -143,78 +139,79 @@ QPoint Utils::Gui::screenCenter(const QWidget *w)
 }
 
 // Open the given path with an appropriate application
-void Utils::Gui::openPath(const QString &absolutePath)
+void Utils::Gui::openPath(const Path &path)
 {
-    const QString path = Utils::Fs::toUniformPath(absolutePath);
     // Hack to access samba shares with QDesktopServices::openUrl
-    if (path.startsWith("//"))
-        QDesktopServices::openUrl(Utils::Fs::toNativePath("file:" + path));
-    else
-        QDesktopServices::openUrl(QUrl::fromLocalFile(path));
+    const QUrl url = path.data().startsWith(u"//")
+        ? QUrl(u"file:" + path.data())
+        : QUrl::fromLocalFile(path.data());
+    QDesktopServices::openUrl(url);
 }
 
 // Open the parent directory of the given path with a file manager and select
 // (if possible) the item at the given path
-void Utils::Gui::openFolderSelect(const QString &absolutePath)
+void Utils::Gui::openFolderSelect(const Path &path)
 {
-    QString path {Utils::Fs::toUniformPath(absolutePath)};
-    const QFileInfo pathInfo {path};
     // If the item to select doesn't exist, try to open its parent
-    if (!pathInfo.exists(path))
+    if (!path.exists())
     {
-        openPath(path.left(path.lastIndexOf('/')));
+        openPath(path.parentPath());
         return;
     }
 
 #ifdef Q_OS_WIN
-    HRESULT hresult = ::CoInitializeEx(nullptr, COINIT_MULTITHREADED);
-    PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(reinterpret_cast<PCTSTR>(Utils::Fs::toNativePath(path).utf16()));
-    if (pidl)
+    auto *thread = QThread::create([path]()
     {
-        ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
-        ::ILFree(pidl);
-    }
-    if ((hresult == S_OK) || (hresult == S_FALSE))
-        ::CoUninitialize();
+        if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
+        {
+            const std::wstring pathWStr = path.toString().toStdWString();
+            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(pathWStr.c_str());
+            if (pidl)
+            {
+                ::SHOpenFolderAndSelectItems(pidl, 0, nullptr, 0);
+                ::ILFree(pidl);
+            }
+
+            ::CoUninitialize();
+        }
+    });
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
     QProcess proc;
-    proc.start("xdg-mime", {"query", "default", "inode/directory"});
+    proc.start(u"xdg-mime"_qs, {u"query"_qs, u"default"_qs, u"inode/directory"_qs});
     proc.waitForFinished();
-    const QString output = proc.readLine().simplified();
-    if ((output == "dolphin.desktop") || (output == "org.kde.dolphin.desktop"))
+    const auto output = QString::fromLocal8Bit(proc.readLine().simplified());
+    if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
     {
-        proc.startDetached("dolphin", {"--select", Utils::Fs::toNativePath(path)});
+        proc.startDetached(u"dolphin"_qs, {u"--select"_qs, path.toString()});
     }
-    else if ((output == "nautilus.desktop") || (output == "org.gnome.Nautilus.desktop")
-                 || (output == "nautilus-folder-handler.desktop"))
-                 {
-        if (pathInfo.isDir())
-            path = path.left(path.lastIndexOf('/'));
-        proc.start("nautilus", {"--version"});
+    else if ((output == u"nautilus.desktop") || (output == u"org.gnome.Nautilus.desktop")
+                 || (output == u"nautilus-folder-handler.desktop"))
+    {
+        proc.start(u"nautilus"_qs, {u"--version"_qs});
         proc.waitForFinished();
-        const QString nautilusVerStr = QString(proc.readLine()).remove(QRegularExpression("[^0-9.]"));
+        const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine()).remove(QRegularExpression(u"[^0-9.]"_qs));
         using NautilusVersion = Utils::Version<int, 3>;
         if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
-            proc.startDetached("nautilus", {Utils::Fs::toNativePath(path)});
+            proc.startDetached(u"nautilus"_qs, {(Fs::isDir(path) ? path.parentPath() : path).toString()});
         else
-            proc.startDetached("nautilus", {"--no-desktop", Utils::Fs::toNativePath(path)});
+            proc.startDetached(u"nautilus"_qs, {u"--no-desktop"_qs, (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
-    else if (output == "nemo.desktop")
+    else if (output == u"nemo.desktop")
     {
-        if (pathInfo.isDir())
-            path = path.left(path.lastIndexOf('/'));
-        proc.startDetached("nemo", {"--no-desktop", Utils::Fs::toNativePath(path)});
+        proc.startDetached(u"nemo"_qs, {u"--no-desktop"_qs, (Fs::isDir(path) ? path.parentPath() : path).toString()});
     }
-    else if ((output == "konqueror.desktop") || (output == "kfmclient_dir.desktop"))
+    else if ((output == u"konqueror.desktop") || (output == u"kfmclient_dir.desktop"))
     {
-        proc.startDetached("konqueror", {"--select", Utils::Fs::toNativePath(path)});
+        proc.startDetached(u"konqueror"_qs, {u"--select"_qs, path.toString()});
     }
     else
     {
         // "caja" manager can't pinpoint the file, see: https://github.com/qbittorrent/qBittorrent/issues/5003
-        openPath(path.left(path.lastIndexOf('/')));
+        openPath(path.parentPath());
     }
 #else
-    openPath(path.left(path.lastIndexOf('/')));
+    openPath(path.parentPath());
 #endif
 }

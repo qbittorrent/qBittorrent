@@ -37,6 +37,8 @@
 #include <QStringList>
 #include <QStyle>
 
+#include "base/path.h"
+
 // -------------------- FileSystemPathValidator ----------------------------------------
 Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
     : QValidator(parent)
@@ -149,7 +151,7 @@ QValidator::State Private::FileSystemPathValidator::validate(const QList<QString
         const QStringView componentPath = pathComponents[i];
         if (componentPath.isEmpty()) continue;
 
-        m_lastTestResult = testPath(pathComponents[i], isFinalPath);
+        m_lastTestResult = testPath(Path(pathComponents[i].toString()), isFinalPath);
         if (m_lastTestResult != TestResult::OK)
         {
             m_lastTestedPath = componentPath.toString();
@@ -161,9 +163,9 @@ QValidator::State Private::FileSystemPathValidator::validate(const QList<QString
 }
 
 Private::FileSystemPathValidator::TestResult
-Private::FileSystemPathValidator::testPath(const QStringView path, bool pathIsComplete) const
+Private::FileSystemPathValidator::testPath(const Path &path, bool pathIsComplete) const
 {
-    QFileInfo fi(path.toString());
+    QFileInfo fi {path.data()};
     if (m_existingOnly && !fi.exists())
         return TestResult::DoesNotExist;
 
@@ -206,7 +208,7 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     , m_browseAction {nullptr}
     , m_warningAction {nullptr}
 {
-    m_completerModel->setRootPath("");
+    m_completerModel->setRootPath({});
     m_completerModel->setIconProvider(&m_iconProvider);
     m_completer->setModel(m_completerModel);
     m_completer->setCompletionMode(QCompleter::PopupCompletion);
@@ -238,6 +240,16 @@ void Private::FileLineEdit::setBrowseAction(QAction *action)
 void Private::FileLineEdit::setValidator(QValidator *validator)
 {
     QLineEdit::setValidator(validator);
+}
+
+Path Private::FileLineEdit::placeholder() const
+{
+    return Path(placeholderText());
+}
+
+void Private::FileLineEdit::setPlaceholder(const Path &val)
+{
+    setPlaceholderText(val.toString());
 }
 
 QWidget *Private::FileLineEdit::widget()
@@ -344,6 +356,16 @@ void Private::FileComboEdit::setBrowseAction(QAction *action)
 void Private::FileComboEdit::setValidator(QValidator *validator)
 {
     lineEdit()->setValidator(validator);
+}
+
+Path Private::FileComboEdit::placeholder() const
+{
+    return Path(lineEdit()->placeholderText());
+}
+
+void Private::FileComboEdit::setPlaceholder(const Path &val)
+{
+    lineEdit()->setPlaceholderText(val.toString());
 }
 
 void Private::FileComboEdit::setFilenameFilters(const QStringList &filters)

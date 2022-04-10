@@ -80,16 +80,18 @@ Qt::HANDLE QtLockedFile::getMutexHandle(const int idx, const bool doCreate)
     if (m_mutexName.isEmpty())
     {
         QFileInfo fi(*this);
-        m_mutexName = QString::fromLatin1("QtLockedFile mutex ") + fi.absoluteFilePath().toLower();
+        m_mutexName = u"QtLockedFile mutex " + fi.absoluteFilePath().toLower();
     }
 
     QString mname = m_mutexName;
     if (idx >= 0)
         mname += QString::number(idx);
 
+    const std::wstring mnameWStr = mname.toStdWString();
+
     if (doCreate)
     {
-        const Qt::HANDLE mutex = ::CreateMutexW(NULL, FALSE, reinterpret_cast<const TCHAR *>(mname.utf16()));
+        const Qt::HANDLE mutex = ::CreateMutexW(NULL, FALSE, mnameWStr.c_str());
         if (!mutex)
         {
             qErrnoWarning("QtLockedFile::lock(): CreateMutex failed");
@@ -100,7 +102,7 @@ Qt::HANDLE QtLockedFile::getMutexHandle(const int idx, const bool doCreate)
     }
     else
     {
-        const Qt::HANDLE mutex = ::OpenMutexW((SYNCHRONIZE | MUTEX_MODIFY_STATE), FALSE, reinterpret_cast<const TCHAR *>(mname.utf16()));
+        const Qt::HANDLE mutex = ::OpenMutexW((SYNCHRONIZE | MUTEX_MODIFY_STATE), FALSE, mnameWStr.c_str());
         if (!mutex)
         {
             if (GetLastError() != ERROR_FILE_NOT_FOUND)

@@ -34,6 +34,7 @@
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
+#include "base/path.h"
 
 class MainWindow;
 class TransferListModel;
@@ -65,6 +66,7 @@ public slots:
     void addSelectionTag(const QString &tag);
     void removeSelectionTag(const QString &tag);
     void clearSelectionTags();
+    void setSelectedTorrentsLocation();
     void pauseAllTorrents();
     void resumeAllTorrents();
     void startSelectedTorrents();
@@ -90,14 +92,13 @@ public slots:
     void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
-    void displayDLHoSMenu(const QPoint&);
     void applyNameFilter(const QString &name);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
     void applyTrackerFilterAll();
     void applyTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
-    void previewFile(const QString &filePath);
+    void previewFile(const Path &filePath);
     void renameSelectedTorrent();
 
 signals:
@@ -105,10 +106,13 @@ signals:
 
 private slots:
     void torrentDoubleClicked();
-    void displayListMenu(const QPoint &);
+    void displayListMenu();
+    void displayColumnHeaderMenu();
     void currentChanged(const QModelIndex &current, const QModelIndex&) override;
     void setSelectedTorrentsSuperSeeding(bool enabled) const;
-    void setSelectedAutoTMMEnabled(bool enabled) const;
+    void setSelectedTorrentsSequentialDownload(bool enabled) const;
+    void setSelectedFirstLastPiecePrio(bool enabled) const;
+    void setSelectedAutoTMMEnabled(bool enabled);
     void askNewCategoryForSelection();
     void saveSettings();
 
@@ -124,6 +128,7 @@ private:
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
+    int visibleColumnsCount() const;
 
     TransferListModel *m_listModel;
     TransferListSortModel *m_sortFilterModel;

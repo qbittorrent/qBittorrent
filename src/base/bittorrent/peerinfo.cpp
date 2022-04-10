@@ -30,6 +30,7 @@
 
 #include <QBitArray>
 
+#include "base/bittorrent/ltqbitarray.h"
 #include "base/bittorrent/torrent.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
@@ -39,8 +40,8 @@ using namespace BitTorrent;
 
 PeerInfo::PeerInfo(const Torrent *torrent, const lt::peer_info &nativeInfo)
     : m_nativeInfo(nativeInfo)
+    , m_relevance(calcRelevance(torrent))
 {
-    calcRelevance(torrent);
     determineFlags();
 }
 
@@ -207,47 +208,29 @@ qlonglong PeerInfo::totalDownload() const
 
 QBitArray PeerInfo::pieces() const
 {
-    QBitArray result(m_nativeInfo.pieces.size());
-    for (int i = 0; i < result.size(); ++i)
-    {
-        if (m_nativeInfo.pieces[lt::piece_index_t {i}])
-            result.setBit(i, true);
-    }
-    return result;
+    return LT::toQBitArray(m_nativeInfo.pieces);
 }
 
 QString PeerInfo::connectionType() const
 {
     if (m_nativeInfo.flags & lt::peer_info::utp_socket)
-        return QString::fromUtf8(C_UTP);
+        return C_UTP;
 
     return (m_nativeInfo.connection_type == lt::peer_info::standard_bittorrent)
-        ? QLatin1String {"BT"}
-        : QLatin1String {"Web"};
+        ? u"BT"_qs
+        : u"Web"_qs;
 }
 
-void PeerInfo::calcRelevance(const Torrent *torrent)
+qreal PeerInfo::calcRelevance(const Torrent *torrent) const
 {
     const QBitArray allPieces = torrent->pieces();
+    const int localMissing = allPieces.count(false);
+    if (localMissing <= 0)
+        return 0;
+
     const QBitArray peerPieces = pieces();
-
-    int localMissing = 0;
-    int remoteHaves = 0;
-
-    for (int i = 0; i < allPieces.size(); ++i)
-    {
-        if (!allPieces[i])
-        {
-            ++localMissing;
-            if (peerPieces[i])
-                ++remoteHaves;
-        }
-    }
-
-    if (localMissing == 0)
-        m_relevance = 0.0;
-    else
-        m_relevance = static_cast<qreal>(remoteHaves) / localMissing;
+    const int remoteHaves = (peerPieces & (~allPieces)).count(true);
+    return static_cast<qreal>(remoteHaves) / localMissing;
 }
 
 qreal PeerInfo::relevance() const
@@ -259,8 +242,8 @@ void PeerInfo::determineFlags()
 {
     const auto updateFlags = [this](const QChar specifier, const QString &explanation)
     {
-        m_flags += (specifier + QLatin1Char(' '));
-        m_flagsDescription += QString::fromLatin1("%1 = %2\n").arg(specifier, explanation);
+        m_flags += (specifier + u' ');
+        m_flagsDescription += u"%1 = %2\n"_qs.arg(specifier, explanation);
     };
 
     if (isInteresting())
@@ -268,12 +251,12 @@ void PeerInfo::determineFlags()
         if (isRemoteChocked())
         {
             // d = Your client wants to download, but peer doesn't want to send (interested and choked)
-            updateFlags(QLatin1Char('d'), tr("Interested (local) and choked (peer)"));
+            updateFlags(u'd', tr("Interested (local) and choked (peer)"));
         }
         else
         {
             // D = Currently downloading (interested and not choked)
-            updateFlags(QLatin1Char('D'), tr("Interested (local) and unchoked (peer)"));
+            updateFlags(u'D', tr("Interested (local) and unchoked (peer)"));
         }
     }
 
@@ -282,58 +265,58 @@ void PeerInfo::determineFlags()
         if (isChocked())
         {
             // u = Peer wants your client to upload, but your client doesn't want to (interested and choked)
-            updateFlags(QLatin1Char('u'), tr("Interested (peer) and choked (local)"));
+            updateFlags(u'u', tr("Interested (peer) and choked (local)"));
         }
         else
         {
             // U = Currently uploading (interested and not choked)
-            updateFlags(QLatin1Char('U'), tr("Interested (peer) and unchoked (local)"));
+            updateFlags(u'U', tr("Interested (peer) and unchoked (local)"));
         }
     }
 
     // K = Peer is unchoking your client, but your client is not interested
     if (!isRemoteChocked() && !isInteresting())
-        updateFlags(QLatin1Char('K'), tr("Not interested (local) and unchoked (peer)"));
+        updateFlags(u'K', tr("Not interested (local) and unchoked (peer)"));
 
     // ? = Your client unchoked the peer but the peer is not interested
     if (!isChocked() && !isRemoteInterested())
-        updateFlags(QLatin1Char('?'), tr("Not interested (peer) and unchoked (local)"));
+        updateFlags(u'?', tr("Not interested (peer) and unchoked (local)"));
 
     // O = Optimistic unchoke
     if (optimisticUnchoke())
-        updateFlags(QLatin1Char('O'), tr("Optimistic unchoke"));
+        updateFlags(u'O', tr("Optimistic unchoke"));
 
     // S = Peer is snubbed
     if (isSnubbed())
-        updateFlags(QLatin1Char('S'), tr("Peer snubbed"));
+        updateFlags(u'S', tr("Peer snubbed"));
 
     // I = Peer is an incoming connection
     if (!isLocalConnection())
-        updateFlags(QLatin1Char('I'), tr("Incoming connection"));
+        updateFlags(u'I', tr("Incoming connection"));
 
     // H = Peer was obtained through DHT
     if (fromDHT())
-        updateFlags(QLatin1Char('H'), tr("Peer from DHT"));
+        updateFlags(u'H', tr("Peer from DHT"));
 
     // X = Peer was included in peerlists obtained through Peer Exchange (PEX)
     if (fromPeX())
-        updateFlags(QLatin1Char('X'), tr("Peer from PEX"));
+        updateFlags(u'X', tr("Peer from PEX"));
 
     // L = Peer is local
     if (fromLSD())
-        updateFlags(QLatin1Char('L'), tr("Peer from LSD"));
+        updateFlags(u'L', tr("Peer from LSD"));
 
     // E = Peer is using Protocol Encryption (all traffic)
     if (isRC4Encrypted())
-        updateFlags(QLatin1Char('E'), tr("Encrypted traffic"));
+        updateFlags(u'E', tr("Encrypted traffic"));
 
     // e = Peer is using Protocol Encryption (handshake)
     if (isPlaintextEncrypted())
-        updateFlags(QLatin1Char('e'), tr("Encrypted handshake"));
+        updateFlags(u'e', tr("Encrypted handshake"));
 
     // P = Peer is using uTorrent uTP
     if (useUTPSocket())
-        updateFlags(QLatin1Char('P'), QString::fromUtf8(C_UTP));
+        updateFlags(u'P', C_UTP);
 
     m_flags.chop(1);
     m_flagsDescription.chop(1);

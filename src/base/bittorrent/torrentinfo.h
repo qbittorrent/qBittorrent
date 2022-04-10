@@ -35,7 +35,7 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"
-#include "torrentcontentlayout.h"
+#include "base/pathfwd.h"
 
 class QByteArray;
 class QDateTime;
@@ -58,8 +58,8 @@ namespace BitTorrent
         explicit TorrentInfo(const lt::torrent_info &nativeInfo);
 
         static nonstd::expected<TorrentInfo, QString> load(const QByteArray &data) noexcept;
-        static nonstd::expected<TorrentInfo, QString> loadFromFile(const QString &path) noexcept;
-        nonstd::expected<void, QString> saveToFile(const QString &path) const;
+        static nonstd::expected<TorrentInfo, QString> loadFromFile(const Path &path) noexcept;
+        nonstd::expected<void, QString> saveToFile(const Path &path) const;
 
         TorrentInfo &operator=(const TorrentInfo &other);
 
@@ -75,33 +75,29 @@ namespace BitTorrent
         int pieceLength() const;
         int pieceLength(int index) const;
         int piecesCount() const;
-        QString filePath(int index) const;
-        QStringList filePaths() const;
+        Path filePath(int index) const;
+        PathList filePaths() const;
         qlonglong fileSize(int index) const;
         qlonglong fileOffset(int index) const;
         QVector<TrackerEntry> trackers() const;
         QVector<QUrl> urlSeeds() const;
         QByteArray metadata() const;
-        QStringList filesForPiece(int pieceIndex) const;
+        PathList filesForPiece(int pieceIndex) const;
         QVector<int> fileIndicesForPiece(int pieceIndex) const;
         QVector<QByteArray> pieceHashes() const;
 
         using PieceRange = IndexRange<int>;
         // returns pair of the first and the last pieces into which
         // the given file extends (maybe partially).
-        PieceRange filePieces(const QString &file) const;
+        PieceRange filePieces(const Path &filePath) const;
         PieceRange filePieces(int fileIndex) const;
-
-        QString rootFolder() const;
-        bool hasRootFolder() const;
 
         std::shared_ptr<lt::torrent_info> nativeInfo() const;
         QVector<lt::file_index_t> nativeIndexes() const;
 
     private:
         // returns file index or -1 if fileName is not found
-        int fileIndex(const QString &fileName) const;
-        TorrentContentLayout contentLayout() const;
+        int fileIndex(const Path &filePath) const;
 
         std::shared_ptr<const lt::torrent_info> m_nativeInfo;
 

@@ -36,6 +36,8 @@
 #include <QString>
 #include <QVector>
 
+#include "base/global.h"
+
 namespace Utils
 {
     namespace Net
@@ -65,7 +67,7 @@ namespace Utils
         {
             return (addr == QHostAddress::LocalHost)
                     || (addr == QHostAddress::LocalHostIPv6)
-                    || (addr == QHostAddress(QLatin1String("::ffff:127.0.0.1")));
+                    || (addr == QHostAddress(u"::ffff:127.0.0.1"_qs));
         }
 
         bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets)
@@ -94,7 +96,7 @@ namespace Utils
 
         QString subnetToString(const Subnet &subnet)
         {
-            return subnet.first.toString() + '/' + QString::number(subnet.second);
+            return subnet.first.toString() + u'/' + QString::number(subnet.second);
         }
 
         QHostAddress canonicalIPv6Addr(const QHostAddress &addr)

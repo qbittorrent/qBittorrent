@@ -28,10 +28,13 @@
 
 #include "downloadedpiecesbar.h"
 
+#include <algorithm>
 #include <cmath>
 
 #include <QDebug>
 #include <QVector>
+
+#include "base/global.h"
 
 namespace
 {
@@ -117,7 +120,7 @@ QVector<float> DownloadedPiecesBar::bitfieldToFloatVector(const QBitArray &vecin
         value /= ratio;
 
         // float precision sometimes gives > 1, because it's not possible to store irrational numbers
-        value = qMin(value, 1.0f);
+        value = std::min(value, 1.0f);
 
         result[x] = value;
     }
@@ -187,10 +190,11 @@ void DownloadedPiecesBar::clear()
 QString DownloadedPiecesBar::simpleToolTipText() const
 {
     const QString borderColor = colorBoxBorderColor().name();
-    const QString rowHTML = QString::fromLatin1("<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>");
-    return QLatin1String("<table cellspacing=4>")
+    const QString rowHTML = u"<tr><td width=20 bgcolor='%1' style='border: 1px solid \"%2\";'></td><td>%3</td></tr>"_qs;
+    return u"<table cellspacing=4>"
            + rowHTML.arg(backgroundColor().name(), borderColor, tr("Missing pieces"))
            + rowHTML.arg(m_dlPieceColor.name(), borderColor, tr("Partial pieces"))
            + rowHTML.arg(pieceColor().name(), borderColor, tr("Completed pieces"))
-           + QLatin1String("</table>");
+           + u"</table>";
+
 }

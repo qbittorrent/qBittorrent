@@ -31,20 +31,22 @@
 #include <QObject>
 #include <QString>
 
+#include "base/path.h"
+
 template <typename T> class SettingValue;
 
 /// Utility class to defer file deletion
 class FileGuard
 {
 public:
-    explicit FileGuard(const QString &path = {});
+    explicit FileGuard(const Path &path = {});
     ~FileGuard();
 
     /// Cancels or re-enables deferred file deletion
     void setAutoRemove(bool remove) noexcept;
 
 private:
-    QString m_path;
+    Path m_path;
     bool m_remove;
 };
 
@@ -55,7 +57,7 @@ class TorrentFileGuard : private FileGuard
     Q_GADGET
 
 public:
-    explicit TorrentFileGuard(const QString &path = {});
+    explicit TorrentFileGuard(const Path &path = {});
     ~TorrentFileGuard();
 
     /// marks the torrent file as loaded (added) into the BitTorrent::Session
@@ -74,7 +76,7 @@ public:
     static void setAutoDeleteMode(AutoDeleteMode mode);
 
 private:
-    TorrentFileGuard(const QString &path, AutoDeleteMode mode);
+    TorrentFileGuard(const Path &path, AutoDeleteMode mode);
     static SettingValue<AutoDeleteMode> &autoDeleteModeSetting();
 
     Q_ENUM(AutoDeleteMode)

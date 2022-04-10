@@ -38,10 +38,10 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QStringList>
-#include <QTableView>
 #include <QTreeWidgetItem>
 #include <QUrl>
 #include <QVector>
+#include <QWheelEvent>
 
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
@@ -70,6 +70,7 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     setAllColumnsShowFocus(true);
     setItemsExpandable(false);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false); // Must be set after loadSettings() in order to work
     header()->setTextElideMode(Qt::ElideRight);
     // Ensure that at least one column is visible at all times
@@ -86,19 +87,19 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(this, &QWidget::customContextMenuRequested, this, &TrackerListWidget::showTrackerListMenu);
     // Header
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &TrackerListWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &TrackerListWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionMoved, this, &TrackerListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &TrackerListWidget::saveSettings);
     connect(header(), &QHeaderView::sortIndicatorChanged, this, &TrackerListWidget::saveSettings);
 
     // Set DHT, PeX, LSD items
-    m_DHTItem = new QTreeWidgetItem({ "",  "** [DHT] **", "", "0", "", "", "0" });
+    m_DHTItem = new QTreeWidgetItem({ u""_qs,  u"** [DHT] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(0, m_DHTItem);
     setRowColor(0, QColor("grey"));
-    m_PEXItem = new QTreeWidgetItem({ "",  "** [PeX] **", "", "0", "", "", "0" });
+    m_PEXItem = new QTreeWidgetItem({ u""_qs,  u"** [PeX] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(1, m_PEXItem);
     setRowColor(1, QColor("grey"));
-    m_LSDItem = new QTreeWidgetItem({ "",  "** [LSD] **", "", "0", "", "", "0" });
+    m_LSDItem = new QTreeWidgetItem({ u""_qs,  u"** [LSD] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(2, m_LSDItem);
     setRowColor(2, QColor("grey"));
 
@@ -113,16 +114,16 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     m_DHTItem->setTextAlignment(COL_LEECHES, alignment);
     m_PEXItem->setTextAlignment(COL_LEECHES, alignment);
     m_LSDItem->setTextAlignment(COL_LEECHES, alignment);
-    m_DHTItem->setTextAlignment(COL_DOWNLOADED, alignment);
-    m_PEXItem->setTextAlignment(COL_DOWNLOADED, alignment);
-    m_LSDItem->setTextAlignment(COL_DOWNLOADED, alignment);
+    m_DHTItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+    m_PEXItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
+    m_LSDItem->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
 
     // Set header alignment
     headerItem()->setTextAlignment(COL_TIER, alignment);
     headerItem()->setTextAlignment(COL_PEERS, alignment);
     headerItem()->setTextAlignment(COL_SEEDS, alignment);
     headerItem()->setTextAlignment(COL_LEECHES, alignment);
-    headerItem()->setTextAlignment(COL_DOWNLOADED, alignment);
+    headerItem()->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
 
     // Set hotkeys
     const auto *editHotkey = new QShortcut(Qt::Key_F2, this, nullptr, nullptr, Qt::WidgetShortcut);
@@ -133,13 +134,6 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     connect(copyHotkey, &QShortcut::activated, this, &TrackerListWidget::copyTrackerUrl);
 
     connect(this, &QAbstractItemView::doubleClicked, this, &TrackerListWidget::editSelectedTracker);
-
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(header());
-    header()->setParent(this);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
 TrackerListWidget::~TrackerListWidget()
@@ -263,18 +257,18 @@ void TrackerListWidget::clear()
     qDeleteAll(m_trackerItems);
     m_trackerItems.clear();
 
-    m_DHTItem->setText(COL_STATUS, "");
-    m_DHTItem->setText(COL_SEEDS, "");
-    m_DHTItem->setText(COL_LEECHES, "");
-    m_DHTItem->setText(COL_MSG, "");
-    m_PEXItem->setText(COL_STATUS, "");
-    m_PEXItem->setText(COL_SEEDS, "");
-    m_PEXItem->setText(COL_LEECHES, "");
-    m_PEXItem->setText(COL_MSG, "");
-    m_LSDItem->setText(COL_STATUS, "");
-    m_LSDItem->setText(COL_SEEDS, "");
-    m_LSDItem->setText(COL_LEECHES, "");
-    m_LSDItem->setText(COL_MSG, "");
+    m_DHTItem->setText(COL_STATUS, {});
+    m_DHTItem->setText(COL_SEEDS, {});
+    m_DHTItem->setText(COL_LEECHES, {});
+    m_DHTItem->setText(COL_MSG, {});
+    m_PEXItem->setText(COL_STATUS, {});
+    m_PEXItem->setText(COL_SEEDS, {});
+    m_PEXItem->setText(COL_LEECHES, {});
+    m_PEXItem->setText(COL_MSG, {});
+    m_LSDItem->setText(COL_STATUS, {});
+    m_LSDItem->setText(COL_SEEDS, {});
+    m_LSDItem->setText(COL_LEECHES, {});
+    m_LSDItem->setText(COL_MSG, {});
 }
 
 void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
@@ -412,7 +406,7 @@ void TrackerListWidget::loadTrackers()
         item->setText(COL_LEECHES, ((entry.numLeeches > -1)
             ? QString::number(entry.numLeeches)
             : tr("N/A")));
-        item->setText(COL_DOWNLOADED, ((entry.numDownloaded > -1)
+        item->setText(COL_TIMES_DOWNLOADED, ((entry.numDownloaded > -1)
             ? QString::number(entry.numDownloaded)
             : tr("N/A")));
 
@@ -421,7 +415,7 @@ void TrackerListWidget::loadTrackers()
         item->setTextAlignment(COL_PEERS, alignment);
         item->setTextAlignment(COL_SEEDS, alignment);
         item->setTextAlignment(COL_LEECHES, alignment);
-        item->setTextAlignment(COL_DOWNLOADED, alignment);
+        item->setTextAlignment(COL_TIMES_DOWNLOADED, alignment);
     }
 
     // Remove old trackers
@@ -451,10 +445,10 @@ void TrackerListWidget::copyTrackerUrl()
     for (const QTreeWidgetItem *item : selectedTrackerItems)
     {
         QString trackerURL = item->data(COL_URL, Qt::DisplayRole).toString();
-        qDebug() << QString("Copy: ") + trackerURL;
+        qDebug() << "Copy:" << qUtf8Printable(trackerURL);
         urlsToCopy << trackerURL;
     }
-    QApplication::clipboard()->setText(urlsToCopy.join('\n'));
+    QApplication::clipboard()->setText(urlsToCopy.join(u'\n'));
 }
 
 
@@ -575,7 +569,7 @@ void TrackerListWidget::reannounceSelected()
     loadTrackers();
 }
 
-void TrackerListWidget::showTrackerListMenu(const QPoint &)
+void TrackerListWidget::showTrackerListMenu()
 {
     BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
@@ -584,25 +578,25 @@ void TrackerListWidget::showTrackerListMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add a new tracker...")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add a new tracker...")
         , this, &TrackerListWidget::askForTrackers);
 
     if (!getSelectedTrackerItems().isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-rename"),tr("Edit tracker URL...")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs),tr("Edit tracker URL...")
             , this, &TrackerListWidget::editSelectedTracker);
-        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tracker")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove tracker")
             , this, &TrackerListWidget::deleteSelectedTrackers);
-        menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy tracker URL")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy tracker URL")
             , this, &TrackerListWidget::copyTrackerUrl);
     }
 
     if (!torrent->isPaused())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to selected trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"view-refresh"_qs), tr("Force reannounce to selected trackers")
             , this, &TrackerListWidget::reannounceSelected);
         menu->addSeparator();
-        menu->addAction(UIThemeManager::instance()->getIcon("view-refresh"), tr("Force reannounce to all trackers")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"view-refresh"_qs), tr("Force reannounce to all trackers")
             , this, [this]()
         {
             BitTorrent::Torrent *h = m_properties->getCurrentTorrent();
@@ -634,52 +628,75 @@ QStringList TrackerListWidget::headerLabels()
         , tr("Peers")
         , tr("Seeds")
         , tr("Leeches")
-        , tr("Downloaded")
+        , tr("Times Downloaded")
         , tr("Message")
     };
 }
 
 int TrackerListWidget::visibleColumnsCount() const
 {
-    int visibleCols = 0;
-    for (int i = 0; i < COL_COUNT; ++i)
+    int count = 0;
+    for (int i = 0, iMax = header()->count(); i < iMax; ++i)
     {
         if (!isColumnHidden(i))
-            ++visibleCols;
+            ++count;
     }
 
-    return visibleCols;
+    return count;
 }
 
-void TrackerListWidget::displayToggleColumnsMenu(const QPoint &)
+void TrackerListWidget::displayColumnHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < COL_COUNT; ++i)
     {
-        QAction *myAct = menu->addAction(headerLabels().at(i));
-        myAct->setCheckable(true);
-        myAct->setChecked(!isColumnHidden(i));
-        myAct->setData(i);
+        QAction *action = menu->addAction(headerLabels().at(i), this, [this, i](const bool checked)
+        {
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
+
+            setColumnHidden(i, !checked);
+
+            if (checked && (columnWidth(i) <= 5))
+                resizeColumnToContents(i);
+
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!isColumnHidden(i));
     }
 
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
     {
-        const int col = action->data().toInt();
-        Q_ASSERT(visibleColumnsCount() > 0);
-
-        if (!isColumnHidden(col) && (visibleColumnsCount() == 1))
-            return;
-
-        setColumnHidden(col, !isColumnHidden(col));
-
-        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-            resizeColumnToContents(col);
-
+        for (int i = 0, count = header()->count(); i < count; ++i)
+        {
+            if (!isColumnHidden(i))
+                resizeColumnToContents(i);
+        }
         saveSettings();
     });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
+}
+
+void TrackerListWidget::wheelEvent(QWheelEvent *event)
+{
+    if (event->modifiers() & Qt::ShiftModifier)
+    {
+        // Shift + scroll = horizontal scroll
+        event->accept();
+        QWheelEvent scrollHEvent {event->position(), event->globalPosition()
+            , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
+            , event->modifiers(), event->phase(), event->inverted(), event->source()};
+        QTreeView::wheelEvent(&scrollHEvent);
+        return;
+    }
+
+    QTreeView::wheelEvent(event);  // event delegated to base class
 }

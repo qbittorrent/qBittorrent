@@ -87,6 +87,12 @@ const loadSelectedTracker = function() {
 };
 loadSelectedTracker();
 
+const getShowFiltersSidebar = function() {
+    // Show Filters Sidebar is enabled by default
+    const show = LocalPreferences.get('show_filters_sidebar');
+    return (show === null) || (show === 'true');
+}
+
 function genHash(string) {
     // origins:
     // https://stackoverflow.com/a/8831937
@@ -284,6 +290,13 @@ window.addEvent('load', function() {
         $('desktopFooterWrapper').addClass('invisible');
     }
 
+    const showFiltersSidebar = getShowFiltersSidebar();
+    if (!showFiltersSidebar) {
+        $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+        $('filtersColumn').addClass('invisible');
+        $('filtersColumn_handle').addClass('invisible');
+    }
+
     let speedInTitle = LocalPreferences.get('speed_in_browser_title_bar') == "true";
     if (!speedInTitle)
         $('speedInBrowserTitleBarLink').firstChild.style.opacity = '0';
@@ -320,7 +333,7 @@ window.addEvent('load', function() {
             return true;
         }
         const categoryHash = genHash(category);
-        if (category_list[categoryHash] === null) // This should not happen
+        if (!category_list[categoryHash]) // This should not happen
             category_list[categoryHash] = {
                 name: category,
                 torrents: []
@@ -361,6 +374,12 @@ window.addEvent('load', function() {
         let added = false;
         for (let i = 0; i < tags.length; ++i) {
             const tagHash = genHash(tags[i].trim());
+            if (!tagList[tagHash]) { // This should not happen
+                tagList[tagHash] = {
+                    name: tags,
+                    torrents: []
+                };
+            }
             if (!Object.contains(tagList[tagHash].torrents, torrent['hash'])) {
                 added = true;
                 tagList[tagHash].torrents.push(torrent['hash']);
@@ -857,6 +876,22 @@ window.addEvent('load', function() {
 
     $('registerMagnetHandlerLink').addEvent('click', function(e) {
         registerMagnetHandler();
+    });
+
+    $('showFiltersSidebarLink').addEvent('click', function(e) {
+        const showFiltersSidebar = !getShowFiltersSidebar();
+        LocalPreferences.set('show_filters_sidebar', showFiltersSidebar.toString());
+        if (showFiltersSidebar) {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '1';
+            $('filtersColumn').removeClass('invisible');
+            $('filtersColumn_handle').removeClass('invisible');
+        }
+        else {
+            $('showFiltersSidebarLink').firstChild.style.opacity = '0';
+            $('filtersColumn').addClass('invisible');
+            $('filtersColumn_handle').addClass('invisible');
+        }
+        MochaUI.Desktop.setDesktopSize();
     });
 
     $('speedInBrowserTitleBarLink').addEvent('click', function(e) {

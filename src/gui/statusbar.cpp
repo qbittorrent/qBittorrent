@@ -49,7 +49,7 @@ StatusBar::StatusBar(QWidget *parent)
 #ifndef Q_OS_MACOS
     // Redefining global stylesheet breaks certain elements on mac like tabs.
     // Qt checks whether the stylesheet class inherts("QMacStyle") and this becomes false.
-    setStyleSheet("QStatusBar::item { border-width: 0; }");
+    setStyleSheet(u"QStatusBar::item { border-width: 0; }"_qs);
 #endif
 
     BitTorrent::Session *const session = BitTorrent::Session::instance();
@@ -63,28 +63,27 @@ StatusBar::StatusBar(QWidget *parent)
     m_connecStatusLblIcon->setFlat(true);
     m_connecStatusLblIcon->setFocusPolicy(Qt::NoFocus);
     m_connecStatusLblIcon->setCursor(Qt::PointingHandCursor);
-    m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
-    m_connecStatusLblIcon->setToolTip(
-        QString::fromLatin1("<b>%1</b><br><i>%2</i>").arg(tr("Connection status:")
-            , tr("No direct connections. This may indicate network configuration problems.")));
+    m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"firewalled"_qs));
+    m_connecStatusLblIcon->setToolTip(u"<b>%1</b><br><i>%2</i>"_qs.arg(tr("Connection status:")
+        , tr("No direct connections. This may indicate network configuration problems.")));
     connect(m_connecStatusLblIcon, &QAbstractButton::clicked, this, &StatusBar::connectionButtonClicked);
 
     m_dlSpeedLbl = new QPushButton(this);
-    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("downloading_small")));
+    m_dlSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"downloading_small"_qs));
     connect(m_dlSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_dlSpeedLbl->setFlat(true);
     m_dlSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_dlSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_dlSpeedLbl->setStyleSheet("text-align:left;");
+    m_dlSpeedLbl->setStyleSheet(u"text-align:left;"_qs);
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("seeding")));
+    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"seeding"_qs));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);
     m_upSpeedLbl->setCursor(Qt::PointingHandCursor);
-    m_upSpeedLbl->setStyleSheet("text-align:left;");
+    m_upSpeedLbl->setStyleSheet(u"text-align:left;"_qs);
     m_upSpeedLbl->setMinimumWidth(200);
 
     m_DHTLbl = new QLabel(tr("DHT: %1 nodes").arg(0), this);
@@ -141,7 +140,7 @@ StatusBar::StatusBar(QWidget *parent)
     layout->addWidget(m_upSpeedLbl);
 
     addPermanentWidget(container);
-    setStyleSheet("QWidget {margin: 0;}");
+    setStyleSheet(u"QWidget {margin: 0;}"_qs);
     container->adjustSize();
     adjustSize();
     // Is DHT enabled
@@ -175,21 +174,24 @@ void StatusBar::updateConnectionStatus()
 
     if (!BitTorrent::Session::instance()->isListening())
     {
-        m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("disconnected")));
-        m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
+        m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"disconnected"_qs));
+        const QString tooltip = u"<b>%1</b><br>%2"_qs.arg(tr("Connection Status:"), tr("Offline. This usually means that qBittorrent failed to listen on the selected port for incoming connections."));
+        m_connecStatusLblIcon->setToolTip(tooltip);
     }
     else
     {
         if (sessionStatus.hasIncomingConnections)
         {
             // Connection OK
-            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("connected")));
-            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection Status:") + QLatin1String("</b><br>") + tr("Online"));
+            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"connected"_qs));
+            const QString tooltip = u"<b>%1</b><br>%2"_qs.arg(tr("Connection Status:"), tr("Online"));
+            m_connecStatusLblIcon->setToolTip(tooltip);
         }
         else
         {
-            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("firewalled")));
-            m_connecStatusLblIcon->setToolTip(QLatin1String("<b>") + tr("Connection status:") + QLatin1String("</b><br>") + QLatin1String("<i>") + tr("No direct connections. This may indicate network configuration problems.") + QLatin1String("</i>"));
+            m_connecStatusLblIcon->setIcon(UIThemeManager::instance()->getIcon(u"firewalled"_qs));
+            const QString tooltip = u"<b>%1</b><br><i>%2</i>"_qs.arg(tr("Connection Status:"), tr("No direct connections. This may indicate network configuration problems."));
+            m_connecStatusLblIcon->setToolTip(tooltip);
         }
     }
 }
@@ -216,19 +218,19 @@ void StatusBar::updateSpeedLabels()
     QString dlSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadDownloadRate, true);
     const int dlSpeedLimit = session->downloadSpeedLimit();
     if (session->isPaused())
-        dlSpeedLbl += " [" + tr("Paused") + ']';
+        dlSpeedLbl += u" [" + tr("Paused") + u']';
     else if (dlSpeedLimit > 0)
-        dlSpeedLbl += " [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + ']';
-    dlSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + ')';
+        dlSpeedLbl += u" [" + Utils::Misc::friendlyUnit(dlSpeedLimit, true) + u']';
+    dlSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadDownload) + u')';
     m_dlSpeedLbl->setText(dlSpeedLbl);
 
     QString upSpeedLbl = Utils::Misc::friendlyUnit(sessionStatus.payloadUploadRate, true);
     const int upSpeedLimit = session->uploadSpeedLimit();
     if (session->isPaused())
-        upSpeedLbl += " [" + tr("Paused") + ']';
+        upSpeedLbl += u" [" + tr("Paused") + u']';
     else if (upSpeedLimit > 0)
-        upSpeedLbl += " [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + ']';
-    upSpeedLbl += " (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + ')';
+        upSpeedLbl += u" [" + Utils::Misc::friendlyUnit(upSpeedLimit, true) + u']';
+    upSpeedLbl += u" (" + Utils::Misc::friendlyUnit(sessionStatus.totalPayloadUpload) + u')';
     m_upSpeedLbl->setText(upSpeedLbl);
 }
 
@@ -243,13 +245,13 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
 {
     if (alternative)
     {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow")));
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow"_qs));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to regular speed limits"));
         m_altSpeedsBtn->setDown(true);
     }
     else
     {
-        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(QLatin1String("slow_off")));
+        m_altSpeedsBtn->setIcon(UIThemeManager::instance()->getIcon(u"slow_off"_qs));
         m_altSpeedsBtn->setToolTip(tr("Click to switch to alternative speed limits"));
         m_altSpeedsBtn->setDown(false);
     }

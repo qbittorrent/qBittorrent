@@ -36,14 +36,16 @@
 #include <QSet>
 #include <QTranslator>
 
-#include "api/isessionmanager.h"
+#include "base/global.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
 #include "base/http/types.h"
+#include "base/path.h"
 #include "base/utils/net.h"
 #include "base/utils/version.h"
+#include "api/isessionmanager.h"
 
-inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 3};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 9};
 
 class APIController;
 class WebApplication;
@@ -100,7 +102,7 @@ private:
     void registerAPIController(const QString &scope, APIController *controller);
     void declarePublicAPI(const QString &apiPath);
 
-    void sendFile(const QString &path);
+    void sendFile(const Path &path);
     void sendWebUIFile();
 
     void translateDocument(QString &data) const;
@@ -126,12 +128,12 @@ private:
     QHash<QString, QString> m_params;
     const QString m_cacheID;
 
-    const QRegularExpression m_apiPathPattern {QLatin1String("^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$")};
+    const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_qs};
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
-    QString m_rootFolder;
+    Path m_rootFolder;
 
     struct TranslatedFile
     {
@@ -139,7 +141,7 @@ private:
         QString mimeType;
         QDateTime lastModified;
     };
-    QHash<QString, TranslatedFile> m_translatedFiles;
+    QHash<Path, TranslatedFile> m_translatedFiles;
     QString m_currentLocale;
     QTranslator m_translator;
     bool m_translationFileLoaded = false;

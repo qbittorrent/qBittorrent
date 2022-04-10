@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="az@latin" version="2.1">
+<TS version="2.1" language="az@latin">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Proqram tərcihlərini saxlamaq olmadı. qBittorrent ola bilsin ki, əlçatmazdır.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>İRC: Freenode üzərindən #qbittorrent</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Naməlum</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Giriş</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Orijinal müəlliflər</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Orijinal müəllifi</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Xarici portlar (Ən az) [0: Söndürülüb]</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">İzləyicilərə məlumat üçün İP ünvanı (yenidən başladılmalı):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Yüklənmə tamamlandıqdan sonta torrentləri yoxlamaq</translation>
     </message>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>İP ünvanı izləyicilərə bildirildi (yenidən başladılmalıdır):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Dəyəri 0 təyin edin ki, sisteminiz istifadə olunmayan portu seçsin</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Server tərəfindən saxta sorğulardan (SSRF) qorunma:</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>İP portunu kopyalamaq</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Yeni iştirakçı əlavə edin...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Ölkə/Bölgə</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>İştirakçı əlavə edin...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Gedişat:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Ölçü</translation>
+        <translation type="vanished">Ölçü</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Burada axtarmaq:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Nəticələr (göstərən</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtr</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Nəticələr</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>göstərərək</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>Milliyət:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Müəllif</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>İstifadə olunan proqram təminatı</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Müəlliflər</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Fransa</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent talismanı</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent nişanı</translation>
     </message>
 </context>
 <context>

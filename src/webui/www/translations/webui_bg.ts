@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="bg" version="2.1">
+<TS version="2.1" language="bg">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Не мога да съхраня предпочитанията за програмата, qBittorrent е вероятно недостъпен.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent на Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Неизвестен</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Вход</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Оригинален автори</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -370,7 +362,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Оригинален автор</translation>
     </message>
 </context>
 <context>
@@ -579,6 +571,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1190,10 +1186,6 @@
         <translation>Изходен порт (Мин) [0: Изключен]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">IP адрес за информиране на тракери (изисква рестарт):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Провери торентите при завършване:</translation>
     </message>
@@ -1479,14 +1471,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>ИП адрес докладван до тракери (изисква рестарт):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Задайте на 0, за да позволите на вашата система да избере неизползван порт</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Подправяне на заявка от страна на сървъра (SSRF) смекчаване</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1561,12 +1569,12 @@
         <translation>Копирай IP:порт</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Добави нов участник...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>Държава/Област</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Добави участници...</translation>
     </message>
 </context>
 <context>
@@ -1787,7 +1795,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Напредък:</translation>
     </message>
 </context>
 <context>
@@ -2262,7 +2270,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Размер</translation>
+        <translation type="vanished">Размер</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2757,10 +2769,6 @@
         <translation>Търсене в:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Резултати (показва</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Филтри</translation>
     </message>
@@ -2794,11 +2802,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Резултати</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>показване</translation>
     </message>
 </context>
 <context>
@@ -3026,10 +3034,6 @@
         <translation>Държава:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Автор</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Използван софтуер</translation>
     </message>
@@ -3039,11 +3043,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Автори</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Франция</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent Талисман</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent икона</translation>
     </message>
 </context>
 <context>

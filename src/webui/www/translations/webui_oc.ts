@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="oc" version="2.1">
+<TS version="2.1" language="oc">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -24,7 +24,7 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Mòde de gestion de torrent :</translation>
     </message>
     <message>
         <source>Content layout:</source>
@@ -144,10 +144,6 @@
         <translation>Impossible de salvar las preferéncias, qBittorrent es probablament inaccessible.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Unknown</source>
         <translation type="unfinished" />
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Identificant</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Autors originaux</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -309,7 +301,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Edicion</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -489,15 +481,15 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Filtrar la lista dels torrents…</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Recèrca</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Transferiments</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
@@ -577,6 +569,10 @@
     </message>
     <message>
         <source>RSS</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -978,7 +974,7 @@
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>Kio/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1006,7 +1002,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Automatic</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1078,7 +1074,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -1234,7 +1230,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Avançat</translation>
     </message>
     <message>
         <source>min</source>
@@ -1484,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1545,7 +1557,7 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>Blocar lo par indefinidament</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -1553,14 +1565,14 @@
     </message>
     <message>
         <source>Copy IP:port</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Add a new peer...</source>
-        <translation type="unfinished" />
+        <translation>Copiar l'IP:pòrt</translation>
     </message>
     <message>
         <source>Country/Region</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add peers...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1754,15 +1766,15 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioritat</translation>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Filtrar los fichièrs…</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Renomenar…</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1782,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Progression :</translation>
     </message>
 </context>
 <context>
@@ -2256,7 +2268,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
+        <source>Total Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2280,11 +2292,11 @@
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>En pausa</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Acabat</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2320,7 +2332,7 @@
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>Fichièrs mancants</translation>
     </message>
     <message>
         <source>Queued for checking</source>
@@ -2328,7 +2340,7 @@
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>En telecargament</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -2363,7 +2375,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation type="unfinished" />
+        <translation>Trackers</translation>
     </message>
 </context>
 <context>
@@ -2480,7 +2492,7 @@
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>Novèla Categoria</translation>
     </message>
     <message>
         <source>Location</source>
@@ -2597,7 +2609,7 @@
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Confirmacion de la supression – qBittorrent</translation>
     </message>
 </context>
 <context>
@@ -2796,7 +2808,7 @@
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Desinstallar</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -2808,15 +2820,15 @@
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Tampar</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished" />
+        <translation>Empeutons de recèrca installats :</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Activat</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2824,11 +2836,11 @@
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Recercar de mesas a jorn</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>Empeutons de recèrca</translation>
     </message>
 </context>
 <context>
@@ -3032,6 +3044,14 @@
         <source>France</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionDialog</name>
@@ -3189,11 +3209,11 @@
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Règlas pel telecargament</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>Articles RSS correspondents</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -3205,7 +3225,7 @@
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Règlas de filtratge d'episòdis :</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -3213,23 +3233,23 @@
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Definicion d'una règla</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Salvar jos :</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>Utilizar las expressions regularas</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Novèl nom per la règla</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>Lo filtre se deu acabar amb un punt-virgula</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -3237,11 +3257,11 @@
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>Articles correspondents basats sul filtratge episòdi</translation>
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>Assignar categoria :</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
@@ -3265,11 +3285,11 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Exemple :</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Apondre una novèla règla…</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3277,7 +3297,7 @@
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Deu conténer :</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3285,43 +3305,43 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Enregistrar dins un dorsièr diferent</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Deu pas conténer :</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Nombre simple : &lt;b&gt;1×25;&lt;/b&gt; correspond a l'episòdi 25 de la sason 1</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Tres tipes d'intervals d'episòdis son preses en carga :</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Sètz segur que volètz suprimir las règlas seleccionadas ?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Utilizar la configuracion globala</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Interval standard : &lt;b&gt;1×25-40;&lt;/b&gt; correspond als episòdis 25 a 40 de la saison 1</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Entratz lo novèl nom per la règla</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Renommage de la règla</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Totjorn</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3333,15 +3353,15 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Confirmacion de la supression</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Darrièra correspondéncia : i a %1 jorns</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Filtre d'episòdi :</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3349,19 +3369,19 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Lo numèro de sason es una valor obligatòria diferenta de zèro</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Pas jamai</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>Aplicar la règla als fluxes :</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation> jorns</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3373,11 +3393,11 @@
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Apondre en pausa :</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Entratz lo nom de la novèla règla de telecargament.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
@@ -3389,7 +3409,7 @@
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Suprimir la règla</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
@@ -3397,11 +3417,11 @@
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>Renomenar la règla…</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>Darrièra correspondéncia : desconegut</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
@@ -3433,11 +3453,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>Suprimir los torrents</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Aviar los torrents</translation>
     </message>
     <message>
         <source>All (%1)</source>
@@ -3445,22 +3465,22 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation>Sens tracker (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Metre en pausa los torrents</translation>
     </message>
 </context>
 <context>
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>Flux RSS</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Pas legit</translation>
     </message>
 </context>
 </TS>

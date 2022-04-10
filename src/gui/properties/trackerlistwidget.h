@@ -52,7 +52,7 @@ public:
         COL_PEERS,
         COL_SEEDS,
         COL_LEECHES,
-        COL_DOWNLOADED,
+        COL_TIMES_DOWNLOADED,
         COL_MSG,
 
         COL_COUNT
@@ -60,8 +60,6 @@ public:
 
     explicit TrackerListWidget(PropertiesWidget *properties);
     ~TrackerListWidget();
-
-    int visibleColumnsCount() const;
 
 public slots:
     void setRowColor(int row, const QColor &color);
@@ -77,15 +75,20 @@ public slots:
     void reannounceSelected();
     void deleteSelectedTrackers();
     void editSelectedTracker();
-    void showTrackerListMenu(const QPoint &);
-    void displayToggleColumnsMenu(const QPoint &);
+    void showTrackerListMenu();
     void loadSettings();
     void saveSettings() const;
 
 protected:
     QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
+private slots:
+    void displayColumnHeaderMenu();
+
 private:
+    int visibleColumnsCount() const;
+    void wheelEvent(QWheelEvent *event) override;
+
     static QStringList headerLabels();
 
     PropertiesWidget *m_properties;

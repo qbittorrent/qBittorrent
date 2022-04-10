@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="pt" version="2.1">
+<TS version="2.1" language="pt">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Não foi possível guardar as preferências, o qBittorrent está provavelmente inacessível.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: #qbittorrent no Freenode</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Desconhecido(a)</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Iniciar sessão</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Autores originais</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -341,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>impossível adicionar sementes. Por favor, asseegure-se que aderiu ao IP:formato de porta.</translation>
+        <translation>impossível adicionar fontes. Asseegure-se que aderiu ao IP:formato de porta.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Autor original</translation>
     </message>
 </context>
 <context>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1189,10 +1185,6 @@
         <translation>Portas de envio (Mín.) [0: Inativa]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">Endereço IP para reportar aos trackers (necessita de reiniciar):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Verificar torrents ao terminar:</translation>
     </message>
@@ -1394,7 +1386,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Não permitir ligação com pares em portas privilegiadas:</translation>
+        <translation>Não permitir ligação com fontes em portas privilegiadas:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1442,7 +1434,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Tipo de serviço (TdS) para ligações com pares</translation>
+        <translation>Tipo de serviço (TdS) para ligações com fontes</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Endereço de IP reportado aos trackers (necessita de reinicio):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Ao definir como 0 permite que o seu sistema utilize uma porta não utlizada</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>Redução do pedido de falsificação do lado do servidor (SSRF):</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>Copiar IP: porta</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>Adicionar uma nova fonte...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>País/Região</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>Adicionar fontes...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>Progresso:</translation>
     </message>
 </context>
 <context>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>Tamanho</translation>
+        <translation type="vanished">Tamanho</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2756,10 +2768,6 @@
         <translation>Pesquisar em:</translation>
     </message>
     <message>
-        <source>Results (showing</source>
-        <translation type="vanished">Resultados (a mostrar</translation>
-    </message>
-    <message>
         <source>Filter</source>
         <translation>Filtro</translation>
     </message>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultados</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>a exibir</translation>
     </message>
 </context>
 <context>
@@ -3025,10 +3033,6 @@
         <translation>Nacionalidade:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">Autor</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>Software utilizado</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>Autores</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>França</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>Mascote do qBittorrent</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>Ícone do qBittorrent</translation>
     </message>
 </context>
 <context>

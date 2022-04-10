@@ -37,12 +37,14 @@
 #include <Qt>
 #include <QtContainerFwd>
 
+#include "base/global.h"
+
 namespace Utils::String
 {
     QString wildcardToRegexPattern(const QString &pattern);
 
     template <typename T>
-    T unquote(const T &str, const QString &quotes = QChar('"'))
+    T unquote(const T &str, const QString &quotes = u"\""_qs)
     {
         if (str.length() < 2) return str;
 

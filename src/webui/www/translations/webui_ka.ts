@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ka" version="2.1">
+<TS version="2.1" language="ka">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>პროგრამის პარამეტრების დამახსოვრეაბ ვერ მოხერხდა, სავარაუდოდ qBittorrent მიუწვდომელია.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>უცნობია</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>შესვლა</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">ნამდვილი ავტორები</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1194,7 +1190,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>დაშიფრვაზე ნების დართვა</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1342,7 +1338,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1484,6 +1480,22 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1536,7 +1548,7 @@
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>შესაბამისობა</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1545,7 +1557,7 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation type="unfinished" />
+        <translation>პირის დაბლოკვა სამუდამოდ</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
@@ -1556,12 +1568,12 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>ახალი პირის დამატება</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>ქვეყანა/რეგიონი</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1727,7 +1739,7 @@
     </message>
     <message>
         <source>%1 (%2 this session)</source>
-        <translation type="unfinished" />
+        <translation>%1 (%2 ამ სესიაში)</translation>
     </message>
     <message>
         <source>%1 (%2 max)</source>
@@ -1758,7 +1770,7 @@
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>ფაილების ფილტრი...</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -1782,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>პროგრესი:</translation>
     </message>
 </context>
 <context>
@@ -1875,15 +1887,15 @@
     </message>
     <message>
         <source>Write cache overload:</source>
-        <translation type="unfinished" />
+        <translation>ჩაწერის ქეშის გადატვირთვა:</translation>
     </message>
     <message>
         <source>Read cache overload:</source>
-        <translation type="unfinished" />
+        <translation>წაკითხვის ქეშის გადატვირთვა</translation>
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation type="unfinished" />
+        <translation>მთელი რიგის ზომა:</translation>
     </message>
 </context>
 <context>
@@ -1970,27 +1982,27 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული ატვირთვა (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული ჩამოტვირთვა (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული ჩამოტვირთვა (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული ატვირთვა (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>შეჩერებული (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
@@ -2257,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>ზომა</translation>
+        <translation type="vanished">ზომა</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2528,15 +2544,15 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>ასლი</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>რიგი</translation>
     </message>
     <message>
         <source>Add...</source>
@@ -2893,7 +2909,7 @@
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation type="unfinished" />
+        <translation>პირების სია დამატებისთვის (თითო IP ხაზზე)</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2916,7 +2932,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation type="unfinished" />
+        <translation>ტორენტების წაშლა</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -2924,7 +2940,7 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>ტორენტების დაპაუზება</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -2958,7 +2974,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>შეცდომების ტრეკერი:</translation>
     </message>
     <message>
         <source>About</source>
@@ -2966,15 +2982,15 @@
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>ფორუმი:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>ელ-ფოსტა:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>მიმდინარე მომვლელი</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -2982,11 +2998,11 @@
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>საბერძნეთი</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>განსაკუთრებული მადლობა</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
@@ -2994,7 +3010,7 @@
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>სახელი:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
@@ -3002,7 +3018,7 @@
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>ლიცენზია</translation>
     </message>
     <message>
         <source>Translators</source>
@@ -3010,7 +3026,7 @@
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent აგებულია ამ ბიბლიოთეკებით:</translation>
     </message>
     <message>
         <source>Nationality:</source>
@@ -3018,7 +3034,7 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>გამოყენებული სოფტი</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3030,6 +3046,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation>საფრანგეთი</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3052,7 +3076,7 @@
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>ასლი</translation>
     </message>
     <message>
         <source>Download</source>
@@ -3060,7 +3084,7 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>სახელი</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3068,7 +3092,7 @@
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>აღწერის გვერდის გახსნა</translation>
     </message>
     <message>
         <source>Download link</source>
@@ -3098,7 +3122,7 @@
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished" />
+        <translation>გთხოვთ, ამოირჩიეთ დირექტორიის სახელი</translation>
     </message>
     <message>
         <source>New feed name:</source>
@@ -3209,15 +3233,15 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>RSS ტორენტების ავტომატური ჩამოტვირთვა გამორთულია! თქვენ შეგიძლიათ ჩართოთ ის აპლიკაციის პარამეტრებში.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>წესის განმარტება</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>შენახვა:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
@@ -3241,7 +3265,7 @@
     </message>
     <message>
         <source>Assign Category:</source>
-        <translation type="unfinished" />
+        <translation>კატეგორიის მინიჭება:</translation>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
@@ -3285,7 +3309,7 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>სხვა დირექტორიაში შენახვა:</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
@@ -3301,7 +3325,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>დარწმუნებული ხართ რომ არჩეული ჩამოტვირთვის წესების წაშლა გსურთ?</translation>
     </message>
     <message>
         <source>Use global settings</source>
@@ -3313,7 +3337,7 @@
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>გთხოვთ ჩაწერეთ ახალი წესის სახელი</translation>
     </message>
     <message>
         <source>Rule renaming</source>
@@ -3333,7 +3357,7 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>წესის წაშლის დასტური</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3377,7 +3401,7 @@
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>გთხოვთ ჩაწერეთ ახალი ჩამოტვირთვის წესის სახელი</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
@@ -3405,7 +3429,7 @@
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთული ეპიზოდების წაშლა...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -3445,7 +3469,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation type="unfinished" />
+        <translation>ტრეკერის გარეშე (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -3456,7 +3480,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSS არხები</translation>
     </message>
     <message>
         <source>Unread</source>

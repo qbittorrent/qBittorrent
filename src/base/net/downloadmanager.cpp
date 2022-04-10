@@ -226,7 +226,7 @@ bool Net::DownloadManager::hasSupportedScheme(const QString &url)
     const QStringList schemes = instance()->m_networkManager.supportedSchemes();
     return std::any_of(schemes.cbegin(), schemes.cend(), [&url](const QString &scheme)
     {
-        return url.startsWith((scheme + QLatin1Char(':')), Qt::CaseInsensitive);
+        return url.startsWith((scheme + u':'), Qt::CaseInsensitive);
     });
 }
 
@@ -293,7 +293,7 @@ void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSs
     QStringList errorList;
     for (const QSslError &error : errors)
         errorList += error.errorString();
-    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(". ")), Log::WARNING);
+    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
 
     // Ignore all SSL errors
     reply->ignoreSslErrors();
@@ -348,12 +348,12 @@ Net::DownloadRequest &Net::DownloadRequest::saveToFile(const bool value)
     return *this;
 }
 
-QString Net::DownloadRequest::destFileName() const
+Path Net::DownloadRequest::destFileName() const
 {
     return m_destFileName;
 }
 
-Net::DownloadRequest &Net::DownloadRequest::destFileName(const QString &value)
+Net::DownloadRequest &Net::DownloadRequest::destFileName(const Path &value)
 {
     m_destFileName = value;
     return *this;
@@ -364,10 +364,17 @@ Net::ServiceID Net::ServiceID::fromURL(const QUrl &url)
     return {url.host(), url.port(80)};
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t Net::qHash(const ServiceID &serviceID, const std::size_t seed)
+{
+    return qHashMulti(seed, serviceID.hostName, serviceID.port);
+}
+#else
 uint Net::qHash(const ServiceID &serviceID, const uint seed)
 {
     return ::qHash(serviceID.hostName, seed) ^ ::qHash(serviceID.port);
 }
+#endif
 
 bool Net::operator==(const ServiceID &lhs, const ServiceID &rhs)
 {

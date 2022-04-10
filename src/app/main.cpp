@@ -76,6 +76,7 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
 
+#include "base/global.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/version.h"
@@ -164,23 +165,19 @@ int main(int argc, char *argv[])
                 return EXIT_SUCCESS;
             }
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                     .arg(QLatin1String("-v (or --version)")));
+                                     .arg(u"-v (or --version)"_qs));
         }
 #endif
         if (params.showHelp)
         {
             if (isOneArg)
             {
-                displayUsage(argv[0]);
+                displayUsage(QString::fromLocal8Bit(argv[0]));
                 return EXIT_SUCCESS;
             }
             throw CommandLineParameterError(QObject::tr("%1 must be the single command line parameter.")
-                                 .arg(QLatin1String("-h (or --help)")));
+                                 .arg(u"-h (or --help)"_qs));
         }
-
-        // Set environment variable
-        if (!qputenv("QBITTORRENT", QBT_VERSION))
-            fprintf(stderr, "Couldn't set environment variable...\n");
 
         const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
         if (firstTimeUser)
@@ -211,7 +208,7 @@ int main(int argc, char *argv[])
             if (params.shouldDaemonize)
             {
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
-                                     .arg(QLatin1String("-d (or --daemon)")));
+                                     .arg(u"-d (or --daemon)"_qs));
             }
             else
 #endif
@@ -365,7 +362,7 @@ void sigAbnormalHandler(int signum)
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
     StacktraceDialog dlg;  // unsafe
-    dlg.setStacktraceString(QLatin1String(sigName), straceWin::getBacktrace());
+    dlg.setStacktraceString(QString::fromLatin1(sigName), straceWin::getBacktrace());
     dlg.exec();
 #endif
 
@@ -377,11 +374,11 @@ void sigAbnormalHandler(int signum)
 #if !defined(DISABLE_GUI)
 void showSplashScreen()
 {
-    QPixmap splashImg(":/icons/splash.png");
+    QPixmap splashImg(u":/icons/splash.png"_qs);
     QPainter painter(&splashImg);
-    const QString version = QBT_VERSION;
+    const auto version = QStringLiteral(QBT_VERSION);
     painter.setPen(QPen(Qt::white));
-    painter.setFont(QFont("Arial", 22, QFont::Black));
+    painter.setFont(QFont(u"Arial"_qs, 22, QFont::Black));
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
@@ -400,14 +397,14 @@ void displayBadArgMessage(const QString &message)
     const QString help = QObject::tr("Run application with -h option to read about command line parameters.");
 #if defined(Q_OS_WIN) && !defined(DISABLE_GUI)
     QMessageBox msgBox(QMessageBox::Critical, QObject::tr("Bad command line"),
-                       message + QLatin1Char('\n') + help, QMessageBox::Ok);
+                       (message + u'\n' + help), QMessageBox::Ok);
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
     msgBox.exec();
 #else
-    const QString errMsg = QObject::tr("Bad command line: ") + '\n'
-        + message + '\n'
-        + help + '\n';
+    const QString errMsg = QObject::tr("Bad command line: ") + u'\n'
+        + message + u'\n'
+        + help + u'\n';
     fprintf(stderr, "%s", qUtf8Printable(errMsg));
 #endif
 }
@@ -418,10 +415,10 @@ bool userAgreesWithLegalNotice()
     Q_ASSERT(!pref->getAcceptedLegal());
 
 #ifdef DISABLE_GUI
-    const QString eula = QString::fromLatin1("\n*** %1 ***\n").arg(QObject::tr("Legal Notice"))
-        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + "\n\n"
-        + QObject::tr("No further notices will be issued.") + "\n\n"
-        + QObject::tr("Press %1 key to accept and continue...").arg("'y'") + '\n';
+    const QString eula = u"\n*** %1 ***\n"_qs.arg(QObject::tr("Legal Notice"))
+        + QObject::tr("qBittorrent is a file sharing program. When you run a torrent, its data will be made available to others by means of upload. Any content you share is your sole responsibility.") + u"\n\n"
+        + QObject::tr("No further notices will be issued.") + u"\n\n"
+        + QObject::tr("Press %1 key to accept and continue...").arg(u"'y'"_qs) + u'\n';
     printf("%s", qUtf8Printable(eula));
 
     const char ret = getchar(); // Read pressed key

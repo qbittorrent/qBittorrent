@@ -35,6 +35,7 @@
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/bittorrent/magneturi.h"
 #include "base/bittorrent/torrentinfo.h"
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 namespace BitTorrent
@@ -78,14 +79,17 @@ public:
     static void show(const QString &source, QWidget *parent);
 
 private slots:
-    void displayContentTreeMenu(const QPoint &);
+    void displayContentTreeMenu();
+    void displayColumnHeaderMenu();
     void updateDiskSpaceLabel();
-    void onSavePathChanged(const QString &newPath);
+    void onSavePathChanged(const Path &newPath);
+    void onDownloadPathChanged(const Path &newPath);
+    void onUseDownloadPathChanged(bool checked);
     void updateMetadata(const BitTorrent::TorrentInfo &metadata);
     void handleDownloadFinished(const Net::DownloadResult &downloadResult);
     void TMMChanged(int index);
     void categoryChanged(int index);
-    void contentLayoutChanged(int index);
+    void contentLayoutChanged();
     void doNotDeleteTorrentClicked(bool checked);
     void renameSelectedFile();
 
@@ -94,17 +98,16 @@ private slots:
 
 private:
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
-    bool loadTorrentFile(const QString &torrentPath);
+
+    void applyContentLayout();
+    bool loadTorrentFile(const QString &source);
     bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
-    void populateSavePathComboBox();
-    void saveSavePathHistory() const;
-    int indexOfSavePath(const QString &savePath);
+    void populateSavePaths();
     void loadState();
     void saveState();
     void setMetadataProgressIndicator(bool visibleIndicator, const QString &labelText = {});
     void setupTreeview();
-    void setSavePath(const QString &newPath);
     void saveTorrentFile();
     bool hasMetadata() const;
 
@@ -115,7 +118,11 @@ private:
     PropListDelegate *m_contentDelegate = nullptr;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
-    int m_oldIndex = 0;
+    Path m_originalRootFolder;
+    BitTorrent::TorrentContentLayout m_currentContentLayout;
+    int m_savePathIndex = -1;
+    int m_downloadPathIndex = -1;
+    bool m_useDownloadPath = false;
     std::unique_ptr<TorrentFileGuard> m_torrentGuard;
     BitTorrent::AddTorrentParams m_torrentParams;
 

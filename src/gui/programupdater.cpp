@@ -43,6 +43,7 @@
 #include <QSysInfo>
 #endif
 
+#include "base/global.h"
 #include "base/net/downloadmanager.h"
 #include "base/utils/version.h"
 #include "base/version.h"
@@ -59,8 +60,8 @@ namespace
             const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
             if (newVersion == currentVersion)
             {
-                const bool isDevVersion = QString::fromLatin1(QBT_VERSION_STATUS).contains(
-                    QRegularExpression(QLatin1String("(alpha|beta|rc)")));
+                const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
+                    QRegularExpression(u"(alpha|beta|rc)"_qs));
                 if (isDevVersion)
                     return true;
             }
@@ -75,11 +76,11 @@ namespace
 
 void ProgramUpdater::checkForUpdates() const
 {
-    const auto RSS_URL = QString::fromLatin1("https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml");
+    const auto RSS_URL = u"https://www.fosshub.com/feed/5b8793a7f9ee5a5c3e97a3b2.xml"_qs;
     // Don't change this User-Agent. In case our updater goes haywire,
     // the filehost can identify it and contact us.
     Net::DownloadManager::instance()->download(
-        Net::DownloadRequest(RSS_URL).userAgent("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)")
+        Net::DownloadRequest(RSS_URL).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2 " ProgramUpdater (www.qbittorrent.org)"))
         , this, &ProgramUpdater::rssDownloadFinished);
 }
 
@@ -108,11 +109,11 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
     };
 
 #ifdef Q_OS_MACOS
-    const QString OS_TYPE {"Mac OS X"};
+    const QString OS_TYPE = u"Mac OS X"_qs;
 #elif defined(Q_OS_WIN)
-    const QString OS_TYPE {(::IsWindows7OrGreater()
-        && QSysInfo::currentCpuArchitecture().endsWith("64"))
-        ? "Windows x64" : "Windows"};
+    const QString OS_TYPE = (::IsWindows7OrGreater() && QSysInfo::currentCpuArchitecture().endsWith(u"64"))
+        ? u"Windows x64"_qs
+        : u"Windows"_qs;
 #endif
 
     bool inItem = false;
@@ -127,18 +128,18 @@ void ProgramUpdater::rssDownloadFinished(const Net::DownloadResult &result)
 
         if (xml.isStartElement())
         {
-            if (xml.name() == QLatin1String("item"))
+            if (xml.name() == u"item")
                 inItem = true;
-            else if (inItem && (xml.name() == QLatin1String("link")))
+            else if (inItem && (xml.name() == u"link"))
                 updateLink = getStringValue(xml);
-            else if (inItem && (xml.name() == QLatin1String("type")))
+            else if (inItem && (xml.name() == u"type"))
                 type = getStringValue(xml);
-            else if (inItem && (xml.name() == QLatin1String("version")))
+            else if (inItem && (xml.name() == u"version"))
                 version = getStringValue(xml);
         }
         else if (xml.isEndElement())
         {
-            if (inItem && (xml.name() == QLatin1String("item")))
+            if (inItem && (xml.name() == u"item"))
             {
                 if (type.compare(OS_TYPE, Qt::CaseInsensitive) == 0)
                 {

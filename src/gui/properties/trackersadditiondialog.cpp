@@ -46,7 +46,7 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
 {
     m_ui->setupUi(this);
     // Icons
-    m_ui->uTorrentListButton->setIcon(UIThemeManager::instance()->getIcon("download"));
+    m_ui->uTorrentListButton->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
 }
 
 TrackersAdditionDialog::~TrackersAdditionDialog()
@@ -91,7 +91,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         return;
     }
 
-    const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split('\n');
+    const QStringList trackersFromUser = m_ui->textEditTrackersList->toPlainText().split(u'\n');
     QVector<BitTorrent::TrackerEntry> existingTrackers = m_torrent->trackers();
     existingTrackers.reserve(trackersFromUser.size());
     for (const QString &userURL : trackersFromUser)
@@ -102,21 +102,21 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
     }
 
     // Add new trackers to the list
-    if (!m_ui->textEditTrackersList->toPlainText().isEmpty() && !m_ui->textEditTrackersList->toPlainText().endsWith('\n'))
-        m_ui->textEditTrackersList->insertPlainText("\n");
+    if (!m_ui->textEditTrackersList->toPlainText().isEmpty() && !m_ui->textEditTrackersList->toPlainText().endsWith(u'\n'))
+        m_ui->textEditTrackersList->insertPlainText(u"\n"_qs);
     int nb = 0;
     QBuffer buffer;
     buffer.setData(result.data);
     buffer.open(QBuffer::ReadOnly);
     while (!buffer.atEnd())
     {
-        const QString line = buffer.readLine().trimmed();
+        const auto line = QString::fromUtf8(buffer.readLine().trimmed());
         if (line.isEmpty()) continue;
 
         BitTorrent::TrackerEntry newTracker {line};
         if (!existingTrackers.contains(newTracker))
         {
-            m_ui->textEditTrackersList->insertPlainText(line + '\n');
+            m_ui->textEditTrackersList->insertPlainText(line + u'\n');
             ++nb;
         }
     }

@@ -30,7 +30,6 @@
 
 #include <QVariant>
 
-#include "base/bittorrent/common.h"
 #include "base/global.h"
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, TorrentContentModelFolder *parent)
@@ -38,9 +37,6 @@ TorrentContentModelFolder::TorrentContentModelFolder(const QString &name, Torren
 {
     Q_ASSERT(parent);
     m_name = name;
-    // Do not display incomplete extensions
-    if (m_name.endsWith(QB_EXT))
-        m_name.chop(4);
 }
 
 TorrentContentModelFolder::TorrentContentModelFolder(const QVector<QString> &data)
@@ -85,17 +81,6 @@ TorrentContentModelItem *TorrentContentModelFolder::child(int row) const
 {
     return m_childItems.value(row, nullptr);
 }
-
-TorrentContentModelFolder *TorrentContentModelFolder::childFolderWithName(const QString &name) const
-{
-    for (TorrentContentModelItem *child : asConst(m_childItems))
-    {
-        if ((child->itemType() == FolderType) && (child->name() == name))
-            return static_cast<TorrentContentModelFolder *>(child);
-    }
-    return nullptr;
-}
-
 int TorrentContentModelFolder::childCount() const
 {
     return m_childItems.count();

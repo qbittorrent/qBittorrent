@@ -30,6 +30,7 @@
 
 #include <QString>
 
+#include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/password.h"
@@ -40,13 +41,13 @@ void AuthController::loginAction()
 {
     if (sessionManager()->session())
     {
-        setResult(QLatin1String("Ok."));
+        setResult(u"Ok."_qs);
         return;
     }
 
     const QString clientAddr {sessionManager()->clientId()};
-    const QString usernameFromWeb {params()["username"]};
-    const QString passwordFromWeb {params()["password"]};
+    const QString usernameFromWeb {params()[u"username"_qs]};
+    const QString passwordFromWeb {params()[u"password"_qs]};
 
     if (isBanned())
     {
@@ -69,14 +70,14 @@ void AuthController::loginAction()
         m_clientFailedLogins.remove(clientAddr);
 
         sessionManager()->sessionStart();
-        setResult(QLatin1String("Ok."));
+        setResult(u"Ok."_qs);
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
     else
     {
         if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
-        setResult(QLatin1String("Fails."));
+        setResult(u"Fails."_qs);
         LogMsg(tr("WebAPI login failure. Reason: invalid credentials, attempt count: %1, IP: %2, username: %3")
                 .arg(QString::number(failedAttemptsCount()), clientAddr, usernameFromWeb)
             , Log::WARNING);

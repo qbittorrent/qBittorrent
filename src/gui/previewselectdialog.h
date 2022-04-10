@@ -30,6 +30,7 @@
 
 #include <QDialog>
 
+#include "base/path.h"
 #include "base/settingvalue.h"
 
 class QStandardItemModel;
@@ -38,6 +39,7 @@ namespace BitTorrent
 {
     class Torrent;
 }
+
 namespace Ui
 {
     class PreviewSelectDialog;
@@ -64,10 +66,11 @@ public:
     ~PreviewSelectDialog();
 
 signals:
-    void readyToPreviewFile(QString) const;
+    void readyToPreviewFile(const Path &filePath) const;
 
 private slots:
     void previewButtonClicked();
+    void displayColumnHeaderMenu();
 
 private:
     void showEvent(QShowEvent *event) override;

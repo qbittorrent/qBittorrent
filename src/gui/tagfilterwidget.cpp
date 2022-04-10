@@ -47,7 +47,7 @@ namespace
         if (index.isValid())
         {
             if (index.row() == 1)
-                tagFilter = "";  // Untagged
+                tagFilter = u""_qs;  // Untagged
             else if (index.row() > 1)
                 tagFilter = model->tag(index);
         }
@@ -102,29 +102,29 @@ void TagFilterWidget::onCurrentRowChanged(const QModelIndex &current, const QMod
     emit tagChanged(getTagFilter(static_cast<TagFilterProxyModel *>(model()), current));
 }
 
-void TagFilterWidget::showMenu(QPoint)
+void TagFilterWidget::showMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon("list-add"), tr("Add tag...")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add tag...")
         , this, &TagFilterWidget::addTag);
 
     const auto selectedRows = selectionModel()->selectedRows();
     if (!selectedRows.empty() && !TagFilterModel::isSpecialItem(selectedRows.first()))
     {
-        menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove tag")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove tag")
             , this, &TagFilterWidget::removeTag);
     }
 
-    menu->addAction(UIThemeManager::instance()->getIcon("list-remove"), tr("Remove unused tags")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove unused tags")
         , this, &TagFilterWidget::removeUnusedTags);
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-start"), tr("Resume torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs), tr("Resume torrents")
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon("media-playback-pause"), tr("Pause torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs), tr("Pause torrents")
         , this, &TagFilterWidget::actionPauseTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon("edit-delete"), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"edit-delete"_qs), tr("Delete torrents")
         , this, &TagFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());
@@ -162,7 +162,7 @@ void TagFilterWidget::rowsInserted(const QModelIndex &parent, int start, int end
 QString TagFilterWidget::askTagName()
 {
     bool ok = false;
-    QString tag = "";
+    QString tag = u""_qs;
     bool invalid = true;
     while (invalid)
     {

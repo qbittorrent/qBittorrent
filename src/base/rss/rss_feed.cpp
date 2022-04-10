@@ -31,6 +31,7 @@
 #include "rss_feed.h"
 
 #include <algorithm>
+#include <utility>
 #include <vector>
 
 #include <QDir>
@@ -50,13 +51,13 @@
 #include "rss_parser.h"
 #include "rss_session.h"
 
-const QString KEY_UID(QStringLiteral("uid"));
-const QString KEY_URL(QStringLiteral("url"));
-const QString KEY_TITLE(QStringLiteral("title"));
-const QString KEY_LASTBUILDDATE(QStringLiteral("lastBuildDate"));
-const QString KEY_ISLOADING(QStringLiteral("isLoading"));
-const QString KEY_HASERROR(QStringLiteral("hasError"));
-const QString KEY_ARTICLES(QStringLiteral("articles"));
+const QString KEY_UID = u"uid"_qs;
+const QString KEY_URL = u"url"_qs;
+const QString KEY_TITLE = u"title"_qs;
+const QString KEY_LASTBUILDDATE = u"lastBuildDate"_qs;
+const QString KEY_ISLOADING = u"isLoading"_qs;
+const QString KEY_HASERROR = u"hasError"_qs;
+const QString KEY_ARTICLES = u"articles"_qs;
 
 using namespace RSS;
 
@@ -67,17 +68,16 @@ Feed::Feed(const QUuid &uid, const QString &url, const QString &path, Session *s
     , m_url(url)
 {
     const auto uidHex = QString::fromLatin1(m_uid.toRfc4122().toHex());
-    m_dataFileName = uidHex + QLatin1String(".json");
+    m_dataFileName = Path(uidHex + u".json");
 
     // Move to new file naming scheme (since v4.1.2)
-    const QString legacyFilename
-    {Utils::Fs::toValidFileSystemName(m_url, false, QLatin1String("_"))
-                + QLatin1String(".json")};
-    const QDir storageDir {m_session->dataFileStorage()->storageDir()};
-    if (!QFile::exists(storageDir.absoluteFilePath(m_dataFileName)))
-        QFile::rename(storageDir.absoluteFilePath(legacyFilename), storageDir.absoluteFilePath(m_dataFileName));
+    const QString legacyFilename = Utils::Fs::toValidFileName(m_url, u"_"_qs) + u".json";
+    const Path storageDir = m_session->dataFileStorage()->storageDir();
+    const Path dataFilePath = storageDir / m_dataFileName;
+    if (!dataFilePath.exists())
+        Utils::Fs::renameFile((storageDir / Path(legacyFilename)), dataFilePath);
 
-    m_iconPath = Utils::Fs::toUniformPath(storageDir.absoluteFilePath(uidHex + QLatin1String(".ico")));
+    m_iconPath = storageDir / Path(uidHex + u".ico");
 
     m_parser = new Private::Parser(m_lastBuildDate);
     m_parser->moveToThread(m_session->workingThread());
@@ -138,7 +138,7 @@ void Feed::refresh()
     m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
-    if (!QFile::exists(m_iconPath))
+    if (!m_iconPath.exists())
         downloadIcon();
 
     m_isLoading = true;
@@ -261,7 +261,7 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 
 void Feed::load()
 {
-    QFile file(m_session->dataFileStorage()->storageDir().absoluteFilePath(m_dataFileName));
+    QFile file {(m_session->dataFileStorage()->storageDir() / m_dataFileName).data()};
 
     if (!file.exists())
     {
@@ -277,7 +277,7 @@ void Feed::load()
     else
     {
         LogMsg(tr("Couldn't read RSS Session data from %1. Error: %2")
-               .arg(m_dataFileName, file.errorString())
+               .arg(m_dataFileName.toString(), file.errorString())
                , Log::WARNING);
     }
 }
@@ -323,16 +323,16 @@ void Feed::loadArticles(const QByteArray &data)
 
 void Feed::loadArticlesLegacy()
 {
-    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(QStringLiteral("qBittorrent-rss-feeds"));
-    const QVariantHash allOldItems = qBTRSSFeeds->value("old_items").toHash();
+    const SettingsPtr qBTRSSFeeds = Profile::instance()->applicationSettings(u"qBittorrent-rss-feeds"_qs);
+    const QVariantHash allOldItems = qBTRSSFeeds->value(u"old_items"_qs).toHash();
 
     for (const QVariant &var : asConst(allOldItems.value(m_url).toList()))
     {
         auto hash = var.toHash();
         // update legacy keys
-        hash[Article::KeyLink] = hash.take(QLatin1String("news_link"));
-        hash[Article::KeyTorrentURL] = hash.take(QLatin1String("torrent_url"));
-        hash[Article::KeyIsRead] = hash.take(QLatin1String("read"));
+        hash[Article::KeyLink] = hash.take(u"news_link"_qs);
+        hash[Article::KeyTorrentURL] = hash.take(u"torrent_url"_qs);
+        hash[Article::KeyIsRead] = hash.take(u"read"_qs);
         try
         {
             auto article = new Article(this, hash);
@@ -425,7 +425,7 @@ void Feed::downloadIcon()
     // Download the RSS Feed icon
     // XXX: This works for most sites but it is not perfect
     const QUrl url(m_url);
-    const auto iconUrl = QString::fromLatin1("%1://%2/favicon.ico").arg(url.scheme(), url.host());
+    const auto iconUrl = u"%1://%2/favicon.ico"_qs.arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
                 , this, &Feed::handleIconDownloadFinished);
@@ -461,19 +461,19 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     if (newArticles.empty())
         return 0;
 
-    using ArticleSortAdaptor = QPair<QDateTime, const QVariantHash *>;
+    using ArticleSortAdaptor = std::pair<QDateTime, const QVariantHash *>;
     std::vector<ArticleSortAdaptor> sortData;
     const QList<Article *> existingArticles = articles();
     sortData.reserve(existingArticles.size() + newArticles.size());
     std::transform(existingArticles.begin(), existingArticles.end(), std::back_inserter(sortData)
                    , [](const Article *article)
     {
-        return qMakePair(article->date(), nullptr);
+        return std::make_pair(article->date(), nullptr);
     });
     std::transform(newArticles.begin(), newArticles.end(), std::back_inserter(sortData)
                    , [](const QVariantHash &article)
     {
-        return qMakePair(article[Article::KeyDate].toDateTime(), &article);
+        return std::make_pair(article[Article::KeyDate].toDateTime(), &article);
     });
 
     // Sort article list in reverse chronological order
@@ -499,7 +499,7 @@ int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)
     return newArticlesCount;
 }
 
-QString Feed::iconPath() const
+Path Feed::iconPath() const
 {
     return m_iconPath;
 }
@@ -548,8 +548,8 @@ void Feed::handleArticleRead(Article *article)
 
 void Feed::cleanup()
 {
-    Utils::Fs::forceRemove(m_session->dataFileStorage()->storageDir().absoluteFilePath(m_dataFileName));
-    Utils::Fs::forceRemove(m_iconPath);
+    Utils::Fs::removeFile(m_session->dataFileStorage()->storageDir() / m_dataFileName);
+    Utils::Fs::removeFile(m_iconPath);
 }
 
 void Feed::timerEvent(QTimerEvent *event)

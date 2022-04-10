@@ -34,7 +34,9 @@
 #include <QSharedDataPointer>
 #include <QVariant>
 
+#include "base/global.h"
 #include "base/bittorrent/torrentcontentlayout.h"
+#include "base/pathfwd.h"
 
 class QDateTime;
 class QJsonObject;
@@ -47,9 +49,11 @@ namespace RSS
     class AutoDownloadRule
     {
     public:
-        explicit AutoDownloadRule(const QString &name = "");
+        explicit AutoDownloadRule(const QString &name = u""_qs);
         AutoDownloadRule(const AutoDownloadRule &other);
         ~AutoDownloadRule();
+
+        AutoDownloadRule &operator=(const AutoDownloadRule &other);
 
         QString name() const;
         void setName(const QString &name);
@@ -77,8 +81,8 @@ namespace RSS
         QStringList previouslyMatchedEpisodes() const;
         void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
-        QString savePath() const;
-        void setSavePath(const QString &savePath);
+        Path savePath() const;
+        void setSavePath(const Path &savePath);
         std::optional<bool> addPaused() const;
         void setAddPaused(std::optional<bool> addPaused);
         std::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;
@@ -89,12 +93,10 @@ namespace RSS
         bool matches(const QVariantHash &articleData) const;
         bool accepts(const QVariantHash &articleData);
 
-        AutoDownloadRule &operator=(const AutoDownloadRule &other);
-        bool operator==(const AutoDownloadRule &other) const;
-        bool operator!=(const AutoDownloadRule &other) const;
+        friend bool operator==(const AutoDownloadRule &left, const AutoDownloadRule &right);
 
         QJsonObject toJsonObject() const;
-        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = "");
+        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = u""_qs);
 
         QVariantHash toLegacyDict() const;
         static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);
@@ -109,4 +111,6 @@ namespace RSS
 
         QSharedDataPointer<AutoDownloadRuleData> m_dataPtr;
     };
+
+    bool operator!=(const AutoDownloadRule &left, const AutoDownloadRule &right);
 }

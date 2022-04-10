@@ -30,6 +30,7 @@
 
 #include <QPushButton>
 
+#include "base/global.h"
 #include "base/preferences.h"
 #include "uithememanager.h"
 #include "utils.h"
@@ -47,16 +48,14 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
 
     // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
-    m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon("dialog-warning").pixmap(iconSize));
+    m_ui->labelWarning->setPixmap(UIThemeManager::instance()->getIcon(u"dialog-warning"_qs).pixmap(iconSize));
     m_ui->labelWarning->setFixedWidth(iconSize.width());
-    m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon("object-locked"));
+    m_ui->rememberBtn->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_qs));
     m_ui->rememberBtn->setIconSize(Utils::Gui::mediumIconSize());
 
     m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
-
-    Utils::Gui::resize(this);
 }
 
 DeletionConfirmationDialog::~DeletionConfirmationDialog()

@@ -40,6 +40,7 @@
 #include <QTimer>
 
 #include "base/algorithm.h"
+#include "base/global.h"
 #include "base/utils/net.h"
 #include "connection.h"
 
@@ -51,7 +52,7 @@ namespace
 
     QList<QSslCipher> safeCipherList()
     {
-        const QStringList badCiphers {"idea", "rc4"};
+        const QStringList badCiphers {u"idea"_qs, u"rc4"_qs};
         const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
         std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)

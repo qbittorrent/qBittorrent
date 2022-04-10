@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="ko" version="2.1">
+<TS version="2.1" language="ko">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -66,7 +66,7 @@
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>사용되지 않는 카테고리 제거</translation>
+        <translation>사용하지 않는 범주 제거</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -141,11 +141,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>프로그램 설정을 저장할 수 없습니다. qBittorrent가 접근할 수 없는 것 같습니다.</translation>
-    </message>
-    <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: Freenode #qbittorrent 채널</translation>
+        <translation>프로그램 기본설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>로그인</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">원 제작자</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -369,7 +361,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>원본 작성자</translation>
     </message>
 </context>
 <context>
@@ -509,15 +501,15 @@
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>대기열 가장 아래로</translation>
+        <translation>대기열 맨 아래</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>대기열에서 가장 아래로 이동합니다</translation>
+        <translation>대기열 맨 아래로 이동</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>대기열 가장 위로</translation>
+        <translation>대기열 맨 위</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
@@ -529,7 +521,7 @@
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>대기열에서 가장 위로 이동합니다</translation>
+        <translation>대기열 맨 위로 이동</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -676,7 +672,7 @@
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
-        <translation>다운로드가 완료된 .torrent 파일 복사 위치:</translation>
+        <translation>받기가 완료된 .torrent 파일 복사 위치:</translation>
     </message>
     <message>
         <source>Pre-allocate disk space for all files</source>
@@ -1189,10 +1185,6 @@
         <translation>나가는 포트(최소) [0: 사용 안 함]:</translation>
     </message>
     <message>
-        <source>IP Address to report to trackers (requires restart):</source>
-        <translation type="vanished">트래커에 보고할 IP 주소(다시 시작):</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>완료했을 때 토렌트 다시 검사</translation>
     </message>
@@ -1466,7 +1458,7 @@
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>역방향 프록시 지원 활성화</translation>
+        <translation>역방향 프록시 지원 사용</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1478,14 +1470,30 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>트래커에 보고된 IP 주소(다시 시작해야 함):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>시스템이 사용하지 않는 포트를 선택하도록 하려면 0으로 지정</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
+        <translation>SSRF(서버 측 요청 위조) 완화:</translation>
+    </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1560,12 +1568,12 @@
         <translation>IP:포트 복사</translation>
     </message>
     <message>
-        <source>Add a new peer...</source>
-        <translation>새 피어 추가...</translation>
-    </message>
-    <message>
         <source>Country/Region</source>
         <translation>국가/지역</translation>
+    </message>
+    <message>
+        <source>Add peers...</source>
+        <translation>피어 추가...</translation>
     </message>
 </context>
 <context>
@@ -1786,7 +1794,7 @@
     </message>
     <message>
         <source>Progress:</source>
-        <translation type="unfinished" />
+        <translation>진행률:</translation>
     </message>
 </context>
 <context>
@@ -1851,11 +1859,11 @@
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation>총 공유 비율:</translation>
+        <translation>전시간 공유 비율:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation>총 받기:</translation>
+        <translation>전시간 받기:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -1863,7 +1871,7 @@
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation>총 올리기:</translation>
+        <translation>전시간 올리기:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -1887,7 +1895,7 @@
     </message>
     <message>
         <source>Total queued size:</source>
-        <translation>총 대기열 크기:</translation>
+        <translation>전체 대기열 크기:</translation>
     </message>
 </context>
 <context>
@@ -2150,7 +2158,7 @@
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>총 크기</translation>
+        <translation>전체 크기</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2261,7 +2269,11 @@
     </message>
     <message>
         <source>Size</source>
-        <translation>크기</translation>
+        <translation type="vanished">크기</translation>
+    </message>
+    <message>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2359,7 +2371,7 @@
     </message>
     <message>
         <source>Categories</source>
-        <translation>카테고리</translation>
+        <translation>범주</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2434,7 +2446,7 @@
     <message>
         <source>Move to bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation>최하단으로 이동</translation>
+        <translation>맨 아래로 이동</translation>
     </message>
     <message>
         <source>Set location...</source>
@@ -2608,7 +2620,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>URL로부터 받기</translation>
+        <translation>URL에서 받기</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2749,15 +2761,11 @@
     </message>
     <message>
         <source>All categories</source>
-        <translation>모든 카테고리</translation>
+        <translation>모든 범주</translation>
     </message>
     <message>
         <source>Search in:</source>
         <translation>찾기:</translation>
-    </message>
-    <message>
-        <source>Results (showing</source>
-        <translation type="vanished">결과 (보기</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2769,7 +2777,7 @@
     </message>
     <message>
         <source>Only enabled</source>
-        <translation>사용중인 것만</translation>
+        <translation>사용된 경우에만</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2793,11 +2801,11 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>결과</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>표시</translation>
     </message>
 </context>
 <context>
@@ -2824,7 +2832,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -2874,7 +2882,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용</translation>
+        <translation>사용됨</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3025,10 +3033,6 @@
         <translation>국적:</translation>
     </message>
     <message>
-        <source>Author</source>
-        <translation type="vanished">제작자</translation>
-    </message>
-    <message>
         <source>Software Used</source>
         <translation>사용된 소프트웨어</translation>
     </message>
@@ -3038,11 +3042,19 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>작성자</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>프랑스</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation>qBittorrent 마스코트</translation>
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
+        <translation>qBittorrent 아이콘</translation>
     </message>
 </context>
 <context>
@@ -3178,7 +3190,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 피드 가져오기가 이제 비활성화되었습니다! 응용 프로그램 설정에서 활성화할 수 있습니다.</translation>
+        <translation>RSS 피드 가져오기가 이제 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3221,7 +3233,7 @@
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>RSS 토렌트 자동 받기를 사용 중지했습니다! 프로그램 옵션에서 사용으로 설정할 수 있습니다.</translation>
+        <translation>지금 RSS 토렌트의 자동 받기가 사용 중지되었습니다! 응용 프로그램 설정에서 사용할 수 있습니다.</translation>
     </message>
     <message>
         <source>Rule Definition</source>

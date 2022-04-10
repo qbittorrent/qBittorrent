@@ -32,6 +32,7 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
+#include <QtGlobal>
 #include <QHash>
 #include <QMetaType>
 
@@ -65,6 +66,9 @@ namespace BitTorrent
 
         InfoHash() = default;
         InfoHash(const WrappedType &nativeHash);
+#ifdef QBT_USES_LIBTORRENT2
+        InfoHash(const SHA1Hash &v1, const SHA256Hash &v2);
+#endif
 
         bool isValid() const;
         SHA1Hash v1() const;
@@ -78,10 +82,17 @@ namespace BitTorrent
         WrappedType m_nativeHash;
     };
 
-    uint qHash(const TorrentID &key, uint seed);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    std::size_t qHash(const TorrentID &key, std::size_t seed = 0);
+#else
+    uint qHash(const TorrentID &key, uint seed = 0);
+#endif
 
     bool operator==(const InfoHash &left, const InfoHash &right);
     bool operator!=(const InfoHash &left, const InfoHash &right);
 }
 
 Q_DECLARE_METATYPE(BitTorrent::TorrentID)
+// We can declare it as Q_MOVABLE_TYPE to improve performance
+// since base type uses QSharedDataPointer as the only member
+Q_DECLARE_TYPEINFO(BitTorrent::TorrentID, Q_MOVABLE_TYPE);

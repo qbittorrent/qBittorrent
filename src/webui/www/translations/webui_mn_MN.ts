@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="mn_MN" version="2.1">
+<TS version="2.1" language="mn_MN">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -144,10 +144,6 @@
         <translation>Тохиргоог хадгалж чадсангүй, qBittorrent-н хандалт таслалдсан байж болно.</translation>
     </message>
     <message>
-        <source>IRC: #qbittorrent on Freenode</source>
-        <translation>IRC: Freenode дээр #qbittorrent</translation>
-    </message>
-    <message>
         <source>Unknown</source>
         <translation>Тодорхойгүй</translation>
     </message>
@@ -182,10 +178,6 @@
     <message>
         <source>Login</source>
         <translation>Нэвтрэх</translation>
-    </message>
-    <message>
-        <source>Original authors</source>
-        <translation type="vanished">Анхны зохиогчид</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -578,6 +570,10 @@
     <message>
         <source>RSS</source>
         <translation>RSS</translation>
+    </message>
+    <message>
+        <source>Filters Sidebar</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1484,59 +1480,75 @@
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Disk queue size:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log performance warnings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Maximum outstanding requests to a single peer:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Port</source>
-        <translation type="unfinished" />
+        <translation>Порт</translation>
     </message>
     <message>
         <source>Flags</source>
-        <translation type="unfinished" />
+        <translation>Туг</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished" />
+        <translation>Холболтууд</translation>
     </message>
     <message>
         <source>Client</source>
         <comment>i.e.: Client application</comment>
-        <translation type="unfinished" />
+        <translation>Үлйчлүүлэгч</translation>
     </message>
     <message>
         <source>Progress</source>
         <comment>i.e: % downloaded</comment>
-        <translation type="unfinished" />
+        <translation>Явц</translation>
     </message>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation type="unfinished" />
+        <translation>Татах хурд</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation type="unfinished" />
+        <translation>Түгээх хурд</translation>
     </message>
     <message>
         <source>Downloaded</source>
         <comment>i.e: total data downloaded</comment>
-        <translation type="unfinished" />
+        <translation>Татагдсан</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>i.e: total data uploaded</comment>
-        <translation type="unfinished" />
+        <translation>Түгээсэн</translation>
     </message>
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>Хамааралтай</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1556,11 +1568,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new peer...</source>
+        <source>Country/Region</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Country/Region</source>
+        <source>Add peers...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2256,7 +2268,7 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
+        <source>Total Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2958,67 +2970,67 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Алдаа хяналт:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Тухай</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Хэлэлцүүлэг:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>Ц-шуудан:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Одоогийн хөгжүүлэгч</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Нүүр хуудас:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Грек</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Талархал</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Дэвшилтэт BitTorrent татагч нь Qt хэрэглүүрүүд болон libtorrent-rasterbar дээр тулгуурлан C++ хэл дээр бичигдсэн.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Нэр:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-ийн тухай</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Эрх</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Орчуулагчид</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent-ийг дараах сангууд дээр тулгуурлан бүтээсэн:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Улс:</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Хэрэглэгдсэн програмууд</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3030,6 +3042,14 @@
     </message>
     <message>
         <source>France</source>
+        <translation>Франц</translation>
+    </message>
+    <message>
+        <source>qBittorrent Mascot</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>qBittorrent icon</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3189,7 +3209,7 @@
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Татах дүрмүүд</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
@@ -3197,27 +3217,27 @@
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation type="unfinished" />
+        <translation>Дурын тооны тэмдэгтүүдийг илэрхийлэхэд *</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation type="unfinished" />
+        <translation>бүх нийтлэлд хамаарна.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Улирал шүүх дүрэм:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>RSS торрентийг шууд татаж боломжгүй байна! Уг боломжыг хэрэглэхийг хүсвэл тохиргооноос идэвхжүүлнэ үү.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Дүрмийн тайлбар</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Хадгалах:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
@@ -3225,19 +3245,19 @@
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Шинэ дүрмийн нэр</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>Цэг таслалаар төгсөх ёстой</translation>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation type="unfinished" />
+        <translation>Дурын 1 тэмдэгтийг илэрхийлэхэд ?</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>Хэрэг явдал шүүлтүүр тулгуурлан нийтлэл тааруулна.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -3249,15 +3269,15 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation type="unfinished" />
+        <translation>| тэмдэгтийг ЭСВЭЛ нөхцөлтэй адилтгана</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>Татагдсан ангиудыг арилгах</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation type="unfinished" />
+        <translation>Хоосон зайг БА нөхцөлтэй адилтгана (дараалал хамаарахгүй, бүх үгэнд)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3265,19 +3285,19 @@
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Жишээ:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Шинэ дүрэм нэмэх...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>Сонгогдсон дүрэмд хамаарах татагдсан ангиудын жагсаалтыг цэвэрлэх гэж байгаадаа итгэлтэй байна уу?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Заавал агуулах:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3285,47 +3305,47 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Өөр байршилд хадгалах</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Агуулж үл болох:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Нэг тоо: &lt;б&gt; 1x25; &lt;/ B&gt; улиралд нэг нь түүхийг 25-таарч</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Тохиолдож Гурван хүрээ төрлийн дэмжигдсэн байна:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Таны сонгосон татаж авах журам устгахыг хүсч та итгэлтэй байна уу?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Үндсэн тохиргоог хэрэглэх</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Энгийн хүрээ: &lt;б&gt; 1x25-40b&gt; улиралд нэг нь 40 замаар тохиолдолууд 25 таарч</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Шинэ дүрэм нэрийг оруулна уу</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Дүрмийн нэрийг нь өөрчилснөөр</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Үргэлж</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation>Ангийн дугаар нь заавал бичигдсэн байх шаардлагатай</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3333,7 +3353,7 @@
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Дүрмийг устгахад баталгаажуулах</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
@@ -3341,7 +3361,7 @@
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Ангийн шүүлтүүр:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3349,11 +3369,11 @@
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Улирал тоо заавал тэгээс ялгаатай утга нь</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Үгүй</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
@@ -3361,35 +3381,35 @@
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>өдрүүд</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
-        <translation type="unfinished" />
+        <translation>Ангийн ухаалаг шүүлтүүр хэрэглэх</translation>
     </message>
     <message>
         <source>If word order is important use * instead of whitespace.</source>
-        <translation type="unfinished" />
+        <translation>Үгсийн дарааллыг чухалчлах бол хоосон зайны оронд * хэрэглээрэй.</translation>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Завсарлага:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Шинэ татах дүрмийн нэрээ бичнэ үү.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
-        <translation type="unfinished" />
+        <translation>Тусгай тэмдэгтийн горим: хэрэглэж болох</translation>
     </message>
     <message>
         <source> will exclude all articles.</source>
-        <translation type="unfinished" />
+        <translation>бүх нийтлэлд үл хамаарна.</translation>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Дүрэмийг устгах</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
@@ -3397,7 +3417,7 @@
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>Дүрмийн нэрийг өөрчлөх...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
@@ -3405,28 +3425,29 @@
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>Татагдсан ангиудыг арилгах...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Ангийн ухаалаг шүүлтүүр нь ангийн дугаарыг шалгаж, давхардсан анги татахаас сэргийлэх боломжыг олгоно. 
+Дэмжих хэлбэржүүлэлт: S01E01, 1x1, 2017.12.31 болон 31.12.2017 (Огноон хэлбэржүүлэлтэнд мөн дундуур зураасаар бичсэнийг уншина)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Торрентийн контент төлөвлөлт:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Дэд хавтас үүсгэх</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Анхны загвар</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Дэд хавтас үүсгэхгүй</translation>
     </message>
 </context>
 <context>
@@ -3460,7 +3481,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>Уншаагүй</translation>
     </message>
 </context>
 </TS>

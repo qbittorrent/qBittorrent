@@ -37,14 +37,14 @@
 #include "base/global.h"
 #include "apierror.h"
 
-const char KEY_TRANSFER_DLSPEED[] = "dl_info_speed";
-const char KEY_TRANSFER_DLDATA[] = "dl_info_data";
-const char KEY_TRANSFER_DLRATELIMIT[] = "dl_rate_limit";
-const char KEY_TRANSFER_UPSPEED[] = "up_info_speed";
-const char KEY_TRANSFER_UPDATA[] = "up_info_data";
-const char KEY_TRANSFER_UPRATELIMIT[] = "up_rate_limit";
-const char KEY_TRANSFER_DHT_NODES[] = "dht_nodes";
-const char KEY_TRANSFER_CONNECTION_STATUS[] = "connection_status";
+const QString KEY_TRANSFER_DLSPEED = u"dl_info_speed"_qs;
+const QString KEY_TRANSFER_DLDATA = u"dl_info_data"_qs;
+const QString KEY_TRANSFER_DLRATELIMIT = u"dl_rate_limit"_qs;
+const QString KEY_TRANSFER_UPSPEED = u"up_info_speed"_qs;
+const QString KEY_TRANSFER_UPDATA = u"up_info_data"_qs;
+const QString KEY_TRANSFER_UPRATELIMIT = u"up_rate_limit"_qs;
+const QString KEY_TRANSFER_DHT_NODES = u"dht_nodes"_qs;
+const QString KEY_TRANSFER_CONNECTION_STATUS = u"connection_status"_qs;
 
 // Returns the global transfer information in JSON format.
 // The return value is a JSON-formatted dictionary.
@@ -71,9 +71,9 @@ void TransferController::infoAction()
     dict[KEY_TRANSFER_UPRATELIMIT] = BitTorrent::Session::instance()->uploadSpeedLimit();
     dict[KEY_TRANSFER_DHT_NODES] = static_cast<qint64>(sessionStatus.dhtNodes);
     if (!BitTorrent::Session::instance()->isListening())
-        dict[KEY_TRANSFER_CONNECTION_STATUS] = QLatin1String("disconnected");
+        dict[KEY_TRANSFER_CONNECTION_STATUS] = u"disconnected"_qs;
     else
-        dict[KEY_TRANSFER_CONNECTION_STATUS] = QLatin1String(sessionStatus.hasIncomingConnections ? "connected" : "firewalled");
+        dict[KEY_TRANSFER_CONNECTION_STATUS] = sessionStatus.hasIncomingConnections ? u"connected"_qs : u"firewalled"_qs;
 
     setResult(dict);
 }
@@ -90,8 +90,8 @@ void TransferController::downloadLimitAction()
 
 void TransferController::setUploadLimitAction()
 {
-    requireParams({"limit"});
-    qlonglong limit = params()["limit"].toLongLong();
+    requireParams({u"limit"_qs});
+    qlonglong limit = params()[u"limit"_qs].toLongLong();
     if (limit == 0) limit = -1;
 
     BitTorrent::Session::instance()->setUploadSpeedLimit(limit);
@@ -99,8 +99,8 @@ void TransferController::setUploadLimitAction()
 
 void TransferController::setDownloadLimitAction()
 {
-    requireParams({"limit"});
-    qlonglong limit = params()["limit"].toLongLong();
+    requireParams({u"limit"_qs});
+    qlonglong limit = params()[u"limit"_qs].toLongLong();
     if (limit == 0) limit = -1;
 
     BitTorrent::Session::instance()->setDownloadSpeedLimit(limit);
@@ -119,9 +119,9 @@ void TransferController::speedLimitsModeAction()
 
 void TransferController::banPeersAction()
 {
-    requireParams({"peers"});
+    requireParams({u"peers"_qs});
 
-    const QStringList peers = params()["peers"].split('|');
+    const QStringList peers = params()[u"peers"_qs].split(u'|');
     for (const QString &peer : peers)
     {
         const BitTorrent::PeerAddress addr = BitTorrent::PeerAddress::parse(peer.trimmed());

@@ -30,6 +30,7 @@
 
 #include <algorithm>
 
+#include <QtGlobal>
 #include <QApplication>
 #include <QClipboard>
 #include <QHeaderView>
@@ -40,7 +41,6 @@
 #include <QShortcut>
 #include <QSortFilterProxyModel>
 #include <QStandardItemModel>
-#include <QTableView>
 #include <QVector>
 #include <QWheelEvent>
 
@@ -71,10 +71,17 @@ bool operator==(const PeerEndpoint &left, const PeerEndpoint &right)
     return (left.address == right.address) && (left.connectionType == right.connectionType);
 }
 
-uint qHash(const PeerEndpoint &peerEndpoint, const uint seed)
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+std::size_t qHash(const PeerEndpoint &peerEndpoint, const std::size_t seed = 0)
+{
+    return qHashMulti(seed, peerEndpoint.address, peerEndpoint.connectionType);
+}
+#else
+uint qHash(const PeerEndpoint &peerEndpoint, const uint seed = 0)
 {
     return (qHash(peerEndpoint.address, seed) ^ ::qHash(peerEndpoint.connectionType));
 }
+#endif
 
 PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     : QTreeView(parent)
@@ -89,6 +96,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     setAllColumnsShowFocus(true);
     setEditTriggers(QAbstractItemView::NoEditTriggers);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    header()->setFirstSectionMovable(true);
     header()->setStretchLastSection(false);
     header()->setTextElideMode(Qt::ElideRight);
 
@@ -155,7 +163,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     updatePeerHostNameResolutionState();
     // SIGNAL/SLOT
     header()->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayToggleColumnsMenu);
+    connect(header(), &QWidget::customContextMenuRequested, this, &PeerListWidget::displayColumnHeaderMenu);
     connect(header(), &QHeaderView::sectionClicked, this, &PeerListWidget::handleSortColumnChanged);
     connect(header(), &QHeaderView::sectionMoved, this, &PeerListWidget::saveSettings);
     connect(header(), &QHeaderView::sectionResized, this, &PeerListWidget::saveSettings);
@@ -163,13 +171,6 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     handleSortColumnChanged(header()->sortIndicatorSection());
     const auto *copyHotkey = new QShortcut(QKeySequence::Copy, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(copyHotkey, &QShortcut::activated, this, &PeerListWidget::copySelectedPeers);
-
-    // This hack fixes reordering of first column with Qt5.
-    // https://github.com/qtproject/qtbase/commit/e0fc088c0c8bc61dbcaf5928b24986cd61a22777
-    QTableView unused;
-    unused.setVerticalHeader(this->header());
-    this->header()->setParent(this);
-    unused.setVerticalHeader(new QHeaderView(Qt::Horizontal));
 }
 
 PeerListWidget::~PeerListWidget()
@@ -177,47 +178,46 @@ PeerListWidget::~PeerListWidget()
     saveSettings();
 }
 
-void PeerListWidget::displayToggleColumnsMenu(const QPoint &)
+void PeerListWidget::displayColumnHeaderMenu()
 {
     QMenu *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
+    menu->setToolTipsVisible(true);
 
     for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
     {
         if ((i == PeerListColumns::COUNTRY) && !Preferences::instance()->resolvePeerCountries())
             continue;
 
-        QAction *myAct = menu->addAction(m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString());
-        myAct->setCheckable(true);
-        myAct->setChecked(!isColumnHidden(i));
-        myAct->setData(i);
+        const auto columnName = m_listModel->headerData(i, Qt::Horizontal, Qt::DisplayRole).toString();
+        QAction *action = menu->addAction(columnName, this, [this, i](const bool checked)
+        {
+            if (!checked && (visibleColumnsCount() <= 1))
+                return;
+
+            setColumnHidden(i, !checked);
+
+            if (checked && (columnWidth(i) <= 5))
+                resizeColumnToContents(i);
+
+            saveSettings();
+        });
+        action->setCheckable(true);
+        action->setChecked(!isColumnHidden(i));
     }
 
-    connect(menu, &QMenu::triggered, this, [this](const QAction *action)
+    menu->addSeparator();
+    QAction *resizeAction = menu->addAction(tr("Resize columns"), this, [this]()
     {
-        int visibleCols = 0;
-        for (int i = 0; i < PeerListColumns::IP_HIDDEN; ++i)
+        for (int i = 0, count = header()->count(); i < count; ++i)
         {
             if (!isColumnHidden(i))
-                ++visibleCols;
-
-            if (visibleCols > 1)
-                break;
+                resizeColumnToContents(i);
         }
-
-        const int col = action->data().toInt();
-
-        if (!isColumnHidden(col) && (visibleCols == 1))
-            return;
-
-        setColumnHidden(col, !isColumnHidden(col));
-
-        if (!isColumnHidden(col) && (columnWidth(col) <= 5))
-            resizeColumnToContents(col);
-
         saveSettings();
     });
+    resizeAction->setToolTip(tr("Resize all non-hidden columns to the size of their contents"));
 
     menu->popup(QCursor::pos());
 }
@@ -260,7 +260,7 @@ void PeerListWidget::updatePeerCountryResolutionState()
     }
 }
 
-void PeerListWidget::showPeerListMenu(const QPoint &)
+void PeerListWidget::showPeerListMenu()
 {
     BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
     if (!torrent) return;
@@ -269,7 +269,7 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setToolTipsVisible(true);
 
-    QAction *addNewPeer = menu->addAction(UIThemeManager::instance()->getIcon("user-group-new"), tr("Add peers...")
+    QAction *addNewPeer = menu->addAction(UIThemeManager::instance()->getIcon(u"user-group-new"_qs), tr("Add peers...")
         , this, [this, torrent]()
     {
         const QVector<BitTorrent::PeerAddress> peersList = PeersAdditionDialog::askForPeers(this);
@@ -282,10 +282,10 @@ void PeerListWidget::showPeerListMenu(const QPoint &)
         else if (peerCount > 0)
             QMessageBox::information(this, tr("Adding peers"), tr("Peers are added to this torrent."));
     });
-    QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon("edit-copy"), tr("Copy IP:port")
+    QAction *copyPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy IP:port")
         , this, &PeerListWidget::copySelectedPeers);
     menu->addSeparator();
-    QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon("user-group-delete"), tr("Ban peer permanently")
+    QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"user-group-delete"_qs), tr("Ban peer permanently")
         , this, &PeerListWidget::banSelectedPeers);
 
     // disable actions
@@ -352,13 +352,13 @@ void PeerListWidget::copySelectedPeers()
         const QString ip = m_listModel->item(row, PeerListColumns::IP_HIDDEN)->text();
         const QString port = m_listModel->item(row, PeerListColumns::PORT)->text();
 
-        if (!ip.contains('.'))  // IPv6
-            selectedPeers << ('[' + ip + "]:" + port);
+        if (!ip.contains(u'.'))  // IPv6
+            selectedPeers << (u'[' + ip + u"]:" + port);
         else  // IPv4
-            selectedPeers << (ip + ':' + port);
+            selectedPeers << (ip + u':' + port);
     }
 
-    QApplication::clipboard()->setText(selectedPeers.join('\n'));
+    QApplication::clipboard()->setText(selectedPeers.join(u'\n'));
 }
 
 void PeerListWidget::clear()
@@ -460,7 +460,7 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
     const QString client = peer.client().toHtmlEscaped();
     setModelData(row, PeerListColumns::CLIENT, client, client, {}, client);
-    setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + '%'), peer.progress(), intDataTextAlignment);
+    setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + u'%'), peer.progress(), intDataTextAlignment);
     const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
     setModelData(row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
     const QString upSpeed = (hideValues && (peer.payloadUpSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadUpSpeed(), true);
@@ -469,13 +469,15 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::TOT_DOWN, totalDown, peer.totalDownload(), intDataTextAlignment);
     const QString totalUp = (hideValues && (peer.totalUpload() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.totalUpload());
     setModelData(row, PeerListColumns::TOT_UP, totalUp, peer.totalUpload(), intDataTextAlignment);
-    setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + '%'), peer.relevance(), intDataTextAlignment);
+    setModelData(row, PeerListColumns::RELEVANCE, (Utils::String::fromDouble(peer.relevance() * 100, 1) + u'%'), peer.relevance(), intDataTextAlignment);
 
-    const QStringList downloadingFiles {torrent->hasMetadata()
-                ? torrent->info().filesForPiece(peer.downloadingPieceIndex())
-                : QStringList()};
-    const QString downloadingFilesDisplayValue = downloadingFiles.join(';');
-    setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(QLatin1Char('\n')));
+    const PathList filePaths = torrent->info().filesForPiece(peer.downloadingPieceIndex());
+    QStringList downloadingFiles;
+    downloadingFiles.reserve(filePaths.size());
+    for (const Path &filePath : filePaths)
+        downloadingFiles.append(filePath.toString());
+    const QString downloadingFilesDisplayValue = downloadingFiles.join(u';');
+    setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(u'\n'));
 
     if (m_resolver)
         m_resolver->resolve(peerEndpoint.address.ip);
@@ -490,6 +492,18 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
             m_listModel->setData(m_listModel->index(row, PeerListColumns::COUNTRY), countryName, Qt::ToolTipRole);
         }
     }
+}
+
+int PeerListWidget::visibleColumnsCount() const
+{
+    int count = 0;
+    for (int i = 0, iMax = header()->count(); i < iMax; ++i)
+    {
+        if (!isColumnHidden(i))
+            ++count;
+    }
+
+    return count;
 }
 
 void PeerListWidget::handleResolved(const QHostAddress &ip, const QString &hostname) const
@@ -516,9 +530,9 @@ void PeerListWidget::wheelEvent(QWheelEvent *event)
     {
         // Shift + scroll = horizontal scroll
         event->accept();
-        QWheelEvent scrollHEvent(event->position(), event->globalPosition()
+        QWheelEvent scrollHEvent {event->position(), event->globalPosition()
             , event->pixelDelta(), event->angleDelta().transposed(), event->buttons()
-            , event->modifiers(), event->phase(), event->inverted(), event->source());
+            , event->modifiers(), event->phase(), event->inverted(), event->source()};
         QTreeView::wheelEvent(&scrollHEvent);
         return;
     }

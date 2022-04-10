@@ -65,7 +65,7 @@ SpeedWidget::SpeedWidget(PropertiesWidget *parent)
     m_hlayout = new QHBoxLayout();
     m_hlayout->setContentsMargins(0, 0, 0, 0);
 
-    m_periodLabel = new QLabel("<b>" + tr("Period:") + "</b>");
+    m_periodLabel = new QLabel(u"<b>" + tr("Period:") + u"</b>");
 
     m_periodCombobox = new QComboBox();
     m_periodCombobox->addItem(tr("1 Minute"));
