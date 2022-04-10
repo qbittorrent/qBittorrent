@@ -34,6 +34,7 @@
 #include <QThread>
 
 #include "base/asyncfilestorage.h"
+#include "base/global.h"
 #include "scheduleday.h"
 
 class Application;
@@ -45,8 +46,8 @@ class BandwidthScheduler : public QObject
 
     friend class ::Application;
 
-    const QString ScheduleFileName = QStringLiteral("schedule.json");
-    const QStringList DAY_KEYS{"mon", "tue", "wed", "thu", "fri", "sat", "sun"};
+    const QString SCHEDULE_FILE_NAME = u"schedule.json"_qs;
+    const QStringList DAY_KEYS {u"mon"_qs, u"tue"_qs, u"wed"_qs, u"thu"_qs, u"fri"_qs, u"sat"_qs, u"sun"_qs};
 
 public:
     explicit BandwidthScheduler(QObject *parent = nullptr);

@@ -1,6 +1,6 @@
 #include "scheduleentry.h"
 
-#include "base/logger.h"
+#include "base/global.h"
 
 void ScheduleEntry::setStartTime(const QTime time)
 {
@@ -38,18 +38,18 @@ QJsonObject ScheduleEntry::toJsonObject() const
 {
     return
     {
-        {"start", startTime.toString("hh:mm")},
-        {"end", endTime.toString("hh:mm")},
-        {"dl", downloadSpeed},
-        {"ul", uploadSpeed},
-        {"pause", pause}
+        {u"start"_qs, startTime.toString(u"hh:mm"_qs)},
+        {u"end"_qs, endTime.toString(u"hh:mm"_qs)},
+        {u"dl"_qs, downloadSpeed},
+        {u"ul"_qs, uploadSpeed},
+        {u"pause"_qs, pause}
     };
 }
 
 ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject &jsonObject)
 {
-    QTime startTime = QTime::fromString(jsonObject["start"].toString(), "hh:mm");;
-    QTime endTime = QTime::fromString(jsonObject["end"].toString(), "hh:mm");;
+    QTime startTime = QTime::fromString(jsonObject[u"start"_qs].toString(), u"hh:mm"_qs);;
+    QTime endTime = QTime::fromString(jsonObject[u"end"_qs].toString(), u"hh:mm"_qs);;
 
     if (startTime > endTime)
         std::swap(startTime, endTime);
@@ -58,8 +58,8 @@ ScheduleEntry ScheduleEntry::fromJsonObject(const QJsonObject &jsonObject)
     {
         startTime,
         endTime,
-        jsonObject["dl"].toInt(),
-        jsonObject["ul"].toInt(),
-        jsonObject["pause"].toBool()
+        jsonObject[u"dl"_qs].toInt(),
+        jsonObject[u"ul"_qs].toInt(),
+        jsonObject[u"pause"_qs].toBool()
     };
 }

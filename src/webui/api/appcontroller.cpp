@@ -198,7 +198,7 @@ void AppController::preferencesAction()
     // Scheduling
     data[u"scheduler_enabled"_qs] = session->isBandwidthSchedulerEnabled();
     BandwidthScheduler::instance()->revertSchedule();
-    data[u"scheduler_json"_qs] = QString(BandwidthScheduler::instance()->getJson(false));
+    data[u"scheduler_json"_qs] = QString::fromLatin1(BandwidthScheduler::instance()->getJson(false));
     const QLocale locale{pref->getLocale()};
     data[u"locale_first_day"_qs] = locale.firstDayOfWeek() - 1;
     data[u"current_day_of_week"_qs] = QDate::currentDate().dayOfWeek() - 1;
@@ -235,7 +235,7 @@ void AppController::preferencesAction()
     // Language
     data[u"locale"_qs] = locale.name();
     data[u"performance_warning"_qs] = session->isPerformanceWarningEnabled();
-  
+
     // HTTP Server
     data[u"web_ui_domain_list"_qs] = pref->getServerDomains();
     data[u"web_ui_address"_qs] = pref->getWebUiAddress();

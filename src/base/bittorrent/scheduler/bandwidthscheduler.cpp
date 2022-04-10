@@ -48,18 +48,17 @@ BandwidthScheduler::BandwidthScheduler(QObject *parent)
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
-    m_fileStorage = new AsyncFileStorage(
-        Utils::Fs::expandPathAbs(specialFolderLocation(SpecialFolder::Config)));
+    m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config));
 
     if (!m_fileStorage)
-        throw RuntimeError("Directory for scheduler data is unavailable.");
+        throw RuntimeError(tr("Directory for scheduler data is unavailable."));
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
-    connect(m_fileStorage, &AsyncFileStorage::failed, [](const QString &fileName, const QString &errorString)
+    connect(m_fileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save scheduler data in %1. Error: %2")
-                .arg(fileName, errorString), Log::CRITICAL);
+                .arg(fileName.toString(), errorString), Log::CRITICAL);
     });
 
     m_ioThread->start();
@@ -109,28 +108,27 @@ void BandwidthScheduler::backupSchedule(const QString &errorMessage, bool preser
 {
     LogMsg(errorMessage, Log::CRITICAL);
 
-    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
-    QString errorFileAbsPath = fileAbsPath + ".error";
+    Path filePath = m_fileStorage->storageDir() / Path(SCHEDULE_FILE_NAME);
+    Path errorFilePath = filePath + u".error"_qs;
 
     int counter = 0;
-    while (QFile::exists(errorFileAbsPath))
+    while (errorFilePath.exists())
     {
         ++counter;
-        errorFileAbsPath = fileAbsPath + ".error" + QString::number(counter);
+        errorFilePath = filePath + u".error"_qs + QString::number(counter);
     }
 
-    LogMsg(tr("Backing up errored schedule file in %1").arg(errorFileAbsPath), Log::WARNING);
+    LogMsg(tr("Backing up errored schedule file in %1").arg(errorFilePath.toString()), Log::WARNING);
 
     if (preserveOriginal)
-        QFile::copy(fileAbsPath, errorFileAbsPath);
+        QFile::copy(filePath.toString(), errorFilePath.toString());
     else
-        QFile::rename(fileAbsPath, errorFileAbsPath);
+        QFile::rename(filePath.toString(), errorFilePath.toString());
 }
 
 bool BandwidthScheduler::loadScheduleFromDisk()
 {
-    QString fileAbsPath = m_fileStorage->storageDir().absoluteFilePath(ScheduleFileName);
-    QFile file(fileAbsPath);
+    QFile file {(m_fileStorage->storageDir() / Path(SCHEDULE_FILE_NAME)).data()};
 
     if (!file.exists())
         return importLegacyScheduler();
@@ -187,7 +185,7 @@ bool BandwidthScheduler::loadScheduleFromDisk()
 
 void BandwidthScheduler::saveScheduleToDisk() const
 {
-    m_fileStorage->store(ScheduleFileName, getJson(true));
+    m_fileStorage->store(Path(SCHEDULE_FILE_NAME), getJson(true));
 }
 
 QByteArray BandwidthScheduler::getJson(bool onDisk) const

@@ -707,9 +707,9 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     {
         ScheduleEntry scheduleEntry = scheduleEntries[i];
 
-        QString dlText = (scheduleEntry.downloadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+        QString dlText = (scheduleEntry.downloadSpeed == 0) ? C_INFINITY
                        : Utils::Misc::friendlyUnit(scheduleEntry.downloadSpeed * 1024, true);
-        QString ulText = (scheduleEntry.uploadSpeed == 0) ? QString::fromUtf8(C_INFINITY)
+        QString ulText = (scheduleEntry.uploadSpeed == 0) ? C_INFINITY
                        : Utils::Misc::friendlyUnit(scheduleEntry.uploadSpeed * 1024, true);
 
         auto *start = new QTableWidgetItem(locale.toString(scheduleEntry.startTime, QLocale::ShortFormat));
@@ -780,21 +780,21 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     menu->setAttribute(Qt::WA_DeleteOnClose);
     auto *theme = UIThemeManager::instance();
 
-    QAction *actionAddEntry = menu->addAction(theme->getIcon("list-add"), tr("Add entry"));
-    QAction *actionRemoveEntry = menu->addAction(theme->getIcon("list-remove"), tr("Remove entry"));
+    QAction *actionAddEntry = menu->addAction(theme->getIcon(u"list-add"_qs), tr("Add entry"));
+    QAction *actionRemoveEntry = menu->addAction(theme->getIcon(u"list-remove"_qs), tr("Remove entry"));
     menu->addSeparator();
-    QAction *actionCopy = menu->addAction(theme->getIcon("edit-copy"), tr("Copy"));
-    QAction *actionPaste = menu->addAction(theme->getIcon("edit-paste"), tr("Paste"));
-    QAction *actionCopyToOtherDays = menu->addAction(theme->getIcon("edit-copy"), tr("Copy selected to other days"));
+    QAction *actionCopy = menu->addAction(theme->getIcon(u"edit-copy"_qs), tr("Copy"));
+    QAction *actionPaste = menu->addAction(theme->getIcon(u"edit-paste"_qs), tr("Paste"));
+    QAction *actionCopyToOtherDays = menu->addAction(theme->getIcon(u"edit-copy"_qs), tr("Copy selected to other days"));
     menu->addSeparator();
-    QAction *actionClear = menu->addAction(theme->getIcon("edit-clear"), tr("Clear all"));
+    QAction *actionClear = menu->addAction(theme->getIcon(u"edit-clear"_qs), tr("Clear all"));
 
     const QList<ScheduleEntry> allEntries = scheduleDay->entries();
     const QList<QModelIndex> selectedRows = scheduleTable->selectionModel()->selectedRows();
 
     actionRemoveEntry->setDisabled(selectedRows.empty());
     actionCopy->setDisabled(selectedRows.empty());
-    actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat("application/json"));
+    actionPaste->setEnabled(QApplication::clipboard()->mimeData()->hasFormat(u"application/json"_qs));
     actionCopyToOtherDays->setDisabled(selectedRows.empty());
     actionClear->setDisabled(allEntries.empty());
 
@@ -811,13 +811,13 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
             jsonArray.append(allEntries.at(index.row()).toJsonObject());
 
         auto *mimeData = new QMimeData;
-        mimeData->setData("application/json", QJsonDocument(jsonArray).toJson());
+        mimeData->setData(u"application/json"_qs, QJsonDocument(jsonArray).toJson());
         QApplication::clipboard()->setMimeData(mimeData);
     });
 
     connect(actionPaste, &QAction::triggered, scheduleDay, [this, scheduleDay]()
     {
-        const QByteArray clipboard = QApplication::clipboard()->mimeData()->data("application/json");
+        const QByteArray clipboard = QApplication::clipboard()->mimeData()->data(u"application/json"_qs);
         const QJsonArray jsonArray = QJsonDocument::fromJson(clipboard).array();
 
         for (const QJsonValue &jValue : asConst(jsonArray))

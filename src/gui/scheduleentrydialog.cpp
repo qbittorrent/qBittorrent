@@ -3,6 +3,7 @@
 #include <QPushButton>
 
 #include "base/bittorrent/scheduler/scheduleentry.h"
+#include "base/global.h"
 #include "base/preferences.h"
 #include "ui_scheduleentrydialog.h"
 #include "utils.h"
@@ -30,8 +31,6 @@ ScheduleEntryDialog::ScheduleEntryDialog(QWidget *parent, ScheduleDay *scheduleD
     timesUpdated();
     connect(m_ui->timeEditFrom, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
     connect(m_ui->timeEditTo, &QTimeEdit::timeChanged, this, &ScheduleEntryDialog::timesUpdated);
-
-    Utils::Gui::resize(this);
 }
 
 ScheduleEntryDialog::~ScheduleEntryDialog()
@@ -50,9 +49,9 @@ bool ScheduleEntryDialog::isValid() const
     ScheduleEntry scheduleEntry = {timeFrom(), timeTo(), downloadSpeed(), uploadSpeed(), pause()};
     TimeRangeConflict conflict = m_scheduleDay->conflicts(scheduleEntry);
 
-    const QString borderStyle = "border: 1px solid %1";
-    QString startTimeColor = ((conflict & StartTime) == StartTime) ? "red" : "green";
-    QString endTimeColor = ((conflict & EndTime) == EndTime) ? "red" : "green";
+    const QString borderStyle = u"border: 1px solid %1"_qs;
+    QString startTimeColor = ((conflict & StartTime) == StartTime) ? u"red"_qs : u"green"_qs;
+    QString endTimeColor = ((conflict & EndTime) == EndTime) ? u"red"_qs : u"green"_qs;
     m_ui->timeEditFrom->setStyleSheet(borderStyle.arg(startTimeColor));
     m_ui->timeEditTo->setStyleSheet(borderStyle.arg(endTimeColor));
 
