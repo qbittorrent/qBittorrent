@@ -284,17 +284,18 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         m_filePaths.reserve(filesCount);
         m_indexMap.reserve(filesCount);
         m_filePriorities.reserve(filesCount);
-        const std::shared_ptr<const lt::torrent_info> currentInfo = m_nativeHandle.torrent_file();
-        const lt::file_storage &fileStorage = currentInfo->files();
         const std::vector<lt::download_priority_t> filePriorities =
-                resized(m_ltAddTorrentParams.file_priorities, fileStorage.num_files()
+                resized(m_ltAddTorrentParams.file_priorities, m_ltAddTorrentParams.ti->num_files()
                         , LT::toNative(m_ltAddTorrentParams.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
+
         for (int i = 0; i < filesCount; ++i)
         {
             const lt::file_index_t nativeIndex = m_torrentInfo.nativeIndexes().at(i);
             m_indexMap[nativeIndex] = i;
 
-            const auto filePath = Path(fileStorage.file_path(nativeIndex)).removedExtension(QB_EXT);
+            const auto fileIter = m_ltAddTorrentParams.renamed_files.find(nativeIndex);
+            const Path filePath = ((fileIter != m_ltAddTorrentParams.renamed_files.end())
+                        ? Path(fileIter->second).removedExtension(QB_EXT) : m_torrentInfo.filePath(i));
             m_filePaths.append(filePath);
 
             const auto priority = LT::fromNative(filePriorities[LT::toUnderlyingType(nativeIndex)]);
@@ -1465,7 +1466,7 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
 
     // Download first and last pieces first for every file in the torrent
 
-    std::vector<lt::download_priority_t> piecePriorities = nativeHandle().get_piece_priorities();
+    auto piecePriorities = std::vector<lt::download_priority_t>(m_torrentInfo.piecesCount(), LT::toNative(DownloadPriority::Ignored));
 
     // Updating file priorities is an async operation in libtorrent, when we just updated it and immediately query it
     // we might get the old/wrong values, so we rely on `updatedFilePrio` in this case.
@@ -1476,17 +1477,21 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
             continue;
 
         // Determine the priority to set
-        const DownloadPriority newPrio = enabled ? DownloadPriority::Maximum : filePrio;
-        const auto piecePrio = static_cast<lt::download_priority_t>(static_cast<int>(newPrio));
-        const TorrentInfo::PieceRange extremities = m_torrentInfo.filePieces(index);
+        const lt::download_priority_t piecePrio = LT::toNative(enabled ? DownloadPriority::Maximum : filePrio);
+        const TorrentInfo::PieceRange pieceRange = m_torrentInfo.filePieces(index);
 
         // worst case: AVI index = 1% of total file size (at the end of the file)
-        const int nNumPieces = std::ceil(fileSize(index) * 0.01 / pieceLength());
-        for (int i = 0; i < nNumPieces; ++i)
+        const int numPieces = std::ceil(fileSize(index) * 0.01 / pieceLength());
+        for (int i = 0; i < numPieces; ++i)
         {
-            piecePriorities[extremities.first() + i] = piecePrio;
-            piecePriorities[extremities.last() - i] = piecePrio;
+            piecePriorities[pieceRange.first() + i] = piecePrio;
+            piecePriorities[pieceRange.last() - i] = piecePrio;
         }
+
+        const int firstPiece = pieceRange.first() + numPieces;
+        const int lastPiece = pieceRange.last() - numPieces;
+        for (int index = firstPiece; index <= lastPiece; ++index)
+            piecePriorities[index] = LT::toNative(filePrio);
     }
 
     m_nativeHandle.prioritize_pieces(piecePriorities);
