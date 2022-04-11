@@ -324,15 +324,6 @@ void Application::processMessage(const QString &message)
 
 void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
-#if defined(Q_OS_WIN)
-    const auto chopPathSep = [](const QString &str) -> QString
-    {
-        if (str.endsWith(u'\\'))
-            return str.mid(0, (str.length() -1));
-        return str;
-    };
-#endif
-
     QString program = Preferences::instance()->getAutoRunProgram().trimmed();
 
     for (int i = (program.length() - 2); i >= 0; --i)
@@ -347,18 +338,10 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, QString::number(torrent->filesCount()));
             break;
         case u'D':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->savePath().toString()));
-#else
             program.replace(i, 2, torrent->savePath().toString());
-#endif
             break;
         case u'F':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->contentPath().toString()));
-#else
             program.replace(i, 2, torrent->contentPath().toString());
-#endif
             break;
         case u'G':
             program.replace(i, 2, torrent->tags().join(u","_qs));
@@ -379,11 +362,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->name());
             break;
         case u'R':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->rootPath().toString()));
-#else
             program.replace(i, 2, torrent->rootPath().toString());
-#endif
             break;
         case u'T':
             program.replace(i, 2, torrent->currentTracker());
