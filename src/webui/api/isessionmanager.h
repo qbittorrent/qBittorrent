@@ -36,14 +36,6 @@ struct ISession
 {
     virtual ~ISession() = default;
     virtual QString id() const = 0;
-    virtual QVariant getData(const QString &id) const = 0;
-    virtual void setData(const QString &id, const QVariant &data) = 0;
-
-    template <class T>
-    T getData(const QString &id) const
-    {
-        return this->getData(id).value<T>();
-    }
 };
 
 struct ISessionManager
