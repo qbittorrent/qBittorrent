@@ -29,8 +29,6 @@
 
 #include "application.h"
 
-#include <QtGlobal>
-
 #include <algorithm>
 
 #ifdef DISABLE_GUI
@@ -81,7 +79,6 @@
 #include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
-#include "base/path.h"
 #include "base/utils/misc.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
@@ -89,10 +86,10 @@
 
 #ifndef DISABLE_GUI
 #include "gui/addnewtorrentdialog.h"
-#include "gui/uithememanager.h"
-#include "gui/utils.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -120,12 +117,8 @@ namespace
 
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
-    , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
-#ifdef Q_OS_WIN
-    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
-#endif
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_qs))
     , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY(u"DeleteOld"_qs))
@@ -133,6 +126,9 @@ Application::Application(int &argc, char **argv)
     , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY(u"Age"_qs))
     , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY(u"AgeType"_qs))
     , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_qs))
+#ifdef Q_OS_WIN
+    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
+#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");

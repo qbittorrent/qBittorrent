@@ -17,6 +17,7 @@ HEADERS += \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/hidabletabwidget.h \
+    $$PWD/interfaces/iguiapplication.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
     $$PWD/lineedit.h \
     $$PWD/log/logfiltermodel.h \

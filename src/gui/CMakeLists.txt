@@ -50,6 +50,7 @@ add_library(qbt_gui STATIC
     fspathedit.h
     fspathedit_p.h
     hidabletabwidget.h
+    interfaces/iguiapplication.h
     ipsubnetwhitelistoptionsdialog.h
     lineedit.h
     log/logfiltermodel.h
