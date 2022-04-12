@@ -47,6 +47,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QLibraryInfo>
+#include <QMetaObject>
 #include <QProcess>
 
 #ifndef DISABLE_GUI
@@ -770,7 +771,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
     // According to the qt docs we shouldn't call quit() inside a slot.
     // aboutToQuit() is never emitted if the user hits "Cancel" in
     // the above dialog.
-    QTimer::singleShot(0, qApp, &QCoreApplication::quit);
+    QMetaObject::invokeMethod(qApp, &QCoreApplication::quit, Qt::QueuedConnection);
 }
 #endif
 
