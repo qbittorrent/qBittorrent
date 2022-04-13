@@ -29,6 +29,7 @@
 
 #include "searchhandler.h"
 
+#include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
 #include <QVector>
@@ -87,7 +88,8 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
     m_searchTimeout->start(180000); // 3 min
 
     // deferred start allows clients to handle starting-related signals
-    QTimer::singleShot(0, this, [this]() { m_searchProcess->start(QIODevice::ReadOnly); });
+    QMetaObject::invokeMethod(this, [this]() { m_searchProcess->start(QIODevice::ReadOnly); }
+        , Qt::QueuedConnection);
 }
 
 bool SearchHandler::isActive() const
