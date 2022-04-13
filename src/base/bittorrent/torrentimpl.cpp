@@ -228,7 +228,7 @@ namespace
 // TorrentImpl
 
 TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
-                                     , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
+                                     , const lt::torrent_handle &nativeHandle, LoadTorrentParams params)
     : QObject(session)
     , m_session(session)
     , m_nativeSession(nativeSession)
@@ -251,7 +251,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_useAutoTMM(params.useAutoTMM)
     , m_isStopped(params.stopped)
-    , m_ltAddTorrentParams(params.ltAddTorrentParams)
+    , m_ltAddTorrentParams(std::move(params.ltAddTorrentParams))
 {
     if (m_ltAddTorrentParams.ti)
     {
@@ -1874,7 +1874,7 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
         resumeData.downloadPath = m_downloadPath;
     }
 
-    m_session->handleTorrentResumeDataReady(this, resumeData);
+    m_session->handleTorrentResumeDataReady(this, std::move(resumeData));
 }
 
 void TorrentImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_failed_alert *p)

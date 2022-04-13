@@ -180,7 +180,7 @@ namespace BitTorrent
         void openDatabase() const;
         void closeDatabase() const;
 
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const;
+        void store(const TorrentID &id, LoadTorrentParams resumeData) const;
         void remove(const TorrentID &id) const;
         void storeQueue(const QVector<TorrentID> &queue) const;
 
@@ -335,11 +335,11 @@ std::optional<BitTorrent::LoadTorrentParams> BitTorrent::DBResumeDataStorage::lo
     return resumeData;
 }
 
-void BitTorrent::DBResumeDataStorage::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
+void BitTorrent::DBResumeDataStorage::store(const TorrentID &id, LoadTorrentParams resumeData) const
 {
-    QMetaObject::invokeMethod(m_asyncWorker, [this, id, resumeData]()
+    QMetaObject::invokeMethod(m_asyncWorker, [this, id, resumeData = std::move(resumeData)]() mutable
     {
-        m_asyncWorker->store(id, resumeData);
+        m_asyncWorker->store(id, std::move(resumeData));
     });
 }
 
@@ -504,10 +504,10 @@ void BitTorrent::DBResumeDataStorage::Worker::closeDatabase() const
     QSqlDatabase::removeDatabase(m_connectionName);
 }
 
-void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData) const
+void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, LoadTorrentParams resumeData) const
 {
     // We need to adjust native libtorrent resume data
-    lt::add_torrent_params p = resumeData.ltAddTorrentParams;
+    lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
     p.save_path = Profile::instance()->toPortablePath(Path(p.save_path))
             .toString().toStdString();
     if (resumeData.stopped)

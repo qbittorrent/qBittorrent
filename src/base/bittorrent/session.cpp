@@ -1767,7 +1767,7 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
     const auto loadingTorrentsIter = m_loadingTorrents.find(id);
     if (loadingTorrentsIter != m_loadingTorrents.end())
     {
-        LoadTorrentParams params = loadingTorrentsIter.value();
+        LoadTorrentParams params = std::move(loadingTorrentsIter.value());
         m_loadingTorrents.erase(loadingTorrentsIter);
 
         lt::add_torrent_params &p = params.ltAddTorrentParams;
@@ -1778,7 +1778,7 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
         for (int i = 0; i < fileNames.size(); ++i)
             p.renamed_files[nativeIndexes[i]] = fileNames[i].toString().toStdString();
 
-        loadTorrent(params);
+        loadTorrent(std::move(params));
     }
 }
 
@@ -2322,9 +2322,13 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     p.added_time = std::time(nullptr);
 
     if (!isFindingIncompleteFiles)
-        return loadTorrent(loadTorrentParams);
+        return loadTorrent(std::move(loadTorrentParams));
 
-    m_loadingTorrents.insert(id, loadTorrentParams);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    m_loadingTorrents[id] = std::move(loadTorrentParams);
+#else
+    m_loadingTorrents.emplace(id, std::move(loadTorrentParams));
+#endif
     return true;
 }
 
@@ -2347,10 +2351,15 @@ bool Session::loadTorrent(LoadTorrentParams params)
 #else
     const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hash() : p.info_hash);
 #endif
-    m_loadingTorrents.insert(id, params);
 
-    // Adding torrent to BitTorrent session
-    m_nativeSession->async_add_torrent(p);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    const auto iter = m_loadingTorrents.insert(id, {});
+    *iter = std::move(params);
+#else
+    const auto iter = m_loadingTorrents.emplace(id, std::move(params));
+#endif
+    // Adding torrent to libtorrent session
+    m_nativeSession->async_add_torrent(iter->ltAddTorrentParams);
 
     return true;
 }
@@ -2416,7 +2425,7 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
 
     // Adding torrent to libtorrent session
     lt::error_code ec;
-    lt::torrent_handle h = m_nativeSession->add_torrent(p, ec);
+    lt::torrent_handle h = m_nativeSession->add_torrent(std::move(p), ec);
     if (ec) return false;
 
     // waiting for metadata...
@@ -4176,11 +4185,11 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
+void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, LoadTorrentParams data)
 {
     --m_numResumeData;
 
-    m_resumeDataStorage->store(torrent->id(), data);
+    m_resumeDataStorage->store(torrent->id(), std::move(data));
 }
 
 bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
@@ -4515,14 +4524,14 @@ void Session::startUpTorrents()
             continue;
 #endif
 
-        const std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
+        std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
         if (!loadResumeDataResult)
         {
             LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
             continue;
         }
 
-        LoadTorrentParams resumeData = *loadResumeDataResult;
+        LoadTorrentParams resumeData = std::move(loadResumeDataResult.value());
         bool needStore = false;
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -4559,11 +4568,11 @@ void Session::startUpTorrents()
             {
                 skippedIDs.insert(torrentID);
 
-                const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
+                std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
                 if (loadPreferredResumeDataResult)
                 {
                     std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
-                    resumeData = *loadPreferredResumeDataResult;
+                    resumeData = std::move(loadPreferredResumeDataResult.value());
                     if (!resumeData.ltAddTorrentParams.ti)
                         resumeData.ltAddTorrentParams.ti = ti;
                 }
@@ -4649,7 +4658,7 @@ void Session::startUpTorrents()
         }
 
         qDebug() << "Starting up torrent" << torrentID.toString() << "...";
-        if (!loadTorrent(resumeData))
+        if (!loadTorrent(std::move(resumeData)))
             LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
 
         // process add torrent messages before message queue overflow
@@ -4865,24 +4874,19 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
     Q_ASSERT(m_loadingTorrents.contains(torrentID));
 
-    const LoadTorrentParams params = m_loadingTorrents.take(torrentID);
+    LoadTorrentParams params = m_loadingTorrents.take(torrentID);
+    const bool isRestored = params.restored;
+    const bool hasMetadata = (params.ltAddTorrentParams.ti != nullptr);
 
-    auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, params);
+    if (!isRestored)
+        m_resumeDataStorage->store(torrentID, params);
+
+    auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, std::move(params));
     m_torrents.insert(torrent->id(), torrent);
 
-    const bool hasMetadata = torrent->hasMetadata();
-
-    if (!params.restored)
-    {
-        m_resumeDataStorage->store(torrent->id(), params);
-
-        // The following is useless for newly added magnet
-        if (hasMetadata)
-        {
-            if (!torrentExportDirectory().isEmpty())
-                exportTorrentFile(torrent, torrentExportDirectory());
-        }
-    }
+    // The following is useless for newly added magnet
+    if (!isRestored && hasMetadata && !torrentExportDirectory().isEmpty())
+            exportTorrentFile(torrent, torrentExportDirectory());
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
         && !m_seedingLimitTimer->isActive())
@@ -4893,7 +4897,7 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
     // Send torrent addition signal
     emit torrentLoaded(torrent);
     // Send new torrent signal
-    if (params.restored)
+    if (isRestored)
     {
         LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
     }

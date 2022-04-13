@@ -86,7 +86,7 @@ namespace BitTorrent
 
     public:
         TorrentImpl(Session *session, lt::session *nativeSession
-                          , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
+                          , const lt::torrent_handle &nativeHandle, LoadTorrentParams params);
         ~TorrentImpl() override;
 
         bool isValid() const;
