@@ -294,8 +294,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
             const lt::file_index_t nativeIndex = m_torrentInfo.nativeIndexes().at(i);
             m_indexMap[nativeIndex] = i;
 
-            Path filePath {fileStorage.file_path(nativeIndex)};
-            filePath.removeExtension(QB_EXT);
+            const auto filePath = Path(fileStorage.file_path(nativeIndex)).removedExtension(QB_EXT);
             m_filePaths.append(filePath);
 
             const auto priority = LT::fromNative(filePriorities[LT::toUnderlyingType(nativeIndex)]);
@@ -1520,11 +1519,10 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     {
         const auto nativeIndex = nativeIndexes.at(i);
 
-        Path filePath = fileNames.at(i);
+        const Path filePath = fileNames.at(i);
         p.renamed_files[nativeIndex] = filePath.toString().toStdString();
 
-        filePath.removeExtension(QB_EXT);
-        m_filePaths.append(filePath);
+        m_filePaths.append(filePath.removedExtension(QB_EXT));
 
         const auto priority = LT::fromNative(filePriorities[LT::toUnderlyingType(nativeIndex)]);
         m_filePriorities.append(priority);
