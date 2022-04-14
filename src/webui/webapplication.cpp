@@ -252,6 +252,9 @@ void WebApplication::doProcessRequest()
     const QString action = match.captured(u"action"_qs);
     const QString scope = match.captured(u"scope"_qs);
 
+    if (!session() && !isPublicAPI(scope, action))
+        throw ForbiddenHTTPError();
+
     APIController *controller = nullptr;
     if (session())
         controller = session()->getAPIController(scope);
@@ -262,9 +265,6 @@ void WebApplication::doProcessRequest()
         else
             throw NotFoundHTTPError();
     }
-
-    if (!session() && !isPublicAPI(scope, action))
-        throw ForbiddenHTTPError();
 
     DataMap data;
     for (const Http::UploadedFile &torrent : request().files)
