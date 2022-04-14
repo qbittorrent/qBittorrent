@@ -58,10 +58,11 @@ public:
     QString filename() const;
 
     QString extension() const;
-    bool hasExtension(const QString &ext) const;
+    bool hasExtension(QStringView ext) const;
     void removeExtension();
     Path removedExtension() const;
-    void removeExtension(const QString &ext);
+    void removeExtension(QStringView ext);
+    Path removedExtension(QStringView ext) const;
 
     bool hasAncestor(const Path &other) const;
     Path relativePathOf(const Path &childPath) const;

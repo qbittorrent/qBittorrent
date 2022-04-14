@@ -392,8 +392,7 @@ void SearchPluginManager::pluginDownloadFinished(const Net::DownloadResult &resu
     {
         const Path filePath = result.filePath;
 
-        Path pluginPath {QUrl(result.url).path()};
-        pluginPath.removeExtension(); // Remove extension
+        const auto pluginPath = Path(QUrl(result.url).path()).removedExtension();
         installPlugin_impl(pluginPath.filename(), filePath);
         Utils::Fs::removeFile(filePath);
     }

@@ -208,8 +208,7 @@ void CustomDiskIOThread::handleCompleteFiles(lt::storage_index_t storage, const 
         if (filePath.hasExtension(QB_EXT))
         {
             const Path incompleteFilePath = savePath / filePath;
-            Path completeFilePath = incompleteFilePath;
-            completeFilePath.removeExtension(QB_EXT);
+            const Path completeFilePath = incompleteFilePath.removedExtension(QB_EXT);
             if (completeFilePath.exists())
             {
                 Utils::Fs::removeFile(incompleteFilePath);
@@ -274,8 +273,7 @@ void CustomStorage::handleCompleteFiles(const Path &savePath)
         if (filePath.hasExtension(QB_EXT))
         {
             const Path incompleteFilePath = savePath / filePath;
-            Path completeFilePath = incompleteFilePath;
-            completeFilePath.removeExtension();
+            const Path completeFilePath = incompleteFilePath.removedExtension(QB_EXT);
             if (completeFilePath.exists())
             {
                 Utils::Fs::removeFile(incompleteFilePath);
