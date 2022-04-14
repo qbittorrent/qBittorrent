@@ -2310,6 +2310,17 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
             p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
 
+        if (isAddTrackersEnabled() && !torrentInfo.isPrivate())
+        {
+            p.trackers.reserve(static_cast<std::size_t>(m_additionalTrackerList.size()));
+            p.tracker_tiers.reserve(static_cast<std::size_t>(m_additionalTrackerList.size()));
+            for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+            {
+                p.trackers.push_back(trackerEntry.url.toStdString());
+                p.tracker_tiers.push_back(trackerEntry.tier);
+            }
+        }
+
         p.ti = torrentInfo.nativeInfo();
     }
     else
@@ -4899,7 +4910,7 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
 
     const LoadTorrentParams params = m_loadingTorrents.take(torrentID);
 
-    auto *const torrent = new TorrentImpl {this, m_nativeSession, nativeHandle, params};
+    auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, params);
     m_torrents.insert(torrent->id(), torrent);
 
     const bool hasMetadata = torrent->hasMetadata();
@@ -4918,14 +4929,13 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
                 exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
             }
         }
-
-        if (isAddTrackersEnabled() && !torrent->isPrivate())
-            torrent->addTrackers(m_additionalTrackerList);
     }
 
     if (((torrent->ratioLimit() >= 0) || (torrent->seedingTimeLimit() >= 0))
         && !m_seedingLimitTimer->isActive())
+    {
         m_seedingLimitTimer->start();
+    }
 
     // Send torrent addition signal
     emit torrentLoaded(torrent);
