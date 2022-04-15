@@ -41,7 +41,7 @@
 #endif
 
 // to send numbers instead of strings with suffixes
-QString Utils::String::fromDouble(double n, int precision)
+QString Utils::String::fromDouble(const double n, const int precision)
 {
     /* HACK because QString rounds up. Eg QString::number(0.999*100.0, 'f', 1) == 99.9
     ** but QString::number(0.9999*100.0, 'f' ,1) == 100.0 The problem manifests when
@@ -52,7 +52,7 @@ QString Utils::String::fromDouble(double n, int precision)
     return fromDouble(n, precision, std::ref(floor));
 }
 
-QString Utils::String::fromDouble(double n, int precision, std::function<double(double)> func)
+QString Utils::String::fromDouble(const double n, const int precision, std::function<double(double)> func)
 {
     const double prec = std::pow(10.0, precision);
     return QLocale::system().toString(func(n * prec) / prec, 'f', precision);
