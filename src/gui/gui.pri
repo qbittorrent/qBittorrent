@@ -93,7 +93,7 @@ SOURCES += \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
-    $$PWD/deletionconfirmationdialog.cpp \s
+    $$PWD/deletionconfirmationdialog.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
