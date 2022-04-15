@@ -289,7 +289,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
             return {};
 
          return ((static_cast<int>(value) == -1) || (value > BitTorrent::Torrent::MAX_RATIO))
-                  ? C_INFINITY : Utils::String::fromDouble(value, 2, std::ref(round));
+                  ? C_INFINITY : Utils::String::fromDouble(value, 2);
     };
 
     const auto queuePositionString = [](const qint64 value) -> QString
