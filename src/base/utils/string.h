@@ -64,7 +64,7 @@ namespace Utils::String
     QString join(const QList<QStringView> &strings, QStringView separator);
 
     QString fromDouble(double n, int precision);
-    QString fromDouble(double n, int precision, std::function<double(double)> func);
+    QString fromDouble(double n, int precision, double (*func)(double));
 
     template <typename T, typename std::enable_if_t<std::is_enum_v<T>, int> = 0>
     QString fromEnum(const T &value)
