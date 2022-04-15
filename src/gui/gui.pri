@@ -12,7 +12,6 @@ HEADERS += \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
     $$PWD/deletionconfirmationdialog.h \
-    $$PWD/doublespinbox.h \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
@@ -94,8 +93,7 @@ SOURCES += \
     $$PWD/categoryfilterwidget.cpp \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
-    $$PWD/deletionconfirmationdialog.cpp \
-    $$PWD/doublespinbox.cpp \
+    $$PWD/deletionconfirmationdialog.cpp \s
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
