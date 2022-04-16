@@ -33,7 +33,6 @@
 #endif
 
 #include <QtGlobal>
-#include <QHash>
 #include <QMetaType>
 
 #include "base/digest32.h"
