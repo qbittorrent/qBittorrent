@@ -32,6 +32,7 @@
 
 #include <QCoreApplication>
 #include <QtContainerFwd>
+#include <QVector>
 
 #include "base/3rdparty/expected.hpp"
 #include "base/indexrange.h"

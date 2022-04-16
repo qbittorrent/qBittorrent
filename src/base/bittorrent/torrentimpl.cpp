@@ -35,6 +35,7 @@
 
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
+#include <libtorrent/create_torrent.hpp>
 #include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
@@ -53,6 +54,7 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
@@ -2230,6 +2232,37 @@ void TorrentImpl::flushCache() const
 QString TorrentImpl::createMagnetURI() const
 {
     return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
+}
+
+nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) const
+{
+    if (!hasMetadata())
+        return nonstd::make_unexpected(tr("Missing metadata"));
+
+    try
+    {
+#ifdef QBT_USES_LIBTORRENT2
+        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = m_nativeHandle.torrent_file_with_hashes();
+        const std::shared_ptr<lt::torrent_info> torrentInfo = {completeTorrentInfo ? completeTorrentInfo : info().nativeInfo()};
+#else
+        const std::shared_ptr<lt::torrent_info> torrentInfo = info().nativeInfo();
+#endif
+        auto creator = lt::create_torrent(*torrentInfo);
+
+        for (const TrackerEntry &entry : asConst(trackers()))
+            creator.add_tracker(entry.url.toStdString(), entry.tier);
+
+        const lt::entry torrentEntry = creator.generate();
+        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
+        if (!result)
+            return result.get_unexpected();
+    }
+    catch (const lt::system_error &err)
+    {
+        return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
+    }
+
+    return {};
 }
 
 void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)

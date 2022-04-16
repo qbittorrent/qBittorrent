@@ -34,9 +34,9 @@
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
-#include "base/path.h"
 
 class MainWindow;
+class Path;
 class TransferListModel;
 class TransferListSortModel;
 
@@ -124,6 +124,7 @@ private:
     QVector<BitTorrent::Torrent *> getSelectedTorrents() const;
     void askAddTagsForSelection();
     void editTorrentTrackers();
+    void exportTorrent();
     void confirmRemoveAllTagsForSelection();
     QStringList askTagsForSelection(const QString &dialogTitle);
     void applyToSelectedTorrents(const std::function<void (BitTorrent::Torrent *const)> &fn);

@@ -47,6 +47,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/logger.h"
+#include "base/path.h"
 #include "base/preferences.h"
 #include "base/torrentfilter.h"
 #include "base/utils/compare.h"
@@ -757,6 +758,57 @@ void TransferListWidget::editTorrentTrackers()
     trackerDialog->open();
 }
 
+void TransferListWidget::exportTorrent()
+{
+    if (getSelectedTorrents().isEmpty())
+        return;
+
+    auto fileDialog = new QFileDialog(this, tr("Choose folder to save exported .torrent files"));
+    fileDialog->setAttribute(Qt::WA_DeleteOnClose);
+    fileDialog->setFileMode(QFileDialog::Directory);
+    fileDialog->setOptions(QFileDialog::ShowDirsOnly);
+    connect(fileDialog, &QFileDialog::fileSelected, this, [this](const QString &dir)
+    {
+        const QVector<BitTorrent::Torrent *> torrents = getSelectedTorrents();
+        if (torrents.isEmpty())
+            return;
+
+        const Path savePath {dir};
+        if (!savePath.exists())
+            return;
+
+        const QString errorMsg = tr("Export .torrent file failed. Torrent: \"%1\". Save path: \"%2\". Reason: \"%3\"");
+
+        bool hasError = false;
+        for (const BitTorrent::Torrent *torrent : torrents)
+        {
+            const Path filePath = savePath / Path(torrent->name() + u".torrent");
+            if (filePath.exists())
+            {
+                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), tr("A file with the same name already exists")) , Log::WARNING);
+                hasError = true;
+                continue;
+            }
+
+            const nonstd::expected<void, QString> result = torrent->exportToFile(filePath);
+            if (!result)
+            {
+                LogMsg(errorMsg.arg(torrent->name(), filePath.toString(), result.error()) , Log::WARNING);
+                hasError = true;
+                continue;
+            }
+        }
+
+        if (hasError)
+        {
+            QMessageBox::warning(this, tr("Export .torrent file error")
+                , tr("Errors occured when exporting .torrent files. Check execution log for details."));
+        }
+    });
+
+    fileDialog->open();
+}
+
 void TransferListWidget::confirmRemoveAllTagsForSelection()
 {
     QMessageBox::StandardButton response = QMessageBox::question(
@@ -906,6 +958,8 @@ void TransferListWidget::displayListMenu()
     connect(actionAutoTMM, &QAction::triggered, this, &TransferListWidget::setSelectedAutoTMMEnabled);
     auto *actionEditTracker = new QAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Edit trackers..."), listMenu);
     connect(actionEditTracker, &QAction::triggered, this, &TransferListWidget::editTorrentTrackers);
+    auto *actionExportTorrent = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Export .torrent..."), listMenu);
+    connect(actionExportTorrent, &QAction::triggered, this, &TransferListWidget::exportTorrent);
     // End of actions
 
     // Enable/disable pause/start action given the DL state
@@ -1161,8 +1215,7 @@ void TransferListWidget::displayListMenu()
         queueMenu->addAction(actionBottomQueuePos);
     }
 
-    QMenu *copySubMenu = listMenu->addMenu(
-        UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy"));
+    QMenu *copySubMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy"));
     copySubMenu->addAction(actionCopyName);
     copySubMenu->addAction(actionCopyHash1);
     actionCopyHash1->setEnabled(hasInfohashV1);
@@ -1170,6 +1223,9 @@ void TransferListWidget::displayListMenu()
     actionCopyHash2->setEnabled(hasInfohashV2);
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
+
+    actionExportTorrent->setToolTip(u"Exported torrent is not necessarily the same as the imported"_qs);
+    listMenu->addAction(actionExportTorrent);
 
     listMenu->popup(QCursor::pos());
 }
