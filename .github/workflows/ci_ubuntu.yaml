@@ -14,11 +14,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.5", "1.2.15"]
+        libt_version: ["2.0.6", "1.2.16"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["5.15.2", "6.2.0"]
         exclude:
-          - libt_version: "1.2.15"
+          - libt_version: "1.2.16"
             qt_version: "6.2.0"
 
     steps:
