@@ -113,10 +113,8 @@ public:
     int fileLoggerAgeType() const override;
     void setFileLoggerAgeType(int value) override;
 
-#ifdef Q_OS_WIN
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
-#endif
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> mainWindow() override;
@@ -137,9 +135,7 @@ private:
     void processParams(const QStringList &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
-#ifdef Q_OS_WIN
     void applyMemoryWorkingSetLimit();
-#endif
 
 #ifndef DISABLE_GUI
 #ifdef Q_OS_MACOS
@@ -166,9 +162,7 @@ private:
     SettingValue<int> m_storeFileLoggerAge;
     SettingValue<int> m_storeFileLoggerAgeType;
     SettingValue<Path> m_storeFileLoggerPath;
-#ifdef Q_OS_WIN
     SettingValue<int> m_storeMemoryWorkingSetLimit;
-#endif
 
 #ifndef DISABLE_GUI
     QPointer<MainWindow> m_window;
