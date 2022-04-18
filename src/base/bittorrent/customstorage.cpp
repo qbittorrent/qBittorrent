@@ -48,7 +48,7 @@ std::unique_ptr<lt::disk_interface> customPosixDiskIOConstructor(
     return std::make_unique<CustomDiskIOThread>(lt::posix_disk_io_constructor(ioContext, settings, counters));
 }
 
-std::unique_ptr<lt::disk_interface> customMmapDiskIOConstructor(
+std::unique_ptr<lt::disk_interface> customMMapDiskIOConstructor(
         lt::io_context &ioContext, const lt::settings_interface &settings, lt::counters &counters)
 {
     return std::make_unique<CustomDiskIOThread>(lt::mmap_disk_io_constructor(ioContext, settings, counters));

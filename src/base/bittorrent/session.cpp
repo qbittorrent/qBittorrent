@@ -3362,7 +3362,7 @@ StorageType Session::storageType() const
     return m_storageType;
 }
 
-void Session::setStorageType(const StorageType type)
+void Session::setStorageType(StorageType type)
 {
     if (type != m_storageType)
     {

@@ -148,7 +148,7 @@ namespace BitTorrent
         {
             Default = 0,
             Posix = 1,
-            Mmap = 2
+            MMap = 2
         };
         Q_ENUM_NS(StorageType)
 
@@ -361,7 +361,7 @@ namespace BitTorrent
         int peerTurnoverInterval() const;
         void setPeerTurnoverInterval(int val);
         StorageType storageType() const;
-        void setStorageType(const StorageType type);
+        void setStorageType(StorageType type);
         int requestQueueSize() const;
         void setRequestQueueSize(int val);
         int asyncIOThreads() const;

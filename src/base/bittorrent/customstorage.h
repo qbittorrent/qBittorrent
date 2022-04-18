@@ -54,7 +54,7 @@ std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 std::unique_ptr<lt::disk_interface> customPosixDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
-std::unique_ptr<lt::disk_interface> customMmapDiskIOConstructor(
+std::unique_ptr<lt::disk_interface> customMMapDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 
 class CustomDiskIOThread final : public lt::disk_interface
