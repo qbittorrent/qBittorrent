@@ -472,6 +472,7 @@ Session::Session(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY(u"PeerTurnover"_qs), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_qs), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_qs), 300)
+    , m_storageType(BITTORRENT_SESSION_KEY(u"StorageType"_qs), StorageType::Default)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_qs), 500)
     , m_bannedIPs(u"State/BannedIPs"_qs
                   , QStringList()
@@ -1149,7 +1150,16 @@ void Session::initializeNativeSession()
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
 #ifdef QBT_USES_LIBTORRENT2
-    sessionParams.disk_io_constructor = customDiskIOConstructor;
+    switch(storageType()) {
+        case StorageType::Posix:
+            sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
+            break;
+        case StorageType::Mmap:
+            sessionParams.disk_io_constructor = customMmapDiskIOConstructor;
+            break;
+        default:
+            sessionParams.disk_io_constructor = customDiskIOConstructor;
+    }
 #endif
     m_nativeSession = new lt::session {sessionParams};
 
@@ -3345,6 +3355,20 @@ void Session::setPeerTurnoverInterval(const int val)
 
     m_peerTurnoverInterval = val;
     configureDeferred();
+}
+
+StorageType Session::storageType() const
+{
+    return m_storageType;
+}
+
+void Session::setStorageType(const StorageType type)
+{
+    if (type != m_storageType)
+    {
+        m_storageType = type;
+        configureDeferred();
+    }
 }
 
 int Session::requestQueueSize() const

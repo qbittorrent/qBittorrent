@@ -1280,6 +1280,18 @@
                     <input type="text" id="requestQueueSize" style="width: 15em;" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="storageType">QBT_TR(Storage Type (requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Custom_Storage.html" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="storageType" style="width: 15em;">
+                        <option value="0">QBT_TR(Default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Posix)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(Mmap)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
         </table>
     </fieldset>
 </div>
@@ -1993,6 +2005,7 @@
                         $('peerTurnoverCutoff').setProperty('value', pref.peer_turnover_cutoff);
                         $('peerTurnoverInterval').setProperty('value', pref.peer_turnover_interval);
                         $('requestQueueSize').setProperty('value', pref.request_queue_size);
+                        $('storageType').setProperty('value', pref.storage_type);
                     }
                 }
             }).send();
@@ -2393,6 +2406,7 @@
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
             settings.set('request_queue_size', $('requestQueueSize').getProperty('value'));
+            settings.set('storage_type', $('storageType').getProperty('value'));
 
             // Send it to qBT
             const json_str = JSON.encode(settings);

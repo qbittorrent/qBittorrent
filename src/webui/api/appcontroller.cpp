@@ -366,6 +366,8 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_qs] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_qs] = session->requestQueueSize();
+    // Storage Type
+    data[u"storage_type"_qs] = static_cast<int>(session->storageType());
 
     setResult(data);
 }
@@ -882,6 +884,9 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_qs))
         session->setRequestQueueSize(it.value().toInt());
+    // Storage Type
+    if (hasKey(u"storage_type"_qs))
+        session->setStorageType(static_cast<BitTorrent::StorageType>(it.value().toInt()));
 
     // Save preferences
     pref->apply();

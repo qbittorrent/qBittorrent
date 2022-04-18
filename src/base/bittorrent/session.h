@@ -144,6 +144,14 @@ namespace BitTorrent
         };
         Q_ENUM_NS(ResumeDataStorageType)
 
+        enum class StorageType : int
+        {
+            Default = 0,
+            Posix = 1,
+            Mmap = 2
+        };
+        Q_ENUM_NS(StorageType)
+
 #if defined(Q_OS_WIN)
         enum class OSMemoryPriority : int
         {
@@ -352,6 +360,8 @@ namespace BitTorrent
         void setPeerTurnoverCutoff(int val);
         int peerTurnoverInterval() const;
         void setPeerTurnoverInterval(int val);
+        StorageType storageType() const;
+        void setStorageType(const StorageType type);
         int requestQueueSize() const;
         void setRequestQueueSize(int val);
         int asyncIOThreads() const;
@@ -773,6 +783,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
+        CachedSettingValue<StorageType> m_storageType;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
 #if defined(Q_OS_WIN)

@@ -39,6 +39,8 @@
 #include <libtorrent/disk_interface.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
+#include <libtorrent/posix_disk_io.hpp>
+#include <libtorrent/mmap_disk_io.hpp>
 
 #include <QHash>
 
@@ -49,6 +51,10 @@
 
 #ifdef QBT_USES_LIBTORRENT2
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
+        lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
+std::unique_ptr<lt::disk_interface> customPosixDiskIOConstructor(
+        lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
+std::unique_ptr<lt::disk_interface> customMmapDiskIOConstructor(
         lt::io_context &ioContext, lt::settings_interface const &settings, lt::counters &counters);
 
 class CustomDiskIOThread final : public lt::disk_interface
