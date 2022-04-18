@@ -1154,7 +1154,7 @@ void Session::initializeNativeSession()
         case StorageType::Posix:
             sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
             break;
-        case StorageType::Mmap:
+        case StorageType::MMap:
             sessionParams.disk_io_constructor = customMmapDiskIOConstructor;
             break;
         default:
