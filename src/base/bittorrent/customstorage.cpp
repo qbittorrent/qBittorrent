@@ -35,6 +35,8 @@
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/session.hpp>
+#include <libtorrent/posix_disk_io.hpp>
+#include <libtorrent/mmap_disk_io.hpp>
 
 std::unique_ptr<lt::disk_interface> customDiskIOConstructor(
         lt::io_context &ioContext, const lt::settings_interface &settings, lt::counters &counters)

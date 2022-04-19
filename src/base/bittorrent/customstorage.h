@@ -39,8 +39,7 @@
 #include <libtorrent/disk_interface.hpp>
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
-#include <libtorrent/posix_disk_io.hpp>
-#include <libtorrent/mmap_disk_io.hpp>
+
 
 #include <QHash>
 

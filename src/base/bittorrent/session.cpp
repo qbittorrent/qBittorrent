@@ -1150,15 +1150,16 @@ void Session::initializeNativeSession()
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
 #ifdef QBT_USES_LIBTORRENT2
-    switch(storageType()) {
-        case StorageType::Posix:
-            sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
-            break;
-        case StorageType::MMap:
-            sessionParams.disk_io_constructor = customMmapDiskIOConstructor;
-            break;
-        default:
-            sessionParams.disk_io_constructor = customDiskIOConstructor;
+    switch(storageType())
+    {
+    case StorageType::Posix:
+        sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
+        break;
+    case StorageType::MMap:
+        sessionParams.disk_io_constructor = customMmapDiskIOConstructor;
+        break;
+    default:
+        sessionParams.disk_io_constructor = customDiskIOConstructor;
     }
 #endif
     m_nativeSession = new lt::session {sessionParams};
