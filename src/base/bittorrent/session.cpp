@@ -3368,7 +3368,6 @@ void Session::setStorageType(StorageType type)
     if (type != m_storageType)
     {
         m_storageType = type;
-        configureDeferred();
     }
 }
 
