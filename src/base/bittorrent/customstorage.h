@@ -40,7 +40,6 @@
 #include <libtorrent/file_storage.hpp>
 #include <libtorrent/io_context.hpp>
 
-
 #include <QHash>
 
 #include "ltqhash.h"

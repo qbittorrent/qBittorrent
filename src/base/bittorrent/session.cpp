@@ -1150,7 +1150,7 @@ void Session::initializeNativeSession()
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
 #ifdef QBT_USES_LIBTORRENT2
-    switch(storageType())
+    switch (storageType())
     {
     case StorageType::Posix:
         sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
