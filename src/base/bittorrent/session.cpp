@@ -381,6 +381,7 @@ Session::Session(QObject *parent)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY(u"DiskCacheSize"_qs), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY(u"DiskCacheTTL"_qs), 60)
     , m_diskQueueSize(BITTORRENT_SESSION_KEY(u"DiskQueueSize"_qs), (1024 * 1024))
+    , m_diskIOType(BITTORRENT_SESSION_KEY(u"DiskIOType"_qs), DiskIOType::Default)
     , m_useOSCache(BITTORRENT_SESSION_KEY(u"UseOSCache"_qs), true)
 #ifdef Q_OS_WIN
     , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY(u"CoalesceReadWrite"_qs), true)
@@ -472,7 +473,6 @@ Session::Session(QObject *parent)
     , m_peerTurnover(BITTORRENT_SESSION_KEY(u"PeerTurnover"_qs), 4)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_qs), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_qs), 300)
-    , m_storageType(BITTORRENT_SESSION_KEY(u"StorageType"_qs), StorageType::Default)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_qs), 500)
     , m_bannedIPs(u"State/BannedIPs"_qs
                   , QStringList()
@@ -1150,12 +1150,12 @@ void Session::initializeNativeSession()
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
 #ifdef QBT_USES_LIBTORRENT2
-    switch (storageType())
+    switch (diskIOType())
     {
-    case StorageType::Posix:
+    case DiskIOType::Posix:
         sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
         break;
-    case StorageType::MMap:
+    case DiskIOType::MMap:
         sessionParams.disk_io_constructor = customMMapDiskIOConstructor;
         break;
     default:
@@ -3359,16 +3359,16 @@ void Session::setPeerTurnoverInterval(const int val)
     configureDeferred();
 }
 
-StorageType Session::storageType() const
+DiskIOType Session::diskIOType() const
 {
-    return m_storageType;
+    return m_diskIOType;
 }
 
-void Session::setStorageType(StorageType type)
+void Session::setDiskIOType(DiskIOType type)
 {
-    if (type != m_storageType)
+    if (type != m_diskIOType)
     {
-        m_storageType = type;
+        m_diskIOType = type;
     }
 }
 

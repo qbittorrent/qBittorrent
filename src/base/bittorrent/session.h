@@ -144,13 +144,13 @@ namespace BitTorrent
         };
         Q_ENUM_NS(ResumeDataStorageType)
 
-        enum class StorageType : int
+        enum class DiskIOType : int
         {
             Default = 0,
             Posix = 1,
             MMap = 2
         };
-        Q_ENUM_NS(StorageType)
+        Q_ENUM_NS(DiskIOType)
 
 #if defined(Q_OS_WIN)
         enum class OSMemoryPriority : int

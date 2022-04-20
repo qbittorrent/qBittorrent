@@ -312,6 +312,8 @@ void AppController::preferencesAction()
     data[u"disk_cache_ttl"_qs] = session->diskCacheTTL();
     // Disk queue size
     data[u"disk_queue_size"_qs] = session->diskQueueSize();
+    // Disk IO Type
+    data[u"disk_io_type"_qs] = static_cast<int>(session->diskIOType());
     // Enable OS cache
     data[u"enable_os_cache"_qs] = session->useOSCache();
     // Coalesce reads & writes
@@ -366,8 +368,6 @@ void AppController::preferencesAction()
     data[u"peer_turnover_interval"_qs] = session->peerTurnoverInterval();
     // Maximum outstanding requests to a single peer
     data[u"request_queue_size"_qs] = session->requestQueueSize();
-    // Storage Type
-    data[u"storage_type"_qs] = static_cast<int>(session->storageType());
 
     setResult(data);
 }
@@ -795,6 +795,9 @@ void AppController::setPreferencesAction()
     // Disk queue size
     if (hasKey(u"disk_queue_size"_qs))
         session->setDiskQueueSize(it.value().toLongLong());
+    // Disk IO Type
+    if (hasKey(u"disk_io_type"_qs))
+        session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(it.value().toInt()));
     // Enable OS cache
     if (hasKey(u"enable_os_cache"_qs))
         session->setUseOSCache(it.value().toBool());
@@ -884,9 +887,6 @@ void AppController::setPreferencesAction()
     // Maximum outstanding requests to a single peer
     if (hasKey(u"request_queue_size"_qs))
         session->setRequestQueueSize(it.value().toInt());
-    // Storage Type
-    if (hasKey(u"storage_type"_qs))
-        session->setStorageType(static_cast<BitTorrent::StorageType>(it.value().toInt()));
 
     // Save preferences
     pref->apply();
