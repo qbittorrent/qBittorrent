@@ -3364,7 +3364,7 @@ DiskIOType Session::diskIOType() const
     return m_diskIOType;
 }
 
-void Session::setDiskIOType(DiskIOType type)
+void Session::setDiskIOType(const DiskIOType type)
 {
     if (type != m_diskIOType)
     {

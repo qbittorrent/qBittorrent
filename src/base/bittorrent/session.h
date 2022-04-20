@@ -360,8 +360,8 @@ namespace BitTorrent
         void setPeerTurnoverCutoff(int val);
         int peerTurnoverInterval() const;
         void setPeerTurnoverInterval(int val);
-        StorageType storageType() const;
-        void setStorageType(StorageType type);
+        DiskIOType diskIOType() const;
+        void setDiskIOType(const DiskIOType type);
         int requestQueueSize() const;
         void setRequestQueueSize(int val);
         int asyncIOThreads() const;
@@ -699,6 +699,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheSize;
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<qint64> m_diskQueueSize;
+        CachedSettingValue<DiskIOType> m_diskIOType;
         CachedSettingValue<bool> m_useOSCache;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
         CachedSettingValue<bool> m_usePieceExtentAffinity;
@@ -783,7 +784,6 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
-        CachedSettingValue<StorageType> m_storageType;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
 #if defined(Q_OS_WIN)
