@@ -3982,7 +3982,8 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     if (!torrentExportDirectory().isEmpty())
     {
 #ifdef QBT_USES_LIBTORRENT2
-        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file_with_hashes()};
+        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = torrent->nativeHandle().torrent_file_with_hashes();
+        const TorrentInfo torrentInfo {*(completeTorrentInfo ? completeTorrentInfo : torrent->nativeHandle().torrent_file())};
 #else
         const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
 #endif
@@ -4038,7 +4039,8 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
     if (!finishedTorrentExportDirectory().isEmpty())
     {
 #ifdef QBT_USES_LIBTORRENT2
-        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file_with_hashes()};
+        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = torrent->nativeHandle().torrent_file_with_hashes();
+        const TorrentInfo torrentInfo {*(completeTorrentInfo ? completeTorrentInfo : torrent->nativeHandle().torrent_file())};
 #else
         const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
 #endif
