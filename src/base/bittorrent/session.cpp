@@ -1160,6 +1160,7 @@ void Session::initializeNativeSession()
         break;
     default:
         sessionParams.disk_io_constructor = customDiskIOConstructor;
+        break;
     }
 #endif
     m_nativeSession = new lt::session {sessionParams};
