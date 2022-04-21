@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -1695,8 +1695,6 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
 void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("\"%s\" have just finished checking.", qUtf8Printable(name()));
-
 
     if (!hasMetadata())
     {
@@ -1705,26 +1703,29 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
         return;
     }
 
-    if (m_nativeHandle.need_save_resume_data())
-        m_session->handleTorrentNeedSaveResumeData(this);
-
-    if (m_fastresumeDataRejected && !m_hasMissingFiles)
-        m_fastresumeDataRejected = false;
-
-    updateStatus();
-
-    if (!m_hasMissingFiles)
+    m_statusUpdatedTriggers.enqueue([this]()
     {
-        if ((progress() < 1.0) && (wantedSize() > 0))
-            m_hasSeedStatus = false;
-        else if (progress() == 1.0)
-            m_hasSeedStatus = true;
+        qDebug("\"%s\" have just finished checking.", qUtf8Printable(name()));
 
-        adjustStorageLocation();
-        manageIncompleteFiles();
-    }
+        if (m_nativeStatus.need_save_resume)
+            m_session->handleTorrentNeedSaveResumeData(this);
 
-    m_session->handleTorrentChecked(this);
+        if (m_fastresumeDataRejected && !m_hasMissingFiles)
+            m_fastresumeDataRejected = false;
+
+        if (!m_hasMissingFiles)
+        {
+            if ((progress() < 1.0) && (wantedSize() > 0))
+                m_hasSeedStatus = false;
+            else if (progress() == 1.0)
+                m_hasSeedStatus = true;
+
+            adjustStorageLocation();
+            manageIncompleteFiles();
+        }
+
+        m_session->handleTorrentChecked(this);
+    });
 }
 
 void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p)
@@ -1735,27 +1736,29 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
     m_hasMissingFiles = false;
     if (m_hasSeedStatus) return;
 
-    updateStatus();
-    m_hasSeedStatus = true;
-
-    adjustStorageLocation();
-    manageIncompleteFiles();
-
-    m_session->handleTorrentNeedSaveResumeData(this);
-
-    const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
-    if (isMoveInProgress() || (m_renameCount > 0))
+    m_statusUpdatedTriggers.enqueue([this]()
     {
-        if (recheckTorrentsOnCompletion)
-            m_moveFinishedTriggers.append([this]() { forceRecheck(); });
-        m_moveFinishedTriggers.append([this]() { m_session->handleTorrentFinished(this); });
-    }
-    else
-    {
-        if (recheckTorrentsOnCompletion && m_unchecked)
-            forceRecheck();
-        m_session->handleTorrentFinished(this);
-    }
+        m_hasSeedStatus = true;
+
+        adjustStorageLocation();
+        manageIncompleteFiles();
+
+        m_session->handleTorrentNeedSaveResumeData(this);
+
+        const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
+        if (isMoveInProgress() || (m_renameCount > 0))
+        {
+            if (recheckTorrentsOnCompletion)
+                m_moveFinishedTriggers.enqueue([this]() { forceRecheck(); });
+            m_moveFinishedTriggers.enqueue([this]() { m_session->handleTorrentFinished(this); });
+        }
+        else
+        {
+            if (recheckTorrentsOnCompletion && m_unchecked)
+                forceRecheck();
+            m_session->handleTorrentFinished(this);
+        }
+    });
 }
 
 void TorrentImpl::handleTorrentPausedAlert(const lt::torrent_paused_alert *p)
@@ -2124,6 +2127,9 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
         else if (isDownloading())
             m_unchecked = true;
     }
+
+    while (!m_statusUpdatedTriggers.isEmpty())
+        std::invoke(m_statusUpdatedTriggers.dequeue());
 }
 
 void TorrentImpl::setRatioLimit(qreal limit)
