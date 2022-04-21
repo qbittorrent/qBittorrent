@@ -50,6 +50,7 @@ add_library(qbt_base STATIC
     http/server.h
     http/types.h
     iconprovider.h
+    implicitlyshared.h
     indexrange.h
     interfaces/iapplication.h
     interfaces/istringable.h

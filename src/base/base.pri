@@ -49,6 +49,7 @@ HEADERS += \
     $$PWD/http/server.h \
     $$PWD/http/types.h \
     $$PWD/iconprovider.h \
+    $$PWD/implicitlyshared.h \
     $$PWD/indexrange.h \
     $$PWD/interfaces/iapplication.h \
     $$PWD/interfaces/istringable.h \
