@@ -286,6 +286,7 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         m_filePaths.reserve(filesCount);
         m_indexMap.reserve(filesCount);
         m_filePriorities.reserve(filesCount);
+        m_completedFiles.resize(filesCount);
         const std::vector<lt::download_priority_t> filePriorities =
                 resized(m_ltAddTorrentParams.file_priorities, m_ltAddTorrentParams.ti->num_files()
                         , LT::toNative(m_ltAddTorrentParams.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
@@ -1125,6 +1126,9 @@ QVector<qreal> TorrentImpl::filesProgress() const
     if (!hasMetadata())
         return {};
 
+    if (m_completedFiles.count(true) == filesCount())
+        return QVector<qreal>(filesCount(), 1);
+
     std::vector<int64_t> fp;
     m_nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
 
@@ -1422,6 +1426,7 @@ void TorrentImpl::forceRecheck()
     m_nativeHandle.force_recheck();
     m_hasMissingFiles = false;
     m_unchecked = false;
+    m_completedFiles.fill(false);
 
     if (isPaused())
     {
@@ -1518,6 +1523,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
     m_torrentInfo = TorrentInfo(*metadata);
     m_filePriorities.reserve(filesCount());
+    m_completedFiles.resize(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     const std::vector<lt::download_priority_t> filePriorities =
             resized(p.file_priorities, metadata->files().num_files()
@@ -1554,6 +1560,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 
 void TorrentImpl::reload()
 {
+    m_completedFiles.fill(false);
     const auto queuePos = m_nativeHandle.queue_position();
 
     m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
@@ -1933,11 +1940,13 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
         return;
 
+    const int fileIndex = m_indexMap.value(p->index, -1);
+    Q_ASSERT(fileIndex >= 0);
+
+    m_completedFiles[fileIndex] = true;
+
     if (m_session->isAppendExtensionEnabled())
     {
-        const int fileIndex = m_indexMap.value(p->index, -1);
-        Q_ASSERT(fileIndex >= 0);
-
         const Path path = filePath(fileIndex);
         const Path actualPath = actualFilePath(fileIndex);
         if (actualPath != path)
@@ -2043,13 +2052,6 @@ void TorrentImpl::handleAlert(const lt::alert *a)
 void TorrentImpl::manageIncompleteFiles()
 {
     const bool isAppendExtensionEnabled = m_session->isAppendExtensionEnabled();
-    const QVector<qreal> fp = filesProgress();
-    if (fp.size() != filesCount())
-    {
-        qDebug() << "skip manageIncompleteFiles because of invalid torrent meta-data or empty file-progress";
-        return;
-    }
-
     const lt::file_storage &nativeFiles = m_nativeHandle.torrent_file()->files();
 
     for (int i = 0; i < filesCount(); ++i)
@@ -2059,7 +2061,7 @@ void TorrentImpl::manageIncompleteFiles()
         const auto nativeIndex = m_torrentInfo.nativeIndexes().at(i);
         const Path actualPath {nativeFiles.file_path(nativeIndex)};
 
-        if (isAppendExtensionEnabled && (fileSize(i) > 0) && (fp[i] < 1))
+        if (isAppendExtensionEnabled && (fileSize(i) > 0) && !m_completedFiles.at(i))
         {
             const Path wantedPath = path + QB_EXT;
             if (actualPath != wantedPath)
@@ -2273,13 +2275,12 @@ void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
 
     // Reset 'm_hasSeedStatus' if needed in order to react again to
     // 'torrent_finished_alert' and eg show tray notifications
-    const QVector<qreal> progress = filesProgress();
     const QVector<DownloadPriority> oldPriorities = filePriorities();
     for (int i = 0; i < oldPriorities.size(); ++i)
     {
         if ((oldPriorities[i] == DownloadPriority::Ignored)
             && (priorities[i] > DownloadPriority::Ignored)
-            && (progress[i] < 1.0))
+            && !m_completedFiles.at(i))
         {
             m_hasSeedStatus = false;
             break;
