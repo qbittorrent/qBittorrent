@@ -1552,7 +1552,6 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
         applyFirstLastPiecePriority(true);
 
     m_maintenanceJob = MaintenanceJob::None;
-    updateStatus();
     prepareResumeData(p);
 
     m_session->handleTorrentMetadataReceived(this);
@@ -1561,6 +1560,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 void TorrentImpl::reload()
 {
     m_completedFiles.fill(false);
+    m_pieces.clear();
+
     const auto queuePos = m_nativeHandle.queue_position();
 
     m_nativeSession->remove_torrent(m_nativeHandle, lt::session::delete_partfile);
@@ -1587,6 +1588,9 @@ void TorrentImpl::reload()
     m_nativeHandle = m_nativeSession->add_torrent(p);
     if (queuePos >= lt::queue_position_t {})
         m_nativeHandle.queue_position_set(queuePos);
+
+    initializeStatus(m_nativeStatus, m_ltAddTorrentParams);
+    updateState();
 }
 
 void TorrentImpl::pause()
@@ -1623,7 +1627,6 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
         m_isStopped = false;
         m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
         reload();
-        updateStatus();
         return;
     }
 
@@ -1684,7 +1687,6 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
             m_ltAddTorrentParams.save_path = m_nativeStatus.save_path;
             m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
             reload();
-            updateStatus();
         }
 
         while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
