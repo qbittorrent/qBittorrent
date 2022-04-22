@@ -69,7 +69,7 @@ private:
               m_checkBoxMultiConnectionsPerIp, m_checkBoxValidateHTTPSTrackerCertificate, m_checkBoxSSRFMitigation, m_checkBoxBlockPeersOnPrivilegedPorts, m_checkBoxPieceExtentAffinity,
               m_checkBoxSuggestMode, m_checkBoxSpeedWidgetEnabled, m_checkBoxIDNSupport;
     QComboBox m_comboBoxInterface, m_comboBoxInterfaceAddress, m_comboBoxUtpMixedMode, m_comboBoxChokingAlgorithm,
-              m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage;
+              m_comboBoxSeedChokingAlgorithm, m_comboBoxResumeDataStorage, m_comboBoxDiskIOType;
     QLineEdit m_lineEditAnnounceIP;
 
 #ifndef QBT_USES_LIBTORRENT2
