@@ -45,6 +45,7 @@
 #include <libtorrent/info_hash.hpp>
 #endif
 
+#include <QByteArray>
 #include <QDebug>
 #include <QFile>
 #include <QStringList>
@@ -2234,7 +2235,7 @@ QString TorrentImpl::createMagnetURI() const
     return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
 }
 
-nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) const
+nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
 {
     if (!hasMetadata())
         return nonstd::make_unexpected(tr("Missing metadata"));
@@ -2247,20 +2248,44 @@ nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) cons
 #else
         const std::shared_ptr<lt::torrent_info> torrentInfo = info().nativeInfo();
 #endif
-        auto creator = lt::create_torrent(*torrentInfo);
+        lt::create_torrent creator {*torrentInfo};
 
         for (const TrackerEntry &entry : asConst(trackers()))
             creator.add_tracker(entry.url.toStdString(), entry.tier);
 
-        const lt::entry torrentEntry = creator.generate();
-        const nonstd::expected<void, QString> result = Utils::IO::saveToFile(path, torrentEntry);
-        if (!result)
-            return result.get_unexpected();
+        return creator.generate();
     }
     catch (const lt::system_error &err)
     {
         return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
     }
+
+    return nonstd::make_unexpected(tr("Unexpected error"));
+}
+
+nonstd::expected<QByteArray, QString> TorrentImpl::exportToBuffer() const
+{
+    const nonstd::expected<lt::entry, QString> preparationResult = exportTorrent();
+    if (!preparationResult)
+        return preparationResult.get_unexpected();
+
+    // usually torrent size should be smaller than 1 MB,
+    // however there are >100 MB v2/hybrid torrent files out in the wild
+    QByteArray buffer;
+    buffer.reserve(1024 * 1024);
+    lt::bencode(std::back_inserter(buffer), preparationResult.value());
+    return buffer;
+}
+
+nonstd::expected<void, QString> TorrentImpl::exportToFile(const Path &path) const
+{
+    const nonstd::expected<lt::entry, QString> preparationResult = exportTorrent();
+    if (!preparationResult)
+        return preparationResult.get_unexpected();
+
+    const nonstd::expected<void, QString> saveResult = Utils::IO::saveToFile(path, preparationResult.value());
+    if (!saveResult)
+        return saveResult.get_unexpected();
 
     return {};
 }
