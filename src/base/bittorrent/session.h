@@ -361,7 +361,7 @@ namespace BitTorrent
         int peerTurnoverInterval() const;
         void setPeerTurnoverInterval(int val);
         DiskIOType diskIOType() const;
-        void setDiskIOType(const DiskIOType type);
+        void setDiskIOType(DiskIOType type);
         int requestQueueSize() const;
         void setRequestQueueSize(int val);
         int asyncIOThreads() const;
