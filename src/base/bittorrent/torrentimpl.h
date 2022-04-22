@@ -239,14 +239,13 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void saveResumeData();
-        void handleMoveStorageJobFinished(bool hasOutstandingJob);
+        void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         void updatePeerCount(const QString &trackerUrl, const lt::tcp::endpoint &endpoint, int count);
 
     private:
         using EventTrigger = std::function<void ()>;
 
-        void updateStatus();
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
 

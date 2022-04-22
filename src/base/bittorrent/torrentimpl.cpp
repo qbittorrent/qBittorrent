@@ -1654,7 +1654,7 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
     if (m_session->addMoveTorrentStorageJob(this, newPath, mode))
     {
         m_storageIsMoving = true;
-        updateStatus();
+        updateState();
     }
 }
 
@@ -1670,13 +1670,16 @@ void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
     updateStatus(nativeStatus);
 }
 
-void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
+void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const bool hasOutstandingJob)
 {
     m_session->handleTorrentNeedSaveResumeData(this);
     m_storageIsMoving = hasOutstandingJob;
 
-    updateStatus();
-    m_session->handleTorrentSavePathChanged(this);
+    if (actualStorageLocation() != path)
+    {
+        m_nativeStatus.save_path = path.toString().toStdString();
+        m_session->handleTorrentSavePathChanged(this);
+    }
 
     if (!m_storageIsMoving)
     {
@@ -1690,7 +1693,7 @@ void TorrentImpl::handleMoveStorageJobFinished(const bool hasOutstandingJob)
         }
 
         while ((m_renameCount == 0) && !m_moveFinishedTriggers.isEmpty())
-            m_moveFinishedTriggers.takeFirst()();
+            std::invoke(m_moveFinishedTriggers.dequeue());
     }
 }
 
@@ -2104,11 +2107,6 @@ lt::torrent_handle TorrentImpl::nativeHandle() const
 bool TorrentImpl::isMoveInProgress() const
 {
     return m_storageIsMoving;
-}
-
-void TorrentImpl::updateStatus()
-{
-    updateStatus(m_nativeHandle.status());
 }
 
 void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)

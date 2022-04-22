@@ -4256,7 +4256,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
             });
 
             const bool torrentHasOutstandingJob = (iter != m_moveStorageQueue.end());
-            torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
+            torrent->handleMoveStorageJobFinished(currentLocation, torrentHasOutstandingJob);
         }
     }
 
@@ -4307,7 +4307,7 @@ void Session::moveTorrentStorage(const MoveStorageJob &job) const
                             ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
 }
 
-void Session::handleMoveTorrentStorageJobFinished()
+void Session::handleMoveTorrentStorageJobFinished(const Path &newPath)
 {
     const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
     if (!m_moveStorageQueue.isEmpty())
@@ -4324,7 +4324,7 @@ void Session::handleMoveTorrentStorageJobFinished()
     TorrentImpl *torrent = m_torrents.value(finishedJob.torrentHandle.info_hash());
     if (torrent)
     {
-        torrent->handleMoveStorageJobFinished(torrentHasOutstandingJob);
+        torrent->handleMoveStorageJobFinished(newPath, torrentHasOutstandingJob);
     }
     else if (!torrentHasOutstandingJob)
     {
@@ -5295,7 +5295,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     LogMsg(tr("Moved torrent successfully. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, newPath.toString()));
 
-    handleMoveTorrentStorageJobFinished();
+    handleMoveTorrentStorageJobFinished(newPath);
 }
 
 void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
@@ -5313,12 +5313,13 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
 
     TorrentImpl *torrent = m_torrents.value(id);
     const QString torrentName = (torrent ? torrent->name() : id.toString());
-    const QString currentLocation = QString::fromStdString(p->handle.status(lt::torrent_handle::query_save_path).save_path);
+    const Path currentLocation = (torrent ? torrent->actualStorageLocation()
+                                          : Path(p->handle.status(lt::torrent_handle::query_save_path).save_path));
     const QString errorMessage = QString::fromStdString(p->message());
     LogMsg(tr("Failed to move torrent. Torrent: \"%1\". Source: \"%2\". Destination: \"%3\". Reason: \"%4\"")
-           .arg(torrentName, currentLocation, currentJob.path.toString(), errorMessage), Log::WARNING);
+           .arg(torrentName, currentLocation.toString(), currentJob.path.toString(), errorMessage), Log::WARNING);
 
-    handleMoveTorrentStorageJobFinished();
+    handleMoveTorrentStorageJobFinished(currentLocation);
 }
 
 void Session::handleStateUpdateAlert(const lt::state_update_alert *p)

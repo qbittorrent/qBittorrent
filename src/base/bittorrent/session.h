@@ -661,7 +661,7 @@ namespace BitTorrent
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
         void moveTorrentStorage(const MoveStorageJob &job) const;
-        void handleMoveTorrentStorageJobFinished();
+        void handleMoveTorrentStorageJobFinished(const Path &newPath);
 
         void loadCategories();
         void storeCategories() const;
