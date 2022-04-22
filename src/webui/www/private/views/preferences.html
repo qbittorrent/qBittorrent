@@ -2407,6 +2407,7 @@
             settings.set('peer_turnover_cutoff', $('peerTurnoverCutoff').getProperty('value'));
             settings.set('peer_turnover_interval', $('peerTurnoverInterval').getProperty('value'));
             settings.set('request_queue_size', $('requestQueueSize').getProperty('value'));
+            
             // Send it to qBT
             const json_str = JSON.encode(settings);
 

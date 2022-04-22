@@ -122,6 +122,14 @@ namespace BitTorrent
         };
         Q_ENUM_NS(ChokingAlgorithm)
 
+        enum class DiskIOType : int
+        {
+            Default = 0,
+            Posix = 1,
+            MMap = 2
+        };
+        Q_ENUM_NS(DiskIOType)
+
         enum class MixedModeAlgorithm : int
         {
             TCP = 0,
@@ -143,14 +151,6 @@ namespace BitTorrent
             SQLite
         };
         Q_ENUM_NS(ResumeDataStorageType)
-
-        enum class DiskIOType : int
-        {
-            Default = 0,
-            Posix = 1,
-            MMap = 2
-        };
-        Q_ENUM_NS(DiskIOType)
 
 #if defined(Q_OS_WIN)
         enum class OSMemoryPriority : int
@@ -360,8 +360,6 @@ namespace BitTorrent
         void setPeerTurnoverCutoff(int val);
         int peerTurnoverInterval() const;
         void setPeerTurnoverInterval(int val);
-        DiskIOType diskIOType() const;
-        void setDiskIOType(DiskIOType type);
         int requestQueueSize() const;
         void setRequestQueueSize(int val);
         int asyncIOThreads() const;
@@ -378,6 +376,8 @@ namespace BitTorrent
         void setDiskCacheTTL(int ttl);
         qint64 diskQueueSize() const;
         void setDiskQueueSize(qint64 size);
+        DiskIOType diskIOType() const;
+        void setDiskIOType(DiskIOType type);
         bool useOSCache() const;
         void setUseOSCache(bool use);
         bool isCoalesceReadWriteEnabled() const;
