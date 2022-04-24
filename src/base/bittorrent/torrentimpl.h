@@ -227,6 +227,7 @@ namespace BitTorrent
         void clearPeers() override;
 
         QString createMagnetURI() const override;
+        nonstd::expected<void, QString> exportToFile(const Path &path) const;
 
         bool needSaveResumeData() const;
 
