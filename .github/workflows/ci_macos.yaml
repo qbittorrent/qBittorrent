@@ -14,12 +14,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.5", "1.2.15"]
+        libt_version: ["2.0.6", "1.2.16"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.2.0"]
+        qt_version: ["5.15.2", "6.3.0"]
         exclude:
-          - libt_version: "1.2.15"
-            qt_version: "6.2.0"
+          - libt_version: "1.2.16"
+            qt_version: "6.3.0"
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -46,13 +46,14 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.77.0/source/boost_1_77_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2
         with:
+          aqtversion: '==2.1.0'
           setup-python: false
           version: ${{ matrix.qt_version }}
 

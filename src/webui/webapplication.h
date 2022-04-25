@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014, 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014, 2017, 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,9 +28,12 @@
 
 #pragma once
 
+#include <type_traits>
+
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
+#include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
@@ -48,9 +51,10 @@
 inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 11};
 
 class APIController;
+class AuthController;
 class WebApplication;
 
-class WebSession final : public ISession
+class WebSession final : public QObject, public ISession
 {
 public:
     explicit WebSession(const QString &sid);
@@ -60,13 +64,19 @@ public:
     bool hasExpired(qint64 seconds) const;
     void updateTimestamp();
 
-    QVariant getData(const QString &id) const override;
-    void setData(const QString &id, const QVariant &data) override;
+    template <typename T>
+    void registerAPIController(const QString &scope)
+    {
+        static_assert(std::is_base_of_v<APIController, T>, "Class should be derived from APIController.");
+        m_apiControllers[scope] = new T(this);
+    }
+
+    APIController *getAPIController(const QString &scope) const;
 
 private:
     const QString m_sid;
     QElapsedTimer m_timer;  // timestamp
-    QVariantHash m_data;
+    QMap<QString, APIController *> m_apiControllers;
 };
 
 class WebApplication final
@@ -75,11 +85,6 @@ class WebApplication final
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebApplication)
-
-#ifndef Q_MOC_RUN
-#define WEBAPI_PUBLIC
-#define WEBAPI_PRIVATE
-#endif
 
 public:
     explicit WebApplication(QObject *parent = nullptr);
@@ -99,7 +104,6 @@ private:
     void doProcessRequest();
     void configure();
 
-    void registerAPIController(const QString &scope, APIController *controller);
     void declarePublicAPI(const QString &apiPath);
 
     void sendFile(const Path &path);
@@ -130,7 +134,6 @@ private:
 
     const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_qs};
 
-    QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
     bool m_isAltUIUsed = false;
     Path m_rootFolder;
@@ -146,6 +149,7 @@ private:
     QTranslator m_translator;
     bool m_translationFileLoaded = false;
 
+    AuthController *m_authController = nullptr;
     bool m_isLocalAuthEnabled;
     bool m_isAuthSubnetWhitelistEnabled;
     QVector<Utils::Net::Subnet> m_authSubnetWhitelist;

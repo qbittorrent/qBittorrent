@@ -34,6 +34,7 @@
 #include <QMetaType>
 #include <QString>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "abstractfilestorage.h"
@@ -300,6 +301,7 @@ namespace BitTorrent
         virtual void clearPeers() = 0;
 
         virtual QString createMagnetURI() const = 0;
+        virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
         TorrentID id() const;
         bool isResumed() const;

@@ -1,6 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
+ * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,21 +30,32 @@
 
 #pragma once
 
-#include <QVariant>
-
 class QString;
 
-struct ISession
-{
-    virtual ~ISession() = default;
-    virtual QString id() const = 0;
-};
+class Path;
+struct QBtCommandLineParameters;
 
-struct ISessionManager
+class IApplication
 {
-    virtual ~ISessionManager() = default;
-    virtual QString clientId() const = 0;
-    virtual ISession *session() = 0;
-    virtual void sessionStart() = 0;
-    virtual void sessionEnd() = 0;
+public:
+    virtual ~IApplication() = default;
+
+    // FileLogger properties
+    virtual bool isFileLoggerEnabled() const = 0;
+    virtual void setFileLoggerEnabled(bool value) = 0;
+    virtual Path fileLoggerPath() const = 0;
+    virtual void setFileLoggerPath(const Path &path) = 0;
+    virtual bool isFileLoggerBackup() const = 0;
+    virtual void setFileLoggerBackup(bool value) = 0;
+    virtual bool isFileLoggerDeleteOld() const = 0;
+    virtual void setFileLoggerDeleteOld(bool value) = 0;
+    virtual int fileLoggerMaxSize() const = 0;
+    virtual void setFileLoggerMaxSize(int bytes) = 0;
+    virtual int fileLoggerAge() const = 0;
+    virtual void setFileLoggerAge(int value) = 0;
+    virtual int fileLoggerAgeType() const = 0;
+    virtual void setFileLoggerAgeType(int value) = 0;
+
+    virtual int memoryWorkingSetLimit() const = 0;
+    virtual void setMemoryWorkingSetLimit(int size) = 0;
 };

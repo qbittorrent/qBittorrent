@@ -61,8 +61,8 @@
 #include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
-#include "app/application.h"
 #include "banlistoptionsdialog.h"
+#include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
@@ -719,7 +719,7 @@ void OptionsDialog::saveOptions()
 #endif
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 
-    auto *const app = static_cast<Application *>(QCoreApplication::instance());
+    auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
@@ -969,7 +969,7 @@ void OptionsDialog::loadOptions()
 #endif
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    const Application *const app = static_cast<Application*>(QCoreApplication::instance());
+    const auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
     m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
     const bool fileLogBackup = app->isFileLoggerBackup();

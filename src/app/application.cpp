@@ -29,8 +29,6 @@
 
 #include "application.h"
 
-#include <QtGlobal>
-
 #include <algorithm>
 
 #ifdef DISABLE_GUI
@@ -41,12 +39,15 @@
 #include <memory>
 #include <Windows.h>
 #include <Shellapi.h>
+#elif defined(Q_OS_UNIX)
+#include <sys/resource.h>
 #endif
 
 #include <QAtomicInt>
 #include <QByteArray>
 #include <QDebug>
 #include <QLibraryInfo>
+#include <QMetaObject>
 #include <QProcess>
 
 #ifndef DISABLE_GUI
@@ -81,7 +82,6 @@
 #include "base/torrentfileswatcher.h"
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
-#include "base/path.h"
 #include "base/utils/misc.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
@@ -89,10 +89,10 @@
 
 #ifndef DISABLE_GUI
 #include "gui/addnewtorrentdialog.h"
-#include "gui/uithememanager.h"
-#include "gui/utils.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -120,12 +120,8 @@ namespace
 
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
-    , m_running(false)
     , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(this->arguments()))
-#ifdef Q_OS_WIN
-    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
-#endif
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_qs))
     , m_storeFileLoggerDeleteOld(FILELOGGER_SETTINGS_KEY(u"DeleteOld"_qs))
@@ -133,6 +129,7 @@ Application::Application(int &argc, char **argv)
     , m_storeFileLoggerAge(FILELOGGER_SETTINGS_KEY(u"Age"_qs))
     , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY(u"AgeType"_qs))
     , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_qs))
+    , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
@@ -209,7 +206,6 @@ const QBtCommandLineParameters &Application::commandLineArgs() const
     return m_commandLineArgs;
 }
 
-#ifdef Q_OS_WIN
 int Application::memoryWorkingSetLimit() const
 {
     return m_storeMemoryWorkingSetLimit.get(512);
@@ -223,7 +219,6 @@ void Application::setMemoryWorkingSetLimit(const int size)
     m_storeMemoryWorkingSetLimit = size;
     applyMemoryWorkingSetLimit();
 }
-#endif
 
 bool Application::isFileLoggerEnabled() const
 {
@@ -324,15 +319,6 @@ void Application::processMessage(const QString &message)
 
 void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
-#if defined(Q_OS_WIN)
-    const auto chopPathSep = [](const QString &str) -> QString
-    {
-        if (str.endsWith(u'\\'))
-            return str.mid(0, (str.length() -1));
-        return str;
-    };
-#endif
-
     QString program = Preferences::instance()->getAutoRunProgram().trimmed();
 
     for (int i = (program.length() - 2); i >= 0; --i)
@@ -347,18 +333,10 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, QString::number(torrent->filesCount()));
             break;
         case u'D':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->savePath().toString()));
-#else
             program.replace(i, 2, torrent->savePath().toString());
-#endif
             break;
         case u'F':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->contentPath().toString()));
-#else
             program.replace(i, 2, torrent->contentPath().toString());
-#endif
             break;
         case u'G':
             program.replace(i, 2, torrent->tags().join(u","_qs));
@@ -379,11 +357,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->name());
             break;
         case u'R':
-#if defined(Q_OS_WIN)
-            program.replace(i, 2, chopPathSep(torrent->rootPath().toString()));
-#else
             program.replace(i, 2, torrent->rootPath().toString());
-#endif
             break;
         case u'T':
             program.replace(i, 2, torrent->currentTracker());
@@ -622,9 +596,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
-#ifdef Q_OS_WIN
     applyMemoryWorkingSetLimit();
-#endif
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
@@ -791,32 +763,47 @@ void Application::shutdownCleanup(QSessionManager &manager)
     // According to the qt docs we shouldn't call quit() inside a slot.
     // aboutToQuit() is never emitted if the user hits "Cancel" in
     // the above dialog.
-    QTimer::singleShot(0, qApp, &QCoreApplication::quit);
+    QMetaObject::invokeMethod(qApp, &QCoreApplication::quit, Qt::QueuedConnection);
 }
 #endif
 
-#ifdef Q_OS_WIN
 void Application::applyMemoryWorkingSetLimit()
 {
-    const SIZE_T UNIT_SIZE = 1024 * 1024; // MiB
-    const SIZE_T maxSize = memoryWorkingSetLimit() * UNIT_SIZE;
-    const SIZE_T minSize = std::min<SIZE_T>((64 * UNIT_SIZE), (maxSize / 2));
+    const size_t MiB = 1024 * 1024;
+    const QString logMessage = tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"");
+
+#ifdef Q_OS_WIN
+    const SIZE_T maxSize = memoryWorkingSetLimit() * MiB;
+    const SIZE_T minSize = std::min((64 * MiB), (maxSize / 2));
     if (!::SetProcessWorkingSetSizeEx(::GetCurrentProcess(), minSize, maxSize, QUOTA_LIMITS_HARDWS_MAX_ENABLE))
     {
         const DWORD errorCode = ::GetLastError();
         QString message;
         LPVOID lpMsgBuf = nullptr;
-        if (::FormatMessageW((FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS)
-                         , nullptr, errorCode, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), reinterpret_cast<LPWSTR>(&lpMsgBuf), 0, nullptr))
+        const DWORD msgLength = ::FormatMessageW((FORMAT_MESSAGE_ALLOCATE_BUFFER | FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_IGNORE_INSERTS)
+            , nullptr, errorCode, LANG_USER_DEFAULT, reinterpret_cast<LPWSTR>(&lpMsgBuf), 0, nullptr);
+        if (msgLength > 0)
         {
             message = QString::fromWCharArray(reinterpret_cast<LPWSTR>(lpMsgBuf)).trimmed();
             ::LocalFree(lpMsgBuf);
         }
-        LogMsg(tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"")
-               .arg(QString::number(errorCode), message), Log::WARNING);
+        LogMsg(logMessage.arg(QString::number(errorCode), message), Log::WARNING);
     }
-}
+#elif defined(Q_OS_UNIX)
+    // has no effect on linux but it might be meaningful for other OS
+    rlimit limit {};
+
+    if (::getrlimit(RLIMIT_RSS, &limit) != 0)
+        return;
+
+    limit.rlim_cur = memoryWorkingSetLimit() * MiB;
+    if (::setrlimit(RLIMIT_RSS, &limit) != 0)
+    {
+        const auto message = QString::fromLocal8Bit(strerror(errno));
+        LogMsg(logMessage.arg(QString::number(errno), message), Log::WARNING);
+    }
 #endif
+}
 
 void Application::cleanup()
 {

@@ -122,7 +122,7 @@ public:
 
     QString hashString() const
     {
-        if (m_hashString.isEmpty())
+        if (m_hashString.isEmpty() && isValid())
         {
             const QByteArray raw = QByteArray::fromRawData(m_nativeDigest.data(), length());
             m_hashString = QString::fromLatin1(raw.toHex());

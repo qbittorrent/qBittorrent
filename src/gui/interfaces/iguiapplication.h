@@ -1,6 +1,8 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
+ * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,21 +30,14 @@
 
 #pragma once
 
-#include <QVariant>
+#include "base/interfaces/iapplication.h"
 
-class QString;
+class MainWindow;
 
-struct ISession
+class IGUIApplication : public IApplication
 {
-    virtual ~ISession() = default;
-    virtual QString id() const = 0;
-};
+public:
+    virtual ~IGUIApplication() = default;
 
-struct ISessionManager
-{
-    virtual ~ISessionManager() = default;
-    virtual QString clientId() const = 0;
-    virtual ISession *session() = 0;
-    virtual void sessionStart() = 0;
-    virtual void sessionEnd() = 0;
+    virtual QPointer<MainWindow> mainWindow() = 0;
 };

@@ -28,6 +28,8 @@
 
 #include "infohash.h"
 
+#include <QHash>
+
 const int TorrentIDTypeId = qRegisterMetaType<BitTorrent::TorrentID>();
 
 BitTorrent::InfoHash::InfoHash(const WrappedType &nativeHash)
