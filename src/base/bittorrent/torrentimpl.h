@@ -30,11 +30,13 @@
 #pragma once
 
 #include <functional>
+#include <memory>
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/socket.hpp>
 #include <libtorrent/torrent_handle.hpp>
+#include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_status.hpp>
 
 #include <QBitArray>
@@ -246,6 +248,8 @@ namespace BitTorrent
     private:
         using EventTrigger = std::function<void ()>;
 
+        std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
+
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
 
@@ -282,7 +286,7 @@ namespace BitTorrent
         Session *const m_session;
         lt::session *m_nativeSession;
         lt::torrent_handle m_nativeHandle;
-        lt::torrent_status m_nativeStatus;
+        mutable lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         PathList m_filePaths;

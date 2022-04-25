@@ -840,7 +840,7 @@ Path TorrentImpl::filePath(const int index) const
 Path TorrentImpl::actualFilePath(const int index) const
 {
     const auto nativeIndex = m_torrentInfo.nativeIndexes().at(index);
-    return Path(m_nativeHandle.torrent_file()->files().file_path(nativeIndex));
+    return Path(nativeTorrentInfo()->files().file_path(nativeIndex));
 }
 
 qlonglong TorrentImpl::fileSize(const int index) const
@@ -1514,13 +1514,20 @@ void TorrentImpl::updatePeerCount(const QString &trackerUrl, const lt::tcp::endp
     m_trackerPeerCounts[trackerUrl][endpoint] = count;
 }
 
+std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const
+{
+    if (m_nativeStatus.torrent_file.expired())
+        m_nativeStatus.torrent_file = m_nativeHandle.torrent_file();
+    return m_nativeStatus.torrent_file.lock();
+}
+
 void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames)
 {
     Q_ASSERT(m_filePaths.isEmpty());
 
     lt::add_torrent_params &p = m_ltAddTorrentParams;
 
-    const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
+    const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
     m_torrentInfo = TorrentInfo(*metadata);
     m_filePriorities.reserve(filesCount());
     m_completedFiles.resize(filesCount());
@@ -1625,7 +1632,7 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
     {
         m_hasMissingFiles = false;
         m_isStopped = false;
-        m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
+        m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
         reload();
         return;
     }
@@ -1688,7 +1695,7 @@ void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const bool hasO
             // it can be moved to the proper location
             m_hasMissingFiles = false;
             m_ltAddTorrentParams.save_path = m_nativeStatus.save_path;
-            m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(m_nativeHandle.torrent_file());
+            m_ltAddTorrentParams.ti = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
             reload();
         }
 
@@ -1787,7 +1794,7 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
         m_ltAddTorrentParams.have_pieces.clear();
         m_ltAddTorrentParams.verified_pieces.clear();
 
-        TorrentInfo metadata = TorrentInfo(*m_nativeHandle.torrent_file());
+        TorrentInfo metadata = TorrentInfo(*nativeTorrentInfo());
 
         const auto &renamedFiles = m_ltAddTorrentParams.renamed_files;
         PathList filePaths = metadata.filePaths();
@@ -2059,8 +2066,9 @@ void TorrentImpl::handleAlert(const lt::alert *a)
 
 void TorrentImpl::manageIncompleteFiles()
 {
+    const std::shared_ptr<const lt::torrent_info> nativeInfo = nativeTorrentInfo();
+    const lt::file_storage &nativeFiles = nativeInfo->files();
     const bool isAppendExtensionEnabled = m_session->isAppendExtensionEnabled();
-    const lt::file_storage &nativeFiles = m_nativeHandle.torrent_file()->files();
 
     for (int i = 0; i < filesCount(); ++i)
     {
