@@ -32,6 +32,7 @@
 #include <csignal>
 #include <cstdlib>
 #include <memory>
+#include <tuple>
 
 #if defined(Q_OS_UNIX)
 #include <sys/resource.h>
@@ -321,17 +322,13 @@ int main(int argc, char *argv[])
 void reportToUser(const char *str)
 {
     const size_t strLen = strlen(str);
-#ifndef Q_OS_WIN
-    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
-    {
-        const auto dummy = write(STDOUT_FILENO, str, strLen);
+#ifdef Q_OS_WIN
+    if (_write(_fileno(stderr), str, strLen) < static_cast<int>(strLen))
+        std::ignore = _write(_fileno(stdout), str, strLen);
 #else
-    if (_write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
-    {
-        const auto dummy = _write(STDOUT_FILENO, str, strLen);
+    if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
+        std::ignore = write(STDOUT_FILENO, str, strLen);
 #endif
-        Q_UNUSED(dummy);
-    }
 }
 #endif
 
