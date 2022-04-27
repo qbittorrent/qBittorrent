@@ -229,7 +229,8 @@ namespace BitTorrent
         void clearPeers() override;
 
         QString createMagnetURI() const override;
-        nonstd::expected<void, QString> exportToFile(const Path &path) const;
+        nonstd::expected<QByteArray, QString> exportToBuffer() const override;
+        nonstd::expected<void, QString> exportToFile(const Path &path) const override;
 
         bool needSaveResumeData() const;
 
@@ -282,6 +283,8 @@ namespace BitTorrent
         void prepareResumeData(const lt::add_torrent_params &params);
         void endReceivedMetadataHandling(const Path &savePath, const PathList &fileNames);
         void reload();
+
+        nonstd::expected<lt::entry, QString> exportTorrent() const;
 
         Session *const m_session;
         lt::session *m_nativeSession;
