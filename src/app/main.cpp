@@ -211,9 +211,7 @@ int main(int argc, char *argv[])
                 throw CommandLineParameterError(QObject::tr("You cannot use %1: qBittorrent is already running for this user.")
                                      .arg(u"-d (or --daemon)"_qs));
             }
-            else
 #endif
-            qDebug("qBittorrent is already running for this user.");
 
             QThread::msleep(300);
             app->sendParams(params.paramList());
