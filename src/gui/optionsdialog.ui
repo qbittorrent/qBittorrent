@@ -2442,10 +2442,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
@@ -2465,10 +2462,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
@@ -2488,10 +2482,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>5</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
