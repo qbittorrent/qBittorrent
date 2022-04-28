@@ -352,7 +352,9 @@ void sigAbnormalHandler(int signum)
     reportToUser(msg);
     reportToUser(sigName);
     reportToUser("\n");
+#if !defined Q_OS_WIN
     print_stacktrace();  // unsafe
+#endif
 #endif
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
