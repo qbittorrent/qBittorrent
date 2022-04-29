@@ -30,8 +30,8 @@
 
 #include <libtorrent/torrent_info.hpp>
 
-#include <QCoreApplication>
 #include <QtContainerFwd>
+#include <QCoreApplication>
 #include <QVector>
 
 #include "base/3rdparty/expected.hpp"

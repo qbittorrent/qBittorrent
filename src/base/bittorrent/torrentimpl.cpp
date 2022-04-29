@@ -48,6 +48,7 @@
 #include <QByteArray>
 #include <QDebug>
 #include <QFile>
+#include <QSet>
 #include <QStringList>
 #include <QUrl>
 
@@ -59,6 +60,7 @@
 #include "base/utils/string.h"
 #include "common.h"
 #include "downloadpriority.h"
+#include "extensiondata.h"
 #include "loadtorrentparams.h"
 #include "ltqbitarray.h"
 #include "ltqhash.h"
@@ -66,7 +68,6 @@
 #include "peeraddress.h"
 #include "peerinfo.h"
 #include "session.h"
-#include "trackerentry.h"
 
 using namespace BitTorrent;
 
@@ -80,14 +81,16 @@ namespace
     }
 
 #ifdef QBT_USES_LIBTORRENT2
-    TrackerEntry fromNativeAnnounceEntry(const lt::announce_entry &nativeEntry
-        , const lt::info_hash_t &hashes, const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
+    void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
+        , const lt::info_hash_t &hashes, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
 #else
-    TrackerEntry fromNativeAnnounceEntry(const lt::announce_entry &nativeEntry
-        , const QMap<lt::tcp::endpoint, int> &trackerPeerCounts)
+    void updateTrackerEntry(TrackerEntry &trackerEntry, const lt::announce_entry &nativeEntry
+        , const QMap<TrackerEntry::Endpoint, int> &updateInfo)
 #endif
     {
-        TrackerEntry trackerEntry {QString::fromStdString(nativeEntry.url), nativeEntry.tier};
+        Q_ASSERT(trackerEntry.url == QString::fromStdString(nativeEntry.url));
+
+        trackerEntry.tier = nativeEntry.tier;
 
         int numUpdating = 0;
         int numWorking = 0;
@@ -96,7 +99,6 @@ namespace
         QString firstErrorMessage;
 #ifdef QBT_USES_LIBTORRENT2
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
-        trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
@@ -106,8 +108,7 @@ namespace
                     const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
 
                     TrackerEntry::EndpointStats trackerEndpoint;
-                    trackerEndpoint.protocolVersion = (protocolVersion == lt::protocol_version::V1) ? 1 : 2;
-                    trackerEndpoint.numPeers = trackerPeerCounts.value(endpoint.local_endpoint, -1);
+                    trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
                     trackerEndpoint.numSeeds = infoHash.scrape_complete;
                     trackerEndpoint.numLeeches = infoHash.scrape_incomplete;
                     trackerEndpoint.numDownloaded = infoHash.scrape_downloaded;
@@ -136,7 +137,7 @@ namespace
                     const QString errorMessage = QString::fromLocal8Bit(infoHash.last_error.message().c_str());
                     trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
-                    trackerEntry.endpoints.append(trackerEndpoint);
+                    trackerEntry.stats[endpoint.local_endpoint][(protocolVersion == lt::protocol_version::V1) ? 1 : 2] = trackerEndpoint;
                     trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
                     trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
                     trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
@@ -151,11 +152,10 @@ namespace
         }
 #else
         const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
-        trackerEntry.endpoints.reserve(static_cast<decltype(trackerEntry.endpoints)::size_type>(numEndpoints));
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             TrackerEntry::EndpointStats trackerEndpoint;
-            trackerEndpoint.numPeers = trackerPeerCounts.value(endpoint.local_endpoint, -1);
+            trackerEndpoint.numPeers = updateInfo.value(endpoint.local_endpoint, trackerEndpoint.numPeers);
             trackerEndpoint.numSeeds = endpoint.scrape_complete;
             trackerEndpoint.numLeeches = endpoint.scrape_incomplete;
             trackerEndpoint.numDownloaded = endpoint.scrape_downloaded;
@@ -184,7 +184,7 @@ namespace
             const QString errorMessage = QString::fromLocal8Bit(endpoint.last_error.message().c_str());
             trackerEndpoint.message = (!trackerMessage.isEmpty() ? trackerMessage : errorMessage);
 
-            trackerEntry.endpoints.append(trackerEndpoint);
+            trackerEntry.stats[endpoint.local_endpoint][1] = trackerEndpoint;
             trackerEntry.numPeers = std::max(trackerEntry.numPeers, trackerEndpoint.numPeers);
             trackerEntry.numSeeds = std::max(trackerEntry.numSeeds, trackerEndpoint.numSeeds);
             trackerEntry.numLeeches = std::max(trackerEntry.numLeeches, trackerEndpoint.numLeeches);
@@ -214,8 +214,6 @@ namespace
                 trackerEntry.message = (!firstTrackerMessage.isEmpty() ? firstTrackerMessage : firstErrorMessage);
             }
         }
-
-        return trackerEntry;
     }
 
     void initializeStatus(lt::torrent_status &status, const lt::add_torrent_params &params)
@@ -307,6 +305,11 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
             m_filePriorities.append(priority);
         }
     }
+
+    const auto extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
+    m_trackerEntries.reserve(static_cast<decltype(m_trackerEntries)::size_type>(extensionData->trackers.size()));
+    for (const lt::announce_entry &announceEntry : extensionData->trackers)
+        m_trackerEntries.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
 
     initializeStatus(m_nativeStatus, m_ltAddTorrentParams);
     updateState();
@@ -523,107 +526,78 @@ void TorrentImpl::setAutoManaged(const bool enable)
         m_nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 }
 
-QVector<QString> TorrentImpl::trackerURLs() const
-{
-    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
-
-    QVector<QString> urls;
-    urls.reserve(static_cast<decltype(urls)::size_type>(nativeTrackers.size()));
-
-    for (const lt::announce_entry &tracker : nativeTrackers)
-    {
-        const QString trackerURL = QString::fromStdString(tracker.url);
-        urls.push_back(trackerURL);
-    }
-
-    return urls;
-}
-
 QVector<TrackerEntry> TorrentImpl::trackers() const
 {
-    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
+    if (!m_updatedTrackerEntries.isEmpty())
+        refreshTrackerEntries();
 
-    QVector<TrackerEntry> entries;
-    entries.reserve(static_cast<decltype(entries)::size_type>(nativeTrackers.size()));
-
-    for (const lt::announce_entry &tracker : nativeTrackers)
-    {
-        const QString trackerURL = QString::fromStdString(tracker.url);
-#ifdef QBT_USES_LIBTORRENT2
-        entries << fromNativeAnnounceEntry(tracker, m_nativeHandle.info_hashes(), m_trackerPeerCounts[trackerURL]);
-#else
-        entries << fromNativeAnnounceEntry(tracker, m_trackerPeerCounts[trackerURL]);
-#endif
-    }
-
-    return entries;
+    return m_trackerEntries;
 }
 
-void TorrentImpl::addTrackers(const QVector<TrackerEntry> &trackers)
+void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
 {
-    QSet<TrackerEntry> currentTrackers;
-    for (const lt::announce_entry &entry : m_nativeHandle.trackers())
-        currentTrackers.insert({QString::fromStdString(entry.url), entry.tier});
+    // TODO: use std::erase_if() in C++20
+    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
 
-    QVector<TrackerEntry> newTrackers;
-    newTrackers.reserve(trackers.size());
+    const auto newTrackers = QSet<TrackerEntry>(trackers.cbegin(), trackers.cend())
+            - QSet<TrackerEntry>(m_trackerEntries.cbegin(), m_trackerEntries.cend());
+    if (newTrackers.isEmpty())
+        return;
 
+    trackers = QVector<TrackerEntry>(newTrackers.cbegin(), newTrackers.cend());
     for (const TrackerEntry &tracker : trackers)
+        m_nativeHandle.add_tracker(makeNativeAnnounceEntry(tracker.url, tracker.tier));
+
+    m_trackerEntries.append(trackers);
+    std::sort(m_trackerEntries.begin(), m_trackerEntries.end()
+        , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
+    m_session->handleTorrentNeedSaveResumeData(this);
+    m_session->handleTorrentTrackersAdded(this, trackers);
+}
+
+void TorrentImpl::removeTrackers(const QStringList &trackers)
+{
+    QStringList removedTrackers = trackers;
+    for (const QString &tracker : trackers)
     {
-        if (!currentTrackers.contains(tracker))
-        {
-            m_nativeHandle.add_tracker(makeNativeAnnounceEntry(tracker.url, tracker.tier));
-            newTrackers << tracker;
-        }
+        if (!m_trackerEntries.removeOne({tracker}))
+            removedTrackers.removeOne(tracker);
     }
 
-    if (!newTrackers.isEmpty())
+    std::vector<lt::announce_entry> nativeTrackers;
+    nativeTrackers.reserve(m_trackerEntries.size());
+    for (const TrackerEntry &tracker : asConst(m_trackerEntries))
+        nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
+
+    if (!removedTrackers.isEmpty())
     {
+        m_nativeHandle.replace_trackers(nativeTrackers);
         m_session->handleTorrentNeedSaveResumeData(this);
-        m_session->handleTorrentTrackersAdded(this, newTrackers);
+        m_session->handleTorrentTrackersRemoved(this, removedTrackers);
     }
 }
 
-void TorrentImpl::replaceTrackers(const QVector<TrackerEntry> &trackers)
+void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 {
-    QVector<TrackerEntry> currentTrackers = this->trackers();
-
-    QVector<TrackerEntry> newTrackers;
-    newTrackers.reserve(trackers.size());
+    // TODO: use std::erase_if() in C++20
+    trackers.erase(std::remove_if(trackers.begin(), trackers.end(), [](const TrackerEntry &entry) { return entry.url.isEmpty(); }), trackers.end());
+    std::sort(trackers.begin(), trackers.end()
+        , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
 
     std::vector<lt::announce_entry> nativeTrackers;
     nativeTrackers.reserve(trackers.size());
-
     for (const TrackerEntry &tracker : trackers)
-    {
         nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
 
-        if (!currentTrackers.removeOne(tracker))
-            newTrackers << tracker;
-    }
-
     m_nativeHandle.replace_trackers(nativeTrackers);
+    // Clear the peer list if it's a private torrent since
+    // we do not want to keep connecting with peers from old tracker.
+    if (isPrivate())
+        clearPeers();
 
+    m_trackerEntries = trackers;
     m_session->handleTorrentNeedSaveResumeData(this);
-
-    if (newTrackers.isEmpty() && currentTrackers.isEmpty())
-    {
-        // when existing tracker reorders
-        m_session->handleTorrentTrackersChanged(this);
-    }
-    else
-    {
-        if (!currentTrackers.isEmpty())
-            m_session->handleTorrentTrackersRemoved(this, currentTrackers);
-
-        if (!newTrackers.isEmpty())
-            m_session->handleTorrentTrackersAdded(this, newTrackers);
-
-        // Clear the peer list if it's a private torrent since
-        // we do not want to keep connecting with peers from old tracker.
-        if (isPrivate())
-            clearPeers();
-    }
+    m_session->handleTorrentTrackersChanged(this);
 }
 
 QVector<QUrl> TorrentImpl::urlSeeds() const
@@ -1511,9 +1485,43 @@ void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileN
     endReceivedMetadataHandling(savePath, fileNames);
 }
 
-void TorrentImpl::updatePeerCount(const QString &trackerUrl, const lt::tcp::endpoint &endpoint, const int count)
+void TorrentImpl::updatePeerCount(const QString &trackerURL, const TrackerEntry::Endpoint &endpoint, const int count)
 {
-    m_trackerPeerCounts[trackerUrl][endpoint] = count;
+    m_updatedTrackerEntries[trackerURL][endpoint] = count;
+}
+
+void TorrentImpl::invalidateTrackerEntry(const QString &trackerURL)
+{
+    std::ignore = m_updatedTrackerEntries[trackerURL];
+}
+
+void TorrentImpl::refreshTrackerEntries() const
+{
+    const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
+    Q_ASSERT(nativeTrackers.size() == m_trackerEntries.size());
+
+    for (TrackerEntry &trackerEntry : m_trackerEntries)
+    {
+        const auto updatedTrackerIter = m_updatedTrackerEntries.find(trackerEntry.url);
+        if (updatedTrackerIter == m_updatedTrackerEntries.end())
+            continue;
+
+        const auto nativeTrackerIter = std::find_if(nativeTrackers.cbegin(), nativeTrackers.cend()
+                                    , [trackerURL = trackerEntry.url.toStdString()](const lt::announce_entry &announceEntry)
+        {
+            return (announceEntry.url == trackerURL);
+        });
+        Q_ASSERT(nativeTrackerIter != nativeTrackers.cend());
+
+        const lt::announce_entry &announceEntry = *nativeTrackerIter;
+#ifdef QBT_USES_LIBTORRENT2
+        updateTrackerEntry(trackerEntry, announceEntry, m_nativeHandle.info_hashes(), updatedTrackerIter.value());
+#else
+        updateTrackerEntry(trackerEntry, announceEntry, updatedTrackerIter.value());
+#endif
+    }
+
+    m_updatedTrackerEntries.clear();
 }
 
 std::shared_ptr<const libtorrent::torrent_info> TorrentImpl::nativeTorrentInfo() const

@@ -473,18 +473,7 @@ void TrackerListWidget::deleteSelectedTrackers()
         delete item;
     }
 
-    // Iterate over the trackers and remove the selected ones
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    QVector<BitTorrent::TrackerEntry> remainingTrackers;
-    remainingTrackers.reserve(trackers.size());
-
-    for (const BitTorrent::TrackerEntry &entry : trackers)
-    {
-        if (!urlsToRemove.contains(entry.url))
-            remainingTrackers.push_back(entry);
-    }
-
-    torrent->replaceTrackers(remainingTrackers);
+    torrent->removeTrackers(urlsToRemove);
 
     if (!torrent->isPaused())
         torrent->forceReannounce();

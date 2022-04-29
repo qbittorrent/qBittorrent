@@ -12,6 +12,7 @@ HEADERS += \
     $$PWD/bittorrent/customstorage.h \
     $$PWD/bittorrent/downloadpriority.h \
     $$PWD/bittorrent/dbresumedatastorage.h \
+    $$PWD/bittorrent/extensiondata.h \
     $$PWD/bittorrent/filesearcher.h \
     $$PWD/bittorrent/filterparserthread.h \
     $$PWD/bittorrent/infohash.h \
