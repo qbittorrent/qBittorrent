@@ -3393,7 +3393,7 @@ void Session::setAsyncIOThreads(const int num)
 
 int Session::hashingThreads() const
 {
-    return std::clamp(m_hashingThreads.get(), 1, 1024);
+    return std::clamp(m_hashingThreads.get(), 0, 1024);
 }
 
 void Session::setHashingThreads(const int num)

@@ -463,7 +463,7 @@ void AdvancedSettings::loadAdvancedSettings()
 
 #ifdef QBT_USES_LIBTORRENT2
     // Hashing threads
-    m_spinBoxHashingThreads.setMinimum(1);
+    m_spinBoxHashingThreads.setMinimum(0);
     m_spinBoxHashingThreads.setMaximum(1024);
     m_spinBoxHashingThreads.setValue(session->hashingThreads());
     addRow(HASHING_THREADS, (tr("Hashing threads") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#hashing_threads", u"(?)"))
