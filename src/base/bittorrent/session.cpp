@@ -1191,13 +1191,18 @@ void Session::processBannedIPs(lt::ip_filter &filter)
 void Session::adjustLimits(lt::settings_pack &settingsPack) const
 {
     // Internally increase the queue limits to ensure that the magnet is started
-    const int maxDownloads = maxActiveDownloads();
-    const int maxActive = maxActiveTorrents();
+    const auto adjustLimit = [this](const int limit) -> int
+    {
+        if (limit <= -1)
+            return limit;
+        // check for overflow: (limit + m_extraLimit) < std::numeric_limits<int>::max()
+        return (m_extraLimit < (std::numeric_limits<int>::max() - limit))
+            ? (limit + m_extraLimit)
+            : std::numeric_limits<int>::max();
+    };
 
-    settingsPack.set_int(lt::settings_pack::active_downloads
-                         , maxDownloads > -1 ? maxDownloads + m_extraLimit : maxDownloads);
-    settingsPack.set_int(lt::settings_pack::active_limit
-                         , maxActive > -1 ? maxActive + m_extraLimit : maxActive);
+    settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
+    settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
 }
 
 void Session::applyBandwidthLimits(lt::settings_pack &settingsPack) const
