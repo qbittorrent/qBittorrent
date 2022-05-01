@@ -47,7 +47,7 @@ StacktraceDialog::~StacktraceDialog()
     delete m_ui;
 }
 
-void StacktraceDialog::setStacktraceString(const QString &sigName, const QString &trace)
+void StacktraceDialog::setText(const QString &signalName, const QString &stacktrace)
 {
     // try to call Qt function as less as possible
     const QString htmlStr = QStringLiteral(
@@ -78,8 +78,8 @@ void StacktraceDialog::setStacktraceString(const QString &sigName, const QString
                  , Utils::Misc::opensslVersionString()
                  , Utils::Misc::zlibVersionString()
                  , Utils::Misc::osName()
-                 , sigName
-                 , trace);
+                 , signalName
+                 , stacktrace);
 
     m_ui->errorText->setHtml(htmlStr);
 }

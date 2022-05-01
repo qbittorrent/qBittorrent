@@ -120,7 +120,7 @@ namespace
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
         StacktraceDialog dlg;  // unsafe
-        dlg.setStacktraceString(QString::fromLatin1(sigName), straceWin::getBacktrace());
+        dlg.setText(QString::fromLatin1(sigName), straceWin::getBacktrace());
         dlg.exec();
 #endif
 
