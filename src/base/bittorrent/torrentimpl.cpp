@@ -2275,8 +2275,6 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
     {
         return nonstd::make_unexpected(QString::fromLocal8Bit(err.what()));
     }
-
-    return nonstd::make_unexpected(tr("Unexpected error"));
 }
 
 nonstd::expected<QByteArray, QString> TorrentImpl::exportToBuffer() const
