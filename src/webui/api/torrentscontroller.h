@@ -87,4 +87,5 @@ private slots:
     void toggleFirstLastPiecePrioAction();
     void renameFileAction();
     void renameFolderAction();
+    void exportAction();
 };

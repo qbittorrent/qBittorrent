@@ -48,7 +48,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 10};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 11};
 
 class APIController;
 class AuthController;

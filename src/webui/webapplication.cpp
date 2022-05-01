@@ -278,6 +278,9 @@ void WebApplication::doProcessRequest()
         case QMetaType::QJsonDocument:
             print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
             break;
+        case QMetaType::QByteArray:
+            print(result.toByteArray(), Http::CONTENT_TYPE_TXT);
+            break;
         case QMetaType::QString:
         default:
             print(result.toString(), Http::CONTENT_TYPE_TXT);
