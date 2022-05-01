@@ -28,6 +28,7 @@ target_sources(qbt_app PRIVATE
     cmdoptions.h
     filelogger.h
     qtlocalpeer/qtlocalpeer.h
+    signalhandler.h
     upgrade.h
 
     # sources
@@ -37,6 +38,7 @@ target_sources(qbt_app PRIVATE
     filelogger.cpp
     main.cpp
     qtlocalpeer/qtlocalpeer.cpp
+    signalhandler.cpp
     upgrade.cpp
 
     # resources
