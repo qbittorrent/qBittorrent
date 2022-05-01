@@ -1953,6 +1953,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
+        msgBox->setWindowModality(Qt::NonModal);
         connect(msgBox, &QMessageBox::buttonClicked, this, [msgBox, updater](QAbstractButton *button)
         {
             if (msgBox->buttonRole(button) == QMessageBox::YesRole)
@@ -1961,7 +1962,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
             }
         });
         connect(msgBox, &QDialog::finished, this, cleanup);
-        msgBox->open();
+        msgBox->show();
     }
     else
     {
@@ -1971,8 +1972,9 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
                 , tr("No updates available.\nYou are already using the latest version.")
                 , QMessageBox::Ok, this};
             msgBox->setAttribute(Qt::WA_DeleteOnClose);
+            msgBox->setWindowModality(Qt::NonModal);
             connect(msgBox, &QDialog::finished, this, cleanup);
-            msgBox->open();
+            msgBox->show();
         }
         else
         {
