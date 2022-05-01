@@ -32,11 +32,10 @@
 #include <cmath>
 
 #include <QLocale>
+#include <QRegularExpression>
 #include <QVector>
 
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-#include <QRegularExpression>
-#else
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #include <QRegExp>
 #endif
 
@@ -56,7 +55,11 @@ QString Utils::String::fromDouble(const double n, const int precision)
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
-    return QRegularExpression::wildcardToRegularExpression(pattern, QRegularExpression::UnanchoredWildcardConversion);
+    // replace [ and ] with [[] and []], respectively
+    QString escapedPattern = pattern;
+    escapedPattern.replace(QRegularExpression(u"\\[|\\]"_qs), u"[\\0]"_qs);
+
+    return QRegularExpression::wildcardToRegularExpression(escapedPattern, QRegularExpression::UnanchoredWildcardConversion);
 }
 #else
 // This is marked as internal in QRegExp.cpp, but is exported. The alternative would be to
@@ -65,7 +68,11 @@ QString qt_regexp_toCanonical(const QString &pattern, QRegExp::PatternSyntax pat
 
 QString Utils::String::wildcardToRegexPattern(const QString &pattern)
 {
-    return qt_regexp_toCanonical(pattern, QRegExp::Wildcard);
+    // replace [ and ] with [[] and []], respectively
+    QString escapedPattern = pattern;
+    escapedPattern.replace(QRegularExpression(u"\\[|\\]"_qs), u"[\\0]"_qs);
+
+    return qt_regexp_toCanonical(escapedPattern, QRegExp::Wildcard);
 }
 #endif
 
