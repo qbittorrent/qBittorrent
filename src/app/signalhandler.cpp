@@ -54,7 +54,7 @@
 #else
 #include "stacktrace_win.h"
 #ifndef DISABLE_GUI
-#include "stacktracedialog.h"
+#include "gui/stacktracedialog.h"
 #endif // DISABLE_GUI
 #endif // Q_OS_UNIX
 #endif //STACKTRACE

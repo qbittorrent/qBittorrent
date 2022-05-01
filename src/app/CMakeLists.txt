@@ -107,21 +107,6 @@ if (STACKTRACE)
     if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
         target_sources(qbt_app PRIVATE stacktrace_win.h)
 
-        if (GUI)
-            qt_wrap_ui(STACKTRACE_UI_HEADERS stacktracedialog.ui)
-
-            target_sources(qbt_app PRIVATE
-                stacktracedialog.h
-                stacktracedialog.cpp
-                ${STACKTRACE_UI_HEADERS}
-            )
-
-            # UI headers will be generated in ${CMAKE_CURRENT_BINARY_DIR}
-            target_include_directories(qbt_app PRIVATE
-                ${CMAKE_CURRENT_BINARY_DIR}
-            )
-        endif()
-
         # i686 arch on Windows requires frame pointer preservation
         if (MSVC)
             target_compile_options(qbt_app PRIVATE /Zi)

@@ -215,3 +215,11 @@ FORMS += \
     $$PWD/watchedfolderoptionsdialog.ui
 
 RESOURCES += $$PWD/about.qrc
+
+stacktrace {
+    !unix {
+        HEADERS += $$PWD/stacktracedialog.h
+        SOURCES += $$PWD/stacktracedialog.cpp
+        FORMS += $$PWD/stacktracedialog.ui
+    }
+}

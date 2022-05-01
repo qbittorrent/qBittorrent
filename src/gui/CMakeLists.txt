@@ -221,6 +221,16 @@ if (DBUS)
     )
 endif()
 
+if (STACKTRACE)
+    qt_wrap_ui(STACKTRACE_UI_HEADERS stacktracedialog.ui)
+
+    target_sources(qbt_gui PRIVATE
+        stacktracedialog.h
+        stacktracedialog.cpp
+        ${STACKTRACE_UI_HEADERS}
+    )
+endif()
+
 if ((CMAKE_SYSTEM_NAME STREQUAL "Windows") OR (CMAKE_SYSTEM_NAME STREQUAL "Darwin"))
     target_sources(qbt_gui PRIVATE
         programupdater.h
