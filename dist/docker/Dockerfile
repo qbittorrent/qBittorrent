@@ -32,6 +32,6 @@ ENV WEBUI_PORT="8080"
 
 EXPOSE 6881 6881/udp 8080
 
-VOLUME /config /downloads
+VOLUME /config /data /downloads
 
 ENTRYPOINT ["/entrypoint.sh"]
