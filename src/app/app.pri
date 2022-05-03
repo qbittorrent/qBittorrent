@@ -23,12 +23,7 @@ stacktrace {
     unix {
         HEADERS += $$PWD/stacktrace.h
     }
-    else {
+    win32 {
         HEADERS += $$PWD/stacktrace_win.h
-        !nogui {
-            HEADERS += $$PWD/stacktracedialog.h
-            SOURCES += $$PWD/stacktracedialog.cpp
-            FORMS += $$PWD/stacktracedialog.ui
-        }
     }
 }

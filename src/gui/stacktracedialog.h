@@ -45,7 +45,7 @@ public:
     explicit StacktraceDialog(QWidget *parent = nullptr);
     ~StacktraceDialog() override;
 
-    void setStacktraceString(const QString &sigName, const QString &trace);
+    void setText(const QString &signalName, const QString &stacktrace);
 
 private:
     Ui::StacktraceDialog *m_ui;

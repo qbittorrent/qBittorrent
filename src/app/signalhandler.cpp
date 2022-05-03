@@ -54,7 +54,7 @@
 #else
 #include "stacktrace_win.h"
 #ifndef DISABLE_GUI
-#include "stacktracedialog.h"
+#include "gui/stacktracedialog.h"
 #endif // DISABLE_GUI
 #endif // Q_OS_UNIX
 #endif //STACKTRACE
@@ -120,7 +120,7 @@ namespace
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
         StacktraceDialog dlg;  // unsafe
-        dlg.setStacktraceString(QString::fromLatin1(sigName), straceWin::getBacktrace());
+        dlg.setText(QString::fromLatin1(sigName), straceWin::getBacktrace());
         dlg.exec();
 #endif
 
