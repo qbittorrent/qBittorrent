@@ -18,4 +18,4 @@ else
     sed -i '/^\[LegalNotice\]$/{$!{N;s|\(\[LegalNotice\]\nAccepted=\).*|\1false|}}' /config/qBittorrent/qBittorrent.conf
 fi
 
-HOME="/config" XDG_CONFIG_HOME="/config" XDG_DATA_HOME="/config" qbittorrent-nox --webui-port=$WEBUI_PORT
+HOME="/config" XDG_CONFIG_HOME="/config" XDG_DATA_HOME="/data" qbittorrent-nox --webui-port=$WEBUI_PORT

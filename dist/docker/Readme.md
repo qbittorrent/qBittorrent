@@ -39,10 +39,11 @@ there is one important variable to run the container:
 
 #### Volumes
 
-there are two main locations:
+there are three main locations:
 
-* `downloads` contains the files downloaded by qBittorrent
 * `config` contains qBittorrent configurations
+* `data` contains qBittorrent application data
+* `downloads` contains the files downloaded by qBittorrent
 
 ```shell
 docker run give.example.org/of/your/container:v0.2.1 parameters
@@ -57,7 +58,7 @@ on the port `8080` the webinterface is run
 To start the the docker image simply run
 
 ```shell
-docker run --env LEGAL=accept -p 8080:8080 -v /your/path/config:/config -v /your/path/download:/downloads --name qBittorrent qbittorrent-nox:4.2.0
+docker run --env LEGAL=accept -p 8080:8080 -v /your/path/config:/config -v /your/path/data:/data -v /your/path/download:/downloads --name qBittorrent qbittorrent-nox:4.2.0
 ```
 
 to stop the container
