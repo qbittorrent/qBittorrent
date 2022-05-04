@@ -1257,8 +1257,8 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['last_activity'].updateTd = function(td, row) {
                 const val = this.getRowValue(row);
                 if (val < 1) {
-                    td.set('text', '∞');
-                    td.set('title', '∞');
+                    td.set('text', '< 1m');
+                    td.set('title', '< 1m');
                 }
                 else {
                     const formattedVal = 'QBT_TR(%1 ago)QBT_TR[CONTEXT=TransferListDelegate]'.replace('%1', window.qBittorrent.Misc.friendlyDuration((new Date()) / 1000 - val));
