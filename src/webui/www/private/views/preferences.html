@@ -1900,7 +1900,7 @@
 
                         // Web UI tab
                         // Language
-                        $('locale_select').setProperty('value', pref.locale);
+                        $('locale_select').setProperty('value', ((pref.locale === "en_US") ? "en" : pref.locale));
                         $('performanceWarning').setProperty('checked', pref.performance_warning);
 
                         // HTTP Server
