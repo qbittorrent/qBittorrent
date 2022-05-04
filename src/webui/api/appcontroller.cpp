@@ -661,7 +661,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"web_ui_address"_qs))
         pref->setWebUiAddress(it.value().toString());
     if (hasKey(u"web_ui_port"_qs))
-        pref->setWebUiPort(it.value().toUInt());
+        pref->setWebUiPort(it.value().value<quint16>());
     if (hasKey(u"web_ui_upnp"_qs))
         pref->setUPnPForWebUIPort(it.value().toBool());
     if (hasKey(u"use_https"_qs))

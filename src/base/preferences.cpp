@@ -592,12 +592,13 @@ void Preferences::setWebUiAddress(const QString &addr)
 
 quint16 Preferences::getWebUiPort() const
 {
-    return value<int>(u"Preferences/WebUI/Port"_qs, 8080);
+    return value<quint16>(u"Preferences/WebUI/Port"_qs, 8080);
 }
 
 void Preferences::setWebUiPort(const quint16 port)
 {
-    setValue(u"Preferences/WebUI/Port"_qs, port);
+    // cast to `int` type so it will show human readable unit in configuration file
+    setValue(u"Preferences/WebUI/Port"_qs, static_cast<int>(port));
 }
 
 bool Preferences::useUPnPForWebUIPort() const
