@@ -55,6 +55,7 @@ protected:
     void setResult(const QString &result);
     void setResult(const QJsonArray &result);
     void setResult(const QJsonObject &result);
+    void setResult(const QByteArray &result);
 
 private:
     StringMap m_params;

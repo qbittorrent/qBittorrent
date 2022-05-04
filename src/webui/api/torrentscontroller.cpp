@@ -1414,3 +1414,19 @@ void TorrentsController::renameFolderAction()
         throw APIError(APIErrorType::Conflict, error.message());
     }
 }
+
+void TorrentsController::exportAction()
+{
+    requireParams({u"hash"_qs});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const nonstd::expected<QByteArray, QString> result = torrent->exportToBuffer();
+    if (!result)
+        throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
+
+    setResult(result.value());
+}

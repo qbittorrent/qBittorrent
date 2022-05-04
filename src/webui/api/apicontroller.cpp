@@ -91,3 +91,8 @@ void APIController::setResult(const QJsonObject &result)
 {
     m_result = QJsonDocument(result);
 }
+
+void APIController::setResult(const QByteArray &result)
+{
+    m_result = result;
+}
