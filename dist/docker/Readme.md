@@ -37,6 +37,7 @@ docker build \
     -it \
     --read-only \
     --rm \
+    --tmpfs /tmp \
     --name qbittorrent-nox \
     -e QBT_EULA \
     -e QBT_WEBUI_PORT \

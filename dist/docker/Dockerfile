@@ -42,8 +42,11 @@ RUN \
   apk --no-cache add \
     doas \
     libtorrent-rasterbar \
+    python3 \
     qt6-qtbase \
-    tini && \
+    tini
+
+RUN \
   adduser \
     -D \
     -H \
