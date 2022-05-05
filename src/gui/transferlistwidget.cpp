@@ -223,7 +223,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     connect(doubleClickHotkeyEnter, &QShortcut::activated, this, &TransferListWidget::torrentDoubleClicked);
     const auto *recheckHotkey = new QShortcut(Qt::CTRL + Qt::Key_R, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(recheckHotkey, &QShortcut::activated, this, &TransferListWidget::recheckSelectedTorrents);
-    const auto* forceStartHotkey = new QShortcut(Qt::CTRL + Qt::Key_M, this, nullptr, nullptr, Qt::WidgetShortcut);
+    const auto *forceStartHotkey = new QShortcut(Qt::CTRL + Qt::Key_M, this, nullptr, nullptr, Qt::WidgetShortcut);
     connect(forceStartHotkey, &QShortcut::activated, this, &TransferListWidget::forceStartSelectedTorrents);
 }
 
