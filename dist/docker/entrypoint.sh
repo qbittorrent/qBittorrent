@@ -1,21 +1,28 @@
 #!/bin/sh
 
-if [ ! -f /config/qBittorrent/qBittorrent.conf ]; then
-    mkdir -p /config/qBittorrent/
-    cat << EOF > /config/qBittorrent/qBittorrent.conf
+profilePath="/config"
+qbtConfigFile="$profilePath/qBittorrent/config/qBittorrent.conf"
+
+if [ ! -f "$qbtConfigFile" ]; then
+    mkdir -p "$(dirname $qbtConfigFile)"
+    cat << EOF > "$qbtConfigFile"
 [BitTorrent]
 Session\DefaultSavePath=/downloads
+Session\Port=6881
 Session\TempPath=/downloads/temp
 
 [LegalNotice]
 Accepted=false
 EOF
 
-    if [ "$LEGAL" = "accept" ] ; then
-        sed -i '/^\[LegalNotice\]$/{$!{N;s|\(\[LegalNotice\]\nAccepted=\).*|\1true|}}' /config/qBittorrent/qBittorrent.conf
+    if [ "$QBT_EULA" = "accept" ]; then
+        sed -i '/^\[LegalNotice\]$/{$!{N;s|\(\[LegalNotice\]\nAccepted=\).*|\1true|}}' "$qbtConfigFile"
     else
-        sed -i '/^\[LegalNotice\]$/{$!{N;s|\(\[LegalNotice\]\nAccepted=\).*|\1false|}}' /config/qBittorrent/qBittorrent.conf
+        sed -i '/^\[LegalNotice\]$/{$!{N;s|\(\[LegalNotice\]\nAccepted=\).*|\1false|}}' "$qbtConfigFile"
     fi
 fi
 
-HOME="/config" XDG_CONFIG_HOME="/config" XDG_DATA_HOME="/data" qbittorrent-nox --webui-port=$WEBUI_PORT
+qbittorrent-nox \
+    --profile="$profilePath" \
+    --webui-port="$QBT_WEBUI_PORT" \
+    "$@"
