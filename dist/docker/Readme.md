@@ -35,6 +35,7 @@ docker build \
     QBT_WEBUI_PORT=8080
   docker run \
     -it \
+    --read-only \
     --rm \
     --name qbittorrent-nox \
     -e QBT_EULA \
