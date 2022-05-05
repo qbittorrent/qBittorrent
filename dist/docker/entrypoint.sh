@@ -1,5 +1,6 @@
 #!/bin/sh
 
+downloadsPath="/downloads"
 profilePath="/config"
 qbtConfigFile="$profilePath/qBittorrent/config/qBittorrent.conf"
 
@@ -22,7 +23,13 @@ EOF
     fi
 fi
 
-qbittorrent-nox \
-    --profile="$profilePath" \
-    --webui-port="$QBT_WEBUI_PORT" \
-    "$@"
+# those are owned by root by default
+# don't change existing files owner in `$downloadsPath`
+chown qbtUser:qbtUser "$downloadsPath"
+chown qbtUser:qbtUser -R "$profilePath"
+
+doas -u qbtUser \
+    qbittorrent-nox \
+        --profile="$profilePath" \
+        --webui-port="$QBT_WEBUI_PORT" \
+        "$@"
