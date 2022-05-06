@@ -35,6 +35,7 @@ docker build \
     QBT_WEBUI_PORT=8080
   docker run \
     -it \
+    --read-only \
     --rm \
     --name qbittorrent-nox \
     -e QBT_EULA \
@@ -42,8 +43,8 @@ docker build \
     -p "$QBT_WEBUI_PORT":"$QBT_WEBUI_PORT" \
     -p 6881:6881/tcp \
     -p 6881:6881/udp \
-    -v /your_path/config:/config \
-    -v /your_path/downloads:/downloads \
+    -v <your_path>/config:/config \
+    -v <your_path>/downloads:/downloads \
     qbittorrent-nox:"$QBT_VERSION"
   ```
   Then you can login at: `http://127.0.0.1:8080`
@@ -67,5 +68,5 @@ docker build \
 ### Volumes
 
 There are some paths involved:
-* `/your_path/config` on your host machine will contain qBittorrent configurations
-* `/your_path/downloads` on your host machine will contain the files downloaded by qBittorrent
+* `<your_path>/config` on your host machine will contain qBittorrent configurations
+* `<your_path>/downloads` on your host machine will contain the files downloaded by qBittorrent

@@ -40,9 +40,17 @@ FROM alpine:latest
 
 RUN \
   apk --no-cache add \
+    doas \
     libtorrent-rasterbar \
     qt6-qtbase \
-    tini
+    tini && \
+  adduser \
+    -D \
+    -H \
+    -s /sbin/nologin \
+    -u 1000 \
+    qbtUser && \
+  echo "permit nopass :root" >> "/etc/doas.d/doas.conf"
 
 COPY --from=builder /usr/local/bin/qbittorrent-nox /usr/bin/qbittorrent-nox
 
