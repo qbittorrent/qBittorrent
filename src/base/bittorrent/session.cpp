@@ -343,7 +343,8 @@ Session::Session(QObject *parent)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY(u"DiskCacheTTL"_qs), 60)
     , m_diskQueueSize(BITTORRENT_SESSION_KEY(u"DiskQueueSize"_qs), (1024 * 1024))
     , m_diskIOType(BITTORRENT_SESSION_KEY(u"DiskIOType"_qs), DiskIOType::Default)
-    , m_useOSCache(BITTORRENT_SESSION_KEY(u"UseOSCache"_qs), true)
+    , m_diskIOReadMode(BITTORRENT_SESSION_KEY(u"DiskIOReadMode"_qs), DiskIOReadMode::EnableOSCache)
+    , m_diskIOWriteMode(BITTORRENT_SESSION_KEY(u"DiskIOWriteMode"_qs), DiskIOWriteMode::EnableOSCache)
 #ifdef Q_OS_WIN
     , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY(u"CoalesceReadWrite"_qs), true)
 #else
@@ -1619,10 +1620,32 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
 
     settingsPack.set_int(lt::settings_pack::max_queued_disk_bytes, diskQueueSize());
 
-    lt::settings_pack::io_buffer_mode_t mode = useOSCache() ? lt::settings_pack::enable_os_cache
-                                                              : lt::settings_pack::disable_os_cache;
-    settingsPack.set_int(lt::settings_pack::disk_io_read_mode, mode);
-    settingsPack.set_int(lt::settings_pack::disk_io_write_mode, mode);
+    switch (diskIOReadMode())
+    {
+    case DiskIOReadMode::DisableOSCache:
+        settingsPack.set_int(lt::settings_pack::disk_io_read_mode, lt::settings_pack::disable_os_cache);
+        break;
+    case DiskIOReadMode::EnableOSCache:
+    default:
+        settingsPack.set_int(lt::settings_pack::disk_io_read_mode, lt::settings_pack::enable_os_cache);
+        break;
+    }
+
+    switch (diskIOWriteMode())
+    {
+    case DiskIOWriteMode::DisableOSCache:
+        settingsPack.set_int(lt::settings_pack::disk_io_write_mode, lt::settings_pack::disable_os_cache);
+        break;
+    case DiskIOWriteMode::EnableOSCache:
+    default:
+        settingsPack.set_int(lt::settings_pack::disk_io_write_mode, lt::settings_pack::enable_os_cache);
+        break;
+#ifdef QBT_USES_LIBTORRENT2
+    case DiskIOWriteMode::WriteThrough:
+        settingsPack.set_int(lt::settings_pack::disk_io_write_mode, lt::settings_pack::write_through);
+        break;
+#endif
+    }
 
 #ifndef QBT_USES_LIBTORRENT2
     settingsPack.set_bool(lt::settings_pack::coalesce_reads, isCoalesceReadWriteEnabled());
@@ -3830,18 +3853,32 @@ void Session::setDiskQueueSize(const qint64 size)
     configureDeferred();
 }
 
-bool Session::useOSCache() const
+DiskIOReadMode Session::diskIOReadMode() const
 {
-    return m_useOSCache;
+    return m_diskIOReadMode;
 }
 
-void Session::setUseOSCache(const bool use)
+void Session::setDiskIOReadMode(const DiskIOReadMode mode)
 {
-    if (use != m_useOSCache)
-    {
-        m_useOSCache = use;
-        configureDeferred();
-    }
+    if (mode == m_diskIOReadMode)
+        return;
+
+    m_diskIOReadMode = mode;
+    configureDeferred();
+}
+
+DiskIOWriteMode Session::diskIOWriteMode() const
+{
+    return m_diskIOWriteMode;
+}
+
+void Session::setDiskIOWriteMode(const DiskIOWriteMode mode)
+{
+    if (mode == m_diskIOWriteMode)
+        return;
+
+    m_diskIOWriteMode = mode;
+    configureDeferred();
 }
 
 bool Session::isCoalesceReadWriteEnabled() const

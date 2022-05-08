@@ -122,6 +122,13 @@ namespace BitTorrent
         };
         Q_ENUM_NS(ChokingAlgorithm)
 
+        enum class DiskIOReadMode : int
+        {
+            DisableOSCache = 0,
+            EnableOSCache = 1
+        };
+        Q_ENUM_NS(DiskIOReadMode)
+
         enum class DiskIOType : int
         {
             Default = 0,
@@ -129,6 +136,14 @@ namespace BitTorrent
             Posix = 2
         };
         Q_ENUM_NS(DiskIOType)
+
+        enum class DiskIOWriteMode : int
+        {
+            DisableOSCache = 0,
+            EnableOSCache = 1,
+            WriteThrough = 2
+        };
+        Q_ENUM_NS(DiskIOWriteMode)
 
         enum class MixedModeAlgorithm : int
         {
@@ -372,8 +387,10 @@ namespace BitTorrent
         void setDiskQueueSize(qint64 size);
         DiskIOType diskIOType() const;
         void setDiskIOType(DiskIOType type);
-        bool useOSCache() const;
-        void setUseOSCache(bool use);
+        DiskIOReadMode diskIOReadMode() const;
+        void setDiskIOReadMode(DiskIOReadMode mode);
+        DiskIOWriteMode diskIOWriteMode() const;
+        void setDiskIOWriteMode(DiskIOWriteMode mode);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);
         bool usePieceExtentAffinity() const;
@@ -707,7 +724,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<qint64> m_diskQueueSize;
         CachedSettingValue<DiskIOType> m_diskIOType;
-        CachedSettingValue<bool> m_useOSCache;
+        CachedSettingValue<DiskIOReadMode> m_diskIOReadMode;
+        CachedSettingValue<DiskIOWriteMode> m_diskIOWriteMode;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
         CachedSettingValue<bool> m_usePieceExtentAffinity;
         CachedSettingValue<bool> m_isSuggestMode;

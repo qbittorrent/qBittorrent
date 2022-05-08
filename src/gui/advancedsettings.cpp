@@ -113,7 +113,8 @@ namespace
 #ifdef QBT_USES_LIBTORRENT2
         DISK_IO_TYPE,
 #endif
-        OS_CACHE,
+        DISK_IO_READ_MODE,
+        DISK_IO_WRITE_MODE,
 #ifndef QBT_USES_LIBTORRENT2
         COALESCE_RW,
 #endif
@@ -207,8 +208,10 @@ void AdvancedSettings::saveAdvancedSettings() const
 #ifdef QBT_USES_LIBTORRENT2
     session->setDiskIOType(m_comboBoxDiskIOType.currentData().value<BitTorrent::DiskIOType>());
 #endif
-    // Enable OS cache
-    session->setUseOSCache(m_checkBoxOsCache.isChecked());
+    // Disk IO read mode
+    session->setDiskIOReadMode(m_comboBoxDiskIOReadMode.currentData().value<BitTorrent::DiskIOReadMode>());
+    // Disk IO write mode
+    session->setDiskIOWriteMode(m_comboBoxDiskIOWriteMode.currentData().value<BitTorrent::DiskIOWriteMode>());
 #ifndef QBT_USES_LIBTORRENT2
     // Coalesce reads & writes
     session->setCoalesceReadWriteEnabled(m_checkBoxCoalesceRW.isChecked());
@@ -508,10 +511,21 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
            , &m_comboBoxDiskIOType);
 #endif
-    // Enable OS cache
-    m_checkBoxOsCache.setChecked(session->useOSCache());
-    addRow(OS_CACHE, (tr("Enable OS cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", u"(?)"))
-            , &m_checkBoxOsCache);
+    // Disk IO read mode
+    m_comboBoxDiskIOReadMode.addItem(tr("Disable OS cache"), QVariant::fromValue(BitTorrent::DiskIOReadMode::DisableOSCache));
+    m_comboBoxDiskIOReadMode.addItem(tr("Enable OS cache"), QVariant::fromValue(BitTorrent::DiskIOReadMode::EnableOSCache));
+    m_comboBoxDiskIOReadMode.setCurrentIndex(m_comboBoxDiskIOReadMode.findData(QVariant::fromValue(session->diskIOReadMode())));
+    addRow(DISK_IO_READ_MODE, (tr("Disk IO read mode") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_read_mode", u"(?)"))
+            , &m_comboBoxDiskIOReadMode);
+    // Disk IO write mode
+    m_comboBoxDiskIOWriteMode.addItem(tr("Disable OS cache"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::DisableOSCache));
+    m_comboBoxDiskIOWriteMode.addItem(tr("Enable OS cache"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::EnableOSCache));
+#ifdef QBT_USES_LIBTORRENT2
+    m_comboBoxDiskIOWriteMode.addItem(tr("Write-through"), QVariant::fromValue(BitTorrent::DiskIOWriteMode::WriteThrough));
+#endif
+    m_comboBoxDiskIOWriteMode.setCurrentIndex(m_comboBoxDiskIOWriteMode.findData(QVariant::fromValue(session->diskIOWriteMode())));
+    addRow(DISK_IO_WRITE_MODE, (tr("Disk IO write mode") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", u"(?)"))
+            , &m_comboBoxDiskIOWriteMode);
 #ifndef QBT_USES_LIBTORRENT2
     // Coalesce reads & writes
     m_checkBoxCoalesceRW.setChecked(session->isCoalesceReadWriteEnabled());

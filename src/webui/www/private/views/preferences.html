@@ -1060,10 +1060,25 @@
             </tr>
             <tr>
                 <td>
-                    <label for="enableOSCache">QBT_TR(Enable OS cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
+                    <label for="diskIOReadMode">QBT_TR(Disk IO read mode:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_read_mode" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="checkbox" id="enableOSCache" />
+                    <select id="diskIOReadMode" style="width: 15em;">
+                        <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="diskIOWriteMode">QBT_TR(Disk IO write mode:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="diskIOWriteMode" style="width: 15em;">
+                        <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(Write-through (requires libtorrent >= 2.0.6))QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -2003,7 +2018,8 @@
                         $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
                         $('diskQueueSize').setProperty('value', (pref.disk_queue_size / 1024));
                         $('diskIOType').setProperty('value', pref.disk_io_type);
-                        $('enableOSCache').setProperty('checked', pref.enable_os_cache);
+                        $('diskIOReadMode').setProperty('value', pref.disk_io_read_mode);
+                        $('diskIOWriteMode').setProperty('value', pref.disk_io_write_mode);
                         $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
                         $('pieceExtentAffinity').setProperty('checked', pref.enable_piece_extent_affinity);
                         $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
@@ -2409,7 +2425,8 @@
             settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
             settings.set('disk_queue_size', ($('diskQueueSize').getProperty('value') * 1024));
             settings.set('disk_io_type', $('diskIOType').getProperty('value'));
-            settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
+            settings.set('disk_io_read_mode', $('diskIOReadMode').getProperty('value'));
+            settings.set('disk_io_write_mode', $('diskIOWriteMode').getProperty('value'));
             settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
             settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));
             settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));
