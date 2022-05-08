@@ -136,7 +136,7 @@ namespace
         ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, NULL, &cbData);
         DWORD cBuffer = (cbData / sizeof(WCHAR)) + 1;
         LPWSTR lpData = new WCHAR[cBuffer];
-        LONG res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, (LPBYTE)lpData, &cbData);
+        LONG res = ::RegQueryValueExW(handle, nameWStr.c_str(), NULL, &type, reinterpret_cast<LPBYTE>(lpData), &cbData);
 
         QString result;
         if (res == ERROR_SUCCESS)
