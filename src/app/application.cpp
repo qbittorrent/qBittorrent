@@ -774,7 +774,7 @@ void Application::applyMemoryWorkingSetLimit()
 
 #ifdef Q_OS_WIN
     const SIZE_T maxSize = memoryWorkingSetLimit() * MiB;
-    const SIZE_T minSize = std::min((64 * MiB), (maxSize / 2));
+    const auto minSize = std::min<SIZE_T>((64 * MiB), (maxSize / 2));
     if (!::SetProcessWorkingSetSizeEx(::GetCurrentProcess(), minSize, maxSize, QUOTA_LIMITS_HARDWS_MAX_ENABLE))
     {
         const DWORD errorCode = ::GetLastError();
