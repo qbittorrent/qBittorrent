@@ -287,10 +287,11 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         m_filePaths.reserve(filesCount);
         m_indexMap.reserve(filesCount);
         m_filePriorities.reserve(filesCount);
-        m_completedFiles.resize(filesCount);
         const std::vector<lt::download_priority_t> filePriorities =
                 resized(m_ltAddTorrentParams.file_priorities, m_ltAddTorrentParams.ti->num_files()
                         , LT::toNative(m_ltAddTorrentParams.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
+
+        m_completedFiles.fill(static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode), filesCount);
 
         for (int i = 0; i < filesCount; ++i)
         {
@@ -1531,11 +1532,13 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     const std::shared_ptr<lt::torrent_info> metadata = std::const_pointer_cast<lt::torrent_info>(nativeTorrentInfo());
     m_torrentInfo = TorrentInfo(*metadata);
     m_filePriorities.reserve(filesCount());
-    m_completedFiles.resize(filesCount());
     const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     const std::vector<lt::download_priority_t> filePriorities =
             resized(p.file_priorities, metadata->files().num_files()
                     , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
+
+    m_completedFiles.fill(static_cast<bool>(p.flags & lt::torrent_flags::seed_mode), filesCount());
+
     for (int i = 0; i < fileNames.size(); ++i)
     {
         const auto nativeIndex = nativeIndexes.at(i);
