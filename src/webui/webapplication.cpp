@@ -91,6 +91,17 @@ namespace
         return ret;
     }
 
+    QString parseAuthorization(const QStringView headerStr)
+    {
+        const auto parts = headerStr.split(u' ', Qt::SkipEmptyParts);
+        QString token = QString();
+
+        if ((parts.length() == 2) && (parts[0] == u"Bearer"))
+            token = parts[1].toString();
+
+        return token;
+    }
+
     QUrl urlFromHostHeader(const QString &hostHeader)
     {
         if (!hostHeader.contains(u"://"))
@@ -524,7 +535,10 @@ void WebApplication::sessionInitialize()
 {
     Q_ASSERT(!m_currentSession);
 
-    const QString sessionId {parseCookie(m_request.headers.value(u"cookie"_qs)).value(QString::fromLatin1(C_SID))};
+    // Preferred use token in http header
+    QString sessionId {parseAuthorization(m_request.headers.value(Http::HEADER_AUTHORIZATION))};
+    if (sessionId.isNull())
+        sessionId = parseCookie(m_request.headers.value(u"cookie"_qs)).value(QString::fromLatin1(C_SID));
 
     // TODO: Additional session check
 
@@ -610,28 +624,39 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController<TransferController>(u"transfer"_qs);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
-    QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
-    cookie.setHttpOnly(true);
-    cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
-    cookie.setPath(u"/"_qs);
-    QByteArray cookieRawForm = cookie.toRawForm();
-    if (m_isCSRFProtectionEnabled)
-        cookieRawForm.append("; SameSite=Strict");
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookieRawForm)});
+    const auto sessionId = m_currentSession->id().toUtf8();
+    if (m_request.headers.contains(Http::HEADER_AUTHORIZATION))
+    {
+        setHeader({Http::HEADER_AUTHORIZATION, QString::fromLatin1(sessionId)});
+    }
+    else
+    {
+        QNetworkCookie cookie(C_SID, sessionId);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
+        cookie.setPath(u"/"_qs);
+        QByteArray cookieRawForm = cookie.toRawForm();
+        if (m_isCSRFProtectionEnabled)
+            cookieRawForm.append("; SameSite=Strict");
+        setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookieRawForm)});
+    }
 }
 
 void WebApplication::sessionEnd()
 {
     Q_ASSERT(m_currentSession);
 
-    QNetworkCookie cookie(C_SID);
-    cookie.setPath(u"/"_qs);
-    cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
-
     delete m_sessions.take(m_currentSession->id());
     m_currentSession = nullptr;
 
-    setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    if (!m_request.headers.contains(Http::HEADER_AUTHORIZATION))
+    {
+        QNetworkCookie cookie(C_SID);
+        cookie.setPath(u"/"_qs);
+        cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
+
+        setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookie.toRawForm())});
+    }
 }
 
 bool WebApplication::isCrossSiteRequest(const Http::Request &request) const

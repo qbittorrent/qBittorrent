@@ -40,6 +40,7 @@ namespace Http
     inline const QString METHOD_GET = u"GET"_qs;
     inline const QString METHOD_POST = u"POST"_qs;
 
+    inline const QString HEADER_AUTHORIZATION = u"authorization"_qs;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_qs;
     inline const QString HEADER_CONNECTION = u"connection"_qs;
     inline const QString HEADER_CONTENT_DISPOSITION = u"content-disposition"_qs;
