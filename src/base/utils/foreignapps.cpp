@@ -171,7 +171,6 @@ namespace
         if (res == ERROR_SUCCESS)
         {
             QStringList versions = getRegSubkeys(hkPythonCore);
-            qDebug("Python versions nb: %d", versions.size());
             versions.sort();
 
             bool found = false;
