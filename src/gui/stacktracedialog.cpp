@@ -49,7 +49,8 @@ StacktraceDialog::~StacktraceDialog()
 
 void StacktraceDialog::setText(const QString &signalName, const QString &stacktrace)
 {
-    // try to call Qt function as less as possible
+    // try not to call signal-unsafe functions
+
     const QString htmlStr = QStringLiteral(
         "<p align=center><b><font size=7 color=red>"
         "qBittorrent has crashed"
@@ -70,7 +71,7 @@ void StacktraceDialog::setText(const QString &signalName, const QString &stacktr
         "OS version: %6<br/><br/>"
         "Caught signal: %7"
         "</font></p>"
-        "<pre><code>%8</code></pre>"
+        "<pre><code>```\n%8\n```</code></pre>"
         "<br/><hr><br/><br/>")
             .arg(QString::number(QT_POINTER_SIZE * 8)
                  , Utils::Misc::libtorrentVersionString()

@@ -26,8 +26,11 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "stacktrace.h"
 
-#include <string>
+#include <boost/stacktrace.hpp>
 
-std::string getStacktrace();
+std::string getStacktrace()
+{
+    return boost::stacktrace::to_string(boost::stacktrace::stacktrace());
+}
