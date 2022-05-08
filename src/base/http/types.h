@@ -38,7 +38,9 @@
 namespace Http
 {
     inline const QString METHOD_GET = u"GET"_qs;
+    inline const QString METHOD_HEAD = u"HEAD"_qs;
     inline const QString METHOD_POST = u"POST"_qs;
+    inline const QString METHOD_OPTIONS = u"OPTIONS"_qs;
 
     inline const QString HEADER_AUTHORIZATION = u"authorization"_qs;
     inline const QString HEADER_CACHE_CONTROL = u"cache-control"_qs;
@@ -60,10 +62,6 @@ namespace Http
     inline const QString HEADER_X_FRAME_OPTIONS = u"x-frame-options"_qs;
     inline const QString HEADER_X_XSS_PROTECTION = u"x-xss-protection"_qs;
 
-    inline const QString HEADER_REQUEST_METHOD_GET = u"GET"_qs;
-    inline const QString HEADER_REQUEST_METHOD_HEAD = u"HEAD"_qs;
-    inline const QString HEADER_REQUEST_METHOD_POST = u"POST"_qs;
-
     inline const QString CONTENT_TYPE_HTML = u"text/html"_qs;
     inline const QString CONTENT_TYPE_CSS = u"text/css"_qs;
     inline const QString CONTENT_TYPE_TXT = u"text/plain; charset=UTF-8"_qs;
@@ -73,6 +71,10 @@ namespace Http
     inline const QString CONTENT_TYPE_PNG = u"image/png"_qs;
     inline const QString CONTENT_TYPE_FORM_ENCODED = u"application/x-www-form-urlencoded"_qs;
     inline const QString CONTENT_TYPE_FORM_DATA = u"multipart/form-data"_qs;
+
+    inline const uint STATUS_NO_CONTENT = 204;
+
+    inline const QString STATUS_TEXT_NO_CONTENT = u"No Content"_qs;
 
     // portability: "\r\n" doesn't guarantee mapping to the correct symbol
     inline const char CRLF[] = {0x0D, 0x0A, '\0'};

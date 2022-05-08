@@ -491,6 +491,10 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         for (auto iter = m_request.query.cbegin(); iter != m_request.query.cend(); ++iter)
             m_params[iter.key()] = QString::fromUtf8(iter.value());
     }
+    else if (m_request.method == Http::METHOD_OPTIONS)
+    {
+        // pass
+    }
     else
     {
         m_params = m_request.posts;
@@ -511,8 +515,15 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         // reverse proxy resolve client address
         m_clientAddress = resolveClientAddress();
 
-        sessionInitialize();
-        doProcessRequest();
+        if (m_request.method == Http::METHOD_OPTIONS)
+        {
+            status(Http::STATUS_NO_CONTENT, Http::STATUS_TEXT_NO_CONTENT);
+        }
+        else
+        {
+            sessionInitialize();
+            doProcessRequest();
+        }
     }
     catch (const HTTPError &error)
     {

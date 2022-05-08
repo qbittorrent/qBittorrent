@@ -105,9 +105,11 @@ RequestParser::ParseResult RequestParser::doParse(const QByteArray &data)
     const int headerLength = headerEnd + EOH.length();
 
     // handle supported methods
-    if ((m_request.method == HEADER_REQUEST_METHOD_GET) || (m_request.method == HEADER_REQUEST_METHOD_HEAD))
+    if ((m_request.method == Http::METHOD_GET)
+        || (m_request.method == Http::METHOD_HEAD)
+        || (m_request.method == Http::METHOD_OPTIONS))
         return {ParseStatus::OK, m_request, headerLength};
-    if (m_request.method == HEADER_REQUEST_METHOD_POST)
+    if (m_request.method == Http::METHOD_POST)
     {
         const auto parseContentLength = [this]() -> int
         {
