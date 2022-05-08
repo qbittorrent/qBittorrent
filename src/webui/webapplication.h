@@ -94,7 +94,7 @@ public:
 
     QString clientId() const override;
     WebSession *session() override;
-    void sessionStart() override;
+    void sessionStart(bool updateCookie) override;
     void sessionEnd() override;
 
     const Http::Request &request() const;

@@ -537,7 +537,8 @@ void WebApplication::sessionInitialize()
 
     // Preferred use token in http header
     QString sessionId {parseAuthorization(m_request.headers.value(Http::HEADER_AUTHORIZATION))};
-    if (sessionId.isNull())
+    const bool hasToken = !sessionId.isNull();
+    if (!hasToken)
         sessionId = parseCookie(m_request.headers.value(u"cookie"_qs)).value(QString::fromLatin1(C_SID));
 
     // TODO: Additional session check
@@ -565,7 +566,7 @@ void WebApplication::sessionInitialize()
     }
 
     if (!m_currentSession && !isAuthNeeded())
-        sessionStart();
+        sessionStart(!hasToken);
 }
 
 QString WebApplication::generateSid() const
@@ -598,7 +599,7 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
     return m_publicAPIs.contains(u"%1/%2"_qs.arg(scope, action));
 }
 
-void WebApplication::sessionStart()
+void WebApplication::sessionStart(bool updateCookie)
 {
     Q_ASSERT(!m_currentSession);
 
@@ -624,13 +625,9 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController<TransferController>(u"transfer"_qs);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
-    const auto sessionId = m_currentSession->id().toUtf8();
-    if (m_request.headers.contains(Http::HEADER_AUTHORIZATION))
+    if (updateCookie)
     {
-        setHeader({Http::HEADER_AUTHORIZATION, QString::fromLatin1(sessionId)});
-    }
-    else
-    {
+        const auto sessionId = m_currentSession->id().toUtf8();
         QNetworkCookie cookie(C_SID, sessionId);
         cookie.setHttpOnly(true);
         cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);

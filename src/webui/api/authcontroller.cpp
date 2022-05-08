@@ -28,6 +28,7 @@
 
 #include "authcontroller.h"
 
+#include <QJsonObject>
 #include <QString>
 
 #include "base/global.h"
@@ -54,6 +55,7 @@ void AuthController::loginAction()
     const QString clientAddr {m_sessionManager->clientId()};
     const QString usernameFromWeb {params()[u"username"_qs]};
     const QString passwordFromWeb {params()[u"password"_qs]};
+    const bool tokenMode = QVariant(params()[u"token_mode"_qs]).toBool();
 
     if (isBanned())
     {
@@ -75,8 +77,22 @@ void AuthController::loginAction()
     {
         m_clientFailedLogins.remove(clientAddr);
 
-        m_sessionManager->sessionStart();
-        setResult(u"Ok."_qs);
+        m_sessionManager->sessionStart(!tokenMode);
+        if (tokenMode)
+        {
+            const QString sessionId = m_sessionManager->session()->id();
+            // Referenced from oauth data structure
+            const QJsonObject data =
+            {
+                {u"token_type"_qs, u"Bearer"_qs},
+                {u"access_token"_qs, sessionId},
+            };
+            setResult(data);
+        }
+        else
+        {
+            setResult(u"Ok."_qs);
+        }
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }
     else
