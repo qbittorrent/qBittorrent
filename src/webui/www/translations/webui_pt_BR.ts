@@ -70,7 +70,7 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Resumir torrents</translation>
+        <translation>Retomar torrents</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -97,7 +97,7 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>Só um link por linha</translation>
+        <translation>Sómente um link por linha</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
@@ -153,7 +153,7 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>O limite do tempo do seeding deve estar entre 0 e 525600 minutos.</translation>
+        <translation>O limite do tempo da semeação deve estar entre 0 e 525600 minutos.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
@@ -309,7 +309,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>O timer de inatividade do torrent deve ser maior do que 0.</translation>
+        <translation>O temporizador de inatividade do torrent deve ser maior do que 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Incapaz de adicionar os peers. Por favor garanta que você está aderindo ao formato do IP:porta.</translation>
+        <translation>Incapaz de adicionar os pares. Por favor garanta que você está aderindo ao formato do IP:porta.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -412,7 +412,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Resumir Todos</translation>
+        <translation>Retomar Todos</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -477,7 +477,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation>Motor de Busca</translation>
+        <translation>Mecanismo de Busca</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Filtros da barra lateral</translation>
     </message>
 </context>
 <context>
@@ -632,7 +632,7 @@
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation>Automaticamente adicionar estes trackers aos novos downloads:</translation>
+        <translation>Automaticamente adicionar estes rastreadores aos novos downloads:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -776,7 +776,7 @@
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation>Usar proxy pra conexões com os peers</translation>
+        <translation>Usar proxy pra conexões com os pares</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>Aplicar aos trackers</translation>
+        <translation>Aplicar aos rastreadores</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -854,15 +854,15 @@
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation>Ativar DHT (rede decentralizada) pra achar mais peers</translation>
+        <translation>Ativar DHT (rede decentralizada) pra achar mais pares</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar Troca dos Peers (PeX) pra achar mais peers</translation>
+        <translation>Ativar Troca dos Peers (PeX) pra achar mais pares</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Achar Descoberta Local dos Peers pra achar mais peers</translation>
+        <translation>Achar Descoberta Local dos pares pra achar mais pares</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -954,7 +954,7 @@
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation>%T: Tracker atual</translation>
+        <translation>%T: Rastreador atual</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1066,7 +1066,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Trocar os torrents afetados pro modo manual</translation>
+        <translation>Trocar os torrents afetados para o modo manual</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1110,7 +1110,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Ativar super seeding pro torrent</translation>
+        <translation>Ativar super semeamento pro torrent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1134,7 +1134,7 @@
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>Quando o tempo do seeding alcançar</translation>
+        <translation>Quando o tempo do semeação alcançar</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1154,7 +1154,7 @@
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation>Porta do tracker embutido:</translation>
+        <translation>Porta do Rastreador embutido:</translation>
     </message>
     <message>
         <source>Fastest upload</source>
@@ -1198,7 +1198,7 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>Ativar tracker embutido:</translation>
+        <translation>Ativar rastreador embutido:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
@@ -1242,7 +1242,7 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation>Limites do Seeding</translation>
+        <translation>Limites da semeação</translation>
     </message>
     <message>
         <source>KiB</source>
@@ -1270,7 +1270,7 @@
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation>Sempre anunciar em todos os trackers numa camada:</translation>
+        <translation>Sempre anunciar em todos os rastreadores numa camada:</translation>
     </message>
     <message>
         <source>Session timeout:</source>
@@ -1278,7 +1278,7 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>Revelar os países dos peers:</translation>
+        <translation>Revelar os países dos pares:</translation>
     </message>
     <message>
         <source>ban for:</source>
@@ -1290,7 +1290,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Parar o tempo pra encerrar o tracker:</translation>
+        <translation>Parar o tempo pra encerrar o rastreador:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Não permitir conexão com peers em portas privilegiadas:</translation>
+        <translation>Não permitir conexão com pares em portas privilegiadas:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>Tipo de serviço (ToS) para as conexões com os peers</translation>
+        <translation>Tipo de serviço (ToS) para as conexões com os pares</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1470,7 +1470,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>Endereço de IP reportado aos trackers (requer reiniciar):</translation>
+        <translation>Endereço de IP reportado aos rastreadores (requer reiniciar):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1482,19 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Espaço da fila no disco</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Registrar avisos de performance</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Numero maximo ótimo de requisiçoes para um unico par</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Numero maximo de checagems de torrents ativos</translation>
     </message>
 </context>
 <context>
@@ -1557,11 +1557,11 @@
     </message>
     <message>
         <source>Ban peer permanently</source>
-        <translation>Banir peer permanentemente</translation>
+        <translation>Banir par permanentemente</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Você tem certeza que você quer banir permanentemente os peers selecionados?</translation>
+        <translation>Você tem certeza que você quer banir permanentemente os pares selecionados?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1573,7 +1573,7 @@
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>Adicionar peers...</translation>
+        <translation>Adicionar pares...</translation>
     </message>
 </context>
 <context>
@@ -1610,11 +1610,11 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackers</translation>
+        <translation>Rastreadores</translation>
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peers</translation>
+        <translation>Pares</translation>
     </message>
     <message>
         <source>HTTP Sources</source>
@@ -1650,7 +1650,7 @@
     </message>
     <message>
         <source>Seeds:</source>
-        <translation>Seeds:</translation>
+        <translation>Sementes:</translation>
     </message>
     <message>
         <source>Download Speed:</source>
@@ -1662,7 +1662,7 @@
     </message>
     <message>
         <source>Peers:</source>
-        <translation>Peers:</translation>
+        <translation>Pares:</translation>
     </message>
     <message>
         <source>Download Limit:</source>
@@ -1828,7 +1828,7 @@
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation>KB/s</translation>
+        <translation>KiB/s</translation>
     </message>
 </context>
 <context>
@@ -1855,7 +1855,7 @@
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation>Peers conectados:</translation>
+        <translation>Pares conectados:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
@@ -1918,7 +1918,7 @@
     </message>
     <message>
         <source>Seeding (0)</source>
-        <translation>Seeding (0)</translation>
+        <translation>Semeando (0)</translation>
     </message>
     <message>
         <source>Completed (0)</source>
@@ -1954,7 +1954,7 @@
     </message>
     <message>
         <source>Seeding (%1)</source>
-        <translation>Seeding (%1)</translation>
+        <translation>Semeando (%1)</translation>
     </message>
     <message>
         <source>Completed (%1)</source>
@@ -2041,12 +2041,12 @@
     <message>
         <source>Seeds</source>
         <comment>i.e. full sources (often untranslated)</comment>
-        <translation>Seeds</translation>
+        <translation>Sementes</translation>
     </message>
     <message>
         <source>Peers</source>
         <comment>i.e. partial sources (often untranslated)</comment>
-        <translation>Peers</translation>
+        <translation>Pares</translation>
     </message>
     <message>
         <source>Down Speed</source>
@@ -2088,7 +2088,7 @@
     </message>
     <message>
         <source>Tracker</source>
-        <translation>Tracker</translation>
+        <translation>Rastreador</translation>
     </message>
     <message>
         <source>Down Limit</source>
@@ -2177,7 +2177,7 @@
     </message>
     <message>
         <source>Peers</source>
-        <translation>Peers</translation>
+        <translation>Pares</translation>
     </message>
     <message>
         <source>Message</source>
@@ -2189,7 +2189,7 @@
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>URL do tracker:</translation>
+        <translation>URL do rastreador:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2213,7 +2213,7 @@
     </message>
     <message>
         <source>Seeds</source>
-        <translation>Seeds</translation>
+        <translation>Sementes</translation>
     </message>
     <message>
         <source>Not working</source>
@@ -2221,19 +2221,19 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Copiar URL do tracker</translation>
+        <translation>Copiar URL do rastreador</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Adicionar um novo tracker...</translation>
+        <translation>Adicionar um novo rastreador...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Editar URL do tracker...</translation>
+        <translation>Editar URL do rastreador...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Editar Tracker</translation>
+        <translation>Editar rastreador</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2241,7 +2241,7 @@
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation>Remover tracker</translation>
+        <translation>Remover rastreador</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2273,18 +2273,18 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Tamanho total</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Diálogo de adição dos trackers</translation>
+        <translation>Diálogo de adição dos rastreadores</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Lista de trackers pra adicionar (um por linha):</translation>
+        <translation>Lista de rastreadores pra adicionar (um por linha):</translation>
     </message>
 </context>
 <context>
@@ -2308,11 +2308,11 @@
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation>[F] Seeding</translation>
+        <translation>[F] Semeando</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation>Seeding</translation>
+        <translation>Semeando</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2379,7 +2379,7 @@
     </message>
     <message>
         <source>Trackers</source>
-        <translation>Trackers</translation>
+        <translation>Rastreadores</translation>
     </message>
 </context>
 <context>
@@ -2399,12 +2399,12 @@
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Resumir</translation>
+        <translation>Retomar</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Forçar resumo</translation>
+        <translation>Forçar retomada</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -2480,7 +2480,7 @@
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Modo super seeding</translation>
+        <translation>Modo super semeação</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -2536,7 +2536,7 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation>Link magnet</translation>
+        <translation>Link magnetico</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2608,8 +2608,8 @@
         <translation>Confirmação de exclusão</translation>
     </message>
     <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation>Apagar também os arquivos no disco rígido</translation>
+        <source>Also delete the files on the disk</source>
+        <translation>Apagar também os arquivos no disco</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
@@ -2636,37 +2636,37 @@
     <message>
         <source>B</source>
         <comment>bytes</comment>
-        <translation>Bs</translation>
+        <translation>B</translation>
     </message>
     <message>
         <source>KiB</source>
         <comment>kibibytes (1024 bytes)</comment>
-        <translation>KBs</translation>
+        <translation>KiB</translation>
     </message>
     <message>
         <source>MiB</source>
         <comment>mebibytes (1024 kibibytes)</comment>
-        <translation>MBs</translation>
+        <translation>MiB</translation>
     </message>
     <message>
         <source>GiB</source>
         <comment>gibibytes (1024 mibibytes)</comment>
-        <translation>GBs</translation>
+        <translation>GiB</translation>
     </message>
     <message>
         <source>TiB</source>
         <comment>tebibytes (1024 gibibytes)</comment>
-        <translation>TBs</translation>
+        <translation>TiB</translation>
     </message>
     <message>
         <source>PiB</source>
         <comment>pebibytes (1024 tebibytes)</comment>
-        <translation>PBs</translation>
+        <translation>PiB</translation>
     </message>
     <message>
         <source>EiB</source>
         <comment>exbibytes (1024 pebibytes)</comment>
-        <translation>EBs</translation>
+        <translation>EiB</translation>
     </message>
     <message>
         <source>/s</source>
@@ -2737,7 +2737,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation>Seeds:</translation>
+        <translation>Sementes:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2820,7 +2820,7 @@
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>Você pode obter novos plugins de motor de busca aqui:</translation>
+        <translation>Você pode obter novos plugins de ferramenta de busca aqui:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -2836,7 +2836,7 @@
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation>Aviso: Certifique-se de obedecer as leis de copyright do seu país quando baixar torrents de qualquer destes motores de busca.</translation>
+        <translation>Aviso: Certifique-se de obedecer as leis de direitos autorais do seu país quando baixar torrents de qualquer destas ferramentas de busca.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -2863,11 +2863,11 @@
     </message>
     <message>
         <source>Search engine</source>
-        <translation>Motor de busca</translation>
+        <translation>Ferramenta de busca</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation>Seeders</translation>
+        <translation>Semeadores</translation>
     </message>
 </context>
 <context>
@@ -2909,7 +2909,7 @@
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Lista de peers pra adicionar (um IP por linha):</translation>
+        <translation>Lista de pares pra adicionar (um IP por linha):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -2974,7 +2974,7 @@
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation>Bug Tracker:</translation>
+        <translation>Reportar Bug:</translation>
     </message>
     <message>
         <source>About</source>
@@ -3038,7 +3038,7 @@
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>O banco de dados grátis do IP to Country Lite da DB-IP é usado pra revelar os países dos peers. O banco de dados está licenciado sob a Licença Internacional da Creative Commons Attribution 4.0</translation>
+        <translation>O banco de dados grátis do IP to Country Lite da DB-IP é usado pra revelar os países dos pares. O banco de dados está licenciado sob a Licença Internacional da Creative Commons Attribution 4.0</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3309,7 +3309,7 @@
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation>Salvar num diretório diferente</translation>
+        <translation>Salvar em um diretório diferente</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
