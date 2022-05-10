@@ -1793,7 +1793,10 @@ void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
     {
         Q_ASSERT(m_indexMap.isEmpty());
 
+        const auto isSeedMode = static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode);
         m_ltAddTorrentParams = p->params;
+        if (isSeedMode)
+            m_ltAddTorrentParams.flags |= lt::torrent_flags::seed_mode;
 
         m_ltAddTorrentParams.have_pieces.clear();
         m_ltAddTorrentParams.verified_pieces.clear();
@@ -1852,8 +1855,11 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     }
     else
     {
+        const bool preserveSeedMode = (!hasMetadata() && (m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode));
         // Update recent resume data
         m_ltAddTorrentParams = params;
+        if (preserveSeedMode)
+            m_ltAddTorrentParams.flags |= lt::torrent_flags::seed_mode;
     }
 
     // We shouldn't save upload_mode flag to allow torrent operate normally on next run
