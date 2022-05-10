@@ -125,8 +125,8 @@ namespace BitTorrent
         enum class DiskIOType : int
         {
             Default = 0,
-            Posix = 1,
-            MMap = 2
+            MMap = 1,
+            Posix = 2
         };
         Q_ENUM_NS(DiskIOType)
 
