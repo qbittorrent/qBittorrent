@@ -2269,7 +2269,7 @@ nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
     {
 #ifdef QBT_USES_LIBTORRENT2
         const std::shared_ptr<lt::torrent_info> completeTorrentInfo = m_nativeHandle.torrent_file_with_hashes();
-        const std::shared_ptr<lt::torrent_info> torrentInfo = {completeTorrentInfo ? completeTorrentInfo : info().nativeInfo()};
+        const std::shared_ptr<lt::torrent_info> torrentInfo = (completeTorrentInfo ? completeTorrentInfo : info().nativeInfo());
 #else
         const std::shared_ptr<lt::torrent_info> torrentInfo = info().nativeInfo();
 #endif

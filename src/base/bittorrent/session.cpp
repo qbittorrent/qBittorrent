@@ -2473,12 +2473,12 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     return true;
 }
 
-void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const Path &folderPath, const QString &baseName)
+void Session::exportTorrentFile(const Torrent *torrent, const Path &folderPath)
 {
     if (!folderPath.exists() && !Utils::Fs::mkpath(folderPath))
         return;
 
-    const QString validName = Utils::Fs::toValidFileName(baseName);
+    const QString validName = Utils::Fs::toValidFileName(torrent->name());
     QString torrentExportFilename = u"%1.torrent"_qs.arg(validName);
     Path newTorrentPath = folderPath / Path(torrentExportFilename);
     int counter = 0;
@@ -2489,11 +2489,11 @@ void Session::exportTorrentFile(const TorrentInfo &torrentInfo, const Path &fold
         newTorrentPath = folderPath / Path(torrentExportFilename);
     }
 
-    const nonstd::expected<void, QString> result = torrentInfo.saveToFile(newTorrentPath);
+    const nonstd::expected<void, QString> result = torrent->exportToFile(newTorrentPath);
     if (!result)
     {
         LogMsg(tr("Failed to export torrent. Torrent: \"%1\". Destination: \"%2\". Reason: \"%3\"")
-               .arg(torrentInfo.name(), newTorrentPath.toString(), result.error()), Log::WARNING);
+               .arg(torrent->name(), newTorrentPath.toString(), result.error()), Log::WARNING);
     }
 }
 
@@ -4151,17 +4151,8 @@ void Session::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVe
 
 void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
-    // Copy the torrent file to the export folder
     if (!torrentExportDirectory().isEmpty())
-    {
-#ifdef QBT_USES_LIBTORRENT2
-        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = torrent->nativeHandle().torrent_file_with_hashes();
-        const TorrentInfo torrentInfo {*(completeTorrentInfo ? completeTorrentInfo : torrent->nativeHandle().torrent_file())};
-#else
-        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
-#endif
-        exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
-    }
+        exportTorrentFile(torrent, torrentExportDirectory());
 
     emit torrentMetadataReceived(torrent);
 }
@@ -4211,17 +4202,8 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
         }
     }
 
-    // Move .torrent file to another folder
     if (!finishedTorrentExportDirectory().isEmpty())
-    {
-#ifdef QBT_USES_LIBTORRENT2
-        const std::shared_ptr<lt::torrent_info> completeTorrentInfo = torrent->nativeHandle().torrent_file_with_hashes();
-        const TorrentInfo torrentInfo {*(completeTorrentInfo ? completeTorrentInfo : torrent->nativeHandle().torrent_file())};
-#else
-        const TorrentInfo torrentInfo {*torrent->nativeHandle().torrent_file()};
-#endif
-        exportTorrentFile(torrentInfo, finishedTorrentExportDirectory(), torrent->name());
-    }
+        exportTorrentFile(torrent, finishedTorrentExportDirectory());
 
     if (!hasUnfinishedTorrents())
         emit allTorrentsFinished();
@@ -4929,12 +4911,8 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
         // The following is useless for newly added magnet
         if (hasMetadata)
         {
-            // Copy the torrent file to the export folder
             if (!torrentExportDirectory().isEmpty())
-            {
-                const TorrentInfo torrentInfo {*params.ltAddTorrentParams.ti};
-                exportTorrentFile(torrentInfo, torrentExportDirectory(), torrent->name());
-            }
+                exportTorrentFile(torrent, torrentExportDirectory());
         }
     }
 

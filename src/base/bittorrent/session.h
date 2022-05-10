@@ -626,7 +626,7 @@ namespace BitTorrent
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
         void updateSeedingLimitTimer();
-        void exportTorrentFile(const TorrentInfo &torrentInfo, const Path &folderPath, const QString &baseName);
+        void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(const lt::alert *a);
         void dispatchTorrentAlert(const lt::alert *a);
