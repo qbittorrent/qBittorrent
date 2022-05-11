@@ -76,6 +76,7 @@ private:
     QSpinBox m_spinBoxCache, m_spinBoxCacheTTL;
     QCheckBox m_checkBoxCoalesceRW;
 #else
+    QComboBox m_comboBoxDiskIOType;
     QSpinBox m_spinBoxHashingThreads;
 #endif
 

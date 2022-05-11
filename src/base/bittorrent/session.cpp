@@ -381,6 +381,7 @@ Session::Session(QObject *parent)
     , m_diskCacheSize(BITTORRENT_SESSION_KEY(u"DiskCacheSize"_qs), -1)
     , m_diskCacheTTL(BITTORRENT_SESSION_KEY(u"DiskCacheTTL"_qs), 60)
     , m_diskQueueSize(BITTORRENT_SESSION_KEY(u"DiskQueueSize"_qs), (1024 * 1024))
+    , m_diskIOType(BITTORRENT_SESSION_KEY(u"DiskIOType"_qs), DiskIOType::Default)
     , m_useOSCache(BITTORRENT_SESSION_KEY(u"UseOSCache"_qs), true)
 #ifdef Q_OS_WIN
     , m_coalesceReadWriteEnabled(BITTORRENT_SESSION_KEY(u"CoalesceReadWrite"_qs), true)
@@ -1149,7 +1150,18 @@ void Session::initializeNativeSession()
     loadLTSettings(pack);
     lt::session_params sessionParams {pack, {}};
 #ifdef QBT_USES_LIBTORRENT2
-    sessionParams.disk_io_constructor = customDiskIOConstructor;
+    switch (diskIOType())
+    {
+    case DiskIOType::Posix:
+        sessionParams.disk_io_constructor = customPosixDiskIOConstructor;
+        break;
+    case DiskIOType::MMap:
+        sessionParams.disk_io_constructor = customMMapDiskIOConstructor;
+        break;
+    default:
+        sessionParams.disk_io_constructor = customDiskIOConstructor;
+        break;
+    }
 #endif
     m_nativeSession = new lt::session {sessionParams};
 
@@ -3361,6 +3373,19 @@ void Session::setPeerTurnoverInterval(const int val)
 
     m_peerTurnoverInterval = val;
     configureDeferred();
+}
+
+DiskIOType Session::diskIOType() const
+{
+    return m_diskIOType;
+}
+
+void Session::setDiskIOType(const DiskIOType type)
+{
+    if (type != m_diskIOType)
+    {
+        m_diskIOType = type;
+    }
 }
 
 int Session::requestQueueSize() const

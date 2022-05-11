@@ -108,6 +108,9 @@ namespace
         DISK_CACHE_TTL,
 #endif
         DISK_QUEUE_SIZE,
+#ifdef QBT_USES_LIBTORRENT2
+        DISK_IO_TYPE,
+#endif
         OS_CACHE,
 #ifndef QBT_USES_LIBTORRENT2
         COALESCE_RW,
@@ -219,6 +222,9 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Disk queue size
     session->setDiskQueueSize(m_spinBoxDiskQueueSize.value() * 1024);
+#ifdef QBT_USES_LIBTORRENT2
+    session->setDiskIOType(m_comboBoxDiskIOType.currentData().value<BitTorrent::DiskIOType>());
+#endif
     // Enable OS cache
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
 #ifndef QBT_USES_LIBTORRENT2
@@ -521,6 +527,15 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxDiskQueueSize.setSuffix(tr(" KiB"));
     addRow(DISK_QUEUE_SIZE, (tr("Disk queue size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_queued_disk_bytes", u"(?)"))
             , &m_spinBoxDiskQueueSize);
+#ifdef QBT_USES_LIBTORRENT2
+    // Disk IO type
+    m_comboBoxDiskIOType.addItem(tr("Default"), QVariant::fromValue(BitTorrent::DiskIOType::Default));
+    m_comboBoxDiskIOType.addItem(tr("Memory mapped files"), QVariant::fromValue(BitTorrent::DiskIOType::MMap));
+    m_comboBoxDiskIOType.addItem(tr("POSIX-compliant"), QVariant::fromValue(BitTorrent::DiskIOType::Posix));
+    m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
+    addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
+           , &m_comboBoxDiskIOType);
+#endif
     // Enable OS cache
     m_checkBoxOsCache.setChecked(session->useOSCache());
     addRow(OS_CACHE, (tr("Enable OS cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", u"(?)"))
