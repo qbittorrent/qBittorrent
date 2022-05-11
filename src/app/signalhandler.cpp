@@ -36,11 +36,9 @@
 #include <csignal>
 #include <tuple>
 
-#ifndef Q_OS_WIN
-#ifndef Q_OS_HAIKU
+#ifdef Q_OS_UNIX
 #include <unistd.h>
-#endif
-#elif defined DISABLE_GUI
+#elif defined Q_OS_WIN
 #include <io.h>
 #endif
 
@@ -51,7 +49,7 @@
 #ifdef STACKTRACE
 #include "stacktrace.h"
 
-#if defined Q_OS_WIN && !defined DISABLE_GUI
+#ifndef DISABLE_GUI
 #include "gui/stacktracedialog.h"
 #endif
 #endif //STACKTRACE
@@ -74,7 +72,6 @@ namespace
 #endif
     };
 
-#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
     void safePrint(const char *str)
     {
         const size_t strLen = strlen(str);
@@ -86,14 +83,11 @@ namespace
             std::ignore = write(STDOUT_FILENO, str, strLen);
 #endif
     }
-#endif
 
     void normalExitHandler(const int signum)
     {
-#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
         const char *msgs[] = {"Catching signal: ", sysSigName[signum], "\nExiting cleanly\n"};
         std::for_each(std::begin(msgs), std::end(msgs), safePrint);
-#endif // !defined Q_OS_WIN && !defined Q_OS_HAIKU
         signal(signum, SIG_DFL);
         QCoreApplication::exit();  // unsafe, but exit anyway
     }
@@ -101,26 +95,19 @@ namespace
 #ifdef STACKTRACE
     void abnormalExitHandler(const int signum)
     {
-        const char *sigName = sysSigName[signum];
-
-#if !(defined Q_OS_WIN && !defined DISABLE_GUI) && !defined Q_OS_HAIKU
         const char msg[] = "\n\n*************************************************************\n"
             "Please file a bug report at http://bug.qbittorrent.org and provide the following information:\n\n"
             "qBittorrent version: " QBT_VERSION "\n\n"
             "Caught signal: ";
-        const char *msgs[] = {msg, sigName, "\n"};
+        const char *sigName = sysSigName[signum];
+        const std::string stacktrace = getStacktrace();
+
+        const char *msgs[] = {msg, sigName, "\n```\n", stacktrace.c_str(), "```\n\n"};
         std::for_each(std::begin(msgs), std::end(msgs), safePrint);
 
-#if !defined Q_OS_WIN
-        safePrint("```\n");
-        safePrint(getStacktrace().c_str());
-        safePrint("```\n\n");
-#endif
-#endif
-
-#if defined Q_OS_WIN && !defined DISABLE_GUI
+#ifndef DISABLE_GUI
         StacktraceDialog dlg;  // unsafe
-        dlg.setText(QString::fromLatin1(sigName), QString::fromStdString(getStacktrace()));
+        dlg.setText(QString::fromLatin1(sigName), QString::fromStdString(stacktrace));
         dlg.exec();
 #endif
 
@@ -134,6 +121,7 @@ void registerSignalHandlers()
 {
     signal(SIGINT, normalExitHandler);
     signal(SIGTERM, normalExitHandler);
+
 #ifdef STACKTRACE
     signal(SIGABRT, abnormalExitHandler);
     signal(SIGSEGV, abnormalExitHandler);
