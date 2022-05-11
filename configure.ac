@@ -188,7 +188,7 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 2.0.4],
+                  [libtorrent-rasterbar >= 2.0.6],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_LIBTORRENT2"],
                   [PKG_CHECK_MODULES(libtorrent,
                                      [libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2],
