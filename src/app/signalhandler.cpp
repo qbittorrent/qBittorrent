@@ -49,14 +49,11 @@
 #include "base/version.h"
 
 #ifdef STACKTRACE
-#ifdef Q_OS_UNIX
 #include "stacktrace.h"
-#else
-#include "stacktrace_win.h"
-#ifndef DISABLE_GUI
+
+#if defined Q_OS_WIN && !defined DISABLE_GUI
 #include "gui/stacktracedialog.h"
-#endif // DISABLE_GUI
-#endif // Q_OS_UNIX
+#endif
 #endif //STACKTRACE
 
 namespace
@@ -113,14 +110,17 @@ namespace
             "Caught signal: ";
         const char *msgs[] = {msg, sigName, "\n"};
         std::for_each(std::begin(msgs), std::end(msgs), safePrint);
+
 #if !defined Q_OS_WIN
-        print_stacktrace();  // unsafe
+        safePrint("```\n");
+        safePrint(getStacktrace().c_str());
+        safePrint("```\n\n");
 #endif
 #endif
 
 #if defined Q_OS_WIN && !defined DISABLE_GUI
         StacktraceDialog dlg;  // unsafe
-        dlg.setText(QString::fromLatin1(sigName), straceWin::getBacktrace());
+        dlg.setText(QString::fromLatin1(sigName), QString::fromStdString(getStacktrace()));
         dlg.exec();
 #endif
 

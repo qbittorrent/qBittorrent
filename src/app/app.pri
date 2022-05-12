@@ -20,10 +20,6 @@ SOURCES += \
     $$PWD/upgrade.cpp
 
 stacktrace {
-    unix {
-        HEADERS += $$PWD/stacktrace.h
-    }
-    win32 {
-        HEADERS += $$PWD/stacktrace_win.h
-    }
+    HEADERS += $$PWD/stacktrace.h
+    SOURCES += $$PWD/stacktrace.cpp
 }

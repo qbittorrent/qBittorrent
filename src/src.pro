@@ -37,9 +37,14 @@ nowebui {
 
 stacktrace {
     DEFINES += STACKTRACE
-    win32 {
-        DEFINES += STACKTRACE_WIN_PROJECT_PATH=$$PWD
-        DEFINES += STACKTRACE_WIN_MAKEFILE_PATH=$$OUT_PWD
+
+    macx {
+        DEFINES += BOOST_STACKTRACE_GNU_SOURCE_NOT_REQUIRED
+        QMAKE_LFLAGS += -rdynamic
+    }
+    unix {
+        LIBS += -ldl
+        QMAKE_LFLAGS += -rdynamic
     }
 }
 

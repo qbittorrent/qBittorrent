@@ -11,7 +11,6 @@ else {
 !nogui:dbus: QT += dbus
 
 QMAKE_CXXFLAGS += -Wall -Wextra -Wpedantic -Wformat-security
-!haiku: QMAKE_LFLAGS_APP += -rdynamic
 
 # Man page
 nogui {

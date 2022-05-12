@@ -60,24 +60,20 @@ else {
 # Stack trace support can be enabled in 'conf.pri'
 stacktrace {
     win32-g++*|win32-clang-g++* {
+        QMAKE_LFLAGS += -Wl,--export-dynamic
+
         contains(QMAKE_HOST.arch, x86) {
             # i686 arch requires frame pointer preservation
             QMAKE_CXXFLAGS += -fno-omit-frame-pointer
         }
-
-        QMAKE_LFLAGS += -Wl,--export-all-symbols
-
-        LIBS += libdbghelp
     }
     else:win32-msvc* {
+        QMAKE_CXXFLAGS += /Zi
+        QMAKE_LFLAGS += "/DEBUG /PDBALTPATH:%_PDB%"
+
         contains(QMAKE_HOST.arch, x86) {
             # i686 arch requires frame pointer preservation
-            QMAKE_CXXFLAGS += -Oy-
+            QMAKE_CXXFLAGS += /Oy-
         }
-
-        QMAKE_CXXFLAGS *= -Zi
-        QMAKE_LFLAGS *= "/DEBUG"
-
-        LIBS += dbghelp.lib
     }
 }
