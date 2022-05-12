@@ -38,7 +38,6 @@
 #include <QString>
 #include <QStringList>
 #include <QUrl>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/utils/fs.h"
