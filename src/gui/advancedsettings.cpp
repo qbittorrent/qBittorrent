@@ -176,34 +176,11 @@ void AdvancedSettings::saveAdvancedSettings()
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    session->setResumeDataStorageType((m_comboBoxResumeDataStorage.currentIndex() == 0)
-                                      ? BitTorrent::ResumeDataStorageType::Legacy
-                                      : BitTorrent::ResumeDataStorageType::SQLite);
-
+    session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
     // Physical memory (RAM) usage limit
     dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #if defined(Q_OS_WIN)
-    BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
-    switch (m_comboBoxOSMemoryPriority.currentIndex())
-    {
-    case 0:
-    default:
-        prio = BitTorrent::OSMemoryPriority::Normal;
-        break;
-    case 1:
-        prio = BitTorrent::OSMemoryPriority::BelowNormal;
-        break;
-    case 2:
-        prio = BitTorrent::OSMemoryPriority::Medium;
-        break;
-    case 3:
-        prio = BitTorrent::OSMemoryPriority::Low;
-        break;
-    case 4:
-        prio = BitTorrent::OSMemoryPriority::VeryLow;
-        break;
-    }
-    session->setOSMemoryPriority(prio);
+    session->setOSMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<BitTorrent::OSMemoryPriority>());
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
@@ -253,7 +230,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Type of service
     session->setPeerToS(m_spinBoxPeerToS.value());
     // uTP-TCP mixed mode
-    session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
+    session->setUtpMixedMode(m_comboBoxUtpMixedMode.currentData().value<BitTorrent::MixedModeAlgorithm>());
     // Support internationalized domain name (IDN)
     session->setIDNSupportEnabled(m_checkBoxIDNSupport.isChecked());
     // multiple connections per IP
@@ -318,9 +295,9 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     // Choking algorithm
-    session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(m_comboBoxChokingAlgorithm.currentIndex()));
+    session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
-    session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
+    session->setSeedChokingAlgorithm(m_comboBoxSeedChokingAlgorithm.currentData().value<BitTorrent::SeedChokingAlgorithm>());
 
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
 
@@ -421,8 +398,9 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
-    m_comboBoxResumeDataStorage.addItems({tr("Fastresume files"), tr("SQLite database (experimental)")});
-    m_comboBoxResumeDataStorage.setCurrentIndex((session->resumeDataStorageType() == BitTorrent::ResumeDataStorageType::Legacy) ? 0 : 1);
+    m_comboBoxResumeDataStorage.addItem(tr("Fastresume files"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::Legacy));
+    m_comboBoxResumeDataStorage.addItem(tr("SQLite database (experimental)"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::SQLite));
+    m_comboBoxResumeDataStorage.setCurrentIndex(m_comboBoxResumeDataStorage.findData(QVariant::fromValue(session->resumeDataStorageType())));
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
     // Physical memory (RAM) usage limit
@@ -434,28 +412,12 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit") + u' ' + makeLink(u"https://wikipedia.org/wiki/Working_set", u"(?)"))
         , &m_spinBoxMemoryWorkingSetLimit);
 #if defined(Q_OS_WIN)
-    m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
-    int OSMemoryPriorityIndex = 0;
-    switch (session->getOSMemoryPriority())
-    {
-    default:
-    case BitTorrent::OSMemoryPriority::Normal:
-        OSMemoryPriorityIndex = 0;
-        break;
-    case BitTorrent::OSMemoryPriority::BelowNormal:
-        OSMemoryPriorityIndex = 1;
-        break;
-    case BitTorrent::OSMemoryPriority::Medium:
-        OSMemoryPriorityIndex = 2;
-        break;
-    case BitTorrent::OSMemoryPriority::Low:
-        OSMemoryPriorityIndex = 3;
-        break;
-    case BitTorrent::OSMemoryPriority::VeryLow:
-        OSMemoryPriorityIndex = 4;
-        break;
-    }
-    m_comboBoxOSMemoryPriority.setCurrentIndex(OSMemoryPriorityIndex);
+    m_comboBoxOSMemoryPriority.addItem(tr("Normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Normal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Below normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::BelowNormal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Medium"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Medium));
+    m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Low));
+    m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::VeryLow));
+    m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(session->getOSMemoryPriority())));
     addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);
@@ -620,8 +582,9 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(PEER_TOS, (tr("Type of service (ToS) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_tos", u"(?)"))
         , &m_spinBoxPeerToS);
     // uTP-TCP mixed mode
-    m_comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
-    m_comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
+    m_comboBoxUtpMixedMode.addItem(tr("Prefer TCP"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::TCP));
+    m_comboBoxUtpMixedMode.addItem(tr("Peer proportional (throttles TCP)"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::Proportional));
+    m_comboBoxUtpMixedMode.setCurrentIndex(m_comboBoxUtpMixedMode.findData(QVariant::fromValue(session->utpMixedMode())));
     addRow(UTP_MIX_MODE, (tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP)
             + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm", u"(?)"))
             , &m_comboBoxUtpMixedMode);
@@ -749,13 +712,16 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxTrackerPort.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &m_spinBoxTrackerPort);
     // Choking algorithm
-    m_comboBoxChokingAlgorithm.addItems({tr("Fixed slots"), tr("Upload rate based")});
-    m_comboBoxChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
+    m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
+    m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
+    m_comboBoxChokingAlgorithm.setCurrentIndex(m_comboBoxChokingAlgorithm.findData(QVariant::fromValue(session->chokingAlgorithm())));
     addRow(CHOKING_ALGORITHM, (tr("Upload slots behavior") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#choking_algorithm", u"(?)"))
             , &m_comboBoxChokingAlgorithm);
     // Seed choking algorithm
-    m_comboBoxSeedChokingAlgorithm.addItems({tr("Round-robin"), tr("Fastest upload"), tr("Anti-leech")});
-    m_comboBoxSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Round-robin"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::RoundRobin));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Fastest upload"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::FastestUpload));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Anti-leech"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::AntiLeech));
+    m_comboBoxSeedChokingAlgorithm.setCurrentIndex(m_comboBoxSeedChokingAlgorithm.findData(QVariant::fromValue(session->seedChokingAlgorithm())));
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", u"(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 
