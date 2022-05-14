@@ -156,7 +156,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 {
     // column
     setColumnCount(COL_COUNT);
-    QStringList header = {tr("Setting"), tr("Value", "Value set for this setting")};
+    const QStringList header = {tr("Setting"), tr("Value", "Value set for this setting")};
     setHorizontalHeaderLabels(header);
     // row
     setRowCount(ROW_COUNT);
@@ -171,7 +171,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     horizontalHeader()->setStretchLastSection(true);
 }
 
-void AdvancedSettings::saveAdvancedSettings()
+void AdvancedSettings::saveAdvancedSettings() const
 {
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
@@ -314,7 +314,7 @@ void AdvancedSettings::saveAdvancedSettings()
 }
 
 #ifndef QBT_USES_LIBTORRENT2
-void AdvancedSettings::updateCacheSpinSuffix(int value)
+void AdvancedSettings::updateCacheSpinSuffix(const int value)
 {
     if (value == 0)
         m_spinBoxCache.setSuffix(tr(" (disabled)"));
