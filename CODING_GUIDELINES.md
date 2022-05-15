@@ -1,6 +1,6 @@
 # Coding Guidelines
 
-All new code **must** follow the following coding guidelines. \
+All new code **must** follow the following coding guidelines.
 
 If you make changes in a file that still uses another coding style, make sure that you follow these guidelines for your changes. \
 For programming languages other than C++ (e.g. JavaScript) used in this repository and submodules, unless otherwise specified, coding guidelines listed here applies as much as possible.
