@@ -87,11 +87,11 @@ namespace Utils
                 protocolEquivalentAddress = QHostAddress(addr.toIPv4Address(&addrConversionOk));
             }
 
-            for (const Subnet &subnet : subnets)
-                if (addr.isInSubnet(subnet) || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet)))
-                    return true;
-
-            return false;
+            return std::any_of(subnets.begin(), subnets.end(), [&](const Subnet &subnet)
+            {
+                return addr.isInSubnet(subnet)
+                    || (addrConversionOk && protocolEquivalentAddress.isInSubnet(subnet));
+            });
         }
 
         QString subnetToString(const Subnet &subnet)
@@ -133,9 +133,11 @@ namespace Utils
         QList<QSslCertificate> loadSSLCertificate(const QByteArray &data)
         {
             const QList<QSslCertificate> certs {QSslCertificate::fromData(data)};
-            if (std::any_of(certs.cbegin(), certs.cend(), [](const QSslCertificate &c) { return c.isNull(); }))
-                return {};
-            return certs;
+            const bool hasInvalidCerts = std::any_of(certs.cbegin(), certs.cend(), [](const QSslCertificate &cert)
+            {
+                return cert.isNull();
+            });
+            return hasInvalidCerts ? QList<QSslCertificate>() : certs;
         }
 
         bool isSSLCertificatesValid(const QByteArray &data)
@@ -146,7 +148,7 @@ namespace Utils
         QSslKey loadSSLKey(const QByteArray &data)
         {
             // try different formats
-            QSslKey key {data, QSsl::Rsa};
+            const QSslKey key {data, QSsl::Rsa};
             if (!key.isNull())
                 return key;
             return {data, QSsl::Ec};
