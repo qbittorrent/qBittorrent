@@ -36,7 +36,7 @@ window.qBittorrent.PropPeers = (function() {
     const exports = function() {
         return {
             updateData: updateData
-        }
+        };
     };
 
     const torrentPeersTable = new window.qBittorrent.DynamicTable.TorrentPeersTable();

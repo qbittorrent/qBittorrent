@@ -414,14 +414,14 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             $('rulesTable').addEventListener('click', (e) => {
                 rssDownloaderRulesTable.deselectAll();
                 rssDownloaderRulesTable.deselectRow();
-                showRule('')
+                showRule('');
             });
             $('rulesTable').addEventListener('contextmenu', (e) => {
                 if (e.toElement.nodeName === 'DIV') {
                     rssDownloaderRulesTable.deselectAll();
                     rssDownloaderRulesTable.deselectRow();
                     rssDownloaderRuleContextMenu.updateMenuItems();
-                    showRule('')
+                    showRule('');
                 }
             });
             // get all categories and add to combobox
@@ -455,7 +455,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                             else
                                 flatten(root[child]);
                         }
-                    }
+                    };
                     flatten(response);
                 }
             }).send();
@@ -485,7 +485,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     rulesList = response;
                 }
             }).send();
-        }
+        };
 
         const modifyRuleState = (rule, setting, newState, callback = () => {}) => {
             rulesList[rule][setting] = newState;
@@ -501,7 +501,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     callback();
                 }
             }).send();
-        }
+        };
 
         const addRule = () => {
             new MochaUI.Window({
@@ -566,7 +566,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 width: 350,
                 height: 85
             });
-        }
+        };
 
         const saveSettings = () => {
             let lastSelectedRow = rssDownloaderRulesTable.selectedRows[rssDownloaderRulesTable.selectedRows.length - 1];
@@ -624,7 +624,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     updateMatchingArticles(rule);
                 }
             }).send();
-        }
+        };
 
         const updateMatchingArticles = (ruleName) => {
             new Request.JSON({
@@ -654,7 +654,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                     rssDownloaderArticlesTable.updateTable(false);
                 }
             }).send();
-        }
+        };
 
         const showRule = (ruleName) => {
             if (ruleName === '') {
@@ -755,7 +755,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 rssDownloaderFeedSelectionTable.updateTable(false);
                 updateMatchingArticles(ruleName);
             }
-        }
+        };
 
         const setElementTitles = () => {
             let mainPart;
@@ -791,7 +791,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 
             episodeFilterTitle = episodeFilterTitle.replace(/<b>/g, '').replace(/<\/b>/g, '');
             $('episodeFilterText').title = episodeFilterTitle;
-        }
+        };
 
         initRssDownloader();
         return exports();

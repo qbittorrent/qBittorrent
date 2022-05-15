@@ -52,8 +52,10 @@ window.qBittorrent.ProgressBar = (function() {
                 'lightbg': '#fff',
                 'lightfg': '#000'
             };
-            if (parameters && $type(parameters) == 'object') $extend(vals, parameters);
-            if (vals.height < 12) vals.height = 12;
+            if (parameters && $type(parameters) == 'object')
+                $extend(vals, parameters);
+            if (vals.height < 12)
+                vals.height = 12;
             const obj = new Element('div', {
                 'id': vals.id,
                 'class': 'progressbar_wrapper',
@@ -102,8 +104,10 @@ window.qBittorrent.ProgressBar = (function() {
             obj.getValue = ProgressBar_getValue;
             obj.setValue = ProgressBar_setValue;
             obj.setWidth = ProgressBar_setWidth;
-            if (vals.width) obj.setValue(vals.value);
-            else setTimeout('ProgressBar_checkForParent("' + obj.id + '")', 1);
+            if (vals.width)
+                obj.setValue(vals.value);
+            else
+                setTimeout('ProgressBar_checkForParent("' + obj.id + '")', 1);
             return obj;
         }
     });
@@ -114,9 +118,12 @@ window.qBittorrent.ProgressBar = (function() {
 
     function ProgressBar_setValue(value) {
         value = parseFloat(value);
-        if (isNaN(value)) value = 0;
-        if (value > 100) value = 100;
-        if (value < 0) value = 0;
+        if (isNaN(value))
+            value = 0;
+        if (value > 100)
+            value = 100;
+        if (value < 0)
+            value = 0;
         this.vals.value = value;
         this.vals.dark.empty();
         this.vals.light.empty();
@@ -139,8 +146,10 @@ window.qBittorrent.ProgressBar = (function() {
 
     function ProgressBar_checkForParent(id) {
         const obj = $(id);
-        if (!obj) return;
-        if (!obj.parentNode) return setTimeout('ProgressBar_checkForParent("' + id + '")', 1);
+        if (!obj)
+            return;
+        if (!obj.parentNode)
+            return setTimeout('ProgressBar_checkForParent("' + id + '")', 1);
         obj.setStyle('width', '100%');
         const w = obj.offsetWidth;
         obj.vals.dark.setStyle('width', w);
