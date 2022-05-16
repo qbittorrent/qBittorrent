@@ -23,7 +23,7 @@ Read the respective section to find out more.
 
 *   **Be patient.** The development team is small and resource limited. Developers and contributors take from their free time to analyze the problem and fix the issue. :clock3:
 
-*   Harsh words or threats won't help your situation. What's worse, your complain will (very likely) be **ignored.** :fearful:
+*   Harsh words or threats won't help your situation. Your complaint will (very likely) be **ignored.** :fearful:
 
 # Submitting an issue/bug report
 
@@ -39,7 +39,7 @@ Developers and contributors are not supposed to deal with issues for which littl
 
 Positive contributions are those which are reported with efforts to find the actual cause of an issue, or at the very least efforts were made to narrow it as much as possible.
 
-Requiring people to investigate as much as possible before opening an issue will more than likely avoid burdening the project with invalid issues or issues unrelated to qBittorrent.
+Requiring people to investigate as much as possible before opening an issue avoids burdening the project with invalid issues or issues unrelated to qBittorrent.
 
 The following are _not_ bug reports. **Check the [wiki][wiki-url], [forum][forum-url] or other places for help and support for issues like these**:
 
