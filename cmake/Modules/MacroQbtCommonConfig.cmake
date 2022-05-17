@@ -3,9 +3,9 @@
 # to consume common compile options/definitions
 
 macro(qbt_common_config)
-
     # treat value specified by the CXX_STANDARD target property as a requirement by default
     set(CMAKE_CXX_STANDARD_REQUIRED ON)
+    set(CMAKE_CXX_EXTENSIONS OFF)
 
     add_library(qbt_common_cfg INTERFACE)
 
