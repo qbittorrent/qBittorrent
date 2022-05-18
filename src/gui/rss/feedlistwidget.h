@@ -43,6 +43,7 @@ namespace RSS
 class FeedListWidget final : public QTreeWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(FeedListWidget)
 
 public:
     explicit FeedListWidget(QWidget *parent);

@@ -43,6 +43,7 @@ namespace Net
     class DNSUpdater : public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(DNSUpdater)
 
     public:
         explicit DNSUpdater(QObject *parent = nullptr);

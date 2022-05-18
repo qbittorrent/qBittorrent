@@ -55,6 +55,7 @@ namespace Net
 class PeerListWidget final : public QTreeView
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PeerListWidget)
 
 public:
     enum PeerListColumns

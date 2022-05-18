@@ -46,6 +46,7 @@ namespace Ui
 class RSSWidget : public QWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(RSSWidget)
 
 public:
     RSSWidget(QWidget *parent);

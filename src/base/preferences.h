@@ -94,11 +94,6 @@ class Preferences : public QObject
 
     Preferences();
 
-    static Preferences *m_instance;
-
-signals:
-    void changed();
-
 public:
     static void initInstance();
     static void freeInstance();
@@ -414,4 +409,10 @@ public slots:
     void setTrackerFilterState(bool checked);
 
     void apply();
+
+signals:
+    void changed();
+
+private:
+    static Preferences *m_instance;
 };

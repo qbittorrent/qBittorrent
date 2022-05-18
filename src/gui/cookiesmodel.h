@@ -35,6 +35,7 @@
 class CookiesModel final : public QAbstractItemModel
 {
      Q_OBJECT
+     Q_DISABLE_COPY_MOVE(CookiesModel)
 
 public:
     enum Column

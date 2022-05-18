@@ -35,6 +35,7 @@ class QDBusPendingCallWatcher;
 class PowerManagementInhibitor : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PowerManagementInhibitor)
 
 public:
     PowerManagementInhibitor(QObject *parent = nullptr);

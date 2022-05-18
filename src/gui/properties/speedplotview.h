@@ -48,6 +48,7 @@ using namespace std::chrono_literals;
 class SpeedPlotView final : public QGraphicsView
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(SpeedPlotView)
 
 public:
     enum GraphID

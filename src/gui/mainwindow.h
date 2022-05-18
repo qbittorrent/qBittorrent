@@ -74,6 +74,7 @@ namespace Ui
 class MainWindow final : public QMainWindow
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
