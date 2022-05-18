@@ -679,7 +679,8 @@
             method: 'get',
             noCache: true,
             onSuccess: function(info) {
-                if (!info) return;
+                if (!info)
+                    return;
 
                 $('qtVersion').textContent = info.qt;
                 $('libtorrentVersion').textContent = info.libtorrent;

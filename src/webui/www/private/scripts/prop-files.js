@@ -310,7 +310,8 @@ window.qBittorrent.PropFiles = (function() {
     };
 
     const setFilePriority = function(ids, fileIds, priority) {
-        if (current_hash === "") return;
+        if (current_hash === "")
+            return;
 
         clearTimeout(loadTorrentFilesDataTimer);
         new Request({
@@ -513,7 +514,8 @@ window.qBittorrent.PropFiles = (function() {
 
     const filesPriorityMenuClicked = function(priority) {
         const selectedRows = torrentFilesTable.selectedRowsIds();
-        if (selectedRows.length === 0) return;
+        if (selectedRows.length === 0)
+            return;
 
         const rowIds = [];
         const fileIds = [];
@@ -544,11 +546,14 @@ window.qBittorrent.PropFiles = (function() {
         actions: {
             Rename: function(element, ref) {
                 const hash = torrentsTable.getCurrentTorrentID();
-                if (!hash) return;
+                if (!hash)
+                    return;
                 const rowId = torrentFilesTable.selectedRowsIds()[0];
-                if (rowId === undefined) return;
+                if (rowId === undefined)
+                    return;
                 const row = torrentFilesTable.rows[rowId];
-                if (!row) return;
+                if (!row)
+                    return;
 
                 const node = torrentFilesTable.getNode(rowId);
                 const path = node.path;
@@ -621,7 +626,8 @@ window.qBittorrent.PropFiles = (function() {
             torrentFilesTable.setFilter(value);
             clearTimeout(torrentFilesFilterInputTimer);
             torrentFilesFilterInputTimer = setTimeout(function() {
-                if (current_hash === "") return;
+                if (current_hash === "")
+                    return;
                 torrentFilesTable.updateTable(false);
 
                 if (value.trim() === "")

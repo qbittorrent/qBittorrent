@@ -227,7 +227,7 @@
                                 .filter((row) => row.full_data.dataUid !== '')
                                 .each((row) => feedsToUpdate.add(row));
                         });
-                        feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid))
+                        feedsToUpdate.forEach((feed) => refreshFeed(feed.full_data.dataUid));
                     },
                     markRead: markSelectedAsRead,
                     rename: (el) => {
@@ -307,11 +307,11 @@
 
         const unload = () => {
             clearInterval(feedRefreshTimer);
-        }
+        };
 
         const load = () => {
             feedRefreshTimer = setInterval(updateRssFeedList, serverSyncRssDataInterval);
-        }
+        };
 
         const addRSSFeed = () => {
             let path = '';
@@ -365,7 +365,7 @@
                 width: 350,
                 height: 100
             });
-        }
+        };
 
         const showRssFeed = (path) => {
             rssArticleTable.clear();

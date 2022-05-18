@@ -1619,7 +1619,8 @@
                     alert("Could not contact qBittorrent");
                 },
                 onSuccess: function(ifaces) {
-                    if (!ifaces) return;
+                    if (!ifaces)
+                        return;
 
                     $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
                     ifaces.forEach(function(item, index) {
@@ -1644,7 +1645,8 @@
                     alert("Could not contact qBittorrent");
                 },
                 onSuccess: function(addresses) {
-                    if (!addresses) return;
+                    if (!addresses)
+                        return;
 
                     $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
                     $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]', '0.0.0.0'));

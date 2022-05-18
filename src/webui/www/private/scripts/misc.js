@@ -72,9 +72,12 @@ window.qBittorrent.Misc = (function() {
         }
 
         function friendlyUnitPrecision(sizeUnit) {
-            if (sizeUnit <= 2) return 1; // KiB, MiB
-            else if (sizeUnit === 3) return 2; // GiB
-            else return 3; // TiB, PiB, EiB
+            if (sizeUnit <= 2) // KiB, MiB
+                return 1;
+            else if (sizeUnit === 3) // GiB
+                return 2;
+            else // TiB, PiB, EiB
+                return 3;
         }
 
         let ret;
@@ -90,7 +93,7 @@ window.qBittorrent.Misc = (function() {
         if (isSpeed)
             ret += "QBT_TR(/s)QBT_TR[CONTEXT=misc]";
         return ret;
-    }
+    };
 
     /*
      * JS counterpart of the function in src/misc.cpp
@@ -116,7 +119,7 @@ window.qBittorrent.Misc = (function() {
         const years = days / 365;
         days = days % 365;
         return "QBT_TR(%1y %2d)QBT_TR[CONTEXT=misc]".replace("%1", parseInt(years)).replace("%2", parseInt(days));
-    }
+    };
 
     const friendlyPercentage = function(value) {
         let percentage = (value * 100).round(1);
@@ -125,11 +128,11 @@ window.qBittorrent.Misc = (function() {
         if (percentage > 100)
             percentage = 100;
         return percentage.toFixed(1) + "%";
-    }
+    };
 
     const friendlyFloat = function(value, precision) {
         return parseFloat(value).toFixed(precision);
-    }
+    };
 
     /*
      * From: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString
@@ -164,7 +167,7 @@ window.qBittorrent.Misc = (function() {
     const parseHtmlLinks = function(text) {
         const exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#/%?=~_|!:,.;]*[-A-Z0-9+&@#/%=~_|])/ig;
         return text.replace(exp, "<a target='_blank' rel='noopener noreferrer' href='$1'>$1</a>");
-    }
+    };
 
     const escapeHtml = function(str) {
         const div = document.createElement('div');
@@ -172,7 +175,7 @@ window.qBittorrent.Misc = (function() {
         const escapedString = div.innerHTML;
         div.remove();
         return escapedString;
-    }
+    };
 
     const safeTrim = function(value) {
         try {
@@ -183,13 +186,13 @@ window.qBittorrent.Misc = (function() {
                 return "";
             throw e;
         }
-    }
+    };
 
     const toFixedPointString = function(number, digits) {
         // Do not round up number
         const power = Math.pow(10, digits);
         return (Math.floor(power * number) / power).toFixed(digits);
-    }
+    };
 
     /**
      *
@@ -199,7 +202,7 @@ window.qBittorrent.Misc = (function() {
      */
     const containsAllTerms = function(text, terms) {
         const textToSearch = text.toLowerCase();
-        return terms.every((function(term) {
+        return terms.every(function(term) {
             const isTermRequired = (term[0] === '+');
             const isTermExcluded = (term[0] === '-');
             if (isTermRequired || isTermExcluded) {
@@ -212,8 +215,8 @@ window.qBittorrent.Misc = (function() {
 
             const textContainsTerm = (textToSearch.indexOf(term) !== -1);
             return isTermExcluded ? !textContainsTerm : textContainsTerm;
-        }));
-    }
+        });
+    };
 
     return exports();
 })();

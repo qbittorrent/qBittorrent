@@ -879,7 +879,7 @@ const initializeWindows = function() {
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
             default:
-                hashes = trackerList.get(trackerHashInt).torrents
+                hashes = trackerList.get(trackerHashInt).torrents;
                 break;
         }
 
@@ -962,7 +962,8 @@ const initializeWindows = function() {
         const hashes = torrentsTable.selectedRowsIds();
         for (const hash of hashes) {
             const row = torrentsTable.rows.get(hash);
-            if (!row) return
+            if (!row)
+                return;
 
             const name = row.full_data.name;
             const url = new URI("api/v2/torrents/export");

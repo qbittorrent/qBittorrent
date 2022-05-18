@@ -341,7 +341,8 @@
                 let category = $('categorySelect').getProperty('value');
                 const plugins = $('pluginsSelect').getProperty('value');
 
-                if (!pattern || !category || !plugins) return;
+                if (!pattern || !category || !plugins)
+                    return;
 
                 resetFilters();
 
@@ -390,7 +391,8 @@
             });
 
             // only proceed if at least 1 row was selected
-            if (!urls.length) return;
+            if (!urls.length)
+                return;
 
             showDownloadPage(urls);
         };
@@ -490,7 +492,8 @@
             if ((selectedPlugin === "all") || (selectedPlugin === "enabled")) {
                 const uniqueCategories = {};
                 for (const plugin of searchPlugins) {
-                    if ((selectedPlugin === "enabled") && !plugin.enabled) continue
+                    if ((selectedPlugin === "enabled") && !plugin.enabled)
+                        continue;
                     for (const category of plugin.supportedCategories) {
                         if (uniqueCategories[category.id] === undefined) {
                             uniqueCategories[category.id] = category;
@@ -503,7 +506,7 @@
             }
             else {
                 const plugin = getPlugin(selectedPlugin);
-                const plugins = (plugin === null) ? [] : plugin.supportedCategories
+                const plugins = (plugin === null) ? [] : plugin.supportedCategories;
                 populateCategorySelect(plugins);
             }
 
@@ -542,8 +545,10 @@
                             const allPlugins = searchPlugins.sort(function(pluginA, pluginB) {
                                 const a = pluginA.fullName.toLowerCase();
                                 const b = pluginB.fullName.toLowerCase();
-                                if (a < b) return -1;
-                                if (a > b) return 1;
+                                if (a < b)
+                                    return -1;
+                                if (a > b)
+                                    return 1;
                                 return 0;
                             });
 

@@ -9,6 +9,8 @@
     ],
     "rules": {
         "no-undef": "off",
-        "no-unused-vars": "off"
+        "no-unused-vars": "off",
+        "nonblock-statement-body-position": ["error", "below"],
+        "semi": "error"
     }
 }

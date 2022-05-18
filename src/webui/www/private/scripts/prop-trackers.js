@@ -165,7 +165,8 @@ window.qBittorrent.PropTrackers = (function() {
     });
 
     const addTrackerFN = function() {
-        if (current_hash.length === 0) return;
+        if (current_hash.length === 0)
+            return;
         new MochaUI.Window({
             id: 'trackersPage',
             title: "QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDialog]",
@@ -186,7 +187,8 @@ window.qBittorrent.PropTrackers = (function() {
     };
 
     const editTrackerFN = function(element) {
-        if (current_hash.length === 0) return;
+        if (current_hash.length === 0)
+            return;
 
         const trackerUrl = encodeURIComponent(element.childNodes[1].innerText);
         new MochaUI.Window({
@@ -209,7 +211,8 @@ window.qBittorrent.PropTrackers = (function() {
     };
 
     const removeTrackerFN = function(element) {
-        if (current_hash.length === 0) return;
+        if (current_hash.length === 0)
+            return;
 
         const selectedTrackers = torrentTrackersTable.selectedRowsIds();
         new Request({

@@ -36,7 +36,7 @@
 
                 const peers = $('peers').get('value').trim().split(/[\r\n]+/);
                 if (peers.length === 0)
-                    return
+                    return;
 
                 new Request({
                     url: 'api/v2/torrents/addPeers',
