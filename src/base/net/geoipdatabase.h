@@ -70,24 +70,7 @@ private:
     QVariant readMapValue(quint32 &offset, quint32 count) const;
     QVariant readArrayValue(quint32 &offset, quint32 count) const;
 
-    template<typename T>
-    QVariant readPlainValue(quint32 &offset, quint8 len) const
-    {
-        T value = 0;
-        const uchar *const data = m_data + offset;
-        const quint32 availSize = m_size - offset;
-
-        if ((len > 0) && (len <= sizeof(T) && (availSize >= len)))
-        {
-            // copy input data to last 'len' bytes of 'value'
-            uchar *dst = reinterpret_cast<uchar *>(&value) + (sizeof(T) - len);
-            memcpy(dst, data, len);
-            fromBigEndian(reinterpret_cast<uchar *>(&value), sizeof(T));
-            offset += len;
-        }
-
-        return QVariant::fromValue(value);
-    }
+    template <typename T> QVariant readPlainValue(quint32 &offset, quint8 len) const;
 
     // Metadata
     quint16 m_ipVersion;
