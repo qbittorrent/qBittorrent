@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19 24.549999" width="19" height="24.55">
-  <path d="M18.6 12.6L.8 22.4c-.2.2-.4.2-.6 0-.2-.2-.2-.2-.2-.4V2.4c0-.2 0-.4.2-.4h.6l17.8 9.8c.2.2.4.2.4.4s-.2.2-.4.4z" fill="#228b22"/>
-</svg>
+<svg height="8px" width="8px" id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 8 8"><defs><style>.cls-1{fill:url(#Gradiente_sem_nome_2);}</style><linearGradient id="Gradiente_sem_nome_2" x1="1.947" y1="1.16" x2="4.5818" y2="5.7237" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#82d176"/><stop offset="1" stop-color="#3fbf46"/></linearGradient></defs><path class="cls-1" d="M2,1.3225v5.355a.298.298,0,0,0,.4507.2761l4.124-2.6775a.3361.3361,0,0,0,0-.5522L2.4507,1.0464A.298.298,0,0,0,2,1.3225Z"/></svg>
