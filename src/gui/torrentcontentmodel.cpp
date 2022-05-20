@@ -313,7 +313,16 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             item->setName(value.toString());
             break;
         case TorrentContentModelItem::COL_PRIO:
-            item->setPriority(static_cast<BitTorrent::DownloadPriority>(value.toInt()));
+            {
+                const BitTorrent::DownloadPriority previousPrio = item->priority();
+                const auto newPrio = static_cast<BitTorrent::DownloadPriority>(value.toInt());
+                item->setPriority(newPrio);
+                if ((newPrio != previousPrio) && ((newPrio == BitTorrent::DownloadPriority::Ignored)
+                        || (previousPrio == BitTorrent::DownloadPriority::Ignored)))
+                {
+                    emit filteredFilesChanged();
+                }
+            }
             break;
         default:
             return false;
