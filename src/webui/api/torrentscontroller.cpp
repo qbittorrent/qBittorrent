@@ -652,7 +652,6 @@ void TorrentsController::addAction()
     const bool skipChecking = parseBool(params()[u"skip_checking"_qs]).value_or(false);
     const bool seqDownload = parseBool(params()[u"sequentialDownload"_qs]).value_or(false);
     const bool firstLastPiece = parseBool(params()[u"firstLastPiecePrio"_qs]).value_or(false);
-    const std::optional<bool> addPaused = parseBool(params()[u"paused"_qs]);
     const QString savepath = params()[u"savepath"_qs].trimmed();
     const QString downloadPath = params()[u"downloadPath"_qs].trimmed();
     const std::optional<bool> useDownloadPath = parseBool(params()[u"useDownloadPath"_qs]);
@@ -669,6 +668,11 @@ void TorrentsController::addAction()
     const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
             : std::optional<BitTorrent::TorrentContentLayout> {});
+
+    const QString addTorrentOptionParam = params()[u"addTorrentOption"_qs];
+    const std::optional<BitTorrent::AddTorrentOption> addTorrentOption = (!addTorrentOptionParam.isEmpty()
+            ? Utils::String::toEnum(addTorrentOptionParam, BitTorrent::AddTorrentOption::Start)
+            : std::optional<BitTorrent::AddTorrentOption> {});
 
     QList<QNetworkCookie> cookies;
     if (!cookie.isEmpty())
@@ -692,7 +696,7 @@ void TorrentsController::addAction()
     addTorrentParams.skipChecking = skipChecking;
     addTorrentParams.sequential = seqDownload;
     addTorrentParams.firstLastPiecePriority = firstLastPiece;
-    addTorrentParams.addPaused = addPaused;
+    addTorrentParams.addTorrentOption = addTorrentOption;
     addTorrentParams.contentLayout = contentLayout;
     addTorrentParams.savePath = Path(savepath);
     addTorrentParams.downloadPath = Path(downloadPath);

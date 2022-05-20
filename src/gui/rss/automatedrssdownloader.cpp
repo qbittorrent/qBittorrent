@@ -99,6 +99,13 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
         + u"<li>" + tr("Infinite range: <b>1x25-;</b> matches episodes 25 and upward of season one, and all episodes of later seasons") + u"</li>" + u"</ul></li></ul>";
     m_ui->lineEFilter->setToolTip(tip);
 
+    m_ui->comboAddTorrentOption->addItem(tr("Use global setting"));
+    m_ui->comboAddTorrentOption->addItem(tr("Don't start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::DontStart));
+    m_ui->comboAddTorrentOption->addItem(tr("Only check it"), QVariant::fromValue(BitTorrent::AddTorrentOption::CheckOnly));
+    m_ui->comboAddTorrentOption->addItem(tr("Start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::Start));
+    m_ui->comboAddTorrentOption->addItem(tr("Force start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::StartForced));
+    m_ui->comboAddTorrentOption->setCurrentIndex(0);
+
     initCategoryCombobox();
     loadSettings();
 
@@ -272,9 +279,9 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
         if (m_currentRule.assignedCategory().isEmpty())
             m_ui->comboCategory->clearEditText();
         int index = 0;
-        if (m_currentRule.addPaused().has_value())
-            index = (*m_currentRule.addPaused() ? 1 : 2);
-        m_ui->comboAddPaused->setCurrentIndex(index);
+        if (m_currentRule.addTorrentOption().has_value())
+            index = m_ui->comboAddTorrentOption->findData(QVariant::fromValue(*m_currentRule.addTorrentOption()));
+        m_ui->comboAddTorrentOption->setCurrentIndex(index);
         index = 0;
         if (m_currentRule.torrentContentLayout())
             index = static_cast<int>(*m_currentRule.torrentContentLayout()) + 1;
@@ -317,8 +324,8 @@ void AutomatedRssDownloader::clearRuleDefinitionBox()
     m_ui->checkRegex->setChecked(false);
     m_ui->checkSmart->setChecked(false);
     m_ui->spinIgnorePeriod->setValue(0);
-    m_ui->comboAddPaused->clearEditText();
-    m_ui->comboAddPaused->setCurrentIndex(-1);
+    m_ui->comboAddTorrentOption->clearEditText();
+    m_ui->comboAddTorrentOption->setCurrentIndex(-1);
     m_ui->comboContentLayout->clearEditText();
     m_ui->comboContentLayout->setCurrentIndex(-1);
     updateFieldsToolTips(m_ui->checkRegex->isChecked());
@@ -348,12 +355,9 @@ void AutomatedRssDownloader::updateEditedRule()
     m_currentRule.setEpisodeFilter(m_ui->lineEFilter->text());
     m_currentRule.setSavePath(m_ui->checkBoxSaveDiffDir->isChecked() ? m_ui->lineSavePath->selectedPath() : Path());
     m_currentRule.setCategory(m_ui->comboCategory->currentText());
-    std::optional<bool> addPaused;
-    if (m_ui->comboAddPaused->currentIndex() == 1)
-        addPaused = true;
-    else if (m_ui->comboAddPaused->currentIndex() == 2)
-        addPaused = false;
-    m_currentRule.setAddPaused(addPaused);
+    const QVariant addTorrentOptionValue = m_ui->comboAddTorrentOption->currentData();
+    m_currentRule.setAddTorrentOption(addTorrentOptionValue.isValid()
+                                      ? addTorrentOptionValue.value<BitTorrent::AddTorrentOption>() : std::optional<BitTorrent::AddTorrentOption> {});
 
     std::optional<BitTorrent::TorrentContentLayout> contentLayout;
     if (m_ui->comboContentLayout->currentIndex() > 0)

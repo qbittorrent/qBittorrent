@@ -35,6 +35,7 @@
 #include <QVariant>
 
 #include "base/global.h"
+#include "base/bittorrent/addtorrentoption.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/pathfwd.h"
 
@@ -83,8 +84,8 @@ namespace RSS
 
         Path savePath() const;
         void setSavePath(const Path &savePath);
-        std::optional<bool> addPaused() const;
-        void setAddPaused(std::optional<bool> addPaused);
+        std::optional<BitTorrent::AddTorrentOption> addTorrentOption() const;
+        void setAddTorrentOption(std::optional<BitTorrent::AddTorrentOption> addTorrentOption);
         std::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;
         void setTorrentContentLayout(std::optional<BitTorrent::TorrentContentLayout> contentLayout);
         QString assignedCategory() const;

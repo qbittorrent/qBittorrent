@@ -72,19 +72,23 @@
                     </tr>
                     <tr>
                         <td>
-                            <label for="startTorrent">QBT_TR(Start torrent)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
-                        </td>
-                        <td>
-                            <input type="hidden" id="startTorrentHidden" name="paused" />
-                            <input type="checkbox" id="startTorrent" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <label for="skip_checking">QBT_TR(Skip hash check)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
                         </td>
                         <td>
                             <input type="checkbox" id="skip_checking" name="skip_checking" value="true" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="addTorrentOption">QBT_TR(When torrent is added:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                        </td>
+                        <td>
+                            <select id="addTorrentOption" name="addTorrentOption">
+                                <option selected value="DontStart">QBT_TR(Don't start it)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="CheckOnly">QBT_TR(Only check it)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="Start">QBT_TR(Start it)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                                <option value="StartForced">QBT_TR(Force start it)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                            </select>
                         </td>
                     </tr>
                     <tr>

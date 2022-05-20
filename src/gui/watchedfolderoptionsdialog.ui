@@ -181,16 +181,20 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <layout class="QHBoxLayout" name="addTorrentOptionLayout">
             <item>
-             <widget class="QCheckBox" name="startTorrentCheckBox">
+             <widget class="QLabel" name="addTorrentOptionLabel">
               <property name="text">
-               <string>Start torrent</string>
+               <string>When new torrent is added:</string>
               </property>
              </widget>
             </item>
             <item>
-             <spacer name="horizontalSpacer_3">
+             <widget class="QComboBox" name="addTorrentOptionComboBox">
+             </widget>
+            </item>
+            <item>
+             <spacer name="addTorrentOptionSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>

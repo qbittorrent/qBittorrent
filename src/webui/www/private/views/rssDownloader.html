@@ -238,13 +238,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             <table class="fullWidth">
                 <tr>
                     <td>
-                        <label class="noWrap">QBT_TR(Add Paused:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
+                        <label class="noWrap">QBT_TR(When new torrent is added:)QBT_TR[CONTEXT=AutomatedRssDownloader]</label>
                     </td>
                     <td class="fullWidth">
-                        <select disabled id="addPausedCombobox" class="fullWidth">
-                            <option value="default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="always">QBT_TR(Always)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
-                            <option value="never">QBT_TR(Never)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                        <select disabled id="addTorrentOptionCombobox" class="fullWidth">
+                            <option value="Default">QBT_TR(Use global settings)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="DontStart">QBT_TR(Don't start it)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="CheckOnly">QBT_TR(Only check it)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="Start">QBT_TR(Start it)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
+                            <option value="StartForced">QBT_TR(Force start it)QBT_TR[CONTEXT=AutomatedRssDownloader]</option>
                         </select>
                     </td>
                 </tr>
@@ -581,15 +583,21 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             rulesList[rule].savePath = $('savetoDifferentDir').checked ? $('saveToText').value : '';
             rulesList[rule].ignoreDays = parseInt($('ignoreDaysValue').value);
 
-            switch ($('addPausedCombobox').value) {
-                case 'default':
-                    rulesList[rule].addPaused = null;
+            switch ($('addTorrentOptionCombobox').value) {
+                case 'Default':
+                    rulesList[rule].addTorrentOption = null;
                     break;
-                case 'always':
-                    rulesList[rule].addPaused = true;
+                case 'DontStart':
+                    rulesList[rule].addTorrentOption = 'DontStart';
                     break;
-                case 'never':
-                    rulesList[rule].addPaused = false;
+                case 'CheckOnly':
+                    rulesList[rule].addTorrentOption = 'CheckOnly';
+                    break;
+                case 'Start':
+                    rulesList[rule].addTorrentOption = 'Start';
+                    break;
+                case 'StartForced':
+                    rulesList[rule].addTorrentOption = 'StartForced';
                     break;
             }
 
@@ -669,7 +677,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('savetoDifferentDir').disabled = true;
                 $('saveToText').disabled = true;
                 $('ignoreDaysValue').disabled = true;
-                $('addPausedCombobox').disabled = true;
+                $('addTorrentOptionCombobox').disabled = true;
                 $('contentLayoutCombobox').disabled = true;
 
                 // reset all boxes
@@ -683,7 +691,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('saveToText').value = '';
                 $('ignoreDaysValue').value = 0;
                 $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
-                $('addPausedCombobox').value = 'default';
+                $('addTorrentOptionCombobox').value = 'Default';
                 $('contentLayoutCombobox').value = 'Default';
                 rssDownloaderFeedSelectionTable.clear();
                 rssDownloaderArticlesTable.clear();
@@ -705,7 +713,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('savetoDifferentDir').checked = rulesList[ruleName].savePath ? false : true;
                 $('saveToText').disabled = rulesList[ruleName].savePath ? false : true;
                 $('ignoreDaysValue').disabled = false;
-                $('addPausedCombobox').disabled = false;
+                $('addTorrentOptionCombobox').disabled = false;
                 $('contentLayoutCombobox').disabled = false;
 
                 // load rule settings
@@ -731,9 +739,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 }
 
                 if (rulesList[ruleName].addPaused === null)
-                    $('addPausedCombobox').value = 'default';
+                    $('addTorrentOptionCombobox').value = 'Default';
                 else
-                    $('addPausedCombobox').value = rulesList[ruleName].addPaused ? 'always' : 'never';
+                    $('addTorrentOptionCombobox').value = rulesList[ruleName].addTorrentOption;
 
                 if (rulesList[ruleName].torrentContentLayout === null)
                     $('contentLayoutCombobox').value = 'Default';

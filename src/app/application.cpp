@@ -545,7 +545,8 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(u"@addPaused="))
         {
-            torrentParams.addPaused = (QStringView(param).mid(11).toInt() != 0);
+            torrentParams.addTorrentOption = ((QStringView(param).mid(11).toInt() != 0)
+                                              ? BitTorrent::AddTorrentOption::DontStart : BitTorrent::AddTorrentOption::Start);
             continue;
         }
 

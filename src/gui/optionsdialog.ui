@@ -837,14 +837,32 @@
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkStartPaused">
-                 <property name="toolTip">
-                  <string>The torrent will be added to download list in a paused state</string>
-                 </property>
-                 <property name="text">
-                  <string extracomment="The torrent will be added to download list in a paused state">Do not start the download automatically</string>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="horizontalLayout_29">
+                 <item>
+                  <widget class="QLabel" name="addTorrentOptionLabel">
+                   <property name="text">
+                    <string>When new torrent is added:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="addTorrentOptionComboBox">
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="addTorrentOptionSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QGroupBox" name="deleteTorrentBox">
@@ -3498,7 +3516,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkUseSystemIcon</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
-  <tabstop>checkStartPaused</tabstop>
+  <tabstop>addTorrentOptionComboBox</tabstop>
   <tabstop>spinPort</tabstop>
   <tabstop>checkUPnP</tabstop>
   <tabstop>textWebUiUsername</tabstop>

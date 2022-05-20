@@ -3,6 +3,7 @@ HEADERS += \
     $$PWD/algorithm.h \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \
+    $$PWD/bittorrent/addtorrentoption.h \
     $$PWD/bittorrent/addtorrentparams.h \
     $$PWD/bittorrent/bandwidthscheduler.h \
     $$PWD/bittorrent/bencoderesumedatastorage.h \

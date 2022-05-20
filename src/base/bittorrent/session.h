@@ -280,8 +280,8 @@ namespace BitTorrent
         void setLSDEnabled(bool enabled);
         bool isPeXEnabled() const;
         void setPeXEnabled(bool enabled);
-        bool isAddTorrentPaused() const;
-        void setAddTorrentPaused(bool value);
+        AddTorrentOption addTorrentOption() const;
+        void setAddTorrentOption(AddTorrentOption value);
         TorrentContentLayout torrentContentLayout() const;
         void setTorrentContentLayout(TorrentContentLayout value);
         bool isTrackerEnabled() const;
@@ -738,7 +738,7 @@ namespace BitTorrent
         CachedSettingValue<QString> m_additionalTrackers;
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
-        CachedSettingValue<bool> m_isAddTorrentPaused;
+        CachedSettingValue<AddTorrentOption> m_addTorrentOption;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<int> m_refreshInterval;

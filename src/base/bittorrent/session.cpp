@@ -370,9 +370,9 @@ Session::Session(QObject *parent)
     , m_blockPeersOnPrivilegedPorts(BITTORRENT_SESSION_KEY(u"BlockPeersOnPrivilegedPorts"_qs), false)
     , m_isAddTrackersEnabled(BITTORRENT_SESSION_KEY(u"AddTrackersEnabled"_qs), false)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY(u"AdditionalTrackers"_qs))
-    , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_qs), -1, [](qreal r) { return r < 0 ? -1. : r;})
+    , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_qs), -1, [](qreal r) { return ((r < 0) ? -1. : r); })
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_qs), -1, lowerLimited(-1))
-    , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY(u"AddTorrentPaused"_qs), false)
+    , m_addTorrentOption(BITTORRENT_SESSION_KEY(u"AddTorrentOption"_qs), AddTorrentOption::Start)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_qs), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_qs), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_qs), 1500)
@@ -916,14 +916,14 @@ void Session::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
     m_isDisableAutoTMMWhenCategorySavePathChanged = value;
 }
 
-bool Session::isAddTorrentPaused() const
+AddTorrentOption Session::addTorrentOption() const
 {
-    return m_isAddTorrentPaused;
+    return m_addTorrentOption;
 }
 
-void Session::setAddTorrentPaused(const bool value)
+void Session::setAddTorrentOption(const AddTorrentOption value)
 {
-    m_isAddTorrentPaused = value;
+    m_addTorrentOption = value;
 }
 
 bool Session::isTrackerEnabled() const
@@ -2100,13 +2100,15 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 {
     LoadTorrentParams loadTorrentParams;
 
+    const AddTorrentOption option = addTorrentParams.addTorrentOption.value_or(addTorrentOption());
+
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
-    loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
-    loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
+    loadTorrentParams.operatingMode = ((option == AddTorrentOption::StartForced) ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
+    loadTorrentParams.stopped = ((option == AddTorrentOption::DontStart) || (option == AddTorrentOption::CheckOnly));
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
@@ -2278,6 +2280,29 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
             loadTorrentParams.name = QString::fromStdString(p.name);
     }
 
+    const AddTorrentOption option = addTorrentParams.addTorrentOption.value_or(addTorrentOption());
+    switch (option)
+    {
+    case AddTorrentOption::DontStart:
+    default:
+        p.flags |= lt::torrent_flags::paused;
+        p.flags &= ~lt::torrent_flags::auto_managed;
+        break;
+    case AddTorrentOption::CheckOnly:
+        p.flags |= lt::torrent_flags::paused;
+        p.flags |= lt::torrent_flags::auto_managed;
+        p.flags |= lt::torrent_flags::stop_when_ready;
+        break;
+    case AddTorrentOption::Start:
+        p.flags |= lt::torrent_flags::paused;
+        p.flags |= lt::torrent_flags::auto_managed;
+        break;
+    case AddTorrentOption::StartForced:
+        p.flags &= ~lt::torrent_flags::paused;
+        p.flags &= ~lt::torrent_flags::auto_managed;
+        break;
+    }
+
     p.save_path = actualSavePath.toString().toStdString();
 
     if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
@@ -2309,15 +2334,6 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         p.flags |= lt::torrent_flags::seed_mode;
     else
         p.flags &= ~lt::torrent_flags::seed_mode;
-
-    if (loadTorrentParams.stopped || (loadTorrentParams.operatingMode == TorrentOperatingMode::AutoManaged))
-        p.flags |= lt::torrent_flags::paused;
-    else
-        p.flags &= ~lt::torrent_flags::paused;
-    if (loadTorrentParams.stopped || (loadTorrentParams.operatingMode == TorrentOperatingMode::Forced))
-        p.flags &= ~lt::torrent_flags::auto_managed;
-    else
-        p.flags |= lt::torrent_flags::auto_managed;
 
     p.added_time = std::time(nullptr);
 

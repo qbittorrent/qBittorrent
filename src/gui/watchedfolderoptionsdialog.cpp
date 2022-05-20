@@ -30,6 +30,7 @@
 
 #include <QDir>
 #include <QPushButton>
+#include <QVariant>
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
@@ -65,11 +66,17 @@ WatchedFolderOptionsDialog::WatchedFolderOptionsDialog(
     populateSavePaths();
 
     const BitTorrent::AddTorrentParams &torrentParams = watchedFolderOptions.addTorrentParams;
-    m_ui->startTorrentCheckBox->setChecked(!torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
     m_ui->skipCheckingCheckBox->setChecked(torrentParams.skipChecking);
     m_ui->comboTTM->setCurrentIndex(torrentParams.useAutoTMM.value_or(!session->isAutoTMMDisabledByDefault()));
     m_ui->contentLayoutComboBox->setCurrentIndex(
         static_cast<int>(torrentParams.contentLayout.value_or(session->torrentContentLayout())));
+
+    m_ui->addTorrentOptionComboBox->addItem(tr("Don't start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::DontStart));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Only check it"), QVariant::fromValue(BitTorrent::AddTorrentOption::CheckOnly));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::Start));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Force start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::StartForced));
+    m_ui->addTorrentOptionComboBox->setCurrentIndex(
+                m_ui->addTorrentOptionComboBox->findData(QVariant::fromValue(torrentParams.addTorrentOption.value_or(session->addTorrentOption()))));
 
     // Load categories
     QStringList categories = session->categories();
@@ -116,7 +123,7 @@ TorrentFilesWatcher::WatchedFolderOptions WatchedFolderOptionsDialog::watchedFol
     }
     params.useAutoTMM = useAutoTMM;
     params.category = m_ui->categoryComboBox->currentText();
-    params.addPaused = !m_ui->startTorrentCheckBox->isChecked();
+    params.addTorrentOption = m_ui->addTorrentOptionComboBox->currentData().value<BitTorrent::AddTorrentOption>();
     params.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
     params.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 

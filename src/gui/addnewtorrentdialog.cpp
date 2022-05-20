@@ -200,7 +200,12 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->downloadPath->setDialogCaption(tr("Choose save path"));
     m_ui->downloadPath->setMaxVisibleItems(20);
 
-    m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Don't start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::DontStart));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Only check it"), QVariant::fromValue(BitTorrent::AddTorrentOption::CheckOnly));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::Start));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Force start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::StartForced));
+    m_ui->addTorrentOptionComboBox->setCurrentIndex(
+                m_ui->addTorrentOptionComboBox->findData(QVariant::fromValue(m_torrentParams.addTorrentOption.value_or(session->addTorrentOption()))));
 
     m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does its job at this point
     m_ui->comboTTM->setCurrentIndex(session->isAutoTMMDisabledByDefault() ? 0 : 1);
@@ -828,7 +833,7 @@ void AddNewTorrentDialog::accept()
     if (m_contentModel)
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
-    m_torrentParams.addPaused = !m_ui->startTorrentCheckBox->isChecked();
+    m_torrentParams.addTorrentOption = m_ui->addTorrentOptionComboBox->currentData().value<BitTorrent::AddTorrentOption>();
     m_torrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 
     m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();

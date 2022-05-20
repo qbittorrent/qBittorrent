@@ -187,7 +187,7 @@
               </property>
              </widget>
             </item>
-            <item row="1" column="0">
+            <item row="0" column="0">
              <widget class="QCheckBox" name="skipCheckingCheckBox">
               <property name="text">
                <string>Skip hash check</string>
@@ -201,15 +201,36 @@
               </property>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="startTorrentCheckBox">
+            <item row="0" column="2">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="addTorrentOptionLayout">
+            <item>
+             <widget class="QLabel" name="addTorrentOptionLabel">
               <property name="text">
-               <string>Start torrent</string>
+               <string>When torrent is added:</string>
               </property>
              </widget>
             </item>
-            <item row="0" column="2">
-             <spacer name="horizontalSpacer_3">
+            <item>
+             <widget class="QComboBox" name="addTorrentOptionComboBox">
+             </widget>
+            </item>
+            <item>
+             <spacer name="addTorrentOptionSpacer">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>

@@ -290,9 +290,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
            </widget>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <layout class="QHBoxLayout" name="addTorrentOptionLayout">
             <item>
-             <widget class="QLabel" name="lblAddPaused">
+             <widget class="QLabel" name="lblAddTorrentOption">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
                 <horstretch>0</horstretch>
@@ -300,27 +300,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                </sizepolicy>
               </property>
               <property name="text">
-               <string>Add Paused:</string>
+               <string>When new torrent is added:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QComboBox" name="comboAddPaused">
-              <item>
-               <property name="text">
-                <string>Use global settings</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Always</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Never</string>
-               </property>
-              </item>
+             <widget class="QComboBox" name="comboAddTorrentOption">
              </widget>
             </item>
            </layout>
@@ -478,7 +463,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
   <tabstop>checkBoxSaveDiffDir</tabstop>
   <tabstop>lineSavePath</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
-  <tabstop>comboAddPaused</tabstop>
+  <tabstop>comboAddTorrentOption</tabstop>
   <tabstop>comboContentLayout</tabstop>
   <tabstop>listFeeds</tabstop>
   <tabstop>treeMatchingArticles</tabstop>

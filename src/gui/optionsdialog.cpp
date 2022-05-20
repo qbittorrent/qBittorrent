@@ -363,7 +363,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkRecursiveDownload, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAdditionDialog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAdditionDialogFront, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->addTorrentOptionComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteCancelledTorrentBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -751,7 +751,7 @@ void OptionsDialog::saveOptions()
     pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
     AddNewTorrentDialog::setEnabled(useAdditionDialog());
     AddNewTorrentDialog::setTopLevel(m_ui->checkAdditionDialogFront->isChecked());
-    session->setAddTorrentPaused(addTorrentsInPause());
+    session->setAddTorrentOption(m_ui->addTorrentOptionComboBox->currentData().value<BitTorrent::AddTorrentOption>());
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
     auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     watchedFoldersModel->apply();
@@ -995,11 +995,16 @@ void OptionsDialog::loadOptions()
     // Downloads preferences
     m_ui->checkAdditionDialog->setChecked(AddNewTorrentDialog::isEnabled());
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
-    m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
+
+    m_ui->addTorrentOptionComboBox->addItem(tr("Don't start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::DontStart));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Only check it"), QVariant::fromValue(BitTorrent::AddTorrentOption::CheckOnly));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::Start));
+    m_ui->addTorrentOptionComboBox->addItem(tr("Force start it"), QVariant::fromValue(BitTorrent::AddTorrentOption::StartForced));
+    m_ui->addTorrentOptionComboBox->setCurrentIndex(m_ui->addTorrentOptionComboBox->findData(QVariant::fromValue(session->addTorrentOption())));
 
     m_ui->textSavePath->setSelectedPath(session->savePath());
     m_ui->checkUseSubcategories->setChecked(session->isSubcategoriesEnabled());
@@ -1555,11 +1560,6 @@ bool OptionsDialog::WinStartup() const
 bool OptionsDialog::preAllocateAllFiles() const
 {
     return m_ui->checkPreallocateAll->isChecked();
-}
-
-bool OptionsDialog::addTorrentsInPause() const
-{
-    return m_ui->checkStartPaused->isChecked();
 }
 
 // Proxy settings

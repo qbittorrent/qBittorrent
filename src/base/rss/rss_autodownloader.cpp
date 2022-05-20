@@ -386,7 +386,7 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         BitTorrent::AddTorrentParams params;
         params.savePath = rule.savePath();
         params.category = rule.assignedCategory();
-        params.addPaused = rule.addPaused();
+        params.addTorrentOption = rule.addTorrentOption();
         params.contentLayout = rule.torrentContentLayout();
         if (!rule.savePath().isEmpty())
             params.useAutoTMM = false;

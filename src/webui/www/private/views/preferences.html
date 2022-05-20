@@ -10,8 +10,13 @@
             </select>
         </div>
         <div class="formRow">
-            <input type="checkbox" id="dontstartdownloads_checkbox" />
-            <label for="dontstartdownloads_checkbox">QBT_TR(Do not start the download automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <label for="addtorrentoption_select">QBT_TR(When new torrent is added)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="addtorrentoption_select">
+                <option value="DontStart">QBT_TR(Start it)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="CheckOnly">QBT_TR(Only check it)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="Start">QBT_TR(Start it)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="StartForced">QBT_TR(Force start it)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
         </div>
         <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox" />
@@ -1685,9 +1690,25 @@
                                 break;
                         }
                         $('contentlayout_select').getChildren('option')[index].setAttribute('selected', '');
-                        $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
-                        $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
 
+                        index = 0;
+                        switch (pref.add_torrent_option) {
+                            case "DontStart":
+                                index = 0;
+                                break;
+                            case "CheckOnly":
+                                index = 1;
+                                break;
+                            case "Start":
+                                index = 2;
+                                break;
+                            case "StartForced":
+                                index = 3;
+                                break;
+                        }
+                        $('addtorrentoption_select').getChildren('option')[index].setAttribute('selected', '');
+
+                        $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
                         $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
                         $('appendext_checkbox').setProperty('checked', pref.incomplete_files_ext);
 
@@ -2028,7 +2049,7 @@
             // Downloads tab
             // When adding a torrent
             settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
-            settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
+            settings.set('add_torrent_option', $('addtorrentoption_select').getSelected()[0].getProperty('value'));
             settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
 
             settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));

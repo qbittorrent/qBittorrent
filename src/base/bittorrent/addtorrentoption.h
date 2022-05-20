@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,43 +28,25 @@
 
 #pragma once
 
-#include <optional>
-
-#include <QMetaType>
-#include <QString>
-#include <QVector>
-
-#include "base/path.h"
-#include "base/tagset.h"
-#include "addtorrentoption.h"
-#include "torrent.h"
-#include "torrentcontentlayout.h"
+#include <QMetaEnum>
 
 namespace BitTorrent
 {
-    enum class DownloadPriority;
-
-    struct AddTorrentParams
+    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
+    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
+    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
+    inline namespace AddTorrentOptionNS
     {
-        QString name;
-        QString category;
-        TagSet tags;
-        Path savePath;
-        std::optional<bool> useDownloadPath;
-        Path downloadPath;
-        bool sequential = false;
-        bool firstLastPiecePriority = false;
-        std::optional<AddTorrentOption> addTorrentOption;
-        PathList filePaths; // used if TorrentInfo is set
-        QVector<DownloadPriority> filePriorities; // used if TorrentInfo is set
-        bool skipChecking = false;
-        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        std::optional<bool> useAutoTMM;
-        int uploadLimit = -1;
-        int downloadLimit = -1;
-        int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-        qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
-    };
-}
+        Q_NAMESPACE
 
-Q_DECLARE_METATYPE(BitTorrent::AddTorrentParams)
+        enum class AddTorrentOption
+        {
+            DontStart = 0,
+            CheckOnly = 1,
+            Start = 2,
+            StartForced = 3
+        };
+
+        Q_ENUM_NS(AddTorrentOption)
+    }
+}

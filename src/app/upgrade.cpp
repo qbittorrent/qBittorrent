@@ -30,6 +30,7 @@
 
 #include <QMetaEnum>
 
+#include "base/bittorrent/addtorrentoption.h"
 #include "base/bittorrent/torrentcontentlayout.h"
 #include "base/global.h"
 #include "base/logger.h"
@@ -44,7 +45,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 3;
+    const int MIGRATION_VERSION = 4;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_qs;
 
     void exportWebUIHttpsFiles()
@@ -368,6 +369,26 @@ namespace
             }
         }
     }
+
+    void upgradeAddTorrentOption()
+    {
+        const QString oldKey = u"BitTorrent/Session/AddTorrentPaused"_qs;
+        const QString newKey = u"BitTorrent/Session/AddTorrentOption"_qs;
+
+        SettingsStorage *settingsStorage = SettingsStorage::instance();
+        const auto oldData = settingsStorage->loadValue<QVariant>(oldKey);
+        const auto newData = settingsStorage->loadValue<QString>(newKey);
+
+        if (!newData.isEmpty() || !oldData.isValid())
+            return;
+
+        const bool addPaused = oldData.toBool();
+        const BitTorrent::AddTorrentOption addTorrentOption =
+                (addPaused ? BitTorrent::AddTorrentOption::DontStart : BitTorrent::AddTorrentOption::Start);
+
+        settingsStorage->storeValue(newKey, Utils::String::fromEnum(addTorrentOption));
+        settingsStorage->removeValue(oldKey);
+    }
 }
 
 bool upgrade(const bool /*ask*/)
@@ -391,6 +412,9 @@ bool upgrade(const bool /*ask*/)
 
         if (version < 3)
             migrateProxySettingsEnum();
+
+        if (version < 4)
+            upgradeAddTorrentOption();
 
         version = MIGRATION_VERSION;
     }

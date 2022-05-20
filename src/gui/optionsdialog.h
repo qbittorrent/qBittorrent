@@ -136,7 +136,6 @@ private:
     // Downloads
     bool preAllocateAllFiles() const;
     bool useAdditionDialog() const;
-    bool addTorrentsInPause() const;
     Path getTorrentExportDir() const;
     Path getFinishedTorrentExportDir() const;
     // Connection options
