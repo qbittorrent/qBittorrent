@@ -41,6 +41,7 @@ namespace Ui
 class ShutdownConfirmDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ShutdownConfirmDialog)
 
 public:
     ShutdownConfirmDialog(QWidget *parent, const ShutdownDialogAction &action);

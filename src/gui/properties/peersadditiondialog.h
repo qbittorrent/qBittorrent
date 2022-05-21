@@ -41,6 +41,7 @@ namespace Ui
 class PeersAdditionDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(PeersAdditionDialog)
 
 public:
     PeersAdditionDialog(QWidget *parent);

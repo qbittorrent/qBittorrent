@@ -32,9 +32,10 @@
 
 class PieceAvailabilityBar final : public PiecesBar
 {
-    using base = PiecesBar;
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PieceAvailabilityBar)
+
+    using base = PiecesBar;
 
 public:
     PieceAvailabilityBar(QWidget *parent);

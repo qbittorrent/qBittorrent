@@ -47,6 +47,7 @@ namespace Private
     class FileSystemPathValidator final : public QValidator
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(FileSystemPathValidator)
 
     public:
         FileSystemPathValidator(QObject *parent = nullptr);
@@ -147,6 +148,7 @@ namespace Private
     class FileComboEdit final : public QComboBox, public FileEditorWithCompletion
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(FileComboEdit)
 
     public:
         FileComboEdit(QWidget *parent = nullptr);

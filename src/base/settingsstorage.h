@@ -53,6 +53,8 @@ struct IsQFlags<QFlags<T>> : std::true_type {};
 class SettingsStorage final : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(SettingsStorage)
+
     SettingsStorage();
     ~SettingsStorage();
 

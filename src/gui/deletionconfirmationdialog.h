@@ -40,6 +40,7 @@ namespace Ui
 class DeletionConfirmationDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(DeletionConfirmationDialog)
 
 public:
     DeletionConfirmationDialog(QWidget *parent, int size, const QString &name, bool defaultDeleteFiles);

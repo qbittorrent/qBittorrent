@@ -43,6 +43,7 @@ class PowerManagementInhibitor;
 class PowerManagement : public QObject
 {
   Q_OBJECT
+  Q_DISABLE_COPY_MOVE(PowerManagement)
 
 public:
   PowerManagement(QObject *parent = nullptr);

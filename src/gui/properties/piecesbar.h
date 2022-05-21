@@ -42,9 +42,10 @@ namespace BitTorrent
 
 class PiecesBar : public QWidget
 {
-    using base = QWidget;
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(PiecesBar)
+
+    using base = QWidget;
 
 public:
     explicit PiecesBar(QWidget *parent = nullptr);

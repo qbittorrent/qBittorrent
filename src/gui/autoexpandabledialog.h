@@ -41,6 +41,7 @@ namespace Ui
 class AutoExpandableDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(AutoExpandableDialog)
 
 public:
     explicit AutoExpandableDialog(QWidget *parent);
