@@ -47,7 +47,7 @@
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation>הכל</translation>
+        <translation>הכול</translation>
     </message>
     <message>
         <source>Uncategorized</source>
@@ -412,7 +412,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>המשך הכל</translation>
+        <translation>המשך הכול</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -432,7 +432,7 @@
     </message>
     <message>
         <source>Pause All</source>
-        <translation>השהה הכל</translation>
+        <translation>השהה הכול</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>סרגל צד של מסננים</translation>
     </message>
 </context>
 <context>
@@ -1482,18 +1482,42 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>גודל תור בדיסק:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>כתוב ביומן אזהרות ביצוע</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>בקשות חריגות מרביות אל עמית יחיד:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation>טורנטים נבדקים פעילים מרביים:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1910,7 +1934,7 @@
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation>הכל (0)</translation>
+        <translation>הכול (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
@@ -1946,7 +1970,7 @@
     </message>
     <message>
         <source>All (%1)</source>
-        <translation>הכל (%1)</translation>
+        <translation>הכול (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>ירד</translation>
+        <translation type="vanished">ירד</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2268,11 +2292,11 @@
         <translation>התקדמות</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">גודל</translation>
+        <source>Total Size</source>
+        <translation>גודל כולל</translation>
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2540,7 +2564,7 @@
     </message>
     <message>
         <source>Remove All</source>
-        <translation>הסר הכל</translation>
+        <translation>הסר הכול</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2569,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>זהות טורנט</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2963,7 +2991,7 @@
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation>הכל</translation>
+        <translation>הכול</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -3130,7 +3158,7 @@
     </message>
     <message>
         <source>Update all</source>
-        <translation>עדכן הכל</translation>
+        <translation>עדכן הכול</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3466,7 +3494,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation>הכל (%1)</translation>
+        <translation>הכול (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
