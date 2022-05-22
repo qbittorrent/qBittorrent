@@ -1726,9 +1726,6 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
         if (m_nativeStatus.need_save_resume)
             m_session->handleTorrentNeedSaveResumeData(this);
 
-        if (m_fastresumeDataRejected && !m_hasMissingFiles)
-            m_fastresumeDataRejected = false;
-
         if (!m_hasMissingFiles)
         {
             if ((progress() < 1.0) && (wantedSize() > 0))
@@ -1895,19 +1892,10 @@ void TorrentImpl::handleSaveResumeDataFailedAlert(const lt::save_resume_data_fai
 
 void TorrentImpl::handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p)
 {
-    m_fastresumeDataRejected = true;
-
-    if (p->error.value() == lt::errors::mismatching_file_size)
-    {
-        // Mismatching file size (files were probably moved)
-        m_hasMissingFiles = true;
-        LogMsg(tr("File sizes mismatch for torrent '%1'. Cannot proceed further.").arg(name()), Log::CRITICAL);
-    }
-    else
-    {
-        LogMsg(tr("Fast resume data was rejected for torrent '%1'. Reason: %2. Checking again...")
-            .arg(name(), QString::fromStdString(p->message())), Log::WARNING);
-    }
+    // Files were probably moved or storage isn't accessible
+    m_hasMissingFiles = true;
+    LogMsg(tr("Failed to restore torrent. Files were probably moved or storage isn't accessible. Torrent: \"%1\". Reason: \"%2\"")
+        .arg(name(), QString::fromStdString(p->message())), Log::WARNING);
 }
 
 void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
