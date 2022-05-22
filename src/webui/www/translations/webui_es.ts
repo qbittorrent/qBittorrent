@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Barra lateral de filtros</translation>
     </message>
 </context>
 <context>
@@ -1482,18 +1482,42 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Tamaño de la cola de disco:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Registrar advertencias de rendimiento</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Máximo de solicitudes pendientes a un único par:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation>Máximo de torrents de comprobación activos:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Bajado</translation>
+        <translation type="vanished">Bajado</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2268,11 +2292,11 @@
         <translation>Progreso</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Tamaño</translation>
+        <source>Total Size</source>
+        <translation>Tamaño total</translation>
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2569,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID de Torrent</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

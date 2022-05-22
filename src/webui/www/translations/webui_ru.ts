@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>Изменить категорию…</translation>
+        <translation>Править категорию…</translation>
     </message>
 </context>
 <context>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Боковая панель фильтров</translation>
     </message>
 </context>
 <context>
@@ -998,7 +998,7 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation>Изменить текущий пароль</translation>
+        <translation>Сменить текущий пароль</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -1022,11 +1022,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Перевести торрент в Ручной режим</translation>
+        <translation>Перевести торрент в ручной режим</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>При изменении категории торрента:</translation>
+        <translation>При смене категории торрента:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1046,7 +1046,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>При изменении пути сохранения по умолчанию:</translation>
+        <translation>При смене пути сохранения по умолчанию:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1058,7 +1058,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>При изменении пути сохранения категории:</translation>
+        <translation>При смене пути сохранения категории:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1066,7 +1066,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Перевести затронутые торренты в Ручной режим</translation>
+        <translation>Перевести затронутые торренты в ручной режим</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1138,7 +1138,7 @@
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation>Разрешить несколько соединений с одного IP-адреса:</translation>
+        <translation>Разрешать несколько соединений с одного IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1174,7 +1174,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Фактор уровня буфера отправки:</translation>
+        <translation>Фактор отметки буфера отправки:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1218,7 +1218,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Уровень буфера отправки:</translation>
+        <translation>Отметка буфера отправки:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1230,7 +1230,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation>Дополнительно</translation>
+        <translation>Расширенные</translation>
     </message>
     <message>
         <source>min</source>
@@ -1262,7 +1262,7 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Минимальный уровень буфера отправки:</translation>
+        <translation>Нижняя отметка буфера отправки:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
@@ -1286,7 +1286,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Использовать группировку родственных частей (требуется libtorrent &gt;= 1.2.2):</translation>
+        <translation>Использовать группировку родственных частей (требует libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1298,7 +1298,7 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation>Включить защиту куки (требуется HTTPS)</translation>
+        <translation>Включить защиту куки (требует HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
@@ -1322,11 +1322,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Потоки хеширования (требуется libtorrent &gt;= 2.0):</translation>
+        <translation>Потоки хеширования (требует libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Объединять операции чтения и записи (требуется libtorrent &gt;= 2.0):</translation>
+        <translation>Объединять операции чтения и записи (требует libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1370,7 +1370,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Максимум одновременных анонсов HTTP (требуется libtorrent &gt;= 1.2.7):</translation>
+        <translation>Максимум одновременных анонсов HTTP (требует libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1386,7 +1386,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Не подключаться к пирам по общеизвестным портам:</translation>
+        <translation>Не соединять пиров по общеизвестным портам:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1398,11 +1398,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Кэш диска (требуется libtorrent &gt;= 2.0):</translation>
+        <translation>Кэш диска (требует libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Интервал очистки дискового кэша (требуется libtorrent &lt; 2.0):</translation>
+        <translation>Интервал очистки кэша диска (требует libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1414,7 +1414,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>Поддерживать нелатинские имена доменов (IDN) (требуется libtorrent &gt;= 1.2.12):</translation>
+        <translation>Поддерживать нелатинские имена доменов (IDN) (требует libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1470,7 +1470,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>IP для сообщения трекерам (требуется перезапуск):</translation>
+        <translation>IP для сообщения трекерам (требует перезапуск):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1482,18 +1482,42 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Размер очереди диска:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Журналировать предупреждения быстродействия</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Максимум невыполненных запросов к одному пиру:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation>Максимум активных проверок торрентов:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1533,7 +1557,7 @@
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Скорость отдачи</translation>
+        <translation>Отдача</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -1561,7 +1585,8 @@
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Вы уверены, что хотите навсегда заблокировать выделенных пиров?</translation>
+        <translation>Вы уверены, что хотите навсегда заблокировать выбранных пиров?
+</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1879,11 +1904,11 @@
     </message>
     <message>
         <source>Performance statistics</source>
-        <translation>Производительность</translation>
+        <translation>Статистика быстродействия</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
-        <translation>Операций ввода-вывода в очереди:</translation>
+        <translation>Задачи ввода-вывода в очереди:</translation>
     </message>
     <message>
         <source>Write cache overload:</source>
@@ -2185,7 +2210,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Загрузки</translation>
+        <translation type="vanished">Загрузки</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2229,7 +2254,7 @@
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Изменить адрес трекера…</translation>
+        <translation>Править адрес трекера…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2268,11 +2293,11 @@
         <translation>Прогресс</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Размер</translation>
+        <source>Total Size</source>
+        <translation>Общий размер</translation>
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2516,7 +2541,7 @@
     </message>
     <message>
         <source>Edit Category</source>
-        <translation>Изменить категорию</translation>
+        <translation>Править категорию</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2570,6 +2595,10 @@
         <source>Torrent ID</source>
         <translation>ИД торрента</translation>
     </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2587,7 +2616,7 @@
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation>Установить ограничение раздачи</translation>
+        <translation>Задать ограничение раздачи</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -2990,7 +3019,7 @@
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation>Сопровождение кода</translation>
+        <translation>Текущий куратор</translation>
     </message>
     <message>
         <source>Home Page:</source>

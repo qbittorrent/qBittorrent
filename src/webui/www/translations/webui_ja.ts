@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>フィルターサイドバー</translation>
     </message>
 </context>
 <context>
@@ -1486,7 +1486,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>パフォーマンス警告を記録する</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1494,6 +1494,30 @@
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>ダウンロード</translation>
+        <translation type="vanished">ダウンロード</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2268,11 +2292,11 @@
         <translation>進行状況</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">サイズ</translation>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2569,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>TorrentのID</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

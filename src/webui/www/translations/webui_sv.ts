@@ -117,27 +117,27 @@
     </message>
     <message>
         <source>Maximum active downloads must be greater than -1.</source>
-        <translation>Maximalt aktiva hämtningar måste vara större än -1.</translation>
+        <translation>Högst antal aktiva hämtningar måste vara större än -1.</translation>
     </message>
     <message>
         <source>Maximum active uploads must be greater than -1.</source>
-        <translation>Maximalt aktiva sändningar måste vara större än -1.</translation>
+        <translation>Högst antal aktiva sändningar måste vara större än -1.</translation>
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>Maximalt aktiva torrenter måste vara större än -1.</translation>
+        <translation>Högst antal aktiva torrenter måste vara större än -1.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
-        <translation>Gräns för maximalt antal anslutningar måste vara större än 0 eller inaktiverad.</translation>
+        <translation>Högst antal anslutningar måste vara större än 0 eller inaktiverat.</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Gräns för maximalt antal anslutningar per torrent måste vara större än 0 eller inaktiverad.</translation>
+        <translation>Högst antal anslutningar per torrent måste vara större än 0 eller inaktiverat.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Gräns för maximalt antal sändningsplatser per torrent måste vara större än 0 eller inaktiverad.</translation>
+        <translation>Högst antal sändningsplatser per torrent måste vara större än 0 eller inaktiverat.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -265,7 +265,7 @@
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
-        <translation>Hämta torrenter från deras webbadresser eller magnetlänkar</translation>
+        <translation>Hämta torrenter från deras URLs eller magnetlänkar</translation>
     </message>
     <message>
         <source>Upload local torrent</source>
@@ -285,11 +285,11 @@
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
-        <translation>Globalt  antal sändningsplatser måste vara större än 0 eller inaktiverad.</translation>
+        <translation>Globalt antal sändningsplatser måste vara större än 0 eller inaktiverad.</translation>
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>Ogiltigt kategorinamn:\nVänligen använd inga specialtecken i kategorinamnet.</translation>
+        <translation>Ogiltigt kategorinamn:\nAnvänd inga specialtecken i kategorinamnet.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>Det går inte att lägga till jämlikar. Vänligen se till att du följer formatet IP:port.</translation>
+        <translation>Det går inte att lägga till jämlikar. Se till att du följer formatet IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Filtersidofält</translation>
     </message>
 </context>
 <context>
@@ -732,15 +732,15 @@
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation>Globalt högst antal anslutningar:</translation>
+        <translation>Högst antal anslutningar globalt:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation>Maximalt antal sändningsplatser per torrent:</translation>
+        <translation>Högst antal sändningsplatser per torrent:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
-        <translation>Globalt högst antal sändningsplatser:</translation>
+        <translation>Högst antal sändningsplatser globalt:</translation>
     </message>
     <message>
         <source>Proxy Server</source>
@@ -886,7 +886,7 @@
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation>Maximala aktiva sändningar:</translation>
+        <translation>Högst antal aktiva sändningar:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
@@ -982,7 +982,7 @@
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation>Aktivera Cross-Site Request Forgery (CSRF)-skydd</translation>
+        <translation>Aktivera skydd mot förfalskning av förfrågningar mellan webbplatser (CSRF)</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
@@ -1186,7 +1186,7 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>Kontrollera torrenter igen vid slutföring:</translation>
+        <translation>Återkontrollera torrenter vid slutförning:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
@@ -1478,22 +1478,46 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Begränsning av förfalskning på serversidan (SSRF):</translation>
+        <translation>Begränsning av förfalskning av förfrågningar på serversidan (SSRF):</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Diskköstorlek:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Logga prestandavarningar</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Högst antal utestående förfrågningar till en enskild jämlike:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation>Max aktiva torrentkontroller:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1591,7 +1615,7 @@
     <message>
         <source>Maximum</source>
         <comment>Maximum (priority)</comment>
-        <translation>Maximal</translation>
+        <translation>Högsta</translation>
     </message>
     <message>
         <source>Mixed</source>
@@ -2185,11 +2209,11 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Hämtat</translation>
+        <translation type="vanished">Hämtat</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation>Spårarwebbadress:</translation>
+        <translation>Spårar-URL:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2221,7 +2245,7 @@
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation>Kopiera webbadress för spårare</translation>
+        <translation>Kopiera URL för spårare</translation>
     </message>
     <message>
         <source>Add a new tracker...</source>
@@ -2229,7 +2253,7 @@
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Ändra spårarwebbadress...</translation>
+        <translation>Ändra spårar-URL...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2268,11 +2292,11 @@
         <translation>Förlopp</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Storlek</translation>
+        <source>Total Size</source>
+        <translation>Total storlek</translation>
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2570,6 +2594,10 @@
         <source>Torrent ID</source>
         <translation>Torrent-ID</translation>
     </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2620,7 +2648,7 @@
     <name>downloadFromURL</name>
     <message>
         <source>Download from URLs</source>
-        <translation>Hämta från webbadresser</translation>
+        <translation>Hämta från URLs</translation>
     </message>
     <message>
         <source>Download</source>
@@ -2722,7 +2750,7 @@
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation>Webbadress eller lokal mapp</translation>
+        <translation>URL eller lokal mapp</translation>
     </message>
     <message>
         <source>Install plugin</source>
@@ -2878,7 +2906,7 @@
     </message>
     <message>
         <source>Url</source>
-        <translation>Webbadress</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Enabled</source>
@@ -3088,7 +3116,7 @@
     </message>
     <message>
         <source>Description page URL</source>
-        <translation>Beskrivningssidans webbadress</translation>
+        <translation>Beskrivningssidans URL</translation>
     </message>
     <message>
         <source>Open description page</source>
@@ -3118,11 +3146,11 @@
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Vänligen välj ett nytt namn för detta RSS-flöde</translation>
+        <translation>Välj ett nytt namn för detta RSS-flöde</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation>Vänligen välj ett mappnamn</translation>
+        <translation>Välj ett mappnamn</translation>
     </message>
     <message>
         <source>New feed name:</source>
@@ -3150,7 +3178,7 @@
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation>Kopiera flödets webbadress</translation>
+        <translation>Kopiera flödets URL</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
@@ -3158,7 +3186,7 @@
     </message>
     <message>
         <source>Open news URL</source>
-        <translation>Öppna nyhetswebbadress</translation>
+        <translation>Öppna nyhets-URL</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3166,7 +3194,7 @@
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation>Flödets webbadress:</translation>
+        <translation>Flödets URL:</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -3186,7 +3214,7 @@
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation>Vänligen skriv en RSS-flödets webbadress</translation>
+        <translation>Skriv en RSS-flödets URL</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
@@ -3337,7 +3365,7 @@
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation>Vänligen skriv det nya regelnamnet</translation>
+        <translation>Skriv det nya regelnamnet</translation>
     </message>
     <message>
         <source>Rule renaming</source>
@@ -3401,7 +3429,7 @@
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation>Vänligen skriv namnet på den nya hämtningsregeln.</translation>
+        <translation>Skriv namnet på den nya hämtningsregeln.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>

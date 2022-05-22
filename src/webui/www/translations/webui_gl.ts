@@ -1497,6 +1497,30 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2186,7 +2210,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Descargado</translation>
+        <translation type="vanished">Descargado</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2269,11 +2293,11 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Progreso</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Tamaño</translation>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2570,6 +2594,10 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Torrent ID</source>
         <translation>ID do torrent</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

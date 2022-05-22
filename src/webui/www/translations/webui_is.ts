@@ -1525,6 +1525,30 @@
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2229,10 +2253,6 @@
         <translation>Skilaboð</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation type="unfinished" />
     </message>
@@ -2314,6 +2334,10 @@
     </message>
     <message>
         <source>Total Size</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2621,6 +2645,10 @@
     </message>
     <message>
         <source>Torrent ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Export .torrent</source>
         <translation type="unfinished" />
     </message>
 </context>

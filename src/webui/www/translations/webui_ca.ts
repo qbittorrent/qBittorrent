@@ -574,7 +574,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Barra lateral de filtres</translation>
     </message>
 </context>
 <context>
@@ -1483,18 +1483,42 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Mida de la cua del disc:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Registra els avisos de rendiment</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Màxim de sol·licituds pendents per a un sol client:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
+        <translation>Màxim de torrents actius de comprovació:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2186,7 +2210,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Baixat</translation>
+        <translation type="vanished">Baixat</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2269,11 +2293,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Progrés</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Mida</translation>
+        <source>Total Size</source>
+        <translation>Mida total</translation>
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2570,6 +2594,10 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Torrent ID</source>
         <translation>ID del torrent</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

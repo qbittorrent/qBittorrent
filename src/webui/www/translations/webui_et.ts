@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Filtrite külgriba</translation>
     </message>
 </context>
 <context>
@@ -600,7 +600,7 @@
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished" />
+        <translation>Web UI</translation>
     </message>
     <message>
         <source>Language</source>
@@ -768,7 +768,7 @@
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished" />
+        <translation>Host:</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -796,7 +796,7 @@
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Üldine kiiruse limiidid</translation>
     </message>
     <message>
         <source>Upload:</source>
@@ -808,7 +808,7 @@
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Alternatiivsed kiiruse piirangud</translation>
     </message>
     <message>
         <source>From:</source>
@@ -838,7 +838,7 @@
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished" />
+        <translation>Kiiruse piirangu sätted</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -1496,6 +1496,30 @@
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1801,7 +1825,7 @@
     <name>ScanFoldersModel</name>
     <message>
         <source>Monitored Folder</source>
-        <translation type="unfinished" />
+        <translation>Jälgitav Kaust</translation>
     </message>
     <message>
         <source>Override Save Location</source>
@@ -1809,7 +1833,7 @@
     </message>
     <message>
         <source>Monitored folder</source>
-        <translation type="unfinished" />
+        <translation>Jälgitav kaust</translation>
     </message>
     <message>
         <source>Default save location</source>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Allalaetud</translation>
+        <translation type="vanished">Allalaetud</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2268,11 +2292,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Suurus</translation>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2569,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrent'i ID</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3434,7 +3462,8 @@
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Tark episoodide filter kontrollib episoodi numbrit, et vältida korduvaid duplikaatide allalaadimist.
+Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toetavad ka, kus - märk on vahel)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>

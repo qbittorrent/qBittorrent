@@ -305,7 +305,7 @@
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation type="unfinished" />
+        <translation>Nezaseden prostor: %1</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
@@ -337,27 +337,27 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>Zahtevan JavaScript! Za uspešno delovanje spletnega uporabniškega vmesnika (Web UI) je potrebno omogočiti JavaScript.</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>Ime ne sme biti prazno</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>Ime je nespremenjeno</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>Imena ni bilo mogoče spremeniti.</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>OK</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Vrata, uporabljena za dohodne povezave, morajo biti med 0 in 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Stranska vrstica s filtri</translation>
     </message>
 </context>
 <context>
@@ -1496,6 +1496,30 @@
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1595,7 +1619,7 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Mešano</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -1782,11 +1806,11 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>Razpršilo v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>Razpršilo v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -1817,7 +1841,7 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Drugo...</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Prejeto</translation>
+        <translation type="vanished">Prejeto</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2269,6 +2293,10 @@
     </message>
     <message>
         <source>Total Size</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2500,7 +2528,7 @@
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Novo ime:</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -2565,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID torrenta</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -1496,6 +1496,30 @@
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>ჩამოტვირთული</translation>
+        <translation type="vanished">ჩამოტვირთული</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2268,11 +2292,11 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">ზომა</translation>
+        <source>Total Size</source>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Total Size</source>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2569,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>ტორენტის ID</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3006,7 +3034,7 @@
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>Qt toolkit-სა და libtorrent-rasterbar-ზე დაფუძნებული, C++-ში დაპროგრამებული მოწინავე BitTorrent კლიენტი.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3042,7 +3070,7 @@
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished" />
+        <translation>ავტორები</translation>
     </message>
     <message>
         <source>France</source>

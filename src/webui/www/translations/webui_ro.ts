@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Bara laterală cu filtre</translation>
     </message>
 </context>
 <context>
@@ -990,11 +990,11 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Prag viteză de descărcare:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Prag viteză de încărcare:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -1246,7 +1246,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiO</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1258,7 +1258,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiO</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1496,6 +1496,30 @@
         <source>Max active checking torrents:</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1599,7 +1623,7 @@
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Nu descărca</translation>
     </message>
 </context>
 <context>
@@ -2162,7 +2186,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Disponibilitate</translation>
     </message>
 </context>
 <context>
@@ -2185,7 +2209,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation>Descărcat</translation>
+        <translation type="vanished">Descărcat</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2249,7 +2273,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Disponibilitate</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2261,14 +2285,18 @@
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nume</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progres</translation>
     </message>
     <message>
         <source>Total Size</source>
+        <translation>Dimensiiune totală</translation>
+    </message>
+    <message>
+        <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2300,15 +2328,15 @@
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Se mută</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] Se contribuie</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Se contribuie</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2320,15 +2348,15 @@
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] Se descarcă</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Se descarcă metadatele</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Se verifică</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2348,7 +2376,7 @@
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Stagnat</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2504,7 +2532,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>Stabilire locație</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2552,7 +2580,7 @@
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>Adăugare...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -2565,6 +2593,10 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID torent</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2710,7 +2742,7 @@
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Renunță</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2733,7 +2765,7 @@
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Surse:</translation>
     </message>
     <message>
         <source>All plugins</source>
@@ -2741,11 +2773,11 @@
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Dimensiune:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Oprește</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2761,7 +2793,7 @@
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>Caută în:</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2785,7 +2817,7 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Avertizare</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -2797,7 +2829,7 @@
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezulatate</translation>
     </message>
     <message>
         <source>showing</source>
@@ -2847,11 +2879,11 @@
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nume</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Dimensiune</translation>
     </message>
     <message>
         <source>Leechers</source>
@@ -2863,41 +2895,41 @@
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>Surse</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nume</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>Adresă URL</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Activat</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Versiune</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Da</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Nu</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Renunță</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -2909,7 +2941,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Bine</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3050,22 +3082,22 @@
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation type="unfinished" />
+        <translation>Pictogramă qBittorrent</translation>
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Toate adresele</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Toate adresele IPv6</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Toate adresele IPv4</translation>
     </message>
 </context>
 <context>
@@ -3462,7 +3494,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Toate (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
