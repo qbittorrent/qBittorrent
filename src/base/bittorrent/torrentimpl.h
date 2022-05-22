@@ -324,7 +324,6 @@ namespace BitTorrent
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
         bool m_hasSeedStatus;
-        bool m_fastresumeDataRejected = false;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
