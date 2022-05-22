@@ -95,6 +95,7 @@
 #include "customstorage.h"
 #include "dbresumedatastorage.h"
 #include "downloadpriority.h"
+#include "extensiondata.h"
 #include "filesearcher.h"
 #include "filterparserthread.h"
 #include "loadtorrentparams.h"
@@ -292,67 +293,6 @@ namespace
         return {};
     }
 #endif
-
-#ifdef QBT_USES_LIBTORRENT2
-    TrackerEntryUpdateInfo getTrackerEntryUpdateInfo(const lt::announce_entry &nativeEntry, const lt::info_hash_t &hashes)
-#else
-    TrackerEntryUpdateInfo getTrackerEntryUpdateInfo(const lt::announce_entry &nativeEntry)
-#endif
-    {
-        TrackerEntryUpdateInfo result {};
-        int numUpdating = 0;
-        int numWorking = 0;
-        int numNotWorking = 0;
-#ifdef QBT_USES_LIBTORRENT2
-        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
-        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
-        {
-            for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
-            {
-                if (hashes.has(protocolVersion))
-                {
-                    const lt::announce_infohash &infoHash = endpoint.info_hashes[protocolVersion];
-
-                    if (!result.hasMessages)
-                        result.hasMessages = !infoHash.message.empty();
-
-                    if (infoHash.updating)
-                        ++numUpdating;
-                    else if (infoHash.fails > 0)
-                        ++numNotWorking;
-                    else if (nativeEntry.verified)
-                        ++numWorking;
-                }
-            }
-        }
-#else
-        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size());
-        for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
-        {
-            if (!result.hasMessages)
-                result.hasMessages = !endpoint.message.empty();
-
-            if (endpoint.updating)
-                ++numUpdating;
-            else if (endpoint.fails > 0)
-                ++numNotWorking;
-            else if (nativeEntry.verified)
-                ++numWorking;
-        }
-#endif
-
-        if (numEndpoints > 0)
-        {
-            if (numUpdating > 0)
-                result.status = TrackerEntry::Updating;
-            else if (numWorking > 0)
-                result.status = TrackerEntry::Working;
-            else if (numNotWorking == numEndpoints)
-                result.status = TrackerEntry::NotWorking;
-        }
-
-        return result;
-    }
 }
 
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
@@ -2327,17 +2267,6 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
             p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
 
-        if (isAddTrackersEnabled() && !torrentInfo.isPrivate())
-        {
-            p.trackers.reserve(static_cast<std::size_t>(m_additionalTrackerList.size()));
-            p.tracker_tiers.reserve(static_cast<std::size_t>(m_additionalTrackerList.size()));
-            for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
-            {
-                p.trackers.push_back(trackerEntry.url.toStdString());
-                p.tracker_tiers.push_back(trackerEntry.tier);
-            }
-        }
-
         p.ti = torrentInfo.nativeInfo();
     }
     else
@@ -2350,6 +2279,18 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     }
 
     p.save_path = actualSavePath.toString().toStdString();
+
+    if (isAddTrackersEnabled() && !(hasMetadata && p.ti->priv()))
+    {
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        {
+            p.trackers.push_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.push_back(trackerEntry.tier);
+        }
+    }
 
     p.upload_limit = addTorrentParams.uploadLimit;
     p.download_limit = addTorrentParams.downloadLimit;
@@ -2392,6 +2333,7 @@ bool Session::loadTorrent(LoadTorrentParams params)
 {
     lt::add_torrent_params &p = params.ltAddTorrentParams;
 
+    p.userdata = LTClientData(new ExtensionData);
 #ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
@@ -4147,12 +4089,12 @@ void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVect
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QVector<TrackerEntry> &deletedTrackers)
+void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QStringList &deletedTrackers)
 {
-    for (const TrackerEntry &deletedTracker : deletedTrackers)
-        LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker.url));
+    for (const QString &deletedTracker : deletedTrackers)
+        LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker));
     emit trackersRemoved(torrent, deletedTrackers);
-    if (torrent->trackers().empty())
+    if (torrent->trackers().isEmpty())
         emit trackerlessStateChanged(torrent, true);
     emit trackersChanged(torrent);
 }
@@ -4831,6 +4773,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::session_stats_alert::alert_type:
             handleSessionStatsAlert(static_cast<const lt::session_stats_alert*>(a));
             break;
+        case lt::tracker_announce_alert::alert_type:
         case lt::tracker_error_alert::alert_type:
         case lt::tracker_reply_alert::alert_type:
         case lt::tracker_warning_alert::alert_type:
@@ -5374,43 +5317,30 @@ void Session::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
-    const QByteArray trackerURL {a->tracker_url()};
+    const auto trackerURL = QString::fromUtf8(a->tracker_url());
     m_updatedTrackerEntries[torrent].insert(trackerURL);
 
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
         const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
-        torrent->updatePeerCount(QString::fromUtf8(trackerURL), a->local_endpoint, numPeers);
+        torrent->updatePeerCount(trackerURL, a->local_endpoint, numPeers);
     }
 }
 
 void Session::processTrackerStatuses()
 {
-    QHash<Torrent *, QHash<QString, TrackerEntryUpdateInfo>> updateInfos;
-
     for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
     {
-        TorrentImpl *torrent = it.key();
-        const QSet<QByteArray> &updatedTrackers = it.value();
+        auto torrent = static_cast<TorrentImpl *>(it.key());
+        const QSet<QString> &updatedTrackers = it.value();
 
-        const std::vector<lt::announce_entry> trackerList = torrent->nativeHandle().trackers();
-        for (const lt::announce_entry &announceEntry : trackerList)
-        {
-            const auto trackerURL = QByteArray::fromRawData(announceEntry.url.c_str(), announceEntry.url.size());
-            if (!updatedTrackers.contains(trackerURL))
-                continue;
-
-#ifdef QBT_USES_LIBTORRENT2
-            const TrackerEntryUpdateInfo updateInfo = getTrackerEntryUpdateInfo(announceEntry, torrent->nativeHandle().info_hashes());
-#else
-            const TrackerEntryUpdateInfo updateInfo = getTrackerEntryUpdateInfo(announceEntry);
-#endif
-            if ((updateInfo.status == TrackerEntry::Working) || (updateInfo.status == TrackerEntry::NotWorking))
-                updateInfos[torrent][QString::fromUtf8(trackerURL)] = updateInfo;
-        }
+        for (const QString &trackerURL : updatedTrackers)
+            torrent->invalidateTrackerEntry(trackerURL);
     }
 
-    m_updatedTrackerEntries.clear();
-    if (!updateInfos.isEmpty())
-        emit trackerEntriesUpdated(updateInfos);
+    if (!m_updatedTrackerEntries.isEmpty())
+    {
+        emit trackerEntriesUpdated(m_updatedTrackerEntries);
+        m_updatedTrackerEntries.clear();
+    }
 }
