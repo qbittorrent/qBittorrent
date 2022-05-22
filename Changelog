@@ -1,3 +1,16 @@
+Sun May 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.3
+    - BUGFIX: Correctly handle changing of temp save path (glassez)
+    - BUGFIX: Fix storage in SQLite (glassez)
+    - BUGFIX: Correctly apply content layout when "Skip hash check" is enabled (glassez)
+    - BUGFIX: Don't corrupt IDs of v2 torrents (glassez)
+    - BUGFIX: Reduce the number of hashing threads by default (improves hashing speed on HDDs) (summer)
+    - BUGFIX: Prevent the "update dialog" from blocking input on other windows (summer)
+    - BUGFIX: Add trackers in exported .torrent files (glassez)
+    - BUGFIX: Fix wrong GUI behavior in "Optional IP address to bind to" setting (Chocobo1)
+    - WEBUI: Fix WebUI crash due to missing tags from config (An0n)
+    - WEBUI: Show correct location path (Chocobo1)
+    - MACOS: Fix main window freezing after opening a files dialog (glassez)
+
 Tue Mar 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.2
     - FEATURE: Allow to limit max memory working set size (glassez)
     - BUGFIX: Fix UI crash when torrent is in a non-existent category (Kevin Cox)
