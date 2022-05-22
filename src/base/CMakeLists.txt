@@ -13,6 +13,7 @@ add_library(qbt_base STATIC
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
     bittorrent/downloadpriority.h
+    bittorrent/extensiondata.h
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h

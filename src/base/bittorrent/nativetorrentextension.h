@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,10 +31,13 @@
 #include <libtorrent/extensions.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
+#include "extensiondata.h"
+
 class NativeTorrentExtension final : public lt::torrent_plugin
 {
 public:
-    explicit NativeTorrentExtension(const lt::torrent_handle &torrentHandle);
+    NativeTorrentExtension(const lt::torrent_handle &torrentHandle, ExtensionData *data);
+    ~NativeTorrentExtension();
 
 private:
     bool on_pause() override;
@@ -42,4 +45,5 @@ private:
 
     lt::torrent_handle m_torrentHandle;
     lt::torrent_status::state_t m_state = lt::torrent_status::checking_resume_data;
+    ExtensionData *m_data = nullptr;
 };

@@ -211,12 +211,6 @@ namespace BitTorrent
         } disk;
     };
 
-    struct TrackerEntryUpdateInfo
-    {
-        TrackerEntry::Status status = TrackerEntry::NotContacted;
-        bool hasMessages = false;
-    };
-
     class Session final : public QObject
     {
         Q_OBJECT
@@ -518,7 +512,7 @@ namespace BitTorrent
         void handleTorrentChecked(TorrentImpl *const torrent);
         void handleTorrentFinished(TorrentImpl *const torrent);
         void handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVector<TrackerEntry> &newTrackers);
-        void handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QVector<TrackerEntry> &deletedTrackers);
+        void handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QStringList &deletedTrackers);
         void handleTorrentTrackersChanged(TorrentImpl *const torrent);
         void handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds);
@@ -563,10 +557,10 @@ namespace BitTorrent
         void trackerlessStateChanged(Torrent *torrent, bool trackerless);
         void trackersAdded(Torrent *torrent, const QVector<TrackerEntry> &trackers);
         void trackersChanged(Torrent *torrent);
-        void trackersRemoved(Torrent *torrent, const QVector<TrackerEntry> &trackers);
+        void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
-        void trackerEntriesUpdated(const QHash<Torrent *, QHash<QString, TrackerEntryUpdateInfo>> &updateInfos);
+        void trackerEntriesUpdated(const QHash<Torrent *, QSet<QString>> &updateInfos);
 
     private slots:
         void configureDeferred();
@@ -823,7 +817,7 @@ namespace BitTorrent
         QMap<QString, CategoryOptions> m_categories;
         QSet<QString> m_tags;
 
-        QHash<TorrentImpl *, QSet<QByteArray>> m_updatedTrackerEntries;
+        QHash<Torrent *, QSet<QString>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

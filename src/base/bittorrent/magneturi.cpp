@@ -100,8 +100,15 @@ MagnetUri::MagnetUri(const QString &source)
     m_name = QString::fromStdString(m_addTorrentParams.name);
 
     m_trackers.reserve(static_cast<decltype(m_trackers)::size_type>(m_addTorrentParams.trackers.size()));
-    for (const std::string &tracker : m_addTorrentParams.trackers)
-        m_trackers.append({QString::fromStdString(tracker)});
+    int tier = 0;
+    auto tierIter = m_addTorrentParams.tracker_tiers.cbegin();
+    for (const std::string &url : m_addTorrentParams.trackers)
+    {
+        if (tierIter != m_addTorrentParams.tracker_tiers.cend())
+            tier = *tierIter++;
+
+        m_trackers.append({QString::fromStdString(url), tier});
+    }
 
     m_urlSeeds.reserve(static_cast<decltype(m_urlSeeds)::size_type>(m_addTorrentParams.url_seeds.size()));
     for (const std::string &urlSeed : m_addTorrentParams.url_seeds)

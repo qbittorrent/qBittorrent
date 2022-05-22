@@ -34,7 +34,6 @@
 
 #include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
-#include <libtorrent/socket.hpp>
 #include <libtorrent/torrent_handle.hpp>
 #include <libtorrent/torrent_info.hpp>
 #include <libtorrent/torrent_status.hpp>
@@ -55,6 +54,7 @@
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 #include "torrentinfo.h"
+#include "trackerentry.h"
 
 namespace BitTorrent
 {
@@ -156,7 +156,6 @@ namespace BitTorrent
         bool hasMissingFiles() const override;
         bool hasError() const override;
         int queuePosition() const override;
-        QVector<QString> trackerURLs() const override;
         QVector<TrackerEntry> trackers() const override;
         QVector<QUrl> urlSeeds() const override;
         QString error() const override;
@@ -221,8 +220,9 @@ namespace BitTorrent
         void setPEXDisabled(bool disable) override;
         void setLSDDisabled(bool disable) override;
         void flushCache() const override;
-        void addTrackers(const QVector<TrackerEntry> &trackers) override;
-        void replaceTrackers(const QVector<TrackerEntry> &trackers) override;
+        void addTrackers(QVector<TrackerEntry> trackers) override;
+        void removeTrackers(const QStringList &trackers) override;
+        void replaceTrackers(QVector<TrackerEntry> trackers) override;
         void addUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
@@ -244,13 +244,15 @@ namespace BitTorrent
         void saveResumeData();
         void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
-        void updatePeerCount(const QString &trackerUrl, const lt::tcp::endpoint &endpoint, int count);
+        void updatePeerCount(const QString &trackerURL, const TrackerEntry::Endpoint &endpoint, int count);
+        void invalidateTrackerEntry(const QString &trackerURL);
 
     private:
         using EventTrigger = std::function<void ()>;
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
+        void refreshTrackerEntries() const;
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
 
@@ -310,7 +312,10 @@ namespace BitTorrent
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
-        QHash<QString, QMap<lt::tcp::endpoint, int>> m_trackerPeerCounts;
+        // TODO: Use QHash<TrackerEntry::Endpoint, int> once Qt5 is dropped.
+        using TrackerEntryUpdateInfo = QMap<TrackerEntry::Endpoint, int>;
+        mutable QHash<QString, TrackerEntryUpdateInfo> m_updatedTrackerEntries;
+        mutable QVector<TrackerEntry> m_trackerEntries;
         FileErrorInfo m_lastFileError;
 
         // Persistent data
