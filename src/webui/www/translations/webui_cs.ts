@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Filtry boční panel</translation>
+        <translation type="vanished">Filtry boční panel</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Velikost diskové fronty:</translation>
+        <translation type="vanished">Velikost diskové fronty:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Log výkonnostních varování</translation>
+        <translation type="vanished">Log výkonnostních varování</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Maximum nezpracovaných požadavků na jeden peer:</translation>
+        <translation type="vanished">Maximum nezpracovaných požadavků na jeden peer:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Maximum souběžně kontrolovaných torrentů:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Maximum souběžně kontrolovaných torrentů:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Staženo</translation>
+        <translation>Staženo</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Celková velikost</translation>
+        <translation type="vanished">Celková velikost</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrent ID</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

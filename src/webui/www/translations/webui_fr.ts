@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Barre latérale des filtres</translation>
+        <translation type="vanished">Barre latérale des filtres</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Taille de la file d’attente du disque :</translation>
+        <translation type="vanished">Taille de la file d’attente du disque :</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Journaliser les avertissements de performances</translation>
+        <translation type="vanished">Journaliser les avertissements de performances</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Requêtes en attente maximales vers un seul pair :</translation>
+        <translation type="vanished">Requêtes en attente maximales vers un seul pair :</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Torrents actifs max en vérification :</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Torrents actifs max en vérification :</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Téléchargé</translation>
+        <translation>Téléchargé</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Taille totale</translation>
+        <translation type="vanished">Taille totale</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID du torrent</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

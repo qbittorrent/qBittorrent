@@ -572,10 +572,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>RSS</source>
         <translation>RSS</translation>
     </message>
-    <message>
-        <source>Filters Sidebar</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -1481,46 +1477,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <source>Server-side request forgery (SSRF) mitigation:</source>
         <translation>Mitigación da falsificación de solicitudes no servidor (SSRF):</translation>
     </message>
-    <message>
-        <source>Disk queue size:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log performance warnings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2210,7 +2166,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Descargado</translation>
+        <translation>Descargado</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,11 +2249,7 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Progreso</translation>
     </message>
     <message>
-        <source>Total Size</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2594,10 +2546,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Torrent ID</source>
         <translation>ID do torrent</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Barra laterale filtri</translation>
+        <translation type="vanished">Barra laterale filtri</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Dimensione coda disco:</translation>
+        <translation type="vanished">Dimensione coda disco:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Avvisi prestazioni registro</translation>
+        <translation type="vanished">Avvisi prestazioni registro</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Numero max richieste in sospeso per singolo peer:</translation>
+        <translation type="vanished">Numero max richieste in sospeso per singolo peer:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Numero max torrent di controllo attivi:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Numero max torrent di controllo attivi:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Scaricati</translation>
+        <translation>Scaricati</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Dimensione totale</translation>
+        <translation type="vanished">Dimensione totale</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID torrent</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

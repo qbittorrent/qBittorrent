@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Sidestolpe med filter</translation>
+        <translation type="vanished">Sidestolpe med filter</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Køstørrelse på disk:</translation>
+        <translation type="vanished">Køstørrelse på disk:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Varsel om logg-ytelse</translation>
+        <translation type="vanished">Varsel om logg-ytelse</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Største antall utestående forespørsler hos én likemann:</translation>
+        <translation type="vanished">Største antall utestående forespørsler hos én likemann:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Største antall aktive kontroller av torrenter:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Største antall aktive kontroller av torrenter:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Nedlastet</translation>
+        <translation>Nedlastet</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Total størrelse</translation>
+        <translation type="vanished">Total størrelse</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrent-ID</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

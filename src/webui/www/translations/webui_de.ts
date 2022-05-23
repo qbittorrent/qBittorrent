@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Filter Seitenleiste</translation>
+        <translation type="vanished">Filter Seitenleiste</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Größe der Festplatten-Warteschlange:</translation>
+        <translation type="vanished">Größe der Festplatten-Warteschlange:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Leistungswarnungen protokollieren</translation>
+        <translation type="vanished">Leistungswarnungen protokollieren</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Maximal ausstehende Anfragen an einen einzelnen Peer:</translation>
+        <translation type="vanished">Maximal ausstehende Anfragen an einen einzelnen Peer:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Max. Anzahl aktiver Prüfungen v. Torrents:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Max. Anzahl aktiver Prüfungen v. Torrents:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Heruntergeladen</translation>
+        <translation>Heruntergeladen</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Gesamtgröße</translation>
+        <translation type="vanished">Gesamtgröße</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrent-ID</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -574,7 +574,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Странична лента на филтри</translation>
+        <translation type="vanished">Странична лента на филтри</translation>
     </message>
 </context>
 <context>
@@ -1483,43 +1483,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Размер на опашката на диска:</translation>
+        <translation type="vanished">Размер на опашката на диска:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Вписвай предупреждения за производителност</translation>
+        <translation type="vanished">Вписвай предупреждения за производителност</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Максимален брой неизпълнени заявки към един участник:</translation>
+        <translation type="vanished">Максимален брой неизпълнени заявки към един участник:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Макс. активни проверки на торент:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Макс. активни проверки на торент:</translation>
     </message>
 </context>
 <context>
@@ -2210,7 +2186,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Свалени</translation>
+        <translation>Свалени</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2294,10 +2270,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Общ размер</translation>
+        <translation type="vanished">Общ размер</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2594,10 +2570,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Торент ИД</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
