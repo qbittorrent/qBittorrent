@@ -216,26 +216,6 @@ namespace
         }
     }
 
-    void initializeStatus(lt::torrent_status &status, const lt::add_torrent_params &params)
-    {
-        status.flags = params.flags;
-        status.active_duration = lt::seconds {params.active_time};
-        status.finished_duration = lt::seconds {params.finished_time};
-        status.num_complete = params.num_complete;
-        status.num_incomplete = params.num_incomplete;
-        status.all_time_download = params.total_downloaded;
-        status.all_time_upload = params.total_uploaded;
-        status.added_time = params.added_time;
-        status.last_seen_complete = params.last_seen_complete;
-        status.last_download = lt::time_point {lt::seconds {params.last_download}};
-        status.last_upload = lt::time_point {lt::seconds {params.last_upload}};
-        status.completed_time = params.completed_time;
-        status.save_path = params.save_path;
-        status.connections_limit = params.max_connections;
-        status.pieces = params.have_pieces;
-        status.verified_pieces = params.verified_pieces;
-    }
-
     template <typename Vector>
     Vector resized(const Vector &inVector, const typename Vector::size_type size, const typename Vector::value_type &defaultValue)
     {
@@ -306,12 +286,12 @@ TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
         }
     }
 
-    const auto extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
+    const auto *extensionData = static_cast<ExtensionData *>(m_ltAddTorrentParams.userdata);
     m_trackerEntries.reserve(static_cast<decltype(m_trackerEntries)::size_type>(extensionData->trackers.size()));
     for (const lt::announce_entry &announceEntry : extensionData->trackers)
         m_trackerEntries.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
+    m_nativeStatus = extensionData->status;
 
-    initializeStatus(m_nativeStatus, m_ltAddTorrentParams);
     updateState();
 
     if (hasMetadata())
@@ -1604,11 +1584,16 @@ void TorrentImpl::reload()
         p.flags &= ~(lt::torrent_flags::auto_managed | lt::torrent_flags::paused);
     }
 
+    auto *const extensionData = new ExtensionData;
+    p.userdata = LTClientData(extensionData);
     m_nativeHandle = m_nativeSession->add_torrent(p);
+
+    m_nativeStatus = extensionData->status;
+
     if (queuePos >= lt::queue_position_t {})
         m_nativeHandle.queue_position_set(queuePos);
+    m_nativeStatus.queue_position = queuePos;
 
-    initializeStatus(m_nativeStatus, m_ltAddTorrentParams);
     updateState();
 }
 
