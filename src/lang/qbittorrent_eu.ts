@@ -2172,10 +2172,6 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <translation>&quot;%1&quot; hartzailea torrent &quot;%2&quot; torrentera gehitu da</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Ezin da fitxategira idatzi.</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2204,14 +2200,6 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Agiri neurriak ez datoz bat &apos;%1&apos; torrentarentzat. Ezin da jarraitu.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Berrekite azkar datuak baztertuak izan dira &apos;%1&apos; torrentarentzat. Zergaitia %2. Berriro egiaztatzen...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10177,10 +10165,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Izainak</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Jeitsita</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Mezua</translation>
@@ -10566,21 +10550,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation>Izen berria:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Berrekin</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Behartu Berrekitea</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pausatu</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Hautatu gordetzeko helburua</translation>
@@ -10833,59 +10802,6 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ezabatu</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Agiri aurreikuspena...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Ireki helmuga agiritegia</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Mugitu gora</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Mugitu behera</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Mugitu goren</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Mugitu beheren</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ezarri kokalekua...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Behartu berriragarpena</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet lotura</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrentaren ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Izena</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Jeitsi sekuentzialki</translation>
@@ -10906,74 +10822,14 @@ Mesedez hautatu beste izen bat eta saiatu berriro.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Berria...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Berrezarri</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Lerroa</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopiatu</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrentaren aukerak...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Editatu aztarnariak...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Etiketak</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Gehitu...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Kendu Guztiak</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Behartu berregiaztapena</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Gain emaritza modua</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Berrizendatu...</translation>
     </message>
 </context>
 <context>

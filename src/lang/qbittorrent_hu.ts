@@ -760,27 +760,27 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="413"/>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"></translation>
+        <translation>Ez az opció kevésbé hatékony Linuxon</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Default</source>
-        <translation type="unfinished">Alapértelmezett</translation>
+        <translation>Alapértelmezett</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="498"/>
         <source>Memory mapped files</source>
-        <translation type="unfinished"></translation>
+        <translation>Memória feltérképezett fájlok</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"></translation>
+        <translation>POSIX-kompatibilis</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="501"/>
         <source>Disk IO type (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lemez IO típusa (újraindítást igényel)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="526"/>
@@ -2171,21 +2171,9 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>&quot;%1&quot; peer hozzáadva a(z) &quot;%2&quot; torrenthez.</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Nem sikerült írni a fájlba.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">A torrent most &quot;csak feltöltés&quot; módban van.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Indok:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Nem sikerült fájlba írni. Ok: &quot;%1&quot;. A Torrent most &quot;csak feltöltés&quot; módban van.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1440"/>
@@ -2205,20 +2193,12 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1905"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>A torrent visszaállítása sikertelen. A fájlok valószínűleg át lettek helyezve, vagy a tárhely nem érhető el. Torrent: &quot;%1&quot;. Ok: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Fájlméretek nem egyeznek a &apos;%1&apos; torrentnél. Nem lehet továbblépni.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Gyors-folytatás adat elutasítva ennél a torrentnél: &quot;%1&quot;. Indok: %2. Újraellenőrzés…</translation>
+        <translation>Hiányzó metaadatok</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -9901,7 +9881,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1416"/>
         <source>Unable to export torrent file. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>A torrent fájl exportálása sikertelen. Hiba: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1091"/>
@@ -10008,7 +9988,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <location filename="../gui/transferlistfilterswidget.cpp" line="430"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="488"/>
         <source>Trackerless</source>
-        <translation type="unfinished"></translation>
+        <translation>Tracker nélküli</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="547"/>
@@ -10165,7 +10145,7 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="620"/>
         <source>Times Downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>Letöltések száma</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="663"/>
@@ -10186,10 +10166,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="619"/>
         <source>Leeches</source>
         <translation>Leechek</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Letöltve</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
@@ -10577,21 +10553,6 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Új név:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Folytatás</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Folytatás kényszerítése</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Szünet</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Válasszon mentési útvonalat</translation>
@@ -10634,27 +10595,27 @@ Válasszon egy másik nevet és próbálja újra. </translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="768"/>
         <source>Choose folder to save exported .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Válasszon mappát az exportált .torrent fájlok mentéséhez</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="782"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>A .torrent fájl exportálása sikertelen. Torrent: &quot;%1&quot;. Útvonal mentése: &quot;%2&quot;. Ok: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="790"/>
         <source>A file with the same name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Ugyanilyen nevű fájl már létezik</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Export .torrent file error</source>
-        <translation type="unfinished"></translation>
+        <translation>.torrent fájl exportálás hiba</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="807"/>
         <source>Errors occured when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hibák történtek a .torrent fájlok exportálásakor. A részletekért ellenőrizze a végrehajtási naplót.</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
@@ -10685,216 +10646,163 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <location filename="../gui/transferlistwidget.cpp" line="912"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished">&amp;Folytatás</translation>
+        <translation>Folytatás</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="914"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">&amp;Szünet</translation>
+        <translation>Szünet</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Folytatás kényszerítése</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="918"/>
         <source>&amp;Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">&amp;Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="920"/>
         <source>Pre&amp;view file...</source>
-        <translation type="unfinished"></translation>
+        <translation>Fájl előnézete...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="922"/>
         <source>Torrent &amp;options...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent beállításai…</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="924"/>
         <source>Open destination &amp;folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Célkönyvtár megnyitása</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="926"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Feljebb mozgat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="928"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Lejjebb mozgat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="930"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Legfelülre mozgat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="932"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Legalulra mozgat</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="934"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Hely megadása...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="936"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített újraellenőrzés</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="938"/>
         <source>Force r&amp;eannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Kényszerített újrajelentés</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="940"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Magnet link</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="942"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent azonosító</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="944"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Név</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="946"/>
         <source>Info &amp;hash v1</source>
-        <translation type="unfinished"></translation>
+        <translation>Info hash v1</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="948"/>
         <source>Info h&amp;ash v2</source>
-        <translation type="unfinished"></translation>
+        <translation>Info hash v2</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="952"/>
         <source>Re&amp;name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Átnevezés...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Edit trac&amp;kers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Trackerek szerkesztése...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>E&amp;xport .torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>Torrent exportálása...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1103"/>
         <source>Categor&amp;y</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategória</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1105"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Új…</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1107"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
+        <translation>Visszaállítás</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1128"/>
         <source>Ta&amp;gs</source>
-        <translation type="unfinished"></translation>
+        <translation>Cimkék</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1130"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>Hozzáadás…</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1132"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>Összes eltávolítása</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1213"/>
         <source>&amp;Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>Sor</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1220"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Törlés</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Fájl előnézete...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Célkönyvtár megnyitása</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Feljebb mozgat</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Lejjebb mozgat</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Legfelülre mozgat</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Legalúlra mozgat</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Hely megadása...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Kényszerített újrajelentés</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet link</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent azonosító</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Név</translation>
+        <translation>Másolás</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
@@ -10917,74 +10825,14 @@ Válasszon egy másik nevet és próbálja újra. </translation>
         <translation>Az automatikus mód azt jelenti, hogy a különböző torrenttulajdonságok (például a mentési útvonal) a hozzátartozó kategória alapján kerülnek eldöntésre</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategória</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Új…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Reset</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Kényszerített újrajelentés nem lehetséges ha a torrent állapota Szüneteltetett/Elakadt/Hibás/Ellenőrzés</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Sor</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Másolás</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrent beállításai…</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Trackerek szerkesztése...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Címkék</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Hozzáadás…</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Összes eltávolítása</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Kényszerített újraellenőrzés</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Szuper seed üzemmód</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Átnevezés...</translation>
     </message>
 </context>
 <context>

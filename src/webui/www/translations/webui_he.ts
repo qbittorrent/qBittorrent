@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="he">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="he">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>צור תת־תיקייה</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>
@@ -349,7 +347,7 @@
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation>נכשל בעדכון שם</translation>
+        <translation>כישלון בעדכון שם</translation>
     </message>
     <message>
         <source>OK</source>
@@ -957,8 +955,8 @@
         <translation>%T: גשש נוכחי</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>עצה: תמצת פרמטר בעזרת סימני ציטוט כדי למנוע ממלל להיחתך בשטח לבן (לדוגמה, &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1214,7 +1212,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation>ש'</translation>
+        <translation>ש&apos;</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1234,7 +1232,7 @@
     </message>
     <message>
         <source>min</source>
-        <translation>דק'</translation>
+        <translation>דק&apos;</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
@@ -1374,7 +1372,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation>דק'</translation>
+        <translation>דק&apos;</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1429,7 +1427,7 @@
         <translation>מקורי</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
     <message>
@@ -1498,27 +1496,27 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>קבצים ממופי זיכרון</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>ברירת מחדל</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>תואם POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>אפשרות זו פחות יעילה על Linux</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>סוג ק/פ של דיסק (libtorrent &gt;= 2.0; דורש הפעלה מחדש):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation>מגבלת שימוש בזיכרון פיזי (RAM):</translation>
     </message>
 </context>
 <context>
@@ -2208,10 +2206,6 @@
         <translation>הודעה</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">ירד</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>כתובת גשש:</translation>
     </message>
@@ -2297,7 +2291,7 @@
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>פעמים שהורד</translation>
     </message>
 </context>
 <context>
@@ -2596,7 +2590,7 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>ייצא טורנט</translation>
     </message>
 </context>
 <context>
@@ -2704,12 +2698,12 @@
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 ש' %2 ד'</translation>
+        <translation>%1 ש&apos; %2 ד&apos;</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 י' %2 ש'</translation>
+        <translation>%1 י&apos; %2 ש&apos;</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2863,7 +2857,7 @@
         <translation>מאופשר</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>אזהרה: הייה בטוח להיענות לחוקי זכויות היוצרים של מדינתך בזמן הורדת טורנטים מכל אחד ממנועי החיפוש האלו.</translation>
     </message>
     <message>
@@ -3478,7 +3472,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>מקורי</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
 </context>

@@ -2172,18 +2172,6 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
         <translation>S&apos;ha afegit el client «%1» al torrent «%2»</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">No s&apos;ha pogut escriure al fitxer.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">El torrent està actualment en mode de només de pujada.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Raó:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Les mides dels fitxers no coincideixen per al torrent «%1». No es pot continuar.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">S&apos;ha rebutjat la represa ràpida de dades per al torrent «%1». Raó: %2. S&apos;està comprovant una altra vegada...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10189,10 +10169,6 @@ Trieu-ne un altre i torneu-ho a provar.</translation>
         <translation>Sangoneres</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Baixats</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Missatge</translation>
@@ -10578,21 +10554,6 @@ Trieu-ne un altre i torneu-ho a provar.</translation>
         <translation>Nou nom:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reprèn</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Força la represa</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pausa</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Trieu un camí per desar</translation>
@@ -10845,59 +10806,6 @@ Trieu-ne un altre i torneu-ho a provar.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Suprimeix</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Previsualitza el fitxer...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Obre la carpeta de destinació</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Mou amunt</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Mou avall</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Mou al capdamunt</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Mou al capdavall</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Estableix la destinació...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Força el reanunci</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Enllaç magnètic</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ID del torrent</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nom</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Baixa en ordre seqüencial</translation>
@@ -10918,74 +10826,14 @@ Trieu-ne un altre i torneu-ho a provar.</translation>
         <translation>El mode automàtic significa que diverses propietats dels torrents (p. ex. el camí on desar-los) es decidiran segons la categoria associada.</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Categoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nova...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Restableix</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>No es pot forçar el reanunci si el torrent està interromput / a la cua / té error / es comprova.</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Cua</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copia</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Opcions del torrent...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Informació de la funció resum v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Informació de la funció resum v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Edita els rastrejadors...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Etiquetes</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Afegeix...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Suprimeix-les totes</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Força la verificació</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Mode de supersembra</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Canvia&apos;n el nom...</translation>
     </message>
 </context>
 <context>

@@ -2172,14 +2172,6 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <translation>Partner &quot;%1&quot; on lisatud torrenti &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Ei saanud failile kirjutada.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Selgitus:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2208,10 +2200,6 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Failide suurused ei ühti torrentil &apos;%1&apos;. Ei saa edasi jätkata.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10168,10 +10156,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Kaanid</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Allalaetud</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Teavitus</translation>
@@ -10557,21 +10541,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Uus nimi:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Jätka</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Sunni Jätkama</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Paus</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Vali salvestamise asukoht</translation>
@@ -10824,55 +10793,6 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Kustuta</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Faili eelvaade...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Ava sihtkoha kaust</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Liiguta üles</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Liiguta alla</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Liiguta kõige üles</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Liiguta täitsa alla</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Määra asukoht...</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magneti link</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrenti ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nimi</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Järjestikuses allalaadimine</translation>
@@ -10893,61 +10813,14 @@ Palun vali teine nimi ja proovi uuesti.</translation>
         <translation>Automaatne režiim tähendab, et mitmed torrenti omadused (sh salvestamise koht) määratakse seostatud kategooriaga</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategooria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Uus...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Järjekorras</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopeeri</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrenti valikud...</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Muuda jälitajaid...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Sildid</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Lisa...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Eemalda Kõik</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Sunni ülekontrolli</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super jagamise režiim</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Ümbernimeta...</translation>
     </message>
 </context>
 <context>

@@ -2172,18 +2172,6 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>&quot;%1&quot; iştirakçısı &quot;%2&quot; torrentinə əlavə edildi</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Fayla yazıla bilmədi.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrent indi &quot;yalnız göndərmək&quot; rejimindədir.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Səbəbi:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">&quot;%1&quot; torrenti üçün fayl ölçüləri uyğun deyil. Davam etmək olmur.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Sürətli davam etmə məlumatları torrent &quot;%1&quot; tərəfindən qəbul edilmədi. Səbəb: %2. Yenidən yoxlayın...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10186,10 +10166,6 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <translation>Sui-istifadə edənlər</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Endirildi</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>İsmarıc</translation>
@@ -10575,21 +10551,6 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <translation>Yeni ad:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Davam etdirmək</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Məcburi davam etdirmək</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Fasilə</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Saxlama yolunu seçmək</translation>
@@ -10842,59 +10803,6 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Silmək</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Fayla öncədən baxış...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Təyinat qovluğunu açmaq</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Yuxarı köçürmək</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Aşağı köşürmək</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Ən üstə qaldırmaq</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Ən aşağıya endirmək</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Yer təyin edin...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Məcburi təkrar anons etmək</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Maqnit keçidi</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent İD-si</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Ad</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Ardıcıl şəkildə yükləmək</translation>
@@ -10915,74 +10823,14 @@ Başqa ad verin və yenidən cəhd edin.</translation>
         <translation>Avtomatik rejim o deməkdir ki, müxtəlif torrent xüsusiyyətləri (məs., saxlama yolu) uyğun kateqoriyalara görə müəyyən ediləcəkdir</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kateqoriya</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Yeni...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Sıfırlamaq</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Fasilədə/Növbədə/Xətalı/Yoxlamada olduqda torrent təkrar məcburi anons edilə bilməz</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Növbə</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopyalamaq</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrent seçimləri...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">məlumat heş&apos;i v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">məlumat heş&apos;i v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">İzləyicilərə düzəliş...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Etiketlər</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Əlavə etmək...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Hamısını silmək</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Məcburi təkrar yoxlamaq</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super göndərmə rejimi</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Adını dəyişmək...</translation>
     </message>
 </context>
 <context>

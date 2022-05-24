@@ -5054,7 +5054,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Add...</source>
-        <translation type="unfinished">Pridėti...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1230"/>
@@ -10161,10 +10161,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Siunčia</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Atsiųsta</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Žinutė</translation>
@@ -10550,21 +10546,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation>Naujas vardas:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Tęsti</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Priverstinai pratęsti</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pristabdyti</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Pasirinkite išsaugojimo kelią</translation>
@@ -10817,55 +10798,6 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ištrinti</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Peržiūrėti failą...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Atverti atsiuntimo aplanką</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Aukštyn</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Žemyn</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Į viršų</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Į apačią</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nustatyti saugojimo vietą...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Priverstinai siųsti atnaujinimus</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet nuoroda</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Pavadinimas</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Siųsti dalis iš eilės</translation>
@@ -10886,62 +10818,14 @@ Pasirinkite kitokį pavadinimą ir bandykite dar kartą.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nauja...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Atstatyti</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Eilė</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopijuoti</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Redaguoti seklius...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Žymės</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Pridėti...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Šalinti visas</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Priverstinai pertikrinti</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super skleidimo režimas</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Pervadinti...</translation>
     </message>
 </context>
 <context>

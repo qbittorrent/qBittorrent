@@ -2172,18 +2172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>تم إضافة القرين &apos;%1&apos; إلى التورنت &apos;%2&apos;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">لا يمكن الكتابة إلى الملف.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">التورنت الآن في وضع &quot;الرفع فقط&quot;.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">السبب:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">أحجام الملفات غير مطابقة للتورنت &apos;%1&apos;. لا يمكن المضي قدما.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">تم رفض الاستئناف السريع لبيانات التورنت  &apos;%1&apos;. السبب: %2. يفحص مجددًا...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10189,10 +10169,6 @@ Please choose a different name and try again.</source>
         <translation>المُحمّلِين</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">تم تنزيله</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>الرسالة</translation>
@@ -10578,21 +10554,6 @@ Please choose a different name and try again.</source>
         <translation>الاسم الجديد:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">استئناف</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">إجبار الاستئناف</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">إلباث</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>اختر مسار الحفظ</translation>
@@ -10845,59 +10806,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">حذف</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">استعراض الملف...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">فتح المجلد الحاوي</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">رفع الاهمية</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">خفض الأهمية</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">الرفع للاعلى</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">الخفض لاسفل</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">تغيير المكان...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">إجبار إعادة الإعلان</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">رابط مغناطيسي</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">تورنت ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">الاسم</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>تنزيل بترتيب تسلسلي</translation>
@@ -10918,74 +10826,14 @@ Please choose a different name and try again.</source>
         <translation>الوضع التلقائي يعني أن العديد من خصائص التورنت (مثل مسار الحفظ) سيتم تحديده عن طريق التصنيف المرتبط به</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">التصنيف</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">جديد...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">إعادة تعيين</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">قائمة الانتظار</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">نسخ</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">خيارات التورنت ...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">معلومات التحقق من البيانات (الهاش) الإصدار 1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">معلومات التحقق من البيانات (الهاش) الإصدار 2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">تعديل رابط المتتبع...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">الوسوم</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">إضافة...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">إزالة الكل</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">اعادة الفحص</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>نمط البذر الخارق</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">تغيير التسمية...</translation>
     </message>
 </context>
 <context>

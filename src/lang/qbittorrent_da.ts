@@ -10162,10 +10162,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Leechere</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Downloadet</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Meddelelse</translation>
@@ -10551,21 +10547,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation>Nyt navn:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Genoptag</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Tving genoptag</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Sæt på pause</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Vælg gemmesti</translation>
@@ -10818,55 +10799,6 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Slet</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Forhåndsvis fil...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Åbn destinationsmappe</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Flyt op</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Flyt ned</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Flyt til toppen</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Flyt til bunden</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Sæt placering...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Tving genannoncer</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet-link</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Navn</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Download i fortløbende rækkefølge</translation>
@@ -10887,62 +10819,14 @@ Vælg venligst et andet navn og prøv igen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Ny...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Nulstil</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Kø</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopiér</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Rediger trackere...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Mærkater</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Tilføj...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Fjern alle</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Tving gentjek</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super seeding-tilstand</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Omdøb...</translation>
     </message>
 </context>
 <context>

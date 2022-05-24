@@ -2172,14 +2172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Το peer &quot;%1&quot; προστέθηκε στο torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Δεν ήταν δυνατή η εγγραφή στο αρχείο.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Λόγος:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2208,14 +2200,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Αναντιστοιχία μεγεθών των αρχείων για το torrent &apos;%1&apos;. Δεν είναι δυνατή η περαιτέρω συνέχιση.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Τα δεδομένα γρήγορης συνέχισης απορρίφθηκαν για το torrent &apos;%1&apos;. Αιτία: %2. Γίνεται επανέλεγχος...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10185,10 +10169,6 @@ Please choose a different name and try again.</source>
         <translation>Leeches</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Έγινε Λήψη</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Μήνυμα</translation>
@@ -10574,21 +10554,6 @@ Please choose a different name and try again.</source>
         <translation>Νέο όνομα:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Συνέχιση</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Εξαναγκαστική Συνέχιση</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Παύση</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Επιλέξτε διαδρομή αποθήκευσης</translation>
@@ -10841,59 +10806,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Διαγραφή</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Προεπισκόπηση αρχείου…</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Άνοιγμα φακέλου προορισμού</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Μετακίνηση επάνω</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Μετακίνηση κάτω</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Μετακίνηση στην κορυφή</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Μετακίνηση στο τέλος</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ρύθμιση τοποθεσίας…</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Εξαναγκαστικό reannounce</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Σύνδεσμος magnet</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Όνομα</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Λήψη σε διαδοχική σειρά</translation>
@@ -10914,74 +10826,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished">Η αυτόματη λειτουργία σημαίνει ότι διάφορες ιδιότητες του torrent (π.χ. διαδρομή αποθήκευσης) θα καθοριστούν από την συσχετισμένη κατηγορία.</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Κατηγορία</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Νέα...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Επαναφορά</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Ουρά</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Αντιγραφή</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Επιλογές torrent...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Επεξεργασία trackers...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Ετικέτες</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Προσθήκη...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Κατάργηση όλων</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Εξαναγκαστικός επανέλεγχος</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Λειτουργία super seeding</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Μετονομασία…</translation>
     </message>
 </context>
 <context>

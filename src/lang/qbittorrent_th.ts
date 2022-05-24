@@ -2172,10 +2172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>เพิ่มเพียร์ &quot;%1&quot; ในทอร์เรนต์ &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">ไม่สามารถเขียนไปยังไฟล์</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -10152,10 +10148,6 @@ Please choose a different name and try again.</source>
         <translation>ผู้รับ</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">ดาวน์โหลดแล้ว</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>ข้อความ</translation>
@@ -10541,21 +10533,6 @@ Please choose a different name and try again.</source>
         <translation>ชื่อใหม่:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">ดำเนินการต่อ</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">บังคับให้ดำเนินการต่อ</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">พัก</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>เลือกบันทึกเส้นทาง</translation>
@@ -10808,59 +10785,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">ลบ</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">ดูตัวอย่างไฟล์ ...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">เปิดโฟลเดอร์ปลายทาง</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">ขยับขึ้น</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">ย้ายลง</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">ย้ายไปด้านบนสุด</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">ย้ายไปด้านล่าง</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">กำหนดตำแหน่ง...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">บังคับให้ประกาศอีกครั้ง</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">ลิงค์แม่เหล็ก</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ทอร์เรนต์ไอดี</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">ชื่อ</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>ดาวน์โหลดตามลำดับ</translation>
@@ -10881,74 +10805,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">หมวดหมู่</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">ใหม่...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">รีเซ็ต</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">คิว</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">คัดลอก</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">ตัวเลือกทอร์เรนต์...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">ข้อมูลแฮช v1:</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">ข้อมูลแฮช v2:</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">แก้ไข การติดตาม...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">แท็ก</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">เพิ่ม...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">ลบทั้งหมด</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">บังคับตรวจสอบ</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>โหลดส่งต่อข้อมูลขั้นสูง</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">เปลี่ยนชื่อ...</translation>
     </message>
 </context>
 <context>
