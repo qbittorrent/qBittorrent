@@ -1,3 +1,6 @@
+Tue May 24 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.3.1
+    - BUGFIX: Fix broken translations (sledgehammer999)
+
 Sun May 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.3
     - BUGFIX: Correctly handle changing of temp save path (glassez)
     - BUGFIX: Fix storage in SQLite (glassez)
