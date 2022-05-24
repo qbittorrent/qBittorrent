@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Боковая панель фильтров</translation>
+        <translation type="vanished">Боковая панель фильтров</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Размер очереди диска:</translation>
+        <translation type="vanished">Размер очереди диска:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Журналировать предупреждения быстродействия</translation>
+        <translation type="vanished">Журналировать предупреждения быстродействия</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Максимум невыполненных запросов к одному пиру:</translation>
+        <translation type="vanished">Максимум невыполненных запросов к одному пиру:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Максимум активных проверок торрентов:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Максимум активных проверок торрентов:</translation>
     </message>
 </context>
 <context>
@@ -1585,8 +1561,7 @@
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Вы уверены, что хотите навсегда заблокировать выбранных пиров?
-</translation>
+        <translation>Вы уверены, что хотите навсегда заблокировать выбранных пиров?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -2210,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Загрузки</translation>
+        <translation>Загрузки</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2294,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Общий размер</translation>
+        <translation type="vanished">Общий размер</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2594,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>ИД торрента</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

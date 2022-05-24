@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>סרגל צד של מסננים</translation>
+        <translation type="vanished">סרגל צד של מסננים</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>גודל תור בדיסק:</translation>
+        <translation type="vanished">גודל תור בדיסק:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>כתוב ביומן אזהרות ביצוע</translation>
+        <translation type="vanished">כתוב ביומן אזהרות ביצוע</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>בקשות חריגות מרביות אל עמית יחיד:</translation>
+        <translation type="vanished">בקשות חריגות מרביות אל עמית יחיד:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>טורנטים נבדקים פעילים מרביים:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">טורנטים נבדקים פעילים מרביים:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">ירד</translation>
+        <translation>ירד</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>גודל כולל</translation>
+        <translation type="vanished">גודל כולל</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>זהות טורנט</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

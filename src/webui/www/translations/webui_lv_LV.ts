@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Filtru sāna josla</translation>
+        <translation type="vanished">Filtru sāna josla</translation>
     </message>
 </context>
 <context>
@@ -1481,44 +1481,12 @@
         <translation>Servera puses pieprasījumu viltošanas (SSRF) aizsardzība:</translation>
     </message>
     <message>
-        <source>Disk queue size:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Log performance warnings</source>
-        <translation>Reģistrēt darbības brīdinājumus</translation>
-    </message>
-    <message>
-        <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Reģistrēt darbības brīdinājumus</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Atļautais aktīvo pārbaužu skaits:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Atļautais aktīvo pārbaužu skaits:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2177,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Lejupielādēti</translation>
+        <translation>Lejupielādēti</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2261,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Kopējais izmērs</translation>
+        <translation type="vanished">Kopējais izmērs</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2561,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrenta ID</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

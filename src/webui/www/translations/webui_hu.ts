@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Szűrők oldalsáv</translation>
+        <translation type="vanished">Szűrők oldalsáv</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,19 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Lemez sorbanállás mérete:</translation>
+        <translation type="vanished">Lemez sorbanállás mérete:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Teljesítmény figyelmeztetések naplózása</translation>
+        <translation type="vanished">Teljesítmény figyelmeztetések naplózása</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Maximális függőben lévő kérések egyetlen peerhez:</translation>
+        <translation type="vanished">Maximális függőben lévő kérések egyetlen peerhez:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>Torrentek aktív ellenőrzésének maximális száma:</translation>
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Torrentek aktív ellenőrzésének maximális száma:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2185,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Letöltve</translation>
+        <translation>Letöltve</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2269,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Teljes méret</translation>
+        <translation type="vanished">Teljes méret</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2569,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>Torrent azonosító</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>

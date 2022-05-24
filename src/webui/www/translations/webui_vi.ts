@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>Bộ Lọc Thanh Bên</translation>
+        <translation type="vanished">Bộ Lọc Thanh Bên</translation>
     </message>
 </context>
 <context>
@@ -1482,43 +1482,15 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>Kích thước hàng đợi đĩa:</translation>
+        <translation type="vanished">Kích thước hàng đợi đĩa:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>Ghi nhật ký cảnh báo hiệu suất</translation>
+        <translation type="vanished">Ghi nhật ký cảnh báo hiệu suất</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>Số lượng yêu cầu tồn đọng tối đa tới một máy ngang hàng:</translation>
-    </message>
-    <message>
-        <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Memory mapped files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Default</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>POSIX-compliant</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Số lượng yêu cầu tồn đọng tối đa tới một máy ngang hàng:</translation>
     </message>
 </context>
 <context>
@@ -2209,7 +2181,7 @@
     </message>
     <message>
         <source>Downloaded</source>
-        <translation type="vanished">Đã tải về</translation>
+        <translation>Đã tải về</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
@@ -2293,10 +2265,10 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation>Tổng Kích Thước</translation>
+        <translation type="vanished">Tổng Kích Thước</translation>
     </message>
     <message>
-        <source>Times Downloaded</source>
+        <source>Size</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2593,10 +2565,6 @@
     <message>
         <source>Torrent ID</source>
         <translation>ID Torrent</translation>
-    </message>
-    <message>
-        <source>Export .torrent</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
