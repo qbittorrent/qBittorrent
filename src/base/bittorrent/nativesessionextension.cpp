@@ -37,11 +37,8 @@ namespace
 {
     void handleFastresumeRejectedAlert(const lt::fastresume_rejected_alert *alert)
     {
-        if (alert->error.value() == lt::errors::mismatching_file_size)
-        {
-            alert->handle.unset_flags(lt::torrent_flags::auto_managed);
-            alert->handle.pause();
-        }
+        alert->handle.unset_flags(lt::torrent_flags::auto_managed);
+        alert->handle.pause();
     }
 }
 
