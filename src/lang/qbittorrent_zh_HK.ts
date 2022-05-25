@@ -761,27 +761,27 @@ Error: %2</source>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="413"/>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"></translation>
+        <translation>这个选项在 Linux 上没那么有效</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Default</source>
-        <translation type="unfinished">默认</translation>
+        <translation>默认</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="498"/>
         <source>Memory mapped files</source>
-        <translation type="unfinished"></translation>
+        <translation>内存映射文件</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"></translation>
+        <translation>遵循 POSIX</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="501"/>
         <source>Disk IO type (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>磁盘 IO 类型（需要重启）</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="526"/>
@@ -2172,21 +2172,9 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>用户 &quot;%1&quot; 已被添加到 torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">无法写入文件。</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">种子现在处于“仅上传”模式。</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">原因：</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>无法写入文件。原因：&quot;%1&quot;。种子目前处在”仅上传“模式。</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1440"/>
@@ -2206,20 +2194,12 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1905"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>还原种子失败。文件可能被移动或存储不可访问。种子：&quot;%1&quot;。原因：&quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Torrent &apos;%1&apos; 的文件大小不匹配，无法继续进行。</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Torrent &apos;%1&apos; 的快速恢复数据被拒绝。原因：%2。重新校验中...</translation>
+        <translation>缺少元数据</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -9901,7 +9881,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1416"/>
         <source>Unable to export torrent file. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>无法导出种子文件。错误：%1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1091"/>
@@ -10008,7 +9988,7 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistfilterswidget.cpp" line="430"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="488"/>
         <source>Trackerless</source>
-        <translation type="unfinished"></translation>
+        <translation>没有 Tracker</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="547"/>
@@ -10165,7 +10145,7 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="620"/>
         <source>Times Downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>下载时间</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="663"/>
@@ -10186,10 +10166,6 @@ Please choose a different name and try again.</source>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="619"/>
         <source>Leeches</source>
         <translation>依附者</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <translation type="vanished">已下載</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
@@ -10577,21 +10553,6 @@ Please choose a different name and try again.</source>
         <translation>新名稱：</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">取消暫停</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">強制取消暫停</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">暫停</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>選取儲存路徑</translation>
@@ -10634,27 +10595,27 @@ Please choose a different name and try again.</source>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="768"/>
         <source>Choose folder to save exported .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>选择保存所导出 .torrent 文件的文件夹</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="782"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>导出 .torrent 文件失败。种子：&quot;%1&quot;。保存路径：&quot;%2&quot;。原因：&quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="790"/>
         <source>A file with the same name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>已存在同名文件</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Export .torrent file error</source>
-        <translation type="unfinished"></translation>
+        <translation>导出 .torrent 文件错误</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="807"/>
         <source>Errors occured when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>导出 .torrent 文件时发生错误。详细信息请查看执行日志。</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
@@ -10685,216 +10646,163 @@ Please choose a different name and try again.</source>
         <location filename="../gui/transferlistwidget.cpp" line="912"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished">取消暫停（&amp;R）</translation>
+        <translation>继续(&amp;R)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="914"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">暫停（&amp;P）</translation>
+        <translation>暂停(&amp;P)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>强制继续(&amp;M)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="918"/>
         <source>&amp;Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">刪除（&amp;D）</translation>
+        <translation>删除(&amp;D)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="920"/>
         <source>Pre&amp;view file...</source>
-        <translation type="unfinished"></translation>
+        <translation>预览文件(&amp;V)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="922"/>
         <source>Torrent &amp;options...</source>
-        <translation type="unfinished"></translation>
+        <translation>种子选项(&amp;O)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="924"/>
         <source>Open destination &amp;folder</source>
-        <translation type="unfinished"></translation>
+        <translation>打开目标文件夹(&amp;F)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="926"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>上移(&amp;U)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="928"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>下移(&amp;D)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="930"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>移至顶部(&amp;T)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="932"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>移至底部(&amp;B)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="934"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>设定位置(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="936"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>强制重新检查(&amp;H)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="938"/>
         <source>Force r&amp;eannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>强制重新汇报(&amp;E)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="940"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>磁力链接(&amp;M)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="942"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>种子 ID(&amp;I)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="944"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>名称(&amp;N)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="946"/>
         <source>Info &amp;hash v1</source>
-        <translation type="unfinished"></translation>
+        <translation>信息哈希值 v1(&amp;H)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="948"/>
         <source>Info h&amp;ash v2</source>
-        <translation type="unfinished"></translation>
+        <translation>信息哈希值 v2(&amp;A)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="952"/>
         <source>Re&amp;name...</source>
-        <translation type="unfinished"></translation>
+        <translation>重命名(&amp;N)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Edit trac&amp;kers...</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑 tracker(&amp;K)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>E&amp;xport .torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>导出 .torrent(&amp;X)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1103"/>
         <source>Categor&amp;y</source>
-        <translation type="unfinished"></translation>
+        <translation>类别(&amp;Y)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1105"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>新建(&amp;N)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1107"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
+        <translation>重置(&amp;R)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1128"/>
         <source>Ta&amp;gs</source>
-        <translation type="unfinished"></translation>
+        <translation>标签(&amp;G)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1130"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>添加(&amp;A)...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1132"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>删除全部(&amp;R)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1213"/>
         <source>&amp;Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>队列(&amp;Q)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1220"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">刪除</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">預覽檔案…</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">開啟存放位置</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">上移</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">下移</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">移到最上</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">移到最下</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">設定存放位置…</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">強制重新公告</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">磁力链接</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">名称</translation>
+        <translation>复制(&amp;C)</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
@@ -10917,74 +10825,14 @@ Please choose a different name and try again.</source>
         <translation>自动模式意味着各种子属性（例如保存路径）将由相关的类别决定</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">分類</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">新…</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">重設</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>无法强制重新公告，如种子处于暂停/排队/出错/检查状态</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">队列</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">复制</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrent 选项...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">信息哈希值 v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">信息哈希值 v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">编辑 tracker...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">標籤</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">加入…</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">清除全部</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">強制重新檢查</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>超級種子模式</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">重新命名…</translation>
     </message>
 </context>
 <context>

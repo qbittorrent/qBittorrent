@@ -762,27 +762,27 @@ Errore: %2.</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="413"/>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"></translation>
+        <translation>Questa opzione è meno efficace su Linux</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Default</source>
-        <translation type="unfinished">Predefinito</translation>
+        <translation>Predefinito</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="498"/>
         <source>Memory mapped files</source>
-        <translation type="unfinished"></translation>
+        <translation>File mappati in memoria</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="499"/>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"></translation>
+        <translation>Conforme a POSIX</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="501"/>
         <source>Disk IO type (requires restart)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo di I/O del disco (richiede il riavvio)</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="526"/>
@@ -2274,21 +2274,9 @@ Motivo: %1.</translation>
         <translation>Il peer &quot;%1&quot; è stato aggiunto al torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Impossibile scrivere nel file.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrent è ora in modalità &quot;solo upload&quot;.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Motivo:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile scrivere su file. Motivo: &quot;%1&quot;. Il torrent è ora in modalità &quot;solo upload&quot;.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1440"/>
@@ -2308,20 +2296,12 @@ Motivo: %1.</translation>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1905"/>
         <source>Failed to restore torrent. Files were probably moved or storage isn&apos;t accessible. Torrent: &quot;%1&quot;. Reason: &quot;%2&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile ripristinare il torrent. I file sono stati probabilmente spostati o lo spazio di archiviazione non è accessibile. Torrente: &quot;%1&quot;. Motivo: &quot;%2&quot;</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">La dimensione del file non corrisponde per il torrent &apos;%1&apos;. Processo interrotto.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Il recupero veloce del torrent &apos;%1&apos; è stato rifiutato. Motivo: %2. Altro tentativo in corso...</translation>
+        <translation>Metadati mancanti</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10026,7 +10006,7 @@ Errore: %2</translation>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1416"/>
         <source>Unable to export torrent file. Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossibile esportare il file torrent. Errore: %1</translation>
     </message>
     <message>
         <location filename="../webui/api/torrentscontroller.cpp" line="1091"/>
@@ -10133,7 +10113,7 @@ Errore: %2</translation>
         <location filename="../gui/transferlistfilterswidget.cpp" line="430"/>
         <location filename="../gui/transferlistfilterswidget.cpp" line="488"/>
         <source>Trackerless</source>
-        <translation type="unfinished"></translation>
+        <translation>Senza tracker</translation>
     </message>
     <message>
         <location filename="../gui/transferlistfilterswidget.cpp" line="547"/>
@@ -10290,7 +10270,7 @@ Errore: %2</translation>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="620"/>
         <source>Times Downloaded</source>
-        <translation type="unfinished"></translation>
+        <translation>N volte scaricati</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="663"/>
@@ -10311,10 +10291,6 @@ Errore: %2</translation>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="619"/>
         <source>Leeches</source>
         <translation>Leech</translation>
-    </message>
-    <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Scaricati</translation>
     </message>
     <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
@@ -10703,21 +10679,6 @@ Ragione: %1</translation>
         <translation>Nuovo nome:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Riprendi</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forza avvio</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Metti in pausa</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Scegli una cartella per il salvataggio</translation>
@@ -10761,27 +10722,27 @@ I torrent potranno essere spostati.</translation>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="768"/>
         <source>Choose folder to save exported .torrent files</source>
-        <translation type="unfinished"></translation>
+        <translation>Scegli la cartella in cui salvare i file .torrent esportati</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="782"/>
         <source>Export .torrent file failed. Torrent: &quot;%1&quot;. Save path: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Esportazione file .torrent non riuscita. Torrent: &quot;%1&quot;. Percorso salvataggio: &quot;%2&quot;. Motivo: &quot;%3&quot;</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="790"/>
         <source>A file with the same name already exists</source>
-        <translation type="unfinished"></translation>
+        <translation>Esiste già un file con lo stesso nome</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="806"/>
         <source>Export .torrent file error</source>
-        <translation type="unfinished"></translation>
+        <translation>Errore esportazione del file .torrent</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="807"/>
         <source>Errors occured when exporting .torrent files. Check execution log for details.</source>
-        <translation type="unfinished"></translation>
+        <translation>Si sono verificati errori durante l&apos;esportazione di file .torrent. Per i dettagli  controlla il registro di esecuzione .</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="817"/>
@@ -10812,216 +10773,163 @@ I torrent potranno essere spostati.</translation>
         <location filename="../gui/transferlistwidget.cpp" line="912"/>
         <source>&amp;Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished">&amp;Riprendi</translation>
+        <translation>&amp;Riprendi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="914"/>
         <source>&amp;Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished">Metti in &amp;pausa</translation>
+        <translation>&amp;Pausa</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="916"/>
         <source>Force Resu&amp;me</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation type="unfinished"></translation>
+        <translation>Forza rip&amp;resa</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="918"/>
         <source>&amp;Delete</source>
         <comment>Delete the torrent</comment>
-        <translation type="unfinished">&amp;Elimina</translation>
+        <translation>&amp;Elimina</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="920"/>
         <source>Pre&amp;view file...</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;nteprima file...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="922"/>
         <source>Torrent &amp;options...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Opzioni torrent...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="924"/>
         <source>Open destination &amp;folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Apri cartella &amp;destinazione</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="926"/>
         <source>Move &amp;up</source>
         <comment>i.e. move up in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sposta s&amp;u</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="928"/>
         <source>Move &amp;down</source>
         <comment>i.e. Move down in the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sposta &amp;giù</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="930"/>
         <source>Move to &amp;top</source>
         <comment>i.e. Move to top of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sposta in &amp;alto</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="932"/>
         <source>Move to &amp;bottom</source>
         <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="unfinished"></translation>
+        <translation>Sposta in &amp;basso</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="934"/>
         <source>Set loc&amp;ation...</source>
-        <translation type="unfinished"></translation>
+        <translation>Impost&amp;a percorso...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="936"/>
         <source>Force rec&amp;heck</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza ri&amp;controllo</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="938"/>
         <source>Force r&amp;eannounce</source>
-        <translation type="unfinished"></translation>
+        <translation>Forza ri&amp;annuncio</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="940"/>
         <source>&amp;Magnet link</source>
-        <translation type="unfinished"></translation>
+        <translation>Collgemanto &amp;magnet</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="942"/>
         <source>Torrent &amp;ID</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;ID torrent</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="944"/>
         <source>&amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nome</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="946"/>
         <source>Info &amp;hash v1</source>
-        <translation type="unfinished"></translation>
+        <translation>Info&amp;hash 1</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="948"/>
         <source>Info h&amp;ash v2</source>
-        <translation type="unfinished"></translation>
+        <translation>Info h&amp;ash 2</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="952"/>
         <source>Re&amp;name...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ri&amp;nomina...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="961"/>
         <source>Edit trac&amp;kers...</source>
-        <translation type="unfinished"></translation>
+        <translation>Modifica trac&amp;ker...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="963"/>
         <source>E&amp;xport .torrent...</source>
-        <translation type="unfinished"></translation>
+        <translation>E&amp;sporta .torrent...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1103"/>
         <source>Categor&amp;y</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Categoria</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1105"/>
         <source>&amp;New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nuovo...</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1107"/>
         <source>&amp;Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ripristina</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1128"/>
         <source>Ta&amp;gs</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta&amp;g</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1130"/>
         <source>&amp;Add...</source>
         <comment>Add / assign multiple tags...</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiungi</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1132"/>
         <source>&amp;Remove All</source>
         <comment>Remove all tags</comment>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rimuovi tutto</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1213"/>
         <source>&amp;Queue</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Coda</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="1220"/>
         <source>&amp;Copy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Elimina</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Anteprima file...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Apri cartella destinazione</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Sposta in alto</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Sposta in basso</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Sposta in cima</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Sposta in fondo</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Imposta percorso...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Forza riannuncio</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Collegamento magnet</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ID torrent</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nome</translation>
+        <translation>&amp;Copia</translation>
     </message>
     <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
@@ -11044,74 +10952,14 @@ I torrent potranno essere spostati.</translation>
         <translation>La modalità automatica significa che le varie proprietà torrent (ad esempio il percorso di salvataggio) saranno decise dalla categoria associata</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Categoria</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nuova...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Azzera</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Non è possibile forzare il nuovo annuncio se il torrent è In Pausa/In Coda/Errore/Controllo</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Coda</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copia</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Impostazioni torrent...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Modifica tracker...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Etichette</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Aggiungi...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Rimuovi tutte le etichette</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Forza ricontrollo</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Modalità super distribuzione</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Rinomina...</translation>
     </message>
 </context>
 <context>

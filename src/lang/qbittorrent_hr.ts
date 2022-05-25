@@ -5052,7 +5052,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Add...</source>
-        <translation type="unfinished">Dodaj</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1230"/>
@@ -10145,10 +10145,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Preuzeto</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Poruka</translation>
@@ -10534,21 +10530,6 @@ Please choose a different name and try again.</source>
         <translation>Novi naziv:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Nastavi</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Prisili nastavak</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pauziraj</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Izaberi putanju spremanja</translation>
@@ -10801,47 +10782,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ukloni</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Pregledaj datoteke</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Otvori odredišnu mapu</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Pomakni gore</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Pomakni dolje</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Na vrh</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Na dno</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Postavi mjesto...</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Naziv</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Preuzmi u sekvencijskom poretku</translation>
@@ -10862,50 +10802,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Novo...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Poništi</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopiraj</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Dodaj</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Ukloni sve</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Prisili ponovnu provjeru</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Način superseedanja</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Preimenuj...</translation>
     </message>
 </context>
 <context>

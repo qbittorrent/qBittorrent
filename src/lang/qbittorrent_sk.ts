@@ -2172,10 +2172,6 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (podporuje aj formáty 
         <translation>Peer &quot;%1&quot; je pridaný do torrentu &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Nepodarilo sa zapisovať do súboru.</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -10173,10 +10169,6 @@ Please choose a different name and try again.</source>
         <translation>Leecheri</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Stiahnuté</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Správa</translation>
@@ -10562,21 +10554,6 @@ Please choose a different name and try again.</source>
         <translation>Nový názov:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Pokračovať</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Vynútiť pokračovanie</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pozastaviť</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Zvoľte cieľový adresár</translation>
@@ -10829,55 +10806,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Zmazať</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Náhľad súboru...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Otvoriť cieľový priečinok</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Presunúť vyššie</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Presunúť nižšie</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Presunúť navrch</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Presunúť na spodok</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nastaviť cieľ...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Vynútiť znovuohlásenie</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet link</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Názov</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Sťahovať v poradí</translation>
@@ -10898,74 +10826,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished">Automatický režim znamená, že niektoré vlastnosti torrentu (napr. cesta na ukladanie) budú určené na základe priradenej kategórie</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategória</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nová...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Vrátiť pôvodné</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Úloha</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopírovať</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Nastavenia torrentu...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Upraviť trackery...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Značky</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Pridať...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished"> Odstrániť všetky</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Vynútiť opätovnú kontrolu</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Režim super seedovania</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Premenovať...</translation>
     </message>
 </context>
 <context>

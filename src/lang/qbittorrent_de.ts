@@ -2172,18 +2172,6 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <translation>Peer &apos;%1&apos; wurde dem Torrent &apos;%2&apos; hinzugefügt</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Konnte nicht in die Datei schreiben.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Der Torrent ist jetzt im Modus &quot;nur Uploaden&quot;.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Grund:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Dateigrößen des Torrent &apos;%1&apos; stimmen nicht überein. Daher kann nicht fortgesetzt werden.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Fortsetzungsdaten des Torrent &apos;%1&apos; wurden zurückgewiesen. Grund: &apos;%2&apos;. Prüfe erneut ...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10191,10 +10171,6 @@ Please choose a different name and try again.</source>
         <translation>Leecher</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Heruntergeladen</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Meldung</translation>
@@ -10580,21 +10556,6 @@ Please choose a different name and try again.</source>
         <translation>Neuer Name:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Fortsetzen</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Fortsetzen erzwingen</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Anhalten</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Speicherpfad wählen</translation>
@@ -10847,59 +10808,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Löschen</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Dateivorschau ...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Zielverzeichnis öffnen</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Nach oben bewegen</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Nach unten bewegen</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">An den Anfang</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">An das Ende</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Speicherort setzen ...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Erzwinge erneute Anmeldung</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnet-Link</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent-ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Name</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Der Reihe nach downloaden</translation>
@@ -10920,74 +10828,14 @@ Please choose a different name and try again.</source>
         <translation>Automatischer Modus bedeutet, daß diverse Torrent-Eigenschaften (z.B. der Speicherpfad) durch die gewählte Kategorie vorgegeben werden.</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorie</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Neu ...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Zurücksetzen</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Neuankündigung kann nicht erzwungen werden, wenn der Torrent pausiert/angehalten/abgeschlossen ist oder geprüft wird</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Warteschlange</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopieren</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrent-Optionen ...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info-Hash V1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info-Hash V2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Tracker editieren ...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Label</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Hinzufügen ...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Alle entfernen</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Erzwinge erneute Überprüfung</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super-Seeding-Modus</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Umbenennen ...</translation>
     </message>
 </context>
 <context>

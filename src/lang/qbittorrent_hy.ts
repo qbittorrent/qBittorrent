@@ -5050,7 +5050,7 @@ Do you want to make qBittorrent the default application for these?</source>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1220"/>
         <source>Add...</source>
-        <translation type="unfinished">Ավելացնել...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="1230"/>
@@ -10526,21 +10526,6 @@ Please choose a different name and try again.</source>
         <translation>Նոր անվանում՝</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Շարունակել</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Ստիպողաբար շարունակել</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Դադարեցնել</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Ընտրեք պահելու ուղին</translation>
@@ -10793,51 +10778,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ջնջել</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Նախադիտել նիշքը…</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Բացել պարունակող պանակը</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Բարձրացնել</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Իջեցնել</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Հերթի սկիզբ</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Հերթի վերջ</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ներբեռնման տեղը...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Ստիպողաբար վերաազդարարել</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Անվանում</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Բեռնել հաջորդական կարգով</translation>
@@ -10858,66 +10798,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Անվանակարգ</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Նոր...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Վերակայել</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Հերթ</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Պատճենել</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrent-ի ընտրանքները...</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Խմբագրել գրանցորդները...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Պիտակներ</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Ավելացնել...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Հեռացնել բոլորը</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Ստիպողաբար վերստուգել</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Գերբաժանման գործելաձև</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Անվանափոխել...</translation>
     </message>
 </context>
 <context>

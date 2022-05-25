@@ -10809,10 +10809,6 @@ Please choose a different name and try again.</source>
         <source>Super seeding mode</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Nomini o‘zgartirish...</translation>
-    </message>
 </context>
 <context>
     <name>UIThemeManager</name>

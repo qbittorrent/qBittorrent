@@ -2171,10 +2171,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Rekanan &quot;%1&quot; ditambahkan ke torrent &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Tidak dapat menuliskan berkas.</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2203,10 +2199,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Ukuran berkas tidak sama untuk torrent &apos;%1&apos;. Tidak bisa memproses lebih lanjut.</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10167,10 +10159,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Diunduh</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Pesan</translation>
@@ -10556,21 +10544,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation>Nama baru:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Lanjutkan</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Paksa Lanjutkan</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Tangguhkan</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Pilih jalur penyimpanan</translation>
@@ -10823,59 +10796,6 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Hapus</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Pratinjau berkas...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Buka folder tujuan</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Pindahkan ke atas</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Pindahkan ke bawah</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Pindahkan ke puncak</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Pindahkan ke dasar</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Tetapkan lokasi...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Paksa umumkan ulang</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Tautan magnet</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ID Torrent</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nama</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Unduh berurutan</translation>
@@ -10896,74 +10816,14 @@ Mohon memilih nama lain dan coba lagi.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Baru ....</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Setel ulang</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Antrian</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Salin</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Opsi torrent...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Informasi hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Informasi hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Ubah pelacak...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Tag</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Tambah...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Buang Semua</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Paksa periksa ulang</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Mode pembibitan super</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Ubah nama...</translation>
     </message>
 </context>
 <context>

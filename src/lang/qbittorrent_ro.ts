@@ -2172,14 +2172,6 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Nu se poate scrie în fișier.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Motiv:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -10172,10 +10164,6 @@ Te rog să alegi un nume diferit și să încerci iar.</translation>
         <translation>Lipitori</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Descărcat</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Mesaj</translation>
@@ -10561,21 +10549,6 @@ Te rog să alegi un nume diferit și să încerci iar.</translation>
         <translation>Denumire nouă:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Reia</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Forțează reluarea</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Suspendă</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Alegeți calea de salvare</translation>
@@ -10828,59 +10801,6 @@ Te rog să alegi un nume diferit și să încerci iar.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Șterge</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Previzualizare fișier...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Deschide dosarul destinație</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Mută mai sus</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Mută mai jos</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Mută în vârf</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Mută la bază</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Stabilire locație...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Forțează reanunțarea </translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Legătură magnet</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ID torent</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nume</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Descarcă în ordine secvențială</translation>
@@ -10901,74 +10821,14 @@ Te rog să alegi un nume diferit și să încerci iar.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Categorie</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Nouă...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Restabilește</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Coadă</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copiază</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Opțiuni torent...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Informații index v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Informații index v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Editare urmăritoare...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Etichete</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Adăugare...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Elimină toate</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Forțează reverificarea</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Mod super-contribuire</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Redenumire...</translation>
     </message>
 </context>
 <context>

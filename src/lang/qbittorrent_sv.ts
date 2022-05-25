@@ -761,12 +761,12 @@ Fel: %2</translation>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="413"/>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"></translation>
+        <translation>Det här alternativet är mindre effektivt på Linux</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="497"/>
         <source>Default</source>
-        <translation type="unfinished">Standard</translation>
+        <translation>Standard</translation>
     </message>
     <message>
         <location filename="../gui/advancedsettings.cpp" line="498"/>
@@ -2172,18 +2172,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <translation>Jämliken &quot;%1&quot; läggs till torrenten &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Det gick inte att skriva till fil</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrenten är nu i &quot;endast uppladdningsläge&quot;.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Orsak:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Filstorlekar överensstämmer inte med torrenten &quot;%1&quot;. Kan inte gå vidare.</translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Snabb återupptagning av data avvisades för torrenten &quot;%1&quot;. Orsak: %2. Kontrollerar igen...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10189,10 +10169,6 @@ Välj ett annat namn och försök igen.</translation>
         <translation>Reciprokörer</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Hämtat</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Meddelande</translation>
@@ -10578,21 +10554,6 @@ Välj ett annat namn och försök igen.</translation>
         <translation>Nytt namn:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Återuppta</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Tvinga återuppta</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Pausa</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Välj sparsökväg</translation>
@@ -10845,59 +10806,6 @@ Välj ett annat namn och försök igen.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ta bort</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Förhandsgranska fil...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Öppna destinationsmapp</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Flytta uppåt</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Flytta nedåt</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Flytta överst</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Flytta nederst</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Ange plats...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Tvinga återannonsera</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnetlänk</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrent-ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Namn</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Hämta i sekventiell ordning</translation>
@@ -10918,74 +10826,14 @@ Välj ett annat namn och försök igen.</translation>
         <translation>Automatiskt läge innebär att olika torrentegenskaper (t.ex. sparsökväg) kommer att avgöras av den tillhörande kategorin</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategori</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Ny...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Återställ</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation>Kan inte framtvinga återannonsering om torrent är pausad/köad/fellerar/kontrollerar</translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Kö</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopiera</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrentalternativ...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Info hash v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Info hash v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Redigera spårare...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Taggar</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Lägg till...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Ta bort alla</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Tvinga återkontroll</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Superdistributionsläge</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Byt namn...</translation>
     </message>
 </context>
 <context>

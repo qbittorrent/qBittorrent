@@ -2172,18 +2172,6 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
         <translation>Koplietotājs &quot;%1&quot; tika pievienots torrentam &quot;%2&quot;</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">Neizdevās ierakstīt failā.</translation>
-    </message>
-    <message>
-        <source>Torrent is now in &quot;upload only&quot; mode.</source>
-        <translation type="vanished">Torrents patreiz ir &quot;Tikai Augšupielāde&quot; režīmā.</translation>
-    </message>
-    <message>
-        <source>Reason:</source>
-        <translation type="vanished">Iemesls:</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -2212,14 +2200,6 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
         <location filename="../base/bittorrent/torrentimpl.cpp" line="2262"/>
         <source>Missing metadata</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>File sizes mismatch for torrent &apos;%1&apos;. Cannot proceed further.</source>
-        <translation type="vanished">Failu izmēri nesakrīt ar torrentu &apos;%1&apos;. Nav iespējams turpināt. </translation>
-    </message>
-    <message>
-        <source>Fast resume data was rejected for torrent &apos;%1&apos;. Reason: %2. Checking again...</source>
-        <translation type="vanished">Torrenta &apos;%1&apos; ātrās atsākšanas dati tika atraidīti. Iemesls: %2. Pārbaudām vēlreiz...</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1949"/>
@@ -10189,10 +10169,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Ņēmēji</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Lejupielādēti</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>Ziņojums</translation>
@@ -10578,21 +10554,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Jaunais nosaukums:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">Atsākt</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">Piespiedu atsākšana</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">Apturēt</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>Izvēlieties vietu, kur saglabāt</translation>
@@ -10845,59 +10806,6 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Dzēst</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">Priekšskatīt failu...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">Atvērt failu atrašanās vietu</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">Novietot augstāk sarakstā</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">Novietot zemāk sarakstā</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">Novietot saraksta augšā</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">Novietot saraksta apakšā</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">Nomainīt failu atrašanās vietu...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">Piespiedu datu atjaunināšana ar trakeriem</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">Magnētsaiti</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">Torrenta ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">Nosaukumu</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>Lejupielādēt secīgā kārtībā</translation>
@@ -10918,74 +10826,14 @@ Lūdzu izvēlieties citu nosaukumu.</translation>
         <translation>Automātiskais režīms nozīmē, ka vairāki torrenta iestatījumi (piem. saglabāšanas vieta), tiks pielāgoti atbilstoši izvēlētajai kategorijai</translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">Kategorija</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">Jaunu...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">Atiestatīt</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">Rindošana</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopēt</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">Torrenta iestatījumi...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">Jaucējkods v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">Jaucējkods v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">Rediģēt trakerus...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">Atzīmes</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">Pievienot birku...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">Noņemt visas</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">Piespiedu pārbaude</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>Super-augšupielādēšanas režīms</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">Pārdēvēt...</translation>
     </message>
 </context>
 <context>

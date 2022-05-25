@@ -4979,7 +4979,7 @@ Do you want to make qBittorrent the default application for these?</source>
         <location filename="../gui/optionsdialog.ui" line="308"/>
         <location filename="../gui/optionsdialog.ui" line="344"/>
         <source>Open destination folder</source>
-        <translation type="unfinished">باز کردن پوشه مقصد</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/optionsdialog.ui" line="323"/>
@@ -10142,10 +10142,6 @@ Please choose a different name and try again.</source>
         <translation>لیچ‌ها</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">بارگیری شده</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>پیام</translation>
@@ -10531,21 +10527,6 @@ Please choose a different name and try again.</source>
         <translation>نام جدید:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">ادامه</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">اجبار به ادامه</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">توقف</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>انتخاب مسیر ذخیره سازی</translation>
@@ -10798,51 +10779,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">حذف</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">پیش نمایش فایل...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">باز کردن پوشه مقصد</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">انتقال به بالا</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">انتقال به پایین</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">انتقال به بالاترین</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">انتقال به ته</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">لینک آهنربایی</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">شناسه تورنت</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">نام</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>بارگیری به ترتیب پی در پی</translation>
@@ -10863,66 +10799,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">دسته بندی:</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">جدید...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">بازنشانی</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">صف</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">کپی</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">تنظیمات تورنت...</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">ویرایش ترکر ها...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">برچسب‌ها</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">افزودن...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">حذف همه</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">اجبار به بررسی مجدد</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>حالت به اشتراک‌گذاری فوق‌العاده</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">تغییر نام...</translation>
     </message>
 </context>
 <context>

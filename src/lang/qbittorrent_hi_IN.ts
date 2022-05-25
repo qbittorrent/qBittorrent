@@ -2172,10 +2172,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>सहकर्मी &quot;%1&quot; को टाॅरेंट &quot;%2&quot; में जोड़ा गया</translation>
     </message>
     <message>
-        <source>Couldn&apos;t write to file.</source>
-        <translation type="vanished">फाइल पर नहीं लिखा जा सका।</translation>
-    </message>
-    <message>
         <location filename="../base/bittorrent/torrentimpl.cpp" line="1032"/>
         <source>Couldn&apos;t write to file. Reason: &quot;%1&quot;. Torrent is now in &quot;upload only&quot; mode.</source>
         <translation type="unfinished"></translation>
@@ -10154,10 +10150,6 @@ Please choose a different name and try again.</source>
         <translation>जोंके</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">डाउनलोड हो चुका</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>संदेश</translation>
@@ -10543,21 +10535,6 @@ Please choose a different name and try again.</source>
         <translation>नया नाम:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">आरंभ</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">बलपूर्वक प्रारम्भ करें</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">रोकें</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>संचय पथ चुनें</translation>
@@ -10810,59 +10787,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">हटाएँ</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">फाइल पूर्वावलोकन...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">लक्षित फोल्डर खोलें</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">ऊपर करें</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">नीचे लाएँ</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">शीर्ष पर ले जाएँ</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">अंत में ले जाएँ</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">स्थान निर्धारण...</translation>
-    </message>
-    <message>
-        <source>Force reannounce</source>
-        <translation type="vanished">पुनः बलपूर्वक घोषणा करें</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">चुम्बकीय लिंक</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">टाॅरेंट आईडी</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">नाम</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>क्रमबद्ध डाउनलोड करें</translation>
@@ -10883,74 +10807,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">श्रेणी</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">नया...</translation>
-    </message>
-    <message>
-        <source>Reset</source>
-        <comment>Reset category</comment>
-        <translation type="vanished">मूल स्थिति में लाएं</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">कतार</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">प्रतिलिपि बनाए</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">टाॅरेंट विकल्प...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">जानकारी हैश v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">जानकारी हैश v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">ट्रैकर संशोधित करें</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">उपनाम</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">जोड़ें...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">सभी हटायें</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">पुनः जाँच बाध्य करें</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>महास्रोत रीति</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">नाम बदलें...</translation>
     </message>
 </context>
 <context>

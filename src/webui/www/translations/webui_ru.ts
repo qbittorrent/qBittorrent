@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ru">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Создавать подпапку</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не создавать подпапку</translation>
     </message>
 </context>
@@ -957,8 +955,8 @@
         <translation>%T: Текущий трекер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Подсказка: Включите параметр в кавычки для защиты от обрезки на пробелах (напр., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1429,7 +1427,7 @@
         <translation>Исходное</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не создавать подпапку</translation>
     </message>
     <message>
@@ -1498,27 +1496,27 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Файлы, отображаемые в памяти</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Стандартная</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Совместимый с POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Этот параметр менее эффективен в Linux</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Тип дискового ввода-вывода (libtorrent &gt;= 2.0; требует перезапуск):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished" />
+        <translation>Предел виртуальной памяти:</translation>
     </message>
 </context>
 <context>
@@ -1585,8 +1583,7 @@
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>Вы уверены, что хотите навсегда заблокировать выбранных пиров?
-</translation>
+        <translation>Вы уверены, что хотите навсегда заблокировать выбранных пиров?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -2209,10 +2206,6 @@
         <translation>Сообщение</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">Загрузки</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>Адрес трекера:</translation>
     </message>
@@ -2298,7 +2291,7 @@
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Число загрузок</translation>
     </message>
 </context>
 <context>
@@ -2597,7 +2590,7 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>Экспорт .torrent</translation>
     </message>
 </context>
 <context>
@@ -2864,7 +2857,7 @@
         <translation>Включён</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Обязательно соблюдайте законы об авторских правах вашей страны при загрузке торрентов из этих поисковых систем.</translation>
     </message>
     <message>
@@ -3479,7 +3472,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Исходное</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не создавать подпапку</translation>
     </message>
 </context>

@@ -10145,10 +10145,6 @@ Please choose a different name and try again.</source>
         <translation>ლიჩები</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation type="vanished">ჩამოტვირთული</translation>
-    </message>
-    <message>
         <location filename="../gui/properties/trackerlistwidget.cpp" line="621"/>
         <source>Message</source>
         <translation>შეტყობინება</translation>
@@ -10534,21 +10530,6 @@ Please choose a different name and try again.</source>
         <translation>ახალი სახელი:</translation>
     </message>
     <message>
-        <source>Resume</source>
-        <comment>Resume/start the torrent</comment>
-        <translation type="vanished">გაგრძელება</translation>
-    </message>
-    <message>
-        <source>Force Resume</source>
-        <comment>Force Resume/start the torrent</comment>
-        <translation type="vanished">გაგრძელების იძულება</translation>
-    </message>
-    <message>
-        <source>Pause</source>
-        <comment>Pause the torrent</comment>
-        <translation type="vanished">დაპაუზება</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="336"/>
         <source>Choose save path</source>
         <translation>აირჩიეთ შესანახი მდებარეობა</translation>
@@ -10801,55 +10782,6 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">წაშლა</translation>
-    </message>
-    <message>
-        <source>Preview file...</source>
-        <translation type="vanished">ფაილის გადახედვა...</translation>
-    </message>
-    <message>
-        <source>Open destination folder</source>
-        <translation type="vanished">დანიშნულების საქაღალდის გახსნა</translation>
-    </message>
-    <message>
-        <source>Move up</source>
-        <comment>i.e. move up in the queue</comment>
-        <translation type="vanished">მაღლა ატანა</translation>
-    </message>
-    <message>
-        <source>Move down</source>
-        <comment>i.e. Move down in the queue</comment>
-        <translation type="vanished">დაბლა ჩატანა</translation>
-    </message>
-    <message>
-        <source>Move to top</source>
-        <comment>i.e. Move to top of the queue</comment>
-        <translation type="vanished">თავში გადატანა</translation>
-    </message>
-    <message>
-        <source>Move to bottom</source>
-        <comment>i.e. Move to bottom of the queue</comment>
-        <translation type="vanished">ბოლოში გადატანა</translation>
-    </message>
-    <message>
-        <source>Set location...</source>
-        <translation type="vanished">მდებაროების დაყენება...</translation>
-    </message>
-    <message>
-        <source>Magnet link</source>
-        <translation type="vanished">მაგნეტ ბმული</translation>
-    </message>
-    <message>
-        <source>Torrent ID</source>
-        <translation type="vanished">ტორენტის ID</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation type="vanished">სახელი</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="954"/>
         <source>Download in sequential order</source>
         <translation>თანმიმდევრობით ჩამოტვირთვა</translation>
@@ -10870,69 +10802,14 @@ Please choose a different name and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Category</source>
-        <translation type="vanished">კატეგორია</translation>
-    </message>
-    <message>
-        <source>New...</source>
-        <comment>New category...</comment>
-        <translation type="vanished">ახალი...</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="1207"/>
         <source>Can not force reannounce if torrent is Paused/Queued/Errored/Checking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Queue</source>
-        <translation type="vanished">რიგი</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">ასლი</translation>
-    </message>
-    <message>
-        <source>Torrent options...</source>
-        <translation type="vanished">ტორენტის პარამეტრები...</translation>
-    </message>
-    <message>
-        <source>Info hash v1</source>
-        <translation type="vanished">ჰეშის ინფორმაცია v1</translation>
-    </message>
-    <message>
-        <source>Info hash v2</source>
-        <translation type="vanished">ჰეშის ინფორმაცია v2</translation>
-    </message>
-    <message>
-        <source>Edit trackers...</source>
-        <translation type="vanished">ტრეკერების რედაქტირება...</translation>
-    </message>
-    <message>
-        <source>Tags</source>
-        <translation type="vanished">ტეგები</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>Add / assign multiple tags...</comment>
-        <translation type="vanished">დამატება...</translation>
-    </message>
-    <message>
-        <source>Remove All</source>
-        <comment>Remove all tags</comment>
-        <translation type="vanished">ყველას წაშლა</translation>
-    </message>
-    <message>
-        <source>Force recheck</source>
-        <translation type="vanished">ხელახლა შემოწმების იძულება</translation>
-    </message>
-    <message>
         <location filename="../gui/transferlistwidget.cpp" line="950"/>
         <source>Super seeding mode</source>
         <translation>სუპერ სიდირების რეჟიმი</translation>
-    </message>
-    <message>
-        <source>Rename...</source>
-        <translation type="vanished">გადარქმევა...</translation>
     </message>
 </context>
 <context>
