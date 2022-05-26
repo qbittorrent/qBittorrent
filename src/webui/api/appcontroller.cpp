@@ -141,6 +141,8 @@ void AppController::preferencesAction()
     data[u"scan_dirs"_qs] = nativeDirs;
     // === END DEPRECATED CODE === //
 
+    data[u"excluded_file_names"_qs] = session->excludedFileNames().join(u'\n');
+
     // Email notification upon download completion
     data[u"mail_notification_enabled"_qs] = pref->isMailNotificationEnabled();
     data[u"mail_notification_sender"_qs] = pref->getMailNotificationSender();
@@ -475,6 +477,9 @@ void AppController::setPreferencesAction()
         }
     }
     // === END DEPRECATED CODE === //
+
+    if (hasKey(u"excluded_file_names"_qs))
+        session->setExcludedFileNames(it.value().toString().split(u'\n'));
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_qs))
