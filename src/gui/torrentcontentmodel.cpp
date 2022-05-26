@@ -91,7 +91,8 @@ namespace
             if (!ext.isEmpty())
             {
                 QPixmap cached;
-                if (QPixmapCache::find(ext, &cached)) return {cached};
+                if (QPixmapCache::find(ext, &cached))
+                    return {cached};
 
                 const QPixmap pixmap = pixmapForExtension(ext);
                 if (!pixmap.isNull())
@@ -115,16 +116,17 @@ namespace
         QPixmap pixmapForExtension(const QString &ext) const override
         {
             const std::wstring extWStr = QString(u'.' + ext).toStdWString();
-            SHFILEINFO sfi {};
-            HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
-                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
+
+            SHFILEINFOW sfi {};
+            const HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
+                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), (SHGFI_ICON | SHGFI_USEFILEATTRIBUTES));
             if (FAILED(hr))
                 return {};
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-            auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
+            const auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
 #else
-            QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
+            const QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
 #endif
             ::DestroyIcon(sfi.hIcon);
             return iconPixmap;
@@ -158,30 +160,24 @@ namespace
         return (!testIcon1.isNull() || !testIcon2.isNull());
     }
 
-    class MimeFileIconProvider : public UnifiedFileIconProvider
+    class MimeFileIconProvider final : public UnifiedFileIconProvider
     {
         using QFileIconProvider::icon;
 
         QIcon icon(const QFileInfo &info) const override
         {
-            const QMimeType mimeType = m_db.mimeTypeForFile(info, QMimeDatabase::MatchExtension);
-            QIcon res = QIcon::fromTheme(mimeType.iconName());
-            if (!res.isNull())
-            {
-                return res;
-            }
+            const QMimeType mimeType = QMimeDatabase().mimeTypeForFile(info, QMimeDatabase::MatchExtension);
 
-            res = QIcon::fromTheme(mimeType.genericIconName());
-            if (!res.isNull())
-            {
-                return res;
-            }
+            const auto mimeIcon = QIcon::fromTheme(mimeType.iconName());
+            if (!mimeIcon.isNull())
+                return mimeIcon;
+
+            const auto genericIcon = QIcon::fromTheme(mimeType.genericIconName());
+            if (!genericIcon.isNull())
+                return genericIcon;
 
             return UnifiedFileIconProvider::icon(info);
         }
-
-    private:
-        QMimeDatabase m_db;
     };
 #endif // Q_OS_WIN
 }
