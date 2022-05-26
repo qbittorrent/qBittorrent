@@ -69,14 +69,20 @@ namespace
     class UnifiedFileIconProvider : public QFileIconProvider
     {
     public:
+        UnifiedFileIconProvider()
+            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"text-plain"_qs)}
+        {
+        }
+
         using QFileIconProvider::icon;
 
-        QIcon icon(const QFileInfo &info) const override
+        QIcon icon(const QFileInfo &) const override
         {
-            Q_UNUSED(info);
-            static QIcon cached = UIThemeManager::instance()->getIcon(u"text-plain"_qs);
-            return cached;
+            return m_textPlainIcon;
         }
+
+    private:
+        QIcon m_textPlainIcon;
     };
 
 #ifdef QBT_PIXMAP_CACHE_FOR_FILE_ICONS
@@ -185,15 +191,14 @@ namespace
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
-{
 #if defined(Q_OS_WIN)
-    m_fileIconProvider = new WinShellFileIconProvider();
+    , m_fileIconProvider {new WinShellFileIconProvider}
 #elif defined(Q_OS_MACOS)
-    m_fileIconProvider = new MacFileIconProvider();
+    , m_fileIconProvider {new MacFileIconProvider}
 #else
-    static bool doesBuiltInProviderWork = doesQFileIconProviderWork();
-    m_fileIconProvider = doesBuiltInProviderWork ? new QFileIconProvider() : new MimeFileIconProvider();
+    , m_fileIconProvider {doesQFileIconProviderWork() ? new QFileIconProvider : new MimeFileIconProvider}
 #endif
+{
 }
 
 TorrentContentModel::~TorrentContentModel()

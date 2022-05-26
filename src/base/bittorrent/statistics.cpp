@@ -35,7 +35,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
 
-static const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
+const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
 
 using namespace BitTorrent;
 

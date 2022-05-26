@@ -32,7 +32,6 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
-#include <QIcon>
 #include <QPalette>
 
 #include "base/bittorrent/session.h"
@@ -47,60 +46,6 @@
 
 namespace
 {
-    QIcon getPausedIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"paused"_qs);
-        return cached;
-    }
-
-    QIcon getQueuedIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"queued"_qs);
-        return cached;
-    }
-
-    QIcon getDownloadingIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"downloading"_qs);
-        return cached;
-    }
-
-    QIcon getStalledDownloadingIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledDL"_qs);
-        return cached;
-    }
-
-    QIcon getUploadingIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"uploading"_qs);
-        return cached;
-    }
-
-    QIcon getStalledUploadingIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledUP"_qs);
-        return cached;
-    }
-
-    QIcon getCompletedIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"completed"_qs);
-        return cached;
-    }
-
-    QIcon getCheckingIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"checking"_qs);
-        return cached;
-    }
-
-    QIcon getErrorIcon()
-    {
-        static QIcon cached = UIThemeManager::instance()->getIcon(u"error"_qs);
-        return cached;
-    }
-
     bool isDarkTheme()
     {
         const QPalette pal = QApplication::palette();
@@ -109,48 +54,10 @@ namespace
         return (color.lightness() < 127);
     }
 
-    QIcon getIconByState(const BitTorrent::TorrentState state)
-    {
-        switch (state)
-        {
-        case BitTorrent::TorrentState::Downloading:
-        case BitTorrent::TorrentState::ForcedDownloading:
-        case BitTorrent::TorrentState::DownloadingMetadata:
-        case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-            return getDownloadingIcon();
-        case BitTorrent::TorrentState::StalledDownloading:
-            return getStalledDownloadingIcon();
-        case BitTorrent::TorrentState::StalledUploading:
-            return getStalledUploadingIcon();
-        case BitTorrent::TorrentState::Uploading:
-        case BitTorrent::TorrentState::ForcedUploading:
-            return getUploadingIcon();
-        case BitTorrent::TorrentState::PausedDownloading:
-            return getPausedIcon();
-        case BitTorrent::TorrentState::PausedUploading:
-            return getCompletedIcon();
-        case BitTorrent::TorrentState::QueuedDownloading:
-        case BitTorrent::TorrentState::QueuedUploading:
-            return getQueuedIcon();
-        case BitTorrent::TorrentState::CheckingDownloading:
-        case BitTorrent::TorrentState::CheckingUploading:
-        case BitTorrent::TorrentState::CheckingResumeData:
-        case BitTorrent::TorrentState::Moving:
-            return getCheckingIcon();
-        case BitTorrent::TorrentState::Unknown:
-        case BitTorrent::TorrentState::MissingFiles:
-        case BitTorrent::TorrentState::Error:
-            return getErrorIcon();
-        default:
-            Q_ASSERT(false);
-            return getErrorIcon();
-        }
-    }
-
     QColor getDefaultColorByState(const BitTorrent::TorrentState state)
     {
         // Color names taken from http://cloford.com/resources/colours/500col.htm
-        bool dark = isDarkTheme();
+        const bool dark = isDarkTheme();
 
         switch (state)
         {
@@ -267,8 +174,17 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::Moving, tr("Moving", "Torrent local data are being moved/relocated")},
           {BitTorrent::TorrentState::MissingFiles, tr("Missing Files")},
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
-      }
+    }
     , m_stateThemeColors {torrentStateColorsFromUITheme()}
+    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"checking"_qs)}
+    , m_completedIcon {UIThemeManager::instance()->getIcon(u"completed"_qs)}
+    , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_qs)}
+    , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_qs)}
+    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"paused"_qs)}
+    , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_qs)}
+    , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_qs)}
+    , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_qs)}
+    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"uploading"_qs)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
@@ -794,5 +710,43 @@ void TransferListModel::configure()
     {
         m_hideZeroValuesMode = hideZeroValuesMode;
         emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
+    }
+}
+
+QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) const
+{
+    switch (state)
+    {
+    case BitTorrent::TorrentState::Downloading:
+    case BitTorrent::TorrentState::ForcedDownloading:
+    case BitTorrent::TorrentState::DownloadingMetadata:
+    case BitTorrent::TorrentState::ForcedDownloadingMetadata:
+        return m_downloadingIcon;
+    case BitTorrent::TorrentState::StalledDownloading:
+        return m_stalledDLIcon;
+    case BitTorrent::TorrentState::StalledUploading:
+        return m_stalledUPIcon;
+    case BitTorrent::TorrentState::Uploading:
+    case BitTorrent::TorrentState::ForcedUploading:
+        return m_uploadingIcon;
+    case BitTorrent::TorrentState::PausedDownloading:
+        return m_pausedIcon;
+    case BitTorrent::TorrentState::PausedUploading:
+        return m_completedIcon;
+    case BitTorrent::TorrentState::QueuedDownloading:
+    case BitTorrent::TorrentState::QueuedUploading:
+        return m_queuedIcon;
+    case BitTorrent::TorrentState::CheckingDownloading:
+    case BitTorrent::TorrentState::CheckingUploading:
+    case BitTorrent::TorrentState::CheckingResumeData:
+    case BitTorrent::TorrentState::Moving:
+        return m_checkingIcon;
+    case BitTorrent::TorrentState::Unknown:
+    case BitTorrent::TorrentState::MissingFiles:
+    case BitTorrent::TorrentState::Error:
+        return m_errorIcon;
+    default:
+        Q_ASSERT(false);
+        return m_errorIcon;
     }
 }

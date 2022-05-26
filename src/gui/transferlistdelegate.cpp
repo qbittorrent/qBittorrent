@@ -50,15 +50,14 @@ QSize TransferListDelegate::sizeHint(const QStyleOptionViewItem &option, const Q
     // the rows shrink if the text's height is smaller than the icon's height.
     // This happens because icon from the 'name' column is no longer drawn.
 
-    static int nameColHeight = -1;
-    if (nameColHeight == -1)
+    if (m_nameColHeight == -1)
     {
         const QModelIndex nameColumn = index.sibling(index.row(), TransferListModel::TR_NAME);
-        nameColHeight = QStyledItemDelegate::sizeHint(option, nameColumn).height();
+        m_nameColHeight = QStyledItemDelegate::sizeHint(option, nameColumn).height();
     }
 
     QSize size = QStyledItemDelegate::sizeHint(option, index);
-    size.setHeight(std::max(nameColHeight, size.height()));
+    size.setHeight(std::max(m_nameColHeight, size.height()));
     return size;
 }
 

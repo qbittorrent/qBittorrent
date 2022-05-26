@@ -457,7 +457,7 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
     result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_qs);
 
     // Capture links without scheme
-    static const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
+    const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
     result.replace(reNoScheme, u"<a href=\"http://\\1\">"_qs);
 
     // to preserve plain text formatting

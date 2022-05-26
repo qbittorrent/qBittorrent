@@ -32,6 +32,7 @@
 #include <QAbstractListModel>
 #include <QColor>
 #include <QHash>
+#include <QIcon>
 #include <QList>
 
 #include "base/bittorrent/torrent.h"
@@ -111,6 +112,7 @@ private:
     void configure();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
+    QIcon getIconByState(const BitTorrent::TorrentState state) const;
 
     QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
@@ -126,4 +128,15 @@ private:
     };
 
     HideZeroValuesMode m_hideZeroValuesMode = HideZeroValuesMode::Never;
+
+    // cached icons
+    QIcon m_checkingIcon;
+    QIcon m_completedIcon;
+    QIcon m_downloadingIcon;
+    QIcon m_errorIcon;
+    QIcon m_pausedIcon;
+    QIcon m_queuedIcon;
+    QIcon m_stalledDLIcon;
+    QIcon m_stalledUPIcon;
+    QIcon m_uploadingIcon;
 };

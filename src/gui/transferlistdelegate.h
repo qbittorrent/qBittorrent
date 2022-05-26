@@ -46,4 +46,5 @@ public:
 
 private:
     ProgressBarPainter m_progressBarPainter;
+    mutable int m_nameColHeight = -1;
 };
