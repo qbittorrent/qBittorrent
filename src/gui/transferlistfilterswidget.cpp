@@ -241,9 +241,10 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
 {
     TorrentFilterBitset &torrentStatus = m_torrentsStatus[torrent];
 
-    const auto update = [&torrentStatus](const TorrentFilter::Type status, const bool needStatus, int &counter)
+    const auto update = [torrent, &torrentStatus](const TorrentFilter::Type status, int &counter)
     {
         const bool hasStatus = torrentStatus[status];
+        const bool needStatus = TorrentFilter(status).match(torrent);
         if (needStatus && !hasStatus)
         {
             ++counter;
@@ -256,22 +257,17 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
         }
     };
 
-    update(TorrentFilter::Downloading, torrent->isDownloading(), m_nbDownloading);
-    update(TorrentFilter::Seeding, torrent->isUploading(), m_nbSeeding);
-    update(TorrentFilter::Completed, torrent->isCompleted(), m_nbCompleted);
-    update(TorrentFilter::Resumed, torrent->isResumed(), m_nbResumed);
-    update(TorrentFilter::Paused, torrent->isPaused(), m_nbPaused);
-    update(TorrentFilter::Active, torrent->isActive(), m_nbActive);
-    update(TorrentFilter::Inactive, torrent->isInactive(), m_nbInactive);
-
-    const bool isStalledUploading = (torrent->state() ==  BitTorrent::TorrentState::StalledUploading);
-    update(TorrentFilter::StalledUploading, isStalledUploading, m_nbStalledUploading);
-
-    const bool isStalledDownloading = (torrent->state() ==  BitTorrent::TorrentState::StalledDownloading);
-    update(TorrentFilter::StalledDownloading, isStalledDownloading, m_nbStalledDownloading);
-
-    update(TorrentFilter::Checking, torrent->isChecking(), m_nbChecking);
-    update(TorrentFilter::Errored, torrent->isErrored(), m_nbErrored);
+    update(TorrentFilter::Downloading, m_nbDownloading);
+    update(TorrentFilter::Seeding, m_nbSeeding);
+    update(TorrentFilter::Completed, m_nbCompleted);
+    update(TorrentFilter::Resumed, m_nbResumed);
+    update(TorrentFilter::Paused, m_nbPaused);
+    update(TorrentFilter::Active, m_nbActive);
+    update(TorrentFilter::Inactive, m_nbInactive);
+    update(TorrentFilter::StalledUploading, m_nbStalledUploading);
+    update(TorrentFilter::StalledDownloading, m_nbStalledDownloading);
+    update(TorrentFilter::Checking, m_nbChecking);
+    update(TorrentFilter::Errored, m_nbErrored);
 
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 }
