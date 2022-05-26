@@ -45,23 +45,163 @@
 #include "base/utils/string.h"
 #include "uithememanager.h"
 
-static QIcon getIconByState(BitTorrent::TorrentState state);
-static QColor getDefaultColorByState(BitTorrent::TorrentState state);
-
-static QIcon getPausedIcon();
-static QIcon getQueuedIcon();
-static QIcon getDownloadingIcon();
-static QIcon getStalledDownloadingIcon();
-static QIcon getUploadingIcon();
-static QIcon getStalledUploadingIcon();
-static QIcon getCompletedIcon();
-static QIcon getCheckingIcon();
-static QIcon getErrorIcon();
-
-static bool isDarkTheme();
-
 namespace
 {
+    QIcon getPausedIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"paused"_qs);
+        return cached;
+    }
+
+    QIcon getQueuedIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"queued"_qs);
+        return cached;
+    }
+
+    QIcon getDownloadingIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"downloading"_qs);
+        return cached;
+    }
+
+    QIcon getStalledDownloadingIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledDL"_qs);
+        return cached;
+    }
+
+    QIcon getUploadingIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"uploading"_qs);
+        return cached;
+    }
+
+    QIcon getStalledUploadingIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledUP"_qs);
+        return cached;
+    }
+
+    QIcon getCompletedIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"completed"_qs);
+        return cached;
+    }
+
+    QIcon getCheckingIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"checking"_qs);
+        return cached;
+    }
+
+    QIcon getErrorIcon()
+    {
+        static QIcon cached = UIThemeManager::instance()->getIcon(u"error"_qs);
+        return cached;
+    }
+
+    bool isDarkTheme()
+    {
+        const QPalette pal = QApplication::palette();
+        // QPalette::Base is used for the background of the Treeview
+        const QColor &color = pal.color(QPalette::Active, QPalette::Base);
+        return (color.lightness() < 127);
+    }
+
+    QIcon getIconByState(const BitTorrent::TorrentState state)
+    {
+        switch (state)
+        {
+        case BitTorrent::TorrentState::Downloading:
+        case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::DownloadingMetadata:
+        case BitTorrent::TorrentState::ForcedDownloadingMetadata:
+            return getDownloadingIcon();
+        case BitTorrent::TorrentState::StalledDownloading:
+            return getStalledDownloadingIcon();
+        case BitTorrent::TorrentState::StalledUploading:
+            return getStalledUploadingIcon();
+        case BitTorrent::TorrentState::Uploading:
+        case BitTorrent::TorrentState::ForcedUploading:
+            return getUploadingIcon();
+        case BitTorrent::TorrentState::PausedDownloading:
+            return getPausedIcon();
+        case BitTorrent::TorrentState::PausedUploading:
+            return getCompletedIcon();
+        case BitTorrent::TorrentState::QueuedDownloading:
+        case BitTorrent::TorrentState::QueuedUploading:
+            return getQueuedIcon();
+        case BitTorrent::TorrentState::CheckingDownloading:
+        case BitTorrent::TorrentState::CheckingUploading:
+        case BitTorrent::TorrentState::CheckingResumeData:
+        case BitTorrent::TorrentState::Moving:
+            return getCheckingIcon();
+        case BitTorrent::TorrentState::Unknown:
+        case BitTorrent::TorrentState::MissingFiles:
+        case BitTorrent::TorrentState::Error:
+            return getErrorIcon();
+        default:
+            Q_ASSERT(false);
+            return getErrorIcon();
+        }
+    }
+
+    QColor getDefaultColorByState(const BitTorrent::TorrentState state)
+    {
+        // Color names taken from http://cloford.com/resources/colours/500col.htm
+        bool dark = isDarkTheme();
+
+        switch (state)
+        {
+        case BitTorrent::TorrentState::Downloading:
+        case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::DownloadingMetadata:
+        case BitTorrent::TorrentState::ForcedDownloadingMetadata:
+            if (!dark)
+                return {34, 139, 34}; // Forest Green
+            else
+                return {50, 205, 50}; // Lime Green
+        case BitTorrent::TorrentState::StalledDownloading:
+        case BitTorrent::TorrentState::StalledUploading:
+            if (!dark)
+                return {0, 0, 0}; // Black
+            else
+                return {204, 204, 204}; // Gray 80
+        case BitTorrent::TorrentState::Uploading:
+        case BitTorrent::TorrentState::ForcedUploading:
+            if (!dark)
+                return {65, 105, 225}; // Royal Blue
+            else
+                return {99, 184, 255}; // Steel Blue 1
+        case BitTorrent::TorrentState::PausedDownloading:
+            return {250, 128, 114}; // Salmon
+        case BitTorrent::TorrentState::PausedUploading:
+            if (!dark)
+                return {0, 0, 139}; // Dark Blue
+            else
+                return {79, 148, 205}; // Steel Blue 3
+        case BitTorrent::TorrentState::Error:
+        case BitTorrent::TorrentState::MissingFiles:
+            return {255, 0, 0}; // red
+        case BitTorrent::TorrentState::QueuedDownloading:
+        case BitTorrent::TorrentState::QueuedUploading:
+        case BitTorrent::TorrentState::CheckingDownloading:
+        case BitTorrent::TorrentState::CheckingUploading:
+        case BitTorrent::TorrentState::CheckingResumeData:
+        case BitTorrent::TorrentState::Moving:
+            if (!dark)
+                return {0, 128, 128}; // Teal
+            else
+                return {0, 205, 205}; // Cyan 3
+        case BitTorrent::TorrentState::Unknown:
+            return {255, 0, 0}; // red
+        default:
+            Q_ASSERT(false);
+            return {255, 0, 0}; // red
+        }
+    }
+
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
     {
         struct TorrentStateColorDescriptor
@@ -655,161 +795,4 @@ void TransferListModel::configure()
         m_hideZeroValuesMode = hideZeroValuesMode;
         emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
     }
-}
-
-// Static functions
-
-QIcon getIconByState(const BitTorrent::TorrentState state)
-{
-    switch (state)
-    {
-    case BitTorrent::TorrentState::Downloading:
-    case BitTorrent::TorrentState::ForcedDownloading:
-    case BitTorrent::TorrentState::DownloadingMetadata:
-    case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-        return getDownloadingIcon();
-    case BitTorrent::TorrentState::StalledDownloading:
-        return getStalledDownloadingIcon();
-    case BitTorrent::TorrentState::StalledUploading:
-        return getStalledUploadingIcon();
-    case BitTorrent::TorrentState::Uploading:
-    case BitTorrent::TorrentState::ForcedUploading:
-        return getUploadingIcon();
-    case BitTorrent::TorrentState::PausedDownloading:
-        return getPausedIcon();
-    case BitTorrent::TorrentState::PausedUploading:
-        return getCompletedIcon();
-    case BitTorrent::TorrentState::QueuedDownloading:
-    case BitTorrent::TorrentState::QueuedUploading:
-        return getQueuedIcon();
-    case BitTorrent::TorrentState::CheckingDownloading:
-    case BitTorrent::TorrentState::CheckingUploading:
-    case BitTorrent::TorrentState::CheckingResumeData:
-    case BitTorrent::TorrentState::Moving:
-        return getCheckingIcon();
-    case BitTorrent::TorrentState::Unknown:
-    case BitTorrent::TorrentState::MissingFiles:
-    case BitTorrent::TorrentState::Error:
-        return getErrorIcon();
-    default:
-        Q_ASSERT(false);
-        return getErrorIcon();
-    }
-}
-
-QColor getDefaultColorByState(const BitTorrent::TorrentState state)
-{
-    // Color names taken from http://cloford.com/resources/colours/500col.htm
-    bool dark = isDarkTheme();
-
-    switch (state)
-    {
-    case BitTorrent::TorrentState::Downloading:
-    case BitTorrent::TorrentState::ForcedDownloading:
-    case BitTorrent::TorrentState::DownloadingMetadata:
-    case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-        if (!dark)
-            return {34, 139, 34}; // Forest Green
-        else
-            return {50, 205, 50}; // Lime Green
-    case BitTorrent::TorrentState::StalledDownloading:
-    case BitTorrent::TorrentState::StalledUploading:
-        if (!dark)
-            return {0, 0, 0}; // Black
-        else
-            return {204, 204, 204}; // Gray 80
-    case BitTorrent::TorrentState::Uploading:
-    case BitTorrent::TorrentState::ForcedUploading:
-        if (!dark)
-            return {65, 105, 225}; // Royal Blue
-        else
-            return {99, 184, 255}; // Steel Blue 1
-    case BitTorrent::TorrentState::PausedDownloading:
-        return {250, 128, 114}; // Salmon
-    case BitTorrent::TorrentState::PausedUploading:
-        if (!dark)
-            return {0, 0, 139}; // Dark Blue
-        else
-            return {79, 148, 205}; // Steel Blue 3
-    case BitTorrent::TorrentState::Error:
-    case BitTorrent::TorrentState::MissingFiles:
-        return {255, 0, 0}; // red
-    case BitTorrent::TorrentState::QueuedDownloading:
-    case BitTorrent::TorrentState::QueuedUploading:
-    case BitTorrent::TorrentState::CheckingDownloading:
-    case BitTorrent::TorrentState::CheckingUploading:
-    case BitTorrent::TorrentState::CheckingResumeData:
-    case BitTorrent::TorrentState::Moving:
-        if (!dark)
-            return {0, 128, 128}; // Teal
-        else
-            return {0, 205, 205}; // Cyan 3
-    case BitTorrent::TorrentState::Unknown:
-        return {255, 0, 0}; // red
-    default:
-        Q_ASSERT(false);
-        return {255, 0, 0}; // red
-    }
-}
-
-QIcon getPausedIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"paused"_qs);
-    return cached;
-}
-
-QIcon getQueuedIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"queued"_qs);
-    return cached;
-}
-
-QIcon getDownloadingIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"downloading"_qs);
-    return cached;
-}
-
-QIcon getStalledDownloadingIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledDL"_qs);
-    return cached;
-}
-
-QIcon getUploadingIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"uploading"_qs);
-    return cached;
-}
-
-QIcon getStalledUploadingIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"stalledUP"_qs);
-    return cached;
-}
-
-QIcon getCompletedIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"completed"_qs);
-    return cached;
-}
-
-QIcon getCheckingIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"checking"_qs);
-    return cached;
-}
-
-QIcon getErrorIcon()
-{
-    static QIcon cached = UIThemeManager::instance()->getIcon(u"error"_qs);
-    return cached;
-}
-
-bool isDarkTheme()
-{
-    const QPalette pal = QApplication::palette();
-    // QPalette::Base is used for the background of the Treeview
-    const QColor &color = pal.color(QPalette::Active, QPalette::Base);
-    return (color.lightness() < 127);
 }
