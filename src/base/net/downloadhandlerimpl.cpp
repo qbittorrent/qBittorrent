@@ -34,9 +34,12 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/utils/fs.h"
-#include "base/utils/gzip.h"
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
+
+#if (QT_VERSION < QT_VERSION_CHECK(6, 3, 0))
+#include "base/utils/gzip.h"
+#endif
 
 const int MAX_REDIRECTIONS = 20;  // the common value for web browsers
 
@@ -121,9 +124,13 @@ void DownloadHandlerImpl::processFinishedDownload()
     }
 
     // Success
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+    m_result.data = m_reply->readAll();
+#else
     m_result.data = (m_reply->rawHeader("Content-Encoding") == "gzip")
                     ? Utils::Gzip::decompress(m_reply->readAll())
                     : m_reply->readAll();
+#endif
 
     if (m_downloadRequest.saveToFile())
     {
