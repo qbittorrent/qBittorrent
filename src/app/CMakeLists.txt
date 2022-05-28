@@ -1,8 +1,19 @@
+file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
+# Custom target to update .ts files and include new strings from source files
+# Depends on Qt's LinguistTools
+get_target_property(QT_LUPDATE_EXECUTABLE Qt::lupdate IMPORTED_LOCATION)
+add_custom_target(qbt_update_translations
+                    COMMAND ${QT_LUPDATE_EXECUTABLE} -extensions ui,c,c++,cc,cpp,cxx,ch,h,h++,hh,hpp,hxx
+                                                     ${qBittorrent_SOURCE_DIR}
+                                                     -ts ${QBT_TS_FILES}
+                    WORKING_DIRECTORY "${qBittorrent_SOURCE_DIR}"
+                    VERBATIM
+                    COMMAND_EXPAND_LISTS)
+
 # Generate and configure translation files
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 # Based on https://gist.github.com/giraldeau/546ba5512a74dfe9d8ea0862d66db412
-file(GLOB QBT_TS_FILES "${qBittorrent_SOURCE_DIR}/src/lang/*.ts")
 set_source_files_properties(${QBT_TS_FILES} PROPERTIES OUTPUT_LOCATION "${qBittorrent_BINARY_DIR}/src/lang")
 qt_add_translation(QBT_QM_FILES ${QBT_TS_FILES} OPTIONS -silent)
 configure_file("${qBittorrent_SOURCE_DIR}/src/lang/lang.qrc" "${qBittorrent_BINARY_DIR}/src/lang/lang.qrc" COPYONLY)
