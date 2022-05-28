@@ -31,6 +31,7 @@
 #include <vector>
 
 #include <libtorrent/announce_entry.hpp>
+#include <libtorrent/torrent_status.hpp>
 
 #ifdef QBT_USES_LIBTORRENT2
 #include <libtorrent/client_data.hpp>
@@ -41,5 +42,6 @@ using LTClientData = void *;
 
 struct ExtensionData
 {
+    lt::torrent_status status;
     std::vector<lt::announce_entry> trackers;
 };

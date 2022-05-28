@@ -42,10 +42,14 @@ NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrent
     : m_torrentHandle {torrentHandle}
     , m_data {data}
 {
-    on_state(m_torrentHandle.status({}).state);
+    lt::torrent_status torrentStatus = m_torrentHandle.status({});
+    on_state(torrentStatus.state);
 
     if (m_data)
+    {
+        m_data->status = std::move(torrentStatus);
         m_data->trackers = m_torrentHandle.trackers();
+    }
 }
 
 NativeTorrentExtension::~NativeTorrentExtension()
