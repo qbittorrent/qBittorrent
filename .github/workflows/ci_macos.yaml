@@ -80,7 +80,6 @@ jobs:
       - name: Build qBittorrent (Qt5)
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
-          lupdate -extensions c,cpp,h,hpp,ui ./
           cmake \
             -B build \
             -G "Ninja" \
@@ -90,12 +89,12 @@ jobs:
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
+          cmake --build build --target qbt_update_translations
           cmake --build build
 
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
-          lupdate -extensions c,cpp,h,hpp,ui ./
           cmake \
             -B build \
             -G "Ninja" \
@@ -106,6 +105,7 @@ jobs:
             -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
+          cmake --build build --target qbt_update_translations
           cmake --build build
 
       - name: Prepare build artifacts
