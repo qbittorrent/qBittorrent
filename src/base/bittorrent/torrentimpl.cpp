@@ -717,15 +717,13 @@ QString TorrentImpl::category() const
 
 bool TorrentImpl::belongsToCategory(const QString &category) const
 {
-    if (m_category.isEmpty()) return category.isEmpty();
-    if (!Session::isValidCategoryName(category)) return false;
+    if (m_category.isEmpty())
+        return category.isEmpty();
 
-    if (m_category == category) return true;
-
-    if (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + u'/'))
+    if (m_category == category)
         return true;
 
-    return false;
+    return (m_session->isSubcategoriesEnabled() && m_category.startsWith(category + u'/'));
 }
 
 TagSet TorrentImpl::tags() const

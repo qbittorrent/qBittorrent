@@ -635,22 +635,13 @@ Path Session::downloadPath() const
 
 bool Session::isValidCategoryName(const QString &name)
 {
-    const QRegularExpression re(uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs);
-    if (!name.isEmpty() && (name.indexOf(re) != 0))
-    {
-        qDebug() << "Incorrect category name:" << name;
-        return false;
-    }
-
-    return true;
+    const QRegularExpression re {uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs};
+    return (name.isEmpty() || (name.indexOf(re) == 0));
 }
 
 QStringList Session::expandCategory(const QString &category)
 {
     QStringList result;
-    if (!isValidCategoryName(category))
-        return result;
-
     int index = 0;
     while ((index = category.indexOf(u'/', index)) >= 0)
     {
