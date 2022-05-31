@@ -84,7 +84,7 @@ public slots:
     void selectNone();
 
 private:
-    TorrentContentModelFolder *m_rootItem;
+    TorrentContentModelFolder *m_rootItem = nullptr;
     QVector<TorrentContentModelFile *> m_filesIndex;
-    QFileIconProvider *m_fileIconProvider;
+    QFileIconProvider *m_fileIconProvider = nullptr;
 };

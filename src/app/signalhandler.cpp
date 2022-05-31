@@ -76,8 +76,8 @@ namespace
     {
         const size_t strLen = strlen(str);
 #ifdef Q_OS_WIN
-        if (_write(_fileno(stderr), str, strLen) < static_cast<int>(strLen))
-            std::ignore = _write(_fileno(stdout), str, strLen);
+        if (_write(_fileno(stderr), str, static_cast<unsigned int>(strLen)) < static_cast<int>(strLen))
+            std::ignore = _write(_fileno(stdout), str, static_cast<unsigned int>(strLen));
 #else
         if (write(STDERR_FILENO, str, strLen) < static_cast<ssize_t>(strLen))
             std::ignore = write(STDOUT_FILENO, str, strLen);

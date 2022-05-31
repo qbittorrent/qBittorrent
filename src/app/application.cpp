@@ -43,7 +43,6 @@
 #include <sys/resource.h>
 #endif
 
-#include <QAtomicInt>
 #include <QByteArray>
 #include <QDebug>
 #include <QLibraryInfo>
@@ -808,8 +807,7 @@ void Application::applyMemoryWorkingSetLimit()
 void Application::cleanup()
 {
     // cleanup() can be called multiple times during shutdown. We only need it once.
-    static QAtomicInt alreadyDone;
-    if (!alreadyDone.testAndSetAcquire(0, 1))
+    if (!m_isCleanupRun.testAndSetAcquire(0, 1))
         return;
 
 #ifndef DISABLE_GUI

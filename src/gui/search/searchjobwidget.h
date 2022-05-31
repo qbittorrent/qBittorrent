@@ -31,6 +31,8 @@
 
 #include <QWidget>
 
+#include "base/settingvalue.h"
+
 #define ENGINE_URL_COLUMN 4
 #define URL_COLUMN 5
 
@@ -127,7 +129,6 @@ private:
     void copyField(int column) const;
 
     static QString statusText(Status st);
-    static SettingValue<NameFilteringMode> &nameFilteringModeSetting();
 
     Ui::SearchJobWidget *m_ui;
     SearchHandler *m_searchHandler;
@@ -136,6 +137,8 @@ private:
     LineEdit *m_lineEditSearchResultsFilter;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;
+
+    SettingValue<NameFilteringMode> m_nameFilteringMode;
 };
 
 Q_DECLARE_METATYPE(SearchJobWidget::NameFilteringMode)

@@ -201,7 +201,13 @@ void UIThemeManager::applyStyleSheet() const
 
 QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
 {
+    // Cache to avoid rescaling svg icons
+    const auto iter = m_iconCache.find(iconId);
+    if (iter != m_iconCache.end())
+        return *iter;
+
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    // Don't cache system icons because users might change them at run time
     if (m_useSystemTheme)
     {
         QIcon icon = QIcon::fromTheme(iconId);
@@ -210,12 +216,6 @@ QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) co
         return icon;
     }
 #endif
-
-    // Cache to avoid rescaling svg icons
-    // And don't cache system icons because users might change them at run time
-    const auto iter = m_iconCache.find(iconId);
-    if (iter != m_iconCache.end())
-        return *iter;
 
     const QIcon icon {getIconPathFromResources(iconId, fallback).data()};
     m_iconCache[iconId] = icon;

@@ -69,14 +69,20 @@ namespace
     class UnifiedFileIconProvider : public QFileIconProvider
     {
     public:
+        UnifiedFileIconProvider()
+            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"text-plain"_qs)}
+        {
+        }
+
         using QFileIconProvider::icon;
 
-        QIcon icon(const QFileInfo &info) const override
+        QIcon icon(const QFileInfo &) const override
         {
-            Q_UNUSED(info);
-            static QIcon cached = UIThemeManager::instance()->getIcon(u"text-plain"_qs);
-            return cached;
+            return m_textPlainIcon;
         }
+
+    private:
+        QIcon m_textPlainIcon;
     };
 
 #ifdef QBT_PIXMAP_CACHE_FOR_FILE_ICONS
@@ -91,7 +97,8 @@ namespace
             if (!ext.isEmpty())
             {
                 QPixmap cached;
-                if (QPixmapCache::find(ext, &cached)) return {cached};
+                if (QPixmapCache::find(ext, &cached))
+                    return {cached};
 
                 const QPixmap pixmap = pixmapForExtension(ext);
                 if (!pixmap.isNull())
@@ -115,16 +122,17 @@ namespace
         QPixmap pixmapForExtension(const QString &ext) const override
         {
             const std::wstring extWStr = QString(u'.' + ext).toStdWString();
-            SHFILEINFO sfi {};
-            HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
-                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), SHGFI_ICON | SHGFI_USEFILEATTRIBUTES);
+
+            SHFILEINFOW sfi {};
+            const HRESULT hr = ::SHGetFileInfoW(extWStr.c_str(),
+                FILE_ATTRIBUTE_NORMAL, &sfi, sizeof(sfi), (SHGFI_ICON | SHGFI_USEFILEATTRIBUTES));
             if (FAILED(hr))
                 return {};
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-            auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
+            const auto iconPixmap = QPixmap::fromImage(QImage::fromHICON(sfi.hIcon));
 #else
-            QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
+            const QPixmap iconPixmap = QtWin::fromHICON(sfi.hIcon);
 #endif
             ::DestroyIcon(sfi.hIcon);
             return iconPixmap;
@@ -158,30 +166,24 @@ namespace
         return (!testIcon1.isNull() || !testIcon2.isNull());
     }
 
-    class MimeFileIconProvider : public UnifiedFileIconProvider
+    class MimeFileIconProvider final : public UnifiedFileIconProvider
     {
         using QFileIconProvider::icon;
 
         QIcon icon(const QFileInfo &info) const override
         {
-            const QMimeType mimeType = m_db.mimeTypeForFile(info, QMimeDatabase::MatchExtension);
-            QIcon res = QIcon::fromTheme(mimeType.iconName());
-            if (!res.isNull())
-            {
-                return res;
-            }
+            const QMimeType mimeType = QMimeDatabase().mimeTypeForFile(info, QMimeDatabase::MatchExtension);
 
-            res = QIcon::fromTheme(mimeType.genericIconName());
-            if (!res.isNull())
-            {
-                return res;
-            }
+            const auto mimeIcon = QIcon::fromTheme(mimeType.iconName());
+            if (!mimeIcon.isNull())
+                return mimeIcon;
+
+            const auto genericIcon = QIcon::fromTheme(mimeType.genericIconName());
+            if (!genericIcon.isNull())
+                return genericIcon;
 
             return UnifiedFileIconProvider::icon(info);
         }
-
-    private:
-        QMimeDatabase m_db;
     };
 #endif // Q_OS_WIN
 }
@@ -189,15 +191,14 @@ namespace
 TorrentContentModel::TorrentContentModel(QObject *parent)
     : QAbstractItemModel(parent)
     , m_rootItem(new TorrentContentModelFolder(QVector<QString>({ tr("Name"), tr("Total Size"), tr("Progress"), tr("Download Priority"), tr("Remaining"), tr("Availability") })))
-{
 #if defined(Q_OS_WIN)
-    m_fileIconProvider = new WinShellFileIconProvider();
+    , m_fileIconProvider {new WinShellFileIconProvider}
 #elif defined(Q_OS_MACOS)
-    m_fileIconProvider = new MacFileIconProvider();
+    , m_fileIconProvider {new MacFileIconProvider}
 #else
-    static bool doesBuiltInProviderWork = doesQFileIconProviderWork();
-    m_fileIconProvider = doesBuiltInProviderWork ? new QFileIconProvider() : new MimeFileIconProvider();
+    , m_fileIconProvider {doesQFileIconProviderWork() ? new QFileIconProvider : new MimeFileIconProvider}
 #endif
+{
 }
 
 TorrentContentModel::~TorrentContentModel()

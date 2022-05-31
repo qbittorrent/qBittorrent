@@ -31,6 +31,7 @@
 #pragma once
 
 #include <QtGlobal>
+#include <QAtomicInt>
 #include <QCoreApplication>
 #include <QPointer>
 #include <QStringList>
@@ -145,6 +146,7 @@ private:
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
     bool m_running = false;
+    QAtomicInt m_isCleanupRun;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
 

@@ -635,7 +635,7 @@ Path Session::downloadPath() const
 
 bool Session::isValidCategoryName(const QString &name)
 {
-    static const QRegularExpression re(uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs);
+    const QRegularExpression re(uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs);
     if (!name.isEmpty() && (name.indexOf(re) != 0))
     {
         qDebug() << "Incorrect category name:" << name;

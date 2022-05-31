@@ -33,8 +33,6 @@
 
 #include "base/path.h"
 
-template <typename T> class SettingValue;
-
 /// Utility class to defer file deletion
 class FileGuard
 {
@@ -47,7 +45,7 @@ public:
 
 private:
     Path m_path;
-    bool m_remove;
+    bool m_remove = false;
 };
 
 /// Reads settings for .torrent files from preferences
@@ -64,7 +62,7 @@ public:
     void markAsAddedToSession();
     using FileGuard::setAutoRemove;
 
-    enum AutoDeleteMode: int     // do not change these names: they are stored in config file
+    enum AutoDeleteMode : int     // do not change these names: they are stored in config file
     {
         Never,
         IfAdded,
@@ -77,9 +75,8 @@ public:
 
 private:
     TorrentFileGuard(const Path &path, AutoDeleteMode mode);
-    static SettingValue<AutoDeleteMode> &autoDeleteModeSetting();
 
     Q_ENUM(AutoDeleteMode)
     AutoDeleteMode m_mode;
-    bool m_wasAdded;
+    bool m_wasAdded = false;
 };

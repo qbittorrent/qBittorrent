@@ -68,7 +68,7 @@ QString Item::name() const
 
 bool Item::isValidPath(const QString &path)
 {
-    static const QRegularExpression re(
+    const QRegularExpression re(
                 uR"(\A[^\%1]+(\%1[^\%1]+)*\z)"_qs.arg(Item::PathSeparator)
                 , QRegularExpression::DontCaptureOption);
 

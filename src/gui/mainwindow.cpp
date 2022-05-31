@@ -121,6 +121,21 @@ namespace
             || (!str.startsWith(u"file:", Qt::CaseInsensitive)
                 && Net::DownloadManager::hasSupportedScheme(str));
     }
+
+#ifdef Q_OS_MACOS
+    MainWindow *dockMainWindowHandle = nullptr;
+
+    bool dockClickHandler(id self, SEL cmd, ...)
+    {
+        Q_UNUSED(self)
+        Q_UNUSED(cmd)
+
+        if (dockMainWindowHandle && !dockMainWindowHandle->isVisible())
+            dockMainWindowHandle->activate();
+
+        return true;
+    }
+#endif
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -1388,28 +1403,11 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 }
 
 #ifdef Q_OS_MACOS
-
-static MainWindow *dockMainWindowHandle;
-
-static bool dockClickHandler(id self, SEL cmd, ...)
-{
-    Q_UNUSED(self)
-    Q_UNUSED(cmd)
-
-    if (dockMainWindowHandle && !dockMainWindowHandle->isVisible())
-    {
-        dockMainWindowHandle->activate();
-    }
-
-    return true;
-}
-
 void MainWindow::setupDockClickHandler()
 {
     dockMainWindowHandle = this;
     MacUtils::overrideDockClickHandler(dockClickHandler);
 }
-
 #endif // Q_OS_MACOS
 
 /*****************************************************
