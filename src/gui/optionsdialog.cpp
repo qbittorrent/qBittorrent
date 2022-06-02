@@ -572,10 +572,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
 
-    resize(m_storeDialogSize);
-
-    // Have to be called after show(), because splitter width needed
-    loadSplitterState();
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 void OptionsDialog::initializeLanguageCombo()
@@ -644,6 +642,13 @@ void OptionsDialog::loadSplitterState()
         splitterSizes.append(string.toInt());
 
     m_ui->hsplitter->setSizes(splitterSizes);
+}
+
+void OptionsDialog::showEvent(QShowEvent *e)
+{
+    QDialog::showEvent(e);
+
+    loadSplitterState();
 }
 
 void OptionsDialog::saveOptions()

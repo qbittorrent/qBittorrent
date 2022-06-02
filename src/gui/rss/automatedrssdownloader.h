@@ -36,6 +36,7 @@
 #include <QSet>
 
 #include "base/rss/rss_autodownloadrule.h"
+#include "base/settingvalue.h"
 
 class QListWidgetItem;
 class QRegularExpression;
@@ -106,4 +107,7 @@ private:
     RSS::AutoDownloadRule m_currentRule;
     QHash<QString, QListWidgetItem *> m_itemsByRuleName;
     QRegularExpression *m_episodeRegex;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QByteArray> m_storeHSplitterSize;
 };

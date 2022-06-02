@@ -110,5 +110,6 @@ void TrackerEntriesDialog::saveSettings()
 
 void TrackerEntriesDialog::loadSettings()
 {
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }

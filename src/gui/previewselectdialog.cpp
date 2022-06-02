@@ -173,13 +173,12 @@ void PreviewSelectDialog::saveWindowState()
 void PreviewSelectDialog::loadWindowState()
 {
     // Restore dialog size
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 
     // Restore TreeView Header state
-    if (!m_storeTreeHeaderState.get().isEmpty())
-    {
-        m_headerStateInitialized = m_ui->previewList->header()->restoreState(m_storeTreeHeaderState);
-    }
+    if (const QByteArray treeHeaderState = m_storeTreeHeaderState; !treeHeaderState.isEmpty())
+        m_headerStateInitialized = m_ui->previewList->header()->restoreState(treeHeaderState);
 }
 
 void PreviewSelectDialog::showEvent(QShowEvent *event)

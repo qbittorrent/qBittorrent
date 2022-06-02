@@ -115,6 +115,8 @@ private slots:
     void webUIHttpsKeyChanged(const Path &path, ShowError showError);
 
 private:
+    void showEvent(QShowEvent *e) override;
+
     // Methods
     void saveOptions();
     void loadOptions();

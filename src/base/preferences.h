@@ -38,7 +38,6 @@
 
 class QDateTime;
 class QNetworkCookie;
-class QSize;
 class QTime;
 
 namespace Scheduler
@@ -353,10 +352,6 @@ public:
     void setPropVisible(bool visible);
     QByteArray getPropTrackerListState() const;
     void setPropTrackerListState(const QByteArray &state);
-    QSize getRssGeometrySize() const;
-    void setRssGeometrySize(const QSize &geometry);
-    QByteArray getRssHSplitterSizes() const;
-    void setRssHSplitterSizes(const QByteArray &sizes);
     QStringList getRssOpenFolders() const;
     void setRssOpenFolders(const QStringList &folders);
     QByteArray getRssSideSplitterState() const;

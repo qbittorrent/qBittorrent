@@ -29,6 +29,7 @@
 
 #include "automatedrssdownloader.h"
 
+#include <QtGlobal>
 #include <QCursor>
 #include <QFileDialog>
 #include <QMenu>
@@ -41,7 +42,6 @@
 #include "base/bittorrent/session.h"
 #include "base/global.h"
 #include "base/path.h"
-#include "base/preferences.h"
 #include "base/rss/rss_article.h"
 #include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_feed.h"
@@ -65,6 +65,13 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_formatFilterLegacy(u"%1 (*%2)"_qs.arg(tr("Rules (legacy)"), EXT_LEGACY))
     , m_ui(new Ui::AutomatedRssDownloader)
     , m_currentRuleItem(nullptr)
+    , m_storeDialogSize {u"RssFeedDownloader/geometrySize"_qs}
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    , m_storeHSplitterSize {u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_qs}
+#else
+    , m_storeHSplitterSize {u"RssFeedDownloader/qt5/hsplitterSizes"_qs}
+#endif
+
 {
     m_ui->setupUi(this);
     // Icons
@@ -160,16 +167,17 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 
 void AutomatedRssDownloader::loadSettings()
 {
-    const auto *pref = Preferences::instance();
-    resize(pref->getRssGeometrySize());
-    m_ui->hsplitter->restoreState(pref->getRssHSplitterSizes());
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
+
+    if (const QByteArray hSplitterSize = m_storeHSplitterSize; !hSplitterSize.isEmpty())
+        m_ui->hsplitter->restoreState(hSplitterSize);
 }
 
 void AutomatedRssDownloader::saveSettings()
 {
-    Preferences *const pref = Preferences::instance();
-    pref->setRssGeometrySize(size());
-    pref->setRssHSplitterSizes(m_ui->hsplitter->saveState());
+    m_storeDialogSize = size();
+    m_storeHSplitterSize = m_ui->hsplitter->saveState();
 }
 
 void AutomatedRssDownloader::createRuleItem(const RSS::AutoDownloadRule &rule)

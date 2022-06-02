@@ -336,7 +336,9 @@ void AddNewTorrentDialog::setSavePathHistoryLength(const int value)
 
 void AddNewTorrentDialog::loadState()
 {
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
+
     m_ui->splitter->restoreState(m_storeSplitterState);;
 }
 

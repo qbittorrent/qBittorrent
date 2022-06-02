@@ -92,7 +92,8 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->textUrls->setText(text);
     m_ui->textUrls->moveCursor(QTextCursor::End);
 
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 DownloadFromURLDialog::~DownloadFromURLDialog()

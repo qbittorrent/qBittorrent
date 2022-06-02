@@ -56,7 +56,8 @@ BanListOptionsDialog::BanListOptionsDialog(QWidget *parent)
     m_ui->bannedIPList->sortByColumn(0, Qt::AscendingOrder);
     m_ui->buttonBanIP->setEnabled(false);
 
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 BanListOptionsDialog::~BanListOptionsDialog()

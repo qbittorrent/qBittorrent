@@ -40,7 +40,8 @@ PluginSourceDialog::PluginSourceDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
 
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 PluginSourceDialog::~PluginSourceDialog()
