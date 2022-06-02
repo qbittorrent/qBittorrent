@@ -48,7 +48,7 @@ StatsDialog::StatsDialog(QWidget *parent)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
+
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &StatsDialog::close);
 
     update();
@@ -61,7 +61,6 @@ StatsDialog::StatsDialog(QWidget *parent)
 #endif
 
     resize(m_storeDialogSize);
-    show();
 }
 
 StatsDialog::~StatsDialog()

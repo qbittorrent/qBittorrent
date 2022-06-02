@@ -47,7 +47,6 @@ AboutDialog::AboutDialog(QWidget *parent)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     // Title
     m_ui->labelName->setText(QStringLiteral("<b><h2>qBittorrent " QBT_VERSION " (%1-bit)</h2></b>").arg(QT_POINTER_SIZE * 8));
@@ -114,7 +113,6 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelDBIP->setText(DBIPText);
 
     resize(m_storeDialogSize);
-    show();
 }
 
 AboutDialog::~AboutDialog()

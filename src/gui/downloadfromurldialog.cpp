@@ -64,8 +64,6 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setModal(true);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Download"));
     connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &DownloadFromURLDialog::downloadButtonClicked);
@@ -95,7 +93,6 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->textUrls->moveCursor(QTextCursor::End);
 
     resize(m_storeDialogSize);
-    show();
 }
 
 DownloadFromURLDialog::~DownloadFromURLDialog()

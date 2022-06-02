@@ -32,7 +32,6 @@
 #include <limits>
 
 #include <QApplication>
-#include <QCloseEvent>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QDialogButtonBox>
@@ -185,8 +184,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setModal(true);
 
 #if (defined(Q_OS_UNIX))
     setWindowTitle(tr("Preferences"));
@@ -576,7 +573,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
 
     resize(m_storeDialogSize);
-    show();
+
     // Have to be called after show(), because splitter width needed
     loadSplitterState();
 }
@@ -1477,15 +1474,8 @@ void OptionsDialog::applySettings()
     saveOptions();
 }
 
-void OptionsDialog::closeEvent(QCloseEvent *e)
-{
-    setAttribute(Qt::WA_DeleteOnClose);
-    e->accept();
-}
-
 void OptionsDialog::on_buttonBox_rejected()
 {
-    setAttribute(Qt::WA_DeleteOnClose);
     reject();
 }
 
@@ -1667,7 +1657,6 @@ void OptionsDialog::on_addWatchedFolderButton_clicked()
         return;
 
     auto dialog = new WatchedFolderOptionsDialog({}, this);
-    dialog->setModal(true);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, dir, pref]()
     {
@@ -1723,7 +1712,6 @@ void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
 
     auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     auto dialog = new WatchedFolderOptionsDialog(watchedFoldersModel->folderOptions(index.row()), this);
-    dialog->setModal(true);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, index, watchedFoldersModel]()
     {
