@@ -5137,7 +5137,15 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
 
 void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
 {
-    const qreal interval = lt::total_milliseconds(p->timestamp() - m_statsLastTimestamp) / 1000.;
+    if (m_refreshEnqueued)
+        m_refreshEnqueued = false;
+    else
+        enqueueRefresh();
+
+    const int64_t interval = lt::total_microseconds(p->timestamp() - m_statsLastTimestamp);
+    if (interval <= 0)
+        return;
+
     m_statsLastTimestamp = p->timestamp();
 
     const auto stats = p->counters();
@@ -5158,7 +5166,9 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     const auto calcRate = [interval](const qint64 previous, const qint64 current) -> qint64
     {
         Q_ASSERT(current >= previous);
-        return ((current - previous) / interval);
+        Q_ASSERT(interval >= 0);
+        using namespace std::chrono_literals;
+        return (((current - previous) * lt::microseconds(1s).count()) / interval);
     };
 
     m_status.payloadDownloadRate = calcRate(m_status.totalPayloadDownload, totalPayloadDownload);
@@ -5204,11 +5214,6 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
                                    ? (stats[m_metricIndices.disk.diskJobTime] / totalJobs) : 0;
 
     emit statsUpdated();
-
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
 }
 
 void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
