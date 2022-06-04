@@ -452,6 +452,7 @@
      <item>
       <widget class="QProgressBar" name="progressBar">
        <property name="value">
+        <enum>Qt::LeftToRight</enum>
         <number>0</number>
        </property>
       </widget>
