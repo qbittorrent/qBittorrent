@@ -163,16 +163,26 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     }
 
     // Connect to SMTP server
+    QStringList smtpServer;
+    quint16 smtpPort;
+    bool customPort;
+
+    smtpServer = pref->getMailNotificationSMTP().split(u":"_qs);
+    smtpPort = smtpServer.value(1).toUShort(&customPort);
 #ifndef QT_NO_OPENSSL
     if (pref->getMailNotificationSMTPSSL())
     {
-        m_socket->connectToHostEncrypted(pref->getMailNotificationSMTP(), DEFAULT_PORT_SSL);
+        if(customPort == false)
+            smtpPort = DEFAULT_PORT_SSL;
+        m_socket->connectToHostEncrypted(smtpServer.at(0), smtpPort);
         m_useSsl = true;
     }
     else
     {
 #endif
-    m_socket->connectToHost(pref->getMailNotificationSMTP(), DEFAULT_PORT);
+    if(customPort == false)
+        smtpPort = DEFAULT_PORT;
+    m_socket->connectToHost(smtpServer.at(0), smtpPort);
     m_useSsl = false;
 #ifndef QT_NO_OPENSSL
     }
