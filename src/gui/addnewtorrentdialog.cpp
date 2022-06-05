@@ -185,7 +185,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
@@ -345,7 +344,9 @@ void AddNewTorrentDialog::setSavePathHistoryLength(const int value)
 
 void AddNewTorrentDialog::loadState()
 {
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
+
     m_ui->splitter->restoreState(m_storeSplitterState);;
 }
 
@@ -360,6 +361,7 @@ void AddNewTorrentDialog::saveState()
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
     auto *dlg = new AddNewTorrentDialog(inParams, parent);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {

@@ -66,7 +66,6 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     , m_pluginManager(pluginManager)
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->pluginsTree->setRootIsDecorated(false);
     m_ui->pluginsTree->hideColumn(PLUGIN_ID);
@@ -88,8 +87,8 @@ PluginSelectDialog::PluginSelectDialog(SearchPluginManager *pluginManager, QWidg
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFinished, this, &PluginSelectDialog::checkForUpdatesFinished);
     connect(m_pluginManager, &SearchPluginManager::checkForUpdatesFailed, this, &PluginSelectDialog::checkForUpdatesFailed);
 
-    resize(m_storeDialogSize);
-    show();
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 PluginSelectDialog::~PluginSelectDialog()
@@ -346,8 +345,10 @@ void PluginSelectDialog::finishPluginUpdate()
 void PluginSelectDialog::on_installButton_clicked()
 {
     auto *dlg = new PluginSourceDialog(this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
     connect(dlg, &PluginSourceDialog::askForLocalFile, this, &PluginSelectDialog::askForLocalPlugin);
     connect(dlg, &PluginSourceDialog::askForUrl, this, &PluginSelectDialog::askForPluginUrl);
+    dlg->show();
 }
 
 void PluginSelectDialog::askForPluginUrl()

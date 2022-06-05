@@ -286,7 +286,9 @@ void SearchWidget::toggleFocusBetweenLineEdits()
 
 void SearchWidget::on_pluginsButton_clicked()
 {
-    new PluginSelectDialog(SearchPluginManager::instance(), this);
+    auto *dlg = new PluginSelectDialog(SearchPluginManager::instance(), this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    dlg->show();
 }
 
 void SearchWidget::searchTextEdited(const QString &)

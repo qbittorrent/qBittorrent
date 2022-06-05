@@ -1124,17 +1124,29 @@ void MainWindow::on_actionAbout_triggered()
 {
     // About dialog
     if (m_aboutDlg)
+    {
         m_aboutDlg->activateWindow();
+    }
     else
+    {
         m_aboutDlg = new AboutDialog(this);
+        m_aboutDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_aboutDlg->show();
+    }
 }
 
 void MainWindow::on_actionStatistics_triggered()
 {
     if (m_statsDlg)
+    {
         m_statsDlg->activateWindow();
+    }
     else
+    {
         m_statsDlg = new StatsDialog(this);
+        m_statsDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_statsDlg->show();
+    }
 }
 
 void MainWindow::showEvent(QShowEvent *e)
@@ -1279,6 +1291,8 @@ void MainWindow::createTorrentTriggered(const Path &path)
     else
     {
         m_createTorrentDlg = new TorrentCreatorDialog(this, path);
+        m_createTorrentDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_createTorrentDlg->show();
     }
 }
 
@@ -1814,9 +1828,15 @@ PropertiesWidget *MainWindow::propertiesWidget() const
 void MainWindow::on_actionOptions_triggered()
 {
     if (m_options)
+    {
         m_options->activateWindow();
+    }
     else
+    {
         m_options = new OptionsDialog(this);
+        m_options->setAttribute(Qt::WA_DeleteOnClose);
+        m_options->open();
+    }
 }
 
 void MainWindow::on_actionTopToolBar_triggered()
@@ -1923,7 +1943,9 @@ void MainWindow::on_actionDownloadFromURL_triggered()
     if (!m_downloadFromURLDialog)
     {
         m_downloadFromURLDialog = new DownloadFromURLDialog(this);
+        m_downloadFromURLDialog->setAttribute(Qt::WA_DeleteOnClose);
         connect(m_downloadFromURLDialog.data(), &DownloadFromURLDialog::urlsReadyToBeDownloaded, this, &MainWindow::downloadFromURLList);
+        m_downloadFromURLDialog->open();
     }
 }
 

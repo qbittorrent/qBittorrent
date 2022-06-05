@@ -33,7 +33,6 @@
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
 
-class QCloseEvent;
 class QListWidgetItem;
 
 class AdvancedSettings;
@@ -94,7 +93,6 @@ public slots:
 private slots:
     void enableProxy(int index);
     void on_buttonBox_accepted();
-    void closeEvent(QCloseEvent *e) override;
     void on_buttonBox_rejected();
     void applySettings();
     void enableApplyButton();
@@ -117,6 +115,8 @@ private slots:
     void webUIHttpsKeyChanged(const Path &path, ShowError showError);
 
 private:
+    void showEvent(QShowEvent *e) override;
+
     // Methods
     void saveOptions();
     void loadOptions();

@@ -67,8 +67,6 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
     , m_storeSource(SETTINGS_KEY(u"Source"_qs))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setModal(false);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Create Torrent"));
 
@@ -89,8 +87,6 @@ TorrentCreatorDialog::TorrentCreatorDialog(QWidget *parent, const Path &defaultP
 #else
     m_ui->widgetTorrentFormat->hide();
 #endif
-
-    show();
 }
 
 TorrentCreatorDialog::~TorrentCreatorDialog()
@@ -344,5 +340,6 @@ void TorrentCreatorDialog::loadSettings()
     m_ui->txtComment->setPlainText(m_storeComments);
     m_ui->lineEditSource->setText(m_storeSource);
 
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }

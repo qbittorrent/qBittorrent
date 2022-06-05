@@ -108,7 +108,8 @@ SpeedLimitDialog::SpeedLimitDialog(QWidget *parent)
     connect(m_ui->spinAltDownloadLimit, qOverload<int>(&QSpinBox::valueChanged)
             , this, [this](const int value) { updateSliderValue(m_ui->sliderAltDownloadLimit, value); });
 
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 SpeedLimitDialog::~SpeedLimitDialog()
