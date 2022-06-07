@@ -28,13 +28,12 @@
 
 #pragma once
 
-#include <QSize>
-
 #include "base/pathfwd.h"
 
 class QIcon;
 class QPixmap;
 class QPoint;
+class QSize;
 class QWidget;
 
 namespace Utils::Gui
