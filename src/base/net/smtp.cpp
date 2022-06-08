@@ -47,6 +47,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/preferences.h"
+#include "base/utils/string.h"
 
 namespace
 {
@@ -163,24 +164,20 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
     }
 
     // Connect to SMTP server
-    bool customPort = false;
-    const QStringList smtpServer = pref->getMailNotificationSMTP().split(u":"_qs);;
-    quint16 smtpPort = smtpServer.value(1).toUShort(&customPort);
+    const QStringList serverEndpoint = pref->getMailNotificationSMTP().split(u':');
+    const QString serverAddress = serverEndpoint[0];
+    const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
 #ifndef QT_NO_OPENSSL
     if (pref->getMailNotificationSMTPSSL())
     {
-        if (customPort == false)
-            smtpPort = DEFAULT_PORT_SSL;
-        m_socket->connectToHostEncrypted(smtpServer.at(0), smtpPort);
+        m_socket->connectToHostEncrypted(serverAddress, serverPort.value_or(DEFAULT_PORT_SSL));
         m_useSsl = true;
     }
     else
     {
 #endif
-    if (customPort == false)
-        smtpPort = DEFAULT_PORT;
-    m_socket->connectToHost(smtpServer.at(0), smtpPort);
+    m_socket->connectToHost(serverAddress, serverPort.value_or(DEFAULT_PORT));
     m_useSsl = false;
 #ifndef QT_NO_OPENSSL
     }
