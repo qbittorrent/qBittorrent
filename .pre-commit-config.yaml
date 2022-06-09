@@ -13,7 +13,7 @@ repos:
           - ts
 
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v4.2.0
+    rev: v4.3.0
     hooks:
     - id: check-json
       name: Check JSON files
