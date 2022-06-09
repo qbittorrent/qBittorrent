@@ -42,6 +42,7 @@
 #include <QProcess>
 #include <QRegularExpression>
 #include <QScreen>
+#include <QSize>
 #include <QStyle>
 #include <QThread>
 #include <QUrl>

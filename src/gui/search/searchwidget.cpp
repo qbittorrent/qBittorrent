@@ -46,7 +46,6 @@
 #include <QObject>
 #include <QRegularExpression>
 #include <QShortcut>
-#include <QTextStream>
 #include <QVector>
 
 #include "base/global.h"
@@ -93,22 +92,20 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     m_ui->setupUi(this);
     m_ui->tabWidget->tabBar()->installEventFilter(this);
 
-    QString searchPatternHint;
-    QTextStream stream(&searchPatternHint, QIODevice::WriteOnly);
-    stream << "<html><head/><body><p>"
-           << tr("A phrase to search for.") << "<br>"
-           << tr("Spaces in a search term may be protected by double quotes.")
-           << "</p><p>"
-           << tr("Example:", "Search phrase example")
-           << "<br>"
-           << tr("<b>foo bar</b>: search for <b>foo</b> and <b>bar</b>",
+    const QString searchPatternHint = u"<html><head/><body><p>"
+        + tr("A phrase to search for.") + u"<br>"
+        + tr("Spaces in a search term may be protected by double quotes.")
+        + u"</p><p>"
+        + tr("Example:", "Search phrase example")
+        + u"<br>"
+        + tr("<b>foo bar</b>: search for <b>foo</b> and <b>bar</b>",
                  "Search phrase example, illustrates quotes usage, a pair of "
                  "space delimited words, individal words are highlighted")
-           << "<br>"
-           << tr("<b>&quot;foo bar&quot;</b>: search for <b>foo bar</b>",
+        + u"<br>"
+        + tr("<b>&quot;foo bar&quot;</b>: search for <b>foo bar</b>",
                  "Search phrase example, illustrates quotes usage, double quoted"
                  "pair of space delimited words, the whole pair is highlighted")
-           << "</p></body></html>";
+        + u"</p></body></html>";
     m_ui->lineEditSearchPattern->setToolTip(searchPatternHint);
 
 #ifndef Q_OS_MACOS

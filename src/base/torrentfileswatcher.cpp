@@ -41,7 +41,6 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QSet>
-#include <QTextStream>
 #include <QThread>
 #include <QTimer>
 #include <QVariant>
@@ -522,9 +521,11 @@ void TorrentFilesWatcher::Worker::processFolder(const Path &path, const Path &wa
             QFile file {filePath.data()};
             if (file.open(QIODevice::ReadOnly | QIODevice::Text))
             {
-                QTextStream str {&file};
-                while (!str.atEnd())
-                    emit magnetFound(BitTorrent::MagnetUri(str.readLine()), addTorrentParams);
+                while (!file.atEnd())
+                {
+                    const auto line = QString::fromLatin1(file.readLine()).trimmed();
+                    emit magnetFound(BitTorrent::MagnetUri(line), addTorrentParams);
+                }
 
                 file.close();
                 Utils::Fs::removeFile(filePath);
