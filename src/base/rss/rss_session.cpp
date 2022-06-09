@@ -122,11 +122,13 @@ Session::~Session()
 {
     qDebug() << "Deleting RSS Session...";
 
-    m_workingThread->quit();
-    m_workingThread->wait();
-
     //store();
     delete m_itemsByPath[u""_qs]; // deleting root folder
+
+    // some items may add I/O operation at destruction
+    // stop working thread after deleting root folder
+    m_workingThread->quit();
+    m_workingThread->wait();
 
     qDebug() << "RSS Session deleted.";
 }
