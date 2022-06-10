@@ -131,6 +131,12 @@
     </fieldset>
 
     <fieldset class="settings">
+        <legend>QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <label for="excludedFileNamesTextarea">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+        <textarea id="excludedFileNamesTextarea" rows="6" cols="70"></textarea>
+    </fieldset>
+
+    <fieldset class="settings">
         <legend>
             <input type="checkbox" id="mail_notification_checkbox" onclick="qBittorrent.Preferences.updateMailNotification();" />
             <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
@@ -1733,6 +1739,7 @@
                             addWatchFolder(folder, sel, other);
                         }
                         addWatchFolder();
+                        $('excludedFileNamesTextarea').setProperty('value', pref.excluded_file_names);
 
                         // Email notification upon download completion
                         $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
@@ -2053,6 +2060,7 @@
 
             // Automatically add torrents from
             settings.set('scan_dirs', getWatchedFolders());
+            settings.set('excluded_file_names', $('excludedFileNamesTextarea').getProperty('value'));
 
             // Email notification upon download completion
             settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));

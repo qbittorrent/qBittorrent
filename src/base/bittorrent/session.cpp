@@ -414,6 +414,7 @@ Session::Session(QObject *parent)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_qs), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_qs), 300)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_qs), 500)
+    , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_qs))
     , m_bannedIPs(u"State/BannedIPs"_qs
                   , QStringList()
                   , [](const QStringList &value)
@@ -466,6 +467,7 @@ Session::Session(QObject *parent)
     enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
+    populateExcludedFileNamesRegExpList();
 
     enableTracker(isTrackerEnabled());
 
@@ -2244,19 +2246,30 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         }
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
-        if (!filePaths.isEmpty())
-        {
-            for (int index = 0; index < filePaths.size(); ++index)
-                p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
-        }
+        for (int index = 0; index < filePaths.size(); ++index)
+            p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
 
         Q_ASSERT(p.file_priorities.empty());
+        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
+
         const int internalFilesCount = torrentInfo.nativeInfo()->files().num_files(); // including .pad files
         // Use qBittorrent default priority rather than libtorrent's (4)
         p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
-        Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
-        for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
-            p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
+
+        if (addTorrentParams.filePriorities.size() == 0)
+        {
+            // Check file name blacklist when priorities are not explicitly set
+            for (int i = 0; i < filePaths.size(); ++i)
+            {
+                if (isFilenameExcluded(filePaths.at(i).filename()))
+                    p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = lt::dont_download;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < addTorrentParams.filePriorities.size(); ++i)
+                p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = LT::toNative(addTorrentParams.filePriorities[i]);
+        }
 
         p.ti = torrentInfo.nativeInfo();
     }
@@ -3076,6 +3089,43 @@ void Session::setIPFilterFile(const Path &path)
         m_IPFilteringConfigured = false;
         configureDeferred();
     }
+}
+
+QStringList Session::excludedFileNames() const
+{
+    return m_excludedFileNames;
+}
+
+void Session::setExcludedFileNames(const QStringList &excludedFileNames)
+{
+    if (excludedFileNames != m_excludedFileNames)
+    {
+        m_excludedFileNames = excludedFileNames;
+        populateExcludedFileNamesRegExpList();
+    }
+}
+
+void Session::populateExcludedFileNamesRegExpList()
+{
+    const QStringList excludedNames = excludedFileNames();
+
+    m_excludedFileNamesRegExpList.clear();
+    m_excludedFileNamesRegExpList.reserve(excludedNames.size());
+
+    for (const QString &str : excludedNames)
+    {
+        const QString pattern = QRegularExpression::anchoredPattern(QRegularExpression::wildcardToRegularExpression(str));
+        const QRegularExpression re {pattern, QRegularExpression::CaseInsensitiveOption};
+        m_excludedFileNamesRegExpList.append(re);
+    }
+}
+
+bool Session::isFilenameExcluded(const QString &fileName) const
+{
+    return std::any_of(m_excludedFileNamesRegExpList.begin(), m_excludedFileNamesRegExpList.end(), [&fileName](const QRegularExpression &re)
+    {
+        return re.match(fileName).hasMatch();
+    });
 }
 
 void Session::setBannedIPs(const QStringList &newList)

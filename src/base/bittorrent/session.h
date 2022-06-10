@@ -455,6 +455,9 @@ namespace BitTorrent
         void setBlockPeersOnPrivilegedPorts(bool enabled);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
+        QStringList excludedFileNames() const;
+        void setExcludedFileNames(const QStringList &newList);
+        bool isFilenameExcluded(const QString &fileName) const;
         QStringList bannedIPs() const;
         void setBannedIPs(const QStringList &newList);
         ResumeDataStorageType resumeDataStorageType() const;
@@ -624,6 +627,7 @@ namespace BitTorrent
         void applyOSMemoryPriority() const;
 #endif
         void processTrackerStatuses();
+        void populateExcludedFileNamesRegExpList();
 
         bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
@@ -778,6 +782,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
+        CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
 #if defined(Q_OS_WIN)
@@ -792,6 +797,7 @@ namespace BitTorrent
         int m_numResumeData = 0;
         int m_extraLimit = 0;
         QVector<TrackerEntry> m_additionalTrackerList;
+        QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;

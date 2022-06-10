@@ -975,6 +975,21 @@ void AddNewTorrentDialog::setupTreeview()
             currentIndex = m_contentModel->index(0, 0, currentIndex);
             m_ui->contentTreeView->setExpanded(currentIndex, true);
         }
+
+        // Check file name blacklist for torrents that are manually added
+        QVector<BitTorrent::DownloadPriority> priorities = m_contentModel->model()->getFilePriorities();
+        Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
+
+        for (int i = 0; i < priorities.size(); ++i)
+        {
+            if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
+                continue;
+
+            if (BitTorrent::Session::instance()->isFilenameExcluded(m_torrentInfo.filePath(i).filename()))
+                priorities[i] = BitTorrent::DownloadPriority::Ignored;
+        }
+
+        m_contentModel->model()->updateFilesPriorities(priorities);
     }
 
     updateDiskSpaceLabel();
