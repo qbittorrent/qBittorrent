@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-tw" viewBox="0 0 640 480">
-  <clipPath id="tw-a">
+  <clipPath id="a">
     <path d="M0 0h640v480H0z"/>
   </clipPath>
-  <g clip-path="url(#tw-a)">
+  <g clip-path="url(#a)">
     <path fill="red" d="M0 0h720v480H0z"/>
     <path fill="#000095" d="M0 0h360v240H0z"/>
     <g fill="#fff">
