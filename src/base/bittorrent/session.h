@@ -455,6 +455,8 @@ namespace BitTorrent
         void setBlockPeersOnPrivilegedPorts(bool enabled);
         bool isTrackerFilteringEnabled() const;
         void setTrackerFilteringEnabled(bool enabled);
+        bool isExcludedFileNamesEnabled() const;
+        void setExcludedFileNamesEnabled(const bool enabled);
         QStringList excludedFileNames() const;
         void setExcludedFileNames(const QStringList &newList);
         bool isFilenameExcluded(const QString &fileName) const;
@@ -782,6 +784,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_peerTurnoverCutoff;
         CachedSettingValue<int> m_peerTurnoverInterval;
         CachedSettingValue<int> m_requestQueueSize;
+        CachedSettingValue<bool> m_isExcludedFileNamesEnabled;
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;

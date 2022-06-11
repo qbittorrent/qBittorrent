@@ -141,6 +141,8 @@ void AppController::preferencesAction()
     data[u"scan_dirs"_qs] = nativeDirs;
     // === END DEPRECATED CODE === //
 
+    // Excluded file names
+    data[u"excluded_file_names_enabled"_qs] = session->isExcludedFileNamesEnabled();
     data[u"excluded_file_names"_qs] = session->excludedFileNames().join(u'\n');
 
     // Email notification upon download completion
@@ -478,6 +480,9 @@ void AppController::setPreferencesAction()
     }
     // === END DEPRECATED CODE === //
 
+    // Excluded file names
+    if (hasKey(u"excluded_file_names_enabled"_qs))
+        session->setExcludedFileNamesEnabled(it.value().toBool());
     if (hasKey(u"excluded_file_names"_qs))
         session->setExcludedFileNames(it.value().toString().split(u'\n'));
 
