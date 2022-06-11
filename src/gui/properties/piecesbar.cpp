@@ -282,7 +282,7 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
 
             for (int f : files)
             {
-                const QString filePath {torrentInfo.filePath(f)};
+                const QString filePath {m_torrent->filePath(f)};
                 renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(f)), filePath);
             }
             stream << "</body></html>";
