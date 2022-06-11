@@ -101,10 +101,11 @@
 #define nsel_CPP14_OR_GREATER  ( nsel_CPLUSPLUS >= 201402L )
 #define nsel_CPP17_OR_GREATER  ( nsel_CPLUSPLUS >= 201703L )
 #define nsel_CPP20_OR_GREATER  ( nsel_CPLUSPLUS >= 202000L )
+#define nsel_CPP23_OR_GREATER  ( nsel_CPLUSPLUS >= 202300L )
 
-// Use C++20 std::expected if available and requested:
+// Use C++23 std::expected if available and requested:
 
-#if nsel_CPP20_OR_GREATER && defined(__has_include )
+#if nsel_CPP23_OR_GREATER && defined(__has_include )
 # if __has_include( <expected> )
 #  define nsel_HAVE_STD_EXPECTED  1
 # else
@@ -1664,10 +1665,11 @@ public:
         return *this;
     }
 
-    template< typename G
+    template< typename G = E
         nsel_REQUIRES_T(
-            std::is_copy_constructible<E>::value    // TODO: std::is_nothrow_copy_constructible<E>
-            && std::is_copy_assignable<E>::value
+            std::is_constructible<E, G const&>::value &&
+            std::is_copy_constructible<G>::value    // TODO: std::is_nothrow_copy_constructible<G>
+            && std::is_copy_assignable<G>::value
         )
     >
     expected & operator=( nonstd::unexpected_type<G> const & error )
@@ -1676,10 +1678,11 @@ public:
         return *this;
     }
 
-    template< typename G
+    template< typename G = E
         nsel_REQUIRES_T(
-            std::is_move_constructible<E>::value    // TODO: std::is_nothrow_move_constructible<E>
-            && std::is_move_assignable<E>::value
+            std::is_constructible<E, G&&>::value &&
+            std::is_move_constructible<G>::value    // TODO: std::is_nothrow_move_constructible<G>
+            && std::is_move_assignable<G>::value
         )
     >
     expected & operator=( nonstd::unexpected_type<G> && error )
@@ -1767,12 +1770,12 @@ public:
 
     constexpr value_type const && operator *() const &&
     {
-        return assert( has_value() ), std::move( contained.value() );
+        return std::move( ( assert( has_value() ), contained.value() ) );
     }
 
     nsel_constexpr14 value_type && operator *() &&
     {
-        return assert( has_value() ), std::move( contained.value() );
+        return std::move( ( assert( has_value() ), contained.value() ) );
     }
 
 #endif
@@ -1833,12 +1836,12 @@ public:
 
     constexpr error_type const && error() const &&
     {
-        return assert( ! has_value() ), std::move( contained.error() );
+        return std::move( ( assert( ! has_value() ), contained.error() ) );
     }
 
     error_type && error() &&
     {
-        return assert( ! has_value() ), std::move( contained.error() );
+        return std::move( ( assert( ! has_value() ), contained.error() ) );
     }
 
 #endif
@@ -2105,12 +2108,12 @@ public:
 
     constexpr error_type const && error() const &&
     {
-        return assert( ! has_value() ), std::move( contained.error() );
+        return std::move( ( assert( ! has_value() ), contained.error() ) );
     }
 
     error_type && error() &&
     {
-        return assert( ! has_value() ), std::move( contained.error() );
+        return std::move( ( assert( ! has_value() ), contained.error() ) );
     }
 
 #endif
