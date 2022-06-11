@@ -265,30 +265,25 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
         {
             const PieceIndexToImagePos transform {torrentInfo, m_image};
             const int pieceIndex = transform.pieceIndex(imagePos);
-            const QVector<int> files {torrentInfo.fileIndicesForPiece(pieceIndex)};
+            const QVector<int> fileIndexes = torrentInfo.fileIndicesForPiece(pieceIndex);
 
             QString tooltipTitle;
-            if (files.count() > 1)
-            {
+            if (fileIndexes.count() > 1)
                 tooltipTitle = tr("Files in this piece:");
-            }
+            else if (torrentInfo.fileSize(fileIndexes.front()) == torrentInfo.pieceLength(pieceIndex))
+                tooltipTitle = tr("File in this piece:");
             else
-            {
-                if (torrentInfo.fileSize(files.front()) == torrentInfo.pieceLength(pieceIndex))
-                    tooltipTitle = tr("File in this piece");
-                else
-                    tooltipTitle = tr("File in these pieces");
-            }
+                tooltipTitle = tr("File in these pieces:");
 
-            toolTipText.reserve(files.size() * 128);
+            toolTipText.reserve(fileIndexes.size() * 128);
             toolTipText += u"<html><body>";
 
             DetailedTooltipRenderer renderer {toolTipText, tooltipTitle};
 
-            for (const int f : files)
+            for (const int index : fileIndexes)
             {
-                const Path filePath = torrentInfo.filePath(f);
-                renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(f)), filePath);
+                const Path filePath = m_torrent->filePath(index);
+                renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(index)), filePath);
             }
             toolTipText += u"</body></html>";
         }
