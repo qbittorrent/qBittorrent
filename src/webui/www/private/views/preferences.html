@@ -1371,7 +1371,7 @@
             }
             else {
                 item.nextElementSibling.hidden = true;
-                const text = item.options[item.selectedIndex].innerHTML;
+                const text = item.options[item.selectedIndex].textContent;
                 item.nextElementSibling.value = text;
             }
         };
@@ -1394,7 +1394,7 @@
             $('cb_watch_' + pos).setProperty('value', sel);
             if (disableInput) {
                 const elt = $('cb_watch_' + pos);
-                other = elt.options[elt.selectedIndex].innerHTML;
+                other = elt.options[elt.selectedIndex].textContent;
             }
             $('cb_watch_txt_' + pos).setProperty('value', other);
 
