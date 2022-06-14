@@ -31,7 +31,7 @@
 #include <Qt>
 #include <QtGlobal>
 
-#ifndef Q_OS_WIN
+#if !defined(Q_OS_WIN) && (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS) || defined(QT_FEATURE_icu))
 #define QBT_USE_QCOLLATOR
 #include <QCollator>
 #endif
