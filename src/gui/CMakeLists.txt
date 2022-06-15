@@ -49,6 +49,7 @@ add_library(qbt_gui STATIC
     executionlogwidget.h
     fspathedit.h
     fspathedit_p.h
+    guiapplicationcomponent.h
     hidabletabwidget.h
     interfaces/iguiapplication.h
     ipsubnetwhitelistoptionsdialog.h
@@ -131,6 +132,7 @@ add_library(qbt_gui STATIC
     executionlogwidget.cpp
     fspathedit.cpp
     fspathedit_p.cpp
+    guiapplicationcomponent.cpp
     hidabletabwidget.cpp
     ipsubnetwhitelistoptionsdialog.cpp
     lineedit.cpp

@@ -31,6 +31,8 @@
 #include <QObject>
 #include <QPointer>
 
+#include "base/applicationcomponent.h"
+
 namespace Http
 {
     class Server;
@@ -43,13 +45,13 @@ namespace Net
 
 class WebApplication;
 
-class WebUI : public QObject
+class WebUI : public QObject, public ApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebUI)
 
 public:
-    WebUI();
+    explicit WebUI(IApplication *app);
 
     bool isErrored() const;
 
@@ -60,9 +62,9 @@ private slots:
     void configure();
 
 private:
-    bool m_isErrored;
+    bool m_isErrored = false;
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<WebApplication> m_webapp;
-    quint16 m_port;
+    quint16 m_port = 0;
 };

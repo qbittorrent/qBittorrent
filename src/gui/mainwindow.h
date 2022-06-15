@@ -38,6 +38,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
 #include "base/settingvalue.h"
+#include "guiapplicationcomponent.h"
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -71,13 +72,13 @@ namespace Ui
     class MainWindow;
 }
 
-class MainWindow final : public QMainWindow
+class MainWindow final : public QMainWindow, public GUIApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(IGUIApplication *app, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;

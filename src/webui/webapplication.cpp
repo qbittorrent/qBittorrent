@@ -116,10 +116,11 @@ namespace
     }
 }
 
-WebApplication::WebApplication(QObject *parent)
+WebApplication::WebApplication(IApplication *app, QObject *parent)
     : QObject(parent)
+    , ApplicationComponent(app)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
-    , m_authController {new AuthController(this, this)}
+    , m_authController {new AuthController(this, app, this)}
 {
     declarePublicAPI(u"auth/login"_qs);
 
@@ -600,7 +601,7 @@ void WebApplication::sessionStart()
         return false;
     });
 
-    m_currentSession = new WebSession(generateSid());
+    m_currentSession = new WebSession(generateSid(), app());
     m_currentSession->registerAPIController<AppController>(u"app"_qs);
     m_currentSession->registerAPIController<LogController>(u"log"_qs);
     m_currentSession->registerAPIController<RSSController>(u"rss"_qs);
@@ -753,8 +754,9 @@ QHostAddress WebApplication::resolveClientAddress() const
 
 // WebSession
 
-WebSession::WebSession(const QString &sid)
-    : m_sid {sid}
+WebSession::WebSession(const QString &sid, IApplication *app)
+    : ApplicationComponent(app)
+    , m_sid {sid}
 {
     updateTimestamp();
 }

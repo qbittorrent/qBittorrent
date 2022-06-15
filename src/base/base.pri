@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/3rdparty/expected.hpp \
     $$PWD/algorithm.h \
+    $$PWD/applicationcomponent.h \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h \
@@ -104,6 +105,7 @@ HEADERS += \
     $$PWD/version.h
 
 SOURCES += \
+    $$PWD/applicationcomponent.cpp \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
     $$PWD/bittorrent/bandwidthscheduler.cpp \

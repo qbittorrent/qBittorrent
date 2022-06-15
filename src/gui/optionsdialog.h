@@ -32,6 +32,7 @@
 
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
+#include "guiapplicationcomponent.h"
 
 class QListWidgetItem;
 
@@ -57,7 +58,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog final : public QDialog
+class OptionsDialog final : public QDialog, public GUIApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)
@@ -83,8 +84,7 @@ class OptionsDialog final : public QDialog
     };
 
 public:
-    // Constructor / Destructor
-    OptionsDialog(QWidget *parent = nullptr);
+    explicit OptionsDialog(IGUIApplication *app, QWidget *parent = nullptr);
     ~OptionsDialog() override;
 
 public slots:
