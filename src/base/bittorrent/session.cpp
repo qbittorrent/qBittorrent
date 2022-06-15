@@ -414,6 +414,7 @@ Session::Session(QObject *parent)
     , m_peerTurnoverCutoff(BITTORRENT_SESSION_KEY(u"PeerTurnoverCutOff"_qs), 90)
     , m_peerTurnoverInterval(BITTORRENT_SESSION_KEY(u"PeerTurnoverInterval"_qs), 300)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_qs), 500)
+    , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_qs), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_qs))
     , m_bannedIPs(u"State/BannedIPs"_qs
                   , QStringList()
@@ -467,7 +468,8 @@ Session::Session(QObject *parent)
     enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
-    populateExcludedFileNamesRegExpList();
+    if (isExcludedFileNamesEnabled())
+        populateExcludedFileNamesRegExpList();
 
     enableTracker(isTrackerEnabled());
 
@@ -2256,13 +2258,16 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
         // Use qBittorrent default priority rather than libtorrent's (4)
         p.file_priorities = std::vector(internalFilesCount, LT::toNative(DownloadPriority::Normal));
 
-        if (addTorrentParams.filePriorities.size() == 0)
+        if (addTorrentParams.filePriorities.isEmpty())
         {
-            // Check file name blacklist when priorities are not explicitly set
-            for (int i = 0; i < filePaths.size(); ++i)
+            if (isExcludedFileNamesEnabled())
             {
-                if (isFilenameExcluded(filePaths.at(i).filename()))
-                    p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = lt::dont_download;
+                // Check file name blacklist when priorities are not explicitly set
+                for (int i = 0; i < filePaths.size(); ++i)
+                {
+                    if (isFilenameExcluded(filePaths.at(i).filename()))
+                        p.file_priorities[LT::toUnderlyingType(nativeIndexes[i])] = lt::dont_download;
+                }
             }
         }
         else
@@ -3091,6 +3096,24 @@ void Session::setIPFilterFile(const Path &path)
     }
 }
 
+bool Session::isExcludedFileNamesEnabled() const
+{
+    return m_isExcludedFileNamesEnabled;
+}
+
+void Session::setExcludedFileNamesEnabled(const bool enabled)
+{
+    if (m_isExcludedFileNamesEnabled == enabled)
+        return;
+
+    m_isExcludedFileNamesEnabled = enabled;
+
+    if (enabled)
+        populateExcludedFileNamesRegExpList();
+    else
+        m_excludedFileNamesRegExpList.clear();
+}
+
 QStringList Session::excludedFileNames() const
 {
     return m_excludedFileNames;
@@ -3122,6 +3145,9 @@ void Session::populateExcludedFileNamesRegExpList()
 
 bool Session::isFilenameExcluded(const QString &fileName) const
 {
+    if (!isExcludedFileNamesEnabled())
+        return false;
+
     return std::any_of(m_excludedFileNamesRegExpList.begin(), m_excludedFileNamesRegExpList.end(), [&fileName](const QRegularExpression &re)
     {
         return re.match(fileName).hasMatch();

@@ -131,8 +131,10 @@
     </fieldset>
 
     <fieldset class="settings">
-        <legend>QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="excludedFileNamesTextarea">QBT_TR(Filters:)QBT_TR[CONTEXT=OptionsDialog]</label><br>
+        <legend>
+            <input type="checkbox" id="excludedFileNamesCheckbox" onclick="qBittorrent.Preferences.updateExcludedFileNamesEnabled();" />
+            <label for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
         <textarea id="excludedFileNamesTextarea" rows="6" cols="70"></textarea>
     </fieldset>
 
@@ -1326,6 +1328,7 @@
                 updateExportDirEnabled: updateExportDirEnabled,
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
                 addWatchFolder: addWatchFolder,
+                updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -1421,6 +1424,11 @@
                 }
             }
             return folders;
+        };
+
+        const updateExcludedFileNamesEnabled = function() {
+            const isAExcludedFileNamesEnabled = $('excludedFileNamesCheckbox').getProperty('checked');
+            $('excludedFileNamesTextarea').setProperty('disabled', !isAExcludedFileNamesEnabled);
         };
 
         const updateExportDirEnabled = function() {
@@ -1739,6 +1747,9 @@
                             addWatchFolder(folder, sel, other);
                         }
                         addWatchFolder();
+
+                        // Excluded file names
+                        $('excludedFileNamesCheckbox').setProperty('checked', pref.excluded_file_names_enabled);
                         $('excludedFileNamesTextarea').setProperty('value', pref.excluded_file_names);
 
                         // Email notification upon download completion
@@ -2060,6 +2071,9 @@
 
             // Automatically add torrents from
             settings.set('scan_dirs', getWatchedFolders());
+
+            // Excluded file names
+            settings.set('excluded_file_names_enabled', $('excludedFileNamesCheckbox').getProperty('checked'));
             settings.set('excluded_file_names', $('excludedFileNamesTextarea').getProperty('value'));
 
             // Email notification upon download completion

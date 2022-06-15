@@ -1112,11 +1112,11 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
                </item>
                <item>
                 <widget class="QCheckBox" name="checkUseCategoryPaths">
-                 <property name="text">
-                  <string>Use Category paths in Manual Mode</string>
-                 </property>
                  <property name="toolTip">
                   <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>
+                 </property>
+                 <property name="text">
+                  <string>Use Category paths in Manual Mode</string>
                  </property>
                 </widget>
                </item>
@@ -1266,14 +1266,13 @@ Manual: Various torrent properties (e.g. save path) must be assigned manually</s
               <property name="title">
                <string>Excluded file names</string>
               </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
               <layout class="QVBoxLayout" name="verticalLayout_311">
-               <item>
-                <widget class="QLabel" name="label_1">
-                 <property name="text">
-                  <string>Filters:</string>
-                 </property>
-                </widget>
-               </item>
                <item>
                 <widget class="QPlainTextEdit" name="textExcludedFileNames">
                  <property name="toolTip">
