@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014, 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -120,17 +120,8 @@ namespace
 WebApplication::WebApplication(QObject *parent)
     : QObject(parent)
     , m_cacheID {QString::number(Utils::Random::rand(), 36)}
+    , m_authController {new AuthController(this, this)}
 {
-    registerAPIController(u"app"_qs, new AppController(this, this));
-    registerAPIController(u"auth"_qs, new AuthController(this, this));
-    registerAPIController(u"log"_qs, new LogController(this, this));
-    registerAPIController(u"rss"_qs, new RSSController(this, this));
-    registerAPIController(u"schedule"_qs, new ScheduleController(this, this));
-    registerAPIController(u"search"_qs, new SearchController(this, this));
-    registerAPIController(u"sync"_qs, new SyncController(this, this));
-    registerAPIController(u"torrents"_qs, new TorrentsController(this, this));
-    registerAPIController(u"transfer"_qs, new TransferController(this, this));
-
     declarePublicAPI(u"auth/login"_qs);
 
     configure();
@@ -262,12 +253,19 @@ void WebApplication::doProcessRequest()
     const QString action = match.captured(u"action"_qs);
     const QString scope = match.captured(u"scope"_qs);
 
-    APIController *controller = m_apiControllers.value(scope);
-    if (!controller)
-        throw NotFoundHTTPError();
-
     if (!session() && !isPublicAPI(scope, action))
         throw ForbiddenHTTPError();
+
+    APIController *controller = nullptr;
+    if (session())
+        controller = session()->getAPIController(scope);
+    if (!controller)
+    {
+        if (scope == u"auth")
+            controller = m_authController;
+        else
+            throw NotFoundHTTPError();
+    }
 
     DataMap data;
     for (const Http::UploadedFile &torrent : request().files)
@@ -280,6 +278,9 @@ void WebApplication::doProcessRequest()
         {
         case QMetaType::QJsonDocument:
             print(result.toJsonDocument().toJson(QJsonDocument::Compact), Http::CONTENT_TYPE_JSON);
+            break;
+        case QMetaType::QByteArray:
+            print(result.toByteArray(), Http::CONTENT_TYPE_TXT);
             break;
         case QMetaType::QString:
         default:
@@ -414,14 +415,6 @@ void WebApplication::configure()
         if (m_trustedReverseProxyList.isEmpty())
             m_isReverseProxySupportEnabled = false;
     }
-}
-
-void WebApplication::registerAPIController(const QString &scope, APIController *controller)
-{
-    Q_ASSERT(controller);
-    Q_ASSERT(!m_apiControllers.value(scope));
-
-    m_apiControllers[scope] = controller;
 }
 
 void WebApplication::declarePublicAPI(const QString &apiPath)
@@ -609,6 +602,14 @@ void WebApplication::sessionStart()
     });
 
     m_currentSession = new WebSession(generateSid());
+    m_currentSession->registerAPIController<AppController>(u"app"_qs);
+    m_currentSession->registerAPIController<LogController>(u"log"_qs);
+    m_currentSession->registerAPIController<RSSController>(u"rss"_qs);
+    m_currentSession->registerAPIController<ScheduleController>(u"schedule"_qs);
+    m_currentSession->registerAPIController<SearchController>(u"search"_qs);
+    m_currentSession->registerAPIController<SyncController>(u"sync"_qs);
+    m_currentSession->registerAPIController<TorrentsController>(u"torrents"_qs);
+    m_currentSession->registerAPIController<TransferController>(u"transfer"_qs);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
     QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
@@ -777,12 +778,7 @@ void WebSession::updateTimestamp()
     m_timer.start();
 }
 
-QVariant WebSession::getData(const QString &id) const
+APIController *WebSession::getAPIController(const QString &scope) const
 {
-    return m_data.value(id);
-}
-
-void WebSession::setData(const QString &id, const QVariant &data)
-{
-    m_data[id] = data;
+    return m_apiControllers.value(scope);
 }

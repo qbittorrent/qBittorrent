@@ -3,7 +3,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
 1) Install these dependencies:
 
-  - Boost >= 1.65
+  - Boost >= 1.71
 
   - libtorrent-rasterbar 1.2.14 - 1.2.x || 2.0.4 - 2.0.x
       * By Arvid Norberg, https://www.libtorrent.org/

@@ -50,6 +50,7 @@ namespace Net
     class Smtp : public QObject
     {
         Q_OBJECT
+        Q_DISABLE_COPY_MOVE(Smtp)
 
     public:
         Smtp(QObject *parent = nullptr);

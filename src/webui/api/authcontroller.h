@@ -35,13 +35,15 @@
 
 class QString;
 
+struct ISessionManager;
+
 class AuthController : public APIController
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(AuthController)
 
 public:
-    using APIController::APIController;
+    explicit AuthController(ISessionManager *sessionManager, QObject *parent = nullptr);
 
 private slots:
     void loginAction();
@@ -51,6 +53,8 @@ private:
     bool isBanned() const;
     int failedAttemptsCount() const;
     void increaseFailedAttempts();
+
+    ISessionManager *m_sessionManager = nullptr;
 
     struct FailedLogin
     {

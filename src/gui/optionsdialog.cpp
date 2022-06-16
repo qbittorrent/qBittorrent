@@ -49,11 +49,8 @@
 #include <QTranslator>
 #include <qnamespace.h>
 
-#include "addnewtorrentdialog.h"
-#include "advancedsettings.h"
 #include "app/application.h"
 #include "base/logger.h"
-#include "banlistoptionsdialog.h"
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/exceptions.h"
@@ -74,6 +71,10 @@
 #include "base/utils/password.h"
 #include "base/utils/random.h"
 #include "gui/scheduleentryitemdelegate.h"
+#include "addnewtorrentdialog.h"
+#include "advancedsettings.h"
+#include "banlistoptionsdialog.h"
+#include "interfaces/iguiapplication.h"
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "scheduleentrydialog.h"
@@ -197,8 +198,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 {
     qDebug("-> Constructing Options");
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
-    setModal(true);
 
 #if (defined(Q_OS_UNIX))
     setWindowTitle(tr("Preferences"));
@@ -390,6 +389,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseDownloadPath, &QAbstractButton::toggled, m_ui->textDownloadPath, &QWidget::setEnabled);
     connect(m_ui->addWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupExcludedFileNames, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->textExcludedFileNames, &QPlainTextEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->removeWatchedFolderButton, &QAbstractButton::clicked, this, &ThisType::enableApplyButton);
     connect(m_ui->groupMailNotification, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->senderEmailTxt, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -585,10 +586,8 @@ OptionsDialog::OptionsDialog(QWidget *parent)
 
     m_ui->tabSelection->setCurrentRow(m_storeLastViewedPage);
 
-    resize(m_storeDialogSize);
-    show();
-    // Have to be called after show(), because splitter width needed
-    loadSplitterState();
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 void OptionsDialog::initializeLanguageCombo()
@@ -866,6 +865,13 @@ void OptionsDialog::loadSplitterState()
     m_ui->hsplitter->setSizes(splitterSizes);
 }
 
+void OptionsDialog::showEvent(QShowEvent *e)
+{
+    QDialog::showEvent(e);
+
+    loadSplitterState();
+}
+
 void OptionsDialog::saveOptions()
 {
     auto *pref = Preferences::instance();
@@ -936,7 +942,7 @@ void OptionsDialog::saveOptions()
 #endif
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 
-    auto *const app = static_cast<Application *>(QCoreApplication::instance());
+    auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
     app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
     app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
     app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
@@ -972,6 +978,8 @@ void OptionsDialog::saveOptions()
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
     auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     watchedFoldersModel->apply();
+    session->setExcludedFileNamesEnabled(m_ui->groupExcludedFileNames->isChecked());
+    session->setExcludedFileNames(m_ui->textExcludedFileNames->toPlainText().split(u'\n', Qt::SkipEmptyParts));
     session->setTorrentExportDirectory(getTorrentExportDir());
     session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
     pref->setMailNotificationEnabled(m_ui->groupMailNotification->isChecked());
@@ -1187,7 +1195,7 @@ void OptionsDialog::loadOptions()
 #endif
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    const Application *const app = static_cast<Application*>(QCoreApplication::instance());
+    const auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
     m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
     m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
     const bool fileLogBackup = app->isFileLoggerBackup();
@@ -1232,6 +1240,8 @@ void OptionsDialog::loadOptions()
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());
+    m_ui->groupExcludedFileNames->setChecked(session->isExcludedFileNamesEnabled());
+    m_ui->textExcludedFileNames->setPlainText(session->excludedFileNames().join(u'\n'));
 
     if (session->torrentExportDirectory().isEmpty())
     {
@@ -1684,15 +1694,8 @@ void OptionsDialog::applySettings()
     saveOptions();
 }
 
-void OptionsDialog::closeEvent(QCloseEvent *e)
-{
-    setAttribute(Qt::WA_DeleteOnClose);
-    e->accept();
-}
-
 void OptionsDialog::on_buttonBox_rejected()
 {
-    setAttribute(Qt::WA_DeleteOnClose);
     reject();
 }
 
@@ -1874,7 +1877,6 @@ void OptionsDialog::on_addWatchedFolderButton_clicked()
         return;
 
     auto dialog = new WatchedFolderOptionsDialog({}, this);
-    dialog->setModal(true);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, dir, pref]()
     {
@@ -1930,7 +1932,6 @@ void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
 
     auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     auto dialog = new WatchedFolderOptionsDialog(watchedFoldersModel->folderOptions(index.row()), this);
-    dialog->setModal(true);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, index, watchedFoldersModel]()
     {

@@ -457,7 +457,7 @@ QString Utils::Misc::parseHtmlLinks(const QString &rawText)
     result.replace(reURL, u"\\1<a href=\"\\2\">\\2</a>"_qs);
 
     // Capture links without scheme
-    static const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
+    const QRegularExpression reNoScheme(u"<a\\s+href=\"(?!https?)([a-zA-Z0-9\\?%=&/_\\.-:#]+)\\s*\">"_qs);
     result.replace(reNoScheme, u"<a href=\"http://\\1\">"_qs);
 
     // to preserve plain text formatting
@@ -500,7 +500,7 @@ QString Utils::Misc::opensslVersionString()
 #else
     static const auto version {QString::fromLatin1(SSLeay_version(SSLEAY_VERSION))};
 #endif
-    return QStringView(version).split(u' ', Qt::SkipEmptyParts).at(1).toString();
+    return version.section(u' ', 1, 1);
 }
 
 QString Utils::Misc::zlibVersionString()

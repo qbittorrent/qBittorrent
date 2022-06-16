@@ -31,6 +31,14 @@
 #include "settingvalue.h"
 #include "utils/fs.h"
 
+namespace
+{
+    SettingValue<TorrentFileGuard::AutoDeleteMode> autoDeleteModeSetting()
+    {
+        return SettingValue<TorrentFileGuard::AutoDeleteMode> {u"Core/AutoDeleteAddedTorrentFile"_qs};
+    }
+}
+
 FileGuard::FileGuard(const Path &path)
     : m_path {path}
     , m_remove {true}
@@ -76,13 +84,7 @@ TorrentFileGuard::AutoDeleteMode TorrentFileGuard::autoDeleteMode()
     return autoDeleteModeSetting().get(AutoDeleteMode::Never);
 }
 
-void TorrentFileGuard::setAutoDeleteMode(TorrentFileGuard::AutoDeleteMode mode)
+void TorrentFileGuard::setAutoDeleteMode(const TorrentFileGuard::AutoDeleteMode mode)
 {
     autoDeleteModeSetting() = mode;
-}
-
-SettingValue<TorrentFileGuard::AutoDeleteMode> &TorrentFileGuard::autoDeleteModeSetting()
-{
-    static SettingValue<AutoDeleteMode> setting {u"Core/AutoDeleteAddedTorrentFile"_qs};
-    return setting;
 }

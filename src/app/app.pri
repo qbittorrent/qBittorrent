@@ -6,6 +6,7 @@ HEADERS += \
     $$PWD/cmdoptions.h \
     $$PWD/filelogger.h \
     $$PWD/qtlocalpeer/qtlocalpeer.h \
+    $$PWD/signalhandler.h \
     $$PWD/upgrade.h
 
 SOURCES += \
@@ -15,18 +16,10 @@ SOURCES += \
     $$PWD/filelogger.cpp \
     $$PWD/main.cpp \
     $$PWD/qtlocalpeer/qtlocalpeer.cpp \
+    $$PWD/signalhandler.cpp \
     $$PWD/upgrade.cpp
 
 stacktrace {
-    unix {
-        HEADERS += $$PWD/stacktrace.h
-    }
-    else {
-        HEADERS += $$PWD/stacktrace_win.h
-        !nogui {
-            HEADERS += $$PWD/stacktracedialog.h
-            SOURCES += $$PWD/stacktracedialog.cpp
-            FORMS += $$PWD/stacktracedialog.ui
-        }
-    }
+    HEADERS += $$PWD/stacktrace.h
+    SOURCES += $$PWD/stacktrace.cpp
 }

@@ -51,6 +51,7 @@ namespace Ui
 class TrackersAdditionDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TrackersAdditionDialog)
 
 public:
     TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent);

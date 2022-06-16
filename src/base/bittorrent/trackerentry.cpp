@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,22 +28,16 @@
 
 #include "trackerentry.h"
 
-#include <QUrl>
-
 bool BitTorrent::operator==(const TrackerEntry &left, const TrackerEntry &right)
 {
-    return ((left.tier == right.tier)
-        && QUrl(left.url) == QUrl(right.url));
+    return (left.url == right.url);
 }
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
 std::size_t BitTorrent::qHash(const TrackerEntry &key, const std::size_t seed)
-{
-    return qHashMulti(seed, key.url, key.tier);
-}
 #else
 uint BitTorrent::qHash(const TrackerEntry &key, const uint seed)
-{
-    return (::qHash(key.url, seed) ^ ::qHash(key.tier));
-}
 #endif
+{
+    return ::qHash(key.url, seed);
+}

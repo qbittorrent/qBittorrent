@@ -42,6 +42,7 @@ class SpeedPlotView;
 class ComboBoxMenuButton final : public QComboBox
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ComboBoxMenuButton)
 
 public:
     ComboBoxMenuButton(QWidget *parent, QMenu *menu);
@@ -55,6 +56,7 @@ private:
 class SpeedWidget : public QWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(SpeedWidget)
 
 public:
     explicit SpeedWidget(PropertiesWidget *parent);

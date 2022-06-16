@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="hu">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Almappa létrehozása</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
@@ -573,7 +571,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Szűrők oldalsáv</translation>
     </message>
 </context>
 <context>
@@ -957,8 +955,8 @@
         <translation>%T: Jelenlegi tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1429,7 +1427,7 @@
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
     <message>
@@ -1482,19 +1480,43 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Lemez sorbanállás mérete:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Teljesítmény figyelmeztetések naplózása</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Maximális függőben lévő kérések egyetlen peerhez:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Torrentek aktív ellenőrzésének maximális száma:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation>Memória feltérképezett fájlok</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Alapértelmezett</translation>
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation>POSIX-kompatibilis</translation>
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation>Ez az opció kevésbé hatékony Linuxon</translation>
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation>Lemez IO típusa (libtorrent &gt;= 2.0; újraindítást igényel):</translation>
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation>Fizikai memória (RAM) használati korlát</translation>
     </message>
 </context>
 <context>
@@ -2184,10 +2206,6 @@
         <translation>Üzenet</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation>Letöltve</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>Tracker URL:</translation>
     </message>
@@ -2268,12 +2286,12 @@
         <translation>Folyamat</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Méret</translation>
+        <source>Total Size</source>
+        <translation>Teljes méret</translation>
     </message>
     <message>
-        <source>Total Size</source>
-        <translation type="unfinished" />
+        <source>Times Downloaded</source>
+        <translation>Letöltések száma</translation>
     </message>
 </context>
 <context>
@@ -2570,6 +2588,10 @@
         <source>Torrent ID</source>
         <translation>Torrent azonosító</translation>
     </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation>Torrent exportálása</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2835,7 +2857,7 @@
         <translation>Engedélyezve</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Figyelmeztetés: Győződjön meg róla, hogy a keresőmotorok bármelyikéből származó torrentek letöltésekor betartja az ország szerzői jogi törvényeit.</translation>
     </message>
     <message>
@@ -3450,7 +3472,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>

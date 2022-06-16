@@ -39,9 +39,9 @@
 #include "base/global.h"
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
-#include "app/application.h"
 #include "gui/addnewtorrentdialog.h"
 #include "gui/mainwindow.h"
+#include "interfaces/iguiapplication.h"
 
 namespace
 {
@@ -62,9 +62,9 @@ namespace
         // qBittorrent section
         QBITTORRENT_HEADER,
         RESUME_DATA_STORAGE,
+        MEMORY_WORKING_SET_LIMIT,
 #if defined(Q_OS_WIN)
         OS_MEMORY_PRIORITY,
-        MEMORY_WORKING_SET_LIMIT,
 #endif
         // network interface
         NETWORK_IFACE,
@@ -108,6 +108,9 @@ namespace
         DISK_CACHE_TTL,
 #endif
         DISK_QUEUE_SIZE,
+#ifdef QBT_USES_LIBTORRENT2
+        DISK_IO_TYPE,
+#endif
         OS_CACHE,
 #ifndef QBT_USES_LIBTORRENT2
         COALESCE_RW,
@@ -153,7 +156,7 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
 {
     // column
     setColumnCount(COL_COUNT);
-    QStringList header = {tr("Setting"), tr("Value", "Value set for this setting")};
+    const QStringList header = {tr("Setting"), tr("Value", "Value set for this setting")};
     setHorizontalHeaderLabels(header);
     // row
     setRowCount(ROW_COUNT);
@@ -168,39 +171,16 @@ AdvancedSettings::AdvancedSettings(QWidget *parent)
     horizontalHeader()->setStretchLastSection(true);
 }
 
-void AdvancedSettings::saveAdvancedSettings()
+void AdvancedSettings::saveAdvancedSettings() const
 {
     Preferences *const pref = Preferences::instance();
     BitTorrent::Session *const session = BitTorrent::Session::instance();
 
-    session->setResumeDataStorageType((m_comboBoxResumeDataStorage.currentIndex() == 0)
-                                      ? BitTorrent::ResumeDataStorageType::Legacy
-                                      : BitTorrent::ResumeDataStorageType::SQLite);
-
+    session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
+    // Physical memory (RAM) usage limit
+    dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #if defined(Q_OS_WIN)
-    BitTorrent::OSMemoryPriority prio = BitTorrent::OSMemoryPriority::Normal;
-    switch (m_comboBoxOSMemoryPriority.currentIndex())
-    {
-    case 0:
-    default:
-        prio = BitTorrent::OSMemoryPriority::Normal;
-        break;
-    case 1:
-        prio = BitTorrent::OSMemoryPriority::BelowNormal;
-        break;
-    case 2:
-        prio = BitTorrent::OSMemoryPriority::Medium;
-        break;
-    case 3:
-        prio = BitTorrent::OSMemoryPriority::Low;
-        break;
-    case 4:
-        prio = BitTorrent::OSMemoryPriority::VeryLow;
-        break;
-    }
-    session->setOSMemoryPriority(prio);
-
-    static_cast<Application *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
+    session->setOSMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<BitTorrent::OSMemoryPriority>());
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
@@ -219,6 +199,9 @@ void AdvancedSettings::saveAdvancedSettings()
 #endif
     // Disk queue size
     session->setDiskQueueSize(m_spinBoxDiskQueueSize.value() * 1024);
+#ifdef QBT_USES_LIBTORRENT2
+    session->setDiskIOType(m_comboBoxDiskIOType.currentData().value<BitTorrent::DiskIOType>());
+#endif
     // Enable OS cache
     session->setUseOSCache(m_checkBoxOsCache.isChecked());
 #ifndef QBT_USES_LIBTORRENT2
@@ -247,7 +230,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Type of service
     session->setPeerToS(m_spinBoxPeerToS.value());
     // uTP-TCP mixed mode
-    session->setUtpMixedMode(static_cast<BitTorrent::MixedModeAlgorithm>(m_comboBoxUtpMixedMode.currentIndex()));
+    session->setUtpMixedMode(m_comboBoxUtpMixedMode.currentData().value<BitTorrent::MixedModeAlgorithm>());
     // Support internationalized domain name (IDN)
     session->setIDNSupportEnabled(m_checkBoxIDNSupport.isChecked());
     // multiple connections per IP
@@ -266,23 +249,14 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->resolvePeerCountries(m_checkBoxResolveCountries.isChecked());
     pref->resolvePeerHostNames(m_checkBoxResolveHosts.isChecked());
     // Network interface
-    if (m_comboBoxInterface.currentIndex() == 0)
-    {
-        // All interfaces (default)
-        session->setNetworkInterface(QString());
-        session->setNetworkInterfaceName(QString());
-    }
-    else
-    {
-        session->setNetworkInterface(m_comboBoxInterface.itemData(m_comboBoxInterface.currentIndex()).toString());
-        session->setNetworkInterfaceName(m_comboBoxInterface.currentText());
-    }
-
+    session->setNetworkInterface(m_comboBoxInterface.currentData().toString());
+    session->setNetworkInterfaceName((m_comboBoxInterface.currentIndex() == 0)
+        ? QString()
+        : m_comboBoxInterface.currentText());
     // Interface address
     // Construct a QHostAddress to filter malformed strings
-    const QHostAddress ifaceAddr(m_comboBoxInterfaceAddress.currentData().toString().trimmed());
+    const QHostAddress ifaceAddr {m_comboBoxInterfaceAddress.currentData().toString()};
     session->setNetworkInterfaceAddress(ifaceAddr.toString());
-
     // Announce IP
     // Construct a QHostAddress to filter malformed strings
     const QHostAddress addr(m_lineEditAnnounceIP.text().trimmed());
@@ -292,7 +266,7 @@ void AdvancedSettings::saveAdvancedSettings()
     // Stop tracker timeout
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
-    MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    MainWindow *mainWindow = dynamic_cast<IGUIApplication *>(QCoreApplication::instance())->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
@@ -312,9 +286,9 @@ void AdvancedSettings::saveAdvancedSettings()
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
     // Choking algorithm
-    session->setChokingAlgorithm(static_cast<BitTorrent::ChokingAlgorithm>(m_comboBoxChokingAlgorithm.currentIndex()));
+    session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
-    session->setSeedChokingAlgorithm(static_cast<BitTorrent::SeedChokingAlgorithm>(m_comboBoxSeedChokingAlgorithm.currentIndex()));
+    session->setSeedChokingAlgorithm(m_comboBoxSeedChokingAlgorithm.currentData().value<BitTorrent::SeedChokingAlgorithm>());
 
     pref->setConfirmTorrentRecheck(m_checkBoxConfirmTorrentRecheck.isChecked());
 
@@ -331,7 +305,7 @@ void AdvancedSettings::saveAdvancedSettings()
 }
 
 #ifndef QBT_USES_LIBTORRENT2
-void AdvancedSettings::updateCacheSpinSuffix(int value)
+void AdvancedSettings::updateCacheSpinSuffix(const int value)
 {
     if (value == 0)
         m_spinBoxCache.setSuffix(tr(" (disabled)"));
@@ -352,45 +326,57 @@ void AdvancedSettings::updateSaveResumeDataIntervalSuffix(const int value)
 
 void AdvancedSettings::updateInterfaceAddressCombo()
 {
-    // Try to get the currently selected interface name
-    const QString ifaceName = m_comboBoxInterface.itemData(m_comboBoxInterface.currentIndex()).toString(); // Empty string for the first element
-    const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
-
-    // Clear all items and reinsert them, default to all
-    m_comboBoxInterfaceAddress.clear();
-    m_comboBoxInterfaceAddress.addItem(tr("All addresses"), {});
-    m_comboBoxInterfaceAddress.addItem(tr("All IPv4 addresses"), u"0.0.0.0"_qs);
-    m_comboBoxInterfaceAddress.addItem(tr("All IPv6 addresses"), u"::"_qs);
-
-    const auto populateCombo = [this](const QHostAddress &addr)
+    const auto toString = [](const QHostAddress &address) -> QString
     {
-        if (addr.protocol() == QAbstractSocket::IPv4Protocol)
-        {
-            const QString str = addr.toString();
-            m_comboBoxInterfaceAddress.addItem(str, str);
+        switch (address.protocol()) {
+        case QAbstractSocket::IPv4Protocol:
+            return address.toString();
+        case QAbstractSocket::IPv6Protocol:
+            return Utils::Net::canonicalIPv6Addr(address).toString();
+        default:
+            Q_ASSERT(false);
+            break;
         }
-        else if (addr.protocol() == QAbstractSocket::IPv6Protocol)
-        {
-            const QString str = Utils::Net::canonicalIPv6Addr(addr).toString();
-            m_comboBoxInterfaceAddress.addItem(str, str);
-        }
+        return {};
     };
 
-    if (ifaceName.isEmpty())
+    // Clear all items and reinsert them
+    m_comboBoxInterfaceAddress.clear();
+    m_comboBoxInterfaceAddress.addItem(tr("All addresses"), QString());
+    m_comboBoxInterfaceAddress.addItem(tr("All IPv4 addresses"), QHostAddress(QHostAddress::AnyIPv4).toString());
+    m_comboBoxInterfaceAddress.addItem(tr("All IPv6 addresses"), QHostAddress(QHostAddress::AnyIPv6).toString());
+
+    const QString currentIface = m_comboBoxInterface.currentData().toString();
+    if (currentIface.isEmpty())  // `any` interface
     {
-        for (const QHostAddress &addr : asConst(QNetworkInterface::allAddresses()))
-            populateCombo(addr);
+        for (const QHostAddress &address : asConst(QNetworkInterface::allAddresses()))
+        {
+            const QString addressString = toString(address);
+            m_comboBoxInterfaceAddress.addItem(addressString, addressString);
+        }
     }
     else
     {
-        const QNetworkInterface iface = QNetworkInterface::interfaceFromName(ifaceName);
-        const QList<QNetworkAddressEntry> addresses = iface.addressEntries();
+        const QList<QNetworkAddressEntry> addresses = QNetworkInterface::interfaceFromName(currentIface).addressEntries();
         for (const QNetworkAddressEntry &entry : addresses)
-            populateCombo(entry.ip());
+        {
+            const QString addressString = toString(entry.ip());
+            m_comboBoxInterfaceAddress.addItem(addressString, addressString);
+        }
     }
 
+    const QString currentAddress = BitTorrent::Session::instance()->networkInterfaceAddress();
     const int index = m_comboBoxInterfaceAddress.findData(currentAddress);
-    m_comboBoxInterfaceAddress.setCurrentIndex(std::max(index, 0));
+    if (index > -1)
+    {
+        m_comboBoxInterfaceAddress.setCurrentIndex(index);
+    }
+    else
+    {
+        // not found, for the sake of UI consistency, add such entry
+        m_comboBoxInterfaceAddress.addItem(currentAddress, currentAddress);
+        m_comboBoxInterfaceAddress.setCurrentIndex(m_comboBoxInterfaceAddress.count() - 1);
+    }
 }
 
 void AdvancedSettings::loadAdvancedSettings()
@@ -415,47 +401,30 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(LIBTORRENT_HEADER, u"<b>%1</b>"_qs.arg(tr("libtorrent Section")), labelLibtorrentLink);
     static_cast<QLabel *>(cellWidget(LIBTORRENT_HEADER, PROPERTY))->setAlignment(Qt::AlignCenter | Qt::AlignVCenter);
 
-    m_comboBoxResumeDataStorage.addItems({tr("Fastresume files"), tr("SQLite database (experimental)")});
-    m_comboBoxResumeDataStorage.setCurrentIndex((session->resumeDataStorageType() == BitTorrent::ResumeDataStorageType::Legacy) ? 0 : 1);
+    m_comboBoxResumeDataStorage.addItem(tr("Fastresume files"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::Legacy));
+    m_comboBoxResumeDataStorage.addItem(tr("SQLite database (experimental)"), QVariant::fromValue(BitTorrent::ResumeDataStorageType::SQLite));
+    m_comboBoxResumeDataStorage.setCurrentIndex(m_comboBoxResumeDataStorage.findData(QVariant::fromValue(session->resumeDataStorageType())));
     addRow(RESUME_DATA_STORAGE, tr("Resume data storage type (requires restart)"), &m_comboBoxResumeDataStorage);
 
-#if defined(Q_OS_WIN)
-    m_comboBoxOSMemoryPriority.addItems({tr("Normal"), tr("Below normal"), tr("Medium"), tr("Low"), tr("Very low")});
-    int OSMemoryPriorityIndex = 0;
-    switch (session->getOSMemoryPriority())
-    {
-    default:
-    case BitTorrent::OSMemoryPriority::Normal:
-        OSMemoryPriorityIndex = 0;
-        break;
-    case BitTorrent::OSMemoryPriority::BelowNormal:
-        OSMemoryPriorityIndex = 1;
-        break;
-    case BitTorrent::OSMemoryPriority::Medium:
-        OSMemoryPriorityIndex = 2;
-        break;
-    case BitTorrent::OSMemoryPriority::Low:
-        OSMemoryPriorityIndex = 3;
-        break;
-    case BitTorrent::OSMemoryPriority::VeryLow:
-        OSMemoryPriorityIndex = 4;
-        break;
-    }
-    m_comboBoxOSMemoryPriority.setCurrentIndex(OSMemoryPriorityIndex);
-    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
-        + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
-        , &m_comboBoxOSMemoryPriority);
-
+    // Physical memory (RAM) usage limit
     m_spinBoxMemoryWorkingSetLimit.setMinimum(1);
     m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMemoryWorkingSetLimit.setSuffix(tr(" MiB"));
-    m_spinBoxMemoryWorkingSetLimit.setValue(static_cast<Application *>(QCoreApplication::instance())->memoryWorkingSetLimit());
-
-    addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit")
-        + u' ' + makeLink(u"https://wikipedia.org/wiki/Working_set", u"(?)"))
+    m_spinBoxMemoryWorkingSetLimit.setToolTip(tr("This option is less effective on Linux"));
+    m_spinBoxMemoryWorkingSetLimit.setValue(dynamic_cast<IApplication *>(QCoreApplication::instance())->memoryWorkingSetLimit());
+    addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit") + u' ' + makeLink(u"https://wikipedia.org/wiki/Working_set", u"(?)"))
         , &m_spinBoxMemoryWorkingSetLimit);
+#if defined(Q_OS_WIN)
+    m_comboBoxOSMemoryPriority.addItem(tr("Normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Normal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Below normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::BelowNormal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Medium"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Medium));
+    m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Low));
+    m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::VeryLow));
+    m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(session->getOSMemoryPriority())));
+    addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
+        + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
+        , &m_comboBoxOSMemoryPriority);
 #endif
-
     // Async IO threads
     m_spinBoxAsyncIOThreads.setMinimum(1);
     m_spinBoxAsyncIOThreads.setMaximum(1024);
@@ -523,6 +492,15 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxDiskQueueSize.setSuffix(tr(" KiB"));
     addRow(DISK_QUEUE_SIZE, (tr("Disk queue size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_queued_disk_bytes", u"(?)"))
             , &m_spinBoxDiskQueueSize);
+#ifdef QBT_USES_LIBTORRENT2
+    // Disk IO type
+    m_comboBoxDiskIOType.addItem(tr("Default"), QVariant::fromValue(BitTorrent::DiskIOType::Default));
+    m_comboBoxDiskIOType.addItem(tr("Memory mapped files"), QVariant::fromValue(BitTorrent::DiskIOType::MMap));
+    m_comboBoxDiskIOType.addItem(tr("POSIX-compliant"), QVariant::fromValue(BitTorrent::DiskIOType::Posix));
+    m_comboBoxDiskIOType.setCurrentIndex(m_comboBoxDiskIOType.findData(QVariant::fromValue(session->diskIOType())));
+    addRow(DISK_IO_TYPE, tr("Disk IO type (requires restart)") + u' ' + makeLink(u"https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor", u"(?)")
+           , &m_comboBoxDiskIOType);
+#endif
     // Enable OS cache
     m_checkBoxOsCache.setChecked(session->useOSCache());
     addRow(OS_CACHE, (tr("Enable OS cache") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode", u"(?)"))
@@ -607,8 +585,9 @@ void AdvancedSettings::loadAdvancedSettings()
     addRow(PEER_TOS, (tr("Type of service (ToS) for connections to peers") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#peer_tos", u"(?)"))
         , &m_spinBoxPeerToS);
     // uTP-TCP mixed mode
-    m_comboBoxUtpMixedMode.addItems({tr("Prefer TCP"), tr("Peer proportional (throttles TCP)")});
-    m_comboBoxUtpMixedMode.setCurrentIndex(static_cast<int>(session->utpMixedMode()));
+    m_comboBoxUtpMixedMode.addItem(tr("Prefer TCP"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::TCP));
+    m_comboBoxUtpMixedMode.addItem(tr("Peer proportional (throttles TCP)"), QVariant::fromValue(BitTorrent::MixedModeAlgorithm::Proportional));
+    m_comboBoxUtpMixedMode.setCurrentIndex(m_comboBoxUtpMixedMode.findData(QVariant::fromValue(session->utpMixedMode())));
     addRow(UTP_MIX_MODE, (tr("%1-TCP mixed mode algorithm", "uTP-TCP mixed mode algorithm").arg(C_UTP)
             + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#mixed_mode_algorithm", u"(?)"))
             , &m_comboBoxUtpMixedMode);
@@ -651,26 +630,23 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxResolveHosts.setChecked(pref->resolvePeerHostNames());
     addRow(RESOLVE_HOSTS, tr("Resolve peer host names"), &m_checkBoxResolveHosts);
     // Network interface
-    m_comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"));
-    const QString currentInterface = session->networkInterface();
-    bool interfaceExists = currentInterface.isEmpty();
-    int i = 1;
+    m_comboBoxInterface.addItem(tr("Any interface", "i.e. Any network interface"), QString());
     for (const QNetworkInterface &iface : asConst(QNetworkInterface::allInterfaces()))
-    {
         m_comboBoxInterface.addItem(iface.humanReadableName(), iface.name());
-        if (!currentInterface.isEmpty() && (iface.name() == currentInterface))
-        {
-            m_comboBoxInterface.setCurrentIndex(i);
-            interfaceExists = true;
-        }
-        ++i;
-    }
-    // Saved interface does not exist, show it anyway
-    if (!interfaceExists)
+
+    const QString currentInterface = session->networkInterface();
+    const int ifaceIndex = m_comboBoxInterface.findData(currentInterface);
+    if (ifaceIndex > -1)
     {
-        m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
-        m_comboBoxInterface.setCurrentIndex(i);
+        m_comboBoxInterface.setCurrentIndex(ifaceIndex);
     }
+    else
+    {
+        // Saved interface does not exist, show it
+        m_comboBoxInterface.addItem(session->networkInterfaceName(), currentInterface);
+        m_comboBoxInterface.setCurrentIndex(m_comboBoxInterface.count() - 1);
+    }
+
     connect(&m_comboBoxInterface, qOverload<int>(&QComboBox::currentIndexChanged)
         , this, &AdvancedSettings::updateInterfaceAddressCombo);
     addRow(NETWORK_IFACE, tr("Network interface"), &m_comboBoxInterface);
@@ -694,7 +670,7 @@ void AdvancedSettings::loadAdvancedSettings()
            , &m_spinBoxStopTrackerTimeout);
 
     // Program notifications
-    const MainWindow *const mainWindow = static_cast<Application*>(QCoreApplication::instance())->mainWindow();
+    const MainWindow *mainWindow = dynamic_cast<IGUIApplication *>(QCoreApplication::instance())->mainWindow();
     m_checkBoxProgramNotifications.setChecked(mainWindow->isNotificationsEnabled());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &m_checkBoxProgramNotifications);
     // Torrent added notifications
@@ -736,13 +712,16 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxTrackerPort.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &m_spinBoxTrackerPort);
     // Choking algorithm
-    m_comboBoxChokingAlgorithm.addItems({tr("Fixed slots"), tr("Upload rate based")});
-    m_comboBoxChokingAlgorithm.setCurrentIndex(static_cast<int>(session->chokingAlgorithm()));
+    m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
+    m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
+    m_comboBoxChokingAlgorithm.setCurrentIndex(m_comboBoxChokingAlgorithm.findData(QVariant::fromValue(session->chokingAlgorithm())));
     addRow(CHOKING_ALGORITHM, (tr("Upload slots behavior") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#choking_algorithm", u"(?)"))
             , &m_comboBoxChokingAlgorithm);
     // Seed choking algorithm
-    m_comboBoxSeedChokingAlgorithm.addItems({tr("Round-robin"), tr("Fastest upload"), tr("Anti-leech")});
-    m_comboBoxSeedChokingAlgorithm.setCurrentIndex(static_cast<int>(session->seedChokingAlgorithm()));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Round-robin"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::RoundRobin));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Fastest upload"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::FastestUpload));
+    m_comboBoxSeedChokingAlgorithm.addItem(tr("Anti-leech"), QVariant::fromValue(BitTorrent::SeedChokingAlgorithm::AntiLeech));
+    m_comboBoxSeedChokingAlgorithm.setCurrentIndex(m_comboBoxSeedChokingAlgorithm.findData(QVariant::fromValue(session->seedChokingAlgorithm())));
     addRow(SEED_CHOKING_ALGORITHM, (tr("Upload choking algorithm") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#seed_choking_algorithm", u"(?)"))
             , &m_comboBoxSeedChokingAlgorithm);
 

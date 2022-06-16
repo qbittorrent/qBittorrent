@@ -605,6 +605,7 @@ window.qBittorrent.ContextMenu = (function() {
                     this.hideItem('newFolder');
                     this.hideItem('updateAll');
                     this.showItem('copyFeedURL');
+                    break;
             }
         }
     });
@@ -661,6 +662,7 @@ window.qBittorrent.ContextMenu = (function() {
                     this.showItem('deleteRule');
                     this.hideItem('renameRule');
                     this.showItem('clearDownloadedEpisodes');
+                    break;
             }
         }
     });

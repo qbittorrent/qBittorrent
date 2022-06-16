@@ -132,6 +132,14 @@
 
     <fieldset class="settings">
         <legend>
+            <input type="checkbox" id="excludedFileNamesCheckbox" onclick="qBittorrent.Preferences.updateExcludedFileNamesEnabled();" />
+            <label for="excludedFileNamesCheckbox">QBT_TR(Excluded file names)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <textarea id="excludedFileNamesTextarea" rows="6" cols="70"></textarea>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>
             <input type="checkbox" id="mail_notification_checkbox" onclick="qBittorrent.Preferences.updateMailNotification();" />
             <label for="mail_notification_checkbox">QBT_TR(Email notification upon download completion)QBT_TR[CONTEXT=OptionsDialog]</label>
         </legend>
@@ -890,6 +898,14 @@
         <table>
             <tr>
                 <td>
+                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="networkInterface">QBT_TR(Network interface:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -1013,6 +1029,18 @@
                 </td>
                 <td>
                     <input type="text" id="diskQueueSize" style="width: 15em;">&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="diskIOType">QBT_TR(Disk IO type (libtorrent >= 2.0; requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="diskIOType" style="width: 15em;">
+                        <option value="0">QBT_TR(Default)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Memory mapped files)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(POSIX-compliant)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -1285,6 +1313,7 @@
                 updateExportDirEnabled: updateExportDirEnabled,
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
                 addWatchFolder: addWatchFolder,
+                updateExcludedFileNamesEnabled: updateExcludedFileNamesEnabled,
                 changeWatchFolderSelect: changeWatchFolderSelect,
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
@@ -1380,6 +1409,11 @@
                 }
             }
             return folders;
+        };
+
+        const updateExcludedFileNamesEnabled = function() {
+            const isAExcludedFileNamesEnabled = $('excludedFileNamesCheckbox').getProperty('checked');
+            $('excludedFileNamesTextarea').setProperty('disabled', !isAExcludedFileNamesEnabled);
         };
 
         const updateExportDirEnabled = function() {
@@ -1817,7 +1851,8 @@
                     alert("Could not contact qBittorrent");
                 },
                 onSuccess: function(ifaces) {
-                    if (!ifaces) return;
+                    if (!ifaces)
+                        return;
 
                     $('networkInterface').options.add(new Option('QBT_TR(Any interface)QBT_TR[CONTEXT=OptionsDialog]', ''));
                     ifaces.forEach(function(item, index) {
@@ -1842,7 +1877,8 @@
                     alert("Could not contact qBittorrent");
                 },
                 onSuccess: function(addresses) {
-                    if (!addresses) return;
+                    if (!addresses)
+                        return;
 
                     $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All addresses)QBT_TR[CONTEXT=OptionDialog]', ''));
                     $('optionalIPAddressToBind').options.add(new Option('QBT_TR(All IPv4 addresses)QBT_TR[CONTEXT=OptionDialog]', '0.0.0.0'));
@@ -1929,6 +1965,10 @@
                             addWatchFolder(folder, sel, other);
                         }
                         addWatchFolder();
+
+                        // Excluded file names
+                        $('excludedFileNamesCheckbox').setProperty('checked', pref.excluded_file_names_enabled);
+                        $('excludedFileNamesTextarea').setProperty('value', pref.excluded_file_names);
 
                         // Email notification upon download completion
                         $('mail_notification_checkbox').setProperty('checked', pref.mail_notification_enabled);
@@ -2106,7 +2146,7 @@
 
                         // Web UI tab
                         // Language
-                        $('locale_select').setProperty('value', pref.locale);
+                        $('locale_select').setProperty('value', ((pref.locale === "en_US") ? "en" : pref.locale));
                         $('performanceWarning').setProperty('checked', pref.performance_warning);
 
                         // HTTP Server
@@ -2161,6 +2201,7 @@
 
                         // Advanced settings
                         // qBittorrent section
+                        $('memoryWorkingSetLimit').setProperty('value', pref.memory_working_set_limit);
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
@@ -2175,6 +2216,7 @@
                         $('diskCache').setProperty('value', pref.disk_cache);
                         $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
                         $('diskQueueSize').setProperty('value', (pref.disk_queue_size / 1024));
+                        $('diskIOType').setProperty('value', pref.disk_io_type);
                         $('enableOSCache').setProperty('checked', pref.enable_os_cache);
                         $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
                         $('pieceExtentAffinity').setProperty('checked', pref.enable_piece_extent_affinity);
@@ -2243,6 +2285,10 @@
 
             // Automatically add torrents from
             settings.set('scan_dirs', getWatchedFolders());
+
+            // Excluded file names
+            settings.set('excluded_file_names_enabled', $('excludedFileNamesCheckbox').getProperty('checked'));
+            settings.set('excluded_file_names', $('excludedFileNamesTextarea').getProperty('value'));
 
             // Email notification upon download completion
             settings.set('mail_notification_enabled', $('mail_notification_checkbox').getProperty('checked'));
@@ -2553,6 +2599,7 @@
 
             // Update advanced settings
             // qBittorrent section
+            settings.set('memory_working_set_limit', $('memoryWorkingSetLimit').getProperty('value'));
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
@@ -2568,6 +2615,7 @@
             settings.set('disk_cache', $('diskCache').getProperty('value'));
             settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
             settings.set('disk_queue_size', ($('diskQueueSize').getProperty('value') * 1024));
+            settings.set('disk_io_type', $('diskIOType').getProperty('value'));
             settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
             settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
             settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));

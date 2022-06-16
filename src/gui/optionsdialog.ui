@@ -1111,11 +1111,11 @@
                </item>
                <item>
                 <widget class="QCheckBox" name="checkUseCategoryPaths">
-                 <property name="text">
-                  <string>Use Category paths in Manual Mode</string>
-                 </property>
                  <property name="toolTip">
                   <string>Resolve relative Save Path against appropriate Category path instead of Default one</string>
+                 </property>
+                 <property name="text">
+                  <string>Use Category paths in Manual Mode</string>
                  </property>
                 </widget>
                </item>
@@ -1256,6 +1256,43 @@
                   </layout>
                  </item>
                 </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="groupExcludedFileNames">
+              <property name="title">
+               <string>Excluded file names</string>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_311">
+               <item>
+                <widget class="QPlainTextEdit" name="textExcludedFileNames">
+                 <property name="toolTip">
+                  <string>Blacklist filtered file names from being downloaded from torrent(s).
+Files matching any of the filters in this list will have their priority automatically set to &quot;Do not download&quot;.
+
+Use newlines to separate multiple entries. Can use wildcards as outlined below.
+*: matches zero or more of any characters.
+?: matches any single character.
+[...]: sets of characters can be represented in square brackets.
+
+Examples
+*.exe: filter '.exe' file extension.
+readme.txt: filter exact file name.
+?.txt: filter 'a.txt', 'b.txt' but not 'aa.txt'.
+readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</string>
+                 </property>
+                 <property name="lineWrapMode">
+                  <enum>QPlainTextEdit::NoWrap</enum>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -2334,10 +2371,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
@@ -2357,10 +2391,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>3</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
@@ -2380,10 +2411,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <number>-1</number>
                  </property>
                  <property name="maximum">
-                  <number>999</number>
-                 </property>
-                 <property name="value">
-                  <number>5</number>
+                  <number>2147483647</number>
                  </property>
                 </widget>
                </item>
@@ -2690,7 +2718,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                  <item row="1" column="1">
                   <widget class="QSpinBox" name="spinRSSMaxArticlesPerFeed">
                    <property name="maximum">
-                    <number>9999</number>
+                    <number>2147483646</number>
                    </property>
                    <property name="value">
                     <number>100</number>

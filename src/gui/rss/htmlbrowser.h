@@ -38,6 +38,7 @@ class QNetworkReply;
 class HtmlBrowser final : public QTextBrowser
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(HtmlBrowser)
 
 public:
     explicit HtmlBrowser(QWidget* parent = nullptr);

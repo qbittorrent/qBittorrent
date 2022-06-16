@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -38,10 +38,23 @@ namespace
     }
 }
 
-NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrentHandle)
+NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrentHandle, ExtensionData *data)
     : m_torrentHandle {torrentHandle}
+    , m_data {data}
 {
-    on_state(m_torrentHandle.status({}).state);
+    lt::torrent_status torrentStatus = m_torrentHandle.status({});
+    on_state(torrentStatus.state);
+
+    if (m_data)
+    {
+        m_data->status = std::move(torrentStatus);
+        m_data->trackers = m_torrentHandle.trackers();
+    }
+}
+
+NativeTorrentExtension::~NativeTorrentExtension()
+{
+    delete m_data;
 }
 
 bool NativeTorrentExtension::on_pause()

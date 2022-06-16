@@ -40,6 +40,7 @@ namespace RSS
 class ArticleListWidget : public QListWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(ArticleListWidget)
 
 public:
     explicit ArticleListWidget(QWidget *parent);

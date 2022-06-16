@@ -47,9 +47,10 @@ StacktraceDialog::~StacktraceDialog()
     delete m_ui;
 }
 
-void StacktraceDialog::setStacktraceString(const QString &sigName, const QString &trace)
+void StacktraceDialog::setText(const QString &signalName, const QString &stacktrace)
 {
-    // try to call Qt function as less as possible
+    // try not to call signal-unsafe functions
+
     const QString htmlStr = QStringLiteral(
         "<p align=center><b><font size=7 color=red>"
         "qBittorrent has crashed"
@@ -70,7 +71,7 @@ void StacktraceDialog::setStacktraceString(const QString &sigName, const QString
         "OS version: %6<br/><br/>"
         "Caught signal: %7"
         "</font></p>"
-        "<pre><code>%8</code></pre>"
+        "<pre><code>```\n%8\n```</code></pre>"
         "<br/><hr><br/><br/>")
             .arg(QString::number(QT_POINTER_SIZE * 8)
                  , Utils::Misc::libtorrentVersionString()
@@ -78,8 +79,8 @@ void StacktraceDialog::setStacktraceString(const QString &sigName, const QString
                  , Utils::Misc::opensslVersionString()
                  , Utils::Misc::zlibVersionString()
                  , Utils::Misc::osName()
-                 , sigName
-                 , trace);
+                 , signalName
+                 , stacktrace);
 
     m_ui->errorText->setHtml(htmlStr);
 }

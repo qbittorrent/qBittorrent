@@ -42,6 +42,7 @@ namespace BitTorrent
 class CategoryFilterModel final : public QAbstractItemModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(CategoryFilterModel)
 
 public:
     explicit CategoryFilterModel(QObject *parent = nullptr);

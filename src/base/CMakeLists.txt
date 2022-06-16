@@ -12,6 +12,7 @@ add_library(qbt_base STATIC
     bittorrent/customstorage.h
     bittorrent/dbresumedatastorage.h
     bittorrent/downloadpriority.h
+    bittorrent/extensiondata.h
     bittorrent/filesearcher.h
     bittorrent/filterparserthread.h
     bittorrent/infohash.h
@@ -53,6 +54,7 @@ add_library(qbt_base STATIC
     http/types.h
     iconprovider.h
     indexrange.h
+    interfaces/iapplication.h
     interfaces/istringable.h
     logger.h
     net/dnsupdater.h
@@ -70,6 +72,7 @@ add_library(qbt_base STATIC
     preferences.h
     profile.h
     profile_p.h
+    rss/feed_serializer.h
     rss/rss_article.h
     rss/rss_autodownloader.h
     rss/rss_autodownloadrule.h
@@ -154,6 +157,7 @@ add_library(qbt_base STATIC
     preferences.cpp
     profile.cpp
     profile_p.cpp
+    rss/feed_serializer.cpp
     rss/rss_article.cpp
     rss/rss_autodownloader.cpp
     rss/rss_autodownloadrule.cpp

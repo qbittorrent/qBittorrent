@@ -91,7 +91,7 @@ const getShowFiltersSidebar = function() {
     // Show Filters Sidebar is enabled by default
     const show = LocalPreferences.get('show_filters_sidebar');
     return (show === null) || (show === 'true');
-}
+};
 
 function genHash(string) {
     // origins:
@@ -112,7 +112,8 @@ const fetchQbtVersion = function() {
         url: 'api/v2/app/version',
         method: 'get',
         onSuccess: function(info) {
-            if (!info) return;
+            if (!info)
+                return;
             sessionStorage.setItem('qbtVersion', info);
         }
     }).send();
@@ -245,7 +246,7 @@ window.addEvent('load', function() {
     toggleFilterDisplay = function(filter) {
         const element = filter + "FilterList";
         LocalPreferences.set('filter_' + filter + "_collapsed", !$(element).hasClass("invisible"));
-        $(element).toggleClass("invisible")
+        $(element).toggleClass("invisible");
         const parent = $(element).getParent(".filterWrapper");
         const toggleIcon = $(parent).getChildren(".filterTitle img");
         if (toggleIcon)

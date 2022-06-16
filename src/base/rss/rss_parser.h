@@ -52,6 +52,7 @@ namespace RSS
         class Parser : public QObject
         {
             Q_OBJECT
+            Q_DISABLE_COPY_MOVE(Parser)
 
         public:
             explicit Parser(QString lastBuildDate);

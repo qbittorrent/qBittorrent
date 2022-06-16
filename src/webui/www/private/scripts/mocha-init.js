@@ -88,6 +88,7 @@ let copyInfohashFN = function(policy) {};
 let copyMagnetLinkFN = function() {};
 let copyIdFN = function() {};
 let setQueuePositionFN = function() {};
+let exportTorrentFN = function() {};
 
 const initializeWindows = function() {
     saveWindowSize = function(windowId) {
@@ -878,7 +879,7 @@ const initializeWindows = function() {
                 hashes = torrentsTable.getFilteredTorrentsHashes('all', CATEGORIES_ALL, TAGS_ALL, TRACKERS_TRACKERLESS);
                 break;
             default:
-                hashes = trackerList.get(trackerHashInt).torrents
+                hashes = trackerList.get(trackerHashInt).torrents;
                 break;
         }
 
@@ -955,6 +956,27 @@ const initializeWindows = function() {
 
     copyIdFN = function() {
         return torrentsTable.selectedRowsIds().join("\n");
+    };
+
+    exportTorrentFN = function() {
+        const hashes = torrentsTable.selectedRowsIds();
+        for (const hash of hashes) {
+            const row = torrentsTable.rows.get(hash);
+            if (!row)
+                return;
+
+            const name = row.full_data.name;
+            const url = new URI("api/v2/torrents/export");
+            url.setData("hash", hash);
+
+            // download response to file
+            const element = document.createElement("a");
+            element.setAttribute("href", url);
+            element.setAttribute("download", name + ".torrent");
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
     };
 
     ['pause', 'resume'].each(function(item) {

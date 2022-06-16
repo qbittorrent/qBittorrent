@@ -151,7 +151,7 @@ QString Path::extension() const
     return ((dotIndex == -1) ? QString() : filename.mid(dotIndex).toString());
 }
 
-bool Path::hasExtension(const QString &ext) const
+bool Path::hasExtension(const QStringView ext) const
 {
     Q_ASSERT(ext.startsWith(u'.') && (ext.size() >= 2));
 
@@ -186,10 +186,15 @@ Path Path::removedExtension() const
     return createUnchecked(m_pathStr.chopped(extension().size()));
 }
 
-void Path::removeExtension(const QString &ext)
+void Path::removeExtension(const QStringView ext)
 {
     if (hasExtension(ext))
         m_pathStr.chop(ext.size());
+}
+
+Path Path::removedExtension(const QStringView ext) const
+{
+    return (hasExtension(ext) ? createUnchecked(m_pathStr.chopped(ext.size())) : *this);
 }
 
 QString Path::data() const

@@ -157,6 +157,7 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
     switch (m_type)
     {
     case All:
+    default:
         return true;
     case Downloading:
         return torrent->isDownloading();
@@ -185,8 +186,6 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
                 || (torrent->state() == BitTorrent::TorrentState::CheckingResumeData);
     case Errored:
         return torrent->isErrored();
-    default: // All
-        return true;
     }
 }
 

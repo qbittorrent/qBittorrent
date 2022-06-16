@@ -55,6 +55,7 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "autoexpandabledialog.h"
+#include "lineedit.h"
 #include "properties/proplistdelegate.h"
 #include "raisedmessagebox.h"
 #include "torrentcontentfiltermodel.h"
@@ -169,6 +170,7 @@ const int AddNewTorrentDialog::maxPathHistoryLength;
 AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
     : QDialog(parent)
     , m_ui(new Ui::AddNewTorrentDialog)
+    , m_filterLine(new LineEdit(this))
     , m_torrentParams(inParams)
     , m_storeDialogSize(SETTINGS_KEY(u"DialogSize"_qs))
     , m_storeDefaultCategory(SETTINGS_KEY(u"DefaultCategory"_qs))
@@ -183,7 +185,6 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 {
     // TODO: set dialog file properties using m_torrentParams.filePriorities
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     m_ui->lblMetaLoading->setVisible(false);
     m_ui->progMetaLoading->setVisible(false);
@@ -241,6 +242,12 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->contentTreeView->header()->setSortIndicator(0, Qt::AscendingOrder);
 
     connect(m_ui->contentTreeView->header(), &QWidget::customContextMenuRequested, this, &AddNewTorrentDialog::displayColumnHeaderMenu);
+
+    // Torrent content filtering
+    m_filterLine->setPlaceholderText(tr("Filter files..."));
+    m_filterLine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    connect(m_filterLine, &LineEdit::textChanged, this, &AddNewTorrentDialog::handleFilterTextChanged);
+    m_ui->contentFilterLayout->insertWidget(3, m_filterLine);
 
     loadState();
     // Signal / slots
@@ -337,7 +344,9 @@ void AddNewTorrentDialog::setSavePathHistoryLength(const int value)
 
 void AddNewTorrentDialog::loadState()
 {
-    resize(m_storeDialogSize);
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
+
     m_ui->splitter->restoreState(m_storeSplitterState);;
 }
 
@@ -352,6 +361,7 @@ void AddNewTorrentDialog::saveState()
 void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorrentParams &inParams, QWidget *parent)
 {
     auto *dlg = new AddNewTorrentDialog(inParams, parent);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
 
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
@@ -912,6 +922,8 @@ void AddNewTorrentDialog::setupTreeview()
     {
         m_ui->labelCommentData->setText(tr("Not Available", "This comment is unavailable"));
         m_ui->labelDateData->setText(tr("Not Available", "This date is unavailable"));
+        // Prevent crash if something is typed in the filter. m_contentModel is not initialized at this point
+        m_filterLine->blockSignals(true);
     }
     else
     {
@@ -949,6 +961,8 @@ void AddNewTorrentDialog::setupTreeview()
         if (const QByteArray state = m_storeTreeHeaderState; !state.isEmpty())
             m_ui->contentTreeView->header()->restoreState(state);
 
+        m_filterLine->blockSignals(false);
+
         // Hide useless columns after loading the header state
         m_ui->contentTreeView->hideColumn(PROGRESS);
         m_ui->contentTreeView->hideColumn(REMAINING);
@@ -960,6 +974,24 @@ void AddNewTorrentDialog::setupTreeview()
         {
             currentIndex = m_contentModel->index(0, 0, currentIndex);
             m_ui->contentTreeView->setExpanded(currentIndex, true);
+        }
+
+        if (BitTorrent::Session::instance()->isExcludedFileNamesEnabled())
+        {
+            // Check file name blacklist for torrents that are manually added
+            QVector<BitTorrent::DownloadPriority> priorities = m_contentModel->model()->getFilePriorities();
+            Q_ASSERT(priorities.size() == m_torrentInfo.filesCount());
+
+            for (int i = 0; i < priorities.size(); ++i)
+            {
+                if (priorities[i] == BitTorrent::DownloadPriority::Ignored)
+                    continue;
+
+                if (BitTorrent::Session::instance()->isFilenameExcluded(m_torrentInfo.filePath(i).filename()))
+                    priorities[i] = BitTorrent::DownloadPriority::Ignored;
+            }
+
+            m_contentModel->model()->updateFilesPriorities(priorities);
         }
     }
 
@@ -1043,5 +1075,20 @@ void AddNewTorrentDialog::renameSelectedFile()
     {
         FileStorageAdaptor fileStorageAdaptor {m_torrentInfo, m_torrentParams.filePaths};
         m_ui->contentTreeView->renameSelectedFile(fileStorageAdaptor);
+    }
+}
+
+void AddNewTorrentDialog::handleFilterTextChanged(const QString &filter)
+{
+    const QString pattern = Utils::String::wildcardToRegexPattern(filter);
+    m_contentModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
+    if (filter.isEmpty())
+    {
+        m_ui->contentTreeView->collapseAll();
+        m_ui->contentTreeView->expand(m_contentModel->index(0, 0));
+    }
+    else
+    {
+        m_ui->contentTreeView->expandAll();
     }
 }

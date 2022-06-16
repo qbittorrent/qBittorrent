@@ -33,6 +33,7 @@
 class TagFilterWidget final : public QTreeView
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TagFilterWidget)
 
 public:
     explicit TagFilterWidget(QWidget *parent = nullptr);

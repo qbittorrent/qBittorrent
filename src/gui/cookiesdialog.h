@@ -42,6 +42,7 @@ namespace Ui
 class CookiesDialog final : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(CookiesDialog)
 
 public:
     explicit CookiesDialog(QWidget *parent = nullptr);

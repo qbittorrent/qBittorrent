@@ -368,8 +368,8 @@ namespace
     }
 }
 
-SyncController::SyncController(ISessionManager *sessionManager, QObject *parent)
-    : APIController(sessionManager, parent)
+SyncController::SyncController(QObject *parent)
+    : APIController(parent)
 {
     m_freeDiskSpaceThread = new QThread(this);
     m_freeDiskSpaceChecker = new FreeDiskSpaceChecker();
@@ -458,9 +458,6 @@ void SyncController::maindataAction()
 
     QVariantMap data;
 
-    QVariantMap lastResponse = sessionManager()->session()->getData(u"syncMainDataLastResponse"_qs).toMap();
-    QVariantMap lastAcceptedResponse = sessionManager()->session()->getData(u"syncMainDataLastAcceptedResponse"_qs).toMap();
-
     QVariantHash torrents;
     QHash<QString, QStringList> trackers;
     for (const BitTorrent::Torrent *torrent : asConst(session->torrents()))
@@ -472,8 +469,8 @@ void SyncController::maindataAction()
 
         // Calculated last activity time can differ from actual value by up to 10 seconds (this is a libtorrent issue).
         // So we don't need unnecessary updates of last activity time in response.
-        const auto iterTorrents = lastResponse.find(u"torrents"_qs);
-        if (iterTorrents != lastResponse.end())
+        const auto iterTorrents = m_lastMaindataResponse.find(u"torrents"_qs);
+        if (iterTorrents != m_lastMaindataResponse.end())
         {
             const QVariantHash lastResponseTorrents = iterTorrents->toHash();
             const auto iterID = lastResponseTorrents.find(torrentID.toString());
@@ -531,11 +528,8 @@ void SyncController::maindataAction()
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
     data[u"server_state"_qs] = serverState;
 
-    const int acceptedResponseId {params()[u"rid"_qs].toInt()};
-    setResult(QJsonObject::fromVariantMap(generateSyncData(acceptedResponseId, data, lastAcceptedResponse, lastResponse)));
-
-    sessionManager()->session()->setData(u"syncMainDataLastResponse"_qs, lastResponse);
-    sessionManager()->session()->setData(u"syncMainDataLastAcceptedResponse"_qs, lastAcceptedResponse);
+    const int acceptedResponseId = params()[u"rid"_qs].toInt();
+    setResult(QJsonObject::fromVariantMap(generateSyncData(acceptedResponseId, data, m_lastAcceptedMaindataResponse, m_lastMaindataResponse)));
 }
 
 // GET param:
@@ -543,9 +537,6 @@ void SyncController::maindataAction()
 //   - rid (int): last response id
 void SyncController::torrentPeersAction()
 {
-    auto lastResponse = sessionManager()->session()->getData(u"syncTorrentPeersLastResponse"_qs).toMap();
-    auto lastAcceptedResponse = sessionManager()->session()->getData(u"syncTorrentPeersLastAcceptedResponse"_qs).toMap();
-
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
     const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(id);
     if (!torrent)
@@ -600,11 +591,8 @@ void SyncController::torrentPeersAction()
     }
     data[u"peers"_qs] = peers;
 
-    const int acceptedResponseId {params()[u"rid"_qs].toInt()};
-    setResult(QJsonObject::fromVariantMap(generateSyncData(acceptedResponseId, data, lastAcceptedResponse, lastResponse)));
-
-    sessionManager()->session()->setData(u"syncTorrentPeersLastResponse"_qs, lastResponse);
-    sessionManager()->session()->setData(u"syncTorrentPeersLastAcceptedResponse"_qs, lastAcceptedResponse);
+    const int acceptedResponseId = params()[u"rid"_qs].toInt();
+    setResult(QJsonObject::fromVariantMap(generateSyncData(acceptedResponseId, data, m_lastAcceptedPeersResponse, m_lastPeersResponse)));
 }
 
 qint64 SyncController::getFreeDiskSpace()

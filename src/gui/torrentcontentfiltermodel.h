@@ -38,6 +38,7 @@ class TorrentContentModel;
 class TorrentContentFilterModel final : public QSortFilterProxyModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TorrentContentFilterModel)
 
 public:
     TorrentContentFilterModel(QObject *parent = nullptr);

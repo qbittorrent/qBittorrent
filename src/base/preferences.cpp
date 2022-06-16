@@ -45,7 +45,6 @@
 #include <QLocale>
 #include <QNetworkCookie>
 #include <QSettings>
-#include <QSize>
 #include <QTime>
 
 #ifdef Q_OS_WIN
@@ -594,12 +593,13 @@ void Preferences::setWebUiAddress(const QString &addr)
 
 quint16 Preferences::getWebUiPort() const
 {
-    return value<int>(u"Preferences/WebUI/Port"_qs, 8080);
+    return value<quint16>(u"Preferences/WebUI/Port"_qs, 8080);
 }
 
 void Preferences::setWebUiPort(const quint16 port)
 {
-    setValue(u"Preferences/WebUI/Port"_qs, port);
+    // cast to `int` type so it will show human readable unit in configuration file
+    setValue(u"Preferences/WebUI/Port"_qs, static_cast<int>(port));
 }
 
 bool Preferences::useUPnPForWebUIPort() const
@@ -1369,34 +1369,6 @@ void Preferences::setPropTrackerListState(const QByteArray &state)
     setValue(u"GUI/Qt6/TorrentProperties/TrackerListState"_qs, state);
 #else
     setValue(u"TorrentProperties/Trackers/qt5/TrackerListState"_qs, state);
-#endif
-}
-
-QSize Preferences::getRssGeometrySize() const
-{
-    return value<QSize>(u"RssFeedDownloader/geometrySize"_qs);
-}
-
-void Preferences::setRssGeometrySize(const QSize &geometry)
-{
-    setValue(u"RssFeedDownloader/geometrySize"_qs, geometry);
-}
-
-QByteArray Preferences::getRssHSplitterSizes() const
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    return value<QByteArray>(u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_qs);
-#else
-    return value<QByteArray>(u"RssFeedDownloader/qt5/hsplitterSizes"_qs);
-#endif
-}
-
-void Preferences::setRssHSplitterSizes(const QByteArray &sizes)
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
-    setValue(u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_qs, sizes);
-#else
-    setValue(u"RssFeedDownloader/qt5/hsplitterSizes"_qs, sizes);
 #endif
 }
 

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,14 +28,19 @@
 
 #pragma once
 
+#include <libtorrent/socket.hpp>
+
 #include <QtGlobal>
+#include <QHash>
+#include <QMap>
 #include <QString>
-#include <QVector>
 
 namespace BitTorrent
 {
     struct TrackerEntry
     {
+        using Endpoint = lt::tcp::endpoint;
+
         enum Status
         {
             NotContacted = 1,
@@ -46,8 +51,6 @@ namespace BitTorrent
 
         struct EndpointStats
         {
-            int protocolVersion = 1;
-
             Status status = NotContacted;
             int numPeers = -1;
             int numSeeds = -1;
@@ -59,7 +62,8 @@ namespace BitTorrent
         QString url {};
         int tier = 0;
 
-        QVector<EndpointStats> endpoints {};
+        // TODO: Use QHash<TrackerEntry::Endpoint, QHash<int, EndpointStats>> once Qt5 is dropped.
+        QMap<Endpoint, QHash<int, EndpointStats>> stats {};
 
         // Deprecated fields
         Status status = NotContacted;

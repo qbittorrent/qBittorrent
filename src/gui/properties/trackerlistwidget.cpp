@@ -279,26 +279,26 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
     const auto *session = BitTorrent::Session::instance();
 
     // load DHT information
-    if (torrent->isPrivate() || torrent->isDHTDisabled())
-        m_DHTItem->setText(COL_STATUS, torrentDisabled);
-    else if (!session->isDHTEnabled())
+    if (!session->isDHTEnabled())
         m_DHTItem->setText(COL_STATUS, disabled);
+    else if (torrent->isPrivate() || torrent->isDHTDisabled())
+        m_DHTItem->setText(COL_STATUS, torrentDisabled);
     else
         m_DHTItem->setText(COL_STATUS, working);
 
     // Load PeX Information
-    if (torrent->isPrivate() || torrent->isPEXDisabled())
-        m_PEXItem->setText(COL_STATUS, torrentDisabled);
-    else if (!session->isPeXEnabled())
+    if (!session->isPeXEnabled())
         m_PEXItem->setText(COL_STATUS, disabled);
+    else if (torrent->isPrivate() || torrent->isPEXDisabled())
+        m_PEXItem->setText(COL_STATUS, torrentDisabled);
     else
         m_PEXItem->setText(COL_STATUS, working);
 
     // Load LSD Information
-    if (torrent->isPrivate() || torrent->isLSDDisabled())
-        m_LSDItem->setText(COL_STATUS, torrentDisabled);
-    else if (!session->isLSDEnabled())
+    if (!session->isLSDEnabled())
         m_LSDItem->setText(COL_STATUS, disabled);
+    else if (torrent->isPrivate() || torrent->isLSDDisabled())
+        m_LSDItem->setText(COL_STATUS, torrentDisabled);
     else
         m_LSDItem->setText(COL_STATUS, working);
 
@@ -473,18 +473,7 @@ void TrackerListWidget::deleteSelectedTrackers()
         delete item;
     }
 
-    // Iterate over the trackers and remove the selected ones
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    QVector<BitTorrent::TrackerEntry> remainingTrackers;
-    remainingTrackers.reserve(trackers.size());
-
-    for (const BitTorrent::TrackerEntry &entry : trackers)
-    {
-        if (!urlsToRemove.contains(entry.url))
-            remainingTrackers.push_back(entry);
-    }
-
-    torrent->replaceTrackers(remainingTrackers);
+    torrent->removeTrackers(urlsToRemove);
 
     if (!torrent->isPaused())
         torrent->forceReannounce();

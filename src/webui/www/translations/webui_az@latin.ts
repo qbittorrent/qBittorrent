@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="az@latin">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="az@latin">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Alt qovluq yarat</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
 </context>
@@ -93,7 +91,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation>qBittorrent'dən çıxmaq</translation>
+        <translation>qBittorrent&apos;dən çıxmaq</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -337,7 +335,7 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript'i aktiv etməlisiniz</translation>
+        <translation>JavaScript tələb olunur! Düzgün şəkildə işləməsi üçün Veb İİ üçün JavaScript&apos;i aktiv etməlisiniz</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
@@ -464,7 +462,7 @@
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
-        <translation>qBittorent'dən çıxmaq istədiyinizə əminsiniz?</translation>
+        <translation>qBittorent&apos;dən çıxmaq istədiyinizə əminsiniz?</translation>
     </message>
     <message>
         <source>[D: %1, U: %2] qBittorrent %3</source>
@@ -573,7 +571,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Filtrlər yan paneli</translation>
     </message>
 </context>
 <context>
@@ -957,8 +955,8 @@
         <translation>%T: Cari izləyici</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Növ: Mətni, ara boşluğunda kəsilmələrndən qorumaq üçün parametrləri dırnaq işarəsinə alın (məs., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1222,7 +1220,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>İştirakçılarla mütənasib (TCP'ni məhdudlaşdırır)</translation>
+        <translation>İştirakçılarla mütənasib (TCP&apos;ni məhdudlaşdırır)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1429,7 +1427,7 @@
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
     <message>
@@ -1462,11 +1460,11 @@
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J: Məlumat heş'i v2</translation>
+        <translation>%J: Məlumat heş&apos;i v2</translation>
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: Məlumat heş'i v1</translation>
+        <translation>%I: Məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
@@ -1482,19 +1480,43 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Disk növbəsi ölçüsü:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Performans xəbərdarlıqlarını qeydə alamaq</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Hər iştirakçıya düşən ən çox icra olunmamış sorğu:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Ən çox aktiv torrent yoxlaması:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1782,11 +1804,11 @@
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Məlumat heş'i v2:</translation>
+        <translation>Məlumat heş&apos;i v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Məlumat heş'i v1</translation>
+        <translation>Məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2184,10 +2206,6 @@
         <translation>İsmarıc</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation>Endirildi</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>İzləyici URL-u:</translation>
     </message>
@@ -2268,12 +2286,12 @@
         <translation>Gedişat</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Ölçü</translation>
+        <source>Total Size</source>
+        <translation>Ümumi ölçü</translation>
     </message>
     <message>
-        <source>Total Size</source>
-        <translation type="unfinished" />
+        <source>Times Downloaded</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2560,15 +2578,19 @@
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>məlumat heş'i v1</translation>
+        <translation>məlumat heş&apos;i v1</translation>
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>məlumat heş'i v2</translation>
+        <translation>məlumat heş&apos;i v2</translation>
     </message>
     <message>
         <source>Torrent ID</source>
         <translation>Torrent İD-si</translation>
+    </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2835,7 +2857,7 @@
         <translation>Aktiv edildi</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Xəbərdarlıq: Bu axtarış sistemlərinin hər hansı birindən istifadə edərək torrentləri yükləyərkən, mütləq ölkənizin müəllif hüquqları haqqında qanununa rəayət edin.</translation>
     </message>
     <message>
@@ -3450,7 +3472,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
         <translation>Orijinal</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
 </context>

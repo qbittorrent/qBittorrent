@@ -767,8 +767,8 @@ void TorrentsController::editTrackerAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    const QUrl origTrackerUrl(origUrl);
-    const QUrl newTrackerUrl(newUrl);
+    const QUrl origTrackerUrl {origUrl};
+    const QUrl newTrackerUrl {newUrl};
     if (origTrackerUrl == newTrackerUrl)
         return;
     if (!newTrackerUrl.isValid())
@@ -778,7 +778,7 @@ void TorrentsController::editTrackerAction()
     bool match = false;
     for (BitTorrent::TrackerEntry &tracker : trackers)
     {
-        const QUrl trackerUrl(tracker.url);
+        const QUrl trackerUrl {tracker.url};
         if (trackerUrl == newTrackerUrl)
             throw APIError(APIErrorType::Conflict, u"New tracker URL already exists"_qs);
         if (trackerUrl == origTrackerUrl)
@@ -806,20 +806,7 @@ void TorrentsController::removeTrackersAction()
         throw APIError(APIErrorType::NotFound);
 
     const QStringList urls = params()[u"urls"_qs].split(u'|');
-
-    const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-    QVector<BitTorrent::TrackerEntry> remainingTrackers;
-    remainingTrackers.reserve(trackers.size());
-    for (const BitTorrent::TrackerEntry &entry : trackers)
-    {
-        if (!urls.contains(entry.url))
-            remainingTrackers.push_back(entry);
-    }
-
-    if (remainingTrackers.size() == trackers.size())
-        throw APIError(APIErrorType::Conflict, u"No trackers were removed"_qs);
-
-    torrent->replaceTrackers(remainingTrackers);
+    torrent->removeTrackers(urls);
 
     if (!torrent->isPaused())
         torrent->forceReannounce();
@@ -1413,4 +1400,20 @@ void TorrentsController::renameFolderAction()
     {
         throw APIError(APIErrorType::Conflict, error.message());
     }
+}
+
+void TorrentsController::exportAction()
+{
+    requireParams({u"hash"_qs});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    const nonstd::expected<QByteArray, QString> result = torrent->exportToBuffer();
+    if (!result)
+        throw APIError(APIErrorType::Conflict, tr("Unable to export torrent file. Error: %1").arg(result.error()));
+
+    setResult(result.value());
 }

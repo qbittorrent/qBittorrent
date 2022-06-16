@@ -516,3 +516,22 @@ QVariant GeoIPDatabase::readArrayValue(quint32 &offset, const quint32 count) con
 
     return array;
 }
+
+template <typename T>
+QVariant GeoIPDatabase::readPlainValue(quint32 &offset, const quint8 len) const
+{
+    T value = 0;
+    const uchar *const data = m_data + offset;
+    const quint32 availSize = m_size - offset;
+
+    if ((len > 0) && (len <= sizeof(T) && (availSize >= len)))
+    {
+        // copy input data to last 'len' bytes of 'value'
+        uchar *dst = reinterpret_cast<uchar *>(&value) + (sizeof(T) - len);
+        memcpy(dst, data, len);
+        fromBigEndian(reinterpret_cast<uchar *>(&value), sizeof(T));
+        offset += len;
+    }
+
+    return QVariant::fromValue(value);
+}

@@ -34,11 +34,13 @@
 #include <QMetaType>
 #include <QString>
 
+#include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 #include "base/tagset.h"
 #include "abstractfilestorage.h"
 
 class QBitArray;
+class QByteArray;
 class QDateTime;
 class QUrl;
 
@@ -222,7 +224,6 @@ namespace BitTorrent
         virtual bool hasMissingFiles() const = 0;
         virtual bool hasError() const = 0;
         virtual int queuePosition() const = 0;
-        virtual QVector<QString> trackerURLs() const = 0;
         virtual QVector<TrackerEntry> trackers() const = 0;
         virtual QVector<QUrl> urlSeeds() const = 0;
         virtual QString error() const = 0;
@@ -292,14 +293,17 @@ namespace BitTorrent
         virtual void setPEXDisabled(bool disable) = 0;
         virtual void setLSDDisabled(bool disable) = 0;
         virtual void flushCache() const = 0;
-        virtual void addTrackers(const QVector<TrackerEntry> &trackers) = 0;
-        virtual void replaceTrackers(const QVector<TrackerEntry> &trackers) = 0;
+        virtual void addTrackers(QVector<TrackerEntry> trackers) = 0;
+        virtual void removeTrackers(const QStringList &trackers) = 0;
+        virtual void replaceTrackers(QVector<TrackerEntry> trackers) = 0;
         virtual void addUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
 
         virtual QString createMagnetURI() const = 0;
+        virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
+        virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
 
         TorrentID id() const;
         bool isResumed() const;

@@ -40,6 +40,7 @@
 #include <QFileSystemWatcher>
 #include <QKeyEvent>
 #include <QMessageBox>
+#include <QMetaObject>
 #include <QMimeData>
 #include <QProcess>
 #include <QPushButton>
@@ -120,6 +121,21 @@ namespace
             || (!str.startsWith(u"file:", Qt::CaseInsensitive)
                 && Net::DownloadManager::hasSupportedScheme(str));
     }
+
+#ifdef Q_OS_MACOS
+    MainWindow *dockMainWindowHandle = nullptr;
+
+    bool dockClickHandler(id self, SEL cmd, ...)
+    {
+        Q_UNUSED(self)
+        Q_UNUSED(cmd)
+
+        if (dockMainWindowHandle && !dockMainWindowHandle->isVisible())
+            dockMainWindowHandle->activate();
+
+        return true;
+    }
+#endif
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -348,8 +364,7 @@ MainWindow::MainWindow(QWidget *parent)
     on_actionWarningMessages_triggered(m_ui->actionWarningMessages->isChecked());
     on_actionCriticalMessages_triggered(m_ui->actionCriticalMessages->isChecked());
     if (m_ui->actionSearchWidget->isChecked())
-        QTimer::singleShot(0, this, &MainWindow::on_actionSearchWidget_triggered);
-
+        QMetaObject::invokeMethod(this, &MainWindow::on_actionSearchWidget_triggered, Qt::QueuedConnection);
     // Auto shutdown actions
     auto *autoShutdownGroup = new QActionGroup(this);
     autoShutdownGroup->setExclusive(true);
@@ -1109,17 +1124,29 @@ void MainWindow::on_actionAbout_triggered()
 {
     // About dialog
     if (m_aboutDlg)
+    {
         m_aboutDlg->activateWindow();
+    }
     else
+    {
         m_aboutDlg = new AboutDialog(this);
+        m_aboutDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_aboutDlg->show();
+    }
 }
 
 void MainWindow::on_actionStatistics_triggered()
 {
     if (m_statsDlg)
+    {
         m_statsDlg->activateWindow();
+    }
     else
+    {
         m_statsDlg = new StatsDialog(this);
+        m_statsDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_statsDlg->show();
+    }
 }
 
 void MainWindow::showEvent(QShowEvent *e)
@@ -1195,7 +1222,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     if (!m_forceExit && m_systrayIcon && goToSystrayOnExit && !this->isHidden())
     {
         e->ignore();
-        QTimer::singleShot(0, this, &QWidget::hide);
+        QMetaObject::invokeMethod(this, &QWidget::hide, Qt::QueuedConnection);
         if (!pref->closeToTrayNotified())
         {
             showNotificationBalloon(tr("qBittorrent is closed to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
@@ -1264,6 +1291,8 @@ void MainWindow::createTorrentTriggered(const Path &path)
     else
     {
         m_createTorrentDlg = new TorrentCreatorDialog(this, path);
+        m_createTorrentDlg->setAttribute(Qt::WA_DeleteOnClose);
+        m_createTorrentDlg->show();
     }
 }
 
@@ -1292,7 +1321,7 @@ bool MainWindow::event(QEvent *e)
                 {
                     qDebug("Minimize to Tray enabled, hiding!");
                     e->ignore();
-                    QTimer::singleShot(0, this, &QWidget::hide);
+                    QMetaObject::invokeMethod(this, &QWidget::hide, Qt::QueuedConnection);
                     if (!pref->minimizeToTrayNotified())
                     {
                         showNotificationBalloon(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
@@ -1388,28 +1417,11 @@ void MainWindow::dragEnterEvent(QDragEnterEvent *event)
 }
 
 #ifdef Q_OS_MACOS
-
-static MainWindow *dockMainWindowHandle;
-
-static bool dockClickHandler(id self, SEL cmd, ...)
-{
-    Q_UNUSED(self)
-    Q_UNUSED(cmd)
-
-    if (dockMainWindowHandle && !dockMainWindowHandle->isVisible())
-    {
-        dockMainWindowHandle->activate();
-    }
-
-    return true;
-}
-
 void MainWindow::setupDockClickHandler()
 {
     dockMainWindowHandle = this;
     MacUtils::overrideDockClickHandler(dockClickHandler);
 }
-
 #endif // Q_OS_MACOS
 
 /*****************************************************
@@ -1495,6 +1507,7 @@ void MainWindow::showFiltersSidebar(const bool show)
 
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntriesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntriesUpdated);
     }
@@ -1825,9 +1838,15 @@ PropertiesWidget *MainWindow::propertiesWidget() const
 void MainWindow::on_actionOptions_triggered()
 {
     if (m_options)
+    {
         m_options->activateWindow();
+    }
     else
+    {
         m_options = new OptionsDialog(this);
+        m_options->setAttribute(Qt::WA_DeleteOnClose);
+        m_options->open();
+    }
 }
 
 void MainWindow::on_actionTopToolBar_triggered()
@@ -1934,7 +1953,9 @@ void MainWindow::on_actionDownloadFromURL_triggered()
     if (!m_downloadFromURLDialog)
     {
         m_downloadFromURLDialog = new DownloadFromURLDialog(this);
+        m_downloadFromURLDialog->setAttribute(Qt::WA_DeleteOnClose);
         connect(m_downloadFromURLDialog.data(), &DownloadFromURLDialog::urlsReadyToBeDownloaded, this, &MainWindow::downloadFromURLList);
+        m_downloadFromURLDialog->open();
     }
 }
 
@@ -1963,6 +1984,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
         msgBox->setAttribute(Qt::WA_DeleteOnClose);
         msgBox->setAttribute(Qt::WA_ShowWithoutActivating);
         msgBox->setDefaultButton(QMessageBox::Yes);
+        msgBox->setWindowModality(Qt::NonModal);
         connect(msgBox, &QMessageBox::buttonClicked, this, [msgBox, updater](QAbstractButton *button)
         {
             if (msgBox->buttonRole(button) == QMessageBox::YesRole)
@@ -1971,7 +1993,7 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
             }
         });
         connect(msgBox, &QDialog::finished, this, cleanup);
-        msgBox->open();
+        msgBox->show();
     }
     else
     {
@@ -1981,8 +2003,9 @@ void MainWindow::handleUpdateCheckFinished(ProgramUpdater *updater, const bool i
                 , tr("No updates available.\nYou are already using the latest version.")
                 , QMessageBox::Ok, this};
             msgBox->setAttribute(Qt::WA_DeleteOnClose);
+            msgBox->setWindowModality(Qt::NonModal);
             connect(msgBox, &QDialog::finished, this, cleanup);
-            msgBox->open();
+            msgBox->show();
         }
         else
         {

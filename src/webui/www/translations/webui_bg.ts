@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="bg">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bg">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Създай подпапка</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>
@@ -574,7 +572,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Странична лента на филтри</translation>
     </message>
 </context>
 <context>
@@ -958,8 +956,8 @@
         <translation>%T: Сегашен тракер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1430,7 +1428,7 @@
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
     <message>
@@ -1483,19 +1481,43 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Размер на опашката на диска:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Вписвай предупреждения за производителност</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Максимален брой неизпълнени заявки към един участник:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Макс. активни проверки на торент:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation>Отбелязани в паметта файлове</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>По подразбиране</translation>
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation>POSIX-съобразен</translation>
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation>Тази опция е по-малко ефективна на Линукс</translation>
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation>Диск ВИ тип (libtorrent &gt;= 2.0; изисква рестарт):</translation>
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation>Ограничение на потреблението на физическата памет (RAM):</translation>
     </message>
 </context>
 <context>
@@ -2185,10 +2207,6 @@
         <translation>Съобщение</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation>Свалени</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>URL адрес на тракера:</translation>
     </message>
@@ -2269,12 +2287,12 @@
         <translation>Напредък</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Размер</translation>
+        <source>Total Size</source>
+        <translation>Общ размер</translation>
     </message>
     <message>
-        <source>Total Size</source>
-        <translation type="unfinished" />
+        <source>Times Downloaded</source>
+        <translation>Пъти свалено</translation>
     </message>
 </context>
 <context>
@@ -2571,6 +2589,10 @@
         <source>Torrent ID</source>
         <translation>Торент ИД</translation>
     </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation>Изнеси .torrent</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2836,7 +2858,7 @@
         <translation>Активирано</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Уверете се, че се придържате към законите на авторското право на вашата страна, когато сваляте торенти от която и да е то тези търсачки.</translation>
     </message>
     <message>
@@ -3451,7 +3473,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>

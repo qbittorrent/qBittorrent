@@ -39,10 +39,9 @@ PluginSourceDialog::PluginSourceDialog(QWidget *parent)
     , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
 {
     m_ui->setupUi(this);
-    setAttribute(Qt::WA_DeleteOnClose);
 
-    resize(m_storeDialogSize);
-    show();
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 PluginSourceDialog::~PluginSourceDialog()

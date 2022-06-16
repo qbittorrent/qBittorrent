@@ -47,6 +47,7 @@
 #include "base/bittorrent/scheduler/bandwidthscheduler.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/interfaces/iapplication.h"
 #include "base/net/portforwarder.h"
 #include "base/net/proxyconfigurationmanager.h"
 #include "base/path.h"
@@ -141,6 +142,10 @@ void AppController::preferencesAction()
     }
     data[u"scan_dirs"_qs] = nativeDirs;
     // === END DEPRECATED CODE === //
+
+    // Excluded file names
+    data[u"excluded_file_names_enabled"_qs] = session->isExcludedFileNamesEnabled();
+    data[u"excluded_file_names"_qs] = session->excludedFileNames().join(u'\n');
 
     // Email notification upon download completion
     data[u"mail_notification_enabled"_qs] = pref->isMailNotificationEnabled();
@@ -286,6 +291,8 @@ void AppController::preferencesAction()
 
     // Advanced settings
     // qBitorrent preferences
+    // Physical memory (RAM) usage limit
+    data[u"memory_working_set_limit"_qs] = dynamic_cast<IApplication *>(QCoreApplication::instance())->memoryWorkingSetLimit();
     // Current network interface
     data[u"current_network_interface"_qs] = session->networkInterface();
     // Current network interface address
@@ -313,6 +320,8 @@ void AppController::preferencesAction()
     data[u"disk_cache_ttl"_qs] = session->diskCacheTTL();
     // Disk queue size
     data[u"disk_queue_size"_qs] = session->diskQueueSize();
+    // Disk IO Type
+    data[u"disk_io_type"_qs] = static_cast<int>(session->diskIOType());
     // Enable OS cache
     data[u"enable_os_cache"_qs] = session->useOSCache();
     // Coalesce reads & writes
@@ -471,6 +480,12 @@ void AppController::setPreferencesAction()
         }
     }
     // === END DEPRECATED CODE === //
+
+    // Excluded file names
+    if (hasKey(u"excluded_file_names_enabled"_qs))
+        session->setExcludedFileNamesEnabled(it.value().toBool());
+    if (hasKey(u"excluded_file_names"_qs))
+        session->setExcludedFileNames(it.value().toString().split(u'\n'));
 
     // Email notification upon download completion
     if (hasKey(u"mail_notification_enabled"_qs))
@@ -655,7 +670,7 @@ void AppController::setPreferencesAction()
     if (hasKey(u"web_ui_address"_qs))
         pref->setWebUiAddress(it.value().toString());
     if (hasKey(u"web_ui_port"_qs))
-        pref->setWebUiPort(it.value().toUInt());
+        pref->setWebUiPort(it.value().value<quint16>());
     if (hasKey(u"web_ui_upnp"_qs))
         pref->setUPnPForWebUIPort(it.value().toBool());
     if (hasKey(u"use_https"_qs))
@@ -735,6 +750,9 @@ void AppController::setPreferencesAction()
 
     // Advanced settings
     // qBittorrent preferences
+    // Physical memory (RAM) usage limit
+    if (hasKey(u"memory_working_set_limit"_qs))
+        dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(it.value().toInt());
     // Current network interface
     if (hasKey(u"current_network_interface"_qs))
     {
@@ -790,6 +808,9 @@ void AppController::setPreferencesAction()
     // Disk queue size
     if (hasKey(u"disk_queue_size"_qs))
         session->setDiskQueueSize(it.value().toLongLong());
+    // Disk IO Type
+    if (hasKey(u"disk_io_type"_qs))
+        session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(it.value().toInt()));
     // Enable OS cache
     if (hasKey(u"enable_os_cache"_qs))
         session->setUseOSCache(it.value().toBool());

@@ -51,8 +51,14 @@ before_build:
 
 build_script:
   - cd "%REPO_DIR%"
-  # scan only as lupdate is prone to hang
-  - lupdate -extensions c,cpp,h,hpp,ui .
+  # lupdate chokes when it parses headers from system inludes, especially Boost
+  # it also chokes with the sources from src/app/qtlocalpeer (formerly qtsingleapplication)
+  # Workaround: temporarily rename them to run lupdate with the .pro file
+  - RENAME conf.pri conf.pri.temp
+  - RENAME src\app\qtlocalpeer qtlocalpeer.temp
+  - lupdate qbittorrent.pro
+  - RENAME conf.pri.temp conf.pri
+  - RENAME src\app\qtlocalpeer.temp qtlocalpeer
   - qmake qbittorrent.pro && cd src && qmake src.pro
   - jom -j2 -f Makefile.Release
 

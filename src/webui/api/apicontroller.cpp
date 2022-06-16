@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2018, 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -37,9 +37,8 @@
 
 #include "apierror.h"
 
-APIController::APIController(ISessionManager *sessionManager, QObject *parent)
+APIController::APIController(QObject *parent)
     : QObject {parent}
-    , m_sessionManager {sessionManager}
 {
 }
 
@@ -54,11 +53,6 @@ QVariant APIController::run(const QString &action, const StringMap &params, cons
         throw APIError(APIErrorType::NotFound);
 
     return m_result;
-}
-
-ISessionManager *APIController::sessionManager() const
-{
-    return m_sessionManager;
 }
 
 const StringMap &APIController::params() const
@@ -96,4 +90,9 @@ void APIController::setResult(const QJsonArray &result)
 void APIController::setResult(const QJsonObject &result)
 {
     m_result = QJsonDocument(result);
+}
+
+void APIController::setResult(const QByteArray &result)
+{
+    m_result = result;
 }

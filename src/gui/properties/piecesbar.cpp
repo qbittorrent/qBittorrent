@@ -34,7 +34,6 @@
 #include <QHelpEvent>
 #include <QPainter>
 #include <QPainterPath>
-#include <QTextStream>
 #include <QToolTip>
 
 #include "base/bittorrent/torrent.h"
@@ -88,25 +87,29 @@ namespace
     class DetailedTooltipRenderer
     {
     public:
-        DetailedTooltipRenderer(QTextStream &stream, const QString &header)
-            : m_stream(stream)
+        DetailedTooltipRenderer(QString &string, const QString &header)
+            : m_string(string)
         {
-            m_stream << header
-                     << R"(<table style="width:100%; padding: 3px; vertical-align: middle;">)";
+            m_string += header
+                + uR"(<table style="width:100%; padding: 3px; vertical-align: middle;">)";
         }
 
         ~DetailedTooltipRenderer()
         {
-            m_stream << "</table>";
+            m_string += u"</table>";
         }
 
         void operator()(const QString &size, const Path &path)
         {
-            m_stream << R"(<tr><td style="white-space:nowrap">)" << size << "</td><td>" << path.toString() << "</td></tr>";
+            m_string += uR"(<tr><td style="white-space:nowrap">)"
+                + size
+                + u"</td><td>"
+                + path.toString()
+                + u"</td></tr>";
         }
 
     private:
-        QTextStream &m_stream;
+        QString &m_string;
     };
 }
 
@@ -252,52 +255,47 @@ void PiecesBar::showToolTip(const QHelpEvent *e)
         return;
 
     QString toolTipText;
-    QTextStream stream(&toolTipText, QIODevice::WriteOnly);
+
     const bool showDetailedInformation = QApplication::keyboardModifiers().testFlag(Qt::ShiftModifier);
     if (showDetailedInformation && m_torrent->hasMetadata())
     {
         const BitTorrent::TorrentInfo torrentInfo = m_torrent->info();
         const int imagePos = e->pos().x() - borderWidth;
-        if ((imagePos >=0) && (imagePos < m_image.width()))
+        if ((imagePos >= 0) && (imagePos < m_image.width()))
         {
-            stream << "<html><body>";
-            PieceIndexToImagePos transform {torrentInfo, m_image};
-            int pieceIndex = transform.pieceIndex(imagePos);
-            const QVector<int> files {torrentInfo.fileIndicesForPiece(pieceIndex)};
+            const PieceIndexToImagePos transform {torrentInfo, m_image};
+            const int pieceIndex = transform.pieceIndex(imagePos);
+            const QVector<int> fileIndexes = torrentInfo.fileIndicesForPiece(pieceIndex);
 
             QString tooltipTitle;
-            if (files.count() > 1)
-            {
+            if (fileIndexes.count() > 1)
                 tooltipTitle = tr("Files in this piece:");
-            }
+            else if (torrentInfo.fileSize(fileIndexes.front()) == torrentInfo.pieceLength(pieceIndex))
+                tooltipTitle = tr("File in this piece:");
             else
-            {
-                if (torrentInfo.fileSize(files.front()) == torrentInfo.pieceLength(pieceIndex))
-                    tooltipTitle = tr("File in this piece");
-                else
-                    tooltipTitle = tr("File in these pieces");
-            }
+                tooltipTitle = tr("File in these pieces:");
 
-            DetailedTooltipRenderer renderer(stream, tooltipTitle);
+            toolTipText.reserve(fileIndexes.size() * 128);
+            toolTipText += u"<html><body>";
 
-            for (int f : files)
+            DetailedTooltipRenderer renderer {toolTipText, tooltipTitle};
+
+            for (const int index : fileIndexes)
             {
-                const Path filePath = torrentInfo.filePath(f);
-                renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(f)), filePath);
+                const Path filePath = m_torrent->filePath(index);
+                renderer(Utils::Misc::friendlyUnit(torrentInfo.fileSize(index)), filePath);
             }
-            stream << "</body></html>";
+            toolTipText += u"</body></html>";
         }
     }
     else
     {
-        stream << simpleToolTipText();
+        toolTipText += simpleToolTipText();
         if (showDetailedInformation) // metadata are not available at this point
-            stream << '\n' << tr("Wait until metadata become available to see detailed information");
+            toolTipText += u'\n' + tr("Wait until metadata become available to see detailed information");
         else
-            stream << '\n' << tr("Hold Shift key for detailed information");
+            toolTipText += u'\n' + tr("Hold Shift key for detailed information");
     }
-
-    stream.flush();
 
     QToolTip::showText(e->globalPos(), toolTipText, this);
 }

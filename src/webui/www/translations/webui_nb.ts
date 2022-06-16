@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="nb">
+<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="nb">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -39,7 +37,7 @@
         <translation>Lag undermappe</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
 </context>
@@ -573,7 +571,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Sidestolpe med filter</translation>
     </message>
 </context>
 <context>
@@ -957,8 +955,8 @@
         <translation>%T: Nåværende sporer</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation>Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., "%N")</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
+        <translation>Tips: Innkapsle parameter med anførselstegn for å unngå at teksten blir avskåret ved mellomrom (f.eks., &quot;%N&quot;)</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1429,7 +1427,7 @@
         <translation>Opprinnelig</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
     <message>
@@ -1482,19 +1480,43 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Køstørrelse på disk:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Varsel om logg-ytelse</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Største antall utestående forespørsler hos én likemann:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Største antall aktive kontroller av torrenter:</translation>
+    </message>
+    <message>
+        <source>Memory mapped files</source>
+        <translation>Minneavbildede filer</translation>
+    </message>
+    <message>
+        <source>Default</source>
+        <translation>Forvalgt</translation>
+    </message>
+    <message>
+        <source>POSIX-compliant</source>
+        <translation>Iht. POSIX</translation>
+    </message>
+    <message>
+        <source>This option is less effective on Linux</source>
+        <translation>Dette alternativet har mindre effekt på Linux</translation>
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
+        <translation>Type disk-IU (libtorrent &gt;= 2.0; krever omstart):</translation>
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit:</source>
+        <translation>Grense for bruk av fysisk minne (RAM):</translation>
     </message>
 </context>
 <context>
@@ -2184,10 +2206,6 @@
         <translation>Melding</translation>
     </message>
     <message>
-        <source>Downloaded</source>
-        <translation>Nedlastet</translation>
-    </message>
-    <message>
         <source>Tracker URL:</source>
         <translation>Nettadresse til sporer:</translation>
     </message>
@@ -2268,12 +2286,12 @@
         <translation>Framdrift</translation>
     </message>
     <message>
-        <source>Size</source>
-        <translation type="vanished">Størrelse</translation>
+        <source>Total Size</source>
+        <translation>Total størrelse</translation>
     </message>
     <message>
-        <source>Total Size</source>
-        <translation type="unfinished" />
+        <source>Times Downloaded</source>
+        <translation>Ganger nedlastet</translation>
     </message>
 </context>
 <context>
@@ -2570,6 +2588,10 @@
         <source>Torrent ID</source>
         <translation>Torrent-ID</translation>
     </message>
+    <message>
+        <source>Export .torrent</source>
+        <translation>Eksporter .torrent</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2835,7 +2857,7 @@
         <translation>Aktivert</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Advarsel: Sørg for å overholde ditt lands opphavsrettslovgivning når du laster ned torrenter fra noen av disse søkemotorene.</translation>
     </message>
     <message>
@@ -3450,7 +3472,7 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
         <translation>Opprinnelig</translation>
     </message>
     <message>
-        <source>Don't create subfolder</source>
+        <source>Don&apos;t create subfolder</source>
         <translation>Ikke lag undermappe</translation>
     </message>
 </context>

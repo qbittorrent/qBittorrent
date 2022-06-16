@@ -45,6 +45,7 @@ namespace BitTorrent
 class TagFilterModel final : public QAbstractListModel
 {
     Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TagFilterModel)
 
 public:
     explicit TagFilterModel(QObject *parent = nullptr);

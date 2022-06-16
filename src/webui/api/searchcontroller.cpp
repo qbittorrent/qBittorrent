@@ -45,21 +45,8 @@
 #include "apierror.h"
 #include "isessionmanager.h"
 
-using SearchHandlerPtr = QSharedPointer<SearchHandler>;
-using SearchHandlerDict = QMap<int, SearchHandlerPtr>;
-
 namespace
 {
-    const QString ACTIVE_SEARCHES = u"activeSearches"_qs;
-    const QString SEARCH_HANDLERS = u"searchHandlers"_qs;
-
-    void removeActiveSearch(ISession *session, const int id)
-    {
-        auto activeSearches = session->getData<QSet<int>>(ACTIVE_SEARCHES);
-        if (activeSearches.remove(id))
-            session->setData(ACTIVE_SEARCHES, QVariant::fromValue(activeSearches));
-    }
-
     /**
     * Returns the search categories in JSON format.
     *
@@ -117,22 +104,17 @@ void SearchController::startAction()
         pluginsToUse << plugins;
     }
 
-    ISession *const session = sessionManager()->session();
-    auto activeSearches = session->getData<QSet<int>>(ACTIVE_SEARCHES);
-    if (activeSearches.size() >= MAX_CONCURRENT_SEARCHES)
+    if (m_activeSearches.size() >= MAX_CONCURRENT_SEARCHES)
         throw APIError(APIErrorType::Conflict, tr("Unable to create more than %1 concurrent searches.").arg(MAX_CONCURRENT_SEARCHES));
 
     const auto id = generateSearchId();
-    const SearchHandlerPtr searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
-    QObject::connect(searchHandler.data(), &SearchHandler::searchFinished, this, [session, id, this]() { searchFinished(session, id); });
-    QObject::connect(searchHandler.data(), &SearchHandler::searchFailed, this, [session, id, this]() { searchFailed(session, id); });
+    const std::shared_ptr<SearchHandler> searchHandler {SearchPluginManager::instance()->startSearch(pattern, category, pluginsToUse)};
+    QObject::connect(searchHandler.get(), &SearchHandler::searchFinished, this, [id, this]() { m_activeSearches.remove(id); });
+    QObject::connect(searchHandler.get(), &SearchHandler::searchFailed, this, [id, this]() { m_activeSearches.remove(id); });
 
-    auto searchHandlers = session->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-    searchHandlers.insert(id, searchHandler);
-    session->setData(SEARCH_HANDLERS, QVariant::fromValue(searchHandlers));
+    m_searchHandlers.insert(id, searchHandler);
 
-    activeSearches.insert(id);
-    session->setData(ACTIVE_SEARCHES, QVariant::fromValue(activeSearches));
+    m_activeSearches.insert(id);
 
     const QJsonObject result = {{u"id"_qs, id}};
     setResult(result);
@@ -143,18 +125,17 @@ void SearchController::stopAction()
     requireParams({u"id"_qs});
 
     const int id = params()[u"id"_qs].toInt();
-    ISession *const session = sessionManager()->session();
 
-    const auto searchHandlers = session->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-    if (!searchHandlers.contains(id))
+    const auto iter = m_searchHandlers.find(id);
+    if (iter == m_searchHandlers.end())
         throw APIError(APIErrorType::NotFound);
 
-    const SearchHandlerPtr searchHandler = searchHandlers[id];
+    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
 
     if (searchHandler->isActive())
     {
         searchHandler->cancelSearch();
-        removeActiveSearch(session, id);
+        m_activeSearches.remove(id);
     }
 }
 
@@ -162,16 +143,15 @@ void SearchController::statusAction()
 {
     const int id = params()[u"id"_qs].toInt();
 
-    const auto searchHandlers = sessionManager()->session()->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-    if ((id != 0) && !searchHandlers.contains(id))
+    if ((id != 0) && !m_searchHandlers.contains(id))
         throw APIError(APIErrorType::NotFound);
 
     QJsonArray statusArray;
-    const QList<int> searchIds {(id == 0) ? searchHandlers.keys() : QList<int> {id}};
+    const QList<int> searchIds {(id == 0) ? m_searchHandlers.keys() : QList<int> {id}};
 
     for (const int searchId : searchIds)
     {
-        const SearchHandlerPtr searchHandler = searchHandlers[searchId];
+        const std::shared_ptr<SearchHandler> &searchHandler = m_searchHandlers[searchId];
         statusArray << QJsonObject
         {
             {u"id"_qs, searchId},
@@ -191,11 +171,11 @@ void SearchController::resultsAction()
     int limit = params()[u"limit"_qs].toInt();
     int offset = params()[u"offset"_qs].toInt();
 
-    const auto searchHandlers = sessionManager()->session()->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-    if (!searchHandlers.contains(id))
+    const auto iter = m_searchHandlers.find(id);
+    if (iter == m_searchHandlers.end())
         throw APIError(APIErrorType::NotFound);
 
-    const SearchHandlerPtr searchHandler = searchHandlers[id];
+    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     const QList<SearchResult> searchResults = searchHandler->results();
     const int size = searchResults.size();
 
@@ -221,18 +201,15 @@ void SearchController::deleteAction()
     requireParams({u"id"_qs});
 
     const int id = params()[u"id"_qs].toInt();
-    ISession *const session = sessionManager()->session();
 
-    auto searchHandlers = session->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-    if (!searchHandlers.contains(id))
+    const auto iter = m_searchHandlers.find(id);
+    if (iter == m_searchHandlers.end())
         throw APIError(APIErrorType::NotFound);
 
-    const SearchHandlerPtr searchHandler = searchHandlers[id];
+    const std::shared_ptr<SearchHandler> &searchHandler = iter.value();
     searchHandler->cancelSearch();
-    searchHandlers.remove(id);
-    session->setData(SEARCH_HANDLERS, QVariant::fromValue(searchHandlers));
-
-    removeActiveSearch(session, id);
+    m_activeSearches.remove(id);
+    m_searchHandlers.erase(iter);
 }
 
 void SearchController::pluginsAction()
@@ -302,24 +279,12 @@ void SearchController::checkForUpdatesFailed(const QString &reason)
     LogMsg(tr("Failed to check for plugin updates: %1").arg(reason), Log::INFO);
 }
 
-void SearchController::searchFinished(ISession *session, const int id)
-{
-    removeActiveSearch(session, id);
-}
-
-void SearchController::searchFailed(ISession *session, const int id)
-{
-    removeActiveSearch(session, id);
-}
-
 int SearchController::generateSearchId() const
 {
-    const auto searchHandlers = sessionManager()->session()->getData<SearchHandlerDict>(SEARCH_HANDLERS);
-
     while (true)
     {
         const int id = Utils::Random::rand(1, std::numeric_limits<int>::max());
-        if (!searchHandlers.contains(id))
+        if (!m_searchHandlers.contains(id))
             return id;
     }
 }
