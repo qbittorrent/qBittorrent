@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  * Copyright (C) 2010  Arnaud Demaiziere <arnaud@qbittorrent.org>
  *
@@ -39,7 +39,7 @@ namespace RSS
 {
     class Feed;
 
-    class Article : public QObject
+    class Article final : public QObject
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(Article)
@@ -47,7 +47,6 @@ namespace RSS
         friend class Feed;
 
         Article(Feed *feed, const QVariantHash &varHash);
-        Article(Feed *feed, const QJsonObject &jsonObj);
 
     public:
         static const QString KeyId;
@@ -71,8 +70,6 @@ namespace RSS
         QVariantHash data() const;
 
         void markAsRead();
-
-        QJsonObject toJsonObject() const;
 
         static bool articleDateRecentThan(const Article *article, const QDateTime &date);
 

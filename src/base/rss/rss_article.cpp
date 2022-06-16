@@ -30,26 +30,12 @@
 
 #include "rss_article.h"
 
-#include <QJsonObject>
 #include <QVariant>
 
 #include "base/global.h"
 #include "rss_feed.h"
 
 using namespace RSS;
-
-namespace
-{
-    QVariantHash articleDataFromJSON(const QJsonObject &jsonObj)
-    {
-        auto varHash = jsonObj.toVariantHash();
-        // JSON object store DateTime as string so we need to convert it
-        varHash[Article::KeyDate] =
-                QDateTime::fromString(jsonObj.value(Article::KeyDate).toString(), Qt::RFC2822Date);
-
-        return varHash;
-    }
-}
 
 const QString Article::KeyId = u"id"_qs;
 const QString Article::KeyDate = u"date"_qs;
@@ -72,11 +58,6 @@ Article::Article(Feed *feed, const QVariantHash &varHash)
     , m_link(varHash.value(KeyLink).toString())
     , m_isRead(varHash.value(KeyIsRead, false).toBool())
     , m_data(varHash)
-{
-}
-
-Article::Article(Feed *feed, const QJsonObject &jsonObj)
-    : Article(feed, articleDataFromJSON(jsonObj))
 {
 }
 
@@ -133,15 +114,6 @@ void Article::markAsRead()
         m_data[KeyIsRead] = m_isRead;
         emit read(this);
     }
-}
-
-QJsonObject Article::toJsonObject() const
-{
-    auto jsonObj = QJsonObject::fromVariantHash(m_data);
-    // JSON object doesn't support DateTime so we need to convert it
-    jsonObj[KeyDate] = m_date.toString(Qt::RFC2822Date);
-
-    return jsonObj;
 }
 
 bool Article::articleDateRecentThan(const Article *article, const QDateTime &date)

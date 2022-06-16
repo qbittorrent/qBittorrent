@@ -37,43 +37,39 @@
 
 class QXmlStreamReader;
 
-namespace RSS
+namespace RSS::Private
 {
-    namespace Private
+    struct ParsingResult
     {
-        struct ParsingResult
-        {
-            QString error;
-            QString lastBuildDate;
-            QString title;
-            QList<QVariantHash> articles;
-        };
+        QString error;
+        QString lastBuildDate;
+        QString title;
+        QList<QVariantHash> articles;
+    };
 
-        class Parser : public QObject
-        {
-            Q_OBJECT
-            Q_DISABLE_COPY_MOVE(Parser)
+    class Parser final : public QObject
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(Parser)
 
-        public:
-            explicit Parser(QString lastBuildDate);
-            void parse(const QByteArray &feedData);
+    public:
+        explicit Parser(QString lastBuildDate);
+        void parse(const QByteArray &feedData);
 
-        signals:
-            void finished(const RSS::Private::ParsingResult &result);
+    signals:
+        void finished(const RSS::Private::ParsingResult &result);
 
-        private:
-            Q_INVOKABLE void parse_impl(const QByteArray &feedData);
-            void parseRssArticle(QXmlStreamReader &xml);
-            void parseRSSChannel(QXmlStreamReader &xml);
-            void parseAtomArticle(QXmlStreamReader &xml);
-            void parseAtomChannel(QXmlStreamReader &xml);
-            void addArticle(QVariantHash article);
+    private:
+        void parseRssArticle(QXmlStreamReader &xml);
+        void parseRSSChannel(QXmlStreamReader &xml);
+        void parseAtomArticle(QXmlStreamReader &xml);
+        void parseAtomChannel(QXmlStreamReader &xml);
+        void addArticle(QVariantHash article);
 
-            QString m_baseUrl;
-            ParsingResult m_result;
-            QSet<QString> m_articleIDs;
-        };
-    }
+        QString m_baseUrl;
+        ParsingResult m_result;
+        QSet<QString> m_articleIDs;
+    };
 }
 
 Q_DECLARE_METATYPE(RSS::Private::ParsingResult)
