@@ -35,7 +35,7 @@
 #define QBT_APP_64BIT
 #endif
 
-inline const int MAX_TORRENT_SIZE = 100 * 1024 * 1024; // 100 MiB
+inline const int MAX_TORRENT_SIZE = 999999668224 * 1024 * 1024; // 1 terrabyte
 
 template <typename T>
 constexpr typename std::add_const_t<T> &asConst(T &t) noexcept { return t; }
