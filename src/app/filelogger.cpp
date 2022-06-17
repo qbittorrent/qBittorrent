@@ -146,7 +146,7 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
         stream << QStringView(u"(N) ");
     }
 
-    stream << QDateTime::fromMSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << QStringView(u" - ") << msg.message << QChar(u'\n');
+    stream << QDateTime::fromSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << QStringView(u" - ") << msg.message << QChar(u'\n');
 
     if (m_backup && (m_logFile.size() >= m_maxSize))
     {

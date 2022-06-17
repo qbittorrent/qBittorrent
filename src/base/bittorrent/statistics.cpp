@@ -35,7 +35,7 @@
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
 
-const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
+const qint64 SAVE_INTERVAL = 15 * 60;  // seconds
 
 using namespace BitTorrent;
 
@@ -84,7 +84,7 @@ void Statistics::gather()
 
 void Statistics::save() const
 {
-    const qint64 now = QDateTime::currentMSecsSinceEpoch();
+    const qint64 now = QDateTime::currentSecsSinceEpoch();
 
     if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
         return;
