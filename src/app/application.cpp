@@ -850,11 +850,12 @@ void Application::cleanup()
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
-    delete m_fileLogger;
-    Logger::freeInstance();
     IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
+
+    Logger::freeInstance();
+    delete m_fileLogger;
 
 #ifndef DISABLE_GUI
     if (m_window)
