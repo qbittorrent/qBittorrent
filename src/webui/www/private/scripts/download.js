@@ -106,7 +106,7 @@ window.qBittorrent.Download = (function() {
         }
         else {
             item.nextElementSibling.hidden = true;
-            const text = item.options[item.selectedIndex].innerHTML;
+            const text = item.options[item.selectedIndex].textContent;
             item.nextElementSibling.value = text;
 
             if ($('autoTMM').selectedIndex == 1) {

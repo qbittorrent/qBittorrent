@@ -682,7 +682,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 $('savetoDifferentDir').checked = false;
                 $('saveToText').value = '';
                 $('ignoreDaysValue').value = 0;
-                $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                $('lastMatchText').textContent = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
                 $('addPausedCombobox').value = 'default';
                 $('contentLayoutCombobox').value = 'Default';
                 rssDownloaderFeedSelectionTable.clear();
@@ -724,10 +724,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 if (rulesList[ruleName].lastMatch !== '') {
                     let timeDiffInMs = new Date().getTime() - new Date(rulesList[ruleName].lastMatch).getTime();
                     let daysAgo = Math.floor(timeDiffInMs / (1000 * 60 * 60 * 24)).toString();
-                    $('lastMatchText').innerHTML = ' QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]'.replace('%1', daysAgo);
+                    $('lastMatchText').textContent = ' QBT_TR(Last Match: %1 days ago)QBT_TR[CONTEXT=AutomatedRssDownloader]'.replace('%1', daysAgo);
                 }
                 else {
-                    $('lastMatchText').innerHTML = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
+                    $('lastMatchText').textContent = 'QBT_TR(Last Match: Unknown)QBT_TR[CONTEXT=AutomatedRssDownloader]';
                 }
 
                 if (rulesList[ruleName].addPaused === null)
