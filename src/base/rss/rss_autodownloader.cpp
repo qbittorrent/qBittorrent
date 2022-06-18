@@ -491,7 +491,12 @@ void AutoDownloader::resetProcessingQueue()
 void AutoDownloader::startProcessing()
 {
     resetProcessingQueue();
-    connect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
+
+    const RSS::Folder *rootFolder = Session::instance()->rootFolder();
+    for (const Article *article : asConst(rootFolder->articles()))
+        handleNewArticle(article);
+
+    connect(rootFolder, &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
 }
 
 void AutoDownloader::setProcessingEnabled(const bool enabled)

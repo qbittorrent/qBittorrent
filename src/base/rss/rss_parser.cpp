@@ -539,23 +539,15 @@ namespace
     }
 }
 
-using namespace RSS::Private;
+const int PARSINGRESULT_TYPEID = qRegisterMetaType<RSS::Private::ParsingResult>();
 
-const int ParsingResultTypeId = qRegisterMetaType<ParsingResult>();
-
-Parser::Parser(const QString lastBuildDate)
+RSS::Private::Parser::Parser(const QString lastBuildDate)
 {
     m_result.lastBuildDate = lastBuildDate;
 }
 
-void Parser::parse(const QByteArray &feedData)
-{
-    QMetaObject::invokeMethod(this, [this, feedData]() { parse_impl(feedData); }
-                              , Qt::QueuedConnection);
-}
-
 // read and create items from a rss document
-void Parser::parse_impl(const QByteArray &feedData)
+void RSS::Private::Parser::parse(const QByteArray &feedData)
 {
     QXmlStreamReader xml(feedData);
     XmlStreamEntityResolver resolver;
@@ -608,7 +600,7 @@ void Parser::parse_impl(const QByteArray &feedData)
     m_articleIDs.clear();
 }
 
-void Parser::parseRssArticle(QXmlStreamReader &xml)
+void RSS::Private::Parser::parseRssArticle(QXmlStreamReader &xml)
 {
     QVariantHash article;
     QString altTorrentUrl;
@@ -671,7 +663,7 @@ void Parser::parseRssArticle(QXmlStreamReader &xml)
     addArticle(article);
 }
 
-void Parser::parseRSSChannel(QXmlStreamReader &xml)
+void RSS::Private::Parser::parseRSSChannel(QXmlStreamReader &xml)
 {
     while (!xml.atEnd())
     {
@@ -704,7 +696,7 @@ void Parser::parseRSSChannel(QXmlStreamReader &xml)
     }
 }
 
-void Parser::parseAtomArticle(QXmlStreamReader &xml)
+void RSS::Private::Parser::parseAtomArticle(QXmlStreamReader &xml)
 {
     QVariantHash article;
     bool doubleContent = false;
@@ -785,7 +777,7 @@ void Parser::parseAtomArticle(QXmlStreamReader &xml)
     addArticle(article);
 }
 
-void Parser::parseAtomChannel(QXmlStreamReader &xml)
+void RSS::Private::Parser::parseAtomChannel(QXmlStreamReader &xml)
 {
     m_baseUrl = xml.attributes().value(u"xml:base"_qs).toString();
 
@@ -820,7 +812,7 @@ void Parser::parseAtomChannel(QXmlStreamReader &xml)
     }
 }
 
-void Parser::addArticle(QVariantHash article)
+void RSS::Private::Parser::addArticle(QVariantHash article)
 {
     QVariant &torrentURL = article[Article::KeyTorrentURL];
     if (torrentURL.toString().isEmpty())
