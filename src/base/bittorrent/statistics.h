@@ -28,8 +28,8 @@
 
 #pragma once
 
+#include <QElapsedTimer>
 #include <QObject>
-#include <QTimer>
 
 namespace BitTorrent
 {
@@ -55,13 +55,12 @@ private:
     void save() const;
     void load();
 
-    BitTorrent::Session *m_session;
+    BitTorrent::Session *m_session = nullptr;
+    mutable QElapsedTimer m_lastUpdateTimer;
+    mutable bool m_dirty = false;
+
     qint64 m_alltimeUL = 0;
     qint64 m_alltimeDL = 0;
     qint64 m_sessionUL = 0;
     qint64 m_sessionDL = 0;
-    mutable qint64 m_lastWrite = 0;
-    mutable bool m_dirty = false;
-
-    QTimer m_timer;
 };
