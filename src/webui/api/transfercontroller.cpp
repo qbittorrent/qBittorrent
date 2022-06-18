@@ -117,6 +117,18 @@ void TransferController::speedLimitsModeAction()
     setResult(QString::number(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled()));
 }
 
+void TransferController::setSpeedLimitsModeAction()
+{
+    requireParams({u"mode"_qs});
+
+    const std::optional<int> mode = Utils::String::parseInt(params().value(u"mode"_qs));
+    if (!mode)
+        throw APIError(APIErrorType::BadParams, tr("'mode': invalid argument"));
+
+    // Any non-zero values are considered as alternative mode
+    BitTorrent::Session::instance()->setAltGlobalSpeedLimitEnabled(mode != 0);
+}
+
 void TransferController::banPeersAction()
 {
     requireParams({u"peers"_qs});
