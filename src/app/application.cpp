@@ -810,6 +810,8 @@ void Application::cleanup()
     if (!m_isCleanupRun.testAndSetAcquire(0, 1))
         return;
 
+    LogMsg(tr("qBittorrent termination initiated"));
+
 #ifndef DISABLE_GUI
     if (m_window)
     {
@@ -850,11 +852,13 @@ void Application::cleanup()
     Net::ProxyConfigurationManager::freeInstance();
     Preferences::freeInstance();
     SettingsStorage::freeInstance();
-    delete m_fileLogger;
-    Logger::freeInstance();
     IconProvider::freeInstance();
     SearchPluginManager::freeInstance();
     Utils::Fs::removeDirRecursively(Utils::Fs::tempPath());
+
+    LogMsg(tr("qBittorrent is now ready to exit"));
+    Logger::freeInstance();
+    delete m_fileLogger;
 
 #ifndef DISABLE_GUI
     if (m_window)

@@ -28,30 +28,34 @@
 
 #include "statistics.h"
 
-#include <QDateTime>
+#include <chrono>
+
+#include <QTimer>
 
 #include "base/global.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
 
-const qint64 SAVE_INTERVAL = 15 * 60 * 1000;
-
+using namespace std::chrono_literals;
 using namespace BitTorrent;
+
+const qint64 SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
 Statistics::Statistics(Session *session)
     : QObject(session)
     , m_session(session)
 {
     load();
-    connect(&m_timer, &QTimer::timeout, this, &Statistics::gather);
-    m_timer.start(60 * 1000);
+    m_lastUpdateTimer.start();
+
+    auto *timer = new QTimer(this);
+    connect(timer, &QTimer::timeout, this, &Statistics::gather);
+    timer->start(60s);
 }
 
 Statistics::~Statistics()
 {
-    if (m_dirty)
-        m_lastWrite = 0;
     save();
 }
 
@@ -79,23 +83,25 @@ void Statistics::gather()
         m_dirty = true;
     }
 
-    save();
+    if (m_lastUpdateTimer.hasExpired(SAVE_INTERVAL))
+        save();
 }
 
 void Statistics::save() const
 {
-    const qint64 now = QDateTime::currentMSecsSinceEpoch();
-
-    if (!m_dirty || ((now - m_lastWrite) < SAVE_INTERVAL))
+    if (!m_dirty)
         return;
 
-    SettingsPtr s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
-    QVariantHash v;
-    v.insert(u"AlltimeDL"_qs, (m_alltimeDL + m_sessionDL));
-    v.insert(u"AlltimeUL"_qs, (m_alltimeUL + m_sessionUL));
-    s->setValue(u"Stats/AllStats"_qs, v);
+    const QVariantHash stats =
+    {
+        {u"AlltimeDL"_qs, (m_alltimeDL + m_sessionDL)},
+        {u"AlltimeUL"_qs, (m_alltimeUL + m_sessionUL)}
+    };
+    SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
+    settings->setValue(u"Stats/AllStats"_qs, stats);
+
+    m_lastUpdateTimer.start();
     m_dirty = false;
-    m_lastWrite = now;
 }
 
 void Statistics::load()
@@ -103,6 +109,6 @@ void Statistics::load()
     const SettingsPtr s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
     const QVariantHash v = s->value(u"Stats/AllStats"_qs).toHash();
 
-    m_alltimeDL = v[u"AlltimeDL"_qs].toULongLong();
-    m_alltimeUL = v[u"AlltimeUL"_qs].toULongLong();
+    m_alltimeDL = v[u"AlltimeDL"_qs].toLongLong();
+    m_alltimeUL = v[u"AlltimeUL"_qs].toLongLong();
 }
