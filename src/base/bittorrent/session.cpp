@@ -2319,6 +2319,11 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     else
         p.flags &= ~lt::torrent_flags::seed_mode;
 
+    if (addTorrentParams.stopWhenReady)
+        p.flags |= lt::torrent_flags::stop_when_ready;
+    else
+        p.flags &= ~lt::torrent_flags::stop_when_ready;
+
     if (loadTorrentParams.stopped || (loadTorrentParams.operatingMode == TorrentOperatingMode::AutoManaged))
         p.flags |= lt::torrent_flags::paused;
     else
