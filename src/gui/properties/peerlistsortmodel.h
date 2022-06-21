@@ -30,6 +30,7 @@
 
 #include <QSortFilterProxyModel>
 
+#include "base/settingvalue.h"
 #include "base/utils/compare.h"
 
 class PeerListSortModel final : public QSortFilterProxyModel
@@ -40,13 +41,19 @@ class PeerListSortModel final : public QSortFilterProxyModel
 public:
     enum
     {
-        UnderlyingDataRole = Qt::UserRole
+        UnderlyingDataRole = Qt::UserRole,
+        IsConnectingRole // only set on index(row, 0)
     };
 
     explicit PeerListSortModel(QObject *parent = nullptr);
 
+    bool showConnectingPeers() const;
+    void setShowConnectingPeers(bool show);
+
 private:
     bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
 
     Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
+    CachedSettingValue<bool> m_showConnectingPeers;
 };

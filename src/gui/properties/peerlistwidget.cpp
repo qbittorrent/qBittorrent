@@ -288,6 +288,14 @@ void PeerListWidget::showPeerListMenu()
     QAction *banPeers = menu->addAction(UIThemeManager::instance()->getIcon(u"user-group-delete"_qs), tr("Ban peer permanently")
         , this, &PeerListWidget::banSelectedPeers);
 
+    menu->addSeparator();
+    QAction *showConnectingPeers = menu->addAction(tr("Show Connecting Peers")
+                                                   , m_proxyModel
+                                                   , &PeerListSortModel::setShowConnectingPeers);
+
+    showConnectingPeers->setCheckable(true);
+    showConnectingPeers->setChecked(m_proxyModel->showConnectingPeers());
+
     // disable actions
     const auto disableAction = [](QAction *action, const QString &tooltip)
     {
@@ -478,6 +486,8 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
         downloadingFiles.append(filePath.toString());
     const QString downloadingFilesDisplayValue = downloadingFiles.join(u';');
     setModelData(row, PeerListColumns::DOWNLOADING_PIECE, downloadingFilesDisplayValue, downloadingFilesDisplayValue, {}, downloadingFiles.join(u'\n'));
+
+    m_listModel->setData(m_listModel->index(row, 0), peer.isConnecting(), PeerListSortModel::IsConnectingRole);
 
     if (m_resolver)
         m_resolver->resolve(peerEndpoint.address.ip);

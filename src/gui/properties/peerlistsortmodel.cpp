@@ -32,8 +32,23 @@
 
 PeerListSortModel::PeerListSortModel(QObject *parent)
     : QSortFilterProxyModel(parent)
+    , m_showConnectingPeers(u"PeerList/ShowConnectingPeers"_qs, false)
 {
     setSortRole(UnderlyingDataRole);
+}
+
+bool PeerListSortModel::showConnectingPeers() const
+{
+    return m_showConnectingPeers.get();
+}
+
+void PeerListSortModel::setShowConnectingPeers(const bool show)
+{
+    if (showConnectingPeers() == show)
+        return;
+
+    m_showConnectingPeers = show;
+    invalidateFilter(); // TODO: use invalidateRowFilters
 }
 
 bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &right) const
@@ -51,4 +66,15 @@ bool PeerListSortModel::lessThan(const QModelIndex &left, const QModelIndex &rig
     default:
         return QSortFilterProxyModel::lessThan(left, right);
     };
+}
+
+bool PeerListSortModel::filterAcceptsRow(const int sourceRow, const QModelIndex &sourceParent) const
+{
+    if (!m_showConnectingPeers)
+    {
+        const QModelIndex sourceIndex = sourceModel()->index(sourceRow, 0, sourceParent);
+        return !sourceIndex.data(IsConnectingRole).toBool();
+    }
+
+    return QSortFilterProxyModel::filterAcceptsRow(sourceRow, sourceParent);
 }
