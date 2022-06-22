@@ -37,7 +37,10 @@
 #include "base/net/downloadmanager.h"
 #include "base/version.h"
 
+using namespace std::chrono_literals;
 using namespace Net;
+
+const std::chrono::seconds IP_CHECK_INTERVAL = 30min;
 
 DNSUpdater::DNSUpdater(QObject *parent)
     : QObject(parent)
@@ -52,14 +55,14 @@ DNSUpdater::DNSUpdater(QObject *parent)
     m_lastIP = QHostAddress(pref->getDNSLastIP());
 
     // Start IP checking timer
-    m_ipCheckTimer.setInterval(IP_CHECK_INTERVAL_MS);
+    m_ipCheckTimer.setInterval(IP_CHECK_INTERVAL);
     connect(&m_ipCheckTimer, &QTimer::timeout, this, &DNSUpdater::checkPublicIP);
     m_ipCheckTimer.start();
 
     // Check lastUpdate to avoid flooding
     if (!m_lastIPCheckTime.isValid()
-        || (m_lastIPCheckTime.secsTo(QDateTime::currentDateTime()) * 1000 > IP_CHECK_INTERVAL_MS))
-        {
+        || (m_lastIPCheckTime.secsTo(QDateTime::currentDateTime()) > IP_CHECK_INTERVAL.count()))
+    {
         checkPublicIP();
     }
 }

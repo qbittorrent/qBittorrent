@@ -29,6 +29,8 @@
 
 #include "shutdownconfirmdialog.h"
 
+#include <chrono>
+
 #include <QDialogButtonBox>
 #include <QIcon>
 #include <QPushButton>
@@ -37,6 +39,8 @@
 #include "base/preferences.h"
 #include "ui_shutdownconfirmdialog.h"
 #include "utils.h"
+
+using namespace std::chrono_literals;
 
 ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDialogAction &action)
     : QDialog(parent)
@@ -64,7 +68,7 @@ ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDial
     setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
     move(Utils::Gui::screenCenter(this));
 
-    m_timer.setInterval(1000); // 1sec
+    m_timer.setInterval(1s);
     connect(&m_timer, &QTimer::timeout, this, &ShutdownConfirmDialog::updateSeconds);
 }
 

@@ -68,8 +68,6 @@ namespace Net
             FATAL
         };
 
-        static const int IP_CHECK_INTERVAL_MS = 1800000; // 30 min
-
         QString getUpdateUrl() const;
         void processIPUpdateReply(const QString &reply);
 

@@ -111,7 +111,7 @@ private:
     private:
         const milliseconds m_resolution;
         const milliseconds m_maxDuration;
-        milliseconds m_currentDuration {0ms};
+        milliseconds m_currentDuration {0};
         int m_counter = 0;
         SampleData m_accumulator {};
         DataCircularBuffer m_sink {};

@@ -30,6 +30,8 @@
 
 #include "rss_session.h"
 
+#include <chrono>
+
 #include <QDebug>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -48,7 +50,6 @@
 #include "rss_folder.h"
 #include "rss_item.h"
 
-const int MsecsPerMin = 60000;
 const QString CONF_FOLDER_NAME = u"rss"_qs;
 const QString DATA_FOLDER_NAME = u"rss/articles"_qs;
 const QString FEEDS_FILE_NAME = u"feeds.json"_qs;
@@ -92,7 +93,7 @@ Session::Session()
     connect(&m_refreshTimer, &QTimer::timeout, this, &Session::refresh);
     if (isProcessingEnabled())
     {
-        m_refreshTimer.start(refreshInterval() * MsecsPerMin);
+        m_refreshTimer.start(std::chrono::minutes(refreshInterval()));
         refresh();
     }
 
@@ -433,7 +434,7 @@ void Session::setProcessingEnabled(const bool enabled)
         m_storeProcessingEnabled = enabled;
         if (enabled)
         {
-            m_refreshTimer.start(refreshInterval() * MsecsPerMin);
+            m_refreshTimer.start(std::chrono::minutes(refreshInterval()));
             refresh();
         }
         else
@@ -480,7 +481,7 @@ void Session::setRefreshInterval(const int refreshInterval)
     if (m_storeRefreshInterval != refreshInterval)
     {
         m_storeRefreshInterval = refreshInterval;
-        m_refreshTimer.start(m_storeRefreshInterval * MsecsPerMin);
+        m_refreshTimer.start(std::chrono::minutes(m_storeRefreshInterval));
     }
 }
 

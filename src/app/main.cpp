@@ -29,6 +29,7 @@
 
 #include <QtGlobal>
 
+#include <chrono>
 #include <cstdlib>
 #include <memory>
 
@@ -78,6 +79,8 @@ Q_IMPORT_PLUGIN(QICOPlugin)
 #ifndef DISABLE_GUI
 #include "gui/utils.h"
 #endif
+
+using namespace std::chrono_literals;
 
 void displayVersion();
 bool userAgreesWithLegalNotice();
@@ -284,7 +287,7 @@ void showSplashScreen()
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
-    QTimer::singleShot(1500, splash, &QObject::deleteLater);
+    QTimer::singleShot(1500ms, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
 #endif  // DISABLE_GUI

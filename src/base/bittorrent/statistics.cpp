@@ -40,7 +40,7 @@
 using namespace std::chrono_literals;
 using namespace BitTorrent;
 
-const qint64 SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
+const int SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
 Statistics::Statistics(Session *session)
     : QObject(session)

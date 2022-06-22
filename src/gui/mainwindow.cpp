@@ -1762,7 +1762,7 @@ void MainWindow::createTrayIcon(const int retries)
         if (retries > 0)
         {
             LogMsg(tr("System tray icon is not available, retrying..."), Log::WARNING);
-            QTimer::singleShot(std::chrono::seconds(2), this, [this, retries]()
+            QTimer::singleShot(2s, this, [this, retries]()
             {
                 if (Preferences::instance()->systemTrayEnabled())
                     createTrayIcon(retries - 1);

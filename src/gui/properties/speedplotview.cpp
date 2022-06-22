@@ -267,7 +267,7 @@ quint64 SpeedPlotView::maxYValue() const
         if (!m_properties[static_cast<GraphID>(id)].enable)
             continue;
 
-        milliseconds duration {0ms};
+        milliseconds duration {0};
         for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
         {
             maxYValue = std::max(maxYValue, queue[i].data[id]);
@@ -360,7 +360,7 @@ void SpeedPlotView::paintEvent(QPaintEvent *)
             continue;
 
         QVector<QPoint> points;
-        milliseconds duration {0ms};
+        milliseconds duration {0};
 
         for (int i = static_cast<int>(queue.size()) - 1; i >= 0; --i)
         {
