@@ -521,6 +521,7 @@ td.generalLabel {
     position: absolute;
     top: 0;
     width: 100%;
+    image-rendering: pixelated;
 }
 
 #watched_folders_tab {
