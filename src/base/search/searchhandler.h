@@ -83,9 +83,9 @@ private:
     const QString m_pattern;
     const QString m_category;
     const QStringList m_usedPlugins;
-    SearchPluginManager *m_manager;
-    QProcess *m_searchProcess;
-    QTimer *m_searchTimeout;
+    SearchPluginManager *m_manager = nullptr;
+    QProcess *m_searchProcess = nullptr;
+    QTimer *m_searchTimeout = nullptr;
     QByteArray m_searchResultLineTruncated;
     bool m_searchCancelled = false;
     QList<SearchResult> m_results;

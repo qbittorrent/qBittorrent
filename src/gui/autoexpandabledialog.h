@@ -55,5 +55,5 @@ protected:
     void showEvent(QShowEvent *e) override;
 
 private:
-    Ui::AutoExpandableDialog *m_ui;
+    Ui::AutoExpandableDialog *m_ui = nullptr;
 };

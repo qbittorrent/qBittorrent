@@ -91,9 +91,9 @@ private:
 
     static QStringList headerLabels();
 
-    PropertiesWidget *m_properties;
+    PropertiesWidget *m_properties = nullptr;
     QHash<QString, QTreeWidgetItem *> m_trackerItems;
-    QTreeWidgetItem *m_DHTItem;
-    QTreeWidgetItem *m_PEXItem;
-    QTreeWidgetItem *m_LSDItem;
+    QTreeWidgetItem *m_DHTItem = nullptr;
+    QTreeWidgetItem *m_PEXItem = nullptr;
+    QTreeWidgetItem *m_LSDItem = nullptr;
 };

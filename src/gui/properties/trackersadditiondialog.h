@@ -65,6 +65,6 @@ public slots:
     void torrentListDownloadFinished(const Net::DownloadResult &result);
 
 private:
-    Ui::TrackersAdditionDialog *m_ui;
-    BitTorrent::Torrent *const m_torrent;
+    Ui::TrackersAdditionDialog *m_ui = nullptr;
+    BitTorrent::Torrent *const m_torrent = nullptr;
 };

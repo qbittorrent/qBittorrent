@@ -45,7 +45,6 @@ using namespace std::chrono_literals;
 ShutdownConfirmDialog::ShutdownConfirmDialog(QWidget *parent, const ShutdownDialogAction &action)
     : QDialog(parent)
     , m_ui(new Ui::ShutdownConfirmDialog)
-    , m_timeout(15)
     , m_action(action)
 {
     m_ui->setupUi(this);

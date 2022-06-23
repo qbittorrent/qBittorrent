@@ -48,5 +48,5 @@ public:
     void setText(const QString &signalName, const QString &stacktrace);
 
 private:
-    Ui::StacktraceDialog *m_ui;
+    Ui::StacktraceDialog *m_ui = nullptr;
 };

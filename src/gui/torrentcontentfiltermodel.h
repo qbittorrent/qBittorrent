@@ -62,6 +62,6 @@ protected:
 private:
     bool hasFiltered(const QModelIndex &folder) const;
 
-    TorrentContentModel *m_model;
+    TorrentContentModel *m_model = nullptr;
     Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
 };

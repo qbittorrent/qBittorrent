@@ -60,6 +60,6 @@ public slots:
     void setCurrentIndex(int index);
 
 private:
-    QButtonGroup *m_btnGroup;
-    int m_currentIndex;
+    QButtonGroup *m_btnGroup = nullptr;
+    int m_currentIndex = -1;
 };

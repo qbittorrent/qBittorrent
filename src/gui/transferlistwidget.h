@@ -131,7 +131,7 @@ private:
     QVector<BitTorrent::Torrent *> getVisibleTorrents() const;
     int visibleColumnsCount() const;
 
-    TransferListModel *m_listModel;
-    TransferListSortModel *m_sortFilterModel;
-    MainWindow *m_mainWindow;
+    TransferListModel *m_listModel = nullptr;
+    TransferListSortModel *m_sortFilterModel = nullptr;
+    MainWindow *m_mainWindow = nullptr;
 };

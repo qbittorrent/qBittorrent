@@ -158,9 +158,9 @@ namespace RSS
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
-        QThread *m_workingThread;
-        AsyncFileStorage *m_confFileStorage;
-        AsyncFileStorage *m_dataFileStorage;
+        QThread *m_workingThread = nullptr;
+        AsyncFileStorage *m_confFileStorage = nullptr;
+        AsyncFileStorage *m_dataFileStorage = nullptr;
         QTimer m_refreshTimer;
         QHash<QString, Item *> m_itemsByPath;
         QHash<QUuid, Feed *> m_feedsByUID;

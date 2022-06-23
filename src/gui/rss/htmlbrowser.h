@@ -47,8 +47,8 @@ public:
     QVariant loadResource(int type, const QUrl &name) override;
 
 protected:
-    QNetworkAccessManager *m_netManager;
-    QNetworkDiskCache *m_diskCache;
+    QNetworkAccessManager *m_netManager = nullptr;
+    QNetworkDiskCache *m_diskCache = nullptr;
     QHash<QUrl, bool> m_activeRequests;
 
 protected slots:

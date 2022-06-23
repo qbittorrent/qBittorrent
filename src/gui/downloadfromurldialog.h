@@ -53,6 +53,6 @@ private slots:
     void downloadButtonClicked();
 
 private:
-    Ui::DownloadFromURLDialog *m_ui;
+    Ui::DownloadFromURLDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

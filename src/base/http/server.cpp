@@ -74,7 +74,6 @@ using namespace Http;
 Server::Server(IRequestHandler *requestHandler, QObject *parent)
     : QTcpServer(parent)
     , m_requestHandler(requestHandler)
-    , m_https(false)
 {
     setProxy(QNetworkProxy::NoProxy);
 
@@ -91,7 +90,7 @@ void Server::incomingConnection(const qintptr socketDescriptor)
 {
     if (m_connections.size() >= CONNECTIONS_LIMIT) return;
 
-    QTcpSocket *serverSocket;
+    QTcpSocket *serverSocket = nullptr;
     if (m_https)
         serverSocket = new QSslSocket(this);
     else

@@ -111,7 +111,7 @@ private:
 
     QWidget *editWidgetImpl() const;
 
-    FileSystemPathEditPrivate *d_ptr;
+    FileSystemPathEditPrivate *d_ptr = nullptr;
 };
 
 /// Widget which uses QLineEdit for path editing

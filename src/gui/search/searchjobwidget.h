@@ -130,11 +130,11 @@ private:
 
     static QString statusText(Status st);
 
-    Ui::SearchJobWidget *m_ui;
-    SearchHandler *m_searchHandler;
-    QStandardItemModel *m_searchListModel;
-    SearchSortModel *m_proxyModel;
-    LineEdit *m_lineEditSearchResultsFilter;
+    Ui::SearchJobWidget *m_ui = nullptr;
+    SearchHandler *m_searchHandler = nullptr;
+    QStandardItemModel *m_searchListModel = nullptr;
+    SearchSortModel *m_proxyModel = nullptr;
+    LineEdit *m_lineEditSearchResultsFilter = nullptr;
     Status m_status = Status::Ongoing;
     bool m_noSearchResults = true;
 

@@ -87,7 +87,6 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
     : QWidget(mainWindow)
     , m_ui(new Ui::SearchWidget())
     , m_mainWindow(mainWindow)
-    , m_isNewQueryString(false)
 {
     m_ui->setupUi(this);
     m_ui->tabWidget->tabBar()->installEventFilter(this);

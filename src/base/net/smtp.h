@@ -103,18 +103,18 @@ namespace Net
 
         QByteArray m_message;
 #ifndef QT_NO_OPENSSL
-        QSslSocket *m_socket;
+        QSslSocket *m_socket = nullptr;
 #else
-        QTcpSocket *m_socket;
+        QTcpSocket *m_socket = nullptr;
 #endif
         QString m_from;
         QString m_rcpt;
         QString m_response;
-        int m_state;
+        int m_state = Init;
         QHash<QString, QString> m_extensions;
         QByteArray m_buffer;
-        bool m_useSsl;
-        AuthType m_authType;
+        bool m_useSsl = false;
+        AuthType m_authType = AuthPlain;
         QString m_username;
         QString m_password;
     };

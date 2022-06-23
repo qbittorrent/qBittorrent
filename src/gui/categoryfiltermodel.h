@@ -75,5 +75,5 @@ private:
     CategoryModelItem *findItem(const QString &fullName) const;
 
     bool m_isSubcategoriesEnabled;
-    CategoryModelItem *m_rootItem;
+    CategoryModelItem *m_rootItem = nullptr;
 };

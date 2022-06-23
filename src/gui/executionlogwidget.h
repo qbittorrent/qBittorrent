@@ -55,6 +55,6 @@ public:
 private:
     void displayContextMenu(const LogListView *view, const BaseLogModel *model) const;
 
-    Ui::ExecutionLogWidget *m_ui;
-    LogFilterModel *m_messageFilterModel;
+    Ui::ExecutionLogWidget *m_ui = nullptr;
+    LogFilterModel *m_messageFilterModel = nullptr;
 };

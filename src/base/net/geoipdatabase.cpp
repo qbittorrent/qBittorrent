@@ -76,13 +76,7 @@ struct DataFieldDescriptor
 };
 
 GeoIPDatabase::GeoIPDatabase(const quint32 size)
-    : m_ipVersion(0)
-    , m_recordSize(0)
-    , m_nodeCount(0)
-    , m_nodeSize(0)
-    , m_indexSize(0)
-    , m_recordBytes(0)
-    , m_size(size)
+    : m_size(size)
     , m_data(new uchar[size])
 {
 }

@@ -57,7 +57,7 @@ private:
     void onTMMChanged(int index);
     void onCategoryChanged(int index);
 
-    Ui::WatchedFolderOptionsDialog *m_ui;
+    Ui::WatchedFolderOptionsDialog *m_ui = nullptr;
     Path m_savePath;
     Path m_downloadPath;
     bool m_useDownloadPath = false;

@@ -74,8 +74,8 @@ private:
     int getPaddedFileSizeLimit() const;
 #endif
 
-    Ui::TorrentCreatorDialog *m_ui;
-    BitTorrent::TorrentCreatorThread *m_creatorThread;
+    Ui::TorrentCreatorDialog *m_ui = nullptr;
+    BitTorrent::TorrentCreatorThread *m_creatorThread = nullptr;
 
     // settings
     SettingValue<QSize> m_storeDialogSize;

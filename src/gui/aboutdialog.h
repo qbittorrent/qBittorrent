@@ -47,6 +47,6 @@ public:
     ~AboutDialog() override;
 
 private:
-    Ui::AboutDialog *m_ui;
+    Ui::AboutDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

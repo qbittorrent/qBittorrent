@@ -71,5 +71,5 @@ private:
     void fill(QTreeWidgetItem *parent, RSS::Folder *rssParent);
 
     QHash<RSS::Item *, QTreeWidgetItem *> m_rssToTreeItemMapping;
-    QTreeWidgetItem *m_unreadStickyItem;
+    QTreeWidgetItem *m_unreadStickyItem = nullptr;
 };

@@ -57,8 +57,8 @@ namespace Http
         void read();
         void sendResponse(const Response &response) const;
 
-        QTcpSocket *m_socket;
-        IRequestHandler *m_requestHandler;
+        QTcpSocket *m_socket = nullptr;
+        IRequestHandler *m_requestHandler = nullptr;
         QByteArray m_receivedData;
         QElapsedTimer m_idleTimer;
     };

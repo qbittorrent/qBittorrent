@@ -177,14 +177,14 @@ private:
 
     bool schedTimesOk();
 
-    Ui::OptionsDialog *m_ui;
+    Ui::OptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
     SettingValue<int> m_storeLastViewedPage;
 
-    QPushButton *m_applyButton;
+    QPushButton *m_applyButton = nullptr;
 
-    AdvancedSettings *m_advancedSettings;
+    AdvancedSettings *m_advancedSettings = nullptr;
 
     bool m_refreshingIpFilter = false;
 };
