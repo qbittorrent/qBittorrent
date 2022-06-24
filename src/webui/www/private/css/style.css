@@ -517,6 +517,7 @@ td.generalLabel {
 
 #progress canvas {
     height: 100%;
+    image-rendering: pixelated;
     left: 0;
     position: absolute;
     top: 0;
