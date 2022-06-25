@@ -216,7 +216,9 @@ void Application::setMemoryWorkingSetLimit(const int size)
         return;
 
     m_storeMemoryWorkingSetLimit = size;
+#ifdef QBT_USES_LIBTORRENT2
     applyMemoryWorkingSetLimit();
+#endif
 }
 
 bool Application::isFileLoggerEnabled() const
@@ -595,7 +597,9 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
+#ifdef QBT_USES_LIBTORRENT2
     applyMemoryWorkingSetLimit();
+#endif
 
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
@@ -766,6 +770,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
 }
 #endif
 
+#ifdef QBT_USES_LIBTORRENT2
 void Application::applyMemoryWorkingSetLimit()
 {
     const size_t MiB = 1024 * 1024;
@@ -803,6 +808,7 @@ void Application::applyMemoryWorkingSetLimit()
     }
 #endif
 }
+#endif
 
 void Application::cleanup()
 {
