@@ -50,9 +50,8 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#include <QDBusConnection>
-#include "qtnotify/notifications.h"
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#include "notifications/dbusnotifier.h"
 #endif
 
 #include "base/bittorrent/session.h"
@@ -147,7 +146,7 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     , m_storeNotificationEnabled(NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_qs))
     , m_storeExecutionLogTypes(EXECUTIONLOG_SETTINGS_KEY(u"Types"_qs), Log::MsgType::ALL)
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
     , m_storeNotificationTimeOut(NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_qs))
 #endif
 {
@@ -200,6 +199,14 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     {
         m_ui->actionLock->setVisible(true);
     });
+
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    if (isNotificationsEnabled())
+    {
+        m_notifier = new DBusNotifier(this);
+        connect(m_notifier, &DBusNotifier::messageClicked, this, &MainWindow::balloonClicked);
+    }
+#endif
 
     // Creating Bittorrent session
     updateAltSpeedsBtn(BitTorrent::Session::instance()->isAltGlobalSpeedLimitEnabled());
@@ -527,9 +534,25 @@ bool MainWindow::isNotificationsEnabled() const
     return m_storeNotificationEnabled.get(true);
 }
 
-void MainWindow::setNotificationsEnabled(bool value)
+void MainWindow::setNotificationsEnabled(const bool value)
 {
+    if (m_storeNotificationEnabled == value)
+        return;
+
     m_storeNotificationEnabled = value;
+
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    if (value)
+    {
+        m_notifier = new DBusNotifier(this);
+        connect(m_notifier, &DBusNotifier::messageClicked, this, &MainWindow::balloonClicked);
+    }
+    else
+    {
+        delete m_notifier;
+        m_notifier = nullptr;
+    }
+#endif
 }
 
 bool MainWindow::isTorrentAddedNotificationsEnabled() const
@@ -1686,27 +1709,8 @@ void MainWindow::showNotificationBalloon(const QString &title, const QString &ms
     if (!isNotificationsEnabled())
         return;
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    OrgFreedesktopNotificationsInterface notifications(u"org.freedesktop.Notifications"_qs
-        , u"/org/freedesktop/Notifications"_qs
-        , QDBusConnection::sessionBus());
-
-    // Testing for 'notifications.isValid()' isn't helpful here.
-    // If the notification daemon is configured to run 'as needed'
-    // the above check can be false if the daemon wasn't started
-    // by another application. In this case DBus will be able to
-    // start the notification daemon and complete our request. Such
-    // a daemon is xfce4-notifyd, DBus autostarts it and after
-    // some inactivity shuts it down. Other DEs, like GNOME, choose
-    // to start their daemons at the session startup and have it sit
-    // idling for the whole session.
-    const QVariantMap hints {{u"desktop-entry"_qs, u"org.qbittorrent.qBittorrent"_qs}};
-    QDBusPendingReply<uint> reply = notifications.Notify(u"qBittorrent"_qs, 0
-        , u"qbittorrent"_qs, title, msg, {}, hints, getNotificationTimeout());
-
-    reply.waitForFinished();
-    if (!reply.isError())
-        return;
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    m_notifier->showMessage(title, msg, getNotificationTimeout());
 #elif defined(Q_OS_MACOS)
     MacUtils::displayNotification(title, msg);
 #else
@@ -1753,7 +1757,9 @@ void MainWindow::createTrayIcon(const int retries)
         m_systrayIcon->setContextMenu(m_trayIconMenu);
 
         connect(m_systrayIcon, &QSystemTrayIcon::activated, this, &MainWindow::toggleVisibility);
+#ifndef QBT_USES_CUSTOMDBUSNOTIFICATIONS
         connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &MainWindow::balloonClicked);
+#endif
 
         m_systrayIcon->show();
         emit systemTrayIconCreated();
