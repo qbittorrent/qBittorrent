@@ -385,7 +385,7 @@ class socksocket(socket.socket):
                 portnum = 8080
             _orgsocket.connect(self,(self.__proxy[1],portnum))
             self.__negotiatehttp(destpair[0],destpair[1])
-        elif self.__proxy[0] == None:
+        elif self.__proxy[0] is None:
             _orgsocket.connect(self,(destpair[0],destpair[1]))
         else:
             raise GeneralProxyError((4,_generalerrors[4]))
