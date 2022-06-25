@@ -31,6 +31,7 @@
 #include "server.h"
 
 #include <algorithm>
+#include <chrono>
 
 #include <QNetworkProxy>
 #include <QSslCipher>
@@ -44,11 +45,13 @@
 #include "base/utils/net.h"
 #include "connection.h"
 
+using namespace std::chrono_literals;
+
 namespace
 {
-    const int KEEP_ALIVE_DURATION = 7 * 1000;  // milliseconds
+    const int KEEP_ALIVE_DURATION = std::chrono::milliseconds(7s).count();
     const int CONNECTIONS_LIMIT = 500;
-    const int CONNECTIONS_SCAN_INTERVAL = 2;  // seconds
+    const std::chrono::seconds CONNECTIONS_SCAN_INTERVAL {2};
 
     QList<QSslCipher> safeCipherList()
     {
@@ -71,7 +74,6 @@ using namespace Http;
 Server::Server(IRequestHandler *requestHandler, QObject *parent)
     : QTcpServer(parent)
     , m_requestHandler(requestHandler)
-    , m_https(false)
 {
     setProxy(QNetworkProxy::NoProxy);
 
@@ -81,14 +83,14 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
     auto *dropConnectionTimer = new QTimer(this);
     connect(dropConnectionTimer, &QTimer::timeout, this, &Server::dropTimedOutConnection);
-    dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL * 1000);
+    dropConnectionTimer->start(CONNECTIONS_SCAN_INTERVAL);
 }
 
 void Server::incomingConnection(const qintptr socketDescriptor)
 {
     if (m_connections.size() >= CONNECTIONS_LIMIT) return;
 
-    QTcpSocket *serverSocket;
+    QTcpSocket *serverSocket = nullptr;
     if (m_https)
         serverSocket = new QSslSocket(this);
     else

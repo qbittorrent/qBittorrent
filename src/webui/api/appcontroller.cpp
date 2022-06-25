@@ -31,6 +31,7 @@
 #include "appcontroller.h"
 
 #include <algorithm>
+#include <chrono>
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -61,6 +62,8 @@
 #include "base/utils/string.h"
 #include "base/version.h"
 #include "../webapplication.h"
+
+using namespace std::chrono_literals;
 
 void AppController::webapiVersionAction()
 {
@@ -93,7 +96,7 @@ void AppController::shutdownAction()
     // Special case handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-    QTimer::singleShot(100, qApp, &QCoreApplication::quit);
+    QTimer::singleShot(100ms, qApp, &QCoreApplication::quit);
 }
 
 void AppController::preferencesAction()

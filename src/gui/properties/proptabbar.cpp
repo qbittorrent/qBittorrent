@@ -38,7 +38,6 @@
 
 PropTabBar::PropTabBar(QWidget *parent)
     : QHBoxLayout(parent)
-    , m_currentIndex(-1)
 {
     setAlignment(Qt::AlignLeft | Qt::AlignCenter);
     setSpacing(3);

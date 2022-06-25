@@ -56,8 +56,8 @@ private slots:
     void onButtonDeleteClicked();
 
 private:
-    Ui::CookiesDialog *m_ui;
-    CookiesModel *m_cookiesModel;
+    Ui::CookiesDialog *m_ui = nullptr;
+    CookiesModel *m_cookiesModel = nullptr;
 
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QByteArray> m_storeViewState;

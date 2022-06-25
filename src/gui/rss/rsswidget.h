@@ -82,7 +82,7 @@ private slots:
     void handleUnreadCountChanged();
 
 private:
-    Ui::RSSWidget *m_ui;
-    ArticleListWidget *m_articleListWidget;
-    FeedListWidget *m_feedListWidget;
+    Ui::RSSWidget *m_ui = nullptr;
+    ArticleListWidget *m_articleListWidget = nullptr;
+    FeedListWidget *m_feedListWidget = nullptr;
 };

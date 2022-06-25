@@ -97,7 +97,7 @@ namespace
         }
 
     private:
-        const char *m_name;
+        const char *m_name = nullptr;
         const char m_shortcut;
     };
 

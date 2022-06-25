@@ -62,9 +62,9 @@ private:
     void updateText();
 
     // Vars
-    Ui::ShutdownConfirmDialog *m_ui;
+    Ui::ShutdownConfirmDialog *m_ui = nullptr;
     QTimer m_timer;
-    int m_timeout;
+    int m_timeout = 15;
     ShutdownDialogAction m_action;
     QString m_msg;
 };

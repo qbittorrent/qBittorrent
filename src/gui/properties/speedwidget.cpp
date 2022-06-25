@@ -32,7 +32,6 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QMenu>
-#include <QTimer>
 #include <QVBoxLayout>
 
 #include "base/bittorrent/session.h"

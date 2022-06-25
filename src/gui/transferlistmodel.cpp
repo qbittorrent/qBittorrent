@@ -216,7 +216,7 @@ int TransferListModel::columnCount(const QModelIndex &) const
     return NB_COLUMNS;
 }
 
-QVariant TransferListModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant TransferListModel::headerData(const int section, const Qt::Orientation orientation, const int role) const
 {
     if (orientation == Qt::Horizontal)
     {
@@ -289,7 +289,7 @@ QVariant TransferListModel::headerData(int section, Qt::Orientation orientation,
         }
     }
 
-    return {};
+    return QAbstractListModel::headerData(section, orientation, role);
 }
 
 QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, const int column) const
@@ -591,8 +591,11 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_QUEUE_POSITION:
         case TR_LAST_ACTIVITY:
         case TR_AVAILABILITY:
-            return QVariant {Qt::AlignRight | Qt::AlignVCenter};
+            return QVariant(Qt::AlignRight | Qt::AlignVCenter);
         }
+        break;
+    default:
+        break;
     }
 
     return {};

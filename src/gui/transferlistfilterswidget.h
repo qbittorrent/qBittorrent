@@ -66,7 +66,7 @@ public slots:
     void toggleFilter(bool checked);
 
 protected:
-    TransferListWidget *transferList;
+    TransferListWidget *transferList = nullptr;
 
 private slots:
     virtual void showMenu() = 0;
@@ -190,8 +190,8 @@ private:
     void toggleCategoryFilter(bool enabled);
     void toggleTagFilter(bool enabled);
 
-    TransferListWidget *m_transferList;
-    TrackerFiltersList *m_trackerFilters;
-    CategoryFilterWidget *m_categoryFilterWidget;
-    TagFilterWidget *m_tagFilterWidget;
+    TransferListWidget *m_transferList = nullptr;
+    TrackerFiltersList *m_trackerFilters = nullptr;
+    CategoryFilterWidget *m_categoryFilterWidget = nullptr;
+    TagFilterWidget *m_tagFilterWidget = nullptr;
 };

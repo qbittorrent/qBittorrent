@@ -53,6 +53,6 @@ protected slots:
     void validateInput();
 
 private:
-    Ui::PeersAdditionDialog *m_ui;
+    Ui::PeersAdditionDialog *m_ui = nullptr;
     QVector<BitTorrent::PeerAddress> m_peersList;
 };

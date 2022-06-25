@@ -26,5 +26,5 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
 
 private:
-    QToolButton *m_searchButton;
+    QToolButton *m_searchButton = nullptr;
 };

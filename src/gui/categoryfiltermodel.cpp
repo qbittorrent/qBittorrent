@@ -40,8 +40,6 @@ class CategoryModelItem
 {
 public:
     CategoryModelItem()
-        : m_parent(nullptr)
-        , m_torrentsCount(0)
     {
     }
 
@@ -154,9 +152,9 @@ public:
     }
 
 private:
-    CategoryModelItem *m_parent;
+    CategoryModelItem *m_parent = nullptr;
     QString m_name;
-    int m_torrentsCount;
+    int m_torrentsCount = 0;
     QHash<QString, CategoryModelItem *> m_children;
     QStringList m_childUids;
 };

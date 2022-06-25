@@ -29,13 +29,15 @@
 
 #include "bandwidthscheduler.h"
 
+#include <chrono>
 #include <utility>
 
 #include <QDate>
 #include <QTime>
-#include <QTimer>
 
 #include "base/preferences.h"
+
+using namespace std::chrono_literals;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject(parent)
@@ -51,7 +53,7 @@ void BandwidthScheduler::start()
 
     // Timeout regularly to accommodate for external system clock changes
     // eg from the user or from a timesync utility
-    m_timer.start(30000);
+    m_timer.start(30s);
 }
 
 bool BandwidthScheduler::isTimeForAlternative() const

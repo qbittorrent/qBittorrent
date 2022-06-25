@@ -73,8 +73,6 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::PropertiesWidget())
-    , m_torrent(nullptr)
-    , m_handleWidth(-1)
 {
     m_ui->setupUi(this);
     setAutoFillBackground(true);

@@ -46,8 +46,8 @@ namespace
 {
     struct TrStringWithComment
     {
-        const char *source;
-        const char *comment;
+        const char *source = nullptr;
+        const char *comment = nullptr;
 
         QString tr() const
         {
@@ -76,15 +76,15 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     void browseActionTriggered();
     QString dialogCaptionOrDefault() const;
 
-    FileSystemPathEdit *q_ptr;
+    FileSystemPathEdit *q_ptr = nullptr;
     std::unique_ptr<Private::FileEditorWithCompletion> m_editor;
-    QAction *m_browseAction;
-    QToolButton *m_browseBtn;
+    QAction *m_browseAction = nullptr;
+    QToolButton *m_browseBtn = nullptr;
     QString m_fileNameFilter;
     Mode m_mode;
     Path m_lastSignaledPath;
     QString m_dialogCaption;
-    Private::FileSystemPathValidator *m_validator;
+    Private::FileSystemPathValidator *m_validator = nullptr;
 };
 
 FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(

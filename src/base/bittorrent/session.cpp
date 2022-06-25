@@ -30,6 +30,7 @@
 #include "session.h"
 
 #include <algorithm>
+#include <chrono>
 #include <cstdint>
 #include <ctime>
 #include <queue>
@@ -107,6 +108,7 @@
 #include "torrentimpl.h"
 #include "tracker.h"
 
+using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
@@ -442,11 +444,11 @@ Session::Session(QObject *parent)
         m_port = Utils::Random::rand(1024, 65535);
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
-    m_recentErroredTorrentsTimer->setInterval(1000);
+    m_recentErroredTorrentsTimer->setInterval(1s);
     connect(m_recentErroredTorrentsTimer, &QTimer::timeout
         , this, [this]() { m_recentErroredTorrents.clear(); });
 
-    m_seedingLimitTimer->setInterval(10000);
+    m_seedingLimitTimer->setInterval(10s);
     connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
 
     initializeNativeSession();
@@ -497,7 +499,7 @@ Session::Session(QObject *parent)
     const int saveInterval = saveResumeDataInterval();
     if (saveInterval > 0)
     {
-        m_resumeDataTimer->setInterval(saveInterval * 60 * 1000);
+        m_resumeDataTimer->setInterval(std::chrono::minutes(saveInterval));
         m_resumeDataTimer->start();
     }
 
@@ -2907,7 +2909,7 @@ void Session::setSaveResumeDataInterval(const int value)
 
     if (value > 0)
     {
-        m_resumeDataTimer->setInterval(value * 60 * 1000);
+        m_resumeDataTimer->setInterval(std::chrono::minutes(value));
         m_resumeDataTimer->start();
     }
     else
@@ -5243,7 +5245,6 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     {
         Q_ASSERT(current >= previous);
         Q_ASSERT(interval >= 0);
-        using namespace std::chrono_literals;
         return (((current - previous) * lt::microseconds(1s).count()) / interval);
     };
 

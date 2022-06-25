@@ -65,6 +65,6 @@ private slots:
     void useDownloadPathChanged(int index);
 
 private:
-    Ui::TorrentCategoryDialog *m_ui;
+    Ui::TorrentCategoryDialog *m_ui = nullptr;
     Path m_lastEnteredDownloadPath;
 };

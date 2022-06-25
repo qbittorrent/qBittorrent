@@ -63,7 +63,7 @@
 
 using namespace std::chrono_literals;
 
-const std::chrono::duration WATCH_INTERVAL = 10s;
+const std::chrono::seconds WATCH_INTERVAL {10};
 const int MAX_FAILED_RETRIES = 5;
 const QString CONF_FILE_NAME = u"watched_folders.json"_qs;
 
@@ -478,7 +478,7 @@ void TorrentFilesWatcher::Worker::removeWatchedFolder(const Path &path)
 
 void TorrentFilesWatcher::Worker::scheduleWatchedFolderProcessing(const Path &path)
 {
-    QTimer::singleShot(2000, this, [this, path]()
+    QTimer::singleShot(2s, this, [this, path]()
     {
         processWatchedFolder(path);
     });

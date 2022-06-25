@@ -54,8 +54,6 @@ using namespace Net;
 GeoIPManager *GeoIPManager::m_instance = nullptr;
 
 GeoIPManager::GeoIPManager()
-    : m_enabled(false)
-    , m_geoIPDatabase(nullptr)
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &GeoIPManager::configure);

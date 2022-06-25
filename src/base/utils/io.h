@@ -76,9 +76,9 @@ namespace Utils::IO
         }
 
     private:
-        QFileDevice *m_device;
+        QFileDevice *m_device = nullptr;
         std::shared_ptr<QByteArray> m_buffer;
-        int m_bufferSize;
+        int m_bufferSize = 0;
     };
 
     nonstd::expected<void, QString> saveToFile(const Path &path, const QByteArray &data);

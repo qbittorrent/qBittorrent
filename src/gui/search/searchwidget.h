@@ -78,10 +78,10 @@ private:
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
-    Ui::SearchWidget *m_ui;
+    Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow;
-    bool m_isNewQueryString;
+    MainWindow *m_mainWindow = nullptr;
+    bool m_isNewQueryString = false;
 };

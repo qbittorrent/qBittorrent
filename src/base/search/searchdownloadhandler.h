@@ -49,6 +49,6 @@ signals:
 private:
     void downloadProcessFinished(int exitcode);
 
-    SearchPluginManager *m_manager;
-    QProcess *m_downloadProcess;
+    SearchPluginManager *m_manager = nullptr;
+    QProcess *m_downloadProcess = nullptr;
 };

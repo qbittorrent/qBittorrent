@@ -29,7 +29,9 @@
 
 #include "settingsstorage.h"
 
+#include <chrono>
 #include <memory>
+
 #include <QFile>
 #include <QHash>
 
@@ -38,6 +40,8 @@
 #include "path.h"
 #include "profile.h"
 #include "utils/fs.h"
+
+using namespace std::chrono_literals;
 
 namespace
 {
@@ -73,7 +77,7 @@ SettingsStorage::SettingsStorage()
     : m_data {TransactionalSettings(u"qBittorrent"_qs).read()}
 {
     m_timer.setSingleShot(true);
-    m_timer.setInterval(5 * 1000);
+    m_timer.setInterval(5s);
     connect(&m_timer, &QTimer::timeout, this, &SettingsStorage::save);
 }
 

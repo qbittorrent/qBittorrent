@@ -54,5 +54,5 @@ public:
     void setCloseOnInteraction(bool enabled);
 
 private:
-    TriStateWidget *m_triStateWidget;
+    TriStateWidget *m_triStateWidget = nullptr;
 };

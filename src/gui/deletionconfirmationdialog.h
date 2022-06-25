@@ -53,5 +53,5 @@ private slots:
     void on_rememberBtn_clicked();
 
 private:
-    Ui::DeletionConfirmationDialog *m_ui;
+    Ui::DeletionConfirmationDialog *m_ui = nullptr;
 };

@@ -49,7 +49,7 @@ public:
     void showPopup() override;
 
 private:
-    QMenu *m_menu;
+    QMenu *m_menu = nullptr;
 };
 
 
@@ -71,13 +71,13 @@ private:
     void loadSettings();
     void saveSettings() const;
 
-    QVBoxLayout *m_layout;
-    QHBoxLayout *m_hlayout;
-    QLabel *m_periodLabel;
-    QComboBox *m_periodCombobox;
-    SpeedPlotView *m_plot;
+    QVBoxLayout *m_layout = nullptr;
+    QHBoxLayout *m_hlayout = nullptr;
+    QLabel *m_periodLabel = nullptr;
+    QComboBox *m_periodCombobox = nullptr;
+    SpeedPlotView *m_plot = nullptr;
 
-    ComboBoxMenuButton *m_graphsButton;
-    QMenu *m_graphsMenu;
+    ComboBoxMenuButton *m_graphsButton = nullptr;
+    QMenu *m_graphsMenu = nullptr;
     QList<QAction *> m_graphsMenuActions;
 };

@@ -103,9 +103,6 @@ using namespace Net;
 
 Smtp::Smtp(QObject *parent)
     : QObject(parent)
-    , m_state(Init)
-    , m_useSsl(false)
-    , m_authType(AuthPlain)
 {
     static bool needToRegisterMetaType = true;
 

@@ -115,7 +115,7 @@ private:
 
     void showEvent(QShowEvent *event) override;
 
-    Ui::AddNewTorrentDialog *m_ui;
+    Ui::AddNewTorrentDialog *m_ui = nullptr;
     TorrentContentFilterModel *m_contentModel = nullptr;
     PropListDelegate *m_contentDelegate = nullptr;
     BitTorrent::MagnetUri m_magnetURI;

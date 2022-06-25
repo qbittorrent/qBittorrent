@@ -37,11 +37,6 @@
 
 TorrentContentModelItem::TorrentContentModelItem(TorrentContentModelFolder *parent)
     : m_parentItem(parent)
-    , m_size(0)
-    , m_remaining(0)
-    , m_priority(BitTorrent::DownloadPriority::Normal)
-    , m_progress(0)
-    , m_availability(-1.)
 {
 }
 

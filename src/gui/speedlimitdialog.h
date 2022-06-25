@@ -50,7 +50,7 @@ public slots:
     void accept() override;
 
 private:
-    Ui::SpeedLimitDialog *m_ui;
+    Ui::SpeedLimitDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     struct
     {
