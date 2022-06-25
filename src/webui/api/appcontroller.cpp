@@ -294,7 +294,7 @@ void AppController::preferencesAction()
     // Advanced settings
     // qBitorrent preferences
     // Physical memory (RAM) usage limit
-    data[u"memory_working_set_limit"_qs] = dynamic_cast<IApplication *>(QCoreApplication::instance())->memoryWorkingSetLimit();
+    data[u"memory_working_set_limit"_qs] = app()->memoryWorkingSetLimit();
     // Current network interface
     data[u"current_network_interface"_qs] = session->networkInterface();
     // Current network interface address
@@ -758,7 +758,7 @@ void AppController::setPreferencesAction()
     // qBittorrent preferences
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_qs))
-        dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(it.value().toInt());
+        app()->setMemoryWorkingSetLimit(it.value().toInt());
     // Current network interface
     if (hasKey(u"current_network_interface"_qs))
     {

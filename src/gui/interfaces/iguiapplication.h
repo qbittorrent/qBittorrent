@@ -39,5 +39,5 @@ class IGUIApplication : public IApplication
 public:
     virtual ~IGUIApplication() = default;
 
-    virtual QPointer<MainWindow> mainWindow() = 0;
+    virtual MainWindow *mainWindow() = 0;
 };

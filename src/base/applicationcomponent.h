@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,38 +28,20 @@
 
 #pragma once
 
-#include <QDeadlineTimer>
-#include <QHash>
+#include <QtGlobal>
 
-#include "apicontroller.h"
+#include "interfaces/iapplication.h"
 
-class QString;
-
-struct ISessionManager;
-
-class AuthController : public APIController
+class ApplicationComponent
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(AuthController)
+    Q_DISABLE_COPY_MOVE(ApplicationComponent)
 
 public:
-    explicit AuthController(ISessionManager *sessionManager, IApplication *app, QObject *parent = nullptr);
+    explicit ApplicationComponent(IApplication *app);
+    virtual ~ApplicationComponent() = default;
 
-private slots:
-    void loginAction();
-    void logoutAction() const;
+    virtual IApplication *app() const;
 
 private:
-    bool isBanned() const;
-    int failedAttemptsCount() const;
-    void increaseFailedAttempts();
-
-    ISessionManager *m_sessionManager = nullptr;
-
-    struct FailedLogin
-    {
-        int failedAttemptsCount = 0;
-        QDeadlineTimer banTimer {-1};
-    };
-    mutable QHash<QString, FailedLogin> m_clientFailedLogins;
+    IApplication *m_app = nullptr;
 };

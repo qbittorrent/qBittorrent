@@ -39,9 +39,8 @@
 #include "base/utils/net.h"
 #include "webapplication.h"
 
-WebUI::WebUI()
-    : m_isErrored(false)
-    , m_port(0)
+WebUI::WebUI(IApplication *app)
+    : ApplicationComponent(app)
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebUI::configure);
@@ -77,7 +76,7 @@ void WebUI::configure()
         const QString serverAddressString = pref->getWebUiAddress();
         if (!m_httpServer)
         {
-            m_webapp = new WebApplication(this);
+            m_webapp = new WebApplication(app(), this);
             m_httpServer = new Http::Server(m_webapp, this);
         }
         else

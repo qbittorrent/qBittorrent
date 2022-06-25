@@ -118,7 +118,7 @@ public:
     void setMemoryWorkingSetLimit(int size) override;
 
 #ifndef DISABLE_GUI
-    QPointer<MainWindow> mainWindow() override;
+    MainWindow *mainWindow() override;
 #endif
 
 private slots:
@@ -167,7 +167,7 @@ private:
     SettingValue<int> m_storeMemoryWorkingSetLimit;
 
 #ifndef DISABLE_GUI
-    QPointer<MainWindow> m_window;
+    MainWindow *m_window = nullptr;
 #endif
 
 #ifndef DISABLE_WEBUI

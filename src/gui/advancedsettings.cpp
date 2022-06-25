@@ -151,8 +151,9 @@ namespace
     };
 }
 
-AdvancedSettings::AdvancedSettings(QWidget *parent)
+AdvancedSettings::AdvancedSettings(IGUIApplication *app, QWidget *parent)
     : QTableWidget(parent)
+    , GUIApplicationComponent(app)
 {
     // column
     setColumnCount(COL_COUNT);
@@ -178,7 +179,7 @@ void AdvancedSettings::saveAdvancedSettings() const
 
     session->setResumeDataStorageType(m_comboBoxResumeDataStorage.currentData().value<BitTorrent::ResumeDataStorageType>());
     // Physical memory (RAM) usage limit
-    dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
+    app()->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #if defined(Q_OS_WIN)
     session->setOSMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<BitTorrent::OSMemoryPriority>());
 #endif
@@ -266,7 +267,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Stop tracker timeout
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
-    MainWindow *mainWindow = dynamic_cast<IGUIApplication *>(QCoreApplication::instance())->mainWindow();
+    MainWindow *mainWindow = app()->mainWindow();
     mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
     mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
 #if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
@@ -411,7 +412,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxMemoryWorkingSetLimit.setMaximum(std::numeric_limits<int>::max());
     m_spinBoxMemoryWorkingSetLimit.setSuffix(tr(" MiB"));
     m_spinBoxMemoryWorkingSetLimit.setToolTip(tr("This option is less effective on Linux"));
-    m_spinBoxMemoryWorkingSetLimit.setValue(dynamic_cast<IApplication *>(QCoreApplication::instance())->memoryWorkingSetLimit());
+    m_spinBoxMemoryWorkingSetLimit.setValue(app()->memoryWorkingSetLimit());
     addRow(MEMORY_WORKING_SET_LIMIT, (tr("Physical memory (RAM) usage limit") + u' ' + makeLink(u"https://wikipedia.org/wiki/Working_set", u"(?)"))
         , &m_spinBoxMemoryWorkingSetLimit);
 #if defined(Q_OS_WIN)
@@ -670,7 +671,7 @@ void AdvancedSettings::loadAdvancedSettings()
            , &m_spinBoxStopTrackerTimeout);
 
     // Program notifications
-    const MainWindow *mainWindow = dynamic_cast<IGUIApplication *>(QCoreApplication::instance())->mainWindow();
+    const MainWindow *mainWindow = app()->mainWindow();
     m_checkBoxProgramNotifications.setChecked(mainWindow->isNotificationsEnabled());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &m_checkBoxProgramNotifications);
     // Torrent added notifications

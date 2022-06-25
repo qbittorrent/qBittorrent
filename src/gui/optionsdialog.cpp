@@ -175,8 +175,9 @@ private:
 };
 
 // Constructor
-OptionsDialog::OptionsDialog(QWidget *parent)
-    : QDialog {parent}
+OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
+    : QDialog(parent)
+    , GUIApplicationComponent(app)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_qs)}
@@ -542,7 +543,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Tab selection mechanism
     connect(m_ui->tabSelection, &QListWidget::currentItemChanged, this, &ThisType::changePage);
     // Load Advanced settings
-    m_advancedSettings = new AdvancedSettings(m_ui->tabAdvancedPage);
+    m_advancedSettings = new AdvancedSettings(app, m_ui->tabAdvancedPage);
     m_ui->advPageLayout->addWidget(m_advancedSettings);
     connect(m_advancedSettings, &AdvancedSettings::settingsChanged, this, &ThisType::enableApplyButton);
 
@@ -723,14 +724,13 @@ void OptionsDialog::saveOptions()
 #endif
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 
-    auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
-    app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
-    app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
-    app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
-    app->setFileLoggerAge(m_ui->spinFileLogAge->value());
-    app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
-    app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
-    app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
+    app()->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
+    app()->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
+    app()->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
+    app()->setFileLoggerAge(m_ui->spinFileLogAge->value());
+    app()->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
+    app()->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
+    app()->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
     // End Behavior preferences
 
     RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
@@ -975,19 +975,18 @@ void OptionsDialog::loadOptions()
 #endif
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    const auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
-    m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
-    m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
-    const bool fileLogBackup = app->isFileLoggerBackup();
+    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
+    m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
+    const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
-    const bool fileLogDelete = app->isFileLoggerDeleteOld();
+    const bool fileLogDelete = app()->isFileLoggerDeleteOld();
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
     m_ui->spinFileLogAge->setEnabled(fileLogDelete);
     m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
-    m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize() / 1024);
-    m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
-    m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
+    m_ui->spinFileLogSize->setValue(app()->fileLoggerMaxSize() / 1024);
+    m_ui->spinFileLogAge->setValue(app()->fileLoggerAge());
+    m_ui->comboFileLogAgeType->setCurrentIndex(app()->fileLoggerAgeType());
     // End Behavior preferences
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());

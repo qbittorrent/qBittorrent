@@ -32,18 +32,20 @@
 #include <QObject>
 #include <QVariant>
 
+#include "base/applicationcomponent.h"
+
 class QString;
 
 using DataMap = QHash<QString, QByteArray>;
 using StringMap = QHash<QString, QString>;
 
-class APIController : public QObject
+class APIController : public QObject, public ApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(APIController)
 
 public:
-    explicit APIController(QObject *parent = nullptr);
+    explicit APIController(IApplication *app, QObject *parent = nullptr);
 
     QVariant run(const QString &action, const StringMap &params, const DataMap &data = {});
 

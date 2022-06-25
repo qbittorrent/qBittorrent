@@ -194,7 +194,7 @@ Application::~Application()
 }
 
 #ifndef DISABLE_GUI
-QPointer<MainWindow> Application::mainWindow()
+MainWindow *Application::mainWindow()
 {
     return m_window;
 }
@@ -611,7 +611,7 @@ int Application::exec(const QStringList &params)
         TorrentFilesWatcher::initInstance();
 
 #ifndef DISABLE_WEBUI
-        m_webui = new WebUI;
+        m_webui = new WebUI(this);
 #ifdef DISABLE_GUI
         if (m_webui->isErrored())
             return 1;
@@ -658,7 +658,7 @@ int Application::exec(const QStringList &params)
 #endif // DISABLE_WEBUI
 #else
     UIThemeManager::initInstance();
-    m_window = new MainWindow;
+    m_window = new MainWindow(this);
 #endif // DISABLE_GUI
 
     m_running = true;

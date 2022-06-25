@@ -138,8 +138,9 @@ namespace
 #endif
 }
 
-MainWindow::MainWindow(QWidget *parent)
+MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     : QMainWindow(parent)
+    , GUIApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_qs))
@@ -1833,7 +1834,7 @@ void MainWindow::on_actionOptions_triggered()
     }
     else
     {
-        m_options = new OptionsDialog(this);
+        m_options = new OptionsDialog(app(), this);
         m_options->setAttribute(Qt::WA_DeleteOnClose);
         m_options->open();
     }

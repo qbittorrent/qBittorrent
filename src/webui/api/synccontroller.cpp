@@ -366,8 +366,8 @@ namespace
     }
 }
 
-SyncController::SyncController(QObject *parent)
-    : APIController(parent)
+SyncController::SyncController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
 {
     m_freeDiskSpaceThread = new QThread(this);
     m_freeDiskSpaceChecker = new FreeDiskSpaceChecker();

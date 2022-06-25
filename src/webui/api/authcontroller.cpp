@@ -37,8 +37,8 @@
 #include "apierror.h"
 #include "isessionmanager.h"
 
-AuthController::AuthController(ISessionManager *sessionManager, QObject *parent)
-    : APIController {parent}
+AuthController::AuthController(ISessionManager *sessionManager, IApplication *app, QObject *parent)
+    : APIController(app, parent)
     , m_sessionManager {sessionManager}
 {
 }
