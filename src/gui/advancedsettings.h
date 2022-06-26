@@ -82,7 +82,9 @@ private:
     // OS dependent settings
 #if defined(Q_OS_WIN)
     QComboBox m_comboBoxOSMemoryPriority;
+#ifdef QBT_USES_LIBTORRENT2
     QSpinBox m_spinBoxMemoryWorkingSetLimit;
+#endif
 #endif
 
 #ifndef Q_OS_MACOS
