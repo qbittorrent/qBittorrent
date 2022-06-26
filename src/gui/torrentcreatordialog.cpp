@@ -180,8 +180,8 @@ void TorrentCreatorDialog::onCreateButtonClicked()
     }
 
     // get save path
-    const Path savePath = m_storeLastSavePath.get(Utils::Fs::homePath() / Path(inputPath.filename() + u".torrent"));
-    Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), savePath.data(), tr("Torrent Files (*.torrent)"))};
+    const Path lastSavePath = (m_storeLastSavePath.get(Utils::Fs::homePath()) / Path(inputPath.filename() + u".torrent"));
+    Path destPath {QFileDialog::getSaveFileName(this, tr("Select where to save the new torrent"), lastSavePath.data(), tr("Torrent Files (*.torrent)"))};
     if (destPath.isEmpty())
         return;
     if (!destPath.hasExtension(TORRENT_FILE_EXTENSION))
