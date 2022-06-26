@@ -111,7 +111,7 @@ bool SearchSortModel::lessThan(const QModelIndex &left, const QModelIndex &right
     switch (sortColumn())
     {
     case NAME:
-    case ENGINE_URL:
+    case INDEXER_NAME:
         {
             const QString strL = left.data().toString();
             const QString strR = right.data().toString();

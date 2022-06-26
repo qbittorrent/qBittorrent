@@ -58,8 +58,8 @@ public:
     void giveFocusToSearchInput();
 
 private slots:
+    void on_indexersButton_clicked();
     void on_searchButton_clicked();
-    void on_pluginsButton_clicked();
 
 private:
     bool eventFilter(QObject *object, QEvent *event) override;
@@ -67,16 +67,13 @@ private:
     void closeTab(int index);
     void closeAllTabs();
     void tabStatusChanged(QWidget *tab);
-    void selectMultipleBox(int index);
     void toggleFocusBetweenLineEdits();
 
     void fillCatCombobox();
-    void fillPluginComboBox();
     void selectActivePage();
     void searchTextEdited(const QString &);
 
     QString selectedCategory() const;
-    QString selectedPlugin() const;
 
     Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab

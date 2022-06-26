@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,38 +26,37 @@
  * exception statement from your version.
  */
 
-#include "pluginsourcedialog.h"
+#pragma once
 
-#include "gui/utils.h"
-#include "ui_pluginsourcedialog.h"
+#include <QDialog>
 
-#define SETTINGS_KEY(name) u"SearchPluginSourceDialog/" name
+#include "base/settingvalue.h"
+#include "base/search/searchengine.h"
 
-PluginSourceDialog::PluginSourceDialog(QWidget *parent)
-    : QDialog(parent)
-    , m_ui(new Ui::PluginSourceDialog)
-    , m_storeDialogSize(SETTINGS_KEY(u"Size"_qs))
+namespace Ui
 {
-    m_ui->setupUi(this);
-
-    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
-        resize(dialogSize);
+    class IndexerOptionsDialog;
 }
 
-PluginSourceDialog::~PluginSourceDialog()
+class IndexerOptionsDialog final : public QDialog
 {
-    m_storeDialogSize = size();
-    delete m_ui;
-}
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(IndexerOptionsDialog)
 
-void PluginSourceDialog::on_localButton_clicked()
-{
-    emit askForLocalFile();
-    close();
-}
+public:
+    explicit IndexerOptionsDialog(QWidget *parent = nullptr);
+    ~IndexerOptionsDialog() override;
 
-void PluginSourceDialog::on_urlButton_clicked()
-{
-    emit askForUrl();
-    close();
-}
+    QString indexerName() const;
+    void setIndexerName(const QString &name);
+    IndexerOptions indexerOptions() const;
+    void setIndexerOptions(const IndexerOptions &indexerOptions);
+
+private:
+    void loadState();
+    void saveState();
+    void validate();
+
+    Ui::IndexerOptionsDialog *m_ui = nullptr;
+    SettingValue<QSize> m_storeDialogSize;
+};

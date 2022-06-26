@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Thomas Piccirello <thomas.piccirello@gmail.com>
+ * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,47 +28,40 @@
 
 #pragma once
 
-#include <memory>
-
-#include <QtContainerFwd>
-#include <QHash>
+#include <QObject>
 #include <QSet>
+#include <QString>
+#include <QVariantHash>
+#include <QVector>
 
-#include "base/search/searchengine.h"
-#include "apicontroller.h"
+#include "searchresult.h"
 
-class QJsonArray;
-class QJsonObject;
+class QXmlStreamReader;
 
-struct SearchResult;
+struct TorznabRSSParsingResult
+{
+    QString error;
+    QVector<SearchResult> items;
+};
 
-class SearchController : public APIController
+class TorznabXMLParser final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchController)
+    Q_DISABLE_COPY_MOVE(TorznabXMLParser)
 
 public:
-    using APIController::APIController;
+    TorznabXMLParser() = default;
+    void parse(const QString &indexerName, const QByteArray &feedData);
 
-private slots:
-    void startAction();
-    void stopAction();
-    void statusAction();
-    void resultsAction();
-    void deleteAction();
-    void pluginsAction();
-    void installPluginAction();
-    void uninstallPluginAction();
-    void enablePluginAction();
-    void updatePluginsAction();
+signals:
+    void finished(const QString &indexerName, const TorznabRSSParsingResult &result);
 
 private:
-    const int MAX_CONCURRENT_SEARCHES = 5;
+    void parseRSSItem(QXmlStreamReader &xml);
+    void parseRSSChannel(QXmlStreamReader &xml);
 
-    int generateSearchId() const;
-    QJsonObject getResults(const QVector<SearchResult> &searchResults, bool isSearchActive, int totalResults) const;
-    QJsonArray getIndexersInfo() const;
-
-    QSet<int> m_activeSearches;
-    QHash<int, std::shared_ptr<SearchHandler>> m_searchHandlers;
+    QString m_indexerName;
+    TorznabRSSParsingResult m_result;
 };
+
+Q_DECLARE_METATYPE(TorznabRSSParsingResult)

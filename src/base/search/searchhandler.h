@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015, 2018, 2021  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,43 +29,41 @@
 
 #pragma once
 
-#include <QByteArray>
-#include <QList>
-#include <QObject>
-#include <QString>
 #include <QtContainerFwd>
+#include <QObject>
+#include <QSet>
+#include <QString>
+#include <QVector>
 
-class QProcess;
+#include "searchresult.h"
+
+class QThread;
 class QTimer;
 
-struct SearchResult
+class SearchEngine;
+class TorznabXMLParser;
+struct TorznabRSSParsingResult;
+
+namespace Net
 {
-    QString fileName;
-    QString fileUrl;
-    qlonglong fileSize;
-    qlonglong nbSeeders;
-    qlonglong nbLeechers;
-    QString siteUrl;
-    QString descrLink;
-};
+    class DownloadHandler;
+}
 
-class SearchPluginManager;
+struct IndexerOptions;
 
-class SearchHandler : public QObject
+class SearchHandler final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchHandler)
 
-    friend class SearchPluginManager;
-
-    SearchHandler(const QString &pattern, const QString &category
-                  , const QStringList &usedPlugins, SearchPluginManager *manager);
-
 public:
+    SearchHandler(SearchEngine *manager, const QString &pattern, const QString &category, QHash<QString, IndexerOptions> indexers);
+    ~SearchHandler() override;
+
     bool isActive() const;
     QString pattern() const;
-    SearchPluginManager *manager() const;
-    QList<SearchResult> results() const;
+    SearchEngine *manager() const;
+    QVector<SearchResult> results() const;
 
     void cancelSearch();
 
@@ -75,18 +73,16 @@ signals:
     void newSearchResults(const QVector<SearchResult> &results);
 
 private:
-    void readSearchOutput();
-    void processFailed();
-    void processFinished(int exitcode);
-    bool parseSearchResult(QStringView line, SearchResult &searchResult);
+    void handleParsingFinished(const QString &indexerName, const TorznabRSSParsingResult &result);
 
     const QString m_pattern;
     const QString m_category;
-    const QStringList m_usedPlugins;
-    SearchPluginManager *m_manager = nullptr;
-    QProcess *m_searchProcess = nullptr;
+    SearchEngine *m_manager = nullptr;
+    QThread *m_parsingThread = nullptr;
     QTimer *m_searchTimeout = nullptr;
-    QByteArray m_searchResultLineTruncated;
+    TorznabXMLParser *m_parser = nullptr;
+    int m_numOutstandingRequests = 0;
     bool m_searchCancelled = false;
-    QList<SearchResult> m_results;
+    QVector<SearchResult> m_results;
+    QSet<Net::DownloadHandler *> m_downloadHandlers;
 };

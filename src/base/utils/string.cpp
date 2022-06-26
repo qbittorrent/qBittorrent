@@ -96,6 +96,16 @@ std::optional<int> Utils::String::parseInt(const QString &string)
     return std::nullopt;
 }
 
+std::optional<qlonglong> Utils::String::parseLongLong(const QString &string)
+{
+    bool ok = false;
+    const qlonglong result = string.toLongLong(&ok);
+    if (ok)
+        return result;
+
+    return std::nullopt;
+}
+
 std::optional<double> Utils::String::parseDouble(const QString &string)
 {
     bool ok = false;

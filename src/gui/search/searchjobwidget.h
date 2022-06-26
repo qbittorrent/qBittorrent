@@ -33,9 +33,6 @@
 
 #include "base/settingvalue.h"
 
-#define ENGINE_URL_COLUMN 4
-#define URL_COLUMN 5
-
 class QHeaderView;
 class QModelIndex;
 class QStandardItemModel;
@@ -44,8 +41,6 @@ class LineEdit;
 class SearchHandler;
 class SearchSortModel;
 struct SearchResult;
-
-template <typename T> class SettingValue;
 
 namespace Ui
 {

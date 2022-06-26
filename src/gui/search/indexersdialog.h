@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2018  Mike Tzou
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,22 +29,53 @@
 
 #pragma once
 
-#include <QString>
+#include <QDialog>
+#include <QStringList>
 
-#include "base/utils/version.h"
+#include "base/search/searchengine.h"
+#include "base/settingvalue.h"
 
-namespace Utils::ForeignApps
+class QByteArray;
+class QColor;
+class QSize;
+class QTreeWidgetItem;
+
+namespace Ui
 {
-    struct PythonInfo
-    {
-        using Version = Utils::Version<quint8, 3, 1>;
-
-        bool isValid() const;
-        bool isSupportedVersion() const;
-
-        QString executableName;
-        Version version;
-    };
-
-    PythonInfo pythonInfo();
+    class IndexersDialog;
 }
+
+class IndexersDialog final : public QDialog
+{
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(IndexersDialog)
+
+public:
+    explicit IndexersDialog(SearchEngine *searchEngine, QWidget *parent = nullptr);
+    ~IndexersDialog() override;
+
+private slots:
+    void on_actionEnable_toggled(bool enabled);
+    void on_actionEdit_triggered();
+    void on_actionRemove_triggered();
+    void on_addButton_clicked();
+    void on_closeButton_clicked();
+
+    void onItemDoubleClicked(QTreeWidgetItem *item, int column);
+    void displayContextMenu(const QPoint &);
+    void onIndexerAdded(const QString &indexerName);
+    void onIndexerOptionsChanged(const QString &indexerName);
+    void onIndexerStateChanged(const QString &indexerName);
+    void onIndexerRemoved(const QString &indexerName);
+
+private:
+    void loadIndexers();
+    void editIndexer(const QString &indexerName);
+    void createItem(const QString &indexerName, const IndexerInfo &indexerInfo);
+    QTreeWidgetItem *findItemByName(const QString &indexerName) const;
+
+    Ui::IndexersDialog *m_ui;
+    SearchEngine *m_searchEngine;
+    SettingValue<QSize> m_dialogSize;
+    SettingValue<QByteArray> m_treeHeaderState;
+};
