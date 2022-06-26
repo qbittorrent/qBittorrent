@@ -220,7 +220,9 @@ void Application::setMemoryWorkingSetLimit(const int size)
         return;
 
     m_storeMemoryWorkingSetLimit = size;
+#ifdef QBT_USES_LIBTORRENT2
     applyMemoryWorkingSetLimit();
+#endif
 }
 #endif
 
@@ -621,7 +623,7 @@ void Application::processParams(const QStringList &params)
 
 int Application::exec(const QStringList &params)
 {
-#ifdef Q_OS_WIN
+#if (defined(Q_OS_WIN) && defined(QBT_USES_LIBTORRENT2))
     applyMemoryWorkingSetLimit();
 #endif
 
@@ -794,7 +796,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
 }
 #endif
 
-#ifdef Q_OS_WIN
+#if (defined(Q_OS_WIN) && defined(QBT_USES_LIBTORRENT2))
 void Application::applyMemoryWorkingSetLimit()
 {
     const SIZE_T UNIT_SIZE = 1024 * 1024; // MiB

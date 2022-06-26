@@ -126,7 +126,7 @@ private slots:
 #endif
 
 private:
-#ifdef Q_OS_WIN
+#if (defined(Q_OS_WIN) && defined(QBT_USES_LIBTORRENT2))
     void applyMemoryWorkingSetLimit();
 #endif
     void initializeTranslation();
