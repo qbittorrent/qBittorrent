@@ -5186,9 +5186,6 @@ void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
     const QString proto {toString(p->socket_type)};
     LogMsg(tr("Successfully listening on IP. IP: \"%1\". Port: \"%2/%3\"")
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
-
-    // Force reannounce on all torrents because some trackers blacklist some ports
-    reannounceToAllTrackers();
 }
 
 void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
