@@ -115,6 +115,11 @@ Path Path::rootItem() const
     if (slashIndex == 0) // *nix absolute path
         return createUnchecked(u"/"_qs);
 
+#ifdef Q_OS_WIN
+    // should be `c:/` instead of `c:`
+    if (m_pathStr.at(slashIndex - 1) == u':')
+        return createUnchecked(m_pathStr.left(slashIndex + 1));
+#endif
     return createUnchecked(m_pathStr.left(slashIndex));
 }
 
@@ -127,6 +132,12 @@ Path Path::parentPath() const
     if (slashIndex == 0) // *nix absolute path
         return (m_pathStr.size() == 1) ? Path() : createUnchecked(u"/"_qs);
 
+#ifdef Q_OS_WIN
+    // should be `c:/` instead of `c:`
+    // Windows "drive letter" is limited to one alphabet
+    if ((slashIndex == 2) && (m_pathStr.at(1) == u':'))
+        return createUnchecked(m_pathStr.left(slashIndex + 1));
+#endif
     return createUnchecked(m_pathStr.left(slashIndex));
 }
 
