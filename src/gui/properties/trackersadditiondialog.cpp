@@ -46,7 +46,7 @@ TrackersAdditionDialog::TrackersAdditionDialog(QWidget *parent, BitTorrent::Torr
 {
     m_ui->setupUi(this);
     // Icons
-    m_ui->uTorrentListButton->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
+    m_ui->uTorrentListButton->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_qs));
 }
 
 TrackersAdditionDialog::~TrackersAdditionDialog()

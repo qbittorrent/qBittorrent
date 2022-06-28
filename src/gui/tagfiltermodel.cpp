@@ -124,7 +124,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     switch (role)
     {
     case Qt::DecorationRole:
-        return UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
+        return UIThemeManager::instance()->getIcon(u"tags"_qs);
     case Qt::DisplayRole:
         return u"%1 (%2)"_qs.arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
