@@ -129,6 +129,9 @@ Application::Application(int &argc, char **argv)
     , m_storeFileLoggerAgeType(FILELOGGER_SETTINGS_KEY(u"AgeType"_qs))
     , m_storeFileLoggerPath(FILELOGGER_SETTINGS_KEY(u"Path"_qs))
     , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
+#ifdef Q_OS_WIN
+    , m_processMemoryPriority(SETTINGS_KEY(u"ProcessMemoryPriority"_qs))
+#endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
@@ -607,6 +610,7 @@ int Application::exec(const QStringList &params)
 #endif
 
 #ifdef Q_OS_WIN
+    applyMemoryPriority();
     adjustThreadPriority();
 #endif
 
@@ -822,6 +826,65 @@ void Application::applyMemoryWorkingSetLimit() const
 #endif
 
 #ifdef Q_OS_WIN
+MemoryPriority Application::processMemoryPriority() const
+{
+    return m_processMemoryPriority.get(MemoryPriority::BelowNormal);
+}
+
+void Application::setProcessMemoryPriority(const MemoryPriority priority)
+{
+    if (processMemoryPriority() == priority)
+        return;
+
+    m_processMemoryPriority = priority;
+    applyMemoryPriority();
+}
+
+void Application::applyMemoryPriority() const
+{
+    using SETPROCESSINFORMATION = BOOL (WINAPI *)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
+    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_qs, "SetProcessInformation");
+    if (!setProcessInformation)  // only available on Windows >= 8
+        return;
+
+#if (_WIN32_WINNT < _WIN32_WINNT_WIN8)
+    // this dummy struct is required to compile successfully when targeting older Windows version
+    struct MEMORY_PRIORITY_INFORMATION
+    {
+        ULONG MemoryPriority;
+    };
+
+#define MEMORY_PRIORITY_LOWEST 0
+#define MEMORY_PRIORITY_VERY_LOW 1
+#define MEMORY_PRIORITY_LOW 2
+#define MEMORY_PRIORITY_MEDIUM 3
+#define MEMORY_PRIORITY_BELOW_NORMAL 4
+#define MEMORY_PRIORITY_NORMAL 5
+#endif
+
+    MEMORY_PRIORITY_INFORMATION prioInfo {};
+    switch (processMemoryPriority())
+    {
+    case MemoryPriority::Normal:
+    default:
+        prioInfo.MemoryPriority = MEMORY_PRIORITY_NORMAL;
+        break;
+    case MemoryPriority::BelowNormal:
+        prioInfo.MemoryPriority = MEMORY_PRIORITY_BELOW_NORMAL;
+        break;
+    case MemoryPriority::Medium:
+        prioInfo.MemoryPriority = MEMORY_PRIORITY_MEDIUM;
+        break;
+    case MemoryPriority::Low:
+        prioInfo.MemoryPriority = MEMORY_PRIORITY_LOW;
+        break;
+    case MemoryPriority::VeryLow:
+        prioInfo.MemoryPriority = MEMORY_PRIORITY_VERY_LOW;
+        break;
+    }
+    setProcessInformation(::GetCurrentProcess(), ProcessMemoryPriority, &prioInfo, sizeof(prioInfo));
+}
+
 void Application::adjustThreadPriority() const
 {
     // Workaround for improving responsiveness of qbt when CPU resources are scarce.

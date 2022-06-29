@@ -118,6 +118,11 @@ public:
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
 
+#ifdef Q_OS_WIN
+    MemoryPriority processMemoryPriority() const override;
+    void setProcessMemoryPriority(MemoryPriority priority) override;
+#endif
+
 #ifndef DISABLE_GUI
     MainWindow *mainWindow() override;
 #endif
@@ -151,6 +156,7 @@ private:
 #endif
 
 #ifdef Q_OS_WIN
+    void applyMemoryPriority() const;
     void adjustThreadPriority() const;
 #endif
 
@@ -182,6 +188,10 @@ private:
     SettingValue<int> m_storeFileLoggerAgeType;
     SettingValue<Path> m_storeFileLoggerPath;
     SettingValue<int> m_storeMemoryWorkingSetLimit;
+
+#ifdef Q_OS_WIN
+    SettingValue<MemoryPriority> m_processMemoryPriority;
+#endif
 
 #ifndef DISABLE_GUI
     MainWindow *m_window = nullptr;
