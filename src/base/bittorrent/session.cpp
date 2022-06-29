@@ -4537,6 +4537,24 @@ void Session::startUpTorrents()
             }
         }
 
+        Algorithm::removeIf(resumeData.tags, [this, &torrentID](const QString &tag)
+        {
+            if (hasTag(tag))
+                return false;
+
+            if (addTag(tag))
+            {
+                LogMsg(tr("Detected inconsistent data: tag is missing from the configuration file."
+                          " Tag will be recovered."
+                          " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag), Log::WARNING);
+                return false;
+            }
+
+            LogMsg(tr("Detected inconsistent data: invalid tag. Torrent: \"%1\". Tag: \"%2\"")
+                   .arg(torrentID.toString(), tag), Log::WARNING);
+            return true;
+        });
+
         qDebug() << "Starting up torrent" << torrentID.toString() << "...";
         if (!loadTorrent(resumeData))
         {
