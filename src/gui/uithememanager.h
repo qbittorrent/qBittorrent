@@ -81,7 +81,4 @@ private:
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;
     mutable QHash<QString, QIcon> m_flagCache;
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    const bool m_useSystemTheme;
-#endif
 };
