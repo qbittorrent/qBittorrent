@@ -702,9 +702,19 @@ void MainWindow::on_actionLock_triggered()
     hide();
 }
 
-void MainWindow::handleRSSUnreadCountUpdated(int count)
+void MainWindow::handleRSSUnreadCountUpdated(int)
 {
-    m_tabs->setTabText(m_tabs->indexOf(m_rssWidget), tr("RSS (%1)").arg(count));
+    if (m_rssUnreadUpdateEnqueued)
+        return;
+
+    m_rssUnreadUpdateEnqueued = true;
+    QTimer::singleShot(256, m_rssWidget, [this]()
+    {
+        m_rssUnreadUpdateEnqueued = false;
+
+        const int unreadCount = RSS::Session::instance()->rootFolder()->unreadCount();
+        m_tabs->setTabText(m_tabs->indexOf(m_rssWidget), tr("RSS (%1)").arg(unreadCount));
+    });
 }
 
 void MainWindow::displayRSSTab(bool enable)
