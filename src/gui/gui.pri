@@ -169,12 +169,14 @@ win32|macx {
 
 unix:!macx:dbus {
     HEADERS += \
-        $$PWD/powermanagement/powermanagement_x11.h \
-        $$PWD/qtnotify/notifications.h
+        $$PWD/notifications/dbusnotifier.h \
+        $$PWD/notifications/dbusnotificationsinterface.h \
+        $$PWD/powermanagement/powermanagement_x11.h
 
     SOURCES += \
-        $$PWD/powermanagement/powermanagement_x11.cpp \
-        $$PWD/qtnotify/notifications.cpp
+        $$PWD/notifications/dbusnotifier.cpp \
+        $$PWD/notifications/dbusnotificationsinterface.cpp \
+        $$PWD/powermanagement/powermanagement_x11.cpp
 }
 
 macx {

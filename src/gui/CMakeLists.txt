@@ -204,8 +204,10 @@ target_link_libraries(qbt_gui
 
 if (DBUS)
     target_sources(qbt_gui PRIVATE
-        qtnotify/notifications.h
-        qtnotify/notifications.cpp
+        notifications/dbusnotifier.h
+        notifications/dbusnotifier.cpp
+        notifications/dbusnotificationsinterface.h
+        notifications/dbusnotificationsinterface.cpp
         powermanagement/powermanagement_x11.h
         powermanagement/powermanagement_x11.cpp
     )
