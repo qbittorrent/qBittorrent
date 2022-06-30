@@ -136,7 +136,9 @@ private:
     void processParams(const QStringList &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
+#ifdef QBT_USES_LIBTORRENT2
     void applyMemoryWorkingSetLimit();
+#endif
 
 #ifndef DISABLE_GUI
 #ifdef Q_OS_MACOS
