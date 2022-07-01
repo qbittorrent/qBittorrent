@@ -40,6 +40,7 @@
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "gui/addnewtorrentdialog.h"
+#include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "interfaces/iguiapplication.h"
 
@@ -271,16 +272,15 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Stop tracker timeout
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
-    MainWindow *mainWindow = app()->mainWindow();
-    mainWindow->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
-    mainWindow->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    mainWindow->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
+    app()->desktopIntegration()->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    app()->desktopIntegration()->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
 #endif
+    app()->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
     // Reannounce to all trackers when ip/port changed
     session->setReannounceWhenAddressChangedEnabled(m_checkBoxReannounceWhenAddressChanged.isChecked());
     // Misc GUI properties
-    mainWindow->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
+    app()->mainWindow()->setDownloadTrackerFavicon(m_checkBoxTrackerFavicon.isChecked());
     AddNewTorrentDialog::setSavePathHistoryLength(m_spinBoxSavePathHistoryLength.value());
     pref->setSpeedWidgetEnabled(m_checkBoxSpeedWidgetEnabled.isChecked());
 #ifndef Q_OS_MACOS
@@ -677,17 +677,16 @@ void AdvancedSettings::loadAdvancedSettings()
            , &m_spinBoxStopTrackerTimeout);
 
     // Program notifications
-    const MainWindow *mainWindow = app()->mainWindow();
-    m_checkBoxProgramNotifications.setChecked(mainWindow->isNotificationsEnabled());
+    m_checkBoxProgramNotifications.setChecked(app()->desktopIntegration()->isNotificationsEnabled());
     addRow(PROGRAM_NOTIFICATIONS, tr("Display notifications"), &m_checkBoxProgramNotifications);
     // Torrent added notifications
-    m_checkBoxTorrentAddedNotifications.setChecked(mainWindow->isTorrentAddedNotificationsEnabled());
+    m_checkBoxTorrentAddedNotifications.setChecked(app()->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &m_checkBoxTorrentAddedNotifications);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
     // Notification timeout
     m_spinBoxNotificationTimeout.setMinimum(-1);
     m_spinBoxNotificationTimeout.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxNotificationTimeout.setValue(mainWindow->getNotificationTimeout());
+    m_spinBoxNotificationTimeout.setValue(app()->desktopIntegration()->notificationTimeout());
     m_spinBoxNotificationTimeout.setSpecialValueText(tr("System default"));
     m_spinBoxNotificationTimeout.setSuffix(tr(" ms", " milliseconds"));
     addRow(NOTIFICATION_TIMEOUT, tr("Notification timeout [0: infinite]"), &m_spinBoxNotificationTimeout);
@@ -696,7 +695,7 @@ void AdvancedSettings::loadAdvancedSettings()
     m_checkBoxReannounceWhenAddressChanged.setChecked(session->isReannounceWhenAddressChangedEnabled());
     addRow(REANNOUNCE_WHEN_ADDRESS_CHANGED, tr("Reannounce to all trackers when IP or port changed"), &m_checkBoxReannounceWhenAddressChanged);
     // Download tracker's favicon
-    m_checkBoxTrackerFavicon.setChecked(mainWindow->isDownloadTrackerFavicon());
+    m_checkBoxTrackerFavicon.setChecked(app()->mainWindow()->isDownloadTrackerFavicon());
     addRow(DOWNLOAD_TRACKER_FAVICON, tr("Download tracker's favicon"), &m_checkBoxTrackerFavicon);
     // Save path history length
     m_spinBoxSavePathHistoryLength.setRange(AddNewTorrentDialog::minPathHistoryLength, AddNewTorrentDialog::maxPathHistoryLength);

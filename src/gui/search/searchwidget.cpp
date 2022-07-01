@@ -52,6 +52,7 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
+#include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
@@ -83,10 +84,11 @@ namespace
     }
 }
 
-SearchWidget::SearchWidget(MainWindow *mainWindow)
+SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
     : QWidget(mainWindow)
-    , m_ui(new Ui::SearchWidget())
-    , m_mainWindow(mainWindow)
+    , GUIApplicationComponent(app)
+    , m_ui {new Ui::SearchWidget()}
+    , m_mainWindow {mainWindow}
 {
     m_ui->setupUi(this);
     m_ui->tabWidget->tabBar()->installEventFilter(this);
@@ -304,7 +306,7 @@ void SearchWidget::on_searchButton_clicked()
 {
     if (!Utils::ForeignApps::pythonInfo().isValid())
     {
-        m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
@@ -370,12 +372,12 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     {
         Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
-        if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
+        if (app()->desktopIntegration()->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         {
             if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
-                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has failed"));
+                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has failed"));
             else
-                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has finished"));
+                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has finished"));
         }
 
         m_activeSearchTab = nullptr;

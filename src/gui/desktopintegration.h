@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020, Will Da Silva <will@willdasilva.xyz>
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -30,60 +29,65 @@
 
 #pragma once
 
-#include <QList>
-#include <QPointer>
-#include <QWidget>
+#include <QObject>
 
-#include "gui/guiapplicationcomponent.h"
+#include "base/settingvalue.h"
 
-class QEvent;
-class QObject;
-class QTabWidget;
+class QMenu;
+#ifndef Q_OS_MACOS
+class QSystemTrayIcon;
+#endif
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
+class DBusNotifier;
+#endif
 
-class MainWindow;
-class SearchJobWidget;
-
-namespace Ui
-{
-    class SearchWidget;
-}
-
-class SearchWidget : public QWidget, public GUIApplicationComponent
+class DesktopIntegration final : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(SearchWidget)
+    Q_DISABLE_COPY_MOVE(DesktopIntegration)
 
 public:
-    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
-    ~SearchWidget() override;
+    explicit DesktopIntegration(QObject *parent = nullptr);
 
-    void giveFocusToSearchInput();
+    bool isActive() const;
 
-private slots:
-    void on_searchButton_clicked();
-    void on_pluginsButton_clicked();
+    QString toolTip() const;
+    void setToolTip(const QString &toolTip);
+
+    QMenu *menu() const;
+    void setMenu(QMenu *menu);
+
+    bool isNotificationsEnabled() const;
+    void setNotificationsEnabled(bool value);
+
+    int notificationTimeout() const;
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    void setNotificationTimeout(const int value);
+#endif
+
+    void showNotification(const QString &title, const QString &msg) const;
+
+signals:
+    void activationRequested();
+    void notificationClicked();
+    void stateChanged();
 
 private:
-    bool eventFilter(QObject *object, QEvent *event) override;
-    void tabChanged(int index);
-    void closeTab(int index);
-    void closeAllTabs();
-    void tabStatusChanged(QWidget *tab);
-    void selectMultipleBox(int index);
-    void toggleFocusBetweenLineEdits();
+    void onPreferencesChanged();
+#ifndef Q_OS_MACOS
+    void createTrayIcon(int retries);
+#endif // Q_OS_MACOS
 
-    void fillCatCombobox();
-    void fillPluginComboBox();
-    void selectActivePage();
-    void searchTextEdited(const QString &);
+    CachedSettingValue<bool> m_storeNotificationEnabled;
 
-    QString selectedCategory() const;
-    QString selectedPlugin() const;
-
-    Ui::SearchWidget *m_ui = nullptr;
-    QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
-    QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
-    QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow = nullptr;
-    bool m_isNewQueryString = false;
+    QMenu *m_menu = nullptr;
+    QString m_toolTip;
+#ifndef Q_OS_MACOS
+    QSystemTrayIcon *m_systrayIcon = nullptr;
+#endif
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    CachedSettingValue<int> m_storeNotificationTimeOut;
+    DBusNotifier *m_notifier = nullptr;
+#endif
 };

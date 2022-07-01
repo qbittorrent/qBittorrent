@@ -45,6 +45,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.h
     cookiesmodel.h
     deletionconfirmationdialog.h
+    desktopintegration.h
     downloadfromurldialog.h
     executionlogwidget.h
     fspathedit.h
@@ -128,6 +129,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.cpp
     cookiesmodel.cpp
     deletionconfirmationdialog.cpp
+    desktopintegration.cpp
     downloadfromurldialog.cpp
     executionlogwidget.cpp
     fspathedit.cpp
