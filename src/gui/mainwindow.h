@@ -71,6 +71,11 @@ namespace Ui
     class MainWindow;
 }
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
+class DBusNotifier;
+#endif
+
 class MainWindow final : public QMainWindow
 {
     Q_OBJECT
@@ -261,8 +266,9 @@ private:
     SettingValue<bool> m_storeNotificationTorrentAdded;
     CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
     SettingValue<int> m_storeNotificationTimeOut;
+    DBusNotifier *m_notifier = nullptr;
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
