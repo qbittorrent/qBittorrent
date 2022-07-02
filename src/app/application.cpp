@@ -601,6 +601,10 @@ int Application::exec(const QStringList &params)
     applyMemoryWorkingSetLimit();
 #endif
 
+#ifdef Q_OS_WIN
+    adjustThreadPriority();
+#endif
+
     Net::ProxyConfigurationManager::initInstance();
     Net::DownloadManager::initInstance();
     IconProvider::initInstance();
@@ -771,7 +775,7 @@ void Application::shutdownCleanup(QSessionManager &manager)
 #endif
 
 #ifdef QBT_USES_LIBTORRENT2
-void Application::applyMemoryWorkingSetLimit()
+void Application::applyMemoryWorkingSetLimit() const
 {
     const size_t MiB = 1024 * 1024;
     const QString logMessage = tr("Failed to set physical memory (RAM) usage limit. Error code: %1. Error message: \"%2\"");
@@ -807,6 +811,18 @@ void Application::applyMemoryWorkingSetLimit()
         LogMsg(logMessage.arg(QString::number(errno), message), Log::WARNING);
     }
 #endif
+}
+#endif
+
+#ifdef Q_OS_WIN
+void Application::adjustThreadPriority() const
+{
+    // Workaround for improving responsiveness of qbt when CPU resources are scarce.
+    // Raise main event loop thread to be just one level higher than libtorrent threads.
+    // Also note that on *nix platforms there is no easy way to achieve it,
+    // so implementation is omitted.
+
+    ::SetThreadPriority(::GetCurrentThread(), THREAD_PRIORITY_ABOVE_NORMAL);
 }
 #endif
 
