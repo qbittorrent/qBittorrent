@@ -552,7 +552,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        const Path contentPath = torrent->actualStorageLocation() / torrent->contentPath();
+        const Path contentPath = torrent->contentPath();
         paths.insert(contentPath);
     }
     MacUtils::openFiles(PathList(paths.cbegin(), paths.cend()));
