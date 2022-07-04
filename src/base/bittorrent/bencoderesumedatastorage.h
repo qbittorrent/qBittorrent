@@ -31,7 +31,7 @@
 #include <QDir>
 #include <QVector>
 
-#include "base/path.h"
+#include "base/pathfwd.h"
 #include "resumedatastorage.h"
 
 class QByteArray;
@@ -49,16 +49,16 @@ namespace BitTorrent
         ~BencodeResumeDataStorage() override;
 
         QVector<TorrentID> registeredTorrents() const override;
-        std::optional<LoadTorrentParams> load(const TorrentID &id) const override;
+        LoadResumeDataResult load(const TorrentID &id) const override;
         void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
         void remove(const TorrentID &id) const override;
         void storeQueue(const QVector<TorrentID> &queue) const override;
 
     private:
+        void doLoadAll() const override;
         void loadQueue(const Path &queueFilename);
-        std::optional<LoadTorrentParams> loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
+        LoadResumeDataResult loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
 
-        const Path m_resumeDataPath;
         QVector<TorrentID> m_registeredTorrents;
         QThread *m_ioThread = nullptr;
 

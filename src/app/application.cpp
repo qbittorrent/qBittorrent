@@ -309,10 +309,18 @@ void Application::setFileLoggerAgeType(const int value)
 
 void Application::processMessage(const QString &message)
 {
-    const QStringList params = message.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts);
-    // If Application is not running (i.e., other
-    // components are not ready) store params
-    if (m_running)
+#ifndef DISABLE_GUI
+    if (message.isEmpty())
+    {
+        m_window->activate(); // show UI
+        return;
+    }
+#endif
+
+    const AddTorrentParams params = parseParams(message.split(PARAMS_SEPARATOR, Qt::SkipEmptyParts));
+    // If Application is not allowed to process params immediately
+    // (i.e., other components are not ready) store params
+    if (m_isProcessingParamsAllowed)
         processParams(params);
     else
         m_paramsQueue.append(params);
@@ -516,21 +524,10 @@ bool Application::sendParams(const QStringList &params)
     return m_instanceManager->sendMessage(params.join(PARAMS_SEPARATOR));
 }
 
-// As program parameters, we can get paths or urls.
-// This function parse the parameters and call
-// the right addTorrent function, considering
-// the parameter type.
-void Application::processParams(const QStringList &params)
+Application::AddTorrentParams Application::parseParams(const QStringList &params) const
 {
-#ifndef DISABLE_GUI
-    if (params.isEmpty())
-    {
-        m_window->activate(); // show UI
-        return;
-    }
-#endif
-    BitTorrent::AddTorrentParams torrentParams;
-    std::optional<bool> skipTorrentDialog;
+    AddTorrentParams parsedParams;
+    BitTorrent::AddTorrentParams &torrentParams = parsedParams.torrentParams;
 
     for (QString param : params)
     {
@@ -576,23 +573,31 @@ void Application::processParams(const QStringList &params)
 
         if (param.startsWith(u"@skipDialog="))
         {
-            skipTorrentDialog = (QStringView(param).mid(12).toInt() != 0);
+            parsedParams.skipTorrentDialog = (QStringView(param).mid(12).toInt() != 0);
             continue;
         }
 
-#ifndef DISABLE_GUI
-        // There are two circumstances in which we want to show the torrent
-        // dialog. One is when the application settings specify that it should
-        // be shown and skipTorrentDialog is undefined. The other is when
-        // skipTorrentDialog is false, meaning that the application setting
-        // should be overridden.
-        const bool showDialogForThisTorrent = !skipTorrentDialog.value_or(!AddNewTorrentDialog::isEnabled());
-        if (showDialogForThisTorrent)
-            AddNewTorrentDialog::show(param, torrentParams, m_window);
-        else
-#endif
-            BitTorrent::Session::instance()->addTorrent(param, torrentParams);
+        parsedParams.torrentSource = param;
+        break;
     }
+
+    return parsedParams;
+}
+
+void Application::processParams(const AddTorrentParams &params)
+{
+#ifndef DISABLE_GUI
+    // There are two circumstances in which we want to show the torrent
+    // dialog. One is when the application settings specify that it should
+    // be shown and skipTorrentDialog is undefined. The other is when
+    // skipTorrentDialog is false, meaning that the application setting
+    // should be overridden.
+    const bool showDialogForThisTorrent = !params.skipTorrentDialog.value_or(!AddNewTorrentDialog::isEnabled());
+    if (showDialogForThisTorrent)
+        AddNewTorrentDialog::show(params.torrentSource, params.torrentParams, m_window);
+    else
+#endif
+        BitTorrent::Session::instance()->addTorrent(params.torrentSource, params.torrentParams);
 }
 
 int Application::exec(const QStringList &params)
@@ -612,20 +617,27 @@ int Application::exec(const QStringList &params)
     try
     {
         BitTorrent::Session::initInstance();
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
+        {
+#ifndef DISABLE_WEBUI
+            m_webui = new WebUI(this);
+#ifdef DISABLE_GUI
+            if (m_webui->isErrored())
+                QCoreApplication::exit(1);
+            connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
+#endif // DISABLE_GUI
+#endif // DISABLE_WEBUI
+
+            m_isProcessingParamsAllowed = true;
+            for (const AddTorrentParams &params : m_paramsQueue)
+                processParams(params);
+            m_paramsQueue.clear();
+        });
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
         Net::GeoIPManager::initInstance();
         TorrentFilesWatcher::initInstance();
-
-#ifndef DISABLE_WEBUI
-        m_webui = new WebUI(this);
-#ifdef DISABLE_GUI
-        if (m_webui->isErrored())
-            return 1;
-        connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
-#endif // DISABLE_GUI
-#endif // DISABLE_WEBUI
 
         new RSS::Session; // create RSS::Session singleton
         new RSS::AutoDownloader; // create RSS::AutoDownloader singleton
@@ -669,17 +681,9 @@ int Application::exec(const QStringList &params)
     m_window = new MainWindow(this);
 #endif // DISABLE_GUI
 
-    m_running = true;
+    if (!params.isEmpty())
+        m_paramsQueue.append(parseParams(params));
 
-    // Now UI is ready to process signals from Session
-    BitTorrent::Session::instance()->startUpTorrents();
-
-    m_paramsQueue = params + m_paramsQueue;
-    if (!m_paramsQueue.isEmpty())
-    {
-        processParams(m_paramsQueue);
-        m_paramsQueue.clear();
-    }
     return BaseApplication::exec();
 }
 
@@ -699,16 +703,19 @@ bool Application::event(QEvent *ev)
             // Get the url instead
             path = static_cast<QFileOpenEvent *>(ev)->url().toString();
         qDebug("Received a mac file open event: %s", qUtf8Printable(path));
-        if (m_running)
-            processParams(QStringList(path));
+
+        const AddTorrentParams params = parseParams({path});
+        // If Application is not allowed to process params immediately
+        // (i.e., other components are not ready) store params
+        if (m_isProcessingParamsAllowed)
+            processParams(params);
         else
-            m_paramsQueue.append(path);
+            m_paramsQueue.append(params);
+
         return true;
     }
-    else
-    {
-        return BaseApplication::event(ev);
-    }
+
+    return BaseApplication::event(ev);
 }
 #endif // Q_OS_MACOS
 #endif // DISABLE_GUI

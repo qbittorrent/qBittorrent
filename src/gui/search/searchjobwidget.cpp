@@ -208,7 +208,7 @@ void SearchJobWidget::cancelSearch()
 
 void SearchJobWidget::downloadTorrents(const AddTorrentOption option)
 {
-    const QModelIndexList rows {m_ui->resultsBrowser->selectionModel()->selectedRows()};
+    const QModelIndexList rows = m_ui->resultsBrowser->selectionModel()->selectedRows();
     for (const QModelIndex &rowIndex : rows)
         downloadTorrent(rowIndex, option);
 }
@@ -390,10 +390,10 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"kt-set-max-download-speed"_qs), tr("Open download window")
-        , this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
-    menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_qs), tr("Download")
-        , this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
+    menu->addAction(UIThemeManager::instance()->getIcon(u"kt-set-max-download-speed"_qs)
+        , tr("Open download window"), this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
+    menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_qs)
+        , tr("Download"), this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
     menu->addAction(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);

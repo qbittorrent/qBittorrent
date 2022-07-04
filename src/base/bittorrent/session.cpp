@@ -104,6 +104,7 @@
 #include "magneturi.h"
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
+#include "resumedatastorage.h"
 #include "statistics.h"
 #include "torrentimpl.h"
 #include "tracker.h"
@@ -112,6 +113,7 @@ using namespace std::chrono_literals;
 using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
+const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 
 namespace
 {
@@ -297,6 +299,23 @@ namespace
 #endif
 }
 
+struct BitTorrent::Session::ResumeSessionContext final : public QObject
+{
+    using QObject::QObject;
+
+    ResumeDataStorage *startupStorage = nullptr;
+    ResumeDataStorageType currentStorageType = ResumeDataStorageType::Legacy;
+    QVector<LoadedResumeData> loadedResumeData;
+    int processingResumeDataCount = 0;
+    bool isLoadFinished = false;
+    bool isLoadedResumeDataHandlingEnqueued = false;
+    QSet<QString> recoveredCategories;
+#ifdef QBT_USES_LIBTORRENT2
+    QSet<TorrentID> indexedTorrents;
+    QSet<TorrentID> skippedIDs;
+#endif
+};
+
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
 
 // Session
@@ -467,7 +486,6 @@ Session::Session(QObject *parent)
     const QStringList storedTags = m_storedTags.get();
     m_tags = {storedTags.cbegin(), storedTags.cend()};
 
-    enqueueRefresh();
     updateSeedingLimitTimer();
     populateAdditionalTrackers();
     if (isExcludedFileNamesEnabled())
@@ -494,19 +512,12 @@ Session::Session(QObject *parent)
 
     m_ioThread->start();
 
-    // Regular saving of fastresume data
-    connect(m_resumeDataTimer, &QTimer::timeout, this, [this]() { generateResumeData(); });
-    const int saveInterval = saveResumeDataInterval();
-    if (saveInterval > 0)
-    {
-        m_resumeDataTimer->setInterval(std::chrono::minutes(saveInterval));
-        m_resumeDataTimer->start();
-    }
-
     // initialize PortForwarder instance
-    new PortForwarderImpl {m_nativeSession};
+    new PortForwarderImpl(m_nativeSession);
 
     initMetrics();
+
+    prepareStartup();
 }
 
 bool Session::isDHTEnabled() const
@@ -1062,6 +1073,285 @@ void Session::configureComponents()
 #endif
 }
 
+void Session::prepareStartup()
+{
+    qDebug("Initializing torrents resume data storage...");
+
+    const Path dbPath = specialFolderLocation(SpecialFolder::Data) / Path(u"torrents.db"_qs);
+    const bool dbStorageExists = dbPath.exists();
+
+    auto *context = new ResumeSessionContext(this);
+    context->currentStorageType = resumeDataStorageType();
+
+    if (context->currentStorageType == ResumeDataStorageType::SQLite)
+    {
+        m_resumeDataStorage = new DBResumeDataStorage(dbPath, this);
+
+        if (!dbStorageExists)
+        {
+            const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
+            context->startupStorage = new BencodeResumeDataStorage(dataPath, this);
+        }
+    }
+    else
+    {
+        const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
+        m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
+
+        if (dbStorageExists)
+            context->startupStorage = new DBResumeDataStorage(dbPath, this);
+    }
+
+    if (!context->startupStorage)
+        context->startupStorage = m_resumeDataStorage;
+
+    connect(context->startupStorage, &ResumeDataStorage::loadStarted, context
+            , [this, context](const QVector<TorrentID> &torrents)
+    {
+#ifdef QBT_USES_LIBTORRENT2
+        context->indexedTorrents = QSet<TorrentID>(torrents.cbegin(), torrents.cend());
+#endif
+
+        handleLoadedResumeData(context);
+    });
+
+    connect(context->startupStorage, &ResumeDataStorage::loadFinished, context, [context]()
+    {
+        context->isLoadFinished = true;
+    });
+
+    connect(this, &Session::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
+    {
+        context->processingResumeDataCount -= torrents.count();
+        if (!context->isLoadedResumeDataHandlingEnqueued)
+        {
+            QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
+            context->isLoadedResumeDataHandlingEnqueued = true;
+        }
+        m_nativeSession->post_torrent_updates();
+        m_refreshEnqueued = true;
+    });
+
+    context->startupStorage->loadAll();
+}
+
+void Session::handleLoadedResumeData(ResumeSessionContext *context)
+{
+    context->isLoadedResumeDataHandlingEnqueued = false;
+
+    while (context->processingResumeDataCount < MAX_PROCESSING_RESUMEDATA_COUNT)
+    {
+        if (context->loadedResumeData.isEmpty())
+            context->loadedResumeData = context->startupStorage->fetchLoadedResumeData();
+
+        if (context->loadedResumeData.isEmpty())
+        {
+            if (context->processingResumeDataCount == 0)
+            {
+                if (context->isLoadFinished)
+                {
+                    endStartup(context);
+                }
+                else if (!context->isLoadedResumeDataHandlingEnqueued)
+                {
+                    QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
+                    context->isLoadedResumeDataHandlingEnqueued = true;
+                }
+            }
+
+            break;
+        }
+
+        processNextResumeData(context);
+    }
+}
+
+void Session::processNextResumeData(ResumeSessionContext *context)
+{
+    const LoadedResumeData loadedResumeDataItem = context->loadedResumeData.takeFirst();
+
+    TorrentID torrentID = loadedResumeDataItem.torrentID;
+#ifdef QBT_USES_LIBTORRENT2
+    if (context->skippedIDs.contains(torrentID))
+        return;
+#endif
+
+    const nonstd::expected<LoadTorrentParams, QString> &loadResumeDataResult = loadedResumeDataItem.result;
+    if (!loadResumeDataResult)
+    {
+        LogMsg(tr("Failed to resume torrent. Torrent: \"%1\". Reason: \"%2\"")
+               .arg(torrentID.toString(), loadResumeDataResult.error()), Log::CRITICAL);
+        return;
+    }
+
+    LoadTorrentParams resumeData = *loadResumeDataResult;
+    bool needStore = false;
+
+#ifdef QBT_USES_LIBTORRENT2
+    const lt::info_hash_t infoHash = (resumeData.ltAddTorrentParams.ti
+                                      ? resumeData.ltAddTorrentParams.ti->info_hashes()
+                                      : resumeData.ltAddTorrentParams.info_hashes);
+    const bool isHybrid = infoHash.has_v1() && infoHash.has_v2();
+    const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
+    const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
+    if (torrentID == torrentIDv2)
+    {
+        if (isHybrid && context->indexedTorrents.contains(torrentIDv1))
+        {
+            // if we don't have metadata, try to find it in alternative "resume data"
+            if (!resumeData.ltAddTorrentParams.ti)
+            {
+                const nonstd::expected<LoadTorrentParams, QString> loadAltResumeDataResult = context->startupStorage->load(torrentIDv1);
+                if (loadAltResumeDataResult)
+                    resumeData.ltAddTorrentParams.ti = loadAltResumeDataResult->ltAddTorrentParams.ti;
+            }
+
+            // remove alternative "resume data" and skip the attempt to load it
+            m_resumeDataStorage->remove(torrentIDv1);
+            context->skippedIDs.insert(torrentIDv1);
+        }
+    }
+    else if (torrentID == torrentIDv1)
+    {
+        torrentID = torrentIDv2;
+        needStore = true;
+        m_resumeDataStorage->remove(torrentIDv1);
+
+        if (context->indexedTorrents.contains(torrentID))
+        {
+            context->skippedIDs.insert(torrentID);
+
+            const nonstd::expected<LoadTorrentParams, QString> loadPreferredResumeDataResult = context->startupStorage->load(torrentID);
+            if (loadPreferredResumeDataResult)
+            {
+                std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
+                resumeData = *loadPreferredResumeDataResult;
+                if (!resumeData.ltAddTorrentParams.ti)
+                    resumeData.ltAddTorrentParams.ti = ti;
+            }
+        }
+    }
+    else
+    {
+        LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
+               .arg(torrentID.toString()), Log::WARNING);
+        return;
+    }
+#else
+    const lt::sha1_hash infoHash = (resumeData.ltAddTorrentParams.ti
+                                      ? resumeData.ltAddTorrentParams.ti->info_hash()
+                                      : resumeData.ltAddTorrentParams.info_hash);
+    if (torrentID != TorrentID::fromInfoHash(infoHash))
+    {
+        LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
+               .arg(torrentID.toString()), Log::WARNING);
+        return;
+    }
+#endif
+
+    if (m_resumeDataStorage != context->startupStorage)
+       needStore = true;
+
+    // TODO: Remove the following upgrade code in v4.6
+    // == BEGIN UPGRADE CODE ==
+    if (!needStore)
+    {
+        if (m_needUpgradeDownloadPath && isDownloadPathEnabled() && !resumeData.useAutoTMM)
+        {
+            resumeData.downloadPath = downloadPath();
+            needStore = true;
+        }
+    }
+    // == END UPGRADE CODE ==
+
+    if (needStore)
+         m_resumeDataStorage->store(torrentID, resumeData);
+
+    const QString category = resumeData.category;
+    bool isCategoryRecovered = context->recoveredCategories.contains(category);
+    if (!category.isEmpty() && (isCategoryRecovered || !m_categories.contains(category)))
+    {
+        if (!isCategoryRecovered)
+        {
+            if (addCategory(category))
+            {
+                context->recoveredCategories.insert(category);
+                isCategoryRecovered = true;
+                LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
+                          " Category will be recovered but its settings will be reset to default."
+                          " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
+            }
+            else
+            {
+                resumeData.category.clear();
+                LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
+                       .arg(torrentID.toString(), category), Log::WARNING);
+            }
+        }
+
+        // We should check isCategoryRecovered again since the category
+        // can be just recovered by the code above
+        if (isCategoryRecovered && resumeData.useAutoTMM)
+        {
+            const Path storageLocation {resumeData.ltAddTorrentParams.save_path};
+            if ((storageLocation != categorySavePath(resumeData.category)) && (storageLocation != categoryDownloadPath(resumeData.category)))
+            {
+                resumeData.useAutoTMM = false;
+                resumeData.savePath = storageLocation;
+                resumeData.downloadPath = {};
+                LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
+                          " Torrent is now switched to Manual mode."
+                          " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
+            }
+        }
+    }
+
+    resumeData.ltAddTorrentParams.userdata = LTClientData(new ExtensionData);
+#ifndef QBT_USES_LIBTORRENT2
+    resumeData.ltAddTorrentParams.storage = customStorageConstructor;
+#endif
+
+    qDebug() << "Starting up torrent" << torrentID.toString() << "...";
+    m_loadingTorrents.insert(torrentID, resumeData);
+    m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
+    ++context->processingResumeDataCount;
+}
+
+void Session::endStartup(ResumeSessionContext *context)
+{
+    if (m_resumeDataStorage != context->startupStorage)
+    {
+        if (isQueueingSystemEnabled())
+            saveTorrentsQueue();
+
+        const Path dbPath = context->startupStorage->path();
+        delete context->startupStorage;
+
+        if (context->currentStorageType == ResumeDataStorageType::Legacy)
+            Utils::Fs::removeFile(dbPath);
+    }
+
+    context->deleteLater();
+
+    m_nativeSession->resume();
+    if (m_refreshEnqueued)
+        m_refreshEnqueued = false;
+    else
+        enqueueRefresh();
+
+    // Regular saving of fastresume data
+    connect(m_resumeDataTimer, &QTimer::timeout, this, &Session::generateResumeData);
+    const int saveInterval = saveResumeDataInterval();
+    if (saveInterval > 0)
+    {
+        m_resumeDataTimer->setInterval(std::chrono::minutes(saveInterval));
+        m_resumeDataTimer->start();
+    }
+
+    m_isRestored = true;
+    emit restored();
+}
+
 void Session::initializeNativeSession()
 {
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
@@ -1100,7 +1390,7 @@ void Session::initializeNativeSession()
         break;
     }
 #endif
-    m_nativeSession = new lt::session {sessionParams};
+    m_nativeSession = new lt::session(sessionParams, lt::session::paused);
 
     LogMsg(tr("Peer ID: \"%1\"").arg(QString::fromStdString(peerId)), Log::INFO);
     LogMsg(tr("HTTP User-Agent: \"%1\"").arg(USER_AGENT), Log::INFO);
@@ -1764,9 +2054,7 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
     const auto loadingTorrentsIter = m_loadingTorrents.find(id);
     if (loadingTorrentsIter != m_loadingTorrents.end())
     {
-        LoadTorrentParams params = loadingTorrentsIter.value();
-        m_loadingTorrents.erase(loadingTorrentsIter);
-
+        LoadTorrentParams &params = loadingTorrentsIter.value();
         lt::add_torrent_params &p = params.ltAddTorrentParams;
 
         p.save_path = savePath.toString().toStdString();
@@ -1775,7 +2063,7 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
         for (int i = 0; i < fileNames.size(); ++i)
             p.renamed_files[nativeIndexes[i]] = fileNames[i].toString().toStdString();
 
-        loadTorrent(params);
+        m_nativeSession->async_add_torrent(p);
     }
 }
 
@@ -2054,6 +2342,9 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 {
     // `source`: .torrent file path/url or magnet uri
 
+    if (!isRestored())
+        return false;
+
     if (Net::DownloadManager::hasSupportedScheme(source))
     {
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
@@ -2083,13 +2374,20 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
 
 bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params)
 {
-    if (!magnetUri.isValid()) return false;
+    if (!isRestored())
+        return false;
+
+    if (!magnetUri.isValid())
+        return false;
 
     return addTorrent_impl(magnetUri, params);
 }
 
 bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params)
 {
+    if (!isRestored())
+        return false;
+
     return addTorrent_impl(torrentInfo, params);
 }
 
@@ -2152,6 +2450,8 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 // Add a torrent to the BitTorrent session
 bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams)
 {
+    Q_ASSERT(isRestored());
+
     const bool hasMetadata = std::holds_alternative<TorrentInfo>(source);
     const auto id = TorrentID::fromInfoHash(hasMetadata ? std::get<TorrentInfo>(source).infoHash() : std::get<MagnetUri>(source).infoHash());
 
@@ -2332,36 +2632,18 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
 
     p.added_time = std::time(nullptr);
 
-    if (!isFindingIncompleteFiles)
-        return loadTorrent(loadTorrentParams);
-
-    m_loadingTorrents.insert(id, loadTorrentParams);
-    return true;
-}
-
-// Add a torrent to the BitTorrent session
-bool Session::loadTorrent(LoadTorrentParams params)
-{
-    lt::add_torrent_params &p = params.ltAddTorrentParams;
+    // Limits
+    p.max_connections = maxConnectionsPerTorrent();
+    p.max_uploads = maxUploadsPerTorrent();
 
     p.userdata = LTClientData(new ExtensionData);
 #ifndef QBT_USES_LIBTORRENT2
     p.storage = customStorageConstructor;
 #endif
-    // Limits
-    p.max_connections = maxConnectionsPerTorrent();
-    p.max_uploads = maxUploadsPerTorrent();
 
-    const bool hasMetadata = (p.ti && p.ti->is_valid());
-#ifdef QBT_USES_LIBTORRENT2
-    const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hashes() : p.info_hashes);
-#else
-    const auto id = TorrentID::fromInfoHash(hasMetadata ? p.ti->info_hash() : p.info_hash);
-#endif
-    m_loadingTorrents.insert(id, params);
-
-    // Adding torrent to BitTorrent session
-    m_nativeSession->async_add_torrent(p);
+    m_loadingTorrents.insert(id, loadTorrentParams);
+    if (!isFindingIncompleteFiles)
+        m_nativeSession->async_add_torrent(p);
 
     return true;
 }
@@ -3205,6 +3487,11 @@ void Session::setResumeDataStorageType(const ResumeDataStorageType type)
 QStringList Session::bannedIPs() const
 {
     return m_bannedIPs;
+}
+
+bool Session::isRestored() const
+{
+    return m_isRestored;
 }
 
 #if defined(Q_OS_WIN)
@@ -4537,206 +4824,6 @@ const CacheStatus &Session::cacheStatus() const
     return m_cacheStatus;
 }
 
-void Session::startUpTorrents()
-{
-    qDebug("Initializing torrents resume data storage...");
-
-    const Path dbPath = specialFolderLocation(SpecialFolder::Data) / Path(u"torrents.db"_qs);
-    const bool dbStorageExists = dbPath.exists();
-
-    ResumeDataStorage *startupStorage = nullptr;
-    if (resumeDataStorageType() == ResumeDataStorageType::SQLite)
-    {
-        m_resumeDataStorage = new DBResumeDataStorage(dbPath, this);
-
-        if (!dbStorageExists)
-        {
-            const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
-            startupStorage = new BencodeResumeDataStorage(dataPath, this);
-        }
-    }
-    else
-    {
-        const Path dataPath = specialFolderLocation(SpecialFolder::Data) / Path(u"BT_backup"_qs);
-        m_resumeDataStorage = new BencodeResumeDataStorage(dataPath, this);
-
-        if (dbStorageExists)
-            startupStorage = new DBResumeDataStorage(dbPath, this);
-    }
-
-    if (!startupStorage)
-        startupStorage = m_resumeDataStorage;
-
-    qDebug("Starting up torrents...");
-
-    const QVector<TorrentID> torrents = startupStorage->registeredTorrents();
-    int resumedTorrentsCount = 0;
-    QVector<TorrentID> queue;
-    QSet<QString> recoveredCategories;
-#ifdef QBT_USES_LIBTORRENT2
-    const QSet<TorrentID> indexedTorrents {torrents.cbegin(), torrents.cend()};
-    QSet<TorrentID> skippedIDs;
-#endif
-    for (TorrentID torrentID : torrents)
-    {
-#ifdef QBT_USES_LIBTORRENT2
-        if (skippedIDs.contains(torrentID))
-            continue;
-#endif
-
-        const std::optional<LoadTorrentParams> loadResumeDataResult = startupStorage->load(torrentID);
-        if (!loadResumeDataResult)
-        {
-            LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
-            continue;
-        }
-
-        LoadTorrentParams resumeData = *loadResumeDataResult;
-        bool needStore = false;
-
-#ifdef QBT_USES_LIBTORRENT2
-        const lt::info_hash_t infoHash = (resumeData.ltAddTorrentParams.ti
-                                          ? resumeData.ltAddTorrentParams.ti->info_hashes()
-                                          : resumeData.ltAddTorrentParams.info_hashes);
-        const bool isHybrid = infoHash.has_v1() && infoHash.has_v2();
-        const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
-        const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
-        if (torrentID == torrentIDv2)
-        {
-            if (isHybrid && indexedTorrents.contains(torrentIDv1))
-            {
-                // if we don't have metadata, try to find it in alternative "resume data"
-                if (!resumeData.ltAddTorrentParams.ti)
-                {
-                    const std::optional<LoadTorrentParams> loadAltResumeDataResult = startupStorage->load(torrentIDv1);
-                    if (loadAltResumeDataResult)
-                        resumeData.ltAddTorrentParams.ti = loadAltResumeDataResult->ltAddTorrentParams.ti;
-                }
-
-                // remove alternative "resume data" and skip the attempt to load it
-                m_resumeDataStorage->remove(torrentIDv1);
-                skippedIDs.insert(torrentIDv1);
-            }
-        }
-        else if (torrentID == torrentIDv1)
-        {
-            torrentID = torrentIDv2;
-            needStore = true;
-            m_resumeDataStorage->remove(torrentIDv1);
-
-            if (indexedTorrents.contains(torrentID))
-            {
-                skippedIDs.insert(torrentID);
-
-                const std::optional<LoadTorrentParams> loadPreferredResumeDataResult = startupStorage->load(torrentID);
-                if (loadPreferredResumeDataResult)
-                {
-                    std::shared_ptr<lt::torrent_info> ti = resumeData.ltAddTorrentParams.ti;
-                    resumeData = *loadPreferredResumeDataResult;
-                    if (!resumeData.ltAddTorrentParams.ti)
-                        resumeData.ltAddTorrentParams.ti = ti;
-                }
-            }
-        }
-        else
-        {
-            LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
-                   .arg(torrentID.toString()), Log::WARNING);
-            continue;
-        }
-#else
-        const lt::sha1_hash infoHash = (resumeData.ltAddTorrentParams.ti
-                                          ? resumeData.ltAddTorrentParams.ti->info_hash()
-                                          : resumeData.ltAddTorrentParams.info_hash);
-        if (torrentID != TorrentID::fromInfoHash(infoHash))
-        {
-            LogMsg(tr("Failed to resume torrent: inconsistent torrent ID is detected. Torrent: \"%1\"")
-                   .arg(torrentID.toString()), Log::WARNING);
-            continue;
-        }
-#endif
-
-        if (m_resumeDataStorage != startupStorage)
-        {
-           needStore = true;
-           if (isQueueingSystemEnabled() && !resumeData.hasSeedStatus)
-                queue.append(torrentID);
-        }
-
-        // TODO: Remove the following upgrade code in v4.6
-        // == BEGIN UPGRADE CODE ==
-        if (m_needUpgradeDownloadPath && isDownloadPathEnabled())
-        {
-            if (!resumeData.useAutoTMM)
-            {
-                resumeData.downloadPath = downloadPath();
-                needStore = true;
-            }
-        }
-        // == END UPGRADE CODE ==
-
-        if (needStore)
-             m_resumeDataStorage->store(torrentID, resumeData);
-
-        const QString category = resumeData.category;
-        bool isCategoryRecovered = recoveredCategories.contains(category);
-        if (!category.isEmpty() && (isCategoryRecovered || !m_categories.contains(category)))
-        {
-            if (!isCategoryRecovered)
-            {
-                if (addCategory(category))
-                {
-                    recoveredCategories.insert(category);
-                    isCategoryRecovered = true;
-                    LogMsg(tr("Detected inconsistent data: category is missing from the configuration file."
-                              " Category will be recovered but its settings will be reset to default."
-                              " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
-                }
-                else
-                {
-                    resumeData.category.clear();
-                    LogMsg(tr("Detected inconsistent data: invalid category. Torrent: \"%1\". Category: \"%2\"")
-                           .arg(torrentID.toString(), category), Log::WARNING);
-                }
-            }
-
-            // We should check isCategoryRecovered again since the category
-            // can be just recovered by the code above
-            if (isCategoryRecovered && resumeData.useAutoTMM)
-            {
-                const Path storageLocation {resumeData.ltAddTorrentParams.save_path};
-                if ((storageLocation != categorySavePath(resumeData.category)) && (storageLocation != categoryDownloadPath(resumeData.category)))
-                {
-                    resumeData.useAutoTMM = false;
-                    resumeData.savePath = storageLocation;
-                    resumeData.downloadPath = {};
-                    LogMsg(tr("Detected mismatch between the save paths of the recovered category and the current save path of the torrent."
-                              " Torrent is now switched to Manual mode."
-                              " Torrent: \"%1\". Category: \"%2\"").arg(torrentID.toString(), category), Log::WARNING);
-                }
-            }
-        }
-
-        qDebug() << "Starting up torrent" << torrentID.toString() << "...";
-        if (!loadTorrent(resumeData))
-            LogMsg(tr("Failed to resume torrent. Torrent: \"%1\"").arg(torrentID.toString()), Log::CRITICAL);
-
-        // process add torrent messages before message queue overflow
-        if ((resumedTorrentsCount % 100) == 0) readAlerts();
-
-        ++resumedTorrentsCount;
-    }
-
-    if (m_resumeDataStorage != startupStorage)
-    {
-        delete startupStorage;
-        if (resumeDataStorageType() == ResumeDataStorageType::Legacy)
-            Utils::Fs::removeFile(dbPath);
-
-        if (isQueueingSystemEnabled())
-            m_resumeDataStorage->storeQueue(queue);
-    }
-}
 
 qint64 Session::getAlltimeDL() const
 {
@@ -4807,10 +4894,61 @@ void Session::setTorrentContentLayout(const TorrentContentLayout value)
 void Session::readAlerts()
 {
     const std::vector<lt::alert *> alerts = getPendingAlerts();
+    handleAddTorrentAlerts(alerts);
     for (const lt::alert *a : alerts)
         handleAlert(a);
 
     processTrackerStatuses();
+}
+
+void Session::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
+{
+    QVector<Torrent *> loadedTorrents;
+    if (!isRestored())
+        loadedTorrents.reserve(MAX_PROCESSING_RESUMEDATA_COUNT);
+
+    for (const lt::alert *a : alerts)
+    {
+        if (a->type() != lt::add_torrent_alert::alert_type)
+            continue;
+
+        auto alert = static_cast<const lt::add_torrent_alert *>(a);
+        if (alert->error)
+        {
+            const QString msg = QString::fromStdString(alert->message());
+            LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
+            emit loadTorrentFailed(msg);
+
+            const lt::add_torrent_params &params = alert->params;
+            const bool hasMetadata = (params.ti && params.ti->is_valid());
+#ifdef QBT_USES_LIBTORRENT2
+            const auto torrentID = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
+#else
+            const auto torrentID = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
+#endif
+            m_loadingTorrents.remove(torrentID);
+
+            return;
+        }
+
+#ifdef QBT_USES_LIBTORRENT2
+        const auto torrentID = TorrentID::fromInfoHash(alert->handle.info_hashes());
+#else
+        const auto torrentID = TorrentID::fromInfoHash(alert->handle.info_hash());
+#endif
+        const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID);
+        if (loadingTorrentsIter != m_loadingTorrents.end())
+        {
+            LoadTorrentParams params = loadingTorrentsIter.value();
+            m_loadingTorrents.erase(loadingTorrentsIter);
+
+            Torrent *torrent = createTorrent(alert->handle, params);
+            loadedTorrents.append(torrent);
+        }
+    }
+
+    if (!loadedTorrents.isEmpty())
+        emit torrentsLoaded(loadedTorrents);
 }
 
 void Session::handleAlert(const lt::alert *a)
@@ -4852,7 +4990,7 @@ void Session::handleAlert(const lt::alert *a)
             handleFileErrorAlert(static_cast<const lt::file_error_alert*>(a));
             break;
         case lt::add_torrent_alert::alert_type:
-            handleAddTorrentAlert(static_cast<const lt::add_torrent_alert*>(a));
+            // handled separately
             break;
         case lt::torrent_removed_alert::alert_type:
             handleTorrentRemovedAlert(static_cast<const lt::torrent_removed_alert*>(a));
@@ -4924,7 +5062,7 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
     }
 }
 
-void Session::createTorrent(const lt::torrent_handle &nativeHandle)
+TorrentImpl *Session::createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
@@ -4932,21 +5070,15 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hash());
 #endif
 
-    Q_ASSERT(m_loadingTorrents.contains(torrentID));
-
-    const LoadTorrentParams params = m_loadingTorrents.take(torrentID);
-
     auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, params);
     m_torrents.insert(torrent->id(), torrent);
-
-    const bool hasMetadata = torrent->hasMetadata();
 
     if (!params.restored)
     {
         m_resumeDataStorage->store(torrent->id(), params);
 
         // The following is useless for newly added magnet
-        if (hasMetadata)
+        if (torrent->hasMetadata())
         {
             if (!torrentExportDirectory().isEmpty())
                 exportTorrentFile(torrent, torrentExportDirectory());
@@ -4959,9 +5091,6 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
         m_seedingLimitTimer->start();
     }
 
-    // Send torrent addition signal
-    emit torrentLoaded(torrent);
-    // Send new torrent signal
     if (params.restored)
     {
         LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
@@ -4975,29 +5104,8 @@ void Session::createTorrent(const lt::torrent_handle &nativeHandle)
     // Torrent could have error just after adding to libtorrent
     if (torrent->hasError())
         LogMsg(tr("Torrent errored. Torrent: \"%1\". Error: \"%2\"").arg(torrent->name(), torrent->error()), Log::WARNING);
-}
 
-void Session::handleAddTorrentAlert(const lt::add_torrent_alert *p)
-{
-    if (p->error)
-    {
-        const QString msg = QString::fromStdString(p->message());
-        LogMsg(tr("Failed to load torrent. Reason: \"%1\"").arg(msg), Log::WARNING);
-        emit loadTorrentFailed(msg);
-
-        const lt::add_torrent_params &params = p->params;
-        const bool hasMetadata = (params.ti && params.ti->is_valid());
-#ifdef QBT_USES_LIBTORRENT2
-        const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
-#else
-        const auto id = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
-#endif
-        m_loadingTorrents.remove(id);
-    }
-    else if (m_loadingTorrents.contains(p->handle.info_hash()))
-    {
-        createTorrent(p->handle);
-    }
+    return torrent;
 }
 
 void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)

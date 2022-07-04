@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,44 +26,51 @@
  * exception statement from your version.
  */
 
-#pragma once
-
-#include <QReadWriteLock>
-
-#include "base/pathfwd.h"
 #include "resumedatastorage.h"
 
-class QThread;
+#include <utility>
 
-namespace BitTorrent
+#include <QMetaObject>
+#include <QMutexLocker>
+#include <QThread>
+
+const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QVector<BitTorrent::TorrentID>>();
+
+BitTorrent::ResumeDataStorage::ResumeDataStorage(const Path &path, QObject *parent)
+    : QObject(parent)
+    , m_path {path}
 {
-    class DBResumeDataStorage final : public ResumeDataStorage
+}
+
+Path BitTorrent::ResumeDataStorage::path() const
+{
+    return m_path;
+}
+
+void BitTorrent::ResumeDataStorage::loadAll() const
+{
+    m_loadedResumeData.reserve(1024);
+
+    auto *loadingThread = QThread::create([this]()
     {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(DBResumeDataStorage)
+        doLoadAll();
+    });
+    connect(loadingThread, &QThread::finished, loadingThread, &QObject::deleteLater);
+    loadingThread->start();
+}
 
-    public:
-        explicit DBResumeDataStorage(const Path &dbPath, QObject *parent = nullptr);
-        ~DBResumeDataStorage() override;
+QVector<BitTorrent::LoadedResumeData> BitTorrent::ResumeDataStorage::fetchLoadedResumeData() const
+{
+    const QMutexLocker locker {&m_loadedResumeDataMutex};
 
-        QVector<TorrentID> registeredTorrents() const override;
-        LoadResumeDataResult load(const TorrentID &id) const override;
+    const QVector<BitTorrent::LoadedResumeData> loadedResumeData = m_loadedResumeData;
+    m_loadedResumeData.clear();
 
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
-        void remove(const TorrentID &id) const override;
-        void storeQueue(const QVector<TorrentID> &queue) const override;
+    return loadedResumeData;
+}
 
-    private:
-        void doLoadAll() const override;
-        int currentDBVersion() const;
-        void createDB() const;
-        void updateDBFromVersion1() const;
-
-        QThread *m_ioThread = nullptr;
-
-        class Worker;
-        Worker *m_asyncWorker = nullptr;
-
-        mutable QReadWriteLock m_dbLock;
-    };
+void BitTorrent::ResumeDataStorage::onResumeDataLoaded(const TorrentID &torrentID, const LoadResumeDataResult &loadResumeDataResult) const
+{
+    const QMutexLocker locker {&m_loadedResumeDataMutex};
+    m_loadedResumeData.append({torrentID, loadResumeDataResult});
 }

@@ -28,19 +28,15 @@
 
 #pragma once
 
-#include <QAbstractListModel>
 #include <QtContainerFwd>
+#include <QAbstractItemModel>
 
+#include "base/bittorrent/torrent.h"
 #include "base/tagset.h"
 
 class QModelIndex;
 
 class TagModelItem;
-
-namespace BitTorrent
-{
-    class Torrent;
-}
 
 class TagFilterModel final : public QAbstractListModel
 {
@@ -67,7 +63,7 @@ private slots:
     void tagRemoved(const QString &tag);
     void torrentTagAdded(BitTorrent::Torrent *const torrent, const QString &tag);
     void torrentTagRemoved(BitTorrent::Torrent *const, const QString &tag);
-    void torrentAdded(BitTorrent::Torrent *const torrent);
+    void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
     void torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
 
 private:

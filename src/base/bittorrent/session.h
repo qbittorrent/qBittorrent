@@ -469,7 +469,8 @@ namespace BitTorrent
         void setOSMemoryPriority(OSMemoryPriority priority);
 #endif
 
-        void startUpTorrents();
+        bool isRestored() const;
+
         Torrent *findTorrent(const TorrentID &id) const;
         QVector<Torrent *> torrents() const;
         qsizetype torrentsCount() const;
@@ -539,6 +540,7 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
         void recursiveTorrentDownloadPossible(Torrent *torrent);
+        void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
@@ -549,12 +551,12 @@ namespace BitTorrent
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
         void torrentFinished(Torrent *torrent);
         void torrentFinishedChecking(Torrent *torrent);
-        void torrentLoaded(Torrent *torrent);
         void torrentMetadataReceived(Torrent *torrent);
         void torrentPaused(Torrent *torrent);
         void torrentResumed(Torrent *torrent);
         void torrentSavePathChanged(Torrent *torrent);
         void torrentSavingModeChanged(Torrent *torrent);
+        void torrentsLoaded(const QVector<Torrent *> &torrents);
         void torrentsUpdated(const QVector<Torrent *> &torrents);
         void torrentTagAdded(Torrent *torrent, const QString &tag);
         void torrentTagRemoved(Torrent *torrent, const QString &tag);
@@ -585,6 +587,8 @@ namespace BitTorrent
 #endif
 
     private:
+        struct ResumeSessionContext;
+
         struct MoveStorageJob
         {
             lt::torrent_handle torrentHandle;
@@ -630,8 +634,11 @@ namespace BitTorrent
 #endif
         void processTrackerStatuses();
         void populateExcludedFileNamesRegExpList();
+        void prepareStartup();
+        void handleLoadedResumeData(ResumeSessionContext *context);
+        void processNextResumeData(ResumeSessionContext *context);
+        void endStartup(ResumeSessionContext *context);
 
-        bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
@@ -639,8 +646,8 @@ namespace BitTorrent
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(const lt::alert *a);
+        void handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts);
         void dispatchTorrentAlert(const lt::alert *a);
-        void handleAddTorrentAlert(const lt::add_torrent_alert *p);
         void handleStateUpdateAlert(const lt::state_update_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
@@ -662,7 +669,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *p) const;
         void handleTrackerAlert(const lt::tracker_alert *a);
 
-        void createTorrent(const lt::torrent_handle &nativeHandle);
+        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
         void saveResumeData();
         void saveTorrentsQueue() const;
@@ -791,6 +798,8 @@ namespace BitTorrent
 #if defined(Q_OS_WIN)
         CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
 #endif
+
+        bool m_isRestored = false;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor

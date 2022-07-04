@@ -166,11 +166,10 @@ TransferListModel::TransferListModel(QObject *parent)
 
     // Load the torrents
     using namespace BitTorrent;
-    for (Torrent *const torrent : asConst(Session::instance()->torrents()))
-        addTorrent(torrent);
+    addTorrents(Session::instance()->torrents());
 
     // Listen for torrent changes
-    connect(Session::instance(), &Session::torrentLoaded, this, &TransferListModel::addTorrent);
+    connect(Session::instance(), &Session::torrentsLoaded, this, &TransferListModel::addTorrents);
     connect(Session::instance(), &Session::torrentAboutToBeRemoved, this, &TransferListModel::handleTorrentAboutToBeRemoved);
     connect(Session::instance(), &Session::torrentsUpdated, this, &TransferListModel::handleTorrentsUpdated);
 
@@ -599,15 +598,19 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
     return true;
 }
 
-void TransferListModel::addTorrent(BitTorrent::Torrent *const torrent)
+void TransferListModel::addTorrents(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    Q_ASSERT(!m_torrentMap.contains(torrent));
+    int row = m_torrentList.size();
+    beginInsertRows({}, row, (row + torrents.size()));
 
-    const int row = m_torrentList.size();
+    for (BitTorrent::Torrent *torrent : torrents)
+    {
+        Q_ASSERT(!m_torrentMap.contains(torrent));
 
-    beginInsertRows({}, row, row);
-    m_torrentList << torrent;
-    m_torrentMap[torrent] = row;
+        m_torrentList.append(torrent);
+        m_torrentMap[torrent] = row++;
+    }
+
     endInsertRows();
 }
 
