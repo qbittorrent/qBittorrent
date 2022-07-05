@@ -185,7 +185,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     app()->setMemoryWorkingSetLimit(m_spinBoxMemoryWorkingSetLimit.value());
 #endif
 #if defined(Q_OS_WIN)
-    session->setOSMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<BitTorrent::OSMemoryPriority>());
+    app()->setProcessMemoryPriority(m_comboBoxOSMemoryPriority.currentData().value<MemoryPriority>());
 #endif
     // Async IO threads
     session->setAsyncIOThreads(m_spinBoxAsyncIOThreads.value());
@@ -422,12 +422,12 @@ void AdvancedSettings::loadAdvancedSettings()
         , &m_spinBoxMemoryWorkingSetLimit);
 #endif
 #if defined(Q_OS_WIN)
-    m_comboBoxOSMemoryPriority.addItem(tr("Normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Normal));
-    m_comboBoxOSMemoryPriority.addItem(tr("Below normal"), QVariant::fromValue(BitTorrent::OSMemoryPriority::BelowNormal));
-    m_comboBoxOSMemoryPriority.addItem(tr("Medium"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Medium));
-    m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::Low));
-    m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(BitTorrent::OSMemoryPriority::VeryLow));
-    m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(session->getOSMemoryPriority())));
+    m_comboBoxOSMemoryPriority.addItem(tr("Normal"), QVariant::fromValue(MemoryPriority::Normal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Below normal"), QVariant::fromValue(MemoryPriority::BelowNormal));
+    m_comboBoxOSMemoryPriority.addItem(tr("Medium"), QVariant::fromValue(MemoryPriority::Medium));
+    m_comboBoxOSMemoryPriority.addItem(tr("Low"), QVariant::fromValue(MemoryPriority::Low));
+    m_comboBoxOSMemoryPriority.addItem(tr("Very low"), QVariant::fromValue(MemoryPriority::VeryLow));
+    m_comboBoxOSMemoryPriority.setCurrentIndex(m_comboBoxOSMemoryPriority.findData(QVariant::fromValue(app()->processMemoryPriority())));
     addRow(OS_MEMORY_PRIORITY, (tr("Process memory priority (Windows >= 8 only)")
         + u' ' + makeLink(u"https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/ns-processthreadsapi-memory_priority_information", u"(?)"))
         , &m_comboBoxOSMemoryPriority);

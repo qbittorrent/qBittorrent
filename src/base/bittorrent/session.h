@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <memory>
 #include <variant>
 #include <vector>
 
@@ -151,18 +150,6 @@ namespace BitTorrent
             SQLite
         };
         Q_ENUM_NS(ResumeDataStorageType)
-
-#if defined(Q_OS_WIN)
-        enum class OSMemoryPriority : int
-        {
-            Normal = 0,
-            BelowNormal = 1,
-            Medium = 2,
-            Low = 3,
-            VeryLow = 4
-        };
-        Q_ENUM_NS(OSMemoryPriority)
-#endif
     }
 
     struct SessionMetricIndices
@@ -464,10 +451,6 @@ namespace BitTorrent
         void setBannedIPs(const QStringList &newList);
         ResumeDataStorageType resumeDataStorageType() const;
         void setResumeDataStorageType(ResumeDataStorageType type);
-#if defined(Q_OS_WIN)
-        OSMemoryPriority getOSMemoryPriority() const;
-        void setOSMemoryPriority(OSMemoryPriority priority);
-#endif
 
         bool isRestored() const;
 
@@ -629,9 +612,6 @@ namespace BitTorrent
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();
-#if defined(Q_OS_WIN)
-        void applyOSMemoryPriority() const;
-#endif
         void processTrackerStatuses();
         void populateExcludedFileNamesRegExpList();
         void prepareStartup();
@@ -795,9 +775,6 @@ namespace BitTorrent
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
-#if defined(Q_OS_WIN)
-        CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
-#endif
 
         bool m_isRestored = false;
 

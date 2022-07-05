@@ -447,9 +447,6 @@ Session::Session(QObject *parent)
                         }
                  )
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
-#if defined(Q_OS_WIN)
-    , m_OSMemoryPriority(BITTORRENT_KEY(u"OSMemoryPriority"_qs), OSMemoryPriority::BelowNormal)
-#endif
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
     , m_statistics {new Statistics {this}}
@@ -1067,10 +1064,6 @@ void Session::configureComponents()
             disableIPFilter();
         m_IPFilteringConfigured = true;
     }
-
-#if defined(Q_OS_WIN)
-    applyOSMemoryPriority();
-#endif
 }
 
 void Session::prepareStartup()
@@ -3511,67 +3504,6 @@ bool Session::isRestored() const
 {
     return m_isRestored;
 }
-
-#if defined(Q_OS_WIN)
-OSMemoryPriority Session::getOSMemoryPriority() const
-{
-    return m_OSMemoryPriority;
-}
-
-void Session::setOSMemoryPriority(const OSMemoryPriority priority)
-{
-    if (m_OSMemoryPriority == priority)
-        return;
-
-    m_OSMemoryPriority = priority;
-    configureDeferred();
-}
-
-void Session::applyOSMemoryPriority() const
-{
-    using SETPROCESSINFORMATION = BOOL (WINAPI *)(HANDLE, PROCESS_INFORMATION_CLASS, LPVOID, DWORD);
-    const auto setProcessInformation = Utils::Misc::loadWinAPI<SETPROCESSINFORMATION>(u"Kernel32.dll"_qs, "SetProcessInformation");
-    if (!setProcessInformation)  // only available on Windows >= 8
-        return;
-
-#if (_WIN32_WINNT < _WIN32_WINNT_WIN8)
-    // this dummy struct is required to compile successfully when targeting older Windows version
-    struct MEMORY_PRIORITY_INFORMATION
-    {
-        ULONG MemoryPriority;
-    };
-
-#define MEMORY_PRIORITY_LOWEST 0
-#define MEMORY_PRIORITY_VERY_LOW 1
-#define MEMORY_PRIORITY_LOW 2
-#define MEMORY_PRIORITY_MEDIUM 3
-#define MEMORY_PRIORITY_BELOW_NORMAL 4
-#define MEMORY_PRIORITY_NORMAL 5
-#endif
-
-    MEMORY_PRIORITY_INFORMATION prioInfo {};
-    switch (getOSMemoryPriority())
-    {
-    case OSMemoryPriority::Normal:
-    default:
-        prioInfo.MemoryPriority = MEMORY_PRIORITY_NORMAL;
-        break;
-    case OSMemoryPriority::BelowNormal:
-        prioInfo.MemoryPriority = MEMORY_PRIORITY_BELOW_NORMAL;
-        break;
-    case OSMemoryPriority::Medium:
-        prioInfo.MemoryPriority = MEMORY_PRIORITY_MEDIUM;
-        break;
-    case OSMemoryPriority::Low:
-        prioInfo.MemoryPriority = MEMORY_PRIORITY_LOW;
-        break;
-    case OSMemoryPriority::VeryLow:
-        prioInfo.MemoryPriority = MEMORY_PRIORITY_VERY_LOW;
-        break;
-    }
-    setProcessInformation(::GetCurrentProcess(), ProcessMemoryPriority, &prioInfo, sizeof(prioInfo));
-}
-#endif
 
 int Session::maxConnectionsPerTorrent() const
 {
