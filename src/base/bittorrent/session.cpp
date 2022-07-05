@@ -1306,6 +1306,24 @@ void Session::processNextResumeData(ResumeSessionContext *context)
         }
     }
 
+    Algorithm::removeIf(resumeData.tags, [this, &torrentID](const QString &tag)
+    {
+        if (hasTag(tag))
+            return false;
+
+        if (addTag(tag))
+        {
+            LogMsg(tr("Detected inconsistent data: tag is missing from the configuration file."
+                      " Tag will be recovered."
+                      " Torrent: \"%1\". Tag: \"%2\"").arg(torrentID.toString(), tag), Log::WARNING);
+            return false;
+        }
+
+        LogMsg(tr("Detected inconsistent data: invalid tag. Torrent: \"%1\". Tag: \"%2\"")
+               .arg(torrentID.toString(), tag), Log::WARNING);
+        return true;
+    });
+
     resumeData.ltAddTorrentParams.userdata = LTClientData(new ExtensionData);
 #ifndef QBT_USES_LIBTORRENT2
     resumeData.ltAddTorrentParams.storage = customStorageConstructor;
@@ -4823,7 +4841,6 @@ const CacheStatus &Session::cacheStatus() const
 {
     return m_cacheStatus;
 }
-
 
 qint64 Session::getAlltimeDL() const
 {
