@@ -3061,6 +3061,11 @@ void Session::applyOSMemoryPriority() const
     if (!setProcessInformation)  // only available on Windows >= 8
         return;
 
+    using SETTHREADINFORMATION = BOOL (WINAPI *)(HANDLE, THREAD_INFORMATION_CLASS, LPVOID, DWORD);
+    const auto setThreadInformation = Utils::Misc::loadWinAPI<SETTHREADINFORMATION>("Kernel32.dll", "SetThreadInformation");
+    if (!setThreadInformation)  // only available on Windows >= 8
+        return;
+
 #if (_WIN32_WINNT < _WIN32_WINNT_WIN8)
     // this dummy struct is required to compile successfully when targeting older Windows version
     struct MEMORY_PRIORITY_INFORMATION
@@ -3097,6 +3102,11 @@ void Session::applyOSMemoryPriority() const
         break;
     }
     setProcessInformation(::GetCurrentProcess(), ProcessMemoryPriority, &prioInfo, sizeof(prioInfo));
+
+    // To avoid thrashing/sluggishness of the app, set "main event loop" thread to normal memory priority
+    // which is higher/equal than other threads
+    prioInfo.MemoryPriority = MEMORY_PRIORITY_NORMAL;
+    setThreadInformation(::GetCurrentThread(), ThreadMemoryPriority, &prioInfo, sizeof(prioInfo));
 }
 #endif
 
