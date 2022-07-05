@@ -175,13 +175,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="2">
-                <widget class="QCheckBox" name="checkUseSystemIcon">
-                 <property name="text">
-                  <string>Use system icon theme</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="comboI18n">
                  <property name="minimumSize">
@@ -3532,7 +3525,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
  <tabstops>
   <tabstop>tabOption</tabstop>
   <tabstop>comboI18n</tabstop>
-  <tabstop>checkUseSystemIcon</tabstop>
   <tabstop>checkUseCustomTheme</tabstop>
   <tabstop>customThemeFilePath</tabstop>
   <tabstop>checkStartPaused</tabstop>

@@ -257,12 +257,6 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_ui->checkUseSystemIcon->setChecked(Preferences::instance()->useSystemIconTheme());
-#else
-    m_ui->checkUseSystemIcon->setVisible(false);
-#endif
-
     // Load week days (scheduler)
     m_ui->comboBoxScheduleDays->addItems(translatedWeekdayNames());
 
@@ -306,9 +300,6 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-#endif
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -678,10 +669,6 @@ void OptionsDialog::saveOptions()
 
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
-
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    pref->useSystemIconTheme(m_ui->checkUseSystemIcon->isChecked());
-#endif
 
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
