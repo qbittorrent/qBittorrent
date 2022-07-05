@@ -804,7 +804,7 @@ void TransferListWidget::exportTorrent()
         if (hasError)
         {
             QMessageBox::warning(this, tr("Export .torrent file error")
-                , tr("Errors occured when exporting .torrent files. Check execution log for details."));
+                , tr("Errors occurred when exporting .torrent files. Check execution log for details."));
         }
     });
 

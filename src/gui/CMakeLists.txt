@@ -1,5 +1,5 @@
 
-# CMAKE_AUTO_UI causes unncessary rebuilds
+# CMAKE_AUTO_UI causes unnecessary rebuilds
 qt_wrap_ui(UI_HEADERS
     aboutdialog.ui
     addnewtorrentdialog.ui
