@@ -1280,7 +1280,7 @@ void TorrentsController::categoriesAction()
     {
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
-        // adjust it to be compatible with exisitng WebAPI
+        // adjust it to be compatible with existing WebAPI
         category[u"savePath"_qs] = category.take(u"save_path"_qs);
         category.insert(u"name"_qs, categoryName);
         categories[categoryName] = category;

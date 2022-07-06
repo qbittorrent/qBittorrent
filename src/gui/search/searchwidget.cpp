@@ -99,7 +99,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
         + u"<br>"
         + tr("<b>foo bar</b>: search for <b>foo</b> and <b>bar</b>",
                  "Search phrase example, illustrates quotes usage, a pair of "
-                 "space delimited words, individal words are highlighted")
+                 "space delimited words, individual words are highlighted")
         + u"<br>"
         + tr("<b>&quot;foo bar&quot;</b>: search for <b>foo bar</b>",
                  "Search phrase example, illustrates quotes usage, double quoted"
