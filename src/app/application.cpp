@@ -471,7 +471,7 @@ void Application::torrentFinished(BitTorrent::Torrent *const torrent)
     // Mail notification
     if (pref->isMailNotificationEnabled())
     {
-        Logger::instance()->addMessage(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
+        LogMsg(tr("Torrent: %1, sending mail notification").arg(torrent->name()));
         sendNotificationEmail(torrent);
     }
 }

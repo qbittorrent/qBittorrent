@@ -1106,7 +1106,7 @@ void MainWindow::notifyOfUpdate(const QString &)
 {
     // Show restart message
     m_statusBar->showRestartRequired();
-    Logger::instance()->addMessage(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective.")
+    LogMsg(tr("qBittorrent was just updated and needs to be restarted for the changes to be effective.")
                                    , Log::CRITICAL);
     // Delete the executable watcher
     delete m_executableWatcher;
@@ -1499,7 +1499,7 @@ void MainWindow::activate()
 
 void MainWindow::optionsSaved()
 {
-    Logger::instance()->addMessage(tr("Options saved."));
+    LogMsg(tr("Options saved."));
     loadPreferences();
 }
 

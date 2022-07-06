@@ -560,7 +560,7 @@ void Smtp::authLogin()
 void Smtp::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
-    Logger::instance()->addMessage(tr("Email Notification Error: %1").arg(msg), Log::WARNING);
+    LogMsg(tr("Email Notification Error: %1").arg(msg), Log::WARNING);
 }
 
 QString Smtp::getCurrentDateTime() const

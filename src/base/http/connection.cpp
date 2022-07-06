@@ -79,7 +79,7 @@ void Connection::read()
                 const long bufferLimit = RequestParser::MAX_CONTENT_SIZE * 1.1;  // some margin for headers
                 if (m_receivedData.size() > bufferLimit)
                 {
-                    Logger::instance()->addMessage(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
+                    LogMsg(tr("Http request size exceeds limitation, closing socket. Limit: %1, IP: %2")
                         .arg(bufferLimit).arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                     Response resp(413, u"Payload Too Large"_qs);
@@ -93,7 +93,7 @@ void Connection::read()
 
         case RequestParser::ParseStatus::BadRequest:
             {
-                Logger::instance()->addMessage(tr("Bad Http request, closing socket. IP: %1")
+                LogMsg(tr("Bad Http request, closing socket. IP: %1")
                     .arg(m_socket->peerAddress().toString()), Log::WARNING);
 
                 Response resp(400, u"Bad Request"_qs);
