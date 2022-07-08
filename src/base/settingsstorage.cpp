@@ -168,7 +168,7 @@ QVariantHash TransactionalSettings::read() const
         // or because the disk was full. In any case the settings weren't transferred
         // in their final position. So assume that qbittorrent_new.ini/qbittorrent_new.conf
         // contains the most recent settings.
-        Logger::instance()->addMessage(QObject::tr("Detected unclean program exit. Using fallback file to restore settings: %1")
+        LogMsg(QObject::tr("Detected unclean program exit. Using fallback file to restore settings: %1")
                 .arg(newPath.toString())
             , Log::WARNING);
 
@@ -244,13 +244,13 @@ Path TransactionalSettings::serialize(const QString &name, const QVariantHash &d
     case QSettings::NoError:
         return Path(settings->fileName());
     case QSettings::AccessError:
-        Logger::instance()->addMessage(QObject::tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
+        LogMsg(QObject::tr("An access error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;
     case QSettings::FormatError:
-        Logger::instance()->addMessage(QObject::tr("A format error occurred while trying to write the configuration file."), Log::CRITICAL);
+        LogMsg(QObject::tr("A format error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;
     default:
-        Logger::instance()->addMessage(QObject::tr("An unknown error occurred while trying to write the configuration file."), Log::CRITICAL);
+        LogMsg(QObject::tr("An unknown error occurred while trying to write the configuration file."), Log::CRITICAL);
         break;
     }
     return {};
