@@ -262,6 +262,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // Load options
     loadOptions();
+
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
 #else
@@ -270,8 +271,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     {
         m_ui->checkShowSystray->setChecked(false);
         m_ui->checkShowSystray->setEnabled(false);
-        m_ui->labelTrayIconStyle->setVisible(false);
-        m_ui->comboTrayIcon->setVisible(false);
+        m_ui->checkShowSystray->setToolTip(tr("Disabled due to failed to detect system tray presence"));
     }
 #endif
 
