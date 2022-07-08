@@ -650,8 +650,6 @@ void OptionsDialog::saveOptions()
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
-    m_applyButton->setEnabled(false);
-
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale)
@@ -1419,8 +1417,8 @@ void OptionsDialog::on_buttonBox_accepted()
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
+
         m_applyButton->setEnabled(false);
-        this->hide();
         saveOptions();
     }
 
@@ -1444,6 +1442,8 @@ void OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
         return;
     }
+
+    m_applyButton->setEnabled(false);
     saveOptions();
 }
 
