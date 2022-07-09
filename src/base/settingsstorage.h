@@ -116,9 +116,12 @@ public slots:
 private:
     QVariant loadValueImpl(const QString &key, const QVariant &defaultValue = {}) const;
     void storeValueImpl(const QString &key, const QVariant &value);
+    void readNativeSettings();
+    bool writeNativeSettings() const;
 
     static SettingsStorage *m_instance;
 
+    const QString m_nativeSettingsName;
     bool m_dirty = false;
     QVariantHash m_data;
     QTimer m_timer;

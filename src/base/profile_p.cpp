@@ -113,12 +113,12 @@ Path Private::DefaultProfile::downloadLocation() const
     return Path(QStandardPaths::writableLocation(QStandardPaths::DownloadLocation));
 }
 
-SettingsPtr Private::DefaultProfile::applicationSettings(const QString &name) const
+std::unique_ptr<QSettings> Private::DefaultProfile::applicationSettings(const QString &name) const
 {
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    return SettingsPtr(new QSettings(QSettings::IniFormat, QSettings::UserScope, profileName(), name));
+    return std::unique_ptr<QSettings>(new QSettings(QSettings::IniFormat, QSettings::UserScope, profileName(), name));
 #else
-    return SettingsPtr(new QSettings(profileName(), name));
+    return std::unique_ptr<QSettings>(new QSettings(profileName(), name));
 #endif
 }
 
@@ -168,7 +168,7 @@ Path Private::CustomProfile::downloadLocation() const
     return m_downloadLocation;
 }
 
-SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) const
+std::unique_ptr<QSettings> Private::CustomProfile::applicationSettings(const QString &name) const
 {
     // here we force QSettings::IniFormat format always because we need it to be portable across platforms
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
@@ -177,7 +177,7 @@ SettingsPtr Private::CustomProfile::applicationSettings(const QString &name) con
     const auto CONF_FILE_EXTENSION = u".conf"_qs;
 #endif
     const Path settingsFilePath = configLocation() / Path(name + CONF_FILE_EXTENSION);
-    return SettingsPtr(new QSettings(settingsFilePath.data(), QSettings::IniFormat));
+    return std::unique_ptr<QSettings>(new QSettings(settingsFilePath.data(), QSettings::IniFormat));
 }
 
 Path Private::NoConvertConverter::fromPortablePath(const Path &portablePath) const

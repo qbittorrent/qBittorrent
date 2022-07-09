@@ -453,7 +453,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
+    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
     const QVariantHash rules = settings->value(u"download_rules"_qs).toHash();
     for (const QVariant &ruleVar : rules)
     {
