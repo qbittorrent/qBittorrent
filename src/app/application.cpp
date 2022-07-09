@@ -88,6 +88,7 @@
 
 #ifndef DISABLE_GUI
 #include "gui/addnewtorrentdialog.h"
+#include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/shutdownconfirmdialog.h"
 #include "gui/uithememanager.h"
@@ -102,6 +103,7 @@ namespace
 {
 #define SETTINGS_KEY(name) u"Application/" name
 #define FILELOGGER_SETTINGS_KEY(name) (SETTINGS_KEY(u"FileLogger/") name)
+#define NOTIFICATIONS_SETTINGS_KEY(name) (SETTINGS_KEY(u"GUI/Notifications/"_qs) name)
 
     const QString LOG_FOLDER = u"logs"_qs;
     const QChar PARAMS_SEPARATOR = u'|';
@@ -112,7 +114,7 @@ namespace
     const int MAX_FILELOG_SIZE = 1000 * 1024 * 1024; // 1000MiB
     const int DEFAULT_FILELOG_SIZE = 65 * 1024; // 65KiB
 
-#if !defined(DISABLE_GUI)
+#ifndef DISABLE_GUI
     const int PIXMAP_CACHE_SIZE = 64 * 1024 * 1024;  // 64MiB
 #endif
 }
@@ -131,6 +133,9 @@ Application::Application(int &argc, char **argv)
     , m_storeMemoryWorkingSetLimit(SETTINGS_KEY(u"MemoryWorkingSetLimit"_qs))
 #ifdef Q_OS_WIN
     , m_processMemoryPriority(SETTINGS_KEY(u"ProcessMemoryPriority"_qs))
+#endif
+#ifndef DISABLE_GUI
+    , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_qs))
 #endif
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
@@ -198,9 +203,24 @@ Application::~Application()
 }
 
 #ifndef DISABLE_GUI
+DesktopIntegration *Application::desktopIntegration()
+{
+    return m_desktopIntegration;
+}
+
 MainWindow *Application::mainWindow()
 {
     return m_window;
+}
+
+bool Application::isTorrentAddedNotificationsEnabled() const
+{
+    return m_storeNotificationTorrentAdded;
+}
+
+void Application::setTorrentAddedNotificationsEnabled(const bool value)
+{
+    m_storeNotificationTorrentAdded = value;
 }
 #endif
 
@@ -683,6 +703,40 @@ int Application::exec(const QStringList &params)
 #endif // DISABLE_WEBUI
 #else
     UIThemeManager::initInstance();
+
+    const auto *btSession = BitTorrent::Session::instance();
+
+    m_desktopIntegration = new DesktopIntegration(this);
+    connect(btSession, &BitTorrent::Session::fullDiskError, this
+            , [this](const BitTorrent::Torrent *torrent, const QString &msg)
+    {
+        m_desktopIntegration->showNotification(tr("I/O Error", "i.e: Input/Output Error")
+            , tr("An I/O error occurred for torrent '%1'.\n Reason: %2"
+                , "e.g: An error occurred for torrent 'xxx.avi'.\n Reason: disk is full.").arg(torrent->name(), msg));
+    });
+    connect(btSession, &BitTorrent::Session::loadTorrentFailed, this
+            , [this](const QString &error)
+    {
+        m_desktopIntegration->showNotification(tr("Error"), tr("Failed to add torrent: %1").arg(error));
+    });
+    connect(btSession, &BitTorrent::Session::torrentAdded, this
+            , [this](const BitTorrent::Torrent *torrent)
+    {
+        if (isTorrentAddedNotificationsEnabled())
+            m_desktopIntegration->showNotification(tr("Torrent added"), tr("'%1' was added.", "e.g: xxx.avi was added.").arg(torrent->name()));
+    });
+    connect(btSession, &BitTorrent::Session::torrentFinished, this
+            , [this](const BitTorrent::Torrent *torrent)
+    {
+        m_desktopIntegration->showNotification(tr("Download completed"), tr("'%1' has finished downloading.", "e.g: xxx.avi has finished downloading.").arg(torrent->name()));
+    });
+    connect(btSession, &BitTorrent::Session::downloadFromUrlFailed, this
+            , [this](const QString &url, const QString &reason)
+    {
+        m_desktopIntegration->showNotification(tr("URL download error")
+            , tr("Couldn't download file at URL '%1', reason: %2.").arg(url, reason));
+    });
+
     m_window = new MainWindow(this);
 #endif // DISABLE_GUI
 

@@ -67,6 +67,7 @@ namespace RSS
 }
 
 #ifndef DISABLE_GUI
+class DesktopIntegration;
 class MainWindow;
 
 using BaseApplication = QApplication;
@@ -124,7 +125,11 @@ public:
 #endif
 
 #ifndef DISABLE_GUI
+    DesktopIntegration *desktopIntegration() override;
     MainWindow *mainWindow() override;
+
+    bool isTorrentAddedNotificationsEnabled() const override;
+    void setTorrentAddedNotificationsEnabled(bool value) override;
 #endif
 
 private slots:
@@ -194,6 +199,9 @@ private:
 #endif
 
 #ifndef DISABLE_GUI
+    SettingValue<bool> m_storeNotificationTorrentAdded;
+
+    DesktopIntegration *m_desktopIntegration = nullptr;
     MainWindow *m_window = nullptr;
 #endif
 
