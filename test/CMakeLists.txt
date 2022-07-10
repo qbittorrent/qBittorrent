@@ -10,6 +10,9 @@ add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 include_directories("../src")
 
 set(testFiles
+    testalgorithm.cpp
+    testorderedset.cpp
+    testutilscompare.cpp
     testutilsgzip.cpp
 )
 foreach(testFile ${testFiles})
