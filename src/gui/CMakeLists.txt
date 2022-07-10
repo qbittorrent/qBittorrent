@@ -1,3 +1,11 @@
+if (QT6)
+    find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Widgets Svg)
+else()
+    find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS Widgets Svg)
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS WinExtras)
+    endif()
+endif()
 
 # CMAKE_AUTO_UI causes unnecessary rebuilds
 qt_wrap_ui(UI_HEADERS
