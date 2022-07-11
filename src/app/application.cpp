@@ -626,6 +626,11 @@ void Application::processParams(const AddTorrentParams &params)
 
 int Application::exec(const QStringList &params)
 {
+#if !defined(DISABLE_WEBUI) && defined(DISABLE_GUI)
+    const QString loadingStr = tr("WebUI will be started shortly after internal preparations. Please wait...");
+    printf("%s\n", qUtf8Printable(loadingStr));
+#endif
+
 #ifdef QBT_USES_LIBTORRENT2
     applyMemoryWorkingSetLimit();
 #endif
@@ -650,6 +655,22 @@ int Application::exec(const QStringList &params)
             if (m_webui->isErrored())
                 QCoreApplication::exit(1);
             connect(m_webui, &WebUI::fatalError, this, []() { QCoreApplication::exit(1); });
+
+            const Preferences *pref = Preferences::instance();
+
+            const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_qs : u"http"_qs;
+            const auto url = u"%1://localhost:%2\n"_qs.arg(scheme, QString::number(pref->getWebUiPort()));
+            const QString mesg = u"\n******** %1 ********\n"_qs.arg(tr("Information"))
+                + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
+            printf("%s\n", qUtf8Printable(mesg));
+
+            if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+            {
+                const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
+                    + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_qs) + u'\n'
+                    + tr("This is a security risk, please change your password in program preferences.") + u'\n';
+                printf("%s", qUtf8Printable(warning));
+            }
 #endif // DISABLE_GUI
 #endif // DISABLE_WEBUI
 
@@ -683,25 +704,7 @@ int Application::exec(const QStringList &params)
         return 1;
     }
 
-#ifdef DISABLE_GUI
-#ifndef DISABLE_WEBUI
-    const Preferences *pref = Preferences::instance();
-
-    const auto scheme = pref->isWebUiHttpsEnabled() ? u"https"_qs : u"http"_qs;
-    const auto url = u"%1://localhost:%2\n"_qs.arg(scheme, QString::number(pref->getWebUiPort()));
-    const QString mesg = u"\n******** %1 ********\n"_qs.arg(tr("Information"))
-        + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
-    printf("%s\n", qUtf8Printable(mesg));
-
-    if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
-    {
-        const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
-            + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_qs) + u'\n'
-            + tr("This is a security risk, please change your password in program preferences.") + u'\n';
-        printf("%s", qUtf8Printable(warning));
-    }
-#endif // DISABLE_WEBUI
-#else
+#ifndef DISABLE_GUI
     UIThemeManager::initInstance();
 
     const auto *btSession = BitTorrent::Session::instance();
