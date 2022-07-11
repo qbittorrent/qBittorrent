@@ -262,6 +262,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // Load options
     loadOptions();
+
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
 #else
@@ -270,8 +271,7 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     {
         m_ui->checkShowSystray->setChecked(false);
         m_ui->checkShowSystray->setEnabled(false);
-        m_ui->labelTrayIconStyle->setVisible(false);
-        m_ui->comboTrayIcon->setVisible(false);
+        m_ui->checkShowSystray->setToolTip(tr("Disabled due to failed to detect system tray presence"));
     }
 #endif
 
@@ -650,8 +650,6 @@ void OptionsDialog::saveOptions()
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
-    m_applyButton->setEnabled(false);
-
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale)
@@ -675,10 +673,10 @@ void OptionsDialog::saveOptions()
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MACOS
-    pref->setSystemTrayEnabled(systemTrayEnabled());
+    pref->setSystemTrayEnabled(m_ui->checkShowSystray->isChecked());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
-    pref->setCloseToTray(closeToTray());
-    pref->setMinimizeToTray(minimizeToTray());
+    pref->setCloseToTray(m_ui->checkCloseToSystray->isChecked());
+    pref->setMinimizeToTray(m_ui->checkMinimizeToSysTray->isChecked());
 #endif
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
@@ -935,12 +933,9 @@ void OptionsDialog::loadOptions()
 
 #ifndef Q_OS_MACOS
     m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
-    if (m_ui->checkShowSystray->isChecked())
-    {
-        m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
-        m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-        m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
-    }
+    m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
+    m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
+    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
 #endif
 
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
@@ -1354,27 +1349,6 @@ bool OptionsDialog::startMinimized() const
     return m_ui->checkStartMinimized->isChecked();
 }
 
-#ifndef Q_OS_MACOS
-bool OptionsDialog::systemTrayEnabled() const
-{
-    return QSystemTrayIcon::isSystemTrayAvailable()
-        ? m_ui->checkShowSystray->isChecked()
-        : false;
-}
-
-bool OptionsDialog::minimizeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkMinimizeToSysTray->isChecked();
-}
-
-bool OptionsDialog::closeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkCloseToSystray->isChecked();
-}
-#endif // Q_OS_MACOS
-
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const
 {
@@ -1443,8 +1417,8 @@ void OptionsDialog::on_buttonBox_accepted()
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
+
         m_applyButton->setEnabled(false);
-        this->hide();
         saveOptions();
     }
 
@@ -1468,6 +1442,8 @@ void OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
         return;
     }
+
+    m_applyButton->setEnabled(false);
     saveOptions();
 }
 

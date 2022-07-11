@@ -123,11 +123,6 @@ private:
     void initializeLanguageCombo();
     // General options
     QString getLocale() const;
-#ifndef Q_OS_MACOS
-    bool systemTrayEnabled() const;
-    bool minimizeToTray() const;
-    bool closeToTray() const;
-#endif
     bool startMinimized() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
