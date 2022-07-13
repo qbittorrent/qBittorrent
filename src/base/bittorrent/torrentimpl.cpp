@@ -1038,7 +1038,7 @@ qlonglong TorrentImpl::eta() const
 {
     if (isPaused()) return MAX_ETA;
 
-    const SpeedSampleAvg speedAverage = m_speedMonitor.average();
+    const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
     if (isSeed())
     {
@@ -1611,7 +1611,7 @@ void TorrentImpl::pause()
         setAutoManaged(false);
         m_nativeHandle.pause();
 
-        m_speedMonitor.reset();
+        m_payloadRateMonitor.reset();
     }
 }
 
@@ -2114,7 +2114,7 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
     m_nativeStatus = nativeStatus;
     updateState();
 
-    m_speedMonitor.addSample({nativeStatus.download_payload_rate
+    m_payloadRateMonitor.addSample({nativeStatus.download_payload_rate
                               , nativeStatus.upload_payload_rate});
 
     if (hasMetadata())

@@ -298,7 +298,7 @@ namespace BitTorrent
         QHash<lt::file_index_t, int> m_indexMap;
         QVector<DownloadPriority> m_filePriorities;
         QBitArray m_completedFiles;
-        SpeedMonitor m_speedMonitor;
+        SpeedMonitor m_payloadRateMonitor;
 
         InfoHash m_infoHash;
 
