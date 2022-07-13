@@ -324,8 +324,10 @@ void AppController::preferencesAction()
     data[u"disk_queue_size"_qs] = session->diskQueueSize();
     // Disk IO Type
     data[u"disk_io_type"_qs] = static_cast<int>(session->diskIOType());
-    // Enable OS cache
-    data[u"enable_os_cache"_qs] = session->useOSCache();
+    // Disk IO read mode
+    data[u"disk_io_read_mode"_qs] = static_cast<int>(session->diskIOReadMode());
+    // Disk IO write mode
+    data[u"disk_io_write_mode"_qs] = static_cast<int>(session->diskIOWriteMode());
     // Coalesce reads & writes
     data[u"enable_coalesce_read_write"_qs] = session->isCoalesceReadWriteEnabled();
     // Piece Extent Affinity
@@ -817,9 +819,12 @@ void AppController::setPreferencesAction()
     // Disk IO Type
     if (hasKey(u"disk_io_type"_qs))
         session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(it.value().toInt()));
-    // Enable OS cache
-    if (hasKey(u"enable_os_cache"_qs))
-        session->setUseOSCache(it.value().toBool());
+    // Disk IO read mode
+    if (hasKey(u"disk_io_read_mode"_qs))
+        session->setDiskIOReadMode(static_cast<BitTorrent::DiskIOReadMode>(it.value().toInt()));
+    // Disk IO write mode
+    if (hasKey(u"disk_io_write_mode"_qs))
+        session->setDiskIOWriteMode(static_cast<BitTorrent::DiskIOWriteMode>(it.value().toInt()));
     // Coalesce reads & writes
     if (hasKey(u"enable_coalesce_read_write"_qs))
         session->setCoalesceReadWriteEnabled(it.value().toBool());
