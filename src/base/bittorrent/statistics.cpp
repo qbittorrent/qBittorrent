@@ -97,7 +97,7 @@ void Statistics::save() const
         {u"AlltimeDL"_qs, (m_alltimeDL + m_sessionDL)},
         {u"AlltimeUL"_qs, (m_alltimeUL + m_sessionUL)}
     };
-    SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
+    std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
     settings->setValue(u"Stats/AllStats"_qs, stats);
 
     m_lastUpdateTimer.start();
@@ -106,7 +106,7 @@ void Statistics::save() const
 
 void Statistics::load()
 {
-    const SettingsPtr s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
+    const std::unique_ptr<QSettings> s = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
     const QVariantHash v = s->value(u"Stats/AllStats"_qs).toHash();
 
     m_alltimeDL = v[u"AlltimeDL"_qs].toLongLong();
