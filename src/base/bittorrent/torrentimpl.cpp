@@ -838,47 +838,80 @@ bool TorrentImpl::isChecking() const
 
 bool TorrentImpl::isDownloading() const
 {
-    return m_state == TorrentState::Downloading
-            || m_state == TorrentState::DownloadingMetadata
-            || m_state == TorrentState::ForcedDownloadingMetadata
-            || m_state == TorrentState::StalledDownloading
-            || m_state == TorrentState::CheckingDownloading
-            || m_state == TorrentState::PausedDownloading
-            || m_state == TorrentState::QueuedDownloading
-            || m_state == TorrentState::ForcedDownloading;
+    switch (m_state)
+    {
+    case TorrentState::Downloading:
+    case TorrentState::DownloadingMetadata:
+    case TorrentState::ForcedDownloadingMetadata:
+    case TorrentState::StalledDownloading:
+    case TorrentState::CheckingDownloading:
+    case TorrentState::PausedDownloading:
+    case TorrentState::QueuedDownloading:
+    case TorrentState::ForcedDownloading:
+        return true;
+    default:
+        break;
+    };
+
+    return false;
 }
 
 bool TorrentImpl::isUploading() const
 {
-    return m_state == TorrentState::Uploading
-            || m_state == TorrentState::StalledUploading
-            || m_state == TorrentState::CheckingUploading
-            || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading;
+    switch (m_state)
+    {
+    case TorrentState::Uploading:
+    case TorrentState::StalledUploading:
+    case TorrentState::CheckingUploading:
+    case TorrentState::QueuedUploading:
+    case TorrentState::ForcedUploading:
+        return true;
+    default:
+        break;
+    };
+
+    return false;
 }
 
 bool TorrentImpl::isCompleted() const
 {
-    return m_state == TorrentState::Uploading
-            || m_state == TorrentState::StalledUploading
-            || m_state == TorrentState::CheckingUploading
-            || m_state == TorrentState::PausedUploading
-            || m_state == TorrentState::QueuedUploading
-            || m_state == TorrentState::ForcedUploading;
+    switch (m_state)
+    {
+    case TorrentState::Uploading:
+    case TorrentState::StalledUploading:
+    case TorrentState::CheckingUploading:
+    case TorrentState::PausedUploading:
+    case TorrentState::QueuedUploading:
+    case TorrentState::ForcedUploading:
+        return true;
+    default:
+        break;
+    };
+
+    return false;
 }
 
 bool TorrentImpl::isActive() const
 {
-    if (m_state == TorrentState::StalledDownloading)
+    switch (m_state)
+    {
+    case TorrentState::StalledDownloading:
         return (uploadPayloadRate() > 0);
 
-    return m_state == TorrentState::DownloadingMetadata
-            || m_state == TorrentState::ForcedDownloadingMetadata
-            || m_state == TorrentState::Downloading
-            || m_state == TorrentState::ForcedDownloading
-            || m_state == TorrentState::Uploading
-            || m_state == TorrentState::ForcedUploading
-            || m_state == TorrentState::Moving;
+    case TorrentState::DownloadingMetadata:
+    case TorrentState::ForcedDownloadingMetadata:
+    case TorrentState::Downloading:
+    case TorrentState::ForcedDownloading:
+    case TorrentState::Uploading:
+    case TorrentState::ForcedUploading:
+    case TorrentState::Moving:
+        return true;
+
+    default:
+        break;
+    };
+
+    return false;
 }
 
 bool TorrentImpl::isInactive() const
@@ -888,8 +921,8 @@ bool TorrentImpl::isInactive() const
 
 bool TorrentImpl::isErrored() const
 {
-    return m_state == TorrentState::MissingFiles
-            || m_state == TorrentState::Error;
+    return ((m_state == TorrentState::MissingFiles)
+            || (m_state == TorrentState::Error));
 }
 
 bool TorrentImpl::isSeed() const
