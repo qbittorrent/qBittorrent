@@ -188,10 +188,13 @@ bool SettingsStorage::writeNativeSettings() const
         break;
     }
 
-    if (nativeSettings->status() != QSettings::NoError)
-        return false;
-
     const Path newPath {nativeSettings->fileName()};
+    if (nativeSettings->status() != QSettings::NoError)
+    {
+        Utils::Fs::removeFile(newPath);
+        return false;
+    }
+
     QString finalPathStr = newPath.data();
     const int index = finalPathStr.lastIndexOf(u"_new", -1, Qt::CaseInsensitive);
     finalPathStr.remove(index, 4);
