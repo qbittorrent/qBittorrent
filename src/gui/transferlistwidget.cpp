@@ -909,11 +909,11 @@ void TransferListWidget::displayListMenu()
 
     // Create actions
 
-    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs), tr("&Resume", "Resume/start the torrent"), listMenu);
+    auto *actionStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start"_qs), tr("&Resume", "Resume/start the torrent"), listMenu);
     connect(actionStart, &QAction::triggered, this, &TransferListWidget::startSelectedTorrents);
-    auto *actionPause = new QAction(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs), tr("&Pause", "Pause the torrent"), listMenu);
+    auto *actionPause = new QAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs), tr("&Pause", "Pause the torrent"), listMenu);
     connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
-    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"media-seek-forward"_qs), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
+    auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_qs), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
     auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("&Delete", "Delete the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
@@ -921,7 +921,7 @@ void TransferListWidget::displayListMenu()
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
     auto *actionTorrentOptions = new QAction(UIThemeManager::instance()->getIcon(u"configure"_qs), tr("Torrent &options..."), listMenu);
     connect(actionTorrentOptions, &QAction::triggered, this, &TransferListWidget::setTorrentOptions);
-    auto *actionOpenDestinationFolder = new QAction(UIThemeManager::instance()->getIcon(u"inode-directory"_qs), tr("Open destination &folder"), listMenu);
+    auto *actionOpenDestinationFolder = new QAction(UIThemeManager::instance()->getIcon(u"directory"_qs), tr("Open destination &folder"), listMenu);
     connect(actionOpenDestinationFolder, &QAction::triggered, this, &TransferListWidget::openSelectedTorrentsFolder);
     auto *actionIncreaseQueuePos = new QAction(UIThemeManager::instance()->getIcon(u"go-up"_qs), tr("Move &up", "i.e. move up in the queue"), listMenu);
     connect(actionIncreaseQueuePos, &QAction::triggered, this, &TransferListWidget::increaseQueuePosSelectedTorrents);
@@ -937,7 +937,7 @@ void TransferListWidget::displayListMenu()
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
     auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon(u"reannounce"_qs), tr("Force r&eannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
-    auto *actionCopyMagnetLink = new QAction(UIThemeManager::instance()->getIcon(u"kt-magnet"_qs), tr("&Magnet link"), listMenu);
+    auto *actionCopyMagnetLink = new QAction(UIThemeManager::instance()->getIcon(u"torrent-magnet"_qs), tr("&Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
     auto *actionCopyID = new QAction(UIThemeManager::instance()->getIcon(u"help-about"_qs), tr("Torrent &ID"), listMenu);
     connect(actionCopyID, &QAction::triggered, this, &TransferListWidget::copySelectedIDs);

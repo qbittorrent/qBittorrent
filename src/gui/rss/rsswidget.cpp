@@ -68,7 +68,7 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
     m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_qs));
     m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
-    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs));
+    m_ui->actionOpenNewsURL->setIcon(UIThemeManager::instance()->getIcon(u"application-url"_qs));
     m_ui->actionRename->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_qs));
     m_ui->actionUpdate->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
     m_ui->actionUpdateAllFeeds->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
