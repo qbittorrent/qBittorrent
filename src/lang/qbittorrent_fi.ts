@@ -1088,8 +1088,8 @@ Virhe: %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="446"/>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation>[qBittorrent] Torrentin &quot;%1&quot; lataus on valmistunut</translation>
+        <source>&apos;%1&apos; has finished downloading</source>
+        <translation>Torrentin &quot;%1&quot; lataus on valmistunut</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="461"/>

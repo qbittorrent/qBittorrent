@@ -1086,8 +1086,8 @@ Kleida: %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="446"/>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation>[qBittorrent] &apos;%1&apos; atsasyuteišona ir dabeigta</translation>
+        <source>&apos;%1&apos; has finished downloading</source>
+        <translation>&apos;%1&apos; atsasyuteišona ir dabeigta</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="461"/>

@@ -1183,8 +1183,8 @@ Error: %2</source>
     </message>
     <message>
         <location filename="../app/application.cpp" line="446"/>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="unfinished">[qBittorrent] &apos;%1&apos; hefur lokið niðurhali</translation>
+        <source>&apos;%1&apos; has finished downloading</source>
+        <translation type="unfinished">&apos;%1&apos; hefur lokið niðurhali</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="461"/>
@@ -8182,8 +8182,8 @@ No further notices will be issued.</source>
         <translation type="obsolete">Torrent stærð: %1</translation>
     </message>
     <message>
-        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
-        <translation type="obsolete">[qBittorrent] &apos;%1&apos; hefur lokið niðurhali</translation>
+        <source>&apos;%1&apos; has finished downloading</source>
+        <translation type="obsolete">&apos;%1&apos; hefur lokið niðurhali</translation>
     </message>
     <message>
         <source>Unknown error</source>
