@@ -307,6 +307,8 @@ struct BitTorrent::Session::ResumeSessionContext final : public QObject
     ResumeDataStorageType currentStorageType = ResumeDataStorageType::Legacy;
     QVector<LoadedResumeData> loadedResumeData;
     int processingResumeDataCount = 0;
+    int64_t totalResumeDataCount = 0;
+    int64_t finishedResumeDataCount = 0;
     bool isLoadFinished = false;
     bool isLoadedResumeDataHandlingEnqueued = false;
     QSet<QString> recoveredCategories;
@@ -1102,6 +1104,7 @@ void Session::prepareStartup()
     connect(context->startupStorage, &ResumeDataStorage::loadStarted, context
             , [this, context](const QVector<TorrentID> &torrents)
     {
+        context->totalResumeDataCount = torrents.size();
 #ifdef QBT_USES_LIBTORRENT2
         context->indexedTorrents = QSet<TorrentID>(torrents.cbegin(), torrents.cend());
 #endif
@@ -1117,6 +1120,7 @@ void Session::prepareStartup()
     connect(this, &Session::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
     {
         context->processingResumeDataCount -= torrents.count();
+        context->finishedResumeDataCount += torrents.count();
         if (!context->isLoadedResumeDataHandlingEnqueued)
         {
             QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
@@ -1128,6 +1132,8 @@ void Session::prepareStartup()
             m_nativeSession->post_torrent_updates();
             m_refreshEnqueued = true;
         }
+
+        emit startupProgressUpdated((context->finishedResumeDataCount * 100.) / context->totalResumeDataCount);
     });
 
     context->startupStorage->loadAll();
@@ -1137,6 +1143,7 @@ void Session::handleLoadedResumeData(ResumeSessionContext *context)
 {
     context->isLoadedResumeDataHandlingEnqueued = false;
 
+    int count = context->processingResumeDataCount;
     while (context->processingResumeDataCount < MAX_PROCESSING_RESUMEDATA_COUNT)
     {
         if (context->loadedResumeData.isEmpty())
@@ -1161,7 +1168,10 @@ void Session::handleLoadedResumeData(ResumeSessionContext *context)
         }
 
         processNextResumeData(context);
+        ++count;
     }
+
+    context->finishedResumeDataCount += (count - context->processingResumeDataCount);
 }
 
 void Session::processNextResumeData(ResumeSessionContext *context)
@@ -1365,6 +1375,7 @@ void Session::endStartup(ResumeSessionContext *context)
     }
 
     m_isRestored = true;
+    emit startupProgressUpdated(100);
     emit restored();
 }
 
