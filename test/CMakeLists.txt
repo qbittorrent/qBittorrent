@@ -9,7 +9,12 @@ add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
 
 include_directories("../src")
 
-file(GLOB testFiles "${CMAKE_CURRENT_SOURCE_DIR}/test*.cpp")
+set(testFiles
+    testalgorithm.cpp
+    testorderedset.cpp
+    testutilscompare.cpp
+    testutilsgzip.cpp
+)
 foreach(testFile ${testFiles})
     get_filename_component(testFilename "${testFile}" NAME_WLE)
 
