@@ -1088,8 +1088,8 @@ Erro: %2</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="446"/>
-        <source>&apos;%1&apos; has finished downloading</source>
-        <translation>O &quot;%1&quot; terminou de baixar</translation>
+        <source>[qBittorrent] &apos;%1&apos; has finished downloading</source>
+        <translation>[qBittorrent] O &quot;%1&quot; terminou de baixar</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="461"/>
