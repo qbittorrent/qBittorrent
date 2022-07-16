@@ -172,8 +172,12 @@ bool SettingsStorage::writeNativeSettings() const
         nativeSettings->setValue(i.key(), i.value());
 
     nativeSettings->sync(); // Important to get error status
+    const QSettings::Status status = nativeSettings->status();
+    const Path newPath {nativeSettings->fileName()};
 
-    switch (nativeSettings->status())
+    nativeSettings.reset();  // close QSettings
+
+    switch (status)
     {
     case QSettings::NoError:
         break;
@@ -188,8 +192,7 @@ bool SettingsStorage::writeNativeSettings() const
         break;
     }
 
-    const Path newPath {nativeSettings->fileName()};
-    if (nativeSettings->status() != QSettings::NoError)
+    if (status != QSettings::NoError)
     {
         Utils::Fs::removeFile(newPath);
         return false;
