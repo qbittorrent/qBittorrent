@@ -50,25 +50,6 @@ namespace Private
         Q_DISABLE_COPY_MOVE(FileSystemPathValidator)
 
     public:
-        FileSystemPathValidator(QObject *parent = nullptr);
-
-        bool strictMode() const;
-        void setStrictMode(bool v);
-
-        bool existingOnly() const;
-        void setExistingOnly(bool v);
-
-        bool directoriesOnly() const;
-        void setDirectoriesOnly(bool v);
-
-        bool checkReadPermission() const;
-        void setCheckReadPermission(bool v);
-
-        bool checkWritePermission() const;
-        void setCheckWritePermission(bool v);
-
-        QValidator::State validate(QString &input, int &pos) const override;
-
         enum class TestResult
         {
             OK,
@@ -79,25 +60,39 @@ namespace Private
             CantWrite
         };
 
+        FileSystemPathValidator(QObject *parent = nullptr);
+
+        bool strictMode() const;
+        void setStrictMode(bool value);
+
+        bool existingOnly() const;
+        void setExistingOnly(bool value);
+
+        bool directoriesOnly() const;
+        void setDirectoriesOnly(bool value);
+
+        bool checkReadPermission() const;
+        void setCheckReadPermission(bool value);
+
+        bool checkWritePermission() const;
+        void setCheckWritePermission(bool value);
+
         TestResult lastTestResult() const;
         QValidator::State lastValidationState() const;
-        QString lastTestedPath() const;
+
+        QValidator::State validate(QString &input, int &pos) const override;
 
     private:
-        QValidator::State validate(const QList<QStringView> &pathComponents, bool strict,
-                                   int firstComponentToTest, int lastComponentToTest) const;
+        TestResult testPath(const Path &path) const;
 
-        TestResult testPath(const Path &path, bool pathIsComplete) const;
+        bool m_strictMode = false;
+        bool m_existingOnly = false;
+        bool m_directoriesOnly = false;
+        bool m_checkReadPermission = false;
+        bool m_checkWritePermission = false;
 
-        bool m_strictMode;
-        bool m_existingOnly;
-        bool m_directoriesOnly;
-        bool m_checkReadPermission;
-        bool m_checkWritePermission;
-
-        mutable TestResult m_lastTestResult;
-        mutable QValidator::State m_lastValidationState;
-        mutable QString m_lastTestedPath;
+        mutable TestResult m_lastTestResult = TestResult::DoesNotExist;
+        mutable QValidator::State m_lastValidationState = QValidator::Invalid;
     };
 
     class FileEditorWithCompletion
@@ -135,7 +130,7 @@ namespace Private
         void contextMenuEvent(QContextMenuEvent *event) override;
 
     private:
-        static QString warningText(FileSystemPathValidator::TestResult r);
+        static QString warningText(FileSystemPathValidator::TestResult result);
         void showCompletionPopup();
 
         QFileSystemModel *m_completerModel = nullptr;
