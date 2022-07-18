@@ -70,14 +70,14 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
     Q_DECLARE_PUBLIC(FileSystemPathEdit)
     Q_DISABLE_COPY_MOVE(FileSystemPathEditPrivate)
 
-    FileSystemPathEditPrivate(FileSystemPathEdit *q, Private::FileEditorWithCompletion *editor);
+    FileSystemPathEditPrivate(FileSystemPathEdit *q, Private::IFileEditorWithCompletion *editor);
 
     void modeChanged();
     void browseActionTriggered();
     QString dialogCaptionOrDefault() const;
 
     FileSystemPathEdit *q_ptr = nullptr;
-    std::unique_ptr<Private::FileEditorWithCompletion> m_editor;
+    std::unique_ptr<Private::IFileEditorWithCompletion> m_editor;
     QAction *m_browseAction = nullptr;
     QToolButton *m_browseBtn = nullptr;
     QString m_fileNameFilter;
@@ -88,7 +88,7 @@ class FileSystemPathEdit::FileSystemPathEditPrivate
 };
 
 FileSystemPathEdit::FileSystemPathEditPrivate::FileSystemPathEditPrivate(
-                        FileSystemPathEdit *q, Private::FileEditorWithCompletion *editor)
+                        FileSystemPathEdit *q, Private::IFileEditorWithCompletion *editor)
     : q_ptr {q}
     , m_editor {editor}
     , m_browseAction {new QAction(q)}
@@ -183,7 +183,7 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
     m_validator->setCheckWritePermission((m_mode == FileSystemPathEdit::Mode::FileSave) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));
 }
 
-FileSystemPathEdit::FileSystemPathEdit(Private::FileEditorWithCompletion *editor, QWidget *parent)
+FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *editor, QWidget *parent)
     : QWidget(parent)
     , d_ptr(new FileSystemPathEditPrivate(this, editor))
 {

@@ -95,10 +95,10 @@ namespace Private
         mutable QValidator::State m_lastValidationState = QValidator::Invalid;
     };
 
-    class FileEditorWithCompletion
+    class IFileEditorWithCompletion
     {
     public:
-        virtual ~FileEditorWithCompletion() = default;
+        virtual ~IFileEditorWithCompletion() = default;
         virtual void completeDirectoriesOnly(bool completeDirsOnly) = 0;
         virtual void setFilenameFilters(const QStringList &filters) = 0;
         virtual void setBrowseAction(QAction *action) = 0;
@@ -108,7 +108,7 @@ namespace Private
         virtual QWidget *widget() = 0;
     };
 
-    class FileLineEdit final : public QLineEdit, public FileEditorWithCompletion
+    class FileLineEdit final : public QLineEdit, public IFileEditorWithCompletion
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(FileLineEdit)
@@ -140,7 +140,7 @@ namespace Private
         QFileIconProvider m_iconProvider;
     };
 
-    class FileComboEdit final : public QComboBox, public FileEditorWithCompletion
+    class FileComboEdit final : public QComboBox, public IFileEditorWithCompletion
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(FileComboEdit)
