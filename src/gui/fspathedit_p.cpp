@@ -161,7 +161,6 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
 
     m_completer->setModel(m_completerModel);
-    m_completer->setCompletionMode(QCompleter::PopupCompletion);
     setCompleter(m_completer);
 }
 
