@@ -212,7 +212,7 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 
     if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
     {
-        m_completerModel->setRootPath(QFileInfo(text()).absoluteDir().absolutePath());
+        m_completerModel->setRootPath(Path(text()).data());
         showCompletionPopup();
     }
 
