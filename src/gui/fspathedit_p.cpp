@@ -240,7 +240,7 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
             if (lastState == QValidator::Invalid)
                 m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
             else if (lastState == QValidator::Intermediate)
-                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
+                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
             m_warningAction->setToolTip(warningText(lastTestResult));
         }
     }
