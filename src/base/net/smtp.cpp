@@ -138,7 +138,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 {
     const Preferences *const pref = Preferences::instance();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader(u"From"_qs, from)
+                + encodeMimeHeader(u"From"_qs, u"qBittorrent <%1>"_qs.arg(from))
                 + encodeMimeHeader(u"Subject"_qs, subject)
                 + encodeMimeHeader(u"To"_qs, to)
                 + "MIME-Version: 1.0\r\n"

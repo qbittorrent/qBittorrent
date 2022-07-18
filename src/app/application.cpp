@@ -476,7 +476,7 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
     auto *smtp = new Net::Smtp(this);
     smtp->sendMail(pref->getMailNotificationSender(),
                      pref->getMailNotificationEmail(),
-                     tr("[qBittorrent] '%1' has finished downloading").arg(torrent->name()),
+                     tr("Torrent \"%1\" has finished downloading").arg(torrent->name()),
                      content);
 }
 
