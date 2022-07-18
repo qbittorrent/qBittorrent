@@ -208,8 +208,11 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     , m_browseAction {nullptr}
     , m_warningAction {nullptr}
 {
-    m_completerModel->setRootPath({});
+    m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+
     m_completerModel->setIconProvider(&m_iconProvider);
+    m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
+
     m_completer->setModel(m_completerModel);
     m_completer->setCompletionMode(QCompleter::PopupCompletion);
     setCompleter(m_completer);
