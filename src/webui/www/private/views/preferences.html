@@ -955,6 +955,14 @@
             </tr>
             <tr>
                 <td>
+                    <label for="refreshInterval">QBT_TR(Refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="refreshInterval" style="width: 15em;" title="QBT_TR(It controls the internal state update interval which in turn will affect UI updates)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="resolvePeerCountries">QBT_TR(Resolve peer countries:)QBT_TR[CONTEXT=OptionsDialog]</label>
                 </td>
                 <td>
@@ -2007,6 +2015,7 @@
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
+                        $('refreshInterval').setProperty('value', pref.refresh_interval);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
                         // libtorrent section
@@ -2413,6 +2422,7 @@
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
+            settings.set('refresh_interval', $('refreshInterval').getProperty('value'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
             settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
 
