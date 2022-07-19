@@ -481,6 +481,7 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    app()->desktopIntegration()->setMenu(nullptr);
     delete m_ui;
 }
 
@@ -1170,11 +1171,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
                 Preferences::instance()->setConfirmOnExit(false);
         }
     }
-
-    // Disable some UI to prevent user interactions
-    app()->desktopIntegration()->disconnect();
-    app()->desktopIntegration()->setToolTip(tr("qBittorrent is shutting down..."));
-    app()->desktopIntegration()->menu()->setEnabled(false);
 
     // Accept exit
     e->accept();

@@ -50,6 +50,7 @@
 #include <QProcess>
 
 #ifndef DISABLE_GUI
+#include <QMenu>
 #include <QMessageBox>
 #include <QPixmapCache>
 #ifdef Q_OS_WIN
@@ -973,6 +974,14 @@ void Application::cleanup()
     LogMsg(tr("qBittorrent termination initiated"));
 
 #ifndef DISABLE_GUI
+    if (m_desktopIntegration)
+    {
+        m_desktopIntegration->disconnect();
+        m_desktopIntegration->setToolTip(tr("qBittorrent is shutting down..."));
+        if (m_desktopIntegration->menu())
+            m_desktopIntegration->menu()->setEnabled(false);
+    }
+
     if (m_window)
     {
         // Hide the window and don't leave it on screen as
