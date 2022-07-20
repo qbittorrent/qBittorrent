@@ -136,9 +136,9 @@ namespace RSS
         SettingValue<QVariant> m_storeSmartEpisodeFilter;
         SettingValue<bool> m_storeDownloadRepacks;
 
-        QTimer *m_processingTimer;
-        QThread *m_ioThread;
-        AsyncFileStorage *m_fileStorage;
+        QTimer *m_processingTimer = nullptr;
+        QThread *m_ioThread = nullptr;
+        AsyncFileStorage *m_fileStorage = nullptr;
         QHash<QString, AutoDownloadRule> m_rules;
         QList<QSharedPointer<ProcessingJob>> m_processingQueue;
         QHash<QString, QSharedPointer<ProcessingJob>> m_waitingJobs;

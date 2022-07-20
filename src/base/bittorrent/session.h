@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <memory>
 #include <variant>
 #include <vector>
 
@@ -122,6 +121,13 @@ namespace BitTorrent
         };
         Q_ENUM_NS(ChokingAlgorithm)
 
+        enum class DiskIOReadMode : int
+        {
+            DisableOSCache = 0,
+            EnableOSCache = 1
+        };
+        Q_ENUM_NS(DiskIOReadMode)
+
         enum class DiskIOType : int
         {
             Default = 0,
@@ -129,6 +135,16 @@ namespace BitTorrent
             Posix = 2
         };
         Q_ENUM_NS(DiskIOType)
+
+        enum class DiskIOWriteMode : int
+        {
+            DisableOSCache = 0,
+            EnableOSCache = 1,
+#ifdef QBT_USES_LIBTORRENT2
+            WriteThrough = 2
+#endif
+        };
+        Q_ENUM_NS(DiskIOWriteMode)
 
         enum class MixedModeAlgorithm : int
         {
@@ -151,18 +167,6 @@ namespace BitTorrent
             SQLite
         };
         Q_ENUM_NS(ResumeDataStorageType)
-
-#if defined(Q_OS_WIN)
-        enum class OSMemoryPriority : int
-        {
-            Normal = 0,
-            BelowNormal = 1,
-            Medium = 2,
-            Low = 3,
-            VeryLow = 4
-        };
-        Q_ENUM_NS(OSMemoryPriority)
-#endif
     }
 
     struct SessionMetricIndices
@@ -372,8 +376,10 @@ namespace BitTorrent
         void setDiskQueueSize(qint64 size);
         DiskIOType diskIOType() const;
         void setDiskIOType(DiskIOType type);
-        bool useOSCache() const;
-        void setUseOSCache(bool use);
+        DiskIOReadMode diskIOReadMode() const;
+        void setDiskIOReadMode(DiskIOReadMode mode);
+        DiskIOWriteMode diskIOWriteMode() const;
+        void setDiskIOWriteMode(DiskIOWriteMode mode);
         bool isCoalesceReadWriteEnabled() const;
         void setCoalesceReadWriteEnabled(bool enabled);
         bool usePieceExtentAffinity() const;
@@ -464,12 +470,9 @@ namespace BitTorrent
         void setBannedIPs(const QStringList &newList);
         ResumeDataStorageType resumeDataStorageType() const;
         void setResumeDataStorageType(ResumeDataStorageType type);
-#if defined(Q_OS_WIN)
-        OSMemoryPriority getOSMemoryPriority() const;
-        void setOSMemoryPriority(OSMemoryPriority priority);
-#endif
 
-        void startUpTorrents();
+        bool isRestored() const;
+
         Torrent *findTorrent(const TorrentID &id) const;
         QVector<Torrent *> torrents() const;
         qsizetype torrentsCount() const;
@@ -540,6 +543,7 @@ namespace BitTorrent
         void loadTorrentFailed(const QString &error);
         void metadataDownloaded(const TorrentInfo &info);
         void recursiveTorrentDownloadPossible(Torrent *torrent);
+        void restored();
         void speedLimitModeChanged(bool alternative);
         void statsUpdated();
         void subcategoriesSupportChanged();
@@ -550,12 +554,12 @@ namespace BitTorrent
         void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
         void torrentFinished(Torrent *torrent);
         void torrentFinishedChecking(Torrent *torrent);
-        void torrentLoaded(Torrent *torrent);
         void torrentMetadataReceived(Torrent *torrent);
         void torrentPaused(Torrent *torrent);
         void torrentResumed(Torrent *torrent);
         void torrentSavePathChanged(Torrent *torrent);
         void torrentSavingModeChanged(Torrent *torrent);
+        void torrentsLoaded(const QVector<Torrent *> &torrents);
         void torrentsUpdated(const QVector<Torrent *> &torrents);
         void torrentTagAdded(Torrent *torrent, const QString &tag);
         void torrentTagRemoved(Torrent *torrent, const QString &tag);
@@ -586,6 +590,8 @@ namespace BitTorrent
 #endif
 
     private:
+        struct ResumeSessionContext;
+
         struct MoveStorageJob
         {
             lt::torrent_handle torrentHandle;
@@ -626,13 +632,13 @@ namespace BitTorrent
         void populateAdditionalTrackers();
         void enableIPFilter();
         void disableIPFilter();
-#if defined(Q_OS_WIN)
-        void applyOSMemoryPriority() const;
-#endif
         void processTrackerStatuses();
         void populateExcludedFileNamesRegExpList();
+        void prepareStartup();
+        void handleLoadedResumeData(ResumeSessionContext *context);
+        void processNextResumeData(ResumeSessionContext *context);
+        void endStartup(ResumeSessionContext *context);
 
-        bool loadTorrent(LoadTorrentParams params);
         LoadTorrentParams initLoadTorrentParams(const AddTorrentParams &addTorrentParams);
         bool addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams);
 
@@ -640,8 +646,8 @@ namespace BitTorrent
         void exportTorrentFile(const Torrent *torrent, const Path &folderPath);
 
         void handleAlert(const lt::alert *a);
+        void handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts);
         void dispatchTorrentAlert(const lt::alert *a);
-        void handleAddTorrentAlert(const lt::add_torrent_alert *p);
         void handleStateUpdateAlert(const lt::state_update_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
@@ -663,7 +669,7 @@ namespace BitTorrent
         void handleSocks5Alert(const lt::socks5_alert *p) const;
         void handleTrackerAlert(const lt::tracker_alert *a);
 
-        void createTorrent(const lt::torrent_handle &nativeHandle);
+        TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
         void saveResumeData();
         void saveTorrentsQueue() const;
@@ -701,7 +707,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_diskCacheTTL;
         CachedSettingValue<qint64> m_diskQueueSize;
         CachedSettingValue<DiskIOType> m_diskIOType;
-        CachedSettingValue<bool> m_useOSCache;
+        CachedSettingValue<DiskIOReadMode> m_diskIOReadMode;
+        CachedSettingValue<DiskIOWriteMode> m_diskIOWriteMode;
         CachedSettingValue<bool> m_coalesceReadWriteEnabled;
         CachedSettingValue<bool> m_usePieceExtentAffinity;
         CachedSettingValue<bool> m_isSuggestMode;
@@ -789,9 +796,8 @@ namespace BitTorrent
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
-#if defined(Q_OS_WIN)
-        CachedSettingValue<OSMemoryPriority> m_OSMemoryPriority;
-#endif
+
+        bool m_isRestored = false;
 
         // Order is important. This needs to be declared after its CachedSettingsValue
         // counterpart, because it uses it for initialization in the constructor

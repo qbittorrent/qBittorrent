@@ -368,8 +368,8 @@ namespace
     }
 }
 
-SyncController::SyncController(QObject *parent)
-    : APIController(parent)
+SyncController::SyncController(IApplication *app, QObject *parent)
+    : APIController(app, parent)
 {
     m_freeDiskSpaceThread = new QThread(this);
     m_freeDiskSpaceChecker = new FreeDiskSpaceChecker();
@@ -502,7 +502,7 @@ void SyncController::maindataAction()
     {
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
-        // adjust it to be compatible with exisitng WebAPI
+        // adjust it to be compatible with existing WebAPI
         category[u"savePath"_qs] = category.take(u"save_path"_qs);
         category.insert(u"name"_qs, categoryName);
         categories[categoryName] = category.toVariantMap();

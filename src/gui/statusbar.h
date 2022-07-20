@@ -64,9 +64,9 @@ private:
     void updateDHTNodesNumber();
     void updateSpeedLabels();
 
-    QPushButton *m_dlSpeedLbl;
-    QPushButton *m_upSpeedLbl;
-    QLabel *m_DHTLbl;
-    QPushButton *m_connecStatusLblIcon;
-    QPushButton *m_altSpeedsBtn;
+    QPushButton *m_dlSpeedLbl = nullptr;
+    QPushButton *m_upSpeedLbl = nullptr;
+    QLabel *m_DHTLbl = nullptr;
+    QPushButton *m_connecStatusLblIcon = nullptr;
+    QPushButton *m_altSpeedsBtn = nullptr;
 };

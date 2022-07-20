@@ -78,6 +78,7 @@ private:
     explicit TorrentFilesWatcher(QObject *parent = nullptr);
     ~TorrentFilesWatcher() override;
 
+    void initWorker();
     void load();
     void loadLegacy();
     void store() const;

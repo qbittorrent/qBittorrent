@@ -81,7 +81,7 @@ namespace
         if (feed->isLoading())
             return UIThemeManager::instance()->getIcon(u"loading"_qs);
         if (feed->hasError())
-            return UIThemeManager::instance()->getIcon(u"unavailable"_qs);
+            return UIThemeManager::instance()->getIcon(u"task-reject"_qs);
 
         return loadIcon(feed->iconPath(), u"application-rss+xml"_qs);
     }

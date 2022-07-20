@@ -30,10 +30,30 @@
 
 #pragma once
 
+#include <QtGlobal>
+#include <QMetaObject>
+
 class QString;
 
 class Path;
 struct QBtCommandLineParameters;
+
+#ifdef Q_OS_WIN
+inline namespace ApplicationSettingsEnums
+{
+    Q_NAMESPACE
+
+    enum class MemoryPriority : int
+    {
+        Normal = 0,
+        BelowNormal = 1,
+        Medium = 2,
+        Low = 3,
+        VeryLow = 4
+    };
+    Q_ENUM_NS(MemoryPriority)
+}
+#endif
 
 class IApplication
 {
@@ -58,4 +78,9 @@ public:
 
     virtual int memoryWorkingSetLimit() const = 0;
     virtual void setMemoryWorkingSetLimit(int size) = 0;
+
+#ifdef Q_OS_WIN
+    virtual MemoryPriority processMemoryPriority() const = 0;
+    virtual void setProcessMemoryPriority(MemoryPriority priority) = 0;
+#endif
 };

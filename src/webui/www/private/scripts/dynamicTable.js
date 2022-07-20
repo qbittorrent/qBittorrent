@@ -328,7 +328,7 @@ window.qBittorrent.DynamicTable = (function() {
             });
 
             const createLi = function(columnName, text) {
-                const html = '<a href="#' + columnName + '" ><img src="icons/checked.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
+                const html = '<a href="#' + columnName + '" ><img src="icons/checked-completed.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
                 return new Element('li', {
                     html: html
                 });
@@ -948,10 +948,10 @@ window.qBittorrent.DynamicTable = (function() {
                         state = "uploading";
                         break;
                     case "pausedDL":
-                        state = "paused";
+                        state = "media-playback-pause";
                         break;
                     case "pausedUP":
-                        state = "completed";
+                        state = "checked-completed";
                         break;
                     case "queuedDL":
                     case "queuedUP":
@@ -962,7 +962,7 @@ window.qBittorrent.DynamicTable = (function() {
                     case "queuedForChecking":
                     case "checkingResumeData":
                     case "moving":
-                        state = "checking";
+                        state = "force-recheck";
                         break;
                     case "unknown":
                     case "missingFiles":
@@ -2181,7 +2181,7 @@ window.qBittorrent.DynamicTable = (function() {
                         img_path = 'icons/application-rss+xml.svg';
                         break;
                     case 'hasError':
-                        img_path = 'icons/unavailable.svg';
+                        img_path = 'icons/task-reject.svg';
                         break;
                     case 'isLoading':
                         img_path = 'images/spinner.gif';

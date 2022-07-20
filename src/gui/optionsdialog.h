@@ -32,6 +32,7 @@
 
 #include "base/pathfwd.h"
 #include "base/settingvalue.h"
+#include "guiapplicationcomponent.h"
 
 class QListWidgetItem;
 class QTableWidget;
@@ -59,7 +60,7 @@ namespace Ui
     class OptionsDialog;
 }
 
-class OptionsDialog final : public QDialog
+class OptionsDialog final : public QDialog, public GUIApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(OptionsDialog)
@@ -85,8 +86,7 @@ class OptionsDialog final : public QDialog
     };
 
 public:
-    // Constructor / Destructor
-    OptionsDialog(QWidget *parent = nullptr);
+    explicit OptionsDialog(IGUIApplication *app, QWidget *parent = nullptr);
     ~OptionsDialog() override;
 
 public slots:
@@ -126,11 +126,6 @@ private:
 
     // General options
     QString getLocale() const;
-#ifndef Q_OS_MACOS
-    bool systemTrayEnabled() const;
-    bool minimizeToTray() const;
-    bool closeToTray() const;
-#endif
     bool startMinimized() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
@@ -184,14 +179,14 @@ private:
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
 
-    Ui::OptionsDialog *m_ui;
+    Ui::OptionsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
     SettingValue<QStringList> m_storeHSplitterSize;
     SettingValue<int> m_storeLastViewedPage;
 
-    QPushButton *m_applyButton;
+    QPushButton *m_applyButton = nullptr;
 
-    AdvancedSettings *m_advancedSettings;
+    AdvancedSettings *m_advancedSettings = nullptr;
 
     QVector<QTableWidget*> m_scheduleDayTables = QVector<QTableWidget*>(7);
 

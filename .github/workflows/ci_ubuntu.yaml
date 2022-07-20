@@ -14,11 +14,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.6", "1.2.16"]
+        libt_version: ["2.0.7", "1.2.17"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
         qt_version: ["5.15.2", "6.2.0"]
         exclude:
-          - libt_version: "1.2.16"
+          - libt_version: "1.2.17"
             qt_version: "6.2.0"
 
     steps:
@@ -70,10 +70,12 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
+            -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build --target qbt_update_translations
           cmake --build build
+          cmake --build build --target check
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Build qBittorrent (Qt6)
@@ -86,10 +88,12 @@ jobs:
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DQT6=ON \
+            -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build --target qbt_update_translations
           cmake --build build
+          cmake --build build --target check
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Prepare build artifacts

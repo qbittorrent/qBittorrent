@@ -70,7 +70,7 @@ namespace
     {
     public:
         UnifiedFileIconProvider()
-            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"text-plain"_qs)}
+            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_qs)}
         {
         }
 
@@ -438,7 +438,7 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &p
     if (column >= TorrentContentModelItem::NB_COL)
         return {};
 
-    TorrentContentModelFolder *parentItem;
+    TorrentContentModelFolder *parentItem = nullptr;
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
@@ -475,7 +475,7 @@ int TorrentContentModel::rowCount(const QModelIndex &parent) const
     if (parent.column() > 0)
         return 0;
 
-    TorrentContentModelFolder *parentItem;
+    TorrentContentModelFolder *parentItem = nullptr;
     if (!parent.isValid())
         parentItem = m_rootItem;
     else

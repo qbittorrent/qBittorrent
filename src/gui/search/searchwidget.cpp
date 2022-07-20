@@ -52,6 +52,7 @@
 #include "base/search/searchhandler.h"
 #include "base/search/searchpluginmanager.h"
 #include "base/utils/foreignapps.h"
+#include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "gui/uithememanager.h"
 #include "pluginselectdialog.h"
@@ -68,26 +69,26 @@ namespace
         switch (st)
         {
         case SearchJobWidget::Status::Ongoing:
-            return u"task-ongoing"_qs;
+            return u"queued"_qs;
         case SearchJobWidget::Status::Finished:
             return u"task-complete"_qs;
         case SearchJobWidget::Status::Aborted:
             return u"task-reject"_qs;
         case SearchJobWidget::Status::Error:
-            return u"task-attention"_qs;
+            return u"dialog-warning"_qs;
         case SearchJobWidget::Status::NoResults:
-            return u"task-attention"_qs;
+            return u"dialog-warning"_qs;
         default:
             return {};
         }
     }
 }
 
-SearchWidget::SearchWidget(MainWindow *mainWindow)
+SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
     : QWidget(mainWindow)
-    , m_ui(new Ui::SearchWidget())
-    , m_mainWindow(mainWindow)
-    , m_isNewQueryString(false)
+    , GUIApplicationComponent(app)
+    , m_ui {new Ui::SearchWidget()}
+    , m_mainWindow {mainWindow}
 {
     m_ui->setupUi(this);
     m_ui->tabWidget->tabBar()->installEventFilter(this);
@@ -100,7 +101,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
         + u"<br>"
         + tr("<b>foo bar</b>: search for <b>foo</b> and <b>bar</b>",
                  "Search phrase example, illustrates quotes usage, a pair of "
-                 "space delimited words, individal words are highlighted")
+                 "space delimited words, individual words are highlighted")
         + u"<br>"
         + tr("<b>&quot;foo bar&quot;</b>: search for <b>foo bar</b>",
                  "Search phrase example, illustrates quotes usage, double quoted"
@@ -111,7 +112,7 @@ SearchWidget::SearchWidget(MainWindow *mainWindow)
 #ifndef Q_OS_MACOS
     // Icons
     m_ui->searchButton->setIcon(UIThemeManager::instance()->getIcon(u"edit-find"_qs));
-    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"preferences-system-network"_qs));
+    m_ui->pluginsButton->setIcon(UIThemeManager::instance()->getIcon(u"plugins"_qs));
 #else
     // On macOS the icons overlap the text otherwise
     QSize iconSize = m_ui->tabWidget->iconSize();
@@ -305,7 +306,7 @@ void SearchWidget::on_searchButton_clicked()
 {
     if (!Utils::ForeignApps::pythonInfo().isValid())
     {
-        m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
+        app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Please install Python to use the Search Engine."));
         return;
     }
 
@@ -371,12 +372,12 @@ void SearchWidget::tabStatusChanged(QWidget *tab)
     {
         Q_ASSERT(m_activeSearchTab->status() != SearchJobWidget::Status::Ongoing);
 
-        if (m_mainWindow->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
+        if (app()->desktopIntegration()->isNotificationsEnabled() && (m_mainWindow->currentTabWidget() != this))
         {
             if (m_activeSearchTab->status() == SearchJobWidget::Status::Error)
-                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has failed"));
+                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has failed"));
             else
-                m_mainWindow->showNotificationBalloon(tr("Search Engine"), tr("Search has finished"));
+                app()->desktopIntegration()->showNotification(tr("Search Engine"), tr("Search has finished"));
         }
 
         m_activeSearchTab = nullptr;

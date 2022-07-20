@@ -69,6 +69,6 @@ signals:
     void filteredFilesChanged() const;
 
 private:
-    PropertiesWidget *m_properties;
+    PropertiesWidget *m_properties = nullptr;
     ProgressBarPainter m_progressBarPainter;
 };

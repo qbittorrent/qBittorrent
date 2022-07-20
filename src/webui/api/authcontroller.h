@@ -43,7 +43,7 @@ class AuthController : public APIController
     Q_DISABLE_COPY_MOVE(AuthController)
 
 public:
-    explicit AuthController(ISessionManager *sessionManager, QObject *parent = nullptr);
+    explicit AuthController(ISessionManager *sessionManager, IApplication *app, QObject *parent = nullptr);
 
 private slots:
     void loginAction();

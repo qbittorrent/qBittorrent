@@ -62,7 +62,7 @@ private:
     void onFolderSet(const Path &path, const TorrentFilesWatcher::WatchedFolderOptions &options);
     void onFolderRemoved(const Path &path);
 
-    TorrentFilesWatcher *m_fsWatcher;
+    TorrentFilesWatcher *m_fsWatcher = nullptr;
     PathList m_watchedFolders;
     QHash<Path, TorrentFilesWatcher::WatchedFolderOptions> m_watchedFoldersOptions;
     QSet<Path> m_deletedFolders;

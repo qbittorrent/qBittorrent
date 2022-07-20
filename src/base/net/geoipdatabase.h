@@ -73,16 +73,16 @@ private:
     template <typename T> QVariant readPlainValue(quint32 &offset, quint8 len) const;
 
     // Metadata
-    quint16 m_ipVersion;
-    quint16 m_recordSize;
-    quint32 m_nodeCount;
-    int m_nodeSize;
-    int m_indexSize;
-    int m_recordBytes;
+    quint16 m_ipVersion = 0;
+    quint16 m_recordSize = 0;
+    quint32 m_nodeCount = 0;
+    int m_nodeSize = 0;
+    int m_indexSize = 0;
+    int m_recordBytes = 0;
     QDateTime m_buildEpoch;
     QString m_dbType;
     // Search data
     mutable QHash<quint32, QString> m_countries;
-    quint32 m_size;
-    uchar *m_data;
+    quint32 m_size = 0;
+    uchar *m_data = nullptr;
 };

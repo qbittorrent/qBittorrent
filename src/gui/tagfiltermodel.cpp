@@ -33,7 +33,6 @@
 #include <QVector>
 
 #include "base/bittorrent/session.h"
-#include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "uithememanager.h"
 
@@ -99,7 +98,7 @@ TagFilterModel::TagFilterModel(QObject *parent)
     connect(session, &Session::tagRemoved, this, &TagFilterModel::tagRemoved);
     connect(session, &Session::torrentTagAdded, this, &TagFilterModel::torrentTagAdded);
     connect(session, &Session::torrentTagRemoved, this, &TagFilterModel::torrentTagRemoved);
-    connect(session, &Session::torrentLoaded, this, &TagFilterModel::torrentAdded);
+    connect(session, &Session::torrentsLoaded, this, &TagFilterModel::torrentsLoaded);
     connect(session, &Session::torrentAboutToBeRemoved, this, &TagFilterModel::torrentAboutToBeRemoved);
     populate();
 }
@@ -124,7 +123,7 @@ QVariant TagFilterModel::data(const QModelIndex &index, int role) const
     switch (role)
     {
     case Qt::DecorationRole:
-        return UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
+        return UIThemeManager::instance()->getIcon(u"tags"_qs);
     case Qt::DisplayRole:
         return u"%1 (%2)"_qs.arg(tagDisplayName(item.tag())).arg(item.torrentsCount());
     case Qt::UserRole:
@@ -230,16 +229,19 @@ void TagFilterModel::torrentTagRemoved(BitTorrent::Torrent *const torrent, const
     emit dataChanged(i, i);
 }
 
-void TagFilterModel::torrentAdded(BitTorrent::Torrent *const torrent)
+void TagFilterModel::torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    allTagsItem()->increaseTorrentsCount();
+    for (const BitTorrent::Torrent *torrent : torrents)
+    {
+        allTagsItem()->increaseTorrentsCount();
 
-    const QVector<TagModelItem *> items = findItems(torrent->tags());
-    if (items.isEmpty())
-        untaggedItem()->increaseTorrentsCount();
+        const QVector<TagModelItem *> items = findItems(torrent->tags());
+        if (items.isEmpty())
+            untaggedItem()->increaseTorrentsCount();
 
-    for (TagModelItem *item : items)
-        item->increaseTorrentsCount();
+        for (TagModelItem *item : items)
+            item->increaseTorrentsCount();
+    }
 }
 
 void TagFilterModel::torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)

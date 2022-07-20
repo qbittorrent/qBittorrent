@@ -91,9 +91,9 @@ private:
     void finishAsyncOp();
     void finishPluginUpdate();
 
-    Ui::PluginSelectDialog *m_ui;
+    Ui::PluginSelectDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
-    SearchPluginManager *m_pluginManager;
+    SearchPluginManager *m_pluginManager = nullptr;
     QStringList m_updatedPlugins;
     int m_asyncOps = 0;
     int m_pendingUpdates = 0;

@@ -51,10 +51,6 @@ nogui:systemd {
     INSTALLS += \
         menuicons \
         statusIconScalable
-
-    pixmap.files = $$DIST_PATH/menuicons/128x128/apps/qbittorrent.png
-    pixmap.path = $$DATADIR/pixmaps
-    INSTALLS += pixmap
 }
 
 # INSTALL

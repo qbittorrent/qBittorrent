@@ -51,6 +51,6 @@ signals:
     void messageReceived(const QString &message);
 
 private:
-    QtLocalPeer *m_peer;
+    QtLocalPeer *m_peer = nullptr;
     const bool m_isFirstInstance;
 };

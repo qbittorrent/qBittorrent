@@ -376,7 +376,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="icons/slow_off.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="icons/slow_off.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                 </td>
                 <td><label for="up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td><input type="number" id="up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -394,7 +394,7 @@
         <table>
             <tr>
                 <td rowspan="2">
-                    <img src="icons/slow.svg" style="height: 1em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
+                    <img src="icons/slow.svg" style="height: 1.5em;" alt="QBT_TR(Alternative speed limits)QBT_TR[CONTEXT=MainWindow]">
                 </td>
                 <td><label for="alt_up_limit_value">QBT_TR(Upload:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td><input type="number" id="alt_up_limit_value" style="width: 4em;" min="0" />&nbsp;&nbsp;QBT_TR(KiB/s)QBT_TR[CONTEXT=OptionsDialog]</td>
@@ -898,7 +898,7 @@
         <table>
             <tr>
                 <td>
-                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
+                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
@@ -936,6 +936,14 @@
                 </td>
                 <td>
                     <input type="checkbox" id="recheckTorrentsOnCompletion">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="refreshInterval">QBT_TR(Refresh interval:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="text" id="refreshInterval" style="width: 15em;" title="QBT_TR(It controls the internal state update interval which in turn will affect UI updates)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(ms)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
             <tr>
@@ -1045,10 +1053,25 @@
             </tr>
             <tr>
                 <td>
-                    <label for="enableOSCache">QBT_TR(Enable OS cache:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
+                    <label for="diskIOReadMode">QBT_TR(Disk IO read mode:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_read_mode" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="checkbox" id="enableOSCache" />
+                    <select id="diskIOReadMode" style="width: 15em;">
+                        <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="diskIOWriteMode">QBT_TR(Disk IO write mode:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#disk_io_write_mode" target="_blank">(?)</a></label>
+                </td>
+                <td>
+                    <select id="diskIOWriteMode" style="width: 15em;">
+                        <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(Write-through (requires libtorrent >= 2.0.6))QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -1061,7 +1084,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="pieceExtentAffinity">QBT_TR(Use piece extent affinity (requires libtorrent >= 1.2.2):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/single-page-ref.html#piece_extent_affinity" target="_blank">(?)</a></label>
+                    <label for="pieceExtentAffinity">QBT_TR(Use piece extent affinity:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://libtorrent.org/single-page-ref.html#piece_extent_affinity" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="pieceExtentAffinity" />
@@ -1160,7 +1183,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="IDNSupportCheckbox">QBT_TR(Support internationalized domain name (IDN) (requires libtorrent >= 1.2.12):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_idna" target="_blank">(?)</a></label>
+                    <label for="IDNSupportCheckbox">QBT_TR(Support internationalized domain name (IDN):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#allow_idna" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="IDNSupportCheckbox" />
@@ -1247,7 +1270,7 @@
             </tr>
             <tr>
                 <td>
-                    <label for="maxConcurrentHTTPAnnounces">QBT_TR(Max concurrent HTTP announces (requires libtorrent >= 1.2.7):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces" target="_blank">(?)</a></label>
+                    <label for="maxConcurrentHTTPAnnounces">QBT_TR(Max concurrent HTTP announces:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#max_concurrent_http_announces" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="maxConcurrentHTTPAnnounces" style="width: 15em;" />
@@ -1359,7 +1382,7 @@
             }
             else {
                 item.nextElementSibling.hidden = true;
-                const text = item.options[item.selectedIndex].innerHTML;
+                const text = item.options[item.selectedIndex].textContent;
                 item.nextElementSibling.value = text;
             }
         };
@@ -1382,7 +1405,7 @@
             $('cb_watch_' + pos).setProperty('value', sel);
             if (disableInput) {
                 const elt = $('cb_watch_' + pos);
-                other = elt.options[elt.selectedIndex].innerHTML;
+                other = elt.options[elt.selectedIndex].textContent;
             }
             $('cb_watch_txt_' + pos).setProperty('value', other);
 
@@ -2206,6 +2229,7 @@
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
                         $('saveResumeDataInterval').setProperty('value', pref.save_resume_data_interval);
                         $('recheckTorrentsOnCompletion').setProperty('checked', pref.recheck_completed_torrents);
+                        $('refreshInterval').setProperty('value', pref.refresh_interval);
                         $('resolvePeerCountries').setProperty('checked', pref.resolve_peer_countries);
                         $('reannounceWhenAddressChanged').setProperty('checked', pref.reannounce_when_address_changed);
                         // libtorrent section
@@ -2217,7 +2241,8 @@
                         $('diskCacheExpiryInterval').setProperty('value', pref.disk_cache_ttl);
                         $('diskQueueSize').setProperty('value', (pref.disk_queue_size / 1024));
                         $('diskIOType').setProperty('value', pref.disk_io_type);
-                        $('enableOSCache').setProperty('checked', pref.enable_os_cache);
+                        $('diskIOReadMode').setProperty('value', pref.disk_io_read_mode);
+                        $('diskIOWriteMode').setProperty('value', pref.disk_io_write_mode);
                         $('coalesceReadsAndWrites').setProperty('checked', pref.enable_coalesce_read_write);
                         $('pieceExtentAffinity').setProperty('checked', pref.enable_piece_extent_affinity);
                         $('sendUploadPieceSuggestions').setProperty('checked', pref.enable_upload_suggestions);
@@ -2604,6 +2629,7 @@
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
             settings.set('save_resume_data_interval', $('saveResumeDataInterval').getProperty('value'));
             settings.set('recheck_completed_torrents', $('recheckTorrentsOnCompletion').getProperty('checked'));
+            settings.set('refresh_interval', $('refreshInterval').getProperty('value'));
             settings.set('resolve_peer_countries', $('resolvePeerCountries').getProperty('checked'));
             settings.set('reannounce_when_address_changed', $('reannounceWhenAddressChanged').getProperty('checked'));
 
@@ -2616,7 +2642,8 @@
             settings.set('disk_cache_ttl', $('diskCacheExpiryInterval').getProperty('value'));
             settings.set('disk_queue_size', ($('diskQueueSize').getProperty('value') * 1024));
             settings.set('disk_io_type', $('diskIOType').getProperty('value'));
-            settings.set('enable_os_cache', $('enableOSCache').getProperty('checked'));
+            settings.set('disk_io_read_mode', $('diskIOReadMode').getProperty('value'));
+            settings.set('disk_io_write_mode', $('diskIOWriteMode').getProperty('value'));
             settings.set('enable_coalesce_read_write', $('coalesceReadsAndWrites').getProperty('checked'));
             settings.set('enable_piece_extent_affinity', $('pieceExtentAffinity').getProperty('checked'));
             settings.set('enable_upload_suggestions', $('sendUploadPieceSuggestions').getProperty('checked'));

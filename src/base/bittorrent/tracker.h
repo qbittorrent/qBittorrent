@@ -103,7 +103,7 @@ namespace BitTorrent
         void unregisterPeer(const TrackerAnnounceRequest &announceReq);
         void prepareAnnounceResponse(const TrackerAnnounceRequest &announceReq);
 
-        Http::Server *m_server;
+        Http::Server *m_server = nullptr;
         Http::Request m_request;
         Http::Environment m_env;
 

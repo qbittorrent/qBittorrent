@@ -50,6 +50,6 @@ private slots:
     void update();
 
 private:
-    Ui::StatsDialog *m_ui;
+    Ui::StatsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

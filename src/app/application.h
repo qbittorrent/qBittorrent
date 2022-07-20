@@ -41,6 +41,7 @@
 #include <QApplication>
 #endif
 
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/interfaces/iapplication.h"
 #include "base/path.h"
 #include "base/settingvalue.h"
@@ -66,6 +67,7 @@ namespace RSS
 }
 
 #ifndef DISABLE_GUI
+class DesktopIntegration;
 class MainWindow;
 
 using BaseApplication = QApplication;
@@ -117,8 +119,17 @@ public:
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
 
+#ifdef Q_OS_WIN
+    MemoryPriority processMemoryPriority() const override;
+    void setProcessMemoryPriority(MemoryPriority priority) override;
+#endif
+
 #ifndef DISABLE_GUI
-    QPointer<MainWindow> mainWindow() override;
+    DesktopIntegration *desktopIntegration() override;
+    MainWindow *mainWindow() override;
+
+    bool isTorrentAddedNotificationsEnabled() const override;
+    void setTorrentAddedNotificationsEnabled(bool value) override;
 #endif
 
 private slots:
@@ -132,11 +143,27 @@ private slots:
 #endif
 
 private:
+    struct AddTorrentParams
+    {
+        QString torrentSource;
+        BitTorrent::AddTorrentParams torrentParams;
+        std::optional<bool> skipTorrentDialog;
+    };
+
     void initializeTranslation();
-    void processParams(const QStringList &params);
+    AddTorrentParams parseParams(const QStringList &params) const;
+    void processParams(const AddTorrentParams &params);
     void runExternalProgram(const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
-    void applyMemoryWorkingSetLimit();
+
+#ifdef QBT_USES_LIBTORRENT2
+    void applyMemoryWorkingSetLimit() const;
+#endif
+
+#ifdef Q_OS_WIN
+    void applyMemoryPriority() const;
+    void adjustThreadPriority() const;
+#endif
 
 #ifndef DISABLE_GUI
 #ifdef Q_OS_MACOS
@@ -145,8 +172,8 @@ private:
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
-    bool m_running = false;
     QAtomicInt m_isCleanupRun;
+    bool m_isProcessingParamsAllowed = false;
     ShutdownDialogAction m_shutdownAct;
     QBtCommandLineParameters m_commandLineArgs;
 
@@ -155,7 +182,8 @@ private:
 
     QTranslator m_qtTranslator;
     QTranslator m_translator;
-    QStringList m_paramsQueue;
+
+    QList<AddTorrentParams> m_paramsQueue;
 
     SettingValue<bool> m_storeFileLoggerEnabled;
     SettingValue<bool> m_storeFileLoggerBackup;
@@ -166,8 +194,15 @@ private:
     SettingValue<Path> m_storeFileLoggerPath;
     SettingValue<int> m_storeMemoryWorkingSetLimit;
 
+#ifdef Q_OS_WIN
+    SettingValue<MemoryPriority> m_processMemoryPriority;
+#endif
+
 #ifndef DISABLE_GUI
-    QPointer<MainWindow> m_window;
+    SettingValue<bool> m_storeNotificationTorrentAdded;
+
+    DesktopIntegration *m_desktopIntegration = nullptr;
+    MainWindow *m_window = nullptr;
 #endif
 
 #ifndef DISABLE_WEBUI

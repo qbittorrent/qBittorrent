@@ -189,8 +189,9 @@ private:
 };
 
 // Constructor
-OptionsDialog::OptionsDialog(QWidget *parent)
-    : QDialog {parent}
+OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
+    : QDialog(parent)
+    , GUIApplicationComponent(app)
     , m_ui {new Ui::OptionsDialog}
     , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
     , m_storeHSplitterSize {SETTINGS_KEY(u"HorizontalSplitterSizes"_qs)}
@@ -206,12 +207,12 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_qs));
     m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-system-network"_qs));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-wired"_qs));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"folder-download"_qs));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs, u"chronometer"_qs));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"rss-config"_qs, u"application-rss+xml"_qs));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"kt-set-max-download-speed"_qs));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss+xml"_qs));
 #ifndef DISABLE_WEBUI
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"network-server"_qs));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"webui"_qs));
 #else
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #endif
@@ -273,14 +274,9 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    m_ui->checkUseSystemIcon->setChecked(Preferences::instance()->useSystemIconTheme());
-#else
-    m_ui->checkUseSystemIcon->setVisible(false);
-#endif
-
     // Load options
     loadOptions();
+
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
 #else
@@ -289,8 +285,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     {
         m_ui->checkShowSystray->setChecked(false);
         m_ui->checkShowSystray->setEnabled(false);
-        m_ui->labelTrayIconStyle->setVisible(false);
-        m_ui->comboTrayIcon->setVisible(false);
+        m_ui->checkShowSystray->setToolTip(tr("Disabled due to failed to detect system tray presence"));
     }
 #endif
 
@@ -319,9 +314,6 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-#endif
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkHideZero, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -554,7 +546,7 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     // Tab selection mechanism
     connect(m_ui->tabSelection, &QListWidget::currentItemChanged, this, &ThisType::changePage);
     // Load Advanced settings
-    m_advancedSettings = new AdvancedSettings(m_ui->tabAdvancedPage);
+    m_advancedSettings = new AdvancedSettings(app, m_ui->tabAdvancedPage);
     m_ui->advPageLayout->addWidget(m_advancedSettings);
     connect(m_advancedSettings, &AdvancedSettings::settingsChanged, this, &ThisType::enableApplyButton);
 
@@ -877,8 +869,6 @@ void OptionsDialog::saveOptions()
     auto *pref = Preferences::instance();
     auto *session = BitTorrent::Session::instance();
 
-    m_applyButton->setEnabled(false);
-
     // Load the translation
     QString locale = getLocale();
     if (pref->getLocale() != locale)
@@ -897,19 +887,15 @@ void OptionsDialog::saveOptions()
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    pref->useSystemIconTheme(m_ui->checkUseSystemIcon->isChecked());
-#endif
-
     pref->setConfirmTorrentDeletion(m_ui->confirmDeletion->isChecked());
     pref->setAlternatingRowColors(m_ui->checkAltRowColors->isChecked());
     pref->setHideZeroValues(m_ui->checkHideZero->isChecked());
     pref->setHideZeroComboValues(m_ui->comboHideZero->currentIndex());
 #ifndef Q_OS_MACOS
-    pref->setSystemTrayEnabled(systemTrayEnabled());
+    pref->setSystemTrayEnabled(m_ui->checkShowSystray->isChecked());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
-    pref->setCloseToTray(closeToTray());
-    pref->setMinimizeToTray(minimizeToTray());
+    pref->setCloseToTray(m_ui->checkCloseToSystray->isChecked());
+    pref->setMinimizeToTray(m_ui->checkMinimizeToSysTray->isChecked());
 #endif
     pref->setStartMinimized(startMinimized());
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
@@ -942,14 +928,13 @@ void OptionsDialog::saveOptions()
 #endif
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 
-    auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
-    app->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
-    app->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
-    app->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
-    app->setFileLoggerAge(m_ui->spinFileLogAge->value());
-    app->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
-    app->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
-    app->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
+    app()->setFileLoggerPath(m_ui->textFileLogPath->selectedPath());
+    app()->setFileLoggerBackup(m_ui->checkFileLogBackup->isChecked());
+    app()->setFileLoggerMaxSize(m_ui->spinFileLogSize->value() * 1024);
+    app()->setFileLoggerAge(m_ui->spinFileLogAge->value());
+    app()->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
+    app()->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
+    app()->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
     // End Behavior preferences
 
     RSS::Session::instance()->setRefreshInterval(m_ui->spinRSSRefreshInterval->value());
@@ -1168,12 +1153,9 @@ void OptionsDialog::loadOptions()
 
 #ifndef Q_OS_MACOS
     m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
-    if (m_ui->checkShowSystray->isChecked())
-    {
-        m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
-        m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-        m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
-    }
+    m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
+    m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
+    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
 #endif
 
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
@@ -1195,19 +1177,18 @@ void OptionsDialog::loadOptions()
 #endif
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
-    const auto *app = dynamic_cast<IApplication *>(QCoreApplication::instance());
-    m_ui->checkFileLog->setChecked(app->isFileLoggerEnabled());
-    m_ui->textFileLogPath->setSelectedPath(app->fileLoggerPath());
-    const bool fileLogBackup = app->isFileLoggerBackup();
+    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
+    m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
+    const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
     m_ui->spinFileLogSize->setEnabled(fileLogBackup);
-    const bool fileLogDelete = app->isFileLoggerDeleteOld();
+    const bool fileLogDelete = app()->isFileLoggerDeleteOld();
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
     m_ui->spinFileLogAge->setEnabled(fileLogDelete);
     m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
-    m_ui->spinFileLogSize->setValue(app->fileLoggerMaxSize() / 1024);
-    m_ui->spinFileLogAge->setValue(app->fileLoggerAge());
-    m_ui->comboFileLogAgeType->setCurrentIndex(app->fileLoggerAgeType());
+    m_ui->spinFileLogSize->setValue(app()->fileLoggerMaxSize() / 1024);
+    m_ui->spinFileLogAge->setValue(app()->fileLoggerAge());
+    m_ui->comboFileLogAgeType->setCurrentIndex(app()->fileLoggerAgeType());
     // End Behavior preferences
 
     m_ui->checkRSSEnable->setChecked(RSS::Session::instance()->isProcessingEnabled());
@@ -1587,27 +1568,6 @@ bool OptionsDialog::startMinimized() const
     return m_ui->checkStartMinimized->isChecked();
 }
 
-#ifndef Q_OS_MACOS
-bool OptionsDialog::systemTrayEnabled() const
-{
-    return QSystemTrayIcon::isSystemTrayAvailable()
-        ? m_ui->checkShowSystray->isChecked()
-        : false;
-}
-
-bool OptionsDialog::minimizeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkMinimizeToSysTray->isChecked();
-}
-
-bool OptionsDialog::closeToTray() const
-{
-    if (!m_ui->checkShowSystray->isChecked()) return false;
-    return m_ui->checkCloseToSystray->isChecked();
-}
-#endif // Q_OS_MACOS
-
 // Return Share ratio
 qreal OptionsDialog::getMaxRatio() const
 {
@@ -1671,8 +1631,8 @@ void OptionsDialog::on_buttonBox_accepted()
             m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
             return;
         }
+
         m_applyButton->setEnabled(false);
-        this->hide();
         saveOptions();
     }
 
@@ -1691,6 +1651,8 @@ void OptionsDialog::applySettings()
         m_ui->tabSelection->setCurrentRow(TAB_WEBUI);
         return;
     }
+
+    m_applyButton->setEnabled(false);
     saveOptions();
 }
 

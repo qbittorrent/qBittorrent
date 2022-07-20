@@ -125,7 +125,7 @@ namespace
         }
 
     private:
-        FILE *m_randDev;
+        FILE *m_randDev = nullptr;
     };
 #endif
 }

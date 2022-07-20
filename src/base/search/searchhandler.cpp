@@ -29,6 +29,8 @@
 
 #include "searchhandler.h"
 
+#include <chrono>
+
 #include <QMetaObject>
 #include <QProcess>
 #include <QTimer>
@@ -39,6 +41,8 @@
 #include "base/utils/foreignapps.h"
 #include "base/utils/fs.h"
 #include "searchpluginmanager.h"
+
+using namespace std::chrono_literals;
 
 namespace
 {
@@ -85,7 +89,7 @@ SearchHandler::SearchHandler(const QString &pattern, const QString &category, co
 
     m_searchTimeout->setSingleShot(true);
     connect(m_searchTimeout, &QTimer::timeout, this, &SearchHandler::cancelSearch);
-    m_searchTimeout->start(180000); // 3 min
+    m_searchTimeout->start(3min);
 
     // deferred start allows clients to handle starting-related signals
     QMetaObject::invokeMethod(this, [this]() { m_searchProcess->start(QIODevice::ReadOnly); }

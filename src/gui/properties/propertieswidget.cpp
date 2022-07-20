@@ -73,8 +73,6 @@
 PropertiesWidget::PropertiesWidget(QWidget *parent)
     : QWidget(parent)
     , m_ui(new Ui::PropertiesWidget())
-    , m_torrent(nullptr)
-    , m_handleWidth(-1)
 {
     m_ui->setupUi(this);
     setAutoFillBackground(true);
@@ -749,7 +747,7 @@ void PropertiesWidget::displayWebSeedListMenu()
 
     if (!rows.isEmpty())
     {
-        menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove Web seed")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"edit-clear"_qs), tr("Remove Web seed")
             , this, &PropertiesWidget::deleteSelectedUrlSeeds);
         menu->addSeparator();
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Copy Web seed URL")

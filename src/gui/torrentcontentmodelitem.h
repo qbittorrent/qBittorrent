@@ -84,14 +84,14 @@ public:
     int row() const;
 
 protected:
-    TorrentContentModelFolder *m_parentItem;
+    TorrentContentModelFolder *m_parentItem = nullptr;
     // Root item members
     QVector<QString> m_itemData;
     // Non-root item members
     QString m_name;
-    qulonglong m_size;
-    qulonglong m_remaining;
-    BitTorrent::DownloadPriority m_priority;
-    qreal m_progress;
-    qreal m_availability;
+    qulonglong m_size = 0;
+    qulonglong m_remaining = 0;
+    BitTorrent::DownloadPriority m_priority = BitTorrent::DownloadPriority::Normal;
+    qreal m_progress = 0;
+    qreal m_availability = -1;
 };

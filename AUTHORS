@@ -57,9 +57,9 @@ Images Authors:
   url: http://www.oxygen-icons.org
 
 * files: src/icons/flags/*.svg
-  copyright: lipis/flag-icon-css
+  copyright: lipis/flag-icons
   license: MIT
-  url: https://github.com/lipis/flag-icon-css/
+  url: https://github.com/lipis/flag-icons/
 
 * files: src/icons/skin/*.png
   files: src/menuicons/YYxYY/*.png

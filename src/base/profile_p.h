@@ -53,7 +53,7 @@ namespace Private
         virtual Path dataLocation() const = 0;
         virtual Path downloadLocation() const = 0;
 
-        virtual SettingsPtr applicationSettings(const QString &name) const = 0;
+        virtual std::unique_ptr<QSettings> applicationSettings(const QString &name) const = 0;
 
         QString configurationName() const;
 
@@ -83,7 +83,7 @@ namespace Private
         Path configLocation() const override;
         Path dataLocation() const override;
         Path downloadLocation() const override;
-        SettingsPtr applicationSettings(const QString &name) const override;
+        std::unique_ptr<QSettings> applicationSettings(const QString &name) const override;
 
     private:
         /**
@@ -107,7 +107,7 @@ namespace Private
         Path configLocation() const override;
         Path dataLocation() const override;
         Path downloadLocation() const override;
-        SettingsPtr applicationSettings(const QString &name) const override;
+        std::unique_ptr<QSettings> applicationSettings(const QString &name) const override;
 
     private:
         const Path m_rootPath;

@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/3rdparty/expected.hpp \
     $$PWD/algorithm.h \
+    $$PWD/applicationcomponent.h \
     $$PWD/asyncfilestorage.h \
     $$PWD/bittorrent/abstractfilestorage.h \
     $$PWD/bittorrent/addtorrentparams.h \
@@ -106,6 +107,7 @@ HEADERS += \
     $$PWD/version.h
 
 SOURCES += \
+    $$PWD/applicationcomponent.cpp \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
     $$PWD/bittorrent/bencoderesumedatastorage.cpp \
@@ -126,6 +128,7 @@ SOURCES += \
     $$PWD/bittorrent/scheduler/bandwidthscheduler.cpp \
     $$PWD/bittorrent/scheduler/scheduleday.cpp \
     $$PWD/bittorrent/scheduler/scheduleentry.cpp \
+    $$PWD/bittorrent/resumedatastorage.cpp \
     $$PWD/bittorrent/session.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \

@@ -39,6 +39,7 @@
 #include <QSet>
 #include <QTranslator>
 
+#include "base/applicationcomponent.h"
 #include "base/global.h"
 #include "base/http/irequesthandler.h"
 #include "base/http/responsebuilder.h"
@@ -48,16 +49,16 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 13};
+inline const Utils::Version<int, 3, 2> API_VERSION {2, 8, 14};
 
 class APIController;
 class AuthController;
 class WebApplication;
 
-class WebSession final : public QObject, public ISession
+class WebSession final : public QObject, public ApplicationComponent, public ISession
 {
 public:
-    explicit WebSession(const QString &sid);
+    explicit WebSession(const QString &sid, IApplication *app);
 
     QString id() const override;
 
@@ -68,7 +69,7 @@ public:
     void registerAPIController(const QString &scope)
     {
         static_assert(std::is_base_of_v<APIController, T>, "Class should be derived from APIController.");
-        m_apiControllers[scope] = new T(this);
+        m_apiControllers[scope] = new T(app(), this);
     }
 
     APIController *getAPIController(const QString &scope) const;
@@ -80,14 +81,15 @@ private:
 };
 
 class WebApplication final
-        : public QObject, public Http::IRequestHandler, public ISessionManager
+        : public QObject, public ApplicationComponent
+        , public Http::IRequestHandler, public ISessionManager
         , private Http::ResponseBuilder
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(WebApplication)
 
 public:
-    explicit WebApplication(QObject *parent = nullptr);
+    explicit WebApplication(IApplication *app, QObject *parent = nullptr);
     ~WebApplication() override;
 
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;

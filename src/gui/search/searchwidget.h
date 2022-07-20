@@ -34,6 +34,8 @@
 #include <QPointer>
 #include <QWidget>
 
+#include "gui/guiapplicationcomponent.h"
+
 class QEvent;
 class QObject;
 class QTabWidget;
@@ -46,13 +48,13 @@ namespace Ui
     class SearchWidget;
 }
 
-class SearchWidget : public QWidget
+class SearchWidget : public QWidget, public GUIApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
-    explicit SearchWidget(MainWindow *mainWindow);
+    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();
@@ -78,10 +80,10 @@ private:
     QString selectedCategory() const;
     QString selectedPlugin() const;
 
-    Ui::SearchWidget *m_ui;
+    Ui::SearchWidget *m_ui = nullptr;
     QPointer<SearchJobWidget> m_currentSearchTab; // Selected tab
     QPointer<SearchJobWidget> m_activeSearchTab; // Tab with running search
     QList<SearchJobWidget *> m_allTabs; // To store all tabs
-    MainWindow *m_mainWindow;
-    bool m_isNewQueryString;
+    MainWindow *m_mainWindow = nullptr;
+    bool m_isNewQueryString = false;
 };

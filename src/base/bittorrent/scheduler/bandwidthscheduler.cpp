@@ -29,6 +29,8 @@
 
 #include "bandwidthscheduler.h"
 
+#include <chrono>
+
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -38,6 +40,8 @@
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/fs.h"
+
+using namespace std::chrono_literals;
 
 QPointer<BandwidthScheduler> BandwidthScheduler::m_instance = nullptr;
 
@@ -96,7 +100,7 @@ BandwidthScheduler* BandwidthScheduler::instance()
 void BandwidthScheduler::start()
 {
     emit limitChangeRequested();
-    m_timer.start(10000);
+    m_timer.start(10s);
 }
 
 void BandwidthScheduler::stop()

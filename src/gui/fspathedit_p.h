@@ -138,11 +138,11 @@ namespace Private
         static QString warningText(FileSystemPathValidator::TestResult r);
         void showCompletionPopup();
 
-        QFileSystemModel *m_completerModel;
-        QCompleter *m_completer;
-        QAction *m_browseAction;
+        QFileSystemModel *m_completerModel = nullptr;
+        QCompleter *m_completer = nullptr;
+        QAction *m_browseAction = nullptr;
+        QAction *m_warningAction = nullptr;
         QFileIconProvider m_iconProvider;
-        QAction *m_warningAction;
     };
 
     class FileComboEdit final : public QComboBox, public FileEditorWithCompletion

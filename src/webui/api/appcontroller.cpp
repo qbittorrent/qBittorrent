@@ -31,6 +31,7 @@
 #include "appcontroller.h"
 
 #include <algorithm>
+#include <chrono>
 
 #include <QCoreApplication>
 #include <QDateTime>
@@ -64,6 +65,8 @@
 #include "base/version.h"
 #include "../webapplication.h"
 
+using namespace std::chrono_literals;
+
 void AppController::webapiVersionAction()
 {
     setResult(API_VERSION.toString());
@@ -95,7 +98,7 @@ void AppController::shutdownAction()
     // Special case handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-    QTimer::singleShot(100, qApp, &QCoreApplication::quit);
+    QTimer::singleShot(100ms, qApp, &QCoreApplication::quit);
 }
 
 void AppController::preferencesAction()
@@ -292,7 +295,7 @@ void AppController::preferencesAction()
     // Advanced settings
     // qBitorrent preferences
     // Physical memory (RAM) usage limit
-    data[u"memory_working_set_limit"_qs] = dynamic_cast<IApplication *>(QCoreApplication::instance())->memoryWorkingSetLimit();
+    data[u"memory_working_set_limit"_qs] = app()->memoryWorkingSetLimit();
     // Current network interface
     data[u"current_network_interface"_qs] = session->networkInterface();
     // Current network interface address
@@ -301,6 +304,8 @@ void AppController::preferencesAction()
     data[u"save_resume_data_interval"_qs] = session->saveResumeDataInterval();
     // Recheck completed torrents
     data[u"recheck_completed_torrents"_qs] = pref->recheckTorrentsOnCompletion();
+    // Refresh interval
+    data[u"refresh_interval"_qs] = session->refreshInterval();
     // Resolve peer countries
     data[u"resolve_peer_countries"_qs] = pref->resolvePeerCountries();
     // Reannounce to all trackers when ip/port changed
@@ -322,8 +327,10 @@ void AppController::preferencesAction()
     data[u"disk_queue_size"_qs] = session->diskQueueSize();
     // Disk IO Type
     data[u"disk_io_type"_qs] = static_cast<int>(session->diskIOType());
-    // Enable OS cache
-    data[u"enable_os_cache"_qs] = session->useOSCache();
+    // Disk IO read mode
+    data[u"disk_io_read_mode"_qs] = static_cast<int>(session->diskIOReadMode());
+    // Disk IO write mode
+    data[u"disk_io_write_mode"_qs] = static_cast<int>(session->diskIOWriteMode());
     // Coalesce reads & writes
     data[u"enable_coalesce_read_write"_qs] = session->isCoalesceReadWriteEnabled();
     // Piece Extent Affinity
@@ -752,7 +759,7 @@ void AppController::setPreferencesAction()
     // qBittorrent preferences
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_qs))
-        dynamic_cast<IApplication *>(QCoreApplication::instance())->setMemoryWorkingSetLimit(it.value().toInt());
+        app()->setMemoryWorkingSetLimit(it.value().toInt());
     // Current network interface
     if (hasKey(u"current_network_interface"_qs))
     {
@@ -780,6 +787,9 @@ void AppController::setPreferencesAction()
     // Recheck completed torrents
     if (hasKey(u"recheck_completed_torrents"_qs))
         pref->recheckTorrentsOnCompletion(it.value().toBool());
+    // Refresh interval
+    if (hasKey(u"refresh_interval"_qs))
+        session->setRefreshInterval(it.value().toInt());
     // Resolve peer countries
     if (hasKey(u"resolve_peer_countries"_qs))
         pref->resolvePeerCountries(it.value().toBool());
@@ -811,9 +821,12 @@ void AppController::setPreferencesAction()
     // Disk IO Type
     if (hasKey(u"disk_io_type"_qs))
         session->setDiskIOType(static_cast<BitTorrent::DiskIOType>(it.value().toInt()));
-    // Enable OS cache
-    if (hasKey(u"enable_os_cache"_qs))
-        session->setUseOSCache(it.value().toBool());
+    // Disk IO read mode
+    if (hasKey(u"disk_io_read_mode"_qs))
+        session->setDiskIOReadMode(static_cast<BitTorrent::DiskIOReadMode>(it.value().toInt()));
+    // Disk IO write mode
+    if (hasKey(u"disk_io_write_mode"_qs))
+        session->setDiskIOWriteMode(static_cast<BitTorrent::DiskIOWriteMode>(it.value().toInt()));
     // Coalesce reads & writes
     if (hasKey(u"enable_coalesce_read_write"_qs))
         session->setCoalesceReadWriteEnabled(it.value().toBool());

@@ -108,8 +108,6 @@ AutoDownloader::AutoDownloader()
     m_instance = this;
 
     m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
-    if (!m_fileStorage)
-        throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
@@ -138,8 +136,20 @@ AutoDownloader::AutoDownloader()
     m_processingTimer->setSingleShot(true);
     connect(m_processingTimer, &QTimer::timeout, this, &AutoDownloader::process);
 
-    if (isProcessingEnabled())
-        startProcessing();
+    const auto *btSession = BitTorrent::Session::instance();
+    if (btSession->isRestored())
+    {
+        if (isProcessingEnabled())
+            startProcessing();
+    }
+    else
+    {
+        connect(btSession, &BitTorrent::Session::restored, this, [this]()
+        {
+            if (isProcessingEnabled())
+                startProcessing();
+        });
+    }
 }
 
 AutoDownloader::~AutoDownloader()
@@ -441,7 +451,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
+    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
     const QVariantHash rules = settings->value(u"download_rules"_qs).toHash();
     for (const QVariant &ruleVar : rules)
     {
@@ -491,7 +501,12 @@ void AutoDownloader::resetProcessingQueue()
 void AutoDownloader::startProcessing()
 {
     resetProcessingQueue();
-    connect(Session::instance()->rootFolder(), &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
+
+    const RSS::Folder *rootFolder = Session::instance()->rootFolder();
+    for (const Article *article : asConst(rootFolder->articles()))
+        handleNewArticle(article);
+
+    connect(rootFolder, &Folder::newArticle, this, &AutoDownloader::handleNewArticle);
 }
 
 void AutoDownloader::setProcessingEnabled(const bool enabled)
@@ -501,7 +516,8 @@ void AutoDownloader::setProcessingEnabled(const bool enabled)
         m_storeProcessingEnabled = enabled;
         if (enabled)
         {
-            startProcessing();
+            if (BitTorrent::Session::instance()->isRestored())
+                startProcessing();
         }
         else
         {

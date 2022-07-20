@@ -48,7 +48,7 @@ namespace
             unsigned char octetIndex = 0;
 
             const char *octetStart = str;
-            char *endptr;
+            char *endptr = nullptr;
             for (; *str; ++str)
             {
                 if (*str == '.')

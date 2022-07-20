@@ -552,7 +552,7 @@ void TransferListWidget::openSelectedTorrentsFolder() const
     // folders prehilighted for opening, so we use a custom method.
     for (BitTorrent::Torrent *const torrent : asConst(getSelectedTorrents()))
     {
-        const Path contentPath = torrent->actualStorageLocation() / torrent->contentPath();
+        const Path contentPath = torrent->contentPath();
         paths.insert(contentPath);
     }
     MacUtils::openFiles(PathList(paths.cbegin(), paths.cend()));
@@ -804,7 +804,7 @@ void TransferListWidget::exportTorrent()
         if (hasError)
         {
             QMessageBox::warning(this, tr("Export .torrent file error")
-                , tr("Errors occured when exporting .torrent files. Check execution log for details."));
+                , tr("Errors occurred when exporting .torrent files. Check execution log for details."));
         }
     });
 
@@ -931,21 +931,21 @@ void TransferListWidget::displayListMenu()
     connect(actionTopQueuePos, &QAction::triggered, this, &TransferListWidget::topQueuePosSelectedTorrents);
     auto *actionBottomQueuePos = new QAction(UIThemeManager::instance()->getIcon(u"go-bottom"_qs), tr("Move to &bottom", "i.e. Move to bottom of the queue"), listMenu);
     connect(actionBottomQueuePos, &QAction::triggered, this, &TransferListWidget::bottomQueuePosSelectedTorrents);
-    auto *actionSetTorrentPath = new QAction(UIThemeManager::instance()->getIcon(u"inode-directory"_qs), tr("Set loc&ation..."), listMenu);
+    auto *actionSetTorrentPath = new QAction(UIThemeManager::instance()->getIcon(u"set-location"_qs), tr("Set loc&ation..."), listMenu);
     connect(actionSetTorrentPath, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsLocation);
-    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon(u"document-edit-verify"_qs), tr("Force rec&heck"), listMenu);
+    auto *actionForceRecheck = new QAction(UIThemeManager::instance()->getIcon(u"force-recheck"_qs), tr("Force rec&heck"), listMenu);
     connect(actionForceRecheck, &QAction::triggered, this, &TransferListWidget::recheckSelectedTorrents);
-    auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon(u"document-edit-verify"_qs), tr("Force r&eannounce"), listMenu);
+    auto *actionForceReannounce = new QAction(UIThemeManager::instance()->getIcon(u"reannounce"_qs), tr("Force r&eannounce"), listMenu);
     connect(actionForceReannounce, &QAction::triggered, this, &TransferListWidget::reannounceSelectedTorrents);
     auto *actionCopyMagnetLink = new QAction(UIThemeManager::instance()->getIcon(u"kt-magnet"_qs), tr("&Magnet link"), listMenu);
     connect(actionCopyMagnetLink, &QAction::triggered, this, &TransferListWidget::copySelectedMagnetURIs);
-    auto *actionCopyID = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Torrent &ID"), listMenu);
+    auto *actionCopyID = new QAction(UIThemeManager::instance()->getIcon(u"help-about"_qs), tr("Torrent &ID"), listMenu);
     connect(actionCopyID, &QAction::triggered, this, &TransferListWidget::copySelectedIDs);
-    auto *actionCopyName = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("&Name"), listMenu);
+    auto *actionCopyName = new QAction(UIThemeManager::instance()->getIcon(u"name"_qs), tr("&Name"), listMenu);
     connect(actionCopyName, &QAction::triggered, this, &TransferListWidget::copySelectedNames);
-    auto *actionCopyHash1 = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Info &hash v1"), listMenu);
+    auto *actionCopyHash1 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_qs), tr("Info &hash v1"), listMenu);
     connect(actionCopyHash1, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version1); });
-    auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"edit-copy"_qs), tr("Info h&ash v2"), listMenu);
+    auto *actionCopyHash2 = new QAction(UIThemeManager::instance()->getIcon(u"hash"_qs), tr("Info h&ash v2"), listMenu);
     connect(actionCopyHash2, &QAction::triggered, this, [this]() { copySelectedInfohashes(CopyInfohashPolicy::Version2); });
     auto *actionSuperSeedingMode = new TriStateAction(tr("Super seeding mode"), listMenu);
     connect(actionSuperSeedingMode, &QAction::triggered, this, &TransferListWidget::setSelectedTorrentsSuperSeeding);
@@ -1111,7 +1111,7 @@ void TransferListWidget::displayListMenu()
     for (const QString &category : asConst(categories))
     {
         const QString escapedCategory = QString(category).replace(u'&', u"&&"_qs);  // avoid '&' becomes accelerator key
-        QAction *categoryAction = categoryMenu->addAction(UIThemeManager::instance()->getIcon(u"inode-directory"_qs), escapedCategory
+        QAction *categoryAction = categoryMenu->addAction(UIThemeManager::instance()->getIcon(u"view-categories"_qs), escapedCategory
             , this, [this, category]() { setSelectionCategory(category); });
 
         if (allSameCategory && (category == firstCategory))
@@ -1125,7 +1125,7 @@ void TransferListWidget::displayListMenu()
     QStringList tags(BitTorrent::Session::instance()->tags().values());
     std::sort(tags.begin(), tags.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
 
-    QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"view-categories"_qs), tr("Ta&gs"));
+    QMenu *tagsMenu = listMenu->addMenu(UIThemeManager::instance()->getIcon(u"tags"_qs), tr("Ta&gs"));
 
     tagsMenu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("&Add...", "Add / assign multiple tags...")
         , this, &TransferListWidget::askAddTagsForSelection);
@@ -1210,7 +1210,8 @@ void TransferListWidget::displayListMenu()
     if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotSeed)
     {
         listMenu->addSeparator();
-        QMenu *queueMenu = listMenu->addMenu(tr("&Queue"));
+        QMenu *queueMenu = listMenu->addMenu(
+            UIThemeManager::instance()->getIcon(u"queued"_qs), tr("&Queue"));
         queueMenu->addAction(actionTopQueuePos);
         queueMenu->addAction(actionIncreaseQueuePos);
         queueMenu->addAction(actionDecreaseQueuePos);

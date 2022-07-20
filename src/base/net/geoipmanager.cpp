@@ -54,8 +54,6 @@ using namespace Net;
 GeoIPManager *GeoIPManager::m_instance = nullptr;
 
 GeoIPManager::GeoIPManager()
-    : m_enabled(false)
-    , m_geoIPDatabase(nullptr)
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &GeoIPManager::configure);
@@ -95,13 +93,13 @@ void GeoIPManager::loadDatabase()
     m_geoIPDatabase = GeoIPDatabase::load(filepath, error);
     if (m_geoIPDatabase)
     {
-        Logger::instance()->addMessage(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
+        LogMsg(tr("IP geolocation database loaded. Type: %1. Build time: %2.")
                                        .arg(m_geoIPDatabase->type(), m_geoIPDatabase->buildEpoch().toString()),
                                        Log::INFO);
     }
     else
     {
-        Logger::instance()->addMessage(tr("Couldn't load IP geolocation database. Reason: %1").arg(error), Log::WARNING);
+        LogMsg(tr("Couldn't load IP geolocation database. Reason: %1").arg(error), Log::WARNING);
     }
 
     manageDatabaseUpdate();

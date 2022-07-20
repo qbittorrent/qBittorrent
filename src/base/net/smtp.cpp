@@ -103,9 +103,6 @@ using namespace Net;
 
 Smtp::Smtp(QObject *parent)
     : QObject(parent)
-    , m_state(Init)
-    , m_useSsl(false)
-    , m_authType(AuthPlain)
 {
     static bool needToRegisterMetaType = true;
 
@@ -141,7 +138,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 {
     const Preferences *const pref = Preferences::instance();
     m_message = "Date: " + getCurrentDateTime().toLatin1() + "\r\n"
-                + encodeMimeHeader(u"From"_qs, from)
+                + encodeMimeHeader(u"From"_qs, u"qBittorrent <%1>"_qs.arg(from))
                 + encodeMimeHeader(u"Subject"_qs, subject)
                 + encodeMimeHeader(u"To"_qs, to)
                 + "MIME-Version: 1.0\r\n"
@@ -563,7 +560,7 @@ void Smtp::authLogin()
 void Smtp::logError(const QString &msg)
 {
     qDebug() << "Email Notification Error:" << msg;
-    Logger::instance()->addMessage(tr("Email Notification Error: %1").arg(msg), Log::WARNING);
+    LogMsg(tr("Email Notification Error: %1").arg(msg), Log::WARNING);
 }
 
 QString Smtp::getCurrentDateTime() const

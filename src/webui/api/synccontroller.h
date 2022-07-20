@@ -45,7 +45,7 @@ class SyncController : public APIController
 public:
     using APIController::APIController;
 
-    explicit SyncController(QObject *parent = nullptr);
+    explicit SyncController(IApplication *app, QObject *parent = nullptr);
     ~SyncController() override;
 
 private slots:

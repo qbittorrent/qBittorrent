@@ -66,8 +66,8 @@ namespace Net
         void manageDatabaseUpdate();
         void downloadDatabaseFile();
 
-        bool m_enabled;
-        GeoIPDatabase *m_geoIPDatabase;
+        bool m_enabled = false;
+        GeoIPDatabase *m_geoIPDatabase = nullptr;
 
         static GeoIPManager *m_instance;
     };

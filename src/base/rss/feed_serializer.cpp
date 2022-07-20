@@ -42,6 +42,8 @@
 #include "base/utils/io.h"
 #include "rss_article.h"
 
+const int ARTICLEDATALIST_TYPEID = qRegisterMetaType<QVector<QVariantHash>>();
+
 void RSS::Private::FeedSerializer::load(const Path &dataFileName, const QString &url)
 {
     QFile file {dataFileName.data()};
@@ -121,6 +123,11 @@ QVector<QVariantHash> RSS::Private::FeedSerializer::loadArticles(const QByteArra
 
         result.push_back(varHash);
     }
+
+    std::sort(result.begin(), result.end(), [](const QVariantHash &left, const QVariantHash &right)
+    {
+        return (left.value(Article::KeyDate).toDateTime() > right.value(Article::KeyDate).toDateTime());
+    });
 
     return result;
 }

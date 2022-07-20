@@ -58,6 +58,6 @@ private:
     void stop();
 
     CachedSettingValue<bool> m_storeActive;
-    lt::session *m_provider;
+    lt::session *m_provider = nullptr;
     QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 };

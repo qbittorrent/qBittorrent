@@ -288,8 +288,8 @@ namespace BitTorrent
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
-        Session *const m_session;
-        lt::session *m_nativeSession;
+        Session *const m_session = nullptr;
+        lt::session *m_nativeSession = nullptr;
         lt::torrent_handle m_nativeHandle;
         mutable lt::torrent_status m_nativeStatus;
         TorrentState m_state = TorrentState::Unknown;
@@ -298,7 +298,7 @@ namespace BitTorrent
         QHash<lt::file_index_t, int> m_indexMap;
         QVector<DownloadPriority> m_filePriorities;
         QBitArray m_completedFiles;
-        SpeedMonitor m_speedMonitor;
+        SpeedMonitor m_payloadRateMonitor;
 
         InfoHash m_infoHash;
 

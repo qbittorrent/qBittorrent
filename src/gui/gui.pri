@@ -12,10 +12,12 @@ HEADERS += \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
     $$PWD/deletionconfirmationdialog.h \
+    $$PWD/desktopintegration.h \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
+    $$PWD/guiapplicationcomponent.h \
     $$PWD/hidabletabwidget.h \
     $$PWD/interfaces/iguiapplication.h \
     $$PWD/ipsubnetwhitelistoptionsdialog.h \
@@ -96,10 +98,12 @@ SOURCES += \
     $$PWD/cookiesdialog.cpp \
     $$PWD/cookiesmodel.cpp \
     $$PWD/deletionconfirmationdialog.cpp \
+    $$PWD/desktopintegration.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
+    $$PWD/guiapplicationcomponent.cpp \
     $$PWD/hidabletabwidget.cpp \
     $$PWD/ipsubnetwhitelistoptionsdialog.cpp \
     $$PWD/lineedit.cpp \
@@ -214,12 +218,14 @@ win32|macx {
 
 unix:!macx:dbus {
     HEADERS += \
-        $$PWD/powermanagement/powermanagement_x11.h \
-        $$PWD/qtnotify/notifications.h
+        $$PWD/notifications/dbusnotifier.h \
+        $$PWD/notifications/dbusnotificationsinterface.h \
+        $$PWD/powermanagement/powermanagement_x11.h
 
     SOURCES += \
-        $$PWD/powermanagement/powermanagement_x11.cpp \
-        $$PWD/qtnotify/notifications.cpp
+        $$PWD/notifications/dbusnotifier.cpp \
+        $$PWD/notifications/dbusnotificationsinterface.cpp \
+        $$PWD/powermanagement/powermanagement_x11.cpp
 }
 
 macx {
