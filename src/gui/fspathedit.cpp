@@ -189,7 +189,6 @@ FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *edito
 {
     Q_D(FileSystemPathEdit);
     editor->widget()->setParent(this);
-    setFocusProxy(editor->widget());
 
     auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
