@@ -1534,8 +1534,8 @@ void MainWindow::reloadSessionStats()
 #else
     if (app()->desktopIntegration()->isActive())
     {
-        const dlText = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
-        const ulText = tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
+        const auto dlText = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
+        const auto ulText = tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
         const auto toolTip = isPaused
             ? tr("Transfers paused per schedule")
             : u"%1\n%2"_qs.arg(dlText, ulText);
