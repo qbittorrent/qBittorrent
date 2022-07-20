@@ -1522,7 +1522,7 @@ void MainWindow::reloadSessionStats()
     if (status.payloadDownloadRate > 0)
     {
         if (isPaused)
-            MacUtils::setBadgeLabelText(tr("Transfers paused by the schedule"));
+            MacUtils::setBadgeLabelText(tr("Paused", "macOS dock badge label; transfers paused per schedule"));
         else
             MacUtils::setBadgeLabelText(tr("%1/s", "s is a shorthand for seconds")
                 .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate)));
@@ -1534,11 +1534,11 @@ void MainWindow::reloadSessionStats()
 #else
     if (app()->desktopIntegration()->isActive())
     {
+        const dlText = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
+        const ulText = tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
         const auto toolTip = isPaused
-            ? tr("Transfers paused by the schedule")
-            : u"%1\n%2"_qs.arg(
-                tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true))
-                , tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true)));
+            ? tr("Transfers paused per schedule")
+            : u"%1\n%2"_qs.arg(dlText, ulText);
         app()->desktopIntegration()->setToolTip(toolTip); // tray icon
     }
 #endif  // Q_OS_MACOS
@@ -1546,7 +1546,7 @@ void MainWindow::reloadSessionStats()
     if (m_displaySpeedInTitle)
     {
         QString title = isPaused
-            ? tr("[Paused] qBittorrent %3", "Transfer paused by schedule; %3 is qBittorrent version")
+            ? tr("[Paused] qBittorrent %3", "Transfer paused per schedule; %3 is qBittorrent version")
                 .arg(QStringLiteral(QBT_VERSION))
             : tr("[D: %1, U: %2] qBittorrent %3", "D = Download; U = Upload; %3 is qBittorrent version")
                 .arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true)
