@@ -23,28 +23,28 @@
    <item>
     <layout class="QGridLayout" name="gridLayout">
      <item row="0" column="1">
-      <widget class="QLabel">
+      <widget class="QLabel" name="label1">
        <property name="text">
         <string>Download</string>
        </property>
       </widget>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel">
+      <widget class="QLabel" name="label2">
        <property name="text">
         <string>Upload</string>
        </property>
       </widget>
      </item>
      <item row="0" column="3">
-      <widget class="QLabel">
+      <widget class="QLabel" name="label3">
        <property name="text">
         <string>Pause?</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QLabel">
+      <widget class="QLabel" name="label4">
        <property name="text">
         <string>Speed limit</string>
        </property>
@@ -74,7 +74,7 @@
       <widget class="QCheckBox" name="pauseCheckBox"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel">
+      <widget class="QLabel" name="label5">
        <property name="text">
         <string>In between</string>
        </property>
@@ -105,6 +105,26 @@
          <minute>59</minute>
          <second>59</second>
         </time>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLabel" name="labelInvalidStart">
+       <property name="styleSheet">
+        <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string>Invalid</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2">
+      <widget class="QLabel" name="labelInvalidEnd">
+       <property name="styleSheet">
+         <string notr="true">color: red</string>
+       </property>
+       <property name="text">
+        <string>Invalid</string>
        </property>
       </widget>
      </item>
