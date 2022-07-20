@@ -34,7 +34,8 @@
             let start = $('startTimeInput').value;
             let end = $('endTimeInput').value;
 
-            if (start == '' || end == '') return;
+            if (start == '' || end == '')
+                return;
 
             new Request({
                 url: 'api/v2/schedule/isEntryValid',

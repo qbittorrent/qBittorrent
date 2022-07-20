@@ -2766,7 +2766,8 @@ window.qBittorrent.DynamicTable = (function() {
             this.selectedRows.empty();
             this.setRowClass();
 
-            if (len > 0) this.onSelectedRowChanged();
+            if (len > 0)
+                this.onSelectedRowChanged();
         }
     });
 

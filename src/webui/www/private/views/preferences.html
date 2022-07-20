@@ -1556,7 +1556,8 @@
                     onSuccess: (responseJson) => {
                         schedule = JSON.parse(responseJson);
 
-                        if (then) then();
+                        if (then)
+                            then();
                     },
                     onFailure: console.error
                 }).send();
@@ -1599,7 +1600,8 @@
                         const day = selectedScheduleDay;
                         const selectedRows = scheduleTables[day].selectedRows.slice();
 
-                        if (selectedRows.length === 0) return;
+                        if (selectedRows.length === 0)
+                            return;
 
                         new Request({
                             url: 'api/v2/schedule/removeEntry',
@@ -1642,7 +1644,8 @@
                         const day = selectedScheduleDay;
                         const selectedRows = scheduleTables[day].selectedRows.slice();
 
-                        if (selectedRows.length === 0) return;
+                        if (selectedRows.length === 0)
+                            return;
 
                         new Request({
                             url: 'api/v2/schedule/copyToOtherDays',
