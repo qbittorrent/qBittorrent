@@ -1555,11 +1555,12 @@
                     noCache: true,
                     onSuccess: (responseJson) => {
                         schedule = JSON.parse(responseJson);
+
                         if (then) then();
                     },
                     onFailure: console.error
                 }).send();
-            }
+            };
 
             const updateScheduleTable = (day) => {
                 scheduleTables[day].clear();
@@ -1597,6 +1598,7 @@
                     removeEntry: (element, ref) => {
                         const day = selectedScheduleDay;
                         const selectedRows = scheduleTables[day].selectedRows.slice();
+
                         if (selectedRows.length === 0) return;
 
                         new Request({
@@ -1639,6 +1641,7 @@
                     copyToOtherDays: (element, ref) => {
                         const day = selectedScheduleDay;
                         const selectedRows = scheduleTables[day].selectedRows.slice();
+
                         if (selectedRows.length === 0) return;
 
                         new Request({

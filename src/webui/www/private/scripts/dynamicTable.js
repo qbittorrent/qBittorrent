@@ -2704,7 +2704,7 @@ window.qBittorrent.DynamicTable = (function() {
             };
             column['compareRows'] = function(row1, row2) { return 0; };
             column['updateTd'] = function(td, row) {
-                const value = this.getRowValue(row)
+                const value = this.getRowValue(row);
                 td.set('text', value);
                 td.set('title', value);
             };
@@ -2765,6 +2765,7 @@ window.qBittorrent.DynamicTable = (function() {
             const len = this.selectedRows.length;
             this.selectedRows.empty();
             this.setRowClass();
+
             if (len > 0) this.onSelectedRowChanged();
         }
     });

@@ -33,6 +33,7 @@
         const validateTimes = (dayIndex) => {
             let start = $('startTimeInput').value;
             let end = $('endTimeInput').value;
+
             if (start == '' || end == '') return;
 
             new Request({
