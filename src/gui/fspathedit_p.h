@@ -130,8 +130,10 @@ namespace Private
         void contextMenuEvent(QContextMenuEvent *event) override;
 
     private:
-        static QString warningText(FileSystemPathValidator::TestResult result);
         void showCompletionPopup();
+        void validateText();
+
+        static QString warningText(FileSystemPathValidator::TestResult result);
 
         QFileSystemModel *m_completerModel = nullptr;
         QCompleter *m_completer = nullptr;

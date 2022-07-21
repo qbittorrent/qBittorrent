@@ -162,6 +162,8 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
 
     m_completer->setModel(m_completerModel);
     setCompleter(m_completer);
+
+    connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
 }
 
 Private::FileLineEdit::~FileLineEdit()
@@ -215,35 +217,6 @@ void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
         m_completerModel->setRootPath(Path(text()).data());
         showCompletionPopup();
     }
-
-    const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
-    if (validator)
-    {
-        const FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
-        const QValidator::State lastState = validator->lastValidationState();
-        if (lastTestResult == FileSystemPathValidator::TestResult::OK)
-        {
-            delete m_warningAction;
-            m_warningAction = nullptr;
-        }
-        else
-        {
-            if (!m_warningAction)
-            {
-                m_warningAction = new QAction(this);
-                addAction(m_warningAction, QLineEdit::TrailingPosition);
-            }
-        }
-
-        if (m_warningAction)
-        {
-            if (lastState == QValidator::Invalid)
-                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
-            else if (lastState == QValidator::Intermediate)
-                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
-            m_warningAction->setToolTip(warningText(lastTestResult));
-        }
-    }
 }
 
 void Private::FileLineEdit::contextMenuEvent(QContextMenuEvent *event)
@@ -264,6 +237,39 @@ void Private::FileLineEdit::showCompletionPopup()
 {
     m_completer->setCompletionPrefix(text());
     m_completer->complete();
+}
+
+void Private::FileLineEdit::validateText()
+{
+    const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
+    if (!validator)
+        return;
+
+    const FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
+    const QValidator::State lastState = validator->lastValidationState();
+
+    if (lastTestResult == FileSystemPathValidator::TestResult::OK)
+    {
+        delete m_warningAction;
+        m_warningAction = nullptr;
+    }
+    else
+    {
+        if (!m_warningAction)
+        {
+            m_warningAction = new QAction(this);
+            addAction(m_warningAction, QLineEdit::TrailingPosition);
+        }
+    }
+
+    if (m_warningAction)
+    {
+        if (lastState == QValidator::Invalid)
+            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
+        else if (lastState == QValidator::Intermediate)
+            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+        m_warningAction->setToolTip(warningText(lastTestResult));
+    }
 }
 
 QString Private::FileLineEdit::warningText(const FileSystemPathValidator::TestResult result)
