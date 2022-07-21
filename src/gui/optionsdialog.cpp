@@ -486,9 +486,9 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
     connect(m_ui->checkWebUIUPnP, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkWebUiHttps, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const Path &path) { webUIHttpsCertChanged(path, ShowError::Show); });
+    connect(m_ui->textWebUIHttpsCert, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsCertChanged);
     connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, [this](const Path &path) { webUIHttpsKeyChanged(path, ShowError::Show); });
+    connect(m_ui->textWebUIHttpsKey, &FileSystemPathLineEdit::selectedPathChanged, this, &OptionsDialog::webUIHttpsKeyChanged);
     connect(m_ui->textWebUiUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textWebUiPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkBypassLocalAuth, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -1257,8 +1257,8 @@ void OptionsDialog::loadOptions()
     m_ui->spinWebUiPort->setValue(pref->getWebUiPort());
     m_ui->checkWebUIUPnP->setChecked(pref->useUPnPForWebUIPort());
     m_ui->checkWebUiHttps->setChecked(pref->isWebUiHttpsEnabled());
-    webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath(), ShowError::NotShow);
-    webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath(), ShowError::NotShow);
+    webUIHttpsCertChanged(pref->getWebUIHttpsCertificatePath());
+    webUIHttpsKeyChanged(pref->getWebUIHttpsKeyPath());
     m_ui->textWebUiUsername->setText(pref->getWebUiUsername());
     m_ui->checkBypassLocalAuth->setChecked(!pref->isWebUiLocalAuthEnabled());
     m_ui->checkBypassAuthSubnetWhitelist->setChecked(pref->isWebUiAuthSubnetWhitelistEnabled());
@@ -1723,56 +1723,48 @@ QString OptionsDialog::webUiPassword() const
     return m_ui->textWebUiPassword->text();
 }
 
-void OptionsDialog::webUIHttpsCertChanged(const Path &path, const ShowError showError)
+void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
+    const auto isCertFileValid = [&path]() -> bool
+    {
+        if (path.isEmpty())
+            return false;
+
+        QFile file {path.data()};
+        if (!file.open(QIODevice::ReadOnly))
+            return false;
+
+        if (!Utils::Net::isSSLCertificatesValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
+            return false;
+
+        return true;
+    };
+
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-low"_qs), this, 24));
-
-    if (path.isEmpty())
-        return;
-
-    QFile file {path.data()};
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        if (showError == ShowError::Show)
-            QMessageBox::warning(this, tr("Invalid path"), file.errorString());
-        return;
-    }
-
-    if (!Utils::Net::isSSLCertificatesValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
-    {
-        if (showError == ShowError::Show)
-            QMessageBox::warning(this, tr("Invalid certificate"), tr("This is not a valid SSL certificate."));
-        return;
-    }
-
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-high"_qs), this, 24));
+    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
+        isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
 }
 
-void OptionsDialog::webUIHttpsKeyChanged(const Path &path, const ShowError showError)
+void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
 {
+    const auto isKeyFileValid = [&path]() -> bool
+    {
+        if (path.isEmpty())
+            return false;
+
+        QFile file {path.data()};
+        if (!file.open(QIODevice::ReadOnly))
+            return false;
+
+        if (!Utils::Net::isSSLKeyValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
+            return false;
+
+        return true;
+    };
+
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-low"_qs), this, 24));
-
-    if (path.isEmpty())
-        return;
-
-    QFile file {path.data()};
-    if (!file.open(QIODevice::ReadOnly))
-    {
-        if (showError == ShowError::Show)
-            QMessageBox::warning(this, tr("Invalid path"), file.errorString());
-        return;
-    }
-
-    if (!Utils::Net::isSSLKeyValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
-    {
-        if (showError == ShowError::Show)
-            QMessageBox::warning(this, tr("Invalid key"), tr("This is not a valid SSL key."));
-        return;
-    }
-
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"security-high"_qs), this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
+        isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
 }
 
 void OptionsDialog::showConnectionTab()

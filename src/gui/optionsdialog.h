@@ -77,12 +77,6 @@ class OptionsDialog final : public QDialog, public GUIApplicationComponent
         TAB_ADVANCED
     };
 
-    enum class ShowError
-    {
-        NotShow,
-        Show
-    };
-
 public:
     explicit OptionsDialog(IGUIApplication *app, QWidget *parent = nullptr);
     ~OptionsDialog() override;
@@ -111,8 +105,8 @@ private slots:
     void on_removeWatchedFolderButton_clicked();
     void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
-    void webUIHttpsCertChanged(const Path &path, ShowError showError);
-    void webUIHttpsKeyChanged(const Path &path, ShowError showError);
+    void webUIHttpsCertChanged(const Path &path);
+    void webUIHttpsKeyChanged(const Path &path);
 
 private:
     void showEvent(QShowEvent *e) override;
