@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>900</width>
-    <height>620</height>
+    <height>680</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="AddNewTorrentDialogLayout">
@@ -27,8 +27,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>868</width>
-        <height>644</height>
+        <width>882</width>
+        <height>598</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -346,8 +346,8 @@
                   <rect>
                    <x>0</x>
                    <y>0</y>
-                   <width>392</width>
-                   <height>68</height>
+                   <width>411</width>
+                   <height>70</height>
                   </rect>
                  </property>
                  <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -461,7 +461,7 @@
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
-                 <width>165</width>
+                 <width>40</width>
                  <height>20</height>
                 </size>
                </property>
