@@ -31,6 +31,7 @@
 
 #include <cerrno>
 #include <cstring>
+#include <filesystem>
 
 #if defined(Q_OS_WIN)
 #include <memory>
@@ -57,8 +58,8 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
-#include <QStorageInfo>
 #include <QRegularExpression>
+#include <QStorageInfo>
 
 #include "base/global.h"
 #include "base/path.h"
@@ -214,17 +215,8 @@ Path Utils::Fs::tempPath()
 
 bool Utils::Fs::isRegularFile(const Path &path)
 {
-    struct ::stat st;
-    if (::stat(path.toString().toUtf8().constData(), &st) != 0)
-    {
-        //  analyse erno and log the error
-        const auto err = errno;
-        qDebug("Could not get file stats for path '%s'. Error: %s"
-               , qUtf8Printable(path.toString()), strerror(err));
-        return false;
-    }
-
-    return (st.st_mode & S_IFMT) == S_IFREG;
+    std::error_code ec;
+    return std::filesystem::is_regular_file(path.toStdFsPath(), ec);
 }
 
 bool Utils::Fs::isNetworkFileSystem(const Path &path)
