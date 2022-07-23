@@ -135,6 +135,22 @@ namespace
         return -1;
     }
 
+    qint64 queryFreeDiskSpace(const Path &path)
+    {
+        const Path root = path.rootItem();
+        Path current = path;
+        qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+
+        // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`
+        // will return invalid value so instead query its parent/ancestor paths
+        while ((freeSpace < 0) && (current != root))
+        {
+            current = current.parentPath();
+            freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+        }
+        return freeSpace;
+    }
+
     void setPath(FileSystemPathComboEdit *fsPathEdit, const Path &newPath)
     {
         int existingIndex = indexOfPath(fsPathEdit, newPath);
@@ -530,9 +546,10 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
         }
     }
 
+    const QString freeSpace = Utils::Misc::friendlyUnit(queryFreeDiskSpace(m_ui->savePath->selectedPath()));
     const QString sizeString = tr("%1 (Free space on disk: %2)").arg(
         ((torrentSize > 0) ? Utils::Misc::friendlyUnit(torrentSize) : tr("Not available", "This size is unavailable."))
-        , Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(m_ui->savePath->selectedPath())));
+        , freeSpace);
     m_ui->labelSizeData->setText(sizeString);
 }
 
