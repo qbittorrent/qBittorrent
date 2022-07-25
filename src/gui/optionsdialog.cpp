@@ -775,7 +775,7 @@ void OptionsDialog::showScheduleDayContextMenu(int day)
     QAction *actionRemoveEntry = menu->addAction(theme->getIcon(u"list-remove"_qs), tr("Remove entry"));
     menu->addSeparator();
     QAction *actionCopy = menu->addAction(theme->getIcon(u"edit-copy"_qs), tr("Copy"));
-    QAction *actionPaste = menu->addAction(theme->getIcon(u"edit-paste"_qs), tr("Paste"));
+    QAction *actionPaste = menu->addAction(theme->getIcon(u"edit-copy"_qs), tr("Paste"));
     QAction *actionCopyToOtherDays = menu->addAction(theme->getIcon(u"edit-copy"_qs), tr("Copy selected to other days"));
     menu->addSeparator();
     QAction *actionClear = menu->addAction(theme->getIcon(u"edit-clear"_qs), tr("Clear all"));
