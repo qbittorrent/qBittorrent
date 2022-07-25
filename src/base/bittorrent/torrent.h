@@ -239,8 +239,6 @@ namespace BitTorrent
         virtual int totalSeedsCount() const = 0;
         virtual int totalPeersCount() const = 0;
         virtual int totalLeechersCount() const = 0;
-        virtual int completeCount() const = 0;
-        virtual int incompleteCount() const = 0;
         virtual QDateTime lastSeenComplete() const = 0;
         virtual QDateTime completedTime() const = 0;
         virtual qlonglong timeSinceUpload() const = 0;
