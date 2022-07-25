@@ -373,7 +373,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->contentPath().toString());
             break;
         case u'G':
-            program.replace(i, 2, torrent->tags().join(u","_qs));
+            program.replace(i, 2, (torrent->tags().empty() ? u"-"_qs : torrent->tags().join(u","_qs)));
             break;
         case u'I':
             program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_qs));
@@ -385,7 +385,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
             program.replace(i, 2, torrent->id().toString());
             break;
         case u'L':
-            program.replace(i, 2, torrent->category());
+            program.replace(i, 2, (torrent->category().isEmpty() ? u"-"_qs : torrent->category()));
             break;
         case u'N':
             program.replace(i, 2, torrent->name());
