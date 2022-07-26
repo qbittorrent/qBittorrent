@@ -76,12 +76,14 @@ bool Path::isValid() const
     if (isEmpty())
         return false;
 
+    // https://stackoverflow.com/a/31976060
 #if defined(Q_OS_WIN)
-    const QRegularExpression regex {u"[:?\"*<>|]"_qs};
+    // \\37 is using base-8 number system
+    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_qs};
 #elif defined(Q_OS_MACOS)
     const QRegularExpression regex {u"[\\0:]"_qs};
 #else
-    const QRegularExpression regex {u"[\\0]"_qs};
+    const QRegularExpression regex {u"\\0"_qs};
 #endif
     return !m_pathStr.contains(regex);
 }
