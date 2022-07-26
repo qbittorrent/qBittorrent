@@ -218,6 +218,15 @@ QString Path::toString() const
     return QDir::toNativeSeparators(m_pathStr);
 }
 
+std::filesystem::path Path::toStdFsPath() const
+{
+#ifdef Q_OS_WIN
+    return {data().toStdWString(), std::filesystem::path::format::generic_format};
+#else
+    return {data().toStdString(), std::filesystem::path::format::generic_format};
+#endif
+}
+
 Path &Path::operator/=(const Path &other)
 {
     *this = *this / other;

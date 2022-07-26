@@ -29,6 +29,8 @@
 
 #pragma once
 
+#include <filesystem>
+
 #include <QtGlobal>
 #include <QMetaType>
 #include <QString>
@@ -69,6 +71,7 @@ public:
 
     QString data() const;
     QString toString() const override;
+    std::filesystem::path toStdFsPath() const;
 
     Path &operator/=(const Path &other);
     Path &operator+=(QStringView str);
