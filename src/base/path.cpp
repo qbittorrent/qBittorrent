@@ -73,6 +73,8 @@ Path::Path(const std::string &pathStr)
 
 bool Path::isValid() const
 {
+    // does not support UNC path
+
     if (isEmpty())
         return false;
 
@@ -116,6 +118,8 @@ bool Path::exists() const
 
 Path Path::rootItem() const
 {
+    // does not support UNC path
+
     const int slashIndex = m_pathStr.indexOf(u'/');
     if (slashIndex < 0)
         return *this;
@@ -133,6 +137,8 @@ Path Path::rootItem() const
 
 Path Path::parentPath() const
 {
+    // does not support UNC path
+
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return {};
