@@ -2502,7 +2502,15 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
 
     TorrentImpl *const torrent = m_torrents.value(id);
     if (torrent)
+    {
+        if (hasMetadata)
+        {
+            // Trying to set metadata to existing torrent in case if it has none
+            torrent->setMetadata(std::get<TorrentInfo>(source));
+        }
+
         return false;
+    }
 
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;

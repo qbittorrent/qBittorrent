@@ -298,6 +298,7 @@ namespace BitTorrent
         virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
+        virtual bool setMetadata(const TorrentInfo &torrentInfo) = 0;
 
         virtual QString createMagnetURI() const = 0;
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;

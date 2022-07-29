@@ -2126,6 +2126,19 @@ lt::torrent_handle TorrentImpl::nativeHandle() const
     return m_nativeHandle;
 }
 
+bool TorrentImpl::setMetadata(const TorrentInfo &torrentInfo)
+{
+    if (hasMetadata())
+        return false;
+
+#ifdef QBT_USES_LIBTORRENT2
+    return m_nativeHandle.set_metadata(torrentInfo.nativeInfo()->info_section());
+#else
+    const std::shared_ptr<lt::torrent_info> nativeInfo = torrentInfo.nativeInfo();
+    return m_nativeHandle.set_metadata(lt::span<const char>(nativeInfo->metadata().get(), nativeInfo->metadata_size()));
+#endif
+}
+
 bool TorrentImpl::isMoveInProgress() const
 {
     return m_storageIsMoving;
