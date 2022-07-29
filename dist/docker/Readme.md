@@ -4,11 +4,11 @@ This Dockerfile allows you to build a docker image containing qBittorrent-nox
 
 ## Prerequisites
 
-In order to build/run this image you'll need `docker` installed: https://docs.docker.com/get-docker/
+In order to build/run this image you'll need Docker installed: https://docs.docker.com/get-docker/
 
 If you don't need the GUI, you can just install Docker Engine: https://docs.docker.com/engine/install/
 
-It is also recommended to install `docker-compose-plugin` as it can significantly ease the process: https://docs.docker.com/compose/install/
+It is also recommended to install Docker Compose as it can significantly ease the process: https://docs.docker.com/compose/install/
 
 ## Building docker image
 
