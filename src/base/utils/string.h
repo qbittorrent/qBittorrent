@@ -61,6 +61,8 @@ namespace Utils::String
     std::optional<int> parseInt(const QString &string);
     std::optional<double> parseDouble(const QString &string);
 
+    QStringList splitCommand(const QString &command);
+
     QString join(const QList<QStringView> &strings, QStringView separator);
 
     QString fromDouble(double n, int precision);
