@@ -1,6 +1,6 @@
 # qBittorrent-nox Docker Image
 
-This Dockerfile allows you to build a docker image containing qBittorrent-nox
+This Dockerfile allows you to build a Docker Image containing qBittorrent-nox
 
 ## Prerequisites
 
@@ -10,9 +10,9 @@ If you don't need the GUI, you can just install Docker Engine: https://docs.dock
 
 It is also recommended to install Docker Compose as it can significantly ease the process: https://docs.docker.com/compose/install/
 
-## Building docker image
+## Building Docker Image
 
-* If you are using docker (not docker-compose) then run the following commands in this folder:
+* If you are using Docker (not Docker Compose) then run the following commands in this folder:
   ```shell
   export \
     QBT_VERSION=devel
@@ -22,7 +22,7 @@ It is also recommended to install Docker Compose as it can significantly ease th
     .
   ```
 
-* If you are using docker-compose then you should edit `.env` file first.
+* If you are using Docker Compose then you should edit `.env` file first.
   You can find an explanation of the variables in the following [Parameters](#parameters) section. \
   Then run the following commands in this folder:
   ```shell
@@ -53,7 +53,7 @@ There are some paths involved:
 
 ## Running container
 
-* Using docker (not Docker Compose), simply run:
+* Using Docker (not Docker Compose), simply run:
   ```shell
   export \
     QBT_EULA=accept \
@@ -86,7 +86,7 @@ Then you can login at: `http://127.0.0.1:8080`
 
 ## Stopping container
 
-* Using docker (not Docker Compose):
+* Using Docker (not Docker Compose):
   ```shell
   docker stop -t 1800 qbittorrent-nox
   ```
