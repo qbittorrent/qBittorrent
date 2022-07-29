@@ -84,12 +84,12 @@ Then you can login at: `http://127.0.0.1:8080`
 
 ## Stopping container
 
-* Using docker (not docker-compose):
+* Using docker (not Docker Compose):
   ```shell
   docker stop -t 1800 qbittorrent-nox
   ```
 
-* Using docker-compose:
+* Using Docker Compose:
   ```shell
   docker compose down
   ```
