@@ -51,7 +51,7 @@ There are some paths involved:
 
 ## Running container
 
-* Using docker (not docker-compose-plugin), simply run:
+* Using docker (not Docker Compose), simply run:
   ```shell
   export \
     QBT_EULA=accept \
@@ -75,7 +75,7 @@ There are some paths involved:
     qbittorrent-nox:"$QBT_VERSION"
   ```
 
-* Using docker-compose-plugin:
+* Using Docker Compose:
   ```shell
   docker compose up
   ```
