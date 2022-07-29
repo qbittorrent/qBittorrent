@@ -37,7 +37,7 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 
-#if (QT_VERSION < QT_VERSION_CHECK(6, 3, 0))
+#ifdef QT_NO_COMPRESS
 #include "base/utils/gzip.h"
 #endif
 
@@ -124,12 +124,12 @@ void DownloadHandlerImpl::processFinishedDownload()
     }
 
     // Success
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
-    m_result.data = m_reply->readAll();
-#else
+#ifdef QT_NO_COMPRESS
     m_result.data = (m_reply->rawHeader("Content-Encoding") == "gzip")
                     ? Utils::Gzip::decompress(m_reply->readAll())
                     : m_reply->readAll();
+#else
+    m_result.data = m_reply->readAll();
 #endif
 
     if (m_downloadRequest.saveToFile())
