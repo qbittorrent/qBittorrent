@@ -83,6 +83,7 @@
 #include "base/utils/compare.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
+#include "base/utils/string.h"
 #include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
@@ -353,64 +354,74 @@ void Application::processMessage(const QString &message)
 
 void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 {
-    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
+    // Cannot give users shell environment by default, as doing so could
+    // enable command injection via torrent name and other arguments
+    // (especially when some automated download mechanism has been setup).
+    // See: https://github.com/qbittorrent/qBittorrent/issues/10925
 
-    for (int i = (program.length() - 2); i >= 0; --i)
+    const auto replaceVariables = [torrent](QString str) -> QString
     {
-        if (program[i] != u'%')
-            continue;
-
-        const ushort specifier = program[i + 1].unicode();
-        switch (specifier)
+        for (int i = (str.length() - 2); i >= 0; --i)
         {
-        case u'C':
-            program.replace(i, 2, QString::number(torrent->filesCount()));
-            break;
-        case u'D':
-            program.replace(i, 2, torrent->savePath().toString());
-            break;
-        case u'F':
-            program.replace(i, 2, torrent->contentPath().toString());
-            break;
-        case u'G':
-            program.replace(i, 2, torrent->tags().join(u","_qs));
-            break;
-        case u'I':
-            program.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_qs));
-            break;
-        case u'J':
-            program.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : u"-"_qs));
-            break;
-        case u'K':
-            program.replace(i, 2, torrent->id().toString());
-            break;
-        case u'L':
-            program.replace(i, 2, torrent->category());
-            break;
-        case u'N':
-            program.replace(i, 2, torrent->name());
-            break;
-        case u'R':
-            program.replace(i, 2, torrent->rootPath().toString());
-            break;
-        case u'T':
-            program.replace(i, 2, torrent->currentTracker());
-            break;
-        case u'Z':
-            program.replace(i, 2, QString::number(torrent->totalSize()));
-            break;
-        default:
-            // do nothing
-            break;
+            if (str[i] != u'%')
+                continue;
+
+            const ushort specifier = str[i + 1].unicode();
+            switch (specifier)
+            {
+            case u'C':
+                str.replace(i, 2, QString::number(torrent->filesCount()));
+                break;
+            case u'D':
+                str.replace(i, 2, torrent->savePath().toString());
+                break;
+            case u'F':
+                str.replace(i, 2, torrent->contentPath().toString());
+                break;
+            case u'G':
+                str.replace(i, 2, torrent->tags().join(u","_qs));
+                break;
+            case u'I':
+                str.replace(i, 2, (torrent->infoHash().v1().isValid() ? torrent->infoHash().v1().toString() : u"-"_qs));
+                break;
+            case u'J':
+                str.replace(i, 2, (torrent->infoHash().v2().isValid() ? torrent->infoHash().v2().toString() : u"-"_qs));
+                break;
+            case u'K':
+                str.replace(i, 2, torrent->id().toString());
+                break;
+            case u'L':
+                str.replace(i, 2, torrent->category());
+                break;
+            case u'N':
+                str.replace(i, 2, torrent->name());
+                break;
+            case u'R':
+                str.replace(i, 2, torrent->rootPath().toString());
+                break;
+            case u'T':
+                str.replace(i, 2, torrent->currentTracker());
+                break;
+            case u'Z':
+                str.replace(i, 2, QString::number(torrent->totalSize()));
+                break;
+            default:
+                // do nothing
+                break;
+            }
+
+            // decrement `i` to avoid unwanted replacement, example pattern: "%%N"
+            --i;
         }
 
-        // decrement `i` to avoid unwanted replacement, example pattern: "%%N"
-        --i;
-    }
+        return str;
+    };
 
-    LogMsg(tr("Torrent: %1, running external program, command: %2").arg(torrent->name(), program));
+    const QString logMsg = tr("Running external program. Torrent: \"%1\". Command: `%2`");
 
+    // The processing sequenece is different for Windows and other OS, this is intentional
 #if defined(Q_OS_WIN)
+    const QString program = replaceVariables(Preferences::instance()->getAutoRunProgram().trimmed());
     const std::wstring programWStr = program.toStdWString();
 
     // Need to split arguments manually because QProcess::startDetached(QString)
@@ -419,9 +430,14 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     int argCount = 0;
     std::unique_ptr<LPWSTR[], decltype(&::LocalFree)> args {::CommandLineToArgvW(programWStr.c_str(), &argCount), ::LocalFree};
 
+    if (argCount <= 0)
+        return;
+
     QStringList argList;
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
+
+    LogMsg(logMsg.arg(torrent->name(), program));
 
     QProcess proc;
     proc.setProgram(QString::fromWCharArray(args[0]));
@@ -449,13 +465,15 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     });
     proc.startDetached();
 #else // Q_OS_WIN
-    // Cannot give users shell environment by default, as doing so could
-    // enable command injection via torrent name and other arguments
-    // (especially when some automated download mechanism has been setup).
-    // See: https://github.com/qbittorrent/qBittorrent/issues/10925
-    QStringList args = QProcess::splitCommand(program);
+    QStringList args = Utils::String::splitCommand(Preferences::instance()->getAutoRunProgram().trimmed());
+
     if (args.isEmpty())
         return;
+
+    for (QString &arg : args)
+        arg = replaceVariables(arg);
+
+    LogMsg(logMsg.arg(torrent->name(), args.join(u' ')));
 
     const QString command = args.takeFirst();
     QProcess::startDetached(command, args);

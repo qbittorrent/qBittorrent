@@ -14,6 +14,7 @@ set(testFiles
     testorderedset.cpp
     testutilscompare.cpp
     testutilsgzip.cpp
+    testutilsstring.cpp
 )
 foreach(testFile ${testFiles})
     get_filename_component(testFilename "${testFile}" NAME_WLE)
