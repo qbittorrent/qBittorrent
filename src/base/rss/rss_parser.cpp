@@ -549,7 +549,7 @@ RSS::Private::Parser::Parser(const QString lastBuildDate)
 // read and create items from a rss document
 void RSS::Private::Parser::parse(const QByteArray &feedData)
 {
-    QXmlStreamReader xml(feedData);
+    QXmlStreamReader xml {feedData};
     XmlStreamEntityResolver resolver;
     xml.setEntityResolver(&resolver);
     bool foundChannel = false;
@@ -596,7 +596,8 @@ void RSS::Private::Parser::parse(const QByteArray &feedData)
     }
 
     emit finished(m_result);
-    m_result.articles.clear(); // clear articles only
+    m_result.articles.clear();
+    m_result.error.clear();
     m_articleIDs.clear();
 }
 
