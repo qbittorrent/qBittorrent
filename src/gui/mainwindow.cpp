@@ -393,16 +393,16 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
 #else
     if (app->desktopIntegration()->isActive())
     {
-        if ((initialState != Minimized) && !m_uiLocked)
+        if ((initialState != (Minimized || Tray)) && !m_uiLocked)
         {
             show();
             activateWindow();
             raise();
         }
-        else if (initialState == Minimized)
+        else if (initialState == (Minimized || Tray))
         {
             showMinimized();
-            if (pref->minimizeToTray())
+            if (initialState == Tray || pref->minimizeToTray())
             {
                 hide();
                 if (!pref->minimizeToTrayNotified())
@@ -416,7 +416,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     else
     {
         // Make sure the Window is visible if we don't have a tray icon
-        if (initialState == Minimized)
+        if (initialState == (Minimized || Tray))
         {
             showMinimized();
         }

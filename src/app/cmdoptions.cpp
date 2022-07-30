@@ -324,6 +324,7 @@ namespace
     constexpr const BoolOption DAEMON_OPTION {"daemon", 'd'};
 #else
     constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
+    constexpr const TriStateBoolOption START_IN_TRAY_OPTION {"tray", true};
 #endif
     constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
     constexpr const StringOption PROFILE_OPTION {"profile"};
@@ -349,6 +350,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #endif
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
+    , startInTray(START_IN_TRAY_OPTION.value(env))
 #elif !defined(Q_OS_WIN)
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
@@ -431,6 +433,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             else if (arg == NO_SPLASH_OPTION)
             {
                 result.noSplash = true;
+            }
+            else if (arg == START_IN_TRAY_OPTION)
+            {
+                result.startInTray = true;
             }
 #elif !defined(Q_OS_WIN)
             else if (arg == DAEMON_OPTION)
@@ -539,6 +545,7 @@ QString makeUsage(const QString &prgName)
         + u'\n'
 #ifndef DISABLE_GUI
         + NO_SPLASH_OPTION.usage() + wrapText(QObject::tr("Disable splash screen")) + u'\n'
+        + START_IN_TRAY_OPTION.usage() + wrapText(QObject::tr("Start minimized to tray")) + u'\n'
 #elif !defined(Q_OS_WIN)
         + DAEMON_OPTION.usage() + wrapText(QObject::tr("Run in daemon-mode (background)")) + u'\n'
 #endif

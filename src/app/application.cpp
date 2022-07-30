@@ -757,7 +757,7 @@ try
         // we must not delete menu while it is used by DesktopIntegration
         auto *oldMenu = m_desktopIntegration->menu();
         const MainWindow::State windowState = (!m_startupProgressDialog || (m_startupProgressDialog->windowState() & Qt::WindowMinimized))
-                ? MainWindow::Minimized : MainWindow::Normal;
+                ? MainWindow::Minimized : m_commandLineArgs.startInTray ? MainWindow::Tray : MainWindow::Normal;
         m_window = new MainWindow(this, windowState);
         delete oldMenu;
         delete m_startupProgressDialog;

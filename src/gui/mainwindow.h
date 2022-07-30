@@ -82,7 +82,8 @@ public:
     enum State
     {
         Normal,
-        Minimized
+        Minimized,
+        Tray
     };
 
     explicit MainWindow(IGUIApplication *app, State initialState = Normal);

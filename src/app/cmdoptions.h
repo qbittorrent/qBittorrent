@@ -52,6 +52,7 @@ struct QBtCommandLineParameters
 #endif
 #ifndef DISABLE_GUI
     bool noSplash;
+    bool startInTray;
 #elif !defined(Q_OS_WIN)
     bool shouldDaemonize;
 #endif
