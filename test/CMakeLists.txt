@@ -15,6 +15,7 @@ set(testFiles
     testutilscompare.cpp
     testutilsgzip.cpp
     testutilsstring.cpp
+    testutilsversion.cpp
 )
 
 foreach(testFile ${testFiles})
