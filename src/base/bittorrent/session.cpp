@@ -1122,8 +1122,12 @@ void Session::prepareStartup()
             QMetaObject::invokeMethod(this, [this, context]() { handleLoadedResumeData(context); }, Qt::QueuedConnection);
             context->isLoadedResumeDataHandlingEnqueued = true;
         }
-        m_nativeSession->post_torrent_updates();
-        m_refreshEnqueued = true;
+
+        if (!m_refreshEnqueued)
+        {
+            m_nativeSession->post_torrent_updates();
+            m_refreshEnqueued = true;
+        }
     });
 
     context->startupStorage->loadAll();
