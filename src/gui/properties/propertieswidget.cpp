@@ -646,7 +646,7 @@ void PropertiesWidget::displayFilesListMenu()
 
         menu->addAction(UIThemeManager::instance()->getIcon(u"folder-documents"_qs), tr("Open")
             , this, [this, index]() { openItem(index); });
-        menu->addAction(UIThemeManager::instance()->getIcon(u"inode-directory"_qs), tr("Open containing folder")
+        menu->addAction(UIThemeManager::instance()->getIcon(u"directory"_qs), tr("Open containing folder")
             , this, [this, index]() { openParentFolder(index); });
         menu->addAction(UIThemeManager::instance()->getIcon(u"edit-rename"_qs), tr("Rename...")
             , this, [this]() { m_ui->filesList->renameSelectedFile(*m_torrent); });

@@ -390,12 +390,12 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
     auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
-    menu->addAction(UIThemeManager::instance()->getIcon(u"kt-set-max-download-speed"_qs)
+    menu->addAction(UIThemeManager::instance()->getIcon(u"download"_qs)
         , tr("Open download window"), this, [this]() { downloadTorrents(AddTorrentOption::ShowDialog); });
     menu->addAction(UIThemeManager::instance()->getIcon(u"downloading"_qs)
         , tr("Download"), this, [this]() { downloadTorrents(AddTorrentOption::SkipDialog); });
     menu->addSeparator();
-    menu->addAction(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs), tr("Open description page")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_qs), tr("Open description page")
         , this, &SearchJobWidget::openTorrentPages);
 
     QMenu *copySubMenu = menu->addMenu(
@@ -405,7 +405,7 @@ void SearchJobWidget::contextMenuEvent(QContextMenuEvent *event)
         , this, &SearchJobWidget::copyTorrentNames);
     copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"insert-link"_qs), tr("Download link")
         , this, &SearchJobWidget::copyTorrentDownloadLinks);
-    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"application-x-mswinurl"_qs), tr("Description page URL")
+    copySubMenu->addAction(UIThemeManager::instance()->getIcon(u"application-url"_qs), tr("Description page URL")
         , this, &SearchJobWidget::copyTorrentURLs);
 
     menu->popup(event->globalPos());
