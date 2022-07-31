@@ -723,6 +723,11 @@ void OptionsDialog::populateScheduleDayTable(QTableWidget *scheduleTable, const 
     }
 
     scheduleTable->resizeColumnsToContents();
+
+    for (int i = 0; i < 5; ++i) {
+        int width = scheduleTable->columnWidth(i);
+        scheduleTable->setColumnWidth(i, width * 1.5);
+    }
 }
 
 void OptionsDialog::openScheduleEntryDialog(ScheduleDay *scheduleDay)
