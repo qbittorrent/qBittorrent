@@ -435,6 +435,9 @@ bool AddNewTorrentDialog::loadTorrentImpl()
         BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
         if (torrent)
         {
+            // Trying to set metadata to existing torrent in case if it has none
+            torrent->setMetadata(m_torrentInfo);
+
             if (torrent->isPrivate() || m_torrentInfo.isPrivate())
             {
                 RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers cannot be merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
