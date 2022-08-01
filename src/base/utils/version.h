@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
  * Copyright (C) 2016  Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
@@ -29,8 +30,10 @@
 #pragma once
 
 #include <array>
+#include <optional>
 #include <type_traits>
 
+#include <QByteArray>
 #include <QDebug>
 #include <QString>
 
@@ -47,9 +50,11 @@ namespace Utils
         static_assert((N >= Mandatory),
                       "The number of mandatory components may not be larger than the total number of components");
 
+        using ComponentsArray = std::array<T, N>;
+
     public:
-        typedef T ComponentType;
-        typedef Version<T, N, Mandatory> ThisType;
+        using ComponentType = T;
+        using ThisType = Version<T, N, Mandatory>;
 
         constexpr Version() = default;
 
@@ -84,54 +89,73 @@ namespace Utils
         {
         }
 
+        constexpr bool isValid() const
+        {
+            return m_components.has_value();
+        }
+
         constexpr ComponentType majorNumber() const
         {
-            static_assert(N >= 1, "The number of version components is too small");
-            return m_components[0];
+            static_assert((N >= 1), "The number of version components is too small");
+
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+            return (*m_components)[0];
         }
 
         constexpr ComponentType minorNumber() const
         {
-            static_assert(N >= 2, "The number of version components is too small");
-            return m_components[1];
+            static_assert((N >= 2), "The number of version components is too small");
+
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+            return (*m_components)[1];
         }
 
         constexpr ComponentType revisionNumber() const
         {
-            static_assert(N >= 3, "The number of version components is too small");
-            return m_components[2];
+            static_assert((N >= 3), "The number of version components is too small");
+
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+            return (*m_components)[2];
         }
 
         constexpr ComponentType patchNumber() const
         {
-            static_assert(N >= 4, "The number of version components is too small");
-            return m_components[3];
+            static_assert((N >= 4), "The number of version components is too small");
+
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+            return (*m_components)[3];
         }
 
         constexpr ComponentType operator[](const std::size_t i) const
         {
-            return m_components.at(i);
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+            return m_components->at(i);
         }
 
         QString toString() const override
         {
+            if (!isValid())
+                throw RuntimeError(u"Object is invalid"_qs);
+
+            const ComponentsArray &components = *m_components;
+
             // find the last one non-zero component
             std::size_t lastSignificantIndex = N - 1;
-            while ((lastSignificantIndex > 0) && ((*this)[lastSignificantIndex] == 0))
+            while ((lastSignificantIndex > 0) && (components[lastSignificantIndex] == 0))
                 --lastSignificantIndex;
 
-            if (lastSignificantIndex + 1 < Mandatory)     // lastSignificantIndex >= 0
+            if ((lastSignificantIndex + 1) < Mandatory)   // lastSignificantIndex >= 0
                 lastSignificantIndex = Mandatory - 1;     // and Mandatory >= 1
 
-            QString res = QString::number((*this)[0]);
+            QString res = QString::number(components[0]);
             for (std::size_t i = 1; i <= lastSignificantIndex; ++i)
-                res += (u'.' + QString::number((*this)[i]));
+                res += (u'.' + QString::number(components[i]));
             return res;
-        }
-
-        constexpr bool isValid() const
-        {
-            return (*this != ThisType {});
         }
 
         // TODO: remove manually defined operators and use compiler generated `operator<=>()` in C++20
@@ -160,8 +184,6 @@ namespace Utils
         }
 
     private:
-        using ComponentsArray = std::array<T, N>;
-
         template <typename StringList>
         static ComponentsArray parseList(const StringList &versionParts)
         {
@@ -182,7 +204,7 @@ namespace Utils
             return res;
         }
 
-        ComponentsArray m_components {{}};
+        std::optional<ComponentsArray> m_components;
     };
 
     template <typename T, std::size_t N, std::size_t Mandatory>

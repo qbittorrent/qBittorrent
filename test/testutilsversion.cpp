@@ -44,8 +44,8 @@ private slots:
     {
         using TwoDigits = Utils::Version<unsigned char, 2, 1>;
         TwoDigits();
-        TwoDigits(0);
-        TwoDigits(0, 1);
+        QCOMPARE(TwoDigits(u"0"_qs), TwoDigits(0));
+        QCOMPARE(TwoDigits(u"0.1"_qs), TwoDigits(0, 1));
 
         using ThreeDigits = Utils::Version<int, 3>;
         // should not compile:
@@ -88,26 +88,49 @@ private slots:
         QCOMPARE(version2[1], 11);
         QCOMPARE(version2[2], 12);
         QCOMPARE(version2[3], 13);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+        QVERIFY_THROWS_EXCEPTION(std::out_of_range, version2[4]);
+#endif
         QCOMPARE(version2.majorNumber(), 10);
         QCOMPARE(version2.minorNumber(), 11);
         QCOMPARE(version2.revisionNumber(), 12);
         QCOMPARE(version2.patchNumber(), 13);
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+        const Utils::Version<int, 4> version3;
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3[0]);
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3[1]);
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3[2]);
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3[3]);
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3[4]);
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3.majorNumber());
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3.minorNumber());
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3.revisionNumber());
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, version3.patchNumber());
+#endif
     }
 
     void testToString() const
     {
         using OneMandatory = Utils::Version<int, 2, 1>;
         QCOMPARE(OneMandatory(u"10"_qs).toString(), u"10"_qs);
+        QCOMPARE(OneMandatory(u"2.0"_qs).toString(), u"2"_qs);
+        QCOMPARE(OneMandatory(u"2.2"_qs).toString(), u"2.2"_qs);
 
         using FourDigits = Utils::Version<int, 4>;
-        QCOMPARE(FourDigits().toString(), u"0.0.0.0"_qs);
+        QCOMPARE(FourDigits(0, 0, 0, 0).toString(), u"0.0.0.0"_qs);
         QCOMPARE(FourDigits(10, 11, 12, 13).toString(), u"10.11.12.13"_qs);
+        QCOMPARE(FourDigits(10, 0, -1, -100).toString(), u"10.0.-1.-100"_qs);
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 3, 0))
+        QVERIFY_THROWS_EXCEPTION(RuntimeError, FourDigits().toString());
+#endif
     }
 
     void testIsValid() const
     {
         using ThreeDigits = Utils::Version<int, 3>;
         QCOMPARE(ThreeDigits().isValid(), false);
+        QCOMPARE(ThreeDigits(0, 0, 0).isValid(), true);
         QCOMPARE(ThreeDigits(10, 11, 12).isValid(), true);
     }
 
