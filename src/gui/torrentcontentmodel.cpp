@@ -199,6 +199,7 @@ TorrentContentModel::TorrentContentModel(QObject *parent)
     , m_fileIconProvider {doesQFileIconProviderWork() ? new QFileIconProvider : new MimeFileIconProvider}
 #endif
 {
+    m_fileIconProvider->setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
 }
 
 TorrentContentModel::~TorrentContentModel()

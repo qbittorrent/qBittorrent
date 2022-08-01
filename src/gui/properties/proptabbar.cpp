@@ -63,7 +63,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Peers tab
     QPushButton *peersButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"edit-find-user"_qs),
+            UIThemeManager::instance()->getIcon(u"peers"_qs),
 #endif
             tr("Peers"), parent);
     peersButton->setShortcut(Qt::ALT + Qt::Key_R);
@@ -81,7 +81,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Files tab
     QPushButton *filesButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"inode-directory"_qs),
+            UIThemeManager::instance()->getIcon(u"directory"_qs),
 #endif
             tr("Content"), parent);
     filesButton->setShortcut(Qt::ALT + Qt::Key_Z);
@@ -92,7 +92,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Speed tab
     QPushButton *speedButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"office-chart-line"_qs),
+            UIThemeManager::instance()->getIcon(u"chart-line"_qs),
 #endif
             tr("Speed"), parent);
     speedButton->setShortcut(Qt::ALT + Qt::Key_D);

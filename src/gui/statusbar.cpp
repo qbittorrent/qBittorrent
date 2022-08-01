@@ -78,7 +78,7 @@ StatusBar::StatusBar(QWidget *parent)
     m_dlSpeedLbl->setMinimumWidth(200);
 
     m_upSpeedLbl = new QPushButton(this);
-    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"kt-set-max-upload-speed"_qs));
+    m_upSpeedLbl->setIcon(UIThemeManager::instance()->getIcon(u"upload"_qs));
     connect(m_upSpeedLbl, &QAbstractButton::clicked, this, &StatusBar::capSpeed);
     m_upSpeedLbl->setFlat(true);
     m_upSpeedLbl->setFocusPolicy(Qt::NoFocus);

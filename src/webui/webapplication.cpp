@@ -166,14 +166,12 @@ void WebApplication::sendWebUIFile()
 
     if (m_isAltUIUsed)
     {
-#ifdef Q_OS_UNIX
         if (!Utils::Fs::isRegularFile(localPath))
         {
             status(500, u"Internal Server Error"_qs);
             print(tr("Unacceptable file type, only regular file is allowed."), Http::CONTENT_TYPE_TXT);
             return;
         }
-#endif
 
         QFileInfo fileInfo {localPath.data()};
         while (Path(fileInfo.filePath()) != m_rootFolder)

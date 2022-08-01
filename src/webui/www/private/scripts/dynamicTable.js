@@ -937,25 +937,41 @@ window.qBittorrent.DynamicTable = (function() {
             // state_icon
             this.columns['state_icon'].updateTd = function(td, row) {
                 let state = this.getRowValue(row);
+                let img_path;
                 // normalize states
                 switch (state) {
                     case "forcedDL":
                     case "metaDL":
                     case "forcedMetaDL":
+                    case "downloading":
                         state = "downloading";
+                        img_path = "icons/downloading.svg";
                         break;
                     case "forcedUP":
+                    case "uploading":
                         state = "uploading";
+                        img_path = "icons/upload.svg";
+                        break;
+                    case "stalledUP":
+                        state = "stalledUP";
+                        img_path = "icons/stalledUP.svg";
+                        break;
+                    case "stalledDL":
+                        state = "stalledDL";
+                        img_path = "icons/stalledDL.svg";
                         break;
                     case "pausedDL":
-                        state = "media-playback-pause";
+                        state = "torrent-stop";
+                        img_path = "icons/torrent-stop.svg";
                         break;
                     case "pausedUP":
                         state = "checked-completed";
+                        img_path = "icons/checked-completed.svg";
                         break;
                     case "queuedDL":
                     case "queuedUP":
                         state = "queued";
+                        img_path = "icons/queued.svg";
                         break;
                     case "checkingDL":
                     case "checkingUP":
@@ -963,16 +979,16 @@ window.qBittorrent.DynamicTable = (function() {
                     case "checkingResumeData":
                     case "moving":
                         state = "force-recheck";
+                        img_path = "icons/force-recheck.svg";
                         break;
                     case "unknown":
                     case "missingFiles":
                         state = "error";
+                        img_path = "icons/error.svg";
                         break;
                     default:
                         break; // do nothing
                 }
-
-                const img_path = 'icons/' + state + '.svg';
 
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
@@ -1897,7 +1913,7 @@ window.qBittorrent.DynamicTable = (function() {
                             id: fileNameId
                         });
                         const dirImg = new Element('img', {
-                            src: 'icons/inode-directory.svg',
+                            src: 'icons/directory.svg',
                             styles: {
                                 'width': 15,
                                 'padding-right': 5,
@@ -2178,7 +2194,7 @@ window.qBittorrent.DynamicTable = (function() {
                 let img_path;
                 switch (row.full_data.status) {
                     case 'default':
-                        img_path = 'icons/application-rss+xml.svg';
+                        img_path = 'icons/application-rss.svg';
                         break;
                     case 'hasError':
                         img_path = 'icons/task-reject.svg';
@@ -2187,7 +2203,7 @@ window.qBittorrent.DynamicTable = (function() {
                         img_path = 'images/spinner.gif';
                         break;
                     case 'unread':
-                        img_path = 'icons/mail-folder-inbox.svg';
+                        img_path = 'icons/mail-inbox.svg';
                         break;
                     case 'isFolder':
                         img_path = 'icons/folder-documents.svg';

@@ -161,12 +161,12 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_qs));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_qs));
     m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_qs));
-    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs));
-    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs));
-    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs));
-    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"media-playback-start"_qs));
+    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs));
+    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs));
+    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs));
+    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs));
     m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
-    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"preferences-web-browser-cookies"_qs));
+    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_qs));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_qs));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 
@@ -481,6 +481,7 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
 
 MainWindow::~MainWindow()
 {
+    app()->desktopIntegration()->setMenu(nullptr);
     delete m_ui;
 }
 
@@ -669,7 +670,7 @@ void MainWindow::displayRSSTab(bool enable)
             m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
 #else
             const int indexTab = m_tabs->addTab(m_rssWidget, tr("RSS (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"application-rss+xml"_qs));
+            m_tabs->setTabIcon(indexTab, UIThemeManager::instance()->getIcon(u"application-rss"_qs));
 #endif
         }
     }
@@ -1170,11 +1171,6 @@ void MainWindow::closeEvent(QCloseEvent *e)
                 Preferences::instance()->setConfirmOnExit(false);
         }
     }
-
-    // Disable some UI to prevent user interactions
-    app()->desktopIntegration()->disconnect();
-    app()->desktopIntegration()->setToolTip(tr("qBittorrent is shutting down..."));
-    app()->desktopIntegration()->menu()->setEnabled(false);
 
     // Accept exit
     e->accept();

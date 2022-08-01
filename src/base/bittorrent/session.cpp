@@ -2510,31 +2510,14 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
 
     TorrentImpl *const torrent = m_torrents.value(id);
     if (torrent)
-    {  // a duplicate torrent is added
-        if (torrent->isPrivate())
-            return false;
-
+    {
         if (hasMetadata)
         {
-            const TorrentInfo &torrentInfo = std::get<TorrentInfo>(source);
-
-            if (torrentInfo.isPrivate())
-                return false;
-
-            // merge trackers and web seeds
-            torrent->addTrackers(torrentInfo.trackers());
-            torrent->addUrlSeeds(torrentInfo.urlSeeds());
-        }
-        else
-        {
-            const MagnetUri &magnetUri = std::get<MagnetUri>(source);
-
-            // merge trackers and web seeds
-            torrent->addTrackers(magnetUri.trackers());
-            torrent->addUrlSeeds(magnetUri.urlSeeds());
+            // Trying to set metadata to existing torrent in case if it has none
+            torrent->setMetadata(std::get<TorrentInfo>(source));
         }
 
-        return true;
+        return false;
     }
 
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);

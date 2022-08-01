@@ -171,8 +171,6 @@ namespace BitTorrent
         int totalSeedsCount() const override;
         int totalPeersCount() const override;
         int totalLeechersCount() const override;
-        int completeCount() const override;
-        int incompleteCount() const override;
         QDateTime lastSeenComplete() const override;
         QDateTime completedTime() const override;
         qlonglong timeSinceUpload() const override;
@@ -227,6 +225,7 @@ namespace BitTorrent
         void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
+        bool setMetadata(const TorrentInfo &torrentInfo) override;
 
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;

@@ -31,6 +31,7 @@
 
 #include <cerrno>
 #include <cstring>
+#include <filesystem>
 
 #if defined(Q_OS_WIN)
 #include <memory>
@@ -57,8 +58,8 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileInfo>
-#include <QStorageInfo>
 #include <QRegularExpression>
+#include <QStorageInfo>
 
 #include "base/global.h"
 #include "base/path.h"
@@ -161,15 +162,23 @@ qint64 Utils::Fs::computePathSize(const Path &path)
 
 /**
  * Makes deep comparison of two files to make sure they are identical.
+ * The point is about the file contents. If the files do not exist then
+ * the paths refers to nothing and therefore we cannot say the files are same
+ * (because there are no files!)
  */
 bool Utils::Fs::sameFiles(const Path &path1, const Path &path2)
 {
     QFile f1 {path1.data()};
     QFile f2 {path2.data()};
-    if (!f1.exists() || !f2.exists()) return false;
-    if (f1.size() != f2.size()) return false;
-    if (!f1.open(QIODevice::ReadOnly)) return false;
-    if (!f2.open(QIODevice::ReadOnly)) return false;
+
+    if (!f1.exists() || !f2.exists())
+        return false;
+    if (path1 == path2)
+        return true;
+    if (f1.size() != f2.size())
+        return false;
+    if (!f1.open(QIODevice::ReadOnly) || !f2.open(QIODevice::ReadOnly))
+        return false;
 
     const int readSize = 1024 * 1024;  // 1 MiB
     while (!f1.atEnd() && !f2.atEnd())
@@ -214,17 +223,8 @@ Path Utils::Fs::tempPath()
 
 bool Utils::Fs::isRegularFile(const Path &path)
 {
-    struct ::stat st;
-    if (::stat(path.toString().toUtf8().constData(), &st) != 0)
-    {
-        //  analyse erno and log the error
-        const auto err = errno;
-        qDebug("Could not get file stats for path '%s'. Error: %s"
-               , qUtf8Printable(path.toString()), strerror(err));
-        return false;
-    }
-
-    return (st.st_mode & S_IFMT) == S_IFREG;
+    std::error_code ec;
+    return std::filesystem::is_regular_file(path.toStdFsPath(), ec);
 }
 
 bool Utils::Fs::isNetworkFileSystem(const Path &path)

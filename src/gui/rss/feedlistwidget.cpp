@@ -83,7 +83,7 @@ namespace
         if (feed->hasError())
             return UIThemeManager::instance()->getIcon(u"task-reject"_qs);
 
-        return loadIcon(feed->iconPath(), u"application-rss+xml"_qs);
+        return loadIcon(feed->iconPath(), u"application-rss"_qs);
     }
 }
 
@@ -107,7 +107,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
     m_unreadStickyItem = new FeedListItem(this);
     m_unreadStickyItem->setData(0, Qt::UserRole, QVariant::fromValue(RSS::Session::instance()->rootFolder()));
     m_unreadStickyItem->setText(0, tr("Unread  (%1)").arg(RSS::Session::instance()->rootFolder()->unreadCount()));
-    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-folder-inbox"_qs));
+    m_unreadStickyItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"mail-inbox"_qs));
     m_unreadStickyItem->setData(0, StickyItemTagRole, true);
 
 
@@ -282,7 +282,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     if (auto feed = qobject_cast<RSS::Feed *>(rssItem))
         icon = rssFeedIcon(feed);
     else
-        icon = UIThemeManager::instance()->getIcon(u"inode-directory"_qs);
+        icon = UIThemeManager::instance()->getIcon(u"directory"_qs);
     item->setData(0, Qt::DecorationRole, icon);
 
     connect(rssItem, &RSS::Item::unreadCountChanged, this, &FeedListWidget::handleItemUnreadCountChanged);
