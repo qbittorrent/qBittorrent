@@ -82,6 +82,10 @@ enum DeleteOption
     DeleteTorrentAndFiles
 };
 
+#ifdef Q_OS_WIN
+QString m_interfaceGUID;
+#endif
+
 namespace Net
 {
     struct DownloadResult;

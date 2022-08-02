@@ -296,6 +296,20 @@ namespace
 
         return {};
     }
+
+    QString interfaceGUID()
+    {
+        return m_interfaceGUID = SettingValue<QString>(u"Network/InterfaceGUID"_qs).get();
+    }
+
+    void setInterfaceGUID(const QString &guid)
+    {
+        if (guid != m_interfaceGUID)
+        {
+            m_interfaceGUID = guid;
+            SettingValue<QString>(u"Network/InterfaceGUID"_qs, guid);
+        }
+    }
 #endif
 }
 
@@ -1831,14 +1845,26 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
             {
                 endpoints << (guid + portString);
                 outgoingInterfaces << guid;
+                // Cache the GUID since on next startup the interface/VPN may be disconnected and GUID will be unavailable.
+                setInterfaceGUID(guid);
             }
             else
             {
-                LogMsg(tr("Could not find GUID of network interface. Interface: \"%1\"").arg(ip), Log::WARNING);
-                // Since we can't get the GUID, we'll pass the interface name instead.
-                // Otherwise an empty string will be passed to outgoing_interface which will cause IP leak.
-                endpoints << (ip + portString);
-                outgoingInterfaces << ip;
+                // Since we can't get the GUID, we'll use the cached GUID if available. Otherwise we'll pass the interface name.
+                // Passing an empty string will cause IP leak so we avoid that.
+                const QString value = interfaceGUID();
+                if (!value.isEmpty())
+                {
+                    endpoints << (value + portString);
+                    outgoingInterfaces << value;
+                    LogMsg(tr("Network interface GUID is not available. Falling back to the available cached GUID. Interface: \"%1\"").arg(ip), Log::WARNING);
+                }
+                else
+                {
+                    endpoints << (ip + portString);
+                    outgoingInterfaces << ip;
+                    LogMsg(tr("Network interface GUID is neither available nor cached. Configured interface may be down/invalid. Interface: \"%1\"").arg(ip), Log::WARNING);
+                }
             }
 #else
             endpoints << (ip + portString);
