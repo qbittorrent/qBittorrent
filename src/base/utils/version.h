@@ -29,6 +29,7 @@
 #pragma once
 
 #include <array>
+#include <type_traits>
 
 #include <QDebug>
 #include <QString>
@@ -42,8 +43,8 @@ namespace Utils
     template <typename T, std::size_t N, std::size_t Mandatory = N>
     class Version final : public IStringable
     {
-        static_assert(N > 0, "The number of version components may not be smaller than 1");
-        static_assert(N >= Mandatory,
+        static_assert((N > 0), "The number of version components may not be smaller than 1");
+        static_assert((N >= Mandatory),
                       "The number of mandatory components may not be larger than the total number of components");
 
     public:
@@ -52,10 +53,13 @@ namespace Utils
 
         constexpr Version() = default;
 
-        template <typename ... Other>
+        template <typename ... Other
+                , typename std::enable_if_t<std::conjunction_v<std::is_constructible<T, Other>...>, int> = 0>
         constexpr Version(Other ... components)
             : m_components {{static_cast<T>(components) ...}}
         {
+            static_assert((sizeof...(Other) <= N), "Too many parameters provided");
+            static_assert((sizeof...(Other) >= Mandatory), "Not enough parameters provided");
         }
 
         /**
@@ -65,7 +69,7 @@ namespace Utils
          * @throws RuntimeError if parsing fails
          */
         Version(const QString &version)
-            : Version {version.split(u'.')}
+            : m_components {parseList(version.split(u'.'))}
         {
         }
 
@@ -76,7 +80,7 @@ namespace Utils
          * @throws RuntimeError if parsing fails
          */
         Version(const QByteArray &version)
-            : Version {version.split('.')}
+            : m_components {parseList(version.split('.'))}
         {
         }
 
@@ -158,8 +162,8 @@ namespace Utils
     private:
         using ComponentsArray = std::array<T, N>;
 
-        template <typename StringsList>
-        static ComponentsArray parseList(const StringsList &versionParts)
+        template <typename StringList>
+        static ComponentsArray parseList(const StringList &versionParts)
         {
             if ((static_cast<std::size_t>(versionParts.size()) > N)
                 || (static_cast<std::size_t>(versionParts.size()) < Mandatory))
@@ -171,17 +175,11 @@ namespace Utils
             ComponentsArray res {{}};
             for (std::size_t i = 0; i < static_cast<std::size_t>(versionParts.size()); ++i)
             {
-                res[i] = static_cast<T>(versionParts[static_cast<typename StringsList::size_type>(i)].toInt(&ok));
+                res[i] = static_cast<T>(versionParts[static_cast<typename StringList::size_type>(i)].toInt(&ok));
                 if (!ok)
                     throw RuntimeError(u"Can not parse version component"_qs);
             }
             return res;
-        }
-
-        template <typename StringsList>
-        Version(const StringsList &versionParts)
-            : m_components (parseList(versionParts)) // GCC 4.8.4 has problems with the uniform initializer here
-        {
         }
 
         ComponentsArray m_components {{}};
