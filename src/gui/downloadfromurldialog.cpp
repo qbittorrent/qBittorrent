@@ -29,6 +29,7 @@
 #include "downloadfromurldialog.h"
 
 #include <QClipboard>
+#include <QKeyEvent>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QRegularExpression>
@@ -66,7 +67,7 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Download"));
-    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &DownloadFromURLDialog::downloadButtonClicked);
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &DownloadFromURLDialog::onSubmit);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     m_ui->textUrls->setWordWrapMode(QTextOption::NoWrap);
@@ -102,7 +103,7 @@ DownloadFromURLDialog::~DownloadFromURLDialog()
     delete m_ui;
 }
 
-void DownloadFromURLDialog::downloadButtonClicked()
+void DownloadFromURLDialog::onSubmit()
 {
     const QString plainText = m_ui->textUrls->toPlainText();
     const QList<QStringView> urls = QStringView(plainText).split(u'\n');
@@ -124,4 +125,15 @@ void DownloadFromURLDialog::downloadButtonClicked()
 
     emit urlsReadyToBeDownloaded(uniqueURLs.values());
     accept();
+}
+
+void DownloadFromURLDialog::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->modifiers() == Qt::ControlModifier) && (event->key() == Qt::Key_Return))
+    {
+        onSubmit();
+        return;
+    }
+
+    QDialog::keyPressEvent(event);
 }
