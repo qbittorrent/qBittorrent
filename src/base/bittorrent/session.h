@@ -532,6 +532,7 @@ namespace BitTorrent
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
 
     signals:
+        void startupProgressUpdated(int progress);
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
