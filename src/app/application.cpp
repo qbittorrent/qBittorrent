@@ -754,10 +754,12 @@ try
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-        delete m_desktopIntegration->menu();
+        // we must not delete menu while it is used by DesktopIntegration
+        auto *oldMenu = m_desktopIntegration->menu();
         const MainWindow::State windowState = (!m_startupProgressDialog || (m_startupProgressDialog->windowState() & Qt::WindowMinimized))
                 ? MainWindow::Minimized : MainWindow::Normal;
         m_window = new MainWindow(this, windowState);
+        delete oldMenu;
         delete m_startupProgressDialog;
 #ifdef Q_OS_WIN
         auto *pref = Preferences::instance();
