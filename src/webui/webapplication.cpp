@@ -276,6 +276,20 @@ void WebApplication::doProcessRequest()
     if (!session() && !isPublicAPI(scope, action))
         throw ForbiddenHTTPError();
 
+    // Filter HTTP methods
+    const auto allowedMethodIter = m_allowedMethod.find({scope, action});
+    if (allowedMethodIter == m_allowedMethod.end())
+    {
+        // by default allow both GET, POST methods
+        if ((m_request.method != Http::METHOD_GET) && (m_request.method != Http::METHOD_POST))
+            throw MethodNotAllowedHTTPError();
+    }
+    else
+    {
+        if (*allowedMethodIter != m_request.method)
+            throw MethodNotAllowedHTTPError();
+    }
+
     DataMap data;
     for (const Http::UploadedFile &torrent : request().files)
         data[torrent.filename] = torrent.data;
