@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <utility>
+
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
@@ -130,6 +132,20 @@ private:
 
     QHash<QString, APIController *> m_apiControllers;
     QSet<QString> m_publicAPIs;
+    const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
+    {
+        // <<controller name, action name>, HTTP method>
+        // TODO: this list is incomplete
+        {{QLatin1String("app"), QLatin1String("setPreferences")}, Http::METHOD_POST},
+        {{QLatin1String("app"), QLatin1String("shutdown")}, Http::METHOD_POST},
+        {{QLatin1String("auth"), QLatin1String("login")}, Http::METHOD_POST},
+        {{QLatin1String("auth"), QLatin1String("logout")}, Http::METHOD_POST},
+        {{QLatin1String("rss"), QLatin1String("addFeed")}, Http::METHOD_POST},
+        {{QLatin1String("search"), QLatin1String("installPlugin")}, Http::METHOD_POST},
+        {{QLatin1String("torrents"), QLatin1String("add")}, Http::METHOD_POST},
+        {{QLatin1String("torrents"), QLatin1String("addPeers")}, Http::METHOD_POST},
+        {{QLatin1String("torrents"), QLatin1String("addTrackers")}, Http::METHOD_POST}
+    };
     bool m_isAltUIUsed = false;
     QString m_rootFolder;
 
