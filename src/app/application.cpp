@@ -754,10 +754,30 @@ try
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-        delete m_desktopIntegration->menu();
+        // we must not delete menu while it is used by DesktopIntegration
+        auto *oldMenu = m_desktopIntegration->menu();
         const MainWindow::State windowState = (!m_startupProgressDialog || (m_startupProgressDialog->windowState() & Qt::WindowMinimized))
                 ? MainWindow::Minimized : MainWindow::Normal;
         m_window = new MainWindow(this, windowState);
+        delete oldMenu;
+        delete m_startupProgressDialog;
+#ifdef Q_OS_WIN
+        auto *pref = Preferences::instance();
+        if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
+        {
+            if (QMessageBox::question(m_window, tr("Torrent file association")
+                                      , tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?")
+                                      , QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            {
+                pref->setTorrentFileAssoc(true);
+                pref->setMagnetLinkAssoc(true);
+            }
+            else
+            {
+                pref->setNeverCheckFileAssoc();
+            }
+        }
+#endif // Q_OS_WIN
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -838,7 +858,6 @@ void Application::createStartupProgressDialog()
     });
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::startupProgressUpdated, m_startupProgressDialog, &QProgressDialog::setValue);
-    connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, m_startupProgressDialog, &QObject::deleteLater);
 
     connect(m_desktopIntegration, &DesktopIntegration::activationRequested, m_startupProgressDialog, [this]()
     {
