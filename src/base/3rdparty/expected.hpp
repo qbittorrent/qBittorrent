@@ -13,8 +13,8 @@
 #define NONSTD_EXPECTED_LITE_HPP
 
 #define expected_lite_MAJOR  0
-#define expected_lite_MINOR  5
-#define expected_lite_PATCH  0
+#define expected_lite_MINOR  6
+#define expected_lite_PATCH  2
 
 #define expected_lite_VERSION  expected_STRINGIFY(expected_lite_MAJOR) "." expected_STRINGIFY(expected_lite_MINOR) "." expected_STRINGIFY(expected_lite_PATCH)
 
@@ -85,7 +85,7 @@
 # define nsel_CONFIG_NO_EXCEPTIONS_SEH  ( nsel_CONFIG_NO_EXCEPTIONS && _MSC_VER )
 #endif
 
-// C++ language version detection (C++20 is speculative):
+// C++ language version detection (C++23 is speculative):
 // Note: VC14.0/1900 (VS2015) lacks too much from C++14.
 
 #ifndef   nsel_CPLUSPLUS
@@ -100,7 +100,7 @@
 #define nsel_CPP11_OR_GREATER  ( nsel_CPLUSPLUS >= 201103L )
 #define nsel_CPP14_OR_GREATER  ( nsel_CPLUSPLUS >= 201402L )
 #define nsel_CPP17_OR_GREATER  ( nsel_CPLUSPLUS >= 201703L )
-#define nsel_CPP20_OR_GREATER  ( nsel_CPLUSPLUS >= 202000L )
+#define nsel_CPP20_OR_GREATER  ( nsel_CPLUSPLUS >= 202002L )
 #define nsel_CPP23_OR_GREATER  ( nsel_CPLUSPLUS >= 202300L )
 
 // Use C++23 std::expected if available and requested:
@@ -429,7 +429,7 @@ struct conjunction<B1, Bn...> : std::conditional<bool(B1::value), conjunction<Bn
 
 namespace std20 {
 
-#if nsel_CPP20_OR_GREATER
+#if defined(__cpp_lib_remove_cvref)
 
 using std::remove_cvref;
 
