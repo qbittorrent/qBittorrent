@@ -88,7 +88,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Also delete the files on the hard disk</string>
+        <string>Also permanently delete the files</string>
        </property>
       </widget>
      </item>
