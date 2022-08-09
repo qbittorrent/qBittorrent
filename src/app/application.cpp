@@ -339,7 +339,22 @@ void Application::processMessage(const QString &message)
 #ifndef DISABLE_GUI
     if (message.isEmpty())
     {
-        m_window->activate(); // show UI
+        // TODO: use [[likely]] in C++20
+        if (Q_LIKELY(BitTorrent::Session::instance()->isRestored()))
+        {
+            m_window->activate(); // show UI
+        }
+        else if (m_startupProgressDialog)
+        {
+            m_startupProgressDialog->show();
+            m_startupProgressDialog->activateWindow();
+            m_startupProgressDialog->raise();
+        }
+        else
+        {
+            createStartupProgressDialog();
+        }
+
         return;
     }
 #endif
@@ -703,11 +718,7 @@ try
     }
     else
     {
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
         connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-#else
-        connect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog, Qt::SingleShotConnection);
-#endif
     }
 #endif
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
@@ -840,10 +851,10 @@ bool Application::isRunning()
 #ifndef DISABLE_GUI
 void Application::createStartupProgressDialog()
 {
+    Q_ASSERT(!m_startupProgressDialog);
     Q_ASSERT(m_desktopIntegration);
-#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+
     disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-#endif
 
     m_startupProgressDialog = new QProgressDialog(tr("Loading torrents..."), tr("Exit"), 0, 100);
     m_startupProgressDialog->setAttribute(Qt::WA_DeleteOnClose);
