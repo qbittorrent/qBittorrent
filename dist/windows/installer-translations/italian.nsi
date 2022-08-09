@@ -24,7 +24,7 @@ LangString inst_warning ${LANG_ITALIAN} "qBittorrent è in esecuzione.$\r$\nChiu
 LangString inst_uninstall_question ${LANG_ITALIAN} "La versione attuale verrà disinstallata.$\r$\nLe impostazioni utente e i torrent rimarranno invariati."
 ;LangString inst_unist ${LANG_ENGLISH} "Uninstalling previous version."
 LangString inst_unist ${LANG_ITALIAN} "Disinstallazione versione precedente."
-;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent"
+;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_ITALIAN} "Esegui qBittorrent."
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
 LangString inst_requires_64bit ${LANG_ITALIAN} "Questo installer funziona solo con versioni di Windows a 64bit."
