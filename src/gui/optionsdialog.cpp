@@ -1297,6 +1297,12 @@ void OptionsDialog::initializeLanguageCombo()
             // QLocale doesn't work with that locale.
             languageName = C_LOCALE_LATGALIAN;
         }
+        else if (localeStr.compare(u"zh", Qt::CaseInsensitive) == 0)
+        {
+            // Map zh to zh_CN so that qtbase_zh_CN.qm can be paired
+            localeStr = u"zh_CN";
+            languageName = C_LOCALE_CHINESE_SIMPLIFIED;
+        }
         else
         {
             QLocale locale(localeStr);
