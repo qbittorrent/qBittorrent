@@ -1300,7 +1300,7 @@ void OptionsDialog::initializeLanguageCombo()
         else if (localeStr.compare(u"zh", Qt::CaseInsensitive) == 0)
         {
             // Map zh to zh_CN so that qtbase_zh_CN.qm can be paired
-            localeStr = u"zh_CN";
+            localeStr = u"zh_CN"_qs;
             languageName = C_LOCALE_CHINESE_SIMPLIFIED;
         }
         else
