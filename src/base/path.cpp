@@ -59,6 +59,14 @@ namespace
         });
         return hasSeparator ? QDir::cleanPath(path) : path;
     }
+
+#ifdef Q_OS_WIN
+    bool hasDriveLetter(const QStringView path)
+    {
+        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_qs};
+        return driveLetterRegex.match(path).hasMatch();
+    }
+#endif
 }
 
 Path::Path(const QString &pathStr)
@@ -80,8 +88,13 @@ bool Path::isValid() const
 
     // https://stackoverflow.com/a/31976060
 #if defined(Q_OS_WIN)
+    QStringView view = m_pathStr;
+    if (hasDriveLetter(view))
+        view = view.mid(3);
+
     // \\37 is using base-8 number system
     const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_qs};
+    return !regex.match(view).hasMatch();
 #elif defined(Q_OS_MACOS)
     const QRegularExpression regex {u"[\\0:]"_qs};
 #else
