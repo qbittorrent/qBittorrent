@@ -162,8 +162,8 @@ Path Path::parentPath() const
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
-    if ((slashIndex == 2) && (m_pathStr.at(1) == u':'))
-        return createUnchecked(m_pathStr.left(slashIndex + 1));
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
+        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.left(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.left(slashIndex));
 }
