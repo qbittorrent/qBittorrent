@@ -442,7 +442,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             new Request.JSON({
                 url: 'api/v2/rss/items',
                 noCache: true,
-                method: 'post',
+                method: 'get',
                 data: {
                     withData: false
                 },
@@ -630,7 +630,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
             new Request.JSON({
                 url: 'api/v2/rss/matchingArticles',
                 noCache: true,
-                method: 'post',
+                method: 'get',
                 data: {
                     ruleName: ruleName
                 },

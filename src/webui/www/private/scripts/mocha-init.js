@@ -1071,6 +1071,7 @@ const initializeWindows = function() {
         if (confirm('QBT_TR(Are you sure you want to quit qBittorrent?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
                 url: 'api/v2/app/shutdown',
+                method: 'post',
                 onSuccess: function() {
                     document.write('<!doctype html><html lang="${LANG}"><head> <meta charset="UTF-8"> <title>QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</title></head><body> <h1 style="text-align: center;">QBT_TR(qBittorrent has been shutdown)QBT_TR[CONTEXT=HttpServer]</h1></body></html>');
                     document.close();
