@@ -251,9 +251,11 @@ void WebApplication::doProcessRequest()
     const QString action = match.captured(u"action"_qs);
     const QString scope = match.captured(u"scope"_qs);
 
+    // Check public/private scope
     if (!session() && !isPublicAPI(scope, action))
         throw ForbiddenHTTPError();
 
+    // Find matching API
     APIController *controller = nullptr;
     if (session())
         controller = session()->getAPIController(scope);
@@ -263,6 +265,20 @@ void WebApplication::doProcessRequest()
             controller = m_authController;
         else
             throw NotFoundHTTPError();
+    }
+
+    // Filter HTTP methods
+    const auto allowedMethodIter = m_allowedMethod.find({scope, action});
+    if (allowedMethodIter == m_allowedMethod.end())
+    {
+        // by default allow both GET, POST methods
+        if ((m_request.method != Http::METHOD_GET) && (m_request.method != Http::METHOD_POST))
+            throw MethodNotAllowedHTTPError();
+    }
+    else
+    {
+        if (*allowedMethodIter != m_request.method)
+            throw MethodNotAllowedHTTPError();
     }
 
     DataMap data;
