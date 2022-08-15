@@ -39,6 +39,11 @@ window.qBittorrent.PropGeneral = (function() {
         };
     };
 
+    const piecesBar = new window.qBittorrent.PiecesBar.PiecesBar([], {
+        height: 16
+    });
+    $('progress').appendChild(piecesBar);
+
     const clearData = function() {
         $('time_elapsed').set('html', '');
         $('eta').set('html', '');
@@ -65,9 +70,7 @@ window.qBittorrent.PropGeneral = (function() {
         $('torrent_hash_v2').set('html', '');
         $('save_path').set('html', '');
         $('comment').set('html', '');
-
-        const canvas = $('progress').getFirst('canvas');
-        canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+        piecesBar.clear();
     };
 
     let loadTorrentDataTimer;
@@ -231,43 +234,7 @@ window.qBittorrent.PropGeneral = (function() {
                 $('error_div').set('html', '');
 
                 if (data) {
-                    const canvas = $('progress').getFirst('canvas');
-                    canvas.width = data.length;
-                    const ctx = canvas.getContext('2d');
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                    // Group contiguous colors together and draw as a single rectangle
-                    let color = '';
-                    let rectWidth = 1;
-
-                    for (let i = 0; i < data.length; ++i) {
-                        const status = data[i];
-                        let newColor = '';
-
-                        if (status === 1)
-                            newColor = 'green';
-                        else if (status === 2)
-                            newColor = 'blue';
-
-                        if (newColor === color) {
-                            ++rectWidth;
-                            continue;
-                        }
-
-                        if (color !== '') {
-                            ctx.fillStyle = color;
-                            ctx.fillRect((i - rectWidth), 0, rectWidth, canvas.height);
-                        }
-
-                        rectWidth = 1;
-                        color = newColor;
-                    }
-
-                    // Fill a rect at the end of the canvas if one is needed
-                    if (color !== '') {
-                        ctx.fillStyle = color;
-                        ctx.fillRect((data.length - rectWidth), 0, rectWidth, canvas.height);
-                    }
+                    piecesBar.setPieces(data);
                 }
                 else {
                     clearData();

@@ -508,19 +508,16 @@ td.generalLabel {
     padding: 2px;
 }
 
-#progress {
-    border: 1px solid #999;
-    padding: 0;
+.piecesbarWrapper {
     position: relative;
     width: 100%;
 }
 
-#progress canvas {
+.piecesbarCanvas {
     height: 100%;
     image-rendering: pixelated;
-    left: 0;
+    inset: 0;
     position: absolute;
-    top: 0;
     width: 100%;
 }
 

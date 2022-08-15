@@ -56,6 +56,7 @@
         <file>private/scripts/lib/MooTools-More-1.6.0-compat-compressed.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
+        <file>private/scripts/piecesbar.js</file>
         <file>private/scripts/preferences.js</file>
         <file>private/scripts/progressbar.js</file>
         <file>private/scripts/prop-files.js</file>
