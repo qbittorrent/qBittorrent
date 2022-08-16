@@ -481,15 +481,23 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     });
     proc.startDetached();
 #else // Q_OS_WIN
-    QStringList args = Utils::String::splitCommand(Preferences::instance()->getAutoRunProgram().trimmed());
+    const QString program = Preferences::instance()->getAutoRunProgram().trimmed();
+    QStringList args = Utils::String::splitCommand(program);
 
     if (args.isEmpty())
         return;
 
     for (QString &arg : args)
-        arg = replaceVariables(arg);
+    {
+        // strip redundant quotes
+        if (arg.startsWith(u'"') && arg.endsWith(u'"'))
+            arg = arg.mid(1, (arg.size() - 2));
 
-    LogMsg(logMsg.arg(torrent->name(), args.join(u' ')));
+        arg = replaceVariables(arg);
+    }
+
+    // show intended command in log
+    LogMsg(logMsg.arg(torrent->name(), replaceVariables(program)));
 
     const QString command = args.takeFirst();
     QProcess::startDetached(command, args);

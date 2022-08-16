@@ -29,6 +29,7 @@
 #pragma once
 
 #include <type_traits>
+#include <utility>
 
 #include <QDateTime>
 #include <QElapsedTimer>
@@ -137,6 +138,20 @@ private:
     const QRegularExpression m_apiPathPattern {u"^/api/v2/(?<scope>[A-Za-z_][A-Za-z_0-9]*)/(?<action>[A-Za-z_][A-Za-z_0-9]*)$"_qs};
 
     QSet<QString> m_publicAPIs;
+    const QHash<std::pair<QString, QString>, QString> m_allowedMethod =
+    {
+        // <<controller name, action name>, HTTP method>
+        // TODO: this list is incomplete
+        {{u"app"_qs, u"setPreferences"_qs}, Http::METHOD_POST},
+        {{u"app"_qs, u"shutdown"_qs}, Http::METHOD_POST},
+        {{u"auth"_qs, u"login"_qs}, Http::METHOD_POST},
+        {{u"auth"_qs, u"logout"_qs}, Http::METHOD_POST},
+        {{u"rss"_qs, u"addFeed"_qs}, Http::METHOD_POST},
+        {{u"search"_qs, u"installPlugin"_qs}, Http::METHOD_POST},
+        {{u"torrents"_qs, u"add"_qs}, Http::METHOD_POST},
+        {{u"torrents"_qs, u"addPeers"_qs}, Http::METHOD_POST},
+        {{u"torrents"_qs, u"addTrackers"_qs}, Http::METHOD_POST}
+    };
     bool m_isAltUIUsed = false;
     Path m_rootFolder;
 
