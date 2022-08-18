@@ -411,7 +411,7 @@ void TorrentOptionsDialog::accept()
     auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
-        BitTorrent::Torrent *torrent = session->findTorrent(id);
+        BitTorrent::Torrent *torrent = session->getTorrent(id);
         if (!torrent) continue;
 
         if (m_initialValues.autoTMM != m_ui->checkAutoTMM->checkState())

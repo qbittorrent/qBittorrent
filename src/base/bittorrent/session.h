@@ -52,6 +52,14 @@
 #include "torrentinfo.h"
 #include "trackerentry.h"
 
+#ifdef QBT_USES_LIBTORRENT2
+// TODO: Remove the following forward declaration once v2.0.8 is released
+namespace libtorrent
+{
+    struct torrent_conflict_alert;
+}
+#endif
+
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
@@ -473,7 +481,8 @@ namespace BitTorrent
 
         bool isRestored() const;
 
-        Torrent *findTorrent(const TorrentID &id) const;
+        Torrent *getTorrent(const TorrentID &id) const;
+        Torrent *findTorrent(const InfoHash &infoHash) const;
         QVector<Torrent *> torrents() const;
         qsizetype torrentsCount() const;
         bool hasActiveTorrents() const;
@@ -490,7 +499,7 @@ namespace BitTorrent
 
         void banIP(const QString &ip);
 
-        bool isKnownTorrent(const TorrentID &id) const;
+        bool isKnownTorrent(const InfoHash &infoHash) const;
         bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams());
         bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
@@ -525,6 +534,7 @@ namespace BitTorrent
         void handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data);
+        void handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode);
 
@@ -647,7 +657,7 @@ namespace BitTorrent
 
         void handleAlert(const lt::alert *a);
         void handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts);
-        void dispatchTorrentAlert(const lt::alert *a);
+        void dispatchTorrentAlert(const lt::torrent_alert *a);
         void handleStateUpdateAlert(const lt::state_update_alert *p);
         void handleMetadataReceivedAlert(const lt::metadata_received_alert *p);
         void handleFileErrorAlert(const lt::file_error_alert *p);
@@ -668,6 +678,9 @@ namespace BitTorrent
         void handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p);
         void handleSocks5Alert(const lt::socks5_alert *p) const;
         void handleTrackerAlert(const lt::tracker_alert *a);
+#ifdef QBT_USES_LIBTORRENT2
+        void handleTorrentConflictAlert(const lt::torrent_conflict_alert *a);
+#endif
 
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
@@ -830,6 +843,7 @@ namespace BitTorrent
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
         QSet<TorrentID> m_needSaveResumeDataTorrents;
+        QHash<TorrentID, TorrentID> m_changedTorrentIDs;
         QMap<QString, CategoryOptions> m_categories;
         QSet<QString> m_tags;
 
