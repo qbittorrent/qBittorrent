@@ -70,7 +70,7 @@ jobs:
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: "5.15.2"
 
