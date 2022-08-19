@@ -59,6 +59,14 @@ namespace
         });
         return hasSeparator ? QDir::cleanPath(path) : path;
     }
+
+#ifdef Q_OS_WIN
+    bool hasDriveLetter(const QStringView path)
+    {
+        const QRegularExpression driveLetterRegex {u"^[A-Za-z]:/"_qs};
+        return driveLetterRegex.match(path).hasMatch();
+    }
+#endif
 }
 
 Path::Path(const QString &pathStr)
@@ -73,15 +81,24 @@ Path::Path(const std::string &pathStr)
 
 bool Path::isValid() const
 {
+    // does not support UNC path
+
     if (isEmpty())
         return false;
 
+    // https://stackoverflow.com/a/31976060
 #if defined(Q_OS_WIN)
-    const QRegularExpression regex {u"[:?\"*<>|]"_qs};
+    QStringView view = m_pathStr;
+    if (hasDriveLetter(view))
+        view = view.mid(3);
+
+    // \\37 is using base-8 number system
+    const QRegularExpression regex {u"[\\0-\\37:?\"*<>|]"_qs};
+    return !regex.match(view).hasMatch();
 #elif defined(Q_OS_MACOS)
     const QRegularExpression regex {u"[\\0:]"_qs};
 #else
-    const QRegularExpression regex {u"[\\0]"_qs};
+    const QRegularExpression regex {u"\\0"_qs};
 #endif
     return !m_pathStr.contains(regex);
 }
@@ -93,11 +110,17 @@ bool Path::isEmpty() const
 
 bool Path::isAbsolute() const
 {
+    // `QDir::isAbsolutePath` treats `:` as a path to QResource, so handle it manually
+    if (m_pathStr.startsWith(u':'))
+        return false;
     return QDir::isAbsolutePath(m_pathStr);
 }
 
 bool Path::isRelative() const
 {
+    // `QDir::isRelativePath` treats `:` as a path to QResource, so handle it manually
+    if (m_pathStr.startsWith(u':'))
+        return true;
     return QDir::isRelativePath(m_pathStr);
 }
 
@@ -108,6 +131,8 @@ bool Path::exists() const
 
 Path Path::rootItem() const
 {
+    // does not support UNC path
+
     const int slashIndex = m_pathStr.indexOf(u'/');
     if (slashIndex < 0)
         return *this;
@@ -125,6 +150,8 @@ Path Path::rootItem() const
 
 Path Path::parentPath() const
 {
+    // does not support UNC path
+
     const int slashIndex = m_pathStr.lastIndexOf(u'/');
     if (slashIndex == -1)
         return {};
@@ -135,8 +162,8 @@ Path Path::parentPath() const
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
     // Windows "drive letter" is limited to one alphabet
-    if ((slashIndex == 2) && (m_pathStr.at(1) == u':'))
-        return createUnchecked(m_pathStr.left(slashIndex + 1));
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
+        return (m_pathStr.size() == 3) ? Path() : createUnchecked(m_pathStr.left(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.left(slashIndex));
 }
