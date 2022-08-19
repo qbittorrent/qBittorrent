@@ -310,11 +310,11 @@ li.divider {
 }
 
 .panel-collapse {
-    background: url("../icons/collapse.svg") left top no-repeat;
+    background: url("../icons/collapse.svg") center/16px no-repeat;
 }
 
 .panel-expand {
-    background: url("../icons/collapse.svg") left top no-repeat;
+    background: url("../icons/collapse.svg") center/16px no-repeat;
     transform: rotate(180deg);
 }
 
