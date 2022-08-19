@@ -15,7 +15,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install tools
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "*"
 
       - name: Check files
         uses: pre-commit/action@v3.0.0

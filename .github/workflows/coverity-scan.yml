@@ -22,9 +22,9 @@ jobs:
             libboost-dev libssl-dev zlib1g-dev
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          version: "5.15.2"
+          version: "6.3.0"
 
       - name: Install libtorrent
         run: |

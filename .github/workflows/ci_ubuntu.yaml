@@ -40,7 +40,7 @@ jobs:
             max_size=2G
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
           version: ${{ matrix.qt_version }}
 

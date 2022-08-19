@@ -74,9 +74,8 @@ jobs:
           move "${{ github.workspace }}/../boost_*" "${{ env.boost_path }}"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
           version: "6.3.0"
 
       - name: Install libtorrent
