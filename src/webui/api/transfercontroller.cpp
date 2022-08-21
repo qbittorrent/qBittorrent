@@ -35,6 +35,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "base/utils/string.h"
 #include "apierror.h"
 
 const QString KEY_TRANSFER_DLSPEED = u"dl_info_speed"_qs;

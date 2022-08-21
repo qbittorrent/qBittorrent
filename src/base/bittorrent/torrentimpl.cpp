@@ -738,7 +738,7 @@ bool TorrentImpl::hasTag(const QString &tag) const
 
 bool TorrentImpl::addTag(const QString &tag)
 {
-    if (!Session::isValidTag(tag))
+    if (!m_session->isValidTag(tag))
         return false;
     if (hasTag(tag))
         return false;

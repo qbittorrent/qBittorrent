@@ -48,6 +48,7 @@
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
+#include "session.h"
 #include "sessionstatus.h"
 #include "torrentinfo.h"
 #include "trackerentry.h"
@@ -74,22 +75,6 @@ class FileSearcher;
 class FilterParserThread;
 class Statistics;
 
-// These values should remain unchanged when adding new items
-// so as not to break the existing user settings.
-enum MaxRatioAction
-{
-    Pause = 0,
-    Remove = 1,
-    DeleteFiles = 3,
-    EnableSuperSeeding = 2
-};
-
-enum DeleteOption
-{
-    DeleteTorrent,
-    DeleteTorrentAndFiles
-};
-
 namespace Net
 {
     struct DownloadResult;
@@ -106,76 +91,6 @@ namespace BitTorrent
     struct LoadTorrentParams;
 
     enum class MoveStorageMode;
-
-    // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
-    // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
-    // https://www.kdab.com/new-qt-5-8-meta-object-support-namespaces/#comment-143779
-    inline namespace SessionSettingsEnums
-    {
-        Q_NAMESPACE
-
-        enum class BTProtocol : int
-        {
-            Both = 0,
-            TCP = 1,
-            UTP = 2
-        };
-        Q_ENUM_NS(BTProtocol)
-
-        enum class ChokingAlgorithm : int
-        {
-            FixedSlots = 0,
-            RateBased = 1
-        };
-        Q_ENUM_NS(ChokingAlgorithm)
-
-        enum class DiskIOReadMode : int
-        {
-            DisableOSCache = 0,
-            EnableOSCache = 1
-        };
-        Q_ENUM_NS(DiskIOReadMode)
-
-        enum class DiskIOType : int
-        {
-            Default = 0,
-            MMap = 1,
-            Posix = 2
-        };
-        Q_ENUM_NS(DiskIOType)
-
-        enum class DiskIOWriteMode : int
-        {
-            DisableOSCache = 0,
-            EnableOSCache = 1,
-#ifdef QBT_USES_LIBTORRENT2
-            WriteThrough = 2
-#endif
-        };
-        Q_ENUM_NS(DiskIOWriteMode)
-
-        enum class MixedModeAlgorithm : int
-        {
-            TCP = 0,
-            Proportional = 1
-        };
-        Q_ENUM_NS(MixedModeAlgorithm)
-
-        enum class SeedChokingAlgorithm : int
-        {
-            RoundRobin = 0,
-            FastestUpload = 1,
-            AntiLeech = 2
-        };
-        Q_ENUM_NS(SeedChokingAlgorithm)
-
-        enum class ResumeDataStorageType
-        {
-            Legacy,
-            SQLite
-        };
-        Q_ENUM_NS(ResumeDataStorageType)
-    }
 
     struct SessionMetricIndices
     {
@@ -223,295 +138,275 @@ namespace BitTorrent
         } disk;
     };
 
-    class SessionImpl final : public QObject
+    class SessionImpl final : public Session
     {
         Q_OBJECT
         Q_DISABLE_COPY_MOVE(SessionImpl)
 
     public:
-        static void initInstance();
-        static void freeInstance();
-        static SessionImpl *instance();
+        Path savePath() const override;
+        void setSavePath(const Path &path) override;
+        Path downloadPath() const override;
+        void setDownloadPath(const Path &path) override;
+        bool isDownloadPathEnabled() const override;
+        void setDownloadPathEnabled(bool enabled) override;
 
-        Path savePath() const;
-        void setSavePath(const Path &path);
-        Path downloadPath() const;
-        void setDownloadPath(const Path &path);
-        bool isDownloadPathEnabled() const;
-        void setDownloadPathEnabled(bool enabled);
+        QStringList categories() const override;
+        CategoryOptions categoryOptions(const QString &categoryName) const override;
+        Path categorySavePath(const QString &categoryName) const override;
+        Path categoryDownloadPath(const QString &categoryName) const override;
+        bool addCategory(const QString &name, const CategoryOptions &options = {}) override;
+        bool editCategory(const QString &name, const CategoryOptions &options) override;
+        bool removeCategory(const QString &name) override;
+        bool isSubcategoriesEnabled() const override;
+        void setSubcategoriesEnabled(bool value) override;
+        bool useCategoryPathsInManualMode() const override;
+        void setUseCategoryPathsInManualMode(bool value) override;
 
-        static bool isValidCategoryName(const QString &name);
-        // returns category itself and all top level categories
-        static QStringList expandCategory(const QString &category);
+        QSet<QString> tags() const override;
+        bool hasTag(const QString &tag) const override;
+        bool addTag(const QString &tag) override;
+        bool removeTag(const QString &tag) override;
 
-        QStringList categories() const;
-        CategoryOptions categoryOptions(const QString &categoryName) const;
-        Path categorySavePath(const QString &categoryName) const;
-        Path categoryDownloadPath(const QString &categoryName) const;
-        bool addCategory(const QString &name, const CategoryOptions &options = {});
-        bool editCategory(const QString &name, const CategoryOptions &options);
-        bool removeCategory(const QString &name);
-        bool isSubcategoriesEnabled() const;
-        void setSubcategoriesEnabled(bool value);
-        bool useCategoryPathsInManualMode() const;
-        void setUseCategoryPathsInManualMode(bool value);
+        bool isAutoTMMDisabledByDefault() const override;
+        void setAutoTMMDisabledByDefault(bool value) override;
+        bool isDisableAutoTMMWhenCategoryChanged() const override;
+        void setDisableAutoTMMWhenCategoryChanged(bool value) override;
+        bool isDisableAutoTMMWhenDefaultSavePathChanged() const override;
+        void setDisableAutoTMMWhenDefaultSavePathChanged(bool value) override;
+        bool isDisableAutoTMMWhenCategorySavePathChanged() const override;
+        void setDisableAutoTMMWhenCategorySavePathChanged(bool value) override;
 
-        static bool isValidTag(const QString &tag);
-        QSet<QString> tags() const;
-        bool hasTag(const QString &tag) const;
-        bool addTag(const QString &tag);
-        bool removeTag(const QString &tag);
+        qreal globalMaxRatio() const override;
+        void setGlobalMaxRatio(qreal ratio) override;
+        int globalMaxSeedingMinutes() const override;
+        void setGlobalMaxSeedingMinutes(int minutes) override;
+        bool isDHTEnabled() const override;
+        void setDHTEnabled(bool enabled) override;
+        bool isLSDEnabled() const override;
+        void setLSDEnabled(bool enabled) override;
+        bool isPeXEnabled() const override;
+        void setPeXEnabled(bool enabled) override;
+        bool isAddTorrentPaused() const override;
+        void setAddTorrentPaused(bool value) override;
+        TorrentContentLayout torrentContentLayout() const override;
+        void setTorrentContentLayout(TorrentContentLayout value) override;
+        bool isTrackerEnabled() const override;
+        void setTrackerEnabled(bool enabled) override;
+        bool isAppendExtensionEnabled() const override;
+        void setAppendExtensionEnabled(bool enabled) override;
+        int refreshInterval() const override;
+        void setRefreshInterval(int value) override;
+        bool isPreallocationEnabled() const override;
+        void setPreallocationEnabled(bool enabled) override;
+        Path torrentExportDirectory() const override;
+        void setTorrentExportDirectory(const Path &path) override;
+        Path finishedTorrentExportDirectory() const override;
+        void setFinishedTorrentExportDirectory(const Path &path) override;
 
-        // Torrent Management Mode subsystem (TMM)
-        //
-        // Each torrent can be either in Manual mode or in Automatic mode
-        // In Manual Mode various torrent properties are set explicitly(eg save path)
-        // In Automatic Mode various torrent properties are set implicitly(eg save path)
-        //     based on the associated category.
-        // In Automatic Mode torrent save path can be changed in following cases:
-        //     1. Default save path changed
-        //     2. Torrent category save path changed
-        //     3. Torrent category changed
-        //     (unless otherwise is specified)
-        bool isAutoTMMDisabledByDefault() const;
-        void setAutoTMMDisabledByDefault(bool value);
-        bool isDisableAutoTMMWhenCategoryChanged() const;
-        void setDisableAutoTMMWhenCategoryChanged(bool value);
-        bool isDisableAutoTMMWhenDefaultSavePathChanged() const;
-        void setDisableAutoTMMWhenDefaultSavePathChanged(bool value);
-        bool isDisableAutoTMMWhenCategorySavePathChanged() const;
-        void setDisableAutoTMMWhenCategorySavePathChanged(bool value);
+        int globalDownloadSpeedLimit() const override;
+        void setGlobalDownloadSpeedLimit(int limit) override;
+        int globalUploadSpeedLimit() const override;
+        void setGlobalUploadSpeedLimit(int limit) override;
+        int altGlobalDownloadSpeedLimit() const override;
+        void setAltGlobalDownloadSpeedLimit(int limit) override;
+        int altGlobalUploadSpeedLimit() const override;
+        void setAltGlobalUploadSpeedLimit(int limit) override;
+        int downloadSpeedLimit() const override;
+        void setDownloadSpeedLimit(int limit) override;
+        int uploadSpeedLimit() const override;
+        void setUploadSpeedLimit(int limit) override;
+        bool isAltGlobalSpeedLimitEnabled() const override;
+        void setAltGlobalSpeedLimitEnabled(bool enabled) override;
+        bool isBandwidthSchedulerEnabled() const override;
+        void setBandwidthSchedulerEnabled(bool enabled) override;
 
-        qreal globalMaxRatio() const;
-        void setGlobalMaxRatio(qreal ratio);
-        int globalMaxSeedingMinutes() const;
-        void setGlobalMaxSeedingMinutes(int minutes);
-        bool isDHTEnabled() const;
-        void setDHTEnabled(bool enabled);
-        bool isLSDEnabled() const;
-        void setLSDEnabled(bool enabled);
-        bool isPeXEnabled() const;
-        void setPeXEnabled(bool enabled);
-        bool isAddTorrentPaused() const;
-        void setAddTorrentPaused(bool value);
-        TorrentContentLayout torrentContentLayout() const;
-        void setTorrentContentLayout(TorrentContentLayout value);
-        bool isTrackerEnabled() const;
-        void setTrackerEnabled(bool enabled);
-        bool isAppendExtensionEnabled() const;
-        void setAppendExtensionEnabled(bool enabled);
-        int refreshInterval() const;
-        void setRefreshInterval(int value);
-        bool isPreallocationEnabled() const;
-        void setPreallocationEnabled(bool enabled);
-        Path torrentExportDirectory() const;
-        void setTorrentExportDirectory(const Path &path);
-        Path finishedTorrentExportDirectory() const;
-        void setFinishedTorrentExportDirectory(const Path &path);
+        bool isPerformanceWarningEnabled() const override;
+        void setPerformanceWarningEnabled(bool enable) override;
+        int saveResumeDataInterval() const override;
+        void setSaveResumeDataInterval(int value) override;
+        int port() const override;
+        void setPort(int port) override;
+        QString networkInterface() const override;
+        void setNetworkInterface(const QString &iface) override;
+        QString networkInterfaceName() const override;
+        void setNetworkInterfaceName(const QString &name) override;
+        QString networkInterfaceAddress() const override;
+        void setNetworkInterfaceAddress(const QString &address) override;
+        int encryption() const override;
+        void setEncryption(int state) override;
+        int maxActiveCheckingTorrents() const override;
+        void setMaxActiveCheckingTorrents(int val) override;
+        bool isProxyPeerConnectionsEnabled() const override;
+        void setProxyPeerConnectionsEnabled(bool enabled) override;
+        ChokingAlgorithm chokingAlgorithm() const override;
+        void setChokingAlgorithm(ChokingAlgorithm mode) override;
+        SeedChokingAlgorithm seedChokingAlgorithm() const override;
+        void setSeedChokingAlgorithm(SeedChokingAlgorithm mode) override;
+        bool isAddTrackersEnabled() const override;
+        void setAddTrackersEnabled(bool enabled) override;
+        QString additionalTrackers() const override;
+        void setAdditionalTrackers(const QString &trackers) override;
+        bool isIPFilteringEnabled() const override;
+        void setIPFilteringEnabled(bool enabled) override;
+        Path IPFilterFile() const override;
+        void setIPFilterFile(const Path &path) override;
+        bool announceToAllTrackers() const override;
+        void setAnnounceToAllTrackers(bool val) override;
+        bool announceToAllTiers() const override;
+        void setAnnounceToAllTiers(bool val) override;
+        int peerTurnover() const override;
+        void setPeerTurnover(int val) override;
+        int peerTurnoverCutoff() const override;
+        void setPeerTurnoverCutoff(int val) override;
+        int peerTurnoverInterval() const override;
+        void setPeerTurnoverInterval(int val) override;
+        int requestQueueSize() const override;
+        void setRequestQueueSize(int val) override;
+        int asyncIOThreads() const override;
+        void setAsyncIOThreads(int num) override;
+        int hashingThreads() const override;
+        void setHashingThreads(int num) override;
+        int filePoolSize() const override;
+        void setFilePoolSize(int size) override;
+        int checkingMemUsage() const override;
+        void setCheckingMemUsage(int size) override;
+        int diskCacheSize() const override;
+        void setDiskCacheSize(int size) override;
+        int diskCacheTTL() const override;
+        void setDiskCacheTTL(int ttl) override;
+        qint64 diskQueueSize() const override;
+        void setDiskQueueSize(qint64 size) override;
+        DiskIOType diskIOType() const override;
+        void setDiskIOType(DiskIOType type) override;
+        DiskIOReadMode diskIOReadMode() const override;
+        void setDiskIOReadMode(DiskIOReadMode mode) override;
+        DiskIOWriteMode diskIOWriteMode() const override;
+        void setDiskIOWriteMode(DiskIOWriteMode mode) override;
+        bool isCoalesceReadWriteEnabled() const override;
+        void setCoalesceReadWriteEnabled(bool enabled) override;
+        bool usePieceExtentAffinity() const override;
+        void setPieceExtentAffinity(bool enabled) override;
+        bool isSuggestModeEnabled() const override;
+        void setSuggestMode(bool mode) override;
+        int sendBufferWatermark() const override;
+        void setSendBufferWatermark(int value) override;
+        int sendBufferLowWatermark() const override;
+        void setSendBufferLowWatermark(int value) override;
+        int sendBufferWatermarkFactor() const override;
+        void setSendBufferWatermarkFactor(int value) override;
+        int connectionSpeed() const override;
+        void setConnectionSpeed(int value) override;
+        int socketBacklogSize() const override;
+        void setSocketBacklogSize(int value) override;
+        bool isAnonymousModeEnabled() const override;
+        void setAnonymousModeEnabled(bool enabled) override;
+        bool isQueueingSystemEnabled() const override;
+        void setQueueingSystemEnabled(bool enabled) override;
+        bool ignoreSlowTorrentsForQueueing() const override;
+        void setIgnoreSlowTorrentsForQueueing(bool ignore) override;
+        int downloadRateForSlowTorrents() const override;
+        void setDownloadRateForSlowTorrents(int rateInKibiBytes) override;
+        int uploadRateForSlowTorrents() const override;
+        void setUploadRateForSlowTorrents(int rateInKibiBytes) override;
+        int slowTorrentsInactivityTimer() const override;
+        void setSlowTorrentsInactivityTimer(int timeInSeconds) override;
+        int outgoingPortsMin() const override;
+        void setOutgoingPortsMin(int min) override;
+        int outgoingPortsMax() const override;
+        void setOutgoingPortsMax(int max) override;
+        int UPnPLeaseDuration() const override;
+        void setUPnPLeaseDuration(int duration) override;
+        int peerToS() const override;
+        void setPeerToS(int value) override;
+        bool ignoreLimitsOnLAN() const override;
+        void setIgnoreLimitsOnLAN(bool ignore) override;
+        bool includeOverheadInLimits() const override;
+        void setIncludeOverheadInLimits(bool include) override;
+        QString announceIP() const override;
+        void setAnnounceIP(const QString &ip) override;
+        int maxConcurrentHTTPAnnounces() const override;
+        void setMaxConcurrentHTTPAnnounces(int value) override;
+        bool isReannounceWhenAddressChangedEnabled() const override;
+        void setReannounceWhenAddressChangedEnabled(bool enabled) override;
+        void reannounceToAllTrackers() const override;
+        int stopTrackerTimeout() const override;
+        void setStopTrackerTimeout(int value) override;
+        int maxConnections() const override;
+        void setMaxConnections(int max) override;
+        int maxConnectionsPerTorrent() const override;
+        void setMaxConnectionsPerTorrent(int max) override;
+        int maxUploads() const override;
+        void setMaxUploads(int max) override;
+        int maxUploadsPerTorrent() const override;
+        void setMaxUploadsPerTorrent(int max) override;
+        int maxActiveDownloads() const override;
+        void setMaxActiveDownloads(int max) override;
+        int maxActiveUploads() const override;
+        void setMaxActiveUploads(int max) override;
+        int maxActiveTorrents() const override;
+        void setMaxActiveTorrents(int max) override;
+        BTProtocol btProtocol() const override;
+        void setBTProtocol(BTProtocol protocol) override;
+        bool isUTPRateLimited() const override;
+        void setUTPRateLimited(bool limited) override;
+        MixedModeAlgorithm utpMixedMode() const override;
+        void setUtpMixedMode(MixedModeAlgorithm mode) override;
+        bool isIDNSupportEnabled() const override;
+        void setIDNSupportEnabled(bool enabled) override;
+        bool multiConnectionsPerIpEnabled() const override;
+        void setMultiConnectionsPerIpEnabled(bool enabled) override;
+        bool validateHTTPSTrackerCertificate() const override;
+        void setValidateHTTPSTrackerCertificate(bool enabled) override;
+        bool isSSRFMitigationEnabled() const override;
+        void setSSRFMitigationEnabled(bool enabled) override;
+        bool blockPeersOnPrivilegedPorts() const override;
+        void setBlockPeersOnPrivilegedPorts(bool enabled) override;
+        bool isTrackerFilteringEnabled() const override;
+        void setTrackerFilteringEnabled(bool enabled) override;
+        bool isExcludedFileNamesEnabled() const override;
+        void setExcludedFileNamesEnabled(const bool enabled) override;
+        QStringList excludedFileNames() const override;
+        void setExcludedFileNames(const QStringList &newList) override;
+        bool isFilenameExcluded(const QString &fileName) const override;
+        QStringList bannedIPs() const override;
+        void setBannedIPs(const QStringList &newList) override;
+        ResumeDataStorageType resumeDataStorageType() const override;
+        void setResumeDataStorageType(ResumeDataStorageType type) override;
 
-        int globalDownloadSpeedLimit() const;
-        void setGlobalDownloadSpeedLimit(int limit);
-        int globalUploadSpeedLimit() const;
-        void setGlobalUploadSpeedLimit(int limit);
-        int altGlobalDownloadSpeedLimit() const;
-        void setAltGlobalDownloadSpeedLimit(int limit);
-        int altGlobalUploadSpeedLimit() const;
-        void setAltGlobalUploadSpeedLimit(int limit);
-        int downloadSpeedLimit() const;
-        void setDownloadSpeedLimit(int limit);
-        int uploadSpeedLimit() const;
-        void setUploadSpeedLimit(int limit);
-        bool isAltGlobalSpeedLimitEnabled() const;
-        void setAltGlobalSpeedLimitEnabled(bool enabled);
-        bool isBandwidthSchedulerEnabled() const;
-        void setBandwidthSchedulerEnabled(bool enabled);
+        bool isRestored() const override;
 
-        bool isPerformanceWarningEnabled() const;
-        void setPerformanceWarningEnabled(bool enable);
-        int saveResumeDataInterval() const;
-        void setSaveResumeDataInterval(int value);
-        int port() const;
-        void setPort(int port);
-        QString networkInterface() const;
-        void setNetworkInterface(const QString &iface);
-        QString networkInterfaceName() const;
-        void setNetworkInterfaceName(const QString &name);
-        QString networkInterfaceAddress() const;
-        void setNetworkInterfaceAddress(const QString &address);
-        int encryption() const;
-        void setEncryption(int state);
-        int maxActiveCheckingTorrents() const;
-        void setMaxActiveCheckingTorrents(int val);
-        bool isProxyPeerConnectionsEnabled() const;
-        void setProxyPeerConnectionsEnabled(bool enabled);
-        ChokingAlgorithm chokingAlgorithm() const;
-        void setChokingAlgorithm(ChokingAlgorithm mode);
-        SeedChokingAlgorithm seedChokingAlgorithm() const;
-        void setSeedChokingAlgorithm(SeedChokingAlgorithm mode);
-        bool isAddTrackersEnabled() const;
-        void setAddTrackersEnabled(bool enabled);
-        QString additionalTrackers() const;
-        void setAdditionalTrackers(const QString &trackers);
-        bool isIPFilteringEnabled() const;
-        void setIPFilteringEnabled(bool enabled);
-        Path IPFilterFile() const;
-        void setIPFilterFile(const Path &path);
-        bool announceToAllTrackers() const;
-        void setAnnounceToAllTrackers(bool val);
-        bool announceToAllTiers() const;
-        void setAnnounceToAllTiers(bool val);
-        int peerTurnover() const;
-        void setPeerTurnover(int val);
-        int peerTurnoverCutoff() const;
-        void setPeerTurnoverCutoff(int val);
-        int peerTurnoverInterval() const;
-        void setPeerTurnoverInterval(int val);
-        int requestQueueSize() const;
-        void setRequestQueueSize(int val);
-        int asyncIOThreads() const;
-        void setAsyncIOThreads(int num);
-        int hashingThreads() const;
-        void setHashingThreads(int num);
-        int filePoolSize() const;
-        void setFilePoolSize(int size);
-        int checkingMemUsage() const;
-        void setCheckingMemUsage(int size);
-        int diskCacheSize() const;
-        void setDiskCacheSize(int size);
-        int diskCacheTTL() const;
-        void setDiskCacheTTL(int ttl);
-        qint64 diskQueueSize() const;
-        void setDiskQueueSize(qint64 size);
-        DiskIOType diskIOType() const;
-        void setDiskIOType(DiskIOType type);
-        DiskIOReadMode diskIOReadMode() const;
-        void setDiskIOReadMode(DiskIOReadMode mode);
-        DiskIOWriteMode diskIOWriteMode() const;
-        void setDiskIOWriteMode(DiskIOWriteMode mode);
-        bool isCoalesceReadWriteEnabled() const;
-        void setCoalesceReadWriteEnabled(bool enabled);
-        bool usePieceExtentAffinity() const;
-        void setPieceExtentAffinity(bool enabled);
-        bool isSuggestModeEnabled() const;
-        void setSuggestMode(bool mode);
-        int sendBufferWatermark() const;
-        void setSendBufferWatermark(int value);
-        int sendBufferLowWatermark() const;
-        void setSendBufferLowWatermark(int value);
-        int sendBufferWatermarkFactor() const;
-        void setSendBufferWatermarkFactor(int value);
-        int connectionSpeed() const;
-        void setConnectionSpeed(int value);
-        int socketBacklogSize() const;
-        void setSocketBacklogSize(int value);
-        bool isAnonymousModeEnabled() const;
-        void setAnonymousModeEnabled(bool enabled);
-        bool isQueueingSystemEnabled() const;
-        void setQueueingSystemEnabled(bool enabled);
-        bool ignoreSlowTorrentsForQueueing() const;
-        void setIgnoreSlowTorrentsForQueueing(bool ignore);
-        int downloadRateForSlowTorrents() const;
-        void setDownloadRateForSlowTorrents(int rateInKibiBytes);
-        int uploadRateForSlowTorrents() const;
-        void setUploadRateForSlowTorrents(int rateInKibiBytes);
-        int slowTorrentsInactivityTimer() const;
-        void setSlowTorrentsInactivityTimer(int timeInSeconds);
-        int outgoingPortsMin() const;
-        void setOutgoingPortsMin(int min);
-        int outgoingPortsMax() const;
-        void setOutgoingPortsMax(int max);
-        int UPnPLeaseDuration() const;
-        void setUPnPLeaseDuration(int duration);
-        int peerToS() const;
-        void setPeerToS(int value);
-        bool ignoreLimitsOnLAN() const;
-        void setIgnoreLimitsOnLAN(bool ignore);
-        bool includeOverheadInLimits() const;
-        void setIncludeOverheadInLimits(bool include);
-        QString announceIP() const;
-        void setAnnounceIP(const QString &ip);
-        int maxConcurrentHTTPAnnounces() const;
-        void setMaxConcurrentHTTPAnnounces(int value);
-        bool isReannounceWhenAddressChangedEnabled() const;
-        void setReannounceWhenAddressChangedEnabled(bool enabled);
-        void reannounceToAllTrackers() const;
-        int stopTrackerTimeout() const;
-        void setStopTrackerTimeout(int value);
-        int maxConnections() const;
-        void setMaxConnections(int max);
-        int maxConnectionsPerTorrent() const;
-        void setMaxConnectionsPerTorrent(int max);
-        int maxUploads() const;
-        void setMaxUploads(int max);
-        int maxUploadsPerTorrent() const;
-        void setMaxUploadsPerTorrent(int max);
-        int maxActiveDownloads() const;
-        void setMaxActiveDownloads(int max);
-        int maxActiveUploads() const;
-        void setMaxActiveUploads(int max);
-        int maxActiveTorrents() const;
-        void setMaxActiveTorrents(int max);
-        BTProtocol btProtocol() const;
-        void setBTProtocol(BTProtocol protocol);
-        bool isUTPRateLimited() const;
-        void setUTPRateLimited(bool limited);
-        MixedModeAlgorithm utpMixedMode() const;
-        void setUtpMixedMode(MixedModeAlgorithm mode);
-        bool isIDNSupportEnabled() const;
-        void setIDNSupportEnabled(bool enabled);
-        bool multiConnectionsPerIpEnabled() const;
-        void setMultiConnectionsPerIpEnabled(bool enabled);
-        bool validateHTTPSTrackerCertificate() const;
-        void setValidateHTTPSTrackerCertificate(bool enabled);
-        bool isSSRFMitigationEnabled() const;
-        void setSSRFMitigationEnabled(bool enabled);
-        bool blockPeersOnPrivilegedPorts() const;
-        void setBlockPeersOnPrivilegedPorts(bool enabled);
-        bool isTrackerFilteringEnabled() const;
-        void setTrackerFilteringEnabled(bool enabled);
-        bool isExcludedFileNamesEnabled() const;
-        void setExcludedFileNamesEnabled(const bool enabled);
-        QStringList excludedFileNames() const;
-        void setExcludedFileNames(const QStringList &newList);
-        bool isFilenameExcluded(const QString &fileName) const;
-        QStringList bannedIPs() const;
-        void setBannedIPs(const QStringList &newList);
-        ResumeDataStorageType resumeDataStorageType() const;
-        void setResumeDataStorageType(ResumeDataStorageType type);
+        Torrent *getTorrent(const TorrentID &id) const override;
+        Torrent *findTorrent(const InfoHash &infoHash) const override;
+        QVector<Torrent *> torrents() const override;
+        qsizetype torrentsCount() const override;
+        bool hasActiveTorrents() const override;
+        bool hasUnfinishedTorrents() const override;
+        bool hasRunningSeed() const override;
+        const SessionStatus &status() const override;
+        const CacheStatus &cacheStatus() const override;
+        qint64 getAlltimeDL() const override;
+        qint64 getAlltimeUL() const override;
+        bool isListening() const override;
 
-        bool isRestored() const;
+        MaxRatioAction maxRatioAction() const override;
+        void setMaxRatioAction(MaxRatioAction act) override;
 
-        Torrent *getTorrent(const TorrentID &id) const;
-        Torrent *findTorrent(const InfoHash &infoHash) const;
-        QVector<Torrent *> torrents() const;
-        qsizetype torrentsCount() const;
-        bool hasActiveTorrents() const;
-        bool hasUnfinishedTorrents() const;
-        bool hasRunningSeed() const;
-        const SessionStatus &status() const;
-        const CacheStatus &cacheStatus() const;
-        qint64 getAlltimeDL() const;
-        qint64 getAlltimeUL() const;
-        bool isListening() const;
+        void banIP(const QString &ip) override;
 
-        MaxRatioAction maxRatioAction() const;
-        void setMaxRatioAction(MaxRatioAction act);
+        bool isKnownTorrent(const InfoHash &infoHash) const override;
+        bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams()) override;
+        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams()) override;
+        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams()) override;
+        bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
+        bool downloadMetadata(const MagnetUri &magnetUri) override;
+        bool cancelDownloadMetadata(const TorrentID &id) override;
 
-        void banIP(const QString &ip);
-
-        bool isKnownTorrent(const InfoHash &infoHash) const;
-        bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams());
-        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams());
-        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams());
-        bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent);
-        bool downloadMetadata(const MagnetUri &magnetUri);
-        bool cancelDownloadMetadata(const TorrentID &id);
-
-        void recursiveTorrentDownload(const TorrentID &id);
-        void increaseTorrentsQueuePos(const QVector<TorrentID> &ids);
-        void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids);
-        void topTorrentsQueuePos(const QVector<TorrentID> &ids);
-        void bottomTorrentsQueuePos(const QVector<TorrentID> &ids);
+        void recursiveTorrentDownload(const TorrentID &id) override;
+        void increaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
+        void decreaseTorrentsQueuePos(const QVector<TorrentID> &ids) override;
+        void topTorrentsQueuePos(const QVector<TorrentID> &ids) override;
+        void bottomTorrentsQueuePos(const QVector<TorrentID> &ids) override;
 
         // Torrent interface
         void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
@@ -540,47 +435,6 @@ namespace BitTorrent
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
-
-    signals:
-        void startupProgressUpdated(int progress);
-        void allTorrentsFinished();
-        void categoryAdded(const QString &categoryName);
-        void categoryRemoved(const QString &categoryName);
-        void downloadFromUrlFailed(const QString &url, const QString &reason);
-        void downloadFromUrlFinished(const QString &url);
-        void fullDiskError(Torrent *torrent, const QString &msg);
-        void IPFilterParsed(bool error, int ruleCount);
-        void loadTorrentFailed(const QString &error);
-        void metadataDownloaded(const TorrentInfo &info);
-        void recursiveTorrentDownloadPossible(Torrent *torrent);
-        void restored();
-        void speedLimitModeChanged(bool alternative);
-        void statsUpdated();
-        void subcategoriesSupportChanged();
-        void tagAdded(const QString &tag);
-        void tagRemoved(const QString &tag);
-        void torrentAboutToBeRemoved(Torrent *torrent);
-        void torrentAdded(Torrent *torrent);
-        void torrentCategoryChanged(Torrent *torrent, const QString &oldCategory);
-        void torrentFinished(Torrent *torrent);
-        void torrentFinishedChecking(Torrent *torrent);
-        void torrentMetadataReceived(Torrent *torrent);
-        void torrentPaused(Torrent *torrent);
-        void torrentResumed(Torrent *torrent);
-        void torrentSavePathChanged(Torrent *torrent);
-        void torrentSavingModeChanged(Torrent *torrent);
-        void torrentsLoaded(const QVector<Torrent *> &torrents);
-        void torrentsUpdated(const QVector<Torrent *> &torrents);
-        void torrentTagAdded(Torrent *torrent, const QString &tag);
-        void torrentTagRemoved(Torrent *torrent, const QString &tag);
-        void trackerError(Torrent *torrent, const QString &tracker);
-        void trackerlessStateChanged(Torrent *torrent, bool trackerless);
-        void trackersAdded(Torrent *torrent, const QVector<TrackerEntry> &trackers);
-        void trackersChanged(Torrent *torrent);
-        void trackersRemoved(Torrent *torrent, const QStringList &trackers);
-        void trackerSuccess(Torrent *torrent, const QString &tracker);
-        void trackerWarning(Torrent *torrent, const QString &tracker);
-        void trackerEntriesUpdated(const QHash<Torrent *, QSet<QString>> &updateInfos);
 
     private slots:
         void configureDeferred();
@@ -868,6 +722,9 @@ namespace BitTorrent
 
         bool m_needUpgradeDownloadPath = false;
 
-        static SessionImpl *m_instance;
+        friend void Session::initInstance();
+        friend void Session::freeInstance();
+        friend Session *Session::instance();
+        static Session *m_instance;
     };
 }

@@ -175,7 +175,7 @@ namespace
         for (auto i = categories.cbegin(); i != categories.cend(); ++i)
         {
             const QString &category = i.key();
-            for (const QString &subcat : asConst(SessionImpl::expandCategory(category)))
+            for (const QString &subcat : asConst(Session::expandCategory(category)))
             {
                 if (!expanded.contains(subcat))
                     expanded[subcat] = {};
@@ -320,15 +320,55 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 
 const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
 
-// Session
+Session *SessionImpl::m_instance = nullptr;
 
-SessionImpl *SessionImpl::m_instance = nullptr;
+void Session::initInstance()
+{
+    if (!SessionImpl::m_instance)
+        SessionImpl::m_instance = new SessionImpl;
+}
+
+void Session::freeInstance()
+{
+    delete SessionImpl::m_instance;
+    SessionImpl::m_instance = nullptr;
+}
+
+Session *Session::instance()
+{
+    return SessionImpl::m_instance;
+}
+
+bool Session::isValidCategoryName(const QString &name)
+{
+    const QRegularExpression re {uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs};
+    return (name.isEmpty() || (name.indexOf(re) == 0));
+}
+
+bool Session::isValidTag(const QString &tag)
+{
+    return (!tag.trimmed().isEmpty() && !tag.contains(u','));
+}
+
+QStringList Session::expandCategory(const QString &category)
+{
+    QStringList result;
+    int index = 0;
+    while ((index = category.indexOf(u'/', index)) >= 0)
+    {
+        result << category.left(index);
+        ++index;
+    }
+    result << category;
+
+    return result;
+}
 
 #define BITTORRENT_KEY(name) u"BitTorrent/" name
 #define BITTORRENT_SESSION_KEY(name) BITTORRENT_KEY(u"Session/") name
 
 SessionImpl::SessionImpl(QObject *parent)
-    : QObject(parent)
+    : Session(parent)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_qs), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_qs), true)
     , m_isPeXEnabled(BITTORRENT_SESSION_KEY(u"PeXEnabled"_qs), true)
@@ -650,26 +690,6 @@ Path SessionImpl::downloadPath() const
     return m_downloadPath;
 }
 
-bool SessionImpl::isValidCategoryName(const QString &name)
-{
-    const QRegularExpression re {uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs};
-    return (name.isEmpty() || (name.indexOf(re) == 0));
-}
-
-QStringList SessionImpl::expandCategory(const QString &category)
-{
-    QStringList result;
-    int index = 0;
-    while ((index = category.indexOf(u'/', index)) >= 0)
-    {
-        result << category.left(index);
-        ++index;
-    }
-    result << category;
-
-    return result;
-}
-
 QStringList SessionImpl::categories() const
 {
     return m_categories.keys();
@@ -850,11 +870,6 @@ QSet<QString> SessionImpl::tags() const
     return m_tags;
 }
 
-bool SessionImpl::isValidTag(const QString &tag)
-{
-    return (!tag.trimmed().isEmpty() && !tag.contains(u','));
-}
-
 bool SessionImpl::hasTag(const QString &tag) const
 {
     return m_tags.contains(tag);
@@ -1004,23 +1019,6 @@ SessionImpl::~SessionImpl()
 
     m_ioThread->quit();
     m_ioThread->wait();
-}
-
-void SessionImpl::initInstance()
-{
-    if (!m_instance)
-        m_instance = new SessionImpl;
-}
-
-void SessionImpl::freeInstance()
-{
-    delete m_instance;
-    m_instance = nullptr;
-}
-
-SessionImpl *SessionImpl::instance()
-{
-    return m_instance;
 }
 
 void SessionImpl::adjustLimits()

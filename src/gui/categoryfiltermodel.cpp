@@ -308,7 +308,7 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
 
     if (m_isSubcategoriesEnabled)
     {
-        QStringList expanded = BitTorrent::Session::expandCategory(categoryName);
+        QStringList expanded = BitTorrent::Session::instance()->expandCategory(categoryName);
         if (expanded.count() > 1)
             parent = findItem(expanded[expanded.count() - 2]);
     }
@@ -443,7 +443,7 @@ CategoryModelItem *CategoryFilterModel::findItem(const QString &fullName) const
         return m_rootItem->child(fullName);
 
     CategoryModelItem *item = m_rootItem;
-    for (const QString &subcat : asConst(BitTorrent::Session::expandCategory(fullName)))
+    for (const QString &subcat : asConst(BitTorrent::Session::instance()->expandCategory(fullName)))
     {
         const QString subcatName = shortName(subcat);
         if (!item->hasChild(subcatName)) return nullptr;

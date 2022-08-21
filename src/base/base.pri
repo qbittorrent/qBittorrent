@@ -28,6 +28,7 @@ HEADERS += \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/portforwarderimpl.h \
     $$PWD/bittorrent/resumedatastorage.h \
+    $$PWD/bittorrent/session.h \
     $$PWD/bittorrent/sessionimpl.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
