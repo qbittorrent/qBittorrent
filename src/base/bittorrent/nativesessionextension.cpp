@@ -35,7 +35,7 @@
 
 namespace
 {
-    void handleAddTorrentAlert(const lt::add_torrent_alert *alert)
+    void handleAddTorrentAlert([[maybe_unused]] const lt::add_torrent_alert *alert)
     {
 #ifndef QBT_USES_LIBTORRENT2
         if (alert->error)
