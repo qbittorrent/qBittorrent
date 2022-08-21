@@ -33,7 +33,7 @@
 
 namespace BitTorrent
 {
-    class Session;
+    class SessionImpl;
 }
 
 class Statistics : public QObject
@@ -42,7 +42,7 @@ class Statistics : public QObject
     Q_DISABLE_COPY_MOVE(Statistics)
 
 public:
-    explicit Statistics(BitTorrent::Session *session);
+    explicit Statistics(BitTorrent::SessionImpl *session);
     ~Statistics();
 
     qint64 getAlltimeDL() const;
@@ -55,7 +55,7 @@ private:
     void save() const;
     void load();
 
-    BitTorrent::Session *m_session = nullptr;
+    BitTorrent::SessionImpl *m_session = nullptr;
     mutable QElapsedTimer m_lastUpdateTimer;
     mutable bool m_dirty = false;
 

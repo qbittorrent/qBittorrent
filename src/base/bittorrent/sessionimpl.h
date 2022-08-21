@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -223,15 +223,15 @@ namespace BitTorrent
         } disk;
     };
 
-    class Session final : public QObject
+    class SessionImpl final : public QObject
     {
         Q_OBJECT
-        Q_DISABLE_COPY_MOVE(Session)
+        Q_DISABLE_COPY_MOVE(SessionImpl)
 
     public:
         static void initInstance();
         static void freeInstance();
-        static Session *instance();
+        static SessionImpl *instance();
 
         Path savePath() const;
         void setSavePath(const Path &path);
@@ -616,8 +616,8 @@ namespace BitTorrent
             DeleteOption deleteOption;
         };
 
-        explicit Session(QObject *parent = nullptr);
-        ~Session();
+        explicit SessionImpl(QObject *parent = nullptr);
+        ~SessionImpl();
 
         bool hasPerTorrentRatioLimit() const;
         bool hasPerTorrentSeedingTimeLimit() const;
@@ -868,6 +868,6 @@ namespace BitTorrent
 
         bool m_needUpgradeDownloadPath = false;
 
-        static Session *m_instance;
+        static SessionImpl *m_instance;
     };
 }

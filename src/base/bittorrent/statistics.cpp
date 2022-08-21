@@ -33,7 +33,7 @@
 #include <QTimer>
 
 #include "base/global.h"
-#include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionimpl.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/profile.h"
 
@@ -42,7 +42,7 @@ using namespace BitTorrent;
 
 const int SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
-Statistics::Statistics(Session *session)
+Statistics::Statistics(BitTorrent::SessionImpl *session)
     : QObject(session)
     , m_session(session)
 {

@@ -27,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include "session.h"
+#include "sessionimpl.h"
 
 #include <algorithm>
 #include <chrono>
@@ -175,7 +175,7 @@ namespace
         for (auto i = categories.cbegin(); i != categories.cend(); ++i)
         {
             const QString &category = i.key();
-            for (const QString &subcat : asConst(Session::expandCategory(category)))
+            for (const QString &subcat : asConst(SessionImpl::expandCategory(category)))
             {
                 if (!expanded.contains(subcat))
                     expanded[subcat] = {};
@@ -299,7 +299,7 @@ namespace
 #endif
 }
 
-struct BitTorrent::Session::ResumeSessionContext final : public QObject
+struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 {
     using QObject::QObject;
 
@@ -322,12 +322,12 @@ const int addTorrentParamsId = qRegisterMetaType<AddTorrentParams>();
 
 // Session
 
-Session *Session::m_instance = nullptr;
+SessionImpl *SessionImpl::m_instance = nullptr;
 
 #define BITTORRENT_KEY(name) u"BitTorrent/" name
 #define BITTORRENT_SESSION_KEY(name) BITTORRENT_KEY(u"Session/") name
 
-Session::Session(QObject *parent)
+SessionImpl::SessionImpl(QObject *parent)
     : QObject(parent)
     , m_isDHTEnabled(BITTORRENT_SESSION_KEY(u"DHTEnabled"_qs), true)
     , m_isLSDEnabled(BITTORRENT_SESSION_KEY(u"LSDEnabled"_qs), true)
@@ -468,7 +468,7 @@ Session::Session(QObject *parent)
         , this, [this]() { m_recentErroredTorrents.clear(); });
 
     m_seedingLimitTimer->setInterval(10s);
-    connect(m_seedingLimitTimer, &QTimer::timeout, this, &Session::processShareLimits);
+    connect(m_seedingLimitTimer, &QTimer::timeout, this, &SessionImpl::processShareLimits);
 
     initializeNativeSession();
     configureComponents();
@@ -495,20 +495,20 @@ Session::Session(QObject *parent)
 
     connect(Net::ProxyConfigurationManager::instance()
         , &Net::ProxyConfigurationManager::proxyConfigurationChanged
-        , this, &Session::configureDeferred);
+        , this, &SessionImpl::configureDeferred);
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     // Network configuration monitor
-    connect(m_networkManager, &QNetworkConfigurationManager::onlineStateChanged, this, &Session::networkOnlineStateChanged);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationAdded, this, &Session::networkConfigurationChange);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &Session::networkConfigurationChange);
-    connect(m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &Session::networkConfigurationChange);
+    connect(m_networkManager, &QNetworkConfigurationManager::onlineStateChanged, this, &SessionImpl::networkOnlineStateChanged);
+    connect(m_networkManager, &QNetworkConfigurationManager::configurationAdded, this, &SessionImpl::networkConfigurationChange);
+    connect(m_networkManager, &QNetworkConfigurationManager::configurationRemoved, this, &SessionImpl::networkConfigurationChange);
+    connect(m_networkManager, &QNetworkConfigurationManager::configurationChanged, this, &SessionImpl::networkConfigurationChange);
 #endif
 
     m_fileSearcher = new FileSearcher;
     m_fileSearcher->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileSearcher, &QObject::deleteLater);
-    connect(m_fileSearcher, &FileSearcher::searchFinished, this, &Session::fileSearchFinished);
+    connect(m_fileSearcher, &FileSearcher::searchFinished, this, &SessionImpl::fileSearchFinished);
 
     m_ioThread->start();
 
@@ -520,12 +520,12 @@ Session::Session(QObject *parent)
     prepareStartup();
 }
 
-bool Session::isDHTEnabled() const
+bool SessionImpl::isDHTEnabled() const
 {
     return m_isDHTEnabled;
 }
 
-void Session::setDHTEnabled(bool enabled)
+void SessionImpl::setDHTEnabled(bool enabled)
 {
     if (enabled != m_isDHTEnabled)
     {
@@ -535,12 +535,12 @@ void Session::setDHTEnabled(bool enabled)
     }
 }
 
-bool Session::isLSDEnabled() const
+bool SessionImpl::isLSDEnabled() const
 {
     return m_isLSDEnabled;
 }
 
-void Session::setLSDEnabled(const bool enabled)
+void SessionImpl::setLSDEnabled(const bool enabled)
 {
     if (enabled != m_isLSDEnabled)
     {
@@ -551,24 +551,24 @@ void Session::setLSDEnabled(const bool enabled)
     }
 }
 
-bool Session::isPeXEnabled() const
+bool SessionImpl::isPeXEnabled() const
 {
     return m_isPeXEnabled;
 }
 
-void Session::setPeXEnabled(const bool enabled)
+void SessionImpl::setPeXEnabled(const bool enabled)
 {
     m_isPeXEnabled = enabled;
     if (m_wasPexEnabled != enabled)
         LogMsg(tr("Restart is required to toggle Peer Exchange (PeX) support"), Log::WARNING);
 }
 
-bool Session::isDownloadPathEnabled() const
+bool SessionImpl::isDownloadPathEnabled() const
 {
     return m_isDownloadPathEnabled;
 }
 
-void Session::setDownloadPathEnabled(const bool enabled)
+void SessionImpl::setDownloadPathEnabled(const bool enabled)
 {
     if (enabled != isDownloadPathEnabled())
     {
@@ -578,12 +578,12 @@ void Session::setDownloadPathEnabled(const bool enabled)
     }
 }
 
-bool Session::isAppendExtensionEnabled() const
+bool SessionImpl::isAppendExtensionEnabled() const
 {
     return m_isAppendExtensionEnabled;
 }
 
-void Session::setAppendExtensionEnabled(const bool enabled)
+void SessionImpl::setAppendExtensionEnabled(const bool enabled)
 {
     if (isAppendExtensionEnabled() != enabled)
     {
@@ -595,12 +595,12 @@ void Session::setAppendExtensionEnabled(const bool enabled)
     }
 }
 
-int Session::refreshInterval() const
+int SessionImpl::refreshInterval() const
 {
     return m_refreshInterval;
 }
 
-void Session::setRefreshInterval(const int value)
+void SessionImpl::setRefreshInterval(const int value)
 {
     if (value != refreshInterval())
     {
@@ -608,55 +608,55 @@ void Session::setRefreshInterval(const int value)
     }
 }
 
-bool Session::isPreallocationEnabled() const
+bool SessionImpl::isPreallocationEnabled() const
 {
     return m_isPreallocationEnabled;
 }
 
-void Session::setPreallocationEnabled(const bool enabled)
+void SessionImpl::setPreallocationEnabled(const bool enabled)
 {
     m_isPreallocationEnabled = enabled;
 }
 
-Path Session::torrentExportDirectory() const
+Path SessionImpl::torrentExportDirectory() const
 {
     return m_torrentExportDirectory;
 }
 
-void Session::setTorrentExportDirectory(const Path &path)
+void SessionImpl::setTorrentExportDirectory(const Path &path)
 {
     if (path != torrentExportDirectory())
         m_torrentExportDirectory = path;
 }
 
-Path Session::finishedTorrentExportDirectory() const
+Path SessionImpl::finishedTorrentExportDirectory() const
 {
     return m_finishedTorrentExportDirectory;
 }
 
-void Session::setFinishedTorrentExportDirectory(const Path &path)
+void SessionImpl::setFinishedTorrentExportDirectory(const Path &path)
 {
     if (path != finishedTorrentExportDirectory())
         m_finishedTorrentExportDirectory = path;
 }
 
-Path Session::savePath() const
+Path SessionImpl::savePath() const
 {
     return m_savePath;
 }
 
-Path Session::downloadPath() const
+Path SessionImpl::downloadPath() const
 {
     return m_downloadPath;
 }
 
-bool Session::isValidCategoryName(const QString &name)
+bool SessionImpl::isValidCategoryName(const QString &name)
 {
     const QRegularExpression re {uR"(^([^\\\/]|[^\\\/]([^\\\/]|\/(?=[^\/]))*[^\\\/])$)"_qs};
     return (name.isEmpty() || (name.indexOf(re) == 0));
 }
 
-QStringList Session::expandCategory(const QString &category)
+QStringList SessionImpl::expandCategory(const QString &category)
 {
     QStringList result;
     int index = 0;
@@ -670,17 +670,17 @@ QStringList Session::expandCategory(const QString &category)
     return result;
 }
 
-QStringList Session::categories() const
+QStringList SessionImpl::categories() const
 {
     return m_categories.keys();
 }
 
-CategoryOptions Session::categoryOptions(const QString &categoryName) const
+CategoryOptions SessionImpl::categoryOptions(const QString &categoryName) const
 {
     return m_categories.value(categoryName);
 }
 
-Path Session::categorySavePath(const QString &categoryName) const
+Path SessionImpl::categorySavePath(const QString &categoryName) const
 {
     const Path basePath = savePath();
     if (categoryName.isEmpty())
@@ -693,7 +693,7 @@ Path Session::categorySavePath(const QString &categoryName) const
     return (path.isAbsolute() ? path : (basePath / path));
 }
 
-Path Session::categoryDownloadPath(const QString &categoryName) const
+Path SessionImpl::categoryDownloadPath(const QString &categoryName) const
 {
     const CategoryOptions categoryOptions = m_categories.value(categoryName);
     const CategoryOptions::DownloadPathOption downloadPathOption =
@@ -712,7 +712,7 @@ Path Session::categoryDownloadPath(const QString &categoryName) const
     return (path.isAbsolute() ? path : (basePath / path));
 }
 
-bool Session::addCategory(const QString &name, const CategoryOptions &options)
+bool SessionImpl::addCategory(const QString &name, const CategoryOptions &options)
 {
     if (name.isEmpty())
         return false;
@@ -739,7 +739,7 @@ bool Session::addCategory(const QString &name, const CategoryOptions &options)
     return true;
 }
 
-bool Session::editCategory(const QString &name, const CategoryOptions &options)
+bool SessionImpl::editCategory(const QString &name, const CategoryOptions &options)
 {
     const auto it = m_categories.find(name);
     if (it == m_categories.end())
@@ -771,7 +771,7 @@ bool Session::editCategory(const QString &name, const CategoryOptions &options)
     return true;
 }
 
-bool Session::removeCategory(const QString &name)
+bool SessionImpl::removeCategory(const QString &name)
 {
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
@@ -809,12 +809,12 @@ bool Session::removeCategory(const QString &name)
     return result;
 }
 
-bool Session::isSubcategoriesEnabled() const
+bool SessionImpl::isSubcategoriesEnabled() const
 {
     return m_isSubcategoriesEnabled;
 }
 
-void Session::setSubcategoriesEnabled(const bool value)
+void SessionImpl::setSubcategoriesEnabled(const bool value)
 {
     if (isSubcategoriesEnabled() == value) return;
 
@@ -835,32 +835,32 @@ void Session::setSubcategoriesEnabled(const bool value)
     emit subcategoriesSupportChanged();
 }
 
-bool Session::useCategoryPathsInManualMode() const
+bool SessionImpl::useCategoryPathsInManualMode() const
 {
     return m_useCategoryPathsInManualMode;
 }
 
-void Session::setUseCategoryPathsInManualMode(const bool value)
+void SessionImpl::setUseCategoryPathsInManualMode(const bool value)
 {
     m_useCategoryPathsInManualMode = value;
 }
 
-QSet<QString> Session::tags() const
+QSet<QString> SessionImpl::tags() const
 {
     return m_tags;
 }
 
-bool Session::isValidTag(const QString &tag)
+bool SessionImpl::isValidTag(const QString &tag)
 {
     return (!tag.trimmed().isEmpty() && !tag.contains(u','));
 }
 
-bool Session::hasTag(const QString &tag) const
+bool SessionImpl::hasTag(const QString &tag) const
 {
     return m_tags.contains(tag);
 }
 
-bool Session::addTag(const QString &tag)
+bool SessionImpl::addTag(const QString &tag)
 {
     if (!isValidTag(tag) || hasTag(tag))
         return false;
@@ -871,7 +871,7 @@ bool Session::addTag(const QString &tag)
     return true;
 }
 
-bool Session::removeTag(const QString &tag)
+bool SessionImpl::removeTag(const QString &tag)
 {
     if (m_tags.remove(tag))
     {
@@ -884,62 +884,62 @@ bool Session::removeTag(const QString &tag)
     return false;
 }
 
-bool Session::isAutoTMMDisabledByDefault() const
+bool SessionImpl::isAutoTMMDisabledByDefault() const
 {
     return m_isAutoTMMDisabledByDefault;
 }
 
-void Session::setAutoTMMDisabledByDefault(const bool value)
+void SessionImpl::setAutoTMMDisabledByDefault(const bool value)
 {
     m_isAutoTMMDisabledByDefault = value;
 }
 
-bool Session::isDisableAutoTMMWhenCategoryChanged() const
+bool SessionImpl::isDisableAutoTMMWhenCategoryChanged() const
 {
     return m_isDisableAutoTMMWhenCategoryChanged;
 }
 
-void Session::setDisableAutoTMMWhenCategoryChanged(const bool value)
+void SessionImpl::setDisableAutoTMMWhenCategoryChanged(const bool value)
 {
     m_isDisableAutoTMMWhenCategoryChanged = value;
 }
 
-bool Session::isDisableAutoTMMWhenDefaultSavePathChanged() const
+bool SessionImpl::isDisableAutoTMMWhenDefaultSavePathChanged() const
 {
     return m_isDisableAutoTMMWhenDefaultSavePathChanged;
 }
 
-void Session::setDisableAutoTMMWhenDefaultSavePathChanged(const bool value)
+void SessionImpl::setDisableAutoTMMWhenDefaultSavePathChanged(const bool value)
 {
     m_isDisableAutoTMMWhenDefaultSavePathChanged = value;
 }
 
-bool Session::isDisableAutoTMMWhenCategorySavePathChanged() const
+bool SessionImpl::isDisableAutoTMMWhenCategorySavePathChanged() const
 {
     return m_isDisableAutoTMMWhenCategorySavePathChanged;
 }
 
-void Session::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
+void SessionImpl::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
 {
     m_isDisableAutoTMMWhenCategorySavePathChanged = value;
 }
 
-bool Session::isAddTorrentPaused() const
+bool SessionImpl::isAddTorrentPaused() const
 {
     return m_isAddTorrentPaused;
 }
 
-void Session::setAddTorrentPaused(const bool value)
+void SessionImpl::setAddTorrentPaused(const bool value)
 {
     m_isAddTorrentPaused = value;
 }
 
-bool Session::isTrackerEnabled() const
+bool SessionImpl::isTrackerEnabled() const
 {
     return m_isTrackerEnabled;
 }
 
-void Session::setTrackerEnabled(const bool enabled)
+void SessionImpl::setTrackerEnabled(const bool enabled)
 {
     if (m_isTrackerEnabled != enabled)
         m_isTrackerEnabled = enabled;
@@ -949,14 +949,14 @@ void Session::setTrackerEnabled(const bool enabled)
     enableTracker(enabled);
 }
 
-qreal Session::globalMaxRatio() const
+qreal SessionImpl::globalMaxRatio() const
 {
     return m_globalMaxRatio;
 }
 
 // Torrents with a ratio superior to the given value will
 // be automatically deleted
-void Session::setGlobalMaxRatio(qreal ratio)
+void SessionImpl::setGlobalMaxRatio(qreal ratio)
 {
     if (ratio < 0)
         ratio = -1.;
@@ -968,12 +968,12 @@ void Session::setGlobalMaxRatio(qreal ratio)
     }
 }
 
-int Session::globalMaxSeedingMinutes() const
+int SessionImpl::globalMaxSeedingMinutes() const
 {
     return m_globalMaxSeedingMinutes;
 }
 
-void Session::setGlobalMaxSeedingMinutes(int minutes)
+void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 {
     if (minutes < 0)
         minutes = -1;
@@ -986,7 +986,7 @@ void Session::setGlobalMaxSeedingMinutes(int minutes)
 }
 
 // Main destructor
-Session::~Session()
+SessionImpl::~SessionImpl()
 {
     // Do some BT related saving
     saveResumeData();
@@ -1006,24 +1006,24 @@ Session::~Session()
     m_ioThread->wait();
 }
 
-void Session::initInstance()
+void SessionImpl::initInstance()
 {
     if (!m_instance)
-        m_instance = new Session;
+        m_instance = new SessionImpl;
 }
 
-void Session::freeInstance()
+void SessionImpl::freeInstance()
 {
     delete m_instance;
     m_instance = nullptr;
 }
 
-Session *Session::instance()
+SessionImpl *SessionImpl::instance()
 {
     return m_instance;
 }
 
-void Session::adjustLimits()
+void SessionImpl::adjustLimits()
 {
     if (isQueueingSystemEnabled())
     {
@@ -1033,14 +1033,14 @@ void Session::adjustLimits()
     }
 }
 
-void Session::applyBandwidthLimits()
+void SessionImpl::applyBandwidthLimits()
 {
     lt::settings_pack settingsPack = m_nativeSession->get_settings();
     applyBandwidthLimits(settingsPack);
     m_nativeSession->apply_settings(settingsPack);
 }
 
-void Session::configure()
+void SessionImpl::configure()
 {
     lt::settings_pack settingsPack = m_nativeSession->get_settings();
     loadLTSettings(settingsPack);
@@ -1051,7 +1051,7 @@ void Session::configure()
     m_deferredConfigureScheduled = false;
 }
 
-void Session::configureComponents()
+void SessionImpl::configureComponents()
 {
     // This function contains components/actions that:
     // 1. Need to be setup at start up
@@ -1069,7 +1069,7 @@ void Session::configureComponents()
     }
 }
 
-void Session::prepareStartup()
+void SessionImpl::prepareStartup()
 {
     qDebug("Initializing torrents resume data storage...");
 
@@ -1117,7 +1117,7 @@ void Session::prepareStartup()
         context->isLoadFinished = true;
     });
 
-    connect(this, &Session::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
+    connect(this, &SessionImpl::torrentsLoaded, context, [this, context](const QVector<Torrent *> &torrents)
     {
         context->processingResumeDataCount -= torrents.count();
         context->finishedResumeDataCount += torrents.count();
@@ -1139,7 +1139,7 @@ void Session::prepareStartup()
     context->startupStorage->loadAll();
 }
 
-void Session::handleLoadedResumeData(ResumeSessionContext *context)
+void SessionImpl::handleLoadedResumeData(ResumeSessionContext *context)
 {
     context->isLoadedResumeDataHandlingEnqueued = false;
 
@@ -1174,7 +1174,7 @@ void Session::handleLoadedResumeData(ResumeSessionContext *context)
     context->finishedResumeDataCount += (count - context->processingResumeDataCount);
 }
 
-void Session::processNextResumeData(ResumeSessionContext *context)
+void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 {
     const LoadedResumeData loadedResumeDataItem = context->loadedResumeData.takeFirst();
 
@@ -1343,7 +1343,7 @@ void Session::processNextResumeData(ResumeSessionContext *context)
     ++context->processingResumeDataCount;
 }
 
-void Session::endStartup(ResumeSessionContext *context)
+void SessionImpl::endStartup(ResumeSessionContext *context)
 {
     if (m_resumeDataStorage != context->startupStorage)
     {
@@ -1366,7 +1366,7 @@ void Session::endStartup(ResumeSessionContext *context)
         enqueueRefresh();
 
     // Regular saving of fastresume data
-    connect(m_resumeDataTimer, &QTimer::timeout, this, &Session::generateResumeData);
+    connect(m_resumeDataTimer, &QTimer::timeout, this, &SessionImpl::generateResumeData);
     const int saveInterval = saveResumeDataInterval();
     if (saveInterval > 0)
     {
@@ -1379,7 +1379,7 @@ void Session::endStartup(ResumeSessionContext *context)
     emit restored();
 }
 
-void Session::initializeNativeSession()
+void SessionImpl::initializeNativeSession()
 {
     const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
 
@@ -1429,7 +1429,7 @@ void Session::initializeNativeSession()
 
     m_nativeSession->set_alert_notify([this]()
     {
-        QMetaObject::invokeMethod(this, &Session::readAlerts, Qt::QueuedConnection);
+        QMetaObject::invokeMethod(this, &SessionImpl::readAlerts, Qt::QueuedConnection);
     });
 
     // Enabling plugins
@@ -1441,7 +1441,7 @@ void Session::initializeNativeSession()
     m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
 }
 
-void Session::processBannedIPs(lt::ip_filter &filter)
+void SessionImpl::processBannedIPs(lt::ip_filter &filter)
 {
     // First, import current filter
     for (const QString &ip : asConst(m_bannedIPs.get()))
@@ -1454,7 +1454,7 @@ void Session::processBannedIPs(lt::ip_filter &filter)
     }
 }
 
-void Session::adjustLimits(lt::settings_pack &settingsPack) const
+void SessionImpl::adjustLimits(lt::settings_pack &settingsPack) const
 {
     // Internally increase the queue limits to ensure that the magnet is started
     const auto adjustLimit = [this](const int limit) -> int
@@ -1471,14 +1471,14 @@ void Session::adjustLimits(lt::settings_pack &settingsPack) const
     settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
 }
 
-void Session::applyBandwidthLimits(lt::settings_pack &settingsPack) const
+void SessionImpl::applyBandwidthLimits(lt::settings_pack &settingsPack) const
 {
     const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
     settingsPack.set_int(lt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
     settingsPack.set_int(lt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
 }
 
-void Session::initMetrics()
+void SessionImpl::initMetrics()
 {
     const auto findMetricIndex = [](const char *name) -> int
     {
@@ -1520,7 +1520,7 @@ void Session::initMetrics()
     m_metricIndices.disk.diskJobTime = findMetricIndex("disk.disk_job_time");
 }
 
-void Session::loadLTSettings(lt::settings_pack &settingsPack)
+void SessionImpl::loadLTSettings(lt::settings_pack &settingsPack)
 {
     const lt::alert_category_t alertMask = lt::alert::error_notification
         | lt::alert::file_progress_notification
@@ -1792,7 +1792,7 @@ void Session::loadLTSettings(lt::settings_pack &settingsPack)
     }
 }
 
-void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
+void SessionImpl::configureNetworkInterfaces(lt::settings_pack &settingsPack)
 {
     if (m_listenInterfaceConfigured)
         return;
@@ -1855,7 +1855,7 @@ void Session::configureNetworkInterfaces(lt::settings_pack &settingsPack)
     m_listenInterfaceConfigured = true;
 }
 
-void Session::configurePeerClasses()
+void SessionImpl::configurePeerClasses()
 {
     lt::ip_filter f;
     // lt::make_address("255.255.255.255") crashes on some people's systems
@@ -1933,7 +1933,7 @@ void Session::configurePeerClasses()
     m_nativeSession->set_peer_class_type_filter(peerClassTypeFilter);
 }
 
-void Session::enableTracker(const bool enable)
+void SessionImpl::enableTracker(const bool enable)
 {
     if (enable)
     {
@@ -1948,18 +1948,18 @@ void Session::enableTracker(const bool enable)
     }
 }
 
-void Session::enableBandwidthScheduler()
+void SessionImpl::enableBandwidthScheduler()
 {
     if (!m_bwScheduler)
     {
         m_bwScheduler = new BandwidthScheduler(this);
         connect(m_bwScheduler.data(), &BandwidthScheduler::bandwidthLimitRequested
-                , this, &Session::setAltGlobalSpeedLimitEnabled);
+                , this, &SessionImpl::setAltGlobalSpeedLimitEnabled);
     }
     m_bwScheduler->start();
 }
 
-void Session::populateAdditionalTrackers()
+void SessionImpl::populateAdditionalTrackers()
 {
     m_additionalTrackerList.clear();
 
@@ -1972,7 +1972,7 @@ void Session::populateAdditionalTrackers()
     }
 }
 
-void Session::processShareLimits()
+void SessionImpl::processShareLimits()
 {
     qDebug("Processing share limits...");
 
@@ -2071,7 +2071,7 @@ void Session::processShareLimits()
 }
 
 // Add to BitTorrent session the downloaded torrent file
-void Session::handleDownloadFinished(const Net::DownloadResult &result)
+void SessionImpl::handleDownloadFinished(const Net::DownloadResult &result)
 {
     switch (result.status)
     {
@@ -2091,7 +2091,7 @@ void Session::handleDownloadFinished(const Net::DownloadResult &result)
     }
 }
 
-void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames)
+void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, const PathList &fileNames)
 {
     TorrentImpl *torrent = m_torrents.value(id);
     if (torrent)
@@ -2116,12 +2116,12 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
     }
 }
 
-Torrent *Session::getTorrent(const TorrentID &id) const
+Torrent *SessionImpl::getTorrent(const TorrentID &id) const
 {
     return m_torrents.value(id);
 }
 
-Torrent *Session::findTorrent(const InfoHash &infoHash) const
+Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
 {
     const auto id = TorrentID::fromInfoHash(infoHash);
     if (Torrent *torrent = m_torrents.value(id); torrent)
@@ -2136,7 +2136,7 @@ Torrent *Session::findTorrent(const InfoHash &infoHash) const
     return m_torrents.value(altID);
 }
 
-bool Session::hasActiveTorrents() const
+bool SessionImpl::hasActiveTorrents() const
 {
     return std::any_of(m_torrents.begin(), m_torrents.end(), [](TorrentImpl *torrent)
     {
@@ -2144,7 +2144,7 @@ bool Session::hasActiveTorrents() const
     });
 }
 
-bool Session::hasUnfinishedTorrents() const
+bool SessionImpl::hasUnfinishedTorrents() const
 {
     return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
     {
@@ -2152,7 +2152,7 @@ bool Session::hasUnfinishedTorrents() const
     });
 }
 
-bool Session::hasRunningSeed() const
+bool SessionImpl::hasRunningSeed() const
 {
     return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
     {
@@ -2160,7 +2160,7 @@ bool Session::hasRunningSeed() const
     });
 }
 
-void Session::banIP(const QString &ip)
+void SessionImpl::banIP(const QString &ip)
 {
     QStringList bannedIPs = m_bannedIPs;
     if (!bannedIPs.contains(ip))
@@ -2181,7 +2181,7 @@ void Session::banIP(const QString &ip)
 
 // Delete a torrent from the session, given its hash
 // and from the disk, if the corresponding deleteOption is chosen
-bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption)
+bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption)
 {
     TorrentImpl *const torrent = m_torrents.take(id);
     if (!torrent) return false;
@@ -2239,7 +2239,7 @@ bool Session::deleteTorrent(const TorrentID &id, const DeleteOption deleteOption
     return true;
 }
 
-bool Session::cancelDownloadMetadata(const TorrentID &id)
+bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
 {
     const auto downloadedMetadataIter = m_downloadedMetadata.find(id);
     if (downloadedMetadataIter == m_downloadedMetadata.end()) return false;
@@ -2251,7 +2251,7 @@ bool Session::cancelDownloadMetadata(const TorrentID &id)
     return true;
 }
 
-void Session::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
@@ -2278,7 +2278,7 @@ void Session::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
     saveTorrentsQueue();
 }
 
-void Session::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
@@ -2306,7 +2306,7 @@ void Session::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
     saveTorrentsQueue();
 }
 
-void Session::topTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::topTorrentsQueuePos(const QVector<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType> torrentQueue;
@@ -2331,7 +2331,7 @@ void Session::topTorrentsQueuePos(const QVector<TorrentID> &ids)
     saveTorrentsQueue();
 }
 
-void Session::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
+void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
 {
     using ElementType = std::pair<int, const TorrentImpl *>;
     std::priority_queue<ElementType
@@ -2361,7 +2361,7 @@ void Session::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
     saveTorrentsQueue();
 }
 
-void Session::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
+void SessionImpl::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
 {
     if (m_needSaveResumeDataTorrents.empty())
     {
@@ -2380,13 +2380,13 @@ void Session::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
     m_needSaveResumeDataTorrents.insert(torrent->id());
 }
 
-void Session::handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent)
+void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent)
 {
     qDebug("Saving resume data is requested for torrent '%s'...", qUtf8Printable(torrent->name()));
     ++m_numResumeData;
 }
 
-QVector<Torrent *> Session::torrents() const
+QVector<Torrent *> SessionImpl::torrents() const
 {
     QVector<Torrent *> result;
     result.reserve(m_torrents.size());
@@ -2396,12 +2396,12 @@ QVector<Torrent *> Session::torrents() const
     return result;
 }
 
-qsizetype Session::torrentsCount() const
+qsizetype SessionImpl::torrentsCount() const
 {
     return m_torrents.size();
 }
 
-bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
+bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &params)
 {
     // `source`: .torrent file path/url or magnet uri
 
@@ -2413,7 +2413,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
         // Launch downloader
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                                                   , this, &Session::handleDownloadFinished);
+                                                   , this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }
@@ -2435,7 +2435,7 @@ bool Session::addTorrent(const QString &source, const AddTorrentParams &params)
     return addTorrent(loadResult.value(), params);
 }
 
-bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params)
+bool SessionImpl::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params)
 {
     if (!isRestored())
         return false;
@@ -2446,7 +2446,7 @@ bool Session::addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &par
     return addTorrent_impl(magnetUri, params);
 }
 
-bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params)
+bool SessionImpl::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params)
 {
     if (!isRestored())
         return false;
@@ -2454,7 +2454,7 @@ bool Session::addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams 
     return addTorrent_impl(torrentInfo, params);
 }
 
-LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorrentParams)
+LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &addTorrentParams)
 {
     LoadTorrentParams loadTorrentParams;
 
@@ -2511,7 +2511,7 @@ LoadTorrentParams Session::initLoadTorrentParams(const AddTorrentParams &addTorr
 }
 
 // Add a torrent to the BitTorrent session
-bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams)
+bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source, const AddTorrentParams &addTorrentParams)
 {
     Q_ASSERT(isRestored());
 
@@ -2701,7 +2701,7 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     return true;
 }
 
-void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
+void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                   , const Path &downloadPath, const PathList &filePaths) const
 {
     Q_ASSERT(filePaths.isEmpty() || (filePaths.size() == torrentInfo.filesCount()));
@@ -2716,7 +2716,7 @@ void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &sa
 
 // Add a torrent to libtorrent session in hidden mode
 // and force it to download its metadata
-bool Session::downloadMetadata(const MagnetUri &magnetUri)
+bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
 {
     if (!magnetUri.isValid())
         return false;
@@ -2767,7 +2767,7 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     return true;
 }
 
-void Session::exportTorrentFile(const Torrent *torrent, const Path &folderPath)
+void SessionImpl::exportTorrentFile(const Torrent *torrent, const Path &folderPath)
 {
     if (!folderPath.exists() && !Utils::Fs::mkpath(folderPath))
         return;
@@ -2791,7 +2791,7 @@ void Session::exportTorrentFile(const Torrent *torrent, const Path &folderPath)
     }
 }
 
-void Session::generateResumeData()
+void SessionImpl::generateResumeData()
 {
     for (TorrentImpl *const torrent : asConst(m_torrents))
     {
@@ -2806,7 +2806,7 @@ void Session::generateResumeData()
 }
 
 // Called on exit
-void Session::saveResumeData()
+void SessionImpl::saveResumeData()
 {
     // Pause session
     m_nativeSession->pause();
@@ -2838,7 +2838,7 @@ void Session::saveResumeData()
     }
 }
 
-void Session::saveTorrentsQueue() const
+void SessionImpl::saveTorrentsQueue() const
 {
     QVector<TorrentID> queue;
     for (const TorrentImpl *torrent : asConst(m_torrents))
@@ -2856,12 +2856,12 @@ void Session::saveTorrentsQueue() const
     m_resumeDataStorage->storeQueue(queue);
 }
 
-void Session::removeTorrentsQueue() const
+void SessionImpl::removeTorrentsQueue() const
 {
     m_resumeDataStorage->storeQueue({});
 }
 
-void Session::setSavePath(const Path &path)
+void SessionImpl::setSavePath(const Path &path)
 {
     const auto newPath = (path.isAbsolute() ? path : (specialFolderLocation(SpecialFolder::Downloads) / path));
     if (newPath == m_savePath)
@@ -2890,7 +2890,7 @@ void Session::setSavePath(const Path &path)
         torrent->handleCategoryOptionsChanged();
 }
 
-void Session::setDownloadPath(const Path &path)
+void SessionImpl::setDownloadPath(const Path &path)
 {
     const Path newPath = (path.isAbsolute() ? path : (savePath() / Path(u"temp"_qs) / path));
     if (newPath == m_downloadPath)
@@ -2922,12 +2922,12 @@ void Session::setDownloadPath(const Path &path)
 }
 
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-void Session::networkOnlineStateChanged(const bool online)
+void SessionImpl::networkOnlineStateChanged(const bool online)
 {
     LogMsg(tr("System network status changed to %1", "e.g: System network status changed to ONLINE").arg(online ? tr("ONLINE") : tr("OFFLINE")), Log::INFO);
 }
 
-void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
+void SessionImpl::networkConfigurationChange(const QNetworkConfiguration &cfg)
 {
     const QString configuredInterfaceName = networkInterface();
     // Empty means "Any Interface". In this case libtorrent has binded to 0.0.0.0 so any change to any interface will
@@ -2944,7 +2944,7 @@ void Session::networkConfigurationChange(const QNetworkConfiguration &cfg)
 }
 #endif
 
-QStringList Session::getListeningIPs() const
+QStringList SessionImpl::getListeningIPs() const
 {
     QStringList IPs;
 
@@ -3041,20 +3041,20 @@ QStringList Session::getListeningIPs() const
 
 // Set the ports range in which is chosen the port
 // the BitTorrent session will listen to
-void Session::configureListeningInterface()
+void SessionImpl::configureListeningInterface()
 {
     m_listenInterfaceConfigured = false;
     configureDeferred();
 }
 
-int Session::globalDownloadSpeedLimit() const
+int SessionImpl::globalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
     return m_globalDownloadSpeedLimit * 1024;
 }
 
-void Session::setGlobalDownloadSpeedLimit(const int limit)
+void SessionImpl::setGlobalDownloadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
@@ -3072,14 +3072,14 @@ void Session::setGlobalDownloadSpeedLimit(const int limit)
         configureDeferred();
 }
 
-int Session::globalUploadSpeedLimit() const
+int SessionImpl::globalUploadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
     return m_globalUploadSpeedLimit * 1024;
 }
 
-void Session::setGlobalUploadSpeedLimit(const int limit)
+void SessionImpl::setGlobalUploadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
@@ -3097,14 +3097,14 @@ void Session::setGlobalUploadSpeedLimit(const int limit)
         configureDeferred();
 }
 
-int Session::altGlobalDownloadSpeedLimit() const
+int SessionImpl::altGlobalDownloadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
     return m_altGlobalDownloadSpeedLimit * 1024;
 }
 
-void Session::setAltGlobalDownloadSpeedLimit(const int limit)
+void SessionImpl::setAltGlobalDownloadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
@@ -3122,14 +3122,14 @@ void Session::setAltGlobalDownloadSpeedLimit(const int limit)
         configureDeferred();
 }
 
-int Session::altGlobalUploadSpeedLimit() const
+int SessionImpl::altGlobalUploadSpeedLimit() const
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
     return m_altGlobalUploadSpeedLimit * 1024;
 }
 
-void Session::setAltGlobalUploadSpeedLimit(const int limit)
+void SessionImpl::setAltGlobalUploadSpeedLimit(const int limit)
 {
     // Unfortunately the value was saved as KiB instead of B.
     // But it is better to pass it around internally(+ webui) as Bytes.
@@ -3147,14 +3147,14 @@ void Session::setAltGlobalUploadSpeedLimit(const int limit)
         configureDeferred();
 }
 
-int Session::downloadSpeedLimit() const
+int SessionImpl::downloadSpeedLimit() const
 {
     return isAltGlobalSpeedLimitEnabled()
             ? altGlobalDownloadSpeedLimit()
             : globalDownloadSpeedLimit();
 }
 
-void Session::setDownloadSpeedLimit(const int limit)
+void SessionImpl::setDownloadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalDownloadSpeedLimit(limit);
@@ -3162,14 +3162,14 @@ void Session::setDownloadSpeedLimit(const int limit)
         setGlobalDownloadSpeedLimit(limit);
 }
 
-int Session::uploadSpeedLimit() const
+int SessionImpl::uploadSpeedLimit() const
 {
     return isAltGlobalSpeedLimitEnabled()
             ? altGlobalUploadSpeedLimit()
             : globalUploadSpeedLimit();
 }
 
-void Session::setUploadSpeedLimit(const int limit)
+void SessionImpl::setUploadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())
         setAltGlobalUploadSpeedLimit(limit);
@@ -3177,12 +3177,12 @@ void Session::setUploadSpeedLimit(const int limit)
         setGlobalUploadSpeedLimit(limit);
 }
 
-bool Session::isAltGlobalSpeedLimitEnabled() const
+bool SessionImpl::isAltGlobalSpeedLimitEnabled() const
 {
     return m_isAltGlobalSpeedLimitEnabled;
 }
 
-void Session::setAltGlobalSpeedLimitEnabled(const bool enabled)
+void SessionImpl::setAltGlobalSpeedLimitEnabled(const bool enabled)
 {
     if (enabled == isAltGlobalSpeedLimitEnabled()) return;
 
@@ -3193,12 +3193,12 @@ void Session::setAltGlobalSpeedLimitEnabled(const bool enabled)
     emit speedLimitModeChanged(m_isAltGlobalSpeedLimitEnabled);
 }
 
-bool Session::isBandwidthSchedulerEnabled() const
+bool SessionImpl::isBandwidthSchedulerEnabled() const
 {
     return m_isBandwidthSchedulerEnabled;
 }
 
-void Session::setBandwidthSchedulerEnabled(const bool enabled)
+void SessionImpl::setBandwidthSchedulerEnabled(const bool enabled)
 {
     if (enabled != isBandwidthSchedulerEnabled())
     {
@@ -3210,12 +3210,12 @@ void Session::setBandwidthSchedulerEnabled(const bool enabled)
     }
 }
 
-bool Session::isPerformanceWarningEnabled() const
+bool SessionImpl::isPerformanceWarningEnabled() const
 {
     return m_isPerformanceWarningEnabled;
 }
 
-void Session::setPerformanceWarningEnabled(const bool enable)
+void SessionImpl::setPerformanceWarningEnabled(const bool enable)
 {
     if (enable == m_isPerformanceWarningEnabled)
         return;
@@ -3224,12 +3224,12 @@ void Session::setPerformanceWarningEnabled(const bool enable)
     configureDeferred();
 }
 
-int Session::saveResumeDataInterval() const
+int SessionImpl::saveResumeDataInterval() const
 {
     return m_saveResumeDataInterval;
 }
 
-void Session::setSaveResumeDataInterval(const int value)
+void SessionImpl::setSaveResumeDataInterval(const int value)
 {
     if (value == m_saveResumeDataInterval)
         return;
@@ -3247,12 +3247,12 @@ void Session::setSaveResumeDataInterval(const int value)
     }
 }
 
-int Session::port() const
+int SessionImpl::port() const
 {
     return m_port;
 }
 
-void Session::setPort(const int port)
+void SessionImpl::setPort(const int port)
 {
     if (port != m_port)
     {
@@ -3264,12 +3264,12 @@ void Session::setPort(const int port)
     }
 }
 
-QString Session::networkInterface() const
+QString SessionImpl::networkInterface() const
 {
     return m_networkInterface;
 }
 
-void Session::setNetworkInterface(const QString &iface)
+void SessionImpl::setNetworkInterface(const QString &iface)
 {
     if (iface != networkInterface())
     {
@@ -3278,22 +3278,22 @@ void Session::setNetworkInterface(const QString &iface)
     }
 }
 
-QString Session::networkInterfaceName() const
+QString SessionImpl::networkInterfaceName() const
 {
     return m_networkInterfaceName;
 }
 
-void Session::setNetworkInterfaceName(const QString &name)
+void SessionImpl::setNetworkInterfaceName(const QString &name)
 {
     m_networkInterfaceName = name;
 }
 
-QString Session::networkInterfaceAddress() const
+QString SessionImpl::networkInterfaceAddress() const
 {
     return m_networkInterfaceAddress;
 }
 
-void Session::setNetworkInterfaceAddress(const QString &address)
+void SessionImpl::setNetworkInterfaceAddress(const QString &address)
 {
     if (address != networkInterfaceAddress())
     {
@@ -3302,12 +3302,12 @@ void Session::setNetworkInterfaceAddress(const QString &address)
     }
 }
 
-int Session::encryption() const
+int SessionImpl::encryption() const
 {
     return m_encryption;
 }
 
-void Session::setEncryption(const int state)
+void SessionImpl::setEncryption(const int state)
 {
     if (state != encryption())
     {
@@ -3319,12 +3319,12 @@ void Session::setEncryption(const int state)
     }
 }
 
-int Session::maxActiveCheckingTorrents() const
+int SessionImpl::maxActiveCheckingTorrents() const
 {
     return m_maxActiveCheckingTorrents;
 }
 
-void Session::setMaxActiveCheckingTorrents(const int val)
+void SessionImpl::setMaxActiveCheckingTorrents(const int val)
 {
     if (val == m_maxActiveCheckingTorrents)
         return;
@@ -3333,12 +3333,12 @@ void Session::setMaxActiveCheckingTorrents(const int val)
     configureDeferred();
 }
 
-bool Session::isProxyPeerConnectionsEnabled() const
+bool SessionImpl::isProxyPeerConnectionsEnabled() const
 {
     return m_isProxyPeerConnectionsEnabled;
 }
 
-void Session::setProxyPeerConnectionsEnabled(const bool enabled)
+void SessionImpl::setProxyPeerConnectionsEnabled(const bool enabled)
 {
     if (enabled != isProxyPeerConnectionsEnabled())
     {
@@ -3347,12 +3347,12 @@ void Session::setProxyPeerConnectionsEnabled(const bool enabled)
     }
 }
 
-ChokingAlgorithm Session::chokingAlgorithm() const
+ChokingAlgorithm SessionImpl::chokingAlgorithm() const
 {
     return m_chokingAlgorithm;
 }
 
-void Session::setChokingAlgorithm(const ChokingAlgorithm mode)
+void SessionImpl::setChokingAlgorithm(const ChokingAlgorithm mode)
 {
     if (mode == m_chokingAlgorithm) return;
 
@@ -3360,12 +3360,12 @@ void Session::setChokingAlgorithm(const ChokingAlgorithm mode)
     configureDeferred();
 }
 
-SeedChokingAlgorithm Session::seedChokingAlgorithm() const
+SeedChokingAlgorithm SessionImpl::seedChokingAlgorithm() const
 {
     return m_seedChokingAlgorithm;
 }
 
-void Session::setSeedChokingAlgorithm(const SeedChokingAlgorithm mode)
+void SessionImpl::setSeedChokingAlgorithm(const SeedChokingAlgorithm mode)
 {
     if (mode == m_seedChokingAlgorithm) return;
 
@@ -3373,22 +3373,22 @@ void Session::setSeedChokingAlgorithm(const SeedChokingAlgorithm mode)
     configureDeferred();
 }
 
-bool Session::isAddTrackersEnabled() const
+bool SessionImpl::isAddTrackersEnabled() const
 {
     return m_isAddTrackersEnabled;
 }
 
-void Session::setAddTrackersEnabled(const bool enabled)
+void SessionImpl::setAddTrackersEnabled(const bool enabled)
 {
     m_isAddTrackersEnabled = enabled;
 }
 
-QString Session::additionalTrackers() const
+QString SessionImpl::additionalTrackers() const
 {
     return m_additionalTrackers;
 }
 
-void Session::setAdditionalTrackers(const QString &trackers)
+void SessionImpl::setAdditionalTrackers(const QString &trackers)
 {
     if (trackers != additionalTrackers())
     {
@@ -3397,12 +3397,12 @@ void Session::setAdditionalTrackers(const QString &trackers)
     }
 }
 
-bool Session::isIPFilteringEnabled() const
+bool SessionImpl::isIPFilteringEnabled() const
 {
     return m_isIPFilteringEnabled;
 }
 
-void Session::setIPFilteringEnabled(const bool enabled)
+void SessionImpl::setIPFilteringEnabled(const bool enabled)
 {
     if (enabled != m_isIPFilteringEnabled)
     {
@@ -3412,12 +3412,12 @@ void Session::setIPFilteringEnabled(const bool enabled)
     }
 }
 
-Path Session::IPFilterFile() const
+Path SessionImpl::IPFilterFile() const
 {
     return m_IPFilterFile;
 }
 
-void Session::setIPFilterFile(const Path &path)
+void SessionImpl::setIPFilterFile(const Path &path)
 {
     if (path != IPFilterFile())
     {
@@ -3427,12 +3427,12 @@ void Session::setIPFilterFile(const Path &path)
     }
 }
 
-bool Session::isExcludedFileNamesEnabled() const
+bool SessionImpl::isExcludedFileNamesEnabled() const
 {
     return m_isExcludedFileNamesEnabled;
 }
 
-void Session::setExcludedFileNamesEnabled(const bool enabled)
+void SessionImpl::setExcludedFileNamesEnabled(const bool enabled)
 {
     if (m_isExcludedFileNamesEnabled == enabled)
         return;
@@ -3445,12 +3445,12 @@ void Session::setExcludedFileNamesEnabled(const bool enabled)
         m_excludedFileNamesRegExpList.clear();
 }
 
-QStringList Session::excludedFileNames() const
+QStringList SessionImpl::excludedFileNames() const
 {
     return m_excludedFileNames;
 }
 
-void Session::setExcludedFileNames(const QStringList &excludedFileNames)
+void SessionImpl::setExcludedFileNames(const QStringList &excludedFileNames)
 {
     if (excludedFileNames != m_excludedFileNames)
     {
@@ -3459,7 +3459,7 @@ void Session::setExcludedFileNames(const QStringList &excludedFileNames)
     }
 }
 
-void Session::populateExcludedFileNamesRegExpList()
+void SessionImpl::populateExcludedFileNamesRegExpList()
 {
     const QStringList excludedNames = excludedFileNames();
 
@@ -3474,7 +3474,7 @@ void Session::populateExcludedFileNamesRegExpList()
     }
 }
 
-bool Session::isFilenameExcluded(const QString &fileName) const
+bool SessionImpl::isFilenameExcluded(const QString &fileName) const
 {
     if (!isExcludedFileNamesEnabled())
         return false;
@@ -3485,7 +3485,7 @@ bool Session::isFilenameExcluded(const QString &fileName) const
     });
 }
 
-void Session::setBannedIPs(const QStringList &newList)
+void SessionImpl::setBannedIPs(const QStringList &newList)
 {
     if (newList == m_bannedIPs)
         return; // do nothing
@@ -3521,32 +3521,32 @@ void Session::setBannedIPs(const QStringList &newList)
     configureDeferred();
 }
 
-ResumeDataStorageType Session::resumeDataStorageType() const
+ResumeDataStorageType SessionImpl::resumeDataStorageType() const
 {
     return m_resumeDataStorageType;
 }
 
-void Session::setResumeDataStorageType(const ResumeDataStorageType type)
+void SessionImpl::setResumeDataStorageType(const ResumeDataStorageType type)
 {
     m_resumeDataStorageType = type;
 }
 
-QStringList Session::bannedIPs() const
+QStringList SessionImpl::bannedIPs() const
 {
     return m_bannedIPs;
 }
 
-bool Session::isRestored() const
+bool SessionImpl::isRestored() const
 {
     return m_isRestored;
 }
 
-int Session::maxConnectionsPerTorrent() const
+int SessionImpl::maxConnectionsPerTorrent() const
 {
     return m_maxConnectionsPerTorrent;
 }
 
-void Session::setMaxConnectionsPerTorrent(int max)
+void SessionImpl::setMaxConnectionsPerTorrent(int max)
 {
     max = (max > 0) ? max : -1;
     if (max != maxConnectionsPerTorrent())
@@ -3565,12 +3565,12 @@ void Session::setMaxConnectionsPerTorrent(int max)
     }
 }
 
-int Session::maxUploadsPerTorrent() const
+int SessionImpl::maxUploadsPerTorrent() const
 {
     return m_maxUploadsPerTorrent;
 }
 
-void Session::setMaxUploadsPerTorrent(int max)
+void SessionImpl::setMaxUploadsPerTorrent(int max)
 {
     max = (max > 0) ? max : -1;
     if (max != maxUploadsPerTorrent())
@@ -3589,12 +3589,12 @@ void Session::setMaxUploadsPerTorrent(int max)
     }
 }
 
-bool Session::announceToAllTrackers() const
+bool SessionImpl::announceToAllTrackers() const
 {
     return m_announceToAllTrackers;
 }
 
-void Session::setAnnounceToAllTrackers(const bool val)
+void SessionImpl::setAnnounceToAllTrackers(const bool val)
 {
     if (val != m_announceToAllTrackers)
     {
@@ -3603,12 +3603,12 @@ void Session::setAnnounceToAllTrackers(const bool val)
     }
 }
 
-bool Session::announceToAllTiers() const
+bool SessionImpl::announceToAllTiers() const
 {
     return m_announceToAllTiers;
 }
 
-void Session::setAnnounceToAllTiers(const bool val)
+void SessionImpl::setAnnounceToAllTiers(const bool val)
 {
     if (val != m_announceToAllTiers)
     {
@@ -3617,12 +3617,12 @@ void Session::setAnnounceToAllTiers(const bool val)
     }
 }
 
-int Session::peerTurnover() const
+int SessionImpl::peerTurnover() const
 {
     return m_peerTurnover;
 }
 
-void Session::setPeerTurnover(const int val)
+void SessionImpl::setPeerTurnover(const int val)
 {
     if (val == m_peerTurnover)
         return;
@@ -3631,12 +3631,12 @@ void Session::setPeerTurnover(const int val)
     configureDeferred();
 }
 
-int Session::peerTurnoverCutoff() const
+int SessionImpl::peerTurnoverCutoff() const
 {
     return m_peerTurnoverCutoff;
 }
 
-void Session::setPeerTurnoverCutoff(const int val)
+void SessionImpl::setPeerTurnoverCutoff(const int val)
 {
     if (val == m_peerTurnoverCutoff)
         return;
@@ -3645,12 +3645,12 @@ void Session::setPeerTurnoverCutoff(const int val)
     configureDeferred();
 }
 
-int Session::peerTurnoverInterval() const
+int SessionImpl::peerTurnoverInterval() const
 {
     return m_peerTurnoverInterval;
 }
 
-void Session::setPeerTurnoverInterval(const int val)
+void SessionImpl::setPeerTurnoverInterval(const int val)
 {
     if (val == m_peerTurnoverInterval)
         return;
@@ -3659,12 +3659,12 @@ void Session::setPeerTurnoverInterval(const int val)
     configureDeferred();
 }
 
-DiskIOType Session::diskIOType() const
+DiskIOType SessionImpl::diskIOType() const
 {
     return m_diskIOType;
 }
 
-void Session::setDiskIOType(const DiskIOType type)
+void SessionImpl::setDiskIOType(const DiskIOType type)
 {
     if (type != m_diskIOType)
     {
@@ -3672,12 +3672,12 @@ void Session::setDiskIOType(const DiskIOType type)
     }
 }
 
-int Session::requestQueueSize() const
+int SessionImpl::requestQueueSize() const
 {
     return m_requestQueueSize;
 }
 
-void Session::setRequestQueueSize(const int val)
+void SessionImpl::setRequestQueueSize(const int val)
 {
     if (val == m_requestQueueSize)
         return;
@@ -3686,12 +3686,12 @@ void Session::setRequestQueueSize(const int val)
     configureDeferred();
 }
 
-int Session::asyncIOThreads() const
+int SessionImpl::asyncIOThreads() const
 {
     return std::clamp(m_asyncIOThreads.get(), 1, 1024);
 }
 
-void Session::setAsyncIOThreads(const int num)
+void SessionImpl::setAsyncIOThreads(const int num)
 {
     if (num == m_asyncIOThreads)
         return;
@@ -3700,12 +3700,12 @@ void Session::setAsyncIOThreads(const int num)
     configureDeferred();
 }
 
-int Session::hashingThreads() const
+int SessionImpl::hashingThreads() const
 {
     return std::clamp(m_hashingThreads.get(), 1, 1024);
 }
 
-void Session::setHashingThreads(const int num)
+void SessionImpl::setHashingThreads(const int num)
 {
     if (num == m_hashingThreads)
         return;
@@ -3714,12 +3714,12 @@ void Session::setHashingThreads(const int num)
     configureDeferred();
 }
 
-int Session::filePoolSize() const
+int SessionImpl::filePoolSize() const
 {
     return m_filePoolSize;
 }
 
-void Session::setFilePoolSize(const int size)
+void SessionImpl::setFilePoolSize(const int size)
 {
     if (size == m_filePoolSize)
         return;
@@ -3728,12 +3728,12 @@ void Session::setFilePoolSize(const int size)
     configureDeferred();
 }
 
-int Session::checkingMemUsage() const
+int SessionImpl::checkingMemUsage() const
 {
     return std::max(1, m_checkingMemUsage.get());
 }
 
-void Session::setCheckingMemUsage(int size)
+void SessionImpl::setCheckingMemUsage(int size)
 {
     size = std::max(size, 1);
 
@@ -3744,7 +3744,7 @@ void Session::setCheckingMemUsage(int size)
     configureDeferred();
 }
 
-int Session::diskCacheSize() const
+int SessionImpl::diskCacheSize() const
 {
 #ifdef QBT_APP_64BIT
     return std::min(m_diskCacheSize.get(), 33554431);  // 32768GiB
@@ -3755,7 +3755,7 @@ int Session::diskCacheSize() const
 #endif
 }
 
-void Session::setDiskCacheSize(int size)
+void SessionImpl::setDiskCacheSize(int size)
 {
 #ifdef QBT_APP_64BIT
     size = std::min(size, 33554431);  // 32768GiB
@@ -3770,12 +3770,12 @@ void Session::setDiskCacheSize(int size)
     }
 }
 
-int Session::diskCacheTTL() const
+int SessionImpl::diskCacheTTL() const
 {
     return m_diskCacheTTL;
 }
 
-void Session::setDiskCacheTTL(const int ttl)
+void SessionImpl::setDiskCacheTTL(const int ttl)
 {
     if (ttl != m_diskCacheTTL)
     {
@@ -3784,12 +3784,12 @@ void Session::setDiskCacheTTL(const int ttl)
     }
 }
 
-qint64 Session::diskQueueSize() const
+qint64 SessionImpl::diskQueueSize() const
 {
     return m_diskQueueSize;
 }
 
-void Session::setDiskQueueSize(const qint64 size)
+void SessionImpl::setDiskQueueSize(const qint64 size)
 {
     if (size == m_diskQueueSize)
         return;
@@ -3798,12 +3798,12 @@ void Session::setDiskQueueSize(const qint64 size)
     configureDeferred();
 }
 
-DiskIOReadMode Session::diskIOReadMode() const
+DiskIOReadMode SessionImpl::diskIOReadMode() const
 {
     return m_diskIOReadMode;
 }
 
-void Session::setDiskIOReadMode(const DiskIOReadMode mode)
+void SessionImpl::setDiskIOReadMode(const DiskIOReadMode mode)
 {
     if (mode == m_diskIOReadMode)
         return;
@@ -3812,12 +3812,12 @@ void Session::setDiskIOReadMode(const DiskIOReadMode mode)
     configureDeferred();
 }
 
-DiskIOWriteMode Session::diskIOWriteMode() const
+DiskIOWriteMode SessionImpl::diskIOWriteMode() const
 {
     return m_diskIOWriteMode;
 }
 
-void Session::setDiskIOWriteMode(const DiskIOWriteMode mode)
+void SessionImpl::setDiskIOWriteMode(const DiskIOWriteMode mode)
 {
     if (mode == m_diskIOWriteMode)
         return;
@@ -3826,12 +3826,12 @@ void Session::setDiskIOWriteMode(const DiskIOWriteMode mode)
     configureDeferred();
 }
 
-bool Session::isCoalesceReadWriteEnabled() const
+bool SessionImpl::isCoalesceReadWriteEnabled() const
 {
     return m_coalesceReadWriteEnabled;
 }
 
-void Session::setCoalesceReadWriteEnabled(const bool enabled)
+void SessionImpl::setCoalesceReadWriteEnabled(const bool enabled)
 {
     if (enabled == m_coalesceReadWriteEnabled) return;
 
@@ -3839,17 +3839,17 @@ void Session::setCoalesceReadWriteEnabled(const bool enabled)
     configureDeferred();
 }
 
-bool Session::isSuggestModeEnabled() const
+bool SessionImpl::isSuggestModeEnabled() const
 {
     return m_isSuggestMode;
 }
 
-bool Session::usePieceExtentAffinity() const
+bool SessionImpl::usePieceExtentAffinity() const
 {
     return m_usePieceExtentAffinity;
 }
 
-void Session::setPieceExtentAffinity(const bool enabled)
+void SessionImpl::setPieceExtentAffinity(const bool enabled)
 {
     if (enabled == m_usePieceExtentAffinity) return;
 
@@ -3857,7 +3857,7 @@ void Session::setPieceExtentAffinity(const bool enabled)
     configureDeferred();
 }
 
-void Session::setSuggestMode(const bool mode)
+void SessionImpl::setSuggestMode(const bool mode)
 {
     if (mode == m_isSuggestMode) return;
 
@@ -3865,12 +3865,12 @@ void Session::setSuggestMode(const bool mode)
     configureDeferred();
 }
 
-int Session::sendBufferWatermark() const
+int SessionImpl::sendBufferWatermark() const
 {
     return m_sendBufferWatermark;
 }
 
-void Session::setSendBufferWatermark(const int value)
+void SessionImpl::setSendBufferWatermark(const int value)
 {
     if (value == m_sendBufferWatermark) return;
 
@@ -3878,12 +3878,12 @@ void Session::setSendBufferWatermark(const int value)
     configureDeferred();
 }
 
-int Session::sendBufferLowWatermark() const
+int SessionImpl::sendBufferLowWatermark() const
 {
     return m_sendBufferLowWatermark;
 }
 
-void Session::setSendBufferLowWatermark(const int value)
+void SessionImpl::setSendBufferLowWatermark(const int value)
 {
     if (value == m_sendBufferLowWatermark) return;
 
@@ -3891,12 +3891,12 @@ void Session::setSendBufferLowWatermark(const int value)
     configureDeferred();
 }
 
-int Session::sendBufferWatermarkFactor() const
+int SessionImpl::sendBufferWatermarkFactor() const
 {
     return m_sendBufferWatermarkFactor;
 }
 
-void Session::setSendBufferWatermarkFactor(const int value)
+void SessionImpl::setSendBufferWatermarkFactor(const int value)
 {
     if (value == m_sendBufferWatermarkFactor) return;
 
@@ -3904,12 +3904,12 @@ void Session::setSendBufferWatermarkFactor(const int value)
     configureDeferred();
 }
 
-int Session::connectionSpeed() const
+int SessionImpl::connectionSpeed() const
 {
     return m_connectionSpeed;
 }
 
-void Session::setConnectionSpeed(const int value)
+void SessionImpl::setConnectionSpeed(const int value)
 {
     if (value == m_connectionSpeed) return;
 
@@ -3917,12 +3917,12 @@ void Session::setConnectionSpeed(const int value)
     configureDeferred();
 }
 
-int Session::socketBacklogSize() const
+int SessionImpl::socketBacklogSize() const
 {
     return m_socketBacklogSize;
 }
 
-void Session::setSocketBacklogSize(const int value)
+void SessionImpl::setSocketBacklogSize(const int value)
 {
     if (value == m_socketBacklogSize) return;
 
@@ -3930,12 +3930,12 @@ void Session::setSocketBacklogSize(const int value)
     configureDeferred();
 }
 
-bool Session::isAnonymousModeEnabled() const
+bool SessionImpl::isAnonymousModeEnabled() const
 {
     return m_isAnonymousModeEnabled;
 }
 
-void Session::setAnonymousModeEnabled(const bool enabled)
+void SessionImpl::setAnonymousModeEnabled(const bool enabled)
 {
     if (enabled != m_isAnonymousModeEnabled)
     {
@@ -3946,12 +3946,12 @@ void Session::setAnonymousModeEnabled(const bool enabled)
     }
 }
 
-bool Session::isQueueingSystemEnabled() const
+bool SessionImpl::isQueueingSystemEnabled() const
 {
     return m_isQueueingEnabled;
 }
 
-void Session::setQueueingSystemEnabled(const bool enabled)
+void SessionImpl::setQueueingSystemEnabled(const bool enabled)
 {
     if (enabled != m_isQueueingEnabled)
     {
@@ -3965,12 +3965,12 @@ void Session::setQueueingSystemEnabled(const bool enabled)
     }
 }
 
-int Session::maxActiveDownloads() const
+int SessionImpl::maxActiveDownloads() const
 {
     return m_maxActiveDownloads;
 }
 
-void Session::setMaxActiveDownloads(int max)
+void SessionImpl::setMaxActiveDownloads(int max)
 {
     max = std::max(max, -1);
     if (max != m_maxActiveDownloads)
@@ -3980,12 +3980,12 @@ void Session::setMaxActiveDownloads(int max)
     }
 }
 
-int Session::maxActiveUploads() const
+int SessionImpl::maxActiveUploads() const
 {
     return m_maxActiveUploads;
 }
 
-void Session::setMaxActiveUploads(int max)
+void SessionImpl::setMaxActiveUploads(int max)
 {
     max = std::max(max, -1);
     if (max != m_maxActiveUploads)
@@ -3995,12 +3995,12 @@ void Session::setMaxActiveUploads(int max)
     }
 }
 
-int Session::maxActiveTorrents() const
+int SessionImpl::maxActiveTorrents() const
 {
     return m_maxActiveTorrents;
 }
 
-void Session::setMaxActiveTorrents(int max)
+void SessionImpl::setMaxActiveTorrents(int max)
 {
     max = std::max(max, -1);
     if (max != m_maxActiveTorrents)
@@ -4010,12 +4010,12 @@ void Session::setMaxActiveTorrents(int max)
     }
 }
 
-bool Session::ignoreSlowTorrentsForQueueing() const
+bool SessionImpl::ignoreSlowTorrentsForQueueing() const
 {
     return m_ignoreSlowTorrentsForQueueing;
 }
 
-void Session::setIgnoreSlowTorrentsForQueueing(const bool ignore)
+void SessionImpl::setIgnoreSlowTorrentsForQueueing(const bool ignore)
 {
     if (ignore != m_ignoreSlowTorrentsForQueueing)
     {
@@ -4024,12 +4024,12 @@ void Session::setIgnoreSlowTorrentsForQueueing(const bool ignore)
     }
 }
 
-int Session::downloadRateForSlowTorrents() const
+int SessionImpl::downloadRateForSlowTorrents() const
 {
     return m_downloadRateForSlowTorrents;
 }
 
-void Session::setDownloadRateForSlowTorrents(const int rateInKibiBytes)
+void SessionImpl::setDownloadRateForSlowTorrents(const int rateInKibiBytes)
 {
     if (rateInKibiBytes == m_downloadRateForSlowTorrents)
         return;
@@ -4038,12 +4038,12 @@ void Session::setDownloadRateForSlowTorrents(const int rateInKibiBytes)
     configureDeferred();
 }
 
-int Session::uploadRateForSlowTorrents() const
+int SessionImpl::uploadRateForSlowTorrents() const
 {
     return m_uploadRateForSlowTorrents;
 }
 
-void Session::setUploadRateForSlowTorrents(const int rateInKibiBytes)
+void SessionImpl::setUploadRateForSlowTorrents(const int rateInKibiBytes)
 {
     if (rateInKibiBytes == m_uploadRateForSlowTorrents)
         return;
@@ -4052,12 +4052,12 @@ void Session::setUploadRateForSlowTorrents(const int rateInKibiBytes)
     configureDeferred();
 }
 
-int Session::slowTorrentsInactivityTimer() const
+int SessionImpl::slowTorrentsInactivityTimer() const
 {
     return m_slowTorrentsInactivityTimer;
 }
 
-void Session::setSlowTorrentsInactivityTimer(const int timeInSeconds)
+void SessionImpl::setSlowTorrentsInactivityTimer(const int timeInSeconds)
 {
     if (timeInSeconds == m_slowTorrentsInactivityTimer)
         return;
@@ -4066,12 +4066,12 @@ void Session::setSlowTorrentsInactivityTimer(const int timeInSeconds)
     configureDeferred();
 }
 
-int Session::outgoingPortsMin() const
+int SessionImpl::outgoingPortsMin() const
 {
     return m_outgoingPortsMin;
 }
 
-void Session::setOutgoingPortsMin(const int min)
+void SessionImpl::setOutgoingPortsMin(const int min)
 {
     if (min != m_outgoingPortsMin)
     {
@@ -4080,12 +4080,12 @@ void Session::setOutgoingPortsMin(const int min)
     }
 }
 
-int Session::outgoingPortsMax() const
+int SessionImpl::outgoingPortsMax() const
 {
     return m_outgoingPortsMax;
 }
 
-void Session::setOutgoingPortsMax(const int max)
+void SessionImpl::setOutgoingPortsMax(const int max)
 {
     if (max != m_outgoingPortsMax)
     {
@@ -4094,12 +4094,12 @@ void Session::setOutgoingPortsMax(const int max)
     }
 }
 
-int Session::UPnPLeaseDuration() const
+int SessionImpl::UPnPLeaseDuration() const
 {
     return m_UPnPLeaseDuration;
 }
 
-void Session::setUPnPLeaseDuration(const int duration)
+void SessionImpl::setUPnPLeaseDuration(const int duration)
 {
     if (duration != m_UPnPLeaseDuration)
     {
@@ -4108,12 +4108,12 @@ void Session::setUPnPLeaseDuration(const int duration)
     }
 }
 
-int Session::peerToS() const
+int SessionImpl::peerToS() const
 {
     return m_peerToS;
 }
 
-void Session::setPeerToS(const int value)
+void SessionImpl::setPeerToS(const int value)
 {
     if (value == m_peerToS)
         return;
@@ -4122,12 +4122,12 @@ void Session::setPeerToS(const int value)
     configureDeferred();
 }
 
-bool Session::ignoreLimitsOnLAN() const
+bool SessionImpl::ignoreLimitsOnLAN() const
 {
     return m_ignoreLimitsOnLAN;
 }
 
-void Session::setIgnoreLimitsOnLAN(const bool ignore)
+void SessionImpl::setIgnoreLimitsOnLAN(const bool ignore)
 {
     if (ignore != m_ignoreLimitsOnLAN)
     {
@@ -4136,12 +4136,12 @@ void Session::setIgnoreLimitsOnLAN(const bool ignore)
     }
 }
 
-bool Session::includeOverheadInLimits() const
+bool SessionImpl::includeOverheadInLimits() const
 {
     return m_includeOverheadInLimits;
 }
 
-void Session::setIncludeOverheadInLimits(const bool include)
+void SessionImpl::setIncludeOverheadInLimits(const bool include)
 {
     if (include != m_includeOverheadInLimits)
     {
@@ -4150,12 +4150,12 @@ void Session::setIncludeOverheadInLimits(const bool include)
     }
 }
 
-QString Session::announceIP() const
+QString SessionImpl::announceIP() const
 {
     return m_announceIP;
 }
 
-void Session::setAnnounceIP(const QString &ip)
+void SessionImpl::setAnnounceIP(const QString &ip)
 {
     if (ip != m_announceIP)
     {
@@ -4164,12 +4164,12 @@ void Session::setAnnounceIP(const QString &ip)
     }
 }
 
-int Session::maxConcurrentHTTPAnnounces() const
+int SessionImpl::maxConcurrentHTTPAnnounces() const
 {
     return m_maxConcurrentHTTPAnnounces;
 }
 
-void Session::setMaxConcurrentHTTPAnnounces(const int value)
+void SessionImpl::setMaxConcurrentHTTPAnnounces(const int value)
 {
     if (value == m_maxConcurrentHTTPAnnounces)
         return;
@@ -4178,12 +4178,12 @@ void Session::setMaxConcurrentHTTPAnnounces(const int value)
     configureDeferred();
 }
 
-bool Session::isReannounceWhenAddressChangedEnabled() const
+bool SessionImpl::isReannounceWhenAddressChangedEnabled() const
 {
     return m_isReannounceWhenAddressChangedEnabled;
 }
 
-void Session::setReannounceWhenAddressChangedEnabled(const bool enabled)
+void SessionImpl::setReannounceWhenAddressChangedEnabled(const bool enabled)
 {
     if (enabled == m_isReannounceWhenAddressChangedEnabled)
         return;
@@ -4191,18 +4191,18 @@ void Session::setReannounceWhenAddressChangedEnabled(const bool enabled)
     m_isReannounceWhenAddressChangedEnabled = enabled;
 }
 
-void Session::reannounceToAllTrackers() const
+void SessionImpl::reannounceToAllTrackers() const
 {
     for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
         torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
 }
 
-int Session::stopTrackerTimeout() const
+int SessionImpl::stopTrackerTimeout() const
 {
     return m_stopTrackerTimeout;
 }
 
-void Session::setStopTrackerTimeout(const int value)
+void SessionImpl::setStopTrackerTimeout(const int value)
 {
     if (value == m_stopTrackerTimeout)
         return;
@@ -4211,12 +4211,12 @@ void Session::setStopTrackerTimeout(const int value)
     configureDeferred();
 }
 
-int Session::maxConnections() const
+int SessionImpl::maxConnections() const
 {
     return m_maxConnections;
 }
 
-void Session::setMaxConnections(int max)
+void SessionImpl::setMaxConnections(int max)
 {
     max = (max > 0) ? max : -1;
     if (max != m_maxConnections)
@@ -4226,12 +4226,12 @@ void Session::setMaxConnections(int max)
     }
 }
 
-int Session::maxUploads() const
+int SessionImpl::maxUploads() const
 {
     return m_maxUploads;
 }
 
-void Session::setMaxUploads(int max)
+void SessionImpl::setMaxUploads(int max)
 {
     max = (max > 0) ? max : -1;
     if (max != m_maxUploads)
@@ -4241,12 +4241,12 @@ void Session::setMaxUploads(int max)
     }
 }
 
-BTProtocol Session::btProtocol() const
+BTProtocol SessionImpl::btProtocol() const
 {
     return m_btProtocol;
 }
 
-void Session::setBTProtocol(const BTProtocol protocol)
+void SessionImpl::setBTProtocol(const BTProtocol protocol)
 {
     if ((protocol < BTProtocol::Both) || (BTProtocol::UTP < protocol))
         return;
@@ -4257,12 +4257,12 @@ void Session::setBTProtocol(const BTProtocol protocol)
     configureDeferred();
 }
 
-bool Session::isUTPRateLimited() const
+bool SessionImpl::isUTPRateLimited() const
 {
     return m_isUTPRateLimited;
 }
 
-void Session::setUTPRateLimited(const bool limited)
+void SessionImpl::setUTPRateLimited(const bool limited)
 {
     if (limited != m_isUTPRateLimited)
     {
@@ -4271,12 +4271,12 @@ void Session::setUTPRateLimited(const bool limited)
     }
 }
 
-MixedModeAlgorithm Session::utpMixedMode() const
+MixedModeAlgorithm SessionImpl::utpMixedMode() const
 {
     return m_utpMixedMode;
 }
 
-void Session::setUtpMixedMode(const MixedModeAlgorithm mode)
+void SessionImpl::setUtpMixedMode(const MixedModeAlgorithm mode)
 {
     if (mode == m_utpMixedMode) return;
 
@@ -4284,12 +4284,12 @@ void Session::setUtpMixedMode(const MixedModeAlgorithm mode)
     configureDeferred();
 }
 
-bool Session::isIDNSupportEnabled() const
+bool SessionImpl::isIDNSupportEnabled() const
 {
     return m_IDNSupportEnabled;
 }
 
-void Session::setIDNSupportEnabled(const bool enabled)
+void SessionImpl::setIDNSupportEnabled(const bool enabled)
 {
     if (enabled == m_IDNSupportEnabled) return;
 
@@ -4297,12 +4297,12 @@ void Session::setIDNSupportEnabled(const bool enabled)
     configureDeferred();
 }
 
-bool Session::multiConnectionsPerIpEnabled() const
+bool SessionImpl::multiConnectionsPerIpEnabled() const
 {
     return m_multiConnectionsPerIpEnabled;
 }
 
-void Session::setMultiConnectionsPerIpEnabled(const bool enabled)
+void SessionImpl::setMultiConnectionsPerIpEnabled(const bool enabled)
 {
     if (enabled == m_multiConnectionsPerIpEnabled) return;
 
@@ -4310,12 +4310,12 @@ void Session::setMultiConnectionsPerIpEnabled(const bool enabled)
     configureDeferred();
 }
 
-bool Session::validateHTTPSTrackerCertificate() const
+bool SessionImpl::validateHTTPSTrackerCertificate() const
 {
     return m_validateHTTPSTrackerCertificate;
 }
 
-void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
+void SessionImpl::setValidateHTTPSTrackerCertificate(const bool enabled)
 {
     if (enabled == m_validateHTTPSTrackerCertificate) return;
 
@@ -4323,12 +4323,12 @@ void Session::setValidateHTTPSTrackerCertificate(const bool enabled)
     configureDeferred();
 }
 
-bool Session::isSSRFMitigationEnabled() const
+bool SessionImpl::isSSRFMitigationEnabled() const
 {
     return m_SSRFMitigationEnabled;
 }
 
-void Session::setSSRFMitigationEnabled(const bool enabled)
+void SessionImpl::setSSRFMitigationEnabled(const bool enabled)
 {
     if (enabled == m_SSRFMitigationEnabled) return;
 
@@ -4336,12 +4336,12 @@ void Session::setSSRFMitigationEnabled(const bool enabled)
     configureDeferred();
 }
 
-bool Session::blockPeersOnPrivilegedPorts() const
+bool SessionImpl::blockPeersOnPrivilegedPorts() const
 {
     return m_blockPeersOnPrivilegedPorts;
 }
 
-void Session::setBlockPeersOnPrivilegedPorts(const bool enabled)
+void SessionImpl::setBlockPeersOnPrivilegedPorts(const bool enabled)
 {
     if (enabled == m_blockPeersOnPrivilegedPorts) return;
 
@@ -4349,12 +4349,12 @@ void Session::setBlockPeersOnPrivilegedPorts(const bool enabled)
     configureDeferred();
 }
 
-bool Session::isTrackerFilteringEnabled() const
+bool SessionImpl::isTrackerFilteringEnabled() const
 {
     return m_isTrackerFilteringEnabled;
 }
 
-void Session::setTrackerFilteringEnabled(const bool enabled)
+void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
 {
     if (enabled != m_isTrackerFilteringEnabled)
     {
@@ -4363,24 +4363,22 @@ void Session::setTrackerFilteringEnabled(const bool enabled)
     }
 }
 
-bool Session::isListening() const
+bool SessionImpl::isListening() const
 {
     return m_nativeSession->is_listening();
 }
 
-MaxRatioAction Session::maxRatioAction() const
+MaxRatioAction SessionImpl::maxRatioAction() const
 {
     return static_cast<MaxRatioAction>(m_maxRatioAction.get());
 }
 
-void Session::setMaxRatioAction(const MaxRatioAction act)
+void SessionImpl::setMaxRatioAction(const MaxRatioAction act)
 {
     m_maxRatioAction = static_cast<int>(act);
 }
 
-// If this functions returns true, we cannot add torrent to session,
-// but it is still possible to merge trackers in some cases
-bool Session::isKnownTorrent(const InfoHash &infoHash) const
+bool SessionImpl::isKnownTorrent(const InfoHash &infoHash) const
 {
     const bool isHybrid = infoHash.isHybrid();
     const auto id = TorrentID::fromInfoHash(infoHash);
@@ -4395,7 +4393,7 @@ bool Session::isKnownTorrent(const InfoHash &infoHash) const
     return findTorrent(infoHash);
 }
 
-void Session::updateSeedingLimitTimer()
+void SessionImpl::updateSeedingLimitTimer()
 {
     if ((globalMaxRatio() == Torrent::NO_RATIO_LIMIT) && !hasPerTorrentRatioLimit()
         && (globalMaxSeedingMinutes() == Torrent::NO_SEEDING_TIME_LIMIT) && !hasPerTorrentSeedingTimeLimit())
@@ -4409,41 +4407,41 @@ void Session::updateSeedingLimitTimer()
     }
 }
 
-void Session::handleTorrentShareLimitChanged(TorrentImpl *const)
+void SessionImpl::handleTorrentShareLimitChanged(TorrentImpl *const)
 {
     updateSeedingLimitTimer();
 }
 
-void Session::handleTorrentNameChanged(TorrentImpl *const)
+void SessionImpl::handleTorrentNameChanged(TorrentImpl *const)
 {
 }
 
-void Session::handleTorrentSavePathChanged(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentSavePathChanged(TorrentImpl *const torrent)
 {
     emit torrentSavePathChanged(torrent);
 }
 
-void Session::handleTorrentCategoryChanged(TorrentImpl *const torrent, const QString &oldCategory)
+void SessionImpl::handleTorrentCategoryChanged(TorrentImpl *const torrent, const QString &oldCategory)
 {
     emit torrentCategoryChanged(torrent, oldCategory);
 }
 
-void Session::handleTorrentTagAdded(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagAdded(TorrentImpl *const torrent, const QString &tag)
 {
     emit torrentTagAdded(torrent, tag);
 }
 
-void Session::handleTorrentTagRemoved(TorrentImpl *const torrent, const QString &tag)
+void SessionImpl::handleTorrentTagRemoved(TorrentImpl *const torrent, const QString &tag)
 {
     emit torrentTagRemoved(torrent, tag);
 }
 
-void Session::handleTorrentSavingModeChanged(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentSavingModeChanged(TorrentImpl *const torrent)
 {
     emit torrentSavingModeChanged(torrent);
 }
 
-void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVector<TrackerEntry> &newTrackers)
+void SessionImpl::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVector<TrackerEntry> &newTrackers)
 {
     for (const TrackerEntry &newTracker : newTrackers)
         LogMsg(tr("Added tracker to torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), newTracker.url));
@@ -4453,7 +4451,7 @@ void Session::handleTorrentTrackersAdded(TorrentImpl *const torrent, const QVect
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QStringList &deletedTrackers)
+void SessionImpl::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QStringList &deletedTrackers)
 {
     for (const QString &deletedTracker : deletedTrackers)
         LogMsg(tr("Removed tracker from torrent. Torrent: \"%1\". Tracker: \"%2\"").arg(torrent->name(), deletedTracker));
@@ -4463,24 +4461,24 @@ void Session::handleTorrentTrackersRemoved(TorrentImpl *const torrent, const QSt
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentTrackersChanged(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentTrackersChanged(TorrentImpl *const torrent)
 {
     emit trackersChanged(torrent);
 }
 
-void Session::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds)
+void SessionImpl::handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds)
 {
     for (const QUrl &newUrlSeed : newUrlSeeds)
         LogMsg(tr("Added URL seed to torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), newUrlSeed.toString()));
 }
 
-void Session::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds)
+void SessionImpl::handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds)
 {
     for (const QUrl &urlSeed : urlSeeds)
         LogMsg(tr("Removed URL seed from torrent. Torrent: \"%1\". URL: \"%2\"").arg(torrent->name(), urlSeed.toString()));
 }
 
-void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentMetadataReceived(TorrentImpl *const torrent)
 {
     if (!torrentExportDirectory().isEmpty())
         exportTorrentFile(torrent, torrentExportDirectory());
@@ -4488,24 +4486,24 @@ void Session::handleTorrentMetadataReceived(TorrentImpl *const torrent)
     emit torrentMetadataReceived(torrent);
 }
 
-void Session::handleTorrentPaused(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentPaused(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent paused. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentPaused(torrent);
 }
 
-void Session::handleTorrentResumed(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentResumed(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent resumed. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentResumed(torrent);
 }
 
-void Session::handleTorrentChecked(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentChecked(TorrentImpl *const torrent)
 {
     emit torrentFinishedChecking(torrent);
 }
 
-void Session::handleTorrentFinished(TorrentImpl *const torrent)
+void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 {
     LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentFinished(torrent);
@@ -4540,7 +4538,7 @@ void Session::handleTorrentFinished(TorrentImpl *const torrent)
         emit allTorrentsFinished();
 }
 
-void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
+void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data)
 {
     --m_numResumeData;
 
@@ -4553,13 +4551,13 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const Loa
     }
 }
 
-void Session::handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID)
+void SessionImpl::handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID)
 {
     m_torrents[torrent->id()] = m_torrents.take(prevID);
     m_changedTorrentIDs[torrent->id()] = prevID;
 }
 
-bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
+bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
 {
     Q_ASSERT(torrent);
 
@@ -4621,7 +4619,7 @@ bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath
     return true;
 }
 
-void Session::moveTorrentStorage(const MoveStorageJob &job) const
+void SessionImpl::moveTorrentStorage(const MoveStorageJob &job) const
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(job.torrentHandle.info_hashes());
@@ -4637,7 +4635,7 @@ void Session::moveTorrentStorage(const MoveStorageJob &job) const
                             ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
 }
 
-void Session::handleMoveTorrentStorageJobFinished(const Path &newPath)
+void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)
 {
     const MoveStorageJob finishedJob = m_moveStorageQueue.takeFirst();
     if (!m_moveStorageQueue.isEmpty())
@@ -4666,7 +4664,7 @@ void Session::handleMoveTorrentStorageJobFinished(const Path &newPath)
     }
 }
 
-void Session::storeCategories() const
+void SessionImpl::storeCategories() const
 {
     QJsonObject jsonObj;
     for (auto it = m_categories.cbegin(); it != m_categories.cend(); ++it)
@@ -4686,7 +4684,7 @@ void Session::storeCategories() const
     }
 }
 
-void Session::upgradeCategories()
+void SessionImpl::upgradeCategories()
 {
     const auto legacyCategories = SettingValue<QVariantMap>(u"BitTorrent/Session/Categories"_qs).get();
     for (auto it = legacyCategories.cbegin(); it != legacyCategories.cend(); ++it)
@@ -4700,7 +4698,7 @@ void Session::upgradeCategories()
     storeCategories();
 }
 
-void Session::loadCategories()
+void SessionImpl::loadCategories()
 {
     m_categories.clear();
 
@@ -4748,7 +4746,7 @@ void Session::loadCategories()
     }
 }
 
-bool Session::hasPerTorrentRatioLimit() const
+bool SessionImpl::hasPerTorrentRatioLimit() const
 {
     return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
@@ -4756,7 +4754,7 @@ bool Session::hasPerTorrentRatioLimit() const
     });
 }
 
-bool Session::hasPerTorrentSeedingTimeLimit() const
+bool SessionImpl::hasPerTorrentSeedingTimeLimit() const
 {
     return std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
@@ -4764,18 +4762,18 @@ bool Session::hasPerTorrentSeedingTimeLimit() const
     });
 }
 
-void Session::configureDeferred()
+void SessionImpl::configureDeferred()
 {
     if (m_deferredConfigureScheduled)
         return;
 
     m_deferredConfigureScheduled = true;
-    QMetaObject::invokeMethod(this, qOverload<>(&Session::configure), Qt::QueuedConnection);
+    QMetaObject::invokeMethod(this, qOverload<>(&SessionImpl::configure), Qt::QueuedConnection);
 }
 
 // Enable IP Filtering
 // this method creates ban list from scratch combining user ban list and 3rd party ban list file
-void Session::enableIPFilter()
+void SessionImpl::enableIPFilter()
 {
     qDebug("Enabling IPFilter");
     // 1. Parse the IP filter
@@ -4785,14 +4783,14 @@ void Session::enableIPFilter()
     if (!m_filterParser)
     {
         m_filterParser = new FilterParserThread(this);
-        connect(m_filterParser.data(), &FilterParserThread::IPFilterParsed, this, &Session::handleIPFilterParsed);
-        connect(m_filterParser.data(), &FilterParserThread::IPFilterError, this, &Session::handleIPFilterError);
+        connect(m_filterParser.data(), &FilterParserThread::IPFilterParsed, this, &SessionImpl::handleIPFilterParsed);
+        connect(m_filterParser.data(), &FilterParserThread::IPFilterError, this, &SessionImpl::handleIPFilterError);
     }
     m_filterParser->processFilterFile(IPFilterFile());
 }
 
 // Disable IP Filtering
-void Session::disableIPFilter()
+void SessionImpl::disableIPFilter()
 {
     qDebug("Disabling IPFilter");
     if (m_filterParser)
@@ -4809,7 +4807,7 @@ void Session::disableIPFilter()
     m_nativeSession->set_ip_filter(filter);
 }
 
-void Session::recursiveTorrentDownload(const TorrentID &id)
+void SessionImpl::recursiveTorrentDownload(const TorrentID &id)
 {
     TorrentImpl *const torrent = m_torrents.value(id);
     if (!torrent) return;
@@ -4834,27 +4832,27 @@ void Session::recursiveTorrentDownload(const TorrentID &id)
     }
 }
 
-const SessionStatus &Session::status() const
+const SessionStatus &SessionImpl::status() const
 {
     return m_status;
 }
 
-const CacheStatus &Session::cacheStatus() const
+const CacheStatus &SessionImpl::cacheStatus() const
 {
     return m_cacheStatus;
 }
 
-qint64 Session::getAlltimeDL() const
+qint64 SessionImpl::getAlltimeDL() const
 {
     return m_statistics->getAlltimeDL();
 }
 
-qint64 Session::getAlltimeUL() const
+qint64 SessionImpl::getAlltimeUL() const
 {
     return m_statistics->getAlltimeUL();
 }
 
-void Session::enqueueRefresh()
+void SessionImpl::enqueueRefresh()
 {
     Q_ASSERT(!m_refreshEnqueued);
 
@@ -4867,7 +4865,7 @@ void Session::enqueueRefresh()
     m_refreshEnqueued = true;
 }
 
-void Session::handleIPFilterParsed(const int ruleCount)
+void SessionImpl::handleIPFilterParsed(const int ruleCount)
 {
     if (m_filterParser)
     {
@@ -4879,7 +4877,7 @@ void Session::handleIPFilterParsed(const int ruleCount)
     emit IPFilterParsed(false, ruleCount);
 }
 
-void Session::handleIPFilterError()
+void SessionImpl::handleIPFilterError()
 {
     lt::ip_filter filter;
     processBannedIPs(filter);
@@ -4889,7 +4887,7 @@ void Session::handleIPFilterError()
     emit IPFilterParsed(true, 0);
 }
 
-std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time) const
+std::vector<lt::alert *> SessionImpl::getPendingAlerts(const lt::time_duration time) const
 {
     if (time > lt::time_duration::zero())
         m_nativeSession->wait_for_alert(time);
@@ -4899,18 +4897,18 @@ std::vector<lt::alert *> Session::getPendingAlerts(const lt::time_duration time)
     return alerts;
 }
 
-TorrentContentLayout Session::torrentContentLayout() const
+TorrentContentLayout SessionImpl::torrentContentLayout() const
 {
     return m_torrentContentLayout;
 }
 
-void Session::setTorrentContentLayout(const TorrentContentLayout value)
+void SessionImpl::setTorrentContentLayout(const TorrentContentLayout value)
 {
     m_torrentContentLayout = value;
 }
 
 // Read alerts sent by the BitTorrent session
-void Session::readAlerts()
+void SessionImpl::readAlerts()
 {
     const std::vector<lt::alert *> alerts = getPendingAlerts();
     handleAddTorrentAlerts(alerts);
@@ -4920,7 +4918,7 @@ void Session::readAlerts()
     processTrackerStatuses();
 }
 
-void Session::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
+void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
 {
     QVector<Torrent *> loadedTorrents;
     if (!isRestored())
@@ -4970,7 +4968,7 @@ void Session::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         emit torrentsLoaded(loadedTorrents);
 }
 
-void Session::handleAlert(const lt::alert *a)
+void SessionImpl::handleAlert(const lt::alert *a)
 {
     try
     {
@@ -5069,7 +5067,7 @@ void Session::handleAlert(const lt::alert *a)
     }
 }
 
-void Session::dispatchTorrentAlert(const lt::torrent_alert *a)
+void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
 {
     const TorrentID torrentID {a->handle.info_hash()};
     TorrentImpl *torrent = m_torrents.value(torrentID);
@@ -5096,7 +5094,7 @@ void Session::dispatchTorrentAlert(const lt::torrent_alert *a)
     }
 }
 
-TorrentImpl *Session::createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
+TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
@@ -5142,7 +5140,7 @@ TorrentImpl *Session::createTorrent(const lt::torrent_handle &nativeHandle, cons
     return torrent;
 }
 
-void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
+void SessionImpl::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
@@ -5161,7 +5159,7 @@ void Session::handleTorrentRemovedAlert(const lt::torrent_removed_alert *p)
     }
 }
 
-void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
+void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
@@ -5179,7 +5177,7 @@ void Session::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
+void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_alert *p)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->info_hashes);
@@ -5209,7 +5207,7 @@ void Session::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed_ale
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
-void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
+void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
 #ifdef QBT_USES_LIBTORRENT2
     const auto id = TorrentID::fromInfoHash(p->handle.info_hashes());
@@ -5232,7 +5230,7 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
     }
 }
 
-void Session::handleFileErrorAlert(const lt::file_error_alert *p)
+void SessionImpl::handleFileErrorAlert(const lt::file_error_alert *p)
 {
     TorrentImpl *const torrent = m_torrents.value(p->handle.info_hash());
     if (!torrent)
@@ -5255,18 +5253,18 @@ void Session::handleFileErrorAlert(const lt::file_error_alert *p)
     m_recentErroredTorrentsTimer->start();
 }
 
-void Session::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
+void SessionImpl::handlePortmapWarningAlert(const lt::portmap_error_alert *p)
 {
     LogMsg(tr("UPnP/NAT-PMP port mapping failed. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::WARNING);
 }
 
-void Session::handlePortmapAlert(const lt::portmap_alert *p)
+void SessionImpl::handlePortmapAlert(const lt::portmap_alert *p)
 {
     qDebug("UPnP Success, msg: %s", p->message().c_str());
     LogMsg(tr("UPnP/NAT-PMP port mapping succeeded. Message: \"%1\"").arg(QString::fromStdString(p->message())), Log::INFO);
 }
 
-void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
+void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
 {
     QString reason;
     switch (p->reason)
@@ -5296,14 +5294,14 @@ void Session::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         Logger::instance()->addPeer(ip, true, reason);
 }
 
-void Session::handlePeerBanAlert(const lt::peer_ban_alert *p)
+void SessionImpl::handlePeerBanAlert(const lt::peer_ban_alert *p)
 {
     const QString ip {toString(p->endpoint.address())};
     if (!ip.isEmpty())
         Logger::instance()->addPeer(ip, false);
 }
 
-void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
+void SessionImpl::handleUrlSeedAlert(const lt::url_seed_alert *p)
 {
     const TorrentImpl *torrent = m_torrents.value(p->handle.info_hash());
     if (!torrent)
@@ -5323,14 +5321,14 @@ void Session::handleUrlSeedAlert(const lt::url_seed_alert *p)
     }
 }
 
-void Session::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
+void SessionImpl::handleListenSucceededAlert(const lt::listen_succeeded_alert *p)
 {
     const QString proto {toString(p->socket_type)};
     LogMsg(tr("Successfully listening on IP. IP: \"%1\". Port: \"%2/%3\"")
             .arg(toString(p->address), proto, QString::number(p->port)), Log::INFO);
 }
 
-void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
+void SessionImpl::handleListenFailedAlert(const lt::listen_failed_alert *p)
 {
     const QString proto {toString(p->socket_type)};
     LogMsg(tr("Failed to listen on IP. IP: \"%1\". Port: \"%2/%3\". Reason: \"%4\"")
@@ -5338,7 +5336,7 @@ void Session::handleListenFailedAlert(const lt::listen_failed_alert *p)
             , QString::fromLocal8Bit(p->error.message().c_str())), Log::CRITICAL);
 }
 
-void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
+void SessionImpl::handleExternalIPAlert(const lt::external_ip_alert *p)
 {
     const QString externalIP {toString(p->external_address)};
     LogMsg(tr("Detected external IP. IP: \"%1\"")
@@ -5352,7 +5350,7 @@ void Session::handleExternalIPAlert(const lt::external_ip_alert *p)
     }
 }
 
-void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
+void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
 {
     if (m_refreshEnqueued)
         m_refreshEnqueued = false;
@@ -5432,13 +5430,13 @@ void Session::handleSessionStatsAlert(const lt::session_stats_alert *p)
     emit statsUpdated();
 }
 
-void Session::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
+void SessionImpl::handleAlertsDroppedAlert(const lt::alerts_dropped_alert *p) const
 {
     LogMsg(tr("Error: Internal alert queue is full and alerts are dropped, you might see degraded performance. Dropped alert type: \"%1\". Message: \"%2\"")
         .arg(QString::fromStdString(p->dropped_alerts.to_string()), QString::fromStdString(p->message())), Log::CRITICAL);
 }
 
-void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
+void SessionImpl::handleStorageMovedAlert(const lt::storage_moved_alert *p)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
@@ -5461,7 +5459,7 @@ void Session::handleStorageMovedAlert(const lt::storage_moved_alert *p)
     handleMoveTorrentStorageJobFinished(newPath);
 }
 
-void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
+void SessionImpl::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert *p)
 {
     Q_ASSERT(!m_moveStorageQueue.isEmpty());
 
@@ -5485,7 +5483,7 @@ void Session::handleStorageMovedFailedAlert(const lt::storage_moved_failed_alert
     handleMoveTorrentStorageJobFinished(currentLocation);
 }
 
-void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
+void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *p)
 {
     QVector<Torrent *> updatedTorrents;
     updatedTorrents.reserve(static_cast<decltype(updatedTorrents)::size_type>(p->status.size()));
@@ -5514,7 +5512,7 @@ void Session::handleStateUpdateAlert(const lt::state_update_alert *p)
         enqueueRefresh();
 }
 
-void Session::handleSocks5Alert(const lt::socks5_alert *p) const
+void SessionImpl::handleSocks5Alert(const lt::socks5_alert *p) const
 {
     if (p->error)
     {
@@ -5523,7 +5521,7 @@ void Session::handleSocks5Alert(const lt::socks5_alert *p) const
     }
 }
 
-void Session::handleTrackerAlert(const lt::tracker_alert *a)
+void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
 {
     TorrentImpl *torrent = m_torrents.value(a->handle.info_hash());
     if (!torrent)
@@ -5540,7 +5538,7 @@ void Session::handleTrackerAlert(const lt::tracker_alert *a)
 }
 
 #ifdef QBT_USES_LIBTORRENT2
-void Session::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a)
+void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a)
 {
     const auto torrentIDv1 = TorrentID::fromSHA1Hash(a->metadata->info_hashes().v1);
     const auto torrentIDv2 = TorrentID::fromSHA256Hash(a->metadata->info_hashes().v2);
@@ -5573,7 +5571,7 @@ void Session::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a)
 }
 #endif
 
-void Session::processTrackerStatuses()
+void SessionImpl::processTrackerStatuses()
 {
     for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
     {
