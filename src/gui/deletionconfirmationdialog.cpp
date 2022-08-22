@@ -42,9 +42,9 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
     m_ui->setupUi(this);
 
     if (size == 1)
-        m_ui->label->setText(tr("Are you sure you want to delete '%1' from the transfer list?", "Are you sure you want to delete 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
+        m_ui->label->setText(tr("Are you sure you want to remove '%1' from the transfer list?", "Are you sure you want to remove 'ubuntu-linux-iso' from the transfer list?").arg(name.toHtmlEscaped()));
     else
-        m_ui->label->setText(tr("Are you sure you want to delete these %1 torrents from the transfer list?", "Are you sure you want to delete these 5 torrents from the transfer list?").arg(QString::number(size)));
+        m_ui->label->setText(tr("Are you sure you want to remove these %1 torrents from the transfer list?", "Are you sure you want to remove these 5 torrents from the transfer list?").arg(QString::number(size)));
 
     // Icons
     const QSize iconSize = Utils::Gui::largeIconSize();
@@ -55,6 +55,7 @@ DeletionConfirmationDialog::DeletionConfirmationDialog(QWidget *parent, const in
 
     m_ui->checkPermDelete->setChecked(defaultDeleteFiles || Preferences::instance()->deleteTorrentFilesAsDefault());
     connect(m_ui->checkPermDelete, &QCheckBox::clicked, this, &DeletionConfirmationDialog::updateRememberButtonState);
+    m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Remove"));
     m_ui->buttonBox->button(QDialogButtonBox::Cancel)->setFocus();
 }
 
