@@ -1,3 +1,16 @@
+Mon Aug 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.4
+    - BUGFIX: Correctly handle data decompression with Qt 6.3 (brvphoenix)
+    - BUGFIX: Fix wrong file names displayed in tooltip (Chocobo1)
+    - BUGFIX: Fix incorrect "max outgoing port" setting (glassez)
+    - BUGFIX: Make working set limit available only on libtorrent 2.0.x builds (summer)
+    - BUGFIX: Try to recover missing tags (summer)
+    - RSS: Clear RSS parsing error after use (glassez)
+    - WEBAPI: Set HTTP method restriction on WebAPI actions (Chocobo1)
+    - WINDOWS: Work around application stuttering on Windows (Chocobo1)
+    - WINDOWS: NSIS: Update Portuguese, Italian, Korean, Latvian translations(Blackspirits, bovirus, Minseo Lee, Coool)
+    - LINUX: Improve D-Bus notifications handling (glassez)
+    - MACOS: Open destination folders on macOS in separate thread (Nick Korotysh)
+
 Tue May 24 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.3.1
     - BUGFIX: Fix broken translations (sledgehammer999)
 
