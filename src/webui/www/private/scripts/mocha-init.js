@@ -382,7 +382,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).setData("deleteFiles", deleteFiles).toString(),
                 scrollbars: false,
@@ -659,7 +659,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -800,7 +800,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,
@@ -886,7 +886,7 @@ const initializeWindows = function() {
         if (hashes.length) {
             new MochaUI.Window({
                 id: 'confirmDeletionPage',
-                title: "QBT_TR(Deletion confirmation)QBT_TR[CONTEXT=confirmDeletionDlg]",
+                title: "QBT_TR(Remove torrent(s))QBT_TR[CONTEXT=confirmDeletionDlg]",
                 loadMethod: 'iframe',
                 contentURL: new URI("confirmdeletion.html").setData("hashes", hashes.join("|")).toString(),
                 scrollbars: false,

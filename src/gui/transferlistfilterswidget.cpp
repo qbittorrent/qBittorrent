@@ -307,7 +307,7 @@ void StatusFilterWidget::showMenu()
         , transferList, &TransferListWidget::startVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs), tr("Pause torrents")
         , transferList, &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove torrents")
         , transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());
@@ -712,7 +712,7 @@ void TrackerFiltersList::showMenu()
         , transferList, &TransferListWidget::startVisibleTorrents);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs), tr("Pause torrents")
         , transferList, &TransferListWidget::pauseVisibleTorrents);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove torrents")
         , transferList, &TransferListWidget::deleteVisibleTorrents);
 
     menu->popup(QCursor::pos());
