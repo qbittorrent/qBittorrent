@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="bg">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="bg">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Създай подпапка</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Сигурни ли сте, че искате да изтриете избраните торенти от списъка за трансфер?</translation>
+        <translation type="vanished">Сигурни ли сте, че искате да изтриете избраните торенти от списъка за трансфер?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -361,6 +363,10 @@
     <message>
         <source>Original author</source>
         <translation>Оригинален автор</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -573,6 +579,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>Странична лента на филтри</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -956,8 +970,8 @@
         <translation>%T: Сегашен тракер</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Подсказка: Обградете параметър с кавички за предотвратяваме орязването на текста при пауза (пр., "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1125,7 +1139,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>Включи кеширане от ОС:</translation>
+        <translation type="vanished">Включи кеширане от ОС:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1285,7 +1299,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Използвай афинитет на степен на парче (изисква libtorrent &gt;= 1.2.2):</translation>
+        <translation type="vanished">Използвай афинитет на степен на парче (изисква libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1369,7 +1383,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Макс. едновременни HTTP анонси (изисква libtorrent &gt;= 1.2.7):</translation>
+        <translation type="vanished">Макс. едновременни HTTP анонси (изисква libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1413,7 +1427,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>Поддържа интернационализирано домейн име (IDN) (изисква libtorrent &gt;= 1.2.12):</translation>
+        <translation type="vanished">Поддържа интернационализирано домейн име (IDN) (изисква libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1428,7 +1442,7 @@
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
     <message>
@@ -1517,7 +1531,59 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation>Ограничение на потреблението на физическата памет (RAM):</translation>
+        <translation type="vanished">Ограничение на потреблението на физическата памет (RAM):</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2632,11 +2698,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Също изтрий файловете от твърдия диск</translation>
+        <translation type="vanished">Също изтрий файловете от твърдия диск</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>Потвърждение за изтриване - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2858,7 +2928,7 @@
         <translation>Активирано</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Предупреждение: Уверете се, че се придържате към законите на авторското право на вашата страна, когато сваляте торенти от която и да е то тези търсачки.</translation>
     </message>
     <message>
@@ -3473,7 +3543,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>Оригинал</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
 </context>

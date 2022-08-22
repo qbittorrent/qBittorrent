@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh_HK">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh_HK">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -26,19 +28,19 @@
     </message>
     <message>
         <source>Content layout:</source>
-        <translation>内容布局：</translation>
+        <translation>內容佈局：</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation>原始</translation>
+        <translation>原版</translation>
     </message>
     <message>
         <source>Create subfolder</source>
         <translation>建立子資料夾</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>不创建子文件夹</translation>
+        <source>Don't create subfolder</source>
+        <translation>不要建立子資料夾</translation>
     </message>
 </context>
 <context>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>從傳輸清單清除所選Torrent，確定？</translation>
+        <translation type="vanished">從傳輸清單清除所選Torrent，確定？</translation>
     </message>
     <message>
         <source>Save</source>
@@ -323,43 +325,47 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation>打开文档</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>注册以处理磁力链...</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>无法添加节点。请确认你的格式符合 IP:端口 格式。</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation>需要 JavaScript！您必须启用 JavaScript 以确保 Web UI 正常运行</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation>名称不能为空</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation>名称未改变</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation>更新名称失败</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>OK</source>
-        <translation>确定</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation>用于传入连接的端口必须介于 0 和 65535 之间。</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original author</source>
-        <translation>原始作者</translation>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -491,87 +497,95 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation>在队列中向上移动</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation>向上移动队列</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>队列底部</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>移动到队列底部</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>队列顶部</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation>向下移动队列</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation>在队列中向下移动</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>移动到队列顶部</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation>您的浏览器不支持此功能</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>要使用此功能，WebUI 需要通过 HTTPS 访问</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation>连接状态：有防火墙</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation>连接状态：连接正常</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation>备用速度限制：关闭</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation>下载速度图标</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection status</source>
-        <translation>连接状态</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation>备用速度限制：开启</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload speed icon</source>
-        <translation>上传速度图标</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation>连接状态：断开连接</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation>RSS 阅读器</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS</source>
-        <translation>RSS</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation>筛选器侧边栏</translation>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>【%T】目前追蹤器</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：以引號包起參數可避免於空格被切斷（例如：&quot;%N&quot;）</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：以引號包起參數可避免於空格被切斷（例如："%N"）</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1092,139 +1106,135 @@
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation>μTP-TCP 混合模式策略:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation>基于上传速度</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation>%G：标签（以逗号分隔）</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation>Socket backlog 大小:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>为 torrent 启用超级做种</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation>优先使用 TCP</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
-        <translation>校验时内存使用扩增量:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation>反吸血</translation>
-    </message>
-    <message>
-        <source>Enable OS cache:</source>
-        <translation>启用操作系统缓存</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>当分享率达到</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>当做种时间达到</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation>允许来自同一 IP 地址的多个连接:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>File pool size:</source>
-        <translation>文件池大小:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Any interface</source>
-        <translation>任意网络接口</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Always announce to all tiers:</source>
-        <translation>总是向所有等级的 Tracker 汇报:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation>内置 tracker 端口:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation>最快上传</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>暂停 torrent</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation>删除 torrent 及所属文件</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation>qBittorrent 相关</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>发送缓冲区增长系数:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation>libtorrent 相关</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>传出端口 (下限) [0: 禁用]:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation>完成后重新校验 Torrent:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation>允许加密</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
-        <translation>发送分块上传建议:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation>启用内置 Tracker:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation>删除 torrent</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>传出端口 (上限) [0: 禁用]:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
-        <translation>异步 I/O 线程数:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>s</source>
-        <translation>秒</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>发送缓冲区上限:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation>按用户比重 (抑制 TCP)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation>固定窗口数</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Advanced</source>
@@ -1232,83 +1242,79 @@
     </message>
     <message>
         <source>min</source>
-        <translation>分钟</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation>上传连接策略:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation>做种限制</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>KiB</source>
-        <translation>KiB</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Round-robin</source>
-        <translation>轮流上传</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation>上传窗口策略:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>MiB</source>
-        <translation>MiB</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>发送缓冲区下限:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>保存恢复数据间隔:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
-        <translation>总是向同级的所有 Tracker 汇报:</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation>会话超时：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>解析用户所在国家：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>ban for:</source>
-        <translation>禁止：</translation>
-    </message>
-    <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>使用片段範圍關聯（需要 libtorrent &gt;= 1.2.2）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>停止追蹤器逾時：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation>连续失败后禁止客户端：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation>启用cookie安全标志（需要HTTPS）</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>UPnP 租期 [0：永久 ]：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation>標頭：鍵值對，一行一個</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation>添加自定义HTTP头字段</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Filters:</source>
@@ -1320,15 +1326,15 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>散列线程（需要libtorrent&gt; = 2.0）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>合并读写（需要libtorrent&lt;2.0）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
-        <translation>Peer 进出阈值百分比：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
@@ -1340,7 +1346,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation>网络接口：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1360,15 +1366,11 @@
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
-        <translation>Peer 进出断开百分比：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
         <translation>每個RSS Feed的最大文章數：</translation>
-    </message>
-    <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>最大并发 HTTP 发布（需要 libtorrent &gt; = 1.2.7）：</translation>
     </message>
     <message>
         <source> min</source>
@@ -1376,15 +1378,15 @@
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
-        <translation>Peer 进出断开间隔：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation>绑定到的可选 IP 地址：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>禁止连接到特权端口上的 Peer：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1396,47 +1398,43 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>磁盘缓存（需要 libtorrent  &lt; 2.0）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>磁盘缓存过期时间间隔（要求 libtorrent &lt; 2.0）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
-        <translation>验证 HTTPS tracker 证书：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation>Peer 连接协议：</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>支持国际化域名（IDN）（需要 libtorrent &gt;= 1.2.12）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation>Torrent 内容布局：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>创建子文件夹</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original</source>
-        <translation>原始</translation>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>不创建子文件夹</translation>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation>与 peers 连接的服务类型（ToS）</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation>每秒传出连接数：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Random</source>
@@ -1444,79 +1442,127 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation>%K: Torrent ID</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>当 IP 或端口更改时，重新通知所有 trackers：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation>受信任的代理列表：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>启用反向代理支持</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%J: Info hash v2</source>
-        <translation>%J：信息哈希值 v2</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>%I: Info hash v1</source>
-        <translation>%I: 信息哈希值 v1</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>向追蹤器回報的 IP 位置（需要重新啟動）：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation>設定為 0 讓您的系統挑選未使用的連接埠</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>伺服器端請求偽造 (SSRF) 緩解：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation>磁碟佇列大小：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation>记录性能警报</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation>對單個 peer 的最多未完成請求：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation>最大活躍的正在檢查 torrent 數：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation>内存映射文件</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Default</source>
-        <translation>默认</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation>遵循 POSIX</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation>这个选项在 Linux 上没那么有效</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>磁盘 IO 类型（libtorrent &gt;= 2.0；需要重启）</translation>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation>物理内存（RAM）使用限制：</translation>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1583,7 +1629,7 @@
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation>您确定要永久禁止所选的用户吗？</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1591,11 +1637,11 @@
     </message>
     <message>
         <source>Country/Region</source>
-        <translation>国家/地区</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>添加 peers 用户...</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1617,11 +1663,11 @@
     </message>
     <message>
         <source>Mixed</source>
-        <translation>混合的</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Do not download</source>
-        <translation>不下载</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1800,15 +1846,15 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation>%1 (已做种 %2)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>信息哈希值 v2：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>信息哈希值 v1：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>N/A</source>
@@ -1839,11 +1885,11 @@
     </message>
     <message>
         <source>Other...</source>
-        <translation>其他...</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Type folder here</source>
-        <translation>在此处输入文件夹</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2004,35 +2050,35 @@
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>上传已暂停 (%1)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>下载已暂停 (%1)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>暂停下载 (0)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>暂停 (0)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>上传已暂停 (0)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>暂停 (%1)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation>正在检查 (%1)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation>正在检查 (0)</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2184,7 +2230,7 @@
     </message>
     <message>
         <source>Availability</source>
-        <translation>可用性</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2263,35 +2309,35 @@
     </message>
     <message>
         <source>Remaining</source>
-        <translation>剩余</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Availability</source>
-        <translation>可用性</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Tier</source>
-        <translation>层级</translation>
+        <translation>層</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation>下载优先级</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Progress</source>
-        <translation>进度</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Total Size</source>
-        <translation>總大小</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation>下载时间</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2374,11 +2420,11 @@
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation>%1 (已做种 %2)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] 下载元数据</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2554,43 +2600,43 @@
     </message>
     <message>
         <source>Magnet link</source>
-        <translation>磁力链接</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Remove All</source>
-        <translation>删除全部</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Copy</source>
-        <translation>复制</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Queue</source>
-        <translation>队列</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add...</source>
-        <translation>添加...</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info hash v1</source>
-        <translation>信息哈希值 v1</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Info hash v2</source>
-        <translation>信息哈希值 v2</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>Torrent ID</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation>导出 .torrent</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2631,11 +2677,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>同時從磁碟刪除檔案</translation>
+        <translation type="vanished">同時從磁碟刪除檔案</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>確認刪除 - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2722,7 +2772,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1 年 %2 天</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2811,23 +2861,23 @@
     </message>
     <message>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation>增加窗口宽度以显示其他过滤器</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>to</source>
-        <translation>到</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Results</source>
-        <translation>結果</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>showing</source>
-        <translation>正在顯示</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,7 +2907,7 @@
         <translation>已啟用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：請確保從此等搜尋器下載Torrent時遵守你所在地的版權規定。</translation>
     </message>
     <message>
@@ -2912,18 +2962,18 @@
     </message>
     <message>
         <source>Yes</source>
-        <translation>确定</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>No</source>
-        <translation>取消</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Add Peers</source>
@@ -2935,7 +2985,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation>确定</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3056,11 +3106,11 @@
     </message>
     <message>
         <source>Software Used</source>
-        <translation>使用的软件</translation>
+        <translation>使用的軟體</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>由 DB-IP 提供的免费 IP to Country Lite 数据库，用于解析节点所在的国家。该数据库已根据知识共享署名 4.0 国际许可协议获得许可</translation>
+        <translation>由 DB-IP 提供，用於解析 peer 的所在國家的免費 IP 對國家 Lite 資料庫。此資料庫以創用 CC 姓名標示 4.0 國際授權條款授權</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3072,64 +3122,64 @@
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation>qBittorrent 吉祥物</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation>qBittorrent 圖示</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation>所有地址</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation>所有 IPv6 地址</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation>所有 IPv4 地址</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation>复制</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Download</source>
-        <translation>下载</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Name</source>
-        <translation>名称</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Description page URL</source>
-        <translation>描述页 URL</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Open description page</source>
-        <translation>打开描述页</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Download link</source>
-        <translation>下载链接</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation>重命名</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>New name:</source>
-        <translation>新名称：</translation>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3307,7 +3357,7 @@
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation>将 %1 符号的一侧留空的表达式 (例如 %2)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Example: </source>
@@ -3375,7 +3425,7 @@
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation>符合第1季的第 2、第 5、第 8 到 15，以及第 30 集和之後章節</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3391,7 +3441,7 @@
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation>RSS 下載器</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3439,7 +3489,7 @@
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation>忽略指定时间后的匹配项（0 = 禁用）</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3456,24 +3506,24 @@
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>智能剧集过滤器会检查剧集编号以避免重复下载。
-支持格式：S01E01，1x1，2017.12.31，31.12.2017（日期格式也支持“-”分隔符）</translation>
+        <translation>智能分集過濾器會檢查檔名所帶數值以避免重複下載。
+支援的格式：S01E01、1x1、2017.12.31、31.12.2017（日期也可使用「-」作為分隔）</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation>Torrent 内容布局：</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>创建子文件夹</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Original</source>
-        <translation>原始</translation>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>不要创建子文件夹</translation>
+        <source>Don't create subfolder</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3488,7 +3538,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation>全部 (%1)</translation>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Trackerless (%1)</source>

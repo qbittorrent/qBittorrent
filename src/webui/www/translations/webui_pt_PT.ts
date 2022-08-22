@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pt">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Criar subpasta</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
 </context>
@@ -163,7 +165,7 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>Palavra-passe ou utilizador inválido.</translation>
+        <translation>Palavra-passe ou nome de utilizador inválido.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -192,7 +194,7 @@
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation>Gravar ficheiros em:</translation>
+        <translation>Guardar ficheiros em:</translation>
     </message>
     <message>
         <source>Cookie:</source>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Tem a certeza de que quer eliminar os torrents selecionados da lista de transferência?</translation>
+        <translation type="vanished">Tem a certeza de que quer eliminar os torrents selecionados da lista de transferência?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -331,7 +333,7 @@
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation>impossível adicionar pares. Assegure-se que aderiu ao formato IP:port.</translation>
+        <translation>Impossível adicionar pares. Assegure-se que aderiu ao formato IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
@@ -360,6 +362,10 @@
     <message>
         <source>Original author</source>
         <translation>Autor original</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -572,6 +578,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>Barra lateral dos filtros</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -840,7 +854,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation>Aplicar os limites de rácio para o transporte &quot;overhead&quot;</translation>
+        <translation>Aplicar os limites de rácio para o transporte "overhead"</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -856,11 +870,11 @@
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation>Ativar a &apos;Troca de pares&apos; (PeX) para encontrar mais pares</translation>
+        <translation>Ativar a 'Troca de pares' (PeX) para encontrar mais pares</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation>Ativar &apos;Descoberta de pares locais&apos; para encontrar mais pares</translation>
+        <translation>Ativar 'Descoberta de pares locais' para encontrar mais pares</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
@@ -955,8 +969,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Dica: Encapsule o parâmetro entre aspas para evitar que sejam cortados os espaços em branco do texto (ex: "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -976,7 +990,7 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation>Ativar a proteção contra o &quot;clickjacking&quot;</translation>
+        <translation>Ativar a proteção contra o "clickjacking"</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
@@ -1008,7 +1022,7 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation>Caminho padrão para o &apos;Guardar&apos;:</translation>
+        <translation>Caminho padrão para o 'Guardar':</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
@@ -1020,11 +1034,11 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Mudar torrent para o &apos;Modo manual&apos;</translation>
+        <translation>Mudar torrent para o 'Modo manual'</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Quando a &apos;Categoria do torrent&apos; for alterada:</translation>
+        <translation>Quando a 'Categoria do torrent' for alterada:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
@@ -1044,7 +1058,7 @@
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Quando o &apos;Caminho padrão para guardar&apos; for alterado:</translation>
+        <translation>Quando o 'Caminho padrão para guardar' for alterado:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1056,7 +1070,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation>Quando alterar a &apos;Categoria do caminho para guardar&apos;:</translation>
+        <translation>Quando alterar a 'Categoria do caminho para guardar':</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1064,7 +1078,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Mudar os torrents afetados para o &apos;Modo manual&apos;</translation>
+        <translation>Mudar os torrents afetados para o 'Modo manual'</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>Ativar cache do sistema:</translation>
+        <translation type="vanished">Ativar cache do sistema:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Utilizar a afinidade da extensão da peça (requer o libtorrent &gt;= 1.2.2):</translation>
+        <translation type="vanished">Utilizar a afinidade da extensão da peça (requer o libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
+        <translation type="vanished">Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1388,7 +1402,7 @@
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
-        <translation>ativar transferência automática de torrents RSS</translation>
+        <translation>Ativar a transferência automática de torrents RSS</translation>
     </message>
     <message>
         <source>RSS Smart Episode Filter</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>Suporta nome de domínio internacionalizado (IDN) (requer libtorrent &gt;= 1.2.12):</translation>
+        <translation type="vanished">Suporta nome de domínio internacionalizado (IDN) (requer libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1441,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
     <message>
@@ -1496,7 +1510,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation>Arquivos mapeados na memória</translation>
+        <translation>Ficheiros mapeados na memória</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1512,11 +1526,63 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>Tipo de E/S de disco (libtorrent &gt;= 2.0; requer reinicialização):</translation>
+        <translation>Tipo de disco IO (libtorrent &gt;= 2.0; requer reinicio):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation>Limite de uso de memória física (RAM):</translation>
+        <translation type="vanished">Limite de utilização de memória física (RAM):</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1835,7 +1901,7 @@
     </message>
     <message>
         <source>Default save location</source>
-        <translation>Local por defeito para o &apos;Guardar&apos;</translation>
+        <translation>Local por defeito para o 'Guardar'</translation>
     </message>
     <message>
         <source>Other...</source>
@@ -2291,7 +2357,7 @@
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation>Número de vezes baixado</translation>
+        <translation>Número de vezes descarregado</translation>
     </message>
 </context>
 <context>
@@ -2631,11 +2697,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Eliminar também os ficheiros existentes no disco rígido</translation>
+        <translation type="vanished">Eliminar também os ficheiros existentes no disco rígido</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>Confirmação de eliminação - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2698,12 +2768,12 @@
     <message>
         <source>%1h %2m</source>
         <comment>e.g: 3hours 5minutes</comment>
-        <translation>%1 h e %2 m</translation>
+        <translation>%1h e %2m</translation>
     </message>
     <message>
         <source>%1d %2h</source>
         <comment>e.g: 2days 10hours</comment>
-        <translation>%1 d e %2 h</translation>
+        <translation>%1d e %2h</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -2722,7 +2792,7 @@
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation>%1y %2d</translation>
+        <translation>%1a %2d</translation>
     </message>
 </context>
 <context>
@@ -2752,7 +2822,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceitar</translation>
     </message>
 </context>
 <context>
@@ -2857,7 +2927,7 @@
         <translation>Ativo</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se que cumpre as leis de direitos de autor do seu país ao fazer a transferência de torrents a partir de qualquer um destes motores de busca.</translation>
     </message>
     <message>
@@ -2935,7 +3005,7 @@
     </message>
     <message>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation>Aceitar</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3212,7 +3282,7 @@
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>A procura de feeds RSS está desativada agora! Oode ativá-la nas definições do programa.</translation>
+        <translation>A procura de feeds RSS está desativada! Pode ativá-la nas definições do programa.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3472,7 +3542,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Suporte também para 
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar subpasta</translation>
     </message>
 </context>

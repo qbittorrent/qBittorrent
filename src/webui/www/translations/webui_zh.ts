@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="zh">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="zh">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>创建子文件夹</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>你确定要从传输列表中删除选中的 torrent 吗？</translation>
+        <translation type="vanished">你确定要从传输列表中删除选中的 torrent 吗？</translation>
     </message>
     <message>
         <source>Save</source>
@@ -360,6 +362,10 @@
     <message>
         <source>Original author</source>
         <translation>原始作者</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -572,6 +578,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>筛选器侧边栏</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>%T：当前 tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如：&quot;%N&quot;）</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>提示：使用引号将参数扩起以防止文本被空白符分割（例如："%N"）</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>启用操作系统缓存</translation>
+        <translation type="vanished">启用操作系统缓存</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>使用块扩展数据块关联(需要libtorrent &gt;=1.2.2)：</translation>
+        <translation type="vanished">使用块扩展数据块关联(需要libtorrent &gt;=1.2.2)：</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>最大并发 HTTP 发布（需要 libtorrent &gt; = 1.2.7）：</translation>
+        <translation type="vanished">最大并发 HTTP 发布（需要 libtorrent &gt; = 1.2.7）：</translation>
     </message>
     <message>
         <source> min</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>支持国际化域名（IDN）（需要 libtorrent &gt;= 1.2.12）：</translation>
+        <translation type="vanished">支持国际化域名（IDN）（需要 libtorrent &gt;= 1.2.12）：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1441,7 @@
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
     <message>
@@ -1516,7 +1530,59 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation>物理内存（RAM）使用限制：</translation>
+        <translation type="vanished">物理内存（RAM）使用限制：</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2631,11 +2697,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>同时从硬盘上删除文件</translation>
+        <translation type="vanished">同时从硬盘上删除文件</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>确认删除 - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,7 +2927,7 @@
         <translation>启用</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>警告：在下载来自这些搜索引擎的 torrent 时，请确认它符合您所在国家的版权法。</translation>
     </message>
     <message>
@@ -3295,7 +3365,7 @@
     </message>
     <message>
         <source>| is used as OR operator</source>
-        <translation>| —— &quot;或&quot; 运算符</translation>
+        <translation>| —— "或" 运算符</translation>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
@@ -3303,7 +3373,7 @@
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>空格 —— &quot;与&quot; 运算符 (所有关键词，任意顺序)</translation>
+        <translation>空格 —— "与" 运算符 (所有关键词，任意顺序)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
@@ -3457,7 +3527,7 @@
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
         <translation>智能剧集过滤器会检查集数以避免重复下载。
-支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 &quot;-&quot; 符号)</translation>
+支持格式：S01E01，1x1，2017.12.31，31.12.2017 (日期分隔符也可用 "-" 符号)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -3472,7 +3542,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>原始</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
 </context>

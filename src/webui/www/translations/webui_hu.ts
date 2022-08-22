@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="hu">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="hu">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Almappa létrehozása</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Egészen biztos, hogy törlöd a kiválasztott torrenteket az átviteli listáról?</translation>
+        <translation type="vanished">Egészen biztos, hogy törlöd a kiválasztott torrenteket az átviteli listáról?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -360,6 +362,10 @@
     <message>
         <source>Original author</source>
         <translation>Eredeti szerző</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -572,6 +578,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>Szűrők oldalsáv</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>%T: Jelenlegi tracker</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Tipp: Tegye a paramétereket idézőjelbe, hogy elkerülje azt, hogy az üres karaktereknél kettévágásra kerüljenek (például "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>Operációs rendszer gyorsítótár engedélyezés</translation>
+        <translation type="vanished">Operációs rendszer gyorsítótár engedélyezés</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Szeletméret-affinitás használata (szükséges libtorrent &gt;=1.2.2):</translation>
+        <translation type="vanished">Szeletméret-affinitás használata (szükséges libtorrent &gt;=1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Maximális egyidejű HTTP jelentés (szükséges libtorrent &gt;=1.2.7):</translation>
+        <translation type="vanished">Maximális egyidejű HTTP jelentés (szükséges libtorrent &gt;=1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>Támogatja a nemzetközi domain nevet (IDN) (szükséges libtorrent &gt;=1.2.12):</translation>
+        <translation type="vanished">Támogatja a nemzetközi domain nevet (IDN) (szükséges libtorrent &gt;=1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1441,7 @@
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
     <message>
@@ -1496,7 +1510,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation>Memória feltérképezett fájlok</translation>
+        <translation>Memóriában lefoglalt fájlok</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1516,7 +1530,59 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation>Fizikai memória (RAM) használati korlát</translation>
+        <translation type="vanished">Fizikai memória (RAM) használati korlát</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2590,7 +2656,7 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation>Torrent exportálása</translation>
+        <translation>.torrent fájl exportálása</translation>
     </message>
 </context>
 <context>
@@ -2631,11 +2697,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Fájlok törlése a merevlemezről is</translation>
+        <translation type="vanished">Fájlok törlése a merevlemezről is</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>Törlés megerősítése - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,7 +2927,7 @@
         <translation>Engedélyezve</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Figyelmeztetés: Győződjön meg róla, hogy a keresőmotorok bármelyikéből származó torrentek letöltésekor betartja az ország szerzői jogi törvényeit.</translation>
     </message>
     <message>
@@ -3472,7 +3542,7 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
         <translation>Eredeti</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Ne hozzon létre almappát</translation>
     </message>
 </context>
