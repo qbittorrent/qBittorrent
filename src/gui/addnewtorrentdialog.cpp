@@ -427,12 +427,12 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &source)
 
 bool AddNewTorrentDialog::loadTorrentImpl()
 {
-    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(m_torrentInfo.infoHash());
+    const BitTorrent::InfoHash infoHash = m_torrentInfo.infoHash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
             // Trying to set metadata to existing torrent in case if it has none
@@ -480,11 +480,12 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     m_torrentGuard = std::make_unique<TorrentFileGuard>();
 
-    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(magnetUri.infoHash());
+    const BitTorrent::InfoHash infoHash = magnetUri.infoHash();
+
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
             if (torrent->isPrivate())

@@ -2116,10 +2116,24 @@ void Session::fileSearchFinished(const TorrentID &id, const Path &savePath, cons
     }
 }
 
-// Return the torrent handle, given its hash
-Torrent *Session::findTorrent(const TorrentID &id) const
+Torrent *Session::getTorrent(const TorrentID &id) const
 {
     return m_torrents.value(id);
+}
+
+Torrent *Session::findTorrent(const InfoHash &infoHash) const
+{
+    const auto id = TorrentID::fromInfoHash(infoHash);
+    if (Torrent *torrent = m_torrents.value(id); torrent)
+        return torrent;
+
+    if (!infoHash.isHybrid())
+        return nullptr;
+
+    // alternative ID can be useful to find existing torrent
+    // in case if hybrid torrent was added by v1 info hash
+    const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+    return m_torrents.value(altID);
 }
 
 bool Session::hasActiveTorrents() const
@@ -2502,21 +2516,18 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     Q_ASSERT(isRestored());
 
     const bool hasMetadata = std::holds_alternative<TorrentInfo>(source);
-    const auto id = TorrentID::fromInfoHash(hasMetadata ? std::get<TorrentInfo>(source).infoHash() : std::get<MagnetUri>(source).infoHash());
+    const auto infoHash = (hasMetadata ? std::get<TorrentInfo>(source).infoHash() : std::get<MagnetUri>(source).infoHash());
+    const auto id = TorrentID::fromInfoHash(infoHash);
 
-    // It looks illogical that we don't just use an existing handle,
-    // but as previous experience has shown, it actually creates unnecessary
-    // problems and unwanted behavior due to the fact that it was originally
-    // added with parameters other than those provided by the user.
-    cancelDownloadMetadata(id);
+    // alternative ID can be useful to find existing torrent in case if hybrid torrent was added by v1 info hash
+    const auto altID = (infoHash.isHybrid() ? TorrentID::fromSHA1Hash(infoHash.v1()) : TorrentID());
 
     // We should not add the torrent if it is already
     // processed or is pending to add to session
-    if (m_loadingTorrents.contains(id))
+    if (m_loadingTorrents.contains(id) || (infoHash.isHybrid() && m_loadingTorrents.contains(altID)))
         return false;
 
-    TorrentImpl *const torrent = m_torrents.value(id);
-    if (torrent)
+    if (Torrent *torrent = findTorrent(infoHash); torrent)
     {
         if (hasMetadata)
         {
@@ -2526,6 +2537,14 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
 
         return false;
     }
+
+    // It looks illogical that we don't just use an existing handle,
+    // but as previous experience has shown, it actually creates unnecessary
+    // problems and unwanted behavior due to the fact that it was originally
+    // added with parameters other than those provided by the user.
+    cancelDownloadMetadata(id);
+    if (infoHash.isHybrid())
+        cancelDownloadMetadata(altID);
 
     LoadTorrentParams loadTorrentParams = initLoadTorrentParams(addTorrentParams);
     lt::add_torrent_params &p = loadTorrentParams.ltAddTorrentParams;
@@ -2662,6 +2681,8 @@ bool Session::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &source
     else
         p.flags |= lt::torrent_flags::auto_managed;
 
+    p.flags |= lt::torrent_flags::duplicate_is_error;
+
     p.added_time = std::time(nullptr);
 
     // Limits
@@ -2697,20 +2718,13 @@ void Session::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &sa
 // and force it to download its metadata
 bool Session::downloadMetadata(const MagnetUri &magnetUri)
 {
-    if (!magnetUri.isValid()) return false;
-
-    const auto id = TorrentID::fromInfoHash(magnetUri.infoHash());
-    const QString name = magnetUri.name();
+    if (!magnetUri.isValid())
+        return false;
 
     // We should not add torrent if it's already
     // processed or adding to session
-    if (m_torrents.contains(id)) return false;
-    if (m_loadingTorrents.contains(id)) return false;
-    if (m_downloadedMetadata.contains(id)) return false;
-
-    qDebug("Adding torrent to preload metadata...");
-    qDebug(" -> Torrent ID: %s", qUtf8Printable(id.toString()));
-    qDebug(" -> Name: %s", qUtf8Printable(name));
+    if (isKnownTorrent(magnetUri.infoHash()))
+        return false;
 
     lt::add_torrent_params p = magnetUri.addTorrentParams();
 
@@ -2725,6 +2739,7 @@ bool Session::downloadMetadata(const MagnetUri &magnetUri)
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
+    const auto id = TorrentID::fromInfoHash(magnetUri.infoHash());
     const Path savePath = Utils::Fs::tempPath() / Path(id.toString());
     p.save_path = savePath.toString().toStdString();
 
@@ -2816,7 +2831,7 @@ void Session::saveResumeData()
             {
             case lt::save_resume_data_failed_alert::alert_type:
             case lt::save_resume_data_alert::alert_type:
-                dispatchTorrentAlert(a);
+                dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
                 break;
             }
         }
@@ -4365,11 +4380,19 @@ void Session::setMaxRatioAction(const MaxRatioAction act)
 
 // If this functions returns true, we cannot add torrent to session,
 // but it is still possible to merge trackers in some cases
-bool Session::isKnownTorrent(const TorrentID &id) const
+bool Session::isKnownTorrent(const InfoHash &infoHash) const
 {
-    return (m_torrents.contains(id)
-            || m_loadingTorrents.contains(id)
-            || m_downloadedMetadata.contains(id));
+    const bool isHybrid = infoHash.isHybrid();
+    const auto id = TorrentID::fromInfoHash(infoHash);
+    // alternative ID can be useful to find existing torrent
+    // in case if hybrid torrent was added by v1 info hash
+    const auto altID = (isHybrid ? TorrentID::fromSHA1Hash(infoHash.v1()) : TorrentID());
+
+    if (m_loadingTorrents.contains(id) || (isHybrid && m_loadingTorrents.contains(altID)))
+        return true;
+    if (m_downloadedMetadata.contains(id) || (isHybrid && m_downloadedMetadata.contains(altID)))
+        return true;
+    return findTorrent(infoHash);
 }
 
 void Session::updateSeedingLimitTimer()
@@ -4522,6 +4545,18 @@ void Session::handleTorrentResumeDataReady(TorrentImpl *const torrent, const Loa
     --m_numResumeData;
 
     m_resumeDataStorage->store(torrent->id(), data);
+    const auto iter = m_changedTorrentIDs.find(torrent->id());
+    if (iter != m_changedTorrentIDs.end())
+    {
+        m_resumeDataStorage->remove(iter.value());
+        m_changedTorrentIDs.erase(iter);
+    }
+}
+
+void Session::handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID)
+{
+    m_torrents[torrent->id()] = m_torrents.take(prevID);
+    m_changedTorrentIDs[torrent->id()] = prevID;
 }
 
 bool Session::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
@@ -4956,7 +4991,7 @@ void Session::handleAlert(const lt::alert *a)
         case lt::torrent_checked_alert::alert_type:
         case lt::metadata_received_alert::alert_type:
         case lt::performance_alert::alert_type:
-            dispatchTorrentAlert(a);
+            dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
             break;
         case lt::state_update_alert::alert_type:
             handleStateUpdateAlert(static_cast<const lt::state_update_alert*>(a));
@@ -5021,6 +5056,11 @@ void Session::handleAlert(const lt::alert *a)
         case lt::socks5_alert::alert_type:
             handleSocks5Alert(static_cast<const lt::socks5_alert *>(a));
             break;
+#ifdef QBT_USES_LIBTORRENT2
+        case lt::torrent_conflict_alert::alert_type:
+            handleTorrentConflictAlert(static_cast<const lt::torrent_conflict_alert *>(a));
+            break;
+#endif
         }
     }
     catch (const std::exception &exc)
@@ -5029,9 +5069,19 @@ void Session::handleAlert(const lt::alert *a)
     }
 }
 
-void Session::dispatchTorrentAlert(const lt::alert *a)
+void Session::dispatchTorrentAlert(const lt::torrent_alert *a)
 {
-    TorrentImpl *const torrent = m_torrents.value(static_cast<const lt::torrent_alert*>(a)->handle.info_hash());
+    const TorrentID torrentID {a->handle.info_hash()};
+    TorrentImpl *torrent = m_torrents.value(torrentID);
+#ifdef QBT_USES_LIBTORRENT2
+    if (!torrent && (a->type() == lt::metadata_received_alert::alert_type))
+    {
+        const InfoHash infoHash {a->handle.info_hashes()};
+        if (infoHash.isHybrid())
+            torrent = m_torrents.value(TorrentID::fromSHA1Hash(infoHash.v1()));
+    }
+#endif
+
     if (torrent)
     {
         torrent->handleAlert(a);
@@ -5041,7 +5091,7 @@ void Session::dispatchTorrentAlert(const lt::alert *a)
     switch (a->type())
     {
     case lt::metadata_received_alert::alert_type:
-        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert*>(a));
+        handleMetadataReceivedAlert(static_cast<const lt::metadata_received_alert *>(a));
         break;
     }
 }
@@ -5488,6 +5538,40 @@ void Session::handleTrackerAlert(const lt::tracker_alert *a)
         torrent->updatePeerCount(trackerURL, a->local_endpoint, numPeers);
     }
 }
+
+#ifdef QBT_USES_LIBTORRENT2
+void Session::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a)
+{
+    const auto torrentIDv1 = TorrentID::fromSHA1Hash(a->metadata->info_hashes().v1);
+    const auto torrentIDv2 = TorrentID::fromSHA256Hash(a->metadata->info_hashes().v2);
+    TorrentImpl *torrent1 = m_torrents.value(torrentIDv1);
+    TorrentImpl *torrent2 = m_torrents.value(torrentIDv2);
+    if (torrent2)
+    {
+        if (torrent1)
+            deleteTorrent(torrentIDv1);
+        else
+            cancelDownloadMetadata(torrentIDv1);
+
+        torrent2->nativeHandle().set_metadata(a->metadata->info_section());
+    }
+    else if (torrent1)
+    {
+        if (!torrent2)
+            cancelDownloadMetadata(torrentIDv2);
+
+        torrent1->nativeHandle().set_metadata(a->metadata->info_section());
+    }
+    else
+    {
+        cancelDownloadMetadata(torrentIDv1);
+        cancelDownloadMetadata(torrentIDv2);
+    }
+
+    if (!torrent1 || !torrent2)
+        emit metadataDownloaded(TorrentInfo(*a->metadata));
+}
+#endif
 
 void Session::processTrackerStatuses()
 {
