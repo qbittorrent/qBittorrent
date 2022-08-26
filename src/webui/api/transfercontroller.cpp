@@ -34,6 +34,7 @@
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
 #include "base/global.h"
 #include "base/utils/string.h"
 #include "apierror.h"

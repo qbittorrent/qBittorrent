@@ -43,6 +43,7 @@
 #include <iphlpapi.h>
 #endif
 
+#include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
