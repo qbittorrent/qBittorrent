@@ -65,7 +65,6 @@
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const auto C_SID = QByteArrayLiteral("SID"); // name of session id cookie
 
-const QString PATH_PREFIX_ICONS = u"/icons/"_qs;
 const QString WWW_FOLDER = u":/www"_qs;
 const QString PUBLIC_FOLDER = u"/public"_qs;
 const QString PRIVATE_FOLDER = u"/private"_qs;
@@ -139,16 +138,6 @@ void WebApplication::sendWebUIFile()
     const QStringList pathItems {request().path.split(u'/', Qt::SkipEmptyParts)};
     if (pathItems.contains(u".") || pathItems.contains(u".."))
         throw InternalServerErrorHTTPError();
-
-    if (!m_isAltUIUsed)
-    {
-        if (request().path.startsWith(PATH_PREFIX_ICONS))
-        {
-            const Path imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
-            sendFile(Path(u":/icons"_qs) / imageFilename);
-            return;
-        }
-    }
 
     const QString path = (request().path != u"/")
         ? request().path
