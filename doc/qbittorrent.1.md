@@ -33,4 +33,4 @@ FAST extension (mainline) and PeX support (utorrent compatible).
 
 
 # BUGS
-If you find a bug, please report it at http://bugs.qbittorrent.org
+If you find a bug, please report it at https://bugs.qbittorrent.org

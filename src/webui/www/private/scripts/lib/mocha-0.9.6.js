@@ -4,7 +4,7 @@ Script: Core.js
 	MUI - A Web Applications User Interface Framework.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -511,7 +511,7 @@ Element.implement({
 /*
 
 Shake effect by Uvumi Tools
-http://tools.uvumi.com/element-shake.html
+https://tools.uvumi.com/element-shake.html
 
 Function: shake
 
@@ -944,7 +944,7 @@ Script: Themes.js
 	Allows for switching themes dynamically.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -1140,7 +1140,7 @@ Script: Window.js
 	Build windows.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -3674,7 +3674,7 @@ Script: Modal.js
 	Create modal dialog windows.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -3769,7 +3769,7 @@ Script: Windows-from-html.js
 	Create windows from html markup in page.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -3833,7 +3833,7 @@ Script: Windows-from-json.js
 	Create one or more windows from JSON data. You can define all the same properties as you can for new MUI.Window(). Undefined properties are set to their defaults.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -3888,7 +3888,7 @@ Script: Arrange-cascade.js
 	Cascade windows.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -3970,7 +3970,7 @@ Script: Arrange-tile.js
 	Cascade windows.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 Authors:
 	Harry Roberts and Greg Houston
@@ -4086,7 +4086,7 @@ Script: Tabs.js
 	Functionality for window tabs.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -4140,7 +4140,7 @@ Script: Layout.js
 	Create web application layouts. Enables window maximize.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -5640,7 +5640,7 @@ Script: Dock.js
 	Implements the dock/taskbar. Enables window minimize.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.
@@ -6093,7 +6093,7 @@ Script: Workspaces.js
 	Save and load workspaces. The Workspaces emulate Adobe Illustrator functionality remembering what windows are open and where they are positioned.
 
 Copyright:
-	Copyright (c) 2007-2009 Greg Houston, <http://greghoustondesign.com/>.
+	Copyright (c) 2007-2009 Greg Houston, <https://greghoustondesign.com/>.
 
 License:
 	MIT-style license.

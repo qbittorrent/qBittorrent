@@ -37,13 +37,13 @@ For more information please visit:
 https://www.qbittorrent.org
 
 or our wiki here:
-http://wiki.qbittorrent.org
+https://wiki.qbittorrent.org
 
 Use the forum for troubleshooting before reporting bugs:
-http://forum.qbittorrent.org
+https://forum.qbittorrent.org
 
 Please report any bug (or feature request) to:
-http://bugs.qbittorrent.org
+https://bugs.qbittorrent.org
 
 Official IRC channel:
 [#qbittorrent on irc.libera.chat](ircs://irc.libera.chat:6697/qbittorrent)

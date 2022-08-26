@@ -9,7 +9,7 @@ contact_links:
     about: "Please ask questions related to usage/setup/support/non-issue development discussion in the Discussions section"
 
   - name: Question
-    url: "http://forum.qbittorrent.org/"
+    url: "https://forum.qbittorrent.org/"
     about: "Alternatively, ask on the official forum"
 
   - name: Question

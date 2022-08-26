@@ -36,7 +36,7 @@
   </compatibility>
   <!-- Enable long paths that exceed MAX_PATH in length -->
   <asmv3:application>
-    <asmv3:windowsSettings xmlns="http://schemas.microsoft.com/SMI/2016/WindowsSettings">
+    <asmv3:windowsSettings xmlns="https://schemas.microsoft.com/SMI/2016/WindowsSettings">
       <longPathAware>true</longPathAware>
     </asmv3:windowsSettings>
   </asmv3:application>

@@ -30,7 +30,7 @@ Code from other projects:
   license: BSD
 
 * file src/app/stacktrace.h
-  copyright: Timo Bingmann from http://idlebox.net/
+  copyright: Timo Bingmann from https://idlebox.net/
   license: WTFPL v2.0
 
 * file src/app/stacktrace_win.h
@@ -49,12 +49,12 @@ Images Authors:
 * files: src/icons/*.png
   copyright: Gnome Icon Theme
   license: GPLv2
-  url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
+  url: https://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
 
 * files: src/oxygen/*.png
   copyright: Oxygen Icon Theme (KDE)
   license: LGPL
-  url: http://www.oxygen-icons.org
+  url: https://www.oxygen-icons.org
 
 * files: src/icons/flags/*.svg
   copyright: lipis/flag-icons
@@ -95,7 +95,7 @@ Images Authors:
 * file: src/icons/skin/ratio.png
   copyright: Fatcow Web Hosting
   license: Creative Commons Attribution 3.0 License
-  url: http://www.fatcow.com/free-icons
+  url: https://www.fatcow.com/free-icons
 
 Translations authors:
 * files: src/lang/*.ts

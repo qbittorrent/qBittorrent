@@ -5099,7 +5099,7 @@ Oops!
 Your 'rm' program seems unable to run without file operands specified
 on the command line, even when the '-f' option is present.  This is contrary
 to the behaviour of most rm programs out there, and not conforming with
-the upcoming POSIX standard: <http://austingroupbugs.net/view.php?id=542>
+the upcoming POSIX standard: <https://austingroupbugs.net/view.php?id=542>
 
 Please tell bug-automake@gnu.org about your system, including the value
 of your $PATH and any error possibly output before this message.  This
@@ -5611,7 +5611,7 @@ Alternatively, you may set the environment variables Qt5Svg_CFLAGS
 and Qt5Svg_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	Qt5Svg_CFLAGS=$pkg_cv_Qt5Svg_CFLAGS
@@ -5988,8 +5988,8 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
     if test "x$succeeded" != "xyes" ; then
         if test "x$_version" = "x0" ; then
-            { printf "%s\n" "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.71 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&5
-printf "%s\n" "$as_me: We could not detect the boost libraries (version 1.71 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See http://randspringer.de/boost for more documentation." >&6;}
+            { printf "%s\n" "$as_me:${as_lineno-$LINENO}: We could not detect the boost libraries (version 1.71 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See https://randspringer.de/boost for more documentation." >&5
+printf "%s\n" "$as_me: We could not detect the boost libraries (version 1.71 or higher). If you have a staged boost library (still not installed) please specify \$BOOST_ROOT in your environment and do not give a PATH to --with-boost option.  If you are sure you have boost installed, then check your version number looking in <boost/version.hpp>. See https://randspringer.de/boost for more documentation." >&6;}
         else
             { printf "%s\n" "$as_me:${as_lineno-$LINENO}: Your boost libraries seems to old (version $_version)." >&5
 printf "%s\n" "$as_me: Your boost libraries seems to old (version $_version)." >&6;}
@@ -6163,7 +6163,7 @@ Alternatively, you may set the environment variables libtorrent_CFLAGS
 and libtorrent_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
@@ -6257,7 +6257,7 @@ Alternatively, you may set the environment variables libtorrent_CFLAGS
 and libtorrent_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	libtorrent_CFLAGS=$pkg_cv_libtorrent_CFLAGS
@@ -6356,7 +6356,7 @@ Alternatively, you may set the environment variables openssl_CFLAGS
 and openssl_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	openssl_CFLAGS=$pkg_cv_openssl_CFLAGS
@@ -6449,7 +6449,7 @@ Alternatively, you may set the environment variables zlib_CFLAGS
 and zlib_LIBS to avoid the need to call pkg-config.
 See the pkg-config man page for more details.
 
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+To get pkg-config, see <https://pkg-config.freedesktop.org/>.
 See \`config.log' for more details" "$LINENO" 5; }
 else
 	zlib_CFLAGS=$pkg_cv_zlib_CFLAGS

@@ -3515,13 +3515,13 @@ Szeretnéd alapértelmezetté tenni?</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="218"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
-        <translation>Dinamikus DNS hiba: a qBittorrent feketelistára került a szolgáltató által, kérem jelezze ezt a http://bugs.qbittorrent.org webcímen.</translation>
+        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
+        <translation>Dinamikus DNS hiba: a qBittorrent feketelistára került a szolgáltató által, kérem jelezze ezt a https://bugs.qbittorrent.org webcímen.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="226"/>
-        <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
-        <translation>Dinamikus DNS hiba: %1 választ küldött a kiszolgáló, kérem jelezze ezt a http://bugs.qbittorrent.org webcímen.</translation>
+        <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
+        <translation>Dinamikus DNS hiba: %1 választ küldött a kiszolgáló, kérem jelezze ezt a https://bugs.qbittorrent.org webcímen.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="234"/>
@@ -6786,8 +6786,8 @@ Kézi: A különböző torrenttulajdonságokat (például a mentési útvonalat)
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>További keresőmodulok tölthetőek le innen: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation>További keresőmodulok tölthetőek le innen: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>

@@ -3,7 +3,7 @@
 // Copyright (C) 2016-2020 Martin Moene.
 //
 // Distributed under the Boost Software License, Version 1.0.
-// (See accompanying file LICENSE.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
+// (See accompanying file LICENSE.txt or copy at https://www.boost.org/LICENSE_1_0.txt)
 //
 // expected lite is based on:
 //   A proposal to add a utility class to represent expected monad
@@ -1034,7 +1034,7 @@ unexpected_type( E ) -> unexpected_type< E >;
 #if  nsel_P0323R <= 2
 
 // TODO: Should expected be specialized for particular E types such as exception_ptr and how?
-//       See p0323r7 2.1. Ergonomics, http://wg21.link/p0323
+//       See p0323r7 2.1. Ergonomics, https://wg21.link/p0323
 template<>
 class unexpected_type< std::exception_ptr >
 {

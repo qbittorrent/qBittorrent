@@ -14,5 +14,5 @@ For such questions, use one of the following community support resources:
 * The [qBittorrent subreddit][subreddit-url]
 
 [discussions-url]: https://github.com/qbittorrent/qBittorrent/discussions
-[forum-url]: http://forum.qbittorrent.org/
+[forum-url]: https://forum.qbittorrent.org/
 [subreddit-url]: https://www.reddit.com/r/qBittorrent/

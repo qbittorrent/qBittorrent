@@ -27,7 +27,7 @@
  */
 
 /*
- * This code is based on QxtSmtp from libqxt (http://libqxt.org)
+ * This code is based on QxtSmtp from libqxt (https://libqxt.org)
  */
 
 #include "smtp.h"
@@ -65,7 +65,7 @@ namespace
         QByteArray innerPadding(blockSize, char(0x36)); // initialize inner padding with char "6"
         QByteArray outerPadding(blockSize, char(0x5c)); // initialize outer padding with char "\"
         // ascii characters 0x36 ("6") and 0x5c ("\") are selected because they have large
-        // Hamming distance (http://en.wikipedia.org/wiki/Hamming_distance)
+        // Hamming distance (https://en.wikipedia.org/wiki/Hamming_distance)
 
         for (int i = 0; i < key.length(); ++i)
         {
@@ -122,7 +122,7 @@ Smtp::Smtp(QObject *parent)
     connect(m_socket, &QAbstractSocket::disconnected, this, &QObject::deleteLater);
     connect(m_socket, &QAbstractSocket::errorOccurred, this, &Smtp::error);
 
-    // Test hmacMD5 function (http://www.faqs.org/rfcs/rfc2202.html)
+    // Test hmacMD5 function (https://www.faqs.org/rfcs/rfc2202.html)
     Q_ASSERT(hmacMD5("Jefe", "what do ya want for nothing?").toHex()
              == "750c783e6ab0b503eaa86e310a5db738");
     Q_ASSERT(hmacMD5(QByteArray::fromHex("0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b"), "Hi There").toHex()

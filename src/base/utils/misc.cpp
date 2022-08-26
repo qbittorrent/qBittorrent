@@ -83,7 +83,7 @@ namespace
 
     // return best userfriendly storage unit (B, KiB, MiB, GiB, TiB, ...)
     // use Binary prefix standards from IEC 60027-2
-    // see http://en.wikipedia.org/wiki/Kilobyte
+    // see https://en.wikipedia.org/wiki/Kilobyte
     // value must be given in bytes
     // to send numbers instead of strings with suffixes
     struct SplitToFriendlyUnitResult

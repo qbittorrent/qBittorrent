@@ -27,7 +27,7 @@
  */
 
 /*
- * This code is based on QxtSmtp from libqxt (http://libqxt.org)
+ * This code is based on QxtSmtp from libqxt (https://libqxt.org)
  */
 
 #pragma once

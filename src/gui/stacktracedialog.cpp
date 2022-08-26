@@ -57,7 +57,7 @@ void StacktraceDialog::setText(const QString &signalName, const QString &stacktr
         "</font></b></p>"
         "<font size=4><p>"
         "Please file a bug report at "
-        "<a href=\"http://bugs.qbittorrent.org\">http://bugs.qbittorrent.org</a> "
+        "<a href=\"https://bugs.qbittorrent.org\">https://bugs.qbittorrent.org</a> "
         "and provide the following information:"
         "</p></font>"
         "<br/><hr><br/>"

@@ -51,9 +51,9 @@ namespace
         QString resolveUndeclaredEntity(const QString &name) override
         {
             // (X)HTML entities declared in:
-            //     http://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent
-            //     http://www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent
-            //     http://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent
+            //     https://www.w3.org/TR/xhtml1/DTD/xhtml-lat1.ent
+            //     https://www.w3.org/TR/xhtml1/DTD/xhtml-symbol.ent
+            //     https://www.w3.org/TR/xhtml1/DTD/xhtml-special.ent
             static const QHash<QString, QString> HTMLEntities
             {
                 {u"nbsp"_qs,   u"&#160;"_qs}, // no-break space = non-breaking space, U+00A0 ISOnum

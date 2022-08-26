@@ -39,7 +39,7 @@ namespace Net
 {
     struct DownloadResult;
 
-    // Based on http://www.dyndns.com/developers/specs/
+    // Based on https://www.dyndns.com/developers/specs/
     class DNSUpdater : public QObject
     {
         Q_OBJECT

@@ -43,19 +43,19 @@
  *             "Feed name 1 (Alias)":
  {
  *                 "uid": "feed unique identifier",
- *                 "url": "http://some-feed-url1"
+ *                 "url": "https://some-feed-url1"
  *             }
  *             "Feed name 2 (Alias)":
  {
  *                 "uid": "feed unique identifier",
- *                 "url": "http://some-feed-url2"
+ *                 "url": "https://some-feed-url2"
  *             }
  *         },
  *         "subfolder2": {},
  *         "Feed name 3 (Alias)":
  {
  *             "uid": "feed unique identifier",
- *             "url": "http://some-feed-url3"
+ *             "url": "https://some-feed-url3"
  *         }
  *     },
  *     "folder2": {},

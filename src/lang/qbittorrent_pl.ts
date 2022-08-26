@@ -3517,13 +3517,13 @@ Czy chcesz, aby qBittorrent był dla nich domyślnym programem?</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="218"/>
-        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
-        <translation>Błąd dynamicznego DNS: usługa dodała program qBittorrent do czarnej listy; prześlij raport o błędzie na http://bugs.qbittorrent.org.</translation>
+        <source>Dynamic DNS error: qBittorrent was blacklisted by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
+        <translation>Błąd dynamicznego DNS: usługa dodała program qBittorrent do czarnej listy; prześlij raport o błędzie na https://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="226"/>
-        <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at http://bugs.qbittorrent.org.</source>
-        <translation>Błąd dynamicznego DNS: %1 został zwrócony przez usługę, prześlij raport o błędzie na http://bugs.qbittorrent.org.</translation>
+        <source>Dynamic DNS error: %1 was returned by the service, please submit a bug report at https://bugs.qbittorrent.org.</source>
+        <translation>Błąd dynamicznego DNS: %1 został zwrócony przez usługę, prześlij raport o błędzie na https://bugs.qbittorrent.org.</translation>
     </message>
     <message>
         <location filename="../base/net/dnsupdater.cpp" line="234"/>
@@ -6788,8 +6788,8 @@ Ręcznie: różne właściwości torrenta (np. ścieżka zapisu) muszą być prz
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="96"/>
-        <source>You can get new search engine plugins here: &lt;a href=&quot;http://plugins.qbittorrent.org&quot;&gt;http://plugins.qbittorrent.org&lt;/a&gt;</source>
-        <translation>Tutaj możesz pobrać nowe wtyczki wyszukiwania: &lt;/a&gt;http://plugins.qbittorrent.org&lt;/a&gt;</translation>
+        <source>You can get new search engine plugins here: &lt;a href=&quot;https://plugins.qbittorrent.org&quot;&gt;https://plugins.qbittorrent.org&lt;/a&gt;</source>
+        <translation>Tutaj możesz pobrać nowe wtyczki wyszukiwania: &lt;/a&gt;https://plugins.qbittorrent.org&lt;/a&gt;</translation>
     </message>
     <message>
         <location filename="../gui/search/pluginselectdialog.ui" line="108"/>
