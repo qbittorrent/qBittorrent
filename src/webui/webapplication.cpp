@@ -157,8 +157,10 @@ void WebApplication::sendWebUIFile()
         if (!Utils::Fs::isRegularFile(localPath))
             throw InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed."));
 
-        QFileInfo fileInfo {localPath.data()};
-        while (Path(fileInfo.filePath()) != m_rootFolder)
+        const QString rootFolder = m_rootFolder.data();
+
+        QFileInfo fileInfo {localPath.parentPath().data()};
+        while (fileInfo.path() != rootFolder)
         {
             if (fileInfo.isSymLink())
                 throw InternalServerErrorHTTPError(tr("Symlinks inside alternative UI folder are forbidden."));
