@@ -124,7 +124,7 @@ void TagFilterWidget::showMenu()
         , this, &TagFilterWidget::actionResumeTorrentsTriggered);
     menu->addAction(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs), tr("Pause torrents")
         , this, &TagFilterWidget::actionPauseTorrentsTriggered);
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Delete torrents")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("Remove torrents")
         , this, &TagFilterWidget::actionDeleteTorrentsTriggered);
 
     menu->popup(QCursor::pos());

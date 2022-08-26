@@ -915,7 +915,7 @@ void TransferListWidget::displayListMenu()
     connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
     auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_qs), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
-    auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("&Delete", "Delete the torrent"), listMenu);
+    auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     auto *actionPreviewFile = new QAction(UIThemeManager::instance()->getIcon(u"view-preview"_qs), tr("Pre&view file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
