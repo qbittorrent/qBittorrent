@@ -4915,7 +4915,14 @@ void Session::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 
     if (downloadedMetadataIter != m_downloadedMetadata.end())
     {
+#if LIBTORRENT_VERSION_NUM >= 20007
+        lt::torrent_info nativeInfo = *p->handle.torrent_file();
+        for (const lt::announce_entry &announceEntry : p->handle.trackers())
+            nativeInfo.add_tracker(announceEntry.url, announceEntry.tier);
+        const TorrentInfo metadata {nativeInfo};
+#else
         const TorrentInfo metadata {*p->handle.torrent_file()};
+#endif
 
         m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;
