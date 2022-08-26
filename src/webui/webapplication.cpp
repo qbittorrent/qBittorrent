@@ -428,12 +428,15 @@ void WebApplication::sendFile(const Path &path)
     const QDateTime lastModified = Utils::Fs::lastModified(path);
 
     // find translated file in cache
-    const auto it = m_translatedFiles.constFind(path);
-    if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+    if (!m_isAltUIUsed)
     {
-        print(it->data, it->mimeType);
-        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
-        return;
+        if (const auto it = m_translatedFiles.constFind(path);
+            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+        {
+            print(it->data, it->mimeType);
+            setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
+            return;
+        }
     }
 
     QFile file {path.data()};
@@ -454,7 +457,7 @@ void WebApplication::sendFile(const Path &path)
     file.close();
 
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = mimeType.inherits(u"text/plain"_qs);
+    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_qs);
 
     // Translate the file
     if (isTranslatable)
