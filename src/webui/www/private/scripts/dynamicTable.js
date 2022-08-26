@@ -54,6 +54,8 @@ window.qBittorrent.DynamicTable = (function() {
         };
     };
 
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
     let DynamicTableHeaderContextMenuClass = null;
     let ProgressColumnWidth = -1;
 
@@ -380,12 +382,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2251,12 +2250,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2348,12 +2344,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2435,12 +2428,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2523,12 +2513,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2574,12 +2561,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
