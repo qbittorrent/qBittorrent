@@ -46,6 +46,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"

@@ -29,6 +29,7 @@ HEADERS += \
     $$PWD/bittorrent/portforwarderimpl.h \
     $$PWD/bittorrent/resumedatastorage.h \
     $$PWD/bittorrent/session.h \
+    $$PWD/bittorrent/sessionimpl.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
     $$PWD/bittorrent/statistics.h \
@@ -125,7 +126,7 @@ SOURCES += \
     $$PWD/bittorrent/peerinfo.cpp \
     $$PWD/bittorrent/portforwarderimpl.cpp \
     $$PWD/bittorrent/resumedatastorage.cpp \
-    $$PWD/bittorrent/session.cpp \
+    $$PWD/bittorrent/sessionimpl.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
     $$PWD/bittorrent/statistics.cpp \
     $$PWD/bittorrent/torrent.cpp \

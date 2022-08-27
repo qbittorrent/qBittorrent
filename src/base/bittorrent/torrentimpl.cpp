@@ -67,7 +67,7 @@
 #include "lttypecast.h"
 #include "peeraddress.h"
 #include "peerinfo.h"
-#include "session.h"
+#include "sessionimpl.h"
 
 using namespace BitTorrent;
 
@@ -227,7 +227,7 @@ namespace
 
 // TorrentImpl
 
-TorrentImpl::TorrentImpl(Session *session, lt::session *nativeSession
+TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
                                      , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
     : QObject(session)
     , m_session(session)
@@ -738,7 +738,7 @@ bool TorrentImpl::hasTag(const QString &tag) const
 
 bool TorrentImpl::addTag(const QString &tag)
 {
-    if (!Session::isValidTag(tag))
+    if (!m_session->isValidTag(tag))
         return false;
     if (hasTag(tag))
         return false;
