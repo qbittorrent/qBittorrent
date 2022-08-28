@@ -48,6 +48,7 @@
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/geoipmanager.h"

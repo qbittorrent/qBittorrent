@@ -34,11 +34,14 @@
 #include <QMetaObject>
 #include <QThread>
 
+#include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"

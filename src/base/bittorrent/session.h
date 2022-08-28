@@ -34,15 +34,10 @@
 
 #include "base/pathfwd.h"
 #include "addtorrentparams.h"
-#include "cachestatus.h"
 #include "categoryoptions.h"
-#include "sessionstatus.h"
-#include "torrentinfo.h"
 #include "trackerentry.h"
 
 class QString;
-class QTimer;
-class QUrl;
 
 // These values should remain unchanged when adding new items
 // so as not to break the existing user settings.
@@ -60,23 +55,14 @@ enum DeleteOption
     DeleteTorrentAndFiles
 };
 
-namespace Net
-{
-    struct DownloadResult;
-}
-
 namespace BitTorrent
 {
     class InfoHash;
     class MagnetUri;
-    class ResumeDataStorage;
-    class SessionImpl;
     class Torrent;
-    class TorrentImpl;
-    class Tracker;
-    struct LoadTorrentParams;
-
-    enum class MoveStorageMode;
+    class TorrentInfo;
+    struct CacheStatus;
+    struct SessionStatus;
 
     // Using `Q_ENUM_NS()` without a wrapper namespace in our case is not advised
     // since `Q_NAMESPACE` cannot be used when the same namespace resides at different files.
@@ -427,9 +413,9 @@ namespace BitTorrent
         virtual void banIP(const QString &ip) = 0;
 
         virtual bool isKnownTorrent(const InfoHash &infoHash) const = 0;
-        virtual bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams()) = 0;
-        virtual bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams()) = 0;
-        virtual bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams()) = 0;
+        virtual bool addTorrent(const QString &source, const AddTorrentParams &params = {}) = 0;
+        virtual bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) = 0;
+        virtual bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) = 0;
         virtual bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteOption::DeleteTorrent) = 0;
         virtual bool downloadMetadata(const MagnetUri &magnetUri) = 0;
         virtual bool cancelDownloadMetadata(const TorrentID &id) = 0;

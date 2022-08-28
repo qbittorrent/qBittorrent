@@ -32,7 +32,6 @@
 #include <variant>
 #include <vector>
 
-#include <libtorrent/add_torrent_params.hpp>
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
@@ -395,9 +394,9 @@ namespace BitTorrent
         void banIP(const QString &ip) override;
 
         bool isKnownTorrent(const InfoHash &infoHash) const override;
-        bool addTorrent(const QString &source, const AddTorrentParams &params = AddTorrentParams()) override;
-        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = AddTorrentParams()) override;
-        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = AddTorrentParams()) override;
+        bool addTorrent(const QString &source, const AddTorrentParams &params = {}) override;
+        bool addTorrent(const MagnetUri &magnetUri, const AddTorrentParams &params = {}) override;
+        bool addTorrent(const TorrentInfo &torrentInfo, const AddTorrentParams &params = {}) override;
         bool deleteTorrent(const TorrentID &id, DeleteOption deleteOption = DeleteTorrent) override;
         bool downloadMetadata(const MagnetUri &magnetUri) override;
         bool cancelDownloadMetadata(const TorrentID &id) override;
