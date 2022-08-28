@@ -30,6 +30,7 @@
 
 #include <libtorrent/create_torrent.hpp>
 #include <libtorrent/error_code.hpp>
+#include <libtorrent/version.hpp>
 
 #include <QByteArray>
 #include <QDateTime>
@@ -292,8 +293,12 @@ QVector<QUrl> TorrentInfo::urlSeeds() const
 
     for (const lt::web_seed_entry &webSeed : nativeWebSeeds)
     {
+#if LIBTORRENT_VERSION_NUM < 20100
         if (webSeed.type == lt::web_seed_entry::url_seed)
             urlSeeds.append(QUrl(QString::fromStdString(webSeed.url)));
+#else
+        urlSeeds.append(QUrl(QString::fromStdString(webSeed.url)));
+#endif
     }
 
     return urlSeeds;
