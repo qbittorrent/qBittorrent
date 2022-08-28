@@ -1,3 +1,6 @@
+Tue Aug 30 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.5
+    - BUGFIX: Fix missing trackers when adding magnet link. Affects libtorrent 2.0.x builds. (glassez)
+
 Mon Aug 22 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.4.4
     - BUGFIX: Correctly handle data decompression with Qt 6.3 (brvphoenix)
     - BUGFIX: Fix wrong file names displayed in tooltip (Chocobo1)
