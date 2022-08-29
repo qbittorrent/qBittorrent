@@ -65,7 +65,6 @@
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const auto C_SID = QByteArrayLiteral("SID"); // name of session id cookie
 
-const QString PATH_PREFIX_ICONS = u"/icons/"_qs;
 const QString WWW_FOLDER = u":/www"_qs;
 const QString PUBLIC_FOLDER = u"/public"_qs;
 const QString PRIVATE_FOLDER = u"/private"_qs;
@@ -140,16 +139,6 @@ void WebApplication::sendWebUIFile()
     if (pathItems.contains(u".") || pathItems.contains(u".."))
         throw InternalServerErrorHTTPError();
 
-    if (!m_isAltUIUsed)
-    {
-        if (request().path.startsWith(PATH_PREFIX_ICONS))
-        {
-            const Path imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
-            sendFile(Path(u":/icons"_qs) / imageFilename);
-            return;
-        }
-    }
-
     const QString path = (request().path != u"/")
         ? request().path
         : u"/index.html"_qs;
@@ -166,14 +155,12 @@ void WebApplication::sendWebUIFile()
     if (m_isAltUIUsed)
     {
         if (!Utils::Fs::isRegularFile(localPath))
-        {
-            status(500, u"Internal Server Error"_qs);
-            print(tr("Unacceptable file type, only regular file is allowed."), Http::CONTENT_TYPE_TXT);
-            return;
-        }
+            throw InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed."));
 
-        QFileInfo fileInfo {localPath.data()};
-        while (Path(fileInfo.filePath()) != m_rootFolder)
+        const QString rootFolder = m_rootFolder.data();
+
+        QFileInfo fileInfo {localPath.parentPath().data()};
+        while (fileInfo.path() != rootFolder)
         {
             if (fileInfo.isSymLink())
                 throw InternalServerErrorHTTPError(tr("Symlinks inside alternative UI folder are forbidden."));
@@ -441,12 +428,15 @@ void WebApplication::sendFile(const Path &path)
     const QDateTime lastModified = Utils::Fs::lastModified(path);
 
     // find translated file in cache
-    const auto it = m_translatedFiles.constFind(path);
-    if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+    if (!m_isAltUIUsed)
     {
-        print(it->data, it->mimeType);
-        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
-        return;
+        if (const auto it = m_translatedFiles.constFind(path);
+            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+        {
+            print(it->data, it->mimeType);
+            setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
+            return;
+        }
     }
 
     QFile file {path.data()};
@@ -467,7 +457,7 @@ void WebApplication::sendFile(const Path &path)
     file.close();
 
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = mimeType.inherits(u"text/plain"_qs);
+    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_qs);
 
     // Translate the file
     if (isTranslatable)
