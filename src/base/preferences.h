@@ -251,14 +251,20 @@ public:
     void setUILockPassword(const QByteArray &password);
     bool isUILocked() const;
     void setUILocked(bool locked);
-    bool isAutoRunEnabled() const;
-    void setAutoRunEnabled(bool enabled);
-    QString getAutoRunProgram() const;
-    void setAutoRunProgram(const QString &program);
+
+    bool isAutoRunOnTorrentAddedEnabled() const;
+    void setAutoRunOnTorrentAddedEnabled(const bool enabled);
+    QString getAutoRunOnTorrentAddedProgram() const;
+    void setAutoRunOnTorrentAddedProgram(const QString &program);
+    bool isAutoRunOnTorrentFinishedEnabled() const;
+    void setAutoRunOnTorrentFinishedEnabled(bool enabled);
+    QString getAutoRunOnTorrentFinishedProgram() const;
+    void setAutoRunOnTorrentFinishedProgram(const QString &program);
 #if defined(Q_OS_WIN)
     bool isAutoRunConsoleEnabled() const;
     void setAutoRunConsoleEnabled(bool enabled);
 #endif
+
     bool shutdownWhenDownloadsComplete() const;
     void setShutdownWhenDownloadsComplete(bool shutdown);
     bool suspendWhenDownloadsComplete() const;

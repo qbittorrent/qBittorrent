@@ -136,7 +136,8 @@ public:
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::Torrent *const torrent);
+    void torrentAdded(const BitTorrent::Torrent *torrent) const;
+    void torrentFinished(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
 
@@ -155,7 +156,7 @@ private:
     void initializeTranslation();
     AddTorrentParams parseParams(const QStringList &params) const;
     void processParams(const AddTorrentParams &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
 #ifdef QBT_USES_LIBTORRENT2

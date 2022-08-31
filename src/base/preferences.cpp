@@ -867,22 +867,42 @@ void Preferences::setUILocked(const bool locked)
     setValue(u"Locking/locked"_qs, locked);
 }
 
-bool Preferences::isAutoRunEnabled() const
+bool Preferences::isAutoRunOnTorrentAddedEnabled() const
+{
+    return value(u"AutoRun/OnTorrentAdded/Enabled"_qs, false);
+}
+
+void Preferences::setAutoRunOnTorrentAddedEnabled(const bool enabled)
+{
+    setValue(u"AutoRun/OnTorrentAdded/Enabled"_qs, enabled);
+}
+
+QString Preferences::getAutoRunOnTorrentAddedProgram() const
+{
+    return value<QString>(u"AutoRun/OnTorrentAdded/Program"_qs);
+}
+
+void Preferences::setAutoRunOnTorrentAddedProgram(const QString &program)
+{
+    setValue(u"AutoRun/OnTorrentAdded/Program"_qs, program);
+}
+
+bool Preferences::isAutoRunOnTorrentFinishedEnabled() const
 {
     return value(u"AutoRun/enabled"_qs, false);
 }
 
-void Preferences::setAutoRunEnabled(const bool enabled)
+void Preferences::setAutoRunOnTorrentFinishedEnabled(const bool enabled)
 {
     setValue(u"AutoRun/enabled"_qs, enabled);
 }
 
-QString Preferences::getAutoRunProgram() const
+QString Preferences::getAutoRunOnTorrentFinishedProgram() const
 {
     return value<QString>(u"AutoRun/program"_qs);
 }
 
-void Preferences::setAutoRunProgram(const QString &program)
+void Preferences::setAutoRunOnTorrentFinishedProgram(const QString &program)
 {
     setValue(u"AutoRun/program"_qs, program);
 }
