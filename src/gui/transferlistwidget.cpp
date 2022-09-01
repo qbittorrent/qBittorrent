@@ -1227,7 +1227,7 @@ void TransferListWidget::displayListMenu()
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
 
-    actionExportTorrent->setToolTip(u"Exported torrent is not necessarily the same as the imported"_qs);
+    actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);
 
     listMenu->popup(QCursor::pos());
