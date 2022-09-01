@@ -95,13 +95,13 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     // Set DHT, PeX, LSD items
     m_DHTItem = new QTreeWidgetItem({ u""_qs,  u"** [DHT] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(0, m_DHTItem);
-    setRowColor(0, QColor("grey"));
+    setRowColor(0, QColorConstants::Svg::grey);
     m_PEXItem = new QTreeWidgetItem({ u""_qs,  u"** [PeX] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(1, m_PEXItem);
-    setRowColor(1, QColor("grey"));
+    setRowColor(1, QColorConstants::Svg::grey);
     m_LSDItem = new QTreeWidgetItem({ u""_qs,  u"** [LSD] **"_qs, u""_qs, u"0"_qs, u""_qs, u""_qs, u"0"_qs });
     insertTopLevelItem(2, m_LSDItem);
-    setRowColor(2, QColor("grey"));
+    setRowColor(2, QColorConstants::Svg::grey);
 
     // Set static items alignment
     const Qt::Alignment alignment = (Qt::AlignRight | Qt::AlignVCenter);
