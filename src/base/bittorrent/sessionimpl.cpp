@@ -1195,12 +1195,12 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
     bool needStore = false;
 
 #ifdef QBT_USES_LIBTORRENT2
-    const lt::info_hash_t infoHash = (resumeData.ltAddTorrentParams.ti
-                                      ? resumeData.ltAddTorrentParams.ti->info_hashes()
-                                      : resumeData.ltAddTorrentParams.info_hashes);
-    const bool isHybrid = infoHash.has_v1() && infoHash.has_v2();
+    const InfoHash infoHash {(resumeData.ltAddTorrentParams.ti
+                ? resumeData.ltAddTorrentParams.ti->info_hashes()
+                : resumeData.ltAddTorrentParams.info_hashes)};
+    const bool isHybrid = infoHash.isHybrid();
     const auto torrentIDv2 = TorrentID::fromInfoHash(infoHash);
-    const auto torrentIDv1 = TorrentID::fromInfoHash(lt::info_hash_t(infoHash.v1));
+    const auto torrentIDv1 = TorrentID::fromSHA1Hash(infoHash.v1());
     if (torrentID == torrentIDv2)
     {
         if (isHybrid && context->indexedTorrents.contains(torrentIDv1))
@@ -1338,6 +1338,14 @@ void SessionImpl::processNextResumeData(ResumeSessionContext *context)
 
     qDebug() << "Starting up torrent" << torrentID.toString() << "...";
     m_loadingTorrents.insert(torrentID, resumeData);
+#ifdef QBT_USES_LIBTORRENT2
+    if (infoHash.isHybrid())
+    {
+        // this allows to know the being added hybrid torrent by its v1 info hash
+        // without having yet another mapping table
+        m_hybridTorrentsByAltID.insert(torrentIDv1, nullptr);
+    }
+#endif
     m_nativeSession->async_add_torrent(resumeData.ltAddTorrentParams);
     ++context->processingResumeDataCount;
 }
@@ -2133,7 +2141,7 @@ Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
         return torrent;
 
     if (!infoHash.isHybrid())
-        return nullptr;
+        return m_hybridTorrentsByAltID.value(id);
 
     // alternative ID can be useful to find existing torrent
     // in case if hybrid torrent was added by v1 info hash
@@ -2194,6 +2202,9 @@ bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOp
     qDebug("Deleting torrent with ID: %s", qUtf8Printable(torrent->id().toString()));
     emit torrentAboutToBeRemoved(torrent);
 
+    if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
+        m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
+
     // Remove it from session
     if (deleteOption == DeleteTorrent)
     {
@@ -2247,12 +2258,24 @@ bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOp
 bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
 {
     const auto downloadedMetadataIter = m_downloadedMetadata.find(id);
-    if (downloadedMetadataIter == m_downloadedMetadata.end()) return false;
+    if (downloadedMetadataIter == m_downloadedMetadata.end())
+        return false;
 
+    const lt::torrent_handle nativeHandle = m_nativeSession->find_torrent(id);
+#ifdef QBT_USES_LIBTORRENT2
+    const InfoHash infoHash {nativeHandle.info_hashes()};
+    if (infoHash.isHybrid())
+    {
+        // if magnet link was hybrid initially then it is indexed also by v1 info hash
+        // so we need to remove both entries
+        const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+        m_downloadedMetadata.remove((altID == *downloadedMetadataIter) ? id : altID);
+    }
+#endif
     m_downloadedMetadata.erase(downloadedMetadataIter);
     --m_extraLimit;
     adjustLimits();
-    m_nativeSession->remove_torrent(m_nativeSession->find_torrent(id), lt::session::delete_files);
+    m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_files);
     return true;
 }
 
@@ -2703,6 +2726,8 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
 #endif
 
     m_loadingTorrents.insert(id, loadTorrentParams);
+    if (infoHash.isHybrid())
+        m_hybridTorrentsByAltID.insert(altID, nullptr);
     if (!isFindingIncompleteFiles)
         m_nativeSession->async_add_torrent(p);
 
@@ -2729,9 +2754,11 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
     if (!magnetUri.isValid())
         return false;
 
+    const InfoHash infoHash = magnetUri.infoHash();
+
     // We should not add torrent if it's already
     // processed or adding to session
-    if (isKnownTorrent(magnetUri.infoHash()))
+    if (isKnownTorrent(infoHash))
         return false;
 
     lt::add_torrent_params p = magnetUri.addTorrentParams();
@@ -2747,7 +2774,7 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
     p.max_connections = maxConnectionsPerTorrent();
     p.max_uploads = maxUploadsPerTorrent();
 
-    const auto id = TorrentID::fromInfoHash(magnetUri.infoHash());
+    const auto id = TorrentID::fromInfoHash(infoHash);
     const Path savePath = Utils::Fs::tempPath() / Path(id.toString());
     p.save_path = savePath.toString().toStdString();
 
@@ -2768,7 +2795,13 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
     if (ec) return false;
 
     // waiting for metadata...
-    m_downloadedMetadata.insert(h.info_hash());
+    m_downloadedMetadata.insert(id);
+    if (infoHash.isHybrid())
+    {
+        // index hybrid magnet links by both v1 and v2 info hashes
+        const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+        m_downloadedMetadata.insert(altID);
+    }
     ++m_extraLimit;
     adjustLimits();
 
@@ -4559,10 +4592,19 @@ void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const
     }
 }
 
-void SessionImpl::handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID)
+void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash)
 {
-    m_torrents[torrent->id()] = m_torrents.take(prevID);
-    m_changedTorrentIDs[torrent->id()] = prevID;
+    Q_ASSERT(torrent->infoHash().isHybrid());
+
+    m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(torrent->infoHash().v1()), torrent);
+
+    const auto prevID = TorrentID::fromInfoHash(prevInfoHash);
+    const TorrentID currentID = torrent->id();
+    if (currentID != prevID)
+    {
+        m_torrents[torrent->id()] = m_torrents.take(prevID);
+        m_changedTorrentIDs[torrent->id()] = prevID;
+    }
 }
 
 bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, const MoveStorageMode mode)
@@ -4947,11 +4989,13 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
             const lt::add_torrent_params &params = alert->params;
             const bool hasMetadata = (params.ti && params.ti->is_valid());
 #ifdef QBT_USES_LIBTORRENT2
-            const auto torrentID = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hashes() : params.info_hashes);
+            const InfoHash infoHash {(hasMetadata ? params.ti->info_hashes() : params.info_hashes)};
+            if (infoHash.isHybrid())
+                m_hybridTorrentsByAltID.remove(TorrentID::fromSHA1Hash(infoHash.v1()));
 #else
-            const auto torrentID = TorrentID::fromInfoHash(hasMetadata ? params.ti->info_hash() : params.info_hash);
+            const InfoHash infoHash {(hasMetadata ? params.ti->info_hash() : params.info_hash)};
 #endif
-            m_loadingTorrents.remove(torrentID);
+            m_loadingTorrents.remove(TorrentID::fromInfoHash(infoHash));
 
             return;
         }
@@ -5104,14 +5148,10 @@ void SessionImpl::dispatchTorrentAlert(const lt::torrent_alert *a)
 
 TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params)
 {
-#ifdef QBT_USES_LIBTORRENT2
-    const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hashes());
-#else
-    const auto torrentID = TorrentID::fromInfoHash(nativeHandle.info_hash());
-#endif
-
     auto *const torrent = new TorrentImpl(this, m_nativeSession, nativeHandle, params);
     m_torrents.insert(torrent->id(), torrent);
+    if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
+        m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(infoHash.v1()), torrent);
 
     if (!params.restored)
     {
@@ -5217,19 +5257,30 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
 
 void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert *p)
 {
+    const TorrentID torrentID {p->handle.info_hash()};
+
+    bool found = false;
+    if (const auto iter = m_downloadedMetadata.find(torrentID); iter != m_downloadedMetadata.end())
+    {
+        found = true;
+        m_downloadedMetadata.erase(iter);
+    }
 #ifdef QBT_USES_LIBTORRENT2
-    const auto id = TorrentID::fromInfoHash(p->handle.info_hashes());
-#else
-    const auto id = TorrentID::fromInfoHash(p->handle.info_hash());
+    const InfoHash infoHash {p->handle.info_hashes()};
+    if (infoHash.isHybrid())
+    {
+        const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
+        if (const auto iter = m_downloadedMetadata.find(altID); iter != m_downloadedMetadata.end())
+        {
+            found = true;
+            m_downloadedMetadata.erase(iter);
+        }
+    }
 #endif
-
-    const auto downloadedMetadataIter = m_downloadedMetadata.find(id);
-
-    if (downloadedMetadataIter != m_downloadedMetadata.end())
+    if (found)
     {
         const TorrentInfo metadata {*p->handle.torrent_file()};
 
-        m_downloadedMetadata.erase(downloadedMetadataIter);
         --m_extraLimit;
         adjustLimits();
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);

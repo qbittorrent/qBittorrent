@@ -428,7 +428,7 @@ namespace BitTorrent
         void handleTorrentUrlSeedsAdded(TorrentImpl *const torrent, const QVector<QUrl> &newUrlSeeds);
         void handleTorrentUrlSeedsRemoved(TorrentImpl *const torrent, const QVector<QUrl> &urlSeeds);
         void handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data);
-        void handleTorrentIDChanged(const TorrentImpl *torrent, const TorrentID &prevID);
+        void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
 
         bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode);
 
@@ -692,6 +692,7 @@ namespace BitTorrent
         QSet<TorrentID> m_downloadedMetadata;
 
         QHash<TorrentID, TorrentImpl *> m_torrents;
+        QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
         QHash<TorrentID, LoadTorrentParams> m_loadingTorrents;
         QHash<QString, AddTorrentParams> m_downloadedTorrents;
         QHash<TorrentID, RemovingTorrentData> m_removingTorrents;
