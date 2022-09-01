@@ -223,6 +223,13 @@ namespace
         outVector.resize(size, defaultValue);
         return outVector;
     }
+
+    // This is an imitation of limit normalization performed by libtorrent itself.
+    // We need perform it to keep cached values in line with the ones used by libtorrent.
+    int cleanLimitValue(const int value)
+    {
+        return ((value < 0) || (value == std::numeric_limits<int>::max())) ? 0 : value;
+    }
 }
 
 // TorrentImpl
@@ -252,6 +259,8 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_useAutoTMM(params.useAutoTMM)
     , m_isStopped(params.stopped)
     , m_ltAddTorrentParams(params.ltAddTorrentParams)
+    , m_downloadLimit(cleanLimitValue(m_ltAddTorrentParams.download_limit))
+    , m_uploadLimit(cleanLimitValue(m_ltAddTorrentParams.upload_limit))
 {
     if (m_ltAddTorrentParams.ti)
     {
@@ -1208,12 +1217,12 @@ qlonglong TorrentImpl::timeSinceActivity() const
 
 int TorrentImpl::downloadLimit() const
 {
-    return m_nativeHandle.download_limit();
+    return m_downloadLimit;;
 }
 
 int TorrentImpl::uploadLimit() const
 {
-    return m_nativeHandle.upload_limit();
+    return m_uploadLimit;
 }
 
 bool TorrentImpl::superSeeding() const
@@ -2206,19 +2215,23 @@ void TorrentImpl::setSeedingTimeLimit(int limit)
 
 void TorrentImpl::setUploadLimit(const int limit)
 {
-    if (limit == uploadLimit())
+    const int cleanValue = cleanLimitValue(limit);
+    if (cleanValue == uploadLimit())
         return;
 
-    m_nativeHandle.set_upload_limit(limit);
+    m_uploadLimit = cleanValue;
+    m_nativeHandle.set_upload_limit(m_uploadLimit);
     m_session->handleTorrentNeedSaveResumeData(this);
 }
 
 void TorrentImpl::setDownloadLimit(const int limit)
 {
-    if (limit == downloadLimit())
+    const int cleanValue = cleanLimitValue(limit);
+    if (cleanValue == downloadLimit())
         return;
 
-    m_nativeHandle.set_download_limit(limit);
+    m_downloadLimit = cleanValue;
+    m_nativeHandle.set_download_limit(m_downloadLimit);
     m_session->handleTorrentNeedSaveResumeData(this);
 }
 

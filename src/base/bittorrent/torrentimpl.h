@@ -337,6 +337,9 @@ namespace BitTorrent
 
         lt::add_torrent_params m_ltAddTorrentParams;
 
+        int m_downloadLimit = 0;
+        int m_uploadLimit = 0;
+
         mutable QBitArray m_pieces;
     };
 }
