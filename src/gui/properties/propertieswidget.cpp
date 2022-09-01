@@ -475,8 +475,8 @@ void PropertiesWidget::loadDynamicData()
                     , QString::number(m_torrent->totalSeedsCount())));
 
             m_ui->labelPeersVal->setText(tr("%1 (%2 total)", "%1 and %2 are numbers, e.g. 3 (10 total)")
-                .arg(QString::number(m_torrent->leechsCount())
-                    , QString::number(m_torrent->totalLeechersCount())));
+                .arg(QString::number(m_torrent->peersCount())
+                    , QString::number(m_torrent->totalPeersCount())));
 
             const qlonglong dlDuration = m_torrent->activeTime() - m_torrent->finishedTime();
             const QString dlAvg = Utils::Misc::friendlyUnit((m_torrent->totalDownload() / ((dlDuration == 0) ? -1 : dlDuration)), true);

@@ -421,7 +421,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_SEEDS] = torrent->seedsCount();
     dataDict[KEY_PROP_SEEDS_TOTAL] = torrent->totalSeedsCount();
     dataDict[KEY_PROP_PEERS] = torrent->leechsCount();
-    dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalLeechersCount();
+    dataDict[KEY_PROP_PEERS_TOTAL] = torrent->totalPeersCount();
     const qreal ratio = torrent->realRatio();
     dataDict[KEY_PROP_RATIO] = ratio > BitTorrent::Torrent::MAX_RATIO ? -1 : ratio;
     dataDict[KEY_PROP_REANNOUNCE] = torrent->nextAnnounce();

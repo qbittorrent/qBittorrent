@@ -385,7 +385,7 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_SEEDS:
         return amountString(torrent->seedsCount(), torrent->totalSeedsCount());
     case TR_PEERS:
-        return amountString(torrent->leechsCount(), torrent->totalLeechersCount());
+        return amountString(torrent->peersCount(), torrent->totalPeersCount());
     case TR_DLSPEED:
         return unitString(torrent->downloadPayloadRate(), true);
     case TR_UPSPEED:
@@ -456,7 +456,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_SEEDS:
         return !alt ? torrent->seedsCount() : torrent->totalSeedsCount();
     case TR_PEERS:
-        return !alt ? torrent->leechsCount() : torrent->totalLeechersCount();
+        return !alt ? torrent->peersCount() : torrent->totalPeersCount();
     case TR_DLSPEED:
         return torrent->downloadPayloadRate();
     case TR_UPSPEED:
