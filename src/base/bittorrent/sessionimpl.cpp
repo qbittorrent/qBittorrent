@@ -2606,8 +2606,11 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
         }
 
         const auto nativeIndexes = torrentInfo.nativeIndexes();
-        for (int index = 0; index < filePaths.size(); ++index)
-            p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
+        if (!isFindingIncompleteFiles)
+        {
+            for (int index = 0; index < filePaths.size(); ++index)
+                p.renamed_files[nativeIndexes[index]] = filePaths.at(index).toString().toStdString();
+        }
 
         Q_ASSERT(p.file_priorities.empty());
         Q_ASSERT(addTorrentParams.filePriorities.isEmpty() || (addTorrentParams.filePriorities.size() == nativeIndexes.size()));
@@ -2715,7 +2718,7 @@ void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path
     const PathList originalFileNames = (filePaths.isEmpty() ? torrentInfo.filePaths() : filePaths);
     QMetaObject::invokeMethod(m_fileSearcher, [=]()
     {
-        m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath);
+        m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
     });
 }
 

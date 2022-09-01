@@ -31,9 +31,9 @@
 #include "base/bittorrent/infohash.h"
 
 void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &originalFileNames
-                          , const Path &savePath, const Path &downloadPath)
+                          , const Path &savePath, const Path &downloadPath, const bool forceAppendExt)
 {
-    const auto findInDir = [](const Path &dirPath, PathList &fileNames) -> bool
+    const auto findInDir = [](const Path &dirPath, PathList &fileNames, const bool forceAppendExt) -> bool
     {
         bool found = false;
         for (Path &fileName : fileNames)
@@ -42,10 +42,18 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &origi
             {
                 found = true;
             }
-            else if ((dirPath / fileName + QB_EXT).exists())
+            else
             {
-                found = true;
-                fileName = fileName + QB_EXT;
+                const Path incompleteFilename = fileName + QB_EXT;
+                if ((dirPath / incompleteFilename).exists())
+                {
+                    found = true;
+                    fileName = incompleteFilename;
+                }
+                else if (forceAppendExt)
+                {
+                    fileName = incompleteFilename;
+                }
             }
         }
 
@@ -54,11 +62,11 @@ void FileSearcher::search(const BitTorrent::TorrentID &id, const PathList &origi
 
     Path usedPath = savePath;
     PathList adjustedFileNames = originalFileNames;
-    const bool found = findInDir(usedPath, adjustedFileNames);
+    const bool found = findInDir(usedPath, adjustedFileNames, (forceAppendExt && downloadPath.isEmpty()));
     if (!found && !downloadPath.isEmpty())
     {
         usedPath = downloadPath;
-        findInDir(usedPath, adjustedFileNames);
+        findInDir(usedPath, adjustedFileNames, forceAppendExt);
     }
 
     emit searchFinished(id, usedPath, adjustedFileNames);
