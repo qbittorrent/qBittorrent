@@ -842,7 +842,7 @@ catch (const RuntimeError &err)
 #else
     QMessageBox msgBox;
     msgBox.setIcon(QMessageBox::Critical);
-    msgBox.setText(tr("Application failed to start."));
+    msgBox.setText(QCoreApplication::translate("Application", "Application failed to start."));
     msgBox.setInformativeText(err.message());
     msgBox.show(); // Need to be shown or to moveToCenter does not work
     msgBox.move(Utils::Gui::screenCenter(&msgBox));
