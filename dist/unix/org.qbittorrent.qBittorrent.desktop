@@ -14,9 +14,6 @@ Keywords=bittorrent;torrent;magnet;download;p2p;
 SingleMainWindow=true
 
 # Translations
-
-
-# Translations
 Comment[af]=Aflaai en deel lêers oor BitTorrent
 GenericName[af]=BitTorrent kliënt
 Name[af]=qBittorrent
@@ -35,9 +32,6 @@ Name[bg]=qBittorrent
 Comment[bn]=বিটটরেন্টে  ফাইল ডাউনলোড এবং শেয়ার করুন
 GenericName[bn]=বিটটরেন্ট ক্লায়েন্ট
 Name[bn]=qBittorrent
-Comment[zh]=通过 BitTorrent 下载和分享文件
-GenericName[zh]=BitTorrent 客户端
-Name[zh]=qBittorrent
 Comment[bs]=Preuzmi i dijeli datoteke preko BitTorrent-a
 GenericName[bs]=BitTorrent klijent
 Name[bs]=qBittorrent
@@ -224,6 +218,9 @@ Comment[vi]=Tải xuống và chia sẻ tệp qua BitTorrent
 GenericName[vi]=Máy khách BitTorrent
 Name[vi]=qBittorrent
 Name[yi]=qBittorrent
+Comment[zh]=通过 BitTorrent 下载和分享文件
+GenericName[zh]=BitTorrent 客户端
+Name[zh]=qBittorrent
 Comment[zh_HK]=經由BitTorrent下載並分享檔案
 GenericName[zh_HK]=BitTorrent用戶端
 Name[zh_HK]=qBittorrent
