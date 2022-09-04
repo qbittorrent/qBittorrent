@@ -200,10 +200,16 @@
 
     <fieldset class="settings">
         <legend>
-            <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();" />
-            <label for="autorun_checkbox">QBT_TR(Run external program on torrent completion)QBT_TR[CONTEXT=OptionsDialog]</label>
+            QBT_TR(Run external program)QBT_TR[CONTEXT=OptionsDialog]
         </legend>
         <div class="formRow">
+            <input type="checkbox" id="autorunOnTorrentAddedCheckbox" onclick="qBittorrent.Preferences.updateAutoRunOnTorrentAdded();" />
+            <label for="autorunOnTorrentAddedCheckbox">QBT_TR(Run external program on torrent added)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="autorunOnTorrentAddedProgram" style="width: 400px;" />
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="autorun_checkbox" onclick="qBittorrent.Preferences.updateAutoRun();" />
+            <label for="autorun_checkbox">QBT_TR(Run external program on torrent finished)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="autorunProg_txt" style="width: 400px;" />
         </div>
         <div style="font-style: italic;">QBT_TR(Supported parameters (case sensitive):)QBT_TR[CONTEXT=OptionsDialog]
@@ -1357,6 +1363,7 @@
                 updateMailNotification: updateMailNotification,
                 updateMailAuthSettings: updateMailAuthSettings,
                 updateAutoRun: updateAutoRun,
+                updateAutoRunOnTorrentAdded: updateAutoRunOnTorrentAdded,
                 generateRandomPort: generateRandomPort,
                 updateMaxConnecEnabled: updateMaxConnecEnabled,
                 updateMaxConnecPerTorrentEnabled: updateMaxConnecPerTorrentEnabled,
@@ -1483,6 +1490,11 @@
             const isMailAuthEnabled = $('mail_auth_checkbox').getProperty('checked');
             $('mail_username_text').setProperty('disabled', !isMailAuthEnabled);
             $('mail_password_text').setProperty('disabled', !isMailAuthEnabled);
+        };
+
+        const updateAutoRunOnTorrentAdded = function() {
+            const isAutoRunOnTorrentAddedEnabled = $('autorunOnTorrentAddedCheckbox').getProperty('checked');
+            $('autorunOnTorrentAddedProgram').setProperty('disabled', !isAutoRunOnTorrentAddedEnabled);
         };
 
         const updateAutoRun = function() {
@@ -1788,7 +1800,11 @@
                         updateMailNotification();
                         updateMailAuthSettings();
 
-                        // Run an external program on torrent completion
+                        // Run an external program on torrent added
+                        $('autorunOnTorrentAddedCheckbox').setProperty('checked', pref.autorun_on_torrent_added_enabled);
+                        $('autorunOnTorrentAddedProgram').setProperty('value', pref.autorun_on_torrent_added_program);
+                        updateAutoRunOnTorrentAdded();
+                        // Run an external program on torrent finished
                         $('autorun_checkbox').setProperty('checked', pref.autorun_enabled);
                         $('autorunProg_txt').setProperty('value', pref.autorun_program);
                         updateAutoRun();
@@ -2112,7 +2128,10 @@
             settings.set('mail_notification_username', $('mail_username_text').getProperty('value'));
             settings.set('mail_notification_password', $('mail_password_text').getProperty('value'));
 
-            // Run an external program on torrent completion
+            // Run an external program on torrent added
+            settings.set('autorun_on_torrent_added_enabled', $('autorunOnTorrentAddedCheckbox').getProperty('checked'));
+            settings.set('autorun_on_torrent_added_program', $('autorunOnTorrentAddedProgram').getProperty('value'));
+            // Run an external program on torrent finished
             settings.set('autorun_enabled', $('autorun_checkbox').getProperty('checked'));
             settings.set('autorun_program', $('autorunProg_txt').getProperty('value'));
 

@@ -1395,17 +1395,44 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <item>
              <widget class="QGroupBox" name="autoRunBox">
               <property name="title">
-               <string>Run e&amp;xternal program on torrent completion</string>
-              </property>
-              <property name="checkable">
-               <bool>true</bool>
-              </property>
-              <property name="checked">
-               <bool>false</bool>
+               <string>Run external program</string>
               </property>
               <layout class="QVBoxLayout" name="verticalLayout_19">
                <item>
-                <widget class="QLineEdit" name="lineEditAutoRun"/>
+                <widget class="QGroupBox" name="groupBoxRunOnAdded">
+                 <property name="title">
+                  <string>Run on torrent added</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_39">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditRunOnAdded"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="groupBoxRunOnFinished">
+                 <property name="title">
+                  <string>Run on torrent finished</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayout_36">
+                  <item>
+                   <widget class="QLineEdit" name="lineEditRunOnFinished"/>
+                  </item>
+                 </layout>
+                </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="autoRunConsole">
@@ -3576,8 +3603,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>mailNotifUsername</tabstop>
   <tabstop>mailNotifPassword</tabstop>
   <tabstop>checkSmtpSSL</tabstop>
-  <tabstop>autoRunBox</tabstop>
-  <tabstop>lineEditAutoRun</tabstop>
+  <tabstop>lineEditRunOnAdded</tabstop>
+  <tabstop>lineEditRunOnFinished</tabstop>
   <tabstop>scrollArea_3</tabstop>
   <tabstop>randomButton</tabstop>
   <tabstop>checkMaxConnections</tabstop>

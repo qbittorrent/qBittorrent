@@ -157,9 +157,12 @@ void AppController::preferencesAction()
     data[u"mail_notification_auth_enabled"_qs] = pref->getMailNotificationSMTPAuth();
     data[u"mail_notification_username"_qs] = pref->getMailNotificationSMTPUsername();
     data[u"mail_notification_password"_qs] = pref->getMailNotificationSMTPPassword();
-    // Run an external program on torrent completion
-    data[u"autorun_enabled"_qs] = pref->isAutoRunEnabled();
-    data[u"autorun_program"_qs] = pref->getAutoRunProgram();
+    // Run an external program on torrent added
+    data[u"autorun_on_torrent_added_enabled"_qs] = pref->isAutoRunOnTorrentAddedEnabled();
+    data[u"autorun_on_torrent_added_program"_qs] = pref->getAutoRunOnTorrentAddedProgram();
+    // Run an external program on torrent finished
+    data[u"autorun_enabled"_qs] = pref->isAutoRunOnTorrentFinishedEnabled();
+    data[u"autorun_program"_qs] = pref->getAutoRunOnTorrentFinishedProgram();
 
     // Connection
     // Listening Port
@@ -510,11 +513,16 @@ void AppController::setPreferencesAction()
         pref->setMailNotificationSMTPUsername(it.value().toString());
     if (hasKey(u"mail_notification_password"_qs))
         pref->setMailNotificationSMTPPassword(it.value().toString());
-    // Run an external program on torrent completion
+    // Run an external program on torrent added
+    if (hasKey(u"autorun_on_torrent_added_enabled"_qs))
+        pref->setAutoRunOnTorrentAddedEnabled(it.value().toBool());
+    if (hasKey(u"autorun_on_torrent_added_program"_qs))
+        pref->setAutoRunOnTorrentAddedProgram(it.value().toString());
+    // Run an external program on torrent finished
     if (hasKey(u"autorun_enabled"_qs))
-        pref->setAutoRunEnabled(it.value().toBool());
+        pref->setAutoRunOnTorrentFinishedEnabled(it.value().toBool());
     if (hasKey(u"autorun_program"_qs))
-        pref->setAutoRunProgram(it.value().toString());
+        pref->setAutoRunOnTorrentFinishedProgram(it.value().toString());
 
     // Connection
     // Listening Port

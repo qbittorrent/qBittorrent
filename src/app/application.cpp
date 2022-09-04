@@ -368,7 +368,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
+void Application::runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const
 {
     // Cannot give users shell environment by default, as doing so could
     // enable command injection via torrent name and other arguments
@@ -437,7 +437,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
 
     // The processing sequenece is different for Windows and other OS, this is intentional
 #if defined(Q_OS_WIN)
-    const QString program = replaceVariables(Preferences::instance()->getAutoRunProgram().trimmed());
+    const QString program = replaceVariables(programTemplate);
     const std::wstring programWStr = program.toStdWString();
 
     // Need to split arguments manually because QProcess::startDetached(QString)
@@ -481,8 +481,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     });
     proc.startDetached();
 #else // Q_OS_WIN
-    const QString program = Preferences::instance()->getAutoRunProgram().trimmed();
-    QStringList args = Utils::String::splitCommand(program);
+    QStringList args = Utils::String::splitCommand(programTemplate);
 
     if (args.isEmpty())
         return;
@@ -497,7 +496,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     }
 
     // show intended command in log
-    LogMsg(logMsg.arg(torrent->name(), replaceVariables(program)));
+    LogMsg(logMsg.arg(torrent->name(), replaceVariables(programTemplate)));
 
     const QString command = args.takeFirst();
     QProcess::startDetached(command, args);
@@ -523,13 +522,22 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
                      content);
 }
 
-void Application::torrentFinished(BitTorrent::Torrent *const torrent)
+void Application::torrentAdded(const BitTorrent::Torrent *torrent) const
 {
-    Preferences *const pref = Preferences::instance();
+    const Preferences *pref = Preferences::instance();
 
     // AutoRun program
-    if (pref->isAutoRunEnabled())
-        runExternalProgram(torrent);
+    if (pref->isAutoRunOnTorrentAddedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentAddedProgram().trimmed(), torrent);
+}
+
+void Application::torrentFinished(const BitTorrent::Torrent *torrent)
+{
+    const Preferences *pref = Preferences::instance();
+
+    // AutoRun program
+    if (pref->isAutoRunOnTorrentFinishedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentFinishedProgram().trimmed(), torrent);
 
     // Mail notification
     if (pref->isMailNotificationEnabled())
@@ -731,6 +739,7 @@ try
 #endif
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::restored, this, [this]()
     {
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 
