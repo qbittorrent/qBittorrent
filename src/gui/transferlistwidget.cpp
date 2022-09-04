@@ -1068,6 +1068,12 @@ void TransferListWidget::displayListMenu()
         first = false;
 
         const bool rechecking = torrent->isChecking();
+        if (rechecking)
+        {
+            needsStart = true;
+            needsPause = true;
+        }
+
         const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
 
         if (!isPaused && !rechecking && !queued)
