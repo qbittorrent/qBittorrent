@@ -323,7 +323,7 @@ void Application::processMessage(const QString &message)
         m_paramsQueue.append(params);
 }
 
-void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
+void Application::runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const
 {
 #if defined(Q_OS_WIN)
     const auto chopPathSep = [](const QString &str) -> QString
@@ -334,7 +334,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     };
 #endif
 
-    QString program = Preferences::instance()->getAutoRunProgram().trimmed();
+    QString program = programTemplate;
 
     for (int i = (program.length() - 2); i >= 0; --i)
     {
@@ -446,7 +446,7 @@ void Application::runExternalProgram(const BitTorrent::Torrent *torrent) const
     // enable command injection via torrent name and other arguments
     // (especially when some automated download mechanism has been setup).
     // See: https://github.com/qbittorrent/qBittorrent/issues/10925
-    QStringList args = QProcess::splitCommand(program);
+    QStringList args = QProcess::splitCommand(programTemplate);
     if (args.isEmpty())
         return;
 
@@ -474,13 +474,22 @@ void Application::sendNotificationEmail(const BitTorrent::Torrent *torrent)
                      content);
 }
 
-void Application::torrentFinished(BitTorrent::Torrent *const torrent)
+void Application::torrentAdded(const BitTorrent::Torrent *torrent) const
 {
-    Preferences *const pref = Preferences::instance();
+    const Preferences *pref = Preferences::instance();
 
     // AutoRun program
-    if (pref->isAutoRunEnabled())
-        runExternalProgram(torrent);
+    if (pref->isAutoRunOnTorrentAddedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentAddedProgram().trimmed(), torrent);
+}
+
+void Application::torrentFinished(const BitTorrent::Torrent *torrent)
+{
+    const Preferences *pref = Preferences::instance();
+
+    // AutoRun program
+    if (pref->isAutoRunOnTorrentFinishedEnabled())
+        runExternalProgram(pref->getAutoRunOnTorrentFinishedProgram().trimmed(), torrent);
 
     // Mail notification
     if (pref->isMailNotificationEnabled())
@@ -634,6 +643,7 @@ int Application::exec(const QStringList &params)
     try
     {
         BitTorrent::Session::initInstance();
+        connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentAdded, this, &Application::torrentAdded);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentFinished, this, &Application::torrentFinished);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::allTorrentsFinished, this, &Application::allTorrentsFinished, Qt::QueuedConnection);
 

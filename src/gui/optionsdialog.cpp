@@ -384,8 +384,10 @@ OptionsDialog::OptionsDialog(QWidget *parent)
     connect(m_ui->groupMailNotifAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->mailNotifPassword, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
-    connect(m_ui->autoRunBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->lineEditAutoRun, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupBoxRunOnAdded, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditRunOnAdded, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->groupBoxRunOnFinished, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->lineEditRunOnFinished, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->autoRunConsole, &QCheckBox::toggled, this, &ThisType::enableApplyButton);
 
     const QString autoRunStr = QString("%1\n    %2\n    %3\n    %4\n    %5\n    %6\n    %7\n    %8\n    %9\n    %10\n    %11\n    %12\n    %13\n%14")
@@ -758,8 +760,10 @@ void OptionsDialog::saveOptions()
     pref->setMailNotificationSMTPAuth(m_ui->groupMailNotifAuth->isChecked());
     pref->setMailNotificationSMTPUsername(m_ui->mailNotifUsername->text());
     pref->setMailNotificationSMTPPassword(m_ui->mailNotifPassword->text());
-    pref->setAutoRunEnabled(m_ui->autoRunBox->isChecked());
-    pref->setAutoRunProgram(m_ui->lineEditAutoRun->text().trimmed());
+    pref->setAutoRunOnTorrentAddedEnabled(m_ui->groupBoxRunOnAdded->isChecked());
+    pref->setAutoRunOnTorrentAddedProgram(m_ui->lineEditRunOnAdded->text().trimmed());
+    pref->setAutoRunOnTorrentFinishedEnabled(m_ui->groupBoxRunOnFinished->isChecked());
+    pref->setAutoRunOnTorrentFinishedProgram(m_ui->lineEditRunOnFinished->text().trimmed());
 #if defined(Q_OS_WIN)
     pref->setAutoRunConsoleEnabled(m_ui->autoRunConsole->isChecked());
 #endif
@@ -1050,8 +1054,10 @@ void OptionsDialog::loadOptions()
     m_ui->mailNotifUsername->setText(pref->getMailNotificationSMTPUsername());
     m_ui->mailNotifPassword->setText(pref->getMailNotificationSMTPPassword());
 
-    m_ui->autoRunBox->setChecked(pref->isAutoRunEnabled());
-    m_ui->lineEditAutoRun->setText(pref->getAutoRunProgram());
+    m_ui->groupBoxRunOnAdded->setChecked(pref->isAutoRunOnTorrentAddedEnabled());
+    m_ui->groupBoxRunOnFinished->setChecked(pref->isAutoRunOnTorrentFinishedEnabled());
+    m_ui->lineEditRunOnAdded->setText(pref->getAutoRunOnTorrentAddedProgram());
+    m_ui->lineEditRunOnFinished->setText(pref->getAutoRunOnTorrentFinishedProgram());
 #if defined(Q_OS_WIN)
     m_ui->autoRunConsole->setChecked(pref->isAutoRunConsoleEnabled());
 #else

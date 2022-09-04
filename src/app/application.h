@@ -118,7 +118,8 @@ protected:
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::Torrent *const torrent);
+    void torrentAdded(const BitTorrent::Torrent *torrent) const;
+    void torrentFinished(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
 #if (!defined(DISABLE_GUI) && defined(Q_OS_WIN))
@@ -131,7 +132,7 @@ private:
 #endif
     void initializeTranslation();
     void processParams(const QStringList &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
     ApplicationInstanceManager *m_instanceManager = nullptr;
