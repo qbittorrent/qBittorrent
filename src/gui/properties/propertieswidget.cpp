@@ -76,7 +76,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     , m_ui(new Ui::PropertiesWidget())
 {
     m_ui->setupUi(this);
+#ifndef Q_OS_MACOS
     setAutoFillBackground(true);
+#endif
 
     m_state = VISIBLE;
 
