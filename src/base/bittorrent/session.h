@@ -60,6 +60,7 @@ namespace BitTorrent
     class InfoHash;
     class MagnetUri;
     class Torrent;
+    class TorrentID;
     class TorrentInfo;
     struct CacheStatus;
     struct SessionStatus;

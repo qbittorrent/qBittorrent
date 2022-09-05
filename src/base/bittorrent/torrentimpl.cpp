@@ -2014,10 +2014,10 @@ void TorrentImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
     qDebug("Metadata received for torrent %s.", qUtf8Printable(name()));
 
 #ifdef QBT_USES_LIBTORRENT2
-    const TorrentID prevTorrentID = id();
+    const InfoHash prevInfoHash = infoHash();
     m_infoHash = InfoHash(m_nativeHandle.info_hashes());
-    if (prevTorrentID != id())
-        m_session->handleTorrentIDChanged(this, prevTorrentID);
+    if (prevInfoHash != infoHash())
+        m_session->handleTorrentInfoHashChanged(this, prevInfoHash);
 #endif
 
     m_maintenanceJob = MaintenanceJob::HandleMetadata;
