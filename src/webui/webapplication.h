@@ -34,11 +34,13 @@
 #include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
+#include <QHostAddress>
 #include <QMap>
 #include <QObject>
 #include <QRegularExpression>
 #include <QSet>
 #include <QTranslator>
+#include <QVector>
 
 #include "base/applicationcomponent.h"
 #include "base/global.h"
@@ -233,7 +235,7 @@ private:
 
     // Reverse proxy
     bool m_isReverseProxySupportEnabled;
-    QVector<QHostAddress> m_trustedReverseProxyList;
+    QVector<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 
     QVector<Http::Header> m_prebuiltHeaders;
