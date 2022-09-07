@@ -579,7 +579,7 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }
