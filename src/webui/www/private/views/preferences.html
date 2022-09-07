@@ -847,7 +847,11 @@
                             <label for="webui_domain_textarea">QBT_TR(Server domains:)QBT_TR[CONTEXT=OptionsDialog]</label>
                         </td>
                         <td>
-                            <textarea id="webui_domain_textarea" rows="1" cols="60"></textarea>
+                            <textarea id="webui_domain_textarea" rows="1" cols="60" title="QBT_TR(Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsDialog]"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -869,7 +873,7 @@
             </legend>
             <div class="formRow">
                 <label for="webUIReverseProxiesListTextarea">QBT_TR(Trusted proxies list:)QBT_TR[CONTEXT=OptionsDialog]</label>
-                <input type="text" id="webUIReverseProxiesListTextarea" />
+                <input type="text" id="webUIReverseProxiesListTextarea" title="QBT_TR(Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.)QBT_TR[CONTEXT=OptionsDialog]" />
             </div>
         </fieldset>
 
