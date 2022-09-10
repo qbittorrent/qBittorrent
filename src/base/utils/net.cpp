@@ -47,20 +47,13 @@ namespace Utils
             return !QHostAddress(ip).isNull();
         }
 
-        Subnet parseSubnet(const QString &subnetStr, bool *ok)
+        std::optional<Subnet> parseSubnet(const QString &subnetStr)
         {
-            const Subnet invalid = qMakePair(QHostAddress(), -1);
             const Subnet subnet = QHostAddress::parseSubnet(subnetStr);
-            if (ok)
-                *ok = (subnet != invalid);
+            const Subnet invalid = {QHostAddress(), -1};
+            if (subnet == invalid)
+                return std::nullopt;
             return subnet;
-        }
-
-        bool canParseSubnet(const QString &subnetStr)
-        {
-            bool ok = false;
-            parseSubnet(subnetStr, &ok);
-            return ok;
         }
 
         bool isLoopbackAddress(const QHostAddress &addr)
@@ -70,7 +63,7 @@ namespace Utils
                     || (addr == QHostAddress(u"::ffff:127.0.0.1"_qs));
         }
 
-        bool isIPInRange(const QHostAddress &addr, const QVector<Subnet> &subnets)
+        bool isIPInSubnets(const QHostAddress &addr, const QVector<Subnet> &subnets)
         {
             QHostAddress protocolEquivalentAddress;
             bool addrConversionOk = false;

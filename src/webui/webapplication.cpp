@@ -42,7 +42,6 @@
 #include <QUrl>
 
 #include "base/algorithm.h"
-#include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -402,15 +401,29 @@ void WebApplication::configure()
     m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
     if (m_isReverseProxySupportEnabled)
     {
-        m_trustedReverseProxyList.clear();
-
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
 
-        for (const QString &proxy : proxyList)
+        m_trustedReverseProxyList.clear();
+        m_trustedReverseProxyList.reserve(proxyList.size());
+
+        for (QString proxy : proxyList)
         {
-            QHostAddress ip;
-            if (ip.setAddress(proxy))
-                m_trustedReverseProxyList.push_back(ip);
+            if (!proxy.contains(u'/'))
+            {
+                const QAbstractSocket::NetworkLayerProtocol protocol = QHostAddress(proxy).protocol();
+                if (protocol == QAbstractSocket::IPv4Protocol)
+                {
+                    proxy.append(u"/32");
+                }
+                else if (protocol == QAbstractSocket::IPv6Protocol)
+                {
+                    proxy.append(u"/128");
+                }
+            }
+
+            const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(proxy);
+            if (subnet)
+                m_trustedReverseProxyList.push_back(subnet.value());
         }
 
         if (m_trustedReverseProxyList.isEmpty())
@@ -579,7 +592,7 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }
@@ -728,7 +741,7 @@ QHostAddress WebApplication::resolveClientAddress() const
         return m_env.clientAddress;
 
     // Only reverse proxy can overwrite client address
-    if (!m_trustedReverseProxyList.contains(m_env.clientAddress))
+    if (!Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList))
         return m_env.clientAddress;
 
     const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);

@@ -548,10 +548,9 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 
     for (const QString &rawSubnet : subnets)
     {
-        bool ok = false;
-        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
-        if (ok)
-            ret.append(subnet);
+        const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(rawSubnet.trimmed());
+        if (subnet)
+            ret.append(subnet.value());
     }
 
     return ret;
@@ -561,9 +560,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
     Algorithm::removeIf(subnets, [](const QString &subnet)
     {
-        bool ok = false;
-        Utils::Net::parseSubnet(subnet.trimmed(), &ok);
-        return !ok;
+        return !Utils::Net::parseSubnet(subnet.trimmed()).has_value();
     });
 
     setValue(u"Preferences/WebUI/AuthSubnetWhitelist"_qs, subnets);
