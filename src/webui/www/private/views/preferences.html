@@ -2382,9 +2382,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('web_ui_address', web_ui_address);
             settings.set('web_ui_port', web_ui_port);
             settings.set('web_ui_upnp', $('webui_upnp_checkbox').getProperty('checked'));
-            settings.set('use_https', $('use_https_checkbox').getProperty('checked'));
-            settings.set('web_ui_https_cert_path', $('ssl_cert_text').getProperty('value'));
-            settings.set('web_ui_https_key_path', $('ssl_key_text').getProperty('value'));
+
+            const useHTTPS = $('use_https_checkbox').getProperty('checked');
+            settings.set('use_https', useHTTPS);
+
+            const httpsCertificate = $('ssl_cert_text').getProperty('value');
+            settings.set('web_ui_https_cert_path', httpsCertificate);
+            if (useHTTPS && (httpsCertificate.length === 0)) {
+                alert("QBT_TR(HTTPS certificate should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
+
+            const httpsKey = $('ssl_key_text').getProperty('value');
+            settings.set('web_ui_https_key_path', httpsKey);
+            if (useHTTPS && (httpsKey.length === 0)) {
+                alert("QBT_TR(HTTPS key should not be empty)QBT_TR[CONTEXT=OptionsDialog]");
+                return;
+            }
 
             // Authentication
             const web_ui_username = $('webui_username_text').getProperty('value');
