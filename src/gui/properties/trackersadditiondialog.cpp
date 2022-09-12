@@ -116,7 +116,7 @@ void TrackersAdditionDialog::torrentListDownloadFinished(const Net::DownloadResu
         BitTorrent::TrackerEntry newTracker {line};
         if (!existingTrackers.contains(newTracker))
         {
-            if(nb != 0)
+            if (nb != 0)
                 m_ui->textEditTrackersList->insertPlainText(u"\n"_qs);
             m_ui->textEditTrackersList->insertPlainText(line + u'\n');
             ++nb;
