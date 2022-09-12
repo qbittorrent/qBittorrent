@@ -745,14 +745,8 @@ void TorrentsController::addTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QVector<BitTorrent::TrackerEntry> trackers;
-    for (const QString &urlStr : asConst(params()[u"urls"_qs].split(u'\n')))
-    {
-        const QUrl url {urlStr.trimmed()};
-        if (url.isValid())
-            trackers.append({url.toString()});
-    }
-    torrent->addTrackers(trackers);
+    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_qs]);
+    torrent->addTrackers(entries);
 }
 
 void TorrentsController::editTrackerAction()

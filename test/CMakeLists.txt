@@ -11,6 +11,7 @@ include_directories("../src")
 
 set(testFiles
     testalgorithm.cpp
+    testbittorrenttrackerentry.cpp
     testorderedset.cpp
     testpath.cpp
     testutilscompare.cpp

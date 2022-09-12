@@ -540,6 +540,7 @@ void TorrentImpl::addTrackers(QVector<TrackerEntry> trackers)
     m_trackerEntries.append(trackers);
     std::sort(m_trackerEntries.begin(), m_trackerEntries.end()
         , [](const TrackerEntry &lhs, const TrackerEntry &rhs) { return lhs.tier < rhs.tier; });
+
     m_session->handleTorrentNeedSaveResumeData(this);
     m_session->handleTorrentTrackersAdded(this, trackers);
 }
@@ -561,6 +562,7 @@ void TorrentImpl::removeTrackers(const QStringList &trackers)
     if (!removedTrackers.isEmpty())
     {
         m_nativeHandle.replace_trackers(nativeTrackers);
+
         m_session->handleTorrentNeedSaveResumeData(this);
         m_session->handleTorrentTrackersRemoved(this, removedTrackers);
     }
@@ -579,12 +581,13 @@ void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
         nativeTrackers.emplace_back(makeNativeAnnounceEntry(tracker.url, tracker.tier));
 
     m_nativeHandle.replace_trackers(nativeTrackers);
+    m_trackerEntries = trackers;
+
     // Clear the peer list if it's a private torrent since
     // we do not want to keep connecting with peers from old tracker.
     if (isPrivate())
         clearPeers();
 
-    m_trackerEntries = trackers;
     m_session->handleTorrentNeedSaveResumeData(this);
     m_session->handleTorrentTrackersChanged(this);
 }
