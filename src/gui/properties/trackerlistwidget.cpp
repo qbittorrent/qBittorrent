@@ -567,7 +567,7 @@ void TrackerListWidget::showTrackerListMenu()
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add a new tracker...")
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add trackers...")
         , this, &TrackerListWidget::askForTrackers);
 
     if (!getSelectedTrackerItems().isEmpty())
