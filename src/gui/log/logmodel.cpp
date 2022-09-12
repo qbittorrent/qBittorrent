@@ -73,7 +73,7 @@ QVariant BaseLogModel::Message::type() const
 BaseLogModel::BaseLogModel(QObject *parent)
     : QAbstractListModel(parent)
     , m_messages(MAX_VISIBLE_MESSAGES)
-    , m_timeForeground(UIThemeManager::instance()->getColor(u"Log.TimeStamp"_qs, Qt::darkGray))
+    , m_timeForeground(UIThemeManager::instance()->getColor(u"Log.TimeStamp"_qs, QColorConstants::Svg::darkgrey))
 {
 }
 
@@ -142,10 +142,10 @@ LogMessageModel::LogMessageModel(QObject *parent)
     : BaseLogModel(parent)
     , m_foregroundForMessageTypes
     {
-        {Log::NORMAL, UIThemeManager::instance()->getColor(u"Log.Normal"_qs, QApplication::palette().color(QPalette::WindowText))},
-        {Log::INFO, UIThemeManager::instance()->getColor(u"Log.Info"_qs, Qt::blue)},
-        {Log::WARNING, UIThemeManager::instance()->getColor(u"Log.Warning"_qs, QColor {255, 165, 0})}, // orange
-        {Log::CRITICAL, UIThemeManager::instance()->getColor(u"Log.Critical"_qs, Qt::red)}
+        {Log::NORMAL, UIThemeManager::instance()->getColor(u"Log.Normal"_qs, QColorConstants::Svg::mediumseagreen)},
+        {Log::INFO, UIThemeManager::instance()->getColor(u"Log.Info"_qs, QColorConstants::Svg::cornflowerblue)},
+        {Log::WARNING, UIThemeManager::instance()->getColor(u"Log.Warning"_qs, QColorConstants::Svg::darkorange)},
+        {Log::CRITICAL, UIThemeManager::instance()->getColor(u"Log.Critical"_qs, QColorConstants::Svg::red)}
     }
 {
     for (const Log::Msg &msg : asConst(Logger::instance()->getMessages()))
@@ -164,7 +164,7 @@ void LogMessageModel::handleNewMessage(const Log::Msg &message)
 
 LogPeerModel::LogPeerModel(QObject *parent)
     : BaseLogModel(parent)
-    , m_bannedPeerForeground(UIThemeManager::instance()->getColor(u"Log.BannedPeer"_qs, Qt::red))
+    , m_bannedPeerForeground(UIThemeManager::instance()->getColor(u"Log.BannedPeer"_qs, QColorConstants::Svg::red))
 {
     for (const Log::Peer &peer : asConst(Logger::instance()->getPeers()))
         handleNewMessage(peer);
