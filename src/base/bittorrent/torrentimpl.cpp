@@ -682,7 +682,7 @@ bool TorrentImpl::connectPeer(const PeerAddress &peerAddress)
 
 bool TorrentImpl::needSaveResumeData() const
 {
-    return m_nativeHandle.need_save_resume_data();
+    return m_nativeStatus.need_save_resume;
 }
 
 void TorrentImpl::saveResumeData()
@@ -2006,8 +2006,7 @@ void TorrentImpl::handleFileErrorAlert(const lt::file_error_alert *p)
 #ifdef QBT_USES_LIBTORRENT2
 void TorrentImpl::handleFilePrioAlert(const lt::file_prio_alert *)
 {
-    if (m_nativeHandle.need_save_resume_data())
-        m_session->handleTorrentNeedSaveResumeData(this);
+    m_session->handleTorrentNeedSaveResumeData(this);
 }
 #endif
 

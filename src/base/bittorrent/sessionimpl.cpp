@@ -2854,7 +2854,12 @@ void SessionImpl::saveResumeData()
 
     if (isQueueingSystemEnabled())
         saveTorrentsQueue();
-    generateResumeData();
+
+    for (const TorrentImpl *torrent : asConst(m_torrents))
+    {
+        torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
+        ++m_numResumeData;
+    }
 
     while (m_numResumeData > 0)
     {
@@ -2871,6 +2876,8 @@ void SessionImpl::saveResumeData()
             switch (a->type())
             {
             case lt::save_resume_data_failed_alert::alert_type:
+                --m_numResumeData;
+                break;
             case lt::save_resume_data_alert::alert_type:
                 dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
                 break;
