@@ -4552,21 +4552,13 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
     if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
         exportTorrentFile(torrent, exportPath);
 
-    // Check if there are torrent files inside
+    // Check whether it contains .torrent files
     for (const Path &torrentRelpath : asConst(torrent->filePaths()))
     {
         if (torrentRelpath.hasExtension(u".torrent"_qs))
         {
-            const Path torrentFullpath = torrent->actualStorageLocation() / torrentRelpath;
-            if (TorrentInfo::loadFromFile(torrentFullpath))
-            {
-                emit recursiveTorrentDownloadPossible(torrent);
-                break;
-            }
-            else
-            {
-                LogMsg(tr("Unable to load torrent. File: \"%1\"").arg(torrentFullpath.toString()), Log::CRITICAL);
-            }
+            emit recursiveTorrentDownloadPossible(torrent);
+            break;
         }
     }
 
@@ -4854,25 +4846,32 @@ void SessionImpl::disableIPFilter()
 
 void SessionImpl::recursiveTorrentDownload(const TorrentID &id)
 {
-    TorrentImpl *const torrent = m_torrents.value(id);
-    if (!torrent) return;
+    const TorrentImpl *torrent = m_torrents.value(id);
+    if (!torrent)
+        return;
 
     for (const Path &torrentRelpath : asConst(torrent->filePaths()))
     {
         if (torrentRelpath.hasExtension(u".torrent"_qs))
         {
-            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
-                .arg(torrent->name(), torrentRelpath.toString()));
             const Path torrentFullpath = torrent->savePath() / torrentRelpath;
+
+            LogMsg(tr("Recursive download .torrent file within torrent. Source torrent: \"%1\". File: \"%2\"")
+                .arg(torrent->name(), torrentFullpath.toString()));
 
             AddTorrentParams params;
             // Passing the save path along to the sub torrent file
             params.savePath = torrent->savePath();
             const nonstd::expected<TorrentInfo, QString> loadResult = TorrentInfo::loadFromFile(torrentFullpath);
             if (loadResult)
+            {
                 addTorrent(loadResult.value(), params);
+            }
             else
-                LogMsg(tr("Failed to load torrent. Error: \"%1\"").arg(loadResult.error()), Log::WARNING);
+            {
+                LogMsg(tr("Failed to load .torrent file within torrent. Source torrent: \"%1\". File: \"%2\". Error: \"%3\"")
+                    .arg(torrent->name(), torrentFullpath.toString(), loadResult.error()), Log::WARNING);
+            }
         }
     }
 }

@@ -281,8 +281,8 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-    bool recursiveDownloadDisabled() const;
-    void disableRecursiveDownload(bool disable = true);
+    bool isRecursiveDownloadEnabled() const;
+    void setRecursiveDownloadEnabled(bool enable);
 #ifdef Q_OS_WIN
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);

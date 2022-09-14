@@ -885,27 +885,33 @@ void MainWindow::displayExecutionLogTab()
 
 // End of keyboard shortcuts slots
 
-void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent)
+void MainWindow::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
 {
-    Preferences *const pref = Preferences::instance();
-    if (pref->recursiveDownloadDisabled()) return;
+    if (!Preferences::instance()->isRecursiveDownloadEnabled())
+        return;
 
     const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
-        , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
-        , QMessageBox::NoButton, this);
+        , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
+        , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), this);
     confirmBox->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
-    /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
-    const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
-    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentID, yes, never](const QAbstractButton *button)
+    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
+    neverButton->setText(tr("Never"));
+
+    connect(confirmBox, &QMessageBox::buttonClicked, this
+        , [torrentID, yesButton, neverButton](const QAbstractButton *button)
     {
-        if (button == yes)
+        if (button == yesButton)
+        {
             BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
-        if (button == never)
-            Preferences::instance()->disableRecursiveDownload();
+        }
+        else if (button == neverButton)
+        {
+            Preferences::instance()->setRecursiveDownloadEnabled(false);
+        }
     });
     confirmBox->open();
 }
