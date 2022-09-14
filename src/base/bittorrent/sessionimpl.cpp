@@ -3213,6 +3213,9 @@ int SessionImpl::downloadSpeedLimit() const
         }
     }
 
+    return globalUploadSpeedLimit();
+}
+
 void SessionImpl::setDownloadSpeedLimit(const int limit)
 {
     if (isAltGlobalSpeedLimitEnabled())

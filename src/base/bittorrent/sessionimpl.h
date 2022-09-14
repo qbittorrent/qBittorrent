@@ -387,6 +387,7 @@ namespace BitTorrent
         qint64 getAlltimeDL() const override;
         qint64 getAlltimeUL() const override;
         bool isListening() const override;
+        bool isPaused() const override;
 
         MaxRatioAction maxRatioAction() const override;
         void setMaxRatioAction(MaxRatioAction act) override;
