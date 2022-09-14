@@ -4549,31 +4549,26 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
     LogMsg(tr("Torrent download finished. Torrent: \"%1\"").arg(torrent->name()));
     emit torrentFinished(torrent);
 
-    qDebug("Checking if the torrent contains torrent files to download");
+    if (const Path exportPath = finishedTorrentExportDirectory(); !exportPath.isEmpty())
+        exportTorrentFile(torrent, exportPath);
+
     // Check if there are torrent files inside
     for (const Path &torrentRelpath : asConst(torrent->filePaths()))
     {
         if (torrentRelpath.hasExtension(u".torrent"_qs))
         {
-            qDebug("Found possible recursive torrent download.");
             const Path torrentFullpath = torrent->actualStorageLocation() / torrentRelpath;
-            qDebug("Full subtorrent path is %s", qUtf8Printable(torrentFullpath.toString()));
             if (TorrentInfo::loadFromFile(torrentFullpath))
             {
-                qDebug("emitting recursiveTorrentDownloadPossible()");
                 emit recursiveTorrentDownloadPossible(torrent);
                 break;
             }
             else
             {
-                qDebug("Caught error loading torrent");
                 LogMsg(tr("Unable to load torrent. File: \"%1\"").arg(torrentFullpath.toString()), Log::CRITICAL);
             }
         }
     }
-
-    if (!finishedTorrentExportDirectory().isEmpty())
-        exportTorrentFile(torrent, finishedTorrentExportDirectory());
 
     if (!hasUnfinishedTorrents())
         emit allTorrentsFinished();
