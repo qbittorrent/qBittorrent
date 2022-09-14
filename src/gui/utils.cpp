@@ -146,7 +146,30 @@ void Utils::Gui::openPath(const Path &path)
     const QUrl url = path.data().startsWith(u"//")
         ? QUrl(u"file:" + path.data())
         : QUrl::fromLocalFile(path.data());
+
+#ifdef Q_OS_WIN
+    auto *thread = QThread::create([path]()
+    {
+        if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
+        {
+            const std::wstring pathWStr = path.toString().toStdWString();
+            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(pathWStr.c_str());
+            ITEMIDLIST idNull = {0};
+            LPCITEMIDLIST pidlNull[1] = {&idNull};
+            if (pidl)
+            {
+                ::SHOpenFolderAndSelectItems(pidl, 0, pidlNull, 0);
+                ::ILFree(pidl);
+            }
+
+            ::CoUninitialize();
+        }
+    });
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
+#else
     QDesktopServices::openUrl(url);
+#endif
 }
 
 // Open the parent directory of the given path with a file manager and select
