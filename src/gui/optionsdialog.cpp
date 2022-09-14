@@ -926,7 +926,6 @@ void OptionsDialog::saveConnectionTabOptions() const
 
 void OptionsDialog::loadSpeedTabOptions()
 {
-    const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
     m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow_off"_qs), this, Utils::Gui::mediumIconSize(this).height()));
