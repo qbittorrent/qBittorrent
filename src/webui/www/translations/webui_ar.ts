@@ -1,9 +1,11 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ar">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ar">
 <context>
     <name>AboutDlg</name>
     <message>
         <source>About</source>
-        <translation type="vanished">عن</translation>
+        <translation type="vanished">حَول</translation>
     </message>
 </context>
 <context>
@@ -37,7 +39,7 @@
         <translation>إنشاء مجلد فرعي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>
@@ -64,7 +66,7 @@
     </message>
     <message>
         <source>Remove unused categories</source>
-        <translation>إزالة التصنيفات الغير مستخدمة</translation>
+        <translation>إزالة التصنيفات غير المُستخدمة</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -147,15 +149,15 @@
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
-        <translation>يجب أن يكون حد نسبة المشاركة بين 0 و 9998.</translation>
+        <translation>يجب أن يكون حد نسبة المشاركة بين 0 و9998.</translation>
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>يجب أن يكون الحد الزمني للبذر بين 0 و 525600 دقيقة.</translation>
+        <translation>يجب أن يكون الحد الزمني للبذر بين 0 و525600 دقيقة.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>يجب أن يكون المنفذ المستخدم لواجهة الوِب الرسومية بين 1 و 65535.</translation>
+        <translation>يجب أن يكون المنفذ المستخدم لواجهة الوِب الرسومية بين 1 و65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -163,7 +165,7 @@
     </message>
     <message>
         <source>Invalid Username or Password.</source>
-        <translation>اسم مستخدم أو كلمة سر غير صحيحة.</translation>
+        <translation>اسم المستخدم أو كلمة السر غير صالحة.</translation>
     </message>
     <message>
         <source>Username</source>
@@ -208,11 +210,11 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>تحديد المكان</translation>
+        <translation>تحديد الموقع</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>حد الرفع</translation>
+        <translation>حد معدل الرفع</translation>
     </message>
     <message>
         <source>Limit download rate</source>
@@ -220,7 +222,7 @@
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>إعادة تسمية تورنت</translation>
+        <translation>إعادة تسمية التورنت</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>هل أنت متأكد من رغبتك في حذف التورنتات المختارة من قائمة النقل؟</translation>
+        <translation type="vanished">هل أنت متأكد من رغبتك في حذف التورنتات المختارة من قائمة النقل؟</translation>
     </message>
     <message>
         <source>Save</source>
@@ -287,7 +289,7 @@
     </message>
     <message>
         <source>Invalid category name:\nPlease do not use any special characters in the category name.</source>
-        <translation>اسم الفئة غير صالح:\nالرجاء عدم استخدام أي أحرف خاصة في اسم الفئة.</translation>
+        <translation>اسم التصنيف غير صالح:\nالرجاء عدم استخدام أي أحرف خاصة في اسم التصنيف.</translation>
     </message>
     <message>
         <source>Unable to create category</source>
@@ -319,7 +321,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>تم إغلاق كيوبت‎تورنت</translation>
+        <translation>أُغلِق كيوبت‎تورنت</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -327,7 +329,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>سجّل للتعامل مع الروابط المغناطيسية ...</translation>
+        <translation>سجّل للتعامل مع الروابط المغناطيسية...</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -355,11 +357,15 @@
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation>يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 0 و 65535.</translation>
+        <translation>يجب أن يكون المنفذ المستخدم للاتصالات الواردة بين 0 و65535.</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation>المؤلف الاصلي</translation>
+        <translation>المؤلف الأصلي</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -414,7 +420,7 @@
     </message>
     <message>
         <source>Statistics</source>
-        <translation>الإحصائات</translation>
+        <translation>الإحصاءات</translation>
     </message>
     <message>
         <source>About</source>
@@ -503,7 +509,7 @@
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation>نقل إلى قاع قائمة الانتظار</translation>
+        <translation>نقل إلى أسفل قائمة الانتظار</translation>
     </message>
     <message>
         <source>Top of Queue</source>
@@ -515,11 +521,11 @@
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation>الانتقال إلى أسفل قائمة الانتظار</translation>
+        <translation>نقل إلى أسفل قائمة الانتظار</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation>نقل إلى قمة قائمة الانتظار</translation>
+        <translation>نقل إلى أعلى قائمة الانتظار</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
@@ -527,7 +533,7 @@
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation>لاستخدام هذه الميزة ، يجب الوصول إلى واجهة الوِب الرسومية عبر HTTPS</translation>
+        <translation>لاستخدام هذه الميزة، يجب الوصول إلى واجهة الوِب الرسومية عبر HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
@@ -571,7 +577,15 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>%T: المتتبع الحالي</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>نصيحة: غلف المعلمات بعلامات اقتباس لتجنب قطع النص عند مسافة بيضاء (على سبيل المثال، "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>فعّل نظام الذاكرة المؤقتة:</translation>
+        <translation type="vanished">فعّل نظام الذاكرة المؤقتة:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>استخدم مدى تقارب القطعة (يتطلب libtorrent &gt;= 1.2.2):</translation>
+        <translation type="vanished">استخدم مدى تقارب القطعة (يتطلب libtorrent &gt;= 1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>يعلن أقصى HTTP متزامن (يتطلب libtorrent &gt;= 1.2.7):</translation>
+        <translation type="vanished">يعلن أقصى HTTP متزامن (يتطلب libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>دعم اسم نطاق الإنترنت الدولي (IDN) (يتطلب libtorrent &gt; 1.2.12):</translation>
+        <translation type="vanished">دعم اسم نطاق الإنترنت الدولي (IDN) (يتطلب libtorrent &gt; 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1441,7 @@
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
     <message>
@@ -1480,43 +1494,91 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished"/>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2287,11 +2349,11 @@
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2590,7 +2652,7 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished"/>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2631,11 +2693,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>حذف الملفات من القرص الصلب أيضا</translation>
+        <translation type="vanished">حذف الملفات من القرص الصلب أيضا</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>تأكيد الحذف - كيوبت‎تورنت</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,7 +2923,7 @@
         <translation>مُفعّل</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>تحذير: تأكد من الامتثال لقوانين حقوق الطبع والنشر في بلدك عند تنزيل التورنت من أي من محركات البحث هذه.</translation>
     </message>
     <message>
@@ -3472,7 +3538,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         <translation>الأصلي</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
 </context>

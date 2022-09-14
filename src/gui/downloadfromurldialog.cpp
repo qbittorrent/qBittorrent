@@ -29,12 +29,14 @@
 #include "downloadfromurldialog.h"
 
 #include <QClipboard>
+#include <QKeyEvent>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QRegularExpression>
 #include <QSet>
 #include <QString>
 #include <QStringList>
+#include <QStringView>
 
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
@@ -66,7 +68,7 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     m_ui->setupUi(this);
 
     m_ui->buttonBox->button(QDialogButtonBox::Ok)->setText(tr("Download"));
-    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &DownloadFromURLDialog::downloadButtonClicked);
+    connect(m_ui->buttonBox, &QDialogButtonBox::accepted, this, &DownloadFromURLDialog::onSubmit);
     connect(m_ui->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
 
     m_ui->textUrls->setWordWrapMode(QTextOption::NoWrap);
@@ -75,19 +77,23 @@ DownloadFromURLDialog::DownloadFromURLDialog(QWidget *parent)
     const QString clipboardText = qApp->clipboard()->text();
     const QList<QStringView> clipboardList = QStringView(clipboardText).split(u'\n');
 
-    QSet<QString> uniqueURLs;
-    for (QStringView strRef : clipboardList)
-    {
-        strRef = strRef.trimmed();
-        if (strRef.isEmpty()) continue;
+    // show urls in the original order as from the clipboard
+    QStringList urls;
+    urls.reserve(clipboardList.size());
 
-        const QString str = strRef.toString();
-        if (isDownloadable(str))
-            uniqueURLs << str;
+    for (QStringView url : clipboardList)
+    {
+        url = url.trimmed();
+
+        if (url.isEmpty())
+            continue;
+
+        if (const QString urlString = url.toString(); isDownloadable(urlString))
+            urls << urlString;
     }
 
-    const QString text = uniqueURLs.values().join(u'\n')
-        + (!uniqueURLs.isEmpty() ? u"\n" : u"");
+    const QString text = urls.join(u'\n')
+        + (!urls.isEmpty() ? u"\n" : u"");
 
     m_ui->textUrls->setText(text);
     m_ui->textUrls->moveCursor(QTextCursor::End);
@@ -102,26 +108,47 @@ DownloadFromURLDialog::~DownloadFromURLDialog()
     delete m_ui;
 }
 
-void DownloadFromURLDialog::downloadButtonClicked()
+void DownloadFromURLDialog::onSubmit()
 {
     const QString plainText = m_ui->textUrls->toPlainText();
     const QList<QStringView> urls = QStringView(plainText).split(u'\n');
 
-    QSet<QString> uniqueURLs;
+    // process urls in the original order as from the widget
+    QSet<QStringView> uniqueURLs;
+    QStringList urlList;
+    urlList.reserve(urls.size());
+
     for (QStringView url : urls)
     {
         url = url.trimmed();
-        if (url.isEmpty()) continue;
 
-        uniqueURLs << url.toString();
+        if (url.isEmpty())
+            continue;
+
+        if (!uniqueURLs.contains(url))
+        {
+            uniqueURLs.insert(url);
+            urlList << url.toString();
+        }
     }
 
-    if (uniqueURLs.isEmpty())
+    if (urlList.isEmpty())
     {
         QMessageBox::warning(this, tr("No URL entered"), tr("Please type at least one URL."));
         return;
     }
 
-    emit urlsReadyToBeDownloaded(uniqueURLs.values());
+    emit urlsReadyToBeDownloaded(urlList);
     accept();
+}
+
+void DownloadFromURLDialog::keyPressEvent(QKeyEvent *event)
+{
+    if ((event->modifiers() == Qt::ControlModifier) && (event->key() == Qt::Key_Return))
+    {
+        onSubmit();
+        return;
+    }
+
+    QDialog::keyPressEvent(event);
 }

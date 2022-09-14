@@ -37,7 +37,7 @@ namespace Utils::ForeignApps
 {
     struct PythonInfo
     {
-        using Version = Utils::Version<quint8, 3, 1>;
+        using Version = Utils::Version<3, 1>;
 
         bool isValid() const;
         bool isSupportedVersion() const;

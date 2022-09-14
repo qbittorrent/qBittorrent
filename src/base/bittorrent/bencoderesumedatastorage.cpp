@@ -201,37 +201,34 @@ void BitTorrent::BencodeResumeDataStorage::loadQueue(const Path &queueFilename)
 
 BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const
 {
-    const QByteArray allData = ((metadata.isEmpty() || data.isEmpty())
-                                ? data : (data.chopped(1) + metadata.mid(1)));
-
     lt::error_code ec;
-    const lt::bdecode_node root = lt::bdecode(allData, ec);
+    const lt::bdecode_node resumeDataRoot = lt::bdecode(data, ec);
     if (ec)
         return nonstd::make_unexpected(tr("Cannot parse resume data: %1").arg(QString::fromStdString(ec.message())));
 
-    if (root.type() != lt::bdecode_node::dict_t)
-        return nonstd::make_unexpected(tr("Cannot parse resume data: invalid foormat"));
+    if (resumeDataRoot.type() != lt::bdecode_node::dict_t)
+        return nonstd::make_unexpected(tr("Cannot parse resume data: invalid format"));
 
     LoadTorrentParams torrentParams;
     torrentParams.restored = true;
-    torrentParams.category = fromLTString(root.dict_find_string_value("qBt-category"));
-    torrentParams.name = fromLTString(root.dict_find_string_value("qBt-name"));
-    torrentParams.hasSeedStatus = root.dict_find_int_value("qBt-seedStatus");
-    torrentParams.firstLastPiecePriority = root.dict_find_int_value("qBt-firstLastPiecePriority");
-    torrentParams.seedingTimeLimit = root.dict_find_int_value("qBt-seedingTimeLimit", Torrent::USE_GLOBAL_SEEDING_TIME);
+    torrentParams.category = fromLTString(resumeDataRoot.dict_find_string_value("qBt-category"));
+    torrentParams.name = fromLTString(resumeDataRoot.dict_find_string_value("qBt-name"));
+    torrentParams.hasSeedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
+    torrentParams.firstLastPiecePriority = resumeDataRoot.dict_find_int_value("qBt-firstLastPiecePriority");
+    torrentParams.seedingTimeLimit = resumeDataRoot.dict_find_int_value("qBt-seedingTimeLimit", Torrent::USE_GLOBAL_SEEDING_TIME);
 
     torrentParams.savePath = Profile::instance()->fromPortablePath(
-                Path(fromLTString(root.dict_find_string_value("qBt-savePath"))));
+                Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-savePath"))));
     torrentParams.useAutoTMM = torrentParams.savePath.isEmpty();
     if (!torrentParams.useAutoTMM)
     {
         torrentParams.downloadPath = Profile::instance()->fromPortablePath(
-                    Path(fromLTString(root.dict_find_string_value("qBt-downloadPath"))));
+                    Path(fromLTString(resumeDataRoot.dict_find_string_value("qBt-downloadPath"))));
     }
 
     // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
     // === BEGIN DEPRECATED CODE === //
-    const lt::bdecode_node contentLayoutNode = root.dict_find("qBt-contentLayout");
+    const lt::bdecode_node contentLayoutNode = resumeDataRoot.dict_find("qBt-contentLayout");
     if (contentLayoutNode.type() == lt::bdecode_node::string_t)
     {
         const QString contentLayoutStr = fromLTString(contentLayoutNode.string_value());
@@ -239,7 +236,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     }
     else
     {
-        const bool hasRootFolder = root.dict_find_int_value("qBt-hasRootFolder");
+        const bool hasRootFolder = resumeDataRoot.dict_find_int_value("qBt-hasRootFolder");
         torrentParams.contentLayout = (hasRootFolder ? TorrentContentLayout::Original : TorrentContentLayout::NoSubfolder);
     }
     // === END DEPRECATED CODE === //
@@ -248,13 +245,13 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     //                fromLTString(root.dict_find_string_value("qBt-contentLayout")), TorrentContentLayout::Default);
     // === END REPLACEMENT CODE === //
 
-    const lt::string_view ratioLimitString = root.dict_find_string_value("qBt-ratioLimit");
+    const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
     if (ratioLimitString.empty())
-        torrentParams.ratioLimit = root.dict_find_int_value("qBt-ratioLimit", Torrent::USE_GLOBAL_RATIO * 1000) / 1000.0;
+        torrentParams.ratioLimit = resumeDataRoot.dict_find_int_value("qBt-ratioLimit", Torrent::USE_GLOBAL_RATIO * 1000) / 1000.0;
     else
         torrentParams.ratioLimit = fromLTString(ratioLimitString).toDouble();
 
-    const lt::bdecode_node tagsNode = root.dict_find("qBt-tags");
+    const lt::bdecode_node tagsNode = resumeDataRoot.dict_find("qBt-tags");
     if (tagsNode.type() == lt::bdecode_node::list_t)
     {
         for (int i = 0; i < tagsNode.list_size(); ++i)
@@ -266,7 +263,24 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
 
     lt::add_torrent_params &p = torrentParams.ltAddTorrentParams;
 
-    p = lt::read_resume_data(root, ec);
+    p = lt::read_resume_data(resumeDataRoot, ec);
+
+    if (!metadata.isEmpty())
+    {
+        const lt::bdecode_node torentInfoRoot = lt::bdecode(metadata, ec);
+        if (ec)
+            return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
+
+        if (torentInfoRoot.type() != lt::bdecode_node::dict_t)
+            return nonstd::make_unexpected(tr("Cannot parse torrent info: invalid format"));
+
+        const auto torrentInfo = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
+        if (ec)
+            return nonstd::make_unexpected(tr("Cannot parse torrent info: %1").arg(QString::fromStdString(ec.message())));
+
+        p.ti = torrentInfo;
+    }
+
     p.save_path = Profile::instance()->fromPortablePath(
                 Path(fromLTString(p.save_path))).toString().toStdString();
 
@@ -287,7 +301,7 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     }
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
-    if (!hasMetadata && !root.dict_find("info-hash"))
+    if (!hasMetadata && !resumeDataRoot.dict_find("info-hash"))
         return nonstd::make_unexpected(tr("Resume data is invalid: neither metadata nor info-hash was found"));
 
     return torrentParams;

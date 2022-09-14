@@ -35,7 +35,7 @@ MochaUI.extend({
             let maximum = 500;
             new Request({
                 url: 'api/v2/transfer/uploadLimit',
-                method: 'post',
+                method: 'get',
                 data: {},
                 onSuccess: function(data) {
                     if (data) {
@@ -139,7 +139,7 @@ MochaUI.extend({
             let maximum = 500;
             new Request({
                 url: 'api/v2/transfer/downloadLimit',
-                method: 'post',
+                method: 'get',
                 data: {},
                 onSuccess: function(data) {
                     if (data) {

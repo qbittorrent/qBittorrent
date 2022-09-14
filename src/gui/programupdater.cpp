@@ -52,25 +52,21 @@ namespace
 {
     bool isVersionMoreRecent(const QString &remoteVersion)
     {
-        using Version = Utils::Version<int, 4, 3>;
+        using Version = Utils::Version<4, 3>;
 
-        try
-        {
-            const Version newVersion {remoteVersion};
-            const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
-            if (newVersion == currentVersion)
-            {
-                const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
-                    QRegularExpression(u"(alpha|beta|rc)"_qs));
-                if (isDevVersion)
-                    return true;
-            }
-            return (newVersion > currentVersion);
-        }
-        catch (const RuntimeError &)
-        {
+        const auto newVersion = Version::fromString(remoteVersion);
+        if (!newVersion.isValid())
             return false;
+
+        const Version currentVersion {QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD};
+        if (newVersion == currentVersion)
+        {
+            const bool isDevVersion = QStringLiteral(QBT_VERSION_STATUS).contains(
+                QRegularExpression(u"(alpha|beta|rc)"_qs));
+            if (isDevVersion)
+                return true;
         }
+        return (newVersion > currentVersion);
     }
 }
 

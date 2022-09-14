@@ -119,9 +119,8 @@ namespace
     }
 }
 
-MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
-    : QMainWindow(parent)
-    , GUIApplicationComponent(app)
+MainWindow::MainWindow(IGUIApplication *app, const State initialState)
+    : GUIApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeDownloadTrackerFavicon(SETTINGS_KEY(u"DownloadTrackerFavicon"_qs))
@@ -381,7 +380,7 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
 
 #ifdef Q_OS_MACOS
     // Make sure the Window is visible if we don't have a tray icon
-    if (pref->startMinimized())
+    if (initialState == Minimized)
     {
         showMinimized();
     }
@@ -394,13 +393,13 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
 #else
     if (app->desktopIntegration()->isActive())
     {
-        if (!(pref->startMinimized() || m_uiLocked))
+        if ((initialState != Minimized) && !m_uiLocked)
         {
             show();
             activateWindow();
             raise();
         }
-        else if (pref->startMinimized())
+        else if (initialState == Minimized)
         {
             showMinimized();
             if (pref->minimizeToTray())
@@ -417,7 +416,7 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     else
     {
         // Make sure the Window is visible if we don't have a tray icon
-        if (pref->startMinimized())
+        if (initialState == Minimized)
         {
             showMinimized();
         }
@@ -461,22 +460,6 @@ MainWindow::MainWindow(IGUIApplication *app, QWidget *parent)
     connect(pref, &Preferences::changed, this, &MainWindow::optionsSaved);
 
     qDebug("GUI Built");
-#ifdef Q_OS_WIN
-    if (!pref->neverCheckFileAssoc() && (!Preferences::isTorrentFileAssocSet() || !Preferences::isMagnetLinkAssocSet()))
-    {
-        if (QMessageBox::question(this, tr("Torrent file association"),
-                                  tr("qBittorrent is not the default application for opening torrent files or Magnet links.\nDo you want to make qBittorrent the default application for these?"),
-                                  QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
-                                  {
-            Preferences::setTorrentFileAssoc(true);
-            Preferences::setMagnetLinkAssoc(true);
-        }
-        else
-        {
-            pref->setNeverCheckFileAssoc();
-        }
-    }
-#endif
 }
 
 MainWindow::~MainWindow()
@@ -1528,15 +1511,12 @@ void MainWindow::reloadSessionStats()
         MacUtils::setBadgeLabelText({});
     }
 #else
-    if (app()->desktopIntegration()->isActive())
-    {
-        const auto dlText = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
-        const auto ulText = tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
-        const auto toolTip = isPaused
-            ? tr("Transfers paused per schedule")
-            : u"%1\n%2"_qs.arg(dlText, ulText);
-        app()->desktopIntegration()->setToolTip(toolTip); // tray icon
-    }
+    const auto dlText = tr("DL speed: %1", "e.g: Download speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadDownloadRate, true));
+    const auto ulText = tr("UP speed: %1", "e.g: Upload speed: 10 KiB/s").arg(Utils::Misc::friendlyUnit(status.payloadUploadRate, true));
+    const auto toolTip = isPaused
+        ? tr("Transfers paused per schedule")
+        : u"%1\n%2"_qs.arg(dlText, ulText);
+    app()->desktopIntegration()->setToolTip(toolTip); // tray icon
 #endif  // Q_OS_MACOS
 
     if (m_displaySpeedInTitle)

@@ -67,6 +67,8 @@ namespace RSS
 }
 
 #ifndef DISABLE_GUI
+class QProgressDialog;
+
 class DesktopIntegration;
 class MainWindow;
 
@@ -134,7 +136,8 @@ public:
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::Torrent *const torrent);
+    void torrentAdded(const BitTorrent::Torrent *torrent) const;
+    void torrentFinished(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
 
@@ -153,7 +156,7 @@ private:
     void initializeTranslation();
     AddTorrentParams parseParams(const QStringList &params) const;
     void processParams(const AddTorrentParams &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -166,6 +169,7 @@ private:
 #endif
 
 #ifndef DISABLE_GUI
+    void createStartupProgressDialog();
 #ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
@@ -203,6 +207,7 @@ private:
 
     DesktopIntegration *m_desktopIntegration = nullptr;
     MainWindow *m_window = nullptr;
+    QProgressDialog *m_startupProgressDialog = nullptr;
 #endif
 
 #ifndef DISABLE_WEBUI

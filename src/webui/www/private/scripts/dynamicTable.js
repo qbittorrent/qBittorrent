@@ -55,6 +55,8 @@ window.qBittorrent.DynamicTable = (function() {
         };
     };
 
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+
     let DynamicTableHeaderContextMenuClass = null;
     let ProgressColumnWidth = -1;
 
@@ -328,7 +330,7 @@ window.qBittorrent.DynamicTable = (function() {
             });
 
             const createLi = function(columnName, text) {
-                const html = '<a href="#' + columnName + '" ><img src="icons/checked-completed.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
+                const html = '<a href="#' + columnName + '" ><img src="images/checked-completed.svg"/>' + window.qBittorrent.Misc.escapeHtml(text) + '</a>';
                 return new Element('li', {
                     html: html
                 });
@@ -381,12 +383,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -945,33 +944,33 @@ window.qBittorrent.DynamicTable = (function() {
                     case "forcedMetaDL":
                     case "downloading":
                         state = "downloading";
-                        img_path = "icons/downloading.svg";
+                        img_path = "images/downloading.svg";
                         break;
                     case "forcedUP":
                     case "uploading":
                         state = "uploading";
-                        img_path = "icons/upload.svg";
+                        img_path = "images/upload.svg";
                         break;
                     case "stalledUP":
                         state = "stalledUP";
-                        img_path = "icons/stalledUP.svg";
+                        img_path = "images/stalledUP.svg";
                         break;
                     case "stalledDL":
                         state = "stalledDL";
-                        img_path = "icons/stalledDL.svg";
+                        img_path = "images/stalledDL.svg";
                         break;
                     case "pausedDL":
                         state = "torrent-stop";
-                        img_path = "icons/torrent-stop.svg";
+                        img_path = "images/torrent-stop.svg";
                         break;
                     case "pausedUP":
                         state = "checked-completed";
-                        img_path = "icons/checked-completed.svg";
+                        img_path = "images/checked-completed.svg";
                         break;
                     case "queuedDL":
                     case "queuedUP":
                         state = "queued";
-                        img_path = "icons/queued.svg";
+                        img_path = "images/queued.svg";
                         break;
                     case "checkingDL":
                     case "checkingUP":
@@ -979,12 +978,12 @@ window.qBittorrent.DynamicTable = (function() {
                     case "checkingResumeData":
                     case "moving":
                         state = "force-recheck";
-                        img_path = "icons/force-recheck.svg";
+                        img_path = "images/force-recheck.svg";
                         break;
                     case "unknown":
                     case "missingFiles":
                         state = "error";
-                        img_path = "icons/error.svg";
+                        img_path = "images/error.svg";
                         break;
                     default:
                         break; // do nothing
@@ -1527,7 +1526,7 @@ window.qBittorrent.DynamicTable = (function() {
                     return;
                 }
 
-                const img_path = 'icons/flags/' + country_code + '.svg';
+                const img_path = 'images/flags/' + country_code + '.svg';
 
                 if (td.getChildren('img').length > 0) {
                     const img = td.getChildren('img')[0];
@@ -1899,7 +1898,7 @@ window.qBittorrent.DynamicTable = (function() {
                     }
                     else {
                         const collapseIcon = new Element('img', {
-                            src: 'icons/go-down.svg',
+                            src: 'images/go-down.svg',
                             styles: {
                                 'margin-left': (node.depth * 20)
                             },
@@ -1913,7 +1912,7 @@ window.qBittorrent.DynamicTable = (function() {
                             id: fileNameId
                         });
                         const dirImg = new Element('img', {
-                            src: 'icons/directory.svg',
+                            src: 'images/directory.svg',
                             styles: {
                                 'width': 15,
                                 'padding-right': 5,
@@ -2194,19 +2193,19 @@ window.qBittorrent.DynamicTable = (function() {
                 let img_path;
                 switch (row.full_data.status) {
                     case 'default':
-                        img_path = 'icons/application-rss.svg';
+                        img_path = 'images/application-rss.svg';
                         break;
                     case 'hasError':
-                        img_path = 'icons/task-reject.svg';
+                        img_path = 'images/task-reject.svg';
                         break;
                     case 'isLoading':
                         img_path = 'images/spinner.gif';
                         break;
                     case 'unread':
-                        img_path = 'icons/mail-inbox.svg';
+                        img_path = 'images/mail-inbox.svg';
                         break;
                     case 'isFolder':
-                        img_path = 'icons/folder-documents.svg';
+                        img_path = 'images/folder-documents.svg';
                         break;
                 }
                 let td;
@@ -2252,12 +2251,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2349,12 +2345,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2436,12 +2429,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2524,12 +2514,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);
@@ -2575,12 +2562,9 @@ window.qBittorrent.DynamicTable = (function() {
                 return row['full_data'][this.dataProperties[pos]];
             };
             column['compareRows'] = function(row1, row2) {
-                if (this.getRowValue(row1) < this.getRowValue(row2))
-                    return -1;
-                else if (this.getRowValue(row1) > this.getRowValue(row2))
-                    return 1;
-                else
-                    return 0;
+                const value1 = this.getRowValue(row1);
+                const value2 = this.getRowValue(row2);
+                return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
                 const value = this.getRowValue(row);

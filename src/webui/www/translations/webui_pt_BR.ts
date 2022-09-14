@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="pt_BR">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="pt_BR">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -37,7 +39,7 @@
         <translation>Criar sub-pasta</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
 </context>
@@ -68,7 +70,7 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Resumir torrents</translation>
+        <translation>Retomar torrents</translation>
     </message>
     <message>
         <source>Pause torrents</source>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>Você tem certeza que você quer apagar os torrents selecionados da lista de transferências?</translation>
+        <translation type="vanished">Você tem certeza que você quer apagar os torrents selecionados da lista de transferências?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -361,6 +363,10 @@
         <source>Original author</source>
         <translation>Autor original</translation>
     </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -390,7 +396,7 @@
     </message>
     <message>
         <source>Resume</source>
-        <translation>Resumir</translation>
+        <translation>Retomar</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -410,7 +416,7 @@
     </message>
     <message>
         <source>Resume All</source>
-        <translation>Resumir Todos</translation>
+        <translation>Retomar Todos</translation>
     </message>
     <message>
         <source>Statistics</source>
@@ -572,6 +578,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>Barra Lateral dos Filtros</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>%T: Tracker atual</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>Dica: Encapsular o parâmetro com aspas pra evitar que o texto seja cortado nos espaços em branco (ex: &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>Dica: Encapsular o parâmetro com aspas pra evitar que o texto seja cortado nos espaços em branco (ex: "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>Ativar cache do sistema operacional:</translation>
+        <translation type="vanished">Ativar cache do sistema operacional:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1172,7 +1186,7 @@
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
-        <translation>Enviar fator da marca d&apos;água do buffer:</translation>
+        <translation>Enviar fator da marca d'água do buffer:</translation>
     </message>
     <message>
         <source>libtorrent Section</source>
@@ -1216,7 +1230,7 @@
     </message>
     <message>
         <source>Send buffer watermark:</source>
-        <translation>Enviar marca d&apos;água do buffer:</translation>
+        <translation>Enviar marca d'água do buffer:</translation>
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
@@ -1260,11 +1274,11 @@
     </message>
     <message>
         <source>Send buffer low watermark:</source>
-        <translation>Enviar marca d&apos;água com buffer baixo:</translation>
+        <translation>Enviar marca d'água com buffer baixo:</translation>
     </message>
     <message>
         <source>Save resume data interval:</source>
-        <translation>Salvar intervalo dos dados do resumo:</translation>
+        <translation>Salvar o intervalo de dados de retomada:</translation>
     </message>
     <message>
         <source>Always announce to all trackers in a tier:</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>Usar afinidade da extensão dos pedaços (requer libtorrent &gt;=1.2.2):</translation>
+        <translation type="vanished">Usar afinidade da extensão dos pedaços (requer libtorrent &gt;=1.2.2):</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
+        <translation type="vanished">Máximo de anúncios HTTP simultâneos (requer libtorrent &gt;= 1.2.7):</translation>
     </message>
     <message>
         <source> min</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>Suporte a nome de domínio internacionalizado (IDN) (requer libtorrent &gt;=1.2.12):</translation>
+        <translation type="vanished">Suporte a nome de domínio internacionalizado (IDN) (requer libtorrent &gt;=1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1427,7 +1441,7 @@
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
     <message>
@@ -1448,7 +1462,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Re-anunciar pra todos os trackers quando o IP ou porta for mudado:</translation>
+        <translation>Reanunciar para todos os trackers quando o IP ou porta for alterado:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1516,7 +1530,59 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation>Limite de uso de memória física (RAM):</translation>
+        <translation type="vanished">Limite de uso de memória física (RAM):</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1716,7 +1782,7 @@
     </message>
     <message>
         <source>Reannounce In:</source>
-        <translation>Re-anunciar em:</translation>
+        <translation>Reanunciar em:</translation>
     </message>
     <message>
         <source>Last Seen Complete:</source>
@@ -1948,7 +2014,7 @@
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>Resumido (0)</translation>
+        <translation>Retomado (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -1988,7 +2054,7 @@
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>Resumido (%1)</translation>
+        <translation>Retomado (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2366,7 +2432,7 @@
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation>Verificando dados do resumo</translation>
+        <translation>Verificando dados de retomada</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2417,12 +2483,12 @@
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation>Resumir</translation>
+        <translation>Retomar</translation>
     </message>
     <message>
         <source>Force Resume</source>
         <comment>Force Resume/start the torrent</comment>
-        <translation>Forçar resumo</translation>
+        <translation>Forçar Retomada</translation>
     </message>
     <message>
         <source>Pause</source>
@@ -2530,7 +2596,7 @@
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Forçar o re-anúncio</translation>
+        <translation>Forçar o reanúncio</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2631,11 +2697,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>Apagar também os arquivos no disco rígido</translation>
+        <translation type="vanished">Apagar também os arquivos no disco rígido</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>Confirmação de exclusão - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2857,7 +2927,7 @@
         <translation>Ativado</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>Aviso: Certifique-se de obedecer as leis de copyright do seu país quando baixar torrents de qualquer destes motores de busca.</translation>
     </message>
     <message>
@@ -2966,7 +3036,7 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Resumir torrents</translation>
+        <translation>Retomar torrents</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3472,7 +3542,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
         <translation>Original</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
+        <source>Don't create subfolder</source>
         <translation>Não criar sub-pasta</translation>
     </message>
 </context>
@@ -3484,7 +3554,7 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation>Resumir torrents</translation>
+        <translation>Retomar torrents</translation>
     </message>
     <message>
         <source>All (%1)</source>

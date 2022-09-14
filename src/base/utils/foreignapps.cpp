@@ -72,16 +72,11 @@ namespace
             // So trim off unrelated characters
             const auto versionStr = QString::fromLocal8Bit(outputSplit[1]);
             const int idx = versionStr.indexOf(QRegularExpression(u"[^\\.\\d]"_qs));
-
-            try
-            {
-                info = {exeName, versionStr.left(idx)};
-            }
-            catch (const RuntimeError &)
-            {
+            const auto version = PythonInfo::Version::fromString(versionStr.left(idx));
+            if (!version.isValid())
                 return false;
-            }
 
+            info = {exeName, version};
             LogMsg(QCoreApplication::translate("Utils::ForeignApps", "Python detected, executable name: '%1', version: %2")
                 .arg(info.executableName, info.version.toString()), Log::INFO);
             return true;

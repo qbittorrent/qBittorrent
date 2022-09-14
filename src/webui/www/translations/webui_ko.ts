@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS version="2.1" language="ko">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="ko">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -34,11 +36,11 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>폴더 생성</translation>
+        <translation>하위폴더 만들기</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>폴더 생성 안 함</translation>
+        <source>Don't create subfolder</source>
+        <translation>하위폴더 만들지 않음</translation>
     </message>
 </context>
 <context>
@@ -139,7 +141,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>프로그램 기본설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
+        <translation>프로그램 환경설정을 저장할 수 없습니다. qBittorrent에 연결할 수 없습니다.</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -208,7 +210,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>위치 지정</translation>
+        <translation>위치 설정하기</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
@@ -271,7 +273,7 @@
     </message>
     <message>
         <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation>선택하신 토렌트를 전송 목록에서 삭제하시겠습니까?</translation>
+        <translation type="vanished">선택하신 토렌트를 전송 목록에서 삭제하시겠습니까?</translation>
     </message>
     <message>
         <source>Save</source>
@@ -360,6 +362,10 @@
     <message>
         <source>Original author</source>
         <translation>원본 작성자</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -572,6 +578,14 @@
     <message>
         <source>Filters Sidebar</source>
         <translation>필터 사이드바</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -955,8 +969,8 @@
         <translation>%T: 현재 트래커</translation>
     </message>
     <message>
-        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., &quot;%N&quot;)</source>
-        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, &quot;%N&quot;)</translation>
+        <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
+        <translation>팁: 텍스트가 공백때문에 잘리지 않게 하려면 변수를 따옴표로 감싸세요 (예, "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1016,7 +1030,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation>자동 내려받기 사용 안 함</translation>
+        <translation>자동으로 다운로드하지 않음</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1124,7 +1138,7 @@
     </message>
     <message>
         <source>Enable OS cache:</source>
-        <translation>운영체제 캐쉬 사용:</translation>
+        <translation type="vanished">운영체제 캐쉬 사용:</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1284,7 +1298,7 @@
     </message>
     <message>
         <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation>조각 범위 선호도 사용 (libtorrent &gt;= 1.2.2 필요)</translation>
+        <translation type="vanished">조각 범위 선호도 사용 (libtorrent &gt;= 1.2.2 필요)</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1368,7 +1382,7 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation>최대 동시 HTTP 알림(libtorrent &gt;= 1.2.7 필요)</translation>
+        <translation type="vanished">최대 동시 HTTP 알림(libtorrent &gt;= 1.2.7 필요)</translation>
     </message>
     <message>
         <source> min</source>
@@ -1412,7 +1426,7 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation>국제 도메인 이름(IDN) 지원(libtorrent &gt;= 1.2.12 이상):</translation>
+        <translation type="vanished">국제 도메인 이름(IDN) 지원(libtorrent &gt;= 1.2.12 이상):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1420,15 +1434,15 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>폴더 생성</translation>
+        <translation>하위폴더 만들기</translation>
     </message>
     <message>
         <source>Original</source>
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>폴더 생성 안 함</translation>
+        <source>Don't create subfolder</source>
+        <translation>하위폴더 만들지 않음</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1468,11 +1482,11 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation>트래커에 보고된 IP 주소(다시 시작해야 함):</translation>
+        <translation>트래커에 보고된 IP 주소 (다시 시작 필요):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation>시스템이 사용하지 않는 포트를 선택하도록 하려면 0으로 지정</translation>
+        <translation>시스템이 사용하지 않는 포트를 선택하도록 하려면 0으로 설정하기</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1496,7 +1510,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished"/>
+        <translation>메모리 매핑된 파일</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1504,19 +1518,71 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished"/>
+        <translation>POSIX-호환</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished"/>
+        <translation>이 옵션은 Linux에서 별로 권장하지 않습니다</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished"/>
+        <translation>디스크 IO 유형 (libtorrent &gt;= 2.0; 다시 시작 필요):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit:</source>
-        <translation type="unfinished"/>
+        <translation type="vanished">물리적 메모리(RAM) 사용 제한:</translation>
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>It controls the internal state update interval which in turn will affect UI updates</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO read mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO write mode:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use piece extent affinity:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Max concurrent HTTP announces:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable OS cache</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Refresh interval:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ms</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Excluded file names</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1788,7 +1854,7 @@
     </message>
     <message>
         <source>Priority</source>
-        <translation>우선 순위</translation>
+        <translation>우선순위</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -1944,7 +2010,7 @@
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>완료됨 (0)</translation>
+        <translation>완료 (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
@@ -1952,7 +2018,7 @@
     </message>
     <message>
         <source>Paused (0)</source>
-        <translation>일시정지됨 (0)</translation>
+        <translation>일시정지 (0)</translation>
     </message>
     <message>
         <source>Active (0)</source>
@@ -1980,11 +2046,11 @@
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation>완료됨 (%1)</translation>
+        <translation>완료 (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
-        <translation>일시정지됨 (%1)</translation>
+        <translation>일시정지 (%1)</translation>
     </message>
     <message>
         <source>Resumed (%1)</source>
@@ -2016,7 +2082,7 @@
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>중지됨 (0)</translation>
+        <translation>중지 (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
@@ -2024,7 +2090,7 @@
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>중지됨 (%1)</translation>
+        <translation>중지 (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
@@ -2468,7 +2534,7 @@
     </message>
     <message>
         <source>Set location...</source>
-        <translation>위치 지정...</translation>
+        <translation>위치 설정하기...</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -2526,7 +2592,7 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>위치 지정</translation>
+        <translation>위치 설정하기</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2590,7 +2656,7 @@
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished"/>
+        <translation>.torrent 내보내기</translation>
     </message>
 </context>
 <context>
@@ -2631,11 +2697,15 @@
     </message>
     <message>
         <source>Also delete the files on the hard disk</source>
-        <translation>하드 디스크 파일도 삭제</translation>
+        <translation type="vanished">하드 디스크 파일도 삭제</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
         <translation>삭제 확인 - qBittorrent</translation>
+    </message>
+    <message>
+        <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2854,10 +2924,10 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용됨</translation>
+        <translation>사용 설정됨</translation>
     </message>
     <message>
-        <source>Warning: Be sure to comply with your country&apos;s copyright laws when downloading torrents from any of these search engines.</source>
+        <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
         <translation>경고: 검색 엔진으로 토렌트를 내려받을 때는 해당 국가의 저작권법을 준수해야 합니다.</translation>
     </message>
     <message>
@@ -2904,7 +2974,7 @@
     </message>
     <message>
         <source>Enabled</source>
-        <translation>사용됨</translation>
+        <translation>사용 설정됨</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3464,15 +3534,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation>폴더 생성</translation>
+        <translation>하위폴더 만들기</translation>
     </message>
     <message>
         <source>Original</source>
         <translation>원본</translation>
     </message>
     <message>
-        <source>Don&apos;t create subfolder</source>
-        <translation>폴더 생성 안 함</translation>
+        <source>Don't create subfolder</source>
+        <translation>하위폴더 만들지 않음</translation>
     </message>
 </context>
 <context>

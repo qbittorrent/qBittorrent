@@ -133,7 +133,7 @@ namespace
             for (const QString &idString : idList)
             {
                 const auto hash = BitTorrent::TorrentID::fromString(idString);
-                BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(hash);
+                BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(hash);
                 if (torrent)
                     func(torrent);
             }
@@ -392,7 +392,7 @@ void TorrentsController::propertiesAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -466,7 +466,7 @@ void TorrentsController::trackersAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -499,7 +499,7 @@ void TorrentsController::webseedsAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -531,7 +531,7 @@ void TorrentsController::filesAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -600,7 +600,7 @@ void TorrentsController::pieceHashesAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -625,7 +625,7 @@ void TorrentsController::pieceStatesAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -741,7 +741,7 @@ void TorrentsController::addTrackersAction()
     requireParams({u"hash"_qs, u"urls"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -763,7 +763,7 @@ void TorrentsController::editTrackerAction()
     const QString origUrl = params()[u"origUrl"_qs];
     const QString newUrl = params()[u"newUrl"_qs];
 
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -801,7 +801,7 @@ void TorrentsController::removeTrackersAction()
     requireParams({u"hash"_qs, u"urls"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -879,7 +879,7 @@ void TorrentsController::filePrioAction()
     if (!BitTorrent::isValidDownloadPriority(priority))
         throw APIError(APIErrorType::BadParams, tr("Priority is not valid"));
 
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
     if (!torrent->hasMetadata())
@@ -916,7 +916,7 @@ void TorrentsController::uploadLimitAction()
     for (const QString &id : idList)
     {
         int limit = -1;
-        const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(BitTorrent::TorrentID::fromString(id));
+        const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(BitTorrent::TorrentID::fromString(id));
         if (torrent)
             limit = torrent->uploadLimit();
         map[id] = limit;
@@ -934,7 +934,7 @@ void TorrentsController::downloadLimitAction()
     for (const QString &id : idList)
     {
         int limit = -1;
-        const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(BitTorrent::TorrentID::fromString(id));
+        const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(BitTorrent::TorrentID::fromString(id));
         if (torrent)
             limit = torrent->downloadLimit();
         map[id] = limit;
@@ -1163,7 +1163,7 @@ void TorrentsController::renameAction()
     if (name.isEmpty())
         throw APIError(APIErrorType::Conflict, tr("Incorrect torrent name"));
 
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -1363,7 +1363,7 @@ void TorrentsController::renameFileAction()
     requireParams({u"hash"_qs, u"oldPath"_qs, u"newPath"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -1385,7 +1385,7 @@ void TorrentsController::renameFolderAction()
     requireParams({u"hash"_qs, u"oldPath"_qs, u"newPath"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
@@ -1407,7 +1407,7 @@ void TorrentsController::exportAction()
     requireParams({u"hash"_qs});
 
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(id);
+    const BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 

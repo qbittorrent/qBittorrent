@@ -50,6 +50,15 @@ bool BitTorrent::InfoHash::isValid() const
     return m_valid;
 }
 
+bool BitTorrent::InfoHash::isHybrid() const
+{
+#ifdef QBT_USES_LIBTORRENT2
+    return (m_nativeHash.has_v1() && m_nativeHash.has_v2());
+#else
+    return false;
+#endif
+}
+
 SHA1Hash BitTorrent::InfoHash::v1() const
 {
 #ifdef QBT_USES_LIBTORRENT2
@@ -84,12 +93,22 @@ BitTorrent::InfoHash::operator WrappedType() const
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromString(const QString &hashString)
 {
-    return {BaseType::fromString(hashString)};
+    return TorrentID(BaseType::fromString(hashString));
 }
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::InfoHash &infoHash)
 {
     return infoHash.toTorrentID();
+}
+
+BitTorrent::TorrentID BitTorrent::TorrentID::fromSHA1Hash(const SHA1Hash &hash)
+{
+    return TorrentID(hash);
+}
+
+BitTorrent::TorrentID BitTorrent::TorrentID::fromSHA256Hash(const SHA256Hash &hash)
+{
+    return BaseType::UnderlyingType(static_cast<typename SHA256Hash::UnderlyingType>(hash).data());
 }
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

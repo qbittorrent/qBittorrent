@@ -76,7 +76,7 @@ signals:
 private:
     void onPreferencesChanged();
 #ifndef Q_OS_MACOS
-    void createTrayIcon(int retries);
+    void createTrayIcon();
 #endif // Q_OS_MACOS
 
     CachedSettingValue<bool> m_storeNotificationEnabled;

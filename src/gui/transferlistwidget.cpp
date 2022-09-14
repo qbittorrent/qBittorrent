@@ -915,7 +915,7 @@ void TransferListWidget::displayListMenu()
     connect(actionPause, &QAction::triggered, this, &TransferListWidget::pauseSelectedTorrents);
     auto *actionForceStart = new QAction(UIThemeManager::instance()->getIcon(u"torrent-start-forced"_qs), tr("Force Resu&me", "Force Resume/start the torrent"), listMenu);
     connect(actionForceStart, &QAction::triggered, this, &TransferListWidget::forceStartSelectedTorrents);
-    auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("&Delete", "Delete the torrent"), listMenu);
+    auto *actionDelete = new QAction(UIThemeManager::instance()->getIcon(u"list-remove"_qs), tr("&Remove", "Remove the torrent"), listMenu);
     connect(actionDelete, &QAction::triggered, this, &TransferListWidget::softDeleteSelectedTorrents);
     auto *actionPreviewFile = new QAction(UIThemeManager::instance()->getIcon(u"view-preview"_qs), tr("Pre&view file..."), listMenu);
     connect(actionPreviewFile, &QAction::triggered, this, &TransferListWidget::previewSelectedTorrents);
@@ -1068,6 +1068,12 @@ void TransferListWidget::displayListMenu()
         first = false;
 
         const bool rechecking = torrent->isChecking();
+        if (rechecking)
+        {
+            needsStart = true;
+            needsPause = true;
+        }
+
         const bool queued = (BitTorrent::Session::instance()->isQueueingSystemEnabled() && torrent->isQueued());
 
         if (!isPaused && !rechecking && !queued)
@@ -1227,7 +1233,7 @@ void TransferListWidget::displayListMenu()
     copySubMenu->addAction(actionCopyMagnetLink);
     copySubMenu->addAction(actionCopyID);
 
-    actionExportTorrent->setToolTip(u"Exported torrent is not necessarily the same as the imported"_qs);
+    actionExportTorrent->setToolTip(tr("Exported torrent is not necessarily the same as the imported"));
     listMenu->addAction(actionExportTorrent);
 
     listMenu->popup(QCursor::pos());

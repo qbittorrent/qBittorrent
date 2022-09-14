@@ -46,6 +46,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -75,7 +76,9 @@ PropertiesWidget::PropertiesWidget(QWidget *parent)
     , m_ui(new Ui::PropertiesWidget())
 {
     m_ui->setupUi(this);
+#ifndef Q_OS_MACOS
     setAutoFillBackground(true);
+#endif
 
     m_state = VISIBLE;
 

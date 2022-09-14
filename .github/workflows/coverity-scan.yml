@@ -8,7 +8,8 @@ on:
 jobs:
   coverity_scan:
     name: Scan
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -21,9 +22,9 @@ jobs:
             libboost-dev libssl-dev zlib1g-dev
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          version: "5.15.2"
+          version: "6.3.0"
 
       - name: Install libtorrent
         run: |

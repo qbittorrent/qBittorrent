@@ -90,16 +90,15 @@ void IPSubnetWhitelistOptionsDialog::on_buttonBox_accepted()
 
 void IPSubnetWhitelistOptionsDialog::on_buttonWhitelistIPSubnet_clicked()
 {
-    bool ok = false;
-    const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text(), &ok);
-    if (!ok)
+    const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(m_ui->txtIPSubnet->text());
+    if (!subnet)
     {
         QMessageBox::critical(this, tr("Error"), tr("The entered subnet is invalid."));
         return;
     }
 
     m_model->insertRow(m_model->rowCount());
-    m_model->setData(m_model->index(m_model->rowCount() - 1, 0), Utils::Net::subnetToString(subnet));
+    m_model->setData(m_model->index(m_model->rowCount() - 1, 0), Utils::Net::subnetToString(subnet.value()));
     m_ui->txtIPSubnet->clear();
     m_modified = true;
 }
@@ -114,5 +113,5 @@ void IPSubnetWhitelistOptionsDialog::on_buttonDeleteIPSubnet_clicked()
 
 void IPSubnetWhitelistOptionsDialog::on_txtIPSubnet_textChanged(const QString &subnetStr)
 {
-    m_ui->buttonWhitelistIPSubnet->setEnabled(Utils::Net::canParseSubnet(subnetStr));
+    m_ui->buttonWhitelistIPSubnet->setEnabled(Utils::Net::parseSubnet(subnetStr).has_value());
 }

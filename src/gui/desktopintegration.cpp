@@ -85,7 +85,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     MacUtils::overrideDockClickHandler(handleDockClicked);
 #else
     if (Preferences::instance()->systemTrayEnabled())
-        createTrayIcon(20);
+        createTrayIcon();
 
 #ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
     if (isNotificationsEnabled())
@@ -104,7 +104,7 @@ bool DesktopIntegration::isActive() const
 #ifdef Q_OS_MACOS
     return true;
 #else
-    return (m_systrayIcon != nullptr);
+    return QSystemTrayIcon::isSystemTrayAvailable();
 #endif
 }
 
@@ -118,9 +118,10 @@ void DesktopIntegration::setToolTip(const QString &toolTip)
     if (m_toolTip == toolTip)
         return;
 
+    m_toolTip = toolTip;
 #ifndef Q_OS_MACOS
     if (m_systrayIcon)
-        m_systrayIcon->setToolTip(toolTip);
+        m_systrayIcon->setToolTip(m_toolTip);
 #endif
 }
 
@@ -216,7 +217,7 @@ void DesktopIntegration::onPreferencesChanged()
         }
         else
         {
-            createTrayIcon(20);
+            createTrayIcon();
         }
     }
     else
@@ -229,45 +230,28 @@ void DesktopIntegration::onPreferencesChanged()
 }
 
 #ifndef Q_OS_MACOS
-void DesktopIntegration::createTrayIcon(const int retries)
+void DesktopIntegration::createTrayIcon()
 {
     Q_ASSERT(!m_systrayIcon);
 
-    if (QSystemTrayIcon::isSystemTrayAvailable())
+    m_systrayIcon = new QSystemTrayIcon(UIThemeManager::instance()->getSystrayIcon(), this);
+
+    m_systrayIcon->setToolTip(m_toolTip);
+
+    if (m_menu)
+        m_systrayIcon->setContextMenu(m_menu);
+
+    connect(m_systrayIcon, &QSystemTrayIcon::activated, this
+            , [this](const QSystemTrayIcon::ActivationReason reason)
     {
-        m_systrayIcon = new QSystemTrayIcon(UIThemeManager::instance()->getSystrayIcon(), this);
-
-        m_systrayIcon->setToolTip(m_toolTip);
-
-        if (m_menu)
-            m_systrayIcon->setContextMenu(m_menu);
-
-        connect(m_systrayIcon, &QSystemTrayIcon::activated, this
-                , [this](const QSystemTrayIcon::ActivationReason reason)
-        {
-            if (reason == QSystemTrayIcon::Trigger)
-                emit activationRequested();
-        });
+        if (reason == QSystemTrayIcon::Trigger)
+            emit activationRequested();
+    });
 #ifndef QBT_USES_CUSTOMDBUSNOTIFICATIONS
-        connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &DesktopIntegration::notificationClicked);
+    connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &DesktopIntegration::notificationClicked);
 #endif
 
-        m_systrayIcon->show();
-        emit stateChanged();
-    }
-    else if (retries > 0)
-    {
-        LogMsg(tr("System tray icon is not available, retrying..."), Log::WARNING);
-        QTimer::singleShot(2s, this, [this, retries]()
-        {
-            if (Preferences::instance()->systemTrayEnabled())
-                createTrayIcon(retries - 1);
-        });
-    }
-    else
-    {
-        LogMsg(tr("System tray icon is still not available after retries. Disabling it."), Log::WARNING);
-        Preferences::instance()->setSystemTrayEnabled(false);
-    }
+    m_systrayIcon->show();
+    emit stateChanged();
 }
 #endif // Q_OS_MACOS

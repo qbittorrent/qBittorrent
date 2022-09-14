@@ -58,7 +58,7 @@
 
 namespace BitTorrent
 {
-    class Session;
+    class SessionImpl;
     struct LoadTorrentParams;
 
     enum class MoveStorageMode
@@ -85,7 +85,7 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
-        TorrentImpl(Session *session, lt::session *nativeSession
+        TorrentImpl(SessionImpl *session, lt::session *nativeSession
                           , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
         ~TorrentImpl() override;
 
@@ -287,7 +287,7 @@ namespace BitTorrent
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
-        Session *const m_session = nullptr;
+        SessionImpl *const m_session = nullptr;
         lt::session *m_nativeSession = nullptr;
         lt::torrent_handle m_nativeHandle;
         mutable lt::torrent_status m_nativeStatus;
@@ -336,6 +336,9 @@ namespace BitTorrent
         bool m_unchecked = false;
 
         lt::add_torrent_params m_ltAddTorrentParams;
+
+        int m_downloadLimit = 0;
+        int m_uploadLimit = 0;
 
         mutable QBitArray m_pieces;
     };

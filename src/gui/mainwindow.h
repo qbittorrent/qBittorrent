@@ -79,7 +79,13 @@ class MainWindow final : public QMainWindow, public GUIApplicationComponent
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    explicit MainWindow(IGUIApplication *app, QWidget *parent = nullptr);
+    enum State
+    {
+        Normal,
+        Minimized
+    };
+
+    explicit MainWindow(IGUIApplication *app, State initialState = Normal);
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;

@@ -47,7 +47,7 @@ public:
 
 public slots:
     void search(const BitTorrent::TorrentID &id, const PathList &originalFileNames
-                , const Path &savePath, const Path &downloadPath);
+                , const Path &savePath, const Path &downloadPath, bool forceAppendExt);
 
 signals:
     void searchFinished(const BitTorrent::TorrentID &id, const Path &savePath, const PathList &fileNames);
