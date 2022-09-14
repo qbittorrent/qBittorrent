@@ -86,12 +86,13 @@ void AppController::buildInfoAction()
 
 void AppController::shutdownAction()
 {
-    qDebug() << "Shutdown request from Web UI";
-
-    // Special case handling for shutdown, we
+    // Special handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-    QTimer::singleShot(100, qApp, &QCoreApplication::quit);
+    QTimer::singleShot(100, qApp, []()
+    {
+        QCoreApplication::exit();
+    });
 }
 
 void AppController::preferencesAction()
