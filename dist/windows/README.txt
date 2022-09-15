@@ -57,7 +57,7 @@ uninstaller.nsi
 
 
 5. "license.txt" is a text file that contains the text rendered
-   from src\gui\gpl.html or the text contained in COPYING
+   from src\gui\gpl.html
 6. "qbittorrent.exe" is the compiled binary file.
 
 SCRIPT HACKERS:
