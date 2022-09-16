@@ -423,17 +423,15 @@ void TrackerListWidget::loadTrackers()
         delete m_trackerItems.take(tracker);
 }
 
-// Ask the user for new trackers and add them to the torrent
-void TrackerListWidget::askForTrackers()
+void TrackerListWidget::openAddTrackersDialog()
 {
-    BitTorrent::Torrent *const torrent = m_properties->getCurrentTorrent();
-    if (!torrent) return;
+    BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
+    if (!torrent)
+        return;
 
-    QVector<BitTorrent::TrackerEntry> trackers;
-    for (const QString &tracker : asConst(TrackersAdditionDialog::askForTrackers(this, torrent)))
-        trackers.append({tracker});
-
-    torrent->addTrackers(trackers);
+    const auto dialog = new TrackersAdditionDialog(this, torrent);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    dialog->open();
 }
 
 void TrackerListWidget::copyTrackerUrl()
@@ -567,8 +565,8 @@ void TrackerListWidget::showTrackerListMenu()
     menu->setAttribute(Qt::WA_DeleteOnClose);
 
     // Add actions
-    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add a new tracker...")
-        , this, &TrackerListWidget::askForTrackers);
+    menu->addAction(UIThemeManager::instance()->getIcon(u"list-add"_qs), tr("Add trackers...")
+        , this, &TrackerListWidget::openAddTrackersDialog);
 
     if (!getSelectedTrackerItems().isEmpty())
     {

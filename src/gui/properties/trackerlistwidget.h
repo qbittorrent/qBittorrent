@@ -70,7 +70,6 @@ public slots:
     void clear();
     void loadStickyItems(const BitTorrent::Torrent *torrent);
     void loadTrackers();
-    void askForTrackers();
     void copyTrackerUrl();
     void reannounceSelected();
     void deleteSelectedTrackers();
@@ -83,6 +82,7 @@ protected:
     QVector<QTreeWidgetItem *> getSelectedTrackerItems() const;
 
 private slots:
+    void openAddTrackersDialog();
     void displayColumnHeaderMenu();
 
 private:
