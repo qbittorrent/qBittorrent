@@ -1772,10 +1772,10 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
 void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p)
 {
     Q_UNUSED(p);
-    qDebug("Got a torrent finished alert for \"%s\"", qUtf8Printable(name()));
-    qDebug("Torrent has seed status: %s", m_hasSeedStatus ? "yes" : "no");
+
     m_hasMissingFiles = false;
-    if (m_hasSeedStatus) return;
+    if (m_hasSeedStatus)
+        return;
 
     m_statusUpdatedTriggers.enqueue([this]()
     {

@@ -546,7 +546,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     m_ui->checkPreallocateAll->setChecked(session->isPreallocationEnabled());
     m_ui->checkAppendqB->setChecked(session->isAppendExtensionEnabled());
-    m_ui->checkRecursiveDownload->setChecked(!pref->recursiveDownloadDisabled());
+    m_ui->checkRecursiveDownload->setChecked(pref->isRecursiveDownloadEnabled());
 
     m_ui->comboSavingMode->setCurrentIndex(!session->isAutoTMMDisabledByDefault());
     m_ui->comboTorrentCategoryChanged->setCurrentIndex(session->isDisableAutoTMMWhenCategoryChanged());
@@ -698,7 +698,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     session->setPreallocationEnabled(preAllocateAllFiles());
     session->setAppendExtensionEnabled(m_ui->checkAppendqB->isChecked());
-    pref->disableRecursiveDownload(!m_ui->checkRecursiveDownload->isChecked());
+    pref->setRecursiveDownloadEnabled(m_ui->checkRecursiveDownload->isChecked());
 
     session->setAutoTMMDisabledByDefault(m_ui->comboSavingMode->currentIndex() == 0);
     session->setDisableAutoTMMWhenCategoryChanged(m_ui->comboTorrentCategoryChanged->currentIndex() == 1);

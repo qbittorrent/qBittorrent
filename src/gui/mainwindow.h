@@ -130,7 +130,7 @@ private slots:
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
+    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 
