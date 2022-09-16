@@ -38,6 +38,8 @@ class QWidget;
 
 namespace Utils::Gui
 {
+    bool isDarkTheme();
+
     QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
     QPixmap scaledPixmap(const Path &path, const QWidget *widget, int height = 0);
     QPixmap scaledPixmapSvg(const Path &path, const QWidget *widget, int height);
