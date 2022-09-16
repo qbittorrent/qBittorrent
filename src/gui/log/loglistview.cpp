@@ -52,8 +52,9 @@ namespace
 
     QString logText(const QModelIndex &index)
     {
-        return u"%1%2%3"_qs.arg(index.data(BaseLogModel::TimeRole).toString(), SEPARATOR
-                                , index.data(BaseLogModel::MessageRole).toString());
+        return index.data(BaseLogModel::TimeRole).toString()
+            + SEPARATOR
+            + index.data(BaseLogModel::MessageRole).toString();
     }
 
     class LogItemDelegate final : public QStyledItemDelegate
