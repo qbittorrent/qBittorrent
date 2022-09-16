@@ -154,11 +154,11 @@ void Utils::Gui::openPath(const Path &path)
         {
             const std::wstring pathWStr = path.toString().toStdWString();
             PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(pathWStr.c_str());
-            ITEMIDLIST idNull = {0};
+            ITEMIDLIST idNull = {};
             LPCITEMIDLIST pidlNull[1] = {&idNull};
             if (pidl)
             {
-                ::SHOpenFolderAndSelectItems(pidl, 0, pidlNull, 0);
+                ::SHOpenFolderAndSelectItems(pidl, 1, pidlNull, 0);
                 ::ILFree(pidl);
             }
 
