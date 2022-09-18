@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>Không tạo thư mục con</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Xóa torrent</translation>
+        <translation type="vanished">Xóa torrent</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>Sửa danh mục...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>Tải lên torrent cục bộ</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Bạn có chắc muốn xóa các torrent đã chọn khỏi danh sách trao đổi không?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Lưu lại</translation>
     </message>
@@ -365,7 +373,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Bạn có chắc muốn xóa các torrent đã chọn khỏi danh sách trao đổi không?</translation>
     </message>
 </context>
 <context>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Xóa</translation>
+        <translation type="vanished">Xóa</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -581,11 +589,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Hủy bỏ</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Xóa</translation>
     </message>
 </context>
 <context>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Chạy chương trình bên ngoài khi hoàn thành torrent</translation>
+        <translation type="vanished">Chạy chương trình bên ngoài khi hoàn thành torrent</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1145,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">Bật bộ đệm hệ điều hành:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>Khi tỷ lệ đạt đến</translation>
     </message>
@@ -1297,10 +1301,6 @@
         <translation>cấm:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">Sử dụng mối quan hệ ở mức độ mảnh (yêu cầu libtorrent&gt; = 1.2.2):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>Dừng thời gian chờ máy theo dõi:</translation>
     </message>
@@ -1381,10 +1381,6 @@
         <translation>Số bài viết tối đa cho mỗi luồng dữ liệu:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">Thông báo HTTP đồng thời tối đa (yêu cầu libtorrent &gt;= 1.2.7):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>phút</translation>
     </message>
@@ -1423,10 +1419,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>Giao thức kết nối ngang hàng:</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">Hỗ trợ tên miền quốc tế hóa (IDN) (yêu cầu libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1529,16 +1521,12 @@
         <translation>Loại IO đĩa (libtorrent&gt;= 2.0; buộc khởi động lại):</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">Giới hạn sử dụng bộ nhớ vật lý (RAM):</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Nó kiểm soát khoảng thời gian cập nhật trạng thái nội bộ, do đó sẽ ảnh hưởng đến các bản cập nhật giao diện người dùng</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1558,19 +1546,19 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Thông báo HTTP đồng thời tối đa:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Bật bộ đệm hệ điều hành</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Khoảng thời gian làm mới:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn sử dụng bộ nhớ vật lý (RAM) (áp dụng nếu libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1578,10 +1566,42 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Tên tệp bị loại trừ</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation>Hỗ trợ tên miền quốc tế hóa (IDN):</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2309,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Thêm máy theo dõi mới...</translation>
+        <translation type="vanished">Thêm máy theo dõi mới...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2359,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation>Số Lần Tải Về</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Hộp thoại bổ sung máy theo dõi</translation>
+        <translation type="vanished">Hộp thoại bổ sung máy theo dõi</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Danh sách máy theo dõi cần thêm (từng dòng một):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2498,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Xóa</translation>
+        <translation type="vanished">Xóa</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2576,7 +2604,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>Buộc kiểm tra lại</translation>
+        <translation type="vanished">Buộc kiểm tra lại</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2658,6 +2686,10 @@
         <source>Export .torrent</source>
         <translation>Xuất .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2693,18 +2725,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Xác nhận xóa</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Đồng thời xóa tệp trên ổ đĩa</translation>
+        <translation type="vanished">Xác nhận xóa</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Xác nhận xóa - qBittorrent</translation>
+        <translation type="vanished">Xác nhận xóa - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation>Đồng thời xóa vĩnh viễn các tệp</translation>
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2899,6 +2931,14 @@
         <source>showing</source>
         <translation>hiển thị</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3024,7 +3064,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Xóa torrent</translation>
+        <translation type="vanished">Xóa torrent</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3049,6 +3089,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Xóa thẻ</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3550,7 +3594,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>Xóa torrent</translation>
+        <translation type="vanished">Xóa torrent</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3567,6 +3611,10 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <message>
         <source>Pause torrents</source>
         <translation>Tạm dừng torrent</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

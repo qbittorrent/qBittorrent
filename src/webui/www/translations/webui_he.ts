@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>אל תיצור תת־תיקייה</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>מחק טורנטים</translation>
+        <translation type="vanished">מחק טורנטים</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>ערוך קטגוריה…</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>העלה טורנט מקומי</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">האם אתה בטוח שברצונך למחוק את הטורנטים הנבחרים מרשימת ההעברות?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>שמירה</translation>
     </message>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>מחק</translation>
+        <translation type="vanished">מחק</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>הרץ תכנית חיצונית בעת השלמת טורנט</translation>
+        <translation type="vanished">הרץ תכנית חיצונית בעת השלמת טורנט</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1145,6 @@
         <translation>נגד־עלוקה</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">אפשר מטמון OS:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>כאשר יחס מגיע אל</translation>
     </message>
@@ -1297,10 +1301,6 @@
         <translation>החרם למשך:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">השתמש במידת קירבה של חתיכות (דורש libtorrent &gt;= 1.2.2):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>עצור פסק זמן של גששים:</translation>
     </message>
@@ -1381,10 +1381,6 @@
         <translation>מספר מירבי של מאמרים להזנה:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">הכרזות HTTP מרביות במקביל (דורש libtorrent &gt;= 1.2.7):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>דק'</translation>
     </message>
@@ -1423,10 +1419,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>פרוטוקול חיבור עמיתים:</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">תמוך בשם בינלאומי של תחום (IDN) (דורש libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1529,10 +1521,6 @@
         <translation>סוג ק/פ של דיסק (libtorrent &gt;= 2.0; דורש הפעלה מחדש):</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">מגבלת שימוש בזיכרון פיזי (RAM):</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
@@ -1582,6 +1570,38 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2309,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>הוסף גשש חדש…</translation>
+        <translation type="vanished">הוסף גשש חדש…</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2359,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation>פעמים שהורד</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>דו שיח הוספת גששים</translation>
+        <translation type="vanished">דו שיח הוספת גששים</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>רשימת גששים להוספה (אחד לשורה):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2498,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>מחק</translation>
+        <translation type="vanished">מחק</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2576,7 +2604,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>אלץ בדיקה חוזרת</translation>
+        <translation type="vanished">אלץ בדיקה חוזרת</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2658,6 +2686,10 @@
         <source>Export .torrent</source>
         <translation>ייצא טורנט</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2693,18 +2725,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>אישור מחיקה</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">מחק את הקבצים גם מהכונן הקשיח</translation>
+        <translation type="vanished">אישור מחיקה</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>אישור מחיקה - qBittorrent</translation>
+        <translation type="vanished">אישור מחיקה - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2899,6 +2931,14 @@
         <source>showing</source>
         <translation>מראה</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3024,7 +3064,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>מחק טורנטים</translation>
+        <translation type="vanished">מחק טורנטים</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3049,6 +3089,10 @@
     <message>
         <source>Remove tag</source>
         <translation>הסר תגית</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3550,7 +3594,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>מחק טורנטים</translation>
+        <translation type="vanished">מחק טורנטים</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3567,6 +3611,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>השהה טורנטים</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>Skapa inte undermapp</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Ta bort torrenter</translation>
+        <translation type="vanished">Ta bort torrenter</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>Redigera kategori...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>Skicka lokal torrent</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Är du säker på att du vill ta bort de markerade torrenterna från överföringslistan?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Spara</translation>
     </message>
@@ -365,7 +373,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Är du säker på att du vill ta bort de valda torrenterna från överföringslistan?</translation>
     </message>
 </context>
 <context>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation type="vanished">Ta bort</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -581,11 +589,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Ta bort</translation>
     </message>
 </context>
 <context>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Kör externt program vid slutföring av torrent</translation>
+        <translation type="vanished">Kör externt program vid slutföring av torrent</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1145,6 @@
         <translation>Anti-reciprokör</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">Aktivera OS-cache</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>När kvoten når</translation>
     </message>
@@ -1297,10 +1301,6 @@
         <translation>förbud för:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">Använd delutsträckningsaffinitet (kräver libtorrent &gt;= 1.2.2):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>Stopptidsgräns för spårare</translation>
     </message>
@@ -1381,10 +1381,6 @@
         <translation>Högst antal artiklar per flöde:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">Maximalt antal samtidiga HTTP-annonseringar (kräver libtorrent &gt;= 1.2.7):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> min</translation>
     </message>
@@ -1423,10 +1419,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>Jämlikeanslutningsprotokoll:</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">Stöd internationaliserat domännamn (IDN) (kräver libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1529,59 +1521,87 @@
         <translation>Disk IO-typ (libtorrent &gt;= 2.0; kräver omstart):</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">Användningsgräns för fysiskt minne (RAM):</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Genomskrivning (kräver libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Den styr det interna tillståndsuppdateringsintervallet som i sin tur kommer att påverka användargränssnittsuppdateringar</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Disk IO-läsläge:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Inaktivera OS-cache</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Disk IO-skrivläge:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Använd affinitet för delar:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Maximalt antal samtidiga HTTP-annonseringar:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Aktivera OS-cache</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Uppdateringsintervall:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Användningsgräns för fysiskt minne (RAM) (tillämpas om libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Exkluderade filnamn</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation>Stöd för internationellt domännamn (IDN):</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2309,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Lägg till en ny spårare...</translation>
+        <translation type="vanished">Lägg till en ny spårare...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2359,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation>Gånger hämtad</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Lägg till spårare</translation>
+        <translation type="vanished">Lägg till spårare</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Lista över spårare att lägga till (en per rad):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2498,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Ta bort</translation>
+        <translation type="vanished">Ta bort</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2576,7 +2604,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>Tvinga återkontroll</translation>
+        <translation type="vanished">Tvinga återkontroll</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2658,6 +2686,10 @@
         <source>Export .torrent</source>
         <translation>Exportera .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2693,18 +2725,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Bekräftelse för borttagning</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Ta även bort filerna på hårddisken</translation>
+        <translation type="vanished">Bekräftelse för borttagning</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Bekräftelse för borttagning - qBittorrent</translation>
+        <translation type="vanished">Bekräftelse för borttagning - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation>Ta också bort filerna permanent</translation>
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2899,6 +2931,14 @@
         <source>showing</source>
         <translation>visar</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3024,7 +3064,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Ta bort torrenter</translation>
+        <translation type="vanished">Ta bort torrenter</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3049,6 +3089,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Ta bort tagg</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3550,7 +3594,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>Ta bort torrenter</translation>
+        <translation type="vanished">Ta bort torrenter</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3567,6 +3611,10 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     <message>
         <source>Pause torrents</source>
         <translation>Pausa torrenter</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

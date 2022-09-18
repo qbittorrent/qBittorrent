@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>ไม่ต้องสร้างโฟลเดอร์ย่อย</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>ลบทอร์เรนต์</translation>
+        <translation type="vanished">ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>แก้ไขหมวดหมู่</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>อัปโหลดทอร์เรนต์ในเครื่อง</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">คุณแน่ใจหรือไม่ว่าต้องการลบทอร์เรนต์ที่เลือกออกจากรายการโอน</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>บันทึก</translation>
     </message>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>ลบ</translation>
+        <translation type="vanished">ลบ</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -624,10 +632,6 @@
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1564,6 +1568,38 @@
         <source>Support internationalized domain name (IDN):</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2288,10 +2324,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation type="unfinished" />
     </message>
@@ -2339,16 +2371,24 @@
         <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>กล่องโต้ตอบการเพิ่มตัวติดตาม</translation>
+        <translation type="vanished">กล่องโต้ตอบการเพิ่มตัวติดตาม</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>รายการตัวติดตามที่จะเพิ่ม (หนึ่งรายการต่อบรรทัด):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2478,7 +2518,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>ลบ</translation>
+        <translation type="vanished">ลบ</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2553,10 +2593,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>ดาวน์โหลดตามลำดับ</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>New Category</source>
@@ -2638,6 +2674,10 @@
         <source>Export .torrent</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2672,19 +2712,15 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">ลบไฟล์ออกจากฮาร์ดดิสด้วย</translation>
-    </message>
-    <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>ยืนยันการลบ - qBittorrent</translation>
+        <translation type="vanished">ยืนยันการลบ - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2879,6 +2915,14 @@
         <source>showing</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3004,7 +3048,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>ลบทอร์เรนต์</translation>
+        <translation type="vanished">ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3029,6 +3073,10 @@
     <message>
         <source>Remove tag</source>
         <translation>ลบแท็ก</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3530,7 +3578,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>ลบทอร์เรนต์</translation>
+        <translation type="vanished">ลบทอร์เรนต์</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3547,6 +3595,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>หยุดทอร์เรนต์</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

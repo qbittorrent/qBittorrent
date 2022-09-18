@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>Не създавай подпапка</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Изтриване на торентите</translation>
+        <translation type="vanished">Изтриване на торентите</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>Редактиране на категория...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>Качване на локален торент</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Сигурни ли сте, че искате да изтриете избраните торенти от списъка за трансфер?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Съхрани</translation>
     </message>
@@ -433,7 +441,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Изтрий</translation>
+        <translation type="vanished">Изтрий</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -629,7 +637,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Изпълняване на външна програма при завършване на торент</translation>
+        <translation type="vanished">Изпълняване на външна програма при завършване на торент</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1138,10 +1146,6 @@
         <translation>Анти-лийч</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">Включи кеширане от ОС:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>Когато съотношението достигне</translation>
     </message>
@@ -1298,10 +1302,6 @@
         <translation>банни за:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">Използвай афинитет на степен на парче (изисква libtorrent &gt;= 1.2.2):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>Спиране изтичащото време на тракера:</translation>
     </message>
@@ -1382,10 +1382,6 @@
         <translation>Максимален брой на статии за канал:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">Макс. едновременни HTTP анонси (изисква libtorrent &gt;= 1.2.7):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>мин</translation>
     </message>
@@ -1424,10 +1420,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>Протокол за връзка с пиъра:</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">Поддържа интернационализирано домейн име (IDN) (изисква libtorrent &gt;= 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1530,10 +1522,6 @@
         <translation>Диск ВИ тип (libtorrent &gt;= 2.0; изисква рестарт):</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">Ограничение на потреблението на физическата памет (RAM):</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
@@ -1579,10 +1567,42 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Изключи файлови имена</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2310,7 +2330,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Добави нов тракер...</translation>
+        <translation type="vanished">Добави нов тракер...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2360,16 +2380,24 @@
         <source>Times Downloaded</source>
         <translation>Пъти свалено</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Допълнителен диалог на тракери</translation>
+        <translation type="vanished">Допълнителен диалог на тракери</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Списък тракери за добавяне (по един на ред):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2499,7 +2527,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Изтрий</translation>
+        <translation type="vanished">Изтрий</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2577,7 +2605,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>Включени проверки за промени</translation>
+        <translation type="vanished">Включени проверки за промени</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2659,6 +2687,10 @@
         <source>Export .torrent</source>
         <translation>Изнеси .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2694,18 +2726,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Потвърждение за изтриване</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Също изтрий файловете от твърдия диск</translation>
+        <translation type="vanished">Потвърждение за изтриване</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Потвърждение за изтриване - qBittorrent</translation>
+        <translation type="vanished">Потвърждение за изтриване - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2900,6 +2932,14 @@
         <source>showing</source>
         <translation>показване</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3025,7 +3065,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Изтрий торентите</translation>
+        <translation type="vanished">Изтрий торентите</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3050,6 +3090,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Изтриване на етикет</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3551,7 +3595,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>Изтрий торентите</translation>
+        <translation type="vanished">Изтрий торентите</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3568,6 +3612,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>Пауза на торентите</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

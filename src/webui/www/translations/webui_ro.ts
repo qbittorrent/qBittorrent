@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>Nu creea subdosar</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Șterge torentele</translation>
+        <translation type="vanished">Șterge torentele</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>Modifică această categorie&lt;br&gt;</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>Încărcare torrent local</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Sigur doriți să ștergeți torrentele selectate din lista de transferuri?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Salvează</translation>
     </message>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Șterge</translation>
+        <translation type="vanished">Șterge</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Rulează un program extern la încheierea descărcării torrentului</translation>
+        <translation type="vanished">Rulează un program extern la încheierea descărcării torrentului</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1564,6 +1572,38 @@
         <source>Support internationalized domain name (IDN):</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2289,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Adăugare urmăritor nou...</translation>
+        <translation type="vanished">Adăugare urmăritor nou...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2339,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Dialog adăugare urmăritoare</translation>
+        <translation type="vanished">Dialog adăugare urmăritoare</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Listă urmăritoare de adăugat (unul per linie):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2478,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Șterge</translation>
+        <translation type="vanished">Șterge</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2553,10 +2601,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Descarcă în ordine secvențială</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>New Category</source>
@@ -2638,6 +2682,10 @@
         <source>Export .torrent</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2673,18 +2721,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Confirmare ștergere</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Șterge și fișierele de pe disc</translation>
+        <translation type="vanished">Confirmare ștergere</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Confirmare ștergere - qBittorrent</translation>
+        <translation type="vanished">Confirmare ștergere - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2879,6 +2927,14 @@
         <source>showing</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3004,7 +3060,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Șterge torentele</translation>
+        <translation type="vanished">Șterge torentele</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3029,6 +3085,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Elimină eticheta</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3530,7 +3590,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>Șterge torrentele</translation>
+        <translation type="vanished">Șterge torrentele</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3547,6 +3607,10 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <message>
         <source>Pause torrents</source>
         <translation>Suspendă torrentele</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

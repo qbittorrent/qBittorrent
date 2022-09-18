@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>Ära loo alamkausta</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Kustuta torrentid</translation>
+        <translation type="vanished">Kustuta torrentid</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>Muuda kategooriat...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>Lae üles lokaalne torrent</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Kindel, et soovite kustutada valitud torrentid ülekanneteloendist?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Salvesta</translation>
     </message>
@@ -365,7 +373,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Kindel, et soovite eemaldada valitud torrentid ülekanneteloendist?</translation>
     </message>
 </context>
 <context>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>Kustuta</translation>
+        <translation type="vanished">Kustuta</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -581,11 +589,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Loobu</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Eemalda</translation>
     </message>
 </context>
 <context>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>Käivita väline programm, pärast torrenti lõpetamist</translation>
+        <translation type="vanished">Käivita väline programm, pärast torrenti lõpetamist</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1145,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">Luba OS'i puhver:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>Kui suhe jõuab</translation>
     </message>
@@ -1517,10 +1521,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">Füüsilise mälu (RAM) kasutamise piirang:</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
         <translation type="unfinished" />
     </message>
@@ -1558,7 +1558,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Füüsilise mälu (RAM) kasutamise limiit (määratakse kui libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1566,10 +1566,42 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Välistatud failide nimed</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2297,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>Lisa uus jälitaja...</translation>
+        <translation type="vanished">Lisa uus jälitaja...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2347,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>Jälitajate lisa dialoog</translation>
+        <translation type="vanished">Jälitajate lisa dialoog</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Nimekiri jälitajate lisamiseks (üks rea kohta):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2486,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>Kustuta</translation>
+        <translation type="vanished">Kustuta</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2564,7 +2604,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>Sunni Ülekontrolli</translation>
+        <translation type="vanished">Sunni Ülekontrolli</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2646,6 +2686,10 @@
         <source>Export .torrent</source>
         <translation>Ekspordi .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2681,18 +2725,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>Kustutamise kinnitamine</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Samuti kustuta failid kõvakettalt</translation>
+        <translation type="vanished">Kustutamise kinnitamine</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>Kustutamise kinnitamine - qBittorrent</translation>
+        <translation type="vanished">Kustutamise kinnitamine - qBittorrent</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2887,6 +2931,14 @@
         <source>showing</source>
         <translation>kuvatakse</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3012,7 +3064,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>Kustuta torrentid</translation>
+        <translation type="vanished">Kustuta torrentid</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3037,6 +3089,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Eemalda silt</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3538,7 +3594,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>Kustuta torrentid</translation>
+        <translation type="vanished">Kustuta torrentid</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3555,6 +3611,10 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <source>Pause torrents</source>
         <translation>Pausi torrentid</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

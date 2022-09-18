@@ -42,6 +42,14 @@
         <source>Don't create subfolder</source>
         <translation>उप-फोल्डर न बनाएँ</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -78,7 +86,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>टौरेंटो को मिटाएं</translation>
+        <translation type="vanished">टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -87,6 +95,10 @@
     <message>
         <source>Edit category...</source>
         <translation>श्रेणी संपादन...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +284,6 @@
         <translation>स्थानीय टाॅरेंट अपलोड करें</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">क्या आप निश्चित ही इन चुनें हुए टाॅरेंटों को स्थानान्तरण सूची से मिटाना चाहते हैं?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>सहेंजें</translation>
     </message>
@@ -432,7 +440,7 @@
     </message>
     <message>
         <source>Delete</source>
-        <translation>मिटाएं</translation>
+        <translation type="vanished">मिटाएं</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -628,7 +636,7 @@
     </message>
     <message>
         <source>Run external program on torrent completion</source>
-        <translation>टाॅरेंटों के पूर्ण होने पर बाहरी प्रोग्राम चलायें</translation>
+        <translation type="vanished">टाॅरेंटों के पूर्ण होने पर बाहरी प्रोग्राम चलायें</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1413,10 +1421,6 @@
         <translation>सहकर्मी कनेक्शन की पद्धति:</translation>
     </message>
     <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">अन्तर्राष्ट्रीय डोमेन नाम (IDN) समर्थन (libtorrent &gt;= 1.2.12 आवश्यक):</translation>
-    </message>
-    <message>
         <source>Torrent content layout:</source>
         <translation>टाॅरेंट सामग्री का अभिविन्यास:</translation>
     </message>
@@ -1566,6 +1570,38 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2293,7 +2329,7 @@
     </message>
     <message>
         <source>Add a new tracker...</source>
-        <translation>नया ट्रैकर जोड़ें...</translation>
+        <translation type="vanished">नया ट्रैकर जोड़ें...</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2343,16 +2379,24 @@
         <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>Trackers addition dialog</source>
-        <translation>ट्रैकर्स जोड़ने हेतु डायलाग</translation>
+        <translation type="vanished">ट्रैकर्स जोड़ने हेतु डायलाग</translation>
     </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>जोड़ने के लिए ट्रैकर्स की सूची (प्रति पंक्ति एक):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2482,7 +2526,7 @@
     <message>
         <source>Delete</source>
         <comment>Delete the torrent</comment>
-        <translation>मिटाएं</translation>
+        <translation type="vanished">मिटाएं</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2560,7 +2604,7 @@
     </message>
     <message>
         <source>Force Recheck</source>
-        <translation>फिरसे बलपुर्वक जांचे</translation>
+        <translation type="vanished">फिरसे बलपुर्वक जांचे</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2642,6 +2686,10 @@
         <source>Export .torrent</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2677,18 +2725,18 @@
     <name>confirmDeletionDlg</name>
     <message>
         <source>Deletion confirmation</source>
-        <translation>मिटाने की पुष्टि</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">हार्ड डिस्क की फाइलें भी रद्द करें</translation>
+        <translation type="vanished">मिटाने की पुष्टि</translation>
     </message>
     <message>
         <source>Deletion confirmation - qBittorrent</source>
-        <translation>मिटाने की पुष्टि करें - क्यूबिटटाॅरेंट</translation>
+        <translation type="vanished">मिटाने की पुष्टि करें - क्यूबिटटाॅरेंट</translation>
     </message>
     <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2883,6 +2931,14 @@
         <source>showing</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3008,7 +3064,7 @@
     </message>
     <message>
         <source>Delete torrents</source>
-        <translation>टौरेंटो को मिटाएं</translation>
+        <translation type="vanished">टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3033,6 +3089,10 @@
     <message>
         <source>Remove tag</source>
         <translation>उपनाम हटायें</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3534,7 +3594,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>TrackerFiltersList</name>
     <message>
         <source>Delete torrents</source>
-        <translation>टौरेंटो को मिटाएं</translation>
+        <translation type="vanished">टौरेंटो को मिटाएं</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3551,6 +3611,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>टौरेंटो को विराम दें</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
