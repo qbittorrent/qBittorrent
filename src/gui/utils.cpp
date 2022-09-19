@@ -152,15 +152,7 @@ void Utils::Gui::openPath(const Path &path)
     {
         if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
         {
-            const std::wstring pathWStr = path.toString().toStdWString();
-            PIDLIST_ABSOLUTE pidl = ::ILCreateFromPathW(pathWStr.c_str());
-            ITEMIDLIST idNull = {};
-            LPCITEMIDLIST pidlNull[1] = {&idNull};
-            if (pidl)
-            {
-                ::SHOpenFolderAndSelectItems(pidl, 1, pidlNull, 0);
-                ::ILFree(pidl);
-            }
+            ShellExecute(nullptr, nullptr, path.toString().toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 
             ::CoUninitialize();
         }
