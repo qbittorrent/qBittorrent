@@ -150,7 +150,7 @@ void Utils::Gui::openPath(const Path &path)
 #ifdef Q_OS_WIN
     auto *thread = QThread::create([path]()
     {
-        if (SUCCEEDED(::CoInitializeEx(NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE)))
+        if (SUCCEEDED(::CoInitializeEx(NULL, (COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE))))
         {
             ::ShellExecuteW(nullptr, nullptr, path.toString().toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 
