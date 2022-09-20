@@ -152,7 +152,9 @@ void Utils::Gui::openPath(const Path &path)
     {
         if (SUCCEEDED(::CoInitializeEx(NULL, (COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE))))
         {
-            ::ShellExecuteW(nullptr, nullptr, path.toString().toStdWString().c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+            const std::wstring pathWStr = path.toString().toStdWString();
+
+            ::ShellExecuteW(nullptr, nullptr, pathWStr.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
 
             ::CoUninitialize();
         }
