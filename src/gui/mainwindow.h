@@ -110,9 +110,9 @@ public:
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
-    void writeSettings();
-    void writeSplitterSettings();
-    void readSettings();
+    void saveSettings() const;
+    void loadSettings();
+    void saveSplitterSettings() const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
