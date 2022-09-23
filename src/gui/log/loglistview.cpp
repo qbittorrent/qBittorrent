@@ -29,6 +29,7 @@
 
 #include "loglistview.h"
 
+#include <QtGlobal>
 #include <QApplication>
 #include <QClipboard>
 #include <QFontMetrics>
@@ -38,8 +39,11 @@
 #include <QStyledItemDelegate>
 
 #include "base/global.h"
-#include "gui/uithememanager.h"
 #include "logmodel.h"
+
+#ifdef Q_OS_WIN
+#include "base/preferences.h"
+#endif
 
 namespace
 {
@@ -52,14 +56,21 @@ namespace
 
     QString logText(const QModelIndex &index)
     {
-        return u"%1%2%3"_qs.arg(index.data(BaseLogModel::TimeRole).toString(), SEPARATOR
-                                , index.data(BaseLogModel::MessageRole).toString());
+        return index.data(BaseLogModel::TimeRole).toString()
+            + SEPARATOR
+            + index.data(BaseLogModel::MessageRole).toString();
     }
 
     class LogItemDelegate final : public QStyledItemDelegate
     {
     public:
-        using QStyledItemDelegate::QStyledItemDelegate;
+        explicit LogItemDelegate(QObject *parent = nullptr)
+            : QStyledItemDelegate(parent)
+#ifdef Q_OS_WIN
+            , m_useCustomUITheme(Preferences::instance()->useCustomUITheme())
+#endif
+        {
+        }
 
     private:
         void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override
@@ -69,6 +80,16 @@ namespace
 
             const QStyle *style = option.widget ? option.widget->style() : QApplication::style();
             const QRect textRect = option.rect.adjusted(1, 0, 0, 0); // shift 1 to avoid text being too close to focus rect
+            const bool isEnabled = option.state.testFlag(QStyle::State_Enabled);
+
+#ifdef Q_OS_WIN
+            // Windows default theme do not use highlighted text color
+            const QPalette::ColorRole textRole = m_useCustomUITheme
+                ? (option.state.testFlag(QStyle::State_Selected) ? QPalette::HighlightedText : QPalette::WindowText)
+                : QPalette::WindowText;
+#else
+            const QPalette::ColorRole textRole = option.state.testFlag(QStyle::State_Selected) ? QPalette::HighlightedText : QPalette::WindowText;
+#endif
 
             // for unknown reasons (fixme) painter won't accept some font properties
             // until they are set explicitly, and we have to manually set some font properties
@@ -78,24 +99,23 @@ namespace
                 font.setPointSizeF(option.font.pointSizeF());
             painter->setFont(font);
 
-            const QPen originalPen = painter->pen();
-            QPen coloredPen = originalPen;
-            coloredPen.setColor(index.data(BaseLogModel::TimeForegroundRole).value<QColor>());
-            painter->setPen(coloredPen);
-            const QString time = index.data(BaseLogModel::TimeRole).toString();
-            style->drawItemText(painter, textRect, option.displayAlignment, option.palette, (option.state & QStyle::State_Enabled), time);
+            QPalette palette = option.palette;
 
-            painter->setPen(originalPen);
+            const QString time = index.data(BaseLogModel::TimeRole).toString();
+            palette.setColor(QPalette::Active, QPalette::WindowText, index.data(BaseLogModel::TimeForegroundRole).value<QColor>());
+            style->drawItemText(painter, textRect, option.displayAlignment, palette, isEnabled, time, textRole);
+
             const QFontMetrics fontMetrics = painter->fontMetrics(); // option.fontMetrics adds extra padding to QFontMetrics::width
             const int separatorCoordinateX = horizontalAdvance(fontMetrics, time);
             style->drawItemText(painter, textRect.adjusted(separatorCoordinateX, 0, 0, 0), option.displayAlignment, option.palette
-                                , (option.state & QStyle::State_Enabled), SEPARATOR);
+                                , isEnabled, SEPARATOR, textRole);
 
-            coloredPen.setColor(index.data(BaseLogModel::MessageForegroundRole).value<QColor>());
-            painter->setPen(coloredPen);
             const int messageCoordinateX = separatorCoordinateX + horizontalAdvance(fontMetrics, SEPARATOR);
-            style->drawItemText(painter, textRect.adjusted(messageCoordinateX, 0, 0, 0), option.displayAlignment, option.palette
-                                , (option.state & QStyle::State_Enabled), index.data(BaseLogModel::MessageRole).toString());
+            const QString message = index.data(BaseLogModel::MessageRole).toString();
+            palette.setColor(QPalette::Active, QPalette::WindowText, index.data(BaseLogModel::MessageForegroundRole).value<QColor>());
+            style->drawItemText(painter, textRect.adjusted(messageCoordinateX, 0, 0, 0), option.displayAlignment, palette
+                                , isEnabled, message, textRole);
+
             painter->restore();
         }
 
@@ -107,6 +127,10 @@ namespace
             const QSize margins = (defaultSize - fontSize).expandedTo({0, 0});
             return fontSize + margins;
         }
+
+#ifdef Q_OS_WIN
+        const bool m_useCustomUITheme = false;
+#endif
     };
 }
 
@@ -116,7 +140,7 @@ LogListView::LogListView(QWidget *parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setItemDelegate(new LogItemDelegate(this));
 
-#if defined(Q_OS_MAC)
+#ifdef Q_OS_MAC
     setAttribute(Qt::WA_MacShowFocusRect, false);
 #endif
 }

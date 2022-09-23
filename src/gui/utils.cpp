@@ -35,8 +35,10 @@
 #endif
 
 #include <QApplication>
+#include <QColor>
 #include <QDesktopServices>
 #include <QIcon>
+#include <QPalette>
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QPoint>
@@ -54,6 +56,13 @@
 #include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
+
+bool Utils::Gui::isDarkTheme()
+{
+    const QPalette palette = qApp->palette();
+    const QColor &color = palette.color(QPalette::Active, QPalette::Base);
+    return (color.lightness() < 127);
+}
 
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
 {
