@@ -44,6 +44,8 @@
 class QCheckBox;
 class QResizeEvent;
 
+class CategoryFilterWidget;
+class TagFilterWidget;
 class TransferListWidget;
 
 namespace Net
@@ -162,9 +164,6 @@ private:
     int m_totalTorrents;
     bool m_downloadTrackerFavicon;
 };
-
-class CategoryFilterWidget;
-class TagFilterWidget;
 
 class TransferListFiltersWidget final : public QFrame
 {
