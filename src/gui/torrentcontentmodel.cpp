@@ -550,21 +550,3 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     }
     emit layoutChanged();
 }
-
-void TorrentContentModel::selectAll()
-{
-    for (int i = 0; i < m_rootItem->childCount(); ++i)
-    {
-        TorrentContentModelItem *child = m_rootItem->child(i);
-        if (child->priority() == BitTorrent::DownloadPriority::Ignored)
-            child->setPriority(BitTorrent::DownloadPriority::Normal);
-    }
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
-}
-
-void TorrentContentModel::selectNone()
-{
-    for (int i = 0; i < m_rootItem->childCount(); ++i)
-        m_rootItem->child(i)->setPriority(BitTorrent::DownloadPriority::Ignored);
-    emit dataChanged(index(0, 0), index((rowCount() - 1), (columnCount() - 1)));
-}

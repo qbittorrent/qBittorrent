@@ -79,10 +79,6 @@ public:
 signals:
     void filteredFilesChanged();
 
-public slots:
-    void selectAll();
-    void selectNone();
-
 private:
     TorrentContentModelFolder *m_rootItem = nullptr;
     QVector<TorrentContentModelFile *> m_filesIndex;
