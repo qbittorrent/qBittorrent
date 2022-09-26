@@ -80,7 +80,9 @@ signals:
     void filteredFilesChanged();
 
 private:
-    TorrentContentModelFolder *m_rootItem;
+    void notifyModelUpdate(const QModelIndex &index);
+
+    TorrentContentModelFolder *m_rootItem = nullptr;
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider;
 };
