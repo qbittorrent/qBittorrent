@@ -404,8 +404,6 @@ namespace BitTorrent
         virtual bool hasRunningSeed() const = 0;
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
-        virtual qint64 getAlltimeDL() const = 0;
-        virtual qint64 getAlltimeUL() const = 0;
         virtual bool isListening() const = 0;
 
         virtual MaxRatioAction maxRatioAction() const = 0;

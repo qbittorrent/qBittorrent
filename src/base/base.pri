@@ -32,7 +32,6 @@ HEADERS += \
     $$PWD/bittorrent/sessionimpl.h \
     $$PWD/bittorrent/sessionstatus.h \
     $$PWD/bittorrent/speedmonitor.h \
-    $$PWD/bittorrent/statistics.h \
     $$PWD/bittorrent/torrent.h \
     $$PWD/bittorrent/torrentcontentlayout.h \
     $$PWD/bittorrent/torrentcreatorthread.h \
@@ -128,7 +127,6 @@ SOURCES += \
     $$PWD/bittorrent/resumedatastorage.cpp \
     $$PWD/bittorrent/sessionimpl.cpp \
     $$PWD/bittorrent/speedmonitor.cpp \
-    $$PWD/bittorrent/statistics.cpp \
     $$PWD/bittorrent/torrent.cpp \
     $$PWD/bittorrent/torrentcreatorthread.cpp \
     $$PWD/bittorrent/torrentimpl.cpp \

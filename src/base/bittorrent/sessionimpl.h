@@ -35,6 +35,7 @@
 #include <libtorrent/fwd.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
+#include <QElapsedTimer>
 #include <QHash>
 #include <QPointer>
 #include <QSet>
@@ -72,7 +73,6 @@ class QUrl;
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
-class Statistics;
 
 namespace Net
 {
@@ -384,8 +384,6 @@ namespace BitTorrent
         bool hasRunningSeed() const override;
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
-        qint64 getAlltimeDL() const override;
-        qint64 getAlltimeUL() const override;
         bool isListening() const override;
 
         MaxRatioAction maxRatioAction() const override;
@@ -550,6 +548,9 @@ namespace BitTorrent
         void storeCategories() const;
         void upgradeCategories();
 
+        void saveStatistics() const;
+        void loadStatistics();
+
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
 
@@ -675,10 +676,15 @@ namespace BitTorrent
         QVector<TrackerEntry> m_additionalTrackerList;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
+        // Statistics
+        mutable QElapsedTimer m_statisticsLastUpdateTimer;
+        mutable bool m_isStatisticsDirty = false;
+        qint64 m_previouslyUploaded = 0;
+        qint64 m_previouslyDownloaded = 0;
+
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
-        Statistics *m_statistics = nullptr;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;
         QPointer<BandwidthScheduler> m_bwScheduler;

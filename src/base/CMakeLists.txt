@@ -33,7 +33,6 @@ add_library(qbt_base STATIC
     bittorrent/sessionimpl.h
     bittorrent/sessionstatus.h
     bittorrent/speedmonitor.h
-    bittorrent/statistics.h
     bittorrent/torrent.h
     bittorrent/torrentcontentlayout.h
     bittorrent/torrentcreatorthread.h
@@ -128,7 +127,6 @@ add_library(qbt_base STATIC
     bittorrent/resumedatastorage.cpp
     bittorrent/sessionimpl.cpp
     bittorrent/speedmonitor.cpp
-    bittorrent/statistics.cpp
     bittorrent/torrent.cpp
     bittorrent/torrentcreatorthread.cpp
     bittorrent/torrentimpl.cpp
