@@ -270,7 +270,7 @@ bool TorrentContentModel::allFiltered() const
 int TorrentContentModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
-        return static_cast<TorrentContentModelItem*>(parent.internalPointer())->columnCount();
+        return static_cast<TorrentContentModelItem *>(parent.internalPointer())->columnCount();
 
     return m_rootItem->columnCount();
 }
@@ -282,7 +282,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
     if ((index.column() == TorrentContentModelItem::COL_NAME) && (role == Qt::CheckStateRole))
     {
-        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
         qDebug("setData(%s, %d)", qUtf8Printable(item->name()), value.toInt());
 
         BitTorrent::DownloadPriority prio = BitTorrent::DownloadPriority::Normal;
@@ -306,7 +306,7 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
     if (role == Qt::EditRole)
     {
         Q_ASSERT(index.isValid());
-        auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+        auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
         switch (index.column())
         {
         case TorrentContentModelItem::COL_NAME:
@@ -336,14 +336,14 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
 TorrentContentModelItem::ItemType TorrentContentModel::itemType(const QModelIndex &index) const
 {
-    return static_cast<const TorrentContentModelItem*>(index.internalPointer())->itemType();
+    return static_cast<const TorrentContentModelItem *>(index.internalPointer())->itemType();
 }
 
 int TorrentContentModel::getFileIndex(const QModelIndex &index)
 {
-    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
     if (item->itemType() == TorrentContentModelItem::FileType)
-        return static_cast<TorrentContentModelFile*>(item)->fileIndex();
+        return static_cast<TorrentContentModelFile *>(item)->fileIndex();
 
     Q_ASSERT(item->itemType() == TorrentContentModelItem::FileType);
     return -1;
@@ -354,7 +354,7 @@ QVariant TorrentContentModel::data(const QModelIndex &index, const int role) con
     if (!index.isValid())
         return {};
 
-    auto *item = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *item = static_cast<TorrentContentModelItem *>(index.internalPointer());
 
     switch (role)
     {
@@ -443,7 +443,7 @@ QModelIndex TorrentContentModel::index(int row, int column, const QModelIndex &p
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
-        parentItem = static_cast<TorrentContentModelFolder*>(parent.internalPointer());
+        parentItem = static_cast<TorrentContentModelFolder *>(parent.internalPointer());
     Q_ASSERT(parentItem);
 
     if (row >= parentItem->childCount())
@@ -460,7 +460,7 @@ QModelIndex TorrentContentModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return {};
 
-    auto *childItem = static_cast<TorrentContentModelItem*>(index.internalPointer());
+    auto *childItem = static_cast<TorrentContentModelItem *>(index.internalPointer());
     if (!childItem)
         return {};
 
@@ -480,7 +480,7 @@ int TorrentContentModel::rowCount(const QModelIndex &parent) const
     if (!parent.isValid())
         parentItem = m_rootItem;
     else
-        parentItem = dynamic_cast<TorrentContentModelFolder*>(static_cast<TorrentContentModelItem*>(parent.internalPointer()));
+        parentItem = dynamic_cast<TorrentContentModelFolder *>(static_cast<TorrentContentModelItem *>(parent.internalPointer()));
 
     return parentItem ? parentItem->childCount() : 0;
 }
@@ -541,7 +541,7 @@ void TorrentContentModel::selectAll()
 {
     for (int i = 0; i < m_rootItem->childCount(); ++i)
     {
-        TorrentContentModelItem* child = m_rootItem->child(i);
+        TorrentContentModelItem *child = m_rootItem->child(i);
         if (child->priority() == BitTorrent::DownloadPriority::Ignored)
             child->setPriority(BitTorrent::DownloadPriority::Normal);
     }
