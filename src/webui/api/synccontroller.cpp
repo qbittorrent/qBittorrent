@@ -129,8 +129,8 @@ namespace
         map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
         map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
 
-        const qint64 atd = session->getAlltimeDL();
-        const qint64 atu = session->getAlltimeUL();
+        const qint64 atd = sessionStatus.allTimeDownload;
+        const qint64 atu = sessionStatus.allTimeUpload;
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;

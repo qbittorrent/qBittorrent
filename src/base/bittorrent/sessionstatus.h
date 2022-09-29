@@ -56,6 +56,8 @@ namespace BitTorrent
         qint64 trackerUploadRate = 0;
         qint64 trackerDownloadRate = 0;
 
+        qint64 allTimeDownload = 0;
+        qint64 allTimeUpload = 0;
         qint64 totalDownload = 0;
         qint64 totalUpload = 0;
         qint64 totalPayloadDownload = 0;

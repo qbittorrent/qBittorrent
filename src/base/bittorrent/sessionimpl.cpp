@@ -106,7 +106,6 @@
 #include "nativesessionextension.h"
 #include "portforwarderimpl.h"
 #include "resumedatastorage.h"
-#include "statistics.h"
 #include "torrentimpl.h"
 #include "tracker.h"
 
@@ -115,6 +114,7 @@ using namespace BitTorrent;
 
 const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
+const int STATISTICS_SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
 
 namespace
 {
@@ -493,7 +493,6 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
     , m_seedingLimitTimer {new QTimer {this}}
     , m_resumeDataTimer {new QTimer {this}}
-    , m_statistics {new Statistics {this}}
     , m_ioThread {new QThread {this}}
     , m_recentErroredTorrentsTimer {new QTimer {this}}
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -557,6 +556,7 @@ SessionImpl::SessionImpl(QObject *parent)
     new PortForwarderImpl(m_nativeSession);
 
     initMetrics();
+    loadStatistics();
 
     prepareStartup();
 }
@@ -1004,6 +1004,8 @@ void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 // Main destructor
 SessionImpl::~SessionImpl()
 {
+    saveStatistics();
+
     // Do some BT related saving
     saveResumeData();
 
@@ -1371,6 +1373,8 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
         m_refreshEnqueued = false;
     else
         enqueueRefresh();
+
+    m_statisticsLastUpdateTimer.start();
 
     // Regular saving of fastresume data
     connect(m_resumeDataTimer, &QTimer::timeout, this, &SessionImpl::generateResumeData);
@@ -4893,16 +4897,6 @@ const CacheStatus &SessionImpl::cacheStatus() const
     return m_cacheStatus;
 }
 
-qint64 SessionImpl::getAlltimeDL() const
-{
-    return m_statistics->getAlltimeDL();
-}
-
-qint64 SessionImpl::getAlltimeUL() const
-{
-    return m_statistics->getAlltimeUL();
-}
-
 void SessionImpl::enqueueRefresh()
 {
     Q_ASSERT(!m_refreshEnqueued);
@@ -5456,8 +5450,6 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.trackerDownloadRate = calcRate(m_status.trackerDownload, trackerDownload);
     m_status.trackerUploadRate = calcRate(m_status.trackerUpload, trackerUpload);
 
-    m_status.totalDownload = totalDownload;
-    m_status.totalUpload = totalUpload;
     m_status.totalPayloadDownload = totalPayloadDownload;
     m_status.totalPayloadUpload = totalPayloadUpload;
     m_status.ipOverheadDownload = ipOverheadDownload;
@@ -5472,6 +5464,24 @@ void SessionImpl::handleSessionStatsAlert(const lt::session_stats_alert *p)
     m_status.diskReadQueue = stats[m_metricIndices.peer.numPeersUpDisk];
     m_status.diskWriteQueue = stats[m_metricIndices.peer.numPeersDownDisk];
     m_status.peersCount = stats[m_metricIndices.peer.numPeersConnected];
+
+    if (totalDownload > m_status.totalDownload)
+    {
+        m_status.totalDownload = totalDownload;
+        m_isStatisticsDirty = true;
+    }
+
+    if (totalUpload > m_status.totalUpload)
+    {
+        m_status.totalUpload = totalUpload;
+        m_isStatisticsDirty = true;
+    }
+
+    m_status.allTimeDownload = m_previouslyDownloaded + m_status.totalDownload;
+    m_status.allTimeUpload = m_previouslyUploaded + m_status.totalUpload;
+
+    if (m_statisticsLastUpdateTimer.hasExpired(STATISTICS_SAVE_INTERVAL))
+        saveStatistics();
 
     m_cacheStatus.totalUsedBuffers = stats[m_metricIndices.disk.diskBlocksInUse];
     m_cacheStatus.jobQueueLength = stats[m_metricIndices.disk.queuedDiskJobs];
@@ -5647,4 +5657,28 @@ void SessionImpl::processTrackerStatuses()
         emit trackerEntriesUpdated(m_updatedTrackerEntries);
         m_updatedTrackerEntries.clear();
     }
+}
+
+void SessionImpl::saveStatistics() const
+{
+    if (!m_isStatisticsDirty)
+        return;
+
+    const QVariantHash stats {
+        {u"AlltimeDL"_qs, m_status.allTimeDownload},
+        {u"AlltimeUL"_qs, m_status.allTimeUpload}};
+    std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
+    settings->setValue(u"Stats/AllStats"_qs, stats);
+
+    m_statisticsLastUpdateTimer.start();
+    m_isStatisticsDirty = false;
+}
+
+void SessionImpl::loadStatistics()
+{
+    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-data"_qs);
+    const QVariantHash value = settings->value(u"Stats/AllStats"_qs).toHash();
+
+    m_previouslyDownloaded = value[u"AlltimeDL"_qs].toLongLong();
+    m_previouslyUploaded = value[u"AlltimeUL"_qs].toLongLong();
 }
