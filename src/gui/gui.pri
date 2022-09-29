@@ -9,6 +9,7 @@ HEADERS += \
     $$PWD/categoryfiltermodel.h \
     $$PWD/categoryfilterproxymodel.h \
     $$PWD/categoryfilterwidget.h \
+    $$PWD/color.h \
     $$PWD/cookiesdialog.h \
     $$PWD/cookiesmodel.h \
     $$PWD/deletionconfirmationdialog.h \
