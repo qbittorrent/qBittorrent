@@ -205,8 +205,8 @@ bool TorrentFilter::matchInfoHash(const BitTorrent::Torrent *const torrent) cons
     if (!m_infoHash)
         return true;
 
-    return torrent->infoHash().v1().toString().contains(m_infoHash, Qt::CaseInsensitive)
-        || torrent->infoHash().v2().toString().contains(m_infoHash, Qt::CaseInsensitive);
+    return torrent->infoHash().v1().toString().contains(*m_infoHash, Qt::CaseInsensitive)
+        || torrent->infoHash().v2().toString().contains(*m_infoHash, Qt::CaseInsensitive);
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
