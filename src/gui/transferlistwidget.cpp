@@ -37,6 +37,7 @@
 #include <QMenu>
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QRegularExpressionMatch>
 #include <QSet>
 #include <QShortcut>
 #include <QVector>
