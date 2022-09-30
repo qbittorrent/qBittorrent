@@ -145,11 +145,22 @@ bool TorrentFilter::setTag(const std::optional<QString> &tag)
     return false;
 }
 
+bool TorrentFilter::setInfoHash(const std::optional<QString> &infohash)
+{
+    if (m_infoHash != infohash)
+    {
+        m_infoHash = infohash;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchInfoHash(torrent) && matchCategory(torrent) && matchTag(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -187,6 +198,14 @@ bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
     case Errored:
         return torrent->isErrored();
     }
+}
+
+bool TorrentFilter::matchInfoHash(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_infoHash)
+        return true;
+
+    return torrent->infoHash()->v1()->toString()->contains(m_infoHash, Qt::CaseInsensitive);
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const

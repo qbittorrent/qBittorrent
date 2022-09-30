@@ -136,6 +136,12 @@ void TransferListSortModel::setTagFilter(const QString &tag)
         invalidateFilter();
 }
 
+void TransferListSortModel::setInfoHashFilter(const QString &infohash)
+{
+    if (m_filter.setInfoHash(infohash))
+        invalidateFilter();
+}
+
 void TransferListSortModel::disableTagFilter()
 {
     if (m_filter.setTag(TorrentFilter::AnyTag))
