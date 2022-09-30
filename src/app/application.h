@@ -67,6 +67,9 @@ namespace RSS
 }
 
 #ifndef DISABLE_GUI
+class QProgressDialog;
+
+class DesktopIntegration;
 class MainWindow;
 
 using BaseApplication = QApplication;
@@ -118,13 +121,23 @@ public:
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
 
+#ifdef Q_OS_WIN
+    MemoryPriority processMemoryPriority() const override;
+    void setProcessMemoryPriority(MemoryPriority priority) override;
+#endif
+
 #ifndef DISABLE_GUI
+    DesktopIntegration *desktopIntegration() override;
     MainWindow *mainWindow() override;
+
+    bool isTorrentAddedNotificationsEnabled() const override;
+    void setTorrentAddedNotificationsEnabled(bool value) override;
 #endif
 
 private slots:
     void processMessage(const QString &message);
-    void torrentFinished(BitTorrent::Torrent *const torrent);
+    void torrentAdded(const BitTorrent::Torrent *torrent) const;
+    void torrentFinished(const BitTorrent::Torrent *torrent);
     void allTorrentsFinished();
     void cleanup();
 
@@ -143,7 +156,7 @@ private:
     void initializeTranslation();
     AddTorrentParams parseParams(const QStringList &params) const;
     void processParams(const AddTorrentParams &params);
-    void runExternalProgram(const BitTorrent::Torrent *torrent) const;
+    void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
 #ifdef QBT_USES_LIBTORRENT2
@@ -151,10 +164,12 @@ private:
 #endif
 
 #ifdef Q_OS_WIN
+    void applyMemoryPriority() const;
     void adjustThreadPriority() const;
 #endif
 
 #ifndef DISABLE_GUI
+    void createStartupProgressDialog();
 #ifdef Q_OS_MACOS
     bool event(QEvent *) override;
 #endif
@@ -183,8 +198,16 @@ private:
     SettingValue<Path> m_storeFileLoggerPath;
     SettingValue<int> m_storeMemoryWorkingSetLimit;
 
+#ifdef Q_OS_WIN
+    SettingValue<MemoryPriority> m_processMemoryPriority;
+#endif
+
 #ifndef DISABLE_GUI
+    SettingValue<bool> m_storeNotificationTorrentAdded;
+
+    DesktopIntegration *m_desktopIntegration = nullptr;
     MainWindow *m_window = nullptr;
+    QProgressDialog *m_startupProgressDialog = nullptr;
 #endif
 
 #ifndef DISABLE_WEBUI

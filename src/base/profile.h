@@ -43,8 +43,6 @@ namespace Private
     class PathConverter;
 }
 
-using SettingsPtr = std::unique_ptr<QSettings>;
-
 enum class SpecialFolder
 {
     Cache,
@@ -62,7 +60,7 @@ public:
     static const Profile *instance();
 
     Path location(SpecialFolder folder) const;
-    SettingsPtr applicationSettings(const QString &name) const;
+    std::unique_ptr<QSettings> applicationSettings(const QString &name) const;
 
     Path rootPath() const;
     QString configurationName() const;

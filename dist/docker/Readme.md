@@ -1,16 +1,18 @@
 # qBittorrent-nox Docker Image
 
-This Dockerfile allows you to build a docker image containing qBittorrent-nox
+This Dockerfile allows you to build a Docker Image containing qBittorrent-nox
 
-## Prerequisities
+## Prerequisites
 
-In order to build/run this image you'll need `docker` installed: https://docs.docker.com/get-docker/
+In order to build/run this image you'll need Docker installed: https://docs.docker.com/get-docker/
 
-It is also recommended to install `docker-compose` as it can significantly ease the process: https://docs.docker.com/compose/install/
+If you don't need the GUI, you can just install Docker Engine: https://docs.docker.com/engine/install/
 
-## Building docker image
+It is also recommended to install Docker Compose as it can significantly ease the process: https://docs.docker.com/compose/install/
 
-* If you are using docker (not docker-compose) then run the following commands in this folder:
+## Building Docker Image
+
+* If you are using Docker (not Docker Compose) then run the following commands in this folder:
   ```shell
   export \
     QBT_VERSION=devel
@@ -20,8 +22,8 @@ It is also recommended to install `docker-compose` as it can significantly ease 
     .
   ```
 
-* If you are using docker-compose then you should edit `.env` file first.
-  You can find an explaination of the variables in the following [Parameters](#parameters) section. \
+* If you are using Docker Compose then you should edit `.env` file first.
+  You can find an explanation of the variables in the following [Parameters](#parameters) section. \
   Then run the following commands in this folder:
   ```shell
   docker compose build \
@@ -46,12 +48,16 @@ It is also recommended to install `docker-compose` as it can significantly ease 
 #### Volumes
 
 There are some paths involved:
-* `<your_path>/config` on your host machine will contain qBittorrent configurations
-* `<your_path>/downloads` on your host machine will contain the files downloaded by qBittorrent
+* `<your_path>/config` \
+  Full path to a folder on your host machine which will store qBittorrent configurations.
+  Using relative path won't work.
+* `<your_path>/downloads` \
+  Full path to a folder on your host machine which will store the files downloaded by qBittorrent.
+  Using relative path won't work.
 
 ## Running container
 
-* Using docker (not docker-compose), simply run:
+* Using Docker (not Docker Compose), simply run:
   ```shell
   export \
     QBT_EULA=accept \
@@ -75,7 +81,7 @@ There are some paths involved:
     qbittorrent-nox:"$QBT_VERSION"
   ```
 
-* Using docker-compose:
+* Using Docker Compose:
   ```shell
   docker compose up
   ```
@@ -84,12 +90,12 @@ Then you can login at: `http://127.0.0.1:8080`
 
 ## Stopping container
 
-* Using docker (not docker-compose):
+* Using Docker (not Docker Compose):
   ```shell
   docker stop -t 1800 qbittorrent-nox
   ```
 
-* Using docker-compose:
+* Using Docker Compose:
   ```shell
   docker compose down
   ```

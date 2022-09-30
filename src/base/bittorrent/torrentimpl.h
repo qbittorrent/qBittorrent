@@ -58,7 +58,7 @@
 
 namespace BitTorrent
 {
-    class Session;
+    class SessionImpl;
     struct LoadTorrentParams;
 
     enum class MoveStorageMode
@@ -85,7 +85,7 @@ namespace BitTorrent
         Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
-        TorrentImpl(Session *session, lt::session *nativeSession
+        TorrentImpl(SessionImpl *session, lt::session *nativeSession
                           , const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
         ~TorrentImpl() override;
 
@@ -171,8 +171,6 @@ namespace BitTorrent
         int totalSeedsCount() const override;
         int totalPeersCount() const override;
         int totalLeechersCount() const override;
-        int completeCount() const override;
-        int incompleteCount() const override;
         QDateTime lastSeenComplete() const override;
         QDateTime completedTime() const override;
         qlonglong timeSinceUpload() const override;
@@ -227,6 +225,7 @@ namespace BitTorrent
         void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
+        bool setMetadata(const TorrentInfo &torrentInfo) override;
 
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
@@ -288,7 +287,7 @@ namespace BitTorrent
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
 
-        Session *const m_session = nullptr;
+        SessionImpl *const m_session = nullptr;
         lt::session *m_nativeSession = nullptr;
         lt::torrent_handle m_nativeHandle;
         mutable lt::torrent_status m_nativeStatus;
@@ -298,7 +297,7 @@ namespace BitTorrent
         QHash<lt::file_index_t, int> m_indexMap;
         QVector<DownloadPriority> m_filePriorities;
         QBitArray m_completedFiles;
-        SpeedMonitor m_speedMonitor;
+        SpeedMonitor m_payloadRateMonitor;
 
         InfoHash m_infoHash;
 
@@ -337,6 +336,9 @@ namespace BitTorrent
         bool m_unchecked = false;
 
         lt::add_torrent_params m_ltAddTorrentParams;
+
+        int m_downloadLimit = 0;
+        int m_uploadLimit = 0;
 
         mutable QBitArray m_pieces;
     };

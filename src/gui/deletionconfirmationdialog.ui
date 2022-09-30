@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Deletion confirmation</string>
+   <string>Remove torrent(s)</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -44,7 +44,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string notr="true">deletion message goes here</string>
+        <string notr="true">message goes here</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -88,7 +88,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Also delete the files on the hard disk</string>
+        <string>Also permanently delete the files</string>
        </property>
       </widget>
      </item>

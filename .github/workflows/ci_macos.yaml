@@ -14,12 +14,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        libt_version: ["2.0.6", "1.2.16"]
+        libt_version: ["2.0.7", "1.2.17"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.3.0"]
+        qt_version: ["5.15.2", "6.2.0"]
         exclude:
-          - libt_version: "1.2.16"
-            qt_version: "6.3.0"
+          - libt_version: "1.2.17"
+            qt_version: "6.2.0"
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -46,15 +46,13 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
       - name: Install Qt
-        uses: jurplel/install-qt-action@v2
+        uses: jurplel/install-qt-action@v3
         with:
-          aqtversion: '==2.1.0'
-          setup-python: false
           version: ${{ matrix.qt_version }}
 
       - name: Install libtorrent
@@ -84,13 +82,16 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
+            -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build --target qbt_update_translations
           cmake --build build
+          cmake --build build --target check
 
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
@@ -99,14 +100,17 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
             -DQT6=ON \
+            -DTESTING=ON \
             -DVERBOSE_CONFIGURE=ON \
             -D${{ matrix.qbt_gui }}
           cmake --build build --target qbt_update_translations
           cmake --build build
+          cmake --build build --target check
 
       - name: Prepare build artifacts
         run: |

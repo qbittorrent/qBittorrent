@@ -76,8 +76,8 @@ void StatsDialog::update()
     const BitTorrent::CacheStatus &cs = BitTorrent::Session::instance()->cacheStatus();
 
     // All-time DL/UL
-    const qint64 atd = BitTorrent::Session::instance()->getAlltimeDL();
-    const qint64 atu = BitTorrent::Session::instance()->getAlltimeUL();
+    const qint64 atd = ss.allTimeDownload;
+    const qint64 atu = ss.allTimeUpload;
     m_ui->labelAlltimeDL->setText(Utils::Misc::friendlyUnit(atd));
     m_ui->labelAlltimeUL->setText(Utils::Misc::friendlyUnit(atu));
     // Total waste (this session)

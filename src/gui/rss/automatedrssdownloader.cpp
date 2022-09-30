@@ -664,7 +664,7 @@ void AutomatedRssDownloader::addFeedArticlesToTree(RSS::Feed *feed, const QStrin
         QFont f = treeFeedItem->font(0);
         f.setBold(true);
         treeFeedItem->setFont(0, f);
-        treeFeedItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"inode-directory"_qs));
+        treeFeedItem->setData(0, Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"directory"_qs));
         treeFeedItem->setData(0, Qt::UserRole, feed->url());
         m_ui->treeMatchingArticles->addTopLevelItem(treeFeedItem);
     }

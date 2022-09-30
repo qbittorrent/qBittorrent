@@ -411,7 +411,7 @@ void TorrentOptionsDialog::accept()
     auto *session = BitTorrent::Session::instance();
     for (const BitTorrent::TorrentID &id : asConst(m_torrentIDs))
     {
-        BitTorrent::Torrent *torrent = session->findTorrent(id);
+        BitTorrent::Torrent *torrent = session->getTorrent(id);
         if (!torrent) continue;
 
         if (m_initialValues.autoTMM != m_ui->checkAutoTMM->checkState())
@@ -590,7 +590,7 @@ void TorrentOptionsDialog::handleRatioTypeChanged()
         QAbstractButton *currentRadio = m_ui->buttonGroup->checkedButton();
         if (currentRadio && (currentRadio == m_previousRadio))
         {
-            // Hack to deselect the currently selected radio button programatically because Qt doesn't allow it in exclusive mode
+            // Hack to deselect the currently selected radio button programmatically because Qt doesn't allow it in exclusive mode
             m_ui->buttonGroup->setExclusive(false);
             currentRadio->setChecked(false);
             m_ui->buttonGroup->setExclusive(true);

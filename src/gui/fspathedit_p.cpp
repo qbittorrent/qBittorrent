@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022 Mike Tzou (Chocobo1)
  * Copyright (C) 2016 Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
@@ -42,13 +43,6 @@
 // -------------------- FileSystemPathValidator ----------------------------------------
 Private::FileSystemPathValidator::FileSystemPathValidator(QObject *parent)
     : QValidator(parent)
-    , m_strictMode(false)
-    , m_existingOnly(false)
-    , m_directoriesOnly(false)
-    , m_checkReadPermission(false)
-    , m_checkWritePermission(false)
-    , m_lastTestResult(TestResult::DoesNotExist)
-    , m_lastValidationState(QValidator::Invalid)
 {
 }
 
@@ -57,9 +51,9 @@ bool Private::FileSystemPathValidator::strictMode() const
     return m_strictMode;
 }
 
-void Private::FileSystemPathValidator::setStrictMode(bool v)
+void Private::FileSystemPathValidator::setStrictMode(const bool value)
 {
-    m_strictMode = v;
+    m_strictMode = value;
 }
 
 bool Private::FileSystemPathValidator::existingOnly() const
@@ -67,9 +61,9 @@ bool Private::FileSystemPathValidator::existingOnly() const
     return m_existingOnly;
 }
 
-void Private::FileSystemPathValidator::setExistingOnly(bool v)
+void Private::FileSystemPathValidator::setExistingOnly(const bool value)
 {
-    m_existingOnly = v;
+    m_existingOnly = value;
 }
 
 bool Private::FileSystemPathValidator::directoriesOnly() const
@@ -77,9 +71,9 @@ bool Private::FileSystemPathValidator::directoriesOnly() const
     return m_directoriesOnly;
 }
 
-void Private::FileSystemPathValidator::setDirectoriesOnly(bool v)
+void Private::FileSystemPathValidator::setDirectoriesOnly(const bool value)
 {
-    m_directoriesOnly = v;
+    m_directoriesOnly = value;
 }
 
 bool Private::FileSystemPathValidator::checkReadPermission() const
@@ -87,9 +81,9 @@ bool Private::FileSystemPathValidator::checkReadPermission() const
     return m_checkReadPermission;
 }
 
-void Private::FileSystemPathValidator::setCheckReadPermission(bool v)
+void Private::FileSystemPathValidator::setCheckReadPermission(const bool value)
 {
-    m_checkReadPermission = v;
+    m_checkReadPermission = value;
 }
 
 bool Private::FileSystemPathValidator::checkWritePermission() const
@@ -97,91 +91,36 @@ bool Private::FileSystemPathValidator::checkWritePermission() const
     return m_checkWritePermission;
 }
 
-void Private::FileSystemPathValidator::setCheckWritePermission(bool v)
+void Private::FileSystemPathValidator::setCheckWritePermission(const bool value)
 {
-    m_checkWritePermission = v;
-}
-
-QValidator::State Private::FileSystemPathValidator::validate(QString &input, int &pos) const
-{
-    if (input.isEmpty())
-        return m_strictMode ? QValidator::Invalid : QValidator::Intermediate;
-
-    // we test path components from beginning to the one with cursor location in strict mode
-    // and the one with cursor and beyond in non-strict mode
-    QList<QStringView> components = QStringView(input).split(QDir::separator(), Qt::KeepEmptyParts);
-    // find index of the component that contains pos
-    int componentWithCursorIndex = 0;
-    int componentWithCursorPosition = 0;
-    int pathLength = 0;
-
-    // components.size() - 1 because when path ends with QDir::separator(), we will not see the last
-    // character in the components array, yet everything past the one before the last delimiter
-    // belongs to the last component
-    for (; (componentWithCursorIndex < (components.size() - 1)) && (pathLength < pos); ++componentWithCursorIndex)
-    {
-        pathLength = componentWithCursorPosition + components[componentWithCursorIndex].size();
-        componentWithCursorPosition += components[componentWithCursorIndex].size() + 1;
-    }
-
-    Q_ASSERT(componentWithCursorIndex < components.size());
-
-    m_lastValidationState = QValidator::Acceptable;
-    if (componentWithCursorIndex > 0)
-        m_lastValidationState = validate(components, m_strictMode, 0, componentWithCursorIndex - 1);
-    if ((m_lastValidationState == QValidator::Acceptable) && (componentWithCursorIndex < components.size()))
-        m_lastValidationState = validate(components, false, componentWithCursorIndex, components.size() - 1);
-    return m_lastValidationState;
-}
-
-QValidator::State Private::FileSystemPathValidator::validate(const QList<QStringView> &pathComponents, bool strict,
-                                                             int firstComponentToTest, int lastComponentToTest) const
-{
-    Q_ASSERT(firstComponentToTest >= 0);
-    Q_ASSERT(lastComponentToTest >= firstComponentToTest);
-    Q_ASSERT(lastComponentToTest < pathComponents.size());
-
-    m_lastTestResult = TestResult::DoesNotExist;
-    if (pathComponents.empty())
-        return strict ? QValidator::Invalid : QValidator::Intermediate;
-
-    for (int i = firstComponentToTest; i <= lastComponentToTest; ++i)
-    {
-        const bool isFinalPath = (i == (pathComponents.size() - 1));
-        const QStringView componentPath = pathComponents[i];
-        if (componentPath.isEmpty()) continue;
-
-        m_lastTestResult = testPath(Path(pathComponents[i].toString()), isFinalPath);
-        if (m_lastTestResult != TestResult::OK)
-        {
-            m_lastTestedPath = componentPath.toString();
-            return strict ? QValidator::Invalid : QValidator::Intermediate;
-        }
-    }
-
-    return QValidator::Acceptable;
+    m_checkWritePermission = value;
 }
 
 Private::FileSystemPathValidator::TestResult
-Private::FileSystemPathValidator::testPath(const Path &path, bool pathIsComplete) const
+Private::FileSystemPathValidator::testPath(const Path &path) const
 {
-    QFileInfo fi {path.data()};
-    if (m_existingOnly && !fi.exists())
+    // `QFileInfo` will cache the query results and avoid exessive querying to filesystem
+    const QFileInfo info {path.data()};
+
+    if (existingOnly() && !info.exists())
         return TestResult::DoesNotExist;
 
-    if ((!pathIsComplete || m_directoriesOnly) && !fi.isDir())
-        return TestResult::NotADir;
-
-    if (pathIsComplete)
+    if (directoriesOnly())
     {
-        if (!m_directoriesOnly && fi.isDir())
-            return TestResult::NotAFile;
-
-        if (m_checkWritePermission && (fi.exists() && !fi.isWritable()))
-            return TestResult::CantWrite;
-        if (m_checkReadPermission && !fi.isReadable())
-            return TestResult::CantRead;
+        if (!info.isDir())
+            return TestResult::NotADir;
     }
+    else
+    {
+        if (!info.isFile())
+            return TestResult::NotAFile;
+    }
+
+    if (checkReadPermission() && !info.isReadable())
+        return TestResult::CantRead;
+
+    if (checkWritePermission() && !info.isWritable())
+        return TestResult::CantWrite;
 
     return TestResult::OK;
 }
@@ -196,9 +135,17 @@ QValidator::State Private::FileSystemPathValidator::lastValidationState() const
     return m_lastValidationState;
 }
 
-QString Private::FileSystemPathValidator::lastTestedPath() const
+QValidator::State Private::FileSystemPathValidator::validate(QString &input, int &pos) const
 {
-    return m_lastTestedPath;
+    // ignore cursor position and validate the full path anyway
+    Q_UNUSED(pos);
+
+    m_lastTestResult = testPath(Path(input));
+    m_lastValidationState = (m_lastTestResult == TestResult::OK)
+        ? QValidator::Acceptable
+        : (strictMode() ? QValidator::Invalid : QValidator::Intermediate);
+
+    return m_lastValidationState;
 }
 
 Private::FileLineEdit::FileLineEdit(QWidget *parent)
@@ -208,11 +155,15 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     , m_browseAction {nullptr}
     , m_warningAction {nullptr}
 {
-    m_completerModel->setRootPath({});
+    m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
+
     m_completerModel->setIconProvider(&m_iconProvider);
+    m_completerModel->setOptions(QFileSystemModel::DontWatchForChanges);
+
     m_completer->setModel(m_completerModel);
-    m_completer->setCompletionMode(QCompleter::PopupCompletion);
     setCompleter(m_completer);
+
+    connect(this, &QLineEdit::textChanged, this, &FileLineEdit::validateText);
 }
 
 Private::FileLineEdit::~FileLineEdit()
@@ -220,10 +171,10 @@ Private::FileLineEdit::~FileLineEdit()
     delete m_completerModel; // has to be deleted before deleting the m_iconProvider object
 }
 
-void Private::FileLineEdit::completeDirectoriesOnly(bool completeDirsOnly)
+void Private::FileLineEdit::completeDirectoriesOnly(const bool completeDirsOnly)
 {
-    QDir::Filters filters = completeDirsOnly ? QDir::Dirs : QDir::AllEntries;
-    filters |= QDir::NoDotAndDotDot;
+    const QDir::Filters filters = QDir::NoDotAndDotDot
+        | (completeDirsOnly ? QDir::Dirs : QDir::AllEntries);
     m_completerModel->setFilter(filters);
 }
 
@@ -260,39 +211,11 @@ QWidget *Private::FileLineEdit::widget()
 void Private::FileLineEdit::keyPressEvent(QKeyEvent *e)
 {
     QLineEdit::keyPressEvent(e);
+
     if ((e->key() == Qt::Key_Space) && (e->modifiers() == Qt::CTRL))
     {
-        m_completerModel->setRootPath(QFileInfo(text()).absoluteDir().absolutePath());
+        m_completerModel->setRootPath(Path(text()).data());
         showCompletionPopup();
-    }
-
-    auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
-    if (validator)
-    {
-        FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
-        QValidator::State lastState = validator->lastValidationState();
-        if (lastTestResult == FileSystemPathValidator::TestResult::OK)
-        {
-            delete m_warningAction;
-            m_warningAction = nullptr;
-        }
-        else
-        {
-            if (!m_warningAction)
-            {
-                m_warningAction = new QAction(this);
-                addAction(m_warningAction, QLineEdit::TrailingPosition);
-            }
-        }
-
-        if (m_warningAction)
-        {
-            if (lastState == QValidator::Invalid)
-                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
-            else if (lastState == QValidator::Intermediate)
-                m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxWarning));
-            m_warningAction->setToolTip(warningText(lastTestResult).arg(validator->lastTestedPath()));
-        }
     }
 }
 
@@ -316,24 +239,58 @@ void Private::FileLineEdit::showCompletionPopup()
     m_completer->complete();
 }
 
-QString Private::FileLineEdit::warningText(FileSystemPathValidator::TestResult r)
+void Private::FileLineEdit::validateText()
+{
+    const auto *validator = qobject_cast<const FileSystemPathValidator *>(this->validator());
+    if (!validator)
+        return;
+
+    const FileSystemPathValidator::TestResult lastTestResult = validator->lastTestResult();
+    const QValidator::State lastState = validator->lastValidationState();
+
+    if (lastTestResult == FileSystemPathValidator::TestResult::OK)
+    {
+        delete m_warningAction;
+        m_warningAction = nullptr;
+    }
+    else
+    {
+        if (!m_warningAction)
+        {
+            m_warningAction = new QAction(this);
+            addAction(m_warningAction, QLineEdit::TrailingPosition);
+        }
+    }
+
+    if (m_warningAction)
+    {
+        if (lastState == QValidator::Invalid)
+            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxCritical));
+        else if (lastState == QValidator::Intermediate)
+            m_warningAction->setIcon(style()->standardIcon(QStyle::SP_MessageBoxInformation));
+        m_warningAction->setToolTip(warningText(lastTestResult));
+    }
+}
+
+QString Private::FileLineEdit::warningText(const FileSystemPathValidator::TestResult result)
 {
     using TestResult = FileSystemPathValidator::TestResult;
-    switch (r)
+    switch (result)
     {
     case TestResult::DoesNotExist:
-        return tr("'%1' does not exist");
+        return tr("Path does not exist");
     case TestResult::NotADir:
-        return tr("'%1' does not point to a directory");
+        return tr("Path does not point to a directory");
     case TestResult::NotAFile:
-        return tr("'%1' does not point to a file");
+        return tr("Path does not point to a file");
     case TestResult::CantRead:
-        return tr("Does not have read permission in '%1'");
+        return tr("Don't have read permission to path");
     case TestResult::CantWrite:
-        return tr("Does not have write permission in '%1'");
+        return tr("Don't have write permission to path");
     default:
-        return {};
+        break;
     }
+    return {};
 }
 
 Private::FileComboEdit::FileComboEdit(QWidget *parent)

@@ -528,7 +528,7 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
         if (list.size() != 2) continue;
 
         const auto pluginName = QString::fromUtf8(list.first().trimmed());
-        const PluginVersion version = PluginVersion::tryParse(list.last().trimmed(), {});
+        const auto version = PluginVersion::fromString(QString::fromLatin1(list.last().trimmed()));
 
         if (!version.isValid()) continue;
 
@@ -577,7 +577,7 @@ PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
         if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive)) continue;
 
         const QString versionStr = line.mid(9);
-        const PluginVersion version = PluginVersion::tryParse(versionStr, {});
+        const auto version = PluginVersion::fromString(versionStr);
         if (version.isValid())
             return version;
 

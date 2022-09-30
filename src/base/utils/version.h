@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
  * Copyright (C) 2016  Eugene Shalygin
  *
  * This program is free software; you can redistribute it and/or
@@ -29,82 +30,80 @@
 #pragma once
 
 #include <array>
+#include <type_traits>
 
-#include <QDebug>
+#include <QList>
 #include <QString>
+#include <QStringView>
 
-#include "base/exceptions.h"
-#include "base/global.h"
 #include "base/interfaces/istringable.h"
 
 namespace Utils
 {
-    template <typename T, std::size_t N, std::size_t Mandatory = N>
+    // This class provides a default implementation of `isValid()` that should work for most cases
+    // It is ultimately up to the user to decide whether the version numbers are useful/meaningful
+    template <int N, int Mandatory = N>
     class Version final : public IStringable
     {
-        static_assert(N > 0, "The number of version components may not be smaller than 1");
-        static_assert(N >= Mandatory,
+        static_assert((N > 0), "The number of version components may not be smaller than 1");
+        static_assert((Mandatory > 0), "The number of mandatory components may not be smaller than 1");
+        static_assert((N >= Mandatory),
                       "The number of mandatory components may not be larger than the total number of components");
 
     public:
-        typedef T ComponentType;
-        typedef Version<T, N, Mandatory> ThisType;
+        using ThisType = Version<N, Mandatory>;
 
         constexpr Version() = default;
 
-        template <typename ... Other>
-        constexpr Version(Other ... components)
-            : m_components {{static_cast<T>(components) ...}}
+        template <typename ... Ts
+                , typename std::enable_if_t<std::conjunction_v<std::is_convertible<Ts, int>...>, int> = 0>
+        constexpr Version(Ts ... params)
+            : m_components {{params ...}}
         {
+            static_assert((sizeof...(Ts) <= N), "Too many parameters provided");
+            static_assert((sizeof...(Ts) >= Mandatory), "Not enough parameters provided");
         }
 
-        /**
-         * @brief Creates version from string in format "x.y.z"
-         *
-         * @param version Version string in format "x.y.z"
-         * @throws RuntimeError if parsing fails
-         */
-        Version(const QString &version)
-            : Version {version.split(u'.')}
+        constexpr bool isValid() const
         {
+            bool hasValid = false;
+            for (const int i : m_components)
+            {
+                if (i < 0)
+                    return false;
+                if (i > 0)
+                    hasValid = true;
+            }
+            return hasValid;
         }
 
-        /**
-         * @brief Creates version from byte array in format "x.y.z"
-         *
-         * @param version Version string in format "x.y.z"
-         * @throws RuntimeError if parsing fails
-         */
-        Version(const QByteArray &version)
-            : Version {version.split('.')}
+        constexpr int majorNumber() const
         {
-        }
-
-        constexpr ComponentType majorNumber() const
-        {
-            static_assert(N >= 1, "The number of version components is too small");
             return m_components[0];
         }
 
-        constexpr ComponentType minorNumber() const
+        constexpr int minorNumber() const
         {
-            static_assert(N >= 2, "The number of version components is too small");
+            static_assert((N >= 2), "The number of version components is too small");
+
             return m_components[1];
         }
 
-        constexpr ComponentType revisionNumber() const
+        constexpr int revisionNumber() const
         {
-            static_assert(N >= 3, "The number of version components is too small");
+            static_assert((N >= 3), "The number of version components is too small");
+
             return m_components[2];
         }
 
-        constexpr ComponentType patchNumber() const
+        constexpr int patchNumber() const
         {
-            static_assert(N >= 4, "The number of version components is too small");
+            static_assert((N >= 4), "The number of version components is too small");
+
             return m_components[3];
         }
 
-        constexpr ComponentType operator[](const std::size_t i) const
+        constexpr int operator[](const int i) const
         {
             return m_components.at(i);
         }
@@ -112,22 +111,17 @@ namespace Utils
         QString toString() const override
         {
             // find the last one non-zero component
-            std::size_t lastSignificantIndex = N - 1;
-            while ((lastSignificantIndex > 0) && ((*this)[lastSignificantIndex] == 0))
+            int lastSignificantIndex = N - 1;
+            while ((lastSignificantIndex > 0) && (m_components[lastSignificantIndex] == 0))
                 --lastSignificantIndex;
 
-            if (lastSignificantIndex + 1 < Mandatory)     // lastSignificantIndex >= 0
+            if ((lastSignificantIndex + 1) < Mandatory)   // lastSignificantIndex >= 0
                 lastSignificantIndex = Mandatory - 1;     // and Mandatory >= 1
 
-            QString res = QString::number((*this)[0]);
-            for (std::size_t i = 1; i <= lastSignificantIndex; ++i)
-                res += (u'.' + QString::number((*this)[i]));
+            QString res = QString::number(m_components[0]);
+            for (int i = 1; i <= lastSignificantIndex; ++i)
+                res += (u'.' + QString::number(m_components[i]));
             return res;
-        }
-
-        constexpr bool isValid() const
-        {
-            return (*this != ThisType {});
         }
 
         // TODO: remove manually defined operators and use compiler generated `operator<=>()` in C++20
@@ -141,72 +135,50 @@ namespace Utils
             return (left.m_components < right.m_components);
         }
 
-        template <typename StringClassWithSplitMethod>
-        static Version tryParse(const StringClassWithSplitMethod &s, const Version &defaultVersion)
+        static Version fromString(const QStringView string, const Version &defaultVersion = {})
         {
-            try
-            {
-                return Version(s);
-            }
-            catch (const RuntimeError &error)
-            {
-                qDebug() << "Error parsing version:" << error.message();
+            const QList<QStringView> stringParts = string.split(u'.');
+            const int count = stringParts.size();
+
+            if ((count > N) || (count < Mandatory))
                 return defaultVersion;
+
+            Version version;
+            for (int i = 0; i < count; ++i)
+            {
+                bool ok = false;
+                version.m_components[i] = stringParts[i].toInt(&ok);
+                if (!ok)
+                    return defaultVersion;
             }
+
+            return version;
         }
 
     private:
-        using ComponentsArray = std::array<T, N>;
-
-        template <typename StringsList>
-        static ComponentsArray parseList(const StringsList &versionParts)
-        {
-            if ((static_cast<std::size_t>(versionParts.size()) > N)
-                || (static_cast<std::size_t>(versionParts.size()) < Mandatory))
-            {
-                throw RuntimeError(u"Incorrect number of version components"_qs);
-            }
-
-            bool ok = false;
-            ComponentsArray res {{}};
-            for (std::size_t i = 0; i < static_cast<std::size_t>(versionParts.size()); ++i)
-            {
-                res[i] = static_cast<T>(versionParts[static_cast<typename StringsList::size_type>(i)].toInt(&ok));
-                if (!ok)
-                    throw RuntimeError(u"Can not parse version component"_qs);
-            }
-            return res;
-        }
-
-        template <typename StringsList>
-        Version(const StringsList &versionParts)
-            : m_components (parseList(versionParts)) // GCC 4.8.4 has problems with the uniform initializer here
-        {
-        }
-
-        ComponentsArray m_components {{}};
+        std::array<int, N> m_components {{}};
     };
 
-    template <typename T, std::size_t N, std::size_t Mandatory>
-    constexpr bool operator!=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    template <int N, int Mandatory>
+    constexpr bool operator!=(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
     {
         return !(left == right);
     }
 
-    template <typename T, std::size_t N, std::size_t Mandatory>
-    constexpr bool operator>(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    template <int N, int Mandatory>
+    constexpr bool operator>(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
     {
         return (right < left);
     }
 
-    template <typename T, std::size_t N, std::size_t Mandatory>
-    constexpr bool operator<=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    template <int N, int Mandatory>
+    constexpr bool operator<=(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
     {
         return !(left > right);
     }
 
-    template <typename T, std::size_t N, std::size_t Mandatory>
-    constexpr bool operator>=(const Version<T, N, Mandatory> &left, const Version<T, N, Mandatory> &right)
+    template <int N, int Mandatory>
+    constexpr bool operator>=(const Version<N, Mandatory> &left, const Version<N, Mandatory> &right)
     {
         return !(left < right);
     }

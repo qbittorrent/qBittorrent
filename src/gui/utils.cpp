@@ -31,11 +31,14 @@
 #ifdef Q_OS_WIN
 #include <Objbase.h>
 #include <Shlobj.h>
+#include <Shellapi.h>
 #endif
 
 #include <QApplication>
+#include <QColor>
 #include <QDesktopServices>
 #include <QIcon>
+#include <QPalette>
 #include <QPixmap>
 #include <QPixmapCache>
 #include <QPoint>
@@ -53,6 +56,13 @@
 #include "base/path.h"
 #include "base/utils/fs.h"
 #include "base/utils/version.h"
+
+bool Utils::Gui::isDarkTheme()
+{
+    const QPalette palette = qApp->palette();
+    const QColor &color = palette.color(QPalette::Active, QPalette::Base);
+    return (color.lightness() < 127);
+}
 
 QPixmap Utils::Gui::scaledPixmap(const QIcon &icon, const QWidget *widget, const int height)
 {
@@ -146,7 +156,24 @@ void Utils::Gui::openPath(const Path &path)
     const QUrl url = path.data().startsWith(u"//")
         ? QUrl(u"file:" + path.data())
         : QUrl::fromLocalFile(path.data());
+
+#ifdef Q_OS_WIN
+    auto *thread = QThread::create([path]()
+    {
+        if (SUCCEEDED(::CoInitializeEx(NULL, (COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE))))
+        {
+            const std::wstring pathWStr = path.toString().toStdWString();
+
+            ::ShellExecuteW(nullptr, nullptr, pathWStr.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+
+            ::CoUninitialize();
+        }
+    });
+    QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
+    thread->start();
+#else
     QDesktopServices::openUrl(url);
+#endif
 }
 
 // Open the parent directory of the given path with a file manager and select
@@ -193,8 +220,8 @@ void Utils::Gui::openFolderSelect(const Path &path)
         proc.start(u"nautilus"_qs, {u"--version"_qs});
         proc.waitForFinished();
         const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine()).remove(QRegularExpression(u"[^0-9.]"_qs));
-        using NautilusVersion = Utils::Version<int, 3>;
-        if (NautilusVersion::tryParse(nautilusVerStr, {1, 0, 0}) > NautilusVersion {3, 28})
+        using NautilusVersion = Utils::Version<3>;
+        if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
             proc.startDetached(u"nautilus"_qs, {(Fs::isDir(path) ? path.parentPath() : path).toString()});
         else
             proc.startDetached(u"nautilus"_qs, {u"--no-desktop"_qs, (Fs::isDir(path) ? path.parentPath() : path).toString()});

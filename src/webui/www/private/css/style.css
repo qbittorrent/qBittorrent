@@ -359,7 +359,7 @@ a.propButton img {
 }
 
 #torrentsFilterInput {
-    background-image: url("../icons/edit-find.svg");
+    background-image: url("../images/edit-find.svg");
     background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -373,7 +373,7 @@ a.propButton img {
 }
 
 #torrentFilesFilterInput {
-    background-image: url("../icons/edit-find.svg");
+    background-image: url("../images/edit-find.svg");
     background-position: left;
     background-repeat: no-repeat;
     background-size: 1.5em;
@@ -508,19 +508,16 @@ td.generalLabel {
     padding: 2px;
 }
 
-#progress {
-    border: 1px solid #999;
-    padding: 0;
+.piecesbarWrapper {
     position: relative;
     width: 100%;
 }
 
-#progress canvas {
+.piecesbarCanvas {
     height: 100%;
     image-rendering: pixelated;
-    left: 0;
+    inset: 0;
     position: absolute;
-    top: 0;
     width: 100%;
 }
 

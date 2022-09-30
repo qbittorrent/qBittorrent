@@ -35,8 +35,8 @@
 namespace Private
 {
     class FileComboEdit;
-    class FileEditorWithCompletion;
     class FileLineEdit;
+    class IFileEditorWithCompletion;
 }
 
 /*!
@@ -92,7 +92,7 @@ signals:
     void selectedPathChanged(const Path &path);
 
 protected:
-    explicit FileSystemPathEdit(Private::FileEditorWithCompletion *editor, QWidget *parent);
+    explicit FileSystemPathEdit(Private::IFileEditorWithCompletion *editor, QWidget *parent);
 
     template <class Widget>
     Widget *editWidget() const

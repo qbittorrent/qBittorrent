@@ -108,8 +108,6 @@ AutoDownloader::AutoDownloader()
     m_instance = this;
 
     m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
-    if (!m_fileStorage)
-        throw RuntimeError(tr("Directory for RSS AutoDownloader data is unavailable."));
 
     m_fileStorage->moveToThread(m_ioThread);
     connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
@@ -453,7 +451,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
 
 void AutoDownloader::loadRulesLegacy()
 {
-    const SettingsPtr settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
+    const std::unique_ptr<QSettings> settings = Profile::instance()->applicationSettings(u"qBittorrent-rss"_qs);
     const QVariantHash rules = settings->value(u"download_rules"_qs).toHash();
     for (const QVariant &ruleVar : rules)
     {

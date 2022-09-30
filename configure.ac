@@ -1,4 +1,4 @@
-AC_INIT([qbittorrent], [v4.5.0alpha], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
+AC_INIT([qbittorrent], [v4.5.0beta1], [bugs.qbittorrent.org], [], [https://www.qbittorrent.org/])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 : ${CFLAGS=""}
@@ -188,7 +188,7 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 2.0.4],
+                  [libtorrent-rasterbar >= 2.0.7],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_LIBTORRENT2"],
                   [PKG_CHECK_MODULES(libtorrent,
                                      [libtorrent-rasterbar >= 1.2.14 libtorrent-rasterbar < 2],

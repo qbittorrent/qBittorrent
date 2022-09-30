@@ -17,23 +17,347 @@
         <file>private/downloadlimit.html</file>
         <file>private/edittracker.html</file>
         <file>private/images/3-state-checkbox.gif</file>
+        <file>private/images/application-exit.svg</file>
+        <file>private/images/application-rss.svg</file>
+        <file>private/images/application-url.svg</file>
         <file>private/images/arrow-right.gif</file>
         <file>private/images/bg-dropdown.gif</file>
         <file>private/images/bg-handle-horizontal.gif</file>
         <file>private/images/bg-header.gif</file>
         <file>private/images/bg-panel-header.gif</file>
+        <file>private/images/checked-completed.svg</file>
+        <file>private/images/collapse.svg</file>
+        <file>private/images/configure.svg</file>
+        <file>private/images/connected.svg</file>
+        <file>private/images/dialog-warning.svg</file>
+        <file>private/images/disconnected.svg</file>
+        <file>private/images/directory.svg</file>
+        <file>private/images/download.svg</file>
+        <file>private/images/downloading.svg</file>
+        <file>private/images/edit-clear.svg</file>
+        <file>private/images/edit-copy.svg</file>
+        <file>private/images/edit-find.svg</file>
+        <file>private/images/edit-rename.svg</file>
+        <file>private/images/error.svg</file>
+        <file>private/images/filter-active.svg</file>
+        <file>private/images/filter-all.svg</file>
+        <file>private/images/filter-inactive.svg</file>
+        <file>private/images/filter-stalled.svg</file>
+        <file>private/images/firewalled.svg</file>
+        <file>private/images/flags/ac.svg</file>
+        <file>private/images/flags/ad.svg</file>
+        <file>private/images/flags/ae.svg</file>
+        <file>private/images/flags/af.svg</file>
+        <file>private/images/flags/ag.svg</file>
+        <file>private/images/flags/ai.svg</file>
+        <file>private/images/flags/al.svg</file>
+        <file>private/images/flags/am.svg</file>
+        <file>private/images/flags/ao.svg</file>
+        <file>private/images/flags/aq.svg</file>
+        <file>private/images/flags/ar.svg</file>
+        <file>private/images/flags/as.svg</file>
+        <file>private/images/flags/at.svg</file>
+        <file>private/images/flags/au.svg</file>
+        <file>private/images/flags/aw.svg</file>
+        <file>private/images/flags/ax.svg</file>
+        <file>private/images/flags/az.svg</file>
+        <file>private/images/flags/ba.svg</file>
+        <file>private/images/flags/bb.svg</file>
+        <file>private/images/flags/bd.svg</file>
+        <file>private/images/flags/be.svg</file>
+        <file>private/images/flags/bf.svg</file>
+        <file>private/images/flags/bg.svg</file>
+        <file>private/images/flags/bh.svg</file>
+        <file>private/images/flags/bi.svg</file>
+        <file>private/images/flags/bj.svg</file>
+        <file>private/images/flags/bl.svg</file>
+        <file>private/images/flags/bm.svg</file>
+        <file>private/images/flags/bn.svg</file>
+        <file>private/images/flags/bo.svg</file>
+        <file>private/images/flags/bq.svg</file>
+        <file>private/images/flags/br.svg</file>
+        <file>private/images/flags/bs.svg</file>
+        <file>private/images/flags/bt.svg</file>
+        <file>private/images/flags/bv.svg</file>
+        <file>private/images/flags/bw.svg</file>
+        <file>private/images/flags/by.svg</file>
+        <file>private/images/flags/bz.svg</file>
+        <file>private/images/flags/ca.svg</file>
+        <file>private/images/flags/cc.svg</file>
+        <file>private/images/flags/cd.svg</file>
+        <file>private/images/flags/cf.svg</file>
+        <file>private/images/flags/cg.svg</file>
+        <file>private/images/flags/ch.svg</file>
+        <file>private/images/flags/ci.svg</file>
+        <file>private/images/flags/ck.svg</file>
+        <file>private/images/flags/cl.svg</file>
+        <file>private/images/flags/cm.svg</file>
+        <file>private/images/flags/cn.svg</file>
+        <file>private/images/flags/co.svg</file>
+        <file>private/images/flags/cp.svg</file>
+        <file>private/images/flags/cr.svg</file>
+        <file>private/images/flags/cu.svg</file>
+        <file>private/images/flags/cv.svg</file>
+        <file>private/images/flags/cw.svg</file>
+        <file>private/images/flags/cx.svg</file>
+        <file>private/images/flags/cy.svg</file>
+        <file>private/images/flags/cz.svg</file>
+        <file>private/images/flags/de.svg</file>
+        <file>private/images/flags/dg.svg</file>
+        <file>private/images/flags/dj.svg</file>
+        <file>private/images/flags/dk.svg</file>
+        <file>private/images/flags/dm.svg</file>
+        <file>private/images/flags/do.svg</file>
+        <file>private/images/flags/dz.svg</file>
+        <file>private/images/flags/ea.svg</file>
+        <file>private/images/flags/ec.svg</file>
+        <file>private/images/flags/ee.svg</file>
+        <file>private/images/flags/eg.svg</file>
+        <file>private/images/flags/eh.svg</file>
+        <file>private/images/flags/er.svg</file>
+        <file>private/images/flags/es-ct.svg</file>
+        <file>private/images/flags/es-ga.svg</file>
+        <file>private/images/flags/es.svg</file>
+        <file>private/images/flags/et.svg</file>
+        <file>private/images/flags/eu.svg</file>
+        <file>private/images/flags/fi.svg</file>
+        <file>private/images/flags/fj.svg</file>
+        <file>private/images/flags/fk.svg</file>
+        <file>private/images/flags/fm.svg</file>
+        <file>private/images/flags/fo.svg</file>
+        <file>private/images/flags/fr.svg</file>
+        <file>private/images/flags/ga.svg</file>
+        <file>private/images/flags/gb-eng.svg</file>
+        <file>private/images/flags/gb-nir.svg</file>
+        <file>private/images/flags/gb-sct.svg</file>
+        <file>private/images/flags/gb-wls.svg</file>
+        <file>private/images/flags/gb.svg</file>
+        <file>private/images/flags/gd.svg</file>
+        <file>private/images/flags/ge.svg</file>
+        <file>private/images/flags/gf.svg</file>
+        <file>private/images/flags/gg.svg</file>
+        <file>private/images/flags/gh.svg</file>
+        <file>private/images/flags/gi.svg</file>
+        <file>private/images/flags/gl.svg</file>
+        <file>private/images/flags/gm.svg</file>
+        <file>private/images/flags/gn.svg</file>
+        <file>private/images/flags/gp.svg</file>
+        <file>private/images/flags/gq.svg</file>
+        <file>private/images/flags/gr.svg</file>
+        <file>private/images/flags/gs.svg</file>
+        <file>private/images/flags/gt.svg</file>
+        <file>private/images/flags/gu.svg</file>
+        <file>private/images/flags/gw.svg</file>
+        <file>private/images/flags/gy.svg</file>
+        <file>private/images/flags/hk.svg</file>
+        <file>private/images/flags/hm.svg</file>
+        <file>private/images/flags/hn.svg</file>
+        <file>private/images/flags/hr.svg</file>
+        <file>private/images/flags/ht.svg</file>
+        <file>private/images/flags/hu.svg</file>
+        <file>private/images/flags/ic.svg</file>
+        <file>private/images/flags/id.svg</file>
+        <file>private/images/flags/ie.svg</file>
+        <file>private/images/flags/il.svg</file>
+        <file>private/images/flags/im.svg</file>
+        <file>private/images/flags/in.svg</file>
+        <file>private/images/flags/io.svg</file>
+        <file>private/images/flags/iq.svg</file>
+        <file>private/images/flags/ir.svg</file>
+        <file>private/images/flags/is.svg</file>
+        <file>private/images/flags/it.svg</file>
+        <file>private/images/flags/je.svg</file>
+        <file>private/images/flags/jm.svg</file>
+        <file>private/images/flags/jo.svg</file>
+        <file>private/images/flags/jp.svg</file>
+        <file>private/images/flags/ke.svg</file>
+        <file>private/images/flags/kg.svg</file>
+        <file>private/images/flags/kh.svg</file>
+        <file>private/images/flags/ki.svg</file>
+        <file>private/images/flags/km.svg</file>
+        <file>private/images/flags/kn.svg</file>
+        <file>private/images/flags/kp.svg</file>
+        <file>private/images/flags/kr.svg</file>
+        <file>private/images/flags/kw.svg</file>
+        <file>private/images/flags/ky.svg</file>
+        <file>private/images/flags/kz.svg</file>
+        <file>private/images/flags/la.svg</file>
+        <file>private/images/flags/lb.svg</file>
+        <file>private/images/flags/lc.svg</file>
+        <file>private/images/flags/li.svg</file>
+        <file>private/images/flags/lk.svg</file>
+        <file>private/images/flags/lr.svg</file>
+        <file>private/images/flags/ls.svg</file>
+        <file>private/images/flags/lt.svg</file>
+        <file>private/images/flags/lu.svg</file>
+        <file>private/images/flags/lv.svg</file>
+        <file>private/images/flags/ly.svg</file>
+        <file>private/images/flags/ma.svg</file>
+        <file>private/images/flags/mc.svg</file>
+        <file>private/images/flags/md.svg</file>
+        <file>private/images/flags/me.svg</file>
+        <file>private/images/flags/mf.svg</file>
+        <file>private/images/flags/mg.svg</file>
+        <file>private/images/flags/mh.svg</file>
+        <file>private/images/flags/mk.svg</file>
+        <file>private/images/flags/ml.svg</file>
+        <file>private/images/flags/mm.svg</file>
+        <file>private/images/flags/mn.svg</file>
+        <file>private/images/flags/mo.svg</file>
+        <file>private/images/flags/mp.svg</file>
+        <file>private/images/flags/mq.svg</file>
+        <file>private/images/flags/mr.svg</file>
+        <file>private/images/flags/ms.svg</file>
+        <file>private/images/flags/mt.svg</file>
+        <file>private/images/flags/mu.svg</file>
+        <file>private/images/flags/mv.svg</file>
+        <file>private/images/flags/mw.svg</file>
+        <file>private/images/flags/mx.svg</file>
+        <file>private/images/flags/my.svg</file>
+        <file>private/images/flags/mz.svg</file>
+        <file>private/images/flags/na.svg</file>
+        <file>private/images/flags/nc.svg</file>
+        <file>private/images/flags/ne.svg</file>
+        <file>private/images/flags/nf.svg</file>
+        <file>private/images/flags/ng.svg</file>
+        <file>private/images/flags/ni.svg</file>
+        <file>private/images/flags/nl.svg</file>
+        <file>private/images/flags/no.svg</file>
+        <file>private/images/flags/np.svg</file>
+        <file>private/images/flags/nr.svg</file>
+        <file>private/images/flags/nu.svg</file>
+        <file>private/images/flags/nz.svg</file>
+        <file>private/images/flags/om.svg</file>
+        <file>private/images/flags/pa.svg</file>
+        <file>private/images/flags/pe.svg</file>
+        <file>private/images/flags/pf.svg</file>
+        <file>private/images/flags/pg.svg</file>
+        <file>private/images/flags/ph.svg</file>
+        <file>private/images/flags/pk.svg</file>
+        <file>private/images/flags/pl.svg</file>
+        <file>private/images/flags/pm.svg</file>
+        <file>private/images/flags/pn.svg</file>
+        <file>private/images/flags/pr.svg</file>
+        <file>private/images/flags/ps.svg</file>
+        <file>private/images/flags/pt.svg</file>
+        <file>private/images/flags/pw.svg</file>
+        <file>private/images/flags/py.svg</file>
+        <file>private/images/flags/qa.svg</file>
+        <file>private/images/flags/re.svg</file>
+        <file>private/images/flags/ro.svg</file>
+        <file>private/images/flags/rs.svg</file>
+        <file>private/images/flags/ru.svg</file>
+        <file>private/images/flags/rw.svg</file>
+        <file>private/images/flags/sa.svg</file>
+        <file>private/images/flags/sb.svg</file>
+        <file>private/images/flags/sc.svg</file>
+        <file>private/images/flags/sd.svg</file>
+        <file>private/images/flags/se.svg</file>
+        <file>private/images/flags/sg.svg</file>
+        <file>private/images/flags/sh.svg</file>
+        <file>private/images/flags/si.svg</file>
+        <file>private/images/flags/sj.svg</file>
+        <file>private/images/flags/sk.svg</file>
+        <file>private/images/flags/sl.svg</file>
+        <file>private/images/flags/sm.svg</file>
+        <file>private/images/flags/sn.svg</file>
+        <file>private/images/flags/so.svg</file>
+        <file>private/images/flags/sr.svg</file>
+        <file>private/images/flags/ss.svg</file>
+        <file>private/images/flags/st.svg</file>
+        <file>private/images/flags/sv.svg</file>
+        <file>private/images/flags/sx.svg</file>
+        <file>private/images/flags/sy.svg</file>
+        <file>private/images/flags/sz.svg</file>
+        <file>private/images/flags/ta.svg</file>
+        <file>private/images/flags/tc.svg</file>
+        <file>private/images/flags/td.svg</file>
+        <file>private/images/flags/tf.svg</file>
+        <file>private/images/flags/tg.svg</file>
+        <file>private/images/flags/th.svg</file>
+        <file>private/images/flags/tj.svg</file>
+        <file>private/images/flags/tk.svg</file>
+        <file>private/images/flags/tl.svg</file>
+        <file>private/images/flags/tm.svg</file>
+        <file>private/images/flags/tn.svg</file>
+        <file>private/images/flags/to.svg</file>
+        <file>private/images/flags/tr.svg</file>
+        <file>private/images/flags/tt.svg</file>
+        <file>private/images/flags/tv.svg</file>
+        <file>private/images/flags/tw.svg</file>
+        <file>private/images/flags/tz.svg</file>
+        <file>private/images/flags/ua.svg</file>
+        <file>private/images/flags/ug.svg</file>
+        <file>private/images/flags/um.svg</file>
+        <file>private/images/flags/un.svg</file>
+        <file>private/images/flags/us.svg</file>
+        <file>private/images/flags/uy.svg</file>
+        <file>private/images/flags/uz.svg</file>
+        <file>private/images/flags/va.svg</file>
+        <file>private/images/flags/vc.svg</file>
+        <file>private/images/flags/ve.svg</file>
+        <file>private/images/flags/vg.svg</file>
+        <file>private/images/flags/vi.svg</file>
+        <file>private/images/flags/vn.svg</file>
+        <file>private/images/flags/vu.svg</file>
+        <file>private/images/flags/wf.svg</file>
+        <file>private/images/flags/ws.svg</file>
+        <file>private/images/flags/xk.svg</file>
+        <file>private/images/flags/xx.svg</file>
+        <file>private/images/flags/ye.svg</file>
+        <file>private/images/flags/yt.svg</file>
+        <file>private/images/flags/za.svg</file>
+        <file>private/images/flags/zm.svg</file>
+        <file>private/images/flags/zw.svg</file>
+        <file>private/images/folder-new.svg</file>
+        <file>private/images/force-recheck.svg</file>
+        <file>private/images/go-bottom.svg</file>
+        <file>private/images/go-down.svg</file>
+        <file>private/images/go-top.svg</file>
+        <file>private/images/go-up.svg</file>
         <file>private/images/handle-icon-horizontal.gif</file>
         <file>private/images/handle-icon.gif</file>
+        <file>private/images/hash.svg</file>
+        <file>private/images/help-about.svg</file>
+        <file>private/images/help-contents.svg</file>
+        <file>private/images/insert-link.svg</file>
         <file>private/images/knob.gif</file>
         <file>private/images/L.gif</file>
+        <file>private/images/list-add.svg</file>
+        <file>private/images/list-remove.svg</file>
         <file>private/images/logo.gif</file>
         <file>private/images/logo2.gif</file>
+        <file>private/images/mail-inbox.svg</file>
+        <file>private/images/mascot.png</file>
+        <file>private/images/name.svg</file>
+        <file>private/images/peers-add.svg</file>
+        <file>private/images/peers-remove.svg</file>
+        <file>private/images/ratio.svg</file>
+        <file>private/images/reannounce.svg</file>
+        <file>private/images/set-location.svg</file>
         <file>private/images/slider-area.gif</file>
+        <file>private/images/slow.svg</file>
+        <file>private/images/slow_off.svg</file>
         <file>private/images/spacer.gif</file>
         <file>private/images/spinner-placeholder.gif</file>
         <file>private/images/spinner.gif</file>
+        <file>private/images/stalledDL.svg</file>
+        <file>private/images/stalledUP.svg</file>
+        <file>private/images/system-log-out.svg</file>
         <file>private/images/tabs.gif</file>
+        <file>private/images/tags.svg</file>
+        <file>private/images/task-complete.svg</file>
         <file>private/images/toolbox-divider.gif</file>
+        <file>private/images/torrent-magnet.svg</file>
+        <file>private/images/torrent-start-forced.svg</file>
+        <file>private/images/torrent-start.svg</file>
+        <file>private/images/torrent-stop.svg</file>
+        <file>private/images/trackers.svg</file>
+        <file>private/images/upload.svg</file>
+        <file>private/images/view-categories.svg</file>
+        <file>private/images/view-refresh.svg</file>
+        <file>private/images/view-statistics.svg</file>
+        <file>private/images/wallet-open.svg</file>
         <file>private/index.html</file>
         <file>private/newcategory.html</file>
         <file>private/newfeed.html</file>
@@ -56,6 +380,7 @@
         <file>private/scripts/lib/MooTools-More-1.6.0-compat-compressed.js</file>
         <file>private/scripts/misc.js</file>
         <file>private/scripts/mocha-init.js</file>
+        <file>private/scripts/piecesbar.js</file>
         <file>private/scripts/preferences.js</file>
         <file>private/scripts/progressbar.js</file>
         <file>private/scripts/prop-files.js</file>
@@ -84,6 +409,7 @@
         <file>private/views/transferlist.html</file>
         <file>public/css/login.css</file>
         <file>public/css/noscript.css</file>
+        <file>public/images/qbittorrent-tray.svg</file>
         <file>public/images/qbittorrent32.png</file>
         <file>public/index.html</file>
         <file>public/scripts/login.js</file>

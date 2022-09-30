@@ -28,6 +28,7 @@
 
 #include "upgrade.h"
 
+#include <QtGlobal>
 #include <QMetaEnum>
 
 #include "base/bittorrent/torrentcontentlayout.h"
@@ -44,7 +45,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 3;
+    const int MIGRATION_VERSION = 4;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_qs;
 
     void exportWebUIHttpsFiles()
@@ -368,6 +369,21 @@ namespace
             }
         }
     }
+
+#ifdef Q_OS_WIN
+    void migrateMemoryPrioritySettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const QString oldKey = u"BitTorrent/OSMemoryPriority"_qs;
+        const QString newKey = u"Application/ProcessMemoryPriority"_qs;
+
+        if (settingsStorage->hasKey(oldKey))
+        {
+            const auto value = settingsStorage->loadValue<QVariant>(oldKey);
+            settingsStorage->storeValue(newKey, value);
+        }
+    }
+#endif
 }
 
 bool upgrade(const bool /*ask*/)
@@ -391,6 +407,11 @@ bool upgrade(const bool /*ask*/)
 
         if (version < 3)
             migrateProxySettingsEnum();
+
+#ifdef Q_OS_WIN
+        if (version < 4)
+            migrateMemoryPrioritySettings();
+#endif
 
         version = MIGRATION_VERSION;
     }

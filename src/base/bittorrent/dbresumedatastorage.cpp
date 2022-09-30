@@ -224,17 +224,20 @@ namespace BitTorrent
             }
 
             const QByteArray bencodedResumeData = query.value(DB_COLUMN_RESUMEDATA.name).toByteArray();
-            const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray();
-            const QByteArray allData = ((bencodedMetadata.isEmpty() || bencodedResumeData.isEmpty())
-                                        ? bencodedResumeData
-                                        : (bencodedResumeData.chopped(1) + bencodedMetadata.mid(1)));
 
             lt::error_code ec;
-            const lt::bdecode_node root = lt::bdecode(allData, ec);
+            const lt::bdecode_node resumeDataRoot = lt::bdecode(bencodedResumeData, ec);
 
             lt::add_torrent_params &p = resumeData.ltAddTorrentParams;
 
-            p = lt::read_resume_data(root, ec);
+            p = lt::read_resume_data(resumeDataRoot, ec);
+
+            if (const QByteArray bencodedMetadata = query.value(DB_COLUMN_METADATA.name).toByteArray(); !bencodedMetadata.isEmpty())
+            {
+                const lt::bdecode_node torentInfoRoot = lt::bdecode(bencodedMetadata, ec);
+                p.ti = std::make_shared<lt::torrent_info>(torentInfoRoot, ec);
+            }
+
             p.save_path = Profile::instance()->fromPortablePath(Path(fromLTString(p.save_path)))
                     .toString().toStdString();
 

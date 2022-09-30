@@ -548,10 +548,9 @@ QVector<Utils::Net::Subnet> Preferences::getWebUiAuthSubnetWhitelist() const
 
     for (const QString &rawSubnet : subnets)
     {
-        bool ok = false;
-        const Utils::Net::Subnet subnet = Utils::Net::parseSubnet(rawSubnet.trimmed(), &ok);
-        if (ok)
-            ret.append(subnet);
+        const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(rawSubnet.trimmed());
+        if (subnet)
+            ret.append(subnet.value());
     }
 
     return ret;
@@ -561,9 +560,7 @@ void Preferences::setWebUiAuthSubnetWhitelist(QStringList subnets)
 {
     Algorithm::removeIf(subnets, [](const QString &subnet)
     {
-        bool ok = false;
-        Utils::Net::parseSubnet(subnet.trimmed(), &ok);
-        return !ok;
+        return !Utils::Net::parseSubnet(subnet.trimmed()).has_value();
     });
 
     setValue(u"Preferences/WebUI/AuthSubnetWhitelist"_qs, subnets);
@@ -867,22 +864,42 @@ void Preferences::setUILocked(const bool locked)
     setValue(u"Locking/locked"_qs, locked);
 }
 
-bool Preferences::isAutoRunEnabled() const
+bool Preferences::isAutoRunOnTorrentAddedEnabled() const
+{
+    return value(u"AutoRun/OnTorrentAdded/Enabled"_qs, false);
+}
+
+void Preferences::setAutoRunOnTorrentAddedEnabled(const bool enabled)
+{
+    setValue(u"AutoRun/OnTorrentAdded/Enabled"_qs, enabled);
+}
+
+QString Preferences::getAutoRunOnTorrentAddedProgram() const
+{
+    return value<QString>(u"AutoRun/OnTorrentAdded/Program"_qs);
+}
+
+void Preferences::setAutoRunOnTorrentAddedProgram(const QString &program)
+{
+    setValue(u"AutoRun/OnTorrentAdded/Program"_qs, program);
+}
+
+bool Preferences::isAutoRunOnTorrentFinishedEnabled() const
 {
     return value(u"AutoRun/enabled"_qs, false);
 }
 
-void Preferences::setAutoRunEnabled(const bool enabled)
+void Preferences::setAutoRunOnTorrentFinishedEnabled(const bool enabled)
 {
     setValue(u"AutoRun/enabled"_qs, enabled);
 }
 
-QString Preferences::getAutoRunProgram() const
+QString Preferences::getAutoRunOnTorrentFinishedProgram() const
 {
     return value<QString>(u"AutoRun/program"_qs);
 }
 
-void Preferences::setAutoRunProgram(const QString &program)
+void Preferences::setAutoRunOnTorrentFinishedProgram(const QString &program)
 {
     setValue(u"AutoRun/program"_qs, program);
 }
@@ -979,26 +996,14 @@ void Preferences::resolvePeerHostNames(const bool resolve)
     setValue(u"Preferences/Connection/ResolvePeerHostNames"_qs, resolve);
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-bool Preferences::useSystemIconTheme() const
+bool Preferences::isRecursiveDownloadEnabled() const
 {
-    return value(u"Preferences/Advanced/useSystemIconTheme"_qs, false);
+    return !value(u"Preferences/Advanced/DisableRecursiveDownload"_qs, false);
 }
 
-void Preferences::useSystemIconTheme(const bool enabled)
+void Preferences::setRecursiveDownloadEnabled(const bool enable)
 {
-    setValue(u"Preferences/Advanced/useSystemIconTheme"_qs, enabled);
-}
-#endif
-
-bool Preferences::recursiveDownloadDisabled() const
-{
-    return value(u"Preferences/Advanced/DisableRecursiveDownload"_qs, false);
-}
-
-void Preferences::disableRecursiveDownload(const bool disable)
-{
-    setValue(u"Preferences/Advanced/DisableRecursiveDownload"_qs, disable);
+    setValue(u"Preferences/Advanced/DisableRecursiveDownload"_qs, !enable);
 }
 
 #ifdef Q_OS_WIN

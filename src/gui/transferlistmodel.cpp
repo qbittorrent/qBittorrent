@@ -38,6 +38,7 @@
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
 #include "base/preferences.h"
+#include "base/types.h"
 #include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
@@ -155,11 +156,11 @@ TransferListModel::TransferListModel(QObject *parent)
     , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_qs)}
     , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_qs)}
     , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_qs)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"media-playback-pause"_qs)}
+    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"torrent-stop"_qs)}
     , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_qs)}
     , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_qs)}
     , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_qs)}
-    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"kt-set-max-upload-speed"_qs)}
+    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_qs)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);

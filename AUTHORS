@@ -29,16 +29,8 @@ Code from other projects:
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
 
-* file src/app/stacktrace.h
-  copyright: Timo Bingmann from http://idlebox.net/
-  license: WTFPL v2.0
-
-* file src/app/stacktrace_win.h
-  copyright: Quassel Project
-  license: GPLv2/3
-
 Images Authors:
-* files: src/icons/skin/qbittorrent-tray.svg (and related pngs)
+* files: src/icons/qbittorrent-tray.svg
   copyright: Provided by HVS <hvs linuxmail org> (raster first proposal) and Atif Afzal(@atfzl github) <atif5801@gmail.com> (vectorized and modified)
   license: GPLv2+
 
@@ -46,56 +38,53 @@ Images Authors:
   copyright: 'uknown.svg' (LGPLv3+) from Oxygen Icon Theme was used as base which was slightly modified and 'qbittorrent-tray.svg' (GPLv2+) was overlayed above it.
   license: GPLv3+
 
-* files: src/icons/*.png
-  copyright: Gnome Icon Theme
-  license: GPLv2
-  url: http://ftp.acc.umu.se/pub/GNOME/sources/gnome-icon-theme
-
-* files: src/oxygen/*.png
-  copyright: Oxygen Icon Theme (KDE)
-  license: LGPL
-  url: http://www.oxygen-icons.org
-
 * files: src/icons/flags/*.svg
-  copyright: lipis/flag-icon-css
+  copyright: lipis/flag-icons
   license: MIT
-  url: https://github.com/lipis/flag-icon-css/
+  url: https://github.com/lipis/flag-icons/
 
-* files: src/icons/skin/*.png
-  files: src/menuicons/YYxYY/*.png
-  copyright: Mateusz Tobola <tobejodok@qbittorrent.org>
-  license: GPLv2
-
-* file: src/icons/tabs.gif
+* file: src/webui/www/private/images/tabs.gif
   copyright: Greg Houston <gregory.houston@gmail.com>
   license: MIT
 
-* file: src/icons/skin/qbittorrent_mono*
+* file: src/icons/qbittorrent-tray-dark.svg src/icons/qbittorrent-tray-light.svg
   copyright: Daniel Eguren <deguren@gmail.com>
+  modified by: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im)
   license: LGPL
 
-* file: src/search_engine/engines/btjunkie.png
-  copyright: Downloaded from btjunkie.org
+* folder: src/icons/
+  files: application-rss+xml.svg, application-x-mswinurl.svg, connected.svg, disconnected.svg, checked-completed.svg, configure.svg,
+         edit-copy.svg, edit-rename.svg, folder-documents.svg, folder-new.svg, folder-remote.svg, go-bottom.svg, go-down.svg, go-top.svg,
+         go-up.svg, hash.svg, inode-directory.svg, insert-link.svg, kt-magnet.svg, media-playback-pause.svg, media-playback-start.svg,
+         media-seek-forward.svg, network-connect.svg, object-locked.svg, queued.svg, ratio.svg, reannounce.svg, slow_off.svg, slow.svg,
+         speedometer.svg, system-log-out.svg, tags.svg, task-complete.svg, task-reject.svg, tracker-error.svg, tracker-warning.svg,
+         trackerless.svg, trackers.svg, view-categories.svg
+  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from La-Capitaine icon theme (https://github.com/keeferrourke/la-capitaine-icon-theme)
+  license: GPLv3+
 
-* file: src/search_engine/engines/isohunt.png
-  copyright: Downloaded from isohunt.com
+* folder: src/icons/
+  files: application-exit.svg, collapse.svg, dialog-warning.svg, edit-find-user.svg, edit-find.svg, filter-all.svg, firewalled.svg,
+         help-about.svg, help-contents.svg, ip-blocked.svg, list-remove.svg, loading.svg, mail-folder-inbox.svg, name.svg, network-server.svg,
+         office-chart-line.svg, plugins.svg, preferences-desktop.svg, preferences-other.svg, preferences-system-network.svg, security-high.svg,
+         security-low.svg, set-location.svg, torrent-creator.svg, user-group-delete.svg, user-group-new.svg, view-preview.svg, view-refresh.svg,
+         view-statistics.svg, wallet-open.svg, webuiapplication-exit.svg, collapse.svg, dialog-warning.svg, edit-find-user.svg, edit-find.svg,
+         filter-all.svg, firewalled.svg, help-about.svg, help-contents.svg, ip-blocked.svg, list-remove.svg, loading.svg, mail-folder-inbox.svg,
+         name.svg, network-server.svg, office-chart-line.svg, plugins.svg, preferences-desktop.svg, preferences-other.svg,
+         preferences-system-network.svg, security-high.svg, security-low.svg, set-location.svg, torrent-creator.svg, user-group-delete.svg,
+         user-group-new.svg, view-preview.svg, view-refresh.svg, view-statistics.svg, wallet-open.svg, webui.svg
+  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from Ionicons icon theme (https://github.com/ionic-team/ionicons)
+  license: MIT
 
-* file: src/search_engine/engines/mininova.png
-  copyright: Downloaded from mininova.org
+* folder: src/icons/
+  files: force-recheck.svg
+  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im) modified from Font-Awesome icon theme (https://github.com/FortAwesome/Font-Awesome)
+  license: CC BY 4.0 License
 
-* file: src/search_engine/engines/piratebay.png
-  copyright: Downloaded from thepiratebay.org
-
-* file: src/search_engine/engines/torrentreactor.png
-  copyright: Downloaded from torrentreactor.net
-
-* file: src/icons/oxygen/checked.png
-  copyright: Victor Buinsky <allok.victor@gmail.com>
-
-* file: src/icons/skin/ratio.png
-  copyright: Fatcow Web Hosting
-  license: Creative Commons Attribution 3.0 License
-  url: http://www.fatcow.com/free-icons
+* folder: src/icons/
+  files: downloading.svg, edit-clear.svg, error.svg, filter-active.svg, filter-inactive.svg, filter-stalled.svg, kt-set-max-download-speed.svg,
+         kt-set-max-upload-speed.svg, list-add.svg, preferences-web-browser-cookies.svg, stalledDL.svg, stalledUP.svg
+  copyright: Nowshed H. Imran <nowshed.imran@gmail.com> (@now-im)
+  license: BSD 2-Clause License
 
 Translations authors:
 * files: src/lang/*.ts

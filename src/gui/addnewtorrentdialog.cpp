@@ -135,6 +135,22 @@ namespace
         return -1;
     }
 
+    qint64 queryFreeDiskSpace(const Path &path)
+    {
+        const Path root = path.rootItem();
+        Path current = path;
+        qint64 freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+
+        // for non-existent directories (which will be created on demand) `Utils::Fs::freeDiskSpaceOnPath`
+        // will return invalid value so instead query its parent/ancestor paths
+        while ((freeSpace < 0) && (current != root))
+        {
+            current = current.parentPath();
+            freeSpace = Utils::Fs::freeDiskSpaceOnPath(current);
+        }
+        return freeSpace;
+    }
+
     void setPath(FileSystemPathComboEdit *fsPathEdit, const Path &newPath)
     {
         int existingIndex = indexOfPath(fsPathEdit, newPath);
@@ -411,29 +427,38 @@ bool AddNewTorrentDialog::loadTorrentFile(const QString &source)
 
 bool AddNewTorrentDialog::loadTorrentImpl()
 {
-    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(m_torrentInfo.infoHash());
+    const BitTorrent::InfoHash infoHash = m_torrentInfo.infoHash();
 
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
+            // Trying to set metadata to existing torrent in case if it has none
+            torrent->setMetadata(m_torrentInfo);
+
             if (torrent->isPrivate() || m_torrentInfo.isPrivate())
             {
-                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers haven't been merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
+                RaisedMessageBox::warning(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers cannot be merged because it is a private torrent.").arg(torrent->name()), QMessageBox::Ok);
             }
             else
             {
-                torrent->addTrackers(m_torrentInfo.trackers());
-                torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
+                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                if (btn == QMessageBox::Yes)
+                {
+                    torrent->addTrackers(m_torrentInfo.trackers());
+                    torrent->addUrlSeeds(m_torrentInfo.urlSeeds());
+                }
             }
         }
         else
         {
             RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Torrent is already queued for processing."), QMessageBox::Ok);
         }
+
         return false;
     }
 
@@ -455,11 +480,12 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
 
     m_torrentGuard = std::make_unique<TorrentFileGuard>();
 
-    const auto torrentID = BitTorrent::TorrentID::fromInfoHash(magnetUri.infoHash());
+    const BitTorrent::InfoHash infoHash = magnetUri.infoHash();
+
     // Prevent showing the dialog if download is already present
-    if (BitTorrent::Session::instance()->isKnownTorrent(torrentID))
+    if (BitTorrent::Session::instance()->isKnownTorrent(infoHash))
     {
-        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(torrentID);
+        BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->findTorrent(infoHash);
         if (torrent)
         {
             if (torrent->isPrivate())
@@ -468,15 +494,21 @@ bool AddNewTorrentDialog::loadMagnet(const BitTorrent::MagnetUri &magnetUri)
             }
             else
             {
-                torrent->addTrackers(magnetUri.trackers());
-                torrent->addUrlSeeds(magnetUri.urlSeeds());
-                RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link '%1' is already in the transfer list. Trackers have been merged.").arg(torrent->name()), QMessageBox::Ok);
+                const QMessageBox::StandardButton btn = RaisedMessageBox::question(this, tr("Torrent is already present")
+                        , tr("Torrent '%1' is already in the transfer list. Do you want to merge trackers from new source?").arg(torrent->name())
+                        , (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                if (btn == QMessageBox::Yes)
+                {
+                    torrent->addTrackers(magnetUri.trackers());
+                    torrent->addUrlSeeds(magnetUri.urlSeeds());
+                }
             }
         }
         else
         {
             RaisedMessageBox::information(this, tr("Torrent is already present"), tr("Magnet link is already queued for processing."), QMessageBox::Ok);
         }
+
         return false;
     }
 
@@ -530,9 +562,10 @@ void AddNewTorrentDialog::updateDiskSpaceLabel()
         }
     }
 
+    const QString freeSpace = Utils::Misc::friendlyUnit(queryFreeDiskSpace(m_ui->savePath->selectedPath()));
     const QString sizeString = tr("%1 (Free space on disk: %2)").arg(
         ((torrentSize > 0) ? Utils::Misc::friendlyUnit(torrentSize) : tr("Not available", "This size is unavailable."))
-        , Utils::Misc::friendlyUnit(Utils::Fs::freeDiskSpaceOnPath(m_ui->savePath->selectedPath())));
+        , freeSpace);
     m_ui->labelSizeData->setText(sizeString);
 }
 

@@ -208,7 +208,7 @@
   </action>
   <action name="actionDelete">
    <property name="text">
-    <string>&amp;Delete</string>
+    <string>&amp;Remove</string>
    </property>
   </action>
   <action name="actionDownloadFromURL">

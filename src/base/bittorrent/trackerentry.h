@@ -30,10 +30,12 @@
 
 #include <libtorrent/socket.hpp>
 
+#include <QtContainerFwd>
 #include <QtGlobal>
 #include <QHash>
 #include <QMap>
 #include <QString>
+#include <QStringView>
 
 namespace BitTorrent
 {
@@ -73,6 +75,8 @@ namespace BitTorrent
         int numDownloaded = -1;
         QString message {};
     };
+
+    QVector<TrackerEntry> parseTrackerEntries(QStringView str);
 
     bool operator==(const TrackerEntry &left, const TrackerEntry &right);
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))

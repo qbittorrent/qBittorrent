@@ -34,11 +34,14 @@
 #include <QMetaObject>
 #include <QThread>
 
+#include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/peeraddress.h"
 #include "base/bittorrent/peerinfo.h"
 #include "base/bittorrent/session.h"
+#include "base/bittorrent/sessionstatus.h"
 #include "base/bittorrent/torrent.h"
+#include "base/bittorrent/torrentinfo.h"
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/geoipmanager.h"
@@ -126,8 +129,8 @@ namespace
         map[KEY_TRANSFER_DLRATELIMIT] = session->downloadSpeedLimit();
         map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
 
-        const qint64 atd = session->getAlltimeDL();
-        const qint64 atu = session->getAlltimeUL();
+        const qint64 atd = sessionStatus.allTimeDownload;
+        const qint64 atu = sessionStatus.allTimeUpload;
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
@@ -500,7 +503,7 @@ void SyncController::maindataAction()
     {
         const BitTorrent::CategoryOptions categoryOptions = session->categoryOptions(categoryName);
         QJsonObject category = categoryOptions.toJSON();
-        // adjust it to be compatible with exisitng WebAPI
+        // adjust it to be compatible with existing WebAPI
         category[u"savePath"_qs] = category.take(u"save_path"_qs);
         category.insert(u"name"_qs, categoryName);
         categories[categoryName] = category.toVariantMap();
@@ -536,7 +539,7 @@ void SyncController::maindataAction()
 void SyncController::torrentPeersAction()
 {
     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
-    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->findTorrent(id);
+    const BitTorrent::Torrent *torrent = BitTorrent::Session::instance()->getTorrent(id);
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 

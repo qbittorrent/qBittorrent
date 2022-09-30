@@ -14,9 +14,6 @@ Keywords=bittorrent;torrent;magnet;download;p2p;
 SingleMainWindow=true
 
 # Translations
-
-
-# Translations
 Comment[af]=Aflaai en deel lêers oor BitTorrent
 GenericName[af]=BitTorrent kliënt
 Name[af]=qBittorrent
@@ -104,10 +101,10 @@ Name[it]=qBittorrent
 Comment[ja]=BitTorrent でファイルをダウンロードおよび共有します
 GenericName[ja]=BitTorrent クライアント
 Name[ja]=qBittorrent
-Comment[ka]=ჩამოტვირთე და გააზიარე ფაილები Bittorrent-ის საშუალებით
+Comment[ka]=გადმოტვირთეთ და გააზიარეთ ფაილები BitTorrent-ის საშუალებით
 GenericName[ka]=BitTorrent კლიენტი
 Name[ka]=qBittorrent
-Comment[ko]=BitTorrent를 통한 파일 다운로드 및 공유
+Comment[ko]=BitTorrent를 통한 파일 내려받기 및 공유
 GenericName[ko]=BitTorrent 클라이언트
 Name[ko]=qBittorrent
 Comment[lt]=Atsisiųskite bei dalinkitės failais BitTorrent tinkle
@@ -174,7 +171,7 @@ Name[ur]=qBittorrent
 Comment[uk]=Завантажуйте та поширюйте файли через BitTorrent
 GenericName[uk]=BitTorrent-клієнт
 Name[uk]=qBittorrent
-Comment[vi]=Tải về và chia sẻ tệp qua BitTorrent
+Comment[vi]=Tải xuống và chia sẻ tệp qua BitTorrent
 GenericName[vi]=Máy khách BitTorrent
 Name[vi]=qBittorrent
 Comment[zh_HK]=經由BitTorrent下載並分享檔案

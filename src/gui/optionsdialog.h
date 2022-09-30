@@ -77,12 +77,6 @@ class OptionsDialog final : public QDialog, public GUIApplicationComponent
         TAB_ADVANCED
     };
 
-    enum class ShowError
-    {
-        NotShow,
-        Show
-    };
-
 public:
     explicit OptionsDialog(IGUIApplication *app, QWidget *parent = nullptr);
     ~OptionsDialog() override;
@@ -109,25 +103,46 @@ private slots:
     void on_addWatchedFolderButton_clicked();
     void on_editWatchedFolderButton_clicked();
     void on_removeWatchedFolderButton_clicked();
-    void on_registerDNSBtn_clicked();
     void setLocale(const QString &localeStr);
-    void webUIHttpsCertChanged(const Path &path, ShowError showError);
-    void webUIHttpsKeyChanged(const Path &path, ShowError showError);
+
+#ifndef DISABLE_WEBUI
+    void webUIHttpsCertChanged(const Path &path);
+    void webUIHttpsKeyChanged(const Path &path);
+    void on_registerDNSBtn_clicked();
+#endif
 
 private:
     void showEvent(QShowEvent *e) override;
 
     // Methods
-    void saveOptions();
-    void loadOptions();
-    void initializeLanguageCombo();
+    void saveOptions() const;
+
+    void loadBehaviorTabOptions();
+    void saveBehaviorTabOptions() const;
+
+    void loadDownloadsTabOptions();
+    void saveDownloadsTabOptions() const;
+
+    void loadConnectionTabOptions();
+    void saveConnectionTabOptions() const;
+
+    void loadSpeedTabOptions();
+    void saveSpeedTabOptions() const;
+
+    void loadBittorrentTabOptions();
+    void saveBittorrentTabOptions() const;
+
+    void loadRSSTabOptions();
+    void saveRSSTabOptions() const;
+
+#ifndef DISABLE_WEBUI
+    void loadWebUITabOptions();
+    void saveWebUITabOptions() const;
+#endif // DISABLE_WEBUI
+
     // General options
+    void initializeLanguageCombo();
     QString getLocale() const;
-#ifndef Q_OS_MACOS
-    bool systemTrayEnabled() const;
-    bool minimizeToTray() const;
-    bool closeToTray() const;
-#endif
     bool startMinimized() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
@@ -169,11 +184,13 @@ private:
     int getMaxActiveUploads() const;
     int getMaxActiveTorrents() const;
     // WebUI
+#ifndef DISABLE_WEBUI
     bool isWebUiEnabled() const;
     QString webUiUsername() const;
     QString webUiPassword() const;
     bool webUIAuthenticationOk();
     bool isAlternativeWebUIPathValid();
+#endif
 
     bool schedTimesOk();
 

@@ -50,9 +50,11 @@ signals:
     void urlsReadyToBeDownloaded(const QStringList &torrentURLs);
 
 private slots:
-    void downloadButtonClicked();
+    void onSubmit();
 
 private:
+    void keyPressEvent(QKeyEvent *event) override;
+
     Ui::DownloadFromURLDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

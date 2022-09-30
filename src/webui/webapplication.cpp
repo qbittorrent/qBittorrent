@@ -42,7 +42,6 @@
 #include <QUrl>
 
 #include "base/algorithm.h"
-#include "base/global.h"
 #include "base/http/httperror.h"
 #include "base/logger.h"
 #include "base/preferences.h"
@@ -65,7 +64,6 @@
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
 const auto C_SID = QByteArrayLiteral("SID"); // name of session id cookie
 
-const QString PATH_PREFIX_ICONS = u"/icons/"_qs;
 const QString WWW_FOLDER = u":/www"_qs;
 const QString PUBLIC_FOLDER = u"/public"_qs;
 const QString PRIVATE_FOLDER = u"/private"_qs;
@@ -140,16 +138,6 @@ void WebApplication::sendWebUIFile()
     if (pathItems.contains(u".") || pathItems.contains(u".."))
         throw InternalServerErrorHTTPError();
 
-    if (!m_isAltUIUsed)
-    {
-        if (request().path.startsWith(PATH_PREFIX_ICONS))
-        {
-            const Path imageFilename {request().path.mid(PATH_PREFIX_ICONS.size())};
-            sendFile(Path(u":/icons"_qs) / imageFilename);
-            return;
-        }
-    }
-
     const QString path = (request().path != u"/")
         ? request().path
         : u"/index.html"_qs;
@@ -165,17 +153,13 @@ void WebApplication::sendWebUIFile()
 
     if (m_isAltUIUsed)
     {
-#ifdef Q_OS_UNIX
         if (!Utils::Fs::isRegularFile(localPath))
-        {
-            status(500, u"Internal Server Error"_qs);
-            print(tr("Unacceptable file type, only regular file is allowed."), Http::CONTENT_TYPE_TXT);
-            return;
-        }
-#endif
+            throw InternalServerErrorHTTPError(tr("Unacceptable file type, only regular file is allowed."));
 
-        QFileInfo fileInfo {localPath.data()};
-        while (Path(fileInfo.filePath()) != m_rootFolder)
+        const QString rootFolder = m_rootFolder.data();
+
+        QFileInfo fileInfo {localPath.parentPath().data()};
+        while (fileInfo.path() != rootFolder)
         {
             if (fileInfo.isSymLink())
                 throw InternalServerErrorHTTPError(tr("Symlinks inside alternative UI folder are forbidden."));
@@ -253,9 +237,11 @@ void WebApplication::doProcessRequest()
     const QString action = match.captured(u"action"_qs);
     const QString scope = match.captured(u"scope"_qs);
 
+    // Check public/private scope
     if (!session() && !isPublicAPI(scope, action))
         throw ForbiddenHTTPError();
 
+    // Find matching API
     APIController *controller = nullptr;
     if (session())
         controller = session()->getAPIController(scope);
@@ -265,6 +251,20 @@ void WebApplication::doProcessRequest()
             controller = m_authController;
         else
             throw NotFoundHTTPError();
+    }
+
+    // Filter HTTP methods
+    const auto allowedMethodIter = m_allowedMethod.find({scope, action});
+    if (allowedMethodIter == m_allowedMethod.end())
+    {
+        // by default allow both GET, POST methods
+        if ((m_request.method != Http::METHOD_GET) && (m_request.method != Http::METHOD_POST))
+            throw MethodNotAllowedHTTPError();
+    }
+    else
+    {
+        if (*allowedMethodIter != m_request.method)
+            throw MethodNotAllowedHTTPError();
     }
 
     DataMap data;
@@ -401,15 +401,29 @@ void WebApplication::configure()
     m_isReverseProxySupportEnabled = pref->isWebUIReverseProxySupportEnabled();
     if (m_isReverseProxySupportEnabled)
     {
-        m_trustedReverseProxyList.clear();
-
         const QStringList proxyList = pref->getWebUITrustedReverseProxiesList().split(u';', Qt::SkipEmptyParts);
 
-        for (const QString &proxy : proxyList)
+        m_trustedReverseProxyList.clear();
+        m_trustedReverseProxyList.reserve(proxyList.size());
+
+        for (QString proxy : proxyList)
         {
-            QHostAddress ip;
-            if (ip.setAddress(proxy))
-                m_trustedReverseProxyList.push_back(ip);
+            if (!proxy.contains(u'/'))
+            {
+                const QAbstractSocket::NetworkLayerProtocol protocol = QHostAddress(proxy).protocol();
+                if (protocol == QAbstractSocket::IPv4Protocol)
+                {
+                    proxy.append(u"/32");
+                }
+                else if (protocol == QAbstractSocket::IPv6Protocol)
+                {
+                    proxy.append(u"/128");
+                }
+            }
+
+            const std::optional<Utils::Net::Subnet> subnet = Utils::Net::parseSubnet(proxy);
+            if (subnet)
+                m_trustedReverseProxyList.push_back(subnet.value());
         }
 
         if (m_trustedReverseProxyList.isEmpty())
@@ -427,12 +441,15 @@ void WebApplication::sendFile(const Path &path)
     const QDateTime lastModified = Utils::Fs::lastModified(path);
 
     // find translated file in cache
-    const auto it = m_translatedFiles.constFind(path);
-    if ((it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+    if (!m_isAltUIUsed)
     {
-        print(it->data, it->mimeType);
-        setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
-        return;
+        if (const auto it = m_translatedFiles.constFind(path);
+            (it != m_translatedFiles.constEnd()) && (lastModified <= it->lastModified))
+        {
+            print(it->data, it->mimeType);
+            setHeader({Http::HEADER_CACHE_CONTROL, getCachingInterval(it->mimeType)});
+            return;
+        }
     }
 
     QFile file {path.data()};
@@ -453,7 +470,7 @@ void WebApplication::sendFile(const Path &path)
     file.close();
 
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
-    const bool isTranslatable = mimeType.inherits(u"text/plain"_qs);
+    const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_qs);
 
     // Translate the file
     if (isTranslatable)
@@ -575,7 +592,7 @@ bool WebApplication::isAuthNeeded()
 {
     if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_clientAddress))
         return false;
-    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInRange(m_clientAddress, m_authSubnetWhitelist))
+    if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;
     return true;
 }
@@ -724,7 +741,7 @@ QHostAddress WebApplication::resolveClientAddress() const
         return m_env.clientAddress;
 
     // Only reverse proxy can overwrite client address
-    if (!m_trustedReverseProxyList.contains(m_env.clientAddress))
+    if (!Utils::Net::isIPInSubnets(m_env.clientAddress, m_trustedReverseProxyList))
         return m_env.clientAddress;
 
     const QString forwardedFor = m_request.headers.value(Http::HEADER_X_FORWARDED_FOR);

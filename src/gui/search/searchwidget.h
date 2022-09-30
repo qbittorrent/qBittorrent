@@ -34,6 +34,8 @@
 #include <QPointer>
 #include <QWidget>
 
+#include "gui/guiapplicationcomponent.h"
+
 class QEvent;
 class QObject;
 class QTabWidget;
@@ -46,13 +48,13 @@ namespace Ui
     class SearchWidget;
 }
 
-class SearchWidget : public QWidget
+class SearchWidget : public QWidget, public GUIApplicationComponent
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(SearchWidget)
 
 public:
-    explicit SearchWidget(MainWindow *mainWindow);
+    explicit SearchWidget(IGUIApplication *app, MainWindow *mainWindow);
     ~SearchWidget() override;
 
     void giveFocusToSearchInput();

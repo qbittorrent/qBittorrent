@@ -31,10 +31,6 @@
 #include <QMainWindow>
 #include <QPointer>
 
-#ifndef Q_OS_MACOS
-#include <QSystemTrayIcon>
-#endif
-
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
 #include "base/settingvalue.h"
@@ -83,7 +79,13 @@ class MainWindow final : public QMainWindow, public GUIApplicationComponent
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    explicit MainWindow(IGUIApplication *app, QWidget *parent = nullptr);
+    enum State
+    {
+        Normal,
+        Minimized
+    };
+
+    explicit MainWindow(IGUIApplication *app, State initialState = Normal);
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;
@@ -97,14 +99,6 @@ public:
     void setExecutionLogMsgTypes(Log::MsgTypes value);
 
     // Notifications properties
-    bool isNotificationsEnabled() const;
-    void setNotificationsEnabled(bool value);
-    bool isTorrentAddedNotificationsEnabled() const;
-    void setTorrentAddedNotificationsEnabled(bool value);
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-    int getNotificationTimeout() const;
-    void setNotificationTimeout(int value);
-#endif
 
     // Misc properties
     bool isDownloadTrackerFavicon() const;
@@ -113,19 +107,12 @@ public:
     void activate();
     void cleanup();
 
-    void showNotificationBalloon(const QString &title, const QString &msg) const;
-
-signals:
-    void systemTrayIconCreated();
-
 private slots:
     void showFilterContextMenu();
-    void balloonClicked();
-    void writeSettings();
-    void writeSplitterSettings();
-    void readSettings();
-    void fullDiskError(BitTorrent::Torrent *const torrent, const QString &msg) const;
-    void handleDownloadFromUrlFailure(const QString &, const QString &) const;
+    void desktopNotificationClicked();
+    void saveSettings() const;
+    void loadSettings();
+    void saveSplitterSettings() const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
@@ -143,10 +130,7 @@ private slots:
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void addTorrentFailed(const QString &error) const;
-    void torrentNew(BitTorrent::Torrent *const torrent) const;
-    void finishedTorrent(BitTorrent::Torrent *const torrent) const;
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
+    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 
@@ -199,16 +183,11 @@ private slots:
 #ifdef Q_OS_MACOS
     void on_actionCloseWindow_triggered();
 #else
-    void toggleVisibility(const QSystemTrayIcon::ActivationReason reason = QSystemTrayIcon::Trigger);
+    void toggleVisibility();
 #endif
 
 private:
-    void createTrayIconMenu();
-#ifdef Q_OS_MACOS
-    void setupDockClickHandler();
-#else
-    void createTrayIcon(int retries);
-#endif
+    QMenu *createDesktopIntegrationMenu();
 #ifdef Q_OS_WIN
     void installPython();
 #endif
@@ -238,9 +217,6 @@ private:
     QPointer<TorrentCreatorDialog> m_createTorrentDlg;
     QPointer<DownloadFromURLDialog> m_downloadFromURLDialog;
 
-#ifndef Q_OS_MACOS
-    QPointer<QSystemTrayIcon> m_systrayIcon;
-#endif
     QPointer<QMenu> m_trayIconMenu;
 
     TransferListWidget *m_transferListWidget = nullptr;
@@ -267,14 +243,7 @@ private:
 
     SettingValue<bool> m_storeExecutionLogEnabled;
     SettingValue<bool> m_storeDownloadTrackerFavicon;
-    SettingValue<bool> m_storeNotificationEnabled;
-    SettingValue<bool> m_storeNotificationTorrentAdded;
     CachedSettingValue<Log::MsgTypes> m_storeExecutionLogTypes;
-
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
-    SettingValue<int> m_storeNotificationTimeOut;
-    DBusNotifier *m_notifier = nullptr;
-#endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     void checkProgramUpdate(bool invokedByUser);

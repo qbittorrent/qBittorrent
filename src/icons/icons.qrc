@@ -1,18 +1,20 @@
 <RCC>
     <qresource prefix="/icons">
         <file>application-exit.svg</file>
-        <file>application-rss+xml.svg</file>
-        <file>application-x-mswinurl.svg</file>
+        <file>application-rss.svg</file>
+        <file>application-url.svg</file>
+        <file>browser-cookies.svg</file>
+        <file>chart-line.svg</file>
         <file>checked-completed.svg</file>
-        <file>collapse.svg</file>
         <file>configure.svg</file>
         <file>connected.svg</file>
         <file>dialog-warning.svg</file>
+        <file>directory.svg</file>
         <file>disconnected.svg</file>
         <file>downloading.svg</file>
+        <file>download.svg</file>
         <file>edit-clear.svg</file>
         <file>edit-copy.svg</file>
-        <file>edit-find-user.svg</file>
         <file>edit-find.svg</file>
         <file>edit-rename.svg</file>
         <file>error.svg</file>
@@ -93,9 +95,9 @@
         <file>flags/eg.svg</file>
         <file>flags/eh.svg</file>
         <file>flags/er.svg</file>
-        <file>flags/es.svg</file>
         <file>flags/es-ct.svg</file>
         <file>flags/es-ga.svg</file>
+        <file>flags/es.svg</file>
         <file>flags/et.svg</file>
         <file>flags/eu.svg</file>
         <file>flags/fi.svg</file>
@@ -105,10 +107,10 @@
         <file>flags/fo.svg</file>
         <file>flags/fr.svg</file>
         <file>flags/ga.svg</file>
-        <file>flags/gb.svg</file>
         <file>flags/gb-eng.svg</file>
         <file>flags/gb-nir.svg</file>
         <file>flags/gb-sct.svg</file>
+        <file>flags/gb.svg</file>
         <file>flags/gb-wls.svg</file>
         <file>flags/gd.svg</file>
         <file>flags/ge.svg</file>
@@ -298,43 +300,38 @@
         <file>hash.svg</file>
         <file>help-about.svg</file>
         <file>help-contents.svg</file>
-        <file>inode-directory.svg</file>
         <file>insert-link.svg</file>
         <file>ip-blocked.svg</file>
-        <file>kt-magnet.svg</file>
-        <file>kt-set-max-download-speed.svg</file>
-        <file>kt-set-max-upload-speed.svg</file>
         <file>list-add.svg</file>
         <file>list-remove.svg</file>
         <file>loading.svg</file>
-        <file>mail-folder-inbox.svg</file>
+        <file>mail-inbox.svg</file>
         <file>mascot.png</file>
-        <file>media-playback-pause.svg</file>
-        <file>media-playback-start.svg</file>
-        <file>media-seek-forward.svg</file>
         <file>name.svg</file>
         <file>network-connect.svg</file>
         <file>network-server.svg</file>
         <file>object-locked.svg</file>
-        <file>office-chart-line.svg</file>
+        <file>peers-add.svg</file>
+        <file>peers-remove.svg</file>
+        <file>peers.svg</file>
         <file>plugins.svg</file>
+        <file>preferences-advanced.svg</file>
+        <file>preferences-bittorrent.svg</file>
         <file>preferences-desktop.svg</file>
-        <file>preferences-other.svg</file>
-        <file>preferences-system-network.svg</file>
-        <file>preferences-web-browser-cookies.svg</file>
+        <file>preferences-webui.svg</file>
+        <file>qbittorrent_file.ico</file>
+        <file>qbittorrent.ico</file>
         <file>qbittorrent-tray-dark.svg</file>
         <file>qbittorrent-tray-light.svg</file>
         <file>qbittorrent-tray.svg</file>
-        <file>qbittorrent.ico</file>
-        <file>qbittorrent_file.ico</file>
         <file>queued.svg</file>
         <file>ratio.svg</file>
         <file>reannounce.svg</file>
         <file>security-high.svg</file>
         <file>security-low.svg</file>
         <file>set-location.svg</file>
-        <file>slow.svg</file>
         <file>slow_off.svg</file>
+        <file>slow.svg</file>
         <file>speedometer.svg</file>
         <file>splash.png</file>
         <file>stalledDL.svg</file>
@@ -344,17 +341,19 @@
         <file>task-complete.svg</file>
         <file>task-reject.svg</file>
         <file>torrent-creator.svg</file>
+        <file>torrent-magnet.svg</file>
+        <file>torrent-start-forced.svg</file>
+        <file>torrent-start.svg</file>
+        <file>torrent-stop.svg</file>
         <file>tracker-error.svg</file>
-        <file>tracker-warning.svg</file>
         <file>trackerless.svg</file>
         <file>trackers.svg</file>
-        <file>user-group-delete.svg</file>
-        <file>user-group-new.svg</file>
+        <file>tracker-warning.svg</file>
+        <file>upload.svg</file>
         <file>view-categories.svg</file>
         <file>view-preview.svg</file>
         <file>view-refresh.svg</file>
         <file>view-statistics.svg</file>
         <file>wallet-open.svg</file>
-        <file>webui.svg</file>
     </qresource>
 </RCC>

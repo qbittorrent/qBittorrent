@@ -527,7 +527,7 @@ QString makeUsage(const QString &prgName)
     const QString indentation {USAGE_INDENTATION, u' '};
 
     const QString text = QObject::tr("Usage:") + u'\n'
-        + indentation + prgName + u" [options] [(<filename> | <url>)...]" + u'\n'
+        + indentation + prgName + u' ' + QObject::tr("[options] [(<filename> | <url>)...]") + u'\n'
 
         + QObject::tr("Options:") + u'\n'
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)

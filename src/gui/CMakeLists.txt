@@ -1,5 +1,13 @@
+if (QT6)
+    find_package(Qt6 ${minQt6Version} REQUIRED COMPONENTS Widgets Svg)
+else()
+    find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS Widgets Svg)
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        find_package(Qt5 ${minQt5Version} REQUIRED COMPONENTS WinExtras)
+    endif()
+endif()
 
-# CMAKE_AUTO_UI causes unncessary rebuilds
+# CMAKE_AUTO_UI causes unnecessary rebuilds
 qt_wrap_ui(UI_HEADERS
     aboutdialog.ui
     addnewtorrentdialog.ui
@@ -45,6 +53,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.h
     cookiesmodel.h
     deletionconfirmationdialog.h
+    desktopintegration.h
     downloadfromurldialog.h
     executionlogwidget.h
     fspathedit.h
@@ -128,6 +137,7 @@ add_library(qbt_gui STATIC
     cookiesdialog.cpp
     cookiesmodel.cpp
     deletionconfirmationdialog.cpp
+    desktopintegration.cpp
     downloadfromurldialog.cpp
     executionlogwidget.cpp
     fspathedit.cpp
