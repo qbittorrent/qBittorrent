@@ -1280,13 +1280,13 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegularExpression m_infoHashPattern {u"^[a-fA-F0-9]+$"_qs};
+    const QRegularExpression infoHashPattern {u"^hash:(?<infohash>[a-fA-F0-9]+)$"_qs};
+    QRegularExpressionMatch infoHashMatch;
 
-    // SHA1 (v1): 40, SHA256 (v2): 64
-    // While waiting for a dropdown menu, we can intercept search for 40 or 64 hex characters...
-    if ((name.length() == 40 || name.length() == 64) && name.contains(m_infoHashPattern))
+    // While waiting for a dropdown menu, supports "hash:xx"
+    if (name.contains(infoHashPattern, infoHashMatch))
     {
-        this->applyInfoHashFilter(name);
+        this->applyInfoHashFilter(infoHashMatch.captured("infohash"));
     }
     else
     {
