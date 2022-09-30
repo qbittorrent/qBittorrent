@@ -66,6 +66,7 @@ public:
     static const std::optional<QString> AnyCategory;
     static const std::optional<TorrentIDSet> AnyID;
     static const std::optional<QString> AnyTag;
+    static const std::optional<QString> AnyInfoHash;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;

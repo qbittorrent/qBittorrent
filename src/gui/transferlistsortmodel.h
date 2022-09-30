@@ -53,8 +53,9 @@ public:
     void setCategoryFilter(const QString &category);
     void disableCategoryFilter();
     void setTagFilter(const QString &tag);
-    void setInfoHashFilter(const QString &infohash);
     void disableTagFilter();
+    void setInfoHashFilter(const QString &infohash);
+    void disableInfoHashFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
 
