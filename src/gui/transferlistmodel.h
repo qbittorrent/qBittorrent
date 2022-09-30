@@ -76,11 +76,14 @@ public:
         TR_AMOUNT_LEFT,
         TR_TIME_ELAPSED,
         TR_SAVE_PATH,
+        TR_DOWNLOAD_PATH,
         TR_COMPLETED,
         TR_RATIO_LIMIT,
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
         TR_AVAILABILITY,
+        TR_INFOHASH_V1,
+        TR_INFOHASH_V2,
 
         NB_COLUMNS
     };
