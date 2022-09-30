@@ -1284,7 +1284,7 @@ void TransferListWidget::applyNameFilter(const QString &name)
 
     // SHA1 (v1): 40, SHA256 (v2): 64
     // While waiting for a dropdown menu, we can intercept search for 40 or 64 hex characters...
-    if ((name.length() == 40 || name.length() == 64) && name.contains(m_infoHashPattern, Qt::CaseInsensitive))
+    if ((name.length() == 40 || name.length() == 64) && name.contains(m_infoHashPattern))
     {
         this->applyInfoHashFilter(name);
     }
