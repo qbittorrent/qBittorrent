@@ -98,7 +98,7 @@ public:
 
 private:
     bool matchState(const BitTorrent::Torrent *torrent) const;
-    bool matchInfoHash(const BitTorrent::Torrent *const torrent) const;
+    bool matchInfoHash(const BitTorrent::Torrent *torrent) const;
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
