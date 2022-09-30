@@ -1280,7 +1280,7 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegularExpression m_infoHashPattern {u"^[a-f0-9]$"_qs};
+    const QRegularExpression m_infoHashPattern {u"^[a-fA-F0-9]+$"_qs};
 
     // SHA1 (v1): 40, SHA256 (v2): 64
     // While waiting for a dropdown menu, we can intercept search for 40 or 64 hex characters...
