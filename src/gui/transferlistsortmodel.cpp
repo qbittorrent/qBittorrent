@@ -167,7 +167,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     case TransferListModel::TR_SAVE_PATH:
     case TransferListModel::TR_DOWNLOAD_PATH:
     case TransferListModel::TR_INFOHASH_V1:
-    case TransferListModel::TR_INFOHASH_v2:
+    case TransferListModel::TR_INFOHASH_V2:
     case TransferListModel::TR_TRACKER:
         return m_naturalCompare(leftValue.toString(), rightValue.toString());
 
