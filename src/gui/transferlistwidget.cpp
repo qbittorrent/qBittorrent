@@ -1290,6 +1290,9 @@ void TransferListWidget::applyNameFilter(const QString &name)
     }
     else
     {
+        // We need to clear a potential previous infohash filter
+        m_sortFilterModel->disableInfoHashFilter();
+
         const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
                     ? name : Utils::String::wildcardToRegexPattern(name));
         m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
