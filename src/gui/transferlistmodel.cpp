@@ -232,8 +232,8 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
-            case TR_INFOHASH_V1: return tr("InfoHash v1", "i.e: torrent info hash v1");
-            case TR_INFOHASH_V2: return tr("InfoHash v2", "i.e: torrent info hash v2");
+            case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
+            case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             default: return {};
             }
         }
