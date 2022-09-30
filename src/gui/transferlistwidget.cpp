@@ -1301,7 +1301,10 @@ void TransferListWidget::applyNameFilter(const QString &name)
 
 void TransferListWidget::applyInfoHashFilter(const QString &infohash)
 {
-    m_sortFilterModel->setInfoHashFilter(infohash);
+    if (infohash.isNull())
+        m_sortFilterModel->disableInfoHashFilter();
+    else
+        m_sortFilterModel->setInfoHashFilter(infohash);
 }
 
 void TransferListWidget::applyStatusFilter(int f)
