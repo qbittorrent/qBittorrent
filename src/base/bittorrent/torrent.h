@@ -212,6 +212,7 @@ namespace BitTorrent
         virtual bool isForced() const = 0;
         virtual bool isChecking() const = 0;
         virtual bool isDownloading() const = 0;
+        virtual bool isMoving() const = 0;
         virtual bool isUploading() const = 0;
         virtual bool isCompleted() const = 0;
         virtual bool isActive() const = 0;
