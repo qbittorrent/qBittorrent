@@ -220,7 +220,12 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
     m_rootItem->recalculateAvailability();
-    notifyModelUpdate(index(0, 0));
+
+    const QVector<ColumnInterval> columns =
+    {
+        {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_PROGRESS}
+    };
+    notifySubtreeUpdated(index(0, 0), columns);
 }
 
 void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio)
@@ -233,7 +238,13 @@ void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::Downlo
     emit layoutAboutToBeChanged();
     for (int i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
-    notifyModelUpdate(index(0, 0));
+
+    const QVector<ColumnInterval> columns =
+    {
+        {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
+        {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
+    };
+    notifySubtreeUpdated(index(0, 0), columns);
 }
 
 void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
@@ -247,7 +258,12 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
         m_filesIndex[i]->setAvailability(fa[i]);
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
-    notifyModelUpdate(index(0, 0));
+
+    const QVector<ColumnInterval> columns =
+    {
+        {TorrentContentModelItem::COL_AVAILABILITY, TorrentContentModelItem::COL_AVAILABILITY}
+    };
+    notifySubtreeUpdated(index(0, 0), columns);
 }
 
 QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() const
@@ -297,7 +313,12 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
             m_rootItem->recalculateProgress();
             m_rootItem->recalculateAvailability();
 
-            notifyModelUpdate(index);
+            const QVector<ColumnInterval> columns =
+            {
+                {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
+                {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
+            };
+            notifySubtreeUpdated(index, columns);
             emit filteredFilesChanged();
 
             return true;
@@ -331,7 +352,13 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
                 {
                     item->setPriority(newPrio);
 
-                    notifyModelUpdate(index);
+                    const QVector<ColumnInterval> columns =
+                    {
+                        {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
+                        {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
+                    };
+                    notifySubtreeUpdated(index, columns);
+
                     if ((newPrio == BitTorrent::DownloadPriority::Ignored)
                         || (currentPrio == BitTorrent::DownloadPriority::Ignored))
                     {
@@ -550,20 +577,22 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     emit layoutChanged();
 }
 
-void TorrentContentModel::notifyModelUpdate(const QModelIndex &index)
+void TorrentContentModel::notifySubtreeUpdated(const QModelIndex &index, const QVector<ColumnInterval> &columns)
 {
+    // For best performance, `columns` entries should be arranged from left to right
+
     Q_ASSERT(index.isValid());
 
-    const int lastColumnIndex = columnCount(index) - 1;
-
     // emit itself
-    emit dataChanged(index.siblingAtColumn(0), index.siblingAtColumn(lastColumnIndex));
+    for (const ColumnInterval &column : columns)
+        emit dataChanged(index.siblingAtColumn(column.first()), index.siblingAtColumn(column.last()));
 
     // propagate up the model
     QModelIndex parentIndex = parent(index);
     while (parentIndex.isValid())
     {
-        emit dataChanged(parentIndex.siblingAtColumn(0), parentIndex.siblingAtColumn(lastColumnIndex));
+        for (const ColumnInterval &column : columns)
+            emit dataChanged(parentIndex.siblingAtColumn(column.first()), parentIndex.siblingAtColumn(column.last()));
         parentIndex = parent(parentIndex);
     }
 
@@ -578,19 +607,23 @@ void TorrentContentModel::notifyModelUpdate(const QModelIndex &index)
         const QModelIndex parent = parentIndexes.takeLast();
 
         const int childCount = rowCount(parent);
-        const QModelIndex childTopLeft = this->index(0, 0, parent);
-        const QModelIndex childBottomRight = this->index((childCount - 1), lastColumnIndex, parent);
+        const QModelIndex child = this->index(0, 0, parent);
 
         // emit this generation
-        emit dataChanged(childTopLeft, childBottomRight);
+        for (const ColumnInterval &column : columns)
+        {
+            const QModelIndex childTopLeft = child.siblingAtColumn(column.first());
+            const QModelIndex childBottomRight = child.sibling((childCount - 1), column.last());
+            emit dataChanged(childTopLeft, childBottomRight);
+        }
 
         // check generations further down
         parentIndexes.reserve(childCount);
         for (int i = 0; i < childCount; ++i)
         {
-            const QModelIndex child = childTopLeft.siblingAtRow(i);
-            if (hasChildren(child))
-                parentIndexes.push_back(child);
+            const QModelIndex sibling = child.siblingAtRow(i);
+            if (hasChildren(sibling))
+                parentIndexes.push_back(sibling);
         }
     }
 }
