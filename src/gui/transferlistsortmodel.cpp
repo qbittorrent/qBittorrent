@@ -148,6 +148,30 @@ void TransferListSortModel::disableInfoHashFilter()
         invalidateFilter();
 }
 
+void TransferListSortModel::setSavePathFilter(const QString &save_path)
+{
+    if (m_filter.setSavePath(save_path))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableSavePathFilter()
+{
+    if (m_filter.setSavePath(TorrentFilter::AnySavePath))
+        invalidateFilter();
+}
+
+void TransferListSortModel::setDownloadPath(const QString &download_path)
+{
+    if (m_filter.setDownloadPath(download_path))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableDownloadPathFilter()
+{
+    if (m_filter.setDownloadPath(TorrentFilter::AnyDownloadPath))
+        invalidateFilter();
+}
+
 void TransferListSortModel::disableNameFilter()
 {
     setFilterRegularExpression(u""_qs);

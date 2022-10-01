@@ -56,6 +56,10 @@ public:
     void disableTagFilter();
     void setInfoHashFilter(const QString &infohash);
     void disableInfoHashFilter();
+    void setSavePathFilter(const QString &save_path);
+    void disableSavePathFilter();
+    void setDownloadPathFilter(const QString &download_path);
+    void disableDownloadPathFilter();
     void disableNameFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();

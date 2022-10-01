@@ -1281,20 +1281,44 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegularExpression infoHashPattern {u"^hash:(?<infohash>[a-fA-F0-9]+)$"_qs};
-    QRegularExpressionMatch infoHashMatch;
+    const QRegularExpression customQueryPattern {u"^(?<type>save_path|download_path|hash):(?<pattern>.+)$"_qs};
+    QRegularExpressionMatch customQueryMatch;
 
-    // While waiting for a dropdown menu, supports "hash:xx"
-    if (name.contains(infoHashPattern, &infoHashMatch))
+    // While waiting for a dropdown menu, supports "save_path/download_path/hash:xx"
+    if (name.contains(customQueryPattern, &customQueryMatch))
     {
         // We need to clear a potential previous name filter
         m_sortFilterModel->disableNameFilter();
 
-        this->applyInfoHashFilter(infoHashMatch.captured(u"infohash"_qs));
+        const QString customQueryType = customQueryMatch.captured(u"type"_qs);
+
+        if (customQueryType == u"save_path")
+        {
+            m_sortFilterModel->disableDownloadPathFilter();
+            m_sortFilterModel->disableInfoHashFilter();
+
+            this->applySavePathFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
+        else if (customQueryType == u"download_path")
+        {
+            m_sortFilterModel->disableSavePathFilter();
+            m_sortFilterModel->disableInfoHashFilter();
+
+            this->applyDownloadPathFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
+        else if (customQueryType == u"hash")
+        {
+            m_sortFilterModel->disableSavePathFilter();
+            m_sortFilterModel->disableDownloadPathFilter();
+
+            this->applyInfoHashFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
     }
     else
     {
-        // We need to clear a potential previous infohash filter
+        // We need to clear a potential custom query filter
+        m_sortFilterModel->disableSavePathFilter();
+        m_sortFilterModel->disableDownloadPathFilter();
         m_sortFilterModel->disableInfoHashFilter();
 
         const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()

@@ -35,6 +35,8 @@ const std::optional<QString> TorrentFilter::AnyCategory;
 const std::optional<TorrentIDSet> TorrentFilter::AnyID;
 const std::optional<QString> TorrentFilter::AnyTag;
 const std::optional<QString> TorrentFilter::AnyInfoHash;
+const std::optional<QString> TorrentFilter::AnySavePath;
+const std::optional<QString> TorrentFilter::AnyDownloadPath;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -157,11 +159,34 @@ bool TorrentFilter::setInfoHash(const std::optional<QString> &infohash)
     return false;
 }
 
+bool TorrentFilter::setSavePath(const std::optional<QString> &save_path)
+{
+    if (m_savePath != save_path)
+    {
+        m_savePath = save_path;
+        return true;
+    }
+
+    return false;
+}
+
+bool TorrentFilter::setDownloadPath(const std::optional<QString> &download_path)
+{
+    if (m_downloadPath != download_path)
+    {
+        m_downloadPath = download_path;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
-    return (matchState(torrent) && matchHash(torrent) && matchInfoHash(torrent) && matchCategory(torrent) && matchTag(torrent));
+    return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent)
+            && matchInfoHash(torrent) && matchSavePath(torrent) && matchDownloadPath(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -208,6 +233,22 @@ bool TorrentFilter::matchInfoHash(const BitTorrent::Torrent *const torrent) cons
 
     return torrent->infoHash().v1().toString().contains(*m_infoHash, Qt::CaseInsensitive)
         || torrent->infoHash().v2().toString().contains(*m_infoHash, Qt::CaseInsensitive);
+}
+
+bool TorrentFilter::matchSavePath(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_savePath)
+        return true;
+
+    return torrent->savePath().toString().contains(*m_savePath, Qt::CaseInsensitive);
+}
+
+bool TorrentFilter::matchDownloadPath(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_downloadPath)
+        return true;
+
+    return torrent->savePath().toString().contains(*m_downloadPath, Qt::CaseInsensitive);
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
