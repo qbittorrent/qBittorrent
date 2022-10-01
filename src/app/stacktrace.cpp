@@ -30,7 +30,14 @@
 
 #include <boost/stacktrace.hpp>
 
+#include <sstream>
+#include <boost/version.hpp>
+
 std::string getStacktrace()
 {
+#if BOOST_VERSION >= 107100
     return boost::stacktrace::to_string(boost::stacktrace::stacktrace());
+#else
+    return (std::ostringstream() << boost::stacktrace::stacktrace()).str();
+#endif
 }
