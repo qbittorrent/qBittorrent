@@ -24,22 +24,17 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
 
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
-
-  ;Create 'translations' directory
-  CreateDirectory $INSTDIR\translations
-
-  ; Put file there
+  ; Put files there
   File "qbittorrent.exe"
   File "qbittorrent.pdb"
   File "qt.conf"
-  File /r "qtbase_*.qm"  ; omit translations folder path to preserve folder structure
-  File /oname=translations\qt_fa.qm "translations\qt_fa.qm"
-  File /oname=translations\qt_gl.qm "translations\qt_gl.qm"
-  File /oname=translations\qt_lt.qm "translations\qt_lt.qm"
-  File /oname=translations\qt_pt.qm "translations\qt_pt.qm"
-  File /oname=translations\qt_sl.qm "translations\qt_sl.qm"
-  File /oname=translations\qt_sv.qm "translations\qt_sv.qm"
-  File /oname=translations\qt_zh_CN.qm "translations\qt_zh_CN.qm"
+
+  ;Create 'translations' directory
+  CreateDirectory $INSTDIR\translations
+  ; Set output path to the installation\translations directory.
+  SetOutPath "$INSTDIR\translations"
+  ; Put files there
+  File /r "translations\qt*.qm"
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
