@@ -1287,6 +1287,9 @@ void TransferListWidget::applyNameFilter(const QString &name)
     // While waiting for a dropdown menu, supports "hash:xx"
     if (name.contains(infoHashPattern, &infoHashMatch))
     {
+        // We need to clear a potential previous name filter
+        m_sortFilterModel->invalidateFilter();
+
         this->applyInfoHashFilter(infoHashMatch.captured(u"infohash"_qs));
     }
     else
