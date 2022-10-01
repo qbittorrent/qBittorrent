@@ -75,12 +75,14 @@ namespace BitTorrent
         Unknown = -1,
 
         ForcedDownloading,
+        ForcedStalledDownloading,
         Downloading,
         ForcedDownloadingMetadata,
         DownloadingMetadata,
         StalledDownloading,
 
         ForcedUploading,
+        ForcedStalledUploading,
         Uploading,
         StalledUploading,
 

@@ -59,6 +59,7 @@ namespace
         case BitTorrent::TorrentState::CheckingUploading:
             return u"checkingUP"_qs;
         case BitTorrent::TorrentState::ForcedUploading:
+        case BitTorrent::TorrentState::ForcedStalledUploading:
             return u"forcedUP"_qs;
         case BitTorrent::TorrentState::Downloading:
             return u"downloading"_qs;
@@ -75,6 +76,7 @@ namespace
         case BitTorrent::TorrentState::CheckingDownloading:
             return u"checkingDL"_qs;
         case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::ForcedStalledDownloading:
             return u"forcedDL"_qs;
         case BitTorrent::TorrentState::CheckingResumeData:
             return u"checkingResumeData"_qs;

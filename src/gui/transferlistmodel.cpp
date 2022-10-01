@@ -53,6 +53,7 @@ namespace
         {
         case BitTorrent::TorrentState::Downloading:
         case BitTorrent::TorrentState::ForcedDownloading:
+        case BitTorrent::TorrentState::ForcedStalledDownloading:
         case BitTorrent::TorrentState::DownloadingMetadata:
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
             return QColorConstants::Svg::green;
@@ -62,6 +63,7 @@ namespace
             return QColorConstants::Svg::cornflowerblue;
         case BitTorrent::TorrentState::Uploading:
         case BitTorrent::TorrentState::ForcedUploading:
+        case BitTorrent::TorrentState::ForcedStalledUploading:
             return QColorConstants::Svg::royalblue;
         case BitTorrent::TorrentState::PausedDownloading:
             return QColorConstants::Svg::grey;
@@ -100,9 +102,11 @@ namespace
             {BitTorrent::TorrentState::DownloadingMetadata, u"TransferList.DownloadingMetadata"_qs},
             {BitTorrent::TorrentState::ForcedDownloadingMetadata, u"TransferList.ForcedDownloadingMetadata"_qs},
             {BitTorrent::TorrentState::ForcedDownloading, u"TransferList.ForcedDownloading"_qs},
+            {BitTorrent::TorrentState::ForcedStalledDownloading, u"TransferList.ForcedStalledDownloading"_qs},
             {BitTorrent::TorrentState::Uploading, u"TransferList.Uploading"_qs},
             {BitTorrent::TorrentState::StalledUploading, u"TransferList.StalledUploading"_qs},
             {BitTorrent::TorrentState::ForcedUploading, u"TransferList.ForcedUploading"_qs},
+            {BitTorrent::TorrentState::ForcedStalledUploading, u"TransferList.ForcedStalledUploading"_qs},
             {BitTorrent::TorrentState::QueuedDownloading, u"TransferList.QueuedDownloading"_qs},
             {BitTorrent::TorrentState::QueuedUploading, u"TransferList.QueuedUploading"_qs},
             {BitTorrent::TorrentState::CheckingDownloading, u"TransferList.CheckingDownloading"_qs},
@@ -137,9 +141,11 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::DownloadingMetadata, tr("Downloading metadata", "Used when loading a magnet link")},
           {BitTorrent::TorrentState::ForcedDownloadingMetadata, tr("[F] Downloading metadata", "Used when forced to load a magnet link. You probably shouldn't translate the F.")},
           {BitTorrent::TorrentState::ForcedDownloading, tr("[F] Downloading", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+          {BitTorrent::TorrentState::ForcedStalledDownloading, tr("[F] Stalled", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
           {BitTorrent::TorrentState::Uploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
-          {BitTorrent::TorrentState::StalledUploading, tr("Seeding", "Torrent is complete and in upload-only mode")},
+          {BitTorrent::TorrentState::StalledUploading, tr("Seeding (waiting)", "Torrent is complete and in upload-only mode")},
           {BitTorrent::TorrentState::ForcedUploading, tr("[F] Seeding", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
+          {BitTorrent::TorrentState::ForcedStalledUploading, tr("[F] Seeding (waiting)", "Used when the torrent is forced started. You probably shouldn't translate the F.")},
           {BitTorrent::TorrentState::QueuedDownloading, tr("Queued", "Torrent is queued")},
           {BitTorrent::TorrentState::QueuedUploading, tr("Queued", "Torrent is queued")},
           {BitTorrent::TorrentState::CheckingDownloading, tr("Checking", "Torrent local data is being checked")},
@@ -701,6 +707,7 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
     {
     case BitTorrent::TorrentState::Downloading:
     case BitTorrent::TorrentState::ForcedDownloading:
+    case BitTorrent::TorrentState::ForcedStalledDownloading:
     case BitTorrent::TorrentState::DownloadingMetadata:
     case BitTorrent::TorrentState::ForcedDownloadingMetadata:
         return m_downloadingIcon;
@@ -710,6 +717,7 @@ QIcon TransferListModel::getIconByState(const BitTorrent::TorrentState state) co
         return m_stalledUPIcon;
     case BitTorrent::TorrentState::Uploading:
     case BitTorrent::TorrentState::ForcedUploading:
+    case BitTorrent::TorrentState::ForcedStalledUploading:
         return m_uploadingIcon;
     case BitTorrent::TorrentState::PausedDownloading:
         return m_pausedIcon;
