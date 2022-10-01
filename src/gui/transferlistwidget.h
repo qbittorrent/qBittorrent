@@ -31,6 +31,7 @@
 #include <functional>
 
 #include <QtContainerFwd>
+#include <QString>
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
