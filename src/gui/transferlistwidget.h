@@ -94,6 +94,8 @@ public slots:
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
     void applyNameFilter(const QString &name);
+    void disableCurrentCustomQueryFilter();
+    void disablePreviousCustomQueryFilter();
     void applyInfoHashFilter(const QString &infohash);
     void applySavePathFilter(const QString &save_path);
     void applyDownloadPathFilter(const QString &download_path);
