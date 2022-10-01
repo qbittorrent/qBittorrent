@@ -1349,7 +1349,7 @@ void TransferListWidget::disableCurrentCustomQueryFilter()
     if (m_currentCustomQueryFilter == u"creator")       m_sortFilterModel->disableCreatorFilter();
     if (m_currentCustomQueryFilter == u"filename")      m_sortFilterModel->disableFilenameFilter();
 
-    m_currentCustomQueryFilter = u"none";
+    m_currentCustomQueryFilter = u"none"_qs;
 }
 
 void TransferListWidget::disablePreviousCustomQueryFilter()
