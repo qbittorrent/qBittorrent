@@ -160,7 +160,7 @@ void TransferListSortModel::disableSavePathFilter()
         invalidateFilter();
 }
 
-void TransferListSortModel::setDownloadPath(const QString &download_path)
+void TransferListSortModel::setDownloadPathFilter(const QString &download_path)
 {
     if (m_filter.setDownloadPath(download_path))
         invalidateFilter();
@@ -169,6 +169,30 @@ void TransferListSortModel::setDownloadPath(const QString &download_path)
 void TransferListSortModel::disableDownloadPathFilter()
 {
     if (m_filter.setDownloadPath(TorrentFilter::AnyDownloadPath))
+        invalidateFilter();
+}
+
+void TransferListSortModel::setCommentFilter(const QString &comment)
+{
+    if (m_filter.setComment(comment))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableCommentFilter()
+{
+    if (m_filter.setComment(TorrentFilter::AnyComment))
+        invalidateFilter();
+}
+
+void TransferListSortModel::setCreatorFilter(const QString &creator)
+{
+    if (m_filter.setCreator(creator))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableCreatorFilter()
+{
+    if (m_filter.setCreator(TorrentFilter::AnyCreator))
         invalidateFilter();
 }
 

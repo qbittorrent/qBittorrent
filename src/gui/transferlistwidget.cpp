@@ -1281,7 +1281,7 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegularExpression customQueryPattern {u"^(?<type>save_path|download_path|hash):(?<pattern>.+)$"_qs};
+    const QRegularExpression customQueryPattern {u"^(?<type>save_path|download_path|hash|comment|creator):(?<pattern>.+)$"_qs};
     QRegularExpressionMatch customQueryMatch;
 
     // While waiting for a dropdown menu, supports "save_path/download_path/hash:xx"
@@ -1296,6 +1296,8 @@ void TransferListWidget::applyNameFilter(const QString &name)
         {
             m_sortFilterModel->disableDownloadPathFilter();
             m_sortFilterModel->disableInfoHashFilter();
+            m_sortFilterModel->disableComment();
+            m_sortFilterModel->disableCreator();
 
             this->applySavePathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
@@ -1303,6 +1305,8 @@ void TransferListWidget::applyNameFilter(const QString &name)
         {
             m_sortFilterModel->disableSavePathFilter();
             m_sortFilterModel->disableInfoHashFilter();
+            m_sortFilterModel->disableComment();
+            m_sortFilterModel->disableCreator();
 
             this->applyDownloadPathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
@@ -1310,8 +1314,28 @@ void TransferListWidget::applyNameFilter(const QString &name)
         {
             m_sortFilterModel->disableSavePathFilter();
             m_sortFilterModel->disableDownloadPathFilter();
+            m_sortFilterModel->disableComment();
+            m_sortFilterModel->disableCreator();
 
             this->applyInfoHashFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
+        else if (customQueryType == u"comment")
+        {
+            m_sortFilterModel->disableSavePathFilter();
+            m_sortFilterModel->disableDownloadPathFilter();
+            m_sortFilterModel->disableInfoHashFilter();
+            m_sortFilterModel->disableCreator();
+
+            this->applyCommentFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
+        else if (customQueryType == u"creator")
+        {
+            m_sortFilterModel->disableSavePathFilter();
+            m_sortFilterModel->disableDownloadPathFilter();
+            m_sortFilterModel->disableInfoHashFilter();
+            m_sortFilterModel->disableComment();
+
+            this->applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
         }
     }
     else
@@ -1320,6 +1344,8 @@ void TransferListWidget::applyNameFilter(const QString &name)
         m_sortFilterModel->disableSavePathFilter();
         m_sortFilterModel->disableDownloadPathFilter();
         m_sortFilterModel->disableInfoHashFilter();
+        m_sortFilterModel->disableComment();
+        m_sortFilterModel->disableCreator();
 
         const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
                     ? name : Utils::String::wildcardToRegexPattern(name));

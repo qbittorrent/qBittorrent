@@ -37,6 +37,8 @@ const std::optional<QString> TorrentFilter::AnyTag;
 const std::optional<QString> TorrentFilter::AnyInfoHash;
 const std::optional<QString> TorrentFilter::AnySavePath;
 const std::optional<QString> TorrentFilter::AnyDownloadPath;
+const std::optional<QString> TorrentFilter::AnyComment;
+const std::optional<QString> TorrentFilter::AnyCreator;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -181,12 +183,35 @@ bool TorrentFilter::setDownloadPath(const std::optional<QString> &download_path)
     return false;
 }
 
+bool TorrentFilter::setComment(const std::optional<QString> &comment)
+{
+    if (m_comment != comment)
+    {
+        m_comment = comment;
+        return true;
+    }
+
+    return false;
+}
+
+bool TorrentFilter::setCreator(const std::optional<QString> &creator)
+{
+    if (m_creator != creator)
+    {
+        m_creator = creator;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
     return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent)
-            && matchInfoHash(torrent) && matchSavePath(torrent) && matchDownloadPath(torrent));
+            && matchInfoHash(torrent) && matchSavePath(torrent) && matchDownloadPath(torrent)
+            && matchComment(torrent) && matchCreator(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -248,7 +273,23 @@ bool TorrentFilter::matchDownloadPath(const BitTorrent::Torrent *const torrent) 
     if (!m_downloadPath)
         return true;
 
-    return torrent->savePath().toString().contains(*m_downloadPath, Qt::CaseInsensitive);
+    return torrent->downloadPath().toString().contains(*m_downloadPath, Qt::CaseInsensitive);
+}
+
+bool TorrentFilter::matchComment(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_comment)
+        return true;
+
+    return torrent->comment().contains(*m_comment, Qt::CaseInsensitive);
+}
+
+bool TorrentFilter::matchCreator(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_creator)
+        return true;
+
+    return torrent->creator().contains(*m_creator, Qt::CaseInsensitive);
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const

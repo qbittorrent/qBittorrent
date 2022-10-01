@@ -60,6 +60,10 @@ public:
     void disableSavePathFilter();
     void setDownloadPathFilter(const QString &download_path);
     void disableDownloadPathFilter();
+    void setCommentFilter(const QString &comment);
+    void disableCommentFilter();
+    void setCreatorFilter(const QString &creator);
+    void disableCreatorFilter();
     void disableNameFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();
