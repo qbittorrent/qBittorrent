@@ -139,4 +139,5 @@ private:
     TransferListModel *m_listModel = nullptr;
     TransferListSortModel *m_sortFilterModel = nullptr;
     MainWindow *m_mainWindow = nullptr;
+    QString m_currentCustomQueryFilter = u"none"_qs;
 };
