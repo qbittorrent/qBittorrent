@@ -30,6 +30,8 @@ LangString launch_qbt ${LANG_INDONESIAN} "Buka qBittorrent."
 LangString inst_requires_64bit ${LANG_INDONESIAN} "Aplikasi ini hanya berjalan pada versi Windows 64-bit."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_INDONESIAN} "Versi qBittorrent ini membutuhkan setidaknya Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_INDONESIAN}  "This installer requires at least Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_INDONESIAN} "Copot qBittorrent"
 

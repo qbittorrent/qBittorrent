@@ -20,7 +20,7 @@ You will need NSIS and upx to make the installer. You need a unicode version of 
 I tested with NSIS 3.0 (final).
 
 1. Open the options.nsi file in an editor and change line that contains
-   "!define PROG_VERSION "3.0.3"" to the version of qbittorrent you just built.
+   "!define QBT_VERSION "3.0.3"" to the version of qbittorrent you just built.
 2. Extract the plugins found in the folder "nsis plugins" into your
    NSIS's unicode Plugin directory(usually C:\Program Files\NSIS\Plugins\x86-unicode).
    Only the *.dll files are needed. Use the unicode version of the dlls.
