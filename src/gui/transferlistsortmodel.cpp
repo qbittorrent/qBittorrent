@@ -150,7 +150,7 @@ void TransferListSortModel::disableInfoHashFilter()
 
 void TransferListSortModel::disableNameFilter()
 {
-    invalidateFilter();
+    setFilterRegularExpression(u""_qs);
 }
 
 void TransferListSortModel::disableTagFilter()
