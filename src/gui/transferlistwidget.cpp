@@ -1361,6 +1361,38 @@ void TransferListWidget::applyInfoHashFilter(const QString &infohash)
         m_sortFilterModel->setInfoHashFilter(infohash);
 }
 
+void TransferListWidget::applySavePathFilter(const QString &save_path)
+{
+    if (save_path.isNull())
+        m_sortFilterModel->disableSavePathFilter();
+    else
+        m_sortFilterModel->setSavePathFilter(save_path);
+}
+
+void TransferListWidget::applyDownloadPathFilter(const QString &download_path)
+{
+    if (download_path.isNull())
+        m_sortFilterModel->disableDownloadPathFilter();
+    else
+        m_sortFilterModel->setDownloadPathFilter(download_path);
+}
+
+void TransferListWidget::applyCommentFilter(const QString &comment)
+{
+    if (comment.isNull())
+        m_sortFilterModel->disableCommentFilter();
+    else
+        m_sortFilterModel->setCommentFilter(comment);
+}
+
+void TransferListWidget::applyCreatorFilter(const QString &creator)
+{
+    if (creator.isNull())
+        m_sortFilterModel->disableCreatorFilter();
+    else
+        m_sortFilterModel->setCreatorFilter(creator);
+}
+
 void TransferListWidget::applyStatusFilter(int f)
 {
     m_sortFilterModel->setStatusFilter(static_cast<TorrentFilter::Type>(f));

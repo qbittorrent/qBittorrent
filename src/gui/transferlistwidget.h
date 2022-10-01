@@ -94,6 +94,10 @@ public slots:
     void hideQueuePosColumn(bool hide);
     void applyNameFilter(const QString &name);
     void applyInfoHashFilter(const QString &infohash);
+    void applySavePathFilter(const QString &save_path);
+    void applyDownloadPathFilter(const QString &download_path);
+    void applyCommentFilter(const QString &comment);
+    void applyCreatorFilter(const QString &creator);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);
