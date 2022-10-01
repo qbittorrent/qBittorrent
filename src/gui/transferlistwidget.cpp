@@ -1288,7 +1288,7 @@ void TransferListWidget::applyNameFilter(const QString &name)
     if (name.contains(infoHashPattern, &infoHashMatch))
     {
         // We need to clear a potential previous name filter
-        m_sortFilterModel->invalidateFilter();
+        m_sortFilterModel->disableNameFilter();
 
         this->applyInfoHashFilter(infoHashMatch.captured(u"infohash"_qs));
     }

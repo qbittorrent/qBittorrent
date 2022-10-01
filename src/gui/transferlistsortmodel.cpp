@@ -148,6 +148,11 @@ void TransferListSortModel::disableInfoHashFilter()
         invalidateFilter();
 }
 
+void TransferListSortModel::disableNameFilter()
+{
+    invalidateFilter();
+}
+
 void TransferListSortModel::disableTagFilter()
 {
     if (m_filter.setTag(TorrentFilter::AnyTag))
