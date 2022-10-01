@@ -1281,7 +1281,7 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
 
 void TransferListWidget::applyNameFilter(const QString &name)
 {
-    const QRegularExpression customQueryPattern {u"^(?<type>save_path|download_path|hash|comment|creator):(?<pattern>.+)$"_qs};
+    const QRegularExpression customQueryPattern {u"^(?<type>save_path|download_path|hash|comment|creator|filename):(?<pattern>.+)$"_qs};
     QRegularExpressionMatch customQueryMatch;
 
     // While waiting for a dropdown menu, supports "save_path/download_path/hash:xx"
@@ -1319,6 +1319,10 @@ void TransferListWidget::applyNameFilter(const QString &name)
         {
             this->applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
         }
+        else if (customQueryType == u"filename")
+        {
+            this->applyFilenameFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
 
         m_currentCustomQueryFilter = customQueryType;
     }
@@ -1343,6 +1347,7 @@ void TransferListWidget::disableCurrentCustomQueryFilter()
     if (m_currentCustomQueryFilter == u"hash")          m_sortFilterModel->disableInfoHashFilter();
     if (m_currentCustomQueryFilter == u"comment")       m_sortFilterModel->disableCommentFilter();
     if (m_currentCustomQueryFilter == u"creator")       m_sortFilterModel->disableCreatorFilter();
+    if (m_currentCustomQueryFilter == u"filename")      m_sortFilterModel->disableFilenameFilter();
 
     m_currentCustomQueryFilter = u"none";
 }
@@ -1354,6 +1359,7 @@ void TransferListWidget::disablePreviousCustomQueryFilter()
     if (m_currentCustomQueryFilter != u"hash")          m_sortFilterModel->disableInfoHashFilter();
     if (m_currentCustomQueryFilter != u"comment")       m_sortFilterModel->disableCommentFilter();
     if (m_currentCustomQueryFilter != u"creator")       m_sortFilterModel->disableCreatorFilter();
+    if (m_currentCustomQueryFilter != u"filename")      m_sortFilterModel->disableFilenameFilter();
 }
 
 void TransferListWidget::applyInfoHashFilter(const QString &infohash)
@@ -1394,6 +1400,14 @@ void TransferListWidget::applyCreatorFilter(const QString &creator)
         m_sortFilterModel->disableCreatorFilter();
     else
         m_sortFilterModel->setCreatorFilter(creator);
+}
+
+void TransferListWidget::applyFilenameFilter(const QString &filename)
+{
+    if (filename.isNull())
+        m_sortFilterModel->disableFileNameFilter();
+    else
+        m_sortFilterModel->setFileNameFilter(filename);
 }
 
 void TransferListWidget::applyStatusFilter(int f)

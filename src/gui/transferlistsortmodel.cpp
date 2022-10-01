@@ -196,6 +196,18 @@ void TransferListSortModel::disableCreatorFilter()
         invalidateFilter();
 }
 
+void TransferListSortModel::setFilenameFilter(const QString &filename)
+{
+    if (m_filter.setFilename(filename))
+        invalidateFilter();
+}
+
+void TransferListSortModel::disableFilenameFilter()
+{
+    if (m_filter.setFilename(TorrentFilter::AnyFilename))
+        invalidateFilter();
+}
+
 void TransferListSortModel::disableNameFilter()
 {
     setFilterRegularExpression(u""_qs);

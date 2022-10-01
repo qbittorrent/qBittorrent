@@ -34,6 +34,7 @@
 #include <QString>
 #include <QTreeView>
 
+#include "base/global.h"
 #include "base/bittorrent/infohash.h"
 
 class MainWindow;
@@ -101,6 +102,7 @@ public slots:
     void applyDownloadPathFilter(const QString &download_path);
     void applyCommentFilter(const QString &comment);
     void applyCreatorFilter(const QString &creator);
+    void applyFilenameFilter(const QString &filename);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);

@@ -41,6 +41,7 @@ const std::optional<QString> TorrentFilter::AnySavePath;
 const std::optional<QString> TorrentFilter::AnyDownloadPath;
 const std::optional<QString> TorrentFilter::AnyComment;
 const std::optional<QString> TorrentFilter::AnyCreator;
+const std::optional<QString> TorrentFilter::AnyFilename;
 
 const TorrentFilter TorrentFilter::DownloadingTorrent(TorrentFilter::Downloading);
 const TorrentFilter TorrentFilter::SeedingTorrent(TorrentFilter::Seeding);
@@ -207,13 +208,24 @@ bool TorrentFilter::setCreator(const std::optional<QString> &creator)
     return false;
 }
 
+bool TorrentFilter::setFilename(const std::optional<QString> &filename)
+{
+    if (m_filename != filename)
+    {
+        m_filename = filename;
+        return true;
+    }
+
+    return false;
+}
+
 bool TorrentFilter::match(const Torrent *const torrent) const
 {
     if (!torrent) return false;
 
     return (matchState(torrent) && matchHash(torrent) && matchCategory(torrent) && matchTag(torrent)
             && matchInfoHash(torrent) && matchSavePath(torrent) && matchDownloadPath(torrent)
-            && matchComment(torrent) && matchCreator(torrent));
+            && matchComment(torrent) && matchCreator(torrent) && matchFilename(torrent));
 }
 
 bool TorrentFilter::matchState(const BitTorrent::Torrent *const torrent) const
@@ -292,6 +304,25 @@ bool TorrentFilter::matchCreator(const BitTorrent::Torrent *const torrent) const
         return true;
 
     return torrent->creator().contains(*m_creator, Qt::CaseInsensitive);
+}
+
+bool TorrentFilter::matchFilename(const BitTorrent::Torrent *const torrent) const
+{
+    if (!m_filename)
+        return true;
+
+    bool result = false;
+
+    for (const Path &filePath : asConst(torrent->filePaths()))
+    {
+        if (filePath.toString().contains(*m_filename, Qt::CaseInsensitive))
+        {
+            result = true;
+            break;
+        }
+    }
+
+    return result;
 }
 
 bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const

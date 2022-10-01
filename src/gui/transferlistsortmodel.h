@@ -64,6 +64,8 @@ public:
     void disableCommentFilter();
     void setCreatorFilter(const QString &creator);
     void disableCreatorFilter();
+    void setFilenameFilter(const QString &filename);
+    void disableFilenameFilter();
     void disableNameFilter();
     void setTrackerFilter(const QSet<BitTorrent::TorrentID> &torrentIDs);
     void disableTrackerFilter();

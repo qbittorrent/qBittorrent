@@ -71,6 +71,7 @@ public:
     static const std::optional<QString> AnyDownloadPath;
     static const std::optional<QString> AnyComment;
     static const std::optional<QString> AnyCreator;
+    static const std::optional<QString> AnyFilename;
 
     static const TorrentFilter DownloadingTorrent;
     static const TorrentFilter SeedingTorrent;
@@ -102,6 +103,7 @@ public:
     bool setDownloadPath(const std::optional<QString> &download_path);
     bool setComment(const std::optional<QString> &comment);
     bool setCreator(const std::optional<QString> &creator);
+    bool setFilename(const std::optional<QString> &filename);
 
     bool match(const BitTorrent::Torrent *torrent) const;
 
@@ -112,6 +114,7 @@ private:
     bool matchDownloadPath(const BitTorrent::Torrent *torrent) const;
     bool matchComment(const BitTorrent::Torrent *torrent) const;
     bool matchCreator(const BitTorrent::Torrent *torrent) const;
+    bool matchFilename(const BitTorrent::Torrent *torrent) const;
     bool matchHash(const BitTorrent::Torrent *torrent) const;
     bool matchCategory(const BitTorrent::Torrent *torrent) const;
     bool matchTag(const BitTorrent::Torrent *torrent) const;
@@ -125,4 +128,5 @@ private:
     std::optional<QString> m_downloadPath;
     std::optional<QString> m_comment;
     std::optional<QString> m_creator;
+    std::optional<QString> m_filename;
 };
