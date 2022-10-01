@@ -1287,65 +1287,58 @@ void TransferListWidget::applyNameFilter(const QString &name)
     // While waiting for a dropdown menu, supports "save_path/download_path/hash:xx"
     if (name.contains(customQueryPattern, &customQueryMatch))
     {
-        // We need to clear a potential previous name filter
-        m_sortFilterModel->disableNameFilter();
-
         const QString customQueryType = customQueryMatch.captured(u"type"_qs);
+
+        // We need to clear a potential previous name filter
+        if (m_currentCustomQueryFilter == u"none")
+        {
+            m_sortFilterModel->disableNameFilter();
+        }
+        else
+        {
+            if (m_currentCustomQueryFilter != u"save_path")     m_sortFilterModel->disableSavePathFilter();
+            if (m_currentCustomQueryFilter != u"download_path") m_sortFilterModel->disableDownloadPathFilter();
+            if (m_currentCustomQueryFilter != u"hash")          m_sortFilterModel->disableInfoHashFilter();
+            if (m_currentCustomQueryFilter != u"comment")       m_sortFilterModel->disableComment();
+            if (m_currentCustomQueryFilter != u"creator")       m_sortFilterModel->disableCreator();
+        }
 
         if (customQueryType == u"save_path")
         {
-            m_sortFilterModel->disableDownloadPathFilter();
-            m_sortFilterModel->disableInfoHashFilter();
-            m_sortFilterModel->disableComment();
-            m_sortFilterModel->disableCreator();
-
             this->applySavePathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"download_path")
         {
-            m_sortFilterModel->disableSavePathFilter();
-            m_sortFilterModel->disableInfoHashFilter();
-            m_sortFilterModel->disableComment();
-            m_sortFilterModel->disableCreator();
-
             this->applyDownloadPathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"hash")
         {
-            m_sortFilterModel->disableSavePathFilter();
-            m_sortFilterModel->disableDownloadPathFilter();
-            m_sortFilterModel->disableComment();
-            m_sortFilterModel->disableCreator();
-
             this->applyInfoHashFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"comment")
         {
-            m_sortFilterModel->disableSavePathFilter();
-            m_sortFilterModel->disableDownloadPathFilter();
-            m_sortFilterModel->disableInfoHashFilter();
-            m_sortFilterModel->disableCreator();
-
             this->applyCommentFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"creator")
         {
+            this->applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
+        }
+
+        m_currentCustomQueryFilter = customQueryType;
+    }
+    else
+    {
+        if (m_currentCustomQueryFilter != u"none")
+        {
+            // We need to clear a potential custom query filter
             m_sortFilterModel->disableSavePathFilter();
             m_sortFilterModel->disableDownloadPathFilter();
             m_sortFilterModel->disableInfoHashFilter();
             m_sortFilterModel->disableComment();
+            m_sortFilterModel->disableCreator();
 
-            this->applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
+            m_currentCustomQueryFilter = u"none";
         }
-    }
-    else
-    {
-        // We need to clear a potential custom query filter
-        m_sortFilterModel->disableSavePathFilter();
-        m_sortFilterModel->disableDownloadPathFilter();
-        m_sortFilterModel->disableInfoHashFilter();
-        m_sortFilterModel->disableComment();
-        m_sortFilterModel->disableCreator();
 
         const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
                     ? name : Utils::String::wildcardToRegexPattern(name));
