@@ -1405,9 +1405,9 @@ void TransferListWidget::applyCreatorFilter(const QString &creator)
 void TransferListWidget::applyFilenameFilter(const QString &filename)
 {
     if (filename.isNull())
-        m_sortFilterModel->disableFileNameFilter();
+        m_sortFilterModel->disableFilenameFilter();
     else
-        m_sortFilterModel->setFileNameFilter(filename);
+        m_sortFilterModel->setFilenameFilter(filename);
 }
 
 void TransferListWidget::applyStatusFilter(int f)
