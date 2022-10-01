@@ -1296,32 +1296,32 @@ void TransferListWidget::applyNameFilter(const QString &name)
         }
         else
         {
-            this->disablePreviousCustomQueryFilter();
+            disablePreviousCustomQueryFilter();
         }
 
         if (customQueryType == u"save_path")
         {
-            this->applySavePathFilter(customQueryMatch.captured(u"pattern"_qs));
+            applySavePathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"download_path")
         {
-            this->applyDownloadPathFilter(customQueryMatch.captured(u"pattern"_qs));
+            applyDownloadPathFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"hash")
         {
-            this->applyInfoHashFilter(customQueryMatch.captured(u"pattern"_qs));
+            applyInfoHashFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"comment")
         {
-            this->applyCommentFilter(customQueryMatch.captured(u"pattern"_qs));
+            applyCommentFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"creator")
         {
-            this->applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
+            applyCreatorFilter(customQueryMatch.captured(u"pattern"_qs));
         }
         else if (customQueryType == u"filename")
         {
-            this->applyFilenameFilter(customQueryMatch.captured(u"pattern"_qs));
+            applyFilenameFilter(customQueryMatch.captured(u"pattern"_qs));
         }
 
         m_currentCustomQueryFilter = customQueryType;
@@ -1331,7 +1331,7 @@ void TransferListWidget::applyNameFilter(const QString &name)
         if (m_currentCustomQueryFilter != u"none")
         {
             // We need to clear a potential custom query filter
-            this->disableCurrentCustomQueryFilter();
+            disableCurrentCustomQueryFilter();
         }
 
         const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
@@ -1342,24 +1342,36 @@ void TransferListWidget::applyNameFilter(const QString &name)
 
 void TransferListWidget::disableCurrentCustomQueryFilter()
 {
-    if (m_currentCustomQueryFilter == u"save_path")     m_sortFilterModel->disableSavePathFilter();
-    if (m_currentCustomQueryFilter == u"download_path") m_sortFilterModel->disableDownloadPathFilter();
-    if (m_currentCustomQueryFilter == u"hash")          m_sortFilterModel->disableInfoHashFilter();
-    if (m_currentCustomQueryFilter == u"comment")       m_sortFilterModel->disableCommentFilter();
-    if (m_currentCustomQueryFilter == u"creator")       m_sortFilterModel->disableCreatorFilter();
-    if (m_currentCustomQueryFilter == u"filename")      m_sortFilterModel->disableFilenameFilter();
+    if (m_currentCustomQueryFilter == u"save_path")
+        m_sortFilterModel->disableSavePathFilter();
+    if (m_currentCustomQueryFilter == u"download_path")
+        m_sortFilterModel->disableDownloadPathFilter();
+    if (m_currentCustomQueryFilter == u"hash")
+        m_sortFilterModel->disableInfoHashFilter();
+    if (m_currentCustomQueryFilter == u"comment")
+        m_sortFilterModel->disableCommentFilter();
+    if (m_currentCustomQueryFilter == u"creator")
+        m_sortFilterModel->disableCreatorFilter();
+    if (m_currentCustomQueryFilter == u"filename")
+        m_sortFilterModel->disableFilenameFilter();
 
     m_currentCustomQueryFilter = u"none"_qs;
 }
 
 void TransferListWidget::disablePreviousCustomQueryFilter()
 {
-    if (m_currentCustomQueryFilter != u"save_path")     m_sortFilterModel->disableSavePathFilter();
-    if (m_currentCustomQueryFilter != u"download_path") m_sortFilterModel->disableDownloadPathFilter();
-    if (m_currentCustomQueryFilter != u"hash")          m_sortFilterModel->disableInfoHashFilter();
-    if (m_currentCustomQueryFilter != u"comment")       m_sortFilterModel->disableCommentFilter();
-    if (m_currentCustomQueryFilter != u"creator")       m_sortFilterModel->disableCreatorFilter();
-    if (m_currentCustomQueryFilter != u"filename")      m_sortFilterModel->disableFilenameFilter();
+    if (m_currentCustomQueryFilter != u"save_path")
+        m_sortFilterModel->disableSavePathFilter();
+    if (m_currentCustomQueryFilter != u"download_path")
+        m_sortFilterModel->disableDownloadPathFilter();
+    if (m_currentCustomQueryFilter != u"hash")
+        m_sortFilterModel->disableInfoHashFilter();
+    if (m_currentCustomQueryFilter != u"comment")
+        m_sortFilterModel->disableCommentFilter();
+    if (m_currentCustomQueryFilter != u"creator")
+        m_sortFilterModel->disableCreatorFilter();
+    if (m_currentCustomQueryFilter != u"filename")
+        m_sortFilterModel->disableFilenameFilter();
 }
 
 void TransferListWidget::applyInfoHashFilter(const QString &infohash)
