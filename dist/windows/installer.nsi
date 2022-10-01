@@ -40,12 +40,12 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
 
   ; Write the uninstall keys for Windows
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayName" "qBittorrent ${PROG_VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayName" "qBittorrent ${QBT_VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "UninstallString" '"$INSTDIR\uninst.exe"'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayIcon" '"$INSTDIR\qbittorrent.exe",0'
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "Publisher" "The qBittorrent project"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "URLInfoAbout" "https://www.qbittorrent.org"
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayVersion" "${PROG_VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "DisplayVersion" "${QBT_VERSION}"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "NoModify" 1
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\qBittorrent" "NoRepair" 1
   WriteUninstaller "uninst.exe"
@@ -175,12 +175,19 @@ Function .onInit
   !insertmacro Init "installer"
   !insertmacro MUI_LANGDLL_DISPLAY
 
-  ${IfNot} ${AtLeastWin7}
-    MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win7)
-    Abort
-  ${EndIf}
+  !ifndef QBT_USES_QT6
+    ${IfNot} ${AtLeastWin7}
+      MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win7)
+      Abort
+    ${EndIf}
+  !else
+    ${IfNot} ${AtLeastWaaS} 1809 ; Windows 10 1809. Min supported version by Qt6
+      MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_win10)
+      Abort
+    ${EndIf}
+  !endif
 
-  !ifdef APP64BIT
+  !ifdef QBT_IS_X64
     ${IfNot} ${RunningX64}
       MessageBox MB_OK|MB_ICONEXCLAMATION $(inst_requires_64bit)
       Abort

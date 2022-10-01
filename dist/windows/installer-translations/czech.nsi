@@ -30,6 +30,8 @@ LangString launch_qbt ${LANG_CZECH} "Spustit qBittorrent."
 LangString inst_requires_64bit ${LANG_CZECH} "Tento instalátor funguje pouze v 64-bit Windows."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_CZECH} "Tato verze qBittorrent vyžaduje minimálně Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_CZECH}  "This installer requires at least Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_CZECH} "Uninstall qBittorrent"
 

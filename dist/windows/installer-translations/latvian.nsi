@@ -30,6 +30,8 @@ LangString launch_qbt ${LANG_LATVIAN} "Palaist qBittorrent."
 LangString inst_requires_64bit ${LANG_LATVIAN} "Šī instalēšanas programma darbojas tikai 64 bitu Windows versijās."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_LATVIAN} "Šai qBittorrent versijai ir nepieciešama vismaz Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_LATVIAN}  "This installer requires at least Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_LATVIAN} "Atinstalēt qBittorrent"
 
