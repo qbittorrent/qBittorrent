@@ -954,8 +954,16 @@ window.qBittorrent.DynamicTable = (function() {
                         state = "stalledUP";
                         img_path = "images/stalledUP.svg";
                         break;
+                    case "forcedStalledUP":
+                        state = "forcedStalledUP";
+                        img_path = "images/stalledUP.svg";
+                        break;
                     case "stalledDL":
                         state = "stalledDL";
+                        img_path = "images/stalledDL.svg";
+                        break;
+                    case "forcedStalledDL":
+                        state = "forcedStalledDL";
                         img_path = "images/stalledDL.svg";
                         break;
                     case "pausedDL":
@@ -1027,12 +1035,20 @@ window.qBittorrent.DynamicTable = (function() {
                     case "forcedDL":
                         status = "QBT_TR([F] Downloading)QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
+                    case "forcedStalledDL":
+                        status = "QBT_TR([F] Stalled)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
                     case "uploading":
-                    case "stalledUP":
                         status = "QBT_TR(Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "stalledUP":
+                        status = "QBT_TR(Seeding (waiting))QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "forcedUP":
                         status = "QBT_TR([F] Seeding)QBT_TR[CONTEXT=TransferListDelegate]";
+                        break;
+                    case "forcedStalledUP":
+                        status = "QBT_TR([F] Seeding (waiting))QBT_TR[CONTEXT=TransferListDelegate]";
                         break;
                     case "queuedDL":
                     case "queuedUP":
@@ -1308,7 +1324,7 @@ window.qBittorrent.DynamicTable = (function() {
                         return false;
                     break;
                 case 'seeding':
-                    if (state != 'uploading' && state != 'forcedUP' && state != 'stalledUP' && state != 'queuedUP' && state != 'checkingUP')
+                    if (state != 'uploading' && state != 'forcedUP' && state != 'stalledUP' && state != 'forcedStalledUP' && state != 'queuedUP' && state != 'checkingUP')
                         return false;
                     break;
                 case 'completed':
@@ -1324,25 +1340,25 @@ window.qBittorrent.DynamicTable = (function() {
                         return false;
                     break;
                 case 'stalled':
-                    if ((state != 'stalledUP') && (state != 'stalledDL'))
+                    if ((state != 'stalledUP') && (state != 'forcedStalledUP') && (state != 'stalledDL') && (state != 'forcedStalledDL'))
                         return false;
                     break;
                 case 'stalled_uploading':
-                    if (state != 'stalledUP')
+                    if ((state != 'stalledUP') && (state != 'forcedStalledUP'))
                         return false;
                     break;
                 case 'stalled_downloading':
-                    if (state != 'stalledDL')
+                    if ((state != 'stalledDL') && (state != 'forcedStalledDL'))
                         return false;
                     break;
                 case 'inactive':
                     inactive = true;
                     // fallthrough
                 case 'active':
-                    if (state == 'stalledDL')
+                    if ((state == 'stalledDL') && (state == 'forcedStalledDL'))
                         r = (row['full_data'].upspeed > 0);
                     else
-                        r = state == 'metaDL' || state == 'forcedMetaDL' || state == 'downloading' || state == 'forcedDL' || state == 'uploading' || state == 'forcedUP';
+                        r = state == 'metaDL' || state == 'forcedMetaDL' || state == 'downloading' || state == 'forcedDL' || state == 'forcedStalledDL' || state == 'uploading' || state == 'forcedUP' || state == 'forcedStalledUP';
                     if (r == inactive)
                         return false;
                     break;
