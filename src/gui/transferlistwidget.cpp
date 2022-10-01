@@ -1285,7 +1285,7 @@ void TransferListWidget::applyNameFilter(const QString &name)
     QRegularExpressionMatch infoHashMatch;
 
     // While waiting for a dropdown menu, supports "hash:xx"
-    if (name.contains(infoHashPattern, infoHashMatch))
+    if (name.contains(infoHashPattern, &infoHashMatch))
     {
         this->applyInfoHashFilter(infoHashMatch.captured("infohash"));
     }
