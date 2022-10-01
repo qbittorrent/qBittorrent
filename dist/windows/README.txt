@@ -42,8 +42,7 @@ translations
      You will need the files that conform to this globbing expression 'qt_??.qm qt_??_??.qm qtbase_??.qm qtbase_??_??.qm'.
      Some of those files will be stubs. Filter any file that is smaller than 10KB in size.
      Alternatively you can use the 'gather_qt_translations.py' script found in the same folder as this file.
-     Run it with '--help' to see its usage.
-     **YOU MUST** edit the list of .qm files in the 'installer.nsi' to match whatever files are in the 'translations' subfolder.)
+     Run it with '--help' to see its usage.)
 	qt_zh_TW.qm
 installer.nsi
 license.txt
