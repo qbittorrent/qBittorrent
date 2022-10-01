@@ -188,6 +188,8 @@ namespace BitTorrent
         void setPeXEnabled(bool enabled) override;
         bool isAddTorrentPaused() const override;
         void setAddTorrentPaused(bool value) override;
+        Torrent::StopCondition torrentStopCondition() const override;
+        void setTorrentStopCondition(Torrent::StopCondition stopCondition) override;
         TorrentContentLayout torrentContentLayout() const override;
         void setTorrentContentLayout(TorrentContentLayout value) override;
         bool isTrackerEnabled() const override;
@@ -620,6 +622,7 @@ namespace BitTorrent
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentPaused;
+        CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<int> m_refreshInterval;

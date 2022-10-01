@@ -208,6 +208,8 @@ namespace BitTorrent
         virtual void setPeXEnabled(bool enabled) = 0;
         virtual bool isAddTorrentPaused() const = 0;
         virtual void setAddTorrentPaused(bool value) = 0;
+        virtual Torrent::StopCondition torrentStopCondition() const = 0;
+        virtual void setTorrentStopCondition(Torrent::StopCondition stopCondition) = 0;
         virtual TorrentContentLayout torrentContentLayout() const = 0;
         virtual void setTorrentContentLayout(TorrentContentLayout value) = 0;
         virtual bool isTrackerEnabled() const = 0;

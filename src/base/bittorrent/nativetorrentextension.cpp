@@ -30,14 +30,6 @@
 
 #include <libtorrent/torrent_status.hpp>
 
-namespace
-{
-    bool isAutoManaged(const lt::torrent_status &torrentStatus)
-    {
-        return static_cast<bool>(torrentStatus.flags & lt::torrent_flags::auto_managed);
-    }
-}
-
 NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrentHandle, ExtensionData *data)
     : m_torrentHandle {torrentHandle}
     , m_data {data}
@@ -65,19 +57,10 @@ NativeTorrentExtension::~NativeTorrentExtension()
     delete m_data;
 }
 
-bool NativeTorrentExtension::on_pause()
-{
-    if (!isAutoManaged(m_torrentHandle.status({})))
-        m_torrentHandle.unset_flags(lt::torrent_flags::stop_when_ready);
-
-    // return `false` to allow standard handler
-    // and other extensions to be also invoked.
-    return false;
-}
-
 void NativeTorrentExtension::on_state(const lt::torrent_status::state_t state)
 {
-    if (m_state == lt::torrent_status::downloading_metadata)
+    if ((m_state == lt::torrent_status::downloading_metadata)
+            || (m_state == lt::torrent_status::checking_files))
     {
         m_torrentHandle.unset_flags(lt::torrent_flags::auto_managed);
         m_torrentHandle.pause();

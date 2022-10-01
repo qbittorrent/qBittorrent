@@ -525,6 +525,19 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
 
+    m_ui->stopConditionComboBox->setToolTip(
+                u"<html><body><p><b>" + tr("None") + u"</b> - " + tr("No stop condition is set.") + u"</p><p><b>" +
+                tr("Metadata received") + u"</b> - " + tr("Torrent will stop after metadata is received.") +
+                u" <em>" + tr("Torrents that have metadata initially aren't affected.") + u"</em></p><p><b>" +
+                tr("Files checked") + u"</b> - " + tr("Torrent will stop after files are initially checked.") +
+                u" <em>" + tr("This will also download metadata if it wasn't there initially.") + u"</em></p></body></html>");
+    m_ui->stopConditionComboBox->setItemData(0, QVariant::fromValue(BitTorrent::Torrent::StopCondition::None));
+    m_ui->stopConditionComboBox->setItemData(1, QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
+    m_ui->stopConditionComboBox->setItemData(2, QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
+    m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(QVariant::fromValue(session->torrentStopCondition())));
+    m_ui->stopConditionLabel->setEnabled(!m_ui->checkStartPaused->isChecked());
+    m_ui->stopConditionComboBox->setEnabled(!m_ui->checkStartPaused->isChecked());
+
     const TorrentFileGuard::AutoDeleteMode autoDeleteMode = TorrentFileGuard::autoDeleteMode();
     m_ui->deleteTorrentBox->setChecked(autoDeleteMode != TorrentFileGuard::Never);
     m_ui->deleteCancelledTorrentBox->setChecked(autoDeleteMode == TorrentFileGuard::Always);
@@ -633,6 +646,12 @@ void OptionsDialog::loadDownloadsTabOptions()
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, [this](const bool checked)
+    {
+        m_ui->stopConditionLabel->setEnabled(!checked);
+        m_ui->stopConditionComboBox->setEnabled(!checked);
+    });
+    connect(m_ui->stopConditionComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteTorrentBox, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->deleteCancelledTorrentBox, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
@@ -692,6 +711,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
 
     session->setAddTorrentPaused(addTorrentsInPause());
+    session->setTorrentStopCondition(m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never
                              : !m_ui->deleteCancelledTorrentBox->isChecked() ? TorrentFileGuard::IfAdded
                              : TorrentFileGuard::Always);
