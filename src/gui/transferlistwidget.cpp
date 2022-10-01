@@ -1331,11 +1331,11 @@ void TransferListWidget::applyNameFilter(const QString &name)
         if (m_currentCustomQueryFilter != u"none")
         {
             // We need to clear a potential custom query filter
-            m_sortFilterModel->disableSavePathFilter();
-            m_sortFilterModel->disableDownloadPathFilter();
-            m_sortFilterModel->disableInfoHashFilter();
-            m_sortFilterModel->disableComment();
-            m_sortFilterModel->disableCreator();
+            if (m_currentCustomQueryFilter == u"save_path")     m_sortFilterModel->disableSavePathFilter();
+            if (m_currentCustomQueryFilter == u"download_path") m_sortFilterModel->disableDownloadPathFilter();
+            if (m_currentCustomQueryFilter == u"hash")          m_sortFilterModel->disableInfoHashFilter();
+            if (m_currentCustomQueryFilter == u"comment")       m_sortFilterModel->disableComment();
+            if (m_currentCustomQueryFilter == u"creator")       m_sortFilterModel->disableCreator();
 
             m_currentCustomQueryFilter = u"none";
         }
