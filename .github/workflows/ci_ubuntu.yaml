@@ -43,6 +43,7 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: ${{ matrix.qt_version }}
+          archives: icu qtbase qtsvg qttools
 
       - name: Install libtorrent
         run: |
