@@ -29,6 +29,7 @@
 #include "torrentfilter.h"
 
 #include "base/path.h"
+#include "base/global.h"
 
 #include "bittorrent/infohash.h"
 #include "bittorrent/torrent.h"
