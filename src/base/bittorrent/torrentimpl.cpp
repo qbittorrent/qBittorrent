@@ -878,7 +878,7 @@ bool TorrentImpl::isUploading() const
     case TorrentState::CheckingUploading:
     case TorrentState::QueuedUploading:
     case TorrentState::ForcedUploading:
-    case TorrentState::ForcedStalledUploading;
+    case TorrentState::ForcedStalledUploading:
         return true;
     default:
         break;
@@ -897,7 +897,7 @@ bool TorrentImpl::isCompleted() const
     case TorrentState::PausedUploading:
     case TorrentState::QueuedUploading:
     case TorrentState::ForcedUploading:
-    case TorrentState::ForcedStalledUploading;
+    case TorrentState::ForcedStalledUploading:
         return true;
     default:
         break;
@@ -920,7 +920,7 @@ bool TorrentImpl::isActive() const
     case TorrentState::ForcedStalledDownloading:
     case TorrentState::Uploading:
     case TorrentState::ForcedUploading:
-    case TorrentState::ForcedStalledUploading;
+    case TorrentState::ForcedStalledUploading:
     case TorrentState::Moving:
         return true;
 
