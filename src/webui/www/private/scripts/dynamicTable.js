@@ -1355,7 +1355,7 @@ window.qBittorrent.DynamicTable = (function() {
                     inactive = true;
                     // fallthrough
                 case 'active':
-                    if ((state == 'stalledDL') && (state == 'forcedStalledDL'))
+                    if ((state == 'stalledDL') || (state == 'forcedStalledDL'))
                         r = (row['full_data'].upspeed > 0);
                     else
                         r = state == 'metaDL' || state == 'forcedMetaDL' || state == 'downloading' || state == 'forcedDL' || state == 'forcedStalledDL' || state == 'uploading' || state == 'forcedUP' || state == 'forcedStalledUP';
