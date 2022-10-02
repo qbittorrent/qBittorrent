@@ -163,13 +163,15 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
     switch (compareColumn)
     {
     case TransferListModel::TR_CATEGORY:
+    case TransferListModel::TR_DOWNLOAD_PATH:
     case TransferListModel::TR_NAME:
     case TransferListModel::TR_SAVE_PATH:
-    case TransferListModel::TR_DOWNLOAD_PATH:
-    case TransferListModel::TR_INFOHASH_V1:
-    case TransferListModel::TR_INFOHASH_V2:
     case TransferListModel::TR_TRACKER:
         return m_naturalCompare(leftValue.toString(), rightValue.toString());
+
+    case TransferListModel::TR_INFOHASH_V1:
+    case TransferListModel::TR_INFOHASH_V2:
+        return threeWayCompare(leftValue.toString(), rightValue.toString());
 
     case TransferListModel::TR_TAGS:
         return customCompare(leftValue.value<TagSet>(), rightValue.value<TagSet>(), m_naturalCompare);

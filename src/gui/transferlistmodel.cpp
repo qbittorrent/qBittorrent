@@ -557,6 +557,8 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_TRACKER:
         case TR_SAVE_PATH:
         case TR_DOWNLOAD_PATH:
+        case TR_INFOHASH_V1:
+        case TR_INFOHASH_V2:
             return displayValue(torrent, index.column());
         }
         break;
