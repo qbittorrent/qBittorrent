@@ -16,10 +16,10 @@ jobs:
       matrix:
         libt_version: ["2.0.7", "1.2.17"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.2.0"]
+        qt_version: ["5.15.2", "6.4.0"]
         exclude:
           - libt_version: "1.2.17"
-            qt_version: "6.2.0"
+            qt_version: "6.4.0"
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -100,7 +100,7 @@ jobs:
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
+            -DCMAKE_CXX_FLAGS="-Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
