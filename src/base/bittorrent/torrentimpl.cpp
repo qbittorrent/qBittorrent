@@ -504,6 +504,9 @@ void TorrentImpl::setAutoTMMEnabled(bool enabled)
 
 Path TorrentImpl::actualStorageLocation() const
 {
+    if (!hasMetadata())
+        return {};
+
     return Path(m_nativeStatus.save_path);
 }
 
@@ -1690,6 +1693,12 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
 
 void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
 {
+    if (!hasMetadata())
+    {
+        m_session->handleTorrentSavePathChanged(this);
+        return;
+    }
+
     if (m_session->addMoveTorrentStorageJob(this, newPath, mode))
     {
         m_storageIsMoving = true;
