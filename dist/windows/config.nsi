@@ -1,23 +1,95 @@
+;Start of user configurable options
+;==============================================================================
+
+; Uncomment if you want to use UPX to pack the installer header
+; Doing so may make antivirus software flag the installer as virus/malware
+;!define USE_UPX
+
+; Uncomment when packaging 64bit qbittorrent
+;!define QBT_IS_X64
+
+; Uncomment when packaging qt6 qbittorrent
+; It will also define QBT_IS_X64
+;!define QBT_USES_QT6
+
+!ifdef QBT_USES_QT6
+!define /redef QBT_IS_X64
+!endif
+
+; qBittorrent version
+; The string MUST contain ONLY numbers delimited by dots.
+; It MUST contain a maximum of 4 delimited numbers
+; Other values will result in undefined behavior
+; examples:
+; 4.5.0 -> good
+; 4.5.1.3 -> good
+; 4.5.1.3.2 -> bad
+; 4.5.0beta -> bad
+!define /ifndef QBT_VERSION "4.4.5"
+
+; Option that controls the installer's window name
+; If set, its value will be used like this:
+; "qBittorrent ${QBT_INSTALLER_FILENAME}"
+; If not set, the window name will be auto composed from QBT_VERSION, QBT_USES_QT6, QBT_IS_X64
+; If you set this define then you MUST set QBT_INSTALLER_FILENAME too. Otherwise it will be ignored.
+; This define is meant to ease automation from scripts/commandline
+;!define QBT_INSTALLER_WINDOWNAME
+
+; Option that controls the installer's window name
+; If set, its value will be used like this:
+; "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
+; If not set, the window name will be auto composed from QBT_VERSION, QBT_USES_QT6, QBT_IS_X64
+; If you set this define then you MUST set QBT_INSTALLER_WINDOWNAME too. Otherwise it will be ignored.
+; This define is meant to ease automation from scripts/commandline
+;!define QBT_INSTALLER_FILENAME
+
+;End of user configurable options
+;==============================================================================
+
+!ifndef QBT_INSTALLER_WINDOWNAME | QBT_INSTALLER_FILENAME
+  !ifndef QBT_IS_X64
+    ; The name of the installer
+    !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION}"
+
+    ; The file to write
+    !define QBT_INSTALLER_FILENAME "${QBT_VERSION}"
+  !else ; QBT_IS_X64
+    !ifndef QBT_USES_QT6
+      ; The name of the installer
+      !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} x64"
+
+      ; The file to write
+      !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_x64"
+    !else ; QBT_USES_QT6
+      ; The name of the installer
+      !define QBT_INSTALLER_WINDOWNAME "${QBT_VERSION} (qt6) x64"
+
+      ; The file to write
+      !define QBT_INSTALLER_FILENAME "${QBT_VERSION}_qt6_x64"
+    !endif ; QBT_USES_QT6
+  !endif ; QBT_IS_X64
+!endif
+
 Unicode true
 ManifestDPIAware true
-;Compress the header too
+
+!ifdef USE_UPX
 !packhdr "$%TEMP%\exehead.tmp" 'upx.exe -9 --best --ultra-brute "$%TEMP%\exehead.tmp"'
+!endif
 
 ;Setting the compression
 SetCompressor /SOLID LZMA
 SetCompressorDictSize 64
 XPStyle on
 
-;Uncomment when packaging 64bit qbittorrent
-;!define APP64BIT
-
-!include "MUI.nsh"
+!include "MUI2.nsh"
 !include "UAC.nsh"
 !include "FileFunc.nsh"
 !include "WinVer.nsh"
-!ifdef APP64BIT
+!ifdef QBT_IS_X64
 !include "x64.nsh"
 !endif
+!include "3rdparty\VersionCompleteXXXX.nsi"
 
 ;For the file association
 !define SHCNE_ASSOCCHANGED 0x8000000
@@ -27,41 +99,33 @@ XPStyle on
 !define CSIDL_APPDATA '0x1A' ;Application Data path
 !define CSIDL_LOCALAPPDATA '0x1C' ;Local Application Data path
 
-; Program specific
-!define PROG_VERSION "4.4.5"
-
 !define MUI_FINISHPAGE_RUN
 !define MUI_FINISHPAGE_RUN_FUNCTION PageFinishRun
 !define MUI_FINISHPAGE_RUN_TEXT $(launch_qbt)
 
-!ifndef APP64BIT
-  ; The name of the installer
-  Name "qBittorrent ${PROG_VERSION}"
+; The name of the installer
+Name "qBittorrent ${QBT_INSTALLER_WINDOWNAME}"
 
-  ; The file to write
-  OutFile "qbittorrent_${PROG_VERSION}_setup.exe"
-!else
-  ; The name of the installer
-  Name "qBittorrent ${PROG_VERSION} x64"
-
-  ; The file to write
-  OutFile "qbittorrent_${PROG_VERSION}_x64_setup.exe"
-!endif
+; The file to write
+OutFile "qbittorrent_${QBT_INSTALLER_FILENAME}_setup.exe"
 
 ;Installer Version Information
 VIAddVersionKey "ProductName" "qBittorrent"
 VIAddVersionKey "CompanyName" "The qBittorrent project"
 VIAddVersionKey "LegalCopyright" "Copyright ©2006-2022 The qBittorrent project"
 VIAddVersionKey "FileDescription" "qBittorrent - A Bittorrent Client"
-VIAddVersionKey "FileVersion" "${PROG_VERSION}"
+VIAddVersionKey "FileVersion" "${QBT_VERSION}"
 
-VIProductVersion "${PROG_VERSION}.0"
+; VIProductVersion needs a 4 part version.
+; If QBT_VERSION contains less than 4 parts then VersionCompleteXXXX, will extend it with zeroes.
+${VersionCompleteXXXX} ${QBT_VERSION} VERSION_4_PART
+VIProductVersion "${VERSION_4_PART}"
 
 ; The default installation directory. It changes depending if we install in the 64bit dir or not.
 ; A caveat of this is if a user has installed a 32bit version and then runs the 64bit installer
 ; (which in turn launches the 32bit uninstaller first) the value will still point to the 32bit location.
 ; The user has to manually uninstall the old version and THEN run the 64bit installer
-!ifndef APP64BIT
+!ifndef QBT_IS_X64
   InstallDir $PROGRAMFILES32\qBittorrent
 !else
   InstallDir $PROGRAMFILES64\qBittorrent
