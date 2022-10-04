@@ -31,7 +31,7 @@ LangString inst_requires_64bit ${LANG_ESTONIAN} "See installer töötab ainult 6
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_ESTONIAN} "Selle qBittorrenti versiooni jaoks on vajalik vähemalt Windows 7."
 ;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
-LangString inst_requires_win10 ${LANG_ESTONIAN}  "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_ESTONIAN}  "Selle installeri jaoks on vajalik vähemalt Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_ESTONIAN} "Desinstalli qBittorrent"
 
@@ -55,7 +55,7 @@ LangString remove_firewallinfo ${LANG_ESTONIAN} "Eemaldatakse Windowsi Tulemüü
 ;LangString remove_cache ${LANG_ENGLISH} "Remove torrents and cached data"
 LangString remove_cache ${LANG_ESTONIAN} "Eemalda torrentid ja ajutised andmed"
 ;LangString uninst_warning ${LANG_ENGLISH} "qBittorrent is running. Please close the application before uninstalling."
-LangString uninst_warning ${LANG_ESTONIAN} "qBittorrent töötab. Palun sulge programm, enne uninstallimist."
+LangString uninst_warning ${LANG_ESTONIAN} "qBittorrent töötab. Palun sulge programm, enne desinstallimist."
 ;LangString uninst_tor_warn ${LANG_ENGLISH} "Not removing .torrent association. It is associated with:"
 LangString uninst_tor_warn ${LANG_ESTONIAN} "Ei eemaldata .torrent seotust. Mis on seotud:"
 ;LangString uninst_mag_warn ${LANG_ENGLISH} "Not removing magnet association. It is associated with:"
