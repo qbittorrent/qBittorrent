@@ -66,11 +66,8 @@ namespace
 
     QString getScheme(const QString &tracker)
     {
-        const QUrl url {tracker};
-        QString scheme = url.scheme();
-        if (scheme.isEmpty())
-            scheme = u"http"_qs;
-        return scheme;
+        const QString scheme = QUrl(tracker).scheme();
+        return !scheme.isEmpty() ? scheme : u"http"_qs;
     }
 
     QString getHost(const QString &tracker)
@@ -360,7 +357,6 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : BaseFilterWidget(parent, transferList)
-    , m_totalTorrents(0)
     , m_downloadTrackerFavicon(downloadFavicon)
 {
     auto *allTrackers = new QListWidgetItem(this);
