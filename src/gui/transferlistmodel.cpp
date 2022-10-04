@@ -441,9 +441,9 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
     case TR_INFOHASH_V1:
-        return torrent->infoHash().v1();
+        return torrent->infoHash().v1().toString();
     case TR_INFOHASH_V2:
-        return torrent->infoHash().v2();
+        return torrent->infoHash().v2().toString();
     }
 
     return {};
@@ -518,9 +518,9 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
     case TR_INFOHASH_V1:
-        return torrent->infoHash().v1().toString();
+        return torrent->infoHash().v1();
     case TR_INFOHASH_V2:
-        return torrent->infoHash().v2().toString();
+        return torrent->infoHash().v2();
     }
 
     return {};
