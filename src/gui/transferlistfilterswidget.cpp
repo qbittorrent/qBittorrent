@@ -72,11 +72,14 @@ namespace
         return scheme;
     }
 
-    QString getHost(const QString &tracker)
+    QString getHost(const QString &url)
     {
         // We want the domain + tld. Subdomains should be disregarded
-        const QUrl url {tracker};
-        const QString host {url.host()};
+        // If failed to parse the domain or IP address, original input should be returned
+
+        const QString host = QUrl(url).host();
+        if (host.isEmpty())
+            return url;
 
         // host is in IP format
         if (!QHostAddress(host).isNull())
@@ -388,10 +391,8 @@ void TrackerFiltersList::addItem(const QString &tracker, const BitTorrent::Torre
 void TrackerFiltersList::removeItem(const QString &tracker, const BitTorrent::TorrentID &id)
 {
     const QString host = getHost(tracker);
-    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host);
 
-    if (torrentIDs.empty())
-        return;
+    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host);
     torrentIDs.remove(id);
 
     int row = 0;
