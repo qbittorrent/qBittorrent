@@ -501,6 +501,9 @@ void TorrentImpl::setAutoTMMEnabled(bool enabled)
 
 QString TorrentImpl::actualStorageLocation() const
 {
+    if (!hasMetadata())
+        return {};
+
     return Utils::Fs::toUniformPath(QString::fromStdString(m_nativeStatus.save_path));
 }
 
@@ -1634,6 +1637,12 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
 
 void TorrentImpl::moveStorage(const QString &newPath, const MoveStorageMode mode)
 {
+    if (!hasMetadata())
+    {
+        m_session->handleTorrentSavePathChanged(this);
+        return;
+    }
+
     if (m_session->addMoveTorrentStorageJob(this, Utils::Fs::toNativePath(newPath), mode))
     {
         m_storageIsMoving = true;
