@@ -38,6 +38,7 @@
 #include <QStringList>
 #include <QStringView>
 
+#include "base/net/downloadmanager.h"
 #include "ui_downloadfromurldialog.h"
 #include "utils.h"
 
@@ -47,16 +48,13 @@ namespace
 {
     bool isDownloadable(const QString &str)
     {
-        return (str.startsWith(u"http://", Qt::CaseInsensitive)
-            || str.startsWith(u"https://", Qt::CaseInsensitive)
-            || str.startsWith(u"ftp://", Qt::CaseInsensitive)
+        return (Net::DownloadManager::hasSupportedScheme(str)
             || str.startsWith(u"magnet:", Qt::CaseInsensitive)
-            || ((str.size() == 40) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v1 hex-encoded SHA-1 info-hash
 #ifdef QBT_USES_LIBTORRENT2
             || ((str.size() == 64) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v2 hex-encoded SHA-256 info-hash
 #endif
+            || ((str.size() == 40) && !str.contains(QRegularExpression(u"[^0-9A-Fa-f]"_qs))) // v1 hex-encoded SHA-1 info-hash
             || ((str.size() == 32) && !str.contains(QRegularExpression(u"[^2-7A-Za-z]"_qs)))); // v1 Base32 encoded SHA-1 info-hash
-
     }
 }
 
