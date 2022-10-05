@@ -502,7 +502,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_TIME_ELAPSED:
         return !alt ? torrent->activeTime() : torrent->finishedTime();
     case TR_DOWNLOAD_PATH:
-        return torrent->downloadPath().toString();
+        return torrent->downloadPath().data();
     case TR_SAVE_PATH:
         return torrent->savePath().toString();
     case TR_COMPLETED:
