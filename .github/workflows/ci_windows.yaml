@@ -76,7 +76,8 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.3.0"
+          version: "6.4.0"
+          archives: qtbase qtsvg qttools
 
       - name: Install libtorrent
         run: |
