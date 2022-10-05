@@ -40,6 +40,9 @@
 using SHA1Hash = Digest32<160>;
 using SHA256Hash = Digest32<256>;
 
+Q_DECLARE_METATYPE(SHA1Hash)
+Q_DECLARE_METATYPE(SHA256Hash)
+
 namespace BitTorrent
 {
     class InfoHash;
@@ -98,5 +101,3 @@ Q_DECLARE_METATYPE(BitTorrent::TorrentID)
 // We can declare it as Q_MOVABLE_TYPE to improve performance
 // since base type uses QSharedDataPointer as the only member
 Q_DECLARE_TYPEINFO(BitTorrent::TorrentID, Q_MOVABLE_TYPE);
-Q_DECLARE_METATYPE(SHA1Hash)
-Q_DECLARE_METATYPE(SHA256Hash)

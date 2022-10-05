@@ -173,7 +173,7 @@ int TransferListSortModel::compare(const QModelIndex &left, const QModelIndex &r
         return threeWayCompare(leftValue.value<SHA1Hash>(), rightValue.value<SHA1Hash>());
 
     case TransferListModel::TR_INFOHASH_V2:
-        return threeWayCompare(leftValue.value<SHA256Hash>().toString(), rightValue.value<SHA256Hash>().toString());
+        return threeWayCompare(leftValue.value<SHA256Hash>(), rightValue.value<SHA256Hash>());
 
     case TransferListModel::TR_TAGS:
         return customCompare(leftValue.value<TagSet>(), rightValue.value<TagSet>(), m_naturalCompare);
