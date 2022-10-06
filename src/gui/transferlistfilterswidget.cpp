@@ -66,18 +66,18 @@ namespace
 
     QString getScheme(const QString &tracker)
     {
-        const QUrl url {tracker};
-        QString scheme = url.scheme();
-        if (scheme.isEmpty())
-            scheme = u"http"_qs;
-        return scheme;
+        const QString scheme = QUrl(tracker).scheme();
+        return !scheme.isEmpty() ? scheme : u"http"_qs;
     }
 
-    QString getHost(const QString &tracker)
+    QString getHost(const QString &url)
     {
         // We want the domain + tld. Subdomains should be disregarded
-        const QUrl url {tracker};
-        const QString host {url.host()};
+        // If failed to parse the domain or IP address, original input should be returned
+
+        const QString host = QUrl(url).host();
+        if (host.isEmpty())
+            return url;
 
         // host is in IP format
         if (!QHostAddress(host).isNull())
@@ -360,7 +360,6 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
     : BaseFilterWidget(parent, transferList)
-    , m_totalTorrents(0)
     , m_downloadTrackerFavicon(downloadFavicon)
 {
     auto *allTrackers = new QListWidgetItem(this);
@@ -509,10 +508,8 @@ void TrackerFiltersList::addItems(const QString &trackerURL, const QVector<BitTo
 void TrackerFiltersList::removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id)
 {
     const QString host = getHost(trackerURL);
-    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host).torrents;
-    if (torrentIDs.empty())
-        return;
 
+    QSet<BitTorrent::TorrentID> torrentIDs = m_trackers.value(host).torrents;
     torrentIDs.remove(id);
 
     QListWidgetItem *trackerItem = nullptr;
