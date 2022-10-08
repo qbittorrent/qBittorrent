@@ -63,6 +63,7 @@ namespace BitTorrent
 
     enum class MoveStorageMode
     {
+        FailIfExist,
         KeepExistingFiles,
         Overwrite
     };
