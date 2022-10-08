@@ -511,7 +511,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_DOWNLOAD_PATH:
         return torrent->downloadPath().data();
     case TR_SAVE_PATH:
-        return torrent->savePath().toString();
+        return torrent->savePath().data();
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
