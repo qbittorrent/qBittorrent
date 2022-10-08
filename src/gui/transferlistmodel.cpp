@@ -34,6 +34,7 @@
 #include <QDebug>
 #include <QPalette>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
@@ -224,12 +225,15 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
             case TR_SAVE_PATH: return tr("Save path", "Torrent save path");
+            case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
             case TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
             case TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Indicates the time when the torrent was last seen complete/whole");
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
+            case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
+            case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             default: return {};
             }
         }
@@ -424,6 +428,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return timeElapsedString(torrent->activeTime(), torrent->finishedTime());
     case TR_SAVE_PATH:
         return torrent->savePath().toString();
+    case TR_DOWNLOAD_PATH:
+        return torrent->downloadPath().toString();
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
@@ -434,6 +440,10 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return availabilityString(torrent->distributedCopies());
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
+    case TR_INFOHASH_V1:
+        return torrent->infoHash().v1().toString();
+    case TR_INFOHASH_V2:
+        return torrent->infoHash().v2().toString();
     }
 
     return {};
@@ -491,6 +501,8 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->remainingSize();
     case TR_TIME_ELAPSED:
         return !alt ? torrent->activeTime() : torrent->finishedTime();
+    case TR_DOWNLOAD_PATH:
+        return torrent->downloadPath().data();
     case TR_SAVE_PATH:
         return torrent->savePath().toString();
     case TR_COMPLETED:
@@ -505,6 +517,10 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->distributedCopies();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
+    case TR_INFOHASH_V1:
+        return QVariant::fromValue(torrent->infoHash().v1());
+    case TR_INFOHASH_V2:
+        return QVariant::fromValue(torrent->infoHash().v2());
     }
 
     return {};
@@ -540,6 +556,9 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_TAGS:
         case TR_TRACKER:
         case TR_SAVE_PATH:
+        case TR_DOWNLOAD_PATH:
+        case TR_INFOHASH_V1:
+        case TR_INFOHASH_V2:
             return displayValue(torrent, index.column());
         }
         break;

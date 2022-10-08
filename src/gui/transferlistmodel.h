@@ -81,6 +81,9 @@ public:
         TR_SEEN_COMPLETE_DATE,
         TR_LAST_ACTIVITY,
         TR_AVAILABILITY,
+        TR_DOWNLOAD_PATH,
+        TR_INFOHASH_V1,
+        TR_INFOHASH_V2,
 
         NB_COLUMNS
     };

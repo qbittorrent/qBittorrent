@@ -171,6 +171,9 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
         setColumnHidden(TransferListModel::TR_AMOUNT_LEFT, true);
         setColumnHidden(TransferListModel::TR_TIME_ELAPSED, true);
         setColumnHidden(TransferListModel::TR_SAVE_PATH, true);
+        setColumnHidden(TransferListModel::TR_DOWNLOAD_PATH, true);
+        setColumnHidden(TransferListModel::TR_INFOHASH_V1, true);
+        setColumnHidden(TransferListModel::TR_INFOHASH_V2, true);
         setColumnHidden(TransferListModel::TR_COMPLETED, true);
         setColumnHidden(TransferListModel::TR_RATIO_LIMIT, true);
         setColumnHidden(TransferListModel::TR_SEEN_COMPLETE_DATE, true);
