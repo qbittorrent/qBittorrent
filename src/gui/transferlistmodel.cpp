@@ -374,6 +374,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
                    : m_statusStrings[state];
     };
 
+    const auto hashString = [hideValues](const auto &hash) -> QString
+    {
+        if (hideValues && !hash.isValid())
+            return {};
+        return hash.isValid() ? hash.toString() : tr("N/A");
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -441,9 +448,9 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
     case TR_INFOHASH_V1:
-        return torrent->infoHash().v1().toString();
+        return hashString(torrent->infoHash().v1());
     case TR_INFOHASH_V2:
-        return torrent->infoHash().v2().toString();
+        return hashString(torrent->infoHash().v2());
     }
 
     return {};
