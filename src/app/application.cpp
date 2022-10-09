@@ -196,6 +196,9 @@ Application::Application(int &argc, char **argv)
 
     if (m_commandLineArgs.webUiPort > 0) // it will be -1 when user did not set any value
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
+
+    if (m_commandLineArgs.listenPort > 0) // it will be -1 when user did not set any value
+        Preferences::instance()->setListenPort(m_commandLineArgs.listenPort);
 }
 
 Application::~Application()
