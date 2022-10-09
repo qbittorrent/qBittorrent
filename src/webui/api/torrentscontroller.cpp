@@ -665,6 +665,11 @@ void TorrentsController::addAction()
     const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_qs]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_qs]);
 
+    const QString stopConditionParam = params()[u"stopCondition"_qs];
+    const std::optional<BitTorrent::Torrent::StopCondition> stopCondition = (!stopConditionParam.isEmpty()
+            ? Utils::String::toEnum(stopConditionParam, BitTorrent::Torrent::StopCondition::None)
+            : std::optional<BitTorrent::Torrent::StopCondition> {});
+
     const QString contentLayoutParam = params()[u"contentLayout"_qs];
     const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
@@ -693,6 +698,7 @@ void TorrentsController::addAction()
     addTorrentParams.sequential = seqDownload;
     addTorrentParams.firstLastPiecePriority = firstLastPiece;
     addTorrentParams.addPaused = addPaused;
+    addTorrentParams.stopCondition = stopCondition;
     addTorrentParams.contentLayout = contentLayout;
     addTorrentParams.savePath = Path(savepath);
     addTorrentParams.downloadPath = Path(downloadPath);

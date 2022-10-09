@@ -227,6 +227,9 @@ namespace BitTorrent
         void clearPeers() override;
         bool setMetadata(const TorrentInfo &torrentInfo) override;
 
+        StopCondition stopCondition() const override;
+        void setStopCondition(StopCondition stopCondition) override;
+
         QString createMagnetURI() const override;
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
@@ -332,6 +335,7 @@ namespace BitTorrent
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;
+        StopCondition m_stopCondition;
 
         bool m_unchecked = false;
 

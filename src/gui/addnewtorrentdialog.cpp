@@ -218,6 +218,24 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
     m_ui->downloadPath->setMaxVisibleItems(20);
 
     m_ui->startTorrentCheckBox->setChecked(!m_torrentParams.addPaused.value_or(session->isAddTorrentPaused()));
+    m_ui->stopConditionComboBox->setToolTip(
+                u"<html><body><p><b>" + tr("None") + u"</b> - " + tr("No stop condition is set.") + u"</p><p><b>" +
+                tr("Metadata received") + u"</b> - " + tr("Torrent will stop after metadata is received.") +
+                u" <em>" + tr("Torrents that have metadata initially aren't affected.") + u"</em></p><p><b>" +
+                tr("Files checked") + u"</b> - " + tr("Torrent will stop after files are initially checked.") +
+                u" <em>" + tr("This will also download metadata if it wasn't there initially.") + u"</em></p></body></html>");
+    m_ui->stopConditionComboBox->setItemData(0, QVariant::fromValue(BitTorrent::Torrent::StopCondition::None));
+    m_ui->stopConditionComboBox->setItemData(1, QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
+    m_ui->stopConditionComboBox->setItemData(2, QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
+    m_ui->stopConditionComboBox->setCurrentIndex(m_ui->stopConditionComboBox->findData(
+                                                     QVariant::fromValue(m_torrentParams.stopCondition.value_or(session->torrentStopCondition()))));
+    m_ui->stopConditionLabel->setEnabled(m_ui->startTorrentCheckBox->isChecked());
+    m_ui->stopConditionComboBox->setEnabled(m_ui->startTorrentCheckBox->isChecked());
+    connect(m_ui->startTorrentCheckBox, &QCheckBox::toggled, this, [this](const bool checked)
+    {
+        m_ui->stopConditionLabel->setEnabled(checked);
+        m_ui->stopConditionComboBox->setEnabled(checked);
+    });
 
     m_ui->comboTTM->blockSignals(true); // the TreeView size isn't correct if the slot does its job at this point
     m_ui->comboTTM->setCurrentIndex(session->isAutoTMMDisabledByDefault() ? 0 : 1);
@@ -872,6 +890,7 @@ void AddNewTorrentDialog::accept()
         m_torrentParams.filePriorities = m_contentModel->model()->getFilePriorities();
 
     m_torrentParams.addPaused = !m_ui->startTorrentCheckBox->isChecked();
+    m_torrentParams.stopCondition = m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>();
     m_torrentParams.contentLayout = static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex());
 
     m_torrentParams.sequential = m_ui->sequentialCheckBox->isChecked();

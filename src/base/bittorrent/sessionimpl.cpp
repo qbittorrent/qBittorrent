@@ -438,6 +438,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_qs), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_qs), -1, lowerLimited(-1))
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY(u"AddTorrentPaused"_qs), false)
+    , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_qs), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_qs), TorrentContentLayout::Original)
     , m_isAppendExtensionEnabled(BITTORRENT_SESSION_KEY(u"AddExtensionToIncompleteFiles"_qs), false)
     , m_refreshInterval(BITTORRENT_SESSION_KEY(u"RefreshInterval"_qs), 1500)
@@ -948,6 +949,16 @@ bool SessionImpl::isAddTorrentPaused() const
 void SessionImpl::setAddTorrentPaused(const bool value)
 {
     m_isAddTorrentPaused = value;
+}
+
+Torrent::StopCondition SessionImpl::torrentStopCondition() const
+{
+    return m_torrentStopCondition;
+}
+
+void SessionImpl::setTorrentStopCondition(const Torrent::StopCondition stopCondition)
+{
+    m_torrentStopCondition = stopCondition;
 }
 
 bool SessionImpl::isTrackerEnabled() const
@@ -2497,6 +2508,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
+    loadTorrentParams.stopCondition = addTorrentParams.stopCondition.value_or(torrentStopCondition());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 

@@ -203,43 +203,45 @@
               </item>
               <item>
                <layout class="QGridLayout" name="gridLayout">
-                <item row="2" column="0">
-                 <widget class="QCheckBox" name="doNotDeleteTorrentCheckBox">
-                  <property name="toolTip">
-                   <string>When checked, the .torrent file will not be deleted regardless of the settings at the &quot;Download&quot; page of the Options dialog</string>
-                  </property>
-                  <property name="text">
-                   <string>Do not delete .torrent file</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QCheckBox" name="firstLastCheckBox">
-                  <property name="text">
-                   <string>Download first and last pieces first</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="0">
-                 <widget class="QCheckBox" name="skipCheckingCheckBox">
-                  <property name="text">
-                   <string>Skip hash check</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="1">
-                 <widget class="QCheckBox" name="sequentialCheckBox">
-                  <property name="text">
-                   <string>Download in sequential order</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="0" column="0">
+               <item row="0" column="0">
                  <widget class="QCheckBox" name="startTorrentCheckBox">
                   <property name="text">
                    <string>Start torrent</string>
                   </property>
                  </widget>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QHBoxLayout" name="stopConditionLayout">
+                 <item>
+                 <widget class="QLabel" name="stopConditionLabel">
+                  <property name="text">
+                   <string>Stop condition:</string>
+                  </property>
+                 </widget>
+                 </item>
+                 <item>
+                 <widget class="QComboBox" name="stopConditionComboBox">
+                  <property name="currentIndex">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <property name="text">
+                    <string>None</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Metadata received</string>
+                   </property>
+                  </item>
+                  <item>
+                   <property name="text">
+                    <string>Files checked</string>
+                   </property>
+                  </item>
+                 </widget>
+                 </item>
+                 </layout>
                 </item>
                 <item row="0" column="2">
                  <spacer name="horizontalSpacer_3">
@@ -253,6 +255,37 @@
                    </size>
                   </property>
                  </spacer>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="skipCheckingCheckBox">
+                  <property name="text">
+                   <string>Skip hash check</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="sequentialCheckBox">
+                  <property name="text">
+                   <string>Download in sequential order</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QCheckBox" name="firstLastCheckBox">
+                  <property name="text">
+                   <string>Download first and last pieces first</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="doNotDeleteTorrentCheckBox">
+                  <property name="toolTip">
+                   <string>When checked, the .torrent file will not be deleted regardless of the settings at the &quot;Download&quot; page of the Options dialog</string>
+                  </property>
+                  <property name="text">
+                   <string>Do not delete .torrent file</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
