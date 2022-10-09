@@ -178,6 +178,10 @@ FileSystemPathEdit::FileSystemPathEdit(Private::IFileEditorWithCompletion *edito
     Q_D(FileSystemPathEdit);
     editor->widget()->setParent(this);
 
+    setFocusProxy(editor->widget());
+    // required, otherwise the button cannot be selected via keyboard tab
+    setTabOrder(editor->widget(), d_ptr->m_browseBtn);
+
     auto *layout = new QHBoxLayout(this);
     layout->setContentsMargins(0, 0, 0, 0);
     layout->addWidget(editor->widget());

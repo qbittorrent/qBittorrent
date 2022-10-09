@@ -60,6 +60,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DGUI=ON \
+            -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON
           export PATH="$(pwd)/coverity_tool/bin:$PATH"
           cov-build --dir cov-int cmake --build build
