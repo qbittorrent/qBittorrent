@@ -2665,7 +2665,7 @@ Disable encryption: Only connect to peers without protocol encryption</string>
                   <string extracomment="minutes"> min</string>
                  </property>
                  <property name="maximum">
-                  <number>9999999</number>
+                  <number>5259487</number>
                  </property>
                  <property name="value">
                   <number>1440</number>

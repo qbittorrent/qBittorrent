@@ -44,7 +44,7 @@ window.qBittorrent.Misc = (function() {
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
-            MAX_ETA: 8640000
+            MAX_ETA: 315569260
         };
     };
 

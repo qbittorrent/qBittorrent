@@ -30,7 +30,7 @@
 
 #include <QtContainerFwd>
 
-const qlonglong MAX_ETA = 8640000;
+const qlonglong MAX_ETA = 315569260;
 
 enum class ShutdownDialogAction
 {
