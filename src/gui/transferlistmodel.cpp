@@ -224,7 +224,7 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
-            case TR_SAVE_PATH: return tr("Save path", "Torrent save path");
+            case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
             case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
             case TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
@@ -374,6 +374,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
                    : m_statusStrings[state];
     };
 
+    const auto hashString = [hideValues](const auto &hash) -> QString
+    {
+        if (hideValues && !hash.isValid())
+            return {};
+        return hash.isValid() ? hash.toString() : tr("N/A");
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -441,9 +448,9 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
     case TR_INFOHASH_V1:
-        return torrent->infoHash().v1().toString();
+        return hashString(torrent->infoHash().v1());
     case TR_INFOHASH_V2:
-        return torrent->infoHash().v2().toString();
+        return hashString(torrent->infoHash().v2());
     }
 
     return {};
@@ -504,7 +511,7 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
     case TR_DOWNLOAD_PATH:
         return torrent->downloadPath().data();
     case TR_SAVE_PATH:
-        return torrent->savePath().toString();
+        return torrent->savePath().data();
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
