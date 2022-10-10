@@ -30,7 +30,11 @@
 
 #include <QtContainerFwd>
 
-const qlonglong MAX_ETA = 315569260;
+/*
+* used to limit ETA. ETA only shown if ETA is smaller than this.
+* it is set to 99,999,990 minutes in seconds; see torrent.cpp
+*/
+const qlonglong MAX_ETA = 5999999400; // seconds
 
 enum class ShutdownDialogAction
 {

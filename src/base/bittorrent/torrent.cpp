@@ -53,7 +53,7 @@ namespace BitTorrent
     const int Torrent::NO_SEEDING_TIME_LIMIT = -1;
 
     const qreal Torrent::MAX_RATIO = 9999;
-    const int Torrent::MAX_SEEDING_TIME = 5259487;
+    const int Torrent::MAX_SEEDING_TIME = 99999990; // minutes ~ 190 years
 
     TorrentID Torrent::id() const
     {
