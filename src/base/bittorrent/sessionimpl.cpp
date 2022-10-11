@@ -298,6 +298,21 @@ namespace
         return {};
     }
 #endif
+
+    constexpr lt::move_flags_t toNative(const MoveStorageMode mode)
+    {
+        switch (mode)
+        {
+        default:
+            Q_ASSERT(false);
+        case MoveStorageMode::FailIfExist:
+            return lt::move_flags_t::fail_if_exist;
+        case MoveStorageMode::KeepExistingFiles:
+            return lt::move_flags_t::dont_replace;
+        case MoveStorageMode::Overwrite:
+            return lt::move_flags_t::always_replace_files;
+        }
+    }
 }
 
 struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
@@ -4690,9 +4705,7 @@ void SessionImpl::moveTorrentStorage(const MoveStorageJob &job) const
     const QString torrentName = (torrent ? torrent->name() : id.toString());
     LogMsg(tr("Start moving torrent. Torrent: \"%1\". Destination: \"%2\"").arg(torrentName, job.path.toString()));
 
-    job.torrentHandle.move_storage(job.path.toString().toStdString()
-                            , ((job.mode == MoveStorageMode::Overwrite)
-                            ? lt::move_flags_t::always_replace_files : lt::move_flags_t::dont_replace));
+    job.torrentHandle.move_storage(job.path.toString().toStdString(), toNative(job.mode));
 }
 
 void SessionImpl::handleMoveTorrentStorageJobFinished(const Path &newPath)

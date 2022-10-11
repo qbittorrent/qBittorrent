@@ -2166,7 +2166,7 @@ void TorrentImpl::adjustStorageLocation()
     const Path targetPath = ((isFinished || downloadPath.isEmpty()) ? savePath() : downloadPath);
 
     if ((targetPath != actualStorageLocation()) || isMoveInProgress())
-        moveStorage(targetPath, MoveStorageMode::Overwrite);
+        moveStorage(targetPath, MoveStorageMode::FailIfExist);
 }
 
 lt::torrent_handle TorrentImpl::nativeHandle() const
