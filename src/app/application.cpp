@@ -198,7 +198,10 @@ Application::Application(int &argc, char **argv)
         Preferences::instance()->setWebUiPort(m_commandLineArgs.webUiPort);
 
     if (m_commandLineArgs.torrentingPort > 0) // it will be -1 when user did not set any value
-        Preferences::instance()->setTorrentingPort(m_commandLineArgs.torrentingPort);
+    {
+        SettingValue<int> port {u"BitTorrent/Session/Port"_qs};
+        port = m_commandLineArgs.torrentingPort;
+    }
 }
 
 Application::~Application()

@@ -179,8 +179,6 @@ public:
     void setWebUiAddress(const QString &addr);
     quint16 getWebUiPort() const;
     void setWebUiPort(quint16 port);
-    quint16 getTorrentingPort() const;
-    void setTorrentingPort(quint16 port);
     bool useUPnPForWebUIPort() const;
     void setUPnPForWebUIPort(bool enabled);
 

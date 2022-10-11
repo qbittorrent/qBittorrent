@@ -597,17 +597,6 @@ void Preferences::setWebUiPort(const quint16 port)
     setValue(u"Preferences/WebUI/Port"_qs, static_cast<int>(port));
 }
 
-quint16 Preferences::getTorrentingPort() const
-{
-    return value<quint16>(u"BitTorrent/Session/Port"_qs);
-}
-
-void Preferences::setTorrentingPort(const quint16 port)
-{
-    // cast to `int` type so it will show human readable unit in configuration file
-    setValue(u"BitTorrent/Session/Port"_qs, static_cast<int>(port));
-}
-
 bool Preferences::useUPnPForWebUIPort() const
 {
 #ifdef DISABLE_GUI
