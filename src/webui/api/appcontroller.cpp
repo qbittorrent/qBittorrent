@@ -111,6 +111,7 @@ void AppController::preferencesAction()
     // When adding a torrent
     data[u"torrent_content_layout"_qs] = Utils::String::fromEnum(session->torrentContentLayout());
     data[u"start_paused_enabled"_qs] = session->isAddTorrentPaused();
+    data[u"torrent_stop_condition"_qs] = Utils::String::fromEnum(session->torrentStopCondition());
     data[u"auto_delete_mode"_qs] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data[u"preallocate_all"_qs] = session->isPreallocationEnabled();
     data[u"incomplete_files_ext"_qs] = session->isAppendExtensionEnabled();
@@ -411,6 +412,8 @@ void AppController::setPreferencesAction()
         session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
     if (hasKey(u"start_paused_enabled"_qs))
         session->setAddTorrentPaused(it.value().toBool());
+    if (hasKey(u"torrent_stop_condition"_qs))
+        session->setTorrentStopCondition(Utils::String::toEnum(it.value().toString(), BitTorrent::Torrent::StopCondition::None));
     if (hasKey(u"auto_delete_mode"_qs))
         TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
 
