@@ -2892,27 +2892,40 @@ void SessionImpl::saveResumeData()
         ++m_numResumeData;
     }
 
+    QElapsedTimer timer;
+    timer.start();
+
     while (m_numResumeData > 0)
     {
-        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds {30});
-        if (alerts.empty())
-        {
-            LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
-                , Log::CRITICAL);
-            break;
-        }
+        const lt::seconds waitTime {5};
+        const lt::seconds expireTime {30};
+        const std::vector<lt::alert *> alerts = getPendingAlerts(waitTime);
 
+        bool hasWantedAlert = false;
         for (const lt::alert *a : alerts)
         {
             switch (a->type())
             {
             case lt::save_resume_data_failed_alert::alert_type:
+                hasWantedAlert = true;
                 --m_numResumeData;
                 break;
             case lt::save_resume_data_alert::alert_type:
+                hasWantedAlert = true;
                 dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
                 break;
             }
+        }
+
+        if (hasWantedAlert)
+        {
+            timer.start();
+        }
+        else if (timer.hasExpired(lt::total_milliseconds(expireTime)))
+        {
+            LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
+                , Log::CRITICAL);
+            break;
         }
     }
 }
