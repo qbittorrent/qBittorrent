@@ -114,6 +114,7 @@ private:
     int m_nbStalledUploading = 0;
     int m_nbStalledDownloading = 0;
     int m_nbChecking = 0;
+    int m_nbMoving = 0;
     int m_nbErrored = 0;
 };
 

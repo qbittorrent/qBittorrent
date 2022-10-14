@@ -207,6 +207,9 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     auto *checking = new QListWidgetItem(this);
     checking->setData(Qt::DisplayRole, tr("Checking (0)"));
     checking->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"force-recheck"_qs));
+    auto *moving = new QListWidgetItem(this);
+    moving->setData(Qt::DisplayRole, tr("Moving (0)"));
+    moving->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"set-location"_qs));
     auto *errored = new QListWidgetItem(this);
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
     errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_qs));
@@ -267,6 +270,7 @@ void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
     update(TorrentFilter::StalledUploading, m_nbStalledUploading);
     update(TorrentFilter::StalledDownloading, m_nbStalledDownloading);
     update(TorrentFilter::Checking, m_nbChecking);
+    update(TorrentFilter::Moving, m_nbMoving);
     update(TorrentFilter::Errored, m_nbErrored);
 
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
@@ -287,6 +291,7 @@ void StatusFilterWidget::updateTexts()
     item(TorrentFilter::StalledUploading)->setData(Qt::DisplayRole, tr("Stalled Uploading (%1)").arg(m_nbStalledUploading));
     item(TorrentFilter::StalledDownloading)->setData(Qt::DisplayRole, tr("Stalled Downloading (%1)").arg(m_nbStalledDownloading));
     item(TorrentFilter::Checking)->setData(Qt::DisplayRole, tr("Checking (%1)").arg(m_nbChecking));
+    item(TorrentFilter::Moving)->setData(Qt::DisplayRole, tr("Moving (%1)").arg(m_nbMoving));
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(m_nbErrored));
 }
 
@@ -350,6 +355,8 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
         --m_nbStalledDownloading;
     if (status[TorrentFilter::Checking])
         --m_nbChecking;
+    if (status[TorrentFilter::Moving])
+        --m_nbMoving;
     if (status[TorrentFilter::Errored])
         --m_nbErrored;
 

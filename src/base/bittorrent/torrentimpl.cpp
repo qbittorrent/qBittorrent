@@ -873,6 +873,11 @@ bool TorrentImpl::isDownloading() const
     return false;
 }
 
+bool TorrentImpl::isMoving() const
+{
+    return m_state == TorrentState::Moving;
+}
+
 bool TorrentImpl::isUploading() const
 {
     switch (m_state)
