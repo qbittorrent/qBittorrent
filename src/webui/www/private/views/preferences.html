@@ -14,6 +14,14 @@
             <label for="dontstartdownloads_checkbox">QBT_TR(Do not start the download automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
         <div class="formRow">
+            <label for="stopConditionSelect">QBT_TR(Torrent stop condition:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <select id="stopConditionSelect">
+                <option value="None">QBT_TR(None)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="MetadataReceived">QBT_TR(Metadata received)QBT_TR[CONTEXT=OptionsDialog]</option>
+                <option value="FilesChecked">QBT_TR(Files checked)QBT_TR[CONTEXT=OptionsDialog]</option>
+            </select>
+        </div>
+        <div class="formRow">
             <input type="checkbox" id="deletetorrentfileafter_checkbox" />
             <label for="deletetorrentfileafter_checkbox">QBT_TR(Delete .torrent files afterwards)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -1740,6 +1748,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         }
                         $('contentlayout_select').getChildren('option')[index].setAttribute('selected', '');
                         $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
+                        switch (pref.torrent_stop_condition) {
+                            case "None":
+                                index = 0;
+                                break;
+                            case "MetadataReceived":
+                                index = 1;
+                                break;
+                            case "FilesChecked":
+                                index = 2;
+                                break;
+                        }
+                        $('stopConditionSelect').getChildren('option')[index].setAttribute('selected', '');
                         $('deletetorrentfileafter_checkbox').setProperty('checked', pref.auto_delete_mode);
 
                         $('preallocateall_checkbox').setProperty('checked', pref.preallocate_all);
@@ -2093,6 +2113,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // When adding a torrent
             settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
             settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
+            settings.set('torrent_stop_condition', $('stopConditionSelect').getSelected()[0].getProperty('value'));
             settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
 
             settings.set('preallocate_all', $('preallocateall_checkbox').getProperty('checked'));
