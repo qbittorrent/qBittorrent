@@ -2444,6 +2444,12 @@ void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torren
     ++m_numResumeData;
 }
 
+void SessionImpl::handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent)
+{
+    Q_UNUSED(torrent);
+    --m_numResumeData;
+}
+
 QVector<Torrent *> SessionImpl::torrents() const
 {
     QVector<Torrent *> result;
@@ -2904,16 +2910,12 @@ void SessionImpl::saveResumeData()
         bool hasWantedAlert = false;
         for (const lt::alert *a : alerts)
         {
-            switch (a->type())
+            if (const int alertType = a->type();
+                (alertType == lt::save_resume_data_alert::alert_type)
+                || (alertType == lt::save_resume_data_failed_alert::alert_type))
             {
-            case lt::save_resume_data_failed_alert::alert_type:
                 hasWantedAlert = true;
-                --m_numResumeData;
-                break;
-            case lt::save_resume_data_alert::alert_type:
-                hasWantedAlert = true;
-                dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
-                break;
+                handleAlert(a);
             }
         }
 

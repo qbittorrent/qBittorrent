@@ -410,6 +410,7 @@ namespace BitTorrent
         // Torrent interface
         void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
         void handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent);
+        void handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent);
         void handleTorrentShareLimitChanged(TorrentImpl *const torrent);
         void handleTorrentNameChanged(TorrentImpl *const torrent);
         void handleTorrentSavePathChanged(TorrentImpl *const torrent);
