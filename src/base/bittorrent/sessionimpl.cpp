@@ -1030,10 +1030,11 @@ void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 // Main destructor
 SessionImpl::~SessionImpl()
 {
-    saveStatistics();
-
-    // Do some BT related saving
+    // Do some bittorrent related saving
+    // After this, (ideally) no more important alerts will be generated/handled
     saveResumeData();
+
+    saveStatistics();
 
     // We must delete FilterParserThread
     // before we delete lt::session
