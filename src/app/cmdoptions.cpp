@@ -433,8 +433,10 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             {
                 result.torrentingPort = TORRENTING_PORT_OPTION.value(arg);
                 if ((result.torrentingPort < 1) || (result.torrentingPort > 65535))
+                {
                     throw CommandLineParameterError(QObject::tr("%1 must specify a valid port (1 to 65535).")
                                                     .arg(u"--torrenting-port"_qs));
+                }
             }
 #ifndef DISABLE_GUI
             else if (arg == NO_SPLASH_OPTION)
