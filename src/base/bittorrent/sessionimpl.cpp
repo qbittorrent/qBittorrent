@@ -2916,8 +2916,9 @@ void SessionImpl::saveResumeData()
                 || (alertType == lt::save_resume_data_failed_alert::alert_type))
             {
                 hasWantedAlert = true;
-                handleAlert(a);
             }
+
+            handleAlert(a);
         }
 
         if (hasWantedAlert)
