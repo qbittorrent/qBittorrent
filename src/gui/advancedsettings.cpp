@@ -97,6 +97,7 @@ namespace
         // embedded tracker
         TRACKER_STATUS,
         TRACKER_PORT,
+        TRACKER_PORT_FORWARDING,
         // libtorrent section
         LIBTORRENT_HEADER,
         ASYNC_IO_THREADS,
@@ -292,7 +293,9 @@ void AdvancedSettings::saveAdvancedSettings() const
 
     // Tracker
     pref->setTrackerPort(m_spinBoxTrackerPort.value());
+    pref->setTrackerPortForwardingEnabled(m_checkBoxTrackerPortForwarding.isChecked());
     session->setTrackerEnabled(m_checkBoxTrackerStatus.isChecked());
+
     // Choking algorithm
     session->setChokingAlgorithm(m_comboBoxChokingAlgorithm.currentData().value<BitTorrent::ChokingAlgorithm>());
     // Seed choking algorithm
@@ -732,6 +735,9 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxTrackerPort.setMaximum(65535);
     m_spinBoxTrackerPort.setValue(pref->getTrackerPort());
     addRow(TRACKER_PORT, tr("Embedded tracker port"), &m_spinBoxTrackerPort);
+    // Tracker port forwarding
+    m_checkBoxTrackerPortForwarding.setChecked(pref->isTrackerPortForwardingEnabled());
+    addRow(TRACKER_PORT_FORWARDING, tr("Enable port forwarding for embedded tracker"), &m_checkBoxTrackerPortForwarding);
     // Choking algorithm
     m_comboBoxChokingAlgorithm.addItem(tr("Fixed slots"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::FixedSlots));
     m_comboBoxChokingAlgorithm.addItem(tr("Upload rate based"), QVariant::fromValue(BitTorrent::ChokingAlgorithm::RateBased));
