@@ -32,7 +32,6 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
-#include <QPalette>
 
 #include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
@@ -44,46 +43,52 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "color.h"
 #include "uithememanager.h"
+#include "utils.h"
 
 namespace
 {
     QColor getDefaultColorByState(const BitTorrent::TorrentState state)
     {
+        const bool isDarkTheme = Utils::Gui::isDarkTheme();
+
         switch (state)
         {
         case BitTorrent::TorrentState::Downloading:
         case BitTorrent::TorrentState::ForcedDownloading:
         case BitTorrent::TorrentState::DownloadingMetadata:
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-            return QColorConstants::Svg::green;
+            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
         case BitTorrent::TorrentState::StalledDownloading:
-            return QColorConstants::Svg::mediumseagreen;
+            return (isDarkTheme ? Color::Primer::Dark::successEmphasis : Color::Primer::Light::successEmphasis);
         case BitTorrent::TorrentState::StalledUploading:
-            return QColorConstants::Svg::cornflowerblue;
+            return (isDarkTheme ? Color::Primer::Dark::accentEmphasis : Color::Primer::Light::accentEmphasis);
         case BitTorrent::TorrentState::Uploading:
         case BitTorrent::TorrentState::ForcedUploading:
-            return QColorConstants::Svg::royalblue;
+            return (isDarkTheme ? Color::Primer::Dark::accentFg : Color::Primer::Light::accentFg);
         case BitTorrent::TorrentState::PausedDownloading:
-            return QColorConstants::Svg::grey;
+            return (isDarkTheme ? Color::Primer::Dark::fgMuted : Color::Primer::Light::fgMuted);
         case BitTorrent::TorrentState::PausedUploading:
-            return QColorConstants::Svg::darkslateblue;
+            return (isDarkTheme ? Color::Primer::Dark::scaleBlue4 : Color::Primer::Light::scaleBlue4);
         case BitTorrent::TorrentState::QueuedDownloading:
         case BitTorrent::TorrentState::QueuedUploading:
-            return QColorConstants::Svg::peru;
+            return (isDarkTheme ? Color::Primer::Dark::scaleYellow6 : Color::Primer::Light::scaleYellow6);
         case BitTorrent::TorrentState::CheckingDownloading:
         case BitTorrent::TorrentState::CheckingUploading:
         case BitTorrent::TorrentState::CheckingResumeData:
         case BitTorrent::TorrentState::Moving:
-            return QColorConstants::Svg::teal;
+            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
         case BitTorrent::TorrentState::Error:
         case BitTorrent::TorrentState::MissingFiles:
         case BitTorrent::TorrentState::Unknown:
-            return QColorConstants::Svg::red;
+            return (isDarkTheme ? Color::Primer::Dark::dangerFg : Color::Primer::Light::dangerFg);
         default:
             Q_ASSERT(false);
-            return QColorConstants::Svg::red;
+            break;
         }
+
+        return {};
     }
 
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
