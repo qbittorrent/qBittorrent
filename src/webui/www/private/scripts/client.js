@@ -128,7 +128,6 @@ const qbtVersion = function() {
 };
 
 window.addEvent('load', function() {
-
     const saveColumnSizes = function() {
         const filters_width = $('Filters').getSize().x;
         const properties_height_rel = $('propertiesPanel').getSize().y / Window.getSize().y;
@@ -1187,6 +1186,98 @@ window.addEvent('load', function() {
     $('searchTabLink').addEvent('click', showSearchTab);
     $('rssTabLink').addEvent('click', showRssTab);
     updateTabDisplay();
+
+    const registerDragAndDrop = () => {
+        $('desktop').addEventListener('dragover', (ev) => {
+            if (ev.preventDefault)
+                ev.preventDefault();
+        });
+
+        $('desktop').addEventListener('dragenter', (ev) => {
+            if (ev.preventDefault)
+                ev.preventDefault();
+        });
+
+        $('desktop').addEventListener("drop", (ev) => {
+            if (ev.preventDefault)
+                ev.preventDefault();
+
+            const droppedFiles = ev.dataTransfer.files;
+
+            if (droppedFiles.length > 0) {
+                // dropped files or folders
+
+                // can't handle folder due to cannot put the filelist (from dropped folder)
+                // to <input> `files` field
+                for (const item of ev.dataTransfer.items) {
+                    if (item.webkitGetAsEntry().isDirectory)
+                        return;
+                }
+
+                const id = 'uploadPage';
+                new MochaUI.Window({
+                    id: id,
+                    title: "QBT_TR(Upload local torrent)QBT_TR[CONTEXT=HttpServer]",
+                    loadMethod: 'iframe',
+                    contentURL: new URI("upload.html").toString(),
+                    addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
+                    scrollbars: true,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: loadWindowWidth(id, 500),
+                    height: loadWindowHeight(id, 460),
+                    onResize: () => {
+                        saveWindowSize(id);
+                    },
+                    onContentLoaded: () => {
+                        const fileInput = $(`${id}_iframe`).contentDocument.getElementById('fileselect');
+                        fileInput.files = droppedFiles;
+                    }
+                });
+            }
+
+            const droppedText = ev.dataTransfer.getData("text");
+            if (droppedText.length > 0) {
+                // dropped text
+
+                const urls = droppedText.split('\n')
+                    .map((str) => str.trim())
+                    .filter((str) => {
+                        const lowercaseStr = str.toLowerCase();
+                        return lowercaseStr.startsWith("http:")
+                            || lowercaseStr.startsWith("https:")
+                            || lowercaseStr.startsWith("magnet:")
+                            || ((str.length === 40) && !(/[^0-9A-Fa-f]/.test(str))) // v1 hex-encoded SHA-1 info-hash
+                            || ((str.length === 32) && !(/[^2-7A-Za-z]/.test(str))); // v1 Base32 encoded SHA-1 info-hash
+                    });
+
+                if (urls.length <= 0)
+                    return;
+
+                const id = 'downloadPage';
+                const contentURI = new URI('download.html').setData("urls", urls.map(encodeURIComponent).join("|"));
+                new MochaUI.Window({
+                    id: id,
+                    title: "QBT_TR(Download from URLs)QBT_TR[CONTEXT=downloadFromURL]",
+                    loadMethod: 'iframe',
+                    contentURL: contentURI.toString(),
+                    addClass: 'windowFrame', // fixes iframe scrolling on iOS Safari
+                    scrollbars: true,
+                    maximizable: false,
+                    closable: true,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: loadWindowWidth(id, 500),
+                    height: loadWindowHeight(id, 600),
+                    onResize: () => {
+                        saveWindowSize(id);
+                    }
+                });
+            }
+        });
+    };
+    registerDragAndDrop();
 });
 
 function registerMagnetHandler() {

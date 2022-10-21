@@ -1030,10 +1030,11 @@ void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
 // Main destructor
 SessionImpl::~SessionImpl()
 {
-    saveStatistics();
-
-    // Do some BT related saving
+    // Do some bittorrent related saving
+    // After this, (ideally) no more important alerts will be generated/handled
     saveResumeData();
+
+    saveStatistics();
 
     // We must delete FilterParserThread
     // before we delete lt::session
@@ -2444,6 +2445,12 @@ void SessionImpl::handleTorrentSaveResumeDataRequested(const TorrentImpl *torren
     ++m_numResumeData;
 }
 
+void SessionImpl::handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent)
+{
+    Q_UNUSED(torrent);
+    --m_numResumeData;
+}
+
 QVector<Torrent *> SessionImpl::torrents() const
 {
     QVector<Torrent *> result;
@@ -2892,27 +2899,36 @@ void SessionImpl::saveResumeData()
         ++m_numResumeData;
     }
 
+    QElapsedTimer timer;
+    timer.start();
+
     while (m_numResumeData > 0)
     {
-        const std::vector<lt::alert *> alerts = getPendingAlerts(lt::seconds {30});
-        if (alerts.empty())
+        const lt::seconds waitTime {5};
+        const lt::seconds expireTime {30};
+        const std::vector<lt::alert *> alerts = getPendingAlerts(waitTime);
+
+        bool hasWantedAlert = false;
+        for (const lt::alert *a : alerts)
+        {
+            if (const int alertType = a->type();
+                (alertType == lt::save_resume_data_alert::alert_type)
+                || (alertType == lt::save_resume_data_failed_alert::alert_type))
+            {
+                hasWantedAlert = true;
+                handleAlert(a);
+            }
+        }
+
+        if (hasWantedAlert)
+        {
+            timer.start();
+        }
+        else if (timer.hasExpired(lt::total_milliseconds(expireTime)))
         {
             LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
                 , Log::CRITICAL);
             break;
-        }
-
-        for (const lt::alert *a : alerts)
-        {
-            switch (a->type())
-            {
-            case lt::save_resume_data_failed_alert::alert_type:
-                --m_numResumeData;
-                break;
-            case lt::save_resume_data_alert::alert_type:
-                dispatchTorrentAlert(static_cast<const lt::torrent_alert *>(a));
-                break;
-            }
         }
     }
 }
