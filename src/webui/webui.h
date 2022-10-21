@@ -66,5 +66,4 @@ private:
     QPointer<Http::Server> m_httpServer;
     QPointer<Net::DNSUpdater> m_dnsUpdater;
     QPointer<WebApplication> m_webapp;
-    quint16 m_port = 0;
 };
