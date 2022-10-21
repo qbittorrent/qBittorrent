@@ -1429,7 +1429,7 @@ void TorrentImpl::forceRecheck()
     {
         // When "force recheck" is applied on paused torrent, we temporarily resume it
         resume();
-        setStopCondition(StopCondition::FilesChecked);
+        m_stopCondition = StopCondition::FilesChecked;
     }
 }
 
