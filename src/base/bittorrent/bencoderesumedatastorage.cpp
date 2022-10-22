@@ -328,6 +328,11 @@ void BitTorrent::BencodeResumeDataStorage::storeQueue(const QVector<TorrentID> &
     });
 }
 
+void BitTorrent::BencodeResumeDataStorage::makeBackup() const
+{
+    // NOTE: Making backups isn't implemented by this type of resume data storage.
+}
+
 BitTorrent::BencodeResumeDataStorage::Worker::Worker(const Path &resumeDataDir)
     : m_resumeDataDir {resumeDataDir}
 {

@@ -184,6 +184,7 @@ namespace BitTorrent
         void store(const TorrentID &id, const LoadTorrentParams &resumeData) const;
         void remove(const TorrentID &id) const;
         void storeQueue(const QVector<TorrentID> &queue) const;
+        void makeBackup() const;
 
     private:
         const Path m_path;
@@ -377,6 +378,11 @@ void BitTorrent::DBResumeDataStorage::storeQueue(const QVector<TorrentID> &queue
     {
         m_asyncWorker->storeQueue(queue);
     });
+}
+
+void BitTorrent::DBResumeDataStorage::makeBackup() const
+{
+    QMetaObject::invokeMethod(m_asyncWorker, &Worker::makeBackup);
 }
 
 void BitTorrent::DBResumeDataStorage::doLoadAll() const
@@ -778,5 +784,39 @@ void BitTorrent::DBResumeDataStorage::Worker::storeQueue(const QVector<TorrentID
     {
         LogMsg(tr("Couldn't store torrents queue positions. Error: %1")
             .arg(err.message()), Log::CRITICAL);
+    }
+}
+
+void BitTorrent::DBResumeDataStorage::Worker::makeBackup() const
+{
+    const Path bakTmpPath = m_path + u".tmp"_qs;
+    Utils::Fs::removeFile(bakTmpPath);
+
+    try
+    {
+        auto db = QSqlDatabase::database(m_connectionName);
+        const QWriteLocker locker {&m_dbLock};
+
+        QSqlQuery query {db};
+        const QString pathPlaceholder = u":path"_qs;
+        const QString statement = u"VACUUM INTO %1;"_qs.arg(pathPlaceholder);
+        if (!query.prepare(statement))
+            throw RuntimeError(query.lastError().text());
+
+        query.bindValue(pathPlaceholder, bakTmpPath.toString());
+        if (!query.exec())
+            throw RuntimeError(query.lastError().text());
+
+        const Path bakPath = m_path + u".bak"_qs;
+        if (!Utils::Fs::removeFile(bakPath))
+            throw RuntimeError(tr("Failed to remove file."));
+        if (!Utils::Fs::renameFile(bakTmpPath, bakPath))
+            throw RuntimeError(tr("Failed to rename file."));
+    }
+    catch (const RuntimeError &err)
+    {
+        Utils::Fs::removeFile(bakTmpPath);
+        LogMsg(tr("Couldn't make resume data storage backup. Error: %1")
+            .arg(err.message()), Log::WARNING);
     }
 }

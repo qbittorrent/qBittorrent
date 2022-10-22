@@ -1391,6 +1391,12 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
 
         if (context->currentStorageType == ResumeDataStorageType::Legacy)
             Utils::Fs::removeFile(dbPath);
+
+        if (m_torrents.count() > 0)
+        {
+            // make initial backup if there are imported torrents
+            m_resumeDataStorage->makeBackup();
+        }
     }
 
     context->deleteLater();
@@ -4646,6 +4652,9 @@ void SessionImpl::handleTorrentResumeDataReady(TorrentImpl *const torrent, const
         m_resumeDataStorage->remove(iter.value());
         m_changedTorrentIDs.erase(iter);
     }
+
+    if (m_numResumeData == 0)
+        m_resumeDataStorage->makeBackup();
 }
 
 void SessionImpl::handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash)

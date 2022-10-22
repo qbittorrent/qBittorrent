@@ -53,6 +53,7 @@ namespace BitTorrent
         void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
         void remove(const TorrentID &id) const override;
         void storeQueue(const QVector<TorrentID> &queue) const override;
+        void makeBackup() const override;
 
     private:
         void doLoadAll() const override;
