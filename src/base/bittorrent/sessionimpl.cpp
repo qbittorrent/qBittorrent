@@ -2267,7 +2267,7 @@ bool SessionImpl::deleteTorrent(const TorrentID &id, const DeleteOption deleteOp
         {
             // Delete "move storage job" for the deleted torrent
             // (note: we shouldn't delete active job)
-            const auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
+            const auto iter = std::find_if((m_moveStorageQueue.begin() + 1), m_moveStorageQueue.end()
                                      , [torrent](const MoveStorageJob &job)
             {
                 return job.torrentHandle == torrent->nativeHandle();
@@ -2899,21 +2899,40 @@ void SessionImpl::saveResumeData()
         ++m_numResumeData;
     }
 
+    // clear queued storage move jobs except the current ongoing one
+    if (m_moveStorageQueue.size() > 1)
+    {
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+        m_moveStorageQueue = m_moveStorageQueue.mid(0, 1);
+#else
+        m_moveStorageQueue.resize(1);
+#endif
+    }
+
     QElapsedTimer timer;
     timer.start();
 
-    while (m_numResumeData > 0)
+    while ((m_numResumeData > 0) || !m_moveStorageQueue.isEmpty())
     {
         const lt::seconds waitTime {5};
         const lt::seconds expireTime {30};
+
+        // only terminate when no storage is moving
+        if (timer.hasExpired(lt::total_milliseconds(expireTime)) && m_moveStorageQueue.isEmpty())
+        {
+            LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
+                , Log::CRITICAL);
+            break;
+        }
+
         const std::vector<lt::alert *> alerts = getPendingAlerts(waitTime);
 
         bool hasWantedAlert = false;
         for (const lt::alert *a : alerts)
         {
             if (const int alertType = a->type();
-                (alertType == lt::save_resume_data_alert::alert_type)
-                || (alertType == lt::save_resume_data_failed_alert::alert_type))
+                (alertType == lt::save_resume_data_alert::alert_type) || (alertType == lt::save_resume_data_failed_alert::alert_type)
+                || (alertType == lt::storage_moved_alert::alert_type) || (alertType == lt::storage_moved_failed_alert::alert_type))
             {
                 hasWantedAlert = true;
             }
@@ -2922,15 +2941,7 @@ void SessionImpl::saveResumeData()
         }
 
         if (hasWantedAlert)
-        {
             timer.start();
-        }
-        else if (timer.hasExpired(lt::total_milliseconds(expireTime)))
-        {
-            LogMsg(tr("Aborted saving resume data. Number of outstanding torrents: %1").arg(QString::number(m_numResumeData))
-                , Log::CRITICAL);
-            break;
-        }
     }
 }
 
@@ -4658,7 +4669,7 @@ bool SessionImpl::addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &new
 
     if (m_moveStorageQueue.size() > 1)
     {
-        auto iter = std::find_if(m_moveStorageQueue.begin() + 1, m_moveStorageQueue.end()
+        auto iter = std::find_if((m_moveStorageQueue.begin() + 1), m_moveStorageQueue.end()
                                  , [&torrentHandle](const MoveStorageJob &job)
         {
             return job.torrentHandle == torrentHandle;
