@@ -1388,7 +1388,7 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
             saveTorrentsQueue();
 
         const Path dbPath = context->startupStorage->path();
-        delete context->startupStorage;
+        context->startupStorage->deleteLater();
 
         if (context->currentStorageType == ResumeDataStorageType::Legacy)
             Utils::Fs::removeFile(dbPath);
