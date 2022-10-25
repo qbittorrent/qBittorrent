@@ -499,6 +499,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_OPERATING_MODE, "TEXT NOT NULL"),
             makeColumnDefinition(DB_COLUMN_STOPPED, "INTEGER NOT NULL"),
+            makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"),
             makeColumnDefinition(DB_COLUMN_RESUMEDATA, "BLOB NOT NULL"),
             makeColumnDefinition(DB_COLUMN_METADATA, "BLOB")
         };
@@ -627,6 +628,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         DB_COLUMN_HAS_SEED_STATUS,
         DB_COLUMN_OPERATING_MODE,
         DB_COLUMN_STOPPED,
+        DB_COLUMN_STOP_CONDITION,
         DB_COLUMN_RESUMEDATA
     };
 
