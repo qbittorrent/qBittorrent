@@ -56,6 +56,14 @@ window.qBittorrent.DynamicTable = (function() {
 
     const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
+    const compareNumbers = (val1, val2) => {
+        if (val1 < val2)
+            return -1;
+        if (val1 > val2)
+            return 1;
+        return 0;
+    };
+
     let DynamicTableHeaderContextMenuClass = null;
     let ProgressColumnWidth = -1;
 
@@ -384,6 +392,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
@@ -1086,12 +1096,7 @@ window.qBittorrent.DynamicTable = (function() {
                     row1_val = 1000000;
                 if (row2_val < 1)
                     row2_val = 1000000;
-                if (row1_val < row2_val)
-                    return -1;
-                else if (row1_val > row2_val)
-                    return 1;
-                else
-                    return 0;
+                return compareNumbers(row1_val, row2_val);
             };
 
             // name, category, tags
@@ -1167,16 +1172,10 @@ window.qBittorrent.DynamicTable = (function() {
                 const num_seeds2 = this.getRowValue(row2, 0);
                 const num_complete2 = this.getRowValue(row2, 1);
 
-                if (num_complete1 < num_complete2)
-                    return -1;
-                else if (num_complete1 > num_complete2)
-                    return 1;
-                else if (num_seeds1 < num_seeds2)
-                    return -1;
-                else if (num_seeds1 > num_seeds2)
-                    return 1;
-                else
-                    return 0;
+                const result = compareNumbers(num_complete1, num_complete2);
+                if (result !== 0)
+                    return result;
+                return compareNumbers(num_seeds1, num_seeds2);
             };
 
             // num_leechs
@@ -2252,6 +2251,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
@@ -2346,6 +2347,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
@@ -2430,6 +2433,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
@@ -2515,6 +2520,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
@@ -2563,6 +2570,8 @@ window.qBittorrent.DynamicTable = (function() {
             column['compareRows'] = function(row1, row2) {
                 const value1 = this.getRowValue(row1);
                 const value2 = this.getRowValue(row2);
+                if ((typeof(value1) === 'number') && (typeof(value2) === 'number'))
+                    return compareNumbers(value1, value2);
                 return naturalSortCollator.compare(value1, value2);
             };
             column['updateTd'] = function(td, row) {
