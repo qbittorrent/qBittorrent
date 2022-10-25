@@ -30,8 +30,6 @@
 
 #include <libtorrent/session.hpp>
 
-#include <QDebug>
-
 #include "base/logger.h"
 
 PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
@@ -55,61 +53,70 @@ bool PortForwarderImpl::isEnabled() const
 
 void PortForwarderImpl::setEnabled(const bool enabled)
 {
-    if (m_storeActive != enabled)
-    {
-        if (enabled)
-            start();
-        else
-            stop();
+    if (m_storeActive == enabled)
+        return;
 
-        m_storeActive = enabled;
-    }
+    if (enabled)
+        start();
+    else
+        stop();
+    m_storeActive = enabled;
 }
 
 void PortForwarderImpl::addPort(const quint16 port)
 {
-    if (!m_mappedPorts.contains(port))
-    {
+    if (m_mappedPorts.contains(port))
+        return;
+
+    if (isEnabled())
+        m_mappedPorts.insert(port, m_provider->add_port_mapping(lt::session::tcp, port, port));
+    else
         m_mappedPorts.insert(port, {});
-        if (isEnabled())
-            m_mappedPorts[port] = {m_provider->add_port_mapping(lt::session::tcp, port, port)};
-    }
 }
 
 void PortForwarderImpl::deletePort(const quint16 port)
 {
-    if (m_mappedPorts.contains(port))
+    const auto iter = m_mappedPorts.find(port);
+    if (iter == m_mappedPorts.end())
+        return;
+
+    if (isEnabled())
     {
-        if (isEnabled())
-        {
-            for (const lt::port_mapping_t &portMapping : m_mappedPorts[port])
+        for (const lt::port_mapping_t &portMapping : *iter)
             m_provider->delete_port_mapping(portMapping);
-        }
-        m_mappedPorts.remove(port);
     }
+
+    m_mappedPorts.erase(iter);
 }
 
 void PortForwarderImpl::start()
 {
-    qDebug("Enabling UPnP / NAT-PMP");
     lt::settings_pack settingsPack = m_provider->get_settings();
     settingsPack.set_bool(lt::settings_pack::enable_upnp, true);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
     m_provider->apply_settings(settingsPack);
-    for (auto i = m_mappedPorts.begin(); i != m_mappedPorts.end(); ++i)
+
+    for (auto iter = m_mappedPorts.begin(); iter != m_mappedPorts.end(); ++iter)
     {
-        // quint16 port = i.key();
-        i.value() = {m_provider->add_port_mapping(lt::session::tcp, i.key(), i.key())};
+        Q_ASSERT(iter.value().empty());
+
+        const quint16 port = iter.key();
+        iter.value() = m_provider->add_port_mapping(lt::session::tcp, port, port);
     }
+
     LogMsg(tr("UPnP/NAT-PMP support: ON"), Log::INFO);
 }
 
 void PortForwarderImpl::stop()
 {
-    qDebug("Disabling UPnP / NAT-PMP");
     lt::settings_pack settingsPack = m_provider->get_settings();
     settingsPack.set_bool(lt::settings_pack::enable_upnp, false);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
     m_provider->apply_settings(settingsPack);
+
+    // don't clear m_mappedPorts so a later `start()` call can restore the port forwarding
+    for (auto iter = m_mappedPorts.begin(); iter != m_mappedPorts.end(); ++iter)
+        iter.value().clear();
+
     LogMsg(tr("UPnP/NAT-PMP support: OFF"), Log::INFO);
 }
