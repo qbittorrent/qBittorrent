@@ -66,6 +66,7 @@ namespace
 
     // Peer keys
     const QString KEY_PEER_CLIENT = u"client"_qs;
+    const QString KEY_PEER_ID = u"peer_id"_qs;
     const QString KEY_PEER_CONNECTION_TYPE = u"connection"_qs;
     const QString KEY_PEER_COUNTRY = u"country"_qs;
     const QString KEY_PEER_COUNTRY_CODE = u"country_code"_qs;
@@ -561,6 +562,7 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_IP, pi.address().ip.toString()},
             {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
+            {KEY_PEER_ID, pi.peerId()},
             {KEY_PEER_PROGRESS, pi.progress()},
             {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
             {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},
