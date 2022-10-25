@@ -30,7 +30,7 @@ jobs:
       - name: Install libtorrent
         run: |
           git clone \
-            --branch "v2.0.7" \
+            --branch "v2.0.8" \
             --depth 1 \
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git
