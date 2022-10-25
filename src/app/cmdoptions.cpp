@@ -326,6 +326,7 @@ namespace
     constexpr const BoolOption NO_SPLASH_OPTION {"no-splash"};
 #endif
     constexpr const IntOption WEBUI_PORT_OPTION {"webui-port"};
+    constexpr const IntOption TORRENTING_PORT_OPTION {"torrenting-port"};
     constexpr const StringOption PROFILE_OPTION {"profile"};
     constexpr const StringOption CONFIGURATION_OPTION {"configuration"};
     constexpr const BoolOption RELATIVE_FASTRESUME {"relative-fastresume"};
@@ -353,6 +354,7 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
     , shouldDaemonize(DAEMON_OPTION.value(env))
 #endif
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
+    , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
     , addPaused(PAUSED_OPTION.value(env))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
     , profileDir(PROFILE_OPTION.value(env))
@@ -426,6 +428,15 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
                 if ((result.webUiPort < 1) || (result.webUiPort > 65535))
                     throw CommandLineParameterError(QObject::tr("%1 must specify a valid port (1 to 65535).")
                                                     .arg(u"--webui-port"_qs));
+            }
+            else if (arg == TORRENTING_PORT_OPTION)
+            {
+                result.torrentingPort = TORRENTING_PORT_OPTION.value(arg);
+                if ((result.torrentingPort < 1) || (result.torrentingPort > 65535))
+                {
+                    throw CommandLineParameterError(QObject::tr("%1 must specify a valid port (1 to 65535).")
+                                                    .arg(u"--torrenting-port"_qs));
+                }
             }
 #ifndef DISABLE_GUI
             else if (arg == NO_SPLASH_OPTION)
@@ -536,6 +547,9 @@ QString makeUsage(const QString &prgName)
         + SHOW_HELP_OPTION.usage() + wrapText(QObject::tr("Display this help message and exit")) + u'\n'
         + WEBUI_PORT_OPTION.usage(QObject::tr("port"))
         + wrapText(QObject::tr("Change the Web UI port"))
+        + u'\n'
+        + TORRENTING_PORT_OPTION.usage(QObject::tr("port"))
+        + wrapText(QObject::tr("Change the torrenting port"))
         + u'\n'
 #ifndef DISABLE_GUI
         + NO_SPLASH_OPTION.usage() + wrapText(QObject::tr("Disable splash screen")) + u'\n'

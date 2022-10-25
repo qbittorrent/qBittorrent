@@ -56,6 +56,7 @@ struct QBtCommandLineParameters
     bool shouldDaemonize;
 #endif
     int webUiPort;
+    int torrentingPort;
     std::optional<bool> addPaused;
     std::optional<bool> skipDialog;
     QStringList torrents;
