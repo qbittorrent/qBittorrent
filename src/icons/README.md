@@ -1,4 +1,6 @@
 # qBittorrent Icons
 
 ## Color Reference
-Colors have been selected from Qt documented [SVG Colors](https://doc.qt.io/qt-6/qcolorconstants.html#svg-colors). It is recommended to use color Hex from the given source.
+It is recommended to use color from the following source: [Primer primitives colors](https://primer.style/primitives/colors).
+
+More information: https://primer.style/design/foundations/color
