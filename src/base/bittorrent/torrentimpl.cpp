@@ -805,13 +805,22 @@ int TorrentImpl::seedingTimeLimit() const
 
 Path TorrentImpl::filePath(const int index) const
 {
-    return m_filePaths.at(index);
+    Q_ASSERT(index >= 0);
+    Q_ASSERT(index < m_filePaths.size());
+
+    return m_filePaths.value(index, {});
 }
 
 Path TorrentImpl::actualFilePath(const int index) const
 {
-    const auto nativeIndex = m_torrentInfo.nativeIndexes().at(index);
-    return Path(nativeTorrentInfo()->files().file_path(nativeIndex));
+    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+
+    Q_ASSERT(index >= 0);
+    Q_ASSERT(index < nativeIndexes.size());
+    if ((index < 0) || (index >= nativeIndexes.size()))
+        return {};
+
+    return Path(nativeTorrentInfo()->files().file_path(nativeIndexes[index]));
 }
 
 qlonglong TorrentImpl::fileSize(const int index) const
@@ -1721,9 +1730,15 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
 
 void TorrentImpl::renameFile(const int index, const Path &path)
 {
+    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+
+    Q_ASSERT(index >= 0);
+    Q_ASSERT(index < nativeIndexes.size());
+    if ((index < 0) || (index >= nativeIndexes.size()))
+        return;
+
     ++m_renameCount;
-    m_nativeHandle.rename_file(m_torrentInfo.nativeIndexes().at(index)
-                               , path.toString().toStdString());
+    m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
 }
 
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
