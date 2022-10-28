@@ -337,7 +337,7 @@ namespace BitTorrent
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
         bool m_isStopped;
-        StopCondition m_stopCondition;
+        StopCondition m_stopCondition = StopCondition::None;
 
         bool m_unchecked = false;
 
