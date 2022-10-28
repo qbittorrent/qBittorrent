@@ -65,6 +65,7 @@ class QUrl;
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
+class NativeSessionExtension;
 
 namespace Net
 {
@@ -549,6 +550,7 @@ namespace BitTorrent
 
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
+        NativeSessionExtension *m_nativeSessionExtension = nullptr;
 
         bool m_deferredConfigureScheduled = false;
         bool m_IPFilteringConfigured = false;

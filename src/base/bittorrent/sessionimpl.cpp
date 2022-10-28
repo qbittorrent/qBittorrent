@@ -1498,7 +1498,9 @@ void SessionImpl::initializeNativeSession()
     if (isPeXEnabled())
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
 
-    m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
+    auto nativeSessionExtension = std::make_shared<NativeSessionExtension>();
+    m_nativeSession->add_extension(nativeSessionExtension);
+    m_nativeSessionExtension = nativeSessionExtension.get();
 }
 
 void SessionImpl::processBannedIPs(lt::ip_filter &filter)
@@ -4494,7 +4496,7 @@ void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
 
 bool SessionImpl::isListening() const
 {
-    return m_nativeSession->is_listening();
+    return m_nativeSessionExtension->isSessionListening();
 }
 
 MaxRatioAction SessionImpl::maxRatioAction() const

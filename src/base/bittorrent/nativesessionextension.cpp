@@ -62,6 +62,17 @@ namespace
     }
 }
 
+bool NativeSessionExtension::isSessionListening() const
+{
+    const QReadLocker locker {&m_lock};
+    return m_isSesssionListening;
+}
+
+void NativeSessionExtension::added(const lt::session_handle &nativeSession)
+{
+    m_nativeSession = nativeSession;
+}
+
 lt::feature_flags_t NativeSessionExtension::implemented_features()
 {
     return alert_feature;
@@ -76,6 +87,9 @@ void NativeSessionExtension::on_alert(const lt::alert *alert)
 {
     switch (alert->type())
     {
+    case lt::session_stats_alert::alert_type:
+        handleSessionStatsAlert(static_cast<const lt::session_stats_alert *>(alert));
+        break;
     case lt::add_torrent_alert::alert_type:
         handleAddTorrentAlert(static_cast<const lt::add_torrent_alert *>(alert));
         break;
@@ -85,4 +99,10 @@ void NativeSessionExtension::on_alert(const lt::alert *alert)
     default:
         break;
     }
+}
+
+void NativeSessionExtension::handleSessionStatsAlert([[maybe_unused]] const lt::session_stats_alert *alert)
+{
+    const QWriteLocker locker {&m_lock};
+    m_isSesssionListening = m_nativeSession.is_listening();
 }
