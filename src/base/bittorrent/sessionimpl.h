@@ -59,6 +59,7 @@ class QNetworkConfigurationManager;
 #endif
 class QString;
 class QThread;
+class QThreadPool;
 class QTimer;
 class QUrl;
 
@@ -431,6 +432,8 @@ namespace BitTorrent
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
 
+        void invokeAsync(std::function<void ()> func);
+
     private slots:
         void configureDeferred();
         void readAlerts();
@@ -694,6 +697,7 @@ namespace BitTorrent
         QPointer<Tracker> m_tracker;
 
         QThread *m_ioThread = nullptr;
+        QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
 

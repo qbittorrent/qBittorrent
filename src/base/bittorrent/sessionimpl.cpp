@@ -72,6 +72,7 @@
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
+#include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
 
@@ -509,14 +510,18 @@ SessionImpl::SessionImpl(QObject *parent)
                         }
                  )
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
-    , m_seedingLimitTimer {new QTimer {this}}
-    , m_resumeDataTimer {new QTimer {this}}
-    , m_ioThread {new QThread {this}}
-    , m_recentErroredTorrentsTimer {new QTimer {this}}
+    , m_seedingLimitTimer {new QTimer(this)}
+    , m_resumeDataTimer {new QTimer(this)}
+    , m_ioThread {new QThread(this)}
+    , m_asyncWorker {new QThreadPool(this)}
+    , m_recentErroredTorrentsTimer {new QTimer(this)}
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    , m_networkManager {new QNetworkConfigurationManager {this}}
+    , m_networkManager {new QNetworkConfigurationManager(this)}
 #endif
 {
+    // It is required to perform async access to libtorrent sequentially
+    m_asyncWorker->setMaxThreadCount(1);
+
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
 
@@ -596,6 +601,9 @@ SessionImpl::~SessionImpl()
     saveResumeData();
 
     saveStatistics();
+
+    m_asyncWorker->clear();
+    m_asyncWorker->waitForDone();
 
     // We must delete FilterParserThread
     // before we delete lt::session
@@ -2230,21 +2238,26 @@ bool SessionImpl::hasRunningSeed() const
 
 void SessionImpl::banIP(const QString &ip)
 {
-    QStringList bannedIPs = m_bannedIPs;
-    if (!bannedIPs.contains(ip))
-    {
-        lt::ip_filter filter = m_nativeSession->get_ip_filter();
-        lt::error_code ec;
-        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
-        Q_ASSERT(!ec);
-        if (ec) return;
-        filter.add_rule(addr, addr, lt::ip_filter::blocked);
-        m_nativeSession->set_ip_filter(filter);
+    if (m_bannedIPs.get().contains(ip))
+        return;
 
-        bannedIPs << ip;
-        bannedIPs.sort();
-        m_bannedIPs = bannedIPs;
-    }
+    lt::error_code ec;
+    const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+    Q_ASSERT(!ec);
+    if (ec)
+        return;
+
+    invokeAsync([session = m_nativeSession, addr]
+    {
+        lt::ip_filter filter = session->get_ip_filter();
+        filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        session->set_ip_filter(std::move(filter));
+    });
+
+    QStringList bannedIPs = m_bannedIPs;
+    bannedIPs.append(ip);
+    bannedIPs.sort();
+    m_bannedIPs = bannedIPs;
 }
 
 // Delete a torrent from the session, given its hash
@@ -2807,6 +2820,11 @@ void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path
     {
         m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
     });
+}
+
+void SessionImpl::invokeAsync(std::function<void ()> func)
+{
+    m_asyncWorker->start(std::move(func));
 }
 
 // Add a torrent to libtorrent session in hidden mode
