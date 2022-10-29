@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <utility>
 #include <variant>
 #include <vector>
 
@@ -437,6 +438,12 @@ namespace BitTorrent
         void disablePortMapping();
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
+
+        template <typename Func>
+        void invoke(Func &&func)
+        {
+            QMetaObject::invokeMethod(this, std::forward<Func>(func));
+        }
 
         void invokeAsync(std::function<void ()> func);
 

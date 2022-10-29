@@ -35,7 +35,6 @@
 #include <ctime>
 #include <queue>
 #include <string>
-#include <utility>
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
