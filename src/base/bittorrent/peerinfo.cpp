@@ -185,7 +185,7 @@ QString PeerInfo::peerId() const
 {
     // when peer ID is not known yet it contains only zero bytes,
     // do not create string in such case, return empty string instead
-    if (*reinterpret_cast<const quint64*>(m_nativeInfo.pid.data()) == 0)
+    if (m_nativeInfo.pid.is_all_zeros())
         return {};
 
     QString peerId;
