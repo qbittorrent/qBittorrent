@@ -53,14 +53,6 @@
 #include "torrentinfo.h"
 #include "trackerentry.h"
 
-#ifdef QBT_USES_LIBTORRENT2
-// TODO: Remove the following forward declaration once v2.0.8 is released
-namespace libtorrent
-{
-    struct torrent_conflict_alert;
-}
-#endif
-
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
