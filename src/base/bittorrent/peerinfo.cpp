@@ -187,8 +187,14 @@ QString PeerInfo::peerId() const
     // do not create string in such case, return empty string instead
     if (*reinterpret_cast<const quint64*>(m_nativeInfo.pid.data()) == 0)
         return {};
-    // peer ID in only first 8 bytes, the rest is not interesting
-    return QString::fromLatin1(m_nativeInfo.pid.data(), 8);
+
+    QString peerId;
+
+    // sanitize peer ID to only printable ASCII characters
+    for (unsigned char const c : m_nativeInfo.pid)
+        peerId += QChar((c >= 32 && c < 127) ? c : '.');
+
+    return peerId;
 }
 
 qreal PeerInfo::progress() const
