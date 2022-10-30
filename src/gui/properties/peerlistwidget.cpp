@@ -89,7 +89,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     , m_properties(parent)
 {
     // Load settings
-    loadSettings();
+    const bool columnLoaded = loadSettings();
     // Visual settings
     setUniformRowHeights(true);
     setRootIsDecorated(false);
@@ -131,11 +131,13 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
-    // When state array size is 0, this is the first run.
-    // So here we can set the defaults for it.
-    if (Preferences::instance()->getPeerListState().size() == 0) {
+
+    // Default hidden columns
+    if (!columnLoaded)
+    {
         hideColumn(PeerListColumns::PEERID);
     }
+
     hideColumn(PeerListColumns::IP_HIDDEN);
     hideColumn(PeerListColumns::COL_COUNT);
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
@@ -377,9 +379,9 @@ void PeerListWidget::clear()
         m_listModel->removeRows(0, nbrows);
 }
 
-void PeerListWidget::loadSettings()
+bool PeerListWidget::loadSettings()
 {
-    header()->restoreState(Preferences::instance()->getPeerListState());
+    return header()->restoreState(Preferences::instance()->getPeerListState());
 }
 
 void PeerListWidget::saveSettings() const

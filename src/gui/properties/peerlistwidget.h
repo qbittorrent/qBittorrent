@@ -88,7 +88,7 @@ public:
     void clear();
 
 private slots:
-    void loadSettings();
+    bool loadSettings();
     void saveSettings() const;
     void displayColumnHeaderMenu();
     void showPeerListMenu();
