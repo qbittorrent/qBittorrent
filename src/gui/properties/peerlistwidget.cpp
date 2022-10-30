@@ -131,6 +131,11 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
+    // When state array size is 0, this is the first run.
+    // So here we can set the defaults for it.
+    if (Preferences::instance()->getPeerListState().size() == 0) {
+        hideColumn(PeerListColumns::PEERID);
+    }
     hideColumn(PeerListColumns::IP_HIDDEN);
     hideColumn(PeerListColumns::COL_COUNT);
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
