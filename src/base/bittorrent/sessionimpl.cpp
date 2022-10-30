@@ -3678,12 +3678,11 @@ void SessionImpl::setMaxConnectionsPerTorrent(int max)
     {
         m_maxConnectionsPerTorrent = max;
 
-        // Apply this to all session torrents
-        for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
+        for (const TorrentImpl *torrent : asConst(m_torrents))
         {
             try
             {
-                handle.set_max_connections(max);
+                torrent->nativeHandle().set_max_connections(max);
             }
             catch (const std::exception &) {}
         }
@@ -3702,12 +3701,11 @@ void SessionImpl::setMaxUploadsPerTorrent(int max)
     {
         m_maxUploadsPerTorrent = max;
 
-        // Apply this to all session torrents
-        for (const lt::torrent_handle &handle : m_nativeSession->get_torrents())
+        for (const TorrentImpl *torrent : asConst(m_torrents))
         {
             try
             {
-                handle.set_max_uploads(max);
+                torrent->nativeHandle().set_max_uploads(max);
             }
             catch (const std::exception &) {}
         }
@@ -4318,8 +4316,14 @@ void SessionImpl::setReannounceWhenAddressChangedEnabled(const bool enabled)
 
 void SessionImpl::reannounceToAllTrackers() const
 {
-    for (const lt::torrent_handle &torrent : m_nativeSession->get_torrents())
-        torrent.force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
+    for (const TorrentImpl *torrent : asConst(m_torrents))
+    {
+        try
+        {
+            torrent->nativeHandle().force_reannounce(0, -1, lt::torrent_handle::ignore_min_interval);
+        }
+        catch (const std::exception &) {}
+    }
 }
 
 int SessionImpl::stopTrackerTimeout() const
