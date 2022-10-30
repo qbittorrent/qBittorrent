@@ -188,13 +188,19 @@ QString PeerInfo::peerId() const
     if (m_nativeInfo.pid.is_all_zeros())
         return {};
 
-    QString peerId;
+    // interesting part of a typical peer ID is first 8 chars
+    static constexpr int idCharCount = std::min(8, static_cast<int>(m_nativeInfo.pid.size()));
 
-    // sanitize peer ID to only printable ASCII characters
-    for (unsigned char const c : m_nativeInfo.pid)
-        peerId += QChar((c >= 32 && c < 127) ? c : '.');
+    // check that peer ID slice consists only of printable ASCII characters,
+    // this should filter out most of the improper IDs
+    for (int i = 0; i < idCharCount; ++i)
+    {
+        unsigned char const c = m_nativeInfo.pid[i];
+        if (c < 32 || c > 126)
+            return tr("Unknown");
+    }
 
-    return peerId;
+    return QString::fromLatin1(m_nativeInfo.pid.data(), idCharCount);
 }
 
 qreal PeerInfo::progress() const
