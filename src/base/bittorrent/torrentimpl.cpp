@@ -2037,9 +2037,29 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
         return;
 
     const int fileIndex = m_indexMap.value(p->index, -1);
-    Q_ASSERT(fileIndex >= 0);
+    Q_ASSERT((fileIndex >= 0) && (fileIndex < filesCount()));
+    if ((fileIndex < 0) || (fileIndex >= filesCount()))
+    {
+        LogMsg(tr("Logical error encountered. Please report to developers. Torrent: '%1'."
+                  " Metadata exists: %2. Native file index: %3. File index: %4.")
+               .arg(name(), (hasMetadata() ? tr("Yes") : tr("No")), QString::number(static_cast<int>(p->index)), QString::number(fileIndex))
+               , Log::CRITICAL);
+        return;
+    }
 
-    m_completedFiles[fileIndex] = true;
+    try
+    {
+        m_completedFiles[fileIndex] = true;
+    }
+    catch (const std::exception &exc)
+    {
+        LogMsg(tr("Exception encountered. Please report to developers. Torrent: '%1'."
+                  " Metadata exists: %2. Native file index: %3. File index: %4. Message: %5")
+               .arg(name(), (hasMetadata() ? tr("Yes") : tr("No")), QString::number(static_cast<int>(p->index))
+                    , QString::number(fileIndex), QString::fromLocal8Bit(exc.what()))
+               , Log::CRITICAL);
+        return;
+    }
 
     if (m_session->isAppendExtensionEnabled())
     {
