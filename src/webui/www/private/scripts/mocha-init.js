@@ -980,7 +980,7 @@ const initializeWindows = function() {
     };
 
     addClickEvent('pauseAll', function(e) {
-        if (confirm('QBT_TR(Are you sure you want to pause all your torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm('QBT_TR(Would you like to pause all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Event(e).stop();
             new Request({
                 url: 'api/v2/torrents/pause',
@@ -994,7 +994,7 @@ const initializeWindows = function() {
     });
 
     addClickEvent('resumeAll', function(e) {
-        if (confirm('QBT_TR(Are you sure you want to resume all your torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+        if (confirm('QBT_TR(Would you like to resume all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Event(e).stop();
             new Request({
                 url: 'api/v2/torrents/resume',
