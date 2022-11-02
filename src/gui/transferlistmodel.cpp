@@ -632,9 +632,12 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    int row = m_torrentList.size();
-    beginInsertRows({}, row, (row + torrents.size()));
+    qsizetype row = m_torrentList.size();
+    const qsizetype total = row + torrents.size();
 
+    beginInsertRows({}, row, total);
+
+    m_torrentList.reserve(total);
     for (BitTorrent::Torrent *torrent : torrents)
     {
         Q_ASSERT(!m_torrentMap.contains(torrent));
