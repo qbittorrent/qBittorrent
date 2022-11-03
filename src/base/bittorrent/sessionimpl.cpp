@@ -5759,14 +5759,28 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
         else
             cancelDownloadMetadata(torrentIDv1);
 
-        torrent2->nativeHandle().set_metadata(a->metadata->info_section());
+        invokeAsync([torrentHandle = torrent2->nativeHandle(), metadata = a->metadata]
+        {
+            try
+            {
+                torrentHandle.set_metadata(metadata->info_section());
+            }
+            catch (const std::exception &) {}
+        });
     }
     else if (torrent1)
     {
         if (!torrent2)
             cancelDownloadMetadata(torrentIDv2);
 
-        torrent1->nativeHandle().set_metadata(a->metadata->info_section());
+        invokeAsync([torrentHandle = torrent1->nativeHandle(), metadata = a->metadata]
+        {
+            try
+            {
+                torrentHandle.set_metadata(metadata->info_section());
+            }
+            catch (const std::exception &) {}
+        });
     }
     else
     {
