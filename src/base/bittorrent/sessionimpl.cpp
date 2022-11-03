@@ -2293,7 +2293,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
     if (downloadedMetadataIter == m_downloadedMetadata.end())
         return false;
 
-    const lt::torrent_handle nativeHandle = m_nativeSession->find_torrent(id);
+    const lt::torrent_handle nativeHandle = downloadedMetadataIter.value();
 #ifdef QBT_USES_LIBTORRENT2
     const InfoHash infoHash {nativeHandle.info_hashes()};
     if (infoHash.isHybrid())
@@ -2301,7 +2301,7 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
         // if magnet link was hybrid initially then it is indexed also by v1 info hash
         // so we need to remove both entries
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        m_downloadedMetadata.remove((altID == *downloadedMetadataIter) ? id : altID);
+        m_downloadedMetadata.remove((altID == downloadedMetadataIter.key()) ? id : altID);
     }
 #endif
     m_downloadedMetadata.erase(downloadedMetadataIter);
@@ -2360,8 +2360,8 @@ void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
         torrentQueue.pop();
     }
 
-    for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
+    for (const lt::torrent_handle &torrentHandle : asConst(m_downloadedMetadata))
+        torrentQueuePositionBottom(torrentHandle);
 
     saveTorrentsQueue();
 }
@@ -2415,8 +2415,8 @@ void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
         torrentQueue.pop();
     }
 
-    for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
-        torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
+    for (const lt::torrent_handle &torrentHandle : asConst(m_downloadedMetadata))
+        torrentQueuePositionBottom(torrentHandle);
 
     saveTorrentsQueue();
 }
@@ -2833,16 +2833,17 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
 
     // Adding torrent to libtorrent session
     lt::error_code ec;
-    lt::torrent_handle h = m_nativeSession->add_torrent(p, ec);
-    if (ec) return false;
+    lt::torrent_handle torrentHandle = m_nativeSession->add_torrent(p, ec);
+    if (ec)
+        return false;
 
     // waiting for metadata...
-    m_downloadedMetadata.insert(id);
+    m_downloadedMetadata.insert(id, torrentHandle);
     if (infoHash.isHybrid())
     {
         // index hybrid magnet links by both v1 and v2 info hashes
         const auto altID = TorrentID::fromSHA1Hash(infoHash.v1());
-        m_downloadedMetadata.insert(altID);
+        m_downloadedMetadata.insert(altID, torrentHandle);
     }
     ++m_extraLimit;
     adjustLimits();
