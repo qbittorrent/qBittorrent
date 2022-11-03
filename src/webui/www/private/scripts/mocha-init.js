@@ -979,7 +979,7 @@ const initializeWindows = function() {
         }
     };
 
-    addClickEvent('pauseAll', function(e) {
+    addClickEvent('pauseAll', (e) => {
         if (confirm('QBT_TR(Would you like to pause all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Event(e).stop();
             new Request({
@@ -993,7 +993,7 @@ const initializeWindows = function() {
         }
     });
 
-    addClickEvent('resumeAll', function(e) {
+    addClickEvent('resumeAll', (e) => {
         if (confirm('QBT_TR(Would you like to resume all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Event(e).stop();
             new Request({

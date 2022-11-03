@@ -367,7 +367,7 @@ void TransferListWidget::pauseAllTorrents()
     const QMessageBox::StandardButton ret =
             QMessageBox::question(this, tr("Confirm pause"),
                                   tr("Would you like to pause all torrents?"),
-                                  (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                                  (QMessageBox::Yes | QMessageBox::No));
 
     if (ret != QMessageBox::Yes)
         return;
@@ -383,7 +383,7 @@ void TransferListWidget::resumeAllTorrents()
     const QMessageBox::StandardButton ret =
             QMessageBox::question(this, tr("Confirm resume"),
                                   tr("Would you like to resume all torrents?"),
-                                  (QMessageBox::Yes | QMessageBox::No), QMessageBox::Yes);
+                                  (QMessageBox::Yes | QMessageBox::No));
 
     if (ret != QMessageBox::Yes)
         return;
