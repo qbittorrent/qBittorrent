@@ -132,14 +132,15 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
 
+    hideColumn(PeerListColumns::IP_HIDDEN);
+    hideColumn(PeerListColumns::COL_COUNT);
+
     // Default hidden columns
     if (!columnLoaded)
     {
         hideColumn(PeerListColumns::PEERID);
     }
 
-    hideColumn(PeerListColumns::IP_HIDDEN);
-    hideColumn(PeerListColumns::COL_COUNT);
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
     if (!m_resolveCountries)
         hideColumn(PeerListColumns::COUNTRY);
