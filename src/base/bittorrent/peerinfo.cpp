@@ -197,7 +197,7 @@ QString PeerInfo::peerIdClient() const
 
         // ensure that the peer ID slice consists only of printable ASCII characters,
         // this should filter out most of the improper IDs
-        if (c < 32 || c > 126)
+        if ((c < 32) || (c > 126))
             return tr("Unknown");
 
         result += QChar::fromLatin1(c);
