@@ -53,7 +53,7 @@
         <file>qbittorrent_uk.qm</file>
         <file>qbittorrent_uz@Latn.qm</file>
         <file>qbittorrent_vi.qm</file>
-        <file>qbittorrent_zh.qm</file>
+        <file>qbittorrent_zh_CN.qm</file>
         <file>qbittorrent_zh_HK.qm</file>
         <file>qbittorrent_zh_TW.qm</file>
     </qresource>
