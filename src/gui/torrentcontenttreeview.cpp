@@ -79,25 +79,19 @@ void TorrentContentTreeView::keyPressEvent(QKeyEvent *event)
 
     event->accept();
 
-    QModelIndex current = currentNameCell();
-
-    QVariant value = current.data(Qt::CheckStateRole);
+    const QVariant value = currentNameCell().data(Qt::CheckStateRole);
     if (!value.isValid())
     {
         Q_ASSERT(false);
         return;
     }
 
-    Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked
-                            ? Qt::Unchecked : Qt::Checked);
-
+    const Qt::CheckState state = (static_cast<Qt::CheckState>(value.toInt()) == Qt::Checked)
+                                 ? Qt::Unchecked : Qt::Checked;
     const QModelIndexList selection = selectionModel()->selectedRows(TorrentContentModelItem::COL_NAME);
 
     for (const QModelIndex &index : selection)
-    {
-        Q_ASSERT(index.column() == TorrentContentModelItem::COL_NAME);
         model()->setData(index, state, Qt::CheckStateRole);
-    }
 }
 
 void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage)
@@ -142,16 +136,16 @@ void TorrentContentTreeView::renameSelectedFile(BitTorrent::AbstractFileStorage 
     }
 }
 
-QModelIndex TorrentContentTreeView::currentNameCell()
+QModelIndex TorrentContentTreeView::currentNameCell() const
 {
-    QModelIndex current = currentIndex();
+    const QModelIndex current = currentIndex();
     if (!current.isValid())
     {
         Q_ASSERT(false);
         return {};
     }
 
-    return model()->index(current.row(), TorrentContentModelItem::COL_NAME, current.parent());
+    return current.siblingAtColumn(TorrentContentModelItem::COL_NAME);
 }
 
 void TorrentContentTreeView::wheelEvent(QWheelEvent *event)

@@ -49,6 +49,6 @@ public:
     void renameSelectedFile(BitTorrent::AbstractFileStorage &fileStorage);
 
 private:
-    QModelIndex currentNameCell();
+    QModelIndex currentNameCell() const;
     void wheelEvent(QWheelEvent *event) override;
 };
