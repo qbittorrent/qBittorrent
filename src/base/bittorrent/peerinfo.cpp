@@ -181,14 +181,14 @@ QString PeerInfo::client() const
     return QString::fromStdString(m_nativeInfo.client);
 }
 
-QString PeerInfo::peerId() const
+QString PeerInfo::peerIdClient() const
 {
     // when peer ID is not known yet it contains only zero bytes,
     // do not create string in such case, return empty string instead
     if (m_nativeInfo.pid.is_all_zeros())
         return {};
 
-    QString peerId;
+    QString result;
 
     // interesting part of a typical peer ID is first 8 chars
     for (int i = 0; i < 8; ++i)
@@ -200,10 +200,10 @@ QString PeerInfo::peerId() const
         if (c < 32 || c > 126)
             return tr("Unknown");
 
-        peerId += QChar::fromLatin1(c);
+        result += QChar::fromLatin1(c);
     }
 
-    return peerId;
+    return result;
 }
 
 qreal PeerInfo::progress() const
