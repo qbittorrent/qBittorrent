@@ -53,7 +53,7 @@
         <file>webui_uk.qm</file>
         <file>webui_uz@Latn.qm</file>
         <file>webui_vi.qm</file>
-        <file>webui_zh.qm</file>
+        <file>webui_zh_CN.qm</file>
         <file>webui_zh_HK.qm</file>
         <file>webui_zh_TW.qm</file>
     </qresource>
