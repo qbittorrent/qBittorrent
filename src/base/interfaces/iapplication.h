@@ -77,6 +77,8 @@ public:
     virtual void setFileLoggerAge(int value) = 0;
     virtual int fileLoggerAgeType() const = 0;
     virtual void setFileLoggerAgeType(int value) = 0;
+    virtual bool isFileLoggerCompressBackups() const = 0;
+    virtual void setFileLoggerCompressBackups(bool value) = 0;
 
     virtual int memoryWorkingSetLimit() const = 0;
     virtual void setMemoryWorkingSetLimit(int size) = 0;

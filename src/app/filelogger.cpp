@@ -31,23 +31,91 @@
 #include <chrono>
 
 #include <QDateTime>
+#include <QDebug>
 #include <QDir>
 #include <QTextStream>
-#include <QVector>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/utils/fs.h"
+#include "base/utils/gzip.h"
 
 namespace
 {
     const std::chrono::seconds FLUSH_INTERVAL {2};
+
+    bool isObsolete(const QFileInfo &info, FileLogger::FileLogAgeType ageType, int age)
+    {
+        QDateTime modificationDate = info.lastModified();
+        switch (ageType)
+        {
+        case FileLogger::DAYS:
+            modificationDate = modificationDate.addDays(age);
+            break;
+        case FileLogger::MONTHS:
+            modificationDate = modificationDate.addMonths(age);
+            break;
+        default:
+            modificationDate = modificationDate.addYears(age);
+        }
+        return modificationDate <= QDateTime::currentDateTime();
+    }
+
+    bool compressBackupFile(const Path &sourcePath, const Path &destPath, int level, QString &msg)
+    {
+        QFile source {sourcePath.data()};
+        const QDateTime atime = source.fileTime(QFileDevice::FileAccessTime);
+        const QDateTime mtime = source.fileTime(QFileDevice::FileModificationTime);
+        // It seems the created time can't be modified on UNIX.
+        const QDateTime ctime = source.fileTime(QFileDevice::FileBirthTime);
+        const QDateTime mctime = source.fileTime(QFileDevice::FileMetadataChangeTime);
+
+        if (!source.open(QIODevice::ReadOnly))
+        {
+            msg = FileLogger::tr("Can't open %1!").arg(sourcePath.data());
+            return false;
+        }
+
+        bool ok = false;
+        const QByteArray data = Utils::Gzip::compress(source.readAll(), level, &ok);
+
+        if (ok)
+        {
+            QFile dest {destPath.data()};
+            if (!dest.open(QFile::WriteOnly) || (dest.write(data) == -1))
+            {
+                msg = FileLogger::tr("Couldn't save to %1.").arg(destPath.data());
+                ok = false;
+            }
+            dest.close();
+
+            if (ok)
+            {
+                // Change the file's timestamp.
+                dest.open(QIODevice::Append);
+                dest.setFileTime(atime, QFileDevice::FileAccessTime);
+                dest.setFileTime(mtime, QFileDevice::FileModificationTime);
+                dest.setFileTime(ctime, QFileDevice::FileBirthTime);
+                dest.setFileTime(mctime, QFileDevice::FileMetadataChangeTime);
+                dest.close();
+            }
+            else
+            {
+                Utils::Fs::removeFile(destPath);
+            }
+        }
+        return ok;
+    }
 }
 
 FileLogger::FileLogger(const Path &path, const bool backup
                        , const int maxSize, const bool deleteOld, const int age
-                       , const FileLogAgeType ageType)
-    : m_backup(backup)
+                       , const FileLogAgeType ageType, bool compressBackups)
+    : m_age(age)
+    , m_ageType(ageType)
+    , m_backup(backup)
+    , m_compressBackups(compressBackups)
+    , m_deleteOld(deleteOld)
     , m_maxSize(maxSize)
 {
     m_flusher.setInterval(FLUSH_INTERVAL);
@@ -55,8 +123,6 @@ FileLogger::FileLogger(const Path &path, const bool backup
     connect(&m_flusher, &QTimer::timeout, this, &FileLogger::flushLog);
 
     changePath(path);
-    if (deleteOld)
-        this->deleteOld(age, ageType);
 
     const Logger *const logger = Logger::instance();
     for (const Log::Msg &msg : asConst(logger->getMessages()))
@@ -82,39 +148,101 @@ void FileLogger::changePath(const Path &newPath)
     m_logFile.setFileName(m_path.data());
 
     Utils::Fs::mkpath(newPath);
+
+    if (m_deleteOld)
+    {
+        deleteOld();
+    }
+
+    if (isObsolete(QFileInfo(m_path.data()), m_ageType, m_age))
+    {
+        Utils::Fs::removeFile(m_path);
+    }
+    else
+    {
+        if (m_backup && (m_logFile.size() >= m_maxSize))
+        {
+            makeBackup();
+        }
+    }
+
     openLogFile();
 }
 
-void FileLogger::deleteOld(const int age, const FileLogAgeType ageType)
+void FileLogger::makeBackup()
 {
-    const QDateTime date = QDateTime::currentDateTime();
-    const QDir dir {m_path.parentPath().data()};
-    const QFileInfoList fileList = dir.entryInfoList(QStringList(u"qbittorrent.log.bak*"_s)
-        , (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
+    Path renameFrom = m_path;
+    QString renameToPattern = m_path.data() + u".bak%1"_s;
+    int counter = 1;
+    if (m_compressBackups)
+    {
+        renameFrom = m_path + u".gz."_s + QString::number(QDateTime::currentSecsSinceEpoch(), 36);
+        QString err;
+        if (!compressBackupFile(m_path, renameFrom, 6, err))
+        {
+            renameFrom = m_path;
+            m_compressBackups = false;
+            qWarning() << err;
+        }
+        else
+        {
+            renameToPattern = m_path.data() + u".%1.gz"_s;
+            Utils::Fs::removeFile(m_path);
+        }
+    }
+
+    Path renameTo {renameToPattern.arg(counter)};
+    while(renameTo.exists())
+    {
+        renameTo = Path(renameToPattern.arg(++counter));
+    }
+
+    Utils::Fs::renameFile(renameFrom, renameTo);
+}
+
+void FileLogger::deleteOld()
+{
+    const QStringList nameFilter { u"qbittorrent.log"_s + (m_compressBackups ? u".*.gz"_s : u".bak*"_s) };
+    const QFileInfoList fileList = QDir(m_path.parentPath().data()).entryInfoList(
+            nameFilter, (QDir::Files | QDir::Writable), (QDir::Time | QDir::Reversed));
 
     for (const QFileInfo &file : fileList)
     {
-        QDateTime modificationDate = file.lastModified();
-        switch (ageType)
+        if (isObsolete(file, m_ageType, m_age))
         {
-        case DAYS:
-            modificationDate = modificationDate.addDays(age);
-            break;
-        case MONTHS:
-            modificationDate = modificationDate.addMonths(age);
-            break;
-        default:
-            modificationDate = modificationDate.addYears(age);
+            Utils::Fs::removeFile(Path(file.absoluteFilePath()));
         }
-        if (modificationDate > date)
+        else
+        {
             break;
-        Utils::Fs::removeFile(Path(file.absoluteFilePath()));
+        }
     }
 }
+
+void FileLogger::setAge(const int value)
+{
+    m_age = value;
+}
+
+void FileLogger::setAgeType(const FileLogAgeType value)
+{
+    m_ageType = value;
+}
+
 
 void FileLogger::setBackup(const bool value)
 {
     m_backup = value;
+}
+
+void FileLogger::setCompressBackups(const bool value)
+{
+    m_compressBackups = value;
+}
+
+void FileLogger::setDeleteOld(const bool value)
+{
+    m_deleteOld = value;
 }
 
 void FileLogger::setMaxSize(const int value)
@@ -145,19 +273,15 @@ void FileLogger::addLogMessage(const Log::Msg &msg)
 
     stream << QDateTime::fromSecsSinceEpoch(msg.timestamp).toString(Qt::ISODate) << QStringView(u" - ") << msg.message << QChar(u'\n');
 
+    if (m_deleteOld)
+    {
+        deleteOld();
+    }
+
     if (m_backup && (m_logFile.size() >= m_maxSize))
     {
         closeLogFile();
-        int counter = 0;
-        Path backupLogFilename = m_path + u".bak";
-
-        while (backupLogFilename.exists())
-        {
-            ++counter;
-            backupLogFilename = m_path + u".bak" + QString::number(counter);
-        }
-
-        Utils::Fs::renameFile(m_path, backupLogFilename);
+        makeBackup();
         openLogFile();
     }
     else

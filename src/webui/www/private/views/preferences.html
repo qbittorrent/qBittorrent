@@ -34,6 +34,10 @@
                     </select>
                 </td>
             </tr>
+            <tr title="QBT_TR(Be careful enabling this option. Files compressed with gzip can't be opened directly on Windows OS without 3rd-party tools.)QBT_TR[CONTEXT=OptionsDialog]">
+                <td><input type="checkbox" id="filelog_compress_backups_checkbox" /></td>
+                <td><label for="filelog_compress_backups_checkbox">QBT_TR(Compress log backups with gzip)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+            </tr>
         </table>
     </fieldset>
 
@@ -1509,6 +1513,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             $('filelog_save_path_input').setProperty('disabled', !isFileLogEnabled);
             $('filelog_backup_checkbox').setProperty('disabled', !isFileLogEnabled);
             $('filelog_delete_old_checkbox').setProperty('disabled', !isFileLogEnabled);
+            $('filelog_compress_backups_checkbox').setProperty('disabled', !isFileLogEnabled);
 
             updateFileLogBackupEnabled();
             updateFileLogDeleteEnabled();
@@ -1887,6 +1892,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('filelog_delete_old_checkbox').setProperty('checked', pref.file_log_delete_old);
                         $('filelog_age_input').setProperty('value', pref.file_log_age);
                         $('filelog_age_type_select').setProperty('value', pref.file_log_age_type);
+                        $('filelog_compress_backups_checkbox').setProperty('checked', pref.file_log_compress_backups);
                         updateFileLogEnabled();
 
                         // Downloads tab
@@ -2276,6 +2282,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('file_log_delete_old', $('filelog_delete_old_checkbox').getProperty('checked'));
             settings.set('file_log_age', $('filelog_age_input').getProperty('value'));
             settings.set('file_log_age_type', $('filelog_age_type_select').getProperty('value'));
+            settings.set('file_log_compress_backups', $('filelog_compress_backups_checkbox').getProperty('checked'));
 
             // Downloads tab
             // When adding a torrent

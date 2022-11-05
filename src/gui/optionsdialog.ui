@@ -752,6 +752,16 @@
                  </item>
                 </layout>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkFileLogCompressBackups">
+                 <property name="text">
+                  <string>Compress log backups with gzip</string>
+                 </property>
+                 <property name="toolTip">
+                  <string>Be careful enabling this option. Files compressed with gzip can't be opened directly on Windows OS without 3rd-party tools.</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>

@@ -52,12 +52,15 @@ public:
         YEARS
     };
 
-    FileLogger(const Path &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType);
+    FileLogger(const Path &path, bool backup, int maxSize, bool deleteOld, int age, FileLogAgeType ageType, bool compressBackups);
     ~FileLogger();
 
     void changePath(const Path &newPath);
-    void deleteOld(int age, FileLogAgeType ageType);
+    void setAge(int value);
+    void setAgeType(FileLogAgeType value);
     void setBackup(bool value);
+    void setCompressBackups(bool value);
+    void setDeleteOld(bool value);
     void setMaxSize(int value);
 
 private slots:
@@ -65,11 +68,17 @@ private slots:
     void flushLog();
 
 private:
+    void makeBackup();
+    void deleteOld();
     void openLogFile();
     void closeLogFile();
 
+    int m_age;
+    FileLogAgeType m_ageType;
     Path m_path;
     bool m_backup;
+    bool m_compressBackups;
+    bool m_deleteOld;
     int m_maxSize;
     QFile m_logFile;
     QTimer m_flusher;

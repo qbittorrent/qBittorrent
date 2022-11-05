@@ -120,6 +120,8 @@ public:
     void setFileLoggerAge(int value) override;
     int fileLoggerAgeType() const override;
     void setFileLoggerAgeType(int value) override;
+    bool isFileLoggerCompressBackups() const override;
+    void setFileLoggerCompressBackups(bool value) override;
 
     int memoryWorkingSetLimit() const override;
     void setMemoryWorkingSetLimit(int size) override;
@@ -198,6 +200,7 @@ private:
     SettingValue<int> m_storeFileLoggerAge;
     SettingValue<int> m_storeFileLoggerAgeType;
     SettingValue<Path> m_storeFileLoggerPath;
+    SettingValue<bool> m_storeFileLoggerCompressBackups;
     SettingValue<int> m_storeMemoryWorkingSetLimit;
 
 #ifdef Q_OS_WIN
