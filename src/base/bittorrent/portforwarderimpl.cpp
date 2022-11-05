@@ -30,6 +30,7 @@
 
 #include <libtorrent/session.hpp>
 
+#include "base/algorithm.h"
 #include "base/logger.h"
 
 PortForwarderImpl::PortForwarderImpl(lt::session *provider, QObject *parent)
@@ -63,30 +64,45 @@ void PortForwarderImpl::setEnabled(const bool enabled)
     m_storeActive = enabled;
 }
 
-void PortForwarderImpl::addPort(const quint16 port)
+void PortForwarderImpl::setPorts(const QString &profile, QSet<quint16> ports)
 {
-    if (m_mappedPorts.contains(port))
-        return;
-
-    if (isEnabled())
-        m_mappedPorts.insert(port, m_provider->add_port_mapping(lt::session::tcp, port, port));
-    else
-        m_mappedPorts.insert(port, {});
-}
-
-void PortForwarderImpl::deletePort(const quint16 port)
-{
-    const auto iter = m_mappedPorts.find(port);
-    if (iter == m_mappedPorts.end())
-        return;
-
-    if (isEnabled())
+    PortMapping &portMapping = m_portProfiles[profile];
+    Algorithm::removeIf(portMapping, [this, &ports](const quint16 port, const std::vector<lt::port_mapping_t> &handles)
     {
-        for (const lt::port_mapping_t &portMapping : *iter)
-            m_provider->delete_port_mapping(portMapping);
+        // keep existing forwardings
+        const bool isAlreadyMapped = ports.remove(port);
+        if (isAlreadyMapped)
+            return false;
+
+        // remove outdated forwardings
+        for (const lt::port_mapping_t &handle : handles)
+            m_provider->delete_port_mapping(handle);
+        m_forwardedPorts.remove(port);
+
+        return true;
+    });
+
+    // add new forwardings
+    for (const quint16 port : ports)
+    {
+        // port already forwarded/taken by other profile, don't do anything
+        if (m_forwardedPorts.contains(port))
+            continue;
+
+        if (isEnabled())
+            portMapping.insert(port, m_provider->add_port_mapping(lt::session::tcp, port, port));
+        else
+            portMapping.insert(port, {});
+        m_forwardedPorts.insert(port);
     }
 
-    m_mappedPorts.erase(iter);
+    if (portMapping.isEmpty())
+        m_portProfiles.remove(profile);
+}
+
+void PortForwarderImpl::removePorts(const QString &profile)
+{
+    setPorts(profile, {});
 }
 
 void PortForwarderImpl::start()
@@ -96,12 +112,16 @@ void PortForwarderImpl::start()
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
     m_provider->apply_settings(settingsPack);
 
-    for (auto iter = m_mappedPorts.begin(); iter != m_mappedPorts.end(); ++iter)
+    for (auto profileIter = m_portProfiles.begin(); profileIter != m_portProfiles.end(); ++profileIter)
     {
-        Q_ASSERT(iter.value().empty());
+        PortMapping &portMapping = profileIter.value();
+        for (auto iter = portMapping.begin(); iter != portMapping.end(); ++iter)
+        {
+            Q_ASSERT(iter.value().empty());
 
-        const quint16 port = iter.key();
-        iter.value() = m_provider->add_port_mapping(lt::session::tcp, port, port);
+            const quint16 port = iter.key();
+            iter.value() = m_provider->add_port_mapping(lt::session::tcp, port, port);
+        }
     }
 
     LogMsg(tr("UPnP/NAT-PMP support: ON"), Log::INFO);
@@ -114,9 +134,13 @@ void PortForwarderImpl::stop()
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
     m_provider->apply_settings(settingsPack);
 
-    // don't clear m_mappedPorts so a later `start()` call can restore the port forwarding
-    for (auto iter = m_mappedPorts.begin(); iter != m_mappedPorts.end(); ++iter)
-        iter.value().clear();
+    // don't clear m_portProfiles so a later `start()` call can restore the port forwardings
+    for (auto profileIter = m_portProfiles.begin(); profileIter != m_portProfiles.end(); ++profileIter)
+    {
+        PortMapping &portMapping = profileIter.value();
+        for (auto iter = portMapping.begin(); iter != portMapping.end(); ++iter)
+            iter.value().clear();
+    }
 
     LogMsg(tr("UPnP/NAT-PMP support: OFF"), Log::INFO);
 }
