@@ -210,7 +210,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         return nonstd::make_unexpected(tr("Cannot parse resume data: invalid format"));
 
     LoadTorrentParams torrentParams;
-    torrentParams.restored = true;
     torrentParams.category = fromLTString(resumeDataRoot.dict_find_string_value("qBt-category"));
     torrentParams.name = fromLTString(resumeDataRoot.dict_find_string_value("qBt-name"));
     torrentParams.hasSeedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");

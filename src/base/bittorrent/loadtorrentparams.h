@@ -58,7 +58,5 @@ namespace BitTorrent
 
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
-
-        bool restored = false;  // is existing torrent job?
     };
 }
