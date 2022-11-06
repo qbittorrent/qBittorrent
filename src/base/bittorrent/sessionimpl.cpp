@@ -5212,7 +5212,7 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
     if (const InfoHash infoHash = torrent->infoHash(); infoHash.isHybrid())
         m_hybridTorrentsByAltID.insert(TorrentID::fromSHA1Hash(infoHash.v1()), torrent);
 
-    if (!params.restored)
+    if (isRestored())
     {
         m_resumeDataStorage->store(torrent->id(), params);
 
@@ -5230,7 +5230,7 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
         m_seedingLimitTimer->start();
     }
 
-    if (params.restored)
+    if (!isRestored())
     {
         LogMsg(tr("Restored torrent. Torrent: \"%1\"").arg(torrent->name()));
     }

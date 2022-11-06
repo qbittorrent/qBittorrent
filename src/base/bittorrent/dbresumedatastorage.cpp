@@ -196,7 +196,6 @@ namespace BitTorrent
         LoadTorrentParams parseQueryResultRow(const QSqlQuery &query)
         {
             LoadTorrentParams resumeData;
-            resumeData.restored = true;
             resumeData.name = query.value(DB_COLUMN_NAME.name).toString();
             resumeData.category = query.value(DB_COLUMN_CATEGORY.name).toString();
             const QString tagsData = query.value(DB_COLUMN_TAGS.name).toString();
