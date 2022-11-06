@@ -89,7 +89,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     , m_properties(parent)
 {
     // Load settings
-    loadSettings();
+    const bool columnLoaded = loadSettings();
     // Visual settings
     setUniformRowHeights(true);
     setRootIsDecorated(false);
@@ -109,6 +109,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_listModel->setHeaderData(PeerListColumns::FLAGS, Qt::Horizontal, tr("Flags"));
     m_listModel->setHeaderData(PeerListColumns::CONNECTION, Qt::Horizontal, tr("Connection"));
     m_listModel->setHeaderData(PeerListColumns::CLIENT, Qt::Horizontal, tr("Client", "i.e.: Client application"));
+    m_listModel->setHeaderData(PeerListColumns::PEERID_CLIENT, Qt::Horizontal, tr("Peer ID Client", "i.e.: Client resolved from Peer ID"));
     m_listModel->setHeaderData(PeerListColumns::PROGRESS, Qt::Horizontal, tr("Progress", "i.e: % downloaded"));
     m_listModel->setHeaderData(PeerListColumns::DOWN_SPEED, Qt::Horizontal, tr("Down Speed", "i.e: Download speed"));
     m_listModel->setHeaderData(PeerListColumns::UP_SPEED, Qt::Horizontal, tr("Up Speed", "i.e: Upload speed"));
@@ -130,8 +131,16 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     m_proxyModel->setSourceModel(m_listModel);
     m_proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
     setModel(m_proxyModel);
+
     hideColumn(PeerListColumns::IP_HIDDEN);
     hideColumn(PeerListColumns::COL_COUNT);
+
+    // Default hidden columns
+    if (!columnLoaded)
+    {
+        hideColumn(PeerListColumns::PEERID_CLIENT);
+    }
+
     m_resolveCountries = Preferences::instance()->resolvePeerCountries();
     if (!m_resolveCountries)
         hideColumn(PeerListColumns::COUNTRY);
@@ -371,9 +380,9 @@ void PeerListWidget::clear()
         m_listModel->removeRows(0, nbrows);
 }
 
-void PeerListWidget::loadSettings()
+bool PeerListWidget::loadSettings()
 {
-    header()->restoreState(Preferences::instance()->getPeerListState());
+    return header()->restoreState(Preferences::instance()->getPeerListState());
 }
 
 void PeerListWidget::saveSettings() const
@@ -461,6 +470,8 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     setModelData(row, PeerListColumns::FLAGS, peer.flags(), peer.flags(), {}, peer.flagsDescription());
     const QString client = peer.client().toHtmlEscaped();
     setModelData(row, PeerListColumns::CLIENT, client, client, {}, client);
+    const QString peerIdClient = peer.peerIdClient().toHtmlEscaped();
+    setModelData(row, PeerListColumns::PEERID_CLIENT, peerIdClient, peerIdClient);
     setModelData(row, PeerListColumns::PROGRESS, (Utils::String::fromDouble(peer.progress() * 100, 1) + u'%'), peer.progress(), intDataTextAlignment);
     const QString downSpeed = (hideValues && (peer.payloadDownSpeed() <= 0)) ? QString {} : Utils::Misc::friendlyUnit(peer.payloadDownSpeed(), true);
     setModelData(row, PeerListColumns::DOWN_SPEED, downSpeed, peer.payloadDownSpeed(), intDataTextAlignment);
