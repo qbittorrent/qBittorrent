@@ -2916,10 +2916,8 @@ void SessionImpl::saveResumeData()
         saveTorrentsQueue();
 
     for (const TorrentImpl *torrent : asConst(m_torrents))
-    {
         torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
-        ++m_numResumeData;
-    }
+    m_numResumeData += m_torrents.size();
 
     QElapsedTimer timer;
     timer.start();
