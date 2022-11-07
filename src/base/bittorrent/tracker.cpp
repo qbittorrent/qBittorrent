@@ -203,12 +203,12 @@ Tracker::Tracker(QObject *parent)
 
 bool Tracker::start()
 {
-    const QHostAddress ip = QHostAddress::Any;
     const int port = Preferences::instance()->getTrackerPort();
 
     if (m_server->isListening())
     {
-        if (m_server->serverPort() == port)
+        if (const int oldPort = m_server->serverPort()
+            ; oldPort == port)
         {
             // Already listening on the right port, just return
             return true;
@@ -218,9 +218,9 @@ bool Tracker::start()
         m_server->close();
     }
 
-    // Listen on the predefined port
+    // Listen on port
+    const QHostAddress ip = QHostAddress::Any;
     const bool listenSuccess = m_server->listen(ip, port);
-
     if (listenSuccess)
     {
         LogMsg(tr("Embedded Tracker: Now listening on IP: %1, port: %2")
