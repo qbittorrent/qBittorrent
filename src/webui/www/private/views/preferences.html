@@ -1016,6 +1016,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <input type="text" id="embeddedTrackerPort" style="width: 15em;" />
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <label for="embeddedTrackerPortForwarding">QBT_TR(Enable port forwarding for embedded tracker:)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <input type="checkbox" id="embeddedTrackerPortForwarding" />
+                </td>
+            </tr>
         </table>
     </fieldset>
     <fieldset class="settings">
@@ -2099,6 +2107,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('blockPeersOnPrivilegedPorts').setProperty('checked', pref.block_peers_on_privileged_ports);
                         $('enableEmbeddedTracker').setProperty('checked', pref.enable_embedded_tracker);
                         $('embeddedTrackerPort').setProperty('value', pref.embedded_tracker_port);
+                        $('embeddedTrackerPortForwarding').setProperty('checked', pref.embedded_tracker_port_forwarding);
                         $('uploadSlotsBehavior').setProperty('value', pref.upload_slots_behavior);
                         $('uploadChokingAlgorithm').setProperty('value', pref.upload_choking_algorithm);
                         $('announceAllTrackers').setProperty('checked', pref.announce_to_all_trackers);
@@ -2526,6 +2535,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('block_peers_on_privileged_ports', $('blockPeersOnPrivilegedPorts').getProperty('checked'));
             settings.set('enable_embedded_tracker', $('enableEmbeddedTracker').getProperty('checked'));
             settings.set('embedded_tracker_port', $('embeddedTrackerPort').getProperty('value'));
+            settings.set('embedded_tracker_port_forwarding', $('embeddedTrackerPortForwarding').getProperty('checked'));
             settings.set('upload_slots_behavior', $('uploadSlotsBehavior').getProperty('value'));
             settings.set('upload_choking_algorithm', $('uploadChokingAlgorithm').getProperty('value'));
             settings.set('announce_to_all_trackers', $('announceAllTrackers').getProperty('checked'));

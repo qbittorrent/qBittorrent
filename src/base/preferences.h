@@ -299,6 +299,8 @@ public:
 #endif
     int getTrackerPort() const;
     void setTrackerPort(int port);
+    bool isTrackerPortForwardingEnabled() const;
+    void setTrackerPortForwardingEnabled(bool enabled);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);

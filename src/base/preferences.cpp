@@ -1164,6 +1164,16 @@ void Preferences::setTrackerPort(const int port)
     setValue(u"Preferences/Advanced/trackerPort"_qs, port);
 }
 
+bool Preferences::isTrackerPortForwardingEnabled() const
+{
+    return value(u"Preferences/Advanced/trackerPortForwarding"_qs, false);
+}
+
+void Preferences::setTrackerPortForwardingEnabled(const bool enabled)
+{
+    setValue(u"Preferences/Advanced/trackerPortForwarding"_qs, enabled);
+}
+
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
 bool Preferences::isUpdateCheckEnabled() const
 {
