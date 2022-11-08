@@ -533,8 +533,8 @@ namespace BitTorrent
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
         void saveResumeData();
-        void saveTorrentsQueue() const;
-        void removeTorrentsQueue() const;
+        void saveTorrentsQueue();
+        void removeTorrentsQueue();
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
@@ -681,6 +681,8 @@ namespace BitTorrent
         qint64 m_previouslyUploaded = 0;
         qint64 m_previouslyDownloaded = 0;
 
+        bool m_torrentsQueueChanged = false;
+        bool m_needSaveTorrentsQueue = false;
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;

@@ -582,6 +582,15 @@ SessionImpl::SessionImpl(QObject *parent)
 
 SessionImpl::~SessionImpl()
 {
+    m_nativeSession->pause();
+
+    if (m_torrentsQueueChanged)
+    {
+        m_nativeSession->post_torrent_updates({});
+        m_torrentsQueueChanged = false;
+        m_needSaveTorrentsQueue = true;
+    }
+
     // Do some bittorrent related saving
     // After this, (ideally) no more important alerts will be generated/handled
     saveResumeData();
@@ -2348,7 +2357,7 @@ void SessionImpl::increaseTorrentsQueuePos(const QVector<TorrentID> &ids)
         torrentQueue.pop();
     }
 
-    saveTorrentsQueue();
+    m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
@@ -2376,7 +2385,7 @@ void SessionImpl::decreaseTorrentsQueuePos(const QVector<TorrentID> &ids)
     for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
 
-    saveTorrentsQueue();
+    m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::topTorrentsQueuePos(const QVector<TorrentID> &ids)
@@ -2401,7 +2410,7 @@ void SessionImpl::topTorrentsQueuePos(const QVector<TorrentID> &ids)
         torrentQueue.pop();
     }
 
-    saveTorrentsQueue();
+    m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
@@ -2431,7 +2440,7 @@ void SessionImpl::bottomTorrentsQueuePos(const QVector<TorrentID> &ids)
     for (auto i = m_downloadedMetadata.cbegin(); i != m_downloadedMetadata.cend(); ++i)
         torrentQueuePositionBottom(m_nativeSession->find_torrent(*i));
 
-    saveTorrentsQueue();
+    m_torrentsQueueChanged = true;
 }
 
 void SessionImpl::handleTorrentNeedSaveResumeData(const TorrentImpl *torrent)
@@ -2904,12 +2913,6 @@ void SessionImpl::generateResumeData()
 // Called on exit
 void SessionImpl::saveResumeData()
 {
-    // Pause session
-    m_nativeSession->pause();
-
-    if (isQueueingSystemEnabled())
-        saveTorrentsQueue();
-
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
         torrent->nativeHandle().save_resume_data(lt::torrent_handle::only_if_modified);
@@ -2929,7 +2932,7 @@ void SessionImpl::saveResumeData()
     QElapsedTimer timer;
     timer.start();
 
-    while ((m_numResumeData > 0) || !m_moveStorageQueue.isEmpty())
+    while ((m_numResumeData > 0) || !m_moveStorageQueue.isEmpty() || m_needSaveTorrentsQueue)
     {
         const lt::seconds waitTime {5};
         const lt::seconds expireTime {30};
@@ -2949,7 +2952,8 @@ void SessionImpl::saveResumeData()
         {
             if (const int alertType = a->type();
                 (alertType == lt::save_resume_data_alert::alert_type) || (alertType == lt::save_resume_data_failed_alert::alert_type)
-                || (alertType == lt::storage_moved_alert::alert_type) || (alertType == lt::storage_moved_failed_alert::alert_type))
+                || (alertType == lt::storage_moved_alert::alert_type) || (alertType == lt::storage_moved_failed_alert::alert_type)
+                || (alertType == lt::state_update_alert::alert_type))
             {
                 hasWantedAlert = true;
             }
@@ -2962,14 +2966,12 @@ void SessionImpl::saveResumeData()
     }
 }
 
-void SessionImpl::saveTorrentsQueue() const
+void SessionImpl::saveTorrentsQueue()
 {
     QVector<TorrentID> queue;
     for (const TorrentImpl *torrent : asConst(m_torrents))
     {
-        // We require actual (non-cached) queue position here!
-        const int queuePos = LT::toUnderlyingType(torrent->nativeHandle().queue_position());
-        if (queuePos >= 0)
+        if (const int queuePos = torrent->queuePosition(); queuePos >= 0)
         {
             if (queuePos >= queue.size())
                 queue.resize(queuePos + 1);
@@ -2978,11 +2980,14 @@ void SessionImpl::saveTorrentsQueue() const
     }
 
     m_resumeDataStorage->storeQueue(queue);
+    m_needSaveTorrentsQueue = false;
 }
 
-void SessionImpl::removeTorrentsQueue() const
+void SessionImpl::removeTorrentsQueue()
 {
     m_resumeDataStorage->storeQueue({});
+    m_torrentsQueueChanged = false;
+    m_needSaveTorrentsQueue = false;
 }
 
 void SessionImpl::setSavePath(const Path &path)
@@ -4097,7 +4102,7 @@ void SessionImpl::setQueueingSystemEnabled(const bool enabled)
         configureDeferred();
 
         if (enabled)
-            saveTorrentsQueue();
+            m_torrentsQueueChanged = true;
         else
             removeTorrentsQueue();
     }
@@ -4989,6 +4994,12 @@ void SessionImpl::enqueueRefresh()
     {
         m_nativeSession->post_torrent_updates();
         m_nativeSession->post_session_stats();
+
+        if (m_torrentsQueueChanged)
+        {
+            m_torrentsQueueChanged = false;
+            m_needSaveTorrentsQueue = true;
+        }
     });
 
     m_refreshEnqueued = true;
@@ -5096,7 +5107,11 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
     }
 
     if (!loadedTorrents.isEmpty())
+    {
+        if (isRestored())
+            m_torrentsQueueChanged = true;
         emit torrentsLoaded(loadedTorrents);
+    }
 }
 
 void SessionImpl::handleAlert(const lt::alert *a)
@@ -5659,6 +5674,9 @@ void SessionImpl::handleStateUpdateAlert(const lt::state_update_alert *p)
 
     if (!updatedTorrents.isEmpty())
         emit torrentsUpdated(updatedTorrents);
+
+    if (m_needSaveTorrentsQueue)
+        saveTorrentsQueue();
 
     if (m_refreshEnqueued)
         m_refreshEnqueued = false;
