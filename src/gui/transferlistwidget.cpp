@@ -363,12 +363,30 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
 void TransferListWidget::pauseAllTorrents()
 {
+    // Show confirmation if user would really like to Pause All
+    const QMessageBox::StandardButton ret =
+            QMessageBox::question(this, tr("Confirm pause")
+                                  , tr("Would you like to pause all torrents?")
+                                  , (QMessageBox::Yes | QMessageBox::No));
+
+    if (ret != QMessageBox::Yes)
+        return;
+
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
         torrent->pause();
 }
 
 void TransferListWidget::resumeAllTorrents()
 {
+    // Show confirmation if user would really like to Resume All
+    const QMessageBox::StandardButton ret =
+            QMessageBox::question(this, tr("Confirm resume")
+                                  , tr("Would you like to resume all torrents?")
+                                  , (QMessageBox::Yes | QMessageBox::No));
+
+    if (ret != QMessageBox::Yes)
+        return;
+
     for (BitTorrent::Torrent *const torrent : asConst(BitTorrent::Session::instance()->torrents()))
         torrent->resume();
 }

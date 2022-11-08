@@ -979,18 +979,34 @@ const initializeWindows = function() {
         }
     };
 
-    ['pause', 'resume'].each(function(item) {
-        addClickEvent(item + 'All', function(e) {
-            new Event(e).stop();
+    addClickEvent('pauseAll', (e) => {
+        new Event(e).stop();
+
+        if (confirm('QBT_TR(Would you like to pause all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
             new Request({
-                url: 'api/v2/torrents/' + item,
+                url: 'api/v2/torrents/pause',
                 method: 'post',
                 data: {
                     hashes: "all"
                 }
             }).send();
             updateMainData();
-        });
+        }
+    });
+
+    addClickEvent('resumeAll', (e) => {
+        new Event(e).stop();
+
+        if (confirm('QBT_TR(Would you like to resume all torrents?)QBT_TR[CONTEXT=MainWindow]')) {
+            new Request({
+                url: 'api/v2/torrents/resume',
+                method: 'post',
+                data: {
+                    hashes: "all"
+                }
+            }).send();
+            updateMainData();
+        }
     });
 
     ['pause', 'resume', 'recheck'].each(function(item) {
