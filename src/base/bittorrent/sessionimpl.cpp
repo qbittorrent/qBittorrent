@@ -577,7 +577,7 @@ SessionImpl::SessionImpl(QObject *parent)
     loadStatistics();
 
     // initialize PortForwarder instance
-    new PortForwarderImpl(m_nativeSession);
+    new PortForwarderImpl(this);
 
     // start embedded tracker
     enableTracker(isTrackerEnabled());
@@ -2819,6 +2819,78 @@ void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path
     QMetaObject::invokeMethod(m_fileSearcher, [=]()
     {
         m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
+    });
+}
+
+void SessionImpl::enablePortMapping()
+{
+    invokeAsync([this]
+    {
+        if (m_isPortMappingEnabled)
+            return;
+
+        lt::settings_pack settingsPack;
+        settingsPack.set_bool(lt::settings_pack::enable_upnp, true);
+        settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
+        m_nativeSession->apply_settings(std::move(settingsPack));
+
+        m_isPortMappingEnabled = true;
+
+        LogMsg(tr("UPnP/NAT-PMP support: ON"), Log::INFO);
+    });
+}
+
+void SessionImpl::disablePortMapping()
+{
+    invokeAsync([this]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        lt::settings_pack settingsPack;
+        settingsPack.set_bool(lt::settings_pack::enable_upnp, false);
+        settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
+        m_nativeSession->apply_settings(std::move(settingsPack));
+
+        m_mappedPorts.clear();
+        m_isPortMappingEnabled = false;
+
+        LogMsg(tr("UPnP/NAT-PMP support: OFF"), Log::INFO);
+    });
+}
+
+void SessionImpl::addMappedPorts(const QSet<quint16> &ports)
+{
+    invokeAsync([this, ports]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        for (const quint16 port : ports)
+        {
+            if (!m_mappedPorts.contains(port))
+                m_mappedPorts.insert(port, m_nativeSession->add_port_mapping(lt::session::tcp, port, port));
+        }
+    });
+}
+
+void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
+{
+    invokeAsync([this, ports]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        Algorithm::removeIf(m_mappedPorts, [this, ports](const quint16 port, const std::vector<lt::port_mapping_t> &handles)
+        {
+            if (!ports.contains(port))
+                return false;
+
+            for (const lt::port_mapping_t &handle : handles)
+                m_nativeSession->delete_port_mapping(handle);
+
+            return true;
+        });
     });
 }
 

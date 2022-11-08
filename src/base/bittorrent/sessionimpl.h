@@ -33,6 +33,7 @@
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
+#include <libtorrent/portmap.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QElapsedTimer>
@@ -432,6 +433,11 @@ namespace BitTorrent
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
 
+        void enablePortMapping();
+        void disablePortMapping();
+        void addMappedPorts(const QSet<quint16> &ports);
+        void removeMappedPorts(const QSet<quint16> &ports);
+
         void invokeAsync(std::function<void ()> func);
 
     private slots:
@@ -733,6 +739,12 @@ namespace BitTorrent
         QString m_lastExternalIP;
 
         bool m_needUpgradeDownloadPath = false;
+
+        // All port mapping related routines are invoked from working thread
+        // so there are no synchronization used. If multithreaded access is
+        // ever required, synchronization should also be provided.
+        bool m_isPortMappingEnabled = false;
+        QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
