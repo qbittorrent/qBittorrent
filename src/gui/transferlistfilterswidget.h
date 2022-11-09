@@ -131,7 +131,8 @@ public:
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void handleTrackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos);
+    void handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
     void setDownloadTrackerFavicon(bool value);
 
 private slots:
@@ -180,7 +181,8 @@ public slots:
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos);
+    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
