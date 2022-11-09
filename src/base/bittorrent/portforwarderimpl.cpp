@@ -107,10 +107,10 @@ void PortForwarderImpl::removePorts(const QString &profile)
 
 void PortForwarderImpl::start()
 {
-    lt::settings_pack settingsPack = m_provider->get_settings();
+    lt::settings_pack settingsPack;
     settingsPack.set_bool(lt::settings_pack::enable_upnp, true);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
-    m_provider->apply_settings(settingsPack);
+    m_provider->apply_settings(std::move(settingsPack));
 
     for (auto profileIter = m_portProfiles.begin(); profileIter != m_portProfiles.end(); ++profileIter)
     {
@@ -129,10 +129,10 @@ void PortForwarderImpl::start()
 
 void PortForwarderImpl::stop()
 {
-    lt::settings_pack settingsPack = m_provider->get_settings();
+    lt::settings_pack settingsPack;
     settingsPack.set_bool(lt::settings_pack::enable_upnp, false);
     settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
-    m_provider->apply_settings(settingsPack);
+    m_provider->apply_settings(std::move(settingsPack));
 
     // don't clear m_portProfiles so a later `start()` call can restore the port forwardings
     for (auto profileIter = m_portProfiles.begin(); profileIter != m_portProfiles.end(); ++profileIter)

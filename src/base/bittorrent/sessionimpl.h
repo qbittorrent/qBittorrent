@@ -474,11 +474,10 @@ namespace BitTorrent
         Q_INVOKABLE void configure();
         void configureComponents();
         void initializeNativeSession();
-        void loadLTSettings(lt::settings_pack &settingsPack);
-        void configureNetworkInterfaces(lt::settings_pack &settingsPack);
+        lt::settings_pack loadLTSettings() const;
+        void applyNetworkInterfacesSettings(lt::settings_pack &settingsPack) const;
         void configurePeerClasses();
-        void adjustLimits(lt::settings_pack &settingsPack) const;
-        void applyBandwidthLimits(lt::settings_pack &settingsPack) const;
+        int adjustLimit(int limit) const;
         void initMetrics();
         void adjustLimits();
         void applyBandwidthLimits();
@@ -553,7 +552,7 @@ namespace BitTorrent
 
         bool m_deferredConfigureScheduled = false;
         bool m_IPFilteringConfigured = false;
-        bool m_listenInterfaceConfigured = false;
+        mutable bool m_listenInterfaceConfigured = false;
 
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;

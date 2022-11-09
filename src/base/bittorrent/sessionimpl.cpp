@@ -1066,25 +1066,25 @@ void SessionImpl::adjustLimits()
 {
     if (isQueueingSystemEnabled())
     {
-        lt::settings_pack settingsPack = m_nativeSession->get_settings();
-        adjustLimits(settingsPack);
-        m_nativeSession->apply_settings(settingsPack);
+        lt::settings_pack settingsPack;
+        // Internally increase the queue limits to ensure that the magnet is started
+        settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
+        settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
+        m_nativeSession->apply_settings(std::move(settingsPack));
     }
 }
 
 void SessionImpl::applyBandwidthLimits()
 {
-    lt::settings_pack settingsPack = m_nativeSession->get_settings();
-    applyBandwidthLimits(settingsPack);
-    m_nativeSession->apply_settings(settingsPack);
+    lt::settings_pack settingsPack;
+    settingsPack.set_int(lt::settings_pack::download_rate_limit, downloadSpeedLimit());
+    settingsPack.set_int(lt::settings_pack::upload_rate_limit, uploadSpeedLimit());
+    m_nativeSession->apply_settings(std::move(settingsPack));
 }
 
 void SessionImpl::configure()
 {
-    lt::settings_pack settingsPack = m_nativeSession->get_settings();
-    loadLTSettings(settingsPack);
-    m_nativeSession->apply_settings(settingsPack);
-
+    m_nativeSession->apply_settings(loadLTSettings());
     configureComponents();
 
     m_deferredConfigureScheduled = false;
@@ -1430,10 +1430,11 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
 
 void SessionImpl::initializeNativeSession()
 {
-    const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
+    lt::settings_pack pack = loadLTSettings();
 
-    lt::settings_pack pack;
+    const std::string peerId = lt::generate_fingerprint(PEER_ID, QBT_VERSION_MAJOR, QBT_VERSION_MINOR, QBT_VERSION_BUGFIX, QBT_VERSION_BUILD);
     pack.set_str(lt::settings_pack::peer_fingerprint, peerId);
+
     pack.set_bool(lt::settings_pack::listen_system_port_fallback, false);
     pack.set_str(lt::settings_pack::user_agent, USER_AGENT.toStdString());
     pack.set_bool(lt::settings_pack::use_dht_as_fallback, false);
@@ -1450,8 +1451,7 @@ void SessionImpl::initializeNativeSession()
     pack.set_bool(lt::settings_pack::enable_set_file_valid_data, true);
 #endif
 
-    loadLTSettings(pack);
-    lt::session_params sessionParams {pack, {}};
+    lt::session_params sessionParams {std::move(pack), {}};
 #ifdef QBT_USES_LIBTORRENT2
     switch (diskIOType())
     {
@@ -1509,28 +1509,14 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     }
 }
 
-void SessionImpl::adjustLimits(lt::settings_pack &settingsPack) const
+int SessionImpl::adjustLimit(const int limit) const
 {
-    // Internally increase the queue limits to ensure that the magnet is started
-    const auto adjustLimit = [this](const int limit) -> int
-    {
-        if (limit <= -1)
-            return limit;
-        // check for overflow: (limit + m_extraLimit) < std::numeric_limits<int>::max()
-        return (m_extraLimit < (std::numeric_limits<int>::max() - limit))
-            ? (limit + m_extraLimit)
-            : std::numeric_limits<int>::max();
-    };
-
-    settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
-    settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
-}
-
-void SessionImpl::applyBandwidthLimits(lt::settings_pack &settingsPack) const
-{
-    const bool altSpeedLimitEnabled = isAltGlobalSpeedLimitEnabled();
-    settingsPack.set_int(lt::settings_pack::download_rate_limit, altSpeedLimitEnabled ? altGlobalDownloadSpeedLimit() : globalDownloadSpeedLimit());
-    settingsPack.set_int(lt::settings_pack::upload_rate_limit, altSpeedLimitEnabled ? altGlobalUploadSpeedLimit() : globalUploadSpeedLimit());
+    if (limit <= -1)
+        return limit;
+    // check for overflow: (limit + m_extraLimit) < std::numeric_limits<int>::max()
+    return (m_extraLimit < (std::numeric_limits<int>::max() - limit))
+        ? (limit + m_extraLimit)
+        : std::numeric_limits<int>::max();
 }
 
 void SessionImpl::initMetrics()
@@ -1575,8 +1561,10 @@ void SessionImpl::initMetrics()
     m_metricIndices.disk.diskJobTime = findMetricIndex("disk.disk_job_time");
 }
 
-void SessionImpl::loadLTSettings(lt::settings_pack &settingsPack)
+lt::settings_pack SessionImpl::loadLTSettings() const
 {
+    lt::settings_pack settingsPack;
+
     const lt::alert_category_t alertMask = lt::alert::error_notification
         | lt::alert::file_progress_notification
         | lt::alert::ip_block_notification
@@ -1594,8 +1582,10 @@ void SessionImpl::loadLTSettings(lt::settings_pack &settingsPack)
     // It will not take affect until the listen_interfaces settings is updated
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
 
-    configureNetworkInterfaces(settingsPack);
-    applyBandwidthLimits(settingsPack);
+    applyNetworkInterfacesSettings(settingsPack);
+
+    settingsPack.set_int(lt::settings_pack::download_rate_limit, downloadSpeedLimit());
+    settingsPack.set_int(lt::settings_pack::upload_rate_limit, uploadSpeedLimit());
 
     // The most secure, rc4 only so that all streams are encrypted
     settingsPack.set_int(lt::settings_pack::allowed_enc_level, lt::settings_pack::pe_rc4);
@@ -1730,7 +1720,9 @@ void SessionImpl::loadLTSettings(lt::settings_pack &settingsPack)
     // Queueing System
     if (isQueueingSystemEnabled())
     {
-        adjustLimits(settingsPack);
+        // Internally increase the queue limits to ensure that the magnet is started
+        settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
+        settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
 
         settingsPack.set_int(lt::settings_pack::active_seeds, maxActiveUploads());
         settingsPack.set_bool(lt::settings_pack::dont_count_slow_torrents, ignoreSlowTorrentsForQueueing());
@@ -1846,9 +1838,11 @@ void SessionImpl::loadLTSettings(lt::settings_pack &settingsPack)
         settingsPack.set_int(lt::settings_pack::seed_choking_algorithm, lt::settings_pack::anti_leech);
         break;
     }
+
+    return settingsPack;
 }
 
-void SessionImpl::configureNetworkInterfaces(lt::settings_pack &settingsPack)
+void SessionImpl::applyNetworkInterfacesSettings(lt::settings_pack &settingsPack) const
 {
     if (m_listenInterfaceConfigured)
         return;
