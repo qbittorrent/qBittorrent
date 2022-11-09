@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -117,8 +117,14 @@ private:
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
     QIcon getIconByState(const BitTorrent::TorrentState state) const;
 
-    QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
-    QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number
+    struct Item
+    {
+        BitTorrent::Torrent *torrent;
+        int row;
+    };
+
+    QList<std::shared_ptr<Item>> m_items;  // maps row number to model item
+    QHash<BitTorrent::Torrent *, std::shared_ptr<Item>> m_itemsByTorrent;  // maps torrent to model item
     const QHash<BitTorrent::TorrentState, QString> m_statusStrings;
     // row text colors
     const QHash<BitTorrent::TorrentState, QColor> m_stateThemeColors;

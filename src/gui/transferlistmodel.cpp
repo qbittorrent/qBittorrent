@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -189,7 +189,7 @@ TransferListModel::TransferListModel(QObject *parent)
 
 int TransferListModel::rowCount(const QModelIndex &) const
 {
-    return m_torrentList.size();
+    return m_items.size();
 }
 
 int TransferListModel::columnCount(const QModelIndex &) const
@@ -542,8 +542,11 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
 {
     if (!index.isValid()) return {};
 
-    const BitTorrent::Torrent *torrent = m_torrentList.value(index.row());
-    if (!torrent) return {};
+    const std::shared_ptr<Item> item = m_items.value(index.row());
+    if (!item)
+        return {};
+
+    const BitTorrent::Torrent *torrent = item->torrent;
 
     switch (role)
     {
@@ -611,8 +614,11 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 {
     if (!index.isValid() || (role != Qt::DisplayRole)) return false;
 
-    BitTorrent::Torrent *const torrent = m_torrentList.value(index.row());
-    if (!torrent) return false;
+    const std::shared_ptr<Item> item = m_items.value(index.row());
+    if (!item)
+        return false;
+
+    BitTorrent::Torrent *const torrent = item->torrent;
 
     // Category and Name columns can be edited
     switch (index.column())
@@ -632,15 +638,18 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    int row = m_torrentList.size();
+    int row = m_items.size();
     beginInsertRows({}, row, (row + torrents.size()));
 
     for (BitTorrent::Torrent *torrent : torrents)
     {
-        Q_ASSERT(!m_torrentMap.contains(torrent));
+        Q_ASSERT(!m_itemsByTorrent.contains(torrent));
 
-        m_torrentList.append(torrent);
-        m_torrentMap[torrent] = row++;
+        const auto item = std::shared_ptr<Item>(new Item {torrent, row});
+        m_items.append(item);
+        m_itemsByTorrent[torrent] = item;
+
+        ++row;
     }
 
     endInsertRows();
@@ -658,28 +667,32 @@ BitTorrent::Torrent *TransferListModel::torrentHandle(const QModelIndex &index) 
 {
     if (!index.isValid()) return nullptr;
 
-    return m_torrentList.value(index.row());
+    const std::shared_ptr<Item> item = m_items.value(index.row());
+    return (item ? item->torrent : nullptr);
 }
 
 void TransferListModel::handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent)
 {
-    const int row = m_torrentMap.value(torrent, -1);
+    const std::shared_ptr<Item> item = m_itemsByTorrent.value(torrent);
+    Q_ASSERT(item);
+
+    const int row = item->row;
     Q_ASSERT(row >= 0);
 
     beginRemoveRows({}, row, row);
-    m_torrentList.removeAt(row);
-    m_torrentMap.remove(torrent);
-    for (int &value : m_torrentMap)
-    {
-        if (value > row)
-            --value;
-    }
+    m_items.removeAt(row);
+    m_itemsByTorrent.remove(torrent);
+    for (auto it = (m_items.cbegin() + row); it != m_items.cend(); ++it)
+        --(*it)->row;
     endRemoveRows();
 }
 
 void TransferListModel::handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent)
 {
-    const int row = m_torrentMap.value(torrent, -1);
+    const std::shared_ptr<Item> item = m_itemsByTorrent.value(torrent);
+    Q_ASSERT(item);
+
+    const int row = item->row;
     Q_ASSERT(row >= 0);
 
     emit dataChanged(index(row, 0), index(row, columnCount() - 1));
@@ -689,11 +702,14 @@ void TransferListModel::handleTorrentsUpdated(const QVector<BitTorrent::Torrent 
 {
     const int columns = (columnCount() - 1);
 
-    if (torrents.size() <= (m_torrentList.size() * 0.5))
+    if (torrents.size() <= (m_items.size() * 0.5))
     {
         for (BitTorrent::Torrent *const torrent : torrents)
         {
-            const int row = m_torrentMap.value(torrent, -1);
+            const std::shared_ptr<Item> item = m_itemsByTorrent.value(torrent);
+            Q_ASSERT(item);
+
+            const int row = item->row;
             Q_ASSERT(row >= 0);
 
             emit dataChanged(index(row, 0), index(row, columns));
