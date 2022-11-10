@@ -695,7 +695,7 @@ namespace BitTorrent
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
 
-        QSet<TorrentID> m_downloadedMetadata;
+        QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
