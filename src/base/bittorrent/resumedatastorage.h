@@ -63,6 +63,7 @@ namespace BitTorrent
         virtual void store(const TorrentID &id, const LoadTorrentParams &resumeData) const = 0;
         virtual void remove(const TorrentID &id) const = 0;
         virtual void storeQueue(const QVector<TorrentID> &queue) const = 0;
+        virtual void makeBackup() const = 0;
 
         void loadAll() const;
         QVector<LoadedResumeData> fetchLoadedResumeData() const;
