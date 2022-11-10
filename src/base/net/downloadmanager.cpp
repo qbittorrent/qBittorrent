@@ -124,7 +124,7 @@ namespace
         // Spoof HTTP Referer to allow adding torrent link from Torcache/KickAssTorrents
         request.setRawHeader("Referer", request.url().toEncoded().data());
 #ifdef QT_NO_COMPRESS
-        // The macro "QT_NO_COMPRESS" defined in QT will disable the zlib releated features
+        // The macro "QT_NO_COMPRESS" defined in QT will disable the zlib related features
         // and reply data auto-decompression in QT will also be disabled. But we can support
         // gzip encoding and manually decompress the reply data.
         request.setRawHeader("Accept-Encoding", "gzip");
