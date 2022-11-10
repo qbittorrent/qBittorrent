@@ -519,7 +519,8 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     if (filesCount <= 0)
         return;
 
-    emit layoutAboutToBeChanged();
+    beginResetModel();
+
     // Initialize files_index array
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
@@ -566,5 +567,6 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
         lastParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
-    emit layoutChanged();
+
+    endResetModel();
 }
