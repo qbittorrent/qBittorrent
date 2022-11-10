@@ -81,10 +81,6 @@ signals:
     void filteredFilesChanged();
 
 private:
-    using ColumnInterval = IndexInterval<int>;
-
-    void notifySubtreeUpdated(const QModelIndex &index, const QVector<ColumnInterval> &columns);
-
     TorrentContentModelFolder *m_rootItem = nullptr;
     QVector<TorrentContentModelFile *> m_filesIndex;
     QFileIconProvider *m_fileIconProvider = nullptr;
