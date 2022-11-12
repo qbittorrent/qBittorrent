@@ -221,11 +221,7 @@ void TorrentContentModel::updateFilesProgress(const QVector<qreal> &fp)
     m_rootItem->recalculateProgress();
     m_rootItem->recalculateAvailability();
 
-    const QVector<ColumnInterval> columns =
-    {
-        {TorrentContentModelItem::COL_PROGRESS, TorrentContentModelItem::COL_PROGRESS}
-    };
-    notifySubtreeUpdated(index(0, 0), columns);
+    emit layoutChanged();
 }
 
 void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::DownloadPriority> &fprio)
@@ -239,12 +235,7 @@ void TorrentContentModel::updateFilesPriorities(const QVector<BitTorrent::Downlo
     for (int i = 0; i < fprio.size(); ++i)
         m_filesIndex[i]->setPriority(static_cast<BitTorrent::DownloadPriority>(fprio[i]));
 
-    const QVector<ColumnInterval> columns =
-    {
-        {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
-        {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
-    };
-    notifySubtreeUpdated(index(0, 0), columns);
+    emit layoutChanged();
 }
 
 void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
@@ -259,11 +250,7 @@ void TorrentContentModel::updateFilesAvailability(const QVector<qreal> &fa)
     // Update folders progress in the tree
     m_rootItem->recalculateProgress();
 
-    const QVector<ColumnInterval> columns =
-    {
-        {TorrentContentModelItem::COL_AVAILABILITY, TorrentContentModelItem::COL_AVAILABILITY}
-    };
-    notifySubtreeUpdated(index(0, 0), columns);
+    emit layoutChanged();
 }
 
 QVector<BitTorrent::DownloadPriority> TorrentContentModel::getFilePriorities() const
@@ -308,17 +295,13 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
 
         if (currentPrio != newPrio)
         {
+            emit layoutAboutToBeChanged();
             item->setPriority(newPrio);
             // Update folders progress in the tree
             m_rootItem->recalculateProgress();
             m_rootItem->recalculateAvailability();
 
-            const QVector<ColumnInterval> columns =
-            {
-                {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
-                {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
-            };
-            notifySubtreeUpdated(index, columns);
+            emit layoutChanged();
             emit filteredFilesChanged();
 
             return true;
@@ -350,14 +333,9 @@ bool TorrentContentModel::setData(const QModelIndex &index, const QVariant &valu
                 const auto newPrio = static_cast<BitTorrent::DownloadPriority>(value.toInt());
                 if (currentPrio != newPrio)
                 {
+                    emit layoutAboutToBeChanged();
                     item->setPriority(newPrio);
-
-                    const QVector<ColumnInterval> columns =
-                    {
-                        {TorrentContentModelItem::COL_NAME, TorrentContentModelItem::COL_NAME},
-                        {TorrentContentModelItem::COL_PRIO, TorrentContentModelItem::COL_PRIO}
-                    };
-                    notifySubtreeUpdated(index, columns);
+                    emit layoutChanged();
 
                     if ((newPrio == BitTorrent::DownloadPriority::Ignored)
                         || (currentPrio == BitTorrent::DownloadPriority::Ignored))
@@ -541,7 +519,8 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
     if (filesCount <= 0)
         return;
 
-    emit layoutAboutToBeChanged();
+    beginResetModel();
+
     // Initialize files_index array
     qDebug("Torrent contains %d files", filesCount);
     m_filesIndex.reserve(filesCount);
@@ -588,56 +567,6 @@ void TorrentContentModel::setupModelData(const BitTorrent::AbstractFileStorage &
         lastParent->appendChild(fileItem);
         m_filesIndex.push_back(fileItem);
     }
-    emit layoutChanged();
-}
 
-void TorrentContentModel::notifySubtreeUpdated(const QModelIndex &index, const QVector<ColumnInterval> &columns)
-{
-    // For best performance, `columns` entries should be arranged from left to right
-
-    Q_ASSERT(index.isValid());
-
-    // emit itself
-    for (const ColumnInterval &column : columns)
-        emit dataChanged(index.siblingAtColumn(column.first()), index.siblingAtColumn(column.last()));
-
-    // propagate up the model
-    QModelIndex parentIndex = parent(index);
-    while (parentIndex.isValid())
-    {
-        for (const ColumnInterval &column : columns)
-            emit dataChanged(parentIndex.siblingAtColumn(column.first()), parentIndex.siblingAtColumn(column.last()));
-        parentIndex = parent(parentIndex);
-    }
-
-    // propagate down the model
-    QVector<QModelIndex> parentIndexes;
-
-    if (hasChildren(index))
-        parentIndexes.push_back(index);
-
-    while (!parentIndexes.isEmpty())
-    {
-        const QModelIndex parent = parentIndexes.takeLast();
-
-        const int childCount = rowCount(parent);
-        const QModelIndex child = this->index(0, 0, parent);
-
-        // emit this generation
-        for (const ColumnInterval &column : columns)
-        {
-            const QModelIndex childTopLeft = child.siblingAtColumn(column.first());
-            const QModelIndex childBottomRight = child.sibling((childCount - 1), column.last());
-            emit dataChanged(childTopLeft, childBottomRight);
-        }
-
-        // check generations further down
-        parentIndexes.reserve(childCount);
-        for (int i = 0; i < childCount; ++i)
-        {
-            const QModelIndex sibling = child.siblingAtRow(i);
-            if (hasChildren(sibling))
-                parentIndexes.push_back(sibling);
-        }
-    }
+    endResetModel();
 }
