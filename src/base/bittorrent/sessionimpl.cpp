@@ -2769,9 +2769,6 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
 
     p.flags |= lt::torrent_flags::duplicate_is_error;
 
-    // Prevent torrent from saving initial resume data twice
-    p.flags &= ~lt::torrent_flags::need_save_resume;
-
     p.added_time = std::time(nullptr);
 
     // Limits
@@ -5265,8 +5262,6 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
 
     if (isRestored())
     {
-        m_resumeDataStorage->store(torrent->id(), params);
-
         // The following is useless for newly added magnet
         if (torrent->hasMetadata())
         {
