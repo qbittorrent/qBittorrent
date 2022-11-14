@@ -37,6 +37,7 @@
 #include <QHostAddress>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPointer>
 #include <QSet>
 #include <QShortcut>
 #include <QSortFilterProxyModel>
@@ -392,38 +393,47 @@ void PeerListWidget::saveSettings() const
 
 void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
 {
-    if (!torrent) return;
+    if (!torrent)
+        return;
 
-    const QVector<BitTorrent::PeerInfo> peers = torrent->peers();
-    QSet<PeerEndpoint> existingPeers;
-    for (auto i = m_peerItems.cbegin(); i != m_peerItems.cend(); ++i)
-        existingPeers << i.key();
-
-    for (const BitTorrent::PeerInfo &peer : peers)
+    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
+    torrent->fetchPeerInfo([this, torrent = TorrentPtr(torrent)](const QVector<BitTorrent::PeerInfo> &peers)
     {
-        if (peer.address().ip.isNull()) continue;
+        if (torrent != m_properties->getCurrentTorrent())
+            return;
 
-        bool isNewPeer = false;
-        updatePeer(torrent, peer, isNewPeer);
-        if (!isNewPeer)
+        QSet<PeerEndpoint> existingPeers;
+        existingPeers.reserve(m_peerItems.size());
+        for (auto i = m_peerItems.cbegin(); i != m_peerItems.cend(); ++i)
+            existingPeers.insert(i.key());
+
+        for (const BitTorrent::PeerInfo &peer : peers)
         {
-            const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
-            existingPeers.remove(peerEndpoint);
+            if (peer.address().ip.isNull())
+                continue;
+
+            bool isNewPeer = false;
+            updatePeer(torrent, peer, isNewPeer);
+            if (!isNewPeer)
+            {
+                const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
+                existingPeers.remove(peerEndpoint);
+            }
         }
-    }
 
-    // Remove peers that are gone
-    for (const PeerEndpoint &peerEndpoint : asConst(existingPeers))
-    {
-        QStandardItem *item = m_peerItems.take(peerEndpoint);
+        // Remove peers that are gone
+        for (const PeerEndpoint &peerEndpoint : asConst(existingPeers))
+        {
+            QStandardItem *item = m_peerItems.take(peerEndpoint);
 
-        QSet<QStandardItem *> &items = m_itemsByIP[peerEndpoint.address.ip];
-        items.remove(item);
-        if (items.isEmpty())
-            m_itemsByIP.remove(peerEndpoint.address.ip);
+            QSet<QStandardItem *> &items = m_itemsByIP[peerEndpoint.address.ip];
+            items.remove(item);
+            if (items.isEmpty())
+                m_itemsByIP.remove(peerEndpoint.address.ip);
 
-        m_listModel->removeRow(item->row());
-    }
+            m_listModel->removeRow(item->row());
+        }
+    });
 }
 
 void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTorrent::PeerInfo &peer, bool &isNewPeer)
@@ -433,7 +443,7 @@ void PeerListWidget::updatePeer(const BitTorrent::Torrent *torrent, const BitTor
     const Qt::Alignment intDataTextAlignment = Qt::AlignRight | Qt::AlignVCenter;
 
     const auto setModelData =
-        [this] (const int row, const int column, const QString &displayData
+        [this](const int row, const int column, const QString &displayData
                 , const QVariant &underlyingData, const Qt::Alignment textAlignmentData = {}
                 , const QString &toolTip = {})
     {

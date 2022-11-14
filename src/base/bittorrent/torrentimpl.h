@@ -80,10 +80,10 @@ namespace BitTorrent
         lt::operation_t operation;
     };
 
-    class TorrentImpl final : public QObject, public Torrent
+    class TorrentImpl final : public Torrent
     {
+        Q_OBJECT
         Q_DISABLE_COPY_MOVE(TorrentImpl)
-        Q_DECLARE_TR_FUNCTIONS(BitTorrent::TorrentImpl)
 
     public:
         TorrentImpl(SessionImpl *session, lt::session *nativeSession
@@ -236,6 +236,13 @@ namespace BitTorrent
         nonstd::expected<QByteArray, QString> exportToBuffer() const override;
         nonstd::expected<void, QString> exportToFile(const Path &path) const override;
 
+        void fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const override;
+        void fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const override;
+        void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const override;
+        void fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const override;
+        void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const override;
+        void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const override;
+
         bool needSaveResumeData() const;
 
         // Session interface
@@ -289,6 +296,9 @@ namespace BitTorrent
         void reload();
 
         nonstd::expected<lt::entry, QString> exportTorrent() const;
+
+        template <typename Func, typename Callback>
+        void invokeAsync(Func func, Callback resultHandler) const;
 
         SessionImpl *const m_session = nullptr;
         lt::session *m_nativeSession = nullptr;
