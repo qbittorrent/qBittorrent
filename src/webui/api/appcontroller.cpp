@@ -372,6 +372,7 @@ void AppController::preferencesAction()
     // Embedded tracker
     data[u"enable_embedded_tracker"_qs] = session->isTrackerEnabled();
     data[u"embedded_tracker_port"_qs] = pref->getTrackerPort();
+    data[u"embedded_tracker_port_forwarding"_qs] = pref->isTrackerPortForwardingEnabled();
     // Choking algorithm
     data[u"upload_slots_behavior"_qs] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
@@ -899,6 +900,8 @@ void AppController::setPreferencesAction()
     // Embedded tracker
     if (hasKey(u"embedded_tracker_port"_qs))
         pref->setTrackerPort(it.value().toInt());
+    if (hasKey(u"embedded_tracker_port_forwarding"_qs))
+        pref->setTrackerPortForwardingEnabled(it.value().toBool());
     if (hasKey(u"enable_embedded_tracker"_qs))
         session->setTrackerEnabled(it.value().toBool());
     // Choking algorithm

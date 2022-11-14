@@ -34,6 +34,7 @@
 #include <libtorrent/portmap.hpp>
 
 #include <QHash>
+#include <QSet>
 
 #include "base/net/portforwarder.h"
 #include "base/settingvalue.h"
@@ -50,8 +51,8 @@ public:
     bool isEnabled() const override;
     void setEnabled(bool enabled) override;
 
-    void addPort(quint16 port) override;
-    void deletePort(quint16 port) override;
+    void setPorts(const QString &profile, QSet<quint16> ports) override;
+    void removePorts(const QString &profile) override;
 
 private:
     void start();
@@ -59,5 +60,8 @@ private:
 
     CachedSettingValue<bool> m_storeActive;
     lt::session *const m_provider = nullptr;
-    QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
+
+    using PortMapping = QHash<quint16, std::vector<lt::port_mapping_t>>;  // <port, handles>
+    QHash<QString, PortMapping> m_portProfiles;
+    QSet<quint16> m_forwardedPorts;
 };

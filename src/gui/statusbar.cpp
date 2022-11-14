@@ -48,7 +48,7 @@ StatusBar::StatusBar(QWidget *parent)
 {
 #ifndef Q_OS_MACOS
     // Redefining global stylesheet breaks certain elements on mac like tabs.
-    // Qt checks whether the stylesheet class inherts("QMacStyle") and this becomes false.
+    // Qt checks whether the stylesheet class inherits("QMacStyle") and this becomes false.
     setStyleSheet(u"QStatusBar::item { border-width: 0; }"_qs);
 #endif
 

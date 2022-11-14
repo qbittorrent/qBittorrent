@@ -882,7 +882,7 @@ void Application::createStartupProgressDialog()
     m_startupProgressDialog = new QProgressDialog(tr("Loading torrents..."), tr("Exit"), 0, 100);
     m_startupProgressDialog->setAttribute(Qt::WA_DeleteOnClose);
     m_startupProgressDialog->setWindowFlag(Qt::WindowMinimizeButtonHint);
-    m_startupProgressDialog->setMinimumDuration(0); // Show dialog immediatelly by default
+    m_startupProgressDialog->setMinimumDuration(0); // Show dialog immediately by default
     m_startupProgressDialog->setAutoReset(false);
     m_startupProgressDialog->setAutoClose(false);
 
