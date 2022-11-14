@@ -72,6 +72,7 @@
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
+#include <QThreadPool>
 #include <QTimer>
 #include <QUuid>
 
@@ -509,14 +510,18 @@ SessionImpl::SessionImpl(QObject *parent)
                         }
                  )
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
-    , m_seedingLimitTimer {new QTimer {this}}
-    , m_resumeDataTimer {new QTimer {this}}
-    , m_ioThread {new QThread {this}}
-    , m_recentErroredTorrentsTimer {new QTimer {this}}
+    , m_seedingLimitTimer {new QTimer(this)}
+    , m_resumeDataTimer {new QTimer(this)}
+    , m_ioThread {new QThread(this)}
+    , m_asyncWorker {new QThreadPool(this)}
+    , m_recentErroredTorrentsTimer {new QTimer(this)}
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
-    , m_networkManager {new QNetworkConfigurationManager {this}}
+    , m_networkManager {new QNetworkConfigurationManager(this)}
 #endif
 {
+    // It is required to perform async access to libtorrent sequentially
+    m_asyncWorker->setMaxThreadCount(1);
+
     if (port() < 0)
         m_port = Utils::Random::rand(1024, 65535);
 
@@ -572,7 +577,7 @@ SessionImpl::SessionImpl(QObject *parent)
     loadStatistics();
 
     // initialize PortForwarder instance
-    new PortForwarderImpl(m_nativeSession);
+    new PortForwarderImpl(this);
 
     // start embedded tracker
     enableTracker(isTrackerEnabled());
@@ -596,6 +601,9 @@ SessionImpl::~SessionImpl()
     saveResumeData();
 
     saveStatistics();
+
+    m_asyncWorker->clear();
+    m_asyncWorker->waitForDone();
 
     // We must delete FilterParserThread
     // before we delete lt::session
@@ -1498,7 +1506,9 @@ void SessionImpl::initializeNativeSession()
     if (isPeXEnabled())
         m_nativeSession->add_extension(&lt::create_ut_pex_plugin);
 
-    m_nativeSession->add_extension(std::make_shared<NativeSessionExtension>());
+    auto nativeSessionExtension = std::make_shared<NativeSessionExtension>();
+    m_nativeSession->add_extension(nativeSessionExtension);
+    m_nativeSessionExtension = nativeSessionExtension.get();
 }
 
 void SessionImpl::processBannedIPs(lt::ip_filter &filter)
@@ -2228,21 +2238,26 @@ bool SessionImpl::hasRunningSeed() const
 
 void SessionImpl::banIP(const QString &ip)
 {
-    QStringList bannedIPs = m_bannedIPs;
-    if (!bannedIPs.contains(ip))
-    {
-        lt::ip_filter filter = m_nativeSession->get_ip_filter();
-        lt::error_code ec;
-        const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
-        Q_ASSERT(!ec);
-        if (ec) return;
-        filter.add_rule(addr, addr, lt::ip_filter::blocked);
-        m_nativeSession->set_ip_filter(filter);
+    if (m_bannedIPs.get().contains(ip))
+        return;
 
-        bannedIPs << ip;
-        bannedIPs.sort();
-        m_bannedIPs = bannedIPs;
-    }
+    lt::error_code ec;
+    const lt::address addr = lt::make_address(ip.toLatin1().constData(), ec);
+    Q_ASSERT(!ec);
+    if (ec)
+        return;
+
+    invokeAsync([session = m_nativeSession, addr]
+    {
+        lt::ip_filter filter = session->get_ip_filter();
+        filter.add_rule(addr, addr, lt::ip_filter::blocked);
+        session->set_ip_filter(std::move(filter));
+    });
+
+    QStringList bannedIPs = m_bannedIPs;
+    bannedIPs.append(ip);
+    bannedIPs.sort();
+    m_bannedIPs = bannedIPs;
 }
 
 // Delete a torrent from the session, given its hash
@@ -2805,6 +2820,83 @@ void SessionImpl::findIncompleteFiles(const TorrentInfo &torrentInfo, const Path
     {
         m_fileSearcher->search(searchId, originalFileNames, savePath, downloadPath, isAppendExtensionEnabled());
     });
+}
+
+void SessionImpl::enablePortMapping()
+{
+    invokeAsync([this]
+    {
+        if (m_isPortMappingEnabled)
+            return;
+
+        lt::settings_pack settingsPack;
+        settingsPack.set_bool(lt::settings_pack::enable_upnp, true);
+        settingsPack.set_bool(lt::settings_pack::enable_natpmp, true);
+        m_nativeSession->apply_settings(std::move(settingsPack));
+
+        m_isPortMappingEnabled = true;
+
+        LogMsg(tr("UPnP/NAT-PMP support: ON"), Log::INFO);
+    });
+}
+
+void SessionImpl::disablePortMapping()
+{
+    invokeAsync([this]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        lt::settings_pack settingsPack;
+        settingsPack.set_bool(lt::settings_pack::enable_upnp, false);
+        settingsPack.set_bool(lt::settings_pack::enable_natpmp, false);
+        m_nativeSession->apply_settings(std::move(settingsPack));
+
+        m_mappedPorts.clear();
+        m_isPortMappingEnabled = false;
+
+        LogMsg(tr("UPnP/NAT-PMP support: OFF"), Log::INFO);
+    });
+}
+
+void SessionImpl::addMappedPorts(const QSet<quint16> &ports)
+{
+    invokeAsync([this, ports]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        for (const quint16 port : ports)
+        {
+            if (!m_mappedPorts.contains(port))
+                m_mappedPorts.insert(port, m_nativeSession->add_port_mapping(lt::session::tcp, port, port));
+        }
+    });
+}
+
+void SessionImpl::removeMappedPorts(const QSet<quint16> &ports)
+{
+    invokeAsync([this, ports]
+    {
+        if (!m_isPortMappingEnabled)
+            return;
+
+        Algorithm::removeIf(m_mappedPorts, [this, ports](const quint16 port, const std::vector<lt::port_mapping_t> &handles)
+        {
+            if (!ports.contains(port))
+                return false;
+
+            for (const lt::port_mapping_t &handle : handles)
+                m_nativeSession->delete_port_mapping(handle);
+
+            return true;
+        });
+    });
+}
+
+void SessionImpl::invokeAsync(std::function<void ()> func)
+{
+    m_asyncWorker->start(std::move(func));
 }
 
 // Add a torrent to libtorrent session in hidden mode
@@ -4494,7 +4586,7 @@ void SessionImpl::setTrackerFilteringEnabled(const bool enabled)
 
 bool SessionImpl::isListening() const
 {
-    return m_nativeSession->is_listening();
+    return m_nativeSessionExtension->isSessionListening();
 }
 
 MaxRatioAction SessionImpl::maxRatioAction() const
@@ -5739,14 +5831,28 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
         else
             cancelDownloadMetadata(torrentIDv1);
 
-        torrent2->nativeHandle().set_metadata(a->metadata->info_section());
+        invokeAsync([torrentHandle = torrent2->nativeHandle(), metadata = a->metadata]
+        {
+            try
+            {
+                torrentHandle.set_metadata(metadata->info_section());
+            }
+            catch (const std::exception &) {}
+        });
     }
     else if (torrent1)
     {
         if (!torrent2)
             cancelDownloadMetadata(torrentIDv2);
 
-        torrent1->nativeHandle().set_metadata(a->metadata->info_section());
+        invokeAsync([torrentHandle = torrent1->nativeHandle(), metadata = a->metadata]
+        {
+            try
+            {
+                torrentHandle.set_metadata(metadata->info_section());
+            }
+            catch (const std::exception &) {}
+        });
     }
     else
     {
