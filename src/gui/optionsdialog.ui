@@ -409,10 +409,10 @@
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
                  <property name="toolTip">
-                  <string>Shows a confirmation dialog when exiting with active torrents</string>
+                  <string>Shows a confirmation dialog when exiting</string>
                  </property>
                  <property name="text">
-                  <string>Confirmation on exit when torrents are active</string>
+                  <string>Confirmation on exit</string>
                  </property>
                  <property name="checked">
                   <bool>true</bool>

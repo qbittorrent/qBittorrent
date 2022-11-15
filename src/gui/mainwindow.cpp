@@ -1139,7 +1139,7 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 #endif // Q_OS_MACOS
 
-    if (pref->confirmOnExit() && BitTorrent::Session::instance()->hasActiveTorrents())
+    if (pref->confirmOnExit())
     {
         if (e->spontaneous() || m_forceExit)
         {
