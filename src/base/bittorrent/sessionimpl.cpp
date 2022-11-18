@@ -5359,6 +5359,8 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
 
     if (isRestored())
     {
+        torrent->saveResumeData(lt::torrent_handle::save_info_dict);
+
         // The following is useless for newly added magnet
         if (torrent->hasMetadata())
         {
