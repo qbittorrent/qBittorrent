@@ -227,7 +227,7 @@ namespace BitTorrent
         void removeUrlSeeds(const QVector<QUrl> &urlSeeds) override;
         bool connectPeer(const PeerAddress &peerAddress) override;
         void clearPeers() override;
-        bool setMetadata(const TorrentInfo &torrentInfo) override;
+        void setMetadata(const TorrentInfo &torrentInfo) override;
 
         StopCondition stopCondition() const override;
         void setStopCondition(StopCondition stopCondition) override;
