@@ -2055,7 +2055,7 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
     const int fileIndex = m_indexMap.value(p->index, -1);
     Q_ASSERT(fileIndex >= 0);
 
-    m_completedFiles[fileIndex] = true;
+    m_completedFiles.setBit(fileIndex);
 
     if (m_session->isAppendExtensionEnabled())
     {
