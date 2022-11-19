@@ -245,7 +245,7 @@ namespace BitTorrent
         void handleStateUpdate(const lt::torrent_status &nativeStatus);
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
-        void saveResumeData();
+        void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         void updatePeerCount(const QString &trackerURL, const TrackerEntry::Endpoint &endpoint, int count);

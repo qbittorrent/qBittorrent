@@ -690,9 +690,9 @@ bool TorrentImpl::needSaveResumeData() const
     return m_nativeStatus.need_save_resume;
 }
 
-void TorrentImpl::saveResumeData()
+void TorrentImpl::saveResumeData(lt::resume_data_flags_t flags)
 {
-    m_nativeHandle.save_resume_data();
+    m_nativeHandle.save_resume_data(flags);
     m_session->handleTorrentSaveResumeDataRequested(this);
 }
 
