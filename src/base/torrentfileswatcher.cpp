@@ -254,7 +254,7 @@ TorrentFilesWatcher *TorrentFilesWatcher::instance()
 
 TorrentFilesWatcher::TorrentFilesWatcher(QObject *parent)
     : QObject {parent}
-    , m_ioThread {new QThread(this)}
+    , m_ioThread {new QThread}
 {
     const auto *btSession = BitTorrent::Session::instance();
     if (btSession->isRestored())
@@ -263,12 +263,6 @@ TorrentFilesWatcher::TorrentFilesWatcher(QObject *parent)
         connect(btSession, &BitTorrent::Session::restored, this, &TorrentFilesWatcher::initWorker);
 
     load();
-}
-
-TorrentFilesWatcher::~TorrentFilesWatcher()
-{
-    m_ioThread->quit();
-    m_ioThread->wait();
 }
 
 void TorrentFilesWatcher::initWorker()
@@ -280,8 +274,8 @@ void TorrentFilesWatcher::initWorker()
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::magnetFound, this, &TorrentFilesWatcher::onMagnetFound);
     connect(m_asyncWorker, &TorrentFilesWatcher::Worker::torrentFound, this, &TorrentFilesWatcher::onTorrentFound);
 
-    m_asyncWorker->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
+    m_asyncWorker->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_asyncWorker, &QObject::deleteLater);
     m_ioThread->start();
 
     for (auto it = m_watchedFolders.cbegin(); it != m_watchedFolders.cend(); ++it)

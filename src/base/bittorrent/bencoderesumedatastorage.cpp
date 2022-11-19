@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015, 2018  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -91,7 +91,7 @@ namespace
 
 BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path, QObject *parent)
     : ResumeDataStorage(path, parent)
-    , m_ioThread {new QThread(this)}
+    , m_ioThread {new QThread}
     , m_asyncWorker {new Worker(path)}
 {
     Q_ASSERT(path.isAbsolute());
@@ -117,15 +117,9 @@ BitTorrent::BencodeResumeDataStorage::BencodeResumeDataStorage(const Path &path,
 
     qDebug() << "Registered torrents count: " << m_registeredTorrents.size();
 
-    m_asyncWorker->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
+    m_asyncWorker->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_asyncWorker, &QObject::deleteLater);
     m_ioThread->start();
-}
-
-BitTorrent::BencodeResumeDataStorage::~BencodeResumeDataStorage()
-{
-    m_ioThread->quit();
-    m_ioThread->wait();
 }
 
 QVector<BitTorrent::TorrentID> BitTorrent::BencodeResumeDataStorage::registeredTorrents() const

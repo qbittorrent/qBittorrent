@@ -31,6 +31,7 @@
 #include <QElapsedTimer>
 #include <QVariantMap>
 
+#include "base/utils/thread.h"
 #include "apicontroller.h"
 
 class QThread;
@@ -46,7 +47,6 @@ public:
     using APIController::APIController;
 
     explicit SyncController(IApplication *app, QObject *parent = nullptr);
-    ~SyncController() override;
 
 private slots:
     void maindataAction();
@@ -59,7 +59,7 @@ private:
 
     qint64 m_freeDiskSpace = 0;
     FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
-    QThread *m_freeDiskSpaceThread = nullptr;
+    Utils::Thread::UniquePtr m_freeDiskSpaceThread;
     QElapsedTimer m_freeDiskSpaceElapsedTimer;
 
     QVariantMap m_lastMaindataResponse;
