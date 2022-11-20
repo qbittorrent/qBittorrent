@@ -277,9 +277,11 @@ void Feed::handleParsingFinished(const RSS::Private::ParsingResult &result)
 
 void Feed::load()
 {
-    QMetaObject::invokeMethod(m_serializer, [this]()
+    QMetaObject::invokeMethod(m_serializer
+            , [serializer = m_serializer, url = m_url
+                , path = (m_session->dataFileStorage()->storageDir() / m_dataFileName)]
     {
-        m_serializer->load((m_session->dataFileStorage()->storageDir() / m_dataFileName), m_url);
+        serializer->load(path, url);
     });
 }
 
@@ -297,9 +299,11 @@ void Feed::store()
     for (Article *article :asConst(m_articles))
         articlesData.push_back(article->data());
 
-    QMetaObject::invokeMethod(m_serializer, [this, articlesData]()
+    QMetaObject::invokeMethod(m_serializer
+            , [articlesData, serializer = m_serializer
+                , path = (m_session->dataFileStorage()->storageDir() / m_dataFileName)]
     {
-        m_serializer->store((m_session->dataFileStorage()->storageDir() / m_dataFileName), articlesData);
+        serializer->store(path, articlesData);
     });
 }
 
