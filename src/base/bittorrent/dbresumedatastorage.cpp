@@ -452,9 +452,17 @@ int BitTorrent::DBResumeDataStorage::currentDBVersion() const
 
 void BitTorrent::DBResumeDataStorage::createDB() const
 {
-    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    try
+    {
+        enableWALMode();
+    }
+    catch (const RuntimeError &err)
+    {
+        LogMsg(tr("Couldn't enable Write-Ahead Logging (WAL) journaling mode. Error: %1.")
+               .arg(err.message()), Log::WARNING);
+    }
 
-    const QWriteLocker locker {&m_dbLock};
+    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
 
     if (!db.transaction())
         throw RuntimeError(db.lastError().text());
@@ -566,6 +574,22 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         db.rollback();
         throw;
     }
+}
+
+void BitTorrent::DBResumeDataStorage::enableWALMode() const
+{
+    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    QSqlQuery query {db};
+
+    if (!query.exec(u"PRAGMA journal_mode = WAL;"_qs))
+        throw RuntimeError(query.lastError().text());
+
+    if (!query.next())
+        throw RuntimeError(tr("Couldn't obtain query result."));
+
+    const QString result = query.value(0).toString();
+    if (result.compare(u"WAL"_qs, Qt::CaseInsensitive) != 0)
+        throw RuntimeError(tr("WAL mode is probably unsupported due to filesystem limitations."));
 }
 
 BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, const QString &dbConnectionName, QReadWriteLock &dbLock)
