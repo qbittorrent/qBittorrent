@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Käsitsi</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automaatne</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Pausi torrentid</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Kustuta torrentid</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Uus Kategooria</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Eemalda torrentid</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>Paus</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Kustuta</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Pausi Kõik</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>Eemalda</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>E-mailile teavitused pärast allalaadimise lõpetamist</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Käivita väline programm, pärast torrenti lõpetamist</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1604,6 +1616,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Run external program</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1682,6 +1726,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Lisa partnereid...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2376,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kopeeri jälitaja URL</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Lisa uus jälitaja...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Muuda jälitaja URL'i...</translation>
     </message>
@@ -2373,30 +2417,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Kogu suurus</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Kordi allalaaditud</translation>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Lisa jälitajaid...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Jälitajate lisa dialoog</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Nimekiri jälitajate lisamiseks (üks rea kohta):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Lisa jälitajaid</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2564,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Paus</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Kustuta</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Piira jagamise suhet...</translation>
     </message>
@@ -2601,10 +2636,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Järjestikuses allalaadimine</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Sunni Ülekontrolli</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2719,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Eemalda</translation>
     </message>
 </context>
 <context>
@@ -2703,7 +2734,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>Ilma jagamise piiranguta</translation>
     </message>
     <message>
         <source>Set share limit to</source>
@@ -2724,20 +2755,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Kustutamise kinnitamine</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Kustutamise kinnitamine - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Samuti kustuta lõplikult ka failid</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Eemalda torrent('eid)</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3086,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lisa silt...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Kustuta torrentid</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Silt:</translation>
     </message>
@@ -3092,7 +3111,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Eemalda torrentid</translation>
     </message>
 </context>
 <context>
@@ -3489,7 +3508,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> vastab 2, 5, 8 kuni 15, 30 ja järgnevatele osadele esimesest hooajast</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3593,10 +3612,6 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Kustuta torrentid</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Jätka torrentitega</translation>
     </message>
@@ -3614,7 +3629,7 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Eemalda torrentid</translation>
     </message>
 </context>
 <context>

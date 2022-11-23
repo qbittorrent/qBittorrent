@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Ръчно</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Автоматично</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -83,10 +99,6 @@
     <message>
         <source>Pause torrents</source>
         <translation>Пауза на торентите</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Изтриване на торентите</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -440,10 +452,6 @@
         <translation>Пауза</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Изтрий</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Пауза Всички</translation>
     </message>
@@ -596,6 +604,14 @@
         <source>Remove</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -634,10 +650,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Уведомяване с имейл при завършване на свалянето</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Изпълняване на външна програма при завършване на торент</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1583,7 +1595,7 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Списък с разрешени за филтриране стойности на HTTP хост хедъри. За защита срещу атака "ДНС повторно свързване" въведете тук домейните използвани от Уеб ПИ сървъра. Използвайте ';' за разделител. Може да се използва и заместител '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1603,6 +1615,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1683,6 +1727,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Добави участници...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2329,10 +2377,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Копиране на URL на тракер</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Добави нов тракер...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Редактирай URL на тракера...</translation>
     </message>
@@ -2387,10 +2431,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Допълнителен диалог на тракери</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Списък тракери за добавяне (по един на ред):</translation>
@@ -2525,11 +2565,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Пауза</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Изтрий</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Ограничение на съотношението за споделяне...</translation>
     </message>
@@ -2602,10 +2637,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Сваляне по азбучен ред</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Включени проверки за промени</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2724,14 +2755,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Потвърждение за изтриване</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Потвърждение за изтриване - qBittorrent</translation>
-    </message>
     <message>
         <source>Also permanently delete the files</source>
         <translation type="unfinished" />
@@ -3062,10 +3085,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tag...</source>
         <translation>Добави етикет...</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Изтрий торентите</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3593,10 +3612,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Изтрий торентите</translation>
-    </message>
     <message>
         <source>Resume torrents</source>
         <translation>Продължи торентите</translation>

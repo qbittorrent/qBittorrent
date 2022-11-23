@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Ручны</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Аўтаматычны</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -83,10 +99,6 @@
     <message>
         <source>Pause torrents</source>
         <translation>Спыніць торэнты</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Выдаліць торэнты</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -439,10 +451,6 @@
         <translation>Спыніць</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Выдаліць</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Спыніць усё</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>Выдаліць</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Апавяшчэнне па электроннай пошце пасля завяршэння спампавання</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Запусціць знешнюю праграму па сканчэнні спампавання торэнта</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1604,6 +1616,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Run external program</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1682,6 +1726,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Дадаць піраў</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2376,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Капіяваць URL трэкера</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Дадаць новы трэкер...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Змяніць URL трэкера...</translation>
     </message>
@@ -2386,10 +2430,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Акенца дадання трэкера</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Спіс трэкераў для дадання (па аднаму на радок):</translation>
@@ -2524,11 +2564,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Спыніць</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Выдаліць</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Абмежаваць стасунак раздачы...</translation>
     </message>
@@ -2601,10 +2636,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Спампоўваць паслядоўна</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Праверыць прымусова</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2723,14 +2754,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Пацвярджэнне выдалення</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Пацвярджэнне выдалення - qBittorrent</translation>
-    </message>
     <message>
         <source>Also permanently delete the files</source>
         <translation type="unfinished" />
@@ -3061,10 +3084,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tag...</source>
         <translation>Дадаць тэг...</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Выдаліць торэнты</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3592,10 +3611,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Выдаліць торэнты</translation>
-    </message>
     <message>
         <source>Resume torrents</source>
         <translation>Узнавіць торэнты</translation>

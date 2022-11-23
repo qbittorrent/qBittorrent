@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Ročni</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Samodejni</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Ustavi torrente</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Izbriši torrente</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nova kategorija</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Odstrani torrente</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>Premor</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Odstrani</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Premor vseh</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Pošlji e-poštno obvestilo ob zaključku prejema</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Ko se torrent zaključi zaženi zunanji program</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1582,7 +1594,11 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Seznam dovoljenj za filtriranje vrednosti HTTP Glave gostitelja.
+Da se obraniš pred napadom DNS povezovanja,
+vstavi imena domen, ki jih uporablja WebUI strežnik.
+
+Uporabi ';' da razčleniš vnose. Lahko uporbiš nadomestni znak '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1602,6 +1618,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Zaženi zunanji program</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1730,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Dodaj soležnike ...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2380,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kopiraj URL sledilnika</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Dodaj nov sledilnik ...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Uredi URL sledilnika ...</translation>
     </message>
@@ -2381,22 +2429,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Dodaj sledilnike ...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Pogovorno okno za dodajanje sledilnikov</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Seznam sledilnikov za dodajanje (en na vrstico):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Dodaj sledilnike</translation>
     </message>
 </context>
 <context>
@@ -2522,11 +2566,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>Premor</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Odstrani</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2719,14 +2758,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Potrditev odstranjevanja</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Potrditev odstranjevanja - qBittorrent</translation>
-    </message>
     <message>
         <source>Also permanently delete the files</source>
         <translation type="unfinished" />
@@ -3059,10 +3090,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Dodaj oznako ...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Izbriši torrente</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Oznaka:</translation>
     </message>
@@ -3088,7 +3115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Odstrani torrente</translation>
     </message>
 </context>
 <context>
@@ -3590,10 +3617,6 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Odstrani torrente</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Nadaljuj torrente</translation>
     </message>
@@ -3611,7 +3634,7 @@ Podprti formati: S01E01, 1x1, 2017.12.31 and 31.12.2017
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Odstrani torrente</translation>
     </message>
 </context>
 <context>

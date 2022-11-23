@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuale</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automatica</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Metti in pausa torrent</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Elimina torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nuova Categoria</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Rimuovi torrent</translation>
     </message>
 </context>
 <context>
@@ -373,7 +385,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Sei sicuro di voler rimuovere i torrent selezionati dall'elenco di trasferimento?</translation>
     </message>
 </context>
 <context>
@@ -437,10 +449,6 @@
     <message>
         <source>Pause</source>
         <translation>Metti in pausa</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">Elimina</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -589,10 +597,18 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Annulla</translation>
     </message>
     <message>
         <source>Remove</source>
+        <translation>Rimuovi</translation>
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Notifica email a download completato</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Esegui programma esterno a torrent completato</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1522,59 +1534,59 @@
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Write-through (richiede libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Controlla l'intervallo di aggiornamento dello stato interno che a sua volta influenzerà gli aggiornamenti dell'interfaccia utente</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Modalità lettura I/O disco:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Disabilita cache sistema operativo</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Modalità scrittura I/O disco:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Usa affinità estensione segmento:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Annunci HTTP simultanei max:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Abilita cache sistema operativo</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Intervallo aggiornamento:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Limite uso memoria fisica (RAM) (applicato se libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Nomi file esclusi</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Supporto nome dominio internazionalizzato (IDN):</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Esegui programma esterno a torrent completato</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1582,26 +1594,64 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Elenco autorizzati per filtrare valori nell'intestazione host HTTP.
+Per difendersi da attacchi DSN rebinding, dovresti inserire
+i nomi dominio usati dal server dell'interfaccia web.
+
+Usa ';' per dividere voci multiple. Si può usare il carattere
+jolly '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Esegui programma esterno a torrent aggiunto</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Il certificato HTTPS non può essere vuoto</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Per usare l'indirizzo client inoltrato (intestazione X-Forwarded-For) specifica gli IP del proxy inverso (o le sottoreti, ad esempio 0.0.0.0/24).
+Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>La chiave HTTPS non può essere vuota</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Esegui programma esterno</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1732,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Aggiungi peers...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2382,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Copia URL tracker</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Aggiungi un nuovo tracker...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Modifica URL tracker...</translation>
     </message>
@@ -2381,22 +2431,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi tracker...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Finestra per l'aggiunta dei server traccia</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Elenco dei server traccia da aggiungere (uno per riga):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi tracker</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2570,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Metti in pausa</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Elimina</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Limita rapporto di condivione...</translation>
     </message>
@@ -2601,10 +2642,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Scarica in ordine sequenziale</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Forza ricontrollo</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2725,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Rimuovi</translation>
     </message>
 </context>
 <context>
@@ -2724,20 +2761,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Conferma cancellazione</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Conferma eliminazione - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Elimina anche permanentemente i file</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Rimuovi torrent</translation>
     </message>
 </context>
 <context>
@@ -2933,11 +2962,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Per installare i plugin seleziona "Cerca plugin..." in basso a destra nella finestra.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Non c'è nessun plugin di ricerca installato.</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3092,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Aggiungi tag...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Elimina torrent</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Tag:</translation>
     </message>
@@ -3092,7 +3117,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Rimuovi torrent</translation>
     </message>
 </context>
 <context>
@@ -3595,10 +3620,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Elimina torrent</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Riprendi torrent</translation>
     </message>
@@ -3616,7 +3637,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Rimuovi torrent</translation>
     </message>
 </context>
 <context>

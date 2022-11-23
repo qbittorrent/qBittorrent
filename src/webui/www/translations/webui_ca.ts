@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manual</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automàtic</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Interromp els torrents</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Suprimeix els torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Categoria nova</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix els torrents</translation>
     </message>
 </context>
 <context>
@@ -440,10 +452,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Pausa</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Suprimeix</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Interromp-ho tot</translation>
     </message>
@@ -596,6 +604,14 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Remove</source>
         <translation>Suprimeix</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -634,10 +650,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Email notification upon download completion</source>
         <translation>Notificació per correu electrònic de l'acabament de les descàrregues</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Executa un programa extern en acabar el torrent.</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1575,7 +1587,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Executa un programa extern en acabar el torrent.</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1583,26 +1595,62 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Llista blanca per a filtrar els valors de la capçalera de l'amfitrió HTTP.
+Per tal de defensar-se contra atacs de revinculació de DNS, hauríeu
+d'introduir noms de domini usats pel servidor d'interfície d'usuari de xarxa.
+
+Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Executa un programa extern en afegir el torrent.</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>El certificat HTTPS no ha d'estar buit.</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Especifiqueu les adreces IP del servidor invers (o subxarxes, per exemple, 0.0.0.0/24) per usar l'adreça de client reenviada (capçalera X-Forwarded-For). Useu ";" per dividir diverses entrades.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>La clau HTTPS no ha d'estar buida.</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Executa un programa extern</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1683,6 +1731,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Afegeix clients...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2329,10 +2381,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Copia l'URL del rastrejador</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Afegeix un rastrejador nou...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Edita l'URL del rastrejador...</translation>
     </message>
@@ -2382,22 +2430,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Afegeix rastrejadors...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Diàleg per a afegir rastrejadors</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Llista de rastrejadors a afegir (un per línia):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Afegeix rastrejadors</translation>
     </message>
 </context>
 <context>
@@ -2525,11 +2569,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Pausa</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Suprimeix</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Limita la ràtio de compartició...</translation>
     </message>
@@ -2602,10 +2641,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Baixa en ordre seqüencial</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Força la verificació</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2689,7 +2724,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix</translation>
     </message>
 </context>
 <context>
@@ -2725,20 +2760,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Confirmació de supressió</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Confirmació de supressió - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
         <translation>També suprimeix permanentment els fitxers</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix el/s torrent/s</translation>
     </message>
 </context>
 <context>
@@ -2934,11 +2961,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Clique al botó "Cerca connectors..." a la part inferior dreta de la finestra per instal·lar-ne alguns.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>No hi ha cap connector de cerca instal·lat.</translation>
     </message>
 </context>
 <context>
@@ -3064,10 +3091,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Afegeix una etiqueta...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Suprimeix els torrents</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Etiqueta:</translation>
     </message>
@@ -3093,7 +3116,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix els torrents</translation>
     </message>
 </context>
 <context>
@@ -3594,10 +3617,6 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Suprimeix els torrents</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Reprèn els torrents</translation>
     </message>
@@ -3615,7 +3634,7 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Suprimeix els torrents</translation>
     </message>
 </context>
 <context>

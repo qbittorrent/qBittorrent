@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Əl ilə</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Avtomatik</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Torrentlərə fasilə</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Yeni kateqriya</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>Fasilə</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Silmək</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Hamısına fasilə</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>Silin</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Endirilmə başa çatdıqdan sonra e-poçt bildirişi</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Torrent tamamlandıqda xarici proqramı açmaq</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1574,7 +1586,7 @@
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Torrent tamamlandıqda xarici proqramı açmaq</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1582,26 +1594,62 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>HTTP Host başlıqlarının göstəricilərini filtrləmək üçün ağ siyahı.
+DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI 
+serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
+
+Çoxsaylı elementləri bölmək üçün ';' istifadə edin. '*' ümumi nişanından istifadə edə bilərsiniz</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Torrent əlavə edildikdə xarici proqramı açmaq</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS sertifikat boş olmamalıdır</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün ';' işarəsindən istifadə edin.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS açar boş olmamalıdır</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Xarici proqramı başladın</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1730,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>İştirakçı əlavə edin...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2380,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>İzləyici URL kopyalamaq</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Yeni izlyici əlavə edin...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>İzləyici URL-na dezəliş edin...</translation>
     </message>
@@ -2381,22 +2429,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>İzləyicilər əlavə edin...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">İzləyicilərin əlavə edilməsi dialoqu</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Əlavə ediləcək izləyicilərin siyahısı (hər sətirə bir)</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>İzləyicilər əlavə edin</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2568,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Fasilə</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Silmək</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Paylaşım nisbəti həddi...</translation>
     </message>
@@ -2601,10 +2640,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Ardıcıl şəkildə yükləmək</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Məcburi təkrar yoxlamaq</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2723,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Silin</translation>
     </message>
 </context>
 <context>
@@ -2724,20 +2759,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Silinmənin təsdiqlənməsi</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Silinmənin təsdiqlənməsi - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
         <translation>Həmçinin bu faylı birdəfəlik silin</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Torrent(lər)i silin</translation>
     </message>
 </context>
 <context>
@@ -2933,11 +2960,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Pəncərənin aşağı sağındakı "Axtarış plaqinləri..." düyməsinə vuraraq onlardan birini quraşdırın.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Heç bir axtarış plaqini quraşdırılmayıb</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3090,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Etiket əlavə edin...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Etiket:</translation>
     </message>
@@ -3092,7 +3115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>
@@ -3593,10 +3616,6 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Torrentləri davam etdirmək</translation>
     </message>
@@ -3614,7 +3633,7 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>

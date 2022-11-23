@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>دستی</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>خودکار</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -83,10 +99,6 @@
     <message>
         <source>Pause torrents</source>
         <translation>توقف دانلود تورنتها</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">حذف تورنت‌ها</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -439,10 +451,6 @@
         <translation>توقف</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">حذف</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>توقف همه</translation>
     </message>
@@ -593,6 +601,14 @@
     </message>
     <message>
         <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1600,6 +1616,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Run external program</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1677,6 +1725,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer ID Client</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2324,10 +2376,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">افزودن ترکر جدید...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation type="unfinished" />
     </message>
@@ -2514,11 +2562,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
         <translation>توقف</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">حذف</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -3041,10 +3084,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tag...</source>
         <translation>افزودن برچسب...</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">حذف تورنت‌‌ها</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3571,10 +3610,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">حذف تورنتها</translation>
-    </message>
     <message>
         <source>Resume torrents</source>
         <translation>ادامه دانلود تورنتها</translation>

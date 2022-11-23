@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>手動</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>自動</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>暫停 torrent</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">刪除 torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>新分類</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>暫停</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">刪除</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>全部暫停</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>移除</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>下載完成時使用電子郵件通知</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">當 torrent 下載完成時執行外部程式</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1574,7 +1586,7 @@
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>當 torrent 下載結束時執行外部程式</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1582,26 +1594,62 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>HTTP 主機檔頭值的過濾白名單。
+為了防禦 DNS 重新綁紮攻擊，
+您應該把 Web UI 伺服器使用的網域名稱放到白名單內。
+
+使用「;」來分隔多個項目。可以使用萬用字元「*」。</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>當新增 torrent 時執行外部程式</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS 憑證不應為空</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉發的客戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS 金鑰不應為空</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>執行外部程式</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1730,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>新增下載者……</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2380,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>複製追蹤者 URL</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">新增追蹤者…</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>編輯追蹤者 URL…</translation>
     </message>
@@ -2381,22 +2429,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>新增追蹤者……</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">增加追蹤者對話框</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>要增加的追蹤者清單 (每行一個)：</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>新增追蹤者</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2568,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>暫停</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">刪除</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>限制分享率…</translation>
     </message>
@@ -2601,10 +2640,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>依順序下載</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">強制重新檢查</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2723,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>移除</translation>
     </message>
 </context>
 <context>
@@ -2724,20 +2759,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">刪除確認</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">刪除確認 - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
         <translation>並永久刪除檔案</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>移除 torrent(s)</translation>
     </message>
 </context>
 <context>
@@ -2933,11 +2960,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>點擊視窗右下角的「搜尋外掛程式……」按鈕來安裝一些。</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>沒有安裝任何搜尋外掛程式。</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3090,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>新增標籤……</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">刪除 torrent</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>標籤：</translation>
     </message>
@@ -3092,7 +3115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
@@ -3593,10 +3616,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">刪除 torrent</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>繼續 torrent</translation>
     </message>
@@ -3614,7 +3633,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
