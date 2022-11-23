@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuel</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automatique</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Mettre en pause les torrents</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Supprimer les torrents</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Nouvelle catégorie</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Retirer les torrents</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>Mettre en pause</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Supprimer</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Tout mettre en pause</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>Retirer</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Notification par courriel à la fin du téléchargement</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Exécuter un programme externe à la fin d'un téléchargement</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1574,7 +1586,7 @@
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Exécuter un programme externe lorsqu'un torrent est terminé</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1582,26 +1594,61 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Liste blanche pour le filtrage des valeurs d'en-tête de l'hôte HTTP.
+Afin de se défendre contre les attaques par DNS rebinding, vous devez consigner les noms de domaine utilisés par le serveur WebUI.
+
+Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut être utilisé.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Exécuter un programme externe lorsqu'un torrent est ajouté</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Le certificat HTTPS ne devrait pas être vide</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Spécifier les adresses IP du proxy inverse (ou les sous-réseaux, p. ex. 0.0.0.0/24) afin d'utiliser l'adresse client transférée (attribut X-Forwarded-For). Utiliser ';' pour séparer plusieurs entrées.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>La clé HTTPS ne devrait pas être vide</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Exécuter un programme externe</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1729,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Ajouter des pairs...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2379,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Copier l'URL du tracker</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Ajouter un nouveau tracker…</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Modifier l'URL du tracker...</translation>
     </message>
@@ -2381,22 +2428,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Ajouter des trackers...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Boîte de dialogue d'ajout de trackers</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Liste des trackers à ajouter (un par ligne) :</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Ajouter des trackers</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2567,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Mettre en pause</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Supprimer</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Limiter le ratio de partage…</translation>
     </message>
@@ -2601,10 +2639,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Télécharger dans l'ordre séquentiel</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Forcer une revérification</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2722,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Retirer</translation>
     </message>
 </context>
 <context>
@@ -2724,20 +2758,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Confirmation d'une suppression</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Confirmation d'une suppression - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
         <translation>Supprimez également les fichiers de manière définitive</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Retirer le(s) torrent(s)</translation>
     </message>
 </context>
 <context>
@@ -2933,11 +2959,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Cliquez sur le bouton « Rechercher des greffons... » en bas à droite de la fenêtre pour en installer.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Aucun greffon de recherche n'est installé.</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3089,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Ajouter une étiquette...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Supprimer les torrents</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Étiquette :</translation>
     </message>
@@ -3092,7 +3114,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Retirer les torrents</translation>
     </message>
 </context>
 <context>
@@ -3593,10 +3615,6 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Supprimer les torrents</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Reprendre les torrents</translation>
     </message>
@@ -3614,7 +3632,7 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Retirer les torrents</translation>
     </message>
 </context>
 <context>

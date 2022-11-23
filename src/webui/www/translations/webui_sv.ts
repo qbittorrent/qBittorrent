@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuell</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automatisk</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -85,10 +101,6 @@
         <translation>Pausa torrenter</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Ta bort torrenter</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Ny kategori</translation>
     </message>
@@ -98,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrenter</translation>
     </message>
 </context>
 <context>
@@ -439,10 +451,6 @@
         <translation>Pausa</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Ta bort</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Pausa alla</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation>Ta bort</translation>
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>E-postavisering vid hämtning slutförs</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Kör externt program vid slutföring av torrent</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1018,7 +1030,7 @@
     </message>
     <message>
         <source>Change current password</source>
-        <translation>Ändra aktuellt lösenord</translation>
+        <translation>Byt aktuellt lösenord</translation>
     </message>
     <message>
         <source>Automatic</source>
@@ -1574,7 +1586,7 @@
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Kör externt program när torrent är klar</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1582,26 +1594,62 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Vitlista för filtrering av HTTP-värdrubrikvärden.
+För att försvara dig mot DNS-återbindingsattack, bör du lägga in
+domännamn som används av webbanvändargränssnittsservern.
+
+Använd ";" för att dela upp i flera poster. Du kan använda jokertecknet "*".</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Kör externt program när torrent lagts till</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS-certifikatet ska inte vara tomt</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Ange omvänd proxy-IP:er (eller undernät, t.ex. 0.0.0.0/24) för att använda vidarebefordrad klientadress (X-Forwarded-For header). Använd ';' för att dela upp flera poster.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS-nyckeln ska inte vara tom</translation>
     </message>
     <message>
         <source>Run external program</source>
+        <translation>Kör externt program</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1682,6 +1730,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add peers...</source>
         <translation>Lägg till jämlikar...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2328,10 +2380,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kopiera URL för spårare</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Lägg till en ny spårare...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Ändra spårar-URL...</translation>
     </message>
@@ -2381,22 +2429,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Lägg till spårare...</translation>
     </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Lägg till spårare</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Lista över spårare att lägga till (en per rad):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Lägg till spårare</translation>
     </message>
 </context>
 <context>
@@ -2524,11 +2568,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Pausa</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Ta bort</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Begränsa delningskvot...</translation>
     </message>
@@ -2601,10 +2640,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Hämta i sekventiell ordning</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Tvinga återkontroll</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2688,7 +2723,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Ta bort</translation>
     </message>
 </context>
 <context>
@@ -2724,20 +2759,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Bekräftelse för borttagning</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Bekräftelse för borttagning - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
         <translation>Ta också bort filerna permanent</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrenter</translation>
     </message>
 </context>
 <context>
@@ -2933,11 +2960,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Klicka på knappen "Sök insticksmoduler..." längst ner till höger i fönstret för att installera några.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Det finns inga sökinsticksmoduler installerade.</translation>
     </message>
 </context>
 <context>
@@ -3063,10 +3090,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Lägg till tagg...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Ta bort torrenter</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Tagg:</translation>
     </message>
@@ -3092,7 +3115,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrenter</translation>
     </message>
 </context>
 <context>
@@ -3593,10 +3616,6 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Ta bort torrenter</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Återuppta torrenter</translation>
     </message>
@@ -3614,7 +3633,7 @@ Stöder formaten: S01E01, 1x1, 2017.12.31 och 31.12.2017 (datumformatet stöder 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Ta bort torrenter</translation>
     </message>
 </context>
 <context>

@@ -44,10 +44,26 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Manuelt</translation>
     </message>
     <message>
         <source>Automatic</source>
+        <translation>Automatisk</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -83,10 +99,6 @@
     <message>
         <source>Pause torrents</source>
         <translation>Sæt torrents på pause</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Slet torrents</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -439,10 +451,6 @@
         <translation>Sæt på pause</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="vanished">Slet</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Sæt alle på pause</translation>
     </message>
@@ -595,6 +603,14 @@
         <source>Remove</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -633,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Notifikation via e-mail når download er færdig</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation type="vanished">Kør eksternt program når torrent er færdig</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1582,7 +1594,11 @@ In order to defend against DNS rebinding attack,
 you should put in domain names used by WebUI server.
 
 Use ';' to split multiple entries. Can use wildcard '*'.</source>
-        <translation type="unfinished" />
+        <translation>Hvidliste til filtrering af HTTP værtsheaderværdier.
+For at afværge DNS-genbindingsangreb,
+bør du putte domænenavne i som bruges af webgrænsefladens server.
+
+Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
@@ -1602,6 +1618,38 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1681,6 +1729,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Peer ID Client</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2328,10 +2380,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Kopiér tracker-URL</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation type="vanished">Tilføj en ny tracker...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Rediger tracker-URL...</translation>
     </message>
@@ -2386,10 +2434,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
-    <message>
-        <source>Trackers addition dialog</source>
-        <translation type="vanished">Tilføjelse af tracker-dialog</translation>
-    </message>
     <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Liste over trackere der skal tilføjes (en pr. linje):</translation>
@@ -2524,11 +2568,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation>Sæt på pause</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation type="vanished">Slet</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Begræns deleforhold...</translation>
     </message>
@@ -2601,10 +2640,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Download in sequential order</source>
         <translation>Download i fortløbende rækkefølge</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation type="vanished">Tving gentjek</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2723,14 +2758,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </context>
 <context>
     <name>confirmDeletionDlg</name>
-    <message>
-        <source>Deletion confirmation</source>
-        <translation type="vanished">Bekræftelse for sletning</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation type="vanished">Bekræft sletning - qBittorrent</translation>
-    </message>
     <message>
         <source>Also permanently delete the files</source>
         <translation type="unfinished" />
@@ -3061,10 +3088,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Add tag...</source>
         <translation>Tilføj mærkat...</translation>
-    </message>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Slet torrents</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3591,10 +3614,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>TrackerFiltersList</name>
-    <message>
-        <source>Delete torrents</source>
-        <translation type="vanished">Slet torrents</translation>
-    </message>
     <message>
         <source>Resume torrents</source>
         <translation>Genoptag torrents</translation>
