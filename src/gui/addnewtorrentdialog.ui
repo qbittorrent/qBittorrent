@@ -510,7 +510,7 @@
             </layout>
            </item>
            <item>
-            <widget class="TorrentContentTreeView" name="contentTreeView">
+            <widget class="TorrentContentWidget" name="contentTreeView">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
                <horstretch>1</horstretch>
@@ -612,9 +612,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>TorrentContentTreeView</class>
+   <class>TorrentContentWidget</class>
    <extends>QTreeView</extends>
-   <header>gui/torrentcontenttreeview.h</header>
+   <header>gui/torrentcontentwidget.h</header>
   </customwidget>
   <customwidget>
    <class>FileSystemPathComboEdit</class>

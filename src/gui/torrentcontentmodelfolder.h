@@ -62,5 +62,5 @@ public:
     int childCount() const;
 
 private:
-    QVector<TorrentContentModelItem*> m_childItems;
+    QVector<TorrentContentModelItem *> m_childItems;
 };

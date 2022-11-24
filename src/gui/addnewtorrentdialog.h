@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -54,8 +55,6 @@ namespace Ui
 }
 
 class LineEdit;
-class PropListDelegate;
-class TorrentContentFilterModel;
 class TorrentFileGuard;
 
 class AddNewTorrentDialog final : public QDialog
@@ -80,8 +79,6 @@ public:
     static void show(const QString &source, QWidget *parent);
 
 private slots:
-    void displayContentTreeMenu();
-    void displayColumnHeaderMenu();
     void updateDiskSpaceLabel();
     void onSavePathChanged(const Path &newPath);
     void onDownloadPathChanged(const Path &newPath);
@@ -92,16 +89,15 @@ private slots:
     void categoryChanged(int index);
     void contentLayoutChanged();
     void doNotDeleteTorrentClicked(bool checked);
-    void renameSelectedFile();
-    void handleFilterTextChanged(const QString &filter);
 
     void accept() override;
     void reject() override;
 
 private:
+    class TorrentContentAdaptor;
+
     explicit AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inParams, QWidget *parent);
 
-    void applyContentLayout();
     bool loadTorrentFile(const QString &source);
     bool loadTorrentImpl();
     bool loadMagnet(const BitTorrent::MagnetUri &magnetUri);
@@ -116,12 +112,9 @@ private:
     void showEvent(QShowEvent *event) override;
 
     Ui::AddNewTorrentDialog *m_ui = nullptr;
-    TorrentContentFilterModel *m_contentModel = nullptr;
-    PropListDelegate *m_contentDelegate = nullptr;
+    TorrentContentAdaptor *m_contentAdaptor = nullptr;
     BitTorrent::MagnetUri m_magnetURI;
     BitTorrent::TorrentInfo m_torrentInfo;
-    Path m_originalRootFolder;
-    BitTorrent::TorrentContentLayout m_currentContentLayout;
     int m_savePathIndex = -1;
     int m_downloadPathIndex = -1;
     bool m_useDownloadPath = false;

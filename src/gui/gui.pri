@@ -39,7 +39,6 @@ HEADERS += \
     $$PWD/properties/pieceavailabilitybar.h \
     $$PWD/properties/piecesbar.h \
     $$PWD/properties/propertieswidget.h \
-    $$PWD/properties/proplistdelegate.h \
     $$PWD/properties/proptabbar.h \
     $$PWD/properties/speedplotview.h \
     $$PWD/properties/speedwidget.h \
@@ -65,11 +64,12 @@ HEADERS += \
     $$PWD/tagfilterwidget.h \
     $$PWD/torrentcategorydialog.h \
     $$PWD/torrentcontentfiltermodel.h \
+    $$PWD/torrentcontentitemdelegate.h \
     $$PWD/torrentcontentmodel.h \
     $$PWD/torrentcontentmodelfile.h \
     $$PWD/torrentcontentmodelfolder.h \
     $$PWD/torrentcontentmodelitem.h \
-    $$PWD/torrentcontenttreeview.h \
+    $$PWD/torrentcontentwidget.h \
     $$PWD/torrentcreatordialog.h \
     $$PWD/torrentoptionsdialog.h \
     $$PWD/trackerentriesdialog.h \
@@ -123,7 +123,6 @@ SOURCES += \
     $$PWD/properties/pieceavailabilitybar.cpp \
     $$PWD/properties/piecesbar.cpp \
     $$PWD/properties/propertieswidget.cpp \
-    $$PWD/properties/proplistdelegate.cpp \
     $$PWD/properties/proptabbar.cpp \
     $$PWD/properties/speedplotview.cpp \
     $$PWD/properties/speedwidget.cpp \
@@ -149,11 +148,12 @@ SOURCES += \
     $$PWD/tagfilterwidget.cpp \
     $$PWD/torrentcategorydialog.cpp \
     $$PWD/torrentcontentfiltermodel.cpp \
+    $$PWD/torrentcontentitemdelegate.cpp \
     $$PWD/torrentcontentmodel.cpp \
     $$PWD/torrentcontentmodelfile.cpp \
     $$PWD/torrentcontentmodelfolder.cpp \
     $$PWD/torrentcontentmodelitem.cpp \
-    $$PWD/torrentcontenttreeview.cpp \
+    $$PWD/torrentcontentwidget.cpp \
     $$PWD/torrentcreatordialog.cpp \
     $$PWD/torrentoptionsdialog.cpp \
     $$PWD/trackerentriesdialog.cpp \
