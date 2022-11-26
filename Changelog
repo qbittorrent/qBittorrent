@@ -1,4 +1,4 @@
-Unreleased - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.0
+Sat Nov 26 2022 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.0
     - FEATURE: Add `Auto resize columns` functionality (Chocobo1)
     - FEATURE: Allow to use Category paths in `Manual` mode (glassez)
     - FEATURE: Allow to disable Automatic mode when default "temp" path changed (glassez)
