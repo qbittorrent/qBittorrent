@@ -70,7 +70,7 @@ namespace
         case BitTorrent::TorrentState::PausedDownloading:
             return (isDarkTheme ? Color::Primer::Dark::fgMuted : Color::Primer::Light::fgMuted);
         case BitTorrent::TorrentState::PausedUploading:
-            return (isDarkTheme ? Color::Primer::Dark::scaleBlue4 : Color::Primer::Light::scaleBlue4);
+            return (isDarkTheme ? Color::Primer::Dark::doneFg : Color::Primer::Light::doneFg);
         case BitTorrent::TorrentState::QueuedDownloading:
         case BitTorrent::TorrentState::QueuedUploading:
             return (isDarkTheme ? Color::Primer::Dark::scaleYellow6 : Color::Primer::Light::scaleYellow6);
