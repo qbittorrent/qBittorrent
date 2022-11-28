@@ -1598,8 +1598,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
 U svrhu obrane od napada ponovnog povezivanja DNS-a,
 trebali biste unijeti nazive domena koje koristi WebUI poslužitelj.
 
-Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.
-</translation>
+Koristite ';' za razdvajanje više unosa. Može koristiti zamjenski znak '*'.</translation>
     </message>
     <message>
         <source>Run external program on torrent added</source>
