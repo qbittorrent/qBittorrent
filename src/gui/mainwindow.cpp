@@ -1200,9 +1200,14 @@ bool MainWindow::event(QEvent *e)
     {
     case QEvent::WindowStateChange:
         qDebug("Window change event");
-        // Now check to see if the window is minimised
-        if (isMinimized())
+
+        // Now check to see if the window is minimised.
+        // On some OS'es the window might be in minimized state for a moment
+        // when raising from tray so check again after a while.
+        if (isMinimized()) QTimer::singleShot(0, [this]()
         {
+            if (!isMinimized() || !isVisible()) return;
+
             qDebug("minimisation");
             Preferences *const pref = Preferences::instance();
             if (app()->desktopIntegration()->isActive() && pref->minimizeToTray())
@@ -1216,17 +1221,16 @@ bool MainWindow::event(QEvent *e)
                 if (!hasModalWindow)
                 {
                     qDebug("Minimize to Tray enabled, hiding!");
-                    e->ignore();
+                    hide();
                     QMetaObject::invokeMethod(this, &QWidget::hide, Qt::QueuedConnection);
                     if (!pref->minimizeToTrayNotified())
                     {
                         app()->desktopIntegration()->showNotification(tr("qBittorrent is minimized to tray"), tr("This behavior can be changed in the settings. You won't be reminded again."));
                         pref->setMinimizeToTrayNotified(true);
                     }
-                    return true;
                 }
             }
-        }
+        });
         break;
     case QEvent::ToolBarChange:
         {
