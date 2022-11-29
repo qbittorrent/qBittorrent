@@ -332,6 +332,7 @@
         <file>private/images/name.svg</file>
         <file>private/images/peers-add.svg</file>
         <file>private/images/peers-remove.svg</file>
+        <file>private/images/queued.svg</file>
         <file>private/images/ratio.svg</file>
         <file>private/images/reannounce.svg</file>
         <file>private/images/set-location.svg</file>
