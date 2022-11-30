@@ -48,7 +48,7 @@ namespace Color
             inline const QColor fgSubtle = 0x6e7681;
             inline const QColor severeFg = 0xdb6d28;
             inline const QColor successEmphasis = 0x238636;
-            inline const QColor successFg = 0x1a7f37;
+            inline const QColor successFg = 0x3fb950;
             // Scale variables
             inline const QColor scaleYellow6 = 0x845306;
         }
