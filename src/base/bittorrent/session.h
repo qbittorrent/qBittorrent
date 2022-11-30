@@ -468,6 +468,6 @@ namespace BitTorrent
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
-        void trackerEntriesUpdated(const QHash<Torrent *, QSet<QString>> &updateInfos);
+        void trackerEntriesUpdated(Torrent *torrent, const QHash<QString, TrackerEntry> &updatedTrackerEntries);
     };
 }

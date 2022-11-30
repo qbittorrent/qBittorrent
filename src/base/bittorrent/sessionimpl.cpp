@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,7 +35,6 @@
 #include <ctime>
 #include <queue>
 #include <string>
-#include <utility>
 
 #ifdef Q_OS_WIN
 #include <Windows.h>
@@ -117,6 +116,24 @@ using namespace BitTorrent;
 const Path CATEGORIES_FILE_NAME {u"categories.json"_qs};
 const int MAX_PROCESSING_RESUMEDATA_COUNT = 50;
 const int STATISTICS_SAVE_INTERVAL = std::chrono::milliseconds(15min).count();
+
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+namespace std
+{
+    uint qHash(const std::string &key, uint seed = 0)
+    {
+        return qHash(QByteArray::fromRawData(key.data(), static_cast<int>(key.length())), seed);
+    }
+}
+
+namespace libtorrent
+{
+    uint qHash(const libtorrent::torrent_handle &key)
+    {
+        return static_cast<uint>(libtorrent::hash_value(key));
+    }
+}
+#endif
 
 namespace
 {
@@ -5809,13 +5826,12 @@ void SessionImpl::handleTrackerAlert(const lt::tracker_alert *a)
     if (!torrent)
         return;
 
-    const auto trackerURL = QString::fromUtf8(a->tracker_url());
-    m_updatedTrackerEntries[torrent].insert(trackerURL);
+    QMap<TrackerEntry::Endpoint, int> &updateInfo = m_updatedTrackerEntries[torrent->nativeHandle()][std::string(a->tracker_url())];
 
     if (a->type() == lt::tracker_reply_alert::alert_type)
     {
         const int numPeers = static_cast<const lt::tracker_reply_alert *>(a)->num_peers;
-        torrent->updatePeerCount(trackerURL, a->local_endpoint, numPeers);
+        updateInfo.insert(a->local_endpoint, numPeers);
     }
 }
 
@@ -5869,20 +5885,50 @@ void SessionImpl::handleTorrentConflictAlert(const lt::torrent_conflict_alert *a
 
 void SessionImpl::processTrackerStatuses()
 {
+    if (m_updatedTrackerEntries.isEmpty())
+        return;
+
     for (auto it = m_updatedTrackerEntries.cbegin(); it != m_updatedTrackerEntries.cend(); ++it)
     {
-        auto torrent = static_cast<TorrentImpl *>(it.key());
-        const QSet<QString> &updatedTrackers = it.value();
+        invokeAsync([this, torrentHandle = it.key(), updatedTrackers = it.value()]() mutable
+        {
+            try
+            {
+                std::vector<lt::announce_entry> nativeTrackers = torrentHandle.trackers();
+                invoke([this, torrentHandle, nativeTrackers = std::move(nativeTrackers)
+                        , updatedTrackers = std::move(updatedTrackers)]
+                {
+                    TorrentImpl *torrent = m_torrents.value(torrentHandle.info_hash());
+                    if (!torrent)
+                        return;
 
-        for (const QString &trackerURL : updatedTrackers)
-            torrent->invalidateTrackerEntry(trackerURL);
+                    QHash<QString, TrackerEntry> updatedTrackerEntries;
+                    updatedTrackerEntries.reserve(updatedTrackers.size());
+                    for (const lt::announce_entry &announceEntry : nativeTrackers)
+                    {
+                        const auto updatedTrackersIter = updatedTrackers.find(announceEntry.url);
+                        if (updatedTrackersIter == updatedTrackers.end())
+                            continue;
+
+                        const QMap<TrackerEntry::Endpoint, int> &updateInfo = updatedTrackersIter.value();
+                        TrackerEntry trackerEntry = torrent->updateTrackerEntry(announceEntry, updateInfo);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+                        updatedTrackerEntries[trackerEntry.url] = std::move(trackerEntry);
+#else
+                        updatedTrackerEntries.emplace(trackerEntry.url, std::move(trackerEntry));
+#endif
+                    }
+
+                    emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
+                });
+            }
+            catch (const std::exception &)
+            {
+            }
+        });
     }
 
-    if (!m_updatedTrackerEntries.isEmpty())
-    {
-        emit trackerEntriesUpdated(m_updatedTrackerEntries);
-        m_updatedTrackerEntries.clear();
-    }
+    m_updatedTrackerEntries.clear();
 }
 
 void SessionImpl::saveStatistics() const

@@ -29,6 +29,7 @@
 
 #pragma once
 
+#include <utility>
 #include <variant>
 #include <vector>
 
@@ -36,11 +37,11 @@
 #include <libtorrent/portmap.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
+#include <QtContainerFwd>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <QtContainerFwd>
 #include <QVector>
 
 #include "base/path.h"
@@ -438,6 +439,12 @@ namespace BitTorrent
         void addMappedPorts(const QSet<quint16> &ports);
         void removeMappedPorts(const QSet<quint16> &ports);
 
+        template <typename Func>
+        void invoke(Func &&func)
+        {
+            QMetaObject::invokeMethod(this, std::forward<Func>(func));
+        }
+
         void invokeAsync(std::function<void ()> func);
 
     private slots:
@@ -719,7 +726,9 @@ namespace BitTorrent
         QMap<QString, CategoryOptions> m_categories;
         QSet<QString> m_tags;
 
-        QHash<Torrent *, QSet<QString>> m_updatedTrackerEntries;
+        // This field holds amounts of peers reported by trackers in their responses to announces
+        // (torrent.tracker_name.tracker_local_endpoint.num_peers)
+        QHash<lt::torrent_handle, QHash<std::string, QMap<TrackerEntry::Endpoint, int>>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;

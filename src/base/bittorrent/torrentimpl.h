@@ -248,15 +248,13 @@ namespace BitTorrent
         void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
-        void updatePeerCount(const QString &trackerURL, const TrackerEntry::Endpoint &endpoint, int count);
-        void invalidateTrackerEntry(const QString &trackerURL);
+        TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo);
 
     private:
         using EventTrigger = std::function<void ()>;
 
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
-        void refreshTrackerEntries() const;
         void updateStatus(const lt::torrent_status &nativeStatus);
         void updateState();
 
@@ -316,10 +314,7 @@ namespace BitTorrent
 
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
-        // TODO: Use QHash<TrackerEntry::Endpoint, int> once Qt5 is dropped.
-        using TrackerEntryUpdateInfo = QMap<TrackerEntry::Endpoint, int>;
-        mutable QHash<QString, TrackerEntryUpdateInfo> m_updatedTrackerEntries;
-        mutable QVector<TrackerEntry> m_trackerEntries;
+        QVector<TrackerEntry> m_trackerEntries;
         FileErrorInfo m_lastFileError;
 
         // Persistent data

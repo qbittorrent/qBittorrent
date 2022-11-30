@@ -599,59 +599,51 @@ void TrackerFiltersList::setDownloadTrackerFavicon(bool value)
     }
 }
 
-void TrackerFiltersList::handleTrackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos)
+void TrackerFiltersList::handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
+        , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries)
 {
-    for (auto torrentsIt = updateInfos.cbegin(); torrentsIt != updateInfos.cend(); ++torrentsIt)
+    const BitTorrent::TorrentID id = torrent->id();
+
+    auto errorHashesIt = m_errors.find(id);
+    auto warningHashesIt = m_warnings.find(id);
+
+    for (const BitTorrent::TrackerEntry &trackerEntry : updatedTrackerEntries)
     {
-        const BitTorrent::Torrent *torrent = torrentsIt.key();
-        const QSet<QString> &trackerURLs = torrentsIt.value();
-        const BitTorrent::TorrentID id = torrent->id();
-
-        auto errorHashesIt = m_errors.find(id);
-        auto warningHashesIt = m_warnings.find(id);
-
-        const QVector<BitTorrent::TrackerEntry> trackers = torrent->trackers();
-        for (const BitTorrent::TrackerEntry &trackerEntry : trackers)
+        if (trackerEntry.status == BitTorrent::TrackerEntry::Working)
         {
-            if (!trackerURLs.contains(trackerEntry.url))
-                continue;
-
-            if (trackerEntry.status == BitTorrent::TrackerEntry::Working)
+            if (errorHashesIt != m_errors.end())
             {
-                if (errorHashesIt != m_errors.end())
-                {
-                    QSet<QString> &errored = errorHashesIt.value();
-                    errored.remove(trackerEntry.url);
-                }
+                QSet<QString> &errored = errorHashesIt.value();
+                errored.remove(trackerEntry.url);
+            }
 
-                if (trackerEntry.message.isEmpty())
+            if (trackerEntry.message.isEmpty())
+            {
+                if (warningHashesIt != m_warnings.end())
                 {
-                    if (warningHashesIt != m_warnings.end())
-                    {
-                        QSet<QString> &warned = *warningHashesIt;
-                        warned.remove(trackerEntry.url);
-                    }
-                }
-                else
-                {
-                    if (warningHashesIt == m_warnings.end())
-                        warningHashesIt = m_warnings.insert(id, {});
-                    warningHashesIt.value().insert(trackerEntry.url);
+                    QSet<QString> &warned = *warningHashesIt;
+                    warned.remove(trackerEntry.url);
                 }
             }
-            else if (trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
+            else
             {
-                if (errorHashesIt == m_errors.end())
-                    errorHashesIt = m_errors.insert(id, {});
-                errorHashesIt.value().insert(trackerEntry.url);
+                if (warningHashesIt == m_warnings.end())
+                    warningHashesIt = m_warnings.insert(id, {});
+                warningHashesIt.value().insert(trackerEntry.url);
             }
         }
-
-        if ((errorHashesIt != m_errors.end()) && errorHashesIt.value().isEmpty())
-            m_errors.erase(errorHashesIt);
-        if ((warningHashesIt != m_warnings.end()) && warningHashesIt.value().isEmpty())
-            m_warnings.erase(warningHashesIt);
+        else if (trackerEntry.status == BitTorrent::TrackerEntry::NotWorking)
+        {
+            if (errorHashesIt == m_errors.end())
+                errorHashesIt = m_errors.insert(id, {});
+            errorHashesIt.value().insert(trackerEntry.url);
+        }
     }
+
+    if ((errorHashesIt != m_errors.end()) && errorHashesIt.value().isEmpty())
+        m_errors.erase(errorHashesIt);
+    if ((warningHashesIt != m_warnings.end()) && warningHashesIt.value().isEmpty())
+        m_warnings.erase(warningHashesIt);
 
     item(ERROR_ROW)->setText(tr("Error (%1)").arg(m_errors.size()));
     item(WARNING_ROW)->setText(tr("Warning (%1)").arg(m_warnings.size()));
@@ -920,9 +912,10 @@ void TransferListFiltersWidget::changeTrackerless(const BitTorrent::Torrent *tor
     m_trackerFilters->changeTrackerless(torrent, trackerless);
 }
 
-void TransferListFiltersWidget::trackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos)
+void TransferListFiltersWidget::trackerEntriesUpdated(const BitTorrent::Torrent *torrent
+        , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries)
 {
-    m_trackerFilters->handleTrackerEntriesUpdated(updateInfos);
+    m_trackerFilters->handleTrackerEntriesUpdated(torrent, updatedTrackerEntries);
 }
 
 void TransferListFiltersWidget::onCategoryFilterStateChanged(bool enabled)
