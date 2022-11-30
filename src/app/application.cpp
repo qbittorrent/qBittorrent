@@ -706,7 +706,7 @@ try
 #ifndef DISABLE_GUI
     UIThemeManager::initInstance();
 
-    m_desktopIntegration = new DesktopIntegration(this);
+    m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
 #ifndef Q_OS_MACOS
     auto *desktopIntegrationMenu = new QMenu;
@@ -1201,6 +1201,7 @@ void Application::cleanup()
         ::ShutdownBlockReasonDestroy(reinterpret_cast<HWND>(m_window->effectiveWinId()));
 #endif // Q_OS_WIN
         delete m_window;
+        delete m_desktopIntegration;
         UIThemeManager::freeInstance();
     }
 #endif // DISABLE_GUI
