@@ -58,6 +58,7 @@ namespace BitTorrent
         int currentDBVersion() const;
         void createDB() const;
         void updateDB(int fromVersion) const;
+        void enableWALMode() const;
 
         QThread *m_ioThread = nullptr;
 
