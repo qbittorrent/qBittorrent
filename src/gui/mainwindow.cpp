@@ -50,10 +50,6 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
-#include "notifications/dbusnotifier.h"
-#endif
-
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/global.h"
