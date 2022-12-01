@@ -577,7 +577,8 @@ void TorrentsController::filesAction()
                 {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
                 {KEY_FILE_SIZE, torrent->fileSize(index)},
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
-                {KEY_FILE_NAME, torrent->filePath(index).toString()}
+                // need to provide paths using a platform-independent separator format
+                {KEY_FILE_NAME, torrent->filePath(index).data()}
             };
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
