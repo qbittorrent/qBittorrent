@@ -86,5 +86,5 @@ private:
     Ui::RSSWidget *m_ui = nullptr;
     ArticleListWidget *m_articleListWidget = nullptr;
     FeedListWidget *m_feedListWidget = nullptr;
-    const QString filterNewRssRuleBtnNameFilter(const QString name_to_filter);
+    const QString sanitizeNewRssRuleName(const QString name_to_filter);
 };
