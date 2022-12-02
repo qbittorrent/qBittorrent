@@ -427,6 +427,11 @@ void AutomatedRssDownloader::on_addCategoryBtn_clicked()
     }
 }
 
+void AutomatedRssDownloader::on_editTitleBtn_clicked()
+{
+    renameSelectedRule();
+}
+
 void AutomatedRssDownloader::on_exportBtn_clicked()
 {
     if (RSS::AutoDownloader::instance()->rules().isEmpty())

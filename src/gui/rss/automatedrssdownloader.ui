@@ -424,7 +424,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
-     <item>
+      <item>
+      <widget class="QPushButton" name="editTitleBtn">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="text">
+         <string>&amp;Edit rule title</string>
+        </property>
+       </widget>
+      </item>
+      <item>
       <widget class="QPushButton" name="importBtn">
        <property name="enabled">
         <bool>true</bool>
@@ -482,6 +492,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
   <tabstop>comboContentLayout</tabstop>
   <tabstop>listFeeds</tabstop>
   <tabstop>treeMatchingArticles</tabstop>
+  <tabstop>editTitleBtn</tabstop>
   <tabstop>importBtn</tabstop>
   <tabstop>exportBtn</tabstop>
  </tabstops>
