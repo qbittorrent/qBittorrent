@@ -72,6 +72,7 @@ private slots:
     void handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QListWidgetItem *previousItem);
     void openSelectedArticlesUrls();
     void downloadSelectedTorrents();
+    void on_newRssRuleBtn_clicked();
     void saveSlidersPosition();
     void restoreSlidersPosition();
     void askNewFolder();
@@ -85,4 +86,5 @@ private:
     Ui::RSSWidget *m_ui = nullptr;
     ArticleListWidget *m_articleListWidget = nullptr;
     FeedListWidget *m_feedListWidget = nullptr;
+    const QString filterNewRssRuleBtnNameFilter(const QString name_to_filter);
 };

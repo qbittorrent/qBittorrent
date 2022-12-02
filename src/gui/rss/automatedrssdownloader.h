@@ -60,6 +60,8 @@ public:
     explicit AutomatedRssDownloader(QWidget *parent = nullptr);
     ~AutomatedRssDownloader() override;
 
+    void selectItem(const QString nameToSelect);
+
 private slots:
     void on_addRuleBtn_clicked();
     void on_removeRuleBtn_clicked();
