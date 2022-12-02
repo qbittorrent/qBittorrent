@@ -60,7 +60,8 @@ public:
     explicit AutomatedRssDownloader(QWidget *parent = nullptr);
     ~AutomatedRssDownloader() override;
 
-    void selectItem(const QString nameToSelect);
+    void selectItem(const QString nameToSelect); // used for right-click new rule
+    int getTreeMatchingArticlesCount(); // used for right-click new rule
 
 private slots:
     void on_addRuleBtn_clicked();

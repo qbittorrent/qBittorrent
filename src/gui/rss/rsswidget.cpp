@@ -421,7 +421,7 @@ void RSSWidget::on_newRssRuleBtn_clicked() {
     // If sanitizer returns empty, we don't add anything
     if (sanitizedRssRuleArticleTitle.isEmpty()) {
         QMessageBox::warning(
-            this, tr("Rule problem"),
+            this, tr("Issue with rule name"),
             tr("Torrent name could not be extracted, add failed."));
         return;
     }
@@ -466,6 +466,11 @@ void RSSWidget::on_newRssRuleBtn_clicked() {
 
     // Using the newly implemented selectItem(), we select the new item
     downloader->selectItem(sanitizedRssRuleArticleTitle);
+
+    if (downloader->getTreeMatchingArticlesCount() == 0) {
+        QMessageBox::warning(downloader, tr("No matches found"),
+                             tr("Please check the new rule's Must Contain field."));
+    }
 }
 
 // open the url of the selected RSS articles in the Web browser

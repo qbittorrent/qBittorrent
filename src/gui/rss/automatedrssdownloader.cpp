@@ -179,6 +179,12 @@ void AutomatedRssDownloader::selectItem(const QString nameToSelect)
     }
 }
 
+// Returns 0 if there are no matches for selected rule
+int AutomatedRssDownloader::getTreeMatchingArticlesCount()
+{
+    return m_ui->treeMatchingArticles->topLevelItemCount();
+}
+
 void AutomatedRssDownloader::loadSettings()
 {
     if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
