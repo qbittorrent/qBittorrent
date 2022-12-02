@@ -398,8 +398,7 @@ const QString RSSWidget::sanitizeNewRssRuleName(const QString name_to_filter)
     return name.simplified(); // return without multiple whitespace
 }
 
-void RSSWidget::on_newRssRuleBtn_clicked()
-{
+void RSSWidget::on_newRssRuleBtn_clicked() {
 
     // Safety:
     // The feature only appears if there is only 1 article selected,
@@ -408,41 +407,48 @@ void RSSWidget::on_newRssRuleBtn_clicked()
         return;
 
     // Retrieve article from selected items
-    auto selectedRssRule = asConst(m_articleListWidget->selectedItems()[0]);
-    auto selectedRssRuleArticle = selectedRssRule->data(Qt::UserRole).value<RSS::Article *>();
+    QListWidgetItem *selectedRssRule =
+        asConst(m_articleListWidget->selectedItems()[0]);
+    RSS::Article *selectedRssRuleArticle =
+        selectedRssRule->data(Qt::UserRole).value<RSS::Article *>();
     Q_ASSERT(selectedRssRuleArticle);
 
     // Get the title and also sanitize it
-    auto selectedRssRuleArticleTitle = selectedRssRuleArticle->title();
-    auto sanitizedRssRuleArticleTitle = sanitizeNewRssRuleName(selectedRssRuleArticleTitle);
+    QString selectedRssRuleArticleTitle = selectedRssRuleArticle->title();
+    QString sanitizedRssRuleArticleTitle =
+        sanitizeNewRssRuleName(selectedRssRuleArticleTitle);
 
     // If sanitizer returns empty, we don't add anything
-    if (sanitizedRssRuleArticleTitle.isEmpty())
-    {
-        QMessageBox::warning(this, tr("Rule problem")
-                             , tr("Torrent name could not be extracted, add failed."));
+    if (sanitizedRssRuleArticleTitle.isEmpty()) {
+        QMessageBox::warning(
+            this, tr("Rule problem"),
+            tr("Torrent name could not be extracted, add failed."));
         return;
     }
 
     // Check if this rule name already exists
-    if (RSS::AutoDownloader::instance()->hasRule(sanitizedRssRuleArticleTitle))
-    {
-        QMessageBox::warning(this, tr("Rule name conflict")
-                             , tr("No new rule has been added."));
+    if (RSS::AutoDownloader::instance()->hasRule(
+            sanitizedRssRuleArticleTitle)) {
+        QMessageBox::warning(this, tr("Rule name conflict"),
+                             tr("No new rule has been added."));
         return;
     }
 
     // Insert new rule to prepare it for further edit
-    RSS::AutoDownloader::instance()->insertRule(RSS::AutoDownloadRule(sanitizedRssRuleArticleTitle));
+    RSS::AutoDownloader::instance()->insertRule(
+        RSS::AutoDownloadRule(sanitizedRssRuleArticleTitle));
 
     // We retrieve the newly inserted blank rule
-    auto insertedRule = RSS::AutoDownloader::instance()->ruleByName(sanitizedRssRuleArticleTitle);
+    RSS::AutoDownloadRule insertedRule =
+        RSS::AutoDownloader::instance()->ruleByName(
+            sanitizedRssRuleArticleTitle);
 
     // Remove the inserted new rule for now (there is no change method)
     RSS::AutoDownloader::instance()->removeRule(insertedRule.name());
 
     // Set up our rule-in-works
-    insertedRule.setMustContain(selectedRssRuleArticleTitle); // must match 1:1 without sanitization
+    insertedRule.setMustContain(
+        selectedRssRuleArticleTitle); // must match 1:1 without sanitization
 
     // Feed match: we pass a 1 string QStringList as feed list
     QStringList feedURL;
@@ -452,9 +458,9 @@ void RSSWidget::on_newRssRuleBtn_clicked()
     // Insert set-up rule
     RSS::AutoDownloader::instance()->insertRule(insertedRule);
 
-    // Open the downloader and open this new rule so user can finish setting it up
-    // Taken from on_rssDownloaderBtn_clicked()
-    auto *downloader = new AutomatedRssDownloader(this);
+    // Open the downloader and open this new rule so user can finish setting it
+    // up Taken from on_rssDownloaderBtn_clicked()
+    AutomatedRssDownloader *downloader = new AutomatedRssDownloader(this);
     downloader->setAttribute(Qt::WA_DeleteOnClose);
     downloader->open();
 
