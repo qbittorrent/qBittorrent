@@ -1530,20 +1530,21 @@ void TorrentImpl::refreshTrackerEntries() const
     const std::vector<lt::announce_entry> nativeTrackers = m_nativeHandle.trackers();
     Q_ASSERT(nativeTrackers.size() == m_trackerEntries.size());
 
-    for (TrackerEntry &trackerEntry : m_trackerEntries)
+    for (const lt::announce_entry &announceEntry : nativeTrackers)
     {
-        const auto updatedTrackerIter = m_updatedTrackerEntries.find(trackerEntry.url);
+        const auto trackerURL = QString::fromStdString(announceEntry.url);
+        const auto updatedTrackerIter = m_updatedTrackerEntries.find(trackerURL);
         if (updatedTrackerIter == m_updatedTrackerEntries.end())
             continue;
 
-        const auto nativeTrackerIter = std::find_if(nativeTrackers.cbegin(), nativeTrackers.cend()
-                                    , [trackerURL = trackerEntry.url.toStdString()](const lt::announce_entry &announceEntry)
+        const auto trackerIter = std::find_if(m_trackerEntries.begin(), m_trackerEntries.end()
+                                    , [&trackerURL](const TrackerEntry &trackerEntry)
         {
-            return (announceEntry.url == trackerURL);
+            return (trackerEntry.url == trackerURL);
         });
-        Q_ASSERT(nativeTrackerIter != nativeTrackers.cend());
+        Q_ASSERT(trackerIter != m_trackerEntries.end());
 
-        const lt::announce_entry &announceEntry = *nativeTrackerIter;
+        TrackerEntry &trackerEntry = *trackerIter;
 #ifdef QBT_USES_LIBTORRENT2
         updateTrackerEntry(trackerEntry, announceEntry, m_nativeHandle.info_hashes(), updatedTrackerIter.value());
 #else
