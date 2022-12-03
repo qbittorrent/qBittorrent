@@ -166,13 +166,14 @@ AutomatedRssDownloader::~AutomatedRssDownloader()
 }
 
 // Selects a row by name
-void AutomatedRssDownloader::selectItem(const QString nameToSelect)
+void AutomatedRssDownloader::selectRule(const QString &ruleName)
 {
     m_ui->listRules->clearSelection();
     for (int i = 0; i < m_ui->listRules->count(); ++i)
     {
         const QString current_element_text = m_ui->listRules->item(i)->text();
-        if (nameToSelect == current_element_text) {
+        if (ruleName == current_element_text)
+        {
             m_ui->listRules->setCurrentRow(i);
             return;
         }

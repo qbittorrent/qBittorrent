@@ -100,7 +100,6 @@
         <widget class="QLabel" name="news_lbl">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -197,7 +196,7 @@
     <string>New folder...</string>
    </property>
   </action>
-  <action name="actionRightClickAddRssRule">
+  <action name="actionAddRSSRule">
    <property name="text">
     <string>Add new RSS rule</string>
    </property>

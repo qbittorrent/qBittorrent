@@ -44,18 +44,18 @@
 #include "base/net/downloadmanager.h"
 #include "base/preferences.h"
 #include "base/rss/rss_article.h"
+#include "base/rss/rss_autodownloader.h"
 #include "base/rss/rss_feed.h"
 #include "base/rss/rss_folder.h"
 #include "base/rss/rss_session.h"
 #include "gui/addnewtorrentdialog.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
+#include "gui/rss/automatedrssdownloader.h"
 #include "articlelistwidget.h"
 #include "automatedrssdownloader.h"
 #include "feedlistwidget.h"
 #include "ui_rsswidget.h"
-#include "base/rss/rss_autodownloader.h"
-#include "gui/rss/automatedrssdownloader.h"
 
 RSSWidget::RSSWidget(QWidget *parent)
     : QWidget(parent)
@@ -67,7 +67,7 @@ RSSWidget::RSSWidget(QWidget *parent)
     m_ui->actionCopyFeedURL->setIcon(UIThemeManager::instance()->getIcon(u"edit-copy"_qs));
     m_ui->actionDelete->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_qs));
     m_ui->actionDownloadTorrent->setIcon(UIThemeManager::instance()->getIcon(u"downloading"_qs));
-    m_ui->actionRightClickAddRssRule->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
+    m_ui->actionAddRSSRule->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
     m_ui->actionMarkItemsRead->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
     m_ui->actionNewFolder->setIcon(UIThemeManager::instance()->getIcon(u"folder-new"_qs));
     m_ui->actionNewSubscription->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
@@ -115,7 +115,7 @@ RSSWidget::RSSWidget(QWidget *parent)
     // News list actions
     connect(m_ui->actionOpenNewsURL, &QAction::triggered, this, &RSSWidget::openSelectedArticlesUrls);
     connect(m_ui->actionDownloadTorrent, &QAction::triggered, this, &RSSWidget::downloadSelectedTorrents);
-    connect(m_ui->actionRightClickAddRssRule, &QAction::triggered, this, &RSSWidget::on_newRssRuleBtn_clicked);
+    connect(m_ui->actionAddRSSRule, &QAction::triggered, this, &RSSWidget::newRSSRuleBtn);
 
     // Restore sliders position
     restoreSlidersPosition();
@@ -222,7 +222,7 @@ void RSSWidget::displayItemsListMenu()
         myItemListMenu->addAction(m_ui->actionOpenNewsURL);
 
     if (m_articleListWidget->selectedItems().length() == 1)
-        myItemListMenu->addAction(m_ui->actionRightClickAddRssRule);
+        myItemListMenu->addAction(m_ui->actionAddRSSRule);
 
     if (!myItemListMenu->isEmpty())
         myItemListMenu->popup(QCursor::pos());
@@ -383,11 +383,11 @@ void RSSWidget::downloadSelectedTorrents()
 }
 
 // Provides a way to filter a torrent's name. Used for Right-Click -> Add new RSS Rule.
-const QString RSSWidget::sanitizeNewRssRuleName(const QString name_to_filter)
+const QString RSSWidget::sanitizeNewRssRuleName(const QString &ruleName)
 {
     QString name;
 
-    for (QChar currentChar : name_to_filter)
+    for (QChar currentChar : ruleName)
     {
         if (currentChar.isSpace() || currentChar.isLetterOrNumber())
         {
@@ -398,7 +398,7 @@ const QString RSSWidget::sanitizeNewRssRuleName(const QString name_to_filter)
     return name.simplified(); // return without multiple whitespace
 }
 
-void RSSWidget::on_newRssRuleBtn_clicked() {
+void RSSWidget::newRSSRuleBtn() {
 
     // Safety:
     // The feature only appears if there is only 1 article selected,
@@ -407,53 +407,44 @@ void RSSWidget::on_newRssRuleBtn_clicked() {
         return;
 
     // Retrieve article from selected items
-    QListWidgetItem *selectedRssRule =
-        asConst(m_articleListWidget->selectedItems()[0]);
-    RSS::Article *selectedRssRuleArticle =
-        selectedRssRule->data(Qt::UserRole).value<RSS::Article *>();
+    QListWidgetItem *selectedRssRule = asConst(m_articleListWidget->selectedItems()[0]);
+    RSS::Article *selectedRssRuleArticle = selectedRssRule->data(Qt::UserRole).value<RSS::Article *>();
     Q_ASSERT(selectedRssRuleArticle);
 
     // Get the title and also sanitize it
     QString selectedRssRuleArticleTitle = selectedRssRuleArticle->title();
-    QString sanitizedRssRuleArticleTitle =
-        sanitizeNewRssRuleName(selectedRssRuleArticleTitle);
+    QString sanitizeRSSRuleName = sanitizeNewRssRuleName(selectedRssRuleArticleTitle);
 
     // If sanitizer returns empty, we don't add anything
-    if (sanitizedRssRuleArticleTitle.isEmpty()) {
-        QMessageBox::warning(
-            this, tr("Issue with rule name"),
-            tr("Torrent name could not be extracted, add failed."));
+    if (sanitizeRSSRuleName.isEmpty())
+    {
+        QMessageBox::warning(this, tr("Issue with rule name")
+                             , tr("Torrent name could not be extracted, add failed."));
         return;
     }
 
     // Check if this rule name already exists
-    if (RSS::AutoDownloader::instance()->hasRule(
-            sanitizedRssRuleArticleTitle)) {
-        QMessageBox::warning(this, tr("Rule name conflict"),
-                             tr("No new rule has been added."));
+    if (RSS::AutoDownloader::instance()->hasRule(sanitizeRSSRuleName))
+    {
+        QMessageBox::warning(this, tr("Rule name conflict")
+                             , tr("No new rule has been added."));
         return;
     }
 
     // Insert new rule to prepare it for further edit
-    RSS::AutoDownloader::instance()->insertRule(
-        RSS::AutoDownloadRule(sanitizedRssRuleArticleTitle));
+    RSS::AutoDownloader::instance()->insertRule(RSS::AutoDownloadRule(sanitizeRSSRuleName));
 
     // We retrieve the newly inserted blank rule
-    RSS::AutoDownloadRule insertedRule =
-        RSS::AutoDownloader::instance()->ruleByName(
-            sanitizedRssRuleArticleTitle);
+    RSS::AutoDownloadRule insertedRule = RSS::AutoDownloader::instance()->ruleByName(sanitizeRSSRuleName);
 
     // Remove the inserted new rule for now (there is no change method)
     RSS::AutoDownloader::instance()->removeRule(insertedRule.name());
 
     // Set up our rule-in-works
-    insertedRule.setMustContain(
-        selectedRssRuleArticleTitle); // must match 1:1 without sanitization
+    insertedRule.setMustContain(selectedRssRuleArticleTitle); // must match 1:1 without sanitization
 
-    // Feed match: we pass a 1 string QStringList as feed list
-    QStringList feedURL;
-    feedURL << selectedRssRuleArticle->feed()->url();
-    insertedRule.setFeedURLs(feedURL);
+    // So it selects the original source feed
+    insertedRule.setFeedURLs({selectedRssRuleArticle->feed()->url()});
 
     // Insert set-up rule
     RSS::AutoDownloader::instance()->insertRule(insertedRule);
@@ -465,9 +456,10 @@ void RSSWidget::on_newRssRuleBtn_clicked() {
     downloader->open();
 
     // Using the newly implemented selectItem(), we select the new item
-    downloader->selectItem(sanitizedRssRuleArticleTitle);
+    downloader->selectRule(sanitizeRSSRuleName);
 
-    if (downloader->getTreeMatchingArticlesCount() == 0) {
+    if (downloader->getTreeMatchingArticlesCount() == 0)
+    {
         QMessageBox::warning(downloader, tr("No matches found"),
                              tr("Please check the new rule's Must Contain field."));
     }
