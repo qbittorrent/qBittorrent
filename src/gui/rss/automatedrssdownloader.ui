@@ -65,6 +65,9 @@
            <property name="enabled">
             <bool>false</bool>
            </property>
+           <property name="toolTip">
+            <string>Rename selected rule. You can also use the F2 hotkey to rename.</string>
+           </property>
            <property name="iconSize">
             <size>
              <width>24</width>
