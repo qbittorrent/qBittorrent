@@ -288,6 +288,11 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_ui->checkUseSystemIcon->setChecked(pref->useSystemIcons());
+#else
+    m_ui->checkUseSystemIcon->setVisible(false);
+#endif
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -382,6 +387,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
@@ -451,6 +459,9 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
+#endif
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 

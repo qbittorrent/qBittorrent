@@ -996,6 +996,18 @@ void Preferences::resolvePeerHostNames(const bool resolve)
     setValue(u"Preferences/Connection/ResolvePeerHostNames"_qs, resolve);
 }
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+bool Preferences::useSystemIcons() const
+{
+    return value(u"Preferences/Advanced/useSystemIconTheme"_qs, false);
+}
+
+void Preferences::useSystemIcons(const bool enabled)
+{
+    setValue(u"Preferences/Advanced/useSystemIconTheme"_qs, enabled);
+}
+#endif
+
 bool Preferences::isRecursiveDownloadEnabled() const
 {
     return !value(u"Preferences/Advanced/DisableRecursiveDownload"_qs, false);

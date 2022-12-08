@@ -175,6 +175,13 @@
                  </property>
                 </widget>
                </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QCheckBox" name="checkUseSystemIcon">
+                 <property name="text">
+                  <string>Use icons from system theme</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="comboI18n">
                  <property name="minimumSize">

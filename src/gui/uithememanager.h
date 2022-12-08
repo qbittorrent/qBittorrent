@@ -59,7 +59,7 @@ public:
     static UIThemeManager *instance();
 
     Path getIconPath(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId) const;
+    QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
     QColor getColor(const QString &id, const QColor &defaultColor) const;
@@ -77,6 +77,9 @@ private:
 
     static UIThemeManager *m_instance;
     const bool m_useCustomTheme;
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    const bool m_useSystemIcons;
+#endif
     std::unique_ptr<UIThemeSource> m_themeSource;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;
