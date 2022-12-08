@@ -196,14 +196,14 @@ void UIThemeManager::applyStyleSheet() const
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId) const
 {
     // Cache to avoid rescaling svg icons
     const auto iter = m_iconCache.find(iconId);
     if (iter != m_iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPathFromResources(iconId, fallback).data()};
+    const QIcon icon {getIconPathFromResources(iconId).data()};
     m_iconCache[iconId] = icon;
     return icon;
 }
@@ -259,23 +259,16 @@ QIcon UIThemeManager::getSystrayIcon() const
 
 Path UIThemeManager::getIconPath(const QString &iconId) const
 {
-    return getIconPathFromResources(iconId, {});
+    return getIconPathFromResources(iconId);
 }
 
-Path UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
+Path UIThemeManager::getIconPathFromResources(const QString &iconId) const
 {
     if (m_useCustomTheme && m_themeSource)
     {
         const Path customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
             return customIcon;
-
-        if (!fallback.isEmpty())
-        {
-            const Path fallbackIcon = m_themeSource->iconPath(fallback);
-            if (!fallbackIcon.isEmpty())
-                return fallbackIcon;
-        }
     }
 
     return findIcon(iconId, DEFAULT_ICONS_DIR);

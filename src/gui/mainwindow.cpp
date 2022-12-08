@@ -130,8 +130,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MACOS
-    const QIcon appLogo(UIThemeManager::instance()->getIcon(u"qbittorrent"_qs, u"qbittorrent-tray"_qs));
-    setWindowIcon(appLogo);
+    setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_qs));
 #endif // Q_OS_MACOS
 
 #if (defined(Q_OS_UNIX))

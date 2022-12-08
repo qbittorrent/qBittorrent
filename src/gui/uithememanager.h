@@ -59,7 +59,7 @@ public:
     static UIThemeManager *instance();
 
     Path getIconPath(const QString &iconId) const;
-    QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
+    QIcon getIcon(const QString &iconId) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
 
     QColor getColor(const QString &id, const QColor &defaultColor) const;
@@ -70,7 +70,7 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    Path getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    Path getIconPathFromResources(const QString &iconId) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
     void applyStyleSheet() const;
