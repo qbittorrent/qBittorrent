@@ -33,6 +33,7 @@
 
 #include "base/bittorrent/addtorrentparams.h"
 #include "base/path.h"
+#include "base/utils/thread.h"
 
 class QThread;
 
@@ -89,7 +90,7 @@ private:
 
     QHash<Path, WatchedFolderOptions> m_watchedFolders;
 
-    QThread *m_ioThread = nullptr;
+    Utils::Thread::UniquePtr m_ioThread;
 
     class Worker;
     Worker *m_asyncWorker = nullptr;

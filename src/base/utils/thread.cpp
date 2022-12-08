@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -26,44 +26,13 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include "thread.h"
 
-#include <QDir>
-#include <QVector>
+#include <QThread>
 
-#include "base/pathfwd.h"
-#include "base/utils/thread.h"
-
-#include "resumedatastorage.h"
-
-class QByteArray;
-class QThread;
-
-namespace BitTorrent
+void Utils::Thread::GracefulDeleter::operator()(QThread *thread) const
 {
-    class BencodeResumeDataStorage final : public ResumeDataStorage
-    {
-        Q_OBJECT
-        Q_DISABLE_COPY_MOVE(BencodeResumeDataStorage)
-
-    public:
-        explicit BencodeResumeDataStorage(const Path &path, QObject *parent = nullptr);
-
-        QVector<TorrentID> registeredTorrents() const override;
-        LoadResumeDataResult load(const TorrentID &id) const override;
-        void store(const TorrentID &id, const LoadTorrentParams &resumeData) const override;
-        void remove(const TorrentID &id) const override;
-        void storeQueue(const QVector<TorrentID> &queue) const override;
-
-    private:
-        void doLoadAll() const override;
-        void loadQueue(const Path &queueFilename);
-        LoadResumeDataResult loadTorrentResumeData(const QByteArray &data, const QByteArray &metadata) const;
-
-        QVector<TorrentID> m_registeredTorrents;
-        Utils::Thread::UniquePtr m_ioThread;
-
-        class Worker;
-        Worker *m_asyncWorker = nullptr;
-    };
+    thread->quit();
+    thread->wait();
+    delete thread;
 }

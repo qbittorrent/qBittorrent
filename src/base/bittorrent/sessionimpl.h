@@ -45,6 +45,7 @@
 #include "base/path.h"
 #include "base/settingvalue.h"
 #include "base/types.h"
+#include "base/utils/thread.h"
 #include "addtorrentparams.h"
 #include "cachestatus.h"
 #include "categoryoptions.h"
@@ -689,7 +690,7 @@ namespace BitTorrent
         // Tracker
         QPointer<Tracker> m_tracker;
 
-        QThread *m_ioThread = nullptr;
+        Utils::Thread::UniquePtr m_ioThread;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
 
