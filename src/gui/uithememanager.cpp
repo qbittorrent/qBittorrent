@@ -140,7 +140,7 @@ namespace
     std::unique_ptr<UIThemeSource> createUIThemeSource(const Path &themePath)
     {
         if (themePath.filename() == CONFIG_FILE_NAME)
-            return std::make_unique<FolderThemeSource>(themePath);
+            return std::make_unique<FolderThemeSource>(themePath.parentPath());
 
         if ((themePath.hasExtension(u".qbtheme"_qs))
                 && QResource::registerResource(themePath.data(), u"/uitheme"_qs))
