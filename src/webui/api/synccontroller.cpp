@@ -372,23 +372,17 @@ namespace
 
 SyncController::SyncController(IApplication *app, QObject *parent)
     : APIController(app, parent)
+    , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker}
+    , m_freeDiskSpaceThread {new QThread}
 {
-    m_freeDiskSpaceThread = new QThread(this);
-    m_freeDiskSpaceChecker = new FreeDiskSpaceChecker();
-    m_freeDiskSpaceChecker->moveToThread(m_freeDiskSpaceThread);
+    m_freeDiskSpaceChecker->moveToThread(m_freeDiskSpaceThread.get());
 
-    connect(m_freeDiskSpaceThread, &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
+    connect(m_freeDiskSpaceThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
     connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, &SyncController::freeDiskSpaceSizeUpdated);
 
     m_freeDiskSpaceThread->start();
     invokeChecker();
     m_freeDiskSpaceElapsedTimer.start();
-}
-
-SyncController::~SyncController()
-{
-    m_freeDiskSpaceThread->quit();
-    m_freeDiskSpaceThread->wait();
 }
 
 // The function returns the changed data from the server to synchronize with the web client.

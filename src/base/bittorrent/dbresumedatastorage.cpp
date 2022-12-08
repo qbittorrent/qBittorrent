@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -256,7 +256,7 @@ namespace BitTorrent
 
 BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject *parent)
     : ResumeDataStorage(dbPath, parent)
-    , m_ioThread {new QThread(this)}
+    , m_ioThread {new QThread}
 {
     const bool needCreateDB = !dbPath.exists();
 
@@ -277,8 +277,8 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     }
 
     m_asyncWorker = new Worker(dbPath, u"ResumeDataStorageWorker"_qs, m_dbLock);
-    m_asyncWorker->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_asyncWorker, &QObject::deleteLater);
+    m_asyncWorker->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_asyncWorker, &QObject::deleteLater);
     m_ioThread->start();
 
     RuntimeError *errPtr = nullptr;
@@ -302,9 +302,6 @@ BitTorrent::DBResumeDataStorage::~DBResumeDataStorage()
 {
     QMetaObject::invokeMethod(m_asyncWorker, &Worker::closeDatabase);
     QSqlDatabase::removeDatabase(DB_CONNECTION_NAME);
-
-    m_ioThread->quit();
-    m_ioThread->wait();
 }
 
 QVector<BitTorrent::TorrentID> BitTorrent::DBResumeDataStorage::registeredTorrents() const

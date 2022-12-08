@@ -529,7 +529,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
-    , m_ioThread {new QThread(this)}
+    , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -584,8 +584,8 @@ SessionImpl::SessionImpl(QObject *parent)
 #endif
 
     m_fileSearcher = new FileSearcher;
-    m_fileSearcher->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_fileSearcher, &QObject::deleteLater);
+    m_fileSearcher->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_fileSearcher, &QObject::deleteLater);
     connect(m_fileSearcher, &FileSearcher::searchFinished, this, &SessionImpl::fileSearchFinished);
 
     m_ioThread->start();
@@ -619,9 +619,6 @@ SessionImpl::~SessionImpl()
 
     saveStatistics();
 
-    m_asyncWorker->clear();
-    m_asyncWorker->waitForDone();
-
     // We must delete FilterParserThread
     // before we delete lt::session
     delete m_filterParser;
@@ -630,11 +627,11 @@ SessionImpl::~SessionImpl()
     // we delete lt::session
     delete Net::PortForwarder::instance();
 
-    qDebug("Deleting the session");
-    delete m_nativeSession;
+    m_asyncWorker->clear();
+    m_asyncWorker->waitForDone();
 
-    m_ioThread->quit();
-    m_ioThread->wait();
+    qDebug("Deleting libtorrent session...");
+    delete m_nativeSession;
 }
 
 bool SessionImpl::isDHTEnabled() const

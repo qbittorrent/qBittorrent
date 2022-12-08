@@ -102,15 +102,15 @@ AutoDownloader::AutoDownloader()
     , m_storeSmartEpisodeFilter(u"RSS/AutoDownloader/SmartEpisodeFilter"_qs)
     , m_storeDownloadRepacks(u"RSS/AutoDownloader/DownloadRepacks"_qs)
     , m_processingTimer(new QTimer(this))
-    , m_ioThread(new QThread(this))
+    , m_ioThread(new QThread)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
     m_fileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
 
-    m_fileStorage->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
+    m_fileStorage->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_fileStorage, &AsyncFileStorage::deleteLater);
     connect(m_fileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS AutoDownloader data in %1. Error: %2")
@@ -155,9 +155,6 @@ AutoDownloader::AutoDownloader()
 AutoDownloader::~AutoDownloader()
 {
     store();
-
-    m_ioThread->quit();
-    m_ioThread->wait();
 }
 
 AutoDownloader *AutoDownloader::instance()
