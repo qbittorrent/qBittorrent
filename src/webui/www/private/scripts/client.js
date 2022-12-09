@@ -558,6 +558,21 @@ window.addEvent('load', function() {
             trackerFilterList.removeChild(trackerFilterList.firstChild);
 
         const createLink = function(hash, text, count) {
+            if (text.includes("http")) {
+                let textArr = text.split(' ');
+                if (textArr && textArr.length == 2) {
+                    try {
+                        // https://example.com/announce (%1)
+                        let u = new URL(textArr[0]);
+                        // set text to only the host
+                        // the host contains port (like 127.0.0.1:8181), hostname does not
+                        text = u.host + ' ' + textArr[1];
+                    } catch (error) {
+                        // console.error(error);
+                    }
+                }
+            }
+
             const html = '<a href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
                 + '<img src="images/trackers.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + '</a>';
