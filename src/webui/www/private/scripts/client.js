@@ -96,6 +96,17 @@ const getShowFiltersSidebar = function() {
 };
 
 function genHash(string) {
+    if (string.startsWith('http://') || string.startsWith('https://')) {
+        try {
+            let maybeURL = new URL(string);
+            // host: "example.com:8443"
+            // hostname: "example.com"
+            string = maybeURL.host;
+          } catch (error) {
+            console.error(error);
+          }
+    }
+
     // origins:
     // https://stackoverflow.com/a/8831937
     // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
@@ -690,9 +701,15 @@ window.addEvent('load', function() {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
                             const hash = genHash(tracker);
+
+                            let merged_torrents = torrents;
+                            if (trackerList.has(hash)) {
+                                merged_torrents = trackerList.get(hash).torrents.concat(torrents);
+                            }
+
                             trackerList.set(hash, {
                                 url: tracker,
-                                torrents: torrents
+                                torrents: merged_torrents
                             });
                         }
                         updateTrackers = true;
