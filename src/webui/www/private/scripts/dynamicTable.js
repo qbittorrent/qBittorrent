@@ -46,6 +46,7 @@ window.qBittorrent.DynamicTable = (function() {
             SearchPluginsTable: SearchPluginsTable,
             TorrentTrackersTable: TorrentTrackersTable,
             TorrentFilesTable: TorrentFilesTable,
+            LogsTable: LogsTable,
             RssFeedTable: RssFeedTable,
             RssArticleTable: RssArticleTable,
             RssDownloaderRulesTable: RssDownloaderRulesTable,
@@ -2607,6 +2608,111 @@ window.qBittorrent.DynamicTable = (function() {
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
+        }
+    });
+
+    const LogsTable = new Class({
+        Extends: DynamicTable,
+
+        initColumns: function () {
+            this.newColumn('id', '', 'ID', 15, true);
+            this.newColumn('message', '', 'Message', 300, true);
+            this.newColumn('timestamp', '', 'Timestamp', 100, true);
+            this.newColumn('type', '', 'Log Type', 100, true);
+            this.initColumnsFunctions();
+        },
+
+        initColumnsFunctions: function () {
+            const displayText = function (td, row) {
+                var value = this.getRowValue(row);
+                td.set('html', window.qBittorrent.Misc.escapeHtml(value).replace(/&amp;quot;/g, '"'));
+            };
+            const displayTime = function(td, row) {
+                let timestamp = this.getRowValue(row);
+                let temp = new Date(timestamp*1000).toLocaleString();
+                td.set('html', temp);
+            };
+            const displayType = function (td, row) {
+                const value = parseInt(this.getRowValue(row));
+                let logLevel = 'Normal';
+                //Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
+                switch (value) {
+                    case 1:
+                        logLevel = 'Normal';
+                        td.getParent("tr").className = 'logsTableRow logNormal';
+                        break;
+                    case 2:
+                        logLevel = 'Info';
+                        td.getParent("tr").className = 'logsTableRow logInfo';
+                        break;
+                    case 4:
+                        logLevel = 'Warning';
+                        td.getParent("tr").className = 'logsTableRow logWarning';
+                        break;
+                    case 8:
+                        logLevel = 'Critical';
+                        td.getParent("tr").className = 'logsTableRow logCritical';
+                        break;
+                    default:
+                        logLevel = 'Unknown';
+                        break;
+                }
+                td.set('html', logLevel);
+            };
+
+            this.columns['message'].updateTd = displayText;
+            this.columns['timestamp'].updateTd = displayTime;
+            this.columns['type'].updateTd = displayType;
+        },
+        getFilteredAndSortedRows: function () {
+            const containsAll = function(text, searchTerms) {
+                text = text.toLowerCase();
+                for (let i = 0; i < searchTerms.length; ++i) {
+                    // console.log("text: %s, search term: %s", text, searchTerms[i]);
+                    if (text.indexOf(searchTerms[i].toLowerCase()) === -1)
+                        return false;
+                }
+                return true;
+            };
+
+            let filteredRows = [];
+            let rows = this.rows.getValues();
+            let searchTerms = window.qBittorrent.Logs.getLogsSearchPattern() !== "" ?
+                window.qBittorrent.Logs.getLogsSearchPattern().toLowerCase().split(' ') : [];
+            let logLevelFilter = window.qBittorrent.Logs.getSelectedLogLevels();
+
+            // console.log(searchTerms);
+            if (searchTerms.length || logLevelFilter) {
+                for (var i = 0; i < rows.length; ++i) {
+                    var row = rows[i];
+
+                    // console.log(row.full_data.message);
+                    if (searchTerms.length && !containsAll(row.full_data.message, searchTerms)) 
+continue;
+                    if (logLevelFilter >0 && row.full_data.type != logLevelFilter ) 
+continue;
+
+                    filteredRows.push(row);
+                }
+            }
+            else {
+                filteredRows = rows;
+            }
+
+            filteredRows.sort(function (row1, row2) {
+                const column = this.columns[this.sortedColumn];
+                const res = column.compareRows(row1, row2);
+                if (this.reverseSort == '0')
+                    return res;
+                else
+                    return -res;
+            }.bind(this));
+
+            return filteredRows;
+        },
+
+        setupTr: function (tr) {
+            tr.addClass("logsTableRow");
         }
     });
 

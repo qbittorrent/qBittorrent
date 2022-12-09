@@ -1,0 +1,313 @@
+<!-- build 20201021 ttyS3 -->
+<style type="text/css">
+    #searchKeywords {
+        width: 300px;
+        padding: 1px 5px 1px 2em;
+        background-image: url("icons/edit-find.svg");
+        background-repeat: no-repeat;
+        background-size: 1.5em;
+        background-position: left;
+        margin-left: 20px;
+    }
+
+    #logLevelSelect {
+        width: 150px;
+        /* height: 20px; */
+    }
+
+    #logSearchSummary {
+        height: 30px;
+        overflow: auto;
+    }
+
+    .logNormal {
+        color: #80766e;
+    }
+
+    .logInfo {
+        color: #1781b5;
+    }
+
+    .logWarning {
+        color: #f97d1c;
+    }
+
+    .logCritical {
+        color:#ee3f4d;
+    }
+</style>
+
+<div id="searchResults">
+    <div style="overflow: hidden; height: 70px;">
+        <div style="margin: 20px 0; height: 30px;">
+
+<!--
+            <label for="logLevelNormal" style="margin-left: 15px;">QBT_TR(Normal:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <input id="logLevelNormal" type="checkbox" class="logInputField" name="logLevelSelect[]" value="1" onchange="logLevelSelected()">
+
+            <label for="logLevelInfo" style="margin-left: 15px;">QBT_TR(Info:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <input id="logLevelInfo" type="checkbox" class="logInputField" name="logLevelSelect[]" value="2" onchange="logLevelSelected()">
+
+            <label for="logLevelWarning" style="margin-left: 15px;">QBT_TR(Warning:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <input id="logLevelWarning" type="checkbox" class="logInputField" name="logLevelSelect[]" value="4" onchange="logLevelSelected()">
+
+            <label for="logLevelCritical" style="margin-left: 15px;">QBT_TR(Critical:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <input id="logLevelCritical"  type="checkbox" class="logInputField" name="logLevelSelect[]" value="8" onchange="logLevelSelected()">
+-->
+            <label for="logLevelSelect" style="font-weight: bold;margin-right: 10px;">QBT_TR(Log Level Filter:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
+            <select id="logLevelSelect" class="logLevelSelect" onchange="window.qBittorrent.Logs.logLevelSelected()">
+                <option value="0">= All Log Levels = </option>
+                <option value="1">Normal</option>
+                <option value="2">Info</option>
+                <option value="4">Warning</option>
+                <option value="8">Critical</option>
+            </select>
+
+            <input type="text" id="searchKeywords" onkeyup="window.qBittorrent.Logs.logSearchPatternChanged()" class="logInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
+
+            <button title="Clear input" style="display: inline-block;height: 24px;padding: 0;margin-left: 0.3em;font-weight: bold;"
+                    onclick="javascript:document.querySelector('#searchKeywords').value='';window.qBittorrent.Logs.logSearchPatternChanged();">X</button>
+
+        </div>
+    </div>
+
+    <div id="logSearchSummary">
+        <span>QBT_TR(Results (showing)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numLogResultsVisible" class="numSearchResults">0</span> QBT_TR(out of)QBT_TR[CONTEXT=SearchEngineWidget] <span id="numLogResultsTotal" class="numSearchResults">0</span>):</span>
+
+        <span style="float: right; font-size: small; color: #75737382;">double click table row to copy message to clipboard</span>
+    </div>
+
+    <div id="searchResultsTableContainer">
+        <div id="logResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+            <table class="dynamicTable unselectable" style="position:relative;">
+                <thead>
+                <tr class=""></tr>
+                </thead>
+            </table>
+        </div>
+        <div id="logResultsTableDiv" class="dynamicTableDiv">
+            <table class="dynamicTable">
+                <thead>
+                <tr class="dynamicTableHeader"></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <input id="te-for-copy" style="opacity: 0;z-index: -9999;height: 1px;" />
+
+</div>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.Logs = (() => {
+        const exports = () => {
+            return {
+                init: init,
+                unload: unload,
+                load: load,
+                loadLogsResultsData: loadLogsResultsData,
+                getLogsSearchPattern: getLogsSearchPattern,
+                getSelectedLogLevels: getSelectedLogLevels,
+                logLevelSelected: logLevelSelected,
+                logSearchPatternChanged: logSearchPatternChanged,
+            };
+        };
+
+        let logsResultTable = new window.qBittorrent.DynamicTable.LogsTable();
+
+        let loadLogsResultsTimer;
+        let logsSearchPattern = "";
+        let logLevel = "";
+        let logsRequestCount = 0;
+        let selectedLogLevels = "";
+        let isFilterUpdating = false;
+        let last_known_id = -1;
+
+        const init = function() {
+            console.log('Logs.init()');
+            logsSearchPattern = $('searchKeywords').getProperty('value').trim();
+            // load "Search in" preference from local storage
+            $('searchKeywords').set('value',localStorage.getItem('keywords') );
+
+            unload();
+            logsResultTable.setup('logResultsTableDiv', 'logResultsTableFixedHeaderDiv', null);
+            load();
+        };
+
+        const unload = () => {
+            console.log('Logs.unload()');
+            clearTimeout(loadLogsResultsTimer);
+        };
+
+        const load = () => {
+            loadWithInterval(getSyncLogsDataInterval());
+        };
+
+        const loadWithInterval = (interval) => {
+            console.log('Logs.load() interval=%d', interval);
+            clearTimeout(loadLogsResultsTimer);
+            loadLogsResultsTimer = loadLogsResultsData.delay(interval);
+        };
+
+        const getLogsSearchPattern = () => {
+            return $('searchKeywords').getProperty('value').trim();
+        };
+
+        const getSelectedLogLevels = () => {
+            return parseInt($("logLevelSelect").get("value"));
+        };
+
+        const logLevelSelected = function() {
+            selectedLogLevels = getSelectedLogLevels();
+            console.log('selectedLogLevels: %d', selectedLogLevels);
+            logSearchFilterChanged();
+        };
+
+        const logSearchPatternChanged = function() {
+             logsSearchPattern = getLogsSearchPattern();
+            logSearchFilterChanged();
+        };
+
+        const logSearchFilterChanged = function() {
+            console.log('logSearchFilterChanged()');
+            isFilterUpdating = true;
+            logsResultTable.updateTable();
+            $('numLogResultsVisible').set('html', logsResultTable.getFilteredAndSortedRows().length);
+            isFilterUpdating = false;
+        };
+
+        const copyLogMessageToClipboard = function() {
+            let urls = [];
+            logsResultTable.selectedRowsIds().each(function(rowId) {
+                urls.push(logsResultTable.rows.get(rowId).full_data.message);
+            });
+
+            // only proceed if at least 1 row was selected
+            if (!urls.length) 
+return;
+
+            let copyText = document.querySelector("#te-for-copy");
+            copyText.value = urls.join("\n");
+            copyText.style.display = '';
+            copyText.select();
+            document.execCommand("copy");
+            copyText.value = '';
+            copyText.style.display = 'none';
+        };
+
+        const setupLogsTableEvents = function(enable) {
+            if (enable)
+                $$(".logsTableRow").each(function(target) {
+                    target.addEventListener('dblclick', copyLogMessageToClipboard, false);
+                });
+            else
+                $$(".logsTableRow").each(function(target) {
+                    target.removeEventListener('dblclick', copyLogMessageToClipboard, false);
+                });
+        };
+
+        const loadLogsResultsData = function() {
+            if ($("logsTabColumn").hasClass('invisible') === true) {
+                console.log("logsTab invisible, no need to refresh logs");
+                return;
+            }
+            let searchResultsRowId = 0;
+            let normalLevel = true; //1
+            let infoLevel = true; //2
+            let warningLevel = true; //4
+            let criticalLevel = true; //8
+            //always return all levels, we can filter use dynamicTable.js, not http API
+            /*        if (selectedLogLevels == 1) {
+                        normalLevel = true;
+                        infoLevel = false;
+                        warningLevel = false;
+                        criticalLevel = false;
+                    } else if (selectedLogLevels == 2) {
+                        normalLevel = false;
+                        infoLevel = true;
+                        warningLevel = false;
+                        criticalLevel = false;
+                    } else if (selectedLogLevels == 4) {
+                        normalLevel = false;
+                        infoLevel = false;
+                        warningLevel = true;
+                        criticalLevel = false;
+                    } else if (selectedLogLevels == 8) {
+                        normalLevel = false;
+                        infoLevel = false;
+                        warningLevel = false;
+                        criticalLevel = true;
+                    }*/
+            const url = new URI('api/v2/log/main');
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'get',
+                data: {
+                    last_known_id: last_known_id,
+                    normal: normalLevel,
+                    info: infoLevel,
+                    warning: warningLevel,
+                    critical: criticalLevel,
+                },
+                onFailure: function(response) {
+                    if (response.status === 400) {
+                        // bad params. search id is invalid
+                        // resetSearchState();
+                    }
+                    else {
+                        // slow load
+                        loadWithInterval(3000);
+                    }
+                },
+                onSuccess: function(response) {
+                    $('error_div').set('html', '');
+                    console.log('logs req#%d onSuccess: get response success, last_known_id=%d len=%d', logsRequestCount, last_known_id, response.length);
+                    if (response.length > 0) {
+                        setupLogsTableEvents(false);
+                        let results = response;
+                        for (let i = 0; i < results.length; ++i) {
+                            let result = results[i];
+                            let row = {
+                                rowId: searchResultsRowId,
+                                id: result.id,
+                                message: result.message,
+                                timestamp: result.timestamp,
+                                type: result.type,
+                            };
+
+                            last_known_id = result.id;
+                            logsResultTable.updateRowData(row);
+                            ++searchResultsRowId;
+                        }
+
+                        $('numLogResultsVisible').set('html', logsResultTable.getFilteredAndSortedRows().length);
+                        $('numLogResultsTotal').set('html', logsResultTable.getRowIds().length);
+
+                        logsResultTable.updateTable();
+                        logsResultTable.altRow();
+
+                        setupLogsTableEvents(true);
+                    }
+
+                    let showLogs = localStorage.getItem('show_logs') !== "false";
+                    if (!showLogs) {
+                        return;
+                    }
+                    ++logsRequestCount;
+
+                    load();
+                }
+            }).send();
+        };
+
+        return exports();
+    })();
+</script>

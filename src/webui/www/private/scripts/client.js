@@ -33,8 +33,10 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
+let customSyncLogsDataInterval = 1000;
 let searchTabInitialized = false;
 let rssTabInitialized = false;
+let logsTabInitialized = false;
 
 let syncRequestInProgress = false;
 
@@ -105,6 +107,10 @@ function genHash(string) {
 
 function getSyncMainDataInterval() {
     return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
+}
+
+function getSyncLogsDataInterval() {
+    return customSyncLogsDataInterval ? customSyncLogsDataInterval : serverSyncMainDataInterval;
 }
 
 const fetchQbtVersion = function() {
@@ -190,9 +196,21 @@ window.addEvent('load', function() {
         $("rssTabColumn").addClass("invisible");
     };
 
+    const buildLogsTab = function() {
+        new MochaUI.Column({
+            id: 'logsTabColumn',
+            placement: 'main',
+            width: null
+        });
+
+        // start off hidden
+        $("logsTabColumn").addClass("invisible");
+    };
+
     buildTransfersTab();
     buildSearchTab();
     buildRssTab();
+    buildLogsTab();
     MochaUI.initializeTabs('mainWindowTabsList');
 
     setCategoryFilter = function(hash) {
@@ -304,6 +322,8 @@ window.addEvent('load', function() {
     // After showing/hiding the toolbar + status bar
     let showSearchEngine = LocalPreferences.get('show_search_engine') !== "false";
     let showRssReader = LocalPreferences.get('show_rss_reader') !== "false";
+    // init showLogs
+    let showLogs = localStorage.getItem('show_logs') !== "false";
 
     // After Show Top Toolbar
     MochaUI.Desktop.setDesktopSize();
@@ -912,6 +932,12 @@ window.addEvent('load', function() {
         updateTabDisplay();
     });
 
+    $('showLogsLink').addEvent('click', function(e) {
+        showLogs = !showLogs;
+        localStorage.setItem('show_logs', showLogs.toString());
+        updateTabDisplay();
+    });
+
     const updateTabDisplay = function() {
         if (showRssReader) {
             $('showRssReaderLink').firstChild.style.opacity = '1';
@@ -929,6 +955,9 @@ window.addEvent('load', function() {
 
         if (showSearchEngine) {
             $('showSearchEngineLink').firstChild.style.opacity = '1';
+            if (document.querySelector('#searchTabLink')) {
+                document.querySelector('#searchTabLink').style.visibility = 'visible';
+            }
             $('mainWindowTabs').removeClass('invisible');
             $('searchTabLink').removeClass('invisible');
             if (!MochaUI.Panels.instances.SearchPanel)
@@ -941,8 +970,21 @@ window.addEvent('load', function() {
                 $("transfersTabLink").click();
         }
 
+        if (showLogs) {
+            $('showLogsLink').firstChild.style.opacity = '1';
+            $('mainWindowTabs').removeClass('invisible');
+            $('logsTabLink').removeClass('invisible');
+            if (!MochaUI.Panels.instances.LogsPanel)
+                addLogsPanel();
+        } else {
+            $('showLogsLink').firstChild.style.opacity = '0';
+            $('logsTabLink').addClass('invisible');
+            if ($('logsTabLink').hasClass('selected'))
+                $("transfersTabLink").click();
+        }
+
         // display no tabs
-        if (!showRssReader && !showSearchEngine)
+        if (!showRssReader && !showSearchEngine && !showLogs)
             $('mainWindowTabs').addClass('invisible');
     };
 
@@ -960,6 +1002,7 @@ window.addEvent('load', function() {
 
         hideSearchTab();
         hideRssTab();
+        hideLogsTab();
     };
 
     const hideTransfersTab = function() {
@@ -979,6 +1022,7 @@ window.addEvent('load', function() {
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
         hideRssTab();
+        hideLogsTab();
     };
 
     const hideSearchTab = function() {
@@ -999,12 +1043,35 @@ window.addEvent('load', function() {
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
         hideSearchTab();
+        hideLogsTab();
     };
 
     const hideRssTab = function() {
         $("rssTabColumn").addClass("invisible");
-        window.qBittorrent.Rss.unload();
+        window.qBittorrent.Rss && window.qBittorrent.Rss.unload();
         MochaUI.Desktop.resizePanels();
+    };
+
+    const showLogsTab = function() {
+        if (!logsTabInitialized) {
+            window.qBittorrent.Logs.init();
+            logsTabInitialized = true;
+        }
+        else {
+            window.qBittorrent.Logs.load();
+        }
+
+        $("logsTabColumn").removeClass("invisible");
+
+        hideTransfersTab();
+        hideSearchTab();
+        hideRssTab();
+    };
+
+    const hideLogsTab = function() {
+        $("logsTabColumn").addClass("invisible");
+        MochaUI.Desktop.resizePanels();
+        window.qBittorrent.Logs && window.qBittorrent.Logs.unload();
     };
 
     const addSearchPanel = function() {
@@ -1042,6 +1109,25 @@ window.addEvent('load', function() {
             content: '',
             column: 'rssTabColumn',
             height: null
+        });
+    };
+
+    var addLogsPanel = function() {
+        new MochaUI.Panel({
+            id : 'LogsPanel',
+            title : 'Logs',
+            header : false,
+            padding : {
+                top : 0,
+                right : 0,
+                bottom : 0,
+                left : 0
+            },
+            loadMethod : 'xhr',
+            contentURL : 'views/logs.html',
+            content: '',
+            column : 'logsTabColumn',
+            height : null
         });
     };
 
@@ -1185,6 +1271,7 @@ window.addEvent('load', function() {
     $('transfersTabLink').addEvent('click', showTransfersTab);
     $('searchTabLink').addEvent('click', showSearchTab);
     $('rssTabLink').addEvent('click', showRssTab);
+    $('logsTabLink').addEvent('click', showLogsTab);
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
