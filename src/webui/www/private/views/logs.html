@@ -262,15 +262,18 @@
                     if (response.status === 400) {
                         // bad params. search id is invalid
                         // resetSearchState();
-                    }
-                    else {
+                    } else {
                         // slow load
                         loadWithInterval(3000);
                     }
                 },
                 onSuccess: function(response) {
                     $('error_div').set('html', '');
-                    console.log('logs req#%d onSuccess: get response success, last_known_id=%d len=%d', logsRequestCount, last_known_id, response.length);
+
+                    if (localStorage.getItem('qb_webui_logs_debug')) {
+                        console.log('logs req#%d onSuccess: get response success, last_known_id=%d len=%d', logsRequestCount, last_known_id, response.length);
+                    }
+
                     if (response.length > 0) {
                         setupLogsTableEvents(false);
                         let results = response;
