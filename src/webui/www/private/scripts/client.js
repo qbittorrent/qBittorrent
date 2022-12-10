@@ -323,7 +323,7 @@ window.addEvent('load', function() {
     let showSearchEngine = LocalPreferences.get('show_search_engine') !== "false";
     let showRssReader = LocalPreferences.get('show_rss_reader') !== "false";
     // init showLogs
-    let showLogs = localStorage.getItem('show_logs') !== "false";
+    let showLogs = localStorage.getItem('qb_webui_show_logs') !== "false";
 
     // After Show Top Toolbar
     MochaUI.Desktop.setDesktopSize();
@@ -934,7 +934,7 @@ window.addEvent('load', function() {
 
     $('showLogsLink').addEvent('click', function(e) {
         showLogs = !showLogs;
-        localStorage.setItem('show_logs', showLogs.toString());
+        localStorage.setItem('qb_webui_show_logs', showLogs.toString());
         updateTabDisplay();
     });
 
