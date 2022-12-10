@@ -704,7 +704,6 @@ window.addEvent('load', function() {
 
                             let merged_torrents = torrents;
                             if (trackerList.has(hash)) {
-                                let merged_torrents = torrents;
                                 merged_torrents = trackerList.get(hash).torrents.concat(torrents);
                             }
 
