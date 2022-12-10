@@ -2687,11 +2687,13 @@ window.qBittorrent.DynamicTable = (function() {
                     var row = rows[i];
 
                     // console.log(row.full_data.message);
-                    if (searchTerms.length && !containsAll(row.full_data.message, searchTerms)) 
-continue;
-                    if (logLevelFilter >0 && row.full_data.type != logLevelFilter ) 
-continue;
-
+                    if (searchTerms.length && !containsAll(row.full_data.message, searchTerms)) {
+                        continue;
+                    } 
+                        
+                    if (logLevelFilter >0 && row.full_data.type != logLevelFilter ) {
+                        continue;
+                    }
                     filteredRows.push(row);
                 }
             }

@@ -190,8 +190,9 @@
             });
 
             // only proceed if at least 1 row was selected
-            if (!urls.length) 
-return;
+            if (!urls.length) {
+                return;
+            }
 
             let copyText = document.querySelector("#te-for-copy");
             copyText.value = urls.join("\n");
