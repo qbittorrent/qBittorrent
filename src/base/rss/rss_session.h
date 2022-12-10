@@ -75,6 +75,7 @@
 
 #include "base/3rdparty/expected.hpp"
 #include "base/settingvalue.h"
+#include "base/utils/thread.h"
 
 class QThread;
 
@@ -158,7 +159,7 @@ namespace RSS
         CachedSettingValue<bool> m_storeProcessingEnabled;
         CachedSettingValue<int> m_storeRefreshInterval;
         CachedSettingValue<int> m_storeMaxArticlesPerFeed;
-        QThread *m_workingThread = nullptr;
+        Utils::Thread::UniquePtr m_workingThread;
         AsyncFileStorage *m_confFileStorage = nullptr;
         AsyncFileStorage *m_dataFileStorage = nullptr;
         QTimer m_refreshTimer;
