@@ -96,7 +96,7 @@ const getShowFiltersSidebar = function() {
 };
 
 function genHash(string) {
-    if (string.startsWith('http://') || string.startsWith('https://')) {
+    if (string.startsWith('http://') || string.startsWith('https://') || string.startsWith('udp://')) {
         try {
             let maybeURL = new URL(string);
             // host: "example.com:8443"
@@ -569,7 +569,7 @@ window.addEvent('load', function() {
             trackerFilterList.removeChild(trackerFilterList.firstChild);
 
         const createLink = function(hash, text, count) {
-            if (text.includes("http")) {
+            if (text.includes("http") || text.includes("udp")) {
                 let textArr = text.split(' ');
                 if (textArr && textArr.length == 2) {
                     try {
