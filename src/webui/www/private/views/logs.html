@@ -33,15 +33,16 @@
     }
 
     .logCritical {
-        color:#ee3f4d;
+        color: #ee3f4d;
     }
+
 </style>
 
 <div id="searchResults">
     <div style="overflow: hidden; height: 70px;">
         <div style="margin: 20px 0; height: 30px;">
 
-<!--
+            <!--
             <label for="logLevelNormal" style="margin-left: 15px;">QBT_TR(Normal:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
             <input id="logLevelNormal" type="checkbox" class="logInputField" name="logLevelSelect[]" value="1" onchange="logLevelSelected()">
 
@@ -65,8 +66,7 @@
 
             <input type="text" id="searchKeywords" onkeyup="window.qBittorrent.Logs.logSearchPatternChanged()" class="logInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
 
-            <button title="Clear input" style="display: inline-block;height: 24px;padding: 0;margin-left: 0.3em;font-weight: bold;"
-                    onclick="javascript:document.querySelector('#searchKeywords').value='';window.qBittorrent.Logs.logSearchPatternChanged();">X</button>
+            <button title="Clear input" style="display: inline-block;height: 24px;padding: 0;margin-left: 0.3em;font-weight: bold;" onclick="javascript:document.querySelector('#searchKeywords').value='';window.qBittorrent.Logs.logSearchPatternChanged();">X</button>
 
         </div>
     </div>
@@ -81,14 +81,14 @@
         <div id="logResultsTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
             <table class="dynamicTable unselectable" style="position:relative;">
                 <thead>
-                <tr class=""></tr>
+                    <tr class=""></tr>
                 </thead>
             </table>
         </div>
         <div id="logResultsTableDiv" class="dynamicTableDiv">
             <table class="dynamicTable">
                 <thead>
-                <tr class="dynamicTableHeader"></tr>
+                    <tr class="dynamicTableHeader"></tr>
                 </thead>
                 <tbody></tbody>
             </table>
@@ -134,7 +134,7 @@
             console.log('Logs.init()');
             logsSearchPattern = $('searchKeywords').getProperty('value').trim();
             // load "Search in" preference from local storage
-            $('searchKeywords').set('value',localStorage.getItem('keywords') );
+            $('searchKeywords').set('value', localStorage.getItem('keywords'));
 
             unload();
             logsResultTable.setup('logResultsTableDiv', 'logResultsTableFixedHeaderDiv', null);
@@ -262,7 +262,8 @@
                     if (response.status === 400) {
                         // bad params. search id is invalid
                         // resetSearchState();
-                    } else {
+                    }
+                    else {
                         // slow load
                         loadWithInterval(3000);
                     }

@@ -976,7 +976,8 @@ window.addEvent('load', function() {
             $('logsTabLink').removeClass('invisible');
             if (!MochaUI.Panels.instances.LogsPanel)
                 addLogsPanel();
-        } else {
+        }
+        else {
             $('showLogsLink').firstChild.style.opacity = '0';
             $('logsTabLink').addClass('invisible');
             if ($('logsTabLink').hasClass('selected'))
@@ -1114,20 +1115,20 @@ window.addEvent('load', function() {
 
     var addLogsPanel = function() {
         new MochaUI.Panel({
-            id : 'LogsPanel',
-            title : 'Logs',
-            header : false,
-            padding : {
-                top : 0,
-                right : 0,
-                bottom : 0,
-                left : 0
+            id: 'LogsPanel',
+            title: 'Logs',
+            header: false,
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
             },
-            loadMethod : 'xhr',
-            contentURL : 'views/logs.html',
+            loadMethod: 'xhr',
+            contentURL: 'views/logs.html',
             content: '',
-            column : 'logsTabColumn',
-            height : null
+            column: 'logsTabColumn',
+            height: null
         });
     };
 

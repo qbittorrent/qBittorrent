@@ -2614,7 +2614,7 @@ window.qBittorrent.DynamicTable = (function() {
     const LogsTable = new Class({
         Extends: DynamicTable,
 
-        initColumns: function () {
+        initColumns: function() {
             this.newColumn('id', '', 'ID', 15, true);
             this.newColumn('message', '', 'Message', 300, true);
             this.newColumn('timestamp', '', 'Timestamp', 100, true);
@@ -2622,17 +2622,17 @@ window.qBittorrent.DynamicTable = (function() {
             this.initColumnsFunctions();
         },
 
-        initColumnsFunctions: function () {
-            const displayText = function (td, row) {
+        initColumnsFunctions: function() {
+            const displayText = function(td, row) {
                 var value = this.getRowValue(row);
                 td.set('html', window.qBittorrent.Misc.escapeHtml(value).replace(/&amp;quot;/g, '"'));
             };
             const displayTime = function(td, row) {
                 let timestamp = this.getRowValue(row);
-                let temp = new Date(timestamp*1000).toLocaleString();
+                let temp = new Date(timestamp * 1000).toLocaleString();
                 td.set('html', temp);
             };
-            const displayType = function (td, row) {
+            const displayType = function(td, row) {
                 const value = parseInt(this.getRowValue(row));
                 let logLevel = 'Normal';
                 //Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
@@ -2664,7 +2664,7 @@ window.qBittorrent.DynamicTable = (function() {
             this.columns['timestamp'].updateTd = displayTime;
             this.columns['type'].updateTd = displayType;
         },
-        getFilteredAndSortedRows: function () {
+        getFilteredAndSortedRows: function() {
             const containsAll = function(text, searchTerms) {
                 text = text.toLowerCase();
                 for (let i = 0; i < searchTerms.length; ++i) {
@@ -2677,8 +2677,8 @@ window.qBittorrent.DynamicTable = (function() {
 
             let filteredRows = [];
             let rows = this.rows.getValues();
-            let searchTerms = window.qBittorrent.Logs.getLogsSearchPattern() !== "" ?
-                window.qBittorrent.Logs.getLogsSearchPattern().toLowerCase().split(' ') : [];
+            let searchTerms = window.qBittorrent.Logs.getLogsSearchPattern() !== ""
+                ? window.qBittorrent.Logs.getLogsSearchPattern().toLowerCase().split(' ') : [];
             let logLevelFilter = window.qBittorrent.Logs.getSelectedLogLevels();
 
             // console.log(searchTerms);
@@ -2691,7 +2691,7 @@ window.qBittorrent.DynamicTable = (function() {
                         continue;
                     }
 
-                    if (logLevelFilter >0 && row.full_data.type != logLevelFilter ) {
+                    if (logLevelFilter > 0 && row.full_data.type != logLevelFilter) {
                         continue;
                     }
                     filteredRows.push(row);
@@ -2701,7 +2701,7 @@ window.qBittorrent.DynamicTable = (function() {
                 filteredRows = rows;
             }
 
-            filteredRows.sort(function (row1, row2) {
+            filteredRows.sort(function(row1, row2) {
                 const column = this.columns[this.sortedColumn];
                 const res = column.compareRows(row1, row2);
                 if (this.reverseSort == '0')
@@ -2713,7 +2713,7 @@ window.qBittorrent.DynamicTable = (function() {
             return filteredRows;
         },
 
-        setupTr: function (tr) {
+        setupTr: function(tr) {
             tr.addClass("logsTableRow");
         }
     });
