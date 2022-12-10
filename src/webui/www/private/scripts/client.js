@@ -705,6 +705,8 @@ window.addEvent('load', function() {
                             let merged_torrents = torrents;
                             if (trackerList.has(hash)) {
                                 merged_torrents = trackerList.get(hash).torrents.concat(torrents);
+                                // deduplicate is needed when the webui opens in multi tabs
+                                merged_torrents = merged_torrents.filter((item, pos) => merged_torrents.indexOf(item) === pos);
                             }
 
                             trackerList.set(hash, {
