@@ -2689,8 +2689,8 @@ window.qBittorrent.DynamicTable = (function() {
                     // console.log(row.full_data.message);
                     if (searchTerms.length && !containsAll(row.full_data.message, searchTerms)) {
                         continue;
-                    } 
-                        
+                    }
+
                     if (logLevelFilter >0 && row.full_data.type != logLevelFilter ) {
                         continue;
                     }
