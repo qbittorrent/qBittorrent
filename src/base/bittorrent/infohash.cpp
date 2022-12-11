@@ -93,7 +93,12 @@ BitTorrent::InfoHash::operator WrappedType() const
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromString(const QString &hashString)
 {
-    return TorrentID(BaseType::fromString(hashString));
+    if (hashString.length() > 40) {
+        return TorrentID(BaseType::fromString(hashString.left(40)));
+    }
+    else {
+        return TorrentID(BaseType::fromString(hashString));
+    }
 }
 
 BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::InfoHash &infoHash)

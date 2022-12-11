@@ -199,7 +199,22 @@ bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
     if (!m_idSet)
         return true;
 
-    return m_idSet->contains(torrent->id());
+    // Matching by torrentID is the most likely scenario so it's the first thing we try
+    // This also covers full infohashv2 because TorrentID::fromString truncates it when building the filter
+    if (m_idSet->contains(torrent->id())) {
+        return true;
+    }
+
+#ifdef QBT_USES_LIBTORRENT2
+    // Match hybrid torrent by infohash v1 (edge case)
+    if (torrent->infoHash().v1() != SHA1Hash()) {
+        if (m_idSet->contains(BitTorrent::TorrentID::fromSHA1Hash(torrent->infoHash().v1()))) {
+            return true;
+        }
+    }
+#endif
+
+    return false;
 }
 
 bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const

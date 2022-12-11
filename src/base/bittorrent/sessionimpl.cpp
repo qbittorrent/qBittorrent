@@ -2208,7 +2208,11 @@ void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, 
 
 Torrent *SessionImpl::getTorrent(const TorrentID &id) const
 {
-    return m_torrents.value(id);
+    auto t = m_torrents.value(id);
+    if (!t) {
+        return m_hybridTorrentsByAltID.value(id);
+    }
+    return t;
 }
 
 Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
