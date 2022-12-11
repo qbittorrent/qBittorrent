@@ -75,6 +75,7 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
 {
     m_ui->setupUi(this);
     // Icons
+    m_ui->renameRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-rename"_qs));
     m_ui->removeRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"edit-clear"_qs));
     m_ui->addRuleBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
     m_ui->addCategoryBtn->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
@@ -250,6 +251,13 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
 {
     const QList<QListWidgetItem *> selection = m_ui->listRules->selectedItems();
     QListWidgetItem *currentRuleItem = ((selection.count() == 1) ? selection.first() : nullptr);
+
+    // Enable the edit rule button but only if we have 1 rule selected
+    if (selection.count() == 1)
+        m_ui->renameRuleBtn->setEnabled(true);
+    else
+        m_ui->renameRuleBtn->setEnabled(false);
+
     if (m_currentRuleItem != currentRuleItem)
     {
         saveEditedRule(); // Save previous rule first
@@ -425,6 +433,11 @@ void AutomatedRssDownloader::on_addCategoryBtn_clicked()
         m_ui->comboCategory->addItem(newCategoryName);
         m_ui->comboCategory->setCurrentText(newCategoryName);
     }
+}
+
+void AutomatedRssDownloader::on_renameRuleBtn_clicked()
+{
+    renameSelectedRule();
 }
 
 void AutomatedRssDownloader::on_exportBtn_clicked()

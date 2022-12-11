@@ -66,6 +66,7 @@ private slots:
     void on_addCategoryBtn_clicked();
     void on_exportBtn_clicked();
     void on_importBtn_clicked();
+    void on_renameRuleBtn_clicked();
 
     void handleRuleCheckStateChange(QListWidgetItem *ruleItem);
     void handleFeedCheckStateChange(QListWidgetItem *feedItem);
