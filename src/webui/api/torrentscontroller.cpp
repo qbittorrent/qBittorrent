@@ -1418,3 +1418,15 @@ void TorrentsController::exportAction()
 
     setResult(result.value());
 }
+
+void TorrentsController::getAction()
+{
+    requireParams({u"hash"_qs});
+
+    const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
+    if (!torrent)
+        throw APIError(APIErrorType::NotFound);
+
+    setResult(QJsonObject::fromVariantMap(serialize(*torrent)));
+}

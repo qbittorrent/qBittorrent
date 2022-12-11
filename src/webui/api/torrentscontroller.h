@@ -88,4 +88,5 @@ private slots:
     void renameFileAction();
     void renameFolderAction();
     void exportAction();
+    void getAction();
 };
