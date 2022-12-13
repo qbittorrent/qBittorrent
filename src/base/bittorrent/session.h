@@ -431,6 +431,7 @@ namespace BitTorrent
         void allTorrentsFinished();
         void categoryAdded(const QString &categoryName);
         void categoryRemoved(const QString &categoryName);
+        void categoryOptionsChanged(const QString &categoryName);
         void downloadFromUrlFailed(const QString &url, const QString &reason);
         void downloadFromUrlFinished(const QString &url);
         void fullDiskError(Torrent *torrent, const QString &msg);
