@@ -104,7 +104,7 @@ const QString KEY_PROP_CREATION_DATE = u"creation_date"_qs;
 const QString KEY_PROP_SAVE_PATH = u"save_path"_qs;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_qs;
 const QString KEY_PROP_COMMENT = u"comment"_qs;
-const QString KEY_PROP_ISPRIVATE = u"isPrivate"_qs;
+const QString KEY_PROP_ISPRIVATE = u"is_private"_qs;
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_qs;
