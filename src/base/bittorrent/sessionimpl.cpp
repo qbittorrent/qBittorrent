@@ -2208,6 +2208,11 @@ void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath, 
 
 Torrent *SessionImpl::getTorrent(const TorrentID &id) const
 {
+    return m_torrents.value(id);
+}
+
+Torrent *SessionImpl::getTorrentByAnyHashForm(const TorrentID &id) const
+{
     auto t = m_torrents.value(id);
     if (!t) {
         return m_hybridTorrentsByAltID.value(id);

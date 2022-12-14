@@ -1,0 +1,69 @@
+From e03b1f585001c23ab2501e63562f01a54d2a52e1 Mon Sep 17 00:00:00 2001
+From: qbittorrentfan <qbittorrentfan@kl.netlib.re>
+Date: Wed, 14 Dec 2022 12:03:36 +0100
+Subject: [PATCH 2/2] getTorrent only matches TorrentID,
+ getTorrentByAnyHashForm matches everything
+
+---
+ src/base/bittorrent/session.h        | 1 +
+ src/base/bittorrent/sessionimpl.cpp  | 5 +++++
+ src/base/bittorrent/sessionimpl.h    | 1 +
+ src/webui/api/torrentscontroller.cpp | 2 +-
+ 4 files changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/src/base/bittorrent/session.h b/src/base/bittorrent/session.h
+index 464023f5f..d78caea36 100644
+--- a/src/base/bittorrent/session.h
++++ b/src/base/bittorrent/session.h
+@@ -400,6 +400,7 @@ namespace BitTorrent
+         virtual bool isRestored() const = 0;
+ 
+         virtual Torrent *getTorrent(const TorrentID &id) const = 0;
++        virtual Torrent *getTorrentByAnyHashForm(const TorrentID &id) const = 0;
+         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
+         virtual QVector<Torrent *> torrents() const = 0;
+         virtual qsizetype torrentsCount() const = 0;
+diff --git a/src/base/bittorrent/sessionimpl.cpp b/src/base/bittorrent/sessionimpl.cpp
+index a68f6781c..9c684c399 100644
+--- a/src/base/bittorrent/sessionimpl.cpp
++++ b/src/base/bittorrent/sessionimpl.cpp
+@@ -2207,6 +2207,11 @@ void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath,
+ }
+ 
+ Torrent *SessionImpl::getTorrent(const TorrentID &id) const
++{
++    return m_torrents.value(id);
++}
++
++Torrent *SessionImpl::getTorrentByAnyHashForm(const TorrentID &id) const
+ {
+     auto t = m_torrents.value(id);
+     if (!t) {
+diff --git a/src/base/bittorrent/sessionimpl.h b/src/base/bittorrent/sessionimpl.h
+index e8c42a3b8..5dab2ab27 100644
+--- a/src/base/bittorrent/sessionimpl.h
++++ b/src/base/bittorrent/sessionimpl.h
+@@ -377,6 +377,7 @@ namespace BitTorrent
+         bool isRestored() const override;
+ 
+         Torrent *getTorrent(const TorrentID &id) const override;
++        Torrent *getTorrentByAnyHashForm(const TorrentID &id) const override;
+         Torrent *findTorrent(const InfoHash &infoHash) const override;
+         QVector<Torrent *> torrents() const override;
+         qsizetype torrentsCount() const override;
+diff --git a/src/webui/api/torrentscontroller.cpp b/src/webui/api/torrentscontroller.cpp
+index e998cbc7a..c39658e3c 100644
+--- a/src/webui/api/torrentscontroller.cpp
++++ b/src/webui/api/torrentscontroller.cpp
+@@ -392,7 +392,7 @@ void TorrentsController::propertiesAction()
+     requireParams({u"hash"_qs});
+ 
+     const auto id = BitTorrent::TorrentID::fromString(params()[u"hash"_qs]);
+-    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrent(id);
++    BitTorrent::Torrent *const torrent = BitTorrent::Session::instance()->getTorrentByAnyHashForm(id);
+     if (!torrent)
+         throw APIError(APIErrorType::NotFound);
+ 
+-- 
+2.38.1
+

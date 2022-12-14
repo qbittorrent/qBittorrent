@@ -400,6 +400,7 @@ namespace BitTorrent
         virtual bool isRestored() const = 0;
 
         virtual Torrent *getTorrent(const TorrentID &id) const = 0;
+        virtual Torrent *getTorrentByAnyHashForm(const TorrentID &id) const = 0;
         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
         virtual QVector<Torrent *> torrents() const = 0;
         virtual qsizetype torrentsCount() const = 0;

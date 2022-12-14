@@ -1,0 +1,77 @@
+From b189b6a7bfbfc321a9fb450a3865128d8f02c091 Mon Sep 17 00:00:00 2001
+From: qbittorrentfan <qbittorrentfan@kl.netlib.re>
+Date: Sun, 11 Dec 2022 11:25:24 +0100
+Subject: [PATCH 1/2] API methods support infohashv1/v2 as well as TorrentIDx
+
+---
+ src/base/bittorrent/infohash.cpp    |  7 ++++++-
+ src/base/bittorrent/sessionimpl.cpp |  6 +++++-
+ src/base/torrentfilter.cpp          | 17 ++++++++++++++++-
+ 3 files changed, 27 insertions(+), 3 deletions(-)
+
+diff --git a/src/base/bittorrent/infohash.cpp b/src/base/bittorrent/infohash.cpp
+index dcef97874..e43194eda 100644
+--- a/src/base/bittorrent/infohash.cpp
++++ b/src/base/bittorrent/infohash.cpp
+@@ -93,7 +93,12 @@ BitTorrent::InfoHash::operator WrappedType() const
+ 
+ BitTorrent::TorrentID BitTorrent::TorrentID::fromString(const QString &hashString)
+ {
+-    return TorrentID(BaseType::fromString(hashString));
++    if (hashString.length() > 40) {
++        return TorrentID(BaseType::fromString(hashString.left(40)));
++    }
++    else {
++        return TorrentID(BaseType::fromString(hashString));
++    }
+ }
+ 
+ BitTorrent::TorrentID BitTorrent::TorrentID::fromInfoHash(const BitTorrent::InfoHash &infoHash)
+diff --git a/src/base/bittorrent/sessionimpl.cpp b/src/base/bittorrent/sessionimpl.cpp
+index 18644a370..a68f6781c 100644
+--- a/src/base/bittorrent/sessionimpl.cpp
++++ b/src/base/bittorrent/sessionimpl.cpp
+@@ -2208,7 +2208,11 @@ void SessionImpl::fileSearchFinished(const TorrentID &id, const Path &savePath,
+ 
+ Torrent *SessionImpl::getTorrent(const TorrentID &id) const
+ {
+-    return m_torrents.value(id);
++    auto t = m_torrents.value(id);
++    if (!t) {
++        return m_hybridTorrentsByAltID.value(id);
++    }
++    return t;
+ }
+ 
+ Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
+diff --git a/src/base/torrentfilter.cpp b/src/base/torrentfilter.cpp
+index 9eb2a8833..239c9505a 100644
+--- a/src/base/torrentfilter.cpp
++++ b/src/base/torrentfilter.cpp
+@@ -199,7 +199,22 @@ bool TorrentFilter::matchHash(const BitTorrent::Torrent *const torrent) const
+     if (!m_idSet)
+         return true;
+ 
+-    return m_idSet->contains(torrent->id());
++    // Matching by torrentID is the most likely scenario so it's the first thing we try
++    // This also covers full infohashv2 because TorrentID::fromString truncates it when building the filter
++    if (m_idSet->contains(torrent->id())) {
++        return true;
++    }
++
++#ifdef QBT_USES_LIBTORRENT2
++    // Match hybrid torrent by infohash v1 (edge case)
++    if (torrent->infoHash().v1() != SHA1Hash()) {
++        if (m_idSet->contains(BitTorrent::TorrentID::fromSHA1Hash(torrent->infoHash().v1()))) {
++            return true;
++        }
++    }
++#endif
++
++    return false;
+ }
+ 
+ bool TorrentFilter::matchCategory(const BitTorrent::Torrent *const torrent) const
+-- 
+2.38.1
+

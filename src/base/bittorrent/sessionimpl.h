@@ -377,6 +377,7 @@ namespace BitTorrent
         bool isRestored() const override;
 
         Torrent *getTorrent(const TorrentID &id) const override;
+        Torrent *getTorrentByAnyHashForm(const TorrentID &id) const override;
         Torrent *findTorrent(const InfoHash &infoHash) const override;
         QVector<Torrent *> torrents() const override;
         qsizetype torrentsCount() const override;
