@@ -383,7 +383,7 @@ void RSSWidget::downloadSelectedTorrents()
 }
 
 // Provides a way to filter a torrent's name. Used for Right-Click -> Add new RSS Rule.
-const QString RSSWidget::sanitizeNewRssRuleName(const QString &ruleName)
+const QString RSSWidget::sanitizeRSSRuleName(const QString &ruleName)
 {
     QString name;
 
@@ -407,7 +407,7 @@ void RSSWidget::newRSSRuleBtn() {
         return;
 
     // Retrieve article from selected items
-    QListWidgetItem *selectedRssRule = asConst(m_articleListWidget->selectedItems()[0]);
+    QListWidgetItem *selectedItem = m_articleListWidget->selectedItems()[0];
     RSS::Article *selectedRssRuleArticle = selectedRssRule->data(Qt::UserRole).value<RSS::Article *>();
     Q_ASSERT(selectedRssRuleArticle);
 
