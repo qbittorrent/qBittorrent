@@ -104,6 +104,7 @@ const QString KEY_PROP_CREATION_DATE = u"creation_date"_qs;
 const QString KEY_PROP_SAVE_PATH = u"save_path"_qs;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_qs;
 const QString KEY_PROP_COMMENT = u"comment"_qs;
+const QString KEY_PROP_ISPRIVATE = u"isPrivate"_qs;
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_qs;
@@ -430,6 +431,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
     dataDict[KEY_PROP_PIECES_HAVE] = torrent->piecesHave();
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
+    dataDict[KEY_PROP_ISPRIVATE] = torrent->isPrivate();
     dataDict[KEY_PROP_ADDITION_DATE] = static_cast<double>(torrent->addedTime().toSecsSinceEpoch());
     if (torrent->hasMetadata())
     {
