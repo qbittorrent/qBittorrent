@@ -82,6 +82,9 @@ TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
     for (int i = 0; i < COL_COUNT; ++i)
         if ((columnWidth(i) <= 0) && !isColumnHidden(i))
             resizeColumnToContents(i);
+    // Allow sort by column
+    for (int i = 0; i < COL_COUNT; ++i)
+        setSortingEnabled(i);
     // Context menu
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &TrackerListWidget::showTrackerListMenu);
