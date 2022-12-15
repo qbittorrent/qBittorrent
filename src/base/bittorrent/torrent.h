@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -106,9 +106,10 @@ namespace BitTorrent
     uint qHash(TorrentState key, uint seed = 0);
 #endif
 
-    class Torrent : public AbstractFileStorage
+    class Torrent : public QObject, public AbstractFileStorage
     {
-        Q_GADGET
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(Torrent)
 
     public:
         enum class StopCondition
@@ -128,7 +129,7 @@ namespace BitTorrent
         static const qreal MAX_RATIO;
         static const int MAX_SEEDING_TIME;
 
-        virtual ~Torrent() = default;
+        using QObject::QObject;
 
         virtual InfoHash infoHash() const = 0;
         virtual QString name() const = 0;
@@ -309,7 +310,7 @@ namespace BitTorrent
         virtual void removeUrlSeeds(const QVector<QUrl> &urlSeeds) = 0;
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
-        virtual bool setMetadata(const TorrentInfo &torrentInfo) = 0;
+        virtual void setMetadata(const TorrentInfo &torrentInfo) = 0;
 
         virtual StopCondition stopCondition() const = 0;
         virtual void setStopCondition(StopCondition stopCondition) = 0;
@@ -317,6 +318,19 @@ namespace BitTorrent
         virtual QString createMagnetURI() const = 0;
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;
         virtual nonstd::expected<void, QString> exportToFile(const Path &path) const = 0;
+
+        virtual void fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const = 0;
+        virtual void fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const = 0;
+        virtual void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const = 0;
+        virtual void fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const = 0;
+        virtual void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const = 0;
+        /**
+         * @brief fraction of file pieces that are available at least from one peer
+         *
+         * This is not the same as torrrent availability, it is just a fraction of pieces
+         * that can be downloaded right now. It varies between 0 to 1.
+         */
+        virtual void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const = 0;
 
         TorrentID id() const;
         bool isResumed() const;

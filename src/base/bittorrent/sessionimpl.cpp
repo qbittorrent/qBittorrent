@@ -627,6 +627,8 @@ SessionImpl::~SessionImpl()
     // we delete lt::session
     delete Net::PortForwarder::instance();
 
+    // We must stop "async worker" only after deletion
+    // of all the components that could potentially use it
     m_asyncWorker->clear();
     m_asyncWorker->waitForDone();
 

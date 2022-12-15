@@ -34,6 +34,7 @@
 #include <QHeaderView>
 #include <QListWidgetItem>
 #include <QMenu>
+#include <QPointer>
 #include <QSplitter>
 #include <QShortcut>
 #include <QStackedWidget>
@@ -498,13 +499,20 @@ void PropertiesWidget::loadDynamicData()
 
             if (m_torrent->hasMetadata())
             {
+                using TorrentPtr = QPointer<BitTorrent::Torrent>;
+
                 m_ui->labelTotalPiecesVal->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(m_torrent->piecesCount()).arg(Utils::Misc::friendlyUnit(m_torrent->pieceLength())).arg(m_torrent->piecesHave()));
 
                 if (!m_torrent->isSeed() && !m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking())
                 {
                     // Pieces availability
                     showPiecesAvailability(true);
-                    m_piecesAvailability->setAvailability(m_torrent->pieceAvailability());
+                    m_torrent->fetchPieceAvailability([this, torrent = TorrentPtr(m_torrent)](const QVector<int> &pieceAvailability)
+                    {
+                        if (torrent == m_torrent)
+                            m_piecesAvailability->setAvailability(pieceAvailability);
+                    });
+
                     m_ui->labelAverageAvailabilityVal->setText(Utils::String::fromDouble(m_torrent->distributedCopies(), 3));
                 }
                 else
@@ -515,7 +523,12 @@ void PropertiesWidget::loadDynamicData()
                 // Progress
                 qreal progress = m_torrent->progress() * 100.;
                 m_ui->labelProgressVal->setText(Utils::String::fromDouble(progress, 1) + u'%');
-                m_downloadedPieces->setProgress(m_torrent->pieces(), m_torrent->downloadingPieces());
+
+                m_torrent->fetchDownloadingPieces([this, torrent = TorrentPtr(m_torrent)](const QBitArray &downloadingPieces)
+                {
+                    if (torrent == m_torrent)
+                        m_downloadedPieces->setProgress(m_torrent->pieces(), downloadingPieces);
+                });
             }
             else
             {
@@ -538,6 +551,19 @@ void PropertiesWidget::loadDynamicData()
             qDebug("Updating priorities in files tab");
             m_ui->filesList->setUpdatesEnabled(false);
 
+            using TorrentPtr = QPointer<BitTorrent::Torrent>;
+            m_torrent->fetchFilesProgress([this, torrent = TorrentPtr(m_torrent)](const QVector<qreal> &filesProgress)
+            {
+                if (torrent == m_torrent)
+                    m_propListModel->model()->updateFilesProgress(filesProgress);
+            });
+
+            m_torrent->fetchAvailableFileFractions([this, torrent = TorrentPtr(m_torrent)](const QVector<qreal> &availableFileFractions)
+            {
+                if (torrent == m_torrent)
+                    m_propListModel->model()->updateFilesAvailability(availableFileFractions);
+            });
+
             // Load torrent content if not yet done so
             const bool isContentInitialized = m_propListModel->model()->hasIndex(0, 0);
             if (!isContentInitialized)
@@ -546,9 +572,6 @@ void PropertiesWidget::loadDynamicData()
                 m_propListModel->model()->setupModelData(*m_torrent);
                 // Load file priorities
                 m_propListModel->model()->updateFilesPriorities(m_torrent->filePriorities());
-                // Update file progress/availability
-                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
 
                 // Expand single-item folders recursively.
                 // This will trigger sorting and filtering so do it after all relevant data is loaded.
@@ -563,8 +586,6 @@ void PropertiesWidget::loadDynamicData()
             {
                 // Torrent content was loaded already, only make some updates
 
-                m_propListModel->model()->updateFilesProgress(m_torrent->filesProgress());
-                m_propListModel->model()->updateFilesAvailability(m_torrent->availableFileFractions());
                 // XXX: We don't update file priorities regularly for performance
                 // reasons. This means that priorities will not be updated if
                 // set from the Web UI.
@@ -583,15 +604,21 @@ void PropertiesWidget::loadUrlSeeds()
     if (!m_torrent)
         return;
 
-    m_ui->listWebSeeds->clear();
-    qDebug("Loading URL seeds");
-    const QVector<QUrl> hcSeeds = m_torrent->urlSeeds();
-    // Add url seeds
-    for (const QUrl &hcSeed : hcSeeds)
+    using TorrentPtr = QPointer<BitTorrent::Torrent>;
+    m_torrent->fetchURLSeeds([this, torrent = TorrentPtr(m_torrent)](const QVector<QUrl> &urlSeeds)
     {
-        qDebug("Loading URL seed: %s", qUtf8Printable(hcSeed.toString()));
-        new QListWidgetItem(hcSeed.toString(), m_ui->listWebSeeds);
-    }
+        if (torrent != m_torrent)
+            return;
+
+        m_ui->listWebSeeds->clear();
+        qDebug("Loading URL seeds");
+        // Add url seeds
+        for (const QUrl &urlSeed : urlSeeds)
+        {
+            qDebug("Loading URL seed: %s", qUtf8Printable(urlSeed.toString()));
+            new QListWidgetItem(urlSeed.toString(), m_ui->listWebSeeds);
+        }
+    });
 }
 
 Path PropertiesWidget::getFullPath(const QModelIndex &index) const

@@ -36,6 +36,7 @@
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
+#include <QPointer>
 #include <QShortcut>
 #include <QStringList>
 #include <QTreeWidgetItem>
@@ -310,42 +311,50 @@ void TrackerListWidget::loadStickyItems(const BitTorrent::Torrent *torrent)
         m_LSDItem->setText(COL_MSG, privateMsg);
     }
 
-    // XXX: libtorrent should provide this info...
-    // Count peers from DHT, PeX, LSD
-    uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
-    for (const BitTorrent::PeerInfo &peer : asConst(torrent->peers()))
+    using TorrentPtr = QPointer<const BitTorrent::Torrent>;
+    torrent->fetchPeerInfo([this, torrent = TorrentPtr(torrent)](const QVector<BitTorrent::PeerInfo> &peers)
     {
-        if (peer.isConnecting()) continue;
+        if (torrent != m_properties->getCurrentTorrent())
+            return;
 
-        if (peer.fromDHT())
+        // XXX: libtorrent should provide this info...
+        // Count peers from DHT, PeX, LSD
+        uint seedsDHT = 0, seedsPeX = 0, seedsLSD = 0, peersDHT = 0, peersPeX = 0, peersLSD = 0;
+        for (const BitTorrent::PeerInfo &peer : peers)
         {
-            if (peer.isSeed())
-                ++seedsDHT;
-            else
-                ++peersDHT;
-        }
-        if (peer.fromPeX())
-        {
-            if (peer.isSeed())
-                ++seedsPeX;
-            else
-                ++peersPeX;
-        }
-        if (peer.fromLSD())
-        {
-            if (peer.isSeed())
-                ++seedsLSD;
-            else
-                ++peersLSD;
-        }
-    }
+            if (peer.isConnecting())
+                continue;
 
-    m_DHTItem->setText(COL_SEEDS, QString::number(seedsDHT));
-    m_DHTItem->setText(COL_LEECHES, QString::number(peersDHT));
-    m_PEXItem->setText(COL_SEEDS, QString::number(seedsPeX));
-    m_PEXItem->setText(COL_LEECHES, QString::number(peersPeX));
-    m_LSDItem->setText(COL_SEEDS, QString::number(seedsLSD));
-    m_LSDItem->setText(COL_LEECHES, QString::number(peersLSD));
+            if (peer.fromDHT())
+            {
+                if (peer.isSeed())
+                    ++seedsDHT;
+                else
+                    ++peersDHT;
+            }
+            if (peer.fromPeX())
+            {
+                if (peer.isSeed())
+                    ++seedsPeX;
+                else
+                    ++peersPeX;
+            }
+            if (peer.fromLSD())
+            {
+                if (peer.isSeed())
+                    ++seedsLSD;
+                else
+                    ++peersLSD;
+            }
+        }
+
+        m_DHTItem->setText(COL_SEEDS, QString::number(seedsDHT));
+        m_DHTItem->setText(COL_LEECHES, QString::number(peersDHT));
+        m_PEXItem->setText(COL_SEEDS, QString::number(seedsPeX));
+        m_PEXItem->setText(COL_LEECHES, QString::number(peersPeX));
+        m_LSDItem->setText(COL_SEEDS, QString::number(seedsLSD));
+        m_LSDItem->setText(COL_LEECHES, QString::number(peersLSD));
+    });
 }
 
 void TrackerListWidget::loadTrackers()

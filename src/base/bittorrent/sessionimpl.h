@@ -443,7 +443,7 @@ namespace BitTorrent
         template <typename Func>
         void invoke(Func &&func)
         {
-            QMetaObject::invokeMethod(this, std::forward<Func>(func));
+            QMetaObject::invokeMethod(this, std::forward<Func>(func), Qt::QueuedConnection);
         }
 
         void invokeAsync(std::function<void ()> func);
