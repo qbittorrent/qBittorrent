@@ -281,7 +281,9 @@ namespace BitTorrent
 
         void setAutoManaged(bool enable);
 
+        Path wantedActualPath(int index, const Path &path) const;
         void adjustStorageLocation();
+        void doRenameFile(int index, const Path &path);
         void moveStorage(const Path &newPath, MoveStorageMode mode);
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled);

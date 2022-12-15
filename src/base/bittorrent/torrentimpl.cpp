@@ -520,6 +520,17 @@ void TorrentImpl::setAutoManaged(const bool enable)
         m_nativeHandle.unset_flags(lt::torrent_flags::auto_managed);
 }
 
+Path TorrentImpl::wantedActualPath(int index, const Path &path) const
+{
+    if (m_session->isAppendExtensionEnabled()
+            && (fileSize(index) > 0) && !m_completedFiles.at(index))
+    {
+        return path + QB_EXT;
+    }
+
+    return path;
+}
+
 QVector<TrackerEntry> TorrentImpl::trackers() const
 {
     if (!m_updatedTrackerEntries.isEmpty())
@@ -1731,15 +1742,12 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
 
 void TorrentImpl::renameFile(const int index, const Path &path)
 {
-    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
-
-    Q_ASSERT(index >= 0);
-    Q_ASSERT(index < nativeIndexes.size());
-    if ((index < 0) || (index >= nativeIndexes.size()))
+    Q_ASSERT((index >= 0) && (index < filesCount()));
+    if (Q_UNLIKELY((index < 0) || (index >= filesCount())))
         return;
 
-    ++m_renameCount;
-    m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
+    const Path wantedPath = wantedActualPath(index, path);
+    doRenameFile(index, wantedPath);
 }
 
 void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
@@ -1991,13 +1999,12 @@ void TorrentImpl::handleFileRenamedAlert(const lt::file_renamed_alert *p)
     // For example renaming "a/b/c" to "d/b/c", then folders "a/b" and "a" will
     // be removed if they are empty
     const Path oldFilePath = m_filePaths.at(fileIndex);
-    const Path newFilePath {QString::fromUtf8(p->new_name())};
+    const Path newFilePath = Path(QString::fromUtf8(p->new_name())).removedExtension(QB_EXT);
 
     // Check if ".!qB" extension was just added or removed
     // We should compare path in a case sensitive manner even on case insensitive
     // platforms since it can be renamed by only changing case of some character(s)
-    if ((oldFilePath.data() != newFilePath.data())
-            && ((oldFilePath + QB_EXT) != newFilePath))
+    if (oldFilePath.data() != newFilePath.data())
     {
         m_filePaths[fileIndex] = newFilePath;
 
@@ -2049,7 +2056,7 @@ void TorrentImpl::handleFileCompletedAlert(const lt::file_completed_alert *p)
         if (actualPath != path)
         {
             qDebug("Renaming %s to %s", qUtf8Printable(actualPath.toString()), qUtf8Printable(path.toString()));
-            renameFile(fileIndex, path);
+            doRenameFile(fileIndex, path);
         }
     }
 }
@@ -2156,7 +2163,6 @@ void TorrentImpl::manageIncompleteFiles()
 {
     const std::shared_ptr<const lt::torrent_info> nativeInfo = nativeTorrentInfo();
     const lt::file_storage &nativeFiles = nativeInfo->files();
-    const bool isAppendExtensionEnabled = m_session->isAppendExtensionEnabled();
 
     for (int i = 0; i < filesCount(); ++i)
     {
@@ -2164,23 +2170,11 @@ void TorrentImpl::manageIncompleteFiles()
 
         const auto nativeIndex = m_torrentInfo.nativeIndexes().at(i);
         const Path actualPath {nativeFiles.file_path(nativeIndex)};
-
-        if (isAppendExtensionEnabled && (fileSize(i) > 0) && !m_completedFiles.at(i))
+        const Path wantedPath = wantedActualPath(i, path);
+        if (actualPath != wantedPath)
         {
-            const Path wantedPath = path + QB_EXT;
-            if (actualPath != wantedPath)
-            {
-                qDebug() << "Renaming" << actualPath.toString() << "to" << wantedPath.toString();
-                renameFile(i, wantedPath);
-            }
-        }
-        else
-        {
-            if (actualPath != path)
-            {
-                qDebug() << "Renaming" << actualPath.toString() << "to" << path.toString();
-                renameFile(i, path);
-            }
+            qDebug() << "Renaming" << actualPath.toString() << "to" << wantedPath.toString();
+            doRenameFile(i, wantedPath);
         }
     }
 }
@@ -2193,6 +2187,19 @@ void TorrentImpl::adjustStorageLocation()
 
     if ((targetPath != actualStorageLocation()) || isMoveInProgress())
         moveStorage(targetPath, MoveStorageMode::FailIfExist);
+}
+
+void TorrentImpl::doRenameFile(int index, const Path &path)
+{
+    const QVector<lt::file_index_t> nativeIndexes = m_torrentInfo.nativeIndexes();
+
+    Q_ASSERT(index >= 0);
+    Q_ASSERT(index < nativeIndexes.size());
+    if (Q_UNLIKELY((index < 0) || (index >= nativeIndexes.size())))
+        return;
+
+    ++m_renameCount;
+    m_nativeHandle.rename_file(nativeIndexes[index], path.toString().toStdString());
 }
 
 lt::torrent_handle TorrentImpl::nativeHandle() const
