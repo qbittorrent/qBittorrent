@@ -556,7 +556,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     case AdditionalUnderlyingDataRole:
         return internalValue(torrent, index.column(), true);
     case Qt::DecorationRole:
-        if (index.column() == TR_NAME)
+        if (index.column() == TR_STATUS)
             return getIconByState(torrent->state());
         break;
     case Qt::ToolTipRole:
