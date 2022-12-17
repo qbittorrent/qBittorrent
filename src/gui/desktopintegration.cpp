@@ -99,6 +99,12 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
 }
 
+DesktopIntegration::~DesktopIntegration()
+{
+    if (m_menu)
+        delete m_menu;
+}
+
 bool DesktopIntegration::isActive() const
 {
 #ifdef Q_OS_MACOS
@@ -135,12 +141,36 @@ void DesktopIntegration::setMenu(QMenu *menu)
     if (menu == m_menu)
         return;
 
+#if defined Q_OS_MACOS
+    if (m_menu)
+        delete m_menu;
+
     m_menu = menu;
 
-#ifdef Q_OS_MACOS
     if (m_menu)
         m_menu->setAsDockMenu();
+#elif defined Q_OS_UNIX
+    const bool systemTrayEnabled = m_systrayIcon;
+    if (m_menu)
+    {
+        if (m_systrayIcon)
+        {
+            delete m_systrayIcon;
+            m_systrayIcon = nullptr;
+        }
+        delete m_menu;
+    }
+
+    m_menu = menu;
+
+    if (systemTrayEnabled && !m_systrayIcon)
+        createTrayIcon();
 #else
+    if (m_menu)
+        delete m_menu;
+
+    m_menu = menu;
+
     if (m_systrayIcon)
         m_systrayIcon->setContextMenu(m_menu);
 #endif
