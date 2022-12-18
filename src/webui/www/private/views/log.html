@@ -10,7 +10,7 @@
     }
 
     #logLevelSelect {
-        width: 150px;
+        width: 160px;
     }
 
     #logSearchSummary {
@@ -80,8 +80,6 @@
         </div>
     </div>
 
-    <input id="te-for-copy" style="opacity: 0;z-index: -9999;height: 1px;" />
-
 </div>
 
 <script>
@@ -102,10 +100,11 @@
                 getSelectedLogLevels: getSelectedLogLevels,
                 logLevelSelected: logLevelSelected,
                 logSearchPatternChanged: logSearchPatternChanged,
+                logMainLogTable: logMainLogTable,
             };
         };
 
-        let logsResultTable = new window.qBittorrent.DynamicTable.LogsTable();
+        let logMainLogTable = new window.qBittorrent.DynamicTable.LogsTable();
 
         let loadLogsResultsTimer;
         let logsSearchPattern = "";
@@ -115,13 +114,18 @@
         let isFilterUpdating = false;
         let last_known_id = -1;
 
+        const logListContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+            targets: 'tr.logTableRow',
+            menu: 'logTableMenu'
+        });
+
         const init = function() {
             logsSearchPattern = $('searchKeywords').getProperty('value').trim();
             // load "Search in" preference from local storage
             $('searchKeywords').set('value', localStorage.getItem('keywords'));
 
             unload();
-            logsResultTable.setup('logResultsTableDiv', 'logResultsTableFixedHeaderDiv', null);
+            logMainLogTable.setup('logResultsTableDiv', 'logResultsTableFixedHeaderDiv', logListContextMenu);
             load();
         };
 
@@ -158,40 +162,9 @@
 
         const logSearchFilterChanged = function() {
             isFilterUpdating = true;
-            logsResultTable.updateTable();
-            $('numLogResultsVisible').set('html', logsResultTable.getFilteredAndSortedRows().length);
+            logMainLogTable.updateTable();
+            $('numLogResultsVisible').set('html', logMainLogTable.getFilteredAndSortedRows().length);
             isFilterUpdating = false;
-        };
-
-        const copyLogMessageToClipboard = function() {
-            let urls = [];
-            logsResultTable.selectedRowsIds().each(function(rowId) {
-                urls.push(logsResultTable.rows.get(rowId).full_data.message);
-            });
-
-            // only proceed if at least 1 row was selected
-            if (!urls.length) {
-                return;
-            }
-
-            let copyText = document.querySelector("#te-for-copy");
-            copyText.value = urls.join("\n");
-            copyText.style.display = '';
-            copyText.select();
-            document.execCommand("copy");
-            copyText.value = '';
-            copyText.style.display = 'none';
-        };
-
-        const setupLogsTableEvents = function(enable) {
-            if (enable)
-                $$(".logTableRow").each(function(target) {
-                    target.addEventListener('dblclick', copyLogMessageToClipboard, false);
-                });
-            else
-                $$(".logTableRow").each(function(target) {
-                    target.removeEventListener('dblclick', copyLogMessageToClipboard, false);
-                });
         };
 
         const loadLogsResultsData = function() {
@@ -235,7 +208,6 @@
                     }
 
                     if (response.length > 0) {
-                        setupLogsTableEvents(false);
                         let results = response;
                         for (let i = 0; i < results.length; ++i) {
                             let result = results[i];
@@ -248,17 +220,15 @@
                             };
 
                             last_known_id = result.id;
-                            logsResultTable.updateRowData(row);
+                            logMainLogTable.updateRowData(row);
                             ++searchResultsRowId;
                         }
 
-                        $('numLogResultsVisible').set('html', logsResultTable.getFilteredAndSortedRows().length);
-                        $('numLogResultsTotal').set('html', logsResultTable.getRowIds().length);
+                        $('numLogResultsVisible').set('html', logMainLogTable.getFilteredAndSortedRows().length);
+                        $('numLogResultsTotal').set('html', logMainLogTable.getRowIds().length);
 
-                        logsResultTable.updateTable();
-                        logsResultTable.altRow();
-
-                        setupLogsTableEvents(true);
+                        logMainLogTable.updateTable();
+                        logMainLogTable.altRow();
                     }
 
                     let showLogs = localStorage.getItem('qb_webui_show_logs') !== "false";

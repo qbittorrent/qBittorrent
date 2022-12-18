@@ -89,6 +89,7 @@ let copyMagnetLinkFN = function() {};
 let copyIdFN = function() {};
 let setQueuePositionFN = function() {};
 let exportTorrentFN = function() {};
+let copyLogMessageFN = function() {};
 
 const initializeWindows = function() {
     saveWindowSize = function(windowId) {
@@ -977,6 +978,25 @@ const initializeWindows = function() {
             element.click();
             document.body.removeChild(element);
         }
+    };
+
+    copyLogMessageFN = function() {
+        if (!window.qBittorrent.Logs.logMainLogTable) {
+            alert("QBT_TR(No log tab inited)QBT_TR[CONTEXT=LogWidget]");
+        }
+        const selectedRows =  window.qBittorrent.Logs.logMainLogTable.selectedRowsIds();
+
+        if (selectedRows.length == 0) {
+            alert("QBT_TR(No log message selected)QBT_TR[CONTEXT=LogWidget]");
+        }
+        
+        const messages = [];
+        selectedRows.each(function(rowId) {
+            // timestamp + message
+            let row = window.qBittorrent.Logs.logMainLogTable.rows.get(rowId);
+            messages.push(new Date(row.full_data.timestamp * 1000).toLocaleString() + ": " + row.full_data.message);
+        });
+        return messages.join("\n");
     };
 
     addClickEvent('pauseAll', (e) => {

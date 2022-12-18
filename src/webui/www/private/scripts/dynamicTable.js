@@ -2638,19 +2638,19 @@ window.qBittorrent.DynamicTable = (function() {
                 //Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
                 switch (value) {
                     case 1:
-                        logLevel = 'Normal';
+                        logLevel = 'QBT_TR(Normal)QBT_TR[CONTEXT=ExecutionLogWidget]';
                         td.getParent("tr").className = 'logTableRow logNormal';
                         break;
                     case 2:
-                        logLevel = 'Info';
+                        logLevel = 'QBT_TR(Info)QBT_TR[CONTEXT=ExecutionLogWidget]';
                         td.getParent("tr").className = 'logTableRow logInfo';
                         break;
                     case 4:
-                        logLevel = 'Warning';
+                        logLevel = 'QBT_TR(Warning)QBT_TR[CONTEXT=ExecutionLogWidget]';
                         td.getParent("tr").className = 'logTableRow logWarning';
                         break;
                     case 8:
-                        logLevel = 'Critical';
+                        logLevel = 'QBT_TR(Critical)QBT_TR[CONTEXT=ExecutionLogWidget]';
                         td.getParent("tr").className = 'logTableRow logCritical';
                         break;
                     default:

@@ -1422,6 +1422,8 @@ function setupCopyEventHandler() {
                     return copyMagnetLinkFN();
                 case "copyID":
                     return copyIdFN();
+                case "copyLogMessage":
+                    return copyLogMessageFN();
                 default:
                     return "";
             }
