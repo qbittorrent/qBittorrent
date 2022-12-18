@@ -1125,7 +1125,7 @@ window.addEvent('load', function() {
                 left: 0
             },
             loadMethod: 'xhr',
-            contentURL: 'views/logs.html',
+            contentURL: 'views/log.html',
             content: '',
             column: 'logsTabColumn',
             height: null

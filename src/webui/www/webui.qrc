@@ -406,7 +406,7 @@
         <file>private/views/rssDownloader.html</file>
         <file>private/views/search.html</file>
         <file>private/views/searchplugins.html</file>
-        <file>private/views/logs.html</file>
+        <file>private/views/log.html</file>
         <file>private/views/statistics.html</file>
         <file>private/views/transferlist.html</file>
         <file>public/css/login.css</file>
