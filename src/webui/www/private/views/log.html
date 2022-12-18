@@ -43,11 +43,11 @@
 
             <label for="logLevelSelect" style="font-weight: bold;margin-right: 10px;">QBT_TR(Log Level Filter:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
             <select id="logLevelSelect" class="logLevelSelect" onchange="window.qBittorrent.Logs.logLevelSelected()">
-                <option value="0">All</option>
-                <option value="1">Normal</option>
-                <option value="2">Info</option>
-                <option value="4">Warning</option>
-                <option value="8">Critical</option>
+                <option value="0">QBT_TR(All Messages)QBT_TR[CONTEXT=MainWindow]</option>
+                <option value="1">QBT_TR(Normal Messages)QBT_TR[CONTEXT=MainWindow]</option>
+                <option value="2">QBT_TR(Information Messages)QBT_TR[CONTEXT=MainWindow]</option>
+                <option value="4">QBT_TR(Warning Messages)QBT_TR[CONTEXT=MainWindow]</option>
+                <option value="8">QBT_TR(Critical Messages)QBT_TR[CONTEXT=MainWindow]</option>
             </select>
 
             <input type="text" id="searchKeywords" onkeyup="window.qBittorrent.Logs.logSearchPatternChanged()" class="logInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocapitalize="none" />
