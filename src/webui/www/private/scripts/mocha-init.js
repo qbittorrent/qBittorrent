@@ -989,7 +989,7 @@ const initializeWindows = function() {
         if (selectedRows.length == 0) {
             alert("QBT_TR(No log message selected)QBT_TR[CONTEXT=LogWidget]");
         }
-        
+
         const messages = [];
         selectedRows.each(function(rowId) {
             // timestamp + message
