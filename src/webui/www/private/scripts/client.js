@@ -33,7 +33,6 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
-let customSyncLogsDataInterval = 1000;
 let searchTabInitialized = false;
 let rssTabInitialized = false;
 let logsTabInitialized = false;
@@ -107,10 +106,6 @@ function genHash(string) {
 
 function getSyncMainDataInterval() {
     return customSyncMainDataInterval ? customSyncMainDataInterval : serverSyncMainDataInterval;
-}
-
-function getSyncLogsDataInterval() {
-    return customSyncLogsDataInterval ? customSyncLogsDataInterval : serverSyncMainDataInterval;
 }
 
 const fetchQbtVersion = function() {
