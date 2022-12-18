@@ -973,14 +973,14 @@ window.addEvent('load', function() {
         if (showLogs) {
             $('showLogsLink').firstChild.style.opacity = '1';
             $('mainWindowTabs').removeClass('invisible');
-            $('logsTabLink').removeClass('invisible');
+            $('logTabLink').removeClass('invisible');
             if (!MochaUI.Panels.instances.LogsPanel)
                 addLogsPanel();
         }
         else {
             $('showLogsLink').firstChild.style.opacity = '0';
-            $('logsTabLink').addClass('invisible');
-            if ($('logsTabLink').hasClass('selected'))
+            $('logTabLink').addClass('invisible');
+            if ($('logTabLink').hasClass('selected'))
                 $("transfersTabLink").click();
         }
 
@@ -1272,7 +1272,7 @@ window.addEvent('load', function() {
     $('transfersTabLink').addEvent('click', showTransfersTab);
     $('searchTabLink').addEvent('click', showSearchTab);
     $('rssTabLink').addEvent('click', showRssTab);
-    $('logsTabLink').addEvent('click', showLogsTab);
+    $('logTabLink').addEvent('click', showLogsTab);
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
