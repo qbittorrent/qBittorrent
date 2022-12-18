@@ -932,7 +932,7 @@ window.addEvent('load', function() {
         updateTabDisplay();
     });
 
-    $('showLogsLink').addEvent('click', function(e) {
+    $('showLogLink').addEvent('click', function(e) {
         showLogs = !showLogs;
         localStorage.setItem('qb_webui_show_logs', showLogs.toString());
         updateTabDisplay();
@@ -971,14 +971,14 @@ window.addEvent('load', function() {
         }
 
         if (showLogs) {
-            $('showLogsLink').firstChild.style.opacity = '1';
+            $('showLogLink').firstChild.style.opacity = '1';
             $('mainWindowTabs').removeClass('invisible');
             $('logTabLink').removeClass('invisible');
             if (!MochaUI.Panels.instances.LogsPanel)
                 addLogsPanel();
         }
         else {
-            $('showLogsLink').firstChild.style.opacity = '0';
+            $('showLogLink').firstChild.style.opacity = '0';
             $('logTabLink').addClass('invisible');
             if ($('logTabLink').hasClass('selected'))
                 $("transfersTabLink").click();
