@@ -1,5 +1,4 @@
-<!-- build 20201021 ttyS3 -->
-<style type="text/css">
+<style>
     #searchKeywords {
         width: 300px;
         padding: 1px 5px 1px 2em;
@@ -42,19 +41,6 @@
     <div style="overflow: hidden; height: 70px;">
         <div style="margin: 20px 0; height: 30px;">
 
-            <!--
-            <label for="logLevelNormal" style="margin-left: 15px;">QBT_TR(Normal:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
-            <input id="logLevelNormal" type="checkbox" class="logInputField" name="logLevelSelect[]" value="1" onchange="logLevelSelected()">
-
-            <label for="logLevelInfo" style="margin-left: 15px;">QBT_TR(Info:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
-            <input id="logLevelInfo" type="checkbox" class="logInputField" name="logLevelSelect[]" value="2" onchange="logLevelSelected()">
-
-            <label for="logLevelWarning" style="margin-left: 15px;">QBT_TR(Warning:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
-            <input id="logLevelWarning" type="checkbox" class="logInputField" name="logLevelSelect[]" value="4" onchange="logLevelSelected()">
-
-            <label for="logLevelCritical" style="margin-left: 15px;">QBT_TR(Critical:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
-            <input id="logLevelCritical"  type="checkbox" class="logInputField" name="logLevelSelect[]" value="8" onchange="logLevelSelected()">
--->
             <label for="logLevelSelect" style="font-weight: bold;margin-right: 10px;">QBT_TR(Log Level Filter:)QBT_TR[CONTEXT=SearchEngineWidget]</label>
             <select id="logLevelSelect" class="logLevelSelect" onchange="window.qBittorrent.Logs.logLevelSelected()">
                 <option value="0">All</option>
@@ -131,7 +117,6 @@
         let last_known_id = -1;
 
         const init = function() {
-            console.log('Logs.init()');
             logsSearchPattern = $('searchKeywords').getProperty('value').trim();
             // load "Search in" preference from local storage
             $('searchKeywords').set('value', localStorage.getItem('keywords'));
@@ -142,7 +127,6 @@
         };
 
         const unload = () => {
-            console.log('Logs.unload()');
             clearTimeout(loadLogsResultsTimer);
         };
 
@@ -151,7 +135,6 @@
         };
 
         const loadWithInterval = (interval) => {
-            console.log('Logs.load() interval=%d', interval);
             clearTimeout(loadLogsResultsTimer);
             loadLogsResultsTimer = loadLogsResultsData.delay(interval);
         };
@@ -166,7 +149,6 @@
 
         const logLevelSelected = function() {
             selectedLogLevels = getSelectedLogLevels();
-            console.log('selectedLogLevels: %d', selectedLogLevels);
             logSearchFilterChanged();
         };
 
@@ -176,7 +158,6 @@
         };
 
         const logSearchFilterChanged = function() {
-            console.log('logSearchFilterChanged()');
             isFilterUpdating = true;
             logsResultTable.updateTable();
             $('numLogResultsVisible').set('html', logsResultTable.getFilteredAndSortedRows().length);
@@ -216,7 +197,6 @@
 
         const loadLogsResultsData = function() {
             if ($("logsTabColumn").hasClass('invisible') === true) {
-                console.log("logsTab invisible, no need to refresh logs");
                 return;
             }
             let searchResultsRowId = 0;

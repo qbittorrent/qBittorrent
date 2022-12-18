@@ -2668,7 +2668,6 @@ window.qBittorrent.DynamicTable = (function() {
             const containsAll = function(text, searchTerms) {
                 text = text.toLowerCase();
                 for (let i = 0; i < searchTerms.length; ++i) {
-                    // console.log("text: %s, search term: %s", text, searchTerms[i]);
                     if (text.indexOf(searchTerms[i].toLowerCase()) === -1)
                         return false;
                 }
@@ -2681,12 +2680,10 @@ window.qBittorrent.DynamicTable = (function() {
                 ? window.qBittorrent.Logs.getLogsSearchPattern().toLowerCase().split(' ') : [];
             let logLevelFilter = window.qBittorrent.Logs.getSelectedLogLevels();
 
-            // console.log(searchTerms);
             if (searchTerms.length || logLevelFilter) {
                 for (var i = 0; i < rows.length; ++i) {
                     var row = rows[i];
 
-                    // console.log(row.full_data.message);
                     if (searchTerms.length && !containsAll(row.full_data.message, searchTerms)) {
                         continue;
                     }
