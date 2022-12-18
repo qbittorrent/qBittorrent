@@ -204,27 +204,7 @@
             let warningLevel = true; //4
             let criticalLevel = true; //8
             //always return all levels, we can filter use dynamicTable.js, not http API
-            /*        if (selectedLogLevels == 1) {
-                        normalLevel = true;
-                        infoLevel = false;
-                        warningLevel = false;
-                        criticalLevel = false;
-                    } else if (selectedLogLevels == 2) {
-                        normalLevel = false;
-                        infoLevel = true;
-                        warningLevel = false;
-                        criticalLevel = false;
-                    } else if (selectedLogLevels == 4) {
-                        normalLevel = false;
-                        infoLevel = false;
-                        warningLevel = true;
-                        criticalLevel = false;
-                    } else if (selectedLogLevels == 8) {
-                        normalLevel = false;
-                        infoLevel = false;
-                        warningLevel = false;
-                        criticalLevel = true;
-                    }*/
+
             const url = new URI('api/v2/log/main');
             new Request.JSON({
                 url: url,
