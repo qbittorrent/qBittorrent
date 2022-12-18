@@ -185,11 +185,11 @@
 
         const setupLogsTableEvents = function(enable) {
             if (enable)
-                $$(".logsTableRow").each(function(target) {
+                $$(".logTableRow").each(function(target) {
                     target.addEventListener('dblclick', copyLogMessageToClipboard, false);
                 });
             else
-                $$(".logsTableRow").each(function(target) {
+                $$(".logTableRow").each(function(target) {
                     target.removeEventListener('dblclick', copyLogMessageToClipboard, false);
                 });
         };

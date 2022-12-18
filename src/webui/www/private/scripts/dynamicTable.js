@@ -2639,19 +2639,19 @@ window.qBittorrent.DynamicTable = (function() {
                 switch (value) {
                     case 1:
                         logLevel = 'Normal';
-                        td.getParent("tr").className = 'logsTableRow logNormal';
+                        td.getParent("tr").className = 'logTableRow logNormal';
                         break;
                     case 2:
                         logLevel = 'Info';
-                        td.getParent("tr").className = 'logsTableRow logInfo';
+                        td.getParent("tr").className = 'logTableRow logInfo';
                         break;
                     case 4:
                         logLevel = 'Warning';
-                        td.getParent("tr").className = 'logsTableRow logWarning';
+                        td.getParent("tr").className = 'logTableRow logWarning';
                         break;
                     case 8:
                         logLevel = 'Critical';
-                        td.getParent("tr").className = 'logsTableRow logCritical';
+                        td.getParent("tr").className = 'logTableRow logCritical';
                         break;
                     default:
                         logLevel = 'Unknown';
@@ -2711,7 +2711,7 @@ window.qBittorrent.DynamicTable = (function() {
         },
 
         setupTr: function(tr) {
-            tr.addClass("logsTableRow");
+            tr.addClass("logTableRow");
         }
     });
 
