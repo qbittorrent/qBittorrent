@@ -2615,10 +2615,10 @@ window.qBittorrent.DynamicTable = (function() {
         Extends: DynamicTable,
 
         initColumns: function() {
-            this.newColumn('id', '', 'ID', 15, true);
-            this.newColumn('message', '', 'Message', 300, true);
-            this.newColumn('timestamp', '', 'Timestamp', 100, true);
-            this.newColumn('type', '', 'Log Type', 100, true);
+            this.newColumn('id', '', 'QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]', 15, true);
+            this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=ExecutionLogWidget]', 300, true);
+            this.newColumn('timestamp', '', 'QBT_TR(Timestamp)QBT_TR[CONTEXT=ExecutionLogWidget]', 100, true);
+            this.newColumn('type', '', 'QBT_TR(Log Type)QBT_TR[CONTEXT=ExecutionLogWidget]', 100, true);
             this.initColumnsFunctions();
         },
 
