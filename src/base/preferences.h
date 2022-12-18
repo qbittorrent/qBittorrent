@@ -121,8 +121,6 @@ public:
     void setStatusbarDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
     void setToolbarDisplayed(bool displayed);
-    bool startMinimized() const;
-    void setStartMinimized(bool b);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspendWhenDownloading() const;

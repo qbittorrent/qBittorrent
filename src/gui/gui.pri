@@ -83,7 +83,8 @@ HEADERS += \
     $$PWD/uithememanager.h \
     $$PWD/utils.h \
     $$PWD/watchedfolderoptionsdialog.h \
-    $$PWD/watchedfoldersmodel.h
+    $$PWD/watchedfoldersmodel.h \
+    $$PWD/windowstate.h
 
 SOURCES += \
     $$PWD/aboutdialog.cpp \
