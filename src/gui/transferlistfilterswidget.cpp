@@ -1046,39 +1046,46 @@ void TransferListFiltersWidget::showMenu()
     connect(checkBoxChecking, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
     connect(checkBoxMoving, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
     connect(checkBoxErrored, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
-    // QList<QCheckBox> checkBoxes; 
-    // checkBoxes.append(checkBoxAll);
-    //  checkBoxes.append(checkBoxDownloading);
-    //   checkBoxes.append(checkBoxSeeding);
-    //    checkBoxes.append(checkBoxCompleted);
-    //     checkBoxes.append(checkBoxResumed);
-    //      checkBoxes.append(checkBoxPaused);
-    //       checkBoxes.append(checkBoxActive);
-    //        checkBoxes.append(checkBoxInactive);
-    //         checkBoxes.append(checkBoxStalled);
-    //          checkBoxes.append(checkBoxStalledUploading);
-    //           checkBoxes.append(checkBoxStalledDownloading);
-    //            checkBoxes.append(checkBoxChecking);
-    //             checkBoxes.append(checkBoxMoving);
-    //              checkBoxes.append(checkBoxErrored);
-    // const Preferences *const pref = Preferences::instance();
-    // QList<Qt::CheckState> individualStatusFilters = pref-> getIndividualStatusFilterState();
-    // QCheckBox* b = checkBoxes.begin();
-    // foreach(const auto &individualStatusFilter, individualStatusFilters)
-    // {   
-    //     b->setCheckState(individualStatusFilter);
-    //     b++;
-    // }
+     Preferences *const pref = Preferences::instance();
+    QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
+    checkBoxAll->setCheckState(individualStatusFilter.at(0));
+    checkBoxDownloading->setCheckState(individualStatusFilter.at(1));
+    checkBoxSeeding->setCheckState(individualStatusFilter.at(2));
+    checkBoxCompleted->setCheckState(individualStatusFilter.at(3));
+    checkBoxResumed->setCheckState(individualStatusFilter.at(4));
+    checkBoxPaused->setCheckState(individualStatusFilter.at(5));
+    checkBoxActive->setCheckState(individualStatusFilter.at(6));
+    checkBoxInactive->setCheckState(individualStatusFilter.at(7));
+    checkBoxStalled->setCheckState(individualStatusFilter.at(8));
+    checkBoxStalledUploading->setCheckState(individualStatusFilter.at(9));
+    checkBoxStalledDownloading->setCheckState(individualStatusFilter.at(10));
+    checkBoxChecking->setCheckState(individualStatusFilter.at(11));
+    checkBoxMoving->setCheckState(individualStatusFilter.at(12));
+    checkBoxErrored->setCheckState(individualStatusFilter.at(13));
+
+    // QListWidget w {};
+    //  auto *all = new QListWidgetItem(&w);
+    // all->setData(Qt::DisplayRole, tr("All (0)", "this is for the status filter"));
+    // all->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"filter-all"_qs));
+    // QWidgetAction *checkableActionErrored = new QWidgetAction(menu);
+    // checkableActionErrored->setDefaultWidget(&w);
+    // menu->addAction(checkableActionErrored);
     menu->popup(QCursor::pos());
  
 }
 
 void TransferListFiltersWidget::updateStatus(int state)
 {
+     Preferences *const pref = Preferences::instance();
+    QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
     auto checkBox = static_cast<QCheckBox*>(sender());
     QList<QListWidgetItem*> items = m_statusFilters->findItems(tr(checkBox->text().toStdString().c_str()), Qt::MatchContains);
     if(state == Qt::Unchecked)
-        items.first()->setHidden(true);
+        items.first()->setHidden(true);  
     else
         items.first()->setHidden(false);
+    
+        individualStatusFilter[m_statusFilters->row(items.first())] = (static_cast<Qt::CheckState>(state));
+    pref->setIndividualStatusFilterState(individualStatusFilter);
+
 }
