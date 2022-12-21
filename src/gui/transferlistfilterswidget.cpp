@@ -37,6 +37,7 @@
 #include <QStyleOptionButton>
 #include <QUrl>
 #include <QVBoxLayout>
+#include <QWidgetAction>
 
 #include "base/algorithm.h"
 #include "base/bittorrent/session.h"
@@ -217,7 +218,6 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     const Preferences *const pref = Preferences::instance();
     setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
     toggleFilter(pref->getStatusFilterState());
-
     populate();
 
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
@@ -832,9 +832,10 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
     frameLayout->addWidget(statusLabel);
-
-    auto *statusFilters = new StatusFilterWidget(this, transferList);
-    frameLayout->addWidget(statusFilters);
+    statusLabel->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(statusLabel, &QWidget::customContextMenuRequested, this, &TransferListFiltersWidget::showMenu);
+    m_statusFilters = new StatusFilterWidget(this, transferList);
+    frameLayout->addWidget(m_statusFilters);
 
     QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
@@ -881,7 +882,7 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     m_trackerFilters = new TrackerFiltersList(this, transferList, downloadFavicon);
     frameLayout->addWidget(m_trackerFilters);
 
-    connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
+    connect(statusLabel, &QCheckBox::toggled, m_statusFilters, &StatusFilterWidget::toggleFilter);
     connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
     connect(trackerLabel, &QCheckBox::toggled, m_trackerFilters, &TrackerFiltersList::toggleFilter);
     connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
@@ -940,4 +941,144 @@ void TransferListFiltersWidget::toggleTagFilter(bool enabled)
 {
     m_tagFilterWidget->setVisible(enabled);
     m_transferList->applyTagFilter(enabled ? m_tagFilterWidget->currentTag() : QString());
+}
+
+void TransferListFiltersWidget::showMenu()
+{   
+    
+    QMenu *menu = new QMenu(this);
+
+    QCheckBox *checkBoxAll = new QCheckBox(menu);
+    checkBoxAll->setText(tr("All"));
+    QWidgetAction *checkableActionAll = new QWidgetAction(menu);
+    checkableActionAll->setDefaultWidget(checkBoxAll);
+    menu->addAction(checkableActionAll);
+
+     QCheckBox *checkBoxDownloading = new QCheckBox(menu);
+    checkBoxDownloading->setText(tr("Downloading"));
+    QWidgetAction *checkableActionDownloading = new QWidgetAction(menu);
+    checkableActionDownloading->setDefaultWidget(checkBoxDownloading);
+    menu->addAction(checkableActionDownloading);
+
+     QCheckBox *checkBoxSeeding = new QCheckBox(menu);
+    checkBoxSeeding->setText(tr("Seeding"));
+    QWidgetAction *checkableActionSeeding = new QWidgetAction(menu);
+    checkableActionSeeding->setDefaultWidget(checkBoxSeeding);
+    menu->addAction(checkableActionSeeding);
+
+     QCheckBox *checkBoxCompleted = new QCheckBox(menu);
+    checkBoxCompleted->setText(tr("Completed"));
+    QWidgetAction *checkableActionCompleted = new QWidgetAction(menu);
+    checkableActionCompleted->setDefaultWidget(checkBoxCompleted);
+    menu->addAction(checkableActionCompleted);
+
+     QCheckBox *checkBoxResumed = new QCheckBox(menu);
+    checkBoxResumed->setText(tr("Resumed"));
+    QWidgetAction *checkableActionResumed = new QWidgetAction(menu);
+    checkableActionResumed->setDefaultWidget(checkBoxResumed);
+    menu->addAction(checkableActionResumed);
+
+     QCheckBox *checkBoxPaused = new QCheckBox(menu);
+    checkBoxPaused->setText(tr("Paused"));
+    QWidgetAction *checkableActionPaused = new QWidgetAction(menu);
+    checkableActionPaused->setDefaultWidget(checkBoxPaused);
+    menu->addAction(checkableActionPaused);
+
+     QCheckBox *checkBoxActive = new QCheckBox(menu);
+    checkBoxActive->setText(tr("Active"));
+    QWidgetAction *checkableActionActive = new QWidgetAction(menu);
+    checkableActionActive->setDefaultWidget(checkBoxActive);
+    menu->addAction(checkableActionActive);
+
+      QCheckBox *checkBoxInactive = new QCheckBox(menu);
+    checkBoxInactive->setText(tr("Inactive"));
+    QWidgetAction *checkableActionInactive = new QWidgetAction(menu);
+    checkableActionInactive->setDefaultWidget(checkBoxInactive);
+    menu->addAction(checkableActionInactive);
+
+     QCheckBox *checkBoxStalled = new QCheckBox(menu);
+    checkBoxStalled->setText(tr("Stalled"));
+    QWidgetAction *checkableActionStalled = new QWidgetAction(menu);
+    checkableActionStalled->setDefaultWidget(checkBoxStalled);
+    menu->addAction(checkableActionStalled);
+
+     QCheckBox *checkBoxStalledUploading = new QCheckBox(menu);
+    checkBoxStalledUploading->setText(tr("Stalled Uploading"));
+    QWidgetAction *checkableActionStalledUploading = new QWidgetAction(menu);
+    checkableActionStalledUploading->setDefaultWidget(checkBoxStalledUploading);
+    menu->addAction(checkableActionStalledUploading);
+
+     QCheckBox *checkBoxStalledDownloading = new QCheckBox(menu);
+    checkBoxStalledDownloading->setText(tr("Stalled Downloading"));
+    QWidgetAction *checkableActionStalledDownloading = new QWidgetAction(menu);
+    checkableActionStalledDownloading->setDefaultWidget(checkBoxStalledDownloading);
+    menu->addAction(checkableActionStalledDownloading);
+
+     QCheckBox *checkBoxChecking = new QCheckBox(menu);
+    checkBoxChecking->setText(tr("Checking"));
+    QWidgetAction *checkableActionChecking = new QWidgetAction(menu);
+    checkableActionChecking->setDefaultWidget(checkBoxChecking);
+    menu->addAction(checkableActionChecking);
+
+     QCheckBox *checkBoxMoving = new QCheckBox(menu);
+    checkBoxMoving->setText(tr("Moving"));
+    QWidgetAction *checkableActionMoving = new QWidgetAction(menu);
+    checkableActionMoving->setDefaultWidget(checkBoxMoving);
+    menu->addAction(checkableActionMoving);
+
+     QCheckBox *checkBoxErrored = new QCheckBox(menu);
+    checkBoxErrored->setText(tr("Errored"));
+    QWidgetAction *checkableActionErrored = new QWidgetAction(menu);
+    checkableActionErrored->setDefaultWidget(checkBoxErrored);
+    menu->addAction(checkableActionErrored);
+
+    connect(checkBoxAll, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxDownloading, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxSeeding, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxCompleted, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxResumed, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxPaused, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxActive, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxInactive, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxStalled, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxStalledUploading, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxStalledDownloading, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxChecking, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxMoving, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    connect(checkBoxErrored, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
+    // QList<QCheckBox> checkBoxes; 
+    // checkBoxes.append(checkBoxAll);
+    //  checkBoxes.append(checkBoxDownloading);
+    //   checkBoxes.append(checkBoxSeeding);
+    //    checkBoxes.append(checkBoxCompleted);
+    //     checkBoxes.append(checkBoxResumed);
+    //      checkBoxes.append(checkBoxPaused);
+    //       checkBoxes.append(checkBoxActive);
+    //        checkBoxes.append(checkBoxInactive);
+    //         checkBoxes.append(checkBoxStalled);
+    //          checkBoxes.append(checkBoxStalledUploading);
+    //           checkBoxes.append(checkBoxStalledDownloading);
+    //            checkBoxes.append(checkBoxChecking);
+    //             checkBoxes.append(checkBoxMoving);
+    //              checkBoxes.append(checkBoxErrored);
+    // const Preferences *const pref = Preferences::instance();
+    // QList<Qt::CheckState> individualStatusFilters = pref-> getIndividualStatusFilterState();
+    // QCheckBox* b = checkBoxes.begin();
+    // foreach(const auto &individualStatusFilter, individualStatusFilters)
+    // {   
+    //     b->setCheckState(individualStatusFilter);
+    //     b++;
+    // }
+    menu->popup(QCursor::pos());
+ 
+}
+
+void TransferListFiltersWidget::updateStatus(int state)
+{
+    auto checkBox = static_cast<QCheckBox*>(sender());
+    QList<QListWidgetItem*> items = m_statusFilters->findItems(tr(checkBox->text().toStdString().c_str()), Qt::MatchContains);
+    if(state == Qt::Unchecked)
+        items.first()->setHidden(true);
+    else
+        items.first()->setHidden(false);
 }

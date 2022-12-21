@@ -1643,3 +1643,14 @@ void Preferences::apply()
     if (SettingsStorage::instance()->save())
         emit changed();
 }
+
+QList<Qt::CheckState> Preferences::getIndividualStatusFilterState() const
+{   
+    QList<Qt::CheckState> individualStates{};
+    return value(u"TransferListFilters/individualStatusFilterState"_qs, individualStates);
+}
+
+void Preferences::setIndividualStatusFilterState(const QList<Qt::CheckState> individualStates)
+{
+    setValue(u"TransferListFilters/individualStatusFilterState"_qs, individualStates);
+}

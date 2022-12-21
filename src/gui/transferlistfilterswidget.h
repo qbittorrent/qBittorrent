@@ -187,6 +187,8 @@ public slots:
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
     void onTagFilterStateChanged(bool enabled);
+    void showMenu();
+    void updateStatus(int state);
 
 private:
     void toggleCategoryFilter(bool enabled);
@@ -196,4 +198,5 @@ private:
     TrackerFiltersList *m_trackerFilters = nullptr;
     CategoryFilterWidget *m_categoryFilterWidget = nullptr;
     TagFilterWidget *m_tagFilterWidget = nullptr;
+    StatusFilterWidget *m_statusFilters = nullptr;
 };
