@@ -100,6 +100,7 @@ private:
     void populate();
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
+    void updateVisibility();
 
     using TorrentFilterBitset = std::bitset<32>;  // approximated size, this should be the number of TorrentFilter::Type elements
     QHash<const BitTorrent::Torrent *, TorrentFilterBitset> m_torrentsStatus;
