@@ -2931,6 +2931,19 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
 
     lt::add_torrent_params p = magnetUri.addTorrentParams();
 
+    if (isAddTrackersEnabled())
+    {
+        // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        {
+            p.trackers.push_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.push_back(trackerEntry.tier);
+        }
+    }
+
     // Flags
     // Preallocation mode
     if (isPreallocationEnabled())
