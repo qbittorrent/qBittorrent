@@ -133,6 +133,9 @@ QString TorrentCategoryDialog::categoryName() const
 void TorrentCategoryDialog::setCategoryName(const QString &categoryName)
 {
     m_ui->textCategoryName->setText(categoryName);
+
+    const int subcategoryNameStart = categoryName.lastIndexOf(u"/") + 1;
+    m_ui->textCategoryName->setSelection(subcategoryNameStart, (categoryName.size() - subcategoryNameStart));
 }
 
 BitTorrent::CategoryOptions TorrentCategoryDialog::categoryOptions() const
