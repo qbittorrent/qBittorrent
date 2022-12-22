@@ -186,7 +186,7 @@ class TransferListFiltersWidget final : public QFrame
 
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);    
+    void setDownloadTrackerFavicon(bool value);
 
 public slots:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
