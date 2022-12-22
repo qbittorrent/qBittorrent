@@ -85,6 +85,8 @@ class StatusFilterWidget final : public BaseFilterWidget
 public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
     ~StatusFilterWidget() override;
+    QSize sizeHint() const override;
+    int m_nbIndividualStatusNotHidden =14;
 
 private slots:
     void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents);
@@ -176,6 +178,7 @@ class TransferListFiltersWidget final : public QFrame
 public:
     TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
     void setDownloadTrackerFavicon(bool value);
+    
 
 public slots:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
