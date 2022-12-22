@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QIcon>
 #include <QObject>
+#include <QPixmap>
 #include <QString>
 
 #include "base/pathfwd.h"
@@ -58,9 +59,9 @@ public:
     static void freeInstance();
     static UIThemeManager *instance();
 
-    Path getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
+    QPixmap getScaledPixmap(const QString &iconId, int height) const;
 
     QColor getColor(const QString &id, const QColor &defaultColor) const;
 
