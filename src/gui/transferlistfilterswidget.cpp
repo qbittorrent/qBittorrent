@@ -112,6 +112,7 @@ namespace
     };
 
     const QString NULL_HOST = u""_qs;
+    const int INDIVIDUAL_STATUS_HEIGHT = 20;
 }
 
 BaseFilterWidget::BaseFilterWidget(QWidget *parent, TransferListWidget *transferList)
@@ -388,8 +389,8 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
 }
 
 QSize StatusFilterWidget::sizeHint() const
-{
-    return QSize(m_nbIndividualStatusNotHidden*20, m_nbIndividualStatusNotHidden*20);
+{   
+    return QSize(m_nbIndividualStatusNotHidden*INDIVIDUAL_STATUS_HEIGHT, m_nbIndividualStatusNotHidden*INDIVIDUAL_STATUS_HEIGHT);
 }
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
