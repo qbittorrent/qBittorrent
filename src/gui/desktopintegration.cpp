@@ -104,7 +104,7 @@ bool DesktopIntegration::isActive() const
 #ifdef Q_OS_MACOS
     return true;
 #else
-    return QSystemTrayIcon::isSystemTrayAvailable();
+    return m_systrayIcon && QSystemTrayIcon::isSystemTrayAvailable();
 #endif
 }
 
