@@ -1088,12 +1088,12 @@ void TransferListFiltersWidget::updateStatus(int state)
     QList<QListWidgetItem*> items = m_statusFilters->findItems(tr(checkBox->text().toStdString().c_str()), Qt::MatchContains);
     if(state == Qt::Unchecked)
     {
-        m_statusFilters->m_nbIndividualStatusNotHidden--;
+         m_statusFilters->setIndividualStatusNotHidden(m_statusFilters->getIndividualStatusNotHidden() - 1 );
         items.first()->setHidden(true);  
     }  
     else
     {
-        m_statusFilters->m_nbIndividualStatusNotHidden++;
+        m_statusFilters->setIndividualStatusNotHidden(m_statusFilters->getIndividualStatusNotHidden() + 1);
         items.first()->setHidden(false);
     }        
     m_statusFilters->updateGeometry();
