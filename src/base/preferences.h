@@ -373,6 +373,8 @@ public:
     QByteArray getTorImportGeometry() const;
     void setTorImportGeometry(const QByteArray &geometry);
     bool getStatusFilterState() const;
+    QList<Qt::CheckState> getIndividualStatusFilterState() const;
+    void setIndividualStatusFilterState( QList<Qt::CheckState> &individialStates);
     bool getCategoryFilterState() const;
     bool getTagFilterState() const;
     bool getTrackerFilterState() const;

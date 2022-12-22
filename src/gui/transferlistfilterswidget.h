@@ -85,6 +85,16 @@ class StatusFilterWidget final : public BaseFilterWidget
 public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
     ~StatusFilterWidget() override;
+    QSize sizeHint() const override;
+    int getIndividualStatusNotHidden() const
+    {
+        return m_nbIndividualStatusNotHidden;
+    }
+
+    void setIndividualStatusNotHidden(int individualStatusNotHidden)
+    {
+        m_nbIndividualStatusNotHidden = individualStatusNotHidden;
+    }
 
 private slots:
     void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents);
@@ -100,6 +110,7 @@ private:
     void populate();
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
+    void updateVisibility();
 
     using TorrentFilterBitset = std::bitset<32>;  // approximated size, this should be the number of TorrentFilter::Type elements
     QHash<const BitTorrent::Torrent *, TorrentFilterBitset> m_torrentsStatus;
@@ -116,6 +127,7 @@ private:
     int m_nbChecking = 0;
     int m_nbMoving = 0;
     int m_nbErrored = 0;
+    int m_nbIndividualStatusNotHidden;
 };
 
 class TrackerFiltersList final : public BaseFilterWidget
@@ -187,6 +199,8 @@ public slots:
 private slots:
     void onCategoryFilterStateChanged(bool enabled);
     void onTagFilterStateChanged(bool enabled);
+    void showMenu();
+    void updateStatus(int state);
 
 private:
     void toggleCategoryFilter(bool enabled);
@@ -196,4 +210,5 @@ private:
     TrackerFiltersList *m_trackerFilters = nullptr;
     CategoryFilterWidget *m_categoryFilterWidget = nullptr;
     TagFilterWidget *m_tagFilterWidget = nullptr;
+    StatusFilterWidget *m_statusFilters = nullptr;
 };
