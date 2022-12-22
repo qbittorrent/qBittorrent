@@ -86,7 +86,7 @@ public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
     ~StatusFilterWidget() override;
     QSize sizeHint() const override;
-    int m_nbIndividualStatusNotHidden =14;
+    int m_nbIndividualStatusNotHidden;
 
 private slots:
     void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents);

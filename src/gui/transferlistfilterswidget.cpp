@@ -298,9 +298,9 @@ void StatusFilterWidget::updateTexts()
 }
 void StatusFilterWidget::updateVisibility()
 {
-      Preferences *const pref = Preferences::instance();
+    Preferences *const pref = Preferences::instance();
     QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
-     item(TorrentFilter::All)->setHidden(!individualStatusFilter[TorrentFilter::All]);
+    item(TorrentFilter::All)->setHidden(!individualStatusFilter[TorrentFilter::All]);
     item(TorrentFilter::Downloading)->setHidden(!individualStatusFilter[TorrentFilter::Downloading]);
     item(TorrentFilter::Seeding)->setHidden(!individualStatusFilter[TorrentFilter::Seeding]);
     item(TorrentFilter::Completed)->setHidden(!individualStatusFilter[TorrentFilter::Completed]);
@@ -385,6 +385,11 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 
     updateTexts();
+}
+
+QSize StatusFilterWidget::sizeHint() const
+{
+    return QSize(m_nbIndividualStatusNotHidden*20, m_nbIndividualStatusNotHidden*20);
 }
 
 TrackerFiltersList::TrackerFiltersList(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
@@ -967,7 +972,6 @@ void TransferListFiltersWidget::toggleTagFilter(bool enabled)
 
 void TransferListFiltersWidget::showMenu()
 {   
-    
     QMenu *menu = new QMenu(this);
 
     QCheckBox *checkBoxAll = new QCheckBox(menu);
@@ -975,89 +979,75 @@ void TransferListFiltersWidget::showMenu()
     QWidgetAction *checkableActionAll = new QWidgetAction(menu);
     checkableActionAll->setDefaultWidget(checkBoxAll);
     menu->addAction(checkableActionAll);
-
     QCheckBox *checkBoxDownloading = new QCheckBox(menu);
     checkBoxDownloading->setText(tr("Downloading"));
     QWidgetAction *checkableActionDownloading = new QWidgetAction(menu);
     checkableActionDownloading->setDefaultWidget(checkBoxDownloading);
     menu->addAction(checkableActionDownloading);
-
     QCheckBox *checkBoxSeeding = new QCheckBox(menu);
     checkBoxSeeding->setText(tr("Seeding"));
     QWidgetAction *checkableActionSeeding = new QWidgetAction(menu);
     checkableActionSeeding->setDefaultWidget(checkBoxSeeding);
     menu->addAction(checkableActionSeeding);
-
     QCheckBox *checkBoxCompleted = new QCheckBox(menu);
     checkBoxCompleted->setText(tr("Completed"));
     QWidgetAction *checkableActionCompleted = new QWidgetAction(menu);
     checkableActionCompleted->setDefaultWidget(checkBoxCompleted);
     menu->addAction(checkableActionCompleted);
-
     QCheckBox *checkBoxResumed = new QCheckBox(menu);
     checkBoxResumed->setText(tr("Resumed"));
     QWidgetAction *checkableActionResumed = new QWidgetAction(menu);
     checkableActionResumed->setDefaultWidget(checkBoxResumed);
     menu->addAction(checkableActionResumed);
-
     QCheckBox *checkBoxPaused = new QCheckBox(menu);
     checkBoxPaused->setText(tr("Paused"));
     QWidgetAction *checkableActionPaused = new QWidgetAction(menu);
     checkableActionPaused->setDefaultWidget(checkBoxPaused);
     menu->addAction(checkableActionPaused);
-
     QCheckBox *checkBoxActive = new QCheckBox(menu);
     checkBoxActive->setText(tr("Active"));
     QWidgetAction *checkableActionActive = new QWidgetAction(menu);
     checkableActionActive->setDefaultWidget(checkBoxActive);
     menu->addAction(checkableActionActive);
-
     QCheckBox *checkBoxInactive = new QCheckBox(menu);
     checkBoxInactive->setText(tr("Inactive"));
     QWidgetAction *checkableActionInactive = new QWidgetAction(menu);
     checkableActionInactive->setDefaultWidget(checkBoxInactive);
     menu->addAction(checkableActionInactive);
-
     QCheckBox *checkBoxStalled = new QCheckBox(menu);
     checkBoxStalled->setText(tr("Stalled"));
     QWidgetAction *checkableActionStalled = new QWidgetAction(menu);
     checkableActionStalled->setDefaultWidget(checkBoxStalled);
     menu->addAction(checkableActionStalled);
-
     QCheckBox *checkBoxStalledUploading = new QCheckBox(menu);
     checkBoxStalledUploading->setText(tr("Stalled Uploading"));
     QWidgetAction *checkableActionStalledUploading = new QWidgetAction(menu);
     checkableActionStalledUploading->setDefaultWidget(checkBoxStalledUploading);
     menu->addAction(checkableActionStalledUploading);
-
     QCheckBox *checkBoxStalledDownloading = new QCheckBox(menu);
     checkBoxStalledDownloading->setText(tr("Stalled Downloading"));
     QWidgetAction *checkableActionStalledDownloading = new QWidgetAction(menu);
     checkableActionStalledDownloading->setDefaultWidget(checkBoxStalledDownloading);
     menu->addAction(checkableActionStalledDownloading);
-
     QCheckBox *checkBoxChecking = new QCheckBox(menu);
     checkBoxChecking->setText(tr("Checking"));
     QWidgetAction *checkableActionChecking = new QWidgetAction(menu);
     checkableActionChecking->setDefaultWidget(checkBoxChecking);
     menu->addAction(checkableActionChecking);
-
     QCheckBox *checkBoxMoving = new QCheckBox(menu);
     checkBoxMoving->setText(tr("Moving"));
     QWidgetAction *checkableActionMoving = new QWidgetAction(menu);
     checkableActionMoving->setDefaultWidget(checkBoxMoving);
     menu->addAction(checkableActionMoving);
-
     QCheckBox *checkBoxErrored = new QCheckBox(menu);
     checkBoxErrored->setText(tr("Errored"));
     QWidgetAction *checkableActionErrored = new QWidgetAction(menu);
     checkableActionErrored->setDefaultWidget(checkBoxErrored);
     menu->addAction(checkableActionErrored);
 
-    
     Preferences *const pref = Preferences::instance();
     QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
-    m_statusFilters->m_nbIndividualStatusNotHidden = individualStatusFilter.count(Qt::Checked);
+
     checkBoxAll->setCheckState(individualStatusFilter.at(TorrentFilter::All));
     checkBoxDownloading->setCheckState(individualStatusFilter.at(TorrentFilter::Downloading));
     checkBoxSeeding->setCheckState(individualStatusFilter.at(TorrentFilter::Seeding));
@@ -1088,11 +1078,10 @@ void TransferListFiltersWidget::showMenu()
     connect(checkBoxMoving, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
     connect(checkBoxErrored, &QCheckBox::stateChanged, this, &TransferListFiltersWidget::updateStatus);
     menu->popup(QCursor::pos());
- 
 }
 
 void TransferListFiltersWidget::updateStatus(int state)
-{
+{   
     Preferences *const pref = Preferences::instance();
     QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
     auto checkBox = static_cast<QCheckBox*>(sender());
@@ -1101,21 +1090,14 @@ void TransferListFiltersWidget::updateStatus(int state)
     {
         m_statusFilters->m_nbIndividualStatusNotHidden--;
         items.first()->setHidden(true);  
-    }
-        
+    }  
     else
     {
         m_statusFilters->m_nbIndividualStatusNotHidden++;
         items.first()->setHidden(false);
-    }
-        
+    }        
     m_statusFilters->updateGeometry();
     individualStatusFilter[m_statusFilters->row(items.first())] = (static_cast<Qt::CheckState>(state));
     pref->setIndividualStatusFilterState(individualStatusFilter);
-   
 }
-QSize StatusFilterWidget::sizeHint() const{
 
-return
-QSize(m_nbIndividualStatusNotHidden*20, m_nbIndividualStatusNotHidden*20);
-}
