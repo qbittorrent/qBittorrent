@@ -67,7 +67,7 @@ jobs:
       - name: Install boost
         run: |
           aria2c `
-            "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.7z" `
+            "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.7z" `
             -d "${{ runner.temp }}" `
             -o "boost.7z"
           7z x "${{ runner.temp }}/boost.7z" -o"${{ github.workspace }}/.."
