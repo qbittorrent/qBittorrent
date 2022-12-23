@@ -1650,7 +1650,7 @@ QList<Qt::CheckState> Preferences::getIndividualStatusFilterState() const
     return value(u"TransferListFilters/individualStatusFilterState"_qs, individualStates);
 }
 
-void Preferences::setIndividualStatusFilterState( QList<Qt::CheckState> &individualStates) 
+void Preferences::setIndividualStatusFilterState( QList<Qt::CheckState> &individualStates)
 {
     setValue(u"TransferListFilters/individualStatusFilterState"_qs, individualStates);
 }

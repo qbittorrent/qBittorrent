@@ -143,7 +143,13 @@ Application::Application(int &argc, char **argv)
 {
     qRegisterMetaType<Log::Msg>("Log::Msg");
     qRegisterMetaType<Log::Peer>("Log::Peer");
+#ifndef DISABLE_GUI
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     qRegisterMetaTypeStreamOperators<QList<Qt::CheckState>>("QList<Qt::CheckState>");
+#else
+    qRegisterMetaType<QList<Qt::CheckState>>("QList<Qt::CheckState>");
+#endif
+#endif
     setApplicationName(u"qBittorrent"_qs);
     setOrganizationDomain(u"qbittorrent.org"_qs);
 #if !defined(DISABLE_GUI)

@@ -389,7 +389,7 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
 }
 
 QSize StatusFilterWidget::sizeHint() const
-{   
+{
     return QSize(m_nbIndividualStatusNotHidden*INDIVIDUAL_STATUS_HEIGHT, m_nbIndividualStatusNotHidden*INDIVIDUAL_STATUS_HEIGHT);
 }
 
@@ -972,7 +972,7 @@ void TransferListFiltersWidget::toggleTagFilter(bool enabled)
 }
 
 void TransferListFiltersWidget::showMenu()
-{   
+{
     QMenu *menu = new QMenu(this);
 
     QCheckBox *checkBoxAll = new QCheckBox(menu);
@@ -1082,7 +1082,7 @@ void TransferListFiltersWidget::showMenu()
 }
 
 void TransferListFiltersWidget::updateStatus(int state)
-{   
+{
     Preferences *const pref = Preferences::instance();
     QList<Qt::CheckState> individualStatusFilter = pref->getIndividualStatusFilterState();
     auto checkBox = static_cast<QCheckBox*>(sender());
@@ -1090,15 +1090,14 @@ void TransferListFiltersWidget::updateStatus(int state)
     if(state == Qt::Unchecked)
     {
          m_statusFilters->setIndividualStatusNotHidden(m_statusFilters->getIndividualStatusNotHidden() - 1 );
-        items.first()->setHidden(true);  
-    }  
+        items.first()->setHidden(true);
+    }
     else
     {
         m_statusFilters->setIndividualStatusNotHidden(m_statusFilters->getIndividualStatusNotHidden() + 1);
         items.first()->setHidden(false);
-    }        
+    }
     m_statusFilters->updateGeometry();
     individualStatusFilter[m_statusFilters->row(items.first())] = (static_cast<Qt::CheckState>(state));
     pref->setIndividualStatusFilterState(individualStatusFilter);
 }
-
