@@ -1645,7 +1645,7 @@ void Preferences::apply()
 }
 
 QList<Qt::CheckState> Preferences::getIndividualStatusFilterState() const
-{   
+{
     QList<Qt::CheckState> individualStates{Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked,Qt::Checked};
     return value(u"TransferListFilters/individualStatusFilterState"_qs, individualStates);
 }
