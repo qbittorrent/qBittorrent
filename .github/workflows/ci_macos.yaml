@@ -46,7 +46,7 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.80.0/source/boost_1_80_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
