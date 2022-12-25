@@ -167,7 +167,10 @@ void UIThemeManager::initInstance()
 }
 
 UIThemeManager::UIThemeManager()
-    : m_useCustomTheme(Preferences::instance()->useCustomUITheme())
+    : m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
+#endif
 {
     if (m_useCustomTheme)
     {
@@ -196,14 +199,25 @@ void UIThemeManager::applyStyleSheet() const
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
 {
     // Cache to avoid rescaling svg icons
     const auto iter = m_iconCache.find(iconId);
     if (iter != m_iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPathFromResources(iconId, fallback).data()};
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    // Don't cache system icons because users might change them at run time
+    if (m_useSystemIcons)
+    {
+        auto icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(getIconPathFromResources(iconId).data()));
+        return icon;
+    }
+#endif
+
+    const QIcon icon {getIconPathFromResources(iconId).data()};
     m_iconCache[iconId] = icon;
     return icon;
 }
@@ -259,23 +273,33 @@ QIcon UIThemeManager::getSystrayIcon() const
 
 Path UIThemeManager::getIconPath(const QString &iconId) const
 {
-    return getIconPathFromResources(iconId, {});
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    if (m_useSystemIcons)
+    {
+        Path path = Utils::Fs::tempPath() / Path(iconId + u".png");
+        if (!path.exists())
+        {
+            const QIcon icon = QIcon::fromTheme(iconId);
+            if (!icon.isNull())
+                icon.pixmap(32).save(path.toString());
+            else
+                path = getIconPathFromResources(iconId);
+        }
+
+        return path;
+    }
+#endif
+
+    return getIconPathFromResources(iconId);
 }
 
-Path UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
+Path UIThemeManager::getIconPathFromResources(const QString &iconId) const
 {
     if (m_useCustomTheme && m_themeSource)
     {
         const Path customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
             return customIcon;
-
-        if (!fallback.isEmpty())
-        {
-            const Path fallbackIcon = m_themeSource->iconPath(fallback);
-            if (!fallbackIcon.isEmpty())
-                return fallbackIcon;
-        }
     }
 
     return findIcon(iconId, DEFAULT_ICONS_DIR);

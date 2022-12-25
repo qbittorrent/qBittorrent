@@ -281,6 +281,10 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    bool useSystemIcons() const;
+    void useSystemIcons(bool enabled);
+#endif
     bool isRecursiveDownloadEnabled() const;
     void setRecursiveDownloadEnabled(bool enable);
 #ifdef Q_OS_WIN

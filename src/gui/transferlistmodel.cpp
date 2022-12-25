@@ -158,15 +158,15 @@ TransferListModel::TransferListModel(QObject *parent)
           {BitTorrent::TorrentState::Error, tr("Errored", "Torrent status, the torrent has an error")}
     }
     , m_stateThemeColors {torrentStateColorsFromUITheme()}
-    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_qs)}
-    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_qs)}
+    , m_checkingIcon {UIThemeManager::instance()->getIcon(u"force-recheck"_qs, u"checking"_qs)}
+    , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_qs, u"completed"_qs)}
     , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_qs)}
     , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_qs)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"torrent-stop"_qs)}
+    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"torrent-stop"_qs, u"media-playback-pause"_qs)}
     , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_qs)}
     , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_qs)}
     , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_qs)}
-    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_qs)}
+    , m_uploadingIcon {UIThemeManager::instance()->getIcon(u"upload"_qs, u"uploading"_qs)}
 {
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &TransferListModel::configure);
