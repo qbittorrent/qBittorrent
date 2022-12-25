@@ -32,6 +32,7 @@
 
 #include <QDateTime>
 #include <QDebug>
+#include <QDir>
 #include <QFile>
 #include <QFileInfo>
 #include <QJsonDocument>
@@ -111,6 +112,22 @@ namespace
         }
 
         return u"no-store"_qs;
+    }
+
+    QString createLanguagesOptionsHtml()
+    {
+        // List language files
+        const QDir langDir {u":/www/translations"_qs};
+        const QStringList langFiles = langDir.entryList(QStringList(u"webui_*.qm"_qs), QDir::Files);
+        QStringList languages;
+        for (const QString &langFile : langFiles)
+        {
+            const QString localeStr = langFile.section(u"_"_qs, 1, -1).section(u"."_qs, 0, 0); // remove "webui_" and ".qm"
+            languages << u"<option value=\"%1\">%2</option>"_qs.arg(localeStr, Utils::Misc::languageToLocalizedString(localeStr));
+            qDebug() << "Supported locale:" << localeStr;
+        }
+
+        return languages.join(u'\n');
     }
 }
 
@@ -472,13 +489,17 @@ void WebApplication::sendFile(const Path &path)
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
     const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_qs);
 
-    // Translate the file
     if (isTranslatable)
     {
         auto dataStr = QString::fromUtf8(data);
+        // Translate the file
         translateDocument(dataStr);
-        data = dataStr.toUtf8();
 
+        // Add the language options
+        if (path == (m_rootFolder / Path(PRIVATE_FOLDER) / Path(u"views/preferences.html"_qs)))
+            dataStr.replace(u"${LANGUAGE_OPTIONS}"_qs, createLanguagesOptionsHtml());
+
+        data = dataStr.toUtf8();
         m_translatedFiles[path] = {data, mimeType.name(), lastModified}; // caching translated file
     }
 
