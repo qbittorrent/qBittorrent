@@ -70,7 +70,7 @@ namespace
     {
     public:
         UnifiedFileIconProvider()
-            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_qs)}
+            : m_textPlainIcon {UIThemeManager::instance()->getIcon(u"help-about"_qs, u"text-plain"_qs)}
         {
         }
 

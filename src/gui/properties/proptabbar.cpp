@@ -45,7 +45,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // General tab
     QPushButton *mainInfosButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"help-about"_qs),
+            UIThemeManager::instance()->getIcon(u"help-about"_qs, u"document-properties"_qs),
 #endif
             tr("General"), parent);
     mainInfosButton->setShortcut(Qt::ALT + Qt::Key_G);
@@ -54,7 +54,7 @@ PropTabBar::PropTabBar(QWidget *parent)
     // Trackers tab
     QPushButton *trackersButton = new QPushButton(
 #ifndef Q_OS_MACOS
-            UIThemeManager::instance()->getIcon(u"trackers"_qs),
+            UIThemeManager::instance()->getIcon(u"trackers"_qs, u"network-server"_qs),
 #endif
             tr("Trackers"), parent);
     trackersButton->setShortcut(Qt::ALT + Qt::Key_C);

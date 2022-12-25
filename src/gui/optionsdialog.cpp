@@ -203,17 +203,17 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // Main icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_qs));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs, u"preferences-system-network"_qs));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs, u"network-wired"_qs));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs, u"folder-download"_qs));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs, u"chronometer"_qs));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs, u"application-rss+xml"_qs));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #else
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs, u"network-server"_qs));
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs, u"preferences-other"_qs));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -288,6 +288,11 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_ui->checkUseSystemIcon->setChecked(pref->useSystemIcons());
+#else
+    m_ui->checkUseSystemIcon->setVisible(false);
+#endif
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -382,6 +387,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
@@ -451,6 +459,9 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
+#endif
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
