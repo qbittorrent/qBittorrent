@@ -1,0 +1,427 @@
+<style type="text/css">
+    #logTopBar {
+        margin-top: 1em;
+    }
+
+    #logFilterBar {
+        margin: .5em 0;
+    }
+
+    #logFilterBar>label {
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    #logFilterBar>button {
+        display: inline-block;
+        height: 24px;
+        padding: 0 .5em;
+        margin-left: .3em;
+        font-weight: bold;
+    }
+
+    #logView {
+        padding: 0 20px;
+        overflow: auto;
+    }
+
+    #logContentView {
+        display: block;
+        vertical-align: top;
+    }
+
+    #logMessageTableFixedHeaderDiv .dynamicTableHeader,
+    #logPeerTableFixedHeaderDiv .dynamicTableHeader {
+        cursor: default;
+    }
+
+    #filterTextInput {
+        background-image: url("../images/edit-find.svg");
+        background-repeat: no-repeat;
+        background-position: left;
+        background-size: 1.5em;
+        padding: 1px 5px 1px 2em;
+        margin-left: 20px;
+        width: 200px;
+    }
+
+    #logFilterSummary {
+        overflow: auto;
+        margin: 1em 0 .5em;
+    }
+
+    #numFilteredLogs,
+    #numTotalLogs {
+        font-style: italic;
+    }
+
+    .logNormal {
+        color: #80766e;
+    }
+
+    .logInfo {
+        color: #1781b5;
+    }
+
+    .logWarning {
+        color: #f97d1c;
+    }
+
+    .logCritical,
+    .peerBlocked {
+        color: #ee3f4d;
+    }
+
+    .vsb-main>button {
+        padding: 0 12px !important;
+    }
+
+    .contextMenu>li>a>img {
+        margin-right: 0.5em;
+    }
+
+</style>
+
+<div id="logView">
+    <div id="logTopBar">
+        <div id="logFilterBar">
+            <label for="logLevelSelect">QBT_TR(Log Levels:)QBT_TR[CONTEXT=ExecutionLogWidget]</label>
+            <select multiple size="1" id="logLevelSelect" class="logLevelSelect" onchange="window.qBittorrent.Log.logLevelChanged()">
+                <option value="1">QBT_TR(Normal Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
+                <option value="2">QBT_TR(Information Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
+                <option value="4">QBT_TR(Warning Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
+                <option value="8">QBT_TR(Critical Messages)QBT_TR[CONTEXT=ExecutionLogWidget]</option>
+            </select>
+
+            <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none" />
+            <button title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
+        </div>
+
+        <div id="logFilterSummary">
+            <span>QBT_TR(Results)QBT_TR[CONTEXT=ExecutionLogWidget] (QBT_TR(showing)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numFilteredLogs">0</span> QBT_TR(out of)QBT_TR[CONTEXT=ExecutionLogWidget] <span id="numTotalLogs">0</span>):</span>
+        </div>
+    </div>
+
+    <div id="logContentView">
+        <div id="logMessageView">
+            <div id="logMessageTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+                <table class="dynamicTable unselectable" style="position:relative;">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="logMessageTableDiv" class="dynamicTableDiv">
+                <table class="dynamicTable unselectable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+        <div id="logPeerView" class="invisible">
+            <div id="logPeerTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+                <table class="dynamicTable unselectable" style="position:relative;">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="logPeerTableDiv" class="dynamicTableDiv">
+                <table class="dynamicTable unselectable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul id="logTableMenu" class="contextMenu">
+    <li><a href="#" class="copyLogDataToClipboard"><img src="images/edit-copy.svg" alt="QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]" />QBT_TR(Copy)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+    <li><a href="#Clear"><img src="images/list-remove.svg" alt="QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]" />QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</a></li>
+</ul>
+
+<script>
+    'use strict';
+
+    if (window.qBittorrent === undefined) {
+        window.qBittorrent = {};
+    }
+
+    window.qBittorrent.Log = (() => {
+        const exports = () => {
+            return {
+                init: init,
+                unload: unload,
+                load: load,
+                setCurrentTab: setCurrentTab,
+                getFilterText: getFilterText,
+                getSelectedLevels: getSelectedLevels,
+                logLevelChanged: logLevelChanged,
+                filterTextChanged: filterTextChanged
+            };
+        };
+
+        let currentSelectedTab = 'main';
+        let tableInfo = {
+            main: {
+                instance: new window.qBittorrent.DynamicTable.LogMessageTable(),
+                progress: false,
+                timer: null,
+                last_id: -1
+            },
+            peer: {
+                instance: new window.qBittorrent.DynamicTable.LogPeerTable(),
+                progress: false,
+                timer: null,
+                last_id: -1
+            }
+        };
+
+        let customSyncLogDataInterval = null;
+        let logFilterTimer;
+        let inputedFilterText = "";
+        let selectBox;
+        let selectedLogLevels = JSON.parse(LocalPreferences.get('qbt_selected_log_levels')) || ['1', '2', '4', '8'];
+
+        const init = () => {
+            $('logLevelSelect').getElements('option').each((x) => {
+                if (selectedLogLevels.indexOf(x.value.toString()) !== -1) {
+                    x.setAttribute('selected', '');
+                }
+                else {
+                    x.removeAttribute('selected');
+                }
+            });
+
+            selectBox = new vanillaSelectBox('#logLevelSelect', {
+                maxHeight: 200,
+                search: false,
+                translations: {
+                    all: 'QBT_TR(All)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                    item: 'QBT_TR(item)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                    items: 'QBT_TR(items)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                    selectAll: 'QBT_TR(Select All)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                    clearAll: 'QBT_TR(Clear All)QBT_TR[CONTEXT=ExecutionLogWidget]',
+                },
+                placeHolder: "QBT_TR(Choose a log level...)QBT_TR[CONTEXT=ExecutionLogWidget]",
+            });
+
+            const logTableContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+                targets: '.logTableRow',
+                menu: 'logTableMenu',
+                actions: {
+                    Clear: () => {
+                        tableInfo[currentSelectedTab].instance.selectedRowsIds().forEach(function(rowId) {
+                            tableInfo[currentSelectedTab].instance.removeRow(rowId);
+                        });
+
+                        updateLableCount();
+                    }
+                },
+                offsets: {
+                    x: -16,
+                    y: -57
+                }
+            });
+
+            tableInfo['main'].instance.setup('logMessageTableDiv', 'logMessageTableFixedHeaderDiv', logTableContextMenu);
+            tableInfo['peer'].instance.setup('logPeerTableDiv', 'logPeerTableFixedHeaderDiv', logTableContextMenu);
+
+            MUI.Panels.instances.LogPanel.contentEl.setStyle('height', '100%');
+            $('logView').setStyle('height', 'inherit');
+
+            load();
+        };
+
+        const unload = () => {
+            for (let table in tableInfo)
+                resetTableTimer(table);
+        };
+
+        const load = () => {
+            customSyncLogDataInterval = null;
+            syncLogWithInterval(100);
+        };
+
+        const resetTableTimer = (curTab) => {
+            if (curTab === undefined)
+                curTab = currentSelectedTab;
+
+            clearTimeout(tableInfo[curTab].timer);
+            tableInfo[curTab].timer = null;
+        };
+
+        const syncLogWithInterval = (interval) => {
+            if (!tableInfo[currentSelectedTab].progress) {
+                clearTimeout(tableInfo[currentSelectedTab].timer);
+                tableInfo[currentSelectedTab].timer = syncLogData.delay(interval, null, currentSelectedTab);
+            }
+        };
+
+        const getFilterText = () => {
+            return inputedFilterText;
+        };
+
+        const getSelectedLevels = () => {
+            return selectedLogLevels;
+        };
+
+        const getSyncLogDataInterval = () => {
+            return customSyncLogDataInterval ? customSyncLogDataInterval : serverSyncMainDataInterval;
+        };
+
+        const logLevelChanged = () => {
+            const value = selectBox.getResult().sort();
+
+            if (selectedLogLevels !== value) {
+                tableInfo[currentSelectedTab].last_id = -1;
+                selectedLogLevels = value;
+                LocalPreferences.set('qbt_selected_log_levels', JSON.stringify(selectedLogLevels));
+                logFilterChanged();
+            }
+        };
+
+        const filterTextChanged = () => {
+            const value = $('filterTextInput').get('value').trim();
+            if (inputedFilterText !== value) {
+                inputedFilterText = value;
+                logFilterChanged();
+            }
+        };
+
+        const logFilterChanged = () => {
+            clearTimeout(logFilterTimer);
+            logFilterTimer = setTimeout((curTab) => {
+                tableInfo[curTab].instance.updateTable(false);
+                updateLableCount(curTab);
+            }, 400, currentSelectedTab);
+        };
+
+        const setCurrentTab = (tab) => {
+            if (tab === currentSelectedTab)
+                return;
+
+            currentSelectedTab = tab;
+            if (currentSelectedTab === 'main') {
+                selectBox.enable();
+                $('logMessageView').removeClass('invisible');
+                $('logPeerView').addClass('invisible');
+                resetTableTimer('peer');
+            }
+            else {
+                selectBox.disable();
+                $('logMessageView').addClass('invisible');
+                $('logPeerView').removeClass('invisible');
+                resetTableTimer('main');
+            }
+
+            clearTimeout(logFilterTimer);
+            load();
+
+            if (tableInfo[currentSelectedTab].instance.filterText !== getFilterText()) {
+                tableInfo[currentSelectedTab].instance.updateTable();
+            }
+            updateLableCount();
+        };
+
+        const updateLableCount = (curTab) => {
+            if (curTab === undefined)
+                curTab = currentSelectedTab;
+
+            $('numFilteredLogs').set('text', tableInfo[curTab].instance.filterdLength());
+            $('numTotalLogs').set('text', tableInfo[curTab].instance.getRowIds().length);
+        };
+
+        const syncLogData = (curTab) => {
+            if (curTab === undefined)
+                curTab = currentSelectedTab;
+
+            let url;
+            if (curTab === 'main') {
+                url = new URI('api/v2/log/main');
+                url.setData({
+                    normal: selectedLogLevels.indexOf('1') !== -1,
+                    info: selectedLogLevels.indexOf('2') !== -1,
+                    warning: selectedLogLevels.indexOf('4') !== -1,
+                    critical: selectedLogLevels.indexOf('8') !== -1
+                });
+            }
+            else {
+                url = new URI('api/v2/log/peers');
+            }
+
+            url.setData('last_known_id', tableInfo[curTab].last_id);
+            tableInfo[curTab].progress = true;
+
+            new Request.JSON({
+                url: url,
+                noCache: true,
+                method: 'get',
+                onFailure: function(response) {
+                    const errorDiv = $('error_div');
+                    if (errorDiv)
+                        errorDiv.set('text', 'QBT_TR(qBittorrent client is not reachable)QBT_TR[CONTEXT=HttpServer]');
+                    tableInfo[curTab].progress = false;
+                    syncLogWithInterval(10000);
+                },
+                onSuccess: function(response) {
+                    $('error_div').set('text', '');
+
+                    if ($('logTabColumn').hasClass('invisible'))
+                        return;
+
+                    if (response.length > 0) {
+                        clearTimeout(logFilterTimer);
+                        for (let i = 0; i < response.length; ++i) {
+                            let row;
+                            if (curTab === 'main') {
+                                row = {
+                                    rowId: response[i].id,
+                                    message: response[i].message,
+                                    timestamp: response[i].timestamp,
+                                    type: response[i].type,
+                                };
+                            }
+                            else {
+                                row = {
+                                    rowId: response[i].id,
+                                    ip: response[i].ip,
+                                    timestamp: response[i].timestamp,
+                                    blocked: response[i].blocked,
+                                    reason: response[i].reason,
+                                };
+                            }
+                            tableInfo[curTab].instance.updateRowData(row);
+                            tableInfo[curTab].last_id = Math.max(response[i].id.toInt(), tableInfo[curTab].last_id);
+                        }
+
+                        tableInfo[curTab].instance.updateTable();
+                        tableInfo[curTab].instance.altRow();
+                        updateLableCount(curTab);
+                    }
+
+                    tableInfo[curTab].progress = false;
+                    syncLogWithInterval(getSyncLogDataInterval());
+                }
+            }).send();
+        };
+
+        new ClipboardJS('.copyLogDataToClipboard', {
+            text: function() {
+                let msg = [];
+                tableInfo[currentSelectedTab].instance.selectedRowsIds().each(function(rowId) {
+                    msg.push(tableInfo[currentSelectedTab].instance.rows.get(rowId).full_data[(currentSelectedTab === 'main') ? 'message' : 'ip']);
+                });
+
+                return msg.join('\n');
+            }
+        });
+
+        return exports();
+    })();
+</script>
