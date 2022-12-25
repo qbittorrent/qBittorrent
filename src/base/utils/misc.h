@@ -85,6 +85,8 @@ namespace Utils::Misc
     QString userFriendlyDuration(qlonglong seconds, qlonglong maxCap = -1);
     QString getUserIDString();
 
+    QString languageToLocalizedString(const QString &localeStr);
+
 #ifdef Q_OS_WIN
     Path windowsSystemPath();
 
