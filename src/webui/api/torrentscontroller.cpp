@@ -388,6 +388,10 @@ void TorrentsController::infoAction()
 //   - "save_path": Torrent save path
 //   - "download_path": Torrent download path
 //   - "comment": Torrent comment
+//   - "infohash_v1": Torrent v1 infohash (or empty string for v2 torrents)
+//   - "infohash_v2": Torrent v2 infohash (or empty string for v1 torrents)
+//   - "hash": Torrent TorrentID (infohashv1 for v1 torrents, truncated infohashv2 for v2/hybrid torrents)
+//   - "name": Torrent name
 void TorrentsController::propertiesAction()
 {
     requireParams({u"hash"_qs});
@@ -401,6 +405,8 @@ void TorrentsController::propertiesAction()
 
     dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
     dataDict[KEY_TORRENT_INFOHASHV2] = torrent->infoHash().v2().toString();
+    dataDict[KEY_TORRENT_NAME] = torrent->name();
+    dataDict[KEY_TORRENT_ID] = torrent->id().toString();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->finishedTime();
     dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());
