@@ -1350,7 +1350,8 @@ new Keyboard({
     defaultEventType: 'keydown',
     events: {
         'ctrl+a': function(event) {
-            if( event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA" ) return;
+            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                return;
             if( event.target.isContentEditable ) return;
             torrentsTable.selectAll();
             event.preventDefault();
