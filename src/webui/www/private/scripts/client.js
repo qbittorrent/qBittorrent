@@ -1352,19 +1352,24 @@ new Keyboard({
         'ctrl+a': function(event) {
             if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
                 return;
-            if( event.target.isContentEditable ) return;
+            if (event.target.isContentEditable)
+                return;
             torrentsTable.selectAll();
             event.preventDefault();
         },
         'delete': function(event) {
-            if( event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA" ) return;
-            if( event.target.isContentEditable ) return;
+            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                return;
+            if (event.target.isContentEditable)
+                return;
             deleteFN();
             event.preventDefault();
         },
         'shift+delete': (event) => {
-            if( event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA" ) return;
-            if( event.target.isContentEditable ) return;
+            if (event.target.nodeName == "INPUT" || event.target.nodeName == "TEXTAREA")
+                return;
+            if (event.target.isContentEditable)
+                return;
             deleteFN(true);
             event.preventDefault();
         }
