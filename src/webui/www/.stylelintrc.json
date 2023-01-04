@@ -3,6 +3,7 @@
   "plugins": [
     "stylelint-order"
   ],
+  "ignoreFiles": ["private/css/lib/*.css"],
   "rules": {
     "color-hex-length": null,
     "comment-empty-line-before": null,

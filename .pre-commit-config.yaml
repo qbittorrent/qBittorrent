@@ -34,6 +34,7 @@ repos:
       exclude: |
         (?x)^(
           compile_commands.json |
+          src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.*
         )$
 
@@ -43,6 +44,7 @@ repos:
         (?x)^(
           compile_commands.json |
           configure |
+          src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.*
         )$
       exclude_types:
@@ -53,6 +55,7 @@ repos:
       name: Check trailing whitespaces
       exclude: |
         (?x)^(
+          src/webui/www/private/css/lib/.* |
           src/webui/www/private/scripts/lib/.*
         )$
       exclude_types:
