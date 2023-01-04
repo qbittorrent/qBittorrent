@@ -32,7 +32,7 @@
 
 #include <QJsonObject>
 #include <QMetaObject>
-#include <QThread>
+#include <QThreadPool>
 
 #include "base/bittorrent/cachestatus.h"
 #include "base/bittorrent/infohash.h"
@@ -49,7 +49,6 @@
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "freediskspacechecker.h"
-#include "isessionmanager.h"
 #include "serialize/serialize_torrent.h"
 
 namespace
@@ -177,7 +176,7 @@ namespace
             switch (static_cast<QMetaType::Type>(value.type()))
             {
             case QMetaType::QVariantMap:
-            {
+                {
                     QVariantMap map;
                     processMap(prevData[key].toMap(), value.toMap(), map);
                     if (!map.isEmpty())
@@ -185,7 +184,7 @@ namespace
                 }
                 break;
             case QMetaType::QVariantHash:
-            {
+                {
                     QVariantMap map;
                     processHash(prevData[key].toHash(), value.toHash(), map, removedItems);
                     if (!map.isEmpty())
@@ -195,7 +194,7 @@ namespace
                 }
                 break;
             case QMetaType::QVariantList:
-            {
+                {
                     QVariantList list;
                     processList(prevData[key].toList(), value.toList(), list, removedItems);
                     if (!list.isEmpty())
@@ -372,15 +371,7 @@ namespace
 
 SyncController::SyncController(IApplication *app, QObject *parent)
     : APIController(app, parent)
-    , m_freeDiskSpaceChecker {new FreeDiskSpaceChecker}
-    , m_freeDiskSpaceThread {new QThread}
 {
-    m_freeDiskSpaceChecker->moveToThread(m_freeDiskSpaceThread.get());
-
-    connect(m_freeDiskSpaceThread.get(), &QThread::finished, m_freeDiskSpaceChecker, &QObject::deleteLater);
-    connect(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, &SyncController::freeDiskSpaceSizeUpdated);
-
-    m_freeDiskSpaceThread->start();
     invokeChecker();
     m_freeDiskSpaceElapsedTimer.start();
 }
@@ -595,20 +586,27 @@ void SyncController::torrentPeersAction()
 qint64 SyncController::getFreeDiskSpace()
 {
     if (m_freeDiskSpaceElapsedTimer.hasExpired(FREEDISKSPACE_CHECK_TIMEOUT))
-    {
         invokeChecker();
-        m_freeDiskSpaceElapsedTimer.restart();
-    }
 
     return m_freeDiskSpace;
 }
 
-void SyncController::freeDiskSpaceSizeUpdated(qint64 freeSpaceSize)
+void SyncController::invokeChecker()
 {
-    m_freeDiskSpace = freeSpaceSize;
-}
+    if (m_isFreeDiskSpaceCheckerRunning)
+        return;
 
-void SyncController::invokeChecker() const
-{
-    QMetaObject::invokeMethod(m_freeDiskSpaceChecker, &FreeDiskSpaceChecker::check, Qt::QueuedConnection);
+    auto *freeDiskSpaceChecker = new FreeDiskSpaceChecker;
+    connect(freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, this, [this](const qint64 freeSpaceSize)
+    {
+        m_freeDiskSpace = freeSpaceSize;
+        m_isFreeDiskSpaceCheckerRunning = false;
+        m_freeDiskSpaceElapsedTimer.restart();
+    });
+    connect(freeDiskSpaceChecker, &FreeDiskSpaceChecker::checked, freeDiskSpaceChecker, &QObject::deleteLater);
+    m_isFreeDiskSpaceCheckerRunning = true;
+    QThreadPool::globalInstance()->start([freeDiskSpaceChecker]
+    {
+        freeDiskSpaceChecker->check();
+    });
 }
