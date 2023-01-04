@@ -29,7 +29,7 @@ Code from other projects:
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
 
-* files src/webui/www/private/css/vanillaSelectBox.css src/webui/www/private/scripts/vanillaSelectBox.js
+* files src/webui/www/private/css/lib/vanillaSelectBox.css src/webui/www/private/scripts/lib/vanillaSelectBox.js
   copyright: Philippe Meyer <pmg.meyer@gmail.com>
   license: MIT
 

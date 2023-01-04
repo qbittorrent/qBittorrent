@@ -1120,8 +1120,8 @@ window.addEvent('load', function() {
             loadMethod: 'xhr',
             contentURL: 'views/log.html',
             require: {
-                css: ['css/vanillaSelectBox.css'],
-                js: ['scripts/vanillaSelectBox.js'],
+                css: ['css/lib/vanillaSelectBox.css'],
+                js: ['scripts/lib/vanillaSelectBox.js'],
             },
             tabsURL: 'views/logTabs.html',
             tabsOnload: function() {
