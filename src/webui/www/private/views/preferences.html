@@ -881,6 +881,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         <table>
             <tr>
                 <td>
+                    <label for="resumeDataStorageType">QBT_TR(Resume data storage type (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="resumeDataStorageType" style="width: 15em;">
+                        <option value="Legacy">QBT_TR(Fastresume files)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="SQLite">QBT_TR(SQLite database (experimental))QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                 </td>
                 <td>
@@ -2026,6 +2037,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                         // Advanced settings
                         // qBittorrent section
+                        $('resumeDataStorageType').setProperty('value', pref.resume_data_storage_type);
                         $('memoryWorkingSetLimit').setProperty('value', pref.memory_working_set_limit);
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
@@ -2453,6 +2465,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Update advanced settings
             // qBittorrent section
+            settings.set('resume_data_storage_type', $('resumeDataStorageType').getProperty('value'));
             settings.set('memory_working_set_limit', $('memoryWorkingSetLimit').getProperty('value'));
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));
