@@ -380,9 +380,6 @@ namespace BitTorrent
         Torrent *findTorrent(const InfoHash &infoHash) const override;
         QVector<Torrent *> torrents() const override;
         qsizetype torrentsCount() const override;
-        bool hasActiveTorrents() const override;
-        bool hasUnfinishedTorrents() const override;
-        bool hasRunningSeed() const override;
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
         bool isListening() const override;
