@@ -225,6 +225,7 @@ private:
     bool m_isAuthSubnetWhitelistEnabled;
     QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout;
+    QString m_sessionCookieName;
 
     // security related
     QStringList m_domainList;
