@@ -309,6 +309,7 @@
         <file>private/images/flags/za.svg</file>
         <file>private/images/flags/zm.svg</file>
         <file>private/images/flags/zw.svg</file>
+        <file>private/images/folder-documents.svg</file>
         <file>private/images/folder-new.svg</file>
         <file>private/images/force-recheck.svg</file>
         <file>private/images/go-bottom.svg</file>
@@ -348,6 +349,7 @@
         <file>private/images/tabs.gif</file>
         <file>private/images/tags.svg</file>
         <file>private/images/task-complete.svg</file>
+        <file>private/images/task-reject.svg</file>
         <file>private/images/toolbox-divider.gif</file>
         <file>private/images/torrent-magnet.svg</file>
         <file>private/images/torrent-start-forced.svg</file>
