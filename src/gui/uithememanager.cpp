@@ -41,6 +41,7 @@
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 
 namespace
@@ -72,15 +73,16 @@ namespace
     QByteArray readFile(const Path &filePath)
     {
         QFile file {filePath.data()};
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
-                    .arg(filePath.filename(), file.errorString())
-                   , Log::WARNING);
+        if (!file.exists())
             return {};
-        }
 
-        return file.readAll();
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return file.readAll();
+
+        LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
+               .arg(filePath.filename(), file.errorString())
+               , Log::WARNING);
+        return {};
     }
 
     class QRCThemeSource final : public UIThemeSource
@@ -172,20 +174,19 @@ UIThemeManager::UIThemeManager()
     , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
 #endif
 {
-    if (m_useCustomTheme)
+    const Path themePath = m_useCustomTheme
+            ? Preferences::instance()->customUIThemePath()
+            : specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default/config.json"_qs);
+    m_themeSource = createUIThemeSource(themePath);
+    if (!m_themeSource)
     {
-        const Path themePath = Preferences::instance()->customUIThemePath();
-        m_themeSource = createUIThemeSource(themePath);
-        if (!m_themeSource)
-        {
-            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
-        }
-        else
-        {
-            loadColorsFromJSONConfig();
-            applyPalette();
-            applyStyleSheet();
-        }
+        LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
+    }
+    else
+    {
+        loadColorsFromJSONConfig();
+        applyPalette();
+        applyStyleSheet();
     }
 }
 
@@ -295,7 +296,7 @@ Path UIThemeManager::getIconPath(const QString &iconId) const
 
 Path UIThemeManager::getIconPathFromResources(const QString &iconId) const
 {
-    if (m_useCustomTheme && m_themeSource)
+    if (m_themeSource)
     {
         const Path customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
