@@ -31,7 +31,6 @@
 #include <QElapsedTimer>
 #include <QVariantMap>
 
-#include "base/utils/thread.h"
 #include "apicontroller.h"
 
 class QThread;
@@ -51,16 +50,14 @@ public:
 private slots:
     void maindataAction();
     void torrentPeersAction();
-    void freeDiskSpaceSizeUpdated(qint64 freeSpaceSize);
 
 private:
     qint64 getFreeDiskSpace();
-    void invokeChecker() const;
+    void invokeChecker();
 
     qint64 m_freeDiskSpace = 0;
-    FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
-    Utils::Thread::UniquePtr m_freeDiskSpaceThread;
     QElapsedTimer m_freeDiskSpaceElapsedTimer;
+    bool m_isFreeDiskSpaceCheckerRunning = false;
 
     QVariantMap m_lastMaindataResponse;
     QVariantMap m_lastAcceptedMaindataResponse;
