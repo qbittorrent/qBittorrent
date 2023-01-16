@@ -2190,30 +2190,6 @@ Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
     return m_torrents.value(altID);
 }
 
-bool SessionImpl::hasActiveTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](TorrentImpl *torrent)
-    {
-        return TorrentFilter::ActiveTorrent.match(torrent);
-    });
-}
-
-bool SessionImpl::hasUnfinishedTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
-    });
-}
-
-bool SessionImpl::hasRunningSeed() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (torrent->isSeed() && !torrent->isPaused());
-    });
-}
-
 void SessionImpl::banIP(const QString &ip)
 {
     QStringList bannedIPs = m_bannedIPs;
@@ -4651,7 +4627,11 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
         }
     }
 
-    if (!hasUnfinishedTorrents())
+    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    {
+        return !(torrent->isSeed() || torrent->isPaused() || torrent->isErrored());
+    });
+    if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();
 }
 

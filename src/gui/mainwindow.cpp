@@ -1138,7 +1138,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 #endif // Q_OS_MACOS
 
-    if (pref->confirmOnExit() && BitTorrent::Session::instance()->hasActiveTorrents())
+    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const bool hasActiveTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](BitTorrent::Torrent *torrent)
+    {
+        return torrent->isActive();
+    });
+    if (pref->confirmOnExit() && hasActiveTorrents)
     {
         if (e->spontaneous() || m_forceExit)
         {
@@ -1902,8 +1907,17 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
 
 void MainWindow::updatePowerManagementState()
 {
-    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && BitTorrent::Session::instance()->hasUnfinishedTorrents())
-                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && BitTorrent::Session::instance()->hasRunningSeed());
+    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const bool hasUnfinishedTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
+    {
+        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
+    });
+    const bool hasRunningSeed = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
+    {
+        return (torrent->isSeed() && !torrent->isPaused());
+    });
+    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && hasUnfinishedTorrents)
+                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && hasRunningSeed);
     m_pwr->setActivityState(inhibitSuspend);
 }
 
