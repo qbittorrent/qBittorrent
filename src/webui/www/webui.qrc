@@ -12,6 +12,7 @@
         <file>private/css/noscript.css</file>
         <file>private/css/style.css</file>
         <file>private/css/Tabs.css</file>
+        <file>private/css/lib/vanillaSelectBox.css</file>
         <file>private/css/Window.css</file>
         <file>private/download.html</file>
         <file>private/downloadlimit.html</file>
@@ -392,6 +393,7 @@
         <file>private/scripts/prop-trackers.js</file>
         <file>private/scripts/prop-webseeds.js</file>
         <file>private/scripts/speedslider.js</file>
+        <file>private/scripts/lib/vanillaSelectBox.js</file>
         <file>private/setlocation.html</file>
         <file>private/shareratio.html</file>
         <file>private/upload.html</file>
@@ -400,6 +402,8 @@
         <file>private/views/aboutToolbar.html</file>
         <file>private/views/filters.html</file>
         <file>private/views/installsearchplugin.html</file>
+        <file>private/views/log.html</file>
+        <file>private/views/logTabs.html</file>
         <file>private/views/preferences.html</file>
         <file>private/views/preferencesToolbar.html</file>
         <file>private/views/properties.html</file>

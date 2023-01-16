@@ -29,6 +29,10 @@ Code from other projects:
   copyright: Dan Haim <negativeiq@users.sourceforge.net>
   license: BSD
 
+* files src/webui/www/private/css/lib/vanillaSelectBox.css src/webui/www/private/scripts/lib/vanillaSelectBox.js
+  copyright: Philippe Meyer <pmg.meyer@gmail.com>
+  license: MIT
+
 Images Authors:
 * files: src/icons/qbittorrent-tray.svg
   copyright: Provided by HVS <hvs linuxmail org> (raster first proposal) and Atif Afzal(@atfzl github) <atif5801@gmail.com> (vectorized and modified)

@@ -46,6 +46,8 @@ window.qBittorrent.DynamicTable = (function() {
             SearchPluginsTable: SearchPluginsTable,
             TorrentTrackersTable: TorrentTrackersTable,
             TorrentFilesTable: TorrentFilesTable,
+            LogMessageTable: LogMessageTable,
+            LogPeerTable: LogPeerTable,
             RssFeedTable: RssFeedTable,
             RssArticleTable: RssArticleTable,
             RssDownloaderRulesTable: RssDownloaderRulesTable,
@@ -2607,6 +2609,153 @@ window.qBittorrent.DynamicTable = (function() {
                     this.columns[i].updateTd(tds[i], row);
             }
             row['data'] = {};
+        }
+    });
+
+    const LogMessageTable = new Class({
+        Extends: DynamicTable,
+
+        filterText: '',
+
+        filterdLength: function() {
+            return this.tableBody.getElements('tr').length;
+        },
+
+        initColumns: function() {
+            this.newColumn('rowId', '', 'QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]', 50, true);
+            this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=ExecutionLogWidget]', 350, true);
+            this.newColumn('timestamp', '', 'QBT_TR(Timestamp)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+            this.newColumn('type', '', 'QBT_TR(Log Type)QBT_TR[CONTEXT=ExecutionLogWidget]', 100, true);
+            this.initColumnsFunctions();
+        },
+
+        initColumnsFunctions: function() {
+            this.columns['timestamp'].updateTd = function(td, row) {
+                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                td.set({ 'text': date, 'title': date });
+            };
+
+            this.columns['type'].updateTd = function(td, row) {
+                //Type of the message: Log::NORMAL: 1, Log::INFO: 2, Log::WARNING: 4, Log::CRITICAL: 8
+                let logLevel, addClass;
+                switch (this.getRowValue(row).toInt()) {
+                    case 1:
+                        logLevel = 'QBT_TR(Normal)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        addClass = 'logNormal';
+                        break;
+                    case 2:
+                        logLevel = 'QBT_TR(Info)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        addClass = 'logInfo';
+                        break;
+                    case 4:
+                        logLevel = 'QBT_TR(Warning)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        addClass = 'logWarning';
+                        break;
+                    case 8:
+                        logLevel = 'QBT_TR(Critical)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        addClass = 'logCritical';
+                        break;
+                    default:
+                        logLevel = 'QBT_TR(Unknown)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                        addClass = 'logUnknown';
+                        break;
+                }
+                td.set({ 'text': logLevel, 'title': logLevel });
+                td.getParent('tr').set('class', 'logTableRow ' + addClass);
+            };
+        },
+
+        getFilteredAndSortedRows: function() {
+            let filteredRows = [];
+            const rows = this.rows.getValues();
+            this.filterText = window.qBittorrent.Log.getFilterText();
+            const filterTerms = (this.filterText.length > 0) ? this.filterText.toLowerCase().split(' ') : [];
+            const logLevels = window.qBittorrent.Log.getSelectedLevels();
+            if (filterTerms.length > 0 || logLevels.length < 4) {
+                for (let i = 0; i < rows.length; ++i) {
+                    if (logLevels.indexOf(rows[i].full_data.type.toString()) == -1)
+                        continue;
+
+                    if (filterTerms.length > 0 && !window.qBittorrent.Misc.containsAllTerms(rows[i].full_data.message, filterTerms))
+                        continue;
+
+                    filteredRows.push(rows[i]);
+                }
+            }
+            else {
+                filteredRows = rows;
+            }
+
+            filteredRows.sort(function(row1, row2) {
+                const column = this.columns[this.sortedColumn];
+                const res = column.compareRows(row1, row2);
+                return (this.reverseSort == '0') ? res : -res;
+            }.bind(this));
+
+            return filteredRows;
+        },
+
+        setupCommonEvents: function() {},
+
+        setupTr: function(tr) {
+            tr.addClass('logTableRow');
+        }
+    });
+
+    const LogPeerTable = new Class({
+        Extends: LogMessageTable,
+
+        initColumns: function() {
+            this.newColumn('rowId', '', 'QBT_TR(ID)QBT_TR[CONTEXT=ExecutionLogWidget]', 50, true);
+            this.newColumn('ip', '', 'QBT_TR(IP)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+            this.newColumn('timestamp', '', 'QBT_TR(Timestamp)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+            this.newColumn('blocked', '', 'QBT_TR(Status)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+            this.newColumn('reason', '', 'QBT_TR(Reason)QBT_TR[CONTEXT=ExecutionLogWidget]', 150, true);
+
+            this.columns['timestamp'].updateTd = function(td, row) {
+                const date = new Date(this.getRowValue(row) * 1000).toLocaleString();
+                td.set({ 'text': date, 'title': date });
+            };
+
+            this.columns['blocked'].updateTd = function(td, row) {
+                let status, addClass;
+                if (this.getRowValue(row)) {
+                    status = 'QBT_TR(Blocked)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                    addClass = 'peerBlocked';
+                }
+                else {
+                    status = 'QBT_TR(Banned)QBT_TR[CONTEXT=ExecutionLogWidget]';
+                    addClass = 'peerBanned';
+                }
+                td.set({ 'text': status, 'title': status });
+                td.getParent('tr').set('class', 'logTableRow ' + addClass);
+            };
+        },
+
+        getFilteredAndSortedRows: function() {
+            let filteredRows = [];
+            const rows = this.rows.getValues();
+            this.filterText = window.qBittorrent.Log.getFilterText();
+            const filterTerms = (this.filterText.length > 0) ? this.filterText.toLowerCase().split(' ') : [];
+            if (filterTerms.length > 0) {
+                for (let i = 0; i < rows.length; ++i) {
+                    if (filterTerms.length > 0 && !window.qBittorrent.Misc.containsAllTerms(rows[i].full_data.ip, filterTerms))
+                        continue;
+
+                    filteredRows.push(rows[i]);
+                }
+            }
+            else {
+                filteredRows = rows;
+            }
+
+            filteredRows.sort(function(row1, row2) {
+                const column = this.columns[this.sortedColumn];
+                const res = column.compareRows(row1, row2);
+                return (this.reverseSort == '0') ? res : -res;
+            }.bind(this));
+
+            return filteredRows;
         }
     });
 

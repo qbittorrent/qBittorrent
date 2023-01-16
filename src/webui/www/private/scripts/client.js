@@ -35,6 +35,7 @@ let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
 let searchTabInitialized = false;
 let rssTabInitialized = false;
+let logTabInitialized = false;
 
 let syncRequestInProgress = false;
 
@@ -190,9 +191,21 @@ window.addEvent('load', function() {
         $("rssTabColumn").addClass("invisible");
     };
 
+    const buildLogTab = function() {
+        new MochaUI.Column({
+            id: 'logTabColumn',
+            placement: 'main',
+            width: null
+        });
+
+        // start off hidden
+        $('logTabColumn').addClass('invisible');
+    };
+
     buildTransfersTab();
     buildSearchTab();
     buildRssTab();
+    buildLogTab();
     MochaUI.initializeTabs('mainWindowTabsList');
 
     setCategoryFilter = function(hash) {
@@ -304,6 +317,7 @@ window.addEvent('load', function() {
     // After showing/hiding the toolbar + status bar
     let showSearchEngine = LocalPreferences.get('show_search_engine') !== "false";
     let showRssReader = LocalPreferences.get('show_rss_reader') !== "false";
+    let showLogViewer = LocalPreferences.get('show_log_viewer') === 'true';
 
     // After Show Top Toolbar
     MochaUI.Desktop.setDesktopSize();
@@ -912,6 +926,12 @@ window.addEvent('load', function() {
         updateTabDisplay();
     });
 
+    $('showLogViewerLink').addEvent('click', function(e) {
+        showLogViewer = !showLogViewer;
+        LocalPreferences.set('show_log_viewer', showLogViewer.toString());
+        updateTabDisplay();
+    });
+
     const updateTabDisplay = function() {
         if (showRssReader) {
             $('showRssReaderLink').firstChild.style.opacity = '1';
@@ -941,8 +961,22 @@ window.addEvent('load', function() {
                 $("transfersTabLink").click();
         }
 
+        if (showLogViewer) {
+            $('showLogViewerLink').firstChild.style.opacity = '1';
+            $('mainWindowTabs').removeClass('invisible');
+            $('logTabLink').removeClass('invisible');
+            if (!MochaUI.Panels.instances.LogPanel)
+                addLogPanel();
+        }
+        else {
+            $('showLogViewerLink').firstChild.style.opacity = '0';
+            $('logTabLink').addClass('invisible');
+            if ($('logTabLink').hasClass('selected'))
+                $("transfersTabLink").click();
+        }
+
         // display no tabs
-        if (!showRssReader && !showSearchEngine)
+        if (!showRssReader && !showSearchEngine && !showLogViewer)
             $('mainWindowTabs').addClass('invisible');
     };
 
@@ -954,18 +988,21 @@ window.addEvent('load', function() {
         $("filtersColumn").removeClass("invisible");
         $("filtersColumn_handle").removeClass("invisible");
         $("mainColumn").removeClass("invisible");
+        $('torrentsFilterToolbar').removeClass("invisible");
 
         customSyncMainDataInterval = null;
         syncData(100);
 
         hideSearchTab();
         hideRssTab();
+        hideLogTab();
     };
 
     const hideTransfersTab = function() {
         $("filtersColumn").addClass("invisible");
         $("filtersColumn_handle").addClass("invisible");
         $("mainColumn").addClass("invisible");
+        $('torrentsFilterToolbar').addClass("invisible");
         MochaUI.Desktop.resizePanels();
     };
 
@@ -979,6 +1016,7 @@ window.addEvent('load', function() {
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
         hideRssTab();
+        hideLogTab();
     };
 
     const hideSearchTab = function() {
@@ -999,12 +1037,35 @@ window.addEvent('load', function() {
         customSyncMainDataInterval = 30000;
         hideTransfersTab();
         hideSearchTab();
+        hideLogTab();
     };
 
     const hideRssTab = function() {
         $("rssTabColumn").addClass("invisible");
-        window.qBittorrent.Rss.unload();
+        window.qBittorrent.Rss && window.qBittorrent.Rss.unload();
         MochaUI.Desktop.resizePanels();
+    };
+
+    const showLogTab = function() {
+        if (!logTabInitialized) {
+            window.qBittorrent.Log.init();
+            logTabInitialized = true;
+        }
+        else {
+            window.qBittorrent.Log.load();
+        }
+
+        $('logTabColumn').removeClass('invisible');
+        customSyncMainDataInterval = 30000;
+        hideTransfersTab();
+        hideSearchTab();
+        hideRssTab();
+    };
+
+    const hideLogTab = function() {
+        $('logTabColumn').addClass('invisible');
+        MochaUI.Desktop.resizePanels();
+        window.qBittorrent.Log && window.qBittorrent.Log.unload();
     };
 
     const addSearchPanel = function() {
@@ -1041,6 +1102,42 @@ window.addEvent('load', function() {
             contentURL: 'views/rss.html',
             content: '',
             column: 'rssTabColumn',
+            height: null
+        });
+    };
+
+    var addLogPanel = function() {
+        new MochaUI.Panel({
+            id: 'LogPanel',
+            title: 'Log',
+            header: true,
+            padding: {
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0
+            },
+            loadMethod: 'xhr',
+            contentURL: 'views/log.html',
+            require: {
+                css: ['css/lib/vanillaSelectBox.css'],
+                js: ['scripts/lib/vanillaSelectBox.js'],
+            },
+            tabsURL: 'views/logTabs.html',
+            tabsOnload: function() {
+                MochaUI.initializeTabs('panelTabs');
+
+                $('logMessageLink').addEvent('click', function(e) {
+                    window.qBittorrent.Log.setCurrentTab('main');
+                });
+
+                $('logPeerLink').addEvent('click', function(e) {
+                    window.qBittorrent.Log.setCurrentTab('peer');
+                });
+            },
+            collapsible: false,
+            content: '',
+            column: 'logTabColumn',
             height: null
         });
     };
@@ -1185,6 +1282,7 @@ window.addEvent('load', function() {
     $('transfersTabLink').addEvent('click', showTransfersTab);
     $('searchTabLink').addEvent('click', showSearchTab);
     $('rssTabLink').addEvent('click', showRssTab);
+    $('logTabLink').addEvent('click', showLogTab);
     updateTabDisplay();
 
     const registerDragAndDrop = () => {
