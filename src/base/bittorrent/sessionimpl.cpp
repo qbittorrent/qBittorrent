@@ -340,7 +340,7 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 
     ResumeDataStorage *startupStorage = nullptr;
     ResumeDataStorageType currentStorageType = ResumeDataStorageType::Legacy;
-    QVector<LoadedResumeData> loadedResumeData;
+    QList<LoadedResumeData> loadedResumeData;
     int processingResumeDataCount = 0;
     int64_t totalResumeDataCount = 0;
     int64_t finishedResumeDataCount = 0;

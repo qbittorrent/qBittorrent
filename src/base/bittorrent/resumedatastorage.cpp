@@ -33,6 +33,7 @@
 #include <QMetaObject>
 #include <QMutexLocker>
 #include <QThread>
+#include <QVector>
 
 const int TORRENTIDLIST_TYPEID = qRegisterMetaType<QVector<BitTorrent::TorrentID>>();
 
@@ -59,11 +60,11 @@ void BitTorrent::ResumeDataStorage::loadAll() const
     loadingThread->start();
 }
 
-QVector<BitTorrent::LoadedResumeData> BitTorrent::ResumeDataStorage::fetchLoadedResumeData() const
+QList<BitTorrent::LoadedResumeData> BitTorrent::ResumeDataStorage::fetchLoadedResumeData() const
 {
     const QMutexLocker locker {&m_loadedResumeDataMutex};
 
-    const QVector<BitTorrent::LoadedResumeData> loadedResumeData = m_loadedResumeData;
+    const QList<BitTorrent::LoadedResumeData> loadedResumeData = m_loadedResumeData;
     m_loadedResumeData.clear();
 
     return loadedResumeData;
