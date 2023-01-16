@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -115,7 +116,7 @@ namespace
     }
 }
 
-MainWindow::MainWindow(IGUIApplication *app, const State initialState)
+MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     : GUIApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_qs))
@@ -374,27 +375,27 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     });
 
 #ifdef Q_OS_MACOS
-    // Make sure the Window is visible if we don't have a tray icon
-    if (initialState == Minimized)
-    {
-        showMinimized();
-    }
-    else
+    if (initialState == WindowState::Normal)
     {
         show();
         activateWindow();
         raise();
     }
+    else
+    {
+        // Make sure the Window is visible if we don't have a tray icon
+        showMinimized();
+    }
 #else
     if (app->desktopIntegration()->isActive())
     {
-        if ((initialState != Minimized) && !m_uiLocked)
+        if ((initialState == WindowState::Normal) && !m_uiLocked)
         {
             show();
             activateWindow();
             raise();
         }
-        else if (initialState == Minimized)
+        else if (initialState == WindowState::Minimized)
         {
             showMinimized();
             if (pref->minimizeToTray())
@@ -411,7 +412,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     else
     {
         // Make sure the Window is visible if we don't have a tray icon
-        if (initialState == Minimized)
+        if (initialState != WindowState::Normal)
         {
             showMinimized();
         }

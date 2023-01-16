@@ -404,14 +404,35 @@
                 </widget>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkStartMinimized">
-                 <property name="toolTip">
-                  <string>When qBittorrent is started, the main window will be minimized</string>
-                 </property>
-                 <property name="text">
-                  <string>Start qBittorrent minimized</string>
-                 </property>
-                </widget>
+                <layout class="QHBoxLayout" name="windowStateLayout">
+                 <item>
+                  <widget class="QLabel" name="windowStateLabel">
+                   <property name="text">
+                    <string>Window state on start up:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QComboBox" name="windowStateComboBox">
+                   <property name="toolTip">
+                    <string>qBittorrent window state on start up</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <spacer name="windowStateSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProgramExitConfirm">
@@ -3640,7 +3661,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>actionTorrentFnOnDblClBox</tabstop>
   <tabstop>checkStartup</tabstop>
   <tabstop>checkShowSplash</tabstop>
-  <tabstop>checkStartMinimized</tabstop>
+  <tabstop>windowStateComboBox</tabstop>
   <tabstop>checkProgramExitConfirm</tabstop>
   <tabstop>checkShowSystray</tabstop>
   <tabstop>checkMinimizeToSysTray</tabstop>

@@ -39,13 +39,12 @@
 #include "base/profile.h"
 #include "base/settingsstorage.h"
 #include "base/settingvalue.h"
-#include "base/utils/fs.h"
 #include "base/utils/io.h"
 #include "base/utils/string.h"
 
 namespace
 {
-    const int MIGRATION_VERSION = 4;
+    const int MIGRATION_VERSION = 5;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_qs;
 
     void exportWebUIHttpsFiles()
@@ -384,6 +383,18 @@ namespace
         }
     }
 #endif
+
+    void migrateStartupWindowState()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        if (settingsStorage->hasKey(u"Preferences/General/StartMinimized"_qs))
+        {
+            const auto startMinimized = settingsStorage->loadValue<bool>(u"Preferences/General/StartMinimized"_qs);
+            const auto minimizeToTray = settingsStorage->loadValue<bool>(u"Preferences/General/MinimizeToTray"_qs);
+            const QString windowState = startMinimized ? (minimizeToTray ? u"Hidden"_qs : u"Minimized"_qs) : u"Normal"_qs;
+            settingsStorage->storeValue(u"GUI/StartUpWindowState"_qs, windowState);
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
@@ -412,6 +423,9 @@ bool upgrade(const bool /*ask*/)
         if (version < 4)
             migrateMemoryPrioritySettings();
 #endif
+
+        if (version < 5)
+            migrateStartupWindowState();
 
         version = MIGRATION_VERSION;
     }

@@ -125,6 +125,7 @@ add_library(qbt_gui STATIC
     utils.h
     watchedfolderoptionsdialog.h
     watchedfoldersmodel.h
+    windowstate.h
 
     # sources
     aboutdialog.cpp

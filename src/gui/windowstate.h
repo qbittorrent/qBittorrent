@@ -1,8 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006  Christophe Dumez
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -30,23 +28,19 @@
 
 #pragma once
 
-#include "base/interfaces/iapplication.h"
-#include "gui/windowstate.h"
+#include <QMetaObject>
 
-class DesktopIntegration;
-class MainWindow;
-
-class IGUIApplication : public IApplication
+inline namespace WindowStateNS
 {
-public:
-    virtual ~IGUIApplication() = default;
+    Q_NAMESPACE
 
-    virtual DesktopIntegration *desktopIntegration() = 0;
-    virtual MainWindow *mainWindow() = 0;
-
-    virtual WindowState startUpWindowState() const = 0;
-    virtual void setStartUpWindowState(WindowState windowState) = 0;
-
-    virtual bool isTorrentAddedNotificationsEnabled() const = 0;
-    virtual void setTorrentAddedNotificationsEnabled(bool value) = 0;
-};
+    enum class WindowState
+    {
+        Normal,
+        Minimized,
+#ifndef Q_OS_MACOS
+        Hidden
+#endif
+    };
+    Q_ENUM_NS(WindowState);
+}

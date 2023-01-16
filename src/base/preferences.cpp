@@ -279,16 +279,6 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/StatusbarDisplayed"_qs, displayed);
 }
 
-bool Preferences::startMinimized() const
-{
-    return value(u"Preferences/General/StartMinimized"_qs, false);
-}
-
-void Preferences::setStartMinimized(const bool b)
-{
-    setValue(u"Preferences/General/StartMinimized"_qs, b);
-}
-
 bool Preferences::isSplashScreenDisabled() const
 {
     return value(u"Preferences/General/NoSplashScreen"_qs, true);

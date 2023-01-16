@@ -249,9 +249,15 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkStartup->setVisible(false);
 #endif
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    m_ui->checkStartMinimized->setChecked(pref->startMinimized());
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
+
+    m_ui->windowStateComboBox->addItem(tr("Normal"), QVariant::fromValue(WindowState::Normal));
+    m_ui->windowStateComboBox->addItem(tr("Minimized"), QVariant::fromValue(WindowState::Minimized));
+#ifndef Q_OS_MACOS
+    m_ui->windowStateComboBox->addItem(tr("Hidden"), QVariant::fromValue(WindowState::Hidden));
+#endif
+    m_ui->windowStateComboBox->setCurrentIndex(m_ui->windowStateComboBox->findData(QVariant::fromValue(app()->startUpWindowState())));
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
@@ -330,13 +336,13 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->checkShowSplash, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkStartMinimized, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramAutoExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkShowSystray, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMinimizeToSysTray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCloseToSystray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->windowStateComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -399,7 +405,6 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
-    pref->setStartMinimized(startMinimized());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
 
@@ -446,6 +451,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
     app()->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
     app()->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
     app()->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
+
+    app()->setStartUpWindowState(m_ui->windowStateComboBox->currentData().value<WindowState>());
 
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 }
@@ -1377,11 +1384,6 @@ bool OptionsDialog::isLSDEnabled() const
 bool OptionsDialog::isUPnPEnabled() const
 {
     return m_ui->checkUPnP->isChecked();
-}
-
-bool OptionsDialog::startMinimized() const
-{
-    return m_ui->checkStartMinimized->isChecked();
 }
 
 // Return Share ratio

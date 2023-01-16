@@ -96,6 +96,7 @@
 #include "gui/shutdownconfirmdialog.h"
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
+#include "gui/windowstate.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -138,6 +139,7 @@ Application::Application(int &argc, char **argv)
     , m_processMemoryPriority(SETTINGS_KEY(u"ProcessMemoryPriority"_qs))
 #endif
 #ifndef DISABLE_GUI
+    , m_startUpWindowState(u"GUI/StartUpWindowState"_qs)
     , m_storeNotificationTorrentAdded(NOTIFICATIONS_SETTINGS_KEY(u"TorrentAdded"_qs))
 #endif
 {
@@ -220,6 +222,16 @@ DesktopIntegration *Application::desktopIntegration()
 MainWindow *Application::mainWindow()
 {
     return m_window;
+}
+
+WindowState Application::startUpWindowState() const
+{
+    return m_startUpWindowState;
+}
+
+void Application::setStartUpWindowState(const WindowState windowState)
+{
+    m_startUpWindowState = windowState;
 }
 
 bool Application::isTorrentAddedNotificationsEnabled() const
@@ -726,11 +738,8 @@ try
     desktopIntegrationMenu->addAction(actionExit);
 
     m_desktopIntegration->setMenu(desktopIntegrationMenu);
-#endif
 
-    const auto *pref = Preferences::instance();
-#ifndef Q_OS_MACOS
-    const bool isHidden = m_desktopIntegration->isActive() && pref->startMinimized() && pref->minimizeToTray();
+    const bool isHidden = m_desktopIntegration->isActive() && (startUpWindowState() == WindowState::Hidden);
 #else
     const bool isHidden = false;
 #endif
@@ -740,7 +749,7 @@ try
         createStartupProgressDialog();
         // Add a small delay to avoid "flashing" the progress dialog in case there are not many torrents to restore.
         m_startupProgressDialog->setMinimumDuration(1000);
-        if (pref->startMinimized())
+        if (startUpWindowState() != WindowState::Normal)
             m_startupProgressDialog->setWindowState(Qt::WindowMinimized);
     }
     else
@@ -795,8 +804,14 @@ try
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
         // we must not delete menu while it is used by DesktopIntegration
         auto *oldMenu = m_desktopIntegration->menu();
-        const MainWindow::State windowState = (!m_startupProgressDialog || (m_startupProgressDialog->windowState() & Qt::WindowMinimized))
-                ? MainWindow::Minimized : MainWindow::Normal;
+#ifndef Q_OS_MACOS
+        const WindowState windowState = !m_startupProgressDialog ? WindowState::Hidden
+                : (m_startupProgressDialog->windowState() & Qt::WindowMinimized) ? WindowState::Minimized
+                        : WindowState::Normal;
+#else
+        const WindowState windowState = (m_startupProgressDialog->windowState() & Qt::WindowMinimized)
+                ? WindowState::Minimized : WindowState::Normal;
+#endif
         m_window = new MainWindow(this, windowState);
         delete oldMenu;
         delete m_startupProgressDialog;
