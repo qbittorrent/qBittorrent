@@ -658,8 +658,7 @@ Application::AddTorrentParams Application::parseParams(const QStringList &params
             continue;
         }
 
-        parsedParams.torrentSource = param;
-        break;
+        parsedParams.torrentSources.append(param);
     }
 
     return parsedParams;
@@ -675,10 +674,16 @@ void Application::processParams(const AddTorrentParams &params)
     // should be overridden.
     const bool showDialogForThisTorrent = !params.skipTorrentDialog.value_or(!AddNewTorrentDialog::isEnabled());
     if (showDialogForThisTorrent)
-        AddNewTorrentDialog::show(params.torrentSource, params.torrentParams, m_window);
+    {
+        for (const QString &torrentSource : params.torrentSources)
+            AddNewTorrentDialog::show(torrentSource, params.torrentParams, m_window);
+    }
     else
 #endif
-        BitTorrent::Session::instance()->addTorrent(params.torrentSource, params.torrentParams);
+    {
+        for (const QString &torrentSource : params.torrentSources)
+            BitTorrent::Session::instance()->addTorrent(torrentSource, params.torrentParams);
+    }
 }
 
 int Application::exec(const QStringList &params)
