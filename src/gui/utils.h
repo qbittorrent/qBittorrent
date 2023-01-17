@@ -42,7 +42,6 @@ namespace Utils::Gui
 
     QPixmap scaledPixmap(const QIcon &icon, const QWidget *widget, int height);
     QPixmap scaledPixmap(const Path &path, const QWidget *widget, int height = 0);
-    QPixmap scaledPixmapSvg(const Path &path, const QWidget *widget, int height);
 
     QSize smallIconSize(const QWidget *widget = nullptr);
     QSize mediumIconSize(const QWidget *widget = nullptr);

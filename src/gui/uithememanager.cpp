@@ -35,6 +35,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPalette>
+#include <QPixmapCache>
 #include <QResource>
 
 #include "base/global.h"
@@ -237,6 +238,25 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     return icon;
 }
 
+QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const int height) const
+{
+    // (workaround) svg images require the use of `QIcon()` to load and scale losslessly,
+    // otherwise other image classes will convert it to pixmap first and follow-up scaling will become lossy.
+
+    Q_ASSERT(height > 0);
+
+    const QString cacheKey = iconId + u'@' + QString::number(height);
+
+    QPixmap pixmap;
+    if (!QPixmapCache::find(cacheKey, &pixmap))
+    {
+        pixmap = getIcon(iconId).pixmap(height);
+        QPixmapCache::insert(cacheKey, pixmap);
+    }
+
+    return pixmap;
+}
+
 QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) const
 {
     return m_colors.value(id, defaultColor);
@@ -271,28 +291,6 @@ QIcon UIThemeManager::getSystrayIcon() const
     return getIcon(u"qbittorrent-tray"_qs);
 }
 #endif
-
-Path UIThemeManager::getIconPath(const QString &iconId) const
-{
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
-    if (m_useSystemIcons)
-    {
-        Path path = Utils::Fs::tempPath() / Path(iconId + u".png");
-        if (!path.exists())
-        {
-            const QIcon icon = QIcon::fromTheme(iconId);
-            if (!icon.isNull())
-                icon.pixmap(32).save(path.toString());
-            else
-                path = getIconPathFromResources(iconId);
-        }
-
-        return path;
-    }
-#endif
-
-    return getIconPathFromResources(iconId);
-}
 
 Path UIThemeManager::getIconPathFromResources(const QString &iconId) const
 {

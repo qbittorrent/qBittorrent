@@ -884,11 +884,11 @@ void OptionsDialog::loadSpeedTabOptions()
     const auto *pref = Preferences::instance();
     const auto *session = BitTorrent::Session::instance();
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow_off"_qs), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_qs, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimit->setValue(session->globalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimit->setValue(session->globalDownloadSpeedLimit() / 1024);
 
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow"_qs), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_qs, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimitAlt->setValue(session->altGlobalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimitAlt->setValue(session->altGlobalDownloadSpeedLimit() / 1024);
 
@@ -1769,8 +1769,8 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path)
     };
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
-        isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
+    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
@@ -1791,8 +1791,8 @@ void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
     };
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
-        isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 bool OptionsDialog::isWebUiEnabled() const

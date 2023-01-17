@@ -81,26 +81,6 @@ QPixmap Utils::Gui::scaledPixmap(const Path &path, const QWidget *widget, const 
     return (height == 0) ? pixmap : pixmap.scaledToHeight(height, Qt::SmoothTransformation);
 }
 
-QPixmap Utils::Gui::scaledPixmapSvg(const Path &path, const QWidget *widget, const int height)
-{
-    // (workaround) svg images require the use of `QIcon()` to load and scale losslessly,
-    // otherwise other image classes will convert it to pixmap first and follow-up scaling will become lossy.
-
-    Q_UNUSED(widget);
-    Q_ASSERT(height > 0);
-
-    const QString cacheKey = path.data() + u'@' + QString::number(height);
-
-    QPixmap pixmap;
-    QPixmapCache cache;
-    if (!cache.find(cacheKey, &pixmap))
-    {
-        pixmap = QIcon(path.data()).pixmap(height);
-        cache.insert(cacheKey, pixmap);
-    }
-    return pixmap;
-}
-
 QSize Utils::Gui::smallIconSize(const QWidget *widget)
 {
     // Get DPI scaled icon size (device-dependent), see QT source
