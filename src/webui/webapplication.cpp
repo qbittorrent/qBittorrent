@@ -551,7 +551,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         // block suspicious requests
         if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
-            {
+        {
             throw UnauthorizedHTTPError();
         }
 
