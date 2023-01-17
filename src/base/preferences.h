@@ -197,6 +197,8 @@ public:
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
+    QString getWebAPISessionCookieName() const;
+    void setWebAPISessionCookieName(const QString &cookieName);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;

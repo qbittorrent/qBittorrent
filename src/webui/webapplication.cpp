@@ -47,7 +47,6 @@
 #include "base/logger.h"
 #include "base/preferences.h"
 #include "base/types.h"
-#include "base/utils/bytearray.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/random.h"
@@ -63,7 +62,7 @@
 #include "api/transfercontroller.h"
 
 const int MAX_ALLOWED_FILESIZE = 10 * 1024 * 1024;
-const auto C_SID = QByteArrayLiteral("SID"); // name of session id cookie
+const QString DEFAULT_SESSION_COOKIE_NAME = u"SID"_qs;
 
 const QString WWW_FOLDER = u":/www"_qs;
 const QString PUBLIC_FOLDER = u"/public"_qs;
@@ -129,6 +128,18 @@ namespace
 
         return languages.join(u'\n');
     }
+
+    bool isValidCookieName(const QString &cookieName)
+    {
+        if (cookieName.isEmpty() || (cookieName.size() > 128))
+            return false;
+
+        const QRegularExpression invalidNameRegex {u"[^a-zA-Z0-9_\\-]"_qs};
+        if (invalidNameRegex.match(cookieName).hasMatch())
+            return false;
+
+        return true;
+    }
 }
 
 WebApplication::WebApplication(IApplication *app, QObject *parent)
@@ -141,6 +152,14 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
 
     configure();
     connect(Preferences::instance(), &Preferences::changed, this, &WebApplication::configure);
+
+    m_sessionCookieName = Preferences::instance()->getWebAPISessionCookieName();
+    if (!isValidCookieName(m_sessionCookieName))
+    {
+        LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
+               .arg(m_sessionCookieName), Log::WARNING);
+        m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
+    }
 }
 
 WebApplication::~WebApplication()
@@ -563,7 +582,7 @@ void WebApplication::sessionInitialize()
 {
     Q_ASSERT(!m_currentSession);
 
-    const QString sessionId {parseCookie(m_request.headers.value(u"cookie"_qs)).value(QString::fromLatin1(C_SID))};
+    const QString sessionId {parseCookie(m_request.headers.value(u"cookie"_qs)).value(m_sessionCookieName)};
 
     // TODO: Additional session check
 
@@ -649,7 +668,7 @@ void WebApplication::sessionStart()
     m_currentSession->registerAPIController<TransferController>(u"transfer"_qs);
     m_sessions[m_currentSession->id()] = m_currentSession;
 
-    QNetworkCookie cookie(C_SID, m_currentSession->id().toUtf8());
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1(), m_currentSession->id().toUtf8()};
     cookie.setHttpOnly(true);
     cookie.setSecure(m_isSecureCookieEnabled && m_isHttpsEnabled);
     cookie.setPath(u"/"_qs);
@@ -663,7 +682,7 @@ void WebApplication::sessionEnd()
 {
     Q_ASSERT(m_currentSession);
 
-    QNetworkCookie cookie(C_SID);
+    QNetworkCookie cookie {m_sessionCookieName.toLatin1()};
     cookie.setPath(u"/"_qs);
     cookie.setExpirationDate(QDateTime::currentDateTime().addDays(-1));
 

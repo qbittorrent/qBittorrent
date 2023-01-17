@@ -653,6 +653,16 @@ void Preferences::setWebUISessionTimeout(const int timeout)
     setValue(u"Preferences/WebUI/SessionTimeout"_qs, timeout);
 }
 
+QString Preferences::getWebAPISessionCookieName() const
+{
+    return value<QString>(u"WebAPI/SessionCookieName"_qs);
+}
+
+void Preferences::setWebAPISessionCookieName(const QString &cookieName)
+{
+    setValue(u"WebAPI/SessionCookieName"_qs, cookieName);
+}
+
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
 {
     return value(u"Preferences/WebUI/ClickjackingProtection"_qs, true);
