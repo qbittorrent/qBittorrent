@@ -42,5 +42,5 @@ inline namespace WindowStateNS
         Hidden
 #endif
     };
-    Q_ENUM_NS(WindowState);
+    Q_ENUM_NS(WindowState)
 }
