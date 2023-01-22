@@ -395,6 +395,18 @@ namespace
             settingsStorage->storeValue(u"GUI/StartUpWindowState"_qs, windowState);
         }
     }
+
+    void migrateChineseLocale()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto key = u"Preferences/General/Locale"_qs;
+        if (settingsStorage->hasKey(key))
+        {
+            const auto locale = settingsStorage->loadValue<QString>(key);
+            if (locale.compare(u"zh"_qs, Qt::CaseInsensitive) == 0)
+                settingsStorage->storeValue(key, u"zh_CN"_qs);
+        }
+    }
 }
 
 bool upgrade(const bool /*ask*/)
@@ -425,7 +437,10 @@ bool upgrade(const bool /*ask*/)
 #endif
 
         if (version < 5)
+        {
             migrateStartupWindowState();
+            migrateChineseLocale();
+        }
 
         version = MIGRATION_VERSION;
     }
