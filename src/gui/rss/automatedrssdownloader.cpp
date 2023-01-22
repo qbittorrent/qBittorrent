@@ -205,7 +205,8 @@ void AutomatedRssDownloader::createRuleItem(const RSS::AutoDownloadRule &rule)
 void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
-    loadFeedTree(nullptr, RSS::Session::instance()->rootFolder());
+    QTreeWidgetItem *rssRoot = createFeedTreeItem(RSS::Session::instance()->rootFolder(), nullptr);
+    loadFeedTree(rssRoot, RSS::Session::instance()->rootFolder());
 
     updateFeedList();
 }
