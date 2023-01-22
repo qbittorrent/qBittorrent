@@ -221,26 +221,6 @@ int main(int argc, char *argv[])
             app->setAttribute(Qt::AA_DontShowIconsInMenus);
 #endif
 
-        if (!firstTimeUser)
-        {
-            handleChangedDefaults(DefaultPreferencesMode::Legacy);
-
-#ifndef DISABLE_GUI
-            if (!upgrade()) return EXIT_FAILURE;
-#elif defined(Q_OS_WIN)
-            if (!upgrade(_isatty(_fileno(stdin))
-                         && _isatty(_fileno(stdout)))) return EXIT_FAILURE;
-#else
-            if (!upgrade(!params.shouldDaemonize
-                         && isatty(fileno(stdin))
-                         && isatty(fileno(stdout)))) return EXIT_FAILURE;
-#endif
-        }
-        else
-        {
-            handleChangedDefaults(DefaultPreferencesMode::Current);
-        }
-
 #if defined(DISABLE_GUI) && !defined(Q_OS_WIN)
         if (params.shouldDaemonize)
         {
@@ -272,6 +252,11 @@ int main(int argc, char *argv[])
     catch (const CommandLineParameterError &er)
     {
         displayBadArgMessage(er.message());
+        return EXIT_FAILURE;
+    }
+    catch (const RuntimeError &er)
+    {
+        qDebug() << er.message();
         return EXIT_FAILURE;
     }
 }

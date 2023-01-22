@@ -409,7 +409,7 @@ namespace
     }
 }
 
-bool upgrade(const bool /*ask*/)
+bool upgrade()
 {
     CachedSettingValue<int> version {MIGRATION_VERSION_KEY, 0};
 
