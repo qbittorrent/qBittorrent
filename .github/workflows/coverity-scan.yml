@@ -24,12 +24,13 @@ jobs:
       - name: Install Qt
         uses: jurplel/install-qt-action@v3
         with:
-          version: "6.3.0"
+          version: "6.4.0"
+          archives: icu qtbase qtsvg qttools
 
       - name: Install libtorrent
         run: |
           git clone \
-            --branch "v2.0.7" \
+            --branch "v2.0.8" \
             --depth 1 \
             --recurse-submodules \
             https://github.com/arvidn/libtorrent.git
@@ -59,6 +60,7 @@ jobs:
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DGUI=ON \
+            -DQT6=ON \
             -DVERBOSE_CONFIGURE=ON
           export PATH="$(pwd)/coverity_tool/bin:$PATH"
           cov-build --dir cov-int cmake --build build

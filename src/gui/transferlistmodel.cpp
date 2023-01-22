@@ -32,8 +32,8 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QDebug>
-#include <QPalette>
 
+#include "base/bittorrent/infohash.h"
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/global.h"
@@ -43,46 +43,52 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
+#include "color.h"
 #include "uithememanager.h"
+#include "utils.h"
 
 namespace
 {
     QColor getDefaultColorByState(const BitTorrent::TorrentState state)
     {
+        const bool isDarkTheme = Utils::Gui::isDarkTheme();
+
         switch (state)
         {
         case BitTorrent::TorrentState::Downloading:
         case BitTorrent::TorrentState::ForcedDownloading:
         case BitTorrent::TorrentState::DownloadingMetadata:
         case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-            return QColorConstants::Svg::green;
+            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
         case BitTorrent::TorrentState::StalledDownloading:
-            return QColorConstants::Svg::mediumseagreen;
+            return (isDarkTheme ? Color::Primer::Dark::successEmphasis : Color::Primer::Light::successEmphasis);
         case BitTorrent::TorrentState::StalledUploading:
-            return QColorConstants::Svg::cornflowerblue;
+            return (isDarkTheme ? Color::Primer::Dark::accentEmphasis : Color::Primer::Light::accentEmphasis);
         case BitTorrent::TorrentState::Uploading:
         case BitTorrent::TorrentState::ForcedUploading:
-            return QColorConstants::Svg::royalblue;
+            return (isDarkTheme ? Color::Primer::Dark::accentFg : Color::Primer::Light::accentFg);
         case BitTorrent::TorrentState::PausedDownloading:
-            return QColorConstants::Svg::grey;
+            return (isDarkTheme ? Color::Primer::Dark::fgMuted : Color::Primer::Light::fgMuted);
         case BitTorrent::TorrentState::PausedUploading:
-            return QColorConstants::Svg::darkslateblue;
+            return (isDarkTheme ? Color::Primer::Dark::scaleBlue4 : Color::Primer::Light::scaleBlue4);
         case BitTorrent::TorrentState::QueuedDownloading:
         case BitTorrent::TorrentState::QueuedUploading:
-            return QColorConstants::Svg::peru;
+            return (isDarkTheme ? Color::Primer::Dark::scaleYellow6 : Color::Primer::Light::scaleYellow6);
         case BitTorrent::TorrentState::CheckingDownloading:
         case BitTorrent::TorrentState::CheckingUploading:
         case BitTorrent::TorrentState::CheckingResumeData:
         case BitTorrent::TorrentState::Moving:
-            return QColorConstants::Svg::teal;
+            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
         case BitTorrent::TorrentState::Error:
         case BitTorrent::TorrentState::MissingFiles:
         case BitTorrent::TorrentState::Unknown:
-            return QColorConstants::Svg::red;
+            return (isDarkTheme ? Color::Primer::Dark::dangerFg : Color::Primer::Light::dangerFg);
         default:
             Q_ASSERT(false);
-            return QColorConstants::Svg::red;
+            break;
         }
+
+        return {};
     }
 
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
@@ -223,13 +229,16 @@ QVariant TransferListModel::headerData(const int section, const Qt::Orientation 
             case TR_AMOUNT_UPLOADED_SESSION: return tr("Session Upload", "Amount of data uploaded since program open (e.g. in MB)");
             case TR_AMOUNT_LEFT: return tr("Remaining", "Amount of data left to download (e.g. in MB)");
             case TR_TIME_ELAPSED: return tr("Time Active", "Time (duration) the torrent is active (not paused)");
-            case TR_SAVE_PATH: return tr("Save path", "Torrent save path");
+            case TR_SAVE_PATH: return tr("Save Path", "Torrent save path");
+            case TR_DOWNLOAD_PATH: return tr("Incomplete Save Path", "Torrent incomplete save path");
             case TR_COMPLETED: return tr("Completed", "Amount of data completed (e.g. in MB)");
             case TR_RATIO_LIMIT: return tr("Ratio Limit", "Upload share ratio limit");
             case TR_SEEN_COMPLETE_DATE: return tr("Last Seen Complete", "Indicates the time when the torrent was last seen complete/whole");
             case TR_LAST_ACTIVITY: return tr("Last Activity", "Time passed since a chunk was downloaded/uploaded");
             case TR_TOTAL_SIZE: return tr("Total Size", "i.e. Size including unwanted data");
             case TR_AVAILABILITY: return tr("Availability", "The number of distributed copies of the torrent");
+            case TR_INFOHASH_V1: return tr("Info Hash v1", "i.e: torrent info hash v1");
+            case TR_INFOHASH_V2: return tr("Info Hash v2", "i.e: torrent info hash v2");
             default: return {};
             }
         }
@@ -370,6 +379,13 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
                    : m_statusStrings[state];
     };
 
+    const auto hashString = [hideValues](const auto &hash) -> QString
+    {
+        if (hideValues && !hash.isValid())
+            return {};
+        return hash.isValid() ? hash.toString() : tr("N/A");
+    };
+
     switch (column)
     {
     case TR_NAME:
@@ -424,6 +440,8 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return timeElapsedString(torrent->activeTime(), torrent->finishedTime());
     case TR_SAVE_PATH:
         return torrent->savePath().toString();
+    case TR_DOWNLOAD_PATH:
+        return torrent->downloadPath().toString();
     case TR_COMPLETED:
         return unitString(torrent->completedSize());
     case TR_SEEN_COMPLETE_DATE:
@@ -434,6 +452,10 @@ QString TransferListModel::displayValue(const BitTorrent::Torrent *torrent, cons
         return availabilityString(torrent->distributedCopies());
     case TR_TOTAL_SIZE:
         return unitString(torrent->totalSize());
+    case TR_INFOHASH_V1:
+        return hashString(torrent->infoHash().v1());
+    case TR_INFOHASH_V2:
+        return hashString(torrent->infoHash().v2());
     }
 
     return {};
@@ -491,8 +513,10 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->remainingSize();
     case TR_TIME_ELAPSED:
         return !alt ? torrent->activeTime() : torrent->finishedTime();
+    case TR_DOWNLOAD_PATH:
+        return torrent->downloadPath().data();
     case TR_SAVE_PATH:
-        return torrent->savePath().toString();
+        return torrent->savePath().data();
     case TR_COMPLETED:
         return torrent->completedSize();
     case TR_RATIO_LIMIT:
@@ -505,6 +529,10 @@ QVariant TransferListModel::internalValue(const BitTorrent::Torrent *torrent, co
         return torrent->distributedCopies();
     case TR_TOTAL_SIZE:
         return torrent->totalSize();
+    case TR_INFOHASH_V1:
+        return QVariant::fromValue(torrent->infoHash().v1());
+    case TR_INFOHASH_V2:
+        return QVariant::fromValue(torrent->infoHash().v2());
     }
 
     return {};
@@ -540,6 +568,9 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
         case TR_TAGS:
         case TR_TRACKER:
         case TR_SAVE_PATH:
+        case TR_DOWNLOAD_PATH:
+        case TR_INFOHASH_V1:
+        case TR_INFOHASH_V2:
             return displayValue(torrent, index.column());
         }
         break;
@@ -601,9 +632,12 @@ bool TransferListModel::setData(const QModelIndex &index, const QVariant &value,
 
 void TransferListModel::addTorrents(const QVector<BitTorrent::Torrent *> &torrents)
 {
-    int row = m_torrentList.size();
-    beginInsertRows({}, row, (row + torrents.size()));
+    qsizetype row = m_torrentList.size();
+    const qsizetype total = row + torrents.size();
 
+    beginInsertRows({}, row, total);
+
+    m_torrentList.reserve(total);
     for (BitTorrent::Torrent *torrent : torrents)
     {
         Q_ASSERT(!m_torrentMap.contains(torrent));

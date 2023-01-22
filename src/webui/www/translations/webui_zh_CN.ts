@@ -42,6 +42,30 @@
         <source>Don't create subfolder</source>
         <translation>不创建子文件夹</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation>手动</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>自动</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -77,16 +101,16 @@
         <translation>暂停 torrent</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>删除 torrent</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>新建分类</translation>
     </message>
     <message>
         <source>Edit category...</source>
         <translation>编辑分类...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
@@ -272,10 +296,6 @@
         <translation>上传本地的 torrent</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">你确定要从传输列表中删除选中的 torrent 吗？</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>保存</translation>
     </message>
@@ -365,7 +385,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>你确定要从传输列表中删除选中的 torrent 吗？</translation>
     </message>
 </context>
 <context>
@@ -429,10 +449,6 @@
     <message>
         <source>Pause</source>
         <translation>暂停</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>删除</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -581,10 +597,18 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>取消</translation>
     </message>
     <message>
         <source>Remove</source>
+        <translation>删除</translation>
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -625,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>下载完成时发送电子邮件通知</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation>Torrent 完成时运行外部程序</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1157,6 @@
         <translation>反吸血</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">启用操作系统缓存</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>当分享率达到</translation>
     </message>
@@ -1297,10 +1313,6 @@
         <translation>禁止：</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">使用块扩展数据块关联(需要libtorrent &gt;=1.2.2)：</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>停止tracker超时：</translation>
     </message>
@@ -1381,10 +1393,6 @@
         <translation>每个订阅源文章数目最大值：</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">最大并发 HTTP 发布（需要 libtorrent &gt; = 1.2.7）：</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>分钟</translation>
     </message>
@@ -1423,10 +1431,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>下载连接协议：</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">支持国际化域名（IDN）（需要 libtorrent &gt;= 1.2.12）：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1529,59 +1533,123 @@
         <translation>磁盘 IO 类型（libtorrent &gt;= 2.0；需要重启）：</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">物理内存（RAM）使用限制：</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>连续写入（需要  libtorrent &gt;= 2.0.6）</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>它控制内部状态更新间隔，此间隔会影响用户界面更新</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>磁盘 IO 读取模式</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>禁用操作系统缓存</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>磁盘 IO 写入模式</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>启用相连文件块下载模式：</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>最大并行 HTTP 发布：</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>启用操作系统缓存</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>刷新间隔</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>物理内存使用上限（仅 libtorrent &gt;= 2.0 时应用）</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>毫秒</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>排除的文件名</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation>支持国际化域名（IDN）：</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation>torrent 完成时运行外部程序</translation>
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation>白名单用于过滤 HTTP 头的 Host 参数。
+为了预防 DNS 反向绑定攻击，
+您应当指定供 Web UI 使用的域名。
+
+使用 ';' 区分不同的输入。可以使用通配符 '*'。</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation>新增 torrent 时运行外部程序</translation>
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation>HTTPS 证书不能为空</translation>
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>指定反向代理 IP（或子网，如 0.0.0.0/24）以使用转发的客户端地址（X-Forwarded-For 标头)。使用 ';' 符号分割多个条目。</translation>
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation>HTTPS 密钥不能为空</translation>
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation>运行外部程序</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1662,6 +1730,10 @@
     <message>
         <source>Add peers...</source>
         <translation>添加 peers 用户...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2308,10 +2380,6 @@
         <translation>复制 tracker URL</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation>添加新的 tracker...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>编辑 tracker URL...</translation>
     </message>
@@ -2359,16 +2427,20 @@
         <source>Times Downloaded</source>
         <translation>下载时间</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation>添加 trackers...</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
-        <source>Trackers addition dialog</source>
-        <translation>添加 tracker 对话窗</translation>
-    </message>
-    <message>
         <source>List of trackers to add (one per line):</source>
         <translation>要添加的 tracker 列表（每行一个）：</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation>添加 trackers</translation>
     </message>
 </context>
 <context>
@@ -2496,11 +2568,6 @@
         <translation>暂停</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation>删除</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>限制分享率...</translation>
     </message>
@@ -2573,10 +2640,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>按顺序下载</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation>强制重新校验</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2658,6 +2721,10 @@
         <source>Export .torrent</source>
         <translation>导出 .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2692,20 +2759,12 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation>确认删除</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">同时从硬盘上删除文件</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>确认删除 - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>并永久性删除这些文件</translation>
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
+        <translation>移除一个或多个 torrent</translation>
     </message>
 </context>
 <context>
@@ -2899,6 +2958,14 @@
         <source>showing</source>
         <translation>显示</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>单击窗口底部右侧的“搜索插件...“按钮安装一些</translation>
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation>未安装任何搜索插件</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3023,10 +3090,6 @@
         <translation>添加标签...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>删除 torrent</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>标签：</translation>
     </message>
@@ -3049,6 +3112,10 @@
     <message>
         <source>Remove tag</source>
         <translation>删除标签</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除多个 torrent</translation>
     </message>
 </context>
 <context>
@@ -3549,10 +3616,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation>删除 torrent</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>继续 torrent</translation>
     </message>
@@ -3567,6 +3630,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>暂停 torrent</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>移除多个 torrent</translation>
     </message>
 </context>
 <context>

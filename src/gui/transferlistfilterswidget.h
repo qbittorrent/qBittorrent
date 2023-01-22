@@ -44,6 +44,8 @@
 class QCheckBox;
 class QResizeEvent;
 
+class CategoryFilterWidget;
+class TagFilterWidget;
 class TransferListWidget;
 
 namespace Net
@@ -112,6 +114,7 @@ private:
     int m_nbStalledUploading = 0;
     int m_nbStalledDownloading = 0;
     int m_nbChecking = 0;
+    int m_nbMoving = 0;
     int m_nbErrored = 0;
 };
 
@@ -128,7 +131,8 @@ public:
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void handleTrackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos);
+    void handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
     void setDownloadTrackerFavicon(bool value);
 
 private slots:
@@ -155,16 +159,13 @@ private:
         QListWidgetItem *item = nullptr;
     };
 
-    QHash<QString, TrackerData> m_trackers;
+    QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
     QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
     PathList m_iconPaths;
-    int m_totalTorrents;
-    bool m_downloadTrackerFavicon;
+    int m_totalTorrents = 0;
+    bool m_downloadTrackerFavicon = false;
 };
-
-class CategoryFilterWidget;
-class TagFilterWidget;
 
 class TransferListFiltersWidget final : public QFrame
 {
@@ -180,7 +181,8 @@ public slots:
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerEntriesUpdated(const QHash<BitTorrent::Torrent *, QSet<QString>> &updateInfos);
+    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
+            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
 
 private slots:
     void onCategoryFilterStateChanged(bool enabled);

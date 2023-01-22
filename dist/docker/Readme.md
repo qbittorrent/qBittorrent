@@ -48,8 +48,12 @@ It is also recommended to install Docker Compose as it can significantly ease th
 #### Volumes
 
 There are some paths involved:
-* `<your_path>/config` on your host machine will contain qBittorrent configurations
-* `<your_path>/downloads` on your host machine will contain the files downloaded by qBittorrent
+* `<your_path>/config` \
+  Full path to a folder on your host machine which will store qBittorrent configurations.
+  Using relative path won't work.
+* `<your_path>/downloads` \
+  Full path to a folder on your host machine which will store the files downloaded by qBittorrent.
+  Using relative path won't work.
 
 ## Running container
 

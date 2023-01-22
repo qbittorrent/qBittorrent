@@ -281,8 +281,8 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
-    bool recursiveDownloadDisabled() const;
-    void disableRecursiveDownload(bool disable = true);
+    bool isRecursiveDownloadEnabled() const;
+    void setRecursiveDownloadEnabled(bool enable);
 #ifdef Q_OS_WIN
     bool neverCheckFileAssoc() const;
     void setNeverCheckFileAssoc(bool check = true);
@@ -299,6 +299,8 @@ public:
 #endif
     int getTrackerPort() const;
     void setTrackerPort(int port);
+    bool isTrackerPortForwardingEnabled() const;
+    void setTrackerPortForwardingEnabled(bool enabled);
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     bool isUpdateCheckEnabled() const;
     void setUpdateCheckEnabled(bool enabled);

@@ -66,6 +66,7 @@ namespace
 
     // Peer keys
     const QString KEY_PEER_CLIENT = u"client"_qs;
+    const QString KEY_PEER_ID_CLIENT = u"peer_id_client"_qs;
     const QString KEY_PEER_CONNECTION_TYPE = u"connection"_qs;
     const QString KEY_PEER_COUNTRY = u"country"_qs;
     const QString KEY_PEER_COUNTRY_CODE = u"country_code"_qs;
@@ -131,8 +132,8 @@ namespace
         map[KEY_TRANSFER_UPRATELIMIT] = session->uploadSpeedLimit();
         map[KEY_TRANSFER_PAUSED] = session->isPaused();
 
-        const qint64 atd = session->getAlltimeDL();
-        const qint64 atu = session->getAlltimeUL();
+        const qint64 atd = sessionStatus.allTimeDownload;
+        const qint64 atu = sessionStatus.allTimeUpload;
         map[KEY_TRANSFER_ALLTIME_DL] = atd;
         map[KEY_TRANSFER_ALLTIME_UL] = atu;
         map[KEY_TRANSFER_TOTAL_WASTE_SESSION] = sessionStatus.totalWasted;
@@ -563,6 +564,7 @@ void SyncController::torrentPeersAction()
             {KEY_PEER_IP, pi.address().ip.toString()},
             {KEY_PEER_PORT, pi.address().port},
             {KEY_PEER_CLIENT, pi.client()},
+            {KEY_PEER_ID_CLIENT, pi.peerIdClient()},
             {KEY_PEER_PROGRESS, pi.progress()},
             {KEY_PEER_DOWN_SPEED, pi.payloadDownSpeed()},
             {KEY_PEER_UP_SPEED, pi.payloadUpSpeed()},

@@ -210,7 +210,6 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
         return nonstd::make_unexpected(tr("Cannot parse resume data: invalid format"));
 
     LoadTorrentParams torrentParams;
-    torrentParams.restored = true;
     torrentParams.category = fromLTString(resumeDataRoot.dict_find_string_value("qBt-category"));
     torrentParams.name = fromLTString(resumeDataRoot.dict_find_string_value("qBt-name"));
     torrentParams.hasSeedStatus = resumeDataRoot.dict_find_int_value("qBt-seedStatus");
@@ -244,6 +243,9 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     //    torrentParams.contentLayout = Utils::String::parse(
     //                fromLTString(root.dict_find_string_value("qBt-contentLayout")), TorrentContentLayout::Default);
     // === END REPLACEMENT CODE === //
+
+    torrentParams.stopCondition = Utils::String::toEnum(
+                fromLTString(resumeDataRoot.dict_find_string_value("qBt-stopCondition")), Torrent::StopCondition::None);
 
     const lt::string_view ratioLimitString = resumeDataRoot.dict_find_string_value("qBt-ratioLimit");
     if (ratioLimitString.empty())
@@ -284,20 +286,14 @@ BitTorrent::LoadResumeDataResult BitTorrent::BencodeResumeDataStorage::loadTorre
     p.save_path = Profile::instance()->fromPortablePath(
                 Path(fromLTString(p.save_path))).toString().toStdString();
 
+    torrentParams.stopped = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
+    torrentParams.operatingMode = (p.flags & lt::torrent_flags::paused) || (p.flags & lt::torrent_flags::auto_managed)
+            ? TorrentOperatingMode::AutoManaged : TorrentOperatingMode::Forced;
+
     if (p.flags & lt::torrent_flags::stop_when_ready)
     {
-        // If torrent has "stop_when_ready" flag set then it is actually "stopped"
-        torrentParams.stopped = true;
-        torrentParams.operatingMode = TorrentOperatingMode::AutoManaged;
-        // ...but temporarily "resumed" to perform some service jobs (e.g. checking)
-        p.flags &= ~lt::torrent_flags::paused;
-        p.flags |= lt::torrent_flags::auto_managed;
-    }
-    else
-    {
-        torrentParams.stopped = (p.flags & lt::torrent_flags::paused) && !(p.flags & lt::torrent_flags::auto_managed);
-        torrentParams.operatingMode = (p.flags & lt::torrent_flags::paused) || (p.flags & lt::torrent_flags::auto_managed)
-                ? TorrentOperatingMode::AutoManaged : TorrentOperatingMode::Forced;
+        p.flags &= ~lt::torrent_flags::stop_when_ready;
+        torrentParams.stopCondition = Torrent::StopCondition::FilesChecked;
     }
 
     const bool hasMetadata = (p.ti && p.ti->is_valid());
@@ -393,6 +389,7 @@ void BitTorrent::BencodeResumeDataStorage::Worker::store(const TorrentID &id, co
     data["qBt-seedStatus"] = resumeData.hasSeedStatus;
     data["qBt-contentLayout"] = Utils::String::fromEnum(resumeData.contentLayout).toStdString();
     data["qBt-firstLastPiecePriority"] = resumeData.firstLastPiecePriority;
+    data["qBt-stopCondition"] = Utils::String::fromEnum(resumeData.stopCondition).toStdString();
 
     if (!resumeData.useAutoTMM)
     {

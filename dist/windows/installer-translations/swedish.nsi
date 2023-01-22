@@ -30,6 +30,8 @@ LangString launch_qbt ${LANG_SWEDISH} "Kör qBittorrent."
 LangString inst_requires_64bit ${LANG_SWEDISH} "Installationsprogrammet fungerar endast i 64-bitars Windows-versioner."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_SWEDISH} "Den här qBittorrent-versionen kräver minst Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_SWEDISH}  "This installer requires at least Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_SWEDISH} "Avinstallera qBittorrent"
 

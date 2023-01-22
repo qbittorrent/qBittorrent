@@ -93,12 +93,13 @@ void AppController::buildInfoAction()
 
 void AppController::shutdownAction()
 {
-    qDebug() << "Shutdown request from Web UI";
-
-    // Special case handling for shutdown, we
+    // Special handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-    QTimer::singleShot(100ms, qApp, &QCoreApplication::quit);
+    QTimer::singleShot(100ms, qApp, []()
+    {
+        QCoreApplication::exit();
+    });
 }
 
 void AppController::preferencesAction()
@@ -112,6 +113,7 @@ void AppController::preferencesAction()
     // When adding a torrent
     data[u"torrent_content_layout"_qs] = Utils::String::fromEnum(session->torrentContentLayout());
     data[u"start_paused_enabled"_qs] = session->isAddTorrentPaused();
+    data[u"torrent_stop_condition"_qs] = Utils::String::fromEnum(session->torrentStopCondition());
     data[u"auto_delete_mode"_qs] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
     data[u"preallocate_all"_qs] = session->isPreallocationEnabled();
     data[u"incomplete_files_ext"_qs] = session->isAppendExtensionEnabled();
@@ -189,6 +191,7 @@ void AppController::preferencesAction()
 
     data[u"proxy_peer_connections"_qs] = session->isProxyPeerConnectionsEnabled();
     data[u"proxy_torrents_only"_qs] = proxyManager->isProxyOnlyForTorrents();
+    data[u"proxy_hostname_lookup"_qs] = session->isProxyHostnameLookupEnabled();
 
     // IP Filtering
     data[u"ip_filter_enabled"_qs] = session->isIPFilteringEnabled();
@@ -370,6 +373,7 @@ void AppController::preferencesAction()
     // Embedded tracker
     data[u"enable_embedded_tracker"_qs] = session->isTrackerEnabled();
     data[u"embedded_tracker_port"_qs] = pref->getTrackerPort();
+    data[u"embedded_tracker_port_forwarding"_qs] = pref->isTrackerPortForwardingEnabled();
     // Choking algorithm
     data[u"upload_slots_behavior"_qs] = static_cast<int>(session->chokingAlgorithm());
     // Seed choking algorithm
@@ -411,6 +415,8 @@ void AppController::setPreferencesAction()
         session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
     if (hasKey(u"start_paused_enabled"_qs))
         session->setAddTorrentPaused(it.value().toBool());
+    if (hasKey(u"torrent_stop_condition"_qs))
+        session->setTorrentStopCondition(Utils::String::toEnum(it.value().toString(), BitTorrent::Torrent::StopCondition::None));
     if (hasKey(u"auto_delete_mode"_qs))
         TorrentFileGuard::setAutoDeleteMode(static_cast<TorrentFileGuard::AutoDeleteMode>(it.value().toInt()));
 
@@ -566,6 +572,8 @@ void AppController::setPreferencesAction()
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
     if (hasKey(u"proxy_torrents_only"_qs))
         proxyManager->setProxyOnlyForTorrents(it.value().toBool());
+    if (hasKey(u"proxy_hostname_lookup"_qs))
+        session->setProxyHostnameLookupEnabled(it.value().toBool());
 
     // IP Filtering
     if (hasKey(u"ip_filter_enabled"_qs))
@@ -889,6 +897,8 @@ void AppController::setPreferencesAction()
     // Embedded tracker
     if (hasKey(u"embedded_tracker_port"_qs))
         pref->setTrackerPort(it.value().toInt());
+    if (hasKey(u"embedded_tracker_port_forwarding"_qs))
+        pref->setTrackerPortForwardingEnabled(it.value().toBool());
     if (hasKey(u"enable_embedded_tracker"_qs))
         session->setTrackerEnabled(it.value().toBool());
     // Choking algorithm

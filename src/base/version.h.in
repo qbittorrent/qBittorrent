@@ -29,7 +29,7 @@
 #pragma once
 
 #define QBT_VERSION_MAJOR 4
-#define QBT_VERSION_MINOR 5
+#define QBT_VERSION_MINOR 6
 #define QBT_VERSION_BUGFIX 0
 #define QBT_VERSION_BUILD 0
 #define QBT_VERSION_STATUS "alpha1"  // Should be empty for stable releases!

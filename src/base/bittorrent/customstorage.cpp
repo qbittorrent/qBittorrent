@@ -120,7 +120,7 @@ void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::st
     m_nativeDiskIO->async_move_storage(storage, path, flags
                                        , [=, handler = std::move(handler)](lt::status_t status, const std::string &path, const lt::storage_error &error)
     {
-        if (status != lt::status_t::fatal_disk_error)
+        if ((status != lt::status_t::fatal_disk_error) && (status != lt::status_t::file_exist))
             m_storageData[storage].savePath = newSavePath;
 
         handler(status, path, error);
@@ -265,7 +265,7 @@ lt::status_t CustomStorage::move_storage(const std::string &savePath, lt::move_f
         handleCompleteFiles(newSavePath);
 
     const lt::status_t ret = lt::default_storage::move_storage(savePath, flags, ec);
-    if (ret != lt::status_t::fatal_disk_error)
+    if ((ret != lt::status_t::fatal_disk_error) && (ret != lt::status_t::file_exist))
         m_savePath = newSavePath;
 
     return ret;

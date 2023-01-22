@@ -3,7 +3,7 @@
 <component type="desktop">
   <id>org.qbittorrent.qBittorrent</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-2.0 and OpenSSL</project_license>
+  <project_license>GPL-3.0-or-later and OpenSSL</project_license>
   <name>qBittorrent</name>
   <summary>An open-source Bittorrent client</summary>
   <description>

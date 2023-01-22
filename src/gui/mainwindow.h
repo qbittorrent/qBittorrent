@@ -68,11 +68,6 @@ namespace Ui
     class MainWindow;
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
-class DBusNotifier;
-#endif
-
 class MainWindow final : public QMainWindow, public GUIApplicationComponent
 {
     Q_OBJECT
@@ -110,9 +105,9 @@ public:
 private slots:
     void showFilterContextMenu();
     void desktopNotificationClicked();
-    void writeSettings();
-    void writeSplitterSettings();
-    void readSettings();
+    void saveSettings() const;
+    void loadSettings();
+    void saveSplitterSettings() const;
     void tabChanged(int newTab);
     bool defineUILockPassword();
     void clearUILockPassword();
@@ -130,7 +125,7 @@ private slots:
     void reloadSessionStats();
     void reloadTorrentStats(const QVector<BitTorrent::Torrent *> &torrents);
     void loadPreferences();
-    void askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent);
+    void askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent);
     void optionsSaved();
     void toggleAlternativeSpeeds();
 

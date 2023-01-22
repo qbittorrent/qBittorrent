@@ -61,7 +61,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_qs;
 
-    const int DB_VERSION = 2;
+    const int DB_VERSION = 3;
 
     const QString DB_TABLE_META = u"meta"_qs;
     const QString DB_TABLE_TORRENTS = u"torrents"_qs;
@@ -94,6 +94,7 @@ namespace
     const Column DB_COLUMN_HAS_SEED_STATUS = makeColumn("has_seed_status");
     const Column DB_COLUMN_OPERATING_MODE = makeColumn("operating_mode");
     const Column DB_COLUMN_STOPPED = makeColumn("stopped");
+    const Column DB_COLUMN_STOP_CONDITION = makeColumn("stop_condition");
     const Column DB_COLUMN_RESUMEDATA = makeColumn("libtorrent_resume_data");
     const Column DB_COLUMN_METADATA = makeColumn("metadata");
     const Column DB_COLUMN_VALUE = makeColumn("value");
@@ -195,7 +196,6 @@ namespace BitTorrent
         LoadTorrentParams parseQueryResultRow(const QSqlQuery &query)
         {
             LoadTorrentParams resumeData;
-            resumeData.restored = true;
             resumeData.name = query.value(DB_COLUMN_NAME.name).toString();
             resumeData.category = query.value(DB_COLUMN_CATEGORY.name).toString();
             const QString tagsData = query.value(DB_COLUMN_TAGS.name).toString();
@@ -213,6 +213,8 @@ namespace BitTorrent
             resumeData.operatingMode = Utils::String::toEnum<TorrentOperatingMode>(
                         query.value(DB_COLUMN_OPERATING_MODE.name).toString(), TorrentOperatingMode::AutoManaged);
             resumeData.stopped = query.value(DB_COLUMN_STOPPED.name).toBool();
+            resumeData.stopCondition = Utils::String::toEnum(
+                        query.value(DB_COLUMN_STOP_CONDITION.name).toString(), Torrent::StopCondition::None);
 
             resumeData.savePath = Profile::instance()->fromPortablePath(
                         Path(query.value(DB_COLUMN_TARGET_SAVE_PATH.name).toString()));
@@ -241,6 +243,12 @@ namespace BitTorrent
             p.save_path = Profile::instance()->fromPortablePath(Path(fromLTString(p.save_path)))
                     .toString().toStdString();
 
+            if (p.flags & lt::torrent_flags::stop_when_ready)
+            {
+                p.flags &= ~lt::torrent_flags::stop_when_ready;
+                resumeData.stopCondition = Torrent::StopCondition::FilesChecked;
+            }
+
             return resumeData;
         }
     }
@@ -263,9 +271,9 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     }
     else
     {
-        const int dbVersion = currentDBVersion();
-        if ((dbVersion == 1) || !db.record(DB_TABLE_TORRENTS).contains(DB_COLUMN_DOWNLOAD_PATH.name))
-            updateDBFromVersion1();
+        const int dbVersion = (!db.record(DB_TABLE_TORRENTS).contains(DB_COLUMN_DOWNLOAD_PATH.name) ? 1 : currentDBVersion());
+        if (dbVersion != DB_VERSION)
+            updateDB(dbVersion);
     }
 
     m_asyncWorker = new Worker(dbPath, u"ResumeDataStorageWorker"_qs, m_dbLock);
@@ -444,9 +452,17 @@ int BitTorrent::DBResumeDataStorage::currentDBVersion() const
 
 void BitTorrent::DBResumeDataStorage::createDB() const
 {
-    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    try
+    {
+        enableWALMode();
+    }
+    catch (const RuntimeError &err)
+    {
+        LogMsg(tr("Couldn't enable Write-Ahead Logging (WAL) journaling mode. Error: %1.")
+               .arg(err.message()), Log::WARNING);
+    }
 
-    const QWriteLocker locker {&m_dbLock};
+    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
 
     if (!db.transaction())
         throw RuntimeError(db.lastError().text());
@@ -490,6 +506,7 @@ void BitTorrent::DBResumeDataStorage::createDB() const
             makeColumnDefinition(DB_COLUMN_HAS_SEED_STATUS, "INTEGER NOT NULL"),
             makeColumnDefinition(DB_COLUMN_OPERATING_MODE, "TEXT NOT NULL"),
             makeColumnDefinition(DB_COLUMN_STOPPED, "INTEGER NOT NULL"),
+            makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"),
             makeColumnDefinition(DB_COLUMN_RESUMEDATA, "BLOB NOT NULL"),
             makeColumnDefinition(DB_COLUMN_METADATA, "BLOB")
         };
@@ -507,8 +524,11 @@ void BitTorrent::DBResumeDataStorage::createDB() const
     }
 }
 
-void BitTorrent::DBResumeDataStorage::updateDBFromVersion1() const
+void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
 {
+    Q_ASSERT(fromVersion > 0);
+    Q_ASSERT(fromVersion != DB_VERSION);
+
     auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
 
     const QWriteLocker locker {&m_dbLock};
@@ -520,10 +540,21 @@ void BitTorrent::DBResumeDataStorage::updateDBFromVersion1() const
 
     try
     {
-        const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
-                .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"));
-        if (!query.exec(alterTableTorrentsQuery))
-            throw RuntimeError(query.lastError().text());
+        if (fromVersion == 1)
+        {
+            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
+                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"));
+            if (!query.exec(alterTableTorrentsQuery))
+                throw RuntimeError(query.lastError().text());
+        }
+
+        if (fromVersion <= 2)
+        {
+            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
+                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"));
+            if (!query.exec(alterTableTorrentsQuery))
+                throw RuntimeError(query.lastError().text());
+        }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
         if (!query.prepare(updateMetaVersionQuery))
@@ -543,6 +574,22 @@ void BitTorrent::DBResumeDataStorage::updateDBFromVersion1() const
         db.rollback();
         throw;
     }
+}
+
+void BitTorrent::DBResumeDataStorage::enableWALMode() const
+{
+    auto db = QSqlDatabase::database(DB_CONNECTION_NAME);
+    QSqlQuery query {db};
+
+    if (!query.exec(u"PRAGMA journal_mode = WAL;"_qs))
+        throw RuntimeError(query.lastError().text());
+
+    if (!query.next())
+        throw RuntimeError(tr("Couldn't obtain query result."));
+
+    const QString result = query.value(0).toString();
+    if (result.compare(u"WAL"_qs, Qt::CaseInsensitive) != 0)
+        throw RuntimeError(tr("WAL mode is probably unsupported due to filesystem limitations."));
 }
 
 BitTorrent::DBResumeDataStorage::Worker::Worker(const Path &dbPath, const QString &dbConnectionName, QReadWriteLock &dbLock)
@@ -604,6 +651,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         DB_COLUMN_HAS_SEED_STATUS,
         DB_COLUMN_OPERATING_MODE,
         DB_COLUMN_STOPPED,
+        DB_COLUMN_STOP_CONDITION,
         DB_COLUMN_RESUMEDATA
     };
 
@@ -662,6 +710,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, resumeData.hasSeedStatus);
         query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(resumeData.operatingMode));
         query.bindValue(DB_COLUMN_STOPPED.placeholder, resumeData.stopped);
+        query.bindValue(DB_COLUMN_STOP_CONDITION.placeholder, Utils::String::fromEnum(resumeData.stopCondition));
 
         if (!resumeData.useAutoTMM)
         {

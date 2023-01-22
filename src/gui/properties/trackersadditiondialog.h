@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Mike Tzou (Chocobo1)
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,9 +30,8 @@
 #pragma once
 
 #include <QDialog>
-#include <QtContainerFwd>
 
-class QString;
+#include "base/settingvalue.h"
 
 namespace BitTorrent
 {
@@ -57,14 +57,18 @@ public:
     TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent);
     ~TrackersAdditionDialog();
 
-    QStringList newTrackers() const;
-    static QStringList askForTrackers(QWidget *parent, BitTorrent::Torrent *const torrent);
-
-public slots:
-    void on_uTorrentListButton_clicked();
-    void torrentListDownloadFinished(const Net::DownloadResult &result);
+private slots:
+    void onAccepted() const;
+    void onDownloadButtonClicked();
+    void onTorrentListDownloadFinished(const Net::DownloadResult &result);
 
 private:
+    void saveSettings();
+    void loadSettings();
+
     Ui::TrackersAdditionDialog *m_ui = nullptr;
     BitTorrent::Torrent *const m_torrent = nullptr;
+
+    SettingValue<QSize> m_storeDialogSize;
+    SettingValue<QString> m_storeTrackersListURL;
 };

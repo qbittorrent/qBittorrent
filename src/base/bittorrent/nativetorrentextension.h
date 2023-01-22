@@ -40,7 +40,6 @@ public:
     ~NativeTorrentExtension();
 
 private:
-    bool on_pause() override;
     void on_state(lt::torrent_status::state_t state) override;
 
     lt::torrent_handle m_torrentHandle;

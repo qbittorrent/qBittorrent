@@ -998,14 +998,14 @@ void Preferences::resolvePeerHostNames(const bool resolve)
     setValue(u"Preferences/Connection/ResolvePeerHostNames"_qs, resolve);
 }
 
-bool Preferences::recursiveDownloadDisabled() const
+bool Preferences::isRecursiveDownloadEnabled() const
 {
-    return value(u"Preferences/Advanced/DisableRecursiveDownload"_qs, false);
+    return !value(u"Preferences/Advanced/DisableRecursiveDownload"_qs, false);
 }
 
-void Preferences::disableRecursiveDownload(const bool disable)
+void Preferences::setRecursiveDownloadEnabled(const bool enable)
 {
-    setValue(u"Preferences/Advanced/DisableRecursiveDownload"_qs, disable);
+    setValue(u"Preferences/Advanced/DisableRecursiveDownload"_qs, !enable);
 }
 
 #ifdef Q_OS_WIN
@@ -1164,6 +1164,16 @@ int Preferences::getTrackerPort() const
 void Preferences::setTrackerPort(const int port)
 {
     setValue(u"Preferences/Advanced/trackerPort"_qs, port);
+}
+
+bool Preferences::isTrackerPortForwardingEnabled() const
+{
+    return value(u"Preferences/Advanced/trackerPortForwarding"_qs, false);
+}
+
+void Preferences::setTrackerPortForwardingEnabled(const bool enabled)
+{
+    setValue(u"Preferences/Advanced/trackerPortForwarding"_qs, enabled);
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)

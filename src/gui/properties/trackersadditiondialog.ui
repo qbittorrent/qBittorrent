@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Trackers addition dialog</string>
+   <string>Add trackers</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -44,7 +44,11 @@
       <widget class="QLineEdit" name="lineEditListURL"/>
      </item>
      <item>
-      <widget class="QPushButton" name="uTorrentListButton"/>
+      <widget class="QPushButton" name="downloadButton">
+       <property name="toolTip">
+        <string>Download trackers list</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

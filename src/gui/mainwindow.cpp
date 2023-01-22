@@ -50,10 +50,6 @@
 #include <QtGlobal>
 #include <QTimer>
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
-#include "notifications/dbusnotifier.h"
-#endif
-
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/sessionstatus.h"
 #include "base/global.h"
@@ -219,8 +215,8 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
         tr("Transfers"));
 
     connect(m_searchFilter, &LineEdit::textChanged, m_transferListWidget, &TransferListWidget::applyNameFilter);
-    connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::writeSettings);
-    connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::writeSplitterSettings);
+    connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
+    connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_propertiesWidget, &PropertiesWidget::loadTrackers);
 
 #ifdef Q_OS_MACOS
@@ -357,7 +353,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
         m_ui->actionAutoShutdownDisabled->setChecked(true);
 
     // Load Window state and sizes
-    readSettings();
+    loadSettings();
 
     app->desktopIntegration()->setMenu(createDesktopIntegrationMenu());
 #ifndef Q_OS_MACOS
@@ -739,23 +735,26 @@ void MainWindow::tabChanged(int newTab)
     }
 }
 
-void MainWindow::writeSettings()
+void MainWindow::saveSettings() const
 {
-    Preferences *const pref = Preferences::instance();
+    auto *pref = Preferences::instance();
     pref->setMainGeometry(saveGeometry());
     m_propertiesWidget->saveSettings();
 }
 
-void MainWindow::writeSplitterSettings()
+void MainWindow::saveSplitterSettings() const
 {
-    Q_ASSERT(m_splitter->widget(0) == m_transferListFiltersWidget);
-    Preferences *const pref = Preferences::instance();
+    if (!m_transferListFiltersWidget)
+        return;
+
+    auto *pref = Preferences::instance();
     pref->setFiltersSidebarWidth(m_splitter->sizes()[0]);
 }
 
 void MainWindow::cleanup()
 {
-    writeSettings();
+    saveSettings();
+    saveSplitterSettings();
 
     // delete RSSWidget explicitly to avoid crash in
     // handleRSSUnreadCountUpdated() at application shutdown
@@ -775,12 +774,15 @@ void MainWindow::cleanup()
         delete w;
 }
 
-void MainWindow::readSettings()
+void MainWindow::loadSettings()
 {
-    const Preferences *const pref = Preferences::instance();
-    const QByteArray mainGeo = pref->getMainGeometry();
-    if (!mainGeo.isEmpty() && restoreGeometry(mainGeo))
+    const auto *pref = Preferences::instance();
+
+    if (const QByteArray mainGeo = pref->getMainGeometry();
+        !mainGeo.isEmpty() && restoreGeometry(mainGeo))
+    {
         m_posInitialized = true;
+    }
 }
 
 void MainWindow::desktopNotificationClicked()
@@ -885,27 +887,33 @@ void MainWindow::displayExecutionLogTab()
 
 // End of keyboard shortcuts slots
 
-void MainWindow::askRecursiveTorrentDownloadConfirmation(BitTorrent::Torrent *const torrent)
+void MainWindow::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torrent *torrent)
 {
-    Preferences *const pref = Preferences::instance();
-    if (pref->recursiveDownloadDisabled()) return;
+    if (!Preferences::instance()->isRecursiveDownloadEnabled())
+        return;
 
     const auto torrentID = torrent->id();
 
     QMessageBox *confirmBox = new QMessageBox(QMessageBox::Question, tr("Recursive download confirmation")
-        , tr("The torrent '%1' contains torrent files, do you want to proceed with their download?").arg(torrent->name())
-        , QMessageBox::NoButton, this);
+        , tr("The torrent '%1' contains .torrent files, do you want to proceed with their downloads?").arg(torrent->name())
+        , (QMessageBox::Yes | QMessageBox::No | QMessageBox::NoToAll), this);
     confirmBox->setAttribute(Qt::WA_DeleteOnClose);
 
-    const QPushButton *yes = confirmBox->addButton(tr("Yes"), QMessageBox::YesRole);
-    /*QPushButton *no = */ confirmBox->addButton(tr("No"), QMessageBox::NoRole);
-    const QPushButton *never = confirmBox->addButton(tr("Never"), QMessageBox::NoRole);
-    connect(confirmBox, &QMessageBox::buttonClicked, this, [torrentID, yes, never](const QAbstractButton *button)
+    const QAbstractButton *yesButton = confirmBox->button(QMessageBox::Yes);
+    QAbstractButton *neverButton = confirmBox->button(QMessageBox::NoToAll);
+    neverButton->setText(tr("Never"));
+
+    connect(confirmBox, &QMessageBox::buttonClicked, this
+        , [torrentID, yesButton, neverButton](const QAbstractButton *button)
     {
-        if (button == yes)
+        if (button == yesButton)
+        {
             BitTorrent::Session::instance()->recursiveTorrentDownload(torrentID);
-        if (button == never)
-            Preferences::instance()->disableRecursiveDownload();
+        }
+        else if (button == neverButton)
+        {
+            Preferences::instance()->setRecursiveDownloadEnabled(false);
+        }
     });
     confirmBox->open();
 }
@@ -1371,27 +1379,27 @@ void MainWindow::showStatusBar(bool show)
 
 void MainWindow::showFiltersSidebar(const bool show)
 {
-    Preferences *const pref = Preferences::instance();
-
     if (show && !m_transferListFiltersWidget)
     {
-        const int width = pref->getFiltersSidebarWidth();
         m_transferListFiltersWidget = new TransferListFiltersWidget(m_splitter, m_transferListWidget, isDownloadTrackerFavicon());
-        m_splitter->insertWidget(0, m_transferListFiltersWidget);
-        m_splitter->setCollapsible(0, true);
-        m_splitter->setSizes({width, (m_splitter->width() - width)});
-
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersAdded, m_transferListFiltersWidget, &TransferListFiltersWidget::addTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersRemoved, m_transferListFiltersWidget, &TransferListFiltersWidget::removeTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::refreshTrackers);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerlessStateChanged, m_transferListFiltersWidget, &TransferListFiltersWidget::changeTrackerless);
         connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackerEntriesUpdated, m_transferListFiltersWidget, &TransferListFiltersWidget::trackerEntriesUpdated);
+
+        m_splitter->insertWidget(0, m_transferListFiltersWidget);
+        m_splitter->setCollapsible(0, true);
+        // From https://doc.qt.io/qt-5/qsplitter.html#setSizes:
+        // Instead, any additional/missing space is distributed amongst the widgets
+        // according to the relative weight of the sizes.
+        m_splitter->setStretchFactor(0, 0);
+        m_splitter->setStretchFactor(1, 1);
+        m_splitter->setSizes({Preferences::instance()->getFiltersSidebarWidth()});
     }
     else if (!show && m_transferListFiltersWidget)
     {
-        Q_ASSERT(m_splitter->widget(0) == m_transferListFiltersWidget);
-
-        pref->setFiltersSidebarWidth(m_splitter->sizes()[0]);
+        saveSplitterSettings();
         delete m_transferListFiltersWidget;
         m_transferListFiltersWidget = nullptr;
     }

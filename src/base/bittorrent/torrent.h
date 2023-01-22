@@ -108,7 +108,17 @@ namespace BitTorrent
 
     class Torrent : public AbstractFileStorage
     {
+        Q_GADGET
+
     public:
+        enum class StopCondition
+        {
+            None = 0,
+            MetadataReceived = 1,
+            FilesChecked = 2
+        };
+        Q_ENUM(StopCondition)
+
         static const qreal USE_GLOBAL_RATIO;
         static const qreal NO_RATIO_LIMIT;
 
@@ -212,6 +222,7 @@ namespace BitTorrent
         virtual bool isForced() const = 0;
         virtual bool isChecking() const = 0;
         virtual bool isDownloading() const = 0;
+        virtual bool isMoving() const = 0;
         virtual bool isUploading() const = 0;
         virtual bool isCompleted() const = 0;
         virtual bool isActive() const = 0;
@@ -299,6 +310,9 @@ namespace BitTorrent
         virtual bool connectPeer(const PeerAddress &peerAddress) = 0;
         virtual void clearPeers() = 0;
         virtual bool setMetadata(const TorrentInfo &torrentInfo) = 0;
+
+        virtual StopCondition stopCondition() const = 0;
+        virtual void setStopCondition(StopCondition stopCondition) = 0;
 
         virtual QString createMagnetURI() const = 0;
         virtual nonstd::expected<QByteArray, QString> exportToBuffer() const = 0;

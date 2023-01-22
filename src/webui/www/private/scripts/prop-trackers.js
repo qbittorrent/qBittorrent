@@ -169,7 +169,7 @@ window.qBittorrent.PropTrackers = (function() {
             return;
         new MochaUI.Window({
             id: 'trackersPage',
-            title: "QBT_TR(Trackers addition dialog)QBT_TR[CONTEXT=TrackersAdditionDialog]",
+            title: "QBT_TR(Add trackers)QBT_TR[CONTEXT=TrackersAdditionDialog]",
             loadMethod: 'iframe',
             contentURL: 'addtrackers.html?hash=' + current_hash,
             scrollbars: true,

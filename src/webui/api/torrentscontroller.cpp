@@ -577,7 +577,8 @@ void TorrentsController::filesAction()
                 {KEY_FILE_PRIORITY, static_cast<int>(priorities[index])},
                 {KEY_FILE_SIZE, torrent->fileSize(index)},
                 {KEY_FILE_AVAILABILITY, fileAvailability[index]},
-                {KEY_FILE_NAME, torrent->filePath(index).toString()}
+                // need to provide paths using a platform-independent separator format
+                {KEY_FILE_NAME, torrent->filePath(index).data()}
             };
 
             const BitTorrent::TorrentInfo::PieceRange idx = info.filePieces(index);
@@ -665,6 +666,11 @@ void TorrentsController::addAction()
     const int seedingTimeLimit = parseInt(params()[u"seedingTimeLimit"_qs]).value_or(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
     const std::optional<bool> autoTMM = parseBool(params()[u"autoTMM"_qs]);
 
+    const QString stopConditionParam = params()[u"stopCondition"_qs];
+    const std::optional<BitTorrent::Torrent::StopCondition> stopCondition = (!stopConditionParam.isEmpty()
+            ? Utils::String::toEnum(stopConditionParam, BitTorrent::Torrent::StopCondition::None)
+            : std::optional<BitTorrent::Torrent::StopCondition> {});
+
     const QString contentLayoutParam = params()[u"contentLayout"_qs];
     const std::optional<BitTorrent::TorrentContentLayout> contentLayout = (!contentLayoutParam.isEmpty()
             ? Utils::String::toEnum(contentLayoutParam, BitTorrent::TorrentContentLayout::Original)
@@ -693,6 +699,7 @@ void TorrentsController::addAction()
     addTorrentParams.sequential = seqDownload;
     addTorrentParams.firstLastPiecePriority = firstLastPiece;
     addTorrentParams.addPaused = addPaused;
+    addTorrentParams.stopCondition = stopCondition;
     addTorrentParams.contentLayout = contentLayout;
     addTorrentParams.savePath = Path(savepath);
     addTorrentParams.downloadPath = Path(downloadPath);
@@ -745,14 +752,8 @@ void TorrentsController::addTrackersAction()
     if (!torrent)
         throw APIError(APIErrorType::NotFound);
 
-    QVector<BitTorrent::TrackerEntry> trackers;
-    for (const QString &urlStr : asConst(params()[u"urls"_qs].split(u'\n')))
-    {
-        const QUrl url {urlStr.trimmed()};
-        if (url.isValid())
-            trackers.append({url.toString()});
-    }
-    torrent->addTrackers(trackers);
+    const QVector<BitTorrent::TrackerEntry> entries = BitTorrent::parseTrackerEntries(params()[u"urls"_qs]);
+    torrent->addTrackers(entries);
 }
 
 void TorrentsController::editTrackerAction()

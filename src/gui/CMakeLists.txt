@@ -51,6 +51,7 @@ add_library(qbt_gui STATIC
     categoryfiltermodel.h
     categoryfilterproxymodel.h
     categoryfilterwidget.h
+    color.h
     cookiesdialog.h
     cookiesmodel.h
     deletionconfirmationdialog.h

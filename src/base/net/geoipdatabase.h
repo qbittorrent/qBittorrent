@@ -44,6 +44,7 @@ struct DataFieldDescriptor;
 
 class GeoIPDatabase
 {
+    Q_DISABLE_COPY_MOVE(GeoIPDatabase)
     Q_DECLARE_TR_FUNCTIONS(GeoIPDatabase)
 
 public:

@@ -42,6 +42,30 @@
         <source>Don't create subfolder</source>
         <translation>لا تقم بإنشاء مجلد فرعي</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation>يدوي</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>تلقائي</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -77,16 +101,16 @@
         <translation>إلباث التورنتات</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>حذف التورنتات</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>تصنيف جديد</translation>
     </message>
     <message>
         <source>Edit category...</source>
         <translation>تعديل التصنيف...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +296,6 @@
         <translation>رفع تورنت محلي</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">هل أنت متأكد من رغبتك في حذف التورنتات المختارة من قائمة النقل؟</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>حفظ</translation>
     </message>
@@ -431,10 +451,6 @@
         <translation>إلباث</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>حذف</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>إلباث الكل</translation>
     </message>
@@ -577,7 +593,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>تصفيات الشريط الجانبي</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -585,6 +601,14 @@
     </message>
     <message>
         <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -625,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>إرسال تنبيه عبر البريد الإلكتروني عند اكتمال التنزيل</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation>تشغيل برنامج خارجي عند اكتمال تنزيل التورنت</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1157,6 @@
         <translation>مكافحة المُستهلكين</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">فعّل نظام الذاكرة المؤقتة:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>عندما تصل النسبة</translation>
     </message>
@@ -1297,10 +1313,6 @@
         <translation>حظر لـ:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">استخدم مدى تقارب القطعة (يتطلب libtorrent &gt;= 1.2.2):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>إيقاف مهلة المتتبع:</translation>
     </message>
@@ -1381,10 +1393,6 @@
         <translation>أقصى عدد من المقالات لكل تغذية:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">يعلن أقصى HTTP متزامن (يتطلب libtorrent &gt;= 1.2.7):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation>د</translation>
     </message>
@@ -1423,10 +1431,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>بروتوكول اتصال القرين:</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">دعم اسم نطاق الإنترنت الدولي (IDN) (يتطلب libtorrent &gt; 1.2.12):</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1494,15 +1498,15 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>حجم قائمة انتظار القرص:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>سجل تحذيرات الأداء</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>الحد الأقصى من الطلبات المعلقة لقرين واحد:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -1578,6 +1582,74 @@
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation>القائمة البيضاء لتصفية قيم رأس خادم HTTP.
+من أجل الدفاع ضد هجوم ارتداد DNS ،
+يجب عليك إدخال أسماء المجالات التي يستخدمها خادم واجهة الوِب الرسومية.
+
+استعمال ';' لتقسيم عدة إدخالات. يمكن استخدام حرف البدل '*'.</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1658,6 +1730,10 @@
     <message>
         <source>Add peers...</source>
         <translation>إضافة قرناء ...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2304,10 +2380,6 @@
         <translation>نسخ عنوان URL للمتتبع</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation>إضافة متتبع جديد...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>تعديل رابط المتتبع...</translation>
     </message>
@@ -2355,16 +2427,20 @@
         <source>Times Downloaded</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
-        <source>Trackers addition dialog</source>
-        <translation>نافذة إضافة المتتبعات</translation>
-    </message>
-    <message>
         <source>List of trackers to add (one per line):</source>
         <translation>قائمة المتتبعات التي ستضاف (واحد في السطر):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2492,11 +2568,6 @@
         <translation>إلباث</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation>حذف</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>حد نسبة المشاركة...</translation>
     </message>
@@ -2569,10 +2640,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>تنزيل بترتيب تسلسلي</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation>إجبار إعادة الفحص</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2654,6 +2721,10 @@
         <source>Export .torrent</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2688,19 +2759,11 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation>تأكيد الحذف</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">حذف الملفات من القرص الصلب أيضا</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>تأكيد الحذف - كيوبت‎تورنت</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2895,6 +2958,14 @@
         <source>showing</source>
         <translation>عرض</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3019,10 +3090,6 @@
         <translation>إضافة وسم...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>حذف التورنتات</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>الوسم:</translation>
     </message>
@@ -3045,6 +3112,10 @@
     <message>
         <source>Remove tag</source>
         <translation>إزالة الوسم</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3545,10 +3616,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation>حذف التورنتات</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>استئناف التورنتات</translation>
     </message>
@@ -3563,6 +3630,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>إلباث التورنتات</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

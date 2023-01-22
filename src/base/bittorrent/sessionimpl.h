@@ -29,16 +29,19 @@
 
 #pragma once
 
+#include <utility>
 #include <variant>
 #include <vector>
 
 #include <libtorrent/fwd.hpp>
+#include <libtorrent/portmap.hpp>
 #include <libtorrent/torrent_handle.hpp>
 
+#include <QtContainerFwd>
+#include <QElapsedTimer>
 #include <QHash>
 #include <QPointer>
 #include <QSet>
-#include <QtContainerFwd>
 #include <QVector>
 
 #include "base/path.h"
@@ -52,27 +55,20 @@
 #include "torrentinfo.h"
 #include "trackerentry.h"
 
-#ifdef QBT_USES_LIBTORRENT2
-// TODO: Remove the following forward declaration once v2.0.8 is released
-namespace libtorrent
-{
-    struct torrent_conflict_alert;
-}
-#endif
-
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 class QNetworkConfiguration;
 class QNetworkConfigurationManager;
 #endif
 class QString;
 class QThread;
+class QThreadPool;
 class QTimer;
 class QUrl;
 
 class BandwidthScheduler;
 class FileSearcher;
 class FilterParserThread;
-class Statistics;
+class NativeSessionExtension;
 
 namespace Net
 {
@@ -188,6 +184,8 @@ namespace BitTorrent
         void setPeXEnabled(bool enabled) override;
         bool isAddTorrentPaused() const override;
         void setAddTorrentPaused(bool value) override;
+        Torrent::StopCondition torrentStopCondition() const override;
+        void setTorrentStopCondition(Torrent::StopCondition stopCondition) override;
         TorrentContentLayout torrentContentLayout() const override;
         void setTorrentContentLayout(TorrentContentLayout value) override;
         bool isTrackerEnabled() const override;
@@ -238,6 +236,8 @@ namespace BitTorrent
         void setMaxActiveCheckingTorrents(int val) override;
         bool isProxyPeerConnectionsEnabled() const override;
         void setProxyPeerConnectionsEnabled(bool enabled) override;
+        bool isProxyHostnameLookupEnabled() const override;
+        void setProxyHostnameLookupEnabled(bool enabled) override;
         ChokingAlgorithm chokingAlgorithm() const override;
         void setChokingAlgorithm(ChokingAlgorithm mode) override;
         SeedChokingAlgorithm seedChokingAlgorithm() const override;
@@ -384,8 +384,6 @@ namespace BitTorrent
         bool hasRunningSeed() const override;
         const SessionStatus &status() const override;
         const CacheStatus &cacheStatus() const override;
-        qint64 getAlltimeDL() const override;
-        qint64 getAlltimeUL() const override;
         bool isListening() const override;
         bool isPaused() const override;
 
@@ -411,6 +409,7 @@ namespace BitTorrent
         // Torrent interface
         void handleTorrentNeedSaveResumeData(const TorrentImpl *torrent);
         void handleTorrentSaveResumeDataRequested(const TorrentImpl *torrent);
+        void handleTorrentSaveResumeDataFailed(const TorrentImpl *torrent);
         void handleTorrentShareLimitChanged(TorrentImpl *const torrent);
         void handleTorrentNameChanged(TorrentImpl *const torrent);
         void handleTorrentSavePathChanged(TorrentImpl *const torrent);
@@ -435,6 +434,19 @@ namespace BitTorrent
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
+
+        void enablePortMapping();
+        void disablePortMapping();
+        void addMappedPorts(const QSet<quint16> &ports);
+        void removeMappedPorts(const QSet<quint16> &ports);
+
+        template <typename Func>
+        void invoke(Func &&func)
+        {
+            QMetaObject::invokeMethod(this, std::forward<Func>(func));
+        }
+
+        void invokeAsync(std::function<void ()> func);
 
     private slots:
         void configureDeferred();
@@ -480,11 +492,10 @@ namespace BitTorrent
         Q_INVOKABLE void configure();
         void configureComponents();
         void initializeNativeSession();
-        void loadLTSettings(lt::settings_pack &settingsPack);
-        void configureNetworkInterfaces(lt::settings_pack &settingsPack);
+        lt::settings_pack loadLTSettings() const;
+        void applyNetworkInterfacesSettings(lt::settings_pack &settingsPack) const;
         void configurePeerClasses();
-        void adjustLimits(lt::settings_pack &settingsPack) const;
-        void applyBandwidthLimitsToSettingsPack(lt::settings_pack &settingsPack) const;
+        int adjustLimit(int limit) const;
         void initMetrics();
         void adjustLimits();
         void applyBandwidthLimits();
@@ -539,8 +550,8 @@ namespace BitTorrent
         TorrentImpl *createTorrent(const lt::torrent_handle &nativeHandle, const LoadTorrentParams &params);
 
         void saveResumeData();
-        void saveTorrentsQueue() const;
-        void removeTorrentsQueue() const;
+        void saveTorrentsQueue();
+        void removeTorrentsQueue();
 
         std::vector<lt::alert *> getPendingAlerts(lt::time_duration time = lt::time_duration::zero()) const;
 
@@ -551,12 +562,16 @@ namespace BitTorrent
         void storeCategories() const;
         void upgradeCategories();
 
+        void saveStatistics() const;
+        void loadStatistics();
+
         // BitTorrent
         lt::session *m_nativeSession = nullptr;
+        NativeSessionExtension *m_nativeSessionExtension = nullptr;
 
         bool m_deferredConfigureScheduled = false;
         bool m_IPFilteringConfigured = false;
-        bool m_listenInterfaceConfigured = false;
+        mutable bool m_listenInterfaceConfigured = false;
 
         CachedSettingValue<bool> m_isDHTEnabled;
         CachedSettingValue<bool> m_isLSDEnabled;
@@ -620,6 +635,7 @@ namespace BitTorrent
         CachedSettingValue<qreal> m_globalMaxRatio;
         CachedSettingValue<int> m_globalMaxSeedingMinutes;
         CachedSettingValue<bool> m_isAddTorrentPaused;
+        CachedSettingValue<Torrent::StopCondition> m_torrentStopCondition;
         CachedSettingValue<TorrentContentLayout> m_torrentContentLayout;
         CachedSettingValue<bool> m_isAppendExtensionEnabled;
         CachedSettingValue<int> m_refreshInterval;
@@ -641,6 +657,7 @@ namespace BitTorrent
         CachedSettingValue<int> m_encryption;
         CachedSettingValue<int> m_maxActiveCheckingTorrents;
         CachedSettingValue<bool> m_isProxyPeerConnectionsEnabled;
+        CachedSettingValue<bool> m_isProxyHostnameLookupEnabled;
         CachedSettingValue<ChokingAlgorithm> m_chokingAlgorithm;
         CachedSettingValue<SeedChokingAlgorithm> m_seedChokingAlgorithm;
         CachedSettingValue<QStringList> m_storedTags;
@@ -676,10 +693,17 @@ namespace BitTorrent
         QVector<TrackerEntry> m_additionalTrackerList;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
+        // Statistics
+        mutable QElapsedTimer m_statisticsLastUpdateTimer;
+        mutable bool m_isStatisticsDirty = false;
+        qint64 m_previouslyUploaded = 0;
+        qint64 m_previouslyDownloaded = 0;
+
+        bool m_torrentsQueueChanged = false;
+        bool m_needSaveTorrentsQueue = false;
         bool m_refreshEnqueued = false;
         QTimer *m_seedingLimitTimer = nullptr;
         QTimer *m_resumeDataTimer = nullptr;
-        Statistics *m_statistics = nullptr;
         // IP filtering
         QPointer<FilterParserThread> m_filterParser;
         QPointer<BandwidthScheduler> m_bwScheduler;
@@ -687,10 +711,11 @@ namespace BitTorrent
         QPointer<Tracker> m_tracker;
 
         QThread *m_ioThread = nullptr;
+        QThreadPool *m_asyncWorker = nullptr;
         ResumeDataStorage *m_resumeDataStorage = nullptr;
         FileSearcher *m_fileSearcher = nullptr;
 
-        QSet<TorrentID> m_downloadedMetadata;
+        QHash<TorrentID, lt::torrent_handle> m_downloadedMetadata;
 
         QHash<TorrentID, TorrentImpl *> m_torrents;
         QHash<TorrentID, TorrentImpl *> m_hybridTorrentsByAltID;
@@ -702,7 +727,9 @@ namespace BitTorrent
         QMap<QString, CategoryOptions> m_categories;
         QSet<QString> m_tags;
 
-        QHash<Torrent *, QSet<QString>> m_updatedTrackerEntries;
+        // This field holds amounts of peers reported by trackers in their responses to announces
+        // (torrent.tracker_name.tracker_local_endpoint.num_peers)
+        QHash<lt::torrent_handle, QHash<std::string, QMap<TrackerEntry::Endpoint, int>>> m_updatedTrackerEntries;
 
         // I/O errored torrents
         QSet<TorrentID> m_recentErroredTorrents;
@@ -722,6 +749,12 @@ namespace BitTorrent
         QString m_lastExternalIP;
 
         bool m_needUpgradeDownloadPath = false;
+
+        // All port mapping related routines are invoked from working thread
+        // so there are no synchronization used. If multithreaded access is
+        // ever required, synchronization should also be provided.
+        bool m_isPortMappingEnabled = false;
+        QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

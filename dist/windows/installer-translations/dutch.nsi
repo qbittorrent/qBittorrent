@@ -3,9 +3,9 @@
 ;LangString inst_qbt_req ${LANG_ENGLISH} "qBittorrent (required)"
 LangString inst_qbt_req ${LANG_DUTCH} "qBittorrent (vereist)"
 ;LangString inst_dekstop ${LANG_ENGLISH} "Create Desktop Shortcut"
-LangString inst_dekstop ${LANG_DUTCH} "Bureaublad-snelkoppeling aanmaken"
+LangString inst_dekstop ${LANG_DUTCH} "Snelkoppeling aanmaken op bureaublad"
 ;LangString inst_startmenu ${LANG_ENGLISH} "Create Start Menu Shortcut"
-LangString inst_startmenu ${LANG_DUTCH} "Startmenu-snelkoppeling aanmaken"
+LangString inst_startmenu ${LANG_DUTCH} "Snelkoppeling aanmaken in startmenu"
 ;LangString inst_startup ${LANG_ENGLISH} "Start qBittorrent on Windows start up"
 LangString inst_startup ${LANG_DUTCH} "qBittorrent starten bij opstarten van Windows"
 ;LangString inst_torrent ${LANG_ENGLISH} "Open .torrent files with qBittorrent"
@@ -30,8 +30,10 @@ LangString launch_qbt ${LANG_DUTCH} "qBittorrent starten."
 LangString inst_requires_64bit ${LANG_DUTCH} "Dit installatieprogramma werkt alleen in 64-bit Windows-versies."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_DUTCH} "Deze versie van qBittorrent vereist ten minste Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_DUTCH}  "Dit installatieprogramma vereist ten minste Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
-LangString inst_uninstall_link_description ${LANG_DUTCH} "Uninstall qBittorrent"
+LangString inst_uninstall_link_description ${LANG_DUTCH} "qBittorrent verwijderen"
 
 ;------------------------------------
 ;Uninstaller strings

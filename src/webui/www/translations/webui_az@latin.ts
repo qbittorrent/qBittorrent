@@ -42,6 +42,30 @@
         <source>Don't create subfolder</source>
         <translation>Alt qovluq yaratmamaq</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation>Əl ilə</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Avtomatik</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -77,16 +101,16 @@
         <translation>Torrentlərə fasilə</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Yeni kateqriya</translation>
     </message>
     <message>
         <source>Edit category...</source>
         <translation>Kateqoriyaya düzəliş edin...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>
@@ -272,10 +296,6 @@
         <translation>Yerli torrenti göndərmək</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Köçürmə siyahısından seçilmiş torrentləri silmək istədiyinizə əminsiniz?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Saxlamaq</translation>
     </message>
@@ -365,7 +385,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Köçürmə siyahısından seçilmiş torrentləri silmək istədiyinizə əminsiniz?</translation>
     </message>
 </context>
 <context>
@@ -429,10 +449,6 @@
     <message>
         <source>Pause</source>
         <translation>Fasilə</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Silmək</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -581,10 +597,18 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>İmtina</translation>
     </message>
     <message>
         <source>Remove</source>
+        <translation>Silin</translation>
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -625,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Endirilmə başa çatdıqdan sonra e-poçt bildirişi</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation>Torrent tamamlandıqda xarici proqramı açmaq</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1157,6 @@
         <translation>Sui-istifadəni əngəlləmək</translation>
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">ƏS keşini aktiv etmək:</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>Göstəricini aşdıqda</translation>
     </message>
@@ -1297,10 +1313,6 @@
         <translation>bundan sonra bloklamaq:</translation>
     </message>
     <message>
-        <source>Use piece extent affinity (requires libtorrent &gt;= 1.2.2):</source>
-        <translation type="vanished">Hissələrin bir-birinə yaxınlıq dərəcəsindən istifadə edin (libtorrent &gt;= 1.2.2 tələb olunur):</translation>
-    </message>
-    <message>
         <source>Stop tracker timeout:</source>
         <translation>İzləyici boşdayanmasını dayandırmaq:</translation>
     </message>
@@ -1381,10 +1393,6 @@
         <translation>Hər iştirakçıya ən çox məqalə sayı:</translation>
     </message>
     <message>
-        <source>Max concurrent HTTP announces (requires libtorrent &gt;= 1.2.7):</source>
-        <translation type="vanished">Eyni vaxtda ən çox HTTP elanları (libtorrent &gt;= 1.2.7 tələb olunur):</translation>
-    </message>
-    <message>
         <source> min</source>
         <translation> dəq</translation>
     </message>
@@ -1423,10 +1431,6 @@
     <message>
         <source>Peer connection protocol:</source>
         <translation>İştirakçı bağlantı protokolu</translation>
-    </message>
-    <message>
-        <source>Support internationalized domain name (IDN) (requires libtorrent &gt;= 1.2.12):</source>
-        <translation type="vanished">Beynəlxalq domen adı (İDN) dəstəkləmək (libtorrent &gt;= 1.2.12 tələb edilir)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1529,59 +1533,123 @@
         <translation>Disk giriş/çıxış növü (libtorrent &gt;= 2.0; yenidən başladılmalıdır)</translation>
     </message>
     <message>
-        <source>Physical memory (RAM) usage limit:</source>
-        <translation type="vanished">Fiziki yaddaş (RAM) istifadəsi limiti:</translation>
-    </message>
-    <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Başdan sona yazmaq (libtorrent &gt;= 2.0.6 tələb olunur)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Bu yenilənmə tezliyinin daxili vəziyətini idarə edir, bu da öz növəsində İİ yenilənmələrinə təsir edəcək</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Diskin giriş/çıxışının oxu rejimi:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>ƏS keşini söndür</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Diskin giriş/çıxışının yazı rejimi:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Hissələrin yaxınlıq dərəcəsindən istifadə etmək:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Ən çox paralel HTTP elanıları:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>ƏS keşini aktiv et</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Təzələnmə aralığı:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Fiziki yaddaşın (RAM) istifadə həddi (libtorrent  &gt;= 2.0.6 olarsa tətbiq edilir):</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>msan</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Fayl adları istisna edilir</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
+        <translation>Beynəlxalq domen adı (İDN) dəstəyi:</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation>Torrent tamamlandıqda xarici proqramı açmaq</translation>
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation>HTTP Host başlıqlarının göstəricilərini filtrləmək üçün ağ siyahı.
+DNS ilə təkrar bağlantı hücumundan qorunmaq üçün WebUI 
+serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
+
+Çoxsaylı elementləri bölmək üçün ';' istifadə edin. '*' ümumi nişanından istifadə edə bilərsiniz</translation>
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation>Torrent əlavə edildikdə xarici proqramı açmaq</translation>
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation>HTTPS sertifikat boş olmamalıdır</translation>
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation>Yönləndirilmiş müştəri ünvanından (X-Forwarded-For header) istifadə etmək üçün əks proxy IP-lərini (və ya alt şəbəkələri, məs., 0.0.0.0/24) göstərin. Birdən çox girişi bölmək üçün ';' işarəsindən istifadə edin.</translation>
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation>HTTPS açar boş olmamalıdır</translation>
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation>Xarici proqramı başladın</translation>
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1662,6 +1730,10 @@
     <message>
         <source>Add peers...</source>
         <translation>İştirakçı əlavə edin...</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2308,10 +2380,6 @@
         <translation>İzləyici URL kopyalamaq</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation>Yeni izlyici əlavə edin...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>İzləyici URL-na dezəliş edin...</translation>
     </message>
@@ -2359,16 +2427,20 @@
         <source>Times Downloaded</source>
         <translation>Endirilmə sayı</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation>İzləyicilər əlavə edin...</translation>
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
-        <source>Trackers addition dialog</source>
-        <translation>İzləyicilərin əlavə edilməsi dialoqu</translation>
-    </message>
-    <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Əlavə ediləcək izləyicilərin siyahısı (hər sətirə bir)</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation>İzləyicilər əlavə edin</translation>
     </message>
 </context>
 <context>
@@ -2496,11 +2568,6 @@
         <translation>Fasilə</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation>Silmək</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Paylaşım nisbəti həddi...</translation>
     </message>
@@ -2573,10 +2640,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Ardıcıl şəkildə yükləmək</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation>Məcburi təkrar yoxlamaq</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2658,6 +2721,10 @@
         <source>Export .torrent</source>
         <translation>.torrent faylı ixrac edin</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation>Silin</translation>
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2692,20 +2759,12 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation>Silinmənin təsdiqlənməsi</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Həmçinin, diskdəki faylları silmək</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>Silinmənin təsdiqlənməsi - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Həmçinin bu faylı birdəfəlik silin</translation>
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
+        <translation>Torrent(lər)i silin</translation>
     </message>
 </context>
 <context>
@@ -2899,6 +2958,14 @@
         <source>showing</source>
         <translation>göstərərək</translation>
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation>Pəncərənin aşağı sağındakı "Axtarış plaqinləri..." düyməsinə vuraraq onlardan birini quraşdırın.</translation>
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation>Heç bir axtarış plaqini quraşdırılmayıb</translation>
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3023,10 +3090,6 @@
         <translation>Etiket əlavə edin...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Etiket:</translation>
     </message>
@@ -3049,6 +3112,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Etiketi silmək</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>
@@ -3549,10 +3616,6 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation>Torrentləri silmək</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Torrentləri davam etdirmək</translation>
     </message>
@@ -3567,6 +3630,10 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <message>
         <source>Pause torrents</source>
         <translation>Torrentlərə fasilə</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation>Torrentləri silin</translation>
     </message>
 </context>
 <context>

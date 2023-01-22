@@ -30,6 +30,8 @@ LangString launch_qbt ${LANG_FRENCH} "Lancer qBittorrent."
 LangString inst_requires_64bit ${LANG_FRENCH} "Cet installateur ne fonctionne que dans les versions 64 bits de Windows."
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_FRENCH} "Cette version de qBittorrent nécessite au moins Windows 7."
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_FRENCH}  "This installer requires at least Windows 10 1809."
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_FRENCH} "Désinstaller qBittorrent"
 

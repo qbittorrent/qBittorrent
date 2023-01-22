@@ -27,9 +27,11 @@ LangString inst_unist ${LANG_JAPANESE} "以前のバージョンをアンイン�
 ;LangString launch_qbt ${LANG_ENGLISH} "Launch qBittorrent."
 LangString launch_qbt ${LANG_JAPANESE} "qBittorrent を起動"
 ;LangString inst_requires_64bit ${LANG_ENGLISH} "This installer works only in 64-bit Windows versions."
-LangString inst_requires_64bit ${LANG_JAPANESE} "このインストーラーは 64 ビット版の Windows でのみ実行できます。"
+LangString inst_requires_64bit ${LANG_JAPANESE} "このインストーラは 64 ビット版の Windows でのみ実行できます。"
 ;LangString inst_requires_win7 ${LANG_ENGLISH} "This qBittorrent version requires at least Windows 7."
 LangString inst_requires_win7 ${LANG_JAPANESE} "このバージョンの qBittorrent には Windows 7 以降が必要です。"
+;LangString inst_requires_win10 ${LANG_ENGLISH} "This installer requires at least Windows 10 1809."
+LangString inst_requires_win10 ${LANG_JAPANESE}  "このインストーラの実行には Windows 10 1809 以降が必要です。"
 ;LangString inst_uninstall_link_description ${LANG_ENGLISH} "Uninstall qBittorrent"
 LangString inst_uninstall_link_description ${LANG_JAPANESE} "qBittorrent をアンインストール"
 

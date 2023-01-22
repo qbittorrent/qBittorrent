@@ -208,6 +208,8 @@ namespace BitTorrent
         virtual void setPeXEnabled(bool enabled) = 0;
         virtual bool isAddTorrentPaused() const = 0;
         virtual void setAddTorrentPaused(bool value) = 0;
+        virtual Torrent::StopCondition torrentStopCondition() const = 0;
+        virtual void setTorrentStopCondition(Torrent::StopCondition stopCondition) = 0;
         virtual TorrentContentLayout torrentContentLayout() const = 0;
         virtual void setTorrentContentLayout(TorrentContentLayout value) = 0;
         virtual bool isTrackerEnabled() const = 0;
@@ -258,6 +260,8 @@ namespace BitTorrent
         virtual void setMaxActiveCheckingTorrents(int val) = 0;
         virtual bool isProxyPeerConnectionsEnabled() const = 0;
         virtual void setProxyPeerConnectionsEnabled(bool enabled) = 0;
+        virtual bool isProxyHostnameLookupEnabled() const = 0;
+        virtual void setProxyHostnameLookupEnabled(bool enabled) = 0;
         virtual ChokingAlgorithm chokingAlgorithm() const = 0;
         virtual void setChokingAlgorithm(ChokingAlgorithm mode) = 0;
         virtual SeedChokingAlgorithm seedChokingAlgorithm() const = 0;
@@ -404,8 +408,6 @@ namespace BitTorrent
         virtual bool hasRunningSeed() const = 0;
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
-        virtual qint64 getAlltimeDL() const = 0;
-        virtual qint64 getAlltimeUL() const = 0;
         virtual bool isListening() const = 0;
         virtual bool isPaused() const = 0;
 
@@ -467,6 +469,6 @@ namespace BitTorrent
         void trackersRemoved(Torrent *torrent, const QStringList &trackers);
         void trackerSuccess(Torrent *torrent, const QString &tracker);
         void trackerWarning(Torrent *torrent, const QString &tracker);
-        void trackerEntriesUpdated(const QHash<Torrent *, QSet<QString>> &updateInfos);
+        void trackerEntriesUpdated(Torrent *torrent, const QHash<QString, TrackerEntry> &updatedTrackerEntries);
     };
 }

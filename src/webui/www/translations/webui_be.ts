@@ -42,6 +42,30 @@
         <source>Don't create subfolder</source>
         <translation>Не ствараць падпапку</translation>
     </message>
+    <message>
+        <source>Manual</source>
+        <translation>Ручны</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Аўтаматычны</translation>
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -77,16 +101,16 @@
         <translation>Спыніць торэнты</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>Выдаліць торэнты</translation>
-    </message>
-    <message>
         <source>New Category</source>
         <translation>Новая катэгорыя</translation>
     </message>
     <message>
         <source>Edit category...</source>
         <translation>Рэдагаваць катэгорыю...</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -272,10 +296,6 @@
         <translation>Зацягнуць лакальны торэнт</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Выдаліць вылучаныя торэнты са спісу перадач?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Захаваць</translation>
     </message>
@@ -431,10 +451,6 @@
         <translation>Спыніць</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>Выдаліць</translation>
-    </message>
-    <message>
         <source>Pause All</source>
         <translation>Спыніць усё</translation>
     </message>
@@ -569,7 +585,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-менеджэр</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -581,10 +597,18 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Скасаваць</translation>
     </message>
     <message>
         <source>Remove</source>
+        <translation>Выдаліць</translation>
+    </message>
+    <message>
+        <source>Would you like to resume all torrents?</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Would you like to pause all torrents?</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -625,10 +649,6 @@
     <message>
         <source>Email notification upon download completion</source>
         <translation>Апавяшчэнне па электроннай пошце пасля завяршэння спампавання</translation>
-    </message>
-    <message>
-        <source>Run external program on torrent completion</source>
-        <translation>Запусціць знешнюю праграму па сканчэнні спампавання торэнта</translation>
     </message>
     <message>
         <source>IP Filtering</source>
@@ -1137,10 +1157,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Enable OS cache:</source>
-        <translation type="vanished">Уключыць кэш OS</translation>
-    </message>
-    <message>
         <source>When ratio reaches</source>
         <translation>Калі рэйтынг раздачы дасягне паказчыка</translation>
     </message>
@@ -1568,6 +1584,70 @@
         <source>Support internationalized domain name (IDN):</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Run external program on torrent finished</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Whitelist for filtering HTTP Host header values.
+In order to defend against DNS rebinding attack,
+you should put in domain names used by WebUI server.
+
+Use ';' to split multiple entries. Can use wildcard '*'.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program on torrent added</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS certificate should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>HTTPS key should not be empty</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Run external program</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Files checked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enable port forwarding for embedded tracker:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>If checked, hostname lookups are done via the proxy.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for hostname lookup</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Metadata received</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Torrent stop condition:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>None</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1646,6 +1726,10 @@
     <message>
         <source>Add peers...</source>
         <translation>Дадаць піраў</translation>
+    </message>
+    <message>
+        <source>Peer ID Client</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2292,10 +2376,6 @@
         <translation>Капіяваць URL трэкера</translation>
     </message>
     <message>
-        <source>Add a new tracker...</source>
-        <translation>Дадаць новы трэкер...</translation>
-    </message>
-    <message>
         <source>Edit tracker URL...</source>
         <translation>Змяніць URL трэкера...</translation>
     </message>
@@ -2343,16 +2423,20 @@
         <source>Times Downloaded</source>
         <translation>Усяго спампавана</translation>
     </message>
+    <message>
+        <source>Add trackers...</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
     <message>
-        <source>Trackers addition dialog</source>
-        <translation>Акенца дадання трэкера</translation>
-    </message>
-    <message>
         <source>List of trackers to add (one per line):</source>
         <translation>Спіс трэкераў для дадання (па аднаму на радок):</translation>
+    </message>
+    <message>
+        <source>Add trackers</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2480,11 +2564,6 @@
         <translation>Спыніць</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <comment>Delete the torrent</comment>
-        <translation>Выдаліць</translation>
-    </message>
-    <message>
         <source>Limit share ratio...</source>
         <translation>Абмежаваць стасунак раздачы...</translation>
     </message>
@@ -2557,10 +2636,6 @@
     <message>
         <source>Download in sequential order</source>
         <translation>Спампоўваць паслядоўна</translation>
-    </message>
-    <message>
-        <source>Force Recheck</source>
-        <translation>Праверыць прымусова</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -2642,6 +2717,10 @@
         <source>Export .torrent</source>
         <translation>Экспартаваць .torrent</translation>
     </message>
+    <message>
+        <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>UpDownRatioDialog</name>
@@ -2676,19 +2755,11 @@
 <context>
     <name>confirmDeletionDlg</name>
     <message>
-        <source>Deletion confirmation</source>
-        <translation>Пацвярджэнне выдалення</translation>
-    </message>
-    <message>
-        <source>Also delete the files on the hard disk</source>
-        <translation type="vanished">Выдаліць таксама і файлы з дыска</translation>
-    </message>
-    <message>
-        <source>Deletion confirmation - qBittorrent</source>
-        <translation>Пацвярджэнне выдалення - qBittorrent</translation>
-    </message>
-    <message>
         <source>Also permanently delete the files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remove torrent(s)</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2883,6 +2954,14 @@
         <source>showing</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>There aren't any search plugins installed.</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PluginSelectDlg</name>
@@ -3007,10 +3086,6 @@
         <translation>Дадаць тэг...</translation>
     </message>
     <message>
-        <source>Delete torrents</source>
-        <translation>Выдаліць торэнты</translation>
-    </message>
-    <message>
         <source>Tag:</source>
         <translation>Тэг:</translation>
     </message>
@@ -3033,6 +3108,10 @@
     <message>
         <source>Remove tag</source>
         <translation>Выдаліць тэг</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3533,10 +3612,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 <context>
     <name>TrackerFiltersList</name>
     <message>
-        <source>Delete torrents</source>
-        <translation>Выдаліць торэнты</translation>
-    </message>
-    <message>
         <source>Resume torrents</source>
         <translation>Узнавіць торэнты</translation>
     </message>
@@ -3551,6 +3626,10 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Pause torrents</source>
         <translation>Прыпыніць торэнты</translation>
+    </message>
+    <message>
+        <source>Remove torrents</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

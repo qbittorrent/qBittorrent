@@ -14,7 +14,7 @@
     <iframe id="upload_frame" name="upload_frame" class="invisible" src="about:blank"></iframe>
     <form action="api/v2/torrents/add" enctype="multipart/form-data" method="post" id="uploadForm" style="text-align: center;" target="upload_frame" autocorrect="off" autocapitalize="none">
         <div style="margin-top: 25px; display: inline-block; border: 1px solid lightgrey; border-radius: 4px;">
-            <input type="file" id="fileselect" name="fileselect[]" multiple="multiple" />
+            <input type="file" id="fileselect" accept="application/x-bittorrent, .torrent" name="fileselect[]" multiple />
         </div>
         <fieldset class="settings" style="border: 0; text-align: left; margin-top: 12px;">
             <table style="margin: auto;">
@@ -65,6 +65,18 @@
                     <td>
                         <input type="hidden" id="startTorrentHidden" name="paused" />
                         <input type="checkbox" id="startTorrent" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="stopCondition">QBT_TR(Stop condition:)QBT_TR[CONTEXT=AddNewTorrentDialog]</label>
+                    </td>
+                    <td>
+                        <select id="stopCondition" name="stopCondition">
+                            <option selected value="None">QBT_TR(None)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                            <option value="MetadataReceived">QBT_TR(Metadata received)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                            <option value="FilesChecked">QBT_TR(Files checked)QBT_TR[CONTEXT=AddNewTorrentDialog]</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
