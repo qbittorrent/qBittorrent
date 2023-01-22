@@ -49,6 +49,7 @@ class DesktopIntegration final : public QObject
 
 public:
     explicit DesktopIntegration(QObject *parent = nullptr);
+    ~DesktopIntegration() override;
 
     bool isActive() const;
 

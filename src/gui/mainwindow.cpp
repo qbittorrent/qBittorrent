@@ -463,7 +463,6 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
 
 MainWindow::~MainWindow()
 {
-    app()->desktopIntegration()->setMenu(nullptr);
     delete m_ui;
 }
 
@@ -1573,7 +1572,7 @@ void MainWindow::downloadFromURLList(const QStringList &urlList)
 
 QMenu *MainWindow::createDesktopIntegrationMenu()
 {
-    auto *menu = new QMenu(this);
+    auto *menu = new QMenu;
 
 #ifndef Q_OS_MACOS
     connect(menu, &QMenu::aboutToShow, this, [this]()
