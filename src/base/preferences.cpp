@@ -279,16 +279,6 @@ void Preferences::setStatusbarDisplayed(const bool displayed)
     setValue(u"Preferences/General/StatusbarDisplayed"_qs, displayed);
 }
 
-bool Preferences::startMinimized() const
-{
-    return value(u"Preferences/General/StartMinimized"_qs, false);
-}
-
-void Preferences::setStartMinimized(const bool b)
-{
-    setValue(u"Preferences/General/StartMinimized"_qs, b);
-}
-
 bool Preferences::isSplashScreenDisabled() const
 {
     return value(u"Preferences/General/NoSplashScreen"_qs, true);
@@ -665,6 +655,16 @@ void Preferences::setWebUISessionTimeout(const int timeout)
     setValue(u"Preferences/WebUI/SessionTimeout"_qs, timeout);
 }
 
+QString Preferences::getWebAPISessionCookieName() const
+{
+    return value<QString>(u"WebAPI/SessionCookieName"_qs);
+}
+
+void Preferences::setWebAPISessionCookieName(const QString &cookieName)
+{
+    setValue(u"WebAPI/SessionCookieName"_qs, cookieName);
+}
+
 bool Preferences::isWebUiClickjackingProtectionEnabled() const
 {
     return value(u"Preferences/WebUI/ClickjackingProtection"_qs, true);
@@ -997,6 +997,18 @@ void Preferences::resolvePeerHostNames(const bool resolve)
 {
     setValue(u"Preferences/Connection/ResolvePeerHostNames"_qs, resolve);
 }
+
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+bool Preferences::useSystemIcons() const
+{
+    return value(u"Preferences/Advanced/useSystemIconTheme"_qs, false);
+}
+
+void Preferences::useSystemIcons(const bool enabled)
+{
+    setValue(u"Preferences/Advanced/useSystemIconTheme"_qs, enabled);
+}
+#endif
 
 bool Preferences::isRecursiveDownloadEnabled() const
 {

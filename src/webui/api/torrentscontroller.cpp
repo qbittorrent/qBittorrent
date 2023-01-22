@@ -104,6 +104,7 @@ const QString KEY_PROP_CREATION_DATE = u"creation_date"_qs;
 const QString KEY_PROP_SAVE_PATH = u"save_path"_qs;
 const QString KEY_PROP_DOWNLOAD_PATH = u"download_path"_qs;
 const QString KEY_PROP_COMMENT = u"comment"_qs;
+const QString KEY_PROP_ISPRIVATE = u"is_private"_qs;
 
 // File keys
 const QString KEY_FILE_INDEX = u"index"_qs;
@@ -387,6 +388,10 @@ void TorrentsController::infoAction()
 //   - "save_path": Torrent save path
 //   - "download_path": Torrent download path
 //   - "comment": Torrent comment
+//   - "infohash_v1": Torrent v1 infohash (or empty string for v2 torrents)
+//   - "infohash_v2": Torrent v2 infohash (or empty string for v1 torrents)
+//   - "hash": Torrent TorrentID (infohashv1 for v1 torrents, truncated infohashv2 for v2/hybrid torrents)
+//   - "name": Torrent name
 void TorrentsController::propertiesAction()
 {
     requireParams({u"hash"_qs});
@@ -400,6 +405,8 @@ void TorrentsController::propertiesAction()
 
     dataDict[KEY_TORRENT_INFOHASHV1] = torrent->infoHash().v1().toString();
     dataDict[KEY_TORRENT_INFOHASHV2] = torrent->infoHash().v2().toString();
+    dataDict[KEY_TORRENT_NAME] = torrent->name();
+    dataDict[KEY_TORRENT_ID] = torrent->id().toString();
     dataDict[KEY_PROP_TIME_ELAPSED] = torrent->activeTime();
     dataDict[KEY_PROP_SEEDING_TIME] = torrent->finishedTime();
     dataDict[KEY_PROP_ETA] = static_cast<double>(torrent->eta());
@@ -430,6 +437,7 @@ void TorrentsController::propertiesAction()
     dataDict[KEY_PROP_PIECE_SIZE] = torrent->pieceLength();
     dataDict[KEY_PROP_PIECES_HAVE] = torrent->piecesHave();
     dataDict[KEY_PROP_CREATED_BY] = torrent->creator();
+    dataDict[KEY_PROP_ISPRIVATE] = torrent->isPrivate();
     dataDict[KEY_PROP_ADDITION_DATE] = static_cast<double>(torrent->addedTime().toSecsSinceEpoch());
     if (torrent->hasMetadata())
     {

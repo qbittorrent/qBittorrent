@@ -62,14 +62,14 @@ Session::Session()
     : m_storeProcessingEnabled(u"RSS/Session/EnableProcessing"_qs)
     , m_storeRefreshInterval(u"RSS/Session/RefreshInterval"_qs, 30)
     , m_storeMaxArticlesPerFeed(u"RSS/Session/MaxArticlesPerFeed"_qs, 50)
-    , m_workingThread(new QThread(this))
+    , m_workingThread(new QThread)
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
 
     m_confFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Config) / Path(CONF_FOLDER_NAME));
-    m_confFileStorage->moveToThread(m_workingThread);
-    connect(m_workingThread, &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
+    m_confFileStorage->moveToThread(m_workingThread.get());
+    connect(m_workingThread.get(), &QThread::finished, m_confFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_confFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session configuration. File: \"%1\". Error: \"%2\"")
@@ -77,8 +77,8 @@ Session::Session()
     });
 
     m_dataFileStorage = new AsyncFileStorage(specialFolderLocation(SpecialFolder::Data) / Path(DATA_FOLDER_NAME));
-    m_dataFileStorage->moveToThread(m_workingThread);
-    connect(m_workingThread, &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
+    m_dataFileStorage->moveToThread(m_workingThread.get());
+    connect(m_workingThread.get(), &QThread::finished, m_dataFileStorage, &AsyncFileStorage::deleteLater);
     connect(m_dataFileStorage, &AsyncFileStorage::failed, [](const Path &fileName, const QString &errorString)
     {
         LogMsg(tr("Couldn't save RSS session data. File: \"%1\". Error: \"%2\"")
@@ -125,11 +125,6 @@ Session::~Session()
 
     //store();
     delete m_itemsByPath[u""_qs]; // deleting root folder
-
-    // some items may add I/O operation at destruction
-    // stop working thread after deleting root folder
-    m_workingThread->quit();
-    m_workingThread->wait();
 
     qDebug() << "RSS Session deleted.";
 }
@@ -487,7 +482,7 @@ void Session::setRefreshInterval(const int refreshInterval)
 
 QThread *Session::workingThread() const
 {
-    return m_workingThread;
+    return m_workingThread.get();
 }
 
 void Session::handleItemAboutToBeDestroyed(Item *item)

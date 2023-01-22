@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2021-2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,6 +31,7 @@
 #include <QReadWriteLock>
 
 #include "base/pathfwd.h"
+#include "base/utils/thread.h"
 #include "resumedatastorage.h"
 
 class QThread;
@@ -60,7 +61,7 @@ namespace BitTorrent
         void updateDB(int fromVersion) const;
         void enableWALMode() const;
 
-        QThread *m_ioThread = nullptr;
+        Utils::Thread::UniquePtr m_ioThread;
 
         class Worker;
         Worker *m_asyncWorker = nullptr;

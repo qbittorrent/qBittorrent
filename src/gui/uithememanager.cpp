@@ -35,12 +35,14 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QPalette>
+#include <QPixmapCache>
 #include <QResource>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/path.h"
 #include "base/preferences.h"
+#include "base/profile.h"
 #include "base/utils/fs.h"
 
 namespace
@@ -72,15 +74,16 @@ namespace
     QByteArray readFile(const Path &filePath)
     {
         QFile file {filePath.data()};
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
-                    .arg(filePath.filename(), file.errorString())
-                   , Log::WARNING);
+        if (!file.exists())
             return {};
-        }
 
-        return file.readAll();
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+            return file.readAll();
+
+        LogMsg(UIThemeManager::tr("UITheme - Failed to open \"%1\". Reason: %2")
+               .arg(filePath.filename(), file.errorString())
+               , Log::WARNING);
+        return {};
     }
 
     class QRCThemeSource final : public UIThemeSource
@@ -140,7 +143,7 @@ namespace
     std::unique_ptr<UIThemeSource> createUIThemeSource(const Path &themePath)
     {
         if (themePath.filename() == CONFIG_FILE_NAME)
-            return std::make_unique<FolderThemeSource>(themePath);
+            return std::make_unique<FolderThemeSource>(themePath.parentPath());
 
         if ((themePath.hasExtension(u".qbtheme"_qs))
                 && QResource::registerResource(themePath.data(), u"/uitheme"_qs))
@@ -167,22 +170,24 @@ void UIThemeManager::initInstance()
 }
 
 UIThemeManager::UIThemeManager()
-    : m_useCustomTheme(Preferences::instance()->useCustomUITheme())
+    : m_useCustomTheme {Preferences::instance()->useCustomUITheme()}
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    , m_useSystemIcons {Preferences::instance()->useSystemIcons()}
+#endif
 {
-    if (m_useCustomTheme)
+    const Path themePath = m_useCustomTheme
+            ? Preferences::instance()->customUIThemePath()
+            : specialFolderLocation(SpecialFolder::Config) / Path(u"themes/default/config.json"_qs);
+    m_themeSource = createUIThemeSource(themePath);
+    if (!m_themeSource)
     {
-        const Path themePath = Preferences::instance()->customUIThemePath();
-        m_themeSource = createUIThemeSource(themePath);
-        if (!m_themeSource)
-        {
-            LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
-        }
-        else
-        {
-            loadColorsFromJSONConfig();
-            applyPalette();
-            applyStyleSheet();
-        }
+        LogMsg(tr("Failed to load UI theme from file: \"%1\"").arg(themePath.toString()), Log::WARNING);
+    }
+    else
+    {
+        loadColorsFromJSONConfig();
+        applyPalette();
+        applyStyleSheet();
     }
 }
 
@@ -196,14 +201,25 @@ void UIThemeManager::applyStyleSheet() const
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
 
-QIcon UIThemeManager::getIcon(const QString &iconId, const QString &fallback) const
+QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
 {
     // Cache to avoid rescaling svg icons
     const auto iter = m_iconCache.find(iconId);
     if (iter != m_iconCache.end())
         return *iter;
 
-    const QIcon icon {getIconPathFromResources(iconId, fallback).data()};
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    // Don't cache system icons because users might change them at run time
+    if (m_useSystemIcons)
+    {
+        auto icon = QIcon::fromTheme(iconId);
+        if (icon.name() != iconId)
+            icon = QIcon::fromTheme(fallback, QIcon(getIconPathFromResources(iconId).data()));
+        return icon;
+    }
+#endif
+
+    const QIcon icon {getIconPathFromResources(iconId).data()};
     m_iconCache[iconId] = icon;
     return icon;
 }
@@ -220,6 +236,25 @@ QIcon UIThemeManager::getFlagIcon(const QString &countryIsoCode) const
     const QIcon icon {u":/icons/flags/" + key + u".svg"};
     m_flagCache[key] = icon;
     return icon;
+}
+
+QPixmap UIThemeManager::getScaledPixmap(const QString &iconId, const int height) const
+{
+    // (workaround) svg images require the use of `QIcon()` to load and scale losslessly,
+    // otherwise other image classes will convert it to pixmap first and follow-up scaling will become lossy.
+
+    Q_ASSERT(height > 0);
+
+    const QString cacheKey = iconId + u'@' + QString::number(height);
+
+    QPixmap pixmap;
+    if (!QPixmapCache::find(cacheKey, &pixmap))
+    {
+        pixmap = getIcon(iconId).pixmap(height);
+        QPixmapCache::insert(cacheKey, pixmap);
+    }
+
+    return pixmap;
 }
 
 QColor UIThemeManager::getColor(const QString &id, const QColor &defaultColor) const
@@ -257,25 +292,13 @@ QIcon UIThemeManager::getSystrayIcon() const
 }
 #endif
 
-Path UIThemeManager::getIconPath(const QString &iconId) const
+Path UIThemeManager::getIconPathFromResources(const QString &iconId) const
 {
-    return getIconPathFromResources(iconId, {});
-}
-
-Path UIThemeManager::getIconPathFromResources(const QString &iconId, const QString &fallback) const
-{
-    if (m_useCustomTheme && m_themeSource)
+    if (m_themeSource)
     {
         const Path customIcon = m_themeSource->iconPath(iconId);
         if (!customIcon.isEmpty())
             return customIcon;
-
-        if (!fallback.isEmpty())
-        {
-            const Path fallbackIcon = m_themeSource->iconPath(fallback);
-            if (!fallbackIcon.isEmpty())
-                return fallbackIcon;
-        }
     }
 
     return findIcon(iconId, DEFAULT_ICONS_DIR);

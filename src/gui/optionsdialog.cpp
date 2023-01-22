@@ -63,7 +63,6 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
-#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
@@ -101,81 +100,6 @@ namespace
         for (int i = 0; i < 7; ++i)
             ret.append(locale.toString(date.addDays(i), u"dddd"_qs));
         return ret;
-    }
-
-    QString languageToLocalizedString(const QLocale &locale)
-    {
-        switch (locale.language())
-        {
-        case QLocale::Arabic: return C_LOCALE_ARABIC;
-        case QLocale::Armenian: return C_LOCALE_ARMENIAN;
-        case QLocale::Azerbaijani: return C_LOCALE_AZERBAIJANI;
-        case QLocale::Basque: return C_LOCALE_BASQUE;
-        case QLocale::Bulgarian: return C_LOCALE_BULGARIAN;
-        case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
-        case QLocale::Catalan: return C_LOCALE_CATALAN;
-        case QLocale::Chinese:
-            switch (locale.country())
-            {
-            case QLocale::China: return C_LOCALE_CHINESE_SIMPLIFIED;
-            case QLocale::HongKong: return C_LOCALE_CHINESE_TRADITIONAL_HK;
-            default: return C_LOCALE_CHINESE_TRADITIONAL_TW;
-            }
-        case QLocale::Croatian: return C_LOCALE_CROATIAN;
-        case QLocale::Czech: return C_LOCALE_CZECH;
-        case QLocale::Danish: return C_LOCALE_DANISH;
-        case QLocale::Dutch: return C_LOCALE_DUTCH;
-        case QLocale::English:
-            switch (locale.country())
-            {
-            case QLocale::Australia: return C_LOCALE_ENGLISH_AUSTRALIA;
-            case QLocale::UnitedKingdom: return C_LOCALE_ENGLISH_UNITEDKINGDOM;
-            default: return C_LOCALE_ENGLISH;
-            }
-        case QLocale::Estonian: return C_LOCALE_ESTONIAN;
-        case QLocale::Finnish: return C_LOCALE_FINNISH;
-        case QLocale::French: return C_LOCALE_FRENCH;
-        case QLocale::Galician: return C_LOCALE_GALICIAN;
-        case QLocale::Georgian: return C_LOCALE_GEORGIAN;
-        case QLocale::German: return C_LOCALE_GERMAN;
-        case QLocale::Greek: return C_LOCALE_GREEK;
-        case QLocale::Hebrew: return C_LOCALE_HEBREW;
-        case QLocale::Hindi: return C_LOCALE_HINDI;
-        case QLocale::Hungarian: return C_LOCALE_HUNGARIAN;
-        case QLocale::Icelandic: return C_LOCALE_ICELANDIC;
-        case QLocale::Indonesian: return C_LOCALE_INDONESIAN;
-        case QLocale::Italian: return C_LOCALE_ITALIAN;
-        case QLocale::Japanese: return C_LOCALE_JAPANESE;
-        case QLocale::Korean: return C_LOCALE_KOREAN;
-        case QLocale::Latvian: return C_LOCALE_LATVIAN;
-        case QLocale::Lithuanian: return C_LOCALE_LITHUANIAN;
-        case QLocale::Malay: return C_LOCALE_MALAY;
-        case QLocale::Mongolian: return C_LOCALE_MONGOLIAN;
-        case QLocale::NorwegianBokmal: return C_LOCALE_NORWEGIAN;
-        case QLocale::Occitan: return C_LOCALE_OCCITAN;
-        case QLocale::Persian: return C_LOCALE_PERSIAN;
-        case QLocale::Polish: return C_LOCALE_POLISH;
-        case QLocale::Portuguese:
-            if (locale.country() == QLocale::Brazil)
-                return C_LOCALE_PORTUGUESE_BRAZIL;
-            return C_LOCALE_PORTUGUESE;
-        case QLocale::Romanian: return C_LOCALE_ROMANIAN;
-        case QLocale::Russian: return C_LOCALE_RUSSIAN;
-        case QLocale::Serbian: return C_LOCALE_SERBIAN;
-        case QLocale::Slovak: return C_LOCALE_SLOVAK;
-        case QLocale::Slovenian: return C_LOCALE_SLOVENIAN;
-        case QLocale::Spanish: return C_LOCALE_SPANISH;
-        case QLocale::Swedish: return C_LOCALE_SWEDISH;
-        case QLocale::Thai: return C_LOCALE_THAI;
-        case QLocale::Turkish: return C_LOCALE_TURKISH;
-        case QLocale::Ukrainian: return C_LOCALE_UKRAINIAN;
-        case QLocale::Uzbek: return C_LOCALE_UZBEK;
-        case QLocale::Vietnamese: return C_LOCALE_VIETNAMESE;
-        default:
-            const QString lang = QLocale::languageToString(locale.language());
-            qWarning() << "Unrecognized language name: " << lang;
-            return lang;
-        }
     }
 
     class WheelEventEater final : public QObject
@@ -217,17 +141,17 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // Main icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_qs));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs, u"preferences-system-network"_qs));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs, u"network-wired"_qs));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs, u"folder-download"_qs));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs, u"chronometer"_qs));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs, u"application-rss+xml"_qs));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #else
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs, u"network-server"_qs));
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs, u"preferences-other"_qs));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -302,6 +226,11 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_ui->checkUseSystemIcon->setChecked(pref->useSystemIcons());
+#else
+    m_ui->checkUseSystemIcon->setVisible(false);
+#endif
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -333,9 +262,15 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkStartup->setVisible(false);
 #endif
     m_ui->checkShowSplash->setChecked(!pref->isSplashScreenDisabled());
-    m_ui->checkStartMinimized->setChecked(pref->startMinimized());
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
+
+    m_ui->windowStateComboBox->addItem(tr("Normal"), QVariant::fromValue(WindowState::Normal));
+    m_ui->windowStateComboBox->addItem(tr("Minimized"), QVariant::fromValue(WindowState::Minimized));
+#ifndef Q_OS_MACOS
+    m_ui->windowStateComboBox->addItem(tr("Hidden"), QVariant::fromValue(WindowState::Hidden));
+#endif
+    m_ui->windowStateComboBox->setCurrentIndex(m_ui->windowStateComboBox->findData(QVariant::fromValue(app()->startUpWindowState())));
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
@@ -396,6 +331,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
@@ -411,13 +349,13 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
     connect(m_ui->checkShowSplash, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->checkStartMinimized, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramAutoExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkShowSystray, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMinimizeToSysTray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCloseToSystray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->comboTrayIcon, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->windowStateComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkPreventFromSuspendWhenDownloading, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkPreventFromSuspendWhenSeeding, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -465,6 +403,9 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
+#endif
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
@@ -477,7 +418,6 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
 
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
-    pref->setStartMinimized(startMinimized());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
 
@@ -524,6 +464,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
     app()->setFileLoggerAgeType(m_ui->comboFileLogAgeType->currentIndex());
     app()->setFileLoggerDeleteOld(m_ui->checkFileLogDelete->isChecked());
     app()->setFileLoggerEnabled(m_ui->checkFileLog->isChecked());
+
+    app()->setStartUpWindowState(m_ui->windowStateComboBox->currentData().value<WindowState>());
 
     session->setPerformanceWarningEnabled(m_ui->checkBoxPerformanceWarning->isChecked());
 }
@@ -954,11 +896,11 @@ void OptionsDialog::loadSpeedTabOptions()
 {
     const auto *session = BitTorrent::Session::instance();
 
-    m_ui->labelGlobalRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow_off"_qs), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelGlobalRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow_off"_qs, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimit->setValue(session->globalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimit->setValue(session->globalDownloadSpeedLimit() / 1024);
 
-    m_ui->labelAltRate->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(u"slow"_qs), this, Utils::Gui::mediumIconSize(this).height()));
+    m_ui->labelAltRate->setPixmap(UIThemeManager::instance()->getScaledPixmap(u"slow"_qs, Utils::Gui::mediumIconSize(this).height()));
     m_ui->spinUploadLimitAlt->setValue(session->altGlobalUploadSpeedLimit() / 1024);
     m_ui->spinDownloadLimitAlt->setValue(session->altGlobalDownloadSpeedLimit() / 1024);
 
@@ -1322,25 +1264,8 @@ void OptionsDialog::initializeLanguageCombo()
     const QStringList langFiles = langDir.entryList(QStringList(u"qbittorrent_*.qm"_qs), QDir::Files);
     for (const QString &langFile : langFiles)
     {
-        QString localeStr = langFile.mid(12); // remove "qbittorrent_"
-        localeStr.chop(3); // Remove ".qm"
-        QString languageName;
-        if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
-        {
-            // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
-            languageName = C_LOCALE_ESPERANTO;
-        }
-        else if (localeStr.startsWith(u"ltg", Qt::CaseInsensitive))
-        {
-            // QLocale doesn't work with that locale.
-            languageName = C_LOCALE_LATGALIAN;
-        }
-        else
-        {
-            QLocale locale(localeStr);
-            languageName = languageToLocalizedString(locale);
-        }
-        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ languageName, localeStr);
+        const QString localeStr = langFile.section(u"_"_qs, 1, -1).section(u"."_qs, 0, 0); // remove "qbittorrent_" and ".qm"
+        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ Utils::Misc::languageToLocalizedString(localeStr), localeStr);
         qDebug() << "Supported locale:" << localeStr;
     }
 }
@@ -1677,11 +1602,6 @@ bool OptionsDialog::isLSDEnabled() const
 bool OptionsDialog::isUPnPEnabled() const
 {
     return m_ui->checkUPnP->isChecked();
-}
-
-bool OptionsDialog::startMinimized() const
-{
-    return m_ui->checkStartMinimized->isChecked();
 }
 
 // Return Share ratio
@@ -2057,8 +1977,8 @@ void OptionsDialog::webUIHttpsCertChanged(const Path &path)
     };
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
-    m_ui->lblSslCertStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
-        isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
+    m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
@@ -2079,8 +1999,8 @@ void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
     };
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
-    m_ui->lblSslKeyStatus->setPixmap(Utils::Gui::scaledPixmapSvg(UIThemeManager::instance()->getIconPath(
-        isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), this, 24));
+    m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
+        (isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 bool OptionsDialog::isWebUiEnabled() const

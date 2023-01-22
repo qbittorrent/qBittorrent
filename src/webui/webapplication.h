@@ -52,7 +52,7 @@
 #include "base/utils/version.h"
 #include "api/isessionmanager.h"
 
-inline const Utils::Version<3, 2> API_VERSION {2, 8, 18};
+inline const Utils::Version<3, 2> API_VERSION {2, 8, 19};
 
 class APIController;
 class AuthController;
@@ -225,6 +225,7 @@ private:
     bool m_isAuthSubnetWhitelistEnabled;
     QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
     int m_sessionTimeout;
+    QString m_sessionCookieName;
 
     // security related
     QStringList m_domainList;

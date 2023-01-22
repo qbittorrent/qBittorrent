@@ -340,7 +340,7 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 
     ResumeDataStorage *startupStorage = nullptr;
     ResumeDataStorageType currentStorageType = ResumeDataStorageType::Legacy;
-    QVector<LoadedResumeData> loadedResumeData;
+    QList<LoadedResumeData> loadedResumeData;
     int processingResumeDataCount = 0;
     int64_t totalResumeDataCount = 0;
     int64_t finishedResumeDataCount = 0;
@@ -529,7 +529,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
-    , m_ioThread {new QThread(this)}
+    , m_ioThread {new QThread}
     , m_asyncWorker {new QThreadPool(this)}
     , m_recentErroredTorrentsTimer {new QTimer(this)}
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -586,8 +586,8 @@ SessionImpl::SessionImpl(QObject *parent)
 #endif
 
     m_fileSearcher = new FileSearcher;
-    m_fileSearcher->moveToThread(m_ioThread);
-    connect(m_ioThread, &QThread::finished, m_fileSearcher, &QObject::deleteLater);
+    m_fileSearcher->moveToThread(m_ioThread.get());
+    connect(m_ioThread.get(), &QThread::finished, m_fileSearcher, &QObject::deleteLater);
     connect(m_fileSearcher, &FileSearcher::searchFinished, this, &SessionImpl::fileSearchFinished);
 
     m_ioThread->start();
@@ -621,9 +621,6 @@ SessionImpl::~SessionImpl()
 
     saveStatistics();
 
-    m_asyncWorker->clear();
-    m_asyncWorker->waitForDone();
-
     // We must delete FilterParserThread
     // before we delete lt::session
     delete m_filterParser;
@@ -632,11 +629,13 @@ SessionImpl::~SessionImpl()
     // we delete lt::session
     delete Net::PortForwarder::instance();
 
-    qDebug("Deleting the session");
-    delete m_nativeSession;
+    // We must stop "async worker" only after deletion
+    // of all the components that could potentially use it
+    m_asyncWorker->clear();
+    m_asyncWorker->waitForDone();
 
-    m_ioThread->quit();
-    m_ioThread->wait();
+    qDebug("Deleting libtorrent session...");
+    delete m_nativeSession;
 }
 
 bool SessionImpl::isDHTEnabled() const
@@ -2238,30 +2237,6 @@ Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
     return m_torrents.value(altID);
 }
 
-bool SessionImpl::hasActiveTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](TorrentImpl *torrent)
-    {
-        return TorrentFilter::ActiveTorrent.match(torrent);
-    });
-}
-
-bool SessionImpl::hasUnfinishedTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
-    });
-}
-
-bool SessionImpl::hasRunningSeed() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (torrent->isSeed() && !torrent->isPaused());
-    });
-}
-
 void SessionImpl::banIP(const QString &ip)
 {
     if (m_bannedIPs.get().contains(ip))
@@ -2940,6 +2915,19 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
         return false;
 
     lt::add_torrent_params p = magnetUri.addTorrentParams();
+
+    if (isAddTrackersEnabled())
+    {
+        // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        {
+            p.trackers.push_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.push_back(trackerEntry.tier);
+        }
+    }
 
     // Flags
     // Preallocation mode
@@ -4799,7 +4787,11 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
         }
     }
 
-    if (!hasUnfinishedTorrents())
+    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    {
+        return !(torrent->isSeed() || torrent->isPaused() || torrent->isErrored());
+    });
+    if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();
 }
 

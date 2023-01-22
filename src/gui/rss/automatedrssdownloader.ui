@@ -61,6 +61,22 @@
           </widget>
          </item>
          <item>
+          <widget class="QToolButton" name="renameRuleBtn">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="toolTip">
+            <string>Rename selected rule. You can also use the F2 hotkey to rename.</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>20</height>
+            </size>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QToolButton" name="removeRuleBtn">
            <property name="iconSize">
             <size>
@@ -466,6 +482,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>renameRuleBtn</tabstop>
   <tabstop>removeRuleBtn</tabstop>
   <tabstop>addRuleBtn</tabstop>
   <tabstop>listRules</tabstop>

@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -115,7 +116,7 @@ namespace
     }
 }
 
-MainWindow::MainWindow(IGUIApplication *app, const State initialState)
+MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     : GUIApplicationComponent(app)
     , m_ui(new Ui::MainWindow)
     , m_storeExecutionLogEnabled(EXECUTIONLOG_SETTINGS_KEY(u"Enabled"_qs))
@@ -130,8 +131,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     m_displaySpeedInTitle = pref->speedInTitleBar();
     // Setting icons
 #ifndef Q_OS_MACOS
-    const QIcon appLogo(UIThemeManager::instance()->getIcon(u"qbittorrent"_qs, u"qbittorrent-tray"_qs));
-    setWindowIcon(appLogo);
+    setWindowIcon(UIThemeManager::instance()->getIcon(u"qbittorrent"_qs));
 #endif // Q_OS_MACOS
 
 #if (defined(Q_OS_UNIX))
@@ -143,7 +143,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     m_ui->actionOpen->setIcon(UIThemeManager::instance()->getIcon(u"list-add"_qs));
     m_ui->actionDownloadFromURL->setIcon(UIThemeManager::instance()->getIcon(u"insert-link"_qs));
     m_ui->actionSetGlobalSpeedLimits->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
-    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon(u"torrent-creator"_qs));
+    m_ui->actionCreateTorrent->setIcon(UIThemeManager::instance()->getIcon(u"torrent-creator"_qs, u"document-edit"_qs));
     m_ui->actionAbout->setIcon(UIThemeManager::instance()->getIcon(u"help-about"_qs));
     m_ui->actionStatistics->setIcon(UIThemeManager::instance()->getIcon(u"view-statistics"_qs));
     m_ui->actionTopQueuePos->setIcon(UIThemeManager::instance()->getIcon(u"go-top"_qs));
@@ -155,13 +155,13 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     m_ui->actionDonateMoney->setIcon(UIThemeManager::instance()->getIcon(u"wallet-open"_qs));
     m_ui->actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_qs));
     m_ui->actionLock->setIcon(UIThemeManager::instance()->getIcon(u"object-locked"_qs));
-    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_qs));
-    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs));
-    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs));
-    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs));
-    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs));
-    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs));
-    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_qs));
+    m_ui->actionOptions->setIcon(UIThemeManager::instance()->getIcon(u"configure"_qs, u"preferences-system"_qs));
+    m_ui->actionPause->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs, u"media-playback-pause"_qs));
+    m_ui->actionPauseAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-stop"_qs, u"media-playback-pause"_qs));
+    m_ui->actionStart->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs, u"media-playback-start"_qs));
+    m_ui->actionStartAll->setIcon(UIThemeManager::instance()->getIcon(u"torrent-start"_qs, u"media-playback-start"_qs));
+    m_ui->menuAutoShutdownOnDownloadsCompletion->setIcon(UIThemeManager::instance()->getIcon(u"task-complete"_qs, u"application-exit"_qs));
+    m_ui->actionManageCookies->setIcon(UIThemeManager::instance()->getIcon(u"browser-cookies"_qs, u"preferences-web-browser-cookies"_qs));
     m_ui->menuLog->setIcon(UIThemeManager::instance()->getIcon(u"help-contents"_qs));
     m_ui->actionCheckForUpdates->setIcon(UIThemeManager::instance()->getIcon(u"view-refresh"_qs));
 
@@ -375,27 +375,27 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     });
 
 #ifdef Q_OS_MACOS
-    // Make sure the Window is visible if we don't have a tray icon
-    if (initialState == Minimized)
-    {
-        showMinimized();
-    }
-    else
+    if (initialState == WindowState::Normal)
     {
         show();
         activateWindow();
         raise();
     }
+    else
+    {
+        // Make sure the Window is visible if we don't have a tray icon
+        showMinimized();
+    }
 #else
     if (app->desktopIntegration()->isActive())
     {
-        if ((initialState != Minimized) && !m_uiLocked)
+        if ((initialState == WindowState::Normal) && !m_uiLocked)
         {
             show();
             activateWindow();
             raise();
         }
-        else if (initialState == Minimized)
+        else if (initialState == WindowState::Minimized)
         {
             showMinimized();
             if (pref->minimizeToTray())
@@ -412,7 +412,7 @@ MainWindow::MainWindow(IGUIApplication *app, const State initialState)
     else
     {
         // Make sure the Window is visible if we don't have a tray icon
-        if (initialState == Minimized)
+        if (initialState != WindowState::Normal)
         {
             showMinimized();
         }
@@ -1135,7 +1135,12 @@ void MainWindow::closeEvent(QCloseEvent *e)
     }
 #endif // Q_OS_MACOS
 
-    if (pref->confirmOnExit() && BitTorrent::Session::instance()->hasActiveTorrents())
+    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const bool hasActiveTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](BitTorrent::Torrent *torrent)
+    {
+        return torrent->isActive();
+    });
+    if (pref->confirmOnExit() && hasActiveTorrents)
     {
         if (e->spontaneous() || m_forceExit)
         {
@@ -1909,8 +1914,17 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
 
 void MainWindow::updatePowerManagementState()
 {
-    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && BitTorrent::Session::instance()->hasUnfinishedTorrents())
-                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && BitTorrent::Session::instance()->hasRunningSeed());
+    const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
+    const bool hasUnfinishedTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
+    {
+        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
+    });
+    const bool hasRunningSeed = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
+    {
+        return (torrent->isSeed() && !torrent->isPaused());
+    });
+    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && hasUnfinishedTorrents)
+                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && hasRunningSeed);
     m_pwr->setActivityState(inhibitSuspend);
 }
 

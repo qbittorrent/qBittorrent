@@ -142,7 +142,7 @@ Path Path::rootItem() const
 
 #ifdef Q_OS_WIN
     // should be `c:/` instead of `c:`
-    if (m_pathStr.at(slashIndex - 1) == u':')
+    if ((slashIndex == 2) && hasDriveLetter(m_pathStr))
         return createUnchecked(m_pathStr.left(slashIndex + 1));
 #endif
     return createUnchecked(m_pathStr.left(slashIndex));

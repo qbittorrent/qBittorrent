@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,6 +36,7 @@
 #include "base/logger.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
+#include "windowstate.h"
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -74,13 +76,7 @@ class MainWindow final : public QMainWindow, public GUIApplicationComponent
     Q_DISABLE_COPY_MOVE(MainWindow)
 
 public:
-    enum State
-    {
-        Normal,
-        Minimized
-    };
-
-    explicit MainWindow(IGUIApplication *app, State initialState = Normal);
+    explicit MainWindow(IGUIApplication *app, WindowState initialState = WindowState::Normal);
     ~MainWindow() override;
 
     QWidget *currentTabWidget() const;

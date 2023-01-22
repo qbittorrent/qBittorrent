@@ -403,9 +403,6 @@ namespace BitTorrent
         virtual Torrent *findTorrent(const InfoHash &infoHash) const = 0;
         virtual QVector<Torrent *> torrents() const = 0;
         virtual qsizetype torrentsCount() const = 0;
-        virtual bool hasActiveTorrents() const = 0;
-        virtual bool hasUnfinishedTorrents() const = 0;
-        virtual bool hasRunningSeed() const = 0;
         virtual const SessionStatus &status() const = 0;
         virtual const CacheStatus &cacheStatus() const = 0;
         virtual bool isListening() const = 0;

@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
- * Copyright (C) 2015, 2019  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez
  *
  * This program is free software; you can redistribute it and/or
@@ -31,6 +31,7 @@
 #pragma once
 
 #include "base/interfaces/iapplication.h"
+#include "gui/windowstate.h"
 
 class DesktopIntegration;
 class MainWindow;
@@ -42,6 +43,9 @@ public:
 
     virtual DesktopIntegration *desktopIntegration() = 0;
     virtual MainWindow *mainWindow() = 0;
+
+    virtual WindowState startUpWindowState() const = 0;
+    virtual void setStartUpWindowState(WindowState windowState) = 0;
 
     virtual bool isTorrentAddedNotificationsEnabled() const = 0;
     virtual void setTorrentAddedNotificationsEnabled(bool value) = 0;

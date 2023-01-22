@@ -34,6 +34,7 @@
 #include <QHash>
 #include <QIcon>
 #include <QObject>
+#include <QPixmap>
 #include <QString>
 
 #include "base/pathfwd.h"
@@ -58,9 +59,9 @@ public:
     static void freeInstance();
     static UIThemeManager *instance();
 
-    Path getIconPath(const QString &iconId) const;
     QIcon getIcon(const QString &iconId, const QString &fallback = {}) const;
     QIcon getFlagIcon(const QString &countryIsoCode) const;
+    QPixmap getScaledPixmap(const QString &iconId, int height) const;
 
     QColor getColor(const QString &id, const QColor &defaultColor) const;
 
@@ -70,13 +71,16 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    Path getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    Path getIconPathFromResources(const QString &iconId) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
     void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
     const bool m_useCustomTheme;
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    const bool m_useSystemIcons;
+#endif
     std::unique_ptr<UIThemeSource> m_themeSource;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;

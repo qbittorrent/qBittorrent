@@ -145,7 +145,6 @@ private:
     // General options
     void initializeLanguageCombo();
     QString getLocale() const;
-    bool startMinimized() const;
     bool isSplashScreenDisabled() const;
 #ifdef Q_OS_WIN
     bool WinStartup() const;

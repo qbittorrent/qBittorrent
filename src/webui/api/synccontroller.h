@@ -46,21 +46,18 @@ public:
     using APIController::APIController;
 
     explicit SyncController(IApplication *app, QObject *parent = nullptr);
-    ~SyncController() override;
 
 private slots:
     void maindataAction();
     void torrentPeersAction();
-    void freeDiskSpaceSizeUpdated(qint64 freeSpaceSize);
 
 private:
     qint64 getFreeDiskSpace();
-    void invokeChecker() const;
+    void invokeChecker();
 
     qint64 m_freeDiskSpace = 0;
-    FreeDiskSpaceChecker *m_freeDiskSpaceChecker = nullptr;
-    QThread *m_freeDiskSpaceThread = nullptr;
     QElapsedTimer m_freeDiskSpaceElapsedTimer;
+    bool m_isFreeDiskSpaceCheckerRunning = false;
 
     QVariantMap m_lastMaindataResponse;
     QVariantMap m_lastAcceptedMaindataResponse;

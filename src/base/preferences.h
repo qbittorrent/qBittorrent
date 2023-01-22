@@ -121,8 +121,6 @@ public:
     void setStatusbarDisplayed(bool displayed);
     bool isToolbarDisplayed() const;
     void setToolbarDisplayed(bool displayed);
-    bool startMinimized() const;
-    void setStartMinimized(bool b);
     bool isSplashScreenDisabled() const;
     void setSplashScreenDisabled(bool b);
     bool preventFromSuspendWhenDownloading() const;
@@ -199,6 +197,8 @@ public:
     void setWebUIBanDuration(std::chrono::seconds duration);
     int getWebUISessionTimeout() const;
     void setWebUISessionTimeout(int timeout);
+    QString getWebAPISessionCookieName() const;
+    void setWebAPISessionCookieName(const QString &cookieName);
 
     // WebUI security
     bool isWebUiClickjackingProtectionEnabled() const;
@@ -281,6 +281,10 @@ public:
     void resolvePeerCountries(bool resolve);
     bool resolvePeerHostNames() const;
     void resolvePeerHostNames(bool resolve);
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    bool useSystemIcons() const;
+    void useSystemIcons(bool enabled);
+#endif
     bool isRecursiveDownloadEnabled() const;
     void setRecursiveDownloadEnabled(bool enable);
 #ifdef Q_OS_WIN
