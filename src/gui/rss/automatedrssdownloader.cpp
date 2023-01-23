@@ -214,15 +214,36 @@ void AutomatedRssDownloader::loadFeedList()
 QTreeWidgetItem * AutomatedRssDownloader::createFeedTreeItem(const RSS::Item *rssItem, QTreeWidgetItem *parentItem)
 {
     auto *item = new QTreeWidgetItem;
-    item->setData(0, Qt::DisplayRole, rssItem->name());
     item->setData(0, Qt::UserRole, QVariant::fromValue(rssItem));
     item->setFlags(item->flags() | Qt::ItemIsUserCheckable | Qt::ItemIsAutoTristate);
     item->setCheckState(0, Qt::Unchecked); // Init state for folders as we don't manually set them later
 
-    if (!parentItem)
-        m_ui->listFeeds->addTopLevelItem(item);
+    QIcon icon;
+    if(auto feed = qobject_cast<const RSS::Feed *>(rssItem))
+    {
+        const QPixmap pixmap{feed->iconPath().data()};
+        if(!pixmap.isNull())
+            icon = {pixmap};
+        else
+            icon = UIThemeManager::instance()->getIcon(u"application-rss"_qs);
+    }
     else
+    {
+        icon = UIThemeManager::instance()->getIcon(u"directory"_qs);
+    }
+    item->setData(0, Qt::DecorationRole, icon);
+
+    if(!parentItem)
+    {
+        item->setData(0, Qt::DisplayRole, u"/"_qs);
+        m_ui->listFeeds->addTopLevelItem(item);
+        item->setExpanded(true);
+    }
+    else
+    {
+        item->setData(0, Qt::DisplayRole, rssItem->name());
         parentItem->addChild(item);
+    }
     return item;
 }
 
