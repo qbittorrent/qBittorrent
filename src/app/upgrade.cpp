@@ -360,6 +360,9 @@ namespace
             case 5:
                 settingsStorage->storeValue(key, Net::ProxyType::SOCKS4);
                 break;
+            case 6:
+                settingsStorage->storeValue(key, Net::ProxyType::I2P);
+                break;
             default:
                 LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
                            .arg(key, QString::number(number)), Log::WARNING);

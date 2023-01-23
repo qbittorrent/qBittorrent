@@ -124,7 +124,7 @@ bool ProxyConfigurationManager::isAuthenticationRequired() const
 void ProxyConfigurationManager::configureProxy()
 {
     // Define environment variables for urllib in search engine plugins
-    QString proxyStrHTTP, proxyStrSOCK;
+    QString proxyStrHTTP, proxyStrSOCK, proxyStrI2P;
     if (!isProxyOnlyForTorrents())
     {
         switch (m_config.type)
@@ -143,6 +143,9 @@ void ProxyConfigurationManager::configureProxy()
             proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(m_config.username
                 , m_config.password, m_config.ip, QString::number(m_config.port));
             break;
+        case ProxyType::I2P:
+            proxyStrI2P = u"%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
+            break;
         default:
             qDebug("Disabling HTTP communications proxy");
         }
@@ -155,4 +158,5 @@ void ProxyConfigurationManager::configureProxy()
     qputenv("http_proxy", proxyStrHTTP.toLocal8Bit());
     qputenv("https_proxy", proxyStrHTTP.toLocal8Bit());
     qputenv("sock_proxy", proxyStrSOCK.toLocal8Bit());
+    qputenv("i2p_proxy", proxyStrI2P.toLocal8Bit());
 }

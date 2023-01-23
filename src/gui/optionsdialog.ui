@@ -1811,6 +1811,11 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                      <string>HTTP</string>
                     </property>
                    </item>
+                   <item>
+                    <property name="text">
+                     <string>I2P</string>
+                    </property>
+                   </item>
                   </widget>
                  </item>
                  <item>

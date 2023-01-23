@@ -1659,12 +1659,15 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     case Net::ProxyType::SOCKS5_PW:
         settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
         break;
+    case Net::ProxyType::I2P:
+        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::i2p_proxy);
+        break;
     case Net::ProxyType::None:
     default:
         settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
     }
 
-    if (proxyConfig.type != Net::ProxyType::None)
+    if (proxyConfig.type != Net::ProxyType::None || Net::ProxyType::I2P)
     {
         settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
         settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
@@ -1678,7 +1681,12 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
         settingsPack.set_bool(lt::settings_pack::proxy_hostnames, isProxyHostnameLookupEnabled());
     }
-
+    if (proxyConfig.type == Net::ProxyType::I2P)
+    {
+        settingsPack.set_str(lt::settings_pack::i2p_hostname, proxyConfig.ip.toStdString());
+        settingsPack.set_int(lt::settings_pack::i2p_port, proxyConfig.port);
+        
+    }
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
     settingsPack.set_bool(lt::settings_pack::announce_to_all_tiers, announceToAllTiers());
 

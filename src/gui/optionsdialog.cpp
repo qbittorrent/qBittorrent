@@ -789,7 +789,9 @@ void OptionsDialog::loadConnectionTabOptions()
     case ProxyType::HTTP:
         m_ui->comboProxyType->setCurrentIndex(3);
         break;
-
+    case ProxyType::I2P:
+        m_ui->comboProxyType->setCurrentIndex(4);
+        break;
     default:
         m_ui->comboProxyType->setCurrentIndex(0);
     }
@@ -1330,6 +1332,8 @@ Net::ProxyType OptionsDialog::getProxyType() const
         if (isProxyAuthEnabled())
             return Net::ProxyType::HTTP_PW;
         return Net::ProxyType::HTTP;
+    case 4:
+        return Net::ProxyType::I2P;
     default:
         return Net::ProxyType::None;
     }

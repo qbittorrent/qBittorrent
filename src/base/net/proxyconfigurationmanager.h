@@ -44,7 +44,8 @@ namespace Net
         SOCKS5 = 2,
         HTTP_PW = 3,
         SOCKS5_PW = 4,
-        SOCKS4 = 5
+        SOCKS4 = 5,
+        I2P = 6
     };
     Q_ENUM_NS(ProxyType)
 
