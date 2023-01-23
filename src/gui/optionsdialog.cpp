@@ -63,6 +63,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
