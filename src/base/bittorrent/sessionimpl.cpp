@@ -1667,7 +1667,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
     }
 
-    if (proxyConfig.type != Net::ProxyType::None || Net::ProxyType::I2P)
+    if (proxyConfig.type != Net::ProxyType::None || proxyConfig.type != Net::ProxyType::I2P)
     {
         settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
         settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
