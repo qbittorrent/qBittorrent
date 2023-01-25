@@ -58,7 +58,7 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
 {
     m_config.type = m_storeProxyType.get(ProxyType::None);
-    if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
+    if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::I2P))
         m_config.type = ProxyType::None;
     m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_qs);
     m_config.port = m_storeProxyPort.get(8080);
