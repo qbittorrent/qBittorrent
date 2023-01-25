@@ -148,7 +148,7 @@ private slots:
 private:
     struct AddTorrentParams
     {
-        QString torrentSource;
+        QStringList torrentSources;
         BitTorrent::AddTorrentParams torrentParams;
         std::optional<bool> skipTorrentDialog;
     };

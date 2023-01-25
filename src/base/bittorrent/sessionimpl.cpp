@@ -322,7 +322,7 @@ struct BitTorrent::SessionImpl::ResumeSessionContext final : public QObject
 
     ResumeDataStorage *startupStorage = nullptr;
     ResumeDataStorageType currentStorageType = ResumeDataStorageType::Legacy;
-    QVector<LoadedResumeData> loadedResumeData;
+    QList<LoadedResumeData> loadedResumeData;
     int processingResumeDataCount = 0;
     int64_t totalResumeDataCount = 0;
     int64_t finishedResumeDataCount = 0;
@@ -2190,30 +2190,6 @@ Torrent *SessionImpl::findTorrent(const InfoHash &infoHash) const
     return m_torrents.value(altID);
 }
 
-bool SessionImpl::hasActiveTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](TorrentImpl *torrent)
-    {
-        return TorrentFilter::ActiveTorrent.match(torrent);
-    });
-}
-
-bool SessionImpl::hasUnfinishedTorrents() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
-    });
-}
-
-bool SessionImpl::hasRunningSeed() const
-{
-    return std::any_of(m_torrents.begin(), m_torrents.end(), [](const TorrentImpl *torrent)
-    {
-        return (torrent->isSeed() && !torrent->isPaused());
-    });
-}
-
 void SessionImpl::banIP(const QString &ip)
 {
     QStringList bannedIPs = m_bannedIPs;
@@ -2810,6 +2786,19 @@ bool SessionImpl::downloadMetadata(const MagnetUri &magnetUri)
         return false;
 
     lt::add_torrent_params p = magnetUri.addTorrentParams();
+
+    if (isAddTrackersEnabled())
+    {
+        // Use "additional trackers" when metadata retrieving (this can help when the DHT nodes are few)
+        p.trackers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.reserve(p.trackers.size() + static_cast<std::size_t>(m_additionalTrackerList.size()));
+        p.tracker_tiers.resize(p.trackers.size(), 0);
+        for (const TrackerEntry &trackerEntry : asConst(m_additionalTrackerList))
+        {
+            p.trackers.push_back(trackerEntry.url.toStdString());
+            p.tracker_tiers.push_back(trackerEntry.tier);
+        }
+    }
 
     // Flags
     // Preallocation mode
@@ -4638,7 +4627,11 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
         }
     }
 
-    if (!hasUnfinishedTorrents())
+    const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
+    {
+        return !(torrent->isSeed() || torrent->isPaused() || torrent->isErrored());
+    });
+    if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();
 }
 

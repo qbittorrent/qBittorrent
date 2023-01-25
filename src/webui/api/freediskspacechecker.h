@@ -30,13 +30,13 @@
 
 #include <QObject>
 
-class FreeDiskSpaceChecker : public QObject
+class FreeDiskSpaceChecker final : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(FreeDiskSpaceChecker)
 
 public:
-    FreeDiskSpaceChecker() = default;
+    using QObject::QObject;
 
 public slots:
     void check();

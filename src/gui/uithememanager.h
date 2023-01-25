@@ -70,13 +70,16 @@ public:
 
 private:
     UIThemeManager(); // singleton class
-    Path getIconPathFromResources(const QString &iconId, const QString &fallback = {}) const;
+    Path getIconPathFromResources(const QString &iconId) const;
     void loadColorsFromJSONConfig();
     void applyPalette() const;
     void applyStyleSheet() const;
 
     static UIThemeManager *m_instance;
     const bool m_useCustomTheme;
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    const bool m_useSystemIcons;
+#endif
     std::unique_ptr<UIThemeSource> m_themeSource;
     QHash<QString, QColor> m_colors;
     mutable QHash<QString, QIcon> m_iconCache;

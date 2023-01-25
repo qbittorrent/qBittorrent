@@ -299,6 +299,8 @@ void AppController::preferencesAction()
 
     // Advanced settings
     // qBitorrent preferences
+    // Resume data storage type
+    data[u"resume_data_storage_type"_qs] = Utils::String::fromEnum(session->resumeDataStorageType());
     // Physical memory (RAM) usage limit
     data[u"memory_working_set_limit"_qs] = app()->memoryWorkingSetLimit();
     // Current network interface
@@ -776,6 +778,9 @@ void AppController::setPreferencesAction()
 
     // Advanced settings
     // qBittorrent preferences
+    // Resume data storage type
+    if (hasKey(u"resume_data_storage_type"_qs))
+        session->setResumeDataStorageType(Utils::String::toEnum(it.value().toString(), BitTorrent::ResumeDataStorageType::Legacy));
     // Physical memory (RAM) usage limit
     if (hasKey(u"memory_working_set_limit"_qs))
         app()->setMemoryWorkingSetLimit(it.value().toInt());

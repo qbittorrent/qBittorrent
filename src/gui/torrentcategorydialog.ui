@@ -29,13 +29,10 @@
    </item>
    <item>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="1" column="1">
-      <widget class="FileSystemPathComboEdit" name="comboSavePath" native="true">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelCategoryName">
+       <property name="text">
+        <string>Name:</string>
        </property>
       </widget>
      </item>
@@ -49,10 +46,13 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelCategoryName">
-       <property name="text">
-        <string>Name:</string>
+     <item row="1" column="1">
+      <widget class="FileSystemPathComboEdit" name="comboSavePath" native="true">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
       </widget>
      </item>
@@ -173,6 +173,12 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>textCategoryName</tabstop>
+  <tabstop>comboSavePath</tabstop>
+  <tabstop>comboUseDownloadPath</tabstop>
+  <tabstop>comboDownloadPath</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

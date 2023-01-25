@@ -666,62 +666,7 @@
         <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <label for="locale_select">QBT_TR(User Interface Language:)QBT_TR[CONTEXT=OptionsDialog]</label>
         <select id="locale_select">
-            <option value="ar_AE">عربي</option>
-            <option value="az@latin">Azərbaycan dili</option>
-            <option value="be_BY">Беларуская</option>
-            <option value="bg_BG">Български</option>
-            <option value="ca_ES">Català</option>
-            <option value="cs_CZ">Čeština</option>
-            <option value="da_DK">Dansk</option>
-            <option value="de_DE">Deutsch</option>
-            <option value="el_GR">Ελληνικά</option>
-            <option value="en">English</option>
-            <option value="en_AU">English (Australia)</option>
-            <option value="en_GB">English (United Kingdom)</option>
-            <option value="eo_EO">Esperanto</option>
-            <option value="es_ES">Español</option>
-            <option value="et">Eesti, eesti keel</option>
-            <option value="eu_ES">Euskara</option>
-            <option value="fa">فارسی</option>
-            <option value="fi_FI">Suomi</option>
-            <option value="fr_FR">Français</option>
-            <option value="gl_ES">Galego</option>
-            <option value="he_IL">עברית</option>
-            <option value="hi_IN">हिन्दी, हिंदी</option>
-            <option value="hr_HR">Hrvatski</option>
-            <option value="hu_HU">Magyar</option>
-            <option value="hy_AM">Հայերեն</option>
-            <option value="id">Bahasa Indonesia</option>
-            <option value="is">Íslenska</option>
-            <option value="it_IT">Italiano</option>
-            <option value="ja_JP">日本語</option>
-            <option value="ka_GE">ქართული</option>
-            <option value="ko_KR">한국어</option>
-            <option value="ltg">Latgalīšu volūda</option>
-            <option value="lt_LT">Lietuvių</option>
-            <option value="lv_LV">Latviešu valoda</option>
-            <option value="mn_MN">Монгол хэл</option>
-            <option value="ms_MY">بهاس ملايو</option>
-            <option value="nb_NO">Norsk</option>
-            <option value="nl_NL">Nederlands</option>
-            <option value="oc">lenga d'òc</option>
-            <option value="pl_PL">Polski</option>
-            <option value="pt_BR">Português brasileiro</option>
-            <option value="pt_PT">Português</option>
-            <option value="ro_RO">Română</option>
-            <option value="ru_RU">Русский</option>
-            <option value="sk_SK">Slovenčina</option>
-            <option value="sl_SI">Slovenščina</option>
-            <option value="sr_CS">Српски</option>
-            <option value="sv_SE">Svenska</option>
-            <option value="th">ไทย</option>
-            <option value="tr_TR">Türkçe</option>
-            <option value="uk_UA">Українська</option>
-            <option value="uz@Latn">أۇزبېك</option>
-            <option value="vi_VN">Tiếng Việt</option>
-            <option value="zh">简体中文</option>
-            <option value="zh_HK">香港正體字</option>
-            <option value="zh_TW">正體中文</option>
+            ${LANGUAGE_OPTIONS}
         </select>
     </fieldset>
 
@@ -934,6 +879,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
     <fieldset class="settings">
         <legend>QBT_TR(qBittorrent Section)QBT_TR[CONTEXT=OptionsDialog]&nbsp;(<a href="https://github.com/qbittorrent/qBittorrent/wiki/Explanation-of-Options-in-qBittorrent#Advanced" target="_blank">QBT_TR(Open documentation)QBT_TR[CONTEXT=HttpServer]</a>)</legend>
         <table>
+            <tr>
+                <td>
+                    <label for="resumeDataStorageType">QBT_TR(Resume data storage type (requires restart):)QBT_TR[CONTEXT=OptionsDialog]</label>
+                </td>
+                <td>
+                    <select id="resumeDataStorageType" style="width: 15em;">
+                        <option value="Legacy">QBT_TR(Fastresume files)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="SQLite">QBT_TR(SQLite database (experimental))QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td>
                     <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
@@ -1408,6 +1364,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 updateWebUICustomHTTPHeadersSettings: updateWebUICustomHTTPHeadersSettings,
                 updateWebUIReverseProxySettings: updateWebUIReverseProxySettings,
                 updateDynDnsSettings: updateDynDnsSettings,
+                updateWebuiLocaleSelect: updateWebuiLocaleSelect,
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
             };
@@ -1737,6 +1694,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             }).send();
         };
 
+        const updateWebuiLocaleSelect = (selected) => {
+            let languages = [];
+            for (let i = 0; i < $('locale_select').options.length; i++)
+                languages.push($('locale_select').options[i].value);
+
+            if (!languages.includes(selected)) {
+                const lang = selected.slice(0, selected.indexOf('_'));
+                selected = languages.includes(lang) ? lang : 'en';
+            }
+            $('locale_select').setProperty('value', selected);
+        };
+
         const loadPreferences = function() {
             const url = 'api/v2/app/preferences';
             new Request.JSON({
@@ -2013,7 +1982,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                         // Web UI tab
                         // Language
-                        $('locale_select').setProperty('value', ((pref.locale === "en_US") ? "en" : pref.locale));
+                        updateWebuiLocaleSelect(pref.locale);
                         $('performanceWarning').setProperty('checked', pref.performance_warning);
 
                         // HTTP Server
@@ -2068,6 +2037,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
                         // Advanced settings
                         // qBittorrent section
+                        $('resumeDataStorageType').setProperty('value', pref.resume_data_storage_type);
                         $('memoryWorkingSetLimit').setProperty('value', pref.memory_working_set_limit);
                         updateNetworkInterfaces(pref.current_network_interface);
                         updateInterfaceAddresses(pref.current_network_interface, pref.current_interface_address);
@@ -2495,6 +2465,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
 
             // Update advanced settings
             // qBittorrent section
+            settings.set('resume_data_storage_type', $('resumeDataStorageType').getProperty('value'));
             settings.set('memory_working_set_limit', $('memoryWorkingSetLimit').getProperty('value'));
             settings.set('current_network_interface', $('networkInterface').getProperty('value'));
             settings.set('current_interface_address', $('optionalIPAddressToBind').getProperty('value'));

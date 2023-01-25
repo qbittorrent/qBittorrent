@@ -69,8 +69,8 @@ ExecutionLogWidget::ExecutionLogWidget(const Log::MsgTypes types, QWidget *paren
     m_ui->tabBan->layout()->addWidget(peerView);
 
 #ifndef Q_OS_MACOS
-    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon(u"help-contents"_qs));
-    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon(u"ip-blocked"_qs));
+    m_ui->tabConsole->setTabIcon(0, UIThemeManager::instance()->getIcon(u"help-contents"_qs, u"view-calendar-journal"_qs));
+    m_ui->tabConsole->setTabIcon(1, UIThemeManager::instance()->getIcon(u"ip-blocked"_qs, u"view-filter"_qs));
 #endif
 }
 

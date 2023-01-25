@@ -52,8 +52,8 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
-#include "base/unicodestrings.h"
 #include "base/utils/fs.h"
+#include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
 #include "base/utils/random.h"
@@ -87,81 +87,6 @@ namespace
         for (int i = 0; i < 7; ++i)
             ret.append(locale.toString(date.addDays(i), u"dddd"_qs));
         return ret;
-    }
-
-    QString languageToLocalizedString(const QLocale &locale)
-    {
-        switch (locale.language())
-        {
-        case QLocale::Arabic: return C_LOCALE_ARABIC;
-        case QLocale::Armenian: return C_LOCALE_ARMENIAN;
-        case QLocale::Azerbaijani: return C_LOCALE_AZERBAIJANI;
-        case QLocale::Basque: return C_LOCALE_BASQUE;
-        case QLocale::Bulgarian: return C_LOCALE_BULGARIAN;
-        case QLocale::Byelorussian: return C_LOCALE_BYELORUSSIAN;
-        case QLocale::Catalan: return C_LOCALE_CATALAN;
-        case QLocale::Chinese:
-            switch (locale.country())
-            {
-            case QLocale::China: return C_LOCALE_CHINESE_SIMPLIFIED;
-            case QLocale::HongKong: return C_LOCALE_CHINESE_TRADITIONAL_HK;
-            default: return C_LOCALE_CHINESE_TRADITIONAL_TW;
-            }
-        case QLocale::Croatian: return C_LOCALE_CROATIAN;
-        case QLocale::Czech: return C_LOCALE_CZECH;
-        case QLocale::Danish: return C_LOCALE_DANISH;
-        case QLocale::Dutch: return C_LOCALE_DUTCH;
-        case QLocale::English:
-            switch (locale.country())
-            {
-            case QLocale::Australia: return C_LOCALE_ENGLISH_AUSTRALIA;
-            case QLocale::UnitedKingdom: return C_LOCALE_ENGLISH_UNITEDKINGDOM;
-            default: return C_LOCALE_ENGLISH;
-            }
-        case QLocale::Estonian: return C_LOCALE_ESTONIAN;
-        case QLocale::Finnish: return C_LOCALE_FINNISH;
-        case QLocale::French: return C_LOCALE_FRENCH;
-        case QLocale::Galician: return C_LOCALE_GALICIAN;
-        case QLocale::Georgian: return C_LOCALE_GEORGIAN;
-        case QLocale::German: return C_LOCALE_GERMAN;
-        case QLocale::Greek: return C_LOCALE_GREEK;
-        case QLocale::Hebrew: return C_LOCALE_HEBREW;
-        case QLocale::Hindi: return C_LOCALE_HINDI;
-        case QLocale::Hungarian: return C_LOCALE_HUNGARIAN;
-        case QLocale::Icelandic: return C_LOCALE_ICELANDIC;
-        case QLocale::Indonesian: return C_LOCALE_INDONESIAN;
-        case QLocale::Italian: return C_LOCALE_ITALIAN;
-        case QLocale::Japanese: return C_LOCALE_JAPANESE;
-        case QLocale::Korean: return C_LOCALE_KOREAN;
-        case QLocale::Latvian: return C_LOCALE_LATVIAN;
-        case QLocale::Lithuanian: return C_LOCALE_LITHUANIAN;
-        case QLocale::Malay: return C_LOCALE_MALAY;
-        case QLocale::Mongolian: return C_LOCALE_MONGOLIAN;
-        case QLocale::NorwegianBokmal: return C_LOCALE_NORWEGIAN;
-        case QLocale::Occitan: return C_LOCALE_OCCITAN;
-        case QLocale::Persian: return C_LOCALE_PERSIAN;
-        case QLocale::Polish: return C_LOCALE_POLISH;
-        case QLocale::Portuguese:
-            if (locale.country() == QLocale::Brazil)
-                return C_LOCALE_PORTUGUESE_BRAZIL;
-            return C_LOCALE_PORTUGUESE;
-        case QLocale::Romanian: return C_LOCALE_ROMANIAN;
-        case QLocale::Russian: return C_LOCALE_RUSSIAN;
-        case QLocale::Serbian: return C_LOCALE_SERBIAN;
-        case QLocale::Slovak: return C_LOCALE_SLOVAK;
-        case QLocale::Slovenian: return C_LOCALE_SLOVENIAN;
-        case QLocale::Spanish: return C_LOCALE_SPANISH;
-        case QLocale::Swedish: return C_LOCALE_SWEDISH;
-        case QLocale::Thai: return C_LOCALE_THAI;
-        case QLocale::Turkish: return C_LOCALE_TURKISH;
-        case QLocale::Ukrainian: return C_LOCALE_UKRAINIAN;
-        case QLocale::Uzbek: return C_LOCALE_UZBEK;
-        case QLocale::Vietnamese: return C_LOCALE_VIETNAMESE;
-        default:
-            const QString lang = QLocale::languageToString(locale.language());
-            qWarning() << "Unrecognized language name: " << lang;
-            return lang;
-        }
     }
 
     class WheelEventEater final : public QObject
@@ -203,17 +128,17 @@ OptionsDialog::OptionsDialog(IGUIApplication *app, QWidget *parent)
 
     // Main icons
     m_ui->tabSelection->item(TAB_UI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-desktop"_qs));
-    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs));
-    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs));
-    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs));
-    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs));
-    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs));
+    m_ui->tabSelection->item(TAB_BITTORRENT)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-bittorrent"_qs, u"preferences-system-network"_qs));
+    m_ui->tabSelection->item(TAB_CONNECTION)->setIcon(UIThemeManager::instance()->getIcon(u"network-connect"_qs, u"network-wired"_qs));
+    m_ui->tabSelection->item(TAB_DOWNLOADS)->setIcon(UIThemeManager::instance()->getIcon(u"download"_qs, u"folder-download"_qs));
+    m_ui->tabSelection->item(TAB_SPEED)->setIcon(UIThemeManager::instance()->getIcon(u"speedometer"_qs, u"chronometer"_qs));
+    m_ui->tabSelection->item(TAB_RSS)->setIcon(UIThemeManager::instance()->getIcon(u"application-rss"_qs, u"application-rss+xml"_qs));
 #ifdef DISABLE_WEBUI
     m_ui->tabSelection->item(TAB_WEBUI)->setHidden(true);
 #else
-    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs));
+    m_ui->tabSelection->item(TAB_WEBUI)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-webui"_qs, u"network-server"_qs));
 #endif
-    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs));
+    m_ui->tabSelection->item(TAB_ADVANCED)->setIcon(UIThemeManager::instance()->getIcon(u"preferences-advanced"_qs, u"preferences-other"_qs));
 
     // set uniform size for all icons
     int maxHeight = -1;
@@ -288,6 +213,11 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->customThemeFilePath->setMode(FileSystemPathEdit::Mode::FileOpen);
     m_ui->customThemeFilePath->setDialogCaption(tr("Select qBittorrent UI Theme file"));
     m_ui->customThemeFilePath->setFileNameFilter(tr("qBittorrent UI Theme file (*.qbtheme config.json)"));
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    m_ui->checkUseSystemIcon->setChecked(pref->useSystemIcons());
+#else
+    m_ui->checkUseSystemIcon->setVisible(false);
+#endif
 
     m_ui->confirmDeletion->setChecked(pref->confirmTorrentDeletion());
     m_ui->checkAltRowColors->setChecked(pref->useAlternatingRowColors());
@@ -382,6 +312,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     connect(m_ui->comboI18n, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    connect(m_ui->checkUseSystemIcon, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+#endif
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
 
@@ -451,6 +384,9 @@ void OptionsDialog::saveBehaviorTabOptions() const
     }
     pref->setLocale(locale);
 
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS))
+    pref->useSystemIcons(m_ui->checkUseSystemIcon->isChecked());
+#endif
     pref->setUseCustomUITheme(m_ui->checkUseCustomTheme->isChecked());
     pref->setCustomUIThemePath(m_ui->customThemeFilePath->selectedPath());
 
@@ -1315,25 +1251,8 @@ void OptionsDialog::initializeLanguageCombo()
     const QStringList langFiles = langDir.entryList(QStringList(u"qbittorrent_*.qm"_qs), QDir::Files);
     for (const QString &langFile : langFiles)
     {
-        QString localeStr = langFile.mid(12); // remove "qbittorrent_"
-        localeStr.chop(3); // Remove ".qm"
-        QString languageName;
-        if (localeStr.startsWith(u"eo", Qt::CaseInsensitive))
-        {
-            // QLocale doesn't work with that locale. Esperanto isn't a "real" language.
-            languageName = C_LOCALE_ESPERANTO;
-        }
-        else if (localeStr.startsWith(u"ltg", Qt::CaseInsensitive))
-        {
-            // QLocale doesn't work with that locale.
-            languageName = C_LOCALE_LATGALIAN;
-        }
-        else
-        {
-            QLocale locale(localeStr);
-            languageName = languageToLocalizedString(locale);
-        }
-        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ languageName, localeStr);
+        const QString localeStr = langFile.section(u"_"_qs, 1, -1).section(u"."_qs, 0, 0); // remove "qbittorrent_" and ".qm"
+        m_ui->comboI18n->addItem(/*QIcon(":/icons/flags/"+country+".svg"), */ Utils::Misc::languageToLocalizedString(localeStr), localeStr);
         qDebug() << "Supported locale:" << localeStr;
     }
 }
