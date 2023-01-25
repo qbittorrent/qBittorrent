@@ -35,6 +35,8 @@ Section $(inst_qbt_req) ;"qBittorrent (required)"
   SetOutPath "$INSTDIR\translations"
   ; Put files there
   File /r "translations\qt*.qm"
+  ; Restore output path because it affects `CreateShortCut`. It affects the "Start in" field.
+  SetOutPath $INSTDIR
 
   ; Write the installation path into the registry
   WriteRegStr HKLM "Software\qBittorrent" "InstallLocation" "$INSTDIR"
