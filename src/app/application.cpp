@@ -815,7 +815,6 @@ try
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-        // we must not delete menu while it is used by DesktopIntegration
 #ifndef Q_OS_MACOS
         const WindowState windowState = !m_startupProgressDialog ? WindowState::Hidden
                 : (m_startupProgressDialog->windowState() & Qt::WindowMinimized) ? WindowState::Minimized
