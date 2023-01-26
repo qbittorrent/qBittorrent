@@ -88,6 +88,7 @@
 #include "base/version.h"
 #include "applicationinstancemanager.h"
 #include "filelogger.h"
+#include "upgrade.h"
 
 #ifndef DISABLE_GUI
 #include "gui/addnewtorrentdialog.h"
@@ -172,6 +173,18 @@ Application::Application(int &argc, char **argv)
 
     SettingsStorage::initInstance();
     Preferences::initInstance();
+
+    const bool firstTimeUser = !Preferences::instance()->getAcceptedLegal();
+    if (!firstTimeUser)
+    {
+        if (!upgrade())
+            throw RuntimeError(u"Failed migration of old settings"_qs); // Not translatable. Translation isn't configured yet.
+        handleChangedDefaults(DefaultPreferencesMode::Legacy);
+    }
+    else
+    {
+        handleChangedDefaults(DefaultPreferencesMode::Current);
+    }
 
     initializeTranslation();
 
@@ -802,7 +815,6 @@ try
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-        // we must not delete menu while it is used by DesktopIntegration
 #ifndef Q_OS_MACOS
         const WindowState windowState = !m_startupProgressDialog ? WindowState::Hidden
                 : (m_startupProgressDialog->windowState() & Qt::WindowMinimized) ? WindowState::Minimized

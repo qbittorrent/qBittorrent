@@ -156,8 +156,11 @@ WebApplication::WebApplication(IApplication *app, QObject *parent)
     m_sessionCookieName = Preferences::instance()->getWebAPISessionCookieName();
     if (!isValidCookieName(m_sessionCookieName))
     {
-        LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
-               .arg(m_sessionCookieName), Log::WARNING);
+        if (!m_sessionCookieName.isEmpty())
+        {
+            LogMsg(tr("Unacceptable session cookie name is specified: '%1'. Default one is used.")
+                   .arg(m_sessionCookieName), Log::WARNING);
+        }
         m_sessionCookieName = DEFAULT_SESSION_COOKIE_NAME;
     }
 }
