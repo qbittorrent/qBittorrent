@@ -336,6 +336,7 @@
         <file>splash.png</file>
         <file>stalledDL.svg</file>
         <file>stalledUP.svg</file>
+        <file>stopped.svg</file>
         <file>system-log-out.svg</file>
         <file>tags.svg</file>
         <file>task-complete.svg</file>

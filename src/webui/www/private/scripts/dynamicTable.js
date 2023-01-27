@@ -972,7 +972,7 @@ window.qBittorrent.DynamicTable = (function() {
                         break;
                     case "pausedDL":
                         state = "torrent-stop";
-                        img_path = "images/torrent-stop.svg";
+                        img_path = "images/stopped.svg";
                         break;
                     case "pausedUP":
                         state = "checked-completed";
