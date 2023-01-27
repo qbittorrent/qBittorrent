@@ -162,7 +162,7 @@ TransferListModel::TransferListModel(QObject *parent)
     , m_completedIcon {UIThemeManager::instance()->getIcon(u"checked-completed"_qs, u"completed"_qs)}
     , m_downloadingIcon {UIThemeManager::instance()->getIcon(u"downloading"_qs)}
     , m_errorIcon {UIThemeManager::instance()->getIcon(u"error"_qs)}
-    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"torrent-stop"_qs, u"media-playback-pause"_qs)}
+    , m_pausedIcon {UIThemeManager::instance()->getIcon(u"stopped"_qs, u"media-playback-pause"_qs)}
     , m_queuedIcon {UIThemeManager::instance()->getIcon(u"queued"_qs)}
     , m_stalledDLIcon {UIThemeManager::instance()->getIcon(u"stalledDL"_qs)}
     , m_stalledUPIcon {UIThemeManager::instance()->getIcon(u"stalledUP"_qs)}
