@@ -94,6 +94,8 @@ SearchPluginManager::SearchPluginManager()
 
     connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
             , this, &SearchPluginManager::applyProxySettings);
+    connect(Preferences::instance(), &Preferences::changed
+            , this, &SearchPluginManager::applyProxySettings);
     applyProxySettings();
 
     updateNova();
@@ -213,7 +215,8 @@ void SearchPluginManager::installPlugin(const QString &source)
     {
         using namespace Net;
         DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true)
-                , true, this, &SearchPluginManager::pluginDownloadFinished);
+                , Preferences::instance()->useProxyForGeneralPurposes()
+                , this, &SearchPluginManager::pluginDownloadFinished);
     }
     else
     {
@@ -329,7 +332,8 @@ void SearchPluginManager::checkForUpdates()
     // Download version file from update server
     using namespace Net;
     DownloadManager::instance()->download({m_updateUrl + u"versions.txt"}
-            , true, this, &SearchPluginManager::versionInfoDownloadFinished);
+            , Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
 SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &siteUrl, const QString &url)
@@ -391,31 +395,40 @@ void SearchPluginManager::applyProxySettings()
 
     // Define environment variables for urllib in search engine plugins
     QString proxyStrHTTP, proxyStrSOCK;
-    if (!proxyManager->isProxyOnlyForTorrents())
+    if (Preferences::instance()->useProxyForGeneralPurposes())
     {
         switch (proxyConfig.type)
         {
-        case Net::ProxyType::HTTP_PW:
-            proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(proxyConfig.username
-                , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
-            break;
         case Net::ProxyType::HTTP:
-            proxyStrHTTP = u"http://%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            if (proxyConfig.authEnabled)
+            {
+                proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                        , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
+            }
+            else
+            {
+                proxyStrHTTP = u"http://%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            }
             break;
+
         case Net::ProxyType::SOCKS5:
-            proxyStrSOCK = u"%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            if (proxyConfig.authEnabled)
+            {
+                proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                    , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
+            }
+            else
+            {
+                proxyStrSOCK = u"%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            }
             break;
-        case Net::ProxyType::SOCKS5_PW:
-            proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(proxyConfig.username
-                , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
-            break;
+
         default:
             qDebug("Disabling HTTP communications proxy");
         }
 
         qDebug("HTTP communications proxy string: %s"
-               , qUtf8Printable((proxyConfig.type == Net::ProxyType::SOCKS5) || (proxyConfig.type == Net::ProxyType::SOCKS5_PW)
-                            ? proxyStrSOCK : proxyStrHTTP));
+               , qUtf8Printable((proxyConfig.type == Net::ProxyType::SOCKS5) ? proxyStrSOCK : proxyStrHTTP));
     }
 
     qputenv("http_proxy", proxyStrHTTP.toLocal8Bit());

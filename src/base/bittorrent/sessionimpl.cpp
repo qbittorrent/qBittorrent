@@ -1629,37 +1629,40 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
 
     // proxy
-    const auto proxyManager = Net::ProxyConfigurationManager::instance();
-    const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-
-    switch (proxyConfig.type)
+    settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
+    if (Preferences::instance()->useProxyForBT())
     {
-    case Net::ProxyType::HTTP:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
-        break;
-    case Net::ProxyType::HTTP_PW:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
-        break;
-    case Net::ProxyType::SOCKS4:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
-        break;
-    case Net::ProxyType::SOCKS5:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
-        break;
-    case Net::ProxyType::SOCKS5_PW:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
-        break;
-    case Net::ProxyType::None:
-    default:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-    }
+        const auto proxyManager = Net::ProxyConfigurationManager::instance();
+        const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
-    if (proxyConfig.type != Net::ProxyType::None)
-    {
+        switch (proxyConfig.type)
+        {
+        case Net::ProxyType::SOCKS4:
+            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
+            break;
+
+        case Net::ProxyType::HTTP:
+            if (proxyConfig.authEnabled)
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
+            else
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
+            break;
+
+        case Net::ProxyType::SOCKS5:
+            if (proxyConfig.authEnabled)
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
+            else
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
+            break;
+
+        default:
+            break;
+        }
+
         settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
         settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
 
-        if (proxyManager->isAuthenticationRequired())
+        if (proxyConfig.authEnabled)
         {
             settingsPack.set_str(lt::settings_pack::proxy_username, proxyConfig.username.toStdString());
             settingsPack.set_str(lt::settings_pack::proxy_password, proxyConfig.password.toStdString());
@@ -2493,7 +2496,7 @@ bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &para
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
         // Launch downloader
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                , true, this, &SessionImpl::handleDownloadFinished);
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }

@@ -1619,6 +1619,37 @@ void Preferences::setNetworkCookies(const QList<QNetworkCookie> &cookies)
     setValue(u"Network/Cookies"_qs, rawCookies);
 }
 
+bool Preferences::useProxyForBT() const
+{
+    return value<bool>(u"Network/Proxy/Profiles/BitTorrent"_qs);
+}
+
+void Preferences::setUseProxyForBT(const bool value)
+{
+    setValue(u"Network/Proxy/Profiles/BitTorrent"_qs, value);
+}
+
+bool Preferences::useProxyForRSS() const
+{
+    return value<bool>(u"Network/Proxy/Profiles/RSS"_qs);
+}
+
+void Preferences::setUseProxyForRSS(const bool value)
+{
+    setValue(u"Network/Proxy/Profiles/RSS"_qs, value);
+}
+
+bool Preferences::useProxyForGeneralPurposes() const
+{
+    return value<bool>(u"Network/Proxy/Profiles/Misc"_qs);
+}
+
+
+void Preferences::setUseProxyForGeneralPurposes(const bool value)
+{
+    setValue(u"Network/Proxy/Profiles/Misc"_qs, value);
+}
+
 bool Preferences::isSpeedWidgetEnabled() const
 {
     return value(u"SpeedWidget/Enabled"_qs, true);

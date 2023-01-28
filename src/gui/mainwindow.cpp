@@ -1949,7 +1949,8 @@ void MainWindow::installPython()
 #endif
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(installerURL).saveToFile(true)
-            , true, this, &MainWindow::pythonDownloadFinished);
+            , Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &MainWindow::pythonDownloadFinished);
 }
 
 void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)

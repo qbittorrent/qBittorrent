@@ -119,12 +119,14 @@ Net::DownloadManager *Net::DownloadManager::m_instance = nullptr;
 Net::DownloadManager::DownloadManager(QObject *parent)
     : QObject(parent)
     , m_networkCookieJar {new NetworkCookieJar(this)}
+    , m_networkManager {new QNetworkAccessManager(this)}
 {
     m_networkManager->setCookieJar(m_networkCookieJar);
     connect(m_networkManager, &QNetworkAccessManager::sslErrors, this, &Net::DownloadManager::ignoreSslErrors);
 
     connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
             , this, &DownloadManager::applyProxySettings);
+    connect(Preferences::instance(), &Preferences::changed, this, &DownloadManager::applyProxySettings);
     applyProxySettings();
 }
 
@@ -224,10 +226,10 @@ void Net::DownloadManager::applyProxySettings()
 
     m_proxy = QNetworkProxy(QNetworkProxy::NoProxy);
 
-    if (!proxyManager->isProxyOnlyForTorrents() && (proxyConfig.type != ProxyType::None))
+    if (proxyConfig.type != ProxyType::SOCKS4)
     {
         // Proxy enabled
-        if ((proxyConfig.type == ProxyType::SOCKS5) || (proxyConfig.type == ProxyType::SOCKS5_PW))
+        if (proxyConfig.type == ProxyType::SOCKS5)
         {
             qDebug() << Q_FUNC_INFO << "using SOCKS proxy";
             m_proxy.setType(QNetworkProxy::Socks5Proxy);
@@ -242,7 +244,7 @@ void Net::DownloadManager::applyProxySettings()
         m_proxy.setPort(proxyConfig.port);
 
         // Authentication?
-        if (proxyManager->isAuthenticationRequired())
+        if (proxyConfig.authEnabled)
         {
             qDebug("Proxy requires authentication, authenticating...");
             m_proxy.setUser(proxyConfig.username);

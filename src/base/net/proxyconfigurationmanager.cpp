@@ -35,6 +35,7 @@ bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &r
     return (left.type == right.type)
             && (left.ip == right.ip)
             && (left.port == right.port)
+            && (left.authEnabled == right.authEnabled)
             && (left.username == right.username)
             && (left.password == right.password);
 }
@@ -49,19 +50,20 @@ using namespace Net;
 ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
-    : QObject {parent}
-    , m_storeProxyOnlyForTorrents {SETTINGS_KEY(u"OnlyForTorrents"_qs)}
+    : QObject(parent)
     , m_storeProxyType {SETTINGS_KEY(u"Type"_qs)}
     , m_storeProxyIP {SETTINGS_KEY(u"IP"_qs)}
     , m_storeProxyPort {SETTINGS_KEY(u"Port"_qs)}
+    , m_storeProxyAuthEnabled {SETTINGS_KEY(u"AuthEnabled"_qs)}
     , m_storeProxyUsername {SETTINGS_KEY(u"Username"_qs)}
     , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
 {
-    m_config.type = m_storeProxyType.get(ProxyType::None);
-    if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
-        m_config.type = ProxyType::None;
+    m_config.type = m_storeProxyType.get(ProxyType::HTTP);
+    if ((m_config.type < ProxyType::HTTP) || (m_config.type > ProxyType::SOCKS4))
+        m_config.type = ProxyType::HTTP;
     m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_qs);
     m_config.port = m_storeProxyPort.get(8080);
+    m_config.authEnabled = m_storeProxyAuthEnabled;
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
 }
@@ -96,25 +98,10 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
         m_storeProxyType = config.type;
         m_storeProxyIP = config.ip;
         m_storeProxyPort = config.port;
+        m_storeProxyAuthEnabled = config.authEnabled;
         m_storeProxyUsername = config.username;
         m_storeProxyPassword = config.password;
 
         emit proxyConfigurationChanged();
     }
-}
-
-bool ProxyConfigurationManager::isProxyOnlyForTorrents() const
-{
-    return m_storeProxyOnlyForTorrents || (m_config.type == ProxyType::SOCKS4);
-}
-
-void ProxyConfigurationManager::setProxyOnlyForTorrents(const bool onlyForTorrents)
-{
-    m_storeProxyOnlyForTorrents = onlyForTorrents;
-}
-
-bool ProxyConfigurationManager::isAuthenticationRequired() const
-{
-    return m_config.type == ProxyType::SOCKS5_PW
-            || m_config.type == ProxyType::HTTP_PW;
 }

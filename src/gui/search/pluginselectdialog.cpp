@@ -40,6 +40,7 @@
 
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "base/utils/fs.h"
 #include "gui/autoexpandabledialog.h"
 #include "gui/uithememanager.h"
@@ -312,7 +313,7 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
         using namespace Net;
         DownloadManager::instance()->download(
                 DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
-                , true, this, &PluginSelectDialog::iconDownloadFinished);
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version.toString());
 }
