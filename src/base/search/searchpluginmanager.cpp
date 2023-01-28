@@ -42,6 +42,7 @@
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/net/downloadmanager.h"
+#include "base/net/proxyconfigurationmanager.h"
 #include "base/preferences.h"
 #include "base/profile.h"
 #include "base/utils/bytearray.h"
@@ -89,6 +90,10 @@ SearchPluginManager::SearchPluginManager()
 {
     Q_ASSERT(!m_instance); // only one instance is allowed
     m_instance = this;
+
+    connect(Net::ProxyConfigurationManager::instance(), &Net::ProxyConfigurationManager::proxyConfigurationChanged
+            , this, &SearchPluginManager::applyProxySettings);
+    applyProxySettings();
 
     updateNova();
     update();
@@ -376,6 +381,45 @@ Path SearchPluginManager::engineLocation()
     }
 
     return location;
+}
+
+void SearchPluginManager::applyProxySettings()
+{
+    const auto *proxyManager = Net::ProxyConfigurationManager::instance();
+    const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
+
+    // Define environment variables for urllib in search engine plugins
+    QString proxyStrHTTP, proxyStrSOCK;
+    if (!proxyManager->isProxyOnlyForTorrents())
+    {
+        switch (proxyConfig.type)
+        {
+        case Net::ProxyType::HTTP_PW:
+            proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
+            break;
+        case Net::ProxyType::HTTP:
+            proxyStrHTTP = u"http://%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            break;
+        case Net::ProxyType::SOCKS5:
+            proxyStrSOCK = u"%1:%2"_qs.arg(proxyConfig.ip, QString::number(proxyConfig.port));
+            break;
+        case Net::ProxyType::SOCKS5_PW:
+            proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(proxyConfig.username
+                , proxyConfig.password, proxyConfig.ip, QString::number(proxyConfig.port));
+            break;
+        default:
+            qDebug("Disabling HTTP communications proxy");
+        }
+
+        qDebug("HTTP communications proxy string: %s"
+               , qUtf8Printable((proxyConfig.type == Net::ProxyType::SOCKS5) || (proxyConfig.type == Net::ProxyType::SOCKS5_PW)
+                            ? proxyStrSOCK : proxyStrHTTP));
+    }
+
+    qputenv("http_proxy", proxyStrHTTP.toLocal8Bit());
+    qputenv("https_proxy", proxyStrHTTP.toLocal8Bit());
+    qputenv("sock_proxy", proxyStrSOCK.toLocal8Bit());
 }
 
 void SearchPluginManager::versionInfoDownloadFinished(const Net::DownloadResult &result)

@@ -64,7 +64,6 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     m_config.port = m_storeProxyPort.get(8080);
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
-    configureProxy();
 }
 
 void ProxyConfigurationManager::initInstance()
@@ -99,7 +98,6 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
         m_storeProxyPort = config.port;
         m_storeProxyUsername = config.username;
         m_storeProxyPassword = config.password;
-        configureProxy();
 
         emit proxyConfigurationChanged();
     }
@@ -119,40 +117,4 @@ bool ProxyConfigurationManager::isAuthenticationRequired() const
 {
     return m_config.type == ProxyType::SOCKS5_PW
             || m_config.type == ProxyType::HTTP_PW;
-}
-
-void ProxyConfigurationManager::configureProxy()
-{
-    // Define environment variables for urllib in search engine plugins
-    QString proxyStrHTTP, proxyStrSOCK;
-    if (!isProxyOnlyForTorrents())
-    {
-        switch (m_config.type)
-        {
-        case ProxyType::HTTP_PW:
-            proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(m_config.username
-                , m_config.password, m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::HTTP:
-            proxyStrHTTP = u"http://%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::SOCKS5:
-            proxyStrSOCK = u"%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::SOCKS5_PW:
-            proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(m_config.username
-                , m_config.password, m_config.ip, QString::number(m_config.port));
-            break;
-        default:
-            qDebug("Disabling HTTP communications proxy");
-        }
-
-        qDebug("HTTP communications proxy string: %s"
-               , qUtf8Printable((m_config.type == ProxyType::SOCKS5) || (m_config.type == ProxyType::SOCKS5_PW)
-                            ? proxyStrSOCK : proxyStrHTTP));
-    }
-
-    qputenv("http_proxy", proxyStrHTTP.toLocal8Bit());
-    qputenv("https_proxy", proxyStrHTTP.toLocal8Bit());
-    qputenv("sock_proxy", proxyStrSOCK.toLocal8Bit());
 }

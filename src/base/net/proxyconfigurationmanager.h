@@ -83,8 +83,6 @@ namespace Net
         void proxyConfigurationChanged();
 
     private:
-        void configureProxy();
-
         static ProxyConfigurationManager *m_instance;
         ProxyConfiguration m_config;
         SettingValue<bool> m_storeProxyOnlyForTorrents;
