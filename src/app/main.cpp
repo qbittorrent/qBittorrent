@@ -118,6 +118,17 @@ int main(int argc, char *argv[])
         // Create Application
         auto app = std::make_unique<Application>(argc, argv);
 
+#ifdef Q_OS_WIN
+        // QCoreApplication::applicationDirPath() needs an Application object instantiated first
+        // Let's hope that there won't be a crash before this line
+        const char *envName = "_NT_SYMBOL_PATH";
+        const QString envValue = qEnvironmentVariable(envName);
+        if (envValue.isEmpty())
+            qputenv(envName, Application::applicationDirPath().toLocal8Bit());
+        else
+            qputenv(envName, u"%1;%2"_qs.arg(envValue, Application::applicationDirPath()).toLocal8Bit());
+#endif
+
         const QBtCommandLineParameters params = app->commandLineArgs();
         if (!params.unknownParameter.isEmpty())
         {
