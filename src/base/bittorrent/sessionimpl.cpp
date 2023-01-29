@@ -2493,7 +2493,7 @@ bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &para
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
         // Launch downloader
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                                                   , this, &SessionImpl::handleDownloadFinished);
+                , true, this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }

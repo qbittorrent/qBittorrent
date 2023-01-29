@@ -38,6 +38,7 @@
 #include <QDomNode>
 #include <QPointer>
 #include <QProcess>
+#include <QUrl>
 
 #include "base/global.h"
 #include "base/logger.h"
@@ -212,7 +213,7 @@ void SearchPluginManager::installPlugin(const QString &source)
     {
         using namespace Net;
         DownloadManager::instance()->download(DownloadRequest(source).saveToFile(true)
-                                              , this, &SearchPluginManager::pluginDownloadFinished);
+                , true, this, &SearchPluginManager::pluginDownloadFinished);
     }
     else
     {
@@ -328,7 +329,7 @@ void SearchPluginManager::checkForUpdates()
     // Download version file from update server
     using namespace Net;
     DownloadManager::instance()->download({m_updateUrl + u"versions.txt"}
-                                          , this, &SearchPluginManager::versionInfoDownloadFinished);
+            , true, this, &SearchPluginManager::versionInfoDownloadFinished);
 }
 
 SearchDownloadHandler *SearchPluginManager::downloadTorrent(const QString &siteUrl, const QString &url)

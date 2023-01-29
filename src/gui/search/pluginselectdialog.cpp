@@ -311,8 +311,8 @@ void PluginSelectDialog::addNewPlugin(const QString &pluginName)
         // Icon is missing, we must download it
         using namespace Net;
         DownloadManager::instance()->download(
-                    DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
-                    , this, &PluginSelectDialog::iconDownloadFinished);
+                DownloadRequest(plugin->url + u"/favicon.ico").saveToFile(true)
+                , true, this, &PluginSelectDialog::iconDownloadFinished);
     }
     item->setText(PLUGIN_VERSION, plugin->version.toString());
 }

@@ -87,7 +87,7 @@ void TrackersAdditionDialog::onDownloadButtonClicked()
     m_ui->downloadButton->setEnabled(false);
     setCursor(Qt::WaitCursor);
 
-    Net::DownloadManager::instance()->download(url, this, &TrackersAdditionDialog::onTorrentListDownloadFinished);
+    Net::DownloadManager::instance()->download(url, true, this, &TrackersAdditionDialog::onTorrentListDownloadFinished);
 }
 
 void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadResult &result)

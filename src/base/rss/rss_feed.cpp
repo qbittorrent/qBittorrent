@@ -148,7 +148,7 @@ void Feed::refresh()
 
     // NOTE: Should we allow manually refreshing for disabled session?
 
-    m_downloadHandler = Net::DownloadManager::instance()->download(m_url);
+    m_downloadHandler = Net::DownloadManager::instance()->download(m_url, true);
     connect(m_downloadHandler, &Net::DownloadHandler::finished, this, &Feed::handleDownloadFinished);
 
     if (!m_iconPath.exists())
@@ -378,7 +378,7 @@ void Feed::downloadIcon()
     const auto iconUrl = u"%1://%2/favicon.ico"_qs.arg(url.scheme(), url.host());
     Net::DownloadManager::instance()->download(
             Net::DownloadRequest(iconUrl).saveToFile(true).destFileName(m_iconPath)
-                , this, &Feed::handleIconDownloadFinished);
+            , true, this, &Feed::handleIconDownloadFinished);
 }
 
 int Feed::updateArticles(const QList<QVariantHash> &loadedArticles)

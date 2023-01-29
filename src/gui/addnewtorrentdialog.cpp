@@ -32,6 +32,7 @@
 #include <algorithm>
 
 #include <QAction>
+#include <QDateTime>
 #include <QDebug>
 #include <QDir>
 #include <QFileDialog>
@@ -479,8 +480,8 @@ void AddNewTorrentDialog::show(const QString &source, const BitTorrent::AddTorre
     {
         // Launch downloader
         Net::DownloadManager::instance()->download(
-                    Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                    , dlg, &AddNewTorrentDialog::handleDownloadFinished);
+                Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
+                , true, dlg, &AddNewTorrentDialog::handleDownloadFinished);
         return;
     }
 
