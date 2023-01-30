@@ -56,13 +56,14 @@ namespace
     QList<QSslCipher> safeCipherList()
     {
         const QStringList badCiphers {u"idea"_qs, u"rc4"_qs};
+        const QString dhePrefix = u"dhe"_qs;
         const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
         std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
         {
             return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
             {
-                return cipher.name().contains(badCipher, Qt::CaseInsensitive);
+                return cipher.name().contains(badCipher, Qt::CaseInsensitive) || cipher.name().startsWith(dhePrefix);
             });
         });
         return safeCiphers;
@@ -79,6 +80,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
 
     QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
     sslConf.setCiphers(safeCipherList());
+    sslConf.setProtocol(QSsl::TlsV1_2OrLater);
     QSslConfiguration::setDefaultConfiguration(sslConf);
 
     auto *dropConnectionTimer = new QTimer(this);
