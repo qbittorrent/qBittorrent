@@ -62,7 +62,7 @@ namespace
         {
             return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
             {
-                return cipher.name().contains(badCipher, Qt::CaseInsensitive));
+                return cipher.name().contains(badCipher, Qt::CaseInsensitive);
             });
         });
         return safeCiphers;
