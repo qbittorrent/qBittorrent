@@ -101,6 +101,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     setProxy(QNetworkProxy::NoProxy);
 
     QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
+    sslConf.setProtocol(QSsl::TlsV1_2OrLater);
     sslConf.setCiphers(safeCipherList());
     QSslConfiguration::setDefaultConfiguration(sslConf);
 
