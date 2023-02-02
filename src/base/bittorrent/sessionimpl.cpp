@@ -1086,18 +1086,6 @@ void SessionImpl::setGlobalMaxSeedingMinutes(int minutes)
     }
 }
 
-void SessionImpl::adjustLimits()
-{
-    if (isQueueingSystemEnabled())
-    {
-        lt::settings_pack settingsPack;
-        // Internally increase the queue limits to ensure that the magnet is started
-        settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
-        settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
-        m_nativeSession->apply_settings(std::move(settingsPack));
-    }
-}
-
 void SessionImpl::applyBandwidthLimits()
 {
     lt::settings_pack settingsPack;
@@ -1540,16 +1528,6 @@ void SessionImpl::processBannedIPs(lt::ip_filter &filter)
     }
 }
 
-int SessionImpl::adjustLimit(const int limit) const
-{
-    if (limit <= -1)
-        return limit;
-    // check for overflow: (limit + m_extraLimit) < std::numeric_limits<int>::max()
-    return (m_extraLimit < (std::numeric_limits<int>::max() - limit))
-        ? (limit + m_extraLimit)
-        : std::numeric_limits<int>::max();
-}
-
 void SessionImpl::initMetrics()
 {
     const auto findMetricIndex = [](const char *name) -> int
@@ -1751,10 +1729,8 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     // Queueing System
     if (isQueueingSystemEnabled())
     {
-        // Internally increase the queue limits to ensure that the magnet is started
-        settingsPack.set_int(lt::settings_pack::active_downloads, adjustLimit(maxActiveDownloads()));
-        settingsPack.set_int(lt::settings_pack::active_limit, adjustLimit(maxActiveTorrents()));
-
+        settingsPack.set_int(lt::settings_pack::active_downloads, maxActiveDownloads());
+        settingsPack.set_int(lt::settings_pack::active_limit, maxActiveTorrents());
         settingsPack.set_int(lt::settings_pack::active_seeds, maxActiveUploads());
         settingsPack.set_bool(lt::settings_pack::dont_count_slow_torrents, ignoreSlowTorrentsForQueueing());
         settingsPack.set_int(lt::settings_pack::inactive_down_rate, downloadRateForSlowTorrents() * 1024); // KiB to Bytes
@@ -2333,8 +2309,6 @@ bool SessionImpl::cancelDownloadMetadata(const TorrentID &id)
     }
 #endif
     m_downloadedMetadata.erase(downloadedMetadataIter);
-    --m_extraLimit;
-    adjustLimits();
     m_nativeSession->remove_torrent(nativeHandle, lt::session::delete_files);
     return true;
 }
@@ -5212,9 +5186,6 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         else if (const auto downloadedMetadataIter = m_downloadedMetadata.find(torrentID)
                  ; downloadedMetadataIter != m_downloadedMetadata.end())
         {
-            ++m_extraLimit;
-            adjustLimits();
-
             downloadedMetadataIter.value() = alert->handle;
             if (infoHash.isHybrid())
             {
@@ -5493,9 +5464,6 @@ void SessionImpl::handleMetadataReceivedAlert(const lt::metadata_received_alert 
     if (found)
     {
         const TorrentInfo metadata {*p->handle.torrent_file()};
-
-        --m_extraLimit;
-        adjustLimits();
         m_nativeSession->remove_torrent(p->handle, lt::session::delete_files);
 
         emit metadataDownloaded(metadata);

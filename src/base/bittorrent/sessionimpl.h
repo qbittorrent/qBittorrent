@@ -492,9 +492,7 @@ namespace BitTorrent
         lt::settings_pack loadLTSettings() const;
         void applyNetworkInterfacesSettings(lt::settings_pack &settingsPack) const;
         void configurePeerClasses();
-        int adjustLimit(int limit) const;
         void initMetrics();
-        void adjustLimits();
         void applyBandwidthLimits();
         void processBannedIPs(lt::ip_filter &filter);
         QStringList getListeningIPs() const;
@@ -686,7 +684,6 @@ namespace BitTorrent
         const bool m_wasPexEnabled = m_isPeXEnabled;
 
         int m_numResumeData = 0;
-        int m_extraLimit = 0;
         QVector<TrackerEntry> m_additionalTrackerList;
         QVector<QRegularExpression> m_excludedFileNamesRegExpList;
 
