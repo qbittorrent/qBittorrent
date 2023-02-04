@@ -858,6 +858,16 @@
                 </layout>
                </item>
                <item>
+                <widget class="QCheckBox" name="checkAddToQueueTop">
+                 <property name="toolTip">
+                  <string>The torrent will be added to the top of the download queue</string>
+                 </property>
+                 <property name="text">
+                  <string extracomment="The torrent will be added to the top of the download queue">Add to top of queue</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
                 <widget class="QCheckBox" name="checkStartPaused">
                  <property name="toolTip">
                   <string>The torrent will be added to download list in a paused state</string>

@@ -76,6 +76,7 @@ const QString PARAM_SAVEPATH = u"save_path"_qs;
 const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_qs;
 const QString PARAM_DOWNLOADPATH = u"download_path"_qs;
 const QString PARAM_OPERATINGMODE = u"operating_mode"_qs;
+const QString PARAM_QUEUETOP = u"add_to_top_of_queue"_qs;
 const QString PARAM_STOPPED = u"stopped"_qs;
 const QString PARAM_SKIPCHECKING = u"skip_checking"_qs;
 const QString PARAM_CONTENTLAYOUT = u"content_layout"_qs;
@@ -140,6 +141,7 @@ namespace
         params.useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH);
         params.downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString());
         params.addForced = (getEnum<BitTorrent::TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == BitTorrent::TorrentOperatingMode::Forced);
+        params.addToQueueTop = getOptionalBool(jsonObj, PARAM_QUEUETOP);
         params.addPaused = getOptionalBool(jsonObj, PARAM_STOPPED);
         params.skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool();
         params.contentLayout = getOptionalEnum<BitTorrent::TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT);
@@ -168,6 +170,8 @@ namespace
             {PARAM_RATIOLIMIT, params.ratioLimit}
         };
 
+        if (params.addToQueueTop)
+            jsonObj[PARAM_QUEUETOP] = *params.addToQueueTop;
         if (params.addPaused)
             jsonObj[PARAM_STOPPED] = *params.addPaused;
         if (params.contentLayout)

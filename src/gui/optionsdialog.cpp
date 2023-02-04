@@ -466,6 +466,7 @@ void OptionsDialog::loadDownloadsTabOptions()
     m_ui->checkAdditionDialogFront->setChecked(AddNewTorrentDialog::isTopLevel());
 
     m_ui->contentLayoutComboBox->setCurrentIndex(static_cast<int>(session->torrentContentLayout()));
+    m_ui->checkAddToQueueTop->setChecked(session->isAddTorrentToQueueTop());
     m_ui->checkStartPaused->setChecked(session->isAddTorrentPaused());
 
     m_ui->stopConditionComboBox->setToolTip(
@@ -588,6 +589,7 @@ void OptionsDialog::loadDownloadsTabOptions()
 
     connect(m_ui->contentLayoutComboBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
 
+    connect(m_ui->checkAddToQueueTop, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkStartPaused, &QAbstractButton::toggled, this, [this](const bool checked)
     {
@@ -653,6 +655,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
 
     session->setTorrentContentLayout(static_cast<BitTorrent::TorrentContentLayout>(m_ui->contentLayoutComboBox->currentIndex()));
 
+    session->setAddTorrentToQueueTop(m_ui->checkAddToQueueTop->isChecked());
     session->setAddTorrentPaused(addTorrentsInPause());
     session->setTorrentStopCondition(m_ui->stopConditionComboBox->currentData().value<BitTorrent::Torrent::StopCondition>());
     TorrentFileGuard::setAutoDeleteMode(!m_ui->deleteTorrentBox->isChecked() ? TorrentFileGuard::Never

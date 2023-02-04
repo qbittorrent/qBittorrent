@@ -56,6 +56,8 @@ namespace BitTorrent
         bool stopped = false;
         Torrent::StopCondition stopCondition;
 
+        bool addToQueueTop = false; // only for new torrents
+
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
     };
