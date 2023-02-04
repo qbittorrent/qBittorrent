@@ -2201,7 +2201,7 @@ void TorrentImpl::adjustStorageLocation()
     const Path targetPath = ((isFinished || downloadPath.isEmpty()) ? savePath() : downloadPath);
 
     if ((targetPath != actualStorageLocation()) || isMoveInProgress())
-        moveStorage(targetPath, MoveStorageMode::FailIfExist);
+        moveStorage(targetPath, MoveStorageMode::Overwrite);
 }
 
 void TorrentImpl::doRenameFile(int index, const Path &path)
