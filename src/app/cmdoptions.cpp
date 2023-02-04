@@ -340,14 +340,7 @@ namespace
 }
 
 QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &env)
-    : showHelp(false)
-    , relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
-    , skipChecking(SKIP_HASH_CHECK_OPTION.value(env))
-    , sequential(SEQUENTIAL_OPTION.value(env))
-    , firstLastPiecePriority(FIRST_AND_LAST_OPTION.value(env))
-#if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-    , showVersion(false)
-#endif
+    : relativeFastresumePaths(RELATIVE_FASTRESUME.value(env))
 #ifndef DISABLE_GUI
     , noSplash(NO_SPLASH_OPTION.value(env))
 #elif !defined(Q_OS_WIN)
@@ -355,49 +348,16 @@ QBtCommandLineParameters::QBtCommandLineParameters(const QProcessEnvironment &en
 #endif
     , webUiPort(WEBUI_PORT_OPTION.value(env, -1))
     , torrentingPort(TORRENTING_PORT_OPTION.value(env, -1))
-    , addPaused(PAUSED_OPTION.value(env))
     , skipDialog(SKIP_DIALOG_OPTION.value(env))
     , profileDir(PROFILE_OPTION.value(env))
     , configurationName(CONFIGURATION_OPTION.value(env))
-    , savePath(SAVE_PATH_OPTION.value(env))
-    , category(CATEGORY_OPTION.value(env))
 {
-}
-
-QStringList QBtCommandLineParameters::paramList() const
-{
-    QStringList result;
-    // Because we're passing a string list to the currently running
-    // qBittorrent process, we need some way of passing along the options
-    // the user has specified. Here we place special strings that are
-    // almost certainly not going to collide with a file path or URL
-    // specified by the user, and placing them at the beginning of the
-    // string list so that they will be processed before the list of
-    // torrent paths or URLs.
-
-    if (!savePath.isEmpty())
-        result.append(u"@savePath=" + savePath.data());
-
-    if (addPaused.has_value())
-        result.append(*addPaused ? u"@addPaused=1"_qs : u"@addPaused=0"_qs);
-
-    if (skipChecking)
-        result.append(u"@skipChecking"_qs);
-
-    if (!category.isEmpty())
-        result.append(u"@category=" + category);
-
-    if (sequential)
-        result.append(u"@sequential"_qs);
-
-    if (firstLastPiecePriority)
-        result.append(u"@firstLastPiecePriority"_qs);
-
-    if (skipDialog.has_value())
-        result.append(*skipDialog ? u"@skipDialog=1"_qs : u"@skipDialog=0"_qs);
-
-    result += torrents;
-    return result;
+    addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(env));
+    addTorrentParams.category = CATEGORY_OPTION.value(env);
+    addTorrentParams.skipChecking = SKIP_HASH_CHECK_OPTION.value(env);
+    addTorrentParams.sequential = SEQUENTIAL_OPTION.value(env);
+    addTorrentParams.firstLastPiecePriority = FIRST_AND_LAST_OPTION.value(env);
+    addTorrentParams.addPaused = PAUSED_OPTION.value(env);
 }
 
 QBtCommandLineParameters parseCommandLine(const QStringList &args)
@@ -463,27 +423,27 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             }
             else if (arg == SAVE_PATH_OPTION)
             {
-                result.savePath = Path(SAVE_PATH_OPTION.value(arg));
+                result.addTorrentParams.savePath = Path(SAVE_PATH_OPTION.value(arg));
             }
             else if (arg == PAUSED_OPTION)
             {
-                result.addPaused = PAUSED_OPTION.value(arg);
+                result.addTorrentParams.addPaused = PAUSED_OPTION.value(arg);
             }
             else if (arg == SKIP_HASH_CHECK_OPTION)
             {
-                result.skipChecking = true;
+                result.addTorrentParams.skipChecking = true;
             }
             else if (arg == CATEGORY_OPTION)
             {
-                result.category = CATEGORY_OPTION.value(arg);
+                result.addTorrentParams.category = CATEGORY_OPTION.value(arg);
             }
             else if (arg == SEQUENTIAL_OPTION)
             {
-                result.sequential = true;
+                result.addTorrentParams.sequential = true;
             }
             else if (arg == FIRST_AND_LAST_OPTION)
             {
-                result.firstLastPiecePriority = true;
+                result.addTorrentParams.firstLastPiecePriority = true;
             }
             else if (arg == SKIP_DIALOG_OPTION)
             {
@@ -502,9 +462,9 @@ QBtCommandLineParameters parseCommandLine(const QStringList &args)
             torrentPath.setFile(arg);
 
             if (torrentPath.exists())
-                result.torrents += torrentPath.absoluteFilePath();
+                result.torrentSources += torrentPath.absoluteFilePath();
             else
-                result.torrents += arg;
+                result.torrentSources += arg;
         }
     }
 

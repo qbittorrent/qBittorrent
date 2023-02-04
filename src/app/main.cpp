@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 #endif
 
             QThread::msleep(300);
-            app->sendParams(params.paramList());
+            app->callMainInstance();
 
             return EXIT_SUCCESS;
         }
@@ -258,7 +258,7 @@ int main(int argc, char *argv[])
 
         registerSignalHandlers();
 
-        return app->exec(params.paramList());
+        return app->exec();
     }
     catch (const CommandLineParameterError &er)
     {

@@ -35,6 +35,7 @@
 #include <QString>
 #include <QStringList>
 
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/exceptions.h"
 #include "base/path.h"
 
@@ -42,32 +43,29 @@ class QProcessEnvironment;
 
 struct QBtCommandLineParameters
 {
-    bool showHelp;
-    bool relativeFastresumePaths;
-    bool skipChecking;
-    bool sequential;
-    bool firstLastPiecePriority;
+    bool showHelp = false;
+    bool relativeFastresumePaths = false;
 #if !defined(Q_OS_WIN) || defined(DISABLE_GUI)
-    bool showVersion;
+    bool showVersion = false;
 #endif
 #ifndef DISABLE_GUI
-    bool noSplash;
+    bool noSplash = false;
 #elif !defined(Q_OS_WIN)
-    bool shouldDaemonize;
+    bool shouldDaemonize = false;
 #endif
-    int webUiPort;
-    int torrentingPort;
-    std::optional<bool> addPaused;
+    int webUiPort = -1;
+    int torrentingPort = -1;
     std::optional<bool> skipDialog;
-    QStringList torrents;
     Path profileDir;
     QString configurationName;
-    Path savePath;
-    QString category;
+
+    QStringList torrentSources;
+    BitTorrent::AddTorrentParams addTorrentParams;
+
     QString unknownParameter;
 
+    QBtCommandLineParameters() = default;
     explicit QBtCommandLineParameters(const QProcessEnvironment &);
-    QStringList paramList() const;
 };
 
 class CommandLineParameterError : public RuntimeError

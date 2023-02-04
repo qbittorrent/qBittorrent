@@ -96,10 +96,10 @@ public:
     Application(int &argc, char **argv);
     ~Application() override;
 
-    int exec(const QStringList &params);
+    int exec();
 
     bool isRunning();
-    bool sendParams(const QStringList &params);
+    bool callMainInstance();
     const QBtCommandLineParameters &commandLineArgs() const;
 
     // FileLogger properties
@@ -149,16 +149,8 @@ private slots:
 #endif
 
 private:
-    struct AddTorrentParams
-    {
-        QStringList torrentSources;
-        BitTorrent::AddTorrentParams torrentParams;
-        std::optional<bool> skipTorrentDialog;
-    };
-
     void initializeTranslation();
-    AddTorrentParams parseParams(const QStringList &params) const;
-    void processParams(const AddTorrentParams &params);
+    void processParams(const QBtCommandLineParameters &params);
     void runExternalProgram(const QString &programTemplate, const BitTorrent::Torrent *torrent) const;
     void sendNotificationEmail(const BitTorrent::Torrent *torrent);
 
@@ -190,7 +182,7 @@ private:
     QTranslator m_qtTranslator;
     QTranslator m_translator;
 
-    QList<AddTorrentParams> m_paramsQueue;
+    QList<QBtCommandLineParameters> m_paramsQueue;
 
     SettingValue<bool> m_storeFileLoggerEnabled;
     SettingValue<bool> m_storeFileLoggerBackup;
