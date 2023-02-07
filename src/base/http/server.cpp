@@ -56,10 +56,33 @@ namespace
     QList<QSslCipher> safeCipherList()
     {
         const QStringList badCiphers {u"idea"_qs, u"rc4"_qs};
+        // Contains Ciphersuites that use RSA for the Key Exchange but they don't mention it in their name
+        const QStringList badRSAShorthandSuites {
+            u"AES256-GCM-SHA384"_qs, u"AES128-GCM-SHA256"_qs, u"AES256-SHA256"_qs,
+            u"AES128-SHA256"_qs, u"AES256-SHA"_qs, u"AES128-SHA"_qs};
+        // Contains Ciphersuites that use AES CBC mode but they don't mention it in their name
+        const QStringList badAESShorthandSuites {
+            u"ECDHE-ECDSA-AES256-SHA384"_qs, u"ECDHE-RSA-AES256-SHA384"_qs, u"DHE-RSA-AES256-SHA256"_qs,
+            u"ECDHE-ECDSA-AES128-SHA256"_qs, u"ECDHE-RSA-AES128-SHA256"_qs, u"DHE-RSA-AES128-SHA256"_qs,
+            u"ECDHE-ECDSA-AES256-SHA"_qs, u"ECDHE-RSA-AES256-SHA"_qs, u"DHE-RSA-AES256-SHA"_qs,
+            u"ECDHE-ECDSA-AES128-SHA"_qs, u"ECDHE-RSA-AES128-SHA"_qs, u"DHE-RSA-AES128-SHA"_qs};
         const QList<QSslCipher> allCiphers {QSslConfiguration::supportedCiphers()};
         QList<QSslCipher> safeCiphers;
-        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers), [&badCiphers](const QSslCipher &cipher)
+        std::copy_if(allCiphers.cbegin(), allCiphers.cend(), std::back_inserter(safeCiphers),
+                     [&badCiphers, &badRSAShorthandSuites, &badAESShorthandSuites](const QSslCipher &cipher)
         {
+            const QString name = cipher.name();
+            if (name.contains(u"-cbc-"_qs, Qt::CaseInsensitive) // AES CBC mode is considered vulnerable to BEAST attack
+                || name.startsWith(u"adh-"_qs, Qt::CaseInsensitive) // Key Exchange: Diffie-Hellman, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"aecdh-"_qs, Qt::CaseInsensitive) // Key Exchange: Elliptic Curve Diffie-Hellman, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"psk-"_qs, Qt::CaseInsensitive) // Key Exchange: Pre-Shared Key, doesn't support Perfect Forward Secrecy
+                || name.startsWith(u"rsa-"_qs, Qt::CaseInsensitive) // Key Exchange: Rivest Shamir Adleman (RSA), doesn't support Perfect Forward Secrecy
+                || badRSAShorthandSuites.contains(name, Qt::CaseInsensitive)
+                || badAESShorthandSuites.contains(name, Qt::CaseInsensitive))
+            {
+                return false;
+            }
+
             return std::none_of(badCiphers.cbegin(), badCiphers.cend(), [&cipher](const QString &badCipher)
             {
                 return cipher.name().contains(badCipher, Qt::CaseInsensitive);
@@ -78,6 +101,7 @@ Server::Server(IRequestHandler *requestHandler, QObject *parent)
     setProxy(QNetworkProxy::NoProxy);
 
     QSslConfiguration sslConf {QSslConfiguration::defaultConfiguration()};
+    sslConf.setProtocol(QSsl::TlsV1_2OrLater);
     sslConf.setCiphers(safeCipherList());
     QSslConfiguration::setDefaultConfiguration(sslConf);
 
