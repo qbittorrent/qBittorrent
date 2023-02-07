@@ -43,54 +43,10 @@
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/string.h"
-#include "color.h"
 #include "uithememanager.h"
-#include "utils.h"
 
 namespace
 {
-    QColor getDefaultColorByState(const BitTorrent::TorrentState state)
-    {
-        const bool isDarkTheme = Utils::Gui::isDarkTheme();
-
-        switch (state)
-        {
-        case BitTorrent::TorrentState::Downloading:
-        case BitTorrent::TorrentState::ForcedDownloading:
-        case BitTorrent::TorrentState::DownloadingMetadata:
-        case BitTorrent::TorrentState::ForcedDownloadingMetadata:
-            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
-        case BitTorrent::TorrentState::StalledDownloading:
-            return (isDarkTheme ? Color::Primer::Dark::successEmphasis : Color::Primer::Light::successEmphasis);
-        case BitTorrent::TorrentState::StalledUploading:
-            return (isDarkTheme ? Color::Primer::Dark::accentEmphasis : Color::Primer::Light::accentEmphasis);
-        case BitTorrent::TorrentState::Uploading:
-        case BitTorrent::TorrentState::ForcedUploading:
-            return (isDarkTheme ? Color::Primer::Dark::accentFg : Color::Primer::Light::accentFg);
-        case BitTorrent::TorrentState::PausedDownloading:
-            return (isDarkTheme ? Color::Primer::Dark::fgMuted : Color::Primer::Light::fgMuted);
-        case BitTorrent::TorrentState::PausedUploading:
-            return (isDarkTheme ? Color::Primer::Dark::doneFg : Color::Primer::Light::doneFg);
-        case BitTorrent::TorrentState::QueuedDownloading:
-        case BitTorrent::TorrentState::QueuedUploading:
-            return (isDarkTheme ? Color::Primer::Dark::scaleYellow6 : Color::Primer::Light::scaleYellow6);
-        case BitTorrent::TorrentState::CheckingDownloading:
-        case BitTorrent::TorrentState::CheckingUploading:
-        case BitTorrent::TorrentState::CheckingResumeData:
-        case BitTorrent::TorrentState::Moving:
-            return (isDarkTheme ? Color::Primer::Dark::successFg : Color::Primer::Light::successFg);
-        case BitTorrent::TorrentState::Error:
-        case BitTorrent::TorrentState::MissingFiles:
-        case BitTorrent::TorrentState::Unknown:
-            return (isDarkTheme ? Color::Primer::Dark::dangerFg : Color::Primer::Light::dangerFg);
-        default:
-            Q_ASSERT(false);
-            break;
-        }
-
-        return {};
-    }
-
     QHash<BitTorrent::TorrentState, QColor> torrentStateColorsFromUITheme()
     {
         struct TorrentStateColorDescriptor
@@ -124,9 +80,8 @@ namespace
         QHash<BitTorrent::TorrentState, QColor> colors;
         for (const TorrentStateColorDescriptor &colorDescriptor : colorDescriptors)
         {
-            const QColor themeColor = UIThemeManager::instance()->getColor(colorDescriptor.id, QColor());
-            if (themeColor.isValid())
-                colors.insert(colorDescriptor.state, themeColor);
+            const QColor themeColor = UIThemeManager::instance()->getColor(colorDescriptor.id);
+            colors.insert(colorDescriptor.state, themeColor);
         }
         return colors;
     }
@@ -548,7 +503,7 @@ QVariant TransferListModel::data(const QModelIndex &index, const int role) const
     switch (role)
     {
     case Qt::ForegroundRole:
-        return m_stateThemeColors.value(torrent->state(), getDefaultColorByState(torrent->state()));
+        return m_stateThemeColors.value(torrent->state());
     case Qt::DisplayRole:
         return displayValue(torrent, index.column());
     case UnderlyingDataRole:

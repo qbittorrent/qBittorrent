@@ -32,12 +32,9 @@
 #include <QApplication>
 #include <QDateTime>
 #include <QColor>
-#include <QPalette>
 
 #include "base/global.h"
-#include "gui/color.h"
 #include "gui/uithememanager.h"
-#include "gui/utils.h"
 
 namespace
 {
@@ -45,38 +42,32 @@ namespace
 
     QColor getTimestampColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_qs
-            , (Utils::Gui::isDarkTheme() ? Color::Primer::Dark::fgSubtle : Color::Primer::Light::fgSubtle));
+        return UIThemeManager::instance()->getColor(u"Log.TimeStamp"_qs);
     }
 
     QColor getLogNormalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Normal"_qs
-            , QApplication::palette().color(QPalette::Active, QPalette::WindowText));
+        return UIThemeManager::instance()->getColor(u"Log.Normal"_qs);
     }
 
     QColor getLogInfoColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Info"_qs
-            , (Utils::Gui::isDarkTheme() ? Color::Primer::Dark::accentFg : Color::Primer::Light::accentFg));
+        return UIThemeManager::instance()->getColor(u"Log.Info"_qs);
     }
 
     QColor getLogWarningColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Warning"_qs
-            , (Utils::Gui::isDarkTheme() ? Color::Primer::Dark::severeFg : Color::Primer::Light::severeFg));
+        return UIThemeManager::instance()->getColor(u"Log.Warning"_qs);
     }
 
     QColor getLogCriticalColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.Critical"_qs
-            , (Utils::Gui::isDarkTheme() ? Color::Primer::Dark::dangerFg : Color::Primer::Light::dangerFg));
+        return UIThemeManager::instance()->getColor(u"Log.Critical"_qs);
     }
 
     QColor getPeerBannedColor()
     {
-        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_qs
-            , (Utils::Gui::isDarkTheme() ? Color::Primer::Dark::dangerFg : Color::Primer::Light::dangerFg));
+        return UIThemeManager::instance()->getColor(u"Log.BannedPeer"_qs);
     }
 }
 
