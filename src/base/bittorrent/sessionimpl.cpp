@@ -5530,12 +5530,14 @@ void SessionImpl::handlePeerBlockedAlert(const lt::peer_blocked_alert *p)
         break;
     case lt::peer_blocked_alert::port_filter:
         reason = tr("port filter", "this peer was blocked. Reason: port filter.");
+        reason.append(u" (%1)"_qs.arg(QString::number(p->endpoint.port())));
         break;
     case lt::peer_blocked_alert::i2p_mixed:
         reason = tr("%1 mixed mode restrictions", "this peer was blocked. Reason: I2P mixed mode restrictions.").arg(u"I2P"_qs); // don't translate I2P
         break;
     case lt::peer_blocked_alert::privileged_ports:
         reason = tr("use of privileged port", "this peer was blocked. Reason: use of privileged port.");
+        reason.append(u" (%1)"_qs.arg(QString::number(p->endpoint.port())));
         break;
     case lt::peer_blocked_alert::utp_disabled:
         reason = tr("%1 is disabled", "this peer was blocked. Reason: uTP is disabled.").arg(C_UTP); // don't translate μTP
