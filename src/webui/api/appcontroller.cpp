@@ -110,6 +110,7 @@ void AppController::preferencesAction()
     // Downloads
     // When adding a torrent
     data[u"torrent_content_layout"_qs] = Utils::String::fromEnum(session->torrentContentLayout());
+    data[u"add_to_top_of_queue"_qs] = session->isAddTorrentToQueueTop();
     data[u"start_paused_enabled"_qs] = session->isAddTorrentPaused();
     data[u"torrent_stop_condition"_qs] = Utils::String::fromEnum(session->torrentStopCondition());
     data[u"auto_delete_mode"_qs] = static_cast<int>(TorrentFileGuard::autoDeleteMode());
@@ -414,6 +415,8 @@ void AppController::setPreferencesAction()
     // When adding a torrent
     if (hasKey(u"torrent_content_layout"_qs))
         session->setTorrentContentLayout(Utils::String::toEnum(it.value().toString(), BitTorrent::TorrentContentLayout::Original));
+    if (hasKey(u"add_to_top_of_queue"_qs))
+        session->setAddTorrentToQueueTop(it.value().toBool());
     if (hasKey(u"start_paused_enabled"_qs))
         session->setAddTorrentPaused(it.value().toBool());
     if (hasKey(u"torrent_stop_condition"_qs))

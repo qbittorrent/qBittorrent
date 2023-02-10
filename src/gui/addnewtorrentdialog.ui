@@ -257,6 +257,13 @@
                  </spacer>
                 </item>
                 <item row="1" column="0">
+                 <widget class="QCheckBox" name="addToQueueTopCheckBox">
+                  <property name="text">
+                   <string>Add to top of queue</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
                  <widget class="QCheckBox" name="skipCheckingCheckBox">
                   <property name="text">
                    <string>Skip hash check</string>

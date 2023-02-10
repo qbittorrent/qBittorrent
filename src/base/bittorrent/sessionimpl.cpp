@@ -471,6 +471,7 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_additionalTrackers(BITTORRENT_SESSION_KEY(u"AdditionalTrackers"_qs))
     , m_globalMaxRatio(BITTORRENT_SESSION_KEY(u"GlobalMaxRatio"_qs), -1, [](qreal r) { return r < 0 ? -1. : r;})
     , m_globalMaxSeedingMinutes(BITTORRENT_SESSION_KEY(u"GlobalMaxSeedingMinutes"_qs), -1, lowerLimited(-1))
+    , m_isAddTorrentToQueueTop(BITTORRENT_SESSION_KEY(u"AddTorrentToTopOfQueue"_qs), false)
     , m_isAddTorrentPaused(BITTORRENT_SESSION_KEY(u"AddTorrentPaused"_qs), false)
     , m_torrentStopCondition(BITTORRENT_SESSION_KEY(u"TorrentStopCondition"_qs), Torrent::StopCondition::None)
     , m_torrentContentLayout(BITTORRENT_SESSION_KEY(u"TorrentContentLayout"_qs), TorrentContentLayout::Original)
@@ -1013,6 +1014,16 @@ bool SessionImpl::isDisableAutoTMMWhenCategorySavePathChanged() const
 void SessionImpl::setDisableAutoTMMWhenCategorySavePathChanged(const bool value)
 {
     m_isDisableAutoTMMWhenCategorySavePathChanged = value;
+}
+
+bool SessionImpl::isAddTorrentToQueueTop() const
+{
+    return m_isAddTorrentToQueueTop;
+}
+
+void SessionImpl::setAddTorrentToQueueTop(bool value)
+{
+    m_isAddTorrentToQueueTop = value;
 }
 
 bool SessionImpl::isAddTorrentPaused() const
@@ -2534,6 +2545,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
     loadTorrentParams.stopCondition = addTorrentParams.stopCondition.value_or(torrentStopCondition());
+    loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(false);
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
@@ -5177,7 +5189,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         if (const auto loadingTorrentsIter = m_loadingTorrents.find(torrentID)
                 ; loadingTorrentsIter != m_loadingTorrents.end())
         {
-            LoadTorrentParams params = loadingTorrentsIter.value();
+            const LoadTorrentParams params = loadingTorrentsIter.value();
             m_loadingTorrents.erase(loadingTorrentsIter);
 
             Torrent *torrent = createTorrent(alert->handle, params);
@@ -5339,6 +5351,9 @@ TorrentImpl *SessionImpl::createTorrent(const lt::torrent_handle &nativeHandle, 
 
     if (isRestored())
     {
+        if (params.addToQueueTop)
+            nativeHandle.queue_position_top();
+
         torrent->saveResumeData(lt::torrent_handle::save_info_dict);
 
         // The following is useless for newly added magnet
