@@ -1,4 +1,49 @@
-<div id="DownloadsTab" class="PrefTab">
+<div id="BehaviorTab" class="PrefTab">
+    <fieldset class="settings">
+        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
+        <label for="locale_select">QBT_TR(User Interface Language:)QBT_TR[CONTEXT=OptionsDialog]</label>
+        <select id="locale_select">
+            ${LANGUAGE_OPTIONS}
+        </select>
+    </fieldset>
+
+    <fieldset class="settings">
+        <legend>
+            <input type="checkbox" id="filelog_checkbox" onclick="qBittorrent.Preferences.updateFileLogEnabled();" />
+            <label for="filelog_checkbox">QBT_TR(Log file)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </legend>
+        <div class="formRow">
+            <label for="filelog_save_path_input">QBT_TR(Save path:)QBT_TR[CONTEXT=OptionsDialog]</label>
+            <input type="text" id="filelog_save_path_input" />
+        </div>
+        <table>
+            <tr>
+                <td><input type="checkbox" id="filelog_backup_checkbox" onclick="qBittorrent.Preferences.updateFileLogBackupEnabled();" /></td>
+                <td><label for="filelog_backup_checkbox">QBT_TR(Backup the log file after:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td><input id="filelog_max_size_input" type=number min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="filelog_delete_old_checkbox" onclick="qBittorrent.Preferences.updateFileLogDeleteEnabled();" /></td>
+                <td><label for="filelog_delete_old_checkbox">QBT_TR(Delete backup logs older than:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
+                <td>
+                    <input type=number min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />
+                    <select id="filelog_age_type_select">
+                        <option value="0">QBT_TR(days)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="1" selected>QBT_TR(months)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(years)QBT_TR[CONTEXT=OptionsDialog]</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    <div class="formRow">
+        <input type="checkbox" id="performanceWarning" />
+        <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
+    </div>
+</div>
+
+<div id="DownloadsTab" class="PrefTab invisible">
     <fieldset class="settings">
         <legend>QBT_TR(When adding a torrent)QBT_TR[CONTEXT=OptionsDialog]</legend>
         <div class="formRow">
@@ -663,19 +708,6 @@
 
 <div id="WebUITab" class="PrefTab invisible">
     <fieldset class="settings">
-        <legend>QBT_TR(Language)QBT_TR[CONTEXT=OptionsDialog]</legend>
-        <label for="locale_select">QBT_TR(User Interface Language:)QBT_TR[CONTEXT=OptionsDialog]</label>
-        <select id="locale_select">
-            ${LANGUAGE_OPTIONS}
-        </select>
-    </fieldset>
-
-    <div class="formRow">
-        <input type="checkbox" id="performanceWarning" />
-        <label for="performanceWarning">QBT_TR(Log performance warnings)QBT_TR[CONTEXT=OptionsDialog]</label>
-    </div>
-
-    <fieldset class="settings">
         <legend>QBT_TR(Web User Interface (Remote control))QBT_TR[CONTEXT=OptionsDialog]</legend>
         <table>
             <tr>
@@ -1334,6 +1366,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
     window.qBittorrent.Preferences = (function() {
         const exports = function() {
             return {
+                numberInputLimiter: numberInputLimiter,
+                updateFileLogEnabled: updateFileLogEnabled,
+                updateFileLogBackupEnabled: updateFileLogBackupEnabled,
+                updateFileLogDeleteEnabled: updateFileLogDeleteEnabled,
                 updateTempDirEnabled: updateTempDirEnabled,
                 updateExportDirEnabled: updateExportDirEnabled,
                 updateExportDirFinEnabled: updateExportDirFinEnabled,
@@ -1368,6 +1404,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 registerDynDns: registerDynDns,
                 applyPreferences: applyPreferences
             };
+        };
+
+        // Behavior tab
+        const numberInputLimiter = (input) => {
+            const min = input.getAttribute("min");
+            const max = input.getAttribute("max");
+
+            if (min && input.value.toInt() < min.toInt())
+                input.value = min;
+
+            if (max && input.value.toInt() > max.toInt())
+                input.value = max;
+        };
+
+        const updateFileLogEnabled = function() {
+            const isFileLogEnabled = $('filelog_checkbox').getProperty('checked');
+            $('filelog_save_path_input').setProperty('disabled', !isFileLogEnabled);
+            $('filelog_backup_checkbox').setProperty('disabled', !isFileLogEnabled);
+            $('filelog_delete_old_checkbox').setProperty('disabled', !isFileLogEnabled);
+
+            updateFileLogBackupEnabled();
+            updateFileLogDeleteEnabled();
+        };
+
+        const updateFileLogBackupEnabled = function() {
+            const pros = $('filelog_backup_checkbox').getProperties('disabled', 'checked');
+            $('filelog_max_size_input').setProperty('disabled', pros.disabled || !pros.checked);
+        };
+
+        const updateFileLogDeleteEnabled = function() {
+            const pros = $('filelog_delete_old_checkbox').getProperties('disabled', 'checked');
+            $('filelog_age_input').setProperty('disabled', pros.disabled || !pros.checked);
+            $('filelog_age_type_select').setProperty('disabled', pros.disabled || !pros.checked);
         };
 
         // Downloads tab
@@ -1717,6 +1786,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                 },
                 onSuccess: function(pref) {
                     if (pref) {
+                        // Behavior tab
+                        $('filelog_checkbox').setProperty('checked', pref.file_log_enabled);
+                        $('filelog_save_path_input').setProperty('value', pref.file_log_path);
+                        $('filelog_backup_checkbox').setProperty('checked', pref.file_log_backup_enabled);
+                        $('filelog_max_size_input').setProperty('value', pref.file_log_max_size);
+                        $('filelog_delete_old_checkbox').setProperty('checked', pref.file_log_delete_old);
+                        $('filelog_age_input').setProperty('value', pref.file_log_age);
+                        $('filelog_age_type_select').setProperty('value', pref.file_log_age_type);
+                        updateFileLogEnabled();
+
                         // Downloads tab
                         // When adding a torrent
                         let index = 0;
@@ -2097,6 +2176,16 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         const applyPreferences = function() {
             const settings = new Hash();
             // Validate form data
+
+            // Behavior tab
+            settings.set('file_log_enabled', $('filelog_checkbox').getProperty('checked'));
+            settings.set('file_log_path', $('filelog_save_path_input').getProperty('value'));
+            settings.set('file_log_backup_enabled', $('filelog_backup_checkbox').getProperty('checked'));
+            settings.set('file_log_max_size', $('filelog_max_size_input').getProperty('value'));
+            settings.set('file_log_delete_old', $('filelog_delete_old_checkbox').getProperty('checked'));
+            settings.set('file_log_age', $('filelog_age_input').getProperty('value'));
+            settings.set('file_log_age_type', $('filelog_age_type_select').getProperty('value'));
+
             // Downloads tab
             // When adding a torrent
             settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));

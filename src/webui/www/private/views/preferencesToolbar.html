@@ -1,7 +1,8 @@
 <!-- preferences -->
 <div class="toolbarTabs">
     <ul id="preferencesTabs" class="tab-menu">
-        <li id="PrefDownloadsLink" class="selected"><a>QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefBehaviorLink" class="selected"><a>QBT_TR(Behavior)QBT_TR[CONTEXT=OptionsDialog]</a></li>
+        <li id="PrefDownloadsLink"><a>QBT_TR(Downloads)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefConnectionLink"><a>QBT_TR(Connection)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefSpeedLink"><a>QBT_TR(Speed)QBT_TR[CONTEXT=OptionsDialog]</a></li>
         <li id="PrefBittorrentLink"><a>QBT_TR(BitTorrent)QBT_TR[CONTEXT=OptionsDialog]</a></li>
@@ -19,6 +20,10 @@
         // Tabs
         MochaUI.initializeTabs('preferencesTabs');
 
+        $('PrefBehaviorLink').addEvent('click', function(e) {
+            $$('.PrefTab').addClass('invisible');
+            $('BehaviorTab').removeClass('invisible');
+        });
         $('PrefDownloadsLink').addEvent('click', function(e) {
             $$('.PrefTab').addClass('invisible');
             $('DownloadsTab').removeClass('invisible');
