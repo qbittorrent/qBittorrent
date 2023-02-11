@@ -20,7 +20,7 @@
     </message>
     <message>
         <source>Skip hash check</source>
-        <translation>Hashi kontrolli vahelejätmine</translation>
+        <translation>Jäta vahele räsi kontroll</translation>
     </message>
     <message>
         <source>Torrent Management Mode:</source>
@@ -60,7 +60,7 @@
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Peatamise tingimus:</translation>
     </message>
     <message>
         <source>None</source>
@@ -165,7 +165,7 @@
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
-        <translation>Ei saa salvestada programmis eelistusi, qBitorrent arvatavasti pole kättesaadav. </translation>
+        <translation>Ei saa salvestada programmi eelistusi, qBittorrent arvatavasti pole kättesaadav. </translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -185,7 +185,7 @@
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
-        <translation>Ei saa sisse logida, qBitorrent arvatavasti pole kättesaadav. </translation>
+        <translation>Ei saa sisse logida, qBittorrent arvatavasti pole kättesaadav. </translation>
     </message>
     <message>
         <source>Invalid Username or Password.</source>
@@ -605,10 +605,18 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Kas soovite jätkata kõikide torrentitega?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
+        <translation>Kas soovite pausile panna kõik torrentid?</translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -752,7 +760,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
+        <translation>Kasuta UPnP / NAT-PMP port forwarding'ut minu ruuterist</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -1314,7 +1322,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Peata jälitaja aegumine:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1486,7 +1494,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Jälgijatele saadetav IP-aadress (vajalik on taaskäivitus):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1510,7 +1518,7 @@
     </message>
     <message>
         <source>Max active checking torrents:</source>
-        <translation type="unfinished" />
+        <translation>Maksimum samaaegselt kontrollitavaid torrenteid:</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
@@ -1566,7 +1574,7 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Värskendamise intervall:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
@@ -1638,7 +1646,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Torrenti peatamise tingimus:</translation>
     </message>
     <message>
         <source>None</source>
@@ -1646,6 +1654,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>SQLite database (experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resume data storage type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fastresume files</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2007,7 +2027,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation type="unfinished" />
+        <translation>Keskmine aeg ootejärjekorras:</translation>
     </message>
     <message>
         <source>Connected peers:</source>
@@ -2043,11 +2063,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Write cache overload:</source>
-        <translation>Kirjuta vahemälu ülekoormust:</translation>
+        <translation>Kirjutamise vahemälu ülekoormus:</translation>
     </message>
     <message>
         <source>Read cache overload:</source>
-        <translation>Loe vahemälu ülekoormust:</translation>
+        <translation>Lugemise vahemälu ülekoormus:</translation>
     </message>
     <message>
         <source>Total queued size:</source>
@@ -2500,7 +2520,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Kontrollin jätkamise andmeid</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -3205,11 +3225,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation>qBitorrenti maskott</translation>
+        <translation>qBittorrenti maskott</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
-        <translation>qBitorrenti ikoon</translation>
+        <translation>qBittorrenti ikoon</translation>
     </message>
 </context>
 <context>
@@ -3641,6 +3661,141 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
     <message>
         <source>Unread</source>
         <translation>Lugemata</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLogWidget</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blocked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log Type</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Information Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Warning Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter logs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>out of</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Timestamp</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log Levels:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reason</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>item</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Banned</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Normal Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Critical</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Critical Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>items</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Choose a log level...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>

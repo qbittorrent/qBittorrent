@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Метадані отримано</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Файли перевірено</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Умови зупинки:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Немає</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Вилучити торренти</translation>
     </message>
 </context>
 <context>
@@ -385,7 +385,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Ви впевнені, що хочете видалити вибрані торренти зі списку передачі?</translation>
     </message>
 </context>
 <context>
@@ -597,18 +597,26 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Скасувати</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Вилучити</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Бажаєте відновити всі торренти?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
+        <translation>Хочете призупинити всі торренти?</translation>
+    </message>
+    <message>
+        <source>Execution Log</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1534,59 +1542,59 @@
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Наскрізний запис (потрібен libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Він контролює внутрішній інтервал оновлення стану, який, у свою чергу, впливатиме на оновлення інтерфейсу користувача</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Режим читання дискового Вводу-Виводу</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Вимкнути кеш ОС</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Режим запису дискового Вводу-Виводу</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Використовувати групування споріднених частин</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Максимум одночасних анонсів HTTP</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Увімкнути кеш ОС</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Інтервал оновлення:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Ліміт використання фізичної пам’яті (RAM) (застосовується, якщо libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation> мс</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Виключені імена файлів</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Підтримка інтернаціоналізації доменних імен (IDN)</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Запуск зовнішньої програми на торренті завершено</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1602,54 +1610,66 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Додано запуск зовнішньої програми на торрент</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Сертифікат HTTPS не повинен бути порожнім</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Укажіть IP-адреси зворотного проксі-сервера (або підмережі, наприклад 0.0.0.0/24), щоб використовувати перенаправлену адресу клієнта (заголовок X-Forwarded-For). Використовуйте ';' щоб розділити кілька записів.</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Ключ HTTPS не повинен бути порожнім</translation>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Запускати зовнішню програму</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Файли перевірено</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Увімкнути переадресацію портів для вбудованого трекера</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>Якщо позначено, пошук імені хоста виконується через проксі.</translation>
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation type="unfinished" />
+        <translation>Використовуйте проксі для пошуку імен хостів</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Метадані отримано</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Умови зупинки торрента:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Жодного</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
+        <translation>Приклад: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
+    </message>
+    <message>
+        <source>SQLite database (experimental)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Resume data storage type (requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Fastresume files</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1733,7 +1753,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Peer ID Клієнт</translation>
     </message>
 </context>
 <context>
@@ -2429,7 +2449,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Додати трекери...</translation>
     </message>
 </context>
 <context>
@@ -2440,7 +2460,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Додати трекери</translation>
     </message>
 </context>
 <context>
@@ -2723,7 +2743,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Вилучити</translation>
     </message>
 </context>
 <context>
@@ -2760,11 +2780,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Також остаточно видалити файли</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Видалити торрент(и)</translation>
     </message>
 </context>
 <context>
@@ -2960,11 +2980,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Натисніть кнопку «Пошук плагінів...» у нижній правій частині вікна, щоб установити деякі з них.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Немає встановлених плагінів пошуку.</translation>
     </message>
 </context>
 <context>
@@ -3115,7 +3135,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Вилучити торренти</translation>
     </message>
 </context>
 <context>
@@ -3633,7 +3653,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Вилучити торренти</translation>
     </message>
 </context>
 <context>
@@ -3645,6 +3665,141 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <source>Unread</source>
         <translation>Непрочитані</translation>
+    </message>
+</context>
+<context>
+    <name>ExecutionLogWidget</name>
+    <message>
+        <source>General</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blocked</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Unknown</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>showing</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Select All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>ID</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log Type</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Information Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Warning Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filter logs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Blocked IPs</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>out of</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Timestamp</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Clear All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log Levels:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Reason</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>item</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>IP</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Banned</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Normal Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Critical</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Critical Messages</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Normal</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>items</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Results</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Choose a log level...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 </TS>
