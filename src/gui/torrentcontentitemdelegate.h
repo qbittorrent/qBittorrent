@@ -1,7 +1,7 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -29,32 +29,30 @@
 
 #pragma once
 
-#include <QSortFilterProxyModel>
+#include <QStyledItemDelegate>
 
-#include "base/utils/compare.h"
-#include "torrentcontentmodelitem.h"
+#include "gui/progressbarpainter.h"
 
-class TorrentContentModel;
+class QAbstractItemModel;
+class QModelIndex;
+class QStyleOptionViewItem;
 
-class TorrentContentFilterModel final : public QSortFilterProxyModel
+class TorrentContentItemDelegate final : public QStyledItemDelegate
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TorrentContentFilterModel)
+    Q_DISABLE_COPY_MOVE(TorrentContentItemDelegate)
 
 public:
-    explicit TorrentContentFilterModel(QObject *parent = nullptr);
+    explicit TorrentContentItemDelegate(QWidget *parent = nullptr);
 
-    void setSourceModel(TorrentContentModel *model);
-    TorrentContentModelItem::ItemType itemType(const QModelIndex &index) const;
-    int getFileIndex(const QModelIndex &index) const;
-    QModelIndex parent(const QModelIndex &child) const override;
+    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
+    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
+
+public slots:
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
 
 private:
-    using QSortFilterProxyModel::setSourceModel;
-    bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const override;
-    bool lessThan(const QModelIndex &left, const QModelIndex &right) const override;
-    bool hasFiltered(const QModelIndex &folder) const;
-
-    TorrentContentModel *m_model = nullptr;
-    Utils::Compare::NaturalLessThan<Qt::CaseInsensitive> m_naturalLessThan;
+    ProgressBarPainter m_progressBarPainter;
 };

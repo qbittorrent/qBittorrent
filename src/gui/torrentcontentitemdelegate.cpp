@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -26,7 +27,7 @@
  * exception statement from your version.
  */
 
-#include "proplistdelegate.h"
+#include "torrentcontentitemdelegate.h"
 
 #include <QComboBox>
 #include <QModelIndex>
@@ -36,15 +37,13 @@
 #include "base/bittorrent/downloadpriority.h"
 #include "base/bittorrent/torrent.h"
 #include "gui/torrentcontentmodel.h"
-#include "propertieswidget.h"
 
-PropListDelegate::PropListDelegate(PropertiesWidget *properties)
-    : QStyledItemDelegate {properties}
-    , m_properties {properties}
+TorrentContentItemDelegate::TorrentContentItemDelegate(QWidget *parent)
+    : QStyledItemDelegate(parent)
 {
 }
 
-void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
+void TorrentContentItemDelegate::setEditorData(QWidget *editor, const QModelIndex &index) const
 {
     auto *combobox = static_cast<QComboBox *>(editor);
     // Set combobox index
@@ -69,17 +68,10 @@ void PropListDelegate::setEditorData(QWidget *editor, const QModelIndex &index) 
     }
 }
 
-QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
+QWidget *TorrentContentItemDelegate::createEditor(QWidget *parent, const QStyleOptionViewItem &, const QModelIndex &index) const
 {
-    if (index.column() != PRIORITY)
+    if (index.column() != TorrentContentModelItem::COL_PRIO)
         return nullptr;
-
-    if (m_properties)
-    {
-        const BitTorrent::Torrent *torrent = m_properties->getCurrentTorrent();
-        if (!torrent || !torrent->hasMetadata())
-            return nullptr;
-    }
 
     auto *editor = new QComboBox(parent);
     editor->setFocusPolicy(Qt::StrongFocus);
@@ -97,13 +89,13 @@ QWidget *PropListDelegate::createEditor(QWidget *parent, const QStyleOptionViewI
 
     connect(editor, qOverload<int>(&QComboBox::currentIndexChanged), this, [this, editor]()
     {
-        emit const_cast<PropListDelegate *>(this)->commitData(editor);
+        emit const_cast<TorrentContentItemDelegate *>(this)->commitData(editor);
     });
 
     return editor;
 }
 
-void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
+void TorrentContentItemDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const
 {
     const auto *combobox = static_cast<QComboBox *>(editor);
 
@@ -130,23 +122,22 @@ void PropListDelegate::setModelData(QWidget *editor, QAbstractItemModel *model, 
     if (newPriority != previousPriority)
     {
         model->setData(index, newPriority);
-        emit filteredFilesChanged();
     }
 }
 
-void PropListDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
+void TorrentContentItemDelegate::updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &) const
 {
     editor->setGeometry(option.rect);
 }
 
-void PropListDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
+void TorrentContentItemDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
     switch (index.column())
     {
-    case PropColumn::PROGRESS:
+    case TorrentContentModelItem::COL_PROGRESS:
         {
             const int progress = static_cast<int>(index.data(TorrentContentModel::UnderlyingDataRole).toReal());
-            const int priority = index.sibling(index.row(), PropColumn::PRIORITY).data(TorrentContentModel::UnderlyingDataRole).toInt();
+            const int priority = index.sibling(index.row(), TorrentContentModelItem::COL_PRIO).data(TorrentContentModel::UnderlyingDataRole).toInt();
             const bool isEnabled = static_cast<BitTorrent::DownloadPriority>(priority) != BitTorrent::DownloadPriority::Ignored;
 
             QStyleOptionViewItem customOption {option};

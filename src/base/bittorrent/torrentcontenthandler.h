@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
+ * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,47 +28,35 @@
 
 #pragma once
 
-#include <QStyledItemDelegate>
+#include <QObject>
 
-#include "gui/progressbarpainter.h"
+#include "base/pathfwd.h"
+#include "abstractfilestorage.h"
+#include "downloadpriority.h"
 
-class QAbstractItemModel;
-class QModelIndex;
-class QStyleOptionViewItem;
-
-class PropertiesWidget;
-
-// Defines for properties list columns
-enum PropColumn
+namespace BitTorrent
 {
-    NAME,
-    PCSIZE,
-    PROGRESS,
-    PRIORITY,
-    REMAINING,
-    AVAILABILITY
-};
+    class TorrentContentHandler : public QObject, public AbstractFileStorage
+    {
+    public:
+        using QObject::QObject;
 
-class PropListDelegate final : public QStyledItemDelegate
-{
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(PropListDelegate)
+        virtual bool hasMetadata() const = 0;
+        virtual Path actualStorageLocation() const = 0;
+        virtual Path actualFilePath(int fileIndex) const = 0;
+        virtual QVector<DownloadPriority> filePriorities() const = 0;
+        virtual QVector<qreal> filesProgress() const = 0;
+        virtual void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const = 0;
+        /**
+         * @brief fraction of file pieces that are available at least from one peer
+         *
+         * This is not the same as torrrent availability, it is just a fraction of pieces
+         * that can be downloaded right now. It varies between 0 to 1.
+         */
+        virtual QVector<qreal> availableFileFractions() const = 0;
+        virtual void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const = 0;
 
-public:
-    explicit PropListDelegate(PropertiesWidget *properties);
-
-    void setEditorData(QWidget *editor, const QModelIndex &index) const override;
-    QWidget *createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-    void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
-public slots:
-    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const override;
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const override;
-
-signals:
-    void filteredFilesChanged() const;
-
-private:
-    PropertiesWidget *m_properties = nullptr;
-    ProgressBarPainter m_progressBarPainter;
-};
+        virtual void prioritizeFiles(const QVector<DownloadPriority> &priorities) = 0;
+        virtual void flushCache() const = 0;
+    };
+}

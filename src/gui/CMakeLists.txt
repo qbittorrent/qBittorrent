@@ -80,7 +80,6 @@ add_library(qbt_gui STATIC
     properties/pieceavailabilitybar.h
     properties/piecesbar.h
     properties/propertieswidget.h
-    properties/proplistdelegate.h
     properties/proptabbar.h
     properties/speedplotview.h
     properties/speedwidget.h
@@ -106,11 +105,12 @@ add_library(qbt_gui STATIC
     tagfilterwidget.h
     torrentcategorydialog.h
     torrentcontentfiltermodel.h
+    torrentcontentitemdelegate.h
     torrentcontentmodel.h
     torrentcontentmodelfile.h
     torrentcontentmodelfolder.h
     torrentcontentmodelitem.h
-    torrentcontenttreeview.h
+    torrentcontentwidget.h
     torrentcreatordialog.h
     torrentoptionsdialog.h
     trackerentriesdialog.h
@@ -164,7 +164,6 @@ add_library(qbt_gui STATIC
     properties/pieceavailabilitybar.cpp
     properties/piecesbar.cpp
     properties/propertieswidget.cpp
-    properties/proplistdelegate.cpp
     properties/proptabbar.cpp
     properties/speedplotview.cpp
     properties/speedwidget.cpp
@@ -190,11 +189,12 @@ add_library(qbt_gui STATIC
     tagfilterwidget.cpp
     torrentcategorydialog.cpp
     torrentcontentfiltermodel.cpp
+    torrentcontentitemdelegate.cpp
     torrentcontentmodel.cpp
     torrentcontentmodelfile.cpp
     torrentcontentmodelfolder.cpp
     torrentcontentmodelitem.cpp
-    torrentcontenttreeview.cpp
+    torrentcontentwidget.cpp
     torrentcreatordialog.cpp
     torrentoptionsdialog.cpp
     trackerentriesdialog.cpp
