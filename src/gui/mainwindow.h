@@ -68,11 +68,6 @@ namespace Ui
     class MainWindow;
 }
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
-class DBusNotifier;
-#endif
-
 class MainWindow final : public QMainWindow, public GUIApplicationComponent
 {
     Q_OBJECT

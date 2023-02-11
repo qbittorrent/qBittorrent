@@ -78,7 +78,7 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
-          DESTDIR="qbittorrent" cmake --install build
+          DESTDIR="qbittorrent" cmake --install build --strip
 
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
@@ -97,7 +97,7 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
-          DESTDIR="qbittorrent" cmake --install build
+          DESTDIR="qbittorrent" cmake --install build --strip
 
       - name: Prepare build artifacts
         run: |
@@ -107,8 +107,35 @@ jobs:
           mkdir upload/cmake/libtorrent
           cp libtorrent/build/compile_commands.json upload/cmake/libtorrent
 
+      - name: 'AppImage: Prepare env'
+        run: |
+          sudo apt install libfuse2
+          wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+          wget https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
+          chmod +x linuxdeploy-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-qt-x86_64.AppImage
+          chmod +x linuxdeploy-plugin-appimage-x86_64.AppImage
+
+      - name: 'AppImage: Prepare nox'
+        if: matrix.qbt_gui == 'GUI=OFF'
+        run: |
+          mkdir -p qbittorrent/usr/share/icons/hicolor/scalable/apps/
+          mkdir -p qbittorrent/usr/share/applications/
+          cp dist/unix/menuicons/scalable/apps/qbittorrent.svg qbittorrent/usr/share/icons/hicolor/scalable/apps/qbittorrent.svg
+          cp .github/workflows/helper/appimage/org.qbittorrent.qBittorrent.desktop qbittorrent/usr/share/applications/org.qbittorrent.qBittorrent.desktop
+
+      - name: 'AppImage: Package'
+        run: |
+          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --plugin qt
+          rm qbittorrent/apprun-hooks/*
+          cp .github/workflows/helper/appimage/export_vars.sh qbittorrent/apprun-hooks/export_vars.sh
+          NO_APPSTREAM=1 \
+          OUTPUT=upload/qbittorrent-CI_Ubuntu_x86_64.AppImage \
+          ./linuxdeploy-x86_64.AppImage --appdir=qbittorrent --output appimage
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: build-info_ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
+          name: qBittorrent-CI_Ubuntu-x64_${{ matrix.qbt_gui }}_libtorrent-${{ matrix.libt_version }}_Qt-${{ matrix.qt_version }}
           path: upload
