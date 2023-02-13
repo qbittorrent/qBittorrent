@@ -94,7 +94,7 @@ void AppController::shutdownAction()
     // Special handling for shutdown, we
     // need to reply to the Web UI before
     // actually shutting down.
-    QTimer::singleShot(100ms, qApp, []()
+    QTimer::singleShot(100ms, Qt::CoarseTimer, qApp, []
     {
         QCoreApplication::exit();
     });

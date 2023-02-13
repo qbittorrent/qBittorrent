@@ -5064,7 +5064,7 @@ void SessionImpl::enqueueRefresh()
 {
     Q_ASSERT(!m_refreshEnqueued);
 
-    QTimer::singleShot(refreshInterval(), this, [this] ()
+    QTimer::singleShot(refreshInterval(), Qt::CoarseTimer, this, [this]
     {
         m_nativeSession->post_torrent_updates();
         m_nativeSession->post_session_stats();

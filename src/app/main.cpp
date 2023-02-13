@@ -283,7 +283,7 @@ void showSplashScreen()
     painter.drawText(224 - painter.fontMetrics().horizontalAdvance(version), 270, version);
     QSplashScreen *splash = new QSplashScreen(splashImg);
     splash->show();
-    QTimer::singleShot(1500ms, splash, &QObject::deleteLater);
+    QTimer::singleShot(1500ms, Qt::CoarseTimer, splash, &QObject::deleteLater);
     qApp->processEvents();
 }
 #endif  // DISABLE_GUI
