@@ -42,7 +42,10 @@
 #include <iphlpapi.h>
 #endif
 
+#include <boost/asio/ip/tcp.hpp>
+
 #include <libtorrent/add_torrent_params.hpp>
+#include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
@@ -5779,8 +5782,12 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *p) const
 {
     if (p->error)
     {
-        LogMsg(tr("SOCKS5 proxy error. Message: \"%1\"").arg(QString::fromStdString(p->message()))
-            , Log::WARNING);
+        const auto addr = p->ip.address();
+        const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_qs : u"%1:%2"_qs)
+                .arg(QString::fromStdString(addr.to_string()), QString::number(p->ip.port()));
+        LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
+                .arg(endpoint, QString::fromLocal8Bit(p->error.message().c_str()))
+                , Log::WARNING);
     }
 }
 
