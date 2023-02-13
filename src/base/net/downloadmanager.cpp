@@ -250,6 +250,11 @@ void Net::DownloadManager::applyProxySettings()
             m_proxy.setUser(proxyConfig.username);
             m_proxy.setPassword(proxyConfig.password);
         }
+
+        if (proxyConfig.hostnameLookupEnabled)
+            m_proxy.setCapabilities(m_proxy.capabilities() | QNetworkProxy::HostNameLookupCapability);
+        else
+            m_proxy.setCapabilities(m_proxy.capabilities() & ~QNetworkProxy::HostNameLookupCapability);
     }
 }
 

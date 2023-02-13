@@ -1835,17 +1835,27 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </layout>
                </item>
                <item>
-                  <widget class="QLabel" name="labelProxyTypeIncompatible">
-                   <property name="font">
-                    <font>
-                     <italic>true</italic>
-                    </font>
-                   </property>
-                   <property name="text">
-                    <string>Some options are incompatible with the chosen proxy type!</string>
-                   </property>
-                  </widget>
-                 </item>
+                <widget class="QLabel" name="labelProxyTypeIncompatible">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>Some options are incompatible with the chosen proxy type!</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyHostnameLookup">
+                 <property name="toolTip">
+                  <string>If checked, hostname lookups are done via the proxy</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for hostname lookups</string>
+                 </property>
+                </widget>
+               </item>
                <item>
                 <widget class="QGroupBox" name="checkProxyAuth">
                  <property name="enabled">
@@ -1918,16 +1928,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                     </property>
                     <property name="text">
                      <string>Use proxy for peer connections</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item>
-                   <widget class="QCheckBox" name="checkProxyHostnameLookup">
-                    <property name="toolTip">
-                     <string>If checked, hostname lookups are done via the proxy</string>
-                    </property>
-                    <property name="text">
-                     <string>Use proxy for hostname lookups</string>
                     </property>
                    </widget>
                   </item>
@@ -3716,12 +3716,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
+  <tabstop>checkProxyHostnameLookup</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>
   <tabstop>textProxyPassword</tabstop>
   <tabstop>checkProxyBitTorrent</tabstop>
   <tabstop>checkProxyPeerConnections</tabstop>
-  <tabstop>checkProxyHostnameLookup</tabstop>
   <tabstop>checkProxyRSS</tabstop>
   <tabstop>checkProxyMisc</tabstop>
   <tabstop>checkIPFilter</tabstop>

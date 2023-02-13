@@ -37,7 +37,8 @@ bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &r
             && (left.port == right.port)
             && (left.authEnabled == right.authEnabled)
             && (left.username == right.username)
-            && (left.password == right.password);
+            && (left.password == right.password)
+            && (left.hostnameLookupEnabled == right.hostnameLookupEnabled);
 }
 
 bool Net::operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right)
@@ -57,6 +58,7 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     , m_storeProxyAuthEnabled {SETTINGS_KEY(u"AuthEnabled"_qs)}
     , m_storeProxyUsername {SETTINGS_KEY(u"Username"_qs)}
     , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
+    , m_storeProxyHostnameLookupEnabled {SETTINGS_KEY(u"HostnameLookupEnabled"_qs)}
 {
     m_config.type = m_storeProxyType.get(ProxyType::HTTP);
     if ((m_config.type < ProxyType::HTTP) || (m_config.type > ProxyType::SOCKS4))
@@ -66,6 +68,7 @@ ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
     m_config.authEnabled = m_storeProxyAuthEnabled;
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
+    m_config.hostnameLookupEnabled = m_storeProxyHostnameLookupEnabled.get(true);
 }
 
 void ProxyConfigurationManager::initInstance()
@@ -101,6 +104,7 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
         m_storeProxyAuthEnabled = config.authEnabled;
         m_storeProxyUsername = config.username;
         m_storeProxyPassword = config.password;
+        m_storeProxyHostnameLookupEnabled = config.hostnameLookupEnabled;
 
         emit proxyConfigurationChanged();
     }

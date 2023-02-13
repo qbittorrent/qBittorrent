@@ -53,6 +53,7 @@ namespace Net
         bool authEnabled = false;
         QString username;
         QString password;
+        bool hostnameLookupEnabled = true;
     };
     bool operator==(const ProxyConfiguration &left, const ProxyConfiguration &right);
     bool operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right);
@@ -85,5 +86,6 @@ namespace Net
         SettingValue<bool> m_storeProxyAuthEnabled;
         SettingValue<QString> m_storeProxyUsername;
         SettingValue<QString> m_storeProxyPassword;
+        SettingValue<bool> m_storeProxyHostnameLookupEnabled;
     };
 }

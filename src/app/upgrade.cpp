@@ -403,6 +403,10 @@ namespace
         }
 
         settingsStorage->removeValue(u"Network/Proxy/OnlyForTorrents"_qs);
+
+        const auto proxyHostnameLookup = settingsStorage->loadValue<bool>(u"BitTorrent/Session/ProxyHostnameLookup"_qs);
+        settingsStorage->storeValue(u"Network/Proxy/HostnameLookupEnabled"_qs, proxyHostnameLookup);
+        settingsStorage->removeValue(u"BitTorrent/Session/ProxyHostnameLookup"_qs);
     }
 
 #ifdef Q_OS_WIN

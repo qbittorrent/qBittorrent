@@ -200,10 +200,10 @@ void AppController::preferencesAction()
     data[u"proxy_auth_enabled"_qs] = proxyConf.authEnabled;
     data[u"proxy_username"_qs] = proxyConf.username;
     data[u"proxy_password"_qs] = proxyConf.password;
+    data[u"proxy_hostname_lookup"_qs] = proxyConf.hostnameLookupEnabled;
 
     data[u"proxy_bittorrent"_qs] = pref->useProxyForBT();
     data[u"proxy_peer_connections"_qs] = session->isProxyPeerConnectionsEnabled();
-    data[u"proxy_hostname_lookup"_qs] = session->isProxyHostnameLookupEnabled();
     data[u"proxy_rss"_qs] = pref->useProxyForRSS();
     data[u"proxy_misc"_qs] = pref->useProxyForGeneralPurposes();
 
@@ -623,14 +623,14 @@ void AppController::setPreferencesAction()
         proxyConf.username = it.value().toString();
     if (hasKey(u"proxy_password"_qs))
         proxyConf.password = it.value().toString();
+    if (hasKey(u"proxy_hostname_lookup"_qs))
+        proxyConf.hostnameLookupEnabled = it.value().toBool();
     proxyManager->setProxyConfiguration(proxyConf);
 
     if (hasKey(u"proxy_bittorrent"_qs))
         pref->setUseProxyForBT(it.value().toBool());
     if (hasKey(u"proxy_peer_connections"_qs))
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
-    if (hasKey(u"proxy_hostname_lookup"_qs))
-        session->setProxyHostnameLookupEnabled(it.value().toBool());
     if (hasKey(u"proxy_rss"_qs))
         pref->setUseProxyForRSS(it.value().toBool());
     if (hasKey(u"proxy_misc"_qs))

@@ -782,10 +782,10 @@ void OptionsDialog::loadConnectionTabOptions()
     m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
+    m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
     m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
-    m_ui->checkProxyHostnameLookup->setChecked(session->isProxyHostnameLookupEnabled());
     m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
     m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
 
@@ -856,6 +856,7 @@ void OptionsDialog::saveConnectionTabOptions() const
     proxyConf.authEnabled = m_ui->checkProxyAuth->isChecked();
     proxyConf.username = getProxyUsername();
     proxyConf.password = getProxyPassword();
+    proxyConf.hostnameLookupEnabled = m_ui->checkProxyHostnameLookup->isChecked();
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
     Preferences::instance()->setUseProxyForBT(m_ui->checkProxyBitTorrent->isChecked());
@@ -863,7 +864,6 @@ void OptionsDialog::saveConnectionTabOptions() const
     Preferences::instance()->setUseProxyForGeneralPurposes(m_ui->checkProxyMisc->isChecked());
 
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
-    session->setProxyHostnameLookupEnabled(m_ui->checkProxyHostnameLookup->isChecked());
 
     // IPFilter
     session->setIPFilteringEnabled(isIPFilteringEnabled());
@@ -1507,7 +1507,7 @@ void OptionsDialog::adjustProxyOptions()
         // SOCKS5 or HTTP
         m_ui->labelProxyTypeIncompatible->setVisible(false);
 
-        m_ui->checkProxyHostnameLookup->setEnabled(m_ui->checkProxyBitTorrent->isChecked());
+        m_ui->checkProxyHostnameLookup->setEnabled(true);
         m_ui->checkProxyRSS->setEnabled(true);
         m_ui->checkProxyMisc->setEnabled(true);
     }
