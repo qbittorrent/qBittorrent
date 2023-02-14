@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,7 +36,6 @@
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
-#include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
@@ -2410,7 +2409,39 @@ void TorrentImpl::flushCache() const
 
 QString TorrentImpl::createMagnetURI() const
 {
-    return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
+    QString ret = u"magnet:?"_qs;
+
+    const SHA1Hash infoHash1 = infoHash().v1();
+    if (infoHash1.isValid())
+    {
+        ret += u"xt=urn:btih:" + infoHash1.toString();
+    }
+
+    const SHA256Hash infoHash2 = infoHash().v2();
+    if (infoHash2.isValid())
+    {
+        if (infoHash1.isValid())
+            ret += u'&';
+        ret += u"xt=urn:btmh:1220" + infoHash2.toString();
+    }
+
+    const QString displayName = name();
+    if (displayName != id().toString())
+    {
+        ret += u"&dn=" + QString::fromLatin1(QUrl::toPercentEncoding(displayName));
+    }
+
+    for (const TrackerEntry &tracker : asConst(trackers()))
+    {
+        ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
+    }
+
+    for (const QUrl &urlSeed : asConst(urlSeeds()))
+    {
+        ret += u"&ws=" + QString::fromLatin1(urlSeed.toEncoded());
+    }
+
+    return ret;
 }
 
 nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const
