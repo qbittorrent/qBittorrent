@@ -302,6 +302,9 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     m_trackerEntries.reserve(static_cast<decltype(m_trackerEntries)::size_type>(extensionData->trackers.size()));
     for (const lt::announce_entry &announceEntry : extensionData->trackers)
         m_trackerEntries.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
+    m_urlSeeds.reserve(static_cast<decltype(m_urlSeeds)::size_type>(extensionData->urlSeeds.size()));
+    for (const std::string &urlSeed : extensionData->urlSeeds)
+        m_urlSeeds.append(QString::fromStdString(urlSeed));
     m_nativeStatus = extensionData->status;
 
     updateState();
@@ -608,15 +611,7 @@ void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 
 QVector<QUrl> TorrentImpl::urlSeeds() const
 {
-    const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
-
-    QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(currentSeeds.size()));
-
-    for (const std::string &urlSeed : currentSeeds)
-        urlSeeds.append(QString::fromStdString(urlSeed));
-
-    return urlSeeds;
+    return m_urlSeeds;
 }
 
 void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
@@ -645,11 +640,13 @@ void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
                 }
             }
 
-            session->invoke([session, thisTorrent, addedUrlSeeds]
+            currentSeeds.append(addedUrlSeeds);
+            session->invoke([session, thisTorrent, currentSeeds, addedUrlSeeds]
             {
                 if (!thisTorrent)
                     return;
 
+                thisTorrent->m_urlSeeds = currentSeeds;
                 if (!addedUrlSeeds.isEmpty())
                 {
                     session->handleTorrentNeedSaveResumeData(thisTorrent);
@@ -680,17 +677,19 @@ void TorrentImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 
             for (const QUrl &url : urlSeeds)
             {
-                if (currentSeeds.contains(url))
+                if (currentSeeds.removeOne(url))
                 {
                     nativeHandle.remove_url_seed(url.toString().toStdString());
                     removedUrlSeeds.append(url);
                 }
             }
 
-            session->invoke([session, thisTorrent, removedUrlSeeds]
+            session->invoke([session, thisTorrent, currentSeeds, removedUrlSeeds]
             {
                 if (!thisTorrent)
                     return;
+
+                thisTorrent->m_urlSeeds = currentSeeds;
 
                 if (!removedUrlSeeds.isEmpty())
                 {
@@ -1887,6 +1886,14 @@ void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
+    if (m_ltAddTorrentParams.url_seeds != p->params.url_seeds)
+    {
+        // URL seed list have been changed by libtorrent for some reason, so we need to update cached one.
+        // Unfortunately, URL seed list containing in "resume data" is generated according to different rules
+        // than the list we usually cache, so we have to request it from the appropriate source.
+        fetchURLSeeds([this](const QVector<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
+    }
+
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
     {
         Q_ASSERT(m_indexMap.isEmpty());
