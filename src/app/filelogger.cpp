@@ -34,6 +34,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
+#include <QIODevice>
 #include <QTextStream>
 #include <QThread>
 
@@ -103,34 +104,30 @@ namespace
                 return false;
             }
 
-            bool ok = false;
-            const QByteArray data = Utils::Gzip::compress(source.readAll(), level, &ok);
+            QFile dest {destPath.data()};
+            if (!dest.open(QIODevice::WriteOnly | QIODevice::NewOnly))
+            {
+                msg = QObject::tr("Can't open %1!").arg(destPath.data());
+                return false;
+            }
+
+            const bool ok = Utils::Gzip::compress(source, dest, level);
             source.close();
+            dest.close();
 
             if (ok)
             {
-                QFile dest {destPath.data()};
-                if (!dest.open(QFile::WriteOnly) || (dest.write(data) == -1))
-                {
-                    msg = FileLogger::tr("Couldn't save to %1.").arg(destPath.data());
-                    ok = false;
-                }
+                // Change the file's timestamp.
+                dest.open(QIODevice::Append);
+                dest.setFileTime(atime, QFileDevice::FileAccessTime);
+                dest.setFileTime(mtime, QFileDevice::FileModificationTime);
+                dest.setFileTime(ctime, QFileDevice::FileBirthTime);
+                dest.setFileTime(mctime, QFileDevice::FileMetadataChangeTime);
                 dest.close();
-
-                if (ok)
-                {
-                    // Change the file's timestamp.
-                    dest.open(QIODevice::Append);
-                    dest.setFileTime(atime, QFileDevice::FileAccessTime);
-                    dest.setFileTime(mtime, QFileDevice::FileModificationTime);
-                    dest.setFileTime(ctime, QFileDevice::FileBirthTime);
-                    dest.setFileTime(mctime, QFileDevice::FileMetadataChangeTime);
-                    dest.close();
-                }
-                else
-                {
-                    Utils::Fs::removeFile(destPath);
-                }
+            }
+            else
+            {
+                Utils::Fs::removeFile(destPath);
             }
             return ok;
         }
