@@ -271,7 +271,7 @@ void TransferListWidget::torrentDoubleClicked()
     if (!torrent) return;
 
     int action;
-    if (torrent->isSeed())
+    if (torrent->isFinished())
         action = Preferences::instance()->getActionOnDblClOnTorrentFn();
     else
         action = Preferences::instance()->getActionOnDblClOnTorrentDl();
@@ -991,7 +991,7 @@ void TransferListWidget::displayListMenu()
     bool superSeedingMode = false;
     bool allSameSequentialDownloadMode = true, allSamePrioFirstlast = true;
     bool sequentialDownloadMode = false, prioritizeFirstLast = false;
-    bool oneHasMetadata = false, oneNotSeed = false;
+    bool oneHasMetadata = false, oneNotFinished = false;
     bool allSameCategory = true;
     bool allSameAutoTMM = true;
     bool firstAutoTMM = false;
@@ -1032,9 +1032,9 @@ void TransferListWidget::displayListMenu()
 
         if (torrent->hasMetadata())
             oneHasMetadata = true;
-        if (!torrent->isSeed())
+        if (!torrent->isFinished())
         {
-            oneNotSeed = true;
+            oneNotFinished = true;
             if (first)
             {
                 sequentialDownloadMode = torrent->isSequentialDownload();
@@ -1050,7 +1050,7 @@ void TransferListWidget::displayListMenu()
         }
         else
         {
-            if (!oneNotSeed && allSameSuperSeeding && torrent->hasMetadata())
+            if (!oneNotFinished && allSameSuperSeeding && torrent->hasMetadata())
             {
                 if (first)
                     superSeedingMode = torrent->superSeeding();
@@ -1100,7 +1100,7 @@ void TransferListWidget::displayListMenu()
         if (!isPaused && !rechecking && !queued)
             oneCanForceReannounce = true;
 
-        if (oneHasMetadata && oneNotSeed && !allSameSequentialDownloadMode
+        if (oneHasMetadata && oneNotFinished && !allSameSequentialDownloadMode
             && !allSamePrioFirstlast && !allSameSuperSeeding && !allSameCategory
             && needsStart && needsForce && needsPause && needsPreview && !allSameAutoTMM
             && hasInfohashV1 && hasInfohashV2 && oneCanForceReannounce)
@@ -1193,7 +1193,7 @@ void TransferListWidget::displayListMenu()
 
     listMenu->addSeparator();
     listMenu->addAction(actionTorrentOptions);
-    if (!oneNotSeed && oneHasMetadata)
+    if (!oneNotFinished && oneHasMetadata)
     {
         actionSuperSeedingMode->setCheckState(allSameSuperSeeding
             ? (superSeedingMode ? Qt::Checked : Qt::Unchecked)
@@ -1207,7 +1207,7 @@ void TransferListWidget::displayListMenu()
         listMenu->addAction(actionPreviewFile);
         addedPreviewAction = true;
     }
-    if (oneNotSeed)
+    if (oneNotFinished)
     {
         actionSequentialDownload->setCheckState(allSameSequentialDownloadMode
             ? (sequentialDownloadMode ? Qt::Checked : Qt::Unchecked)
@@ -1234,7 +1234,7 @@ void TransferListWidget::displayListMenu()
         actionForceReannounce->setToolTip(tr("Can not force reannounce if torrent is Paused/Queued/Errored/Checking"));
     listMenu->addSeparator();
     listMenu->addAction(actionOpenDestinationFolder);
-    if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotSeed)
+    if (BitTorrent::Session::instance()->isQueueingSystemEnabled() && oneNotFinished)
     {
         listMenu->addSeparator();
         QMenu *queueMenu = listMenu->addMenu(

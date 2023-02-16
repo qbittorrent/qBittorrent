@@ -1906,11 +1906,11 @@ void MainWindow::updatePowerManagementState()
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool hasUnfinishedTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
     {
-        return (!torrent->isSeed() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
+        return (!torrent->isFinished() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
     });
     const bool hasRunningSeed = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
     {
-        return (torrent->isSeed() && !torrent->isPaused());
+        return (torrent->isFinished() && !torrent->isPaused());
     });
     const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && hasUnfinishedTorrents)
                              || (Preferences::instance()->preventFromSuspendWhenSeeding() && hasRunningSeed);

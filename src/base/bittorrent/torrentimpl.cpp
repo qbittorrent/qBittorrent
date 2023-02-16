@@ -254,7 +254,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     , m_seedingTimeLimit(params.seedingTimeLimit)
     , m_operatingMode(params.operatingMode)
     , m_contentLayout(params.contentLayout)
-    , m_hasSeedStatus(params.hasSeedStatus)
+    , m_hasFinishedStatus(params.hasFinishedStatus)
     , m_hasFirstLastPiecePriority(params.firstLastPiecePriority)
     , m_useAutoTMM(params.useAutoTMM)
     , m_isStopped(params.stopped)
@@ -431,8 +431,7 @@ void TorrentImpl::setSavePath(const Path &path)
 
     m_session->handleTorrentNeedSaveResumeData(this);
 
-    const bool isFinished = isSeed() || m_hasSeedStatus;
-    if (isFinished || downloadPath().isEmpty())
+    if (isFinished() || m_hasFinishedStatus || downloadPath().isEmpty())
         moveStorage(savePath(), MoveStorageMode::KeepExistingFiles);
 }
 
@@ -455,8 +454,8 @@ void TorrentImpl::setDownloadPath(const Path &path)
 
     m_session->handleTorrentNeedSaveResumeData(this);
 
-    const bool isFinished = isSeed() || m_hasSeedStatus;
-    if (!isFinished)
+    const bool isIncomplete = !(isFinished() || m_hasFinishedStatus);
+    if (isIncomplete)
         moveStorage((m_downloadPath.isEmpty() ? savePath() : m_downloadPath), MoveStorageMode::KeepExistingFiles);
 }
 
@@ -999,7 +998,7 @@ bool TorrentImpl::isErrored() const
             || (m_state == TorrentState::Error));
 }
 
-bool TorrentImpl::isSeed() const
+bool TorrentImpl::isFinished() const
 {
     return ((m_nativeStatus.state == lt::torrent_status::finished)
             || (m_nativeStatus.state == lt::torrent_status::seeding));
@@ -1055,9 +1054,9 @@ void TorrentImpl::updateState()
     else if ((m_nativeStatus.state == lt::torrent_status::checking_files) && !isPaused())
     {
         // If the torrent is not just in the "checking" state, but is being actually checked
-        m_state = m_hasSeedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
+        m_state = m_hasFinishedStatus ? TorrentState::CheckingUploading : TorrentState::CheckingDownloading;
     }
-    else if (isSeed())
+    else if (isFinished())
     {
         if (isPaused())
             m_state = TorrentState::PausedUploading;
@@ -1145,7 +1144,7 @@ qlonglong TorrentImpl::eta() const
 
     const SpeedSampleAvg speedAverage = m_payloadRateMonitor.average();
 
-    if (isSeed())
+    if (isFinished())
     {
         const qreal maxRatioValue = maxRatio();
         const int maxSeedingTimeValue = maxSeedingTime();
@@ -1816,9 +1815,9 @@ void TorrentImpl::handleTorrentCheckedAlert(const lt::torrent_checked_alert *p)
         if (!m_hasMissingFiles)
         {
             if ((progress() < 1.0) && (wantedSize() > 0))
-                m_hasSeedStatus = false;
+                m_hasFinishedStatus = false;
             else if (progress() == 1.0)
-                m_hasSeedStatus = true;
+                m_hasFinishedStatus = true;
 
             adjustStorageLocation();
             manageIncompleteFiles();
@@ -1845,12 +1844,12 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
     Q_UNUSED(p);
 
     m_hasMissingFiles = false;
-    if (m_hasSeedStatus)
+    if (m_hasFinishedStatus)
         return;
 
     m_statusUpdatedTriggers.enqueue([this]()
     {
-        m_hasSeedStatus = true;
+        m_hasFinishedStatus = true;
 
         adjustStorageLocation();
         manageIncompleteFiles();
@@ -1977,7 +1976,7 @@ void TorrentImpl::prepareResumeData(const lt::add_torrent_params &params)
     resumeData.ratioLimit = m_ratioLimit;
     resumeData.seedingTimeLimit = m_seedingTimeLimit;
     resumeData.firstLastPiecePriority = m_hasFirstLastPiecePriority;
-    resumeData.hasSeedStatus = m_hasSeedStatus;
+    resumeData.hasFinishedStatus = m_hasFinishedStatus;
     resumeData.stopped = m_isStopped;
     resumeData.stopCondition = m_stopCondition;
     resumeData.operatingMode = m_operatingMode;
@@ -2203,8 +2202,7 @@ void TorrentImpl::manageIncompleteFiles()
 void TorrentImpl::adjustStorageLocation()
 {
     const Path downloadPath = this->downloadPath();
-    const bool isFinished = isSeed() || m_hasSeedStatus;
-    const Path targetPath = ((isFinished || downloadPath.isEmpty()) ? savePath() : downloadPath);
+    const Path targetPath = ((isFinished() || m_hasFinishedStatus || downloadPath.isEmpty()) ? savePath() : downloadPath);
 
     if ((targetPath != actualStorageLocation()) || isMoveInProgress())
         moveStorage(targetPath, MoveStorageMode::Overwrite);
@@ -2677,7 +2675,7 @@ void TorrentImpl::prioritizeFiles(const QVector<DownloadPriority> &priorities)
             && (priorities[i] > DownloadPriority::Ignored)
             && !m_completedFiles.at(i))
         {
-            m_hasSeedStatus = false;
+            m_hasFinishedStatus = false;
             break;
         }
     }

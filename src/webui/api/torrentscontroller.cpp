@@ -593,7 +593,7 @@ void TorrentsController::filesAction()
             fileDict[KEY_FILE_PIECE_RANGE] = QJsonArray {idx.first(), idx.last()};
 
             if (index == 0)
-                fileDict[KEY_FILE_IS_SEED] = torrent->isSeed();
+                fileDict[KEY_FILE_IS_SEED] = torrent->isFinished();
 
             fileList.append(fileDict);
         }
