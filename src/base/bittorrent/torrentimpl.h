@@ -263,6 +263,7 @@ namespace BitTorrent
         std::shared_ptr<const lt::torrent_info> nativeTorrentInfo() const;
 
         void updateStatus(const lt::torrent_status &nativeStatus);
+        void updateProgress();
         void updateState();
 
         void handleFastResumeRejectedAlert(const lt::fastresume_rejected_alert *p);
@@ -354,6 +355,7 @@ namespace BitTorrent
         int m_downloadLimit = 0;
         int m_uploadLimit = 0;
 
-        mutable QBitArray m_pieces;
+        QBitArray m_pieces;
+        QVector<std::int64_t> m_filesProgress;
     };
 }
