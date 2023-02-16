@@ -31,6 +31,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export \
+            HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 \
+            HOMEBREW_NO_INSTALL_CLEANUP=1
           brew update > /dev/null
           brew install \
             cmake ninja \
