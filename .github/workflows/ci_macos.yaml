@@ -86,11 +86,11 @@ jobs:
       - name: Build qBittorrent (Qt5)
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
@@ -104,11 +104,11 @@ jobs:
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
