@@ -5,6 +5,8 @@ on:
     - cron: '0 0 1 * *' # Monthly (1st day of month at midnight)
   workflow_dispatch: # Mainly for testing. Don't forget the Coverity usage limits.
 
+permissions: {}
+
 jobs:
   coverity_scan:
     name: Scan
