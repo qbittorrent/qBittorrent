@@ -69,6 +69,7 @@ jobs:
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
           CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
@@ -87,6 +88,7 @@ jobs:
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
           CXXFLAGS="$CXXFLAGS -Werror" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
