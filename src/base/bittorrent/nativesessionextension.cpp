@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2020-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2020-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -51,6 +51,7 @@ namespace
         {
             data->status = alert->handle.status({});
             data->trackers = alert->handle.trackers();
+            data->urlSeeds = alert->handle.url_seeds();
         }
 #endif
     }

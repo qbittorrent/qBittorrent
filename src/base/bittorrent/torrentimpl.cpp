@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -36,7 +36,6 @@
 #include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/create_torrent.hpp>
-#include <libtorrent/magnet_uri.hpp>
 #include <libtorrent/session.hpp>
 #include <libtorrent/storage_defs.hpp>
 #include <libtorrent/time.hpp>
@@ -302,6 +301,9 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     m_trackerEntries.reserve(static_cast<decltype(m_trackerEntries)::size_type>(extensionData->trackers.size()));
     for (const lt::announce_entry &announceEntry : extensionData->trackers)
         m_trackerEntries.append({QString::fromStdString(announceEntry.url), announceEntry.tier});
+    m_urlSeeds.reserve(static_cast<decltype(m_urlSeeds)::size_type>(extensionData->urlSeeds.size()));
+    for (const std::string &urlSeed : extensionData->urlSeeds)
+        m_urlSeeds.append(QString::fromStdString(urlSeed));
     m_nativeStatus = extensionData->status;
 
     updateState();
@@ -608,15 +610,7 @@ void TorrentImpl::replaceTrackers(QVector<TrackerEntry> trackers)
 
 QVector<QUrl> TorrentImpl::urlSeeds() const
 {
-    const std::set<std::string> currentSeeds = m_nativeHandle.url_seeds();
-
-    QVector<QUrl> urlSeeds;
-    urlSeeds.reserve(static_cast<decltype(urlSeeds)::size_type>(currentSeeds.size()));
-
-    for (const std::string &urlSeed : currentSeeds)
-        urlSeeds.append(QString::fromStdString(urlSeed));
-
-    return urlSeeds;
+    return m_urlSeeds;
 }
 
 void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
@@ -645,11 +639,13 @@ void TorrentImpl::addUrlSeeds(const QVector<QUrl> &urlSeeds)
                 }
             }
 
-            session->invoke([session, thisTorrent, addedUrlSeeds]
+            currentSeeds.append(addedUrlSeeds);
+            session->invoke([session, thisTorrent, currentSeeds, addedUrlSeeds]
             {
                 if (!thisTorrent)
                     return;
 
+                thisTorrent->m_urlSeeds = currentSeeds;
                 if (!addedUrlSeeds.isEmpty())
                 {
                     session->handleTorrentNeedSaveResumeData(thisTorrent);
@@ -680,17 +676,19 @@ void TorrentImpl::removeUrlSeeds(const QVector<QUrl> &urlSeeds)
 
             for (const QUrl &url : urlSeeds)
             {
-                if (currentSeeds.contains(url))
+                if (currentSeeds.removeOne(url))
                 {
                     nativeHandle.remove_url_seed(url.toString().toStdString());
                     removedUrlSeeds.append(url);
                 }
             }
 
-            session->invoke([session, thisTorrent, removedUrlSeeds]
+            session->invoke([session, thisTorrent, currentSeeds, removedUrlSeeds]
             {
                 if (!thisTorrent)
                     return;
+
+                thisTorrent->m_urlSeeds = currentSeeds;
 
                 if (!removedUrlSeeds.isEmpty())
                 {
@@ -1887,6 +1885,14 @@ void TorrentImpl::handleTorrentResumedAlert(const lt::torrent_resumed_alert *p)
 
 void TorrentImpl::handleSaveResumeDataAlert(const lt::save_resume_data_alert *p)
 {
+    if (m_ltAddTorrentParams.url_seeds != p->params.url_seeds)
+    {
+        // URL seed list have been changed by libtorrent for some reason, so we need to update cached one.
+        // Unfortunately, URL seed list containing in "resume data" is generated according to different rules
+        // than the list we usually cache, so we have to request it from the appropriate source.
+        fetchURLSeeds([this](const QVector<QUrl> &urlSeeds) { m_urlSeeds = urlSeeds; });
+    }
+
     if (m_maintenanceJob == MaintenanceJob::HandleMetadata)
     {
         Q_ASSERT(m_indexMap.isEmpty());
@@ -2403,7 +2409,39 @@ void TorrentImpl::flushCache() const
 
 QString TorrentImpl::createMagnetURI() const
 {
-    return QString::fromStdString(lt::make_magnet_uri(m_nativeHandle));
+    QString ret = u"magnet:?"_qs;
+
+    const SHA1Hash infoHash1 = infoHash().v1();
+    if (infoHash1.isValid())
+    {
+        ret += u"xt=urn:btih:" + infoHash1.toString();
+    }
+
+    const SHA256Hash infoHash2 = infoHash().v2();
+    if (infoHash2.isValid())
+    {
+        if (infoHash1.isValid())
+            ret += u'&';
+        ret += u"xt=urn:btmh:1220" + infoHash2.toString();
+    }
+
+    const QString displayName = name();
+    if (displayName != id().toString())
+    {
+        ret += u"&dn=" + QString::fromLatin1(QUrl::toPercentEncoding(displayName));
+    }
+
+    for (const TrackerEntry &tracker : asConst(trackers()))
+    {
+        ret += u"&tr=" + QString::fromLatin1(QUrl::toPercentEncoding(tracker.url));
+    }
+
+    for (const QUrl &urlSeed : asConst(urlSeeds()))
+    {
+        ret += u"&ws=" + QString::fromLatin1(urlSeed.toEncoded());
+    }
+
+    return ret;
 }
 
 nonstd::expected<lt::entry, QString> TorrentImpl::exportTorrent() const

@@ -327,6 +327,7 @@ namespace BitTorrent
         MaintenanceJob m_maintenanceJob = MaintenanceJob::None;
 
         QVector<TrackerEntry> m_trackerEntries;
+        QVector<QUrl> m_urlSeeds;
         FileErrorInfo m_lastFileError;
 
         // Persistent data
