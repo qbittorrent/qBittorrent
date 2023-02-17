@@ -2061,7 +2061,7 @@ void SessionImpl::processShareLimits()
     const QHash<TorrentID, TorrentImpl *> torrents {m_torrents};
     for (TorrentImpl *const torrent : torrents)
     {
-        if (torrent->isSeed() && !torrent->isForced())
+        if (torrent->isFinished() && !torrent->isForced())
         {
             if (torrent->ratioLimit() != Torrent::NO_RATIO_LIMIT)
             {
@@ -2541,7 +2541,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.name = addTorrentParams.name;
     loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
-    loadTorrentParams.hasSeedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
+    loadTorrentParams.hasFinishedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
@@ -2674,7 +2674,7 @@ bool SessionImpl::addTorrent_impl(const std::variant<MagnetUri, TorrentInfo> &so
                 loadTorrentParams.name = contentName;
         }
 
-        if (!loadTorrentParams.hasSeedStatus)
+        if (!loadTorrentParams.hasFinishedStatus)
         {
             const Path actualDownloadPath = useAutoTMM
                     ? categoryDownloadPath(loadTorrentParams.category) : loadTorrentParams.downloadPath;
@@ -4736,7 +4736,7 @@ void SessionImpl::handleTorrentFinished(TorrentImpl *const torrent)
 
     const bool hasUnfinishedTorrents = std::any_of(m_torrents.cbegin(), m_torrents.cend(), [](const TorrentImpl *torrent)
     {
-        return !(torrent->isSeed() || torrent->isPaused() || torrent->isErrored());
+        return !(torrent->isFinished() || torrent->isPaused() || torrent->isErrored());
     });
     if (!hasUnfinishedTorrents)
         emit allTorrentsFinished();

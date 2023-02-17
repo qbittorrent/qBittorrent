@@ -204,7 +204,7 @@ namespace BitTorrent
                 const QStringList tagList = tagsData.split(u',');
                 resumeData.tags.insert(tagList.cbegin(), tagList.cend());
             }
-            resumeData.hasSeedStatus = query.value(DB_COLUMN_HAS_SEED_STATUS.name).toBool();
+            resumeData.hasFinishedStatus = query.value(DB_COLUMN_HAS_SEED_STATUS.name).toBool();
             resumeData.firstLastPiecePriority = query.value(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.name).toBool();
             resumeData.ratioLimit = query.value(DB_COLUMN_RATIO_LIMIT.name).toInt() / 1000.0;
             resumeData.seedingTimeLimit = query.value(DB_COLUMN_SEEDING_TIME_LIMIT.name).toInt();
@@ -704,7 +704,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(resumeData.ratioLimit * 1000));
         query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, resumeData.seedingTimeLimit);
         query.bindValue(DB_COLUMN_HAS_OUTER_PIECES_PRIORITY.placeholder, resumeData.firstLastPiecePriority);
-        query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, resumeData.hasSeedStatus);
+        query.bindValue(DB_COLUMN_HAS_SEED_STATUS.placeholder, resumeData.hasFinishedStatus);
         query.bindValue(DB_COLUMN_OPERATING_MODE.placeholder, Utils::String::fromEnum(resumeData.operatingMode));
         query.bindValue(DB_COLUMN_STOPPED.placeholder, resumeData.stopped);
         query.bindValue(DB_COLUMN_STOP_CONDITION.placeholder, Utils::String::fromEnum(resumeData.stopCondition));

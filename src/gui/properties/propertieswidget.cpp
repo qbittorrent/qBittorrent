@@ -378,12 +378,16 @@ void PropertiesWidget::loadDynamicData()
             m_ui->labelDlLimitVal->setText(m_torrent->downloadLimit() <= 0 ? C_INFINITY : Utils::Misc::friendlyUnit(m_torrent->downloadLimit(), true));
 
             QString elapsedString;
-            if (m_torrent->isSeed())
+            if (m_torrent->isFinished())
+            {
                 elapsedString = tr("%1 (seeded for %2)", "e.g. 4m39s (seeded for 3m10s)")
-                    .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime())
-                        , Utils::Misc::userFriendlyDuration(m_torrent->finishedTime()));
+                        .arg(Utils::Misc::userFriendlyDuration(m_torrent->activeTime())
+                                , Utils::Misc::userFriendlyDuration(m_torrent->finishedTime()));
+            }
             else
+            {
                 elapsedString = Utils::Misc::userFriendlyDuration(m_torrent->activeTime());
+            }
             m_ui->labelElapsedVal->setText(elapsedString);
 
             m_ui->labelConnectionsVal->setText(tr("%1 (%2 max)", "%1 and %2 are numbers, e.g. 3 (10 max)")
@@ -429,7 +433,7 @@ void PropertiesWidget::loadDynamicData()
 
                 m_ui->labelTotalPiecesVal->setText(tr("%1 x %2 (have %3)", "(torrent pieces) eg 152 x 4MB (have 25)").arg(m_torrent->piecesCount()).arg(Utils::Misc::friendlyUnit(m_torrent->pieceLength())).arg(m_torrent->piecesHave()));
 
-                if (!m_torrent->isSeed() && !m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking())
+                if (!m_torrent->isFinished() && !m_torrent->isPaused() && !m_torrent->isQueued() && !m_torrent->isChecking())
                 {
                     // Pieces availability
                     showPiecesAvailability(true);

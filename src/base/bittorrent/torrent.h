@@ -217,7 +217,7 @@ namespace BitTorrent
         virtual QVector<DownloadPriority> filePriorities() const = 0;
 
         virtual TorrentInfo info() const = 0;
-        virtual bool isSeed() const = 0;
+        virtual bool isFinished() const = 0;
         virtual bool isPaused() const = 0;
         virtual bool isQueued() const = 0;
         virtual bool isForced() const = 0;

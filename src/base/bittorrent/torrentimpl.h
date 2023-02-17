@@ -139,7 +139,7 @@ namespace BitTorrent
         QVector<DownloadPriority> filePriorities() const override;
 
         TorrentInfo info() const override;
-        bool isSeed() const override;
+        bool isFinished() const override;
         bool isPaused() const override;
         bool isQueued() const override;
         bool isForced() const override;
@@ -340,7 +340,7 @@ namespace BitTorrent
         int m_seedingTimeLimit;
         TorrentOperatingMode m_operatingMode;
         TorrentContentLayout m_contentLayout;
-        bool m_hasSeedStatus;
+        bool m_hasFinishedStatus;
         bool m_hasMissingFiles = false;
         bool m_hasFirstLastPiecePriority = false;
         bool m_useAutoTMM;
