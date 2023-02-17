@@ -1441,6 +1441,10 @@ void TorrentImpl::forceRecheck()
     if (!hasMetadata()) return;
 
     m_nativeHandle.force_recheck();
+    // We have to force update the cached state, otherwise someone will be able to get
+    // an incorrect one during the interval until the cached state is updated in a regular way.
+    m_nativeStatus.state = lt::torrent_status::checking_resume_data;
+
     m_hasMissingFiles = false;
     m_unchecked = false;
     m_completedFiles.fill(false);
