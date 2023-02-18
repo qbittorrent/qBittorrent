@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="${LANG}">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>QBT_TR(Renaming))QBT_TR[CONTEXT=TorrentContentTreeView]</title>
+    <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/lib/MooTools-More-1.6.0-compat-compressed.js"></script>
+    <script src="scripts/filesystem.js?v=${CACHEID}"></script>
+    <script src="scripts/misc.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/file-tree.js?v=${CACHEID}"></script>
+    <script src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/rename-files.js?v=${CACHEID}"></script>
+    <script>
+        'use strict';
+
+        if (window.parent.qBittorrent !== undefined) {
+            window.qBittorrent = window.parent.qBittorrent;
+        }
+        window.qBittorrent = window.parent.qBittorrent;
+
+        var TriState = window.qBittorrent.FileTree.TriState;
+        var data = window.MUI.Windows.instances['multiRenamePage'].options.data;
+        var bulkRenameFilesContextMenu;
+        if (!bulkRenameFilesContextMenu) {
+            bulkRenameFilesContextMenu = new window.qBittorrent.ContextMenu.ContextMenu({
+                targets: '#bulkRenameFilesTableDiv tr',
+                menu: 'multiRenameFilesMenu',
+                actions: {
+                    ToggleSelection: function(element, ref) {
+                        const rowId = parseInt(element.get('data-row-id'));
+                        const row = bulkRenameFilesTable.getNode(rowId);
+                        const checkState = row.checked == 1 ? 0 : 1;
+                        bulkRenameFilesTable.toggleNodeTreeCheckbox(rowId, checkState);
+                        bulkRenameFilesTable.updateGlobalCheckbox();
+                        bulkRenameFilesTable.onRowSelectionChange(bulkRenameFilesTable.getSelectedRows());
+                    }
+                },
+                offsets: {
+                    x: -15,
+                    y: 2
+                }
+            });
+        }
+
+        // Setup the dynamic table for bulk renaming
+        var bulkRenameFilesTable = new window.qBittorrent.DynamicTable.BulkRenameTorrentFilesTable();
+        bulkRenameFilesTable.setup('bulkRenameFilesTableDiv', 'bulkRenameFilesTableFixedHeaderDiv', bulkRenameFilesContextMenu);
+
+        // Inject checkbox into the first column of the table header
+        var tableHeaders = $$('#bulkRenameFilesTableFixedHeaderDiv .dynamicTableHeader th');
+        var checkboxHeader;
+        if (tableHeaders.length > 0) {
+            if (checkboxHeader) {
+                checkboxHeader.remove();
+            }
+            checkboxHeader = new Element('input');
+            checkboxHeader.set('type', 'checkbox');
+            checkboxHeader.set('id', 'rootMultiRename_cb');
+            checkboxHeader.addEvent('click', function(e) {
+                bulkRenameFilesTable.toggleGlobalCheckbox();
+                fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
+                fileRenamer.update();
+            });
+
+            const checkboxTH = tableHeaders[0];
+            checkboxHeader.injectInside(checkboxTH);
+        }
+
+        // Register keyboard events to modal window
+        if (!keyboard) {
+            var keyboard = new Keyboard({
+                defaultEventType: 'keydown',
+                events: {
+                    'Escape': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    },
+                    'Esc': function(event) {
+                        window.parent.closeWindows();
+                        event.preventDefault();
+                    }
+                }
+            });
+            keyboard.activate();
+        }
+
+        var fileRenamer = new window.qBittorrent.MultiRename.RenameFiles();
+        fileRenamer.hash = data.hash;
+
+        // Load Multi Rename Preferences
+        var multiRenamePrefChecked = LocalPreferences.get('multirename_rememberPreferences', "true") === "true";
+        $('multirename_rememberprefs_checkbox').setProperty('checked', multiRenamePrefChecked);
+
+        if (multiRenamePrefChecked) {
+            var multirename_search = LocalPreferences.get('multirename_search', '');
+            fileRenamer.setSearch(multirename_search);
+            $('multiRenameSearch').set('value', multirename_search);
+
+            var multirename_useRegex = LocalPreferences.get('multirename_useRegex', false);
+            fileRenamer.useRegex = multirename_useRegex === 'true';
+            $('use_regex_search').checked = fileRenamer.useRegex;
+
+            var multirename_matchAllOccurences = LocalPreferences.get('multirename_matchAllOccurences', false);
+            fileRenamer.matchAllOccurences = multirename_matchAllOccurences === 'true';
+            $('match_all_occurences').checked = fileRenamer.matchAllOccurences;
+
+            var multirename_caseSensitive = LocalPreferences.get('multirename_caseSensitive', false);
+            fileRenamer.caseSensitive = multirename_caseSensitive === 'true';
+            $('case_sensitive').checked = fileRenamer.caseSensitive;
+
+            var multirename_replace = LocalPreferences.get('multirename_replace', '');
+            fileRenamer.setReplacement(multirename_replace);
+            $('multiRenameReplace').set('value', multirename_replace);
+
+            var multirename_appliesTo = LocalPreferences.get('multirename_appliesTo', window.qBittorrent.MultiRename.AppliesTo.FilenameExtension);
+            fileRenamer.appliesTo = window.qBittorrent.MultiRename.AppliesTo[multirename_appliesTo];
+            $('applies_to_option').set('value', fileRenamer.appliesTo);
+
+            var multirename_includeFiles = LocalPreferences.get('multirename_includeFiles', true);
+            fileRenamer.includeFiles = multirename_includeFiles === 'true';
+            $('include_files').checked = fileRenamer.includeFiles;
+
+            var multirename_includeFolders = LocalPreferences.get('multirename_includeFolders', false);
+            fileRenamer.includeFolders = multirename_includeFolders === 'true';
+            $('include_folders').checked = fileRenamer.includeFolders;
+
+            var multirename_fileEnumerationStart = LocalPreferences.get('multirename_fileEnumerationStart', 0);
+            fileRenamer.fileEnumerationStart = parseInt(multirename_fileEnumerationStart);
+            $('file_counter').set('value', fileRenamer.fileEnumerationStart);
+
+            var multirename_replaceAll = LocalPreferences.get('multirename_replaceAll', false);
+            fileRenamer.replaceAll = multirename_replaceAll === 'true';
+            var renameButtonValue = fileRenamer.replaceAll ? 'Replace All' : 'Replace';
+            $('renameOptions').set('value', renameButtonValue);
+            $('renameButton').set('value', renameButtonValue);
+        }
+
+        // Fires everytime a row's selection changes
+        bulkRenameFilesTable.onRowSelectionChange = function(row) {
+            fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
+            fileRenamer.update();
+        };
+
+        // Setup Search Events that control renaming
+        $('multiRenameSearch').addEvent('input', function(e) {
+            let sanitized = e.target.value.replace(/\n/g, '');
+            $('multiRenameSearch').set('value', sanitized);
+
+            // Search input has changed
+            $('multiRenameSearch').style['border-color'] = '';
+            LocalPreferences.set('multirename_search', sanitized);
+            fileRenamer.setSearch(sanitized);
+        });
+        $('use_regex_search').addEvent('change', function(e) {
+            fileRenamer.useRegex = e.target.checked;
+            LocalPreferences.set('multirename_useRegex', e.target.checked);
+            fileRenamer.update();
+        });
+        $('match_all_occurences').addEvent('change', function(e) {
+            fileRenamer.matchAllOccurences = e.target.checked;
+            LocalPreferences.set('multirename_matchAllOccurences', e.target.checked);
+            fileRenamer.update();
+        });
+        $('case_sensitive').addEvent('change', function(e) {
+            fileRenamer.caseSensitive = e.target.checked;
+            LocalPreferences.set('multirename_caseSensitive', e.target.checked);
+            fileRenamer.update();
+        });
+
+        /**
+         * Fires every time the filerenamer gets changed, it will update all the rows in the table
+         */
+        fileRenamer.onChanged = function(matchedRows) {
+            // Clear renamed column
+            document
+                .querySelectorAll("span[id^='filesTablefileRenamed']")
+                .forEach(function(span) {
+                    span.set('text', "");
+                });
+
+            // Update renamed column for matched rows
+            for (let i = 0; i < matchedRows.length; ++i) {
+                const row = matchedRows[i];
+                $('filesTablefileRenamed' + row.rowId).set('text', row.renamed);
+            }
+        };
+        fileRenamer.onInvalidRegex = function(err) {
+            $('multiRenameSearch').style['border-color'] = '#CC0033';
+        };
+
+        // Setup Replace Events that control renaming
+        $('multiRenameReplace').addEvent('input', function(e) {
+            let sanitized = e.target.value.replace(/\n/g, '');
+            $('multiRenameReplace').set('value', sanitized);
+
+            // Replace input has changed
+            $('multiRenameReplace').style['border-color'] = '';
+            LocalPreferences.set('multirename_replace', sanitized);
+            fileRenamer.setReplacement(sanitized);
+        });
+        $('applies_to_option').addEvent('change', function(e) {
+            fileRenamer.appliesTo = e.target.value;
+            LocalPreferences.set('multirename_appliesTo', e.target.value);
+            fileRenamer.update();
+        });
+        $('include_files').addEvent('change', function(e) {
+            fileRenamer.includeFiles = e.target.checked;
+            LocalPreferences.set('multirename_includeFiles', e.target.checked);
+            fileRenamer.update();
+        });
+        $('include_folders').addEvent('change', function(e) {
+            fileRenamer.includeFolders = e.target.checked;
+            LocalPreferences.set('multirename_includeFolders', e.target.checked);
+            fileRenamer.update();
+        });
+        $('file_counter').addEvent('input', function(e) {
+            let value = e.target.valueAsNumber;
+            if (!value) { value = 0; }
+            if (value < 0) { value = 0; }
+            if (value > 99999999) { value = 99999999; }
+            fileRenamer.fileEnumerationStart = value;
+            $('file_counter').set('value', value);
+            LocalPreferences.set('multirename_fileEnumerationStart', value);
+            fileRenamer.update();
+        });
+
+        // Setup Rename Operation Events
+        $('renameButton').addEvent('click', function(e) {
+            // Disable Search Options
+            $('multiRenameSearch').disabled = true;
+            $('use_regex_search').disabled = true;
+            $('match_all_occurences').disabled = true;
+            $('case_sensitive').disabled = true;
+            // Disable Replace Options
+            $('multiRenameReplace').disabled = true;
+            $('applies_to_option').disabled = true;
+            $('include_files').disabled = true;
+            $('include_folders').disabled = true;
+            $('file_counter').disabled = true;
+            // Disable Rename Buttons
+            $('renameButton').disabled = true;
+            $('renameOptions').disabled = true;
+            // Clear error text
+            $('rename_error').set('text', '');
+            fileRenamer.rename();
+        });
+        fileRenamer.onRenamed = function(rows) {
+            // Disable Search Options
+            $('multiRenameSearch').disabled = false;
+            $('use_regex_search').disabled = false;
+            $('match_all_occurences').disabled = false;
+            $('case_sensitive').disabled = false;
+            // Disable Replace Options
+            $('multiRenameReplace').disabled = false;
+            $('applies_to_option').disabled = false;
+            $('include_files').disabled = false;
+            $('include_folders').disabled = false;
+            $('file_counter').disabled = false;
+            // Disable Rename Buttons
+            $('renameButton').disabled = false;
+            $('renameOptions').disabled = false;
+
+            // Recreate table
+            let selectedRows = bulkRenameFilesTable.getSelectedRows().map(row => row.rowId.toString());
+            for (let renamedRow of rows) {
+                selectedRows = selectedRows.filter(selectedRow => selectedRow !== renamedRow.rowId.toString());
+            }
+            bulkRenameFilesTable.clear();
+
+            // Adjust file enumeration count by 1 when replacing single files to prevent naming conflicts
+            if (!fileRenamer.replaceAll) {
+                fileRenamer.fileEnumerationStart++;
+                $('file_counter').set('value', fileRenamer.fileEnumerationStart);
+            }
+            setupTable(selectedRows);
+        };
+        fileRenamer.onRenameError = function(err, row) {
+            if (err.xhr.status === 409) {
+                $('rename_error').set('text', `QBT_TR(Rename failed: file or folder already exists)QBT_TR[CONTEXT=PropertiesWidget] \`${row.renamed}\``);
+            }
+        };
+        $('renameOptions').addEvent('change', function(e) {
+            const combobox = e.target;
+            const replaceOperation = combobox.value;
+            if (replaceOperation == "Replace") {
+                fileRenamer.replaceAll = false;
+            }
+            else if (replaceOperation == "Replace All") {
+                fileRenamer.replaceAll = true;
+            }
+            else {
+                fileRenamer.replaceAll = false;
+            }
+            LocalPreferences.set('multirename_replaceAll', fileRenamer.replaceAll);
+            $('renameButton').set('value', replaceOperation);
+        });
+        $('closeButton').addEvent('click', function() {
+            window.parent.closeWindows();
+            event.preventDefault();
+        });
+        // synchronize header scrolling to table body
+        $('bulkRenameFilesTableDiv').onscroll = function() {
+            const length = $(this).scrollLeft;
+            $('bulkRenameFilesTableFixedHeaderDiv').scrollLeft = length;
+        };
+
+        var handleTorrentFiles = function(files, selectedRows) {
+            const rows = files.map(function(file, index) {
+
+                const row = {
+                    fileId: index,
+                    checked: 1, // unchecked
+                    path: file.name,
+                    original: window.qBittorrent.Filesystem.fileName(file.name),
+                    renamed: "",
+                    size: file.size
+                };
+
+                return row;
+            });
+
+            addRowsToTable(rows, selectedRows);
+        };
+
+        var addRowsToTable = function(rows, selectedRows) {
+            let rowId = 0;
+            const rootNode = new window.qBittorrent.FileTree.FolderNode();
+            rootNode.autoCheckFolders = false;
+
+            rows.forEach(function(row) {
+                const pathItems = row.path.split(window.qBittorrent.Filesystem.PathSeparator);
+
+                pathItems.pop(); // remove last item (i.e. file name)
+                let parent = rootNode;
+                pathItems.forEach(function(folderName) {
+                    if (folderName === '.unwanted') {
+                        return;
+                    }
+
+                    let folderNode = null;
+                    if (parent.children !== null) {
+                        for (let i = 0; i < parent.children.length; ++i) {
+                            const childFolder = parent.children[i];
+                            if (childFolder.original === folderName) {
+                                folderNode = childFolder;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (folderNode === null) {
+                        folderNode = new window.qBittorrent.FileTree.FolderNode();
+                        folderNode.autoCheckFolders = false;
+                        folderNode.rowId = rowId;
+                        folderNode.path = (parent.path === "")
+                            ? folderName
+                            : [parent.path, folderName].join(window.qBittorrent.Filesystem.PathSeparator);
+                        folderNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                        folderNode.original = folderName;
+                        folderNode.renamed = "";
+                        folderNode.root = parent;
+                        parent.addChild(folderNode);
+
+                        ++rowId;
+                    }
+
+                    parent = folderNode;
+                });
+
+                const childNode = new window.qBittorrent.FileTree.FileNode();
+                childNode.rowId = rowId;
+                childNode.path = row.path;
+                childNode.checked = selectedRows.includes(rowId.toString()) ? 0 : 1;
+                childNode.original = row.original;
+                childNode.renamed = "";
+                childNode.root = parent;
+                childNode.data = row;
+                parent.addChild(childNode);
+
+                ++rowId;
+            });
+
+            bulkRenameFilesTable.populateTable(rootNode);
+            bulkRenameFilesTable.updateTable(false);
+            bulkRenameFilesTable.altRow();
+
+            if (selectedRows !== undefined) {
+                bulkRenameFilesTable.reselectRows(selectedRows);
+            }
+            fileRenamer.selectedFiles = bulkRenameFilesTable.getSelectedRows();
+            fileRenamer.update();
+        };
+
+        var setupTable = function(selectedRows) {
+            new Request.JSON({
+                url: new URI('api/v2/torrents/files?hash=' + data.hash),
+                noCache: true,
+                method: 'get',
+                onSuccess: function(files) {
+                    if (files.length === 0) {
+                        bulkRenameFilesTable.clear();
+                    }
+                    else {
+                        handleTorrentFiles(files, selectedRows);
+                    }
+                }
+            }).send();
+        };
+        setupTable(data.selectedRows);
+    </script>
+</head>
+
+<body style="min-width: 400px; min-height: 300px;">
+    <div style="padding: 0px 10px 0px 0px;">
+        <div style="float: left; height: 100%; width: 228px;">
+            <div class="formRow">
+                <input type="checkbox" id="multirename_rememberprefs_checkbox" onchange="LocalPreferences.set('multirename_rememberPreferences', this.checked);" />
+                <label for="multirename_rememberprefs_checkbox">QBT_TR(Remember Multi-Rename settings)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+            <hr>
+            <textarea id="multiRenameSearch" placeholder="QBT_TR(Search Files)QBT_TR[CONTEXT=PropertiesWidget]" style="width: calc(100% - 8px); resize: vertical; min-height: 30px;"></textarea>
+            <div class="formRow">
+                <input type="checkbox" id="use_regex_search" />
+                <label for="use_regex_search">QBT_TR(Use regular expressions)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="match_all_occurences" />
+                <label for="match_all_occurences">QBT_TR(Match all occurences)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="case_sensitive" />
+                <label for="case_sensitive">QBT_TR(Case sensitive)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+            <hr>
+            <textarea id="multiRenameReplace" placeholder="QBT_TR(Replacement Input)QBT_TR[CONTEXT=PropertiesWidget]" style="width: calc(100% - 8px); resize: vertical; min-height: 30px;"></textarea>
+            <select id="applies_to_option" name="applies_to_option" style="width: 100%; margin-bottom: 5px;">
+                <option selected value="FilenameExtension">QBT_TR(Filename + Extension)QBT_TR[CONTEXT=PropertiesWidget]</option>
+                <option value="Filename">QBT_TR(Filename)QBT_TR[CONTEXT=PropertiesWidget]</option>
+                <option value="Extension">QBT_TR(Extension)QBT_TR[CONTEXT=PropertiesWidget]</option>
+            </select>
+            <div class="formRow">
+                <input type="checkbox" id="include_files" checked />
+                <label for="include_files">QBT_TR(Include files)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+            <div class="formRow">
+                <input type="checkbox" id="include_folders" />
+                <label for="include_folders">QBT_TR(Include folders)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+            <div class="formRow">
+                <input type="number" min="0" max="99999999" value="0" id="file_counter" style="width: 80px;" />
+                <label for="file_counter">QBT_TR(Enumerate Files)QBT_TR[CONTEXT=PropertiesWidget]</label>
+            </div>
+        </div>
+        <div id="operation_btns" style="position: absolute; left: 0; bottom: 0; margin: 0px 12px 36px 12px; width: 228px;background: #ffffff;padding: 0px 5px 10px 0px;">
+            <div style="overflow: auto;">
+                <span id="rename_error" style="float: unset; font-size: unset;"></span>
+            </div>
+            <hr>
+            <div style="width: 60%; float: left;">
+                <input id="renameButton" type="button" value="Replace" style="float: left; width: 86px;">
+                <select id="renameOptions" name="renameOptions" style="width: 22px;">
+                    <option selected value="Replace">QBT_TR(Replace)QBT_TR[CONTEXT=PropertiesWidget]</option>
+                    <option value="Replace All">QBT_TR(Replace All)QBT_TR[CONTEXT=PropertiesWidget]</option>
+                </select>
+            </div>
+            <input id="closeButton" type="button" value="Close" style="float: right; width: 30%;">
+        </div>
+        <div id="torrentFiles" class="panel" style="position: absolute; top: 0; right: 0; bottom: 0; left: 228px; margin: 35px 10px 45px 20px; border-bottom: 0">
+            <div id="bulkRenameFilesTableFixedHeaderDiv" class="dynamicTableFixedHeaderDiv">
+                <table class="dynamicTable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                </table>
+            </div>
+            <div id="bulkRenameFilesTableDiv" class="dynamicTableDiv">
+                <table class="dynamicTable">
+                    <thead>
+                        <tr class="dynamicTableHeader"></tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

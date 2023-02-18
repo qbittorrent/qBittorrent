@@ -57,7 +57,8 @@ h2 {
     padding: 6px 0;
 }
 
-#error_div {
+#error_div,
+#rename_error {
     color: #f00;
     float: left;
     font-size: 14px;

@@ -362,6 +362,19 @@ window.qBittorrent.ContextMenu = (function() {
 
             let show_seq_dl = true;
 
+            // hide renameFiles when more than 1 torrent is selected
+            if (h.length == 1) {
+                const data = torrentsTable.rows.get(h[0]).full_data;
+                let metadata_downloaded = !(data['state'] == 'metaDL' || data['state'] == 'forcedMetaDL' || data['total_size'] == -1);
+
+                // hide renameFiles when metadata hasn't been downloaded yet
+                metadata_downloaded
+                    ? this.showItem('renameFiles')
+                    : this.hideItem('renameFiles');
+            }
+            else
+                this.hideItem('renameFiles');
+
             if (!all_are_seq_dl && there_are_seq_dl)
                 show_seq_dl = false;
 

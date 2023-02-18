@@ -45,6 +45,7 @@ window.qBittorrent.DynamicTable = (function() {
             SearchResultsTable: SearchResultsTable,
             SearchPluginsTable: SearchPluginsTable,
             TorrentTrackersTable: TorrentTrackersTable,
+            BulkRenameTorrentFilesTable: BulkRenameTorrentFilesTable,
             TorrentFilesTable: TorrentFilesTable,
             LogMessageTable: LogMessageTable,
             LogPeerTable: LogPeerTable,
@@ -128,7 +129,14 @@ window.qBittorrent.DynamicTable = (function() {
                 // Workaround. Resize event is called not always (for example it isn't called when browser window changes it's size)
 
                 const checkResizeFn = function() {
-                    const panel = $(this.dynamicTableDivId).getParent('.panel');
+                    const tableDiv = $(this.dynamicTableDivId);
+
+                    // dynamicTableDivId is not visible on the UI
+                    if (!tableDiv) {
+                        return;
+                    }
+
+                    const panel = tableDiv.getParent('.panel');
                     if (this.lastPanelHeight != panel.getBoundingClientRect().height) {
                         this.lastPanelHeight = panel.getBoundingClientRect().height;
                         panel.fireEvent('resize');
@@ -333,7 +341,8 @@ window.qBittorrent.DynamicTable = (function() {
 
             const menuId = this.dynamicTableDivId + '_headerMenu';
 
-            const ul = new Element('ul', {
+            // reuse menu if already exists
+            const ul = $(menuId) ?? new Element('ul', {
                 id: menuId,
                 class: 'contextMenu scrollableMenu'
             });
@@ -350,6 +359,13 @@ window.qBittorrent.DynamicTable = (function() {
             const onMenuItemClicked = function(element, ref, action) {
                 this.showColumn(action, this.columns[action].visible === '0');
             }.bind(this);
+
+            // recreate child nodes when reusing (enables the context menu to work correctly)
+            if (ul.hasChildNodes()) {
+                while (ul.firstChild) {
+                    ul.removeChild(ul.lastChild);
+                }
+            }
 
             for (let i = 0; i < this.columns.length; ++i) {
                 const text = this.columns[i].caption;
@@ -1775,6 +1791,431 @@ window.qBittorrent.DynamicTable = (function() {
             this.newColumn('downloaded', '', 'QBT_TR(Times Downloaded)QBT_TR[CONTEXT=TrackerListWidget]', 100, true);
             this.newColumn('message', '', 'QBT_TR(Message)QBT_TR[CONTEXT=TrackerListWidget]', 250, true);
         },
+    });
+
+    const BulkRenameTorrentFilesTable = new Class({
+        Extends: DynamicTable,
+
+        filterTerms: [],
+        prevFilterTerms: [],
+        prevRowsString: null,
+        prevFilteredRows: [],
+        prevSortedColumn: null,
+        prevReverseSort: null,
+        fileTree: new window.qBittorrent.FileTree.FileTree(),
+
+        populateTable: function(root) {
+            this.fileTree.setRoot(root);
+            root.children.each(function(node) {
+                this._addNodeToTable(node, 0);
+            }.bind(this));
+        },
+
+        _addNodeToTable: function(node, depth) {
+            node.depth = depth;
+
+            if (node.isFolder) {
+                const data = {
+                    rowId: node.rowId,
+                    fileId: -1,
+                    checked: node.checked,
+                    path: node.path,
+                    original: node.original,
+                    renamed: node.renamed
+                };
+
+                node.data = data;
+                node.full_data = data;
+                this.updateRowData(data);
+            }
+            else {
+                node.data.rowId = node.rowId;
+                node.full_data = node.data;
+                this.updateRowData(node.data);
+            }
+
+            node.children.each(function(child) {
+                this._addNodeToTable(child, depth + 1);
+            }.bind(this));
+        },
+
+        getRoot: function() {
+            return this.fileTree.getRoot();
+        },
+
+        getNode: function(rowId) {
+            return this.fileTree.getNode(rowId);
+        },
+
+        getRow: function(node) {
+            const rowId = this.fileTree.getRowId(node);
+            return this.rows.get(rowId);
+        },
+
+        getSelectedRows: function() {
+            const nodes = this.fileTree.toArray();
+
+            return nodes.filter(x => x.checked == 0);
+        },
+
+        initColumns: function() {
+            // Blocks saving header width (because window width isn't saved)
+            LocalPreferences.remove('column_' + "checked" + '_width_' + this.dynamicTableDivId);
+            LocalPreferences.remove('column_' + "original" + '_width_' + this.dynamicTableDivId);
+            LocalPreferences.remove('column_' + "renamed" + '_width_' + this.dynamicTableDivId);
+            this.newColumn('checked', '', '', 50, true);
+            this.newColumn('original', '', 'QBT_TR(Original)QBT_TR[CONTEXT=TrackerListWidget]', 270, true);
+            this.newColumn('renamed', '', 'QBT_TR(Renamed)QBT_TR[CONTEXT=TrackerListWidget]', 220, true);
+
+            this.initColumnsFunctions();
+        },
+
+        /**
+         * Toggles the global checkbox and all checkboxes underneath
+         */
+        toggleGlobalCheckbox: function() {
+            const checkbox = $('rootMultiRename_cb');
+            const checkboxes = $$('input.RenamingCB');
+
+            for (let i = 0; i < checkboxes.length; ++i) {
+                const node = this.getNode(i);
+
+                if (checkbox.checked || checkbox.indeterminate) {
+                    let cb = checkboxes[i];
+                    cb.checked = true;
+                    cb.indeterminate = false;
+                    cb.state = "checked";
+                    node.checked = 0;
+                    node.full_data.checked = node.checked;
+                }
+                else {
+                    let cb = checkboxes[i];
+                    cb.checked = false;
+                    cb.indeterminate = false;
+                    cb.state = "unchecked";
+                    node.checked = 1;
+                    node.full_data.checked = node.checked;
+                }
+            }
+
+            this.updateGlobalCheckbox();
+        },
+
+        toggleNodeTreeCheckbox: function(rowId, checkState) {
+            const node = this.getNode(rowId);
+            node.checked = checkState;
+            node.full_data.checked = checkState;
+            const checkbox = $(`cbRename${rowId}`);
+            checkbox.checked = node.checked == 0;
+            checkbox.state = checkbox.checked ? "checked" : "unchecked";
+
+            for (let i = 0; i < node.children.length; ++i) {
+                this.toggleNodeTreeCheckbox(node.children[i].rowId, checkState);
+            }
+        },
+
+        updateGlobalCheckbox: function() {
+            const checkbox = $('rootMultiRename_cb');
+            const checkboxes = $$('input.RenamingCB');
+            const isAllChecked = function() {
+                for (let i = 0; i < checkboxes.length; ++i) {
+                    if (!checkboxes[i].checked)
+                        return false;
+                }
+                return true;
+            };
+            const isAllUnchecked = function() {
+                for (let i = 0; i < checkboxes.length; ++i) {
+                    if (checkboxes[i].checked)
+                        return false;
+                }
+                return true;
+            };
+            if (isAllChecked()) {
+                checkbox.state = "checked";
+                checkbox.indeterminate = false;
+                checkbox.checked = true;
+            }
+            else if (isAllUnchecked()) {
+                checkbox.state = "unchecked";
+                checkbox.indeterminate = false;
+                checkbox.checked = false;
+            }
+            else {
+                checkbox.state = "partial";
+                checkbox.indeterminate = true;
+                checkbox.checked = false;
+            }
+        },
+
+        initColumnsFunctions: function() {
+            const that = this;
+
+            // checked
+            this.columns['checked'].updateTd = function(td, row) {
+                const id = row.rowId;
+                const value = this.getRowValue(row);
+
+                const treeImg = new Element('img', {
+                    src: 'images/L.gif',
+                    styles: {
+                        'margin-bottom': -2
+                    }
+                });
+                const checkbox = new Element('input');
+                checkbox.set('type', 'checkbox');
+                checkbox.set('id', 'cbRename' + id);
+                checkbox.set('data-id', id);
+                checkbox.set('class', 'RenamingCB');
+                checkbox.addEvent('click', function(e) {
+                    const node = that.getNode(id);
+                    node.checked = e.target.checked ? 0 : 1;
+                    node.full_data.checked = node.checked;
+                    that.updateGlobalCheckbox();
+                    that.onRowSelectionChange(node);
+                    e.stopPropagation();
+                });
+                checkbox.checked = value == 0;
+                checkbox.state = checkbox.checked ? "checked" : "unchecked";
+                checkbox.indeterminate = false;
+                td.adopt(treeImg, checkbox);
+            };
+
+            // original
+            this.columns['original'].updateTd = function(td, row) {
+                const id = row.rowId;
+                const fileNameId = 'filesTablefileName' + id;
+                const node = that.getNode(id);
+
+                if (node.isFolder) {
+                    const value = this.getRowValue(row);
+                    const dirImgId = 'renameTableDirImg' + id;
+                    if ($(dirImgId)) {
+                        // just update file name
+                        $(fileNameId).set('text', value);
+                    }
+                    else {
+                        const span = new Element('span', {
+                            text: value,
+                            id: fileNameId
+                        });
+                        const dirImg = new Element('img', {
+                            src: 'images/directory.svg',
+                            styles: {
+                                'width': 15,
+                                'padding-right': 5,
+                                'margin-bottom': -3,
+                                'margin-left': (node.depth * 20)
+                            },
+                            id: dirImgId
+                        });
+                        const html = dirImg.outerHTML + span.outerHTML;
+                        td.set('html', html);
+                    }
+                }
+                else { // is file
+                    const value = this.getRowValue(row);
+                    const span = new Element('span', {
+                        text: value,
+                        id: fileNameId,
+                        styles: {
+                            'margin-left': ((node.depth + 1) * 20)
+                        }
+                    });
+                    td.set('html', span.outerHTML);
+                }
+            };
+
+            // renamed
+            this.columns['renamed'].updateTd = function(td, row) {
+                const id = row.rowId;
+                const fileNameRenamedId = 'filesTablefileRenamed' + id;
+                const value = this.getRowValue(row);
+
+                const span = new Element('span', {
+                    text: value,
+                    id: fileNameRenamedId,
+                });
+                td.set('html', span.outerHTML);
+            };
+        },
+
+        onRowSelectionChange: function(row) {},
+
+        selectRow: function() {
+            return;
+        },
+
+        reselectRows: function(rowIds) {
+            const that = this;
+            this.deselectAll();
+            this.tableBody.getElements('tr').each(function(tr) {
+                if (rowIds.indexOf(tr.rowId) > -1) {
+                    const node = that.getNode(tr.rowId);
+                    node.checked = 0;
+                    node.full_data.checked = 0;
+
+                    const checkbox = tr.children[0].getElement('input');
+                    checkbox.state = "checked";
+                    checkbox.indeterminate = false;
+                    checkbox.checked = true;
+                }
+            });
+
+            this.updateGlobalCheckbox();
+        },
+
+        altRow: function() {
+            let addClass = false;
+            const trs = this.tableBody.getElements('tr');
+            trs.each(function(tr) {
+                if (tr.hasClass("invisible"))
+                    return;
+
+                if (addClass) {
+                    tr.addClass("alt");
+                    tr.removeClass("nonAlt");
+                }
+                else {
+                    tr.removeClass("alt");
+                    tr.addClass("nonAlt");
+                }
+                addClass = !addClass;
+            }.bind(this));
+        },
+
+        _sortNodesByColumn: function(nodes, column) {
+            nodes.sort(function(row1, row2) {
+                // list folders before files when sorting by name
+                if (column.name === "original") {
+                    const node1 = this.getNode(row1.data.rowId);
+                    const node2 = this.getNode(row2.data.rowId);
+                    if (node1.isFolder && !node2.isFolder)
+                        return -1;
+                    if (node2.isFolder && !node1.isFolder)
+                        return 1;
+                }
+
+                const res = column.compareRows(row1, row2);
+                return (this.reverseSort === '0') ? res : -res;
+            }.bind(this));
+
+            nodes.each(function(node) {
+                if (node.children.length > 0)
+                    this._sortNodesByColumn(node.children, column);
+            }.bind(this));
+        },
+
+        _filterNodes: function(node, filterTerms, filteredRows) {
+            if (node.isFolder) {
+                const childAdded = node.children.reduce(function(acc, child) {
+                    // we must execute the function before ORing w/ acc or we'll stop checking child nodes after the first successful match
+                    return (this._filterNodes(child, filterTerms, filteredRows) || acc);
+                }.bind(this), false);
+
+                if (childAdded) {
+                    const row = this.getRow(node);
+                    filteredRows.push(row);
+                    return true;
+                }
+            }
+
+            if (window.qBittorrent.Misc.containsAllTerms(node.original, filterTerms)) {
+                const row = this.getRow(node);
+                filteredRows.push(row);
+                return true;
+            }
+
+            return false;
+        },
+
+        setFilter: function(text) {
+            const filterTerms = text.trim().toLowerCase().split(' ');
+            if ((filterTerms.length === 1) && (filterTerms[0] === ''))
+                this.filterTerms = [];
+            else
+                this.filterTerms = filterTerms;
+        },
+
+        getFilteredAndSortedRows: function() {
+            if (this.getRoot() === null)
+                return [];
+
+            const generateRowsSignature = function(rows) {
+                const rowsData = rows.map(function(row) {
+                    return row.full_data;
+                });
+                return JSON.stringify(rowsData);
+            };
+
+            const getFilteredRows = function() {
+                if (this.filterTerms.length === 0) {
+                    const nodeArray = this.fileTree.toArray();
+                    const filteredRows = nodeArray.map(function(node) {
+                        return this.getRow(node);
+                    }.bind(this));
+                    return filteredRows;
+                }
+
+                const filteredRows = [];
+                this.getRoot().children.each(function(child) {
+                    this._filterNodes(child, this.filterTerms, filteredRows);
+                }.bind(this));
+                filteredRows.reverse();
+                return filteredRows;
+            }.bind(this);
+
+            const hasRowsChanged = function(rowsString, prevRowsStringString) {
+                const rowsChanged = (rowsString !== prevRowsStringString);
+                const isFilterTermsChanged = this.filterTerms.reduce(function(acc, term, index) {
+                    return (acc || (term !== this.prevFilterTerms[index]));
+                }.bind(this), false);
+                const isFilterChanged = ((this.filterTerms.length !== this.prevFilterTerms.length)
+                    || ((this.filterTerms.length > 0) && isFilterTermsChanged));
+                const isSortedColumnChanged = (this.prevSortedColumn !== this.sortedColumn);
+                const isReverseSortChanged = (this.prevReverseSort !== this.reverseSort);
+
+                return (rowsChanged || isFilterChanged || isSortedColumnChanged || isReverseSortChanged);
+            }.bind(this);
+
+            const rowsString = generateRowsSignature(this.rows);
+            if (!hasRowsChanged(rowsString, this.prevRowsString)) {
+                return this.prevFilteredRows;
+            }
+
+            // sort, then filter
+            const column = this.columns[this.sortedColumn];
+            this._sortNodesByColumn(this.getRoot().children, column);
+            const filteredRows = getFilteredRows();
+
+            this.prevFilterTerms = this.filterTerms;
+            this.prevRowsString = rowsString;
+            this.prevFilteredRows = filteredRows;
+            this.prevSortedColumn = this.sortedColumn;
+            this.prevReverseSort = this.reverseSort;
+            return filteredRows;
+        },
+
+        setIgnored: function(rowId, ignore) {
+            const row = this.rows.get(rowId);
+            if (ignore)
+                row.full_data.remaining = 0;
+            else
+                row.full_data.remaining = (row.full_data.size * (1.0 - (row.full_data.progress / 100)));
+        },
+
+        setupTr: function(tr) {
+            tr.addEvent('keydown', function(event) {
+                switch (event.key) {
+                    case "left":
+                        qBittorrent.PropFiles.collapseFolder(this._this.getSelectedRowId());
+                        return false;
+                    case "right":
+                        qBittorrent.PropFiles.expandFolder(this._this.getSelectedRowId());
+                        return false;
+                }
+            });
+        }
     });
 
     const TorrentFilesTable = new Class({
