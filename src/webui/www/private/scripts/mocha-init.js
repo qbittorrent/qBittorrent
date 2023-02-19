@@ -62,6 +62,7 @@ let recheckFN = function() {};
 let reannounceFN = function() {};
 let setLocationFN = function() {};
 let renameFN = function() {};
+let renameFilesFN = function() {};
 let torrentNewCategoryFN = function() {};
 let torrentSetCategoryFN = function() {};
 let createCategoryFN = function() {};
@@ -518,6 +519,31 @@ const initializeWindows = function() {
                     paddingHorizontal: 0,
                     width: 400,
                     height: 100
+                });
+            }
+        }
+    };
+
+    renameFilesFN = function() {
+        const hashes = torrentsTable.selectedRowsIds();
+        if (hashes.length == 1) {
+            const hash = hashes[0];
+            const row = torrentsTable.rows[hash];
+            if (row) {
+                new MochaUI.Window({
+                    id: 'multiRenamePage',
+                    title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TransferListWidget]",
+                    data: { hash: hash, selectedRows: [] },
+                    loadMethod: 'xhr',
+                    contentURL: 'rename_files.html',
+                    scrollbars: false,
+                    resizable: true,
+                    maximizable: false,
+                    paddingVertical: 0,
+                    paddingHorizontal: 0,
+                    width: 800,
+                    height: 420,
+                    resizeLimit: { 'x': [800], 'y': [420] }
                 });
             }
         }

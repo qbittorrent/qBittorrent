@@ -55,6 +55,9 @@
                 rename: function(element, ref) {
                     renameFN();
                 },
+                renameFiles: function(element, ref) {
+                    renameFilesFN();
+                },
                 queueTop: function(element, ref) {
                     setQueuePositionFN('topPrio');
                 },
@@ -106,7 +109,7 @@
             offsets: {
                 x: -15,
                 y: 2
-            }
+            },
         });
 
         torrentsTable.setup('torrentsTableDiv', 'torrentsTableFixedHeaderDiv', contextMenu);

@@ -30,6 +30,7 @@
     <script src="scripts/piecesbar.js?v=${CACHEID}"></script>
     <script src="scripts/file-tree.js?v=${CACHEID}"></script>
     <script src="scripts/dynamicTable.js?locale=${LANG}&v=${CACHEID}"></script>
+    <script src="scripts/rename-files.js?v=${CACHEID}"></script>
     <script src="scripts/client.js?locale=${LANG}&v=${CACHEID}"></script>
     <script src="scripts/contextmenu.js?locale=${LANG}&v=${CACHEID}"></script>
 </head>
@@ -136,7 +137,12 @@
         <li class="separator"><a href="#delete"><img src="images/list-remove.svg" alt="QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Remove)QBT_TR[CONTEXT=TransferListWidget]</a></li>
         <li class="separator">
             <a href="#setLocation"><img src="images/set-location.svg" alt="QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Set location...)QBT_TR[CONTEXT=TransferListWidget]</a>
+        </li>
+        <li>
             <a href="#rename"><img src="images/edit-rename.svg" alt="QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Rename...)QBT_TR[CONTEXT=TransferListWidget]</a>
+        </li>
+        <li>
+            <a href="#renameFiles"><img src="images/edit-rename.svg" alt="QBT_TR(Rename Files...)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Rename Files...)QBT_TR[CONTEXT=TransferListWidget]</a>
         </li>
         <li>
             <a href="#Category" class="arrow-right"><img src="images/view-categories.svg" alt="QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]" /> QBT_TR(Category)QBT_TR[CONTEXT=TransferListWidget]</a>
@@ -224,6 +230,9 @@
                 <li><a href="#FilePrioMaximum"><span style="display: inline-block; width: 16px;"></span> QBT_TR(Maximum)QBT_TR[CONTEXT=PropListDelegate]</a></li>
             </ul>
         </li>
+    </ul>
+    <ul id="multiRenameFilesMenu" class="contextMenu">
+        <li><a href="#ToggleSelection"><img src="images/edit-rename.svg" alt="QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]" /> QBT_TR(Toggle Selection)QBT_TR[CONTEXT=PropertiesWidget]</a></li>
     </ul>
     <div id="desktopFooterWrapper">
         <div id="desktopFooter">
