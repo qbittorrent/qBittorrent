@@ -38,6 +38,7 @@
 #include <QEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QRandomGenerator>
 #include <QSystemTrayIcon>
 #include <QTranslator>
 
@@ -56,7 +57,6 @@
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
-#include "base/utils/random.h"
 #include "addnewtorrentdialog.h"
 #include "advancedsettings.h"
 #include "banlistoptionsdialog.h"
@@ -1346,7 +1346,7 @@ int OptionsDialog::getPort() const
 void OptionsDialog::on_randomButton_clicked()
 {
     // Range [1024: 65535]
-    m_ui->spinPort->setValue(Utils::Random::rand(1024, 65535));
+    m_ui->spinPort->setValue(QRandomGenerator::global()->bounded(1024, 65535));
 }
 
 int OptionsDialog::getEncryptionSetting() const

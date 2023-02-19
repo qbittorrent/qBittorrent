@@ -68,6 +68,7 @@
 #include <QNetworkConfigurationManager>
 #endif
 #include <QNetworkInterface>
+#include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QString>
 #include <QThread>
@@ -90,7 +91,6 @@
 #include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
-#include "base/utils/random.h"
 #include "base/version.h"
 #include "bandwidthscheduler.h"
 #include "bencoderesumedatastorage.h"
@@ -541,7 +541,7 @@ SessionImpl::SessionImpl(QObject *parent)
     m_asyncWorker->setMaxThreadCount(1);
 
     if (port() < 0)
-        m_port = Utils::Random::rand(1024, 65535);
+        m_port = QRandomGenerator::global()->bounded(1024, 65535);
 
     m_recentErroredTorrentsTimer->setSingleShot(true);
     m_recentErroredTorrentsTimer->setInterval(1s);

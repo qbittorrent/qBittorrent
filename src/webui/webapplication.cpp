@@ -39,6 +39,7 @@
 #include <QMimeDatabase>
 #include <QMimeType>
 #include <QNetworkCookie>
+#include <QRandomGenerator>
 #include <QRegularExpression>
 #include <QUrl>
 
@@ -49,7 +50,6 @@
 #include "base/types.h"
 #include "base/utils/fs.h"
 #include "base/utils/misc.h"
-#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "api/apierror.h"
 #include "api/appcontroller.h"
@@ -145,7 +145,7 @@ namespace
 WebApplication::WebApplication(IApplication *app, QObject *parent)
     : QObject(parent)
     , ApplicationComponent(app)
-    , m_cacheID {QString::number(Utils::Random::rand(), 36)}
+    , m_cacheID {QString::number(QRandomGenerator::system()->generate(), 36)}
     , m_authController {new AuthController(this, app, this)}
 {
     declarePublicAPI(u"auth/login"_qs);
@@ -621,9 +621,8 @@ QString WebApplication::generateSid() const
 
     do
     {
-        const quint32 tmp[] =
-        {Utils::Random::rand(), Utils::Random::rand(), Utils::Random::rand()
-                , Utils::Random::rand(), Utils::Random::rand(), Utils::Random::rand()};
+        quint32 tmp[6];
+        QRandomGenerator::system()->fillRange(tmp);
         sid = QString::fromLatin1(QByteArray::fromRawData(reinterpret_cast<const char *>(tmp), sizeof(tmp)).toBase64());
     }
     while (m_sessions.contains(sid));

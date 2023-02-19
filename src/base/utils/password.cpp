@@ -33,11 +33,13 @@
 #include <openssl/evp.h>
 
 #include <QByteArray>
+#include <QRandomGenerator>
 #include <QString>
 #include <QVector>
 
+#include <QtCore/QtEndian>
+
 #include "bytearray.h"
-#include "random.h"
 
 namespace Utils
 {
@@ -72,24 +74,23 @@ QByteArray Utils::Password::PBKDF2::generate(const QString &password)
 
 QByteArray Utils::Password::PBKDF2::generate(const QByteArray &password)
 {
-    const std::array<uint32_t, 4> salt
-    {{Random::rand(), Random::rand()
-        , Random::rand(), Random::rand()}};
+    quint32 rnList[4];
+    QRandomGenerator::system()->fillRange(rnList);
+    QByteArray salt(sizeof(rnList), Qt::Uninitialized);
+    qToBigEndian<quint32>(&rnList, sizeof(rnList) / sizeof(quint32), salt.data());
 
     std::array<unsigned char, 64> outBuf {};
     const int hmacResult = PKCS5_PBKDF2_HMAC(password.constData(), password.size()
-        , reinterpret_cast<const unsigned char *>(salt.data()), static_cast<int>(sizeof(salt[0]) * salt.size())
+        , reinterpret_cast<const unsigned char *>(salt.constData()), salt.size()
         , hashIterations, hashMethod
         , static_cast<int>(outBuf.size()), outBuf.data());
     if (hmacResult != 1)
         return {};
 
-    const QByteArray saltView = QByteArray::fromRawData(
-        reinterpret_cast<const char *>(salt.data()), static_cast<int>(sizeof(salt[0]) * salt.size()));
     const QByteArray outBufView = QByteArray::fromRawData(
         reinterpret_cast<const char *>(outBuf.data()), static_cast<int>(outBuf.size()));
 
-    return (saltView.toBase64() + ':' + outBufView.toBase64());
+    return (salt.toBase64() + ':' + outBufView.toBase64());
 }
 
 bool Utils::Password::PBKDF2::verify(const QByteArray &secret, const QString &password)

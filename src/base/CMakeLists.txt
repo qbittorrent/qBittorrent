@@ -100,7 +100,6 @@ add_library(qbt_base STATIC
     utils/misc.h
     utils/net.h
     utils/password.h
-    utils/random.h
     utils/string.h
     utils/thread.h
     utils/version.h
@@ -184,7 +183,6 @@ add_library(qbt_base STATIC
     utils/misc.cpp
     utils/net.cpp
     utils/password.cpp
-    utils/random.cpp
     utils/string.cpp
     utils/thread.cpp
 )

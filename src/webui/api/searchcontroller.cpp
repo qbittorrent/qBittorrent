@@ -34,13 +34,13 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QList>
+#include <QRandomGenerator>
 #include <QSharedPointer>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/search/searchhandler.h"
 #include "base/utils/foreignapps.h"
-#include "base/utils/random.h"
 #include "base/utils/string.h"
 #include "apierror.h"
 #include "isessionmanager.h"
@@ -283,7 +283,7 @@ int SearchController::generateSearchId() const
 {
     while (true)
     {
-        const int id = Utils::Random::rand(1, std::numeric_limits<int>::max());
+        const int id = QRandomGenerator::global()->bounded(1, std::numeric_limits<int>::max());
         if (!m_searchHandlers.contains(id))
             return id;
     }
