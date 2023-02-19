@@ -64,7 +64,6 @@
 #include "torrentoptionsdialog.h"
 #include "trackerentriesdialog.h"
 #include "transferlistdelegate.h"
-#include "transferlistmodel.h"
 #include "transferlistsortmodel.h"
 #include "tristateaction.h"
 #include "uithememanager.h"
@@ -1299,8 +1298,9 @@ void TransferListWidget::applyTrackerFilter(const QSet<BitTorrent::TorrentID> &t
     m_sortFilterModel->setTrackerFilter(torrentIDs);
 }
 
-void TransferListWidget::applyNameFilter(const QString &name)
+void TransferListWidget::applyFilter(const QString &name, const TransferListModel::Column &type)
 {
+    m_sortFilterModel->setFilterKeyColumn(type);
     const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
                 ? name : Utils::String::wildcardToRegexPattern(name));
     m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));

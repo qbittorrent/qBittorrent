@@ -31,12 +31,14 @@
 
 #include <QMainWindow>
 #include <QPointer>
+#include <QComboBox>
 
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
 #include "windowstate.h"
+#include "transferlistmodel.h"
 
 class QCloseEvent;
 class QFileSystemWatcher;
@@ -97,6 +99,8 @@ public:
 
     void activate();
     void cleanup();
+signals:
+    void filterChanged(const QString &name, const TransferListModel::Column &type);
 
 private slots:
     void showFilterContextMenu();
@@ -219,6 +223,7 @@ private:
     bool m_unlockDlgShowing = false;
     LineEdit *m_searchFilter = nullptr;
     QAction *m_searchFilterAction = nullptr;
+    QComboBox *m_filterBy = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;
