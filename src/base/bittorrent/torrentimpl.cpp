@@ -2341,7 +2341,7 @@ void TorrentImpl::updateProgress()
         for (const int fileIndex : asConst(m_torrentInfo.fileIndicesForPiece(index)))
         {
             const int64_t fileOffsetInPiece = pieceOffset - m_torrentInfo.fileOffset(fileIndex);
-            const int64_t add = std::min((m_torrentInfo.fileSize(fileIndex) - fileOffsetInPiece), size);
+            const int64_t add = std::min<int64_t>((m_torrentInfo.fileSize(fileIndex) - fileOffsetInPiece), size);
 
             m_filesProgress[fileIndex] += add;
 
