@@ -33,7 +33,7 @@ jobs:
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev zlib1g-dev
+            libboost-dev libssl-dev libxkbcommon-x11-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
