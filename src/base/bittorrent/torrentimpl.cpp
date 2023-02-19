@@ -2594,48 +2594,6 @@ void TorrentImpl::fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandle
     , std::move(resultHandler));
 }
 
-void TorrentImpl::fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const
-{
-    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo
-                , completedFiles = m_completedFiles]() -> QVector<qreal>
-    {
-        if (!torrentInfo.isValid())
-            return {};
-
-        const int filesCount = torrentInfo.filesCount();
-        if (completedFiles.count(true) == filesCount)
-            return QVector<qreal>(filesCount, 1);
-
-        try
-        {
-#ifdef QBT_USES_LIBTORRENT2
-            const std::vector<int64_t> fp = nativeHandle.file_progress(lt::torrent_handle::piece_granularity);
-#else
-            std::vector<int64_t> fp;
-            nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
-#endif
-
-            const auto nativeIndexes = torrentInfo.nativeIndexes();
-            QVector<qreal> result;
-            result.reserve(filesCount);
-            for (int i = 0; i < filesCount; ++i)
-            {
-                const int64_t progress = fp[LT::toUnderlyingType(nativeIndexes[i])];
-                const qlonglong size = torrentInfo.fileSize(i);
-                if ((size <= 0) || (progress == size))
-                    result.append(1);
-                else
-                    result.append(progress / static_cast<qreal>(size));
-            }
-            return result;
-        }
-        catch (const std::exception &) {}
-
-        return {};
-    }
-    , std::move(resultHandler));
-}
-
 void TorrentImpl::fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const
 {
     invokeAsync([nativeHandle = m_nativeHandle]() -> QVector<int>

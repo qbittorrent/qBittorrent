@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -46,7 +46,6 @@ namespace BitTorrent
         virtual Path actualFilePath(int fileIndex) const = 0;
         virtual QVector<DownloadPriority> filePriorities() const = 0;
         virtual QVector<qreal> filesProgress() const = 0;
-        virtual void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const = 0;
         /**
          * @brief fraction of file pieces that are available at least from one peer
          *

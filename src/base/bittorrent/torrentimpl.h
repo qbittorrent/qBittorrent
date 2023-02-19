@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -238,7 +238,6 @@ namespace BitTorrent
 
         void fetchPeerInfo(std::function<void (QVector<PeerInfo>)> resultHandler) const override;
         void fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandler) const override;
-        void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const override;
         void fetchPieceAvailability(std::function<void (QVector<int>)> resultHandler) const override;
         void fetchDownloadingPieces(std::function<void (QBitArray)> resultHandler) const override;
         void fetchAvailableFileFractions(std::function<void (QVector<qreal>)> resultHandler) const override;
