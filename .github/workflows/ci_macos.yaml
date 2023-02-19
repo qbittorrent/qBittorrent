@@ -2,6 +2,9 @@ name: CI - macOS
 
 on: [pull_request, push]
 
+permissions:
+  actions: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.head_ref != '' }}
@@ -31,6 +34,9 @@ jobs:
 
       - name: Install dependencies
         run: |
+          export \
+            HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=1 \
+            HOMEBREW_NO_INSTALL_CLEANUP=1
           brew update > /dev/null
           brew install \
             cmake ninja \
@@ -80,11 +86,12 @@ jobs:
       - name: Build qBittorrent (Qt5)
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \
@@ -98,11 +105,12 @@ jobs:
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Wno-gnu-zero-variadic-macro-arguments -Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DBOOST_ROOT="${{ env.boost_path }}" \
             -DOPENSSL_ROOT_DIR="${{ env.openssl_root }}" \

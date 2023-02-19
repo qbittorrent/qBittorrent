@@ -503,7 +503,7 @@ void TorrentFilesWatcher::Worker::removeWatchedFolder(const Path &path)
 
 void TorrentFilesWatcher::Worker::scheduleWatchedFolderProcessing(const Path &path)
 {
-    QTimer::singleShot(2s, this, [this, path]()
+    QTimer::singleShot(2s, Qt::CoarseTimer, this, [this, path]
     {
         processWatchedFolder(path);
     });

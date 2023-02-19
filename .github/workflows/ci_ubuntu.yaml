@@ -2,6 +2,9 @@ name: CI - Ubuntu
 
 on: [pull_request, push]
 
+permissions:
+  actions: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: ${{ github.head_ref != '' }}
@@ -30,7 +33,7 @@ jobs:
           sudo apt update
           sudo apt install \
             build-essential cmake ninja-build pkg-config \
-            libboost-dev libssl-dev zlib1g-dev
+            libboost-dev libssl-dev libxkbcommon-x11-dev zlib1g-dev
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -65,11 +68,12 @@ jobs:
       - name: Build qBittorrent (Qt5)
         if: ${{ startsWith(matrix.qt_version, 5) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror -Wno-error=deprecated-declarations" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DTESTING=ON \
@@ -78,16 +82,17 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
-          DESTDIR="qbittorrent" cmake --install build --strip
+          DESTDIR="qbittorrent" cmake --install build
 
       - name: Build qBittorrent (Qt6)
         if: ${{ startsWith(matrix.qt_version, 6) }}
         run: |
+          CXXFLAGS="$CXXFLAGS -Werror" \
+          LDFLAGS="$LDFLAGS -gz" \
           cmake \
             -B build \
             -G "Ninja" \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-            -DCMAKE_CXX_FLAGS="-Werror" \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -DCMAKE_INSTALL_PREFIX="/usr" \
             -DQT6=ON \
@@ -97,7 +102,7 @@ jobs:
           cmake --build build --target qbt_update_translations
           cmake --build build
           cmake --build build --target check
-          DESTDIR="qbittorrent" cmake --install build --strip
+          DESTDIR="qbittorrent" cmake --install build
 
       - name: Prepare build artifacts
         run: |
