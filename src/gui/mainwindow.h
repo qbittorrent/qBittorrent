@@ -29,9 +29,9 @@
 
 #pragma once
 
+#include <QComboBox>
 #include <QMainWindow>
 #include <QPointer>
-#include <QComboBox>
 
 #include "base/bittorrent/torrent.h"
 #include "base/logger.h"
@@ -99,8 +99,6 @@ public:
 
     void activate();
     void cleanup();
-signals:
-    void filterChanged(const QString &name, const TransferListModel::Column &type);
 
 private slots:
     void showFilterContextMenu();
