@@ -35,6 +35,7 @@
 #include <QActionGroup>
 #include <QClipboard>
 #include <QCloseEvent>
+#include <QComboBox>
 #include <QDebug>
 #include <QDesktopServices>
 #include <QFileDialog>
@@ -196,8 +197,8 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     // Filter by type
     m_filterBy = new QComboBox(this);
-    m_filterBy->addItem(tr("Torrent names"), TransferListModel::Column::TR_NAME);
-    m_filterBy->addItem(tr("Torrent save paths"), TransferListModel::Column::TR_SAVE_PATH);
+    m_filterBy->addItem(tr("Torrent name"), TransferListModel::Column::TR_NAME);
+    m_filterBy->addItem(tr("Torrent save path"), TransferListModel::Column::TR_SAVE_PATH);
     m_filterBy->setFixedWidth(200);
     m_ui->toolBar->insertWidget(m_ui->actionLock, m_filterBy);
 

@@ -29,7 +29,6 @@
 
 #pragma once
 
-#include <QComboBox>
 #include <QMainWindow>
 #include <QPointer>
 
@@ -38,9 +37,9 @@
 #include "base/settingvalue.h"
 #include "guiapplicationcomponent.h"
 #include "windowstate.h"
-#include "transferlistmodel.h"
 
 class QCloseEvent;
+class QComboBox;
 class QFileSystemWatcher;
 class QSplitter;
 class QTabWidget;

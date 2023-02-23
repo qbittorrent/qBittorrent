@@ -38,7 +38,6 @@
 
 class MainWindow;
 class Path;
-class TransferListModel;
 class TransferListSortModel;
 
 namespace BitTorrent
