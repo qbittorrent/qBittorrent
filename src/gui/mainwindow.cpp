@@ -199,7 +199,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_filterBy = new QComboBox(this);
     m_filterBy->addItem(tr("Torrent name"), TransferListModel::Column::TR_NAME);
     m_filterBy->addItem(tr("Torrent save path"), TransferListModel::Column::TR_SAVE_PATH);
-    m_filterBy->setFixedWidth(200);
     m_ui->toolBar->insertWidget(m_ui->actionLock, m_filterBy);
 
     QWidget *spacer = new QWidget(this);
