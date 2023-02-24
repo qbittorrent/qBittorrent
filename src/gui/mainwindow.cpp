@@ -41,6 +41,7 @@
 #include <QFileDialog>
 #include <QFileSystemWatcher>
 #include <QKeyEvent>
+#include <QLabel>
 #include <QMessageBox>
 #include <QMetaObject>
 #include <QMimeData>
@@ -188,7 +189,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     hSplitter->setChildrenCollapsible(false);
     hSplitter->setFrameShape(QFrame::NoFrame);
 
-    // Name filter
+    // Torrent filter
     m_searchFilter = new LineEdit(this);
     m_searchFilter->setPlaceholderText(tr("Filter torrents..."));
     m_searchFilter->setFixedWidth(200);
@@ -196,10 +197,15 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     // Filter by type
+    QWidget *filterByWidget = new QWidget(this);
+    QLabel *filterLabel = new QLabel(tr("Filter by:"));
+    filterLabel->setMargin(7);
     m_filterBy = new QComboBox(this);
-    m_filterBy->addItem(tr("Torrent name"), TransferListModel::Column::TR_NAME);
-    m_filterBy->addItem(tr("Torrent save path"), TransferListModel::Column::TR_SAVE_PATH);
-    m_ui->toolBar->insertWidget(m_ui->actionLock, m_filterBy);
+    QHBoxLayout *filterByLayout = new QHBoxLayout(this);
+    filterByLayout->addWidget(filterLabel);
+    filterByLayout->addWidget(m_filterBy);
+    filterByWidget->setLayout(filterByLayout);
+    m_ui->toolBar->insertWidget(m_ui->actionLock, filterByWidget);
 
     QWidget *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
@@ -219,6 +225,13 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
         UIThemeManager::instance()->getIcon(u"folder-remote"_qs),
 #endif
         tr("Transfers"));
+    // Filter types
+    QVector<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    for (TransferListModel::Column type : filterTypes)
+    {
+        QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
+        m_filterBy->addItem(typeName, type);
+    }
     auto applyFilter = [this]()
     {
         m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterBy->currentData().value<TransferListModel::Column>());
