@@ -60,6 +60,7 @@ if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "C
         -Wnon-virtual-dtor
         -pedantic
         -pedantic-errors
+        -Wshadow
     )
 
     # Clang 11 still doesn't support -Wstrict-null-sentinel
@@ -68,6 +69,8 @@ if ((CMAKE_CXX_COMPILER_ID STREQUAL "GNU") OR (CMAKE_CXX_COMPILER_ID STREQUAL "C
     if (SNS_SUPPORT)
         target_compile_options(qbt_common_cfg INTERFACE -Wstrict-null-sentinel)
     endif()
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(qbt_common_cfg INTERFACE /W4)
 endif()
 
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang"))
