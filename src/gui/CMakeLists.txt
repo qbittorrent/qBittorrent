@@ -37,6 +37,7 @@ qt_wrap_ui(UI_HEADERS
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
     trackerentriesdialog.ui
+    uithemedialog.ui
     watchedfolderoptionsdialog.ui
 )
 
@@ -121,7 +122,10 @@ add_library(qbt_gui STATIC
     transferlistwidget.h
     tristateaction.h
     tristatewidget.h
+    uithemecommon.h
+    uithemedialog.h
     uithememanager.h
+    uithemesource.h
     utils.h
     watchedfolderoptionsdialog.h
     watchedfoldersmodel.h
@@ -205,7 +209,9 @@ add_library(qbt_gui STATIC
     transferlistwidget.cpp
     tristateaction.cpp
     tristatewidget.cpp
+    uithemedialog.cpp
     uithememanager.cpp
+    uithemesource.cpp
     utils.cpp
     watchedfolderoptionsdialog.cpp
     watchedfoldersmodel.cpp

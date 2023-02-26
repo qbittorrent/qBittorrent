@@ -37,6 +37,7 @@
 #include <QString>
 
 #include "base/path.h"
+#include "base/utils/fs.h"
 
 Utils::IO::FileDeviceOutputIterator::FileDeviceOutputIterator(QFileDevice &device, const int bufferSize)
     : m_device {&device}
@@ -70,6 +71,8 @@ Utils::IO::FileDeviceOutputIterator &Utils::IO::FileDeviceOutputIterator::operat
 
 nonstd::expected<void, QString> Utils::IO::saveToFile(const Path &path, const QByteArray &data)
 {
+    if (const Path parentPath = path.parentPath(); !parentPath.isEmpty())
+        Utils::Fs::mkpath(parentPath);
     QSaveFile file {path.data()};
     if (!file.open(QIODevice::WriteOnly) || (file.write(data) != data.size()) || !file.flush() || !file.commit())
         return nonstd::make_unexpected(file.errorString());
