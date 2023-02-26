@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006-2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -216,23 +216,17 @@ void TorrentContentModel::updateFilesProgress()
 {
     Q_ASSERT(m_contentHandler && m_contentHandler->hasMetadata());
 
-    using HandlerPtr = QPointer<BitTorrent::TorrentContentHandler>;
-    m_contentHandler->fetchFilesProgress([this, handler = HandlerPtr(m_contentHandler)](const QVector<qreal> &filesProgress)
-    {
-        if (handler != m_contentHandler)
-            return;
+    const QVector<qreal> &filesProgress = m_contentHandler->filesProgress();
+    Q_ASSERT(m_filesIndex.size() == filesProgress.size());
+    // XXX: Why is this necessary?
+    if (Q_UNLIKELY(m_filesIndex.size() != filesProgress.size()))
+        return;
 
-        Q_ASSERT(m_filesIndex.size() == filesProgress.size());
-        // XXX: Why is this necessary?
-        if (Q_UNLIKELY(m_filesIndex.size() != filesProgress.size()))
-            return;
-
-        for (int i = 0; i < filesProgress.size(); ++i)
-            m_filesIndex[i]->setProgress(filesProgress[i]);
-        // Update folders progress in the tree
-        m_rootItem->recalculateProgress();
-        m_rootItem->recalculateAvailability();
-    });
+    for (int i = 0; i < filesProgress.size(); ++i)
+        m_filesIndex[i]->setProgress(filesProgress[i]);
+    // Update folders progress in the tree
+    m_rootItem->recalculateProgress();
+    m_rootItem->recalculateAvailability();
 }
 
 void TorrentContentModel::updateFilesPriorities()

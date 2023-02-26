@@ -279,6 +279,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
                         , LT::toNative(m_ltAddTorrentParams.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
 
         m_completedFiles.fill(static_cast<bool>(m_ltAddTorrentParams.flags & lt::torrent_flags::seed_mode), filesCount);
+        m_filesProgress.resize(filesCount);
 
         for (int i = 0; i < filesCount; ++i)
         {
@@ -305,6 +306,9 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     for (const std::string &urlSeed : extensionData->urlSeeds)
         m_urlSeeds.append(QString::fromStdString(urlSeed));
     m_nativeStatus = extensionData->status;
+
+    if (hasMetadata())
+        updateProgress();
 
     updateState();
 
@@ -1184,20 +1188,20 @@ QVector<qreal> TorrentImpl::filesProgress() const
     if (!hasMetadata())
         return {};
 
-    if (m_completedFiles.count(true) == filesCount())
-        return QVector<qreal>(filesCount(), 1);
+    const int count = m_filesProgress.size();
+    Q_ASSERT(count == filesCount());
+    if (Q_UNLIKELY(count != filesCount()))
+        return {};
 
-    std::vector<int64_t> fp;
-    m_nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
+    if (m_completedFiles.count(true) == count)
+        return QVector<qreal>(count, 1);
 
-    const int count = filesCount();
-    const auto nativeIndexes = m_torrentInfo.nativeIndexes();
     QVector<qreal> result;
     result.reserve(count);
     for (int i = 0; i < count; ++i)
     {
-        const int64_t progress = fp[LT::toUnderlyingType(nativeIndexes[i])];
-        const qlonglong size = fileSize(i);
+        const int64_t progress = m_filesProgress.at(i);
+        const int64_t size = fileSize(i);
         if ((size <= 0) || (progress == size))
             result << 1;
         else
@@ -1323,8 +1327,6 @@ QVector<PeerInfo> TorrentImpl::peers() const
 
 QBitArray TorrentImpl::pieces() const
 {
-    if (m_pieces.isEmpty())
-        m_pieces = LT::toQBitArray(m_nativeStatus.pieces);
     return m_pieces;
 }
 
@@ -1469,7 +1471,8 @@ void TorrentImpl::forceDHTAnnounce()
 
 void TorrentImpl::forceRecheck()
 {
-    if (!hasMetadata()) return;
+    if (!hasMetadata())
+        return;
 
     m_nativeHandle.force_recheck();
     // We have to force update the cached state, otherwise someone will be able to get
@@ -1478,7 +1481,12 @@ void TorrentImpl::forceRecheck()
 
     m_hasMissingFiles = false;
     m_unchecked = false;
+
     m_completedFiles.fill(false);
+    m_filesProgress.fill(0);
+    m_pieces.fill(false);
+    m_nativeStatus.pieces.clear_all();
+    m_nativeStatus.num_pieces = 0;
 
     if (isPaused())
     {
@@ -1603,6 +1611,8 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
                                 , LT::toNative(p.file_priorities.empty() ? DownloadPriority::Normal : DownloadPriority::Ignored));
 
     m_completedFiles.fill(static_cast<bool>(p.flags & lt::torrent_flags::seed_mode), filesCount());
+    m_filesProgress.resize(filesCount());
+    updateProgress();
 
     for (int i = 0; i < fileNames.size(); ++i)
     {
@@ -1650,7 +1660,10 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
 void TorrentImpl::reload()
 {
     m_completedFiles.fill(false);
-    m_pieces.clear();
+    m_filesProgress.fill(0);
+    m_pieces.fill(false);
+    m_nativeStatus.pieces.clear_all();
+    m_nativeStatus.num_pieces = 0;
 
     const auto queuePos = m_nativeHandle.queue_position();
 
@@ -2279,8 +2292,11 @@ bool TorrentImpl::isMoveInProgress() const
 
 void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 {
-    m_pieces.clear();
-    m_nativeStatus = nativeStatus;
+    const lt::torrent_status oldStatus = std::exchange(m_nativeStatus, nativeStatus);
+
+    if (m_nativeStatus.num_pieces != oldStatus.num_pieces)
+        updateProgress();
+
     updateState();
 
     m_payloadRateMonitor.addSample({nativeStatus.download_payload_rate
@@ -2298,6 +2314,44 @@ void TorrentImpl::updateStatus(const lt::torrent_status &nativeStatus)
 
     while (!m_statusUpdatedTriggers.isEmpty())
         std::invoke(m_statusUpdatedTriggers.dequeue());
+}
+
+void TorrentImpl::updateProgress()
+{
+    Q_ASSERT(hasMetadata());
+    if (Q_UNLIKELY(!hasMetadata()))
+        return;
+
+    Q_ASSERT(!m_filesProgress.isEmpty());
+    if (Q_UNLIKELY(m_filesProgress.isEmpty()))
+        m_filesProgress.resize(filesCount());
+
+    const QBitArray oldPieces = std::exchange(m_pieces, LT::toQBitArray(m_nativeStatus.pieces));
+    const QBitArray newPieces = m_pieces ^ oldPieces;
+
+    const int64_t pieceSize = m_torrentInfo.pieceLength();
+    for (qsizetype index = 0; index < newPieces.size(); ++index)
+    {
+        if (!newPieces.at(index))
+            continue;
+
+        int64_t size = m_torrentInfo.pieceLength(index);
+        int64_t pieceOffset = index * pieceSize;
+
+        for (const int fileIndex : asConst(m_torrentInfo.fileIndicesForPiece(index)))
+        {
+            const int64_t fileOffsetInPiece = pieceOffset - m_torrentInfo.fileOffset(fileIndex);
+            const int64_t add = std::min<int64_t>((m_torrentInfo.fileSize(fileIndex) - fileOffsetInPiece), size);
+
+            m_filesProgress[fileIndex] += add;
+
+            size -= add;
+            if (size <= 0)
+                break;
+
+            pieceOffset += add;
+        }
+    }
 }
 
 void TorrentImpl::setRatioLimit(qreal limit)
@@ -2532,48 +2586,6 @@ void TorrentImpl::fetchURLSeeds(std::function<void (QVector<QUrl>)> resultHandle
             for (const std::string &urlSeed : currentSeeds)
                 urlSeeds.append(QString::fromStdString(urlSeed));
             return urlSeeds;
-        }
-        catch (const std::exception &) {}
-
-        return {};
-    }
-    , std::move(resultHandler));
-}
-
-void TorrentImpl::fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const
-{
-    invokeAsync([nativeHandle = m_nativeHandle, torrentInfo = m_torrentInfo
-                , completedFiles = m_completedFiles]() -> QVector<qreal>
-    {
-        if (!torrentInfo.isValid())
-            return {};
-
-        const int filesCount = torrentInfo.filesCount();
-        if (completedFiles.count(true) == filesCount)
-            return QVector<qreal>(filesCount, 1);
-
-        try
-        {
-#ifdef QBT_USES_LIBTORRENT2
-            const std::vector<int64_t> fp = nativeHandle.file_progress(lt::torrent_handle::piece_granularity);
-#else
-            std::vector<int64_t> fp;
-            nativeHandle.file_progress(fp, lt::torrent_handle::piece_granularity);
-#endif
-
-            const auto nativeIndexes = torrentInfo.nativeIndexes();
-            QVector<qreal> result;
-            result.reserve(filesCount);
-            for (int i = 0; i < filesCount; ++i)
-            {
-                const int64_t progress = fp[LT::toUnderlyingType(nativeIndexes[i])];
-                const qlonglong size = torrentInfo.fileSize(i);
-                if ((size <= 0) || (progress == size))
-                    result.append(1);
-                else
-                    result.append(progress / static_cast<qreal>(size));
-            }
-            return result;
         }
         catch (const std::exception &) {}
 

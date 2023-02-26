@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2022-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2012  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -235,11 +235,6 @@ public:
     QVector<qreal> filesProgress() const override
     {
         return QVector<qreal>(filesCount(), 0);
-    }
-
-    void fetchFilesProgress(std::function<void (QVector<qreal>)> resultHandler) const override
-    {
-        resultHandler(filesProgress());
     }
 
     QVector<qreal> availableFileFractions() const override
