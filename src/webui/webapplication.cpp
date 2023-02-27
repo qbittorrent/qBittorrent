@@ -151,9 +151,14 @@ WebApplication::~WebApplication()
 
 void WebApplication::sendWebUIFile()
 {
-    const QStringList pathItems {request().path.split(u'/', Qt::SkipEmptyParts)};
-    if (pathItems.contains(u".") || pathItems.contains(u".."))
-        throw InternalServerErrorHTTPError();
+    if (request().path.contains(u'\\'))
+        throw BadRequestHTTPError();
+
+    if (const QList<QStringView> pathItems = QStringView(request().path).split(u'/', Qt::SkipEmptyParts)
+            ; pathItems.contains(u".") || pathItems.contains(u".."))
+    {
+        throw BadRequestHTTPError();
+    }
 
     const QString path = (request().path != u"/")
         ? request().path
