@@ -39,6 +39,7 @@
 #include <QUrlQuery>
 
 #include "base/global.h"
+#include "base/path.h"
 #include "base/utils/bytearray.h"
 #include "base/utils/string.h"
 
@@ -210,7 +211,10 @@ bool RequestParser::parseRequestLine(const QString &line)
     const int sepPos = url.indexOf('?');
     const QByteArray pathComponent = ((sepPos == -1) ? url : midView(url, 0, sepPos));
 
-    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent));
+    // Convert all '\' to '/'
+    // This helps the server down the line to guard against path traversal using '.' or '..'
+    m_request.path = QString::fromUtf8(QByteArray::fromPercentEncoding(pathComponent))
+                         .replace(u"\\"_qs, u"/"_qs);
 
     if (sepPos >= 0)
     {
