@@ -185,8 +185,11 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
     if (!result)
         return result.get_unexpected();
 
-    auto srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
     const auto destFolder = result.value();
+    if (static_cast<Item *>(destFolder) == item)
+        return nonstd::make_unexpected(tr("Couldn't move folder into itself."));
+
+    auto srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
     if (srcFolder != destFolder)
     {
         srcFolder->removeItem(item);
