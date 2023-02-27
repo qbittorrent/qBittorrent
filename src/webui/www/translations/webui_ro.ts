@@ -24,11 +24,11 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation>Mod gestionare torente</translation>
+        <translation>Regim de gestiune a torentelor:</translation>
     </message>
     <message>
         <source>Content layout:</source>
-        <translation>Aspect conținut:</translation>
+        <translation>Aranjament conținut:</translation>
     </message>
     <message>
         <source>Original</source>
@@ -40,7 +40,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Nu creea subdosar</translation>
+        <translation>Nu crea subdosar</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadate primite</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Fișiere verificate</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Condiție de oprire:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Niciuna</translation>
     </message>
 </context>
 <context>
@@ -82,7 +82,7 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>Adăugare categorie...</translation>
+        <translation>Adaugă categorie…</translation>
     </message>
     <message>
         <source>Remove category</source>
@@ -98,19 +98,19 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Suspendă torentele</translation>
+        <translation>Întrerupe torentele</translation>
     </message>
     <message>
         <source>New Category</source>
-        <translation>Adauga categorie</translation>
+        <translation>Categorie nouă</translation>
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>Modifică această categorie&lt;br&gt;</translation>
+        <translation>Modifică categoria…</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Elimină torente</translation>
     </message>
 </context>
 <context>
@@ -121,19 +121,19 @@
     </message>
     <message>
         <source>Only one link per line</source>
-        <translation>Doar o legătură per linie</translation>
+        <translation>Doar o legătură pe linie</translation>
     </message>
     <message>
         <source>Global upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Limita ratei de încărcare globală trebuie să fie mai mare ca 0 sau dezactivată.</translation>
+        <translation>Limita ratei de încărcare globale trebuie să fie mai mare ca 0 sau dezactivată.</translation>
     </message>
     <message>
         <source>Global download rate limit must be greater than 0 or disabled.</source>
-        <translation>Limita ratei de descărcare globală trebuie să fie mai mare ca 0 sau dezactivată.</translation>
+        <translation>Limita ratei de descărcare globale trebuie să fie mai mare ca 0 sau dezactivată.</translation>
     </message>
     <message>
         <source>Alternative upload rate limit must be greater than 0 or disabled.</source>
-        <translation>Limita ratei de încărcare alternativă trebuie să fie mai mare ca 0 sau dezactivată.</translation>
+        <translation>Limita ratei de încărcare alternative trebuie să fie mai mare ca 0 sau dezactivată.</translation>
     </message>
     <message>
         <source>Alternative download rate limit must be greater than 0 or disabled.</source>
@@ -149,7 +149,7 @@
     </message>
     <message>
         <source>Maximum active torrents must be greater than -1.</source>
-        <translation>Numărul maxim de torrente active trebuie să fie mai mare decât -1.</translation>
+        <translation>Numărul maxim de torente active trebuie să fie mai mare decât -1.</translation>
     </message>
     <message>
         <source>Maximum number of connections limit must be greater than 0 or disabled.</source>
@@ -157,11 +157,11 @@
     </message>
     <message>
         <source>Maximum number of connections per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Limita maximă a numărului de conexiuni pe torrent trebuie să fie mai mare ca 0 sau dezactivată.</translation>
+        <translation>Limita maximă a numărului de conexiuni pe torent trebuie să fie mai mare ca 0 sau dezactivată.</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent limit must be greater than 0 or disabled.</source>
-        <translation>Numărul maxim de sloturi de încărcare pe torrent trebuie să fie mai mare ca 0 sau dezactivat.</translation>
+        <translation>Numărul maxim de socluri de încărcare pe torent trebuie să fie mai mare ca 0 sau dezactivat.</translation>
     </message>
     <message>
         <source>Unable to save program preferences, qBittorrent is probably unreachable.</source>
@@ -177,11 +177,11 @@
     </message>
     <message>
         <source>Seeding time limit must be between 0 and 525600 minutes.</source>
-        <translation>Limita de timp pentru seed trebuie să fie situată între 0 şi 525600 de minute.</translation>
+        <translation>Limita de timp pentru partajare trebuie să fie între 0 și 525600 de minute.</translation>
     </message>
     <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
-        <translation>Portul folosit pentru interfața Web trebuie să fie între 1 și 65535.</translation>
+        <translation>Portul folosit pentru interfața web trebuie să fie între 1 și 65535.</translation>
     </message>
     <message>
         <source>Unable to log in, qBittorrent is probably unreachable.</source>
@@ -214,19 +214,19 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation>Încărcare torente</translation>
+        <translation>Încarcă torente</translation>
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation>Salvează fișierele în locația:</translation>
+        <translation>Salvează fișierele la amplasarea:</translation>
     </message>
     <message>
         <source>Cookie:</source>
-        <translation>Fișier cookie:</translation>
+        <translation>Cookie:</translation>
     </message>
     <message>
         <source>More information</source>
-        <translation>Mai multe informații</translation>
+        <translation>Informații suplimentare</translation>
     </message>
     <message>
         <source>Information about certificates</source>
@@ -234,19 +234,19 @@
     </message>
     <message>
         <source>Set location</source>
-        <translation>Stabilire locație</translation>
+        <translation>Stabilește amplasarea</translation>
     </message>
     <message>
         <source>Limit upload rate</source>
-        <translation>Viteza maximă de upload</translation>
+        <translation>Limitează rata de încărcare</translation>
     </message>
     <message>
         <source>Limit download rate</source>
-        <translation>Viteza maximă de download</translation>
+        <translation>Limitează rata de descărcare</translation>
     </message>
     <message>
         <source>Rename torrent</source>
-        <translation>Schimbă denumirea torrentului</translation>
+        <translation>Schimbă denumirea torentului</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -285,7 +285,7 @@
     </message>
     <message>
         <source>Logout</source>
-        <translation>Deautentifică</translation>
+        <translation>Ieși</translation>
     </message>
     <message>
         <source>Download Torrents from their URLs or Magnet links</source>
@@ -293,7 +293,7 @@
     </message>
     <message>
         <source>Upload local torrent</source>
-        <translation>Încărcare torrent local</translation>
+        <translation>Încarcă torent local</translation>
     </message>
     <message>
         <source>Save</source>
@@ -321,19 +321,19 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation>Editeaza.</translation>
+        <translation>Modifică</translation>
     </message>
     <message>
         <source>Free space: %1</source>
-        <translation>Spaţiu liber: 1%</translation>
+        <translation>Spațiu liber: 1%</translation>
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Temporizatorul pentru inactivitatea torrentului trebuie să fie mai mare de 0.</translation>
+        <translation>Temporizatorul de inactivitate a torentului trebuie să fie mai mare de 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
-        <translation type="unfinished" />
+        <translation>Gestiunea salvării</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
@@ -341,7 +341,7 @@
     </message>
     <message>
         <source>qBittorrent has been shutdown</source>
-        <translation>qBittorent a fost oprit</translation>
+        <translation>qBittorrent a fost oprit</translation>
     </message>
     <message>
         <source>Open documentation</source>
@@ -349,23 +349,23 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation type="unfinished" />
+        <translation>Înregistrează pentru manipularea legăturilor magnet…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
-        <translation type="unfinished" />
+        <translation>Nu se pot adăuga parteneri. Asigurați-vă că respectați formatul IP:port.</translation>
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>JavaScript e necesar! Trebuie să activați JavaScript pentru ca interfața web să funcționeze corect</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation>Numele trebuie sa contina caractere</translation>
+        <translation>Denumirea nu poate fi goală</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation>Numele nu este schimbat.</translation>
+        <translation>Denumirea e neschimbată</translation>
     </message>
     <message>
         <source>Failed to update name</source>
@@ -373,26 +373,26 @@
     </message>
     <message>
         <source>OK</source>
-        <translation>OK</translation>
+        <translation>Bine</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
-        <translation type="unfinished" />
+        <translation>Portul folosit pentru conexiuni de intrare trebuie să fie între 0 și 65535.</translation>
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Autor original</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>Sigur doriți să eliminați torentele alese din lista de transferuri?</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <source>Edit</source>
-        <translation>Editare</translation>
+        <translation>Modifică</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -412,11 +412,11 @@
     </message>
     <message>
         <source>Options...</source>
-        <translation>Opțiuni...</translation>
+        <translation>Opțiuni…</translation>
     </message>
     <message>
         <source>Resume</source>
-        <translation>Reluare</translation>
+        <translation>Reia</translation>
     </message>
     <message>
         <source>Top Toolbar</source>
@@ -448,15 +448,15 @@
     </message>
     <message>
         <source>Pause</source>
-        <translation>Suspendare</translation>
+        <translation>Întrerupe</translation>
     </message>
     <message>
         <source>Pause All</source>
-        <translation>Suspendă toate</translation>
+        <translation>Întrerupe toate</translation>
     </message>
     <message>
         <source>Add Torrent File...</source>
-        <translation>Adăugare fișier torrent...</translation>
+        <translation>Adaugă fișier torrent…</translation>
     </message>
     <message>
         <source>Documentation</source>
@@ -464,7 +464,7 @@
     </message>
     <message>
         <source>Add Torrent Link...</source>
-        <translation>Adăugare legătură torrent...</translation>
+        <translation>Adaugă legătură torrent…</translation>
     </message>
     <message>
         <source>Yes</source>
@@ -480,7 +480,7 @@
     </message>
     <message>
         <source>Global Download Speed Limit</source>
-        <translation>Limită viteză de descărare globală</translation>
+        <translation>Limită viteză de descărcare globală</translation>
     </message>
     <message>
         <source>Are you sure you want to quit qBittorrent?</source>
@@ -493,7 +493,7 @@
     </message>
     <message>
         <source>Alternative speed limits</source>
-        <translation>Limite alternative de viteză</translation>
+        <translation>Limite de viteză alternative</translation>
     </message>
     <message>
         <source>Search Engine</source>
@@ -501,11 +501,11 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation>Filtreza lista cu torrente</translation>
+        <translation>Filtrează lista cu torente</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation>Cauta</translation>
+        <translation>Caută</translation>
     </message>
     <message>
         <source>Transfers</source>
@@ -513,15 +513,15 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation>Mută sus în coadă</translation>
+        <translation>Mută mai sus în coadă</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation>Mută Sus în coadă</translation>
+        <translation>Mută sus în coadă</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation>Baza Cozii</translation>
+        <translation>Baza cozii</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
@@ -529,15 +529,15 @@
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation>Vârful Cozii</translation>
+        <translation>Vârful cozii</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation>Mută Jos în Coadă</translation>
+        <translation>Mută jos în coadă</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation>Mută jos în coadă</translation>
+        <translation>Mută mai jos în coadă</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
@@ -545,27 +545,27 @@
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>Navigatorul dumneavoastră nu susține această funcționalitate</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
-        <translation type="unfinished" />
+        <translation>Pentru a folosi această funcționalitate, interfața web trebuie accesată prin HTTPS</translation>
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>Starea conexiunii: Blocată de firewall</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>Starea conexiunii: Conectată</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
-        <translation type="unfinished" />
+        <translation>Limite de viteză alternative: Inactive</translation>
     </message>
     <message>
         <source>Download speed icon</source>
-        <translation type="unfinished" />
+        <translation>Pictograma vitezei de descărcare</translation>
     </message>
     <message>
         <source>Connection status</source>
@@ -573,7 +573,7 @@
     </message>
     <message>
         <source>Alternative speed limits: On</source>
-        <translation type="unfinished" />
+        <translation>Limite de viteză alternative: Active</translation>
     </message>
     <message>
         <source>Upload speed icon</source>
@@ -581,7 +581,7 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>Starea conexiunii: Deconectată</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -597,27 +597,27 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Renunță</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Elimină</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Doriți să reluați toate torentele?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Doriți să întrerupeți toate torentele?</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Jurnal de execuție</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Jurnal</translation>
     </message>
 </context>
 <context>
@@ -692,11 +692,11 @@
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
-        <translation type="unfinished" />
+        <translation>Sari autentificarea pentru clienți din rețeaua locală</translation>
     </message>
     <message>
         <source>Bypass authentication for clients in whitelisted IP subnets</source>
-        <translation type="unfinished" />
+        <translation>Sari autentificarea pentru clienți din rețele IP permise</translation>
     </message>
     <message>
         <source>Update my dynamic domain name</source>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Niciunul)</translation>
+        <translation type="vanished">(Niciunul)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>Utilizează proxy doar pentru torrente</translation>
+        <translation type="vanished">Utilizează proxy doar pentru torrente</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1018,15 +1018,15 @@
     </message>
     <message>
         <source>Enable clickjacking protection</source>
-        <translation type="unfinished" />
+        <translation>Activează protecția împotriva furtului de clicuri</translation>
     </message>
     <message>
         <source>Enable Cross-Site Request Forgery (CSRF) protection</source>
-        <translation type="unfinished" />
+        <translation>Activează protecția Cross-Site Request Forgery (CSRF)</translation>
     </message>
     <message>
         <source>Delete .torrent files afterwards</source>
-        <translation type="unfinished" />
+        <translation>Șterge fișierele .torrent mai apoi</translation>
     </message>
     <message>
         <source>Download rate threshold:</source>
@@ -1046,7 +1046,7 @@
     </message>
     <message>
         <source>Use alternative Web UI</source>
-        <translation type="unfinished" />
+        <translation>Folosește interfață web alternativă</translation>
     </message>
     <message>
         <source>Default Save Path:</source>
@@ -1054,39 +1054,39 @@
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>Amplasarea fișierelor pentru interfața web alternativă nu poate fi goală.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation>Nu porni automat descărcarea </translation>
+        <translation>Nu porni automat descărcarea</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation>Comută torentul pe modul manual</translation>
+        <translation>Treci torentul în regim manual</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
-        <translation>Când categoria torrentului a fost schimbată</translation>
+        <translation>Când categoria torentului s-a schimbat:</translation>
     </message>
     <message>
         <source>Relocate affected torrents</source>
-        <translation>Mută torrentele afectate în altă locație</translation>
+        <translation>Mută torentele afectate</translation>
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation>Aplică limitarea ratei partenerilor din rețeaua locală (LAN)</translation>
+        <translation>Aplică limitarea ratei partenerilor din rețeaua locală</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
-        <translation type="unfinished" />
+        <translation>0 înseamnă nelimitat</translation>
     </message>
     <message>
         <source>Relocate torrent</source>
-        <translation>Mută torrentul în altă locație</translation>
+        <translation>Mută torentul</translation>
     </message>
     <message>
         <source>When Default Save Path changed:</source>
-        <translation>Când calea de salvare implicită a fost schimbată</translation>
+        <translation>Când calea de salvare implicită s-a schimbat:</translation>
     </message>
     <message>
         <source>Enable Host header validation</source>
@@ -1098,7 +1098,7 @@
     </message>
     <message>
         <source>When Category Save Path changed:</source>
-        <translation type="unfinished" />
+        <translation>Când calea de salvare a categoriei s-a schimbat:</translation>
     </message>
     <message>
         <source>seconds</source>
@@ -1106,11 +1106,11 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation>Comută torrentele afectate pe modul manual</translation>
+        <translation>Treci torentele afectate în regim manual</translation>
     </message>
     <message>
         <source>Files location:</source>
-        <translation>Locația fișierelor:</translation>
+        <translation>Amplasarea fișierelor:</translation>
     </message>
     <message>
         <source>Manual</source>
@@ -1118,39 +1118,39 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation type="unfinished" />
+        <translation>Temporizator de inactivitate a torentului:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
-        <translation>Mod gestionare torrent implicit:</translation>
+        <translation>Regim implicit de gestiune a torentelor:</translation>
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation>Când se adaugă un torrent</translation>
+        <translation>Când se adaugă un torent</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation>Informare: Parola este salvată în mod necriptat</translation>
+        <translation>Informație: Parola este salvată fără criptare</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Algoritm pentru regim mixt μTP-TCP:</translation>
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>Bazat pe rata de încărcare</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation>%G: Etichete (separate prin virgulă)</translation>
+        <translation>%G: Marcaje (separate prin virgulă)</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
-        <translation type="unfinished" />
+        <translation>Dimensiunea cozii pentru socluri:</translation>
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation>Activați super transmiterea pentru torrent</translation>
+        <translation>Activează supertransmiterea pentru torent</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1162,19 +1162,19 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Anti-lipitoare</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation>Când rația ajunge la</translation>
+        <translation>Când raportul ajunge la</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation>Când timpul de transmitere ajunge</translation>
+        <translation>Când durata de transmitere atinge</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
-        <translation type="unfinished" />
+        <translation>Permite conexiuni multiple de la aceeași adresă IP:</translation>
     </message>
     <message>
         <source>File pool size:</source>
@@ -1190,23 +1190,23 @@
     </message>
     <message>
         <source>Embedded tracker port:</source>
-        <translation type="unfinished" />
+        <translation>Port pentru urmăritor încorporat:</translation>
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>Încărcarea cea mai rapidă</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation>Suspendă torrentul</translation>
+        <translation>Întrerupe torentul</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation>Elimină torrentul și fișierele acestuia</translation>
+        <translation>Elimină torentul și fișierele acestuia</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Secțiunea qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1214,7 +1214,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>Secțiunea libtorrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
@@ -1222,11 +1222,11 @@
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
-        <translation type="unfinished" />
+        <translation>Reverifică torentele la încheiere:</translation>
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation>Permiteți criptarea</translation>
+        <translation>Permite criptarea</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1234,11 +1234,11 @@
     </message>
     <message>
         <source>Enable embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Activează urmăritorul încorporat:</translation>
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation>Elimină torrentul</translation>
+        <translation>Elimină torentul</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
@@ -1250,7 +1250,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>s</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1262,19 +1262,19 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Socluri fixe</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation>Avansat</translation>
+        <translation>Avansate</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="unfinished" />
+        <translation>min</translation>
     </message>
     <message>
         <source>Upload choking algorithm:</source>
-        <translation type="unfinished" />
+        <translation>Algoritm de înecare a încărcării:</translation>
     </message>
     <message>
         <source>Seeding Limits</source>
@@ -1290,7 +1290,7 @@
     </message>
     <message>
         <source>Upload slots behavior:</source>
-        <translation type="unfinished" />
+        <translation>Comportament socluri de încărcare:</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1314,15 +1314,15 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation type="unfinished" />
+        <translation>Rezolvă țările partenerilor:</translation>
     </message>
     <message>
         <source>ban for:</source>
-        <translation>interzis pentru: </translation>
+        <translation>interzice pentru:</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation type="unfinished" />
+        <translation>Oprește expirarea urmăritorului:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1330,7 +1330,7 @@
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation>Activează fanionul de securitate pentru cookie de navigator (necesită HTTPS)</translation>
+        <translation>Activează fanionul de securitate pentru cookie (necesită HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
@@ -1342,7 +1342,7 @@
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation>Adăugare antete HTTP particularizate</translation>
+        <translation>Adaugă antete HTTP particularizate</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1350,7 +1350,7 @@
     </message>
     <message>
         <source>Enable fetching RSS feeds</source>
-        <translation>Activați preluarea fluxurilor RSS</translation>
+        <translation>Activează preluarea fluxurilor RSS</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
@@ -1366,7 +1366,7 @@
     </message>
     <message>
         <source>RSS Torrent Auto Downloader</source>
-        <translation>Descărcare Automată RSS a torrentelor</translation>
+        <translation>Descărcare automată a torentelor RSS</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -1374,7 +1374,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>Interfață de rețea:</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1382,15 +1382,15 @@
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation>Editare reguli de descărcare automată...</translation>
+        <translation>Modifică reguli de descărcare automată…</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation>Descarcă  REPACK / PROPER</translation>
+        <translation>Descarcă episoade REPACK/PROPER</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation>Interval de reîmprospătare al fluxurilor:</translation>
+        <translation>Interval de reîmprospătare a fluxurilor:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1398,7 +1398,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation>Numărul maxim de articole per flux:</translation>
+        <translation>Numărul maxim de articole pe flux:</translation>
     </message>
     <message>
         <source> min</source>
@@ -1410,7 +1410,7 @@
     </message>
     <message>
         <source>Optional IP address to bind to:</source>
-        <translation type="unfinished" />
+        <translation>Adresă IP opțională de ascultat:</translation>
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
@@ -1454,7 +1454,7 @@
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation>Nu creea subdosar</translation>
+        <translation>Nu crea subdosar</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1462,7 +1462,7 @@
     </message>
     <message>
         <source>Outgoing connections per second:</source>
-        <translation type="unfinished" />
+        <translation>Conexiuni de ieșire pe secundă:</translation>
     </message>
     <message>
         <source>Random</source>
@@ -1470,19 +1470,19 @@
     </message>
     <message>
         <source>%K: Torrent ID</source>
-        <translation type="unfinished" />
+        <translation>%K: Identificator torent</translation>
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation type="unfinished" />
+        <translation>Reanunță toate urmăritoarele când se schimbă IP-ul sau portul:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Listă cu proxy-uri de încredere:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation>Activează sprijin proximitate (proxy)</translation>
+        <translation>Activează sprijin proximitate inversă (reverse proxy)</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1494,7 +1494,7 @@
     </message>
     <message>
         <source>IP address reported to trackers (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Adresa IP raportată urmăritoarelor (necesită repornire):</translation>
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
@@ -1506,15 +1506,15 @@
     </message>
     <message>
         <source>Disk queue size:</source>
-        <translation type="unfinished" />
+        <translation>Dimensiune coadă disc:</translation>
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Înregistrează avertizările de performanță</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Număr maxim de cereri în așteptare spre un singur partener:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -1526,7 +1526,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>Implicit</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1566,15 +1566,15 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Număr maxim de anunțuri HTTP simultane:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Activează prestocarea sistemului de operare</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Interval de împrospătare:</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
@@ -1582,19 +1582,19 @@
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>ms</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Denumiri de fișiere excluse</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Susține nume de domenii internaționale (IDN):</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>Rulează program extern la încheierea torentului</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1606,11 +1606,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>Rulează program extern la adăugarea torentului</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Certificatele HTTPS trebuie să nu fie goale</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
@@ -1618,54 +1618,102 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>Cheile HTTPS trebuie să nu fie goale</translation>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Rulează program extern</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Fișiere verificate</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Activează înaintarea portului pentru urmăritorul încorporat:</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>Dacă e bifată, determinarea numelui gazdelor se face prin proxy.</translation>
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation type="unfinished" />
+        <translation>Folosește proxy pentru determinarea numelui gazdei</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadate primite</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Condiție de oprire a torentului:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Niciuna</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Exemplu: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>Bază de date SQLite (experimental)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Tip stocare date de reluare (necesită repornire):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Backup the log file after:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete backup logs older than:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for BitTorrent purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>years</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>months</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remember Multi-Rename settings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for general purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for RSS purposes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1733,7 +1781,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>Sigur doriți să blocați definitiv partenerii aleși?</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1745,7 +1793,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>Adăugare parteneri...</translation>
+        <translation>Adaugă parteneri…</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -1771,7 +1819,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Mixt</translation>
     </message>
     <message>
         <source>Do not download</source>
@@ -1850,7 +1898,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Wasted:</source>
-        <translation>Pierdut:</translation>
+        <translation>Irosit:</translation>
     </message>
     <message>
         <source>Connections:</source>
@@ -1894,7 +1942,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Terminat la:</translation>
+        <translation>Încheiat la:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -1934,11 +1982,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Limită descărcare:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Limită încărcare:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -1946,15 +1994,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation>Filtrare fișiere...</translation>
+        <translation>Filtrează fișiere…</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Redenumire...</translation>
+        <translation>Redenumește…</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (partajat pentru %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -1971,6 +2019,66 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Progress:</source>
         <translation>Progres:</translation>
+    </message>
+    <message>
+        <source>Use regular expressions</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename + Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enumerate Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename failed: file or folder already exists</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all occurences</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Toggle Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replacement Input</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include folders</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1993,11 +2101,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Altul…</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Tastați dosarul aici</translation>
     </message>
 </context>
 <context>
@@ -2197,7 +2305,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Name</source>
         <comment>i.e: torrent name</comment>
-        <translation>Nume</translation>
+        <translation>Denumire</translation>
     </message>
     <message>
         <source>Size</source>
@@ -2227,12 +2335,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Down Speed</source>
         <comment>i.e: Download speed</comment>
-        <translation>Viteză descărcare</translation>
+        <translation>Viteză desc.</translation>
     </message>
     <message>
         <source>Up Speed</source>
         <comment>i.e: Upload speed</comment>
-        <translation>Viteză încărcare</translation>
+        <translation>Viteză înc.</translation>
     </message>
     <message>
         <source>Ratio</source>
@@ -2242,7 +2350,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Timp rămas</translation>
+        <translation>Rămas</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2250,7 +2358,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Etichete</translation>
+        <translation>Marcaje</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -2260,7 +2368,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Terminat la</translation>
+        <translation>Încheiat la</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2269,12 +2377,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Down Limit</source>
         <comment>i.e: Download limit</comment>
-        <translation>Limită descărcare</translation>
+        <translation>Limită desc.</translation>
     </message>
     <message>
         <source>Up Limit</source>
         <comment>i.e: Upload limit</comment>
-        <translation>Limită încărcare</translation>
+        <translation>Limită înc.</translation>
     </message>
     <message>
         <source>Downloaded</source>
@@ -2304,7 +2412,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Time Active</source>
         <comment>Time (duration) the torrent is active (not paused)</comment>
-        <translation>Timp activ</translation>
+        <translation>Durată activă</translation>
     </message>
     <message>
         <source>Save path</source>
@@ -2314,7 +2422,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Terminat</translation>
+        <translation>Încheiat</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -2365,7 +2473,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Se actualizează...</translation>
+        <translation>Se actualizează…</translation>
     </message>
     <message>
         <source>Working</source>
@@ -2381,7 +2489,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation>Indisponibil</translation>
+        <translation>Indisp.</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2397,11 +2505,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Editează URL-ul urmăritorului...</translation>
+        <translation>Modifică URL-ul urmăritorului…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation>Editare urmăritor</translation>
+        <translation>Modificare urmăritor</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2413,7 +2521,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Rămas</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2425,7 +2533,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Prioritate descărcare</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2441,10 +2549,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Număr de descărcări</translation>
     </message>
     <message>
         <source>Add trackers...</source>
+        <translation>Adaugă urmăritoare…</translation>
+    </message>
+    <message>
+        <source>Renamed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2452,11 +2568,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TrackersAdditionDialog</name>
     <message>
         <source>List of trackers to add (one per line):</source>
-        <translation>Listă urmăritoare de adăugat (unul per linie):</translation>
+        <translation>Listă cu urmăritoare de adăugat (unul pe linie):</translation>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Adaugă urmăritoare</translation>
     </message>
 </context>
 <context>
@@ -2464,11 +2580,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation>%1 în urmă</translation>
+        <translation>acum %1</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation>Suspendat</translation>
+        <translation>Întrerupt</translation>
     </message>
     <message>
         <source>Completed</source>
@@ -2488,11 +2604,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>În coadă</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Eronat</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2512,7 +2628,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>În coadă pentru verificare</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2520,7 +2636,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Se verifică datele de reluare</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2532,7 +2648,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Se descarcă metadate</translation>
     </message>
 </context>
 <context>
@@ -2547,7 +2663,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Etichete</translation>
+        <translation>Marcaje</translation>
     </message>
     <message>
         <source>Trackers</source>
@@ -2558,15 +2674,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TransferListWidget</name>
     <message>
         <source>Torrent Download Speed Limiting</source>
-        <translation>Limitare viteză descărcare torrent</translation>
+        <translation>Limitează viteza de descărcare a torentului</translation>
     </message>
     <message>
         <source>Torrent Upload Speed Limiting</source>
-        <translation>Limitare viteză de încărcare torrent</translation>
+        <translation>Limitează viteza de încărcare a torentului</translation>
     </message>
     <message>
         <source>Rename</source>
-        <translation>Redenumire</translation>
+        <translation>Redenumește</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -2581,19 +2697,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation>Suspendă</translation>
+        <translation>Întrerupe</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
-        <translation>Limitare raport de partajare....</translation>
+        <translation>Limitează raportul de partajare…</translation>
     </message>
     <message>
         <source>Limit upload rate...</source>
-        <translation>Limitare viteză de încărcare...</translation>
+        <translation>Limitează rata de încărcare…</translation>
     </message>
     <message>
         <source>Limit download rate...</source>
-        <translation>Limitare viteză de descărcare...</translation>
+        <translation>Limitează rata de descărcare…</translation>
     </message>
     <message>
         <source>Move up</source>
@@ -2617,7 +2733,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Set location...</source>
-        <translation>Stabilire locație...</translation>
+        <translation>Stabilește amplasarea…</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -2625,7 +2741,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation>Administrare automată torente</translation>
+        <translation>Gestiune Automată a Torentelor</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2634,12 +2750,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation>Nouă...</translation>
+        <translation>Nouă…</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation>Restabilește</translation>
+        <translation>Reinițializează</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -2647,11 +2763,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Super seeding mode</source>
-        <translation>Mod super-contribuire</translation>
+        <translation>Regim super-contribuire</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Redenumire...</translation>
+        <translation>Redenumește…</translation>
     </message>
     <message>
         <source>Download in sequential order</source>
@@ -2663,11 +2779,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished" />
+        <translation>Amplasare</translation>
     </message>
     <message>
         <source>New name</source>
-        <translation type="unfinished" />
+        <translation>Denumire nouă</translation>
     </message>
     <message>
         <source>Set location</source>
@@ -2675,39 +2791,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Forțează reanunțarea </translation>
+        <translation>Forțează reanunțarea</translation>
     </message>
     <message>
         <source>Edit Category</source>
-        <translation type="unfinished" />
+        <translation>Modifică categoria</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Cale de salvare</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation>Etichete separate prin virgulă:</translation>
+        <translation>Marcaje separate prin virgulă:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation>Adăugare etichete</translation>
+        <translation>Adaugă marcaje</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation>Etichete</translation>
+        <translation>Marcaje</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation>Legătură magnet</translation>
+        <translation>Legătură Magnet</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Elimină toate</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nume</translation>
+        <translation>Denumire</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -2731,14 +2847,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrent ID</source>
-        <translation>ID torent</translation>
+        <translation>Identificator torent</translation>
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>Exportă .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
+        <translation>Elimină</translation>
+    </message>
+    <message>
+        <source>Rename Files...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Renaming</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2746,11 +2870,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>UpDownRatioDialog</name>
     <message>
         <source>Torrent Upload/Download Ratio Limiting</source>
-        <translation>Limitare raport încărcare/descărcare torrent</translation>
+        <translation>Limitare raport încărcare/descărcare torent</translation>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation>Utilizează limitarea globală a partajării</translation>
+        <translation>Folosește limitarea globală a partajării</translation>
     </message>
     <message>
         <source>Set no share limit</source>
@@ -2776,11 +2900,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Șterge permanent și fișierele</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Elimină torent(e)</translation>
     </message>
 </context>
 <context>
@@ -2795,7 +2919,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Torrent Links</source>
-        <translation type="unfinished" />
+        <translation>Adaugă legături cu torente</translation>
     </message>
 </context>
 <context>
@@ -2867,14 +2991,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1a %2z</translation>
     </message>
 </context>
 <context>
     <name>TorrentsController</name>
     <message>
         <source>Save path is empty</source>
-        <translation type="unfinished" />
+        <translation>Calea de salvare e goală</translation>
     </message>
 </context>
 <context>
@@ -2885,19 +3009,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Plugin path:</source>
-        <translation type="unfinished" />
+        <translation>Calea extensiei:</translation>
     </message>
     <message>
         <source>URL or local directory</source>
-        <translation type="unfinished" />
+        <translation>URL sau dosar local</translation>
     </message>
     <message>
         <source>Install plugin</source>
-        <translation type="unfinished" />
+        <translation>Instalează extensia</translation>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>Bine</translation>
     </message>
 </context>
 <context>
@@ -2908,7 +3032,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>Toate extensiile</translation>
     </message>
     <message>
         <source>Size:</source>
@@ -2920,15 +3044,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Caută</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Extensii de căutare…</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Toate categoriile</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -2936,23 +3060,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filter</source>
-        <translation type="unfinished" />
+        <translation>Filtru</translation>
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation type="unfinished" />
+        <translation>Doar denumirile torentelor</translation>
     </message>
     <message>
         <source>Only enabled</source>
-        <translation type="unfinished" />
+        <translation>Doar active</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>din</translation>
     </message>
     <message>
         <source>Everywhere</source>
-        <translation type="unfinished" />
+        <translation>Peste tot</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2960,11 +3084,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
-        <translation type="unfinished" />
+        <translation>Măriți lățimea ferestrei pentru a afișa filtre suplimentare</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>până la</translation>
     </message>
     <message>
         <source>Results</source>
@@ -2972,15 +3096,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>se arată</translation>
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Apăsați butonul „Extensii de căutare…” în colțul din dreapta-jos a ferestrei pentru a instala câteva.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
-        <translation type="unfinished" />
+        <translation>Nu sunt instalate extensii de căutare.</translation>
     </message>
 </context>
 <context>
@@ -2991,11 +3115,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Install new plugin</source>
-        <translation type="unfinished" />
+        <translation>Instalează extensie nouă</translation>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation type="unfinished" />
+        <translation>Puteți obține extensii pentru motoare de căutare de aici:</translation>
     </message>
     <message>
         <source>Close</source>
@@ -3011,7 +3135,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
-        <translation type="unfinished" />
+        <translation>Atenție: Asigurați-vă că respectați legislația cu privire la drepturile de autor a țării dumneavoastră atunci când descărcați torente de pe oricare din aceste motoare de căutare.</translation>
     </message>
     <message>
         <source>Check for updates</source>
@@ -3019,7 +3143,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation>Module de căutare</translation>
+        <translation>Extensii de căutare</translation>
     </message>
 </context>
 <context>
@@ -3034,11 +3158,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Descărcători</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Motor de căutare</translation>
     </message>
     <message>
         <source>Seeders</source>
@@ -3080,11 +3204,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation>Adăugare parteneri</translation>
+        <translation>Adaugă parteneri</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
-        <translation>Lista partenerilor de adăugat (câte o adresă IP per linie):</translation>
+        <translation>Lista partenerilor de adăugat (un IP pe linie):</translation>
     </message>
     <message>
         <source>Ok</source>
@@ -3092,26 +3216,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Format: IPv4:port / [IPv6]:port</translation>
     </message>
 </context>
 <context>
     <name>TagFilterWidget</name>
     <message>
         <source>New Tag</source>
-        <translation>Etichetă nouă</translation>
+        <translation>Marcaj nou</translation>
     </message>
     <message>
         <source>Add tag...</source>
-        <translation>Adăugare etichetă...</translation>
+        <translation>Adaugă marcaj…</translation>
     </message>
     <message>
         <source>Tag:</source>
-        <translation>Etichetă:</translation>
+        <translation>Marcaj:</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Suspendă torentele</translation>
+        <translation>Întrerupe torente</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3119,19 +3243,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove unused tags</source>
-        <translation>Elimină etichetele neutilizate</translation>
+        <translation>Elimină marcaje nefolosite</translation>
     </message>
     <message>
         <source>Invalid tag name</source>
-        <translation>Nume etichetă nevalid</translation>
+        <translation>Denumire nevalidă de marcaj</translation>
     </message>
     <message>
         <source>Remove tag</source>
-        <translation>Elimină eticheta</translation>
+        <translation>Elimină marcajul</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Elimină torente</translation>
     </message>
 </context>
 <context>
@@ -3142,7 +3266,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Untagged</source>
-        <translation>Neetichetate</translation>
+        <translation>Nemarcate</translation>
     </message>
 </context>
 <context>
@@ -3161,7 +3285,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation>Adresă poștă electronică:</translation>
+        <translation>Poștă electronică:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
@@ -3181,7 +3305,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation>Un client BitTorrent avansat programat în C++, bazat pe kitul Qt și pe libtorrent-rasterbar.</translation>
+        <translation>Un client BitTorrent avansat programat în C++, bazat pe setul de unelte Qt și pe libtorrent-rasterbar.</translation>
     </message>
     <message>
         <source>Name:</source>
@@ -3209,11 +3333,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Software Used</source>
-        <translation>Software Folosit</translation>
+        <translation>Programe folosite</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation>Baza de date gratuită IP to Country Lite pusă la dispoziție de DB-IP este folosită pentru a găsi țările utilizatorilor. Baza de date este licențiată sub licența Creative Commons Attribution 4.0 International License</translation>
+        <translation>Baza de date gratuită „IP to Country Lite”, pusă la dispoziție de DB-IP, este folosită pentru a găsi țările partenerilor. Baza de date este licențiată sub licența Creative Commons Attribution 4.0 International License</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3221,11 +3345,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>France</source>
-        <translation>Franţa</translation>
+        <translation>Franța</translation>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
-        <translation type="unfinished" />
+        <translation>Mascota qBittorrent</translation>
     </message>
     <message>
         <source>qBittorrent icon</source>
@@ -3259,7 +3383,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation>Nume</translation>
+        <translation>Denumire</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3271,18 +3395,22 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download link</source>
-        <translation>Link de descărcare</translation>
+        <translation>Legătură pentru descărcare</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation>Redenumesc</translation>
+        <translation>Se redenumește</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation>Nume nou:</translation>
+        <translation>Denumire nouă:</translation>
+    </message>
+    <message>
+        <source>Renaming)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3293,19 +3421,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation>Alegeți un nou nume pentru acest flux RSS</translation>
+        <translation>Alegeți o nouă denumire pentru acest flux RSS</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation>Alegeți un nume pentru dosar</translation>
+        <translation>Alegeți o denumire pentru dosar</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation>Nume flux nou:</translation>
+        <translation>Denumire flux nou:</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation>Actualizează toate</translation>
+        <translation>Actualizează tot</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3313,7 +3441,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>Descărcător RSS...</translation>
+        <translation>Descărcător RSS…</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -3329,7 +3457,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation>Torente: (clic-dublu pntru a descărca)</translation>
+        <translation>Torente: (clic-dublu pentru a descărca)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3337,7 +3465,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Redenumire...</translation>
+        <translation>Redenumește…</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3345,7 +3473,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New folder...</source>
-        <translation>Dosar nou...</translation>
+        <translation>Dosar nou…</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3357,7 +3485,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation>Nume dosar:</translation>
+        <translation>Denumire dosar:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3365,7 +3493,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation>Aducerea fluxurilor RSS este dezactivată acum. Poate fii activată în setările aplicației.</translation>
+        <translation>Aducerea fluxurilor RSS este dezactivată acum. Poate fi activată în configurările aplicației.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3373,11 +3501,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation>Sigur doriți să ștergeți fluxurile RSS selectate?</translation>
+        <translation>Sigur doriți să ștergeți fluxurile RSS alese?</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation>Abonament nou...</translation>
+        <translation>Abonament nou…</translation>
     </message>
     <message>
         <source>Download torrent</source>
@@ -3396,19 +3524,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
-        <translation>* pentru a nimeri zero sau mai multe caractere</translation>
+        <translation>* pentru a potrivi zero sau mai multe oricare caractere</translation>
     </message>
     <message>
         <source> will match all articles.</source>
-        <translation>va nimeri toate articolele.</translation>
+        <translation> va potrivi toate articolele.</translation>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation>Reguli filtru episod: </translation>
+        <translation>Reguli filtru episoade: </translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
-        <translation>Descărcarea automată a torenților RSS este dezactivată acum! Poate fii activată în setările aplicației.</translation>
+        <translation>Descărcarea automată a torentelor RSS este dezactivată acum! Poate fi activată în configurările aplicației.</translation>
     </message>
     <message>
         <source>Rule Definition</source>
@@ -3416,15 +3544,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save to:</source>
-        <translation>Salvează în:</translation>
+        <translation>Salvează la:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation>Folosește expresii regulare</translation>
+        <translation>Folosește expresii regulate</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation>Nume regulă nouă</translation>
+        <translation>Denumire regulă nouă</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
@@ -3432,11 +3560,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>? to match any single character</source>
-        <translation>? pentru a nimeri oricare un singur caracter</translation>
+        <translation>? pentru a potrivi un oricare caracter</translation>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation>Articole care se potrivesc bazate pe filtrul episod.</translation>
+        <translation>Potrivește articole în baza filtrului de episoade.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -3444,7 +3572,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation>Mod expresii regulate: Folosește expresii regulate compatibile cu  limbajul Perl</translation>
+        <translation>Regim expresii regulate: folosește expresii regulate compatibile cu Perl</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
@@ -3456,23 +3584,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
-        <translation>Spațiile albe (goale) se consideră operatori ȘI (toate cuvintele, în oricare ordine)</translation>
+        <translation>Spațiile albe se consideră operatori ȘI (toate cuvintele, în orice ordine)</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>O expresie cu o clauză %1 goală (de ex.: %2)</translation>
     </message>
     <message>
         <source>Example: </source>
-        <translation>Exemple: </translation>
+        <translation>Exemplu: </translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation>Adăugare regulă nouă...</translation>
+        <translation>Adaugă regulă nouă…</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation>Sigur doriți să goliți lista episoadelor descărcate pentru regula selectată?</translation>
+        <translation>Sigur doriți să goliți lista episoadelor descărcate pentru regula aleasă?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3480,15 +3608,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation>Interval infinit: &lt;b&gt;1x25-;&lt;/b&gt; nimerește episoadele 25 și mai sus ale sezonului unu, și toate episoadele sezoanelor ulterioare</translation>
+        <translation>Interval infinit: &lt;b&gt;1x25-;&lt;/b&gt; potrivește episoadele 25 și mai sus ale sezonului unu, și toate episoadele sezoanelor ulterioare</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation>Salvează într-un director diferit</translation>
+        <translation>Salvează în dosar diferit</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation>Nu trebuie să conțină:</translation>
+        <translation>Trebuie să nu conțină:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
@@ -3496,23 +3624,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation>Sunt suportate trei tipuri de gamă pentru episoade: </translation>
+        <translation>Sunt susținute trei tipuri de intervale pentru episoade: </translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation>Sigur doriți să eliminați regulile de descărcare selectate?</translation>
+        <translation>Sigur doriți să eliminați regulile de descărcare alese?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation>Utilizează configurările globale</translation>
+        <translation>Folosește configurările globale</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation>Gamă normală: &lt;b&gt;1x25-40;&lt;/b&gt; se potrivește cu episoadele de la 25 la 40 ale sezonului unu</translation>
+        <translation>Diapazon normal: &lt;b&gt;1x25-40;&lt;/b&gt; se potrivește cu episoadele de la 25 la 40 ale sezonului unu</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation>Introduceți noul nume al regulii</translation>
+        <translation>Introduceți noua denumire a regulii</translation>
     </message>
     <message>
         <source>Rule renaming</source>
@@ -3528,7 +3656,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> va potrivi 2, 5, 8 la 15, 30 și episoadele ulterioare ale sezonului unu</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3536,15 +3664,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation>Ultima potrivire:  acum %1 zile</translation>
+        <translation>Ultima potrivire: acum %1 zile</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation>Filtru episod:</translation>
+        <translation>Filtru episoade:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>Descărcător RSS</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3641,15 +3769,15 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Trackerless (%1)</source>
-        <translation>Fără urmăritor (%1)</translation>
+        <translation>Fără urmăritoare (%1)</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation>Suspendă torrentele</translation>
+        <translation>Întrerupe torente</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Elimină torente</translation>
     </message>
 </context>
 <context>
@@ -3667,55 +3795,55 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Generale</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Blocat</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Necunoscut</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Toate</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>se arată</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copiază</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Selectează tot</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>Id.</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Tip jurnal</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Curăță</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Avertisment</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesaje informative</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesaje de avertizare</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3727,11 +3855,11 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>din</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stare</translation>
     </message>
     <message>
         <source>Timestamp</source>
