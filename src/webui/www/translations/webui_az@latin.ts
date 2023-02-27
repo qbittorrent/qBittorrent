@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>İcra jurnalı</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Jurnal</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Heç nə)</translation>
+        <translation type="vanished">(Heç nə)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>Proksini yalnız torrentlər üçün istifadə etmək</translation>
+        <translation type="vanished">Proksini yalnız torrentlər üçün istifadə etmək</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1662,14 +1662,62 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite verilənlər bazası (təcrübə üçün)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Davam etdirmə məlumatlarının saxlanılması növü (yenidən başladılmalıdır):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
+        <translation>Cəld davametdirmə faylları</translation>
+    </message>
+    <message>
+        <source>Backup the log file after:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete backup logs older than:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for BitTorrent purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>years</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>months</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remember Multi-Rename settings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for general purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for RSS purposes</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1975,6 +2023,66 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Progress:</source>
         <translation>Gedişat:</translation>
+    </message>
+    <message>
+        <source>Use regular expressions</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename + Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enumerate Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename failed: file or folder already exists</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all occurences</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Toggle Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replacement Input</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include folders</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2451,6 +2559,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>Add trackers...</source>
         <translation>İzləyicilər əlavə edin...</translation>
     </message>
+    <message>
+        <source>Renamed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2744,6 +2860,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Remove</source>
         <translation>Silin</translation>
+    </message>
+    <message>
+        <source>Rename Files...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Renaming</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3288,6 +3412,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
         <source>New name:</source>
         <translation>Yeni ad:</translation>
     </message>
+    <message>
+        <source>Renaming)</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3671,135 +3799,135 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Əsas</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Əngəllənmiş</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Naməlum</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Hamısı</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>göstərərək</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopyalayın</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Hamısını seçin</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Jurnalın növü</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Təmizləmək</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Xəbərdarlıq</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Məlumat bildirişləri</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Xəbərdarlıq bildirişlər</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Jurnalı süzgəclə</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Əngələnmiş İP-lər</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>kənarnda</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Vəziyyəti</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Vaxt möhürü</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Hamısını təmizlə</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>İsmarıc</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Jurnallama səviyyələri:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation type="unfinished" />
+        <translation>Səbəb:</translation>
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>element</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation type="unfinished" />
+        <translation>Qadağan olunmuş</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Adi ismarıclar</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation type="unfinished" />
+        <translation>Ciddi</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Ciddi ismarıclar</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normal</translation>
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>elementlər</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Nəticələr</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Məlumat</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Jurnallama səviyyəsini seçin...</translation>
     </message>
 </context>
 </TS>

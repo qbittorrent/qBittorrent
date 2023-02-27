@@ -793,7 +793,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation>(Ningún)</translation>
+        <translation type="vanished">(Ningún)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -821,7 +821,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation>Usar o proxy só para torrents</translation>
+        <translation type="vanished">Usar o proxy só para torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1673,6 +1673,54 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Fastresume files</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Backup the log file after:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>days</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Log file</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Behavior</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Delete backup logs older than:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for BitTorrent purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>years</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Save path:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>months</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Remember Multi-Rename settings</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for general purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -1976,6 +2024,66 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Progress:</source>
         <translation>Progreso:</translation>
+    </message>
+    <message>
+        <source>Use regular expressions</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Filename + Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Enumerate Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename failed: file or folder already exists</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Match all occurences</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Toggle Selection</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replacement Input</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Extension</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Replace All</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Include folders</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Search Files</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Case sensitive</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2452,6 +2560,14 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
         <source>Add trackers...</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Renamed</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Original</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2744,6 +2860,14 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Remove</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Rename Files...</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Renaming</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -3288,6 +3412,10 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>New name:</source>
         <translation>Nome novo:</translation>
+    </message>
+    <message>
+        <source>Renaming)</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
