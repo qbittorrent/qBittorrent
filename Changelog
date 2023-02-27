@@ -1,3 +1,15 @@
+Tue Feb 28 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.2
+    - BUGFIX: Don't unexpectedly activate queued torrents when prefetching metadata for added magnets (glassez)
+    - BUGFIX: Update the cached torrent state once recheck is started (glassez)
+    - BUGFIX: Be more likely to allow the system to use power saving modes (glassez)
+    - WEBUI: Migrate away from unsafe function (Chocobo1)
+    - WEBUI: Blacklist bad ciphers for TLS in the server (sledgehammer999)
+    - WEBUI: Allow only TLS 1.2+ in the server (sledgehammer999)
+    - WEBUI: Allow to set read-only directory as torrent location (glassez)
+    - WEBUI: Reject requests that contain backslash in path (glassez)
+    - RSS: Prevent RSS folder from being moved into itself (glassez)
+    - WINDOWS: NSIS: Update Turkish, Uzbek translation (Burak Yavuz, shitcod3r)
+
 Sun Feb 12 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.1
     - FEATURE: Re-allow to use icons from system theme (glassez)
     - BUGFIX: Fix Speed limit icon size (Nowshed H. Imran)
