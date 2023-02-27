@@ -38,6 +38,7 @@
 #include "base/bittorrent/trackerentry.h"
 #include "base/global.h"
 #include "base/net/downloadmanager.h"
+#include "base/preferences.h"
 #include "gui/uithememanager.h"
 #include "ui_trackersadditiondialog.h"
 
@@ -87,7 +88,8 @@ void TrackersAdditionDialog::onDownloadButtonClicked()
     m_ui->downloadButton->setEnabled(false);
     setCursor(Qt::WaitCursor);
 
-    Net::DownloadManager::instance()->download(url, this, &TrackersAdditionDialog::onTorrentListDownloadFinished);
+    Net::DownloadManager::instance()->download(url, Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &TrackersAdditionDialog::onTorrentListDownloadFinished);
 }
 
 void TrackersAdditionDialog::onTorrentListDownloadFinished(const Net::DownloadResult &result)

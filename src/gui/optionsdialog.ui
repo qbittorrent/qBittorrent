@@ -1800,51 +1800,20 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboProxyType">
-                   <item>
-                    <property name="text">
-                     <string>(None)</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>SOCKS4</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>SOCKS5</string>
-                    </property>
-                   </item>
-                   <item>
-                    <property name="text">
-                     <string>HTTP</string>
-                    </property>
-                   </item>
-                  </widget>
+                  <widget class="QComboBox" name="comboProxyType" />
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyIP">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="text">
                     <string>Host:</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textProxyIP">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
-                  </widget>
+                  <widget class="QLineEdit" name="textProxyIP" />
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyPort">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="text">
                     <string>Port:</string>
                    </property>
@@ -1852,9 +1821,6 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                  </item>
                  <item>
                   <widget class="QSpinBox" name="spinProxyPort">
-                   <property name="enabled">
-                    <bool>false</bool>
-                   </property>
                    <property name="minimum">
                     <number>1</number>
                    </property>
@@ -1869,38 +1835,21 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                 </layout>
                </item>
                <item>
-                <widget class="QCheckBox" name="checkProxyPeerConnections">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>Otherwise, the proxy server is only used for tracker connections</string>
-                 </property>
-                 <property name="text">
-                  <string>Use proxy for peer connections</string>
-                 </property>
-                </widget>
-               </item>
-               <item>
-                <widget class="QCheckBox" name="isProxyOnlyForTorrents">
-                 <property name="toolTip">
-                  <string>RSS feeds, search engine, software updates or anything else other than torrent transfers and related operations (such as peer exchanges) will use a direct connection</string>
+                <widget class="QLabel" name="labelProxyTypeIncompatible">
+                 <property name="font">
+                  <font>
+                   <italic>true</italic>
+                  </font>
                  </property>
                  <property name="text">
-                  <string>Use proxy only for torrents</string>
-                 </property>
-                 <property name="checked">
-                  <bool>false</bool>
+                  <string>Some options are incompatible with the chosen proxy type!</string>
                  </property>
                 </widget>
                </item>
                <item>
                 <widget class="QCheckBox" name="checkProxyHostnameLookup">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
                  <property name="toolTip">
-                  <string>If checked, hostname lookups are done via the proxy.</string>
+                  <string>If checked, hostname lookups are done via the proxy</string>
                  </property>
                  <property name="text">
                   <string>Use proxy for hostname lookups</string>
@@ -1958,6 +1907,57 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                    </widget>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QGroupBox" name="checkProxyBitTorrent">
+                 <property name="title">
+                  <string>Use proxy for BitTorrent purposes</string>
+                 </property>
+                 <property name="checkable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QVBoxLayout" name="verticalLayoutProxyBitTorrent">
+                  <item>
+                   <widget class="QCheckBox" name="checkProxyPeerConnections">
+                    <property name="toolTip">
+                     <string>Otherwise, the proxy server is only used for tracker connections</string>
+                    </property>
+                    <property name="text">
+                     <string>Use proxy for peer connections</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyRSS">
+                 <property name="toolTip">
+                  <string>RSS feeds will use proxy</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for RSS purposes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="checkProxyMisc">
+                 <property name="toolTip">
+                  <string>Search engine, software updates or anything else will use proxy</string>
+                 </property>
+                 <property name="text">
+                  <string>Use proxy for general purposes</string>
+                 </property>
+                 <property name="checked">
+                  <bool>false</bool>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -3716,12 +3716,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>comboProxyType</tabstop>
   <tabstop>textProxyIP</tabstop>
   <tabstop>spinProxyPort</tabstop>
-  <tabstop>checkProxyPeerConnections</tabstop>
-  <tabstop>isProxyOnlyForTorrents</tabstop>
   <tabstop>checkProxyHostnameLookup</tabstop>
   <tabstop>checkProxyAuth</tabstop>
   <tabstop>textProxyUsername</tabstop>
   <tabstop>textProxyPassword</tabstop>
+  <tabstop>checkProxyBitTorrent</tabstop>
+  <tabstop>checkProxyPeerConnections</tabstop>
+  <tabstop>checkProxyRSS</tabstop>
+  <tabstop>checkProxyMisc</tabstop>
   <tabstop>checkIPFilter</tabstop>
   <tabstop>textFilterPath</tabstop>
   <tabstop>IpFilterRefreshBtn</tabstop>

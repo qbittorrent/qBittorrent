@@ -44,7 +44,7 @@
 
 namespace
 {
-    const int MIGRATION_VERSION = 5;
+    const int MIGRATION_VERSION = 6;
     const QString MIGRATION_VERSION_KEY = u"Meta/MigrationVersion"_qs;
 
     void exportWebUIHttpsFiles()
@@ -343,7 +343,7 @@ namespace
             switch (number)
             {
             case 0:
-                settingsStorage->storeValue(key, Net::ProxyType::None);
+                settingsStorage->storeValue(key, u"None"_qs);
                 break;
             case 1:
                 settingsStorage->storeValue(key, Net::ProxyType::HTTP);
@@ -352,10 +352,10 @@ namespace
                 settingsStorage->storeValue(key, Net::ProxyType::SOCKS5);
                 break;
             case 3:
-                settingsStorage->storeValue(key, Net::ProxyType::HTTP_PW);
+                settingsStorage->storeValue(key, u"HTTP_PW"_qs);
                 break;
             case 4:
-                settingsStorage->storeValue(key, Net::ProxyType::SOCKS5_PW);
+                settingsStorage->storeValue(key, u"SOCKS5_PW"_qs);
                 break;
             case 5:
                 settingsStorage->storeValue(key, Net::ProxyType::SOCKS4);
@@ -367,6 +367,46 @@ namespace
                 break;
             }
         }
+    }
+
+    void migrateProxySettings()
+    {
+        auto *settingsStorage = SettingsStorage::instance();
+        const auto proxyType = settingsStorage->loadValue<QString>(u"Network/Proxy/Type"_qs, u"None"_qs);
+        const auto onlyForTorrents = settingsStorage->loadValue<bool>(u"Network/Proxy/OnlyForTorrents"_qs)
+                || (proxyType == u"SOCKS4");
+
+        if (proxyType == u"None")
+        {
+            settingsStorage->storeValue(u"Network/Proxy/Type"_qs, Net::ProxyType::HTTP);
+
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/BitTorrent"_qs, false);
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/RSS"_qs, false);
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/Misc"_qs, false);
+        }
+        else
+        {
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/BitTorrent"_qs, true);
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/RSS"_qs, !onlyForTorrents);
+            settingsStorage->storeValue(u"Network/Proxy/Profiles/Misc"_qs, !onlyForTorrents);
+
+            if (proxyType == u"HTTP_PW"_qs)
+            {
+                settingsStorage->storeValue(u"Network/Proxy/Type"_qs, Net::ProxyType::HTTP);
+                settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_qs, true);
+            }
+            else if (proxyType == u"SOCKS5_PW"_qs)
+            {
+                settingsStorage->storeValue(u"Network/Proxy/Type"_qs, Net::ProxyType::SOCKS5);
+                settingsStorage->storeValue(u"Network/Proxy/AuthEnabled"_qs, true);
+            }
+        }
+
+        settingsStorage->removeValue(u"Network/Proxy/OnlyForTorrents"_qs);
+
+        const auto proxyHostnameLookup = settingsStorage->loadValue<bool>(u"BitTorrent/Session/ProxyHostnameLookup"_qs);
+        settingsStorage->storeValue(u"Network/Proxy/HostnameLookupEnabled"_qs, proxyHostnameLookup);
+        settingsStorage->removeValue(u"BitTorrent/Session/ProxyHostnameLookup"_qs);
     }
 
 #ifdef Q_OS_WIN
@@ -441,6 +481,9 @@ bool upgrade()
             migrateStartupWindowState();
             migrateChineseLocale();
         }
+
+        if (version < 6)
+            migrateProxySettings();
 
         version = MIGRATION_VERSION;
     }

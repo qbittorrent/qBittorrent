@@ -350,10 +350,9 @@
                 </td>
                 <td>
                     <select id="peer_proxy_type_select" onchange="qBittorrent.Preferences.updatePeerProxySettings();">
-                        <option value="none">QBT_TR((None))QBT_TR[CONTEXT=OptionsDialog]</option>
-                        <option value="socks4">QBT_TR(SOCKS4)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        <option value="socks5">QBT_TR(SOCKS5)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        <option value="http">QBT_TR(HTTP)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="SOCKS4">QBT_TR(SOCKS4)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="SOCKS5">QBT_TR(SOCKS5)QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="HTTP">QBT_TR(HTTP)QBT_TR[CONTEXT=OptionsDialog]</option>
                     </select>
                 </td>
                 <td>
@@ -370,18 +369,12 @@
                 </td>
             </tr>
         </table>
-        <div class="formRow">
-            <input type="checkbox" id="use_peer_proxy_checkbox" />
-            <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
-        <div class="formRow">
-            <input type="checkbox" id="proxy_only_for_torrents_checkbox" />
-            <label for="proxy_only_for_torrents_checkbox">QBT_TR(Use proxy only for torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
-        </div>
+
         <div class="formRow">
             <input type="checkbox" id="proxyHostnameLookupCheckbox" title="QBT_TR(If checked, hostname lookups are done via the proxy.)QBT_TR[CONTEXT=OptionsDialog]" />
             <label for="proxyHostnameLookupCheckbox">QBT_TR(Use proxy for hostname lookup)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
+
         <fieldset class="settings">
             <legend>
                 <input type="checkbox" id="peer_proxy_auth_checkbox" onclick="qBittorrent.Preferences.updatePeerProxyAuthSettings();" />
@@ -409,6 +402,25 @@
                 <span>QBT_TR(Info: The password is saved unencrypted)QBT_TR[CONTEXT=OptionsDialog]</span>
             </div>
         </fieldset>
+
+        <fieldset class="settings">
+            <legend>
+                <input type="checkbox" id="proxy_bittorrent_checkbox" onclick="qBittorrent.Preferences.updatePeerProxySettings();" />
+                <label for="proxy_bittorrent_checkbox">QBT_TR(Use proxy for BitTorrent purposes)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </legend>
+            <div class="formRow">
+                <input type="checkbox" id="use_peer_proxy_checkbox" />
+                <label for="use_peer_proxy_checkbox">QBT_TR(Use proxy for peer connections)QBT_TR[CONTEXT=OptionsDialog]</label>
+            </div>
+        </fieldset>
+        <div class="formRow">
+            <input type="checkbox" id="proxy_rss_checkbox" />
+            <label for="proxy_rss_checkbox">QBT_TR(Use proxy for RSS purposes)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
+            <input type="checkbox" id="proxy_misc_checkbox" />
+            <label for="proxy_misc_checkbox">QBT_TR(Use proxy for general purposes)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
     </fieldset>
 
     <fieldset class="settings">
@@ -1575,21 +1587,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
         };
 
         const updatePeerProxySettings = function() {
-            const isPeerProxyTypeSelected = $('peer_proxy_type_select').getProperty('value') != "none";
-            $('peer_proxy_host_text').setProperty('disabled', !isPeerProxyTypeSelected);
-            $('peer_proxy_port_value').setProperty('disabled', !isPeerProxyTypeSelected);
-            $('use_peer_proxy_checkbox').setProperty('disabled', !isPeerProxyTypeSelected);
             const proxyType = $('peer_proxy_type_select').getProperty('value');
-            const isPeerProxyAuthenticatable = (proxyType === "socks5") || (proxyType === "http");
-            $('proxy_only_for_torrents_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
+            const isProxySocks4 = (proxyType === "SOCKS4");
 
-            if ($('peer_proxy_type_select').getProperty('value') === "socks4")
-                $('proxy_only_for_torrents_checkbox').setProperty('checked', true);
-
-            const canPeerProxyResolveHostnames = (proxyType === "socks5") || (proxyType === "http");
-            $('proxyHostnameLookupCheckbox').setProperty('disabled', !canPeerProxyResolveHostnames);
-
-            $('peer_proxy_auth_checkbox').setProperty('disabled', !isPeerProxyAuthenticatable);
+            $('peer_proxy_auth_checkbox').setProperty('disabled', isProxySocks4);
+            $('use_peer_proxy_checkbox').setProperty('disabled', !$('proxy_bittorrent_checkbox').getProperty('checked'));
+            $('proxyHostnameLookupCheckbox').setProperty('disabled', isProxySocks4);
+            $('proxy_rss_checkbox').setProperty('disabled', isProxySocks4);
+            $('proxy_misc_checkbox').setProperty('disabled', isProxySocks4);
 
             updatePeerProxyAuthSettings();
         };
@@ -1945,31 +1950,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         updateMaxUploadsPerTorrentEnabled();
 
                         // Proxy Server
-                        switch (pref.proxy_type.toInt()) {
-                            case 5: //SOCKS4
-                                $('peer_proxy_type_select').setProperty('value', 'socks4');
-                                break;
-                            case 2: // SOCKS5
-                            case 4: // SOCKS5_PW
-                                $('peer_proxy_type_select').setProperty('value', 'socks5');
-                                break;
-                            case 1: // HTTP
-                            case 3: // HTTP_PW
-                                $('peer_proxy_type_select').setProperty('value', 'http');
-                                break;
-                            default: // NONE
-                                $('peer_proxy_type_select').setProperty('value', 'none');
-                        }
-                        updatePeerProxySettings();
+                        $('peer_proxy_type_select').setProperty('value', pref.proxy_type);
                         $('peer_proxy_host_text').setProperty('value', pref.proxy_ip);
                         $('peer_proxy_port_value').setProperty('value', pref.proxy_port);
-                        $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
-                        $('proxy_only_for_torrents_checkbox').setProperty('checked', pref.proxy_torrents_only);
-                        $('proxyHostnameLookupCheckbox').setProperty('checked', pref.proxy_hostname_lookup);
                         $('peer_proxy_auth_checkbox').setProperty('checked', pref.proxy_auth_enabled);
-                        updatePeerProxyAuthSettings();
                         $('peer_proxy_username_text').setProperty('value', pref.proxy_username);
                         $('peer_proxy_password_text').setProperty('value', pref.proxy_password);
+                        $('proxyHostnameLookupCheckbox').setProperty('checked', pref.proxy_hostname_lookup);
+                        $('proxy_bittorrent_checkbox').setProperty('checked', pref.proxy_bittorrent);
+                        $('use_peer_proxy_checkbox').setProperty('checked', pref.proxy_peer_connections);
+                        $('proxy_rss_checkbox').setProperty('checked', pref.proxy_rss);
+                        $('proxy_misc_checkbox').setProperty('checked', pref.proxy_misc);
+                        updatePeerProxySettings();
 
                         // IP Filtering
                         $('ipfilter_text_checkbox').setProperty('checked', pref.ip_filter_enabled);
@@ -2286,43 +2278,17 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('max_uploads_per_torrent', max_uploads_per_torrent);
 
             // Proxy Server
-            const proxy_type_str = $('peer_proxy_type_select').getProperty('value');
-            let proxy_type = 0;
-            let proxy_auth_enabled = false;
-            if (proxy_type_str == "socks5") {
-                if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
-                    proxy_type = 4;
-                    proxy_auth_enabled = true;
-                }
-                else {
-                    proxy_type = 2;
-                }
-            }
-            else {
-                if (proxy_type_str == "socks4") {
-                    proxy_type = 5;
-                }
-                else {
-                    if (proxy_type_str == "http") {
-                        if ($('peer_proxy_auth_checkbox').getProperty('checked')) {
-                            proxy_type = 3;
-                            proxy_auth_enabled = true;
-                        }
-                        else {
-                            proxy_type = 1;
-                        }
-                    }
-                }
-            }
-            settings.set('proxy_type', proxy_type);
-            settings.set('proxy_auth_enabled', proxy_auth_enabled);
+            settings.set('proxy_type', $('peer_proxy_type_select').getProperty('value'));
             settings.set('proxy_ip', $('peer_proxy_host_text').getProperty('value'));
             settings.set('proxy_port', $('peer_proxy_port_value').getProperty('value').toInt());
-            settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
-            settings.set('proxy_torrents_only', $('proxy_only_for_torrents_checkbox').getProperty('checked'));
-            settings.set('proxy_hostname_lookup', $('proxyHostnameLookupCheckbox').getProperty('checked'));
+            settings.set('proxy_auth_enabled', $('peer_proxy_auth_checkbox').getProperty('checked'));
             settings.set('proxy_username', $('peer_proxy_username_text').getProperty('value'));
             settings.set('proxy_password', $('peer_proxy_password_text').getProperty('value'));
+            settings.set('proxy_hostname_lookup', $('proxyHostnameLookupCheckbox').getProperty('checked'));
+            settings.set('proxy_bittorrent', $('proxy_bittorrent_checkbox').getProperty('checked'));
+            settings.set('proxy_peer_connections', $('use_peer_proxy_checkbox').getProperty('checked'));
+            settings.set('proxy_rss', $('proxy_rss_checkbox').getProperty('checked'));
+            settings.set('proxy_misc', $('proxy_misc_checkbox').getProperty('checked'));
 
             // IP Filtering
             settings.set('ip_filter_enabled', $('ipfilter_text_checkbox').getProperty('checked'));

@@ -42,7 +42,10 @@
 #include <iphlpapi.h>
 #endif
 
+#include <boost/asio/ip/tcp.hpp>
+
 #include <libtorrent/add_torrent_params.hpp>
+#include <libtorrent/address.hpp>
 #include <libtorrent/alert_types.hpp>
 #include <libtorrent/error_code.hpp>
 #include <libtorrent/extensions/smart_ban.hpp>
@@ -495,7 +498,6 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_encryption(BITTORRENT_SESSION_KEY(u"Encryption"_qs), 0)
     , m_maxActiveCheckingTorrents(BITTORRENT_SESSION_KEY(u"MaxActiveCheckingTorrents"_qs), 1)
     , m_isProxyPeerConnectionsEnabled(BITTORRENT_SESSION_KEY(u"ProxyPeerConnections"_qs), false)
-    , m_isProxyHostnameLookupEnabled(BITTORRENT_SESSION_KEY(u"ProxyHostnameLookup"_qs), true)
     , m_chokingAlgorithm(BITTORRENT_SESSION_KEY(u"ChokingAlgorithm"_qs), ChokingAlgorithm::FixedSlots
         , clampValue(ChokingAlgorithm::FixedSlots, ChokingAlgorithm::RateBased))
     , m_seedChokingAlgorithm(BITTORRENT_SESSION_KEY(u"SeedChokingAlgorithm"_qs), SeedChokingAlgorithm::FastestUpload
@@ -1629,44 +1631,47 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
 
     // proxy
-    const auto proxyManager = Net::ProxyConfigurationManager::instance();
-    const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
-
-    switch (proxyConfig.type)
+    settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
+    if (Preferences::instance()->useProxyForBT())
     {
-    case Net::ProxyType::HTTP:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
-        break;
-    case Net::ProxyType::HTTP_PW:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
-        break;
-    case Net::ProxyType::SOCKS4:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
-        break;
-    case Net::ProxyType::SOCKS5:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
-        break;
-    case Net::ProxyType::SOCKS5_PW:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
-        break;
-    case Net::ProxyType::None:
-    default:
-        settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
-    }
+        const auto proxyManager = Net::ProxyConfigurationManager::instance();
+        const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
-    if (proxyConfig.type != Net::ProxyType::None)
-    {
+        switch (proxyConfig.type)
+        {
+        case Net::ProxyType::SOCKS4:
+            settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks4);
+            break;
+
+        case Net::ProxyType::HTTP:
+            if (proxyConfig.authEnabled)
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http_pw);
+            else
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::http);
+            break;
+
+        case Net::ProxyType::SOCKS5:
+            if (proxyConfig.authEnabled)
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5_pw);
+            else
+                settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::socks5);
+            break;
+
+        default:
+            break;
+        }
+
         settingsPack.set_str(lt::settings_pack::proxy_hostname, proxyConfig.ip.toStdString());
         settingsPack.set_int(lt::settings_pack::proxy_port, proxyConfig.port);
 
-        if (proxyManager->isAuthenticationRequired())
+        if (proxyConfig.authEnabled)
         {
             settingsPack.set_str(lt::settings_pack::proxy_username, proxyConfig.username.toStdString());
             settingsPack.set_str(lt::settings_pack::proxy_password, proxyConfig.password.toStdString());
         }
 
         settingsPack.set_bool(lt::settings_pack::proxy_peer_connections, isProxyPeerConnectionsEnabled());
-        settingsPack.set_bool(lt::settings_pack::proxy_hostnames, isProxyHostnameLookupEnabled());
+        settingsPack.set_bool(lt::settings_pack::proxy_hostnames, proxyConfig.hostnameLookupEnabled);
     }
 
     settingsPack.set_bool(lt::settings_pack::announce_to_all_trackers, announceToAllTrackers());
@@ -2493,7 +2498,7 @@ bool SessionImpl::addTorrent(const QString &source, const AddTorrentParams &para
         LogMsg(tr("Downloading torrent, please wait... Source: \"%1\"").arg(source));
         // Launch downloader
         Net::DownloadManager::instance()->download(Net::DownloadRequest(source).limit(MAX_TORRENT_SIZE)
-                                                   , this, &SessionImpl::handleDownloadFinished);
+                , Preferences::instance()->useProxyForGeneralPurposes(), this, &SessionImpl::handleDownloadFinished);
         m_downloadedTorrents[source] = params;
         return true;
     }
@@ -3538,20 +3543,6 @@ void SessionImpl::setProxyPeerConnectionsEnabled(const bool enabled)
     if (enabled != isProxyPeerConnectionsEnabled())
     {
         m_isProxyPeerConnectionsEnabled = enabled;
-        configureDeferred();
-    }
-}
-
-bool SessionImpl::isProxyHostnameLookupEnabled() const
-{
-    return m_isProxyHostnameLookupEnabled;
-}
-
-void SessionImpl::setProxyHostnameLookupEnabled(const bool enabled)
-{
-    if (enabled != isProxyHostnameLookupEnabled())
-    {
-        m_isProxyHostnameLookupEnabled = enabled;
         configureDeferred();
     }
 }
@@ -5791,8 +5782,12 @@ void SessionImpl::handleSocks5Alert(const lt::socks5_alert *p) const
 {
     if (p->error)
     {
-        LogMsg(tr("SOCKS5 proxy error. Message: \"%1\"").arg(QString::fromStdString(p->message()))
-            , Log::WARNING);
+        const auto addr = p->ip.address();
+        const QString endpoint = (addr.is_v6() ? u"[%1]:%2"_qs : u"%1:%2"_qs)
+                .arg(QString::fromStdString(addr.to_string()), QString::number(p->ip.port()));
+        LogMsg(tr("SOCKS5 proxy error. Address: %1. Message: \"%2\".")
+                .arg(endpoint, QString::fromLocal8Bit(p->error.message().c_str()))
+                , Log::WARNING);
     }
 }
 

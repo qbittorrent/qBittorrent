@@ -194,16 +194,18 @@ void AppController::preferencesAction()
     // Proxy Server
     const auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
-    data[u"proxy_type"_qs] = static_cast<int>(proxyConf.type);
+    data[u"proxy_type"_qs] = Utils::String::fromEnum(proxyConf.type);
     data[u"proxy_ip"_qs] = proxyConf.ip;
     data[u"proxy_port"_qs] = proxyConf.port;
-    data[u"proxy_auth_enabled"_qs] = proxyManager->isAuthenticationRequired(); // deprecated
+    data[u"proxy_auth_enabled"_qs] = proxyConf.authEnabled;
     data[u"proxy_username"_qs] = proxyConf.username;
     data[u"proxy_password"_qs] = proxyConf.password;
+    data[u"proxy_hostname_lookup"_qs] = proxyConf.hostnameLookupEnabled;
 
+    data[u"proxy_bittorrent"_qs] = pref->useProxyForBT();
     data[u"proxy_peer_connections"_qs] = session->isProxyPeerConnectionsEnabled();
-    data[u"proxy_torrents_only"_qs] = proxyManager->isProxyOnlyForTorrents();
-    data[u"proxy_hostname_lookup"_qs] = session->isProxyHostnameLookupEnabled();
+    data[u"proxy_rss"_qs] = pref->useProxyForRSS();
+    data[u"proxy_misc"_qs] = pref->useProxyForGeneralPurposes();
 
     // IP Filtering
     data[u"ip_filter_enabled"_qs] = session->isIPFilteringEnabled();
@@ -610,23 +612,29 @@ void AppController::setPreferencesAction()
     auto proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (hasKey(u"proxy_type"_qs))
-        proxyConf.type = static_cast<Net::ProxyType>(it.value().toInt());
+        proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::HTTP);
     if (hasKey(u"proxy_ip"_qs))
         proxyConf.ip = it.value().toString();
     if (hasKey(u"proxy_port"_qs))
         proxyConf.port = it.value().toUInt();
+    if (hasKey(u"proxy_auth_enabled"_qs))
+        proxyConf.authEnabled = it.value().toBool();
     if (hasKey(u"proxy_username"_qs))
         proxyConf.username = it.value().toString();
     if (hasKey(u"proxy_password"_qs))
         proxyConf.password = it.value().toString();
+    if (hasKey(u"proxy_hostname_lookup"_qs))
+        proxyConf.hostnameLookupEnabled = it.value().toBool();
     proxyManager->setProxyConfiguration(proxyConf);
 
+    if (hasKey(u"proxy_bittorrent"_qs))
+        pref->setUseProxyForBT(it.value().toBool());
     if (hasKey(u"proxy_peer_connections"_qs))
         session->setProxyPeerConnectionsEnabled(it.value().toBool());
-    if (hasKey(u"proxy_torrents_only"_qs))
-        proxyManager->setProxyOnlyForTorrents(it.value().toBool());
-    if (hasKey(u"proxy_hostname_lookup"_qs))
-        session->setProxyHostnameLookupEnabled(it.value().toBool());
+    if (hasKey(u"proxy_rss"_qs))
+        pref->setUseProxyForRSS(it.value().toBool());
+    if (hasKey(u"proxy_misc"_qs))
+        pref->setUseProxyForGeneralPurposes(it.value().toBool());
 
     // IP Filtering
     if (hasKey(u"ip_filter_enabled"_qs))

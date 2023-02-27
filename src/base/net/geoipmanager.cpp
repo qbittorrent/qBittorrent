@@ -129,7 +129,9 @@ void GeoIPManager::downloadDatabaseFile()
 {
     const QDateTime curDatetime = QDateTime::currentDateTimeUtc();
     const QString curUrl = DATABASE_URL.arg(QLocale::c().toString(curDatetime, u"yyyy-MM"));
-    DownloadManager::instance()->download({curUrl}, this, &GeoIPManager::downloadFinished);
+    DownloadManager::instance()->download(
+            {curUrl}, Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &GeoIPManager::downloadFinished);
 }
 
 QString GeoIPManager::lookup(const QHostAddress &hostAddr) const

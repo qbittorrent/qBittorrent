@@ -658,8 +658,8 @@ void TrackerFiltersList::downloadFavicon(const QString &url)
 {
     if (!m_downloadTrackerFavicon) return;
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(url).saveToFile(true)
-                , this, &TrackerFiltersList::handleFavicoDownloadFinished);
+            Net::DownloadRequest(url).saveToFile(true), Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &TrackerFiltersList::handleFavicoDownloadFinished);
 }
 
 void TrackerFiltersList::handleFavicoDownloadFinished(const Net::DownloadResult &result)

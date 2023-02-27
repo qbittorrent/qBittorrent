@@ -397,6 +397,13 @@ public:
     QList<QNetworkCookie> getNetworkCookies() const;
     void setNetworkCookies(const QList<QNetworkCookie> &cookies);
 
+    bool useProxyForBT() const;
+    void setUseProxyForBT(bool value);
+    bool useProxyForRSS() const;
+    void setUseProxyForRSS(bool value);
+    bool useProxyForGeneralPurposes() const;
+    void setUseProxyForGeneralPurposes(bool value);
+
     // SpeedWidget
     bool isSpeedWidgetEnabled() const;
     void setSpeedWidgetEnabled(bool enabled);

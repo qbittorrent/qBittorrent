@@ -1948,8 +1948,9 @@ void MainWindow::installPython()
     const auto installerURL = u"https://www.python.org/ftp/python/3.8.10/python-3.8.10.exe"_qs;
 #endif
     Net::DownloadManager::instance()->download(
-                Net::DownloadRequest(installerURL).saveToFile(true)
-                , this, &MainWindow::pythonDownloadFinished);
+            Net::DownloadRequest(installerURL).saveToFile(true)
+            , Preferences::instance()->useProxyForGeneralPurposes()
+            , this, &MainWindow::pythonDownloadFinished);
 }
 
 void MainWindow::pythonDownloadFinished(const Net::DownloadResult &result)

@@ -36,33 +36,38 @@
 class QObject;
 class QUrl;
 
-class DownloadHandlerImpl final : public Net::DownloadHandler
+namespace Net
 {
-    Q_OBJECT
-    Q_DISABLE_COPY_MOVE(DownloadHandlerImpl)
+    class DownloadHandlerImpl final : public DownloadHandler
+    {
+        Q_OBJECT
+        Q_DISABLE_COPY_MOVE(DownloadHandlerImpl)
 
-public:
-    DownloadHandlerImpl(Net::DownloadManager *manager, const Net::DownloadRequest &downloadRequest);
+    public:
+        DownloadHandlerImpl(DownloadManager *manager, const DownloadRequest &downloadRequest, bool useProxy);
 
-    void cancel() override;
+        void cancel() override;
 
-    QString url() const;
-    const Net::DownloadRequest downloadRequest() const;
+        QString url() const;
+        DownloadRequest downloadRequest() const;
+        bool useProxy() const;
 
-    void assignNetworkReply(QNetworkReply *reply);
+        void assignNetworkReply(QNetworkReply *reply);
 
-private:
-    void processFinishedDownload();
-    void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
-    void handleRedirection(const QUrl &newUrl);
-    void setError(const QString &error);
-    void finish();
+    private:
+        void processFinishedDownload();
+        void checkDownloadSize(qint64 bytesReceived, qint64 bytesTotal);
+        void handleRedirection(const QUrl &newUrl);
+        void setError(const QString &error);
+        void finish();
 
-    static QString errorCodeToString(QNetworkReply::NetworkError status);
+        static QString errorCodeToString(QNetworkReply::NetworkError status);
 
-    Net::DownloadManager *m_manager = nullptr;
-    QNetworkReply *m_reply = nullptr;
-    const Net::DownloadRequest m_downloadRequest;
-    short m_redirectionCount = 0;
-    Net::DownloadResult m_result;
-};
+        DownloadManager *m_manager = nullptr;
+        QNetworkReply *m_reply = nullptr;
+        const DownloadRequest m_downloadRequest;
+        const bool m_useProxy = false;
+        short m_redirectionCount = 0;
+        DownloadResult m_result;
+    };
+}

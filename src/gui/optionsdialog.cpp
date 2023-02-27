@@ -52,7 +52,6 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
-#include "base/utils/fs.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
@@ -770,42 +769,25 @@ void OptionsDialog::loadConnectionTabOptions()
     }
 
     const auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
-    Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
-    using Net::ProxyType;
-    bool useProxyAuth = false;
-    switch (proxyConf.type)
-    {
-    case ProxyType::SOCKS4:
-        m_ui->comboProxyType->setCurrentIndex(1);
-        break;
+    const Net::ProxyConfiguration proxyConf = proxyConfigManager->proxyConfiguration();
 
-    case ProxyType::SOCKS5_PW:
-        useProxyAuth = true;
-        // fallthrough
-    case ProxyType::SOCKS5:
-        m_ui->comboProxyType->setCurrentIndex(2);
-        break;
+    m_ui->comboProxyType->addItem(tr("SOCKS4"), QVariant::fromValue(Net::ProxyType::SOCKS4));
+    m_ui->comboProxyType->addItem(tr("SOCKS5"), QVariant::fromValue(Net::ProxyType::SOCKS5));
+    m_ui->comboProxyType->addItem(tr("HTTP"), QVariant::fromValue(Net::ProxyType::HTTP));
+    m_ui->comboProxyType->setCurrentIndex(m_ui->comboProxyType->findData(QVariant::fromValue(proxyConf.type)));
+    adjustProxyOptions();
 
-    case ProxyType::HTTP_PW:
-        useProxyAuth = true;
-        // fallthrough
-    case ProxyType::HTTP:
-        m_ui->comboProxyType->setCurrentIndex(3);
-        break;
-
-    default:
-        m_ui->comboProxyType->setCurrentIndex(0);
-    }
     m_ui->textProxyIP->setText(proxyConf.ip);
     m_ui->spinProxyPort->setValue(proxyConf.port);
-    m_ui->checkProxyAuth->setChecked(useProxyAuth);
+    m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
+    m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
+    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
-    m_ui->isProxyOnlyForTorrents->setChecked(proxyConfigManager->isProxyOnlyForTorrents());
-    m_ui->checkProxyHostnameLookup->setChecked(session->isProxyHostnameLookupEnabled());
-    enableProxy(m_ui->comboProxyType->currentIndex());
+    m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
+    m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
 
     m_ui->checkIPFilter->setChecked(session->isIPFilteringEnabled());
     m_ui->textFilterPath->setDialogCaption(tr("Choose an IP filter file"));
@@ -830,14 +812,17 @@ void OptionsDialog::loadConnectionTabOptions()
     connect(m_ui->spinMaxUploads, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinMaxUploadsPerTorrent, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
-    connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableProxy);
+    connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::adjustProxyOptions);
     connect(m_ui->comboProxyType, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyIP, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->spinProxyPort, qSpinBoxValueChanged, this, &ThisType::enableApplyButton);
 
+    connect(m_ui->checkProxyBitTorrent, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxyBitTorrent, &QGroupBox::toggled, this, &ThisType::adjustProxyOptions);
     connect(m_ui->checkProxyPeerConnections, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
-    connect(m_ui->isProxyOnlyForTorrents, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProxyHostnameLookup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxyRSS, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkProxyMisc, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
     connect(m_ui->checkProxyAuth, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textProxyUsername, &QLineEdit::textChanged, this, &ThisType::enableApplyButton);
@@ -868,13 +853,17 @@ void OptionsDialog::saveConnectionTabOptions() const
     proxyConf.type = getProxyType();
     proxyConf.ip = getProxyIp();
     proxyConf.port = getProxyPort();
+    proxyConf.authEnabled = m_ui->checkProxyAuth->isChecked();
     proxyConf.username = getProxyUsername();
     proxyConf.password = getProxyPassword();
-    proxyConfigManager->setProxyOnlyForTorrents(m_ui->isProxyOnlyForTorrents->isChecked());
+    proxyConf.hostnameLookupEnabled = m_ui->checkProxyHostnameLookup->isChecked();
     proxyConfigManager->setProxyConfiguration(proxyConf);
 
+    Preferences::instance()->setUseProxyForBT(m_ui->checkProxyBitTorrent->isChecked());
+    Preferences::instance()->setUseProxyForRSS(m_ui->checkProxyRSS->isChecked());
+    Preferences::instance()->setUseProxyForGeneralPurposes(m_ui->checkProxyMisc->isChecked());
+
     session->setProxyPeerConnectionsEnabled(m_ui->checkProxyPeerConnections->isChecked());
-    session->setProxyHostnameLookupEnabled(m_ui->checkProxyHostnameLookup->isChecked());
 
     // IPFilter
     session->setIPFilteringEnabled(isIPFilteringEnabled());
@@ -1321,21 +1310,7 @@ bool OptionsDialog::isIPFilteringEnabled() const
 
 Net::ProxyType OptionsDialog::getProxyType() const
 {
-    switch (m_ui->comboProxyType->currentIndex())
-    {
-    case 1:
-        return Net::ProxyType::SOCKS4;
-    case 2:
-        if (isProxyAuthEnabled())
-            return Net::ProxyType::SOCKS5_PW;
-        return Net::ProxyType::SOCKS5;
-    case 3:
-        if (isProxyAuthEnabled())
-            return Net::ProxyType::HTTP_PW;
-        return Net::ProxyType::HTTP;
-    default:
-        return Net::ProxyType::None;
-    }
+    return m_ui->comboProxyType->currentData().value<Net::ProxyType>();
 }
 
 int OptionsDialog::getPort() const
@@ -1512,41 +1487,29 @@ void OptionsDialog::toggleComboRatioLimitAct()
     m_ui->comboRatioLimitAct->setEnabled(m_ui->checkMaxRatio->isChecked() || m_ui->checkMaxSeedingMinutes->isChecked());
 }
 
-void OptionsDialog::enableProxy(const int index)
+void OptionsDialog::adjustProxyOptions()
 {
-    if (index >= 1)
-    { // Any proxy type is used
-        //enable
-        m_ui->lblProxyIP->setEnabled(true);
-        m_ui->textProxyIP->setEnabled(true);
-        m_ui->lblProxyPort->setEnabled(true);
-        m_ui->spinProxyPort->setEnabled(true);
-        m_ui->checkProxyPeerConnections->setEnabled(true);
-        if (index >= 2)
-        { // SOCKS5 or HTTP
-            m_ui->checkProxyAuth->setEnabled(true);
-            m_ui->isProxyOnlyForTorrents->setEnabled(true);
-            m_ui->checkProxyHostnameLookup->setEnabled(true);
-        }
-        else
-        {
-            m_ui->checkProxyAuth->setEnabled(false);
-            m_ui->isProxyOnlyForTorrents->setEnabled(false);
-            m_ui->isProxyOnlyForTorrents->setChecked(true);
-            m_ui->checkProxyHostnameLookup->setEnabled(false);
-        }
+    const auto currentProxyType = m_ui->comboProxyType->currentData().value<Net::ProxyType>();
+    const bool isAuthSupported = (currentProxyType != Net::ProxyType::SOCKS4);
+
+    m_ui->checkProxyAuth->setEnabled(isAuthSupported);
+
+    if (currentProxyType == Net::ProxyType::SOCKS4)
+    {
+        m_ui->labelProxyTypeIncompatible->setVisible(true);
+
+        m_ui->checkProxyHostnameLookup->setEnabled(false);
+        m_ui->checkProxyRSS->setEnabled(false);
+        m_ui->checkProxyMisc->setEnabled(false);
     }
     else
-    { // No proxy
-        // disable
-        m_ui->lblProxyIP->setEnabled(false);
-        m_ui->textProxyIP->setEnabled(false);
-        m_ui->lblProxyPort->setEnabled(false);
-        m_ui->spinProxyPort->setEnabled(false);
-        m_ui->checkProxyPeerConnections->setEnabled(false);
-        m_ui->isProxyOnlyForTorrents->setEnabled(false);
-        m_ui->checkProxyHostnameLookup->setEnabled(false);
-        m_ui->checkProxyAuth->setEnabled(false);
+    {
+        // SOCKS5 or HTTP
+        m_ui->labelProxyTypeIncompatible->setVisible(false);
+
+        m_ui->checkProxyHostnameLookup->setEnabled(true);
+        m_ui->checkProxyRSS->setEnabled(true);
+        m_ui->checkProxyMisc->setEnabled(true);
     }
 }
 
@@ -1576,11 +1539,6 @@ bool OptionsDialog::addTorrentsInPause() const
 bool OptionsDialog::isProxyEnabled() const
 {
     return m_ui->comboProxyType->currentIndex();
-}
-
-bool OptionsDialog::isProxyAuthEnabled() const
-{
-    return m_ui->checkProxyAuth->isChecked();
 }
 
 QString OptionsDialog::getProxyIp() const

@@ -104,6 +104,7 @@ signals:
     void checkForUpdatesFailed(const QString &reason);
 
 private:
+    void applyProxySettings();
     void update();
     void updateNova();
     void parseVersionInfo(const QByteArray &info);

@@ -80,8 +80,8 @@ void DNSUpdater::checkPublicIP()
     Q_ASSERT(m_state == OK);
 
     DownloadManager::instance()->download(
-                DownloadRequest(u"http://checkip.dyndns.org"_qs).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
-                , this, &DNSUpdater::ipRequestFinished);
+            DownloadRequest(u"http://checkip.dyndns.org"_qs).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
+            , Preferences::instance()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipRequestFinished);
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
 }
@@ -128,8 +128,8 @@ void DNSUpdater::updateDNSService()
 
     m_lastIPCheckTime = QDateTime::currentDateTime();
     DownloadManager::instance()->download(
-                DownloadRequest(getUpdateUrl()).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
-                , this, &DNSUpdater::ipUpdateFinished);
+            DownloadRequest(getUpdateUrl()).userAgent(QStringLiteral("qBittorrent/" QBT_VERSION_2))
+            , Preferences::instance()->useProxyForGeneralPurposes(), this, &DNSUpdater::ipUpdateFinished);
 }
 
 QString DNSUpdater::getUpdateUrl() const

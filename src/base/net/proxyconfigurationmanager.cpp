@@ -35,8 +35,10 @@ bool Net::operator==(const ProxyConfiguration &left, const ProxyConfiguration &r
     return (left.type == right.type)
             && (left.ip == right.ip)
             && (left.port == right.port)
+            && (left.authEnabled == right.authEnabled)
             && (left.username == right.username)
-            && (left.password == right.password);
+            && (left.password == right.password)
+            && (left.hostnameLookupEnabled == right.hostnameLookupEnabled);
 }
 
 bool Net::operator!=(const ProxyConfiguration &left, const ProxyConfiguration &right)
@@ -49,22 +51,24 @@ using namespace Net;
 ProxyConfigurationManager *ProxyConfigurationManager::m_instance = nullptr;
 
 ProxyConfigurationManager::ProxyConfigurationManager(QObject *parent)
-    : QObject {parent}
-    , m_storeProxyOnlyForTorrents {SETTINGS_KEY(u"OnlyForTorrents"_qs)}
+    : QObject(parent)
     , m_storeProxyType {SETTINGS_KEY(u"Type"_qs)}
     , m_storeProxyIP {SETTINGS_KEY(u"IP"_qs)}
     , m_storeProxyPort {SETTINGS_KEY(u"Port"_qs)}
+    , m_storeProxyAuthEnabled {SETTINGS_KEY(u"AuthEnabled"_qs)}
     , m_storeProxyUsername {SETTINGS_KEY(u"Username"_qs)}
     , m_storeProxyPassword {SETTINGS_KEY(u"Password"_qs)}
+    , m_storeProxyHostnameLookupEnabled {SETTINGS_KEY(u"HostnameLookupEnabled"_qs)}
 {
-    m_config.type = m_storeProxyType.get(ProxyType::None);
-    if ((m_config.type < ProxyType::None) || (m_config.type > ProxyType::SOCKS4))
-        m_config.type = ProxyType::None;
+    m_config.type = m_storeProxyType.get(ProxyType::HTTP);
+    if ((m_config.type < ProxyType::HTTP) || (m_config.type > ProxyType::SOCKS4))
+        m_config.type = ProxyType::HTTP;
     m_config.ip = m_storeProxyIP.get(u"0.0.0.0"_qs);
     m_config.port = m_storeProxyPort.get(8080);
+    m_config.authEnabled = m_storeProxyAuthEnabled;
     m_config.username = m_storeProxyUsername;
     m_config.password = m_storeProxyPassword;
-    configureProxy();
+    m_config.hostnameLookupEnabled = m_storeProxyHostnameLookupEnabled.get(true);
 }
 
 void ProxyConfigurationManager::initInstance()
@@ -97,62 +101,11 @@ void ProxyConfigurationManager::setProxyConfiguration(const ProxyConfiguration &
         m_storeProxyType = config.type;
         m_storeProxyIP = config.ip;
         m_storeProxyPort = config.port;
+        m_storeProxyAuthEnabled = config.authEnabled;
         m_storeProxyUsername = config.username;
         m_storeProxyPassword = config.password;
-        configureProxy();
+        m_storeProxyHostnameLookupEnabled = config.hostnameLookupEnabled;
 
         emit proxyConfigurationChanged();
     }
-}
-
-bool ProxyConfigurationManager::isProxyOnlyForTorrents() const
-{
-    return m_storeProxyOnlyForTorrents || (m_config.type == ProxyType::SOCKS4);
-}
-
-void ProxyConfigurationManager::setProxyOnlyForTorrents(const bool onlyForTorrents)
-{
-    m_storeProxyOnlyForTorrents = onlyForTorrents;
-}
-
-bool ProxyConfigurationManager::isAuthenticationRequired() const
-{
-    return m_config.type == ProxyType::SOCKS5_PW
-            || m_config.type == ProxyType::HTTP_PW;
-}
-
-void ProxyConfigurationManager::configureProxy()
-{
-    // Define environment variables for urllib in search engine plugins
-    QString proxyStrHTTP, proxyStrSOCK;
-    if (!isProxyOnlyForTorrents())
-    {
-        switch (m_config.type)
-        {
-        case ProxyType::HTTP_PW:
-            proxyStrHTTP = u"http://%1:%2@%3:%4"_qs.arg(m_config.username
-                , m_config.password, m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::HTTP:
-            proxyStrHTTP = u"http://%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::SOCKS5:
-            proxyStrSOCK = u"%1:%2"_qs.arg(m_config.ip, QString::number(m_config.port));
-            break;
-        case ProxyType::SOCKS5_PW:
-            proxyStrSOCK = u"%1:%2@%3:%4"_qs.arg(m_config.username
-                , m_config.password, m_config.ip, QString::number(m_config.port));
-            break;
-        default:
-            qDebug("Disabling HTTP communications proxy");
-        }
-
-        qDebug("HTTP communications proxy string: %s"
-               , qUtf8Printable((m_config.type == ProxyType::SOCKS5) || (m_config.type == ProxyType::SOCKS5_PW)
-                            ? proxyStrSOCK : proxyStrHTTP));
-    }
-
-    qputenv("http_proxy", proxyStrHTTP.toLocal8Bit());
-    qputenv("https_proxy", proxyStrHTTP.toLocal8Bit());
-    qputenv("sock_proxy", proxyStrSOCK.toLocal8Bit());
 }
