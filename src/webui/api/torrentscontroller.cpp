@@ -1099,10 +1099,6 @@ void TorrentsController::setLocationAction()
     if (!Utils::Fs::mkpath(newLocation))
         throw APIError(APIErrorType::Conflict, tr("Cannot make save path"));
 
-    // check permissions
-    if (!Utils::Fs::isWritable(newLocation))
-        throw APIError(APIErrorType::AccessDenied, tr("Cannot write to directory"));
-
     applyToTorrents(hashes, [newLocation](BitTorrent::Torrent *const torrent)
     {
         LogMsg(tr("WebUI Set location: moving \"%1\", from \"%2\" to \"%3\"")
