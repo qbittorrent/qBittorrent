@@ -61,7 +61,7 @@ namespace
 {
     const QString DB_CONNECTION_NAME = u"ResumeDataStorage"_qs;
 
-    const int DB_VERSION = 3;
+    const int DB_VERSION = 4;
 
     const QString DB_TABLE_META = u"meta"_qs;
     const QString DB_TABLE_TORRENTS = u"torrents"_qs;
@@ -511,6 +511,12 @@ void BitTorrent::DBResumeDataStorage::createDB() const
         if (!query.exec(createTableTorrentsQuery))
             throw RuntimeError(query.lastError().text());
 
+        const QString torrentsQueuePositionIndexName = u"%1_%2_INDEX"_qs.arg(DB_TABLE_TORRENTS, DB_COLUMN_QUEUE_POSITION.name);
+        const QString createTorrentsQueuePositionIndexQuery = u"CREATE INDEX %1 ON %2 (%3)"_qs
+                .arg(quoted(torrentsQueuePositionIndexName), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
+        if (!query.exec(createTorrentsQueuePositionIndexQuery))
+            throw RuntimeError(query.lastError().text());
+
         if (!db.commit())
             throw RuntimeError(db.lastError().text());
     }
@@ -550,6 +556,15 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
             const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
                     .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"));
             if (!query.exec(alterTableTorrentsQuery))
+                throw RuntimeError(query.lastError().text());
+        }
+
+        if (fromVersion <= 3)
+        {
+            const QString torrentsQueuePositionIndexName = u"%1_%2_INDEX"_qs.arg(DB_TABLE_TORRENTS, DB_COLUMN_QUEUE_POSITION.name);
+            const QString createTorrentsQueuePositionIndexQuery = u"CREATE INDEX %1 ON %2 (%3)"_qs
+                    .arg(quoted(torrentsQueuePositionIndexName), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
+            if (!query.exec(createTorrentsQueuePositionIndexQuery))
                 throw RuntimeError(query.lastError().text());
         }
 
