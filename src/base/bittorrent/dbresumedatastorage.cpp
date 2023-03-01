@@ -272,7 +272,7 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     else
     {
         const int dbVersion = (!db.record(DB_TABLE_TORRENTS).contains(DB_COLUMN_DOWNLOAD_PATH.name) ? 1 : currentDBVersion());
-        if (dbVersion != DB_VERSION)
+        if (dbVersion < DB_VERSION)
             updateDB(dbVersion);
     }
 
