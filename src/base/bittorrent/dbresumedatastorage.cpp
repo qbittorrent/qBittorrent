@@ -562,7 +562,7 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
         if (fromVersion <= 3)
         {
             const QString torrentsQueuePositionIndexName = u"%1_%2_INDEX"_qs.arg(DB_TABLE_TORRENTS, DB_COLUMN_QUEUE_POSITION.name);
-            const QString createTorrentsQueuePositionIndexQuery = u"CREATE INDEX %1 ON %2 (%3)"_qs
+            const QString createTorrentsQueuePositionIndexQuery = u"CREATE INDEX IF NOT EXISTS %1 ON %2 (%3)"_qs
                     .arg(quoted(torrentsQueuePositionIndexName), quoted(DB_TABLE_TORRENTS), quoted(DB_COLUMN_QUEUE_POSITION.name));
             if (!query.exec(createTorrentsQueuePositionIndexQuery))
                 throw RuntimeError(query.lastError().text());
