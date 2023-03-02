@@ -122,7 +122,17 @@ Net::DownloadManager::DownloadManager(QObject *parent)
     , m_networkManager {new QNetworkAccessManager(this)}
 {
     m_networkManager->setCookieJar(m_networkCookieJar);
-    connect(m_networkManager, &QNetworkAccessManager::sslErrors, this, &Net::DownloadManager::ignoreSslErrors);
+    connect(m_networkManager, &QNetworkAccessManager::sslErrors, this
+            , [](QNetworkReply *reply, const QList<QSslError> &errors)
+    {
+        QStringList errorList;
+        for (const QSslError &error : errors)
+            errorList += error.errorString();
+        LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
+
+        // Ignore all SSL errors
+        reply->ignoreSslErrors();
+    });
 
     connect(ProxyConfigurationManager::instance(), &ProxyConfigurationManager::proxyConfigurationChanged
             , this, &DownloadManager::applyProxySettings);
@@ -302,17 +312,6 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
 
     downloadHandler->assignNetworkReply(m_networkManager->get(request));
-}
-
-void Net::DownloadManager::ignoreSslErrors(QNetworkReply *reply, const QList<QSslError> &errors)
-{
-    QStringList errorList;
-    for (const QSslError &error : errors)
-        errorList += error.errorString();
-    LogMsg(tr("Ignoring SSL error, URL: \"%1\", errors: \"%2\"").arg(reply->url().toString(), errorList.join(u". ")), Log::WARNING);
-
-    // Ignore all SSL errors
-    reply->ignoreSslErrors();
 }
 
 Net::DownloadRequest::DownloadRequest(const QString &url)

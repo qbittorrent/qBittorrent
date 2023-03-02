@@ -151,9 +151,6 @@ namespace Net
 
         static bool hasSupportedScheme(const QString &url);
 
-    private slots:
-        void ignoreSslErrors(QNetworkReply *, const QList<QSslError> &);
-
     private:
         class NetworkCookieJar;
 
