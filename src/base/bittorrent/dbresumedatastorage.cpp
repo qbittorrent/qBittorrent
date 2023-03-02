@@ -272,7 +272,7 @@ BitTorrent::DBResumeDataStorage::DBResumeDataStorage(const Path &dbPath, QObject
     else
     {
         const int dbVersion = (!db.record(DB_TABLE_TORRENTS).contains(DB_COLUMN_DOWNLOAD_PATH.name) ? 1 : currentDBVersion());
-        if (dbVersion != DB_VERSION)
+        if (dbVersion < DB_VERSION)
             updateDB(dbVersion);
     }
 
@@ -531,18 +531,28 @@ void BitTorrent::DBResumeDataStorage::updateDB(const int fromVersion) const
     {
         if (fromVersion == 1)
         {
-            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
-                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"));
-            if (!query.exec(alterTableTorrentsQuery))
-                throw RuntimeError(query.lastError().text());
+            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_qs
+                    .arg(quoted(DB_COLUMN_DOWNLOAD_PATH.name), quoted(DB_TABLE_TORRENTS));
+            if (!query.exec(testQuery))
+            {
+                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
+                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_DOWNLOAD_PATH, "TEXT"));
+                if (!query.exec(alterTableTorrentsQuery))
+                    throw RuntimeError(query.lastError().text());
+            }
         }
 
         if (fromVersion <= 2)
         {
-            const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
-                    .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"));
-            if (!query.exec(alterTableTorrentsQuery))
-                throw RuntimeError(query.lastError().text());
+            const auto testQuery = u"SELECT COUNT(%1) FROM %2;"_qs
+                    .arg(quoted(DB_COLUMN_STOP_CONDITION.name), quoted(DB_TABLE_TORRENTS));
+            if (!query.exec(testQuery))
+            {
+                const auto alterTableTorrentsQuery = u"ALTER TABLE %1 ADD %2"_qs
+                        .arg(quoted(DB_TABLE_TORRENTS), makeColumnDefinition(DB_COLUMN_STOP_CONDITION, "TEXT NOT NULL DEFAULT `None`"));
+                if (!query.exec(alterTableTorrentsQuery))
+                    throw RuntimeError(query.lastError().text());
+            }
         }
 
         const QString updateMetaVersionQuery = makeUpdateStatement(DB_TABLE_META, {DB_COLUMN_NAME, DB_COLUMN_VALUE});
