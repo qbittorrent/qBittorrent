@@ -55,6 +55,10 @@
             </select>
         </div>
         <div class="formRow">
+            <input type="checkbox" id="addToTopOfQueueCheckbox" />
+            <label for="addToTopOfQueueCheckbox">QBT_TR(Add to top of queue)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
+        <div class="formRow">
             <input type="checkbox" id="dontstartdownloads_checkbox" />
             <label for="dontstartdownloads_checkbox">QBT_TR(Do not start the download automatically)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
@@ -1816,6 +1820,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                                 break;
                         }
                         $('contentlayout_select').getChildren('option')[index].setAttribute('selected', '');
+                        $('addToTopOfQueueCheckbox').setProperty('checked', pref.add_to_top_of_queue);
                         $('dontstartdownloads_checkbox').setProperty('checked', pref.start_paused_enabled);
                         switch (pref.torrent_stop_condition) {
                             case "None":
@@ -2181,6 +2186,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             // Downloads tab
             // When adding a torrent
             settings.set('torrent_content_layout', $('contentlayout_select').getSelected()[0].getProperty('value'));
+            settings.set('add_to_top_of_queue', $('addToTopOfQueueCheckbox').getProperty('checked'));
             settings.set('start_paused_enabled', $('dontstartdownloads_checkbox').getProperty('checked'));
             settings.set('torrent_stop_condition', $('stopConditionSelect').getSelected()[0].getProperty('value'));
             settings.set('auto_delete_mode', $('deletetorrentfileafter_checkbox').getProperty('checked'));
