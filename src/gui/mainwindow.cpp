@@ -1934,7 +1934,8 @@ void MainWindow::updatePowerManagementState()
     m_pwr->setActivityState(inhibitSuspend);
 }
 
-void MainWindow::applyTransferListFilter() {
+void MainWindow::applyTransferListFilter()
+{
     m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterColumnComboBox->currentData().value<TransferListModel::Column>());
 }
 
