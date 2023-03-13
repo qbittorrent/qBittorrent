@@ -196,18 +196,16 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
-    // Filter by type
-    QWidget *filterByWidget = new QWidget(this);
-    QLabel *filterLabel = new QLabel(tr("Filter by:"));
+    auto *filterColumnWidget = new QWidget(this);
+    auto *filterLabel = new QLabel(tr("Filter by:"));
     filterLabel->setMargin(7);
-    m_filterBy = new QComboBox(this);
-    QHBoxLayout *filterByLayout = new QHBoxLayout(this);
-    filterByLayout->addWidget(filterLabel);
-    filterByLayout->addWidget(m_filterBy);
-    filterByWidget->setLayout(filterByLayout);
-    m_ui->toolBar->insertWidget(m_ui->actionLock, filterByWidget);
-
-    QWidget *spacer = new QWidget(this);
+    m_filterColumnComboBox = new QComboBox(this);
+    QHBoxLayout *filterColumnLayout = new QHBoxLayout(this);
+    filterColumnLayout->addWidget(filterLabel);
+    filterColumnLayout->addWidget(m_filterColumnComboBox);
+    filterColumnWidget->setLayout(filterColumnLayout);
+    m_ui->toolBar->insertWidget(m_ui->actionLock, filterColumnWidget);
+    auto *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
     m_ui->toolBar->insertWidget(m_searchFilterAction, spacer);
 
@@ -226,18 +224,14 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
 #endif
         tr("Transfers"));
     // Filter types
-    QVector<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
-    for (TransferListModel::Column type : filterTypes)
+    const QVector<TransferListModel::Column> filterTypes = {TransferListModel::Column::TR_NAME, TransferListModel::Column::TR_SAVE_PATH};
+    for (const TransferListModel::Column type : filterTypes)
     {
-        QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
-        m_filterBy->addItem(typeName, type);
+        const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
+        m_filterColumnComboBox->addItem(typeName, type);
     }
-    auto applyFilter = [this]()
-    {
-        m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterBy->currentData().value<TransferListModel::Column>());
-    };
-    connect(m_filterBy, &QComboBox::currentIndexChanged, this, applyFilter);
-    connect(m_searchFilter, &LineEdit::textChanged, this, applyFilter);
+    connect(m_filterColumnComboBox, &QComboBox::currentIndexChanged, this, &MainWindow::applyTransferListFilter);
+    connect(m_searchFilter, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_propertiesWidget, &PropertiesWidget::loadTrackers);
@@ -693,10 +687,7 @@ void MainWindow::showFilterContextMenu()
     useRegexAct->setCheckable(true);
     useRegexAct->setChecked(pref->getRegexAsFilteringPatternForTransferList());
     connect(useRegexAct, &QAction::toggled, pref, &Preferences::setRegexAsFilteringPatternForTransferList);
-    connect(useRegexAct, &QAction::toggled, this, [this]()
-    {
-        m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterBy->currentData().value<TransferListModel::Column>());
-    });
+    connect(useRegexAct, &QAction::toggled, this, &MainWindow::applyTransferListFilter);
 
     menu->popup(QCursor::pos());
 }
@@ -1941,6 +1932,10 @@ void MainWindow::updatePowerManagementState()
     const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && hasUnfinishedTorrents)
                              || (Preferences::instance()->preventFromSuspendWhenSeeding() && hasRunningSeed);
     m_pwr->setActivityState(inhibitSuspend);
+}
+
+void MainWindow::applyTransferListFilter() {
+    m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterColumnComboBox->currentData().value<TransferListModel::Column>());
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
