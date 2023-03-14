@@ -5890,6 +5890,7 @@ void SessionImpl::processTrackerStatuses()
 #endif
                     }
 
+                    torrent->updateHealthStatus();
                     emit trackerEntriesUpdated(torrent, updatedTrackerEntries);
                 });
             }

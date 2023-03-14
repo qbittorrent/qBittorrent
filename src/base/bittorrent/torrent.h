@@ -229,6 +229,7 @@ namespace BitTorrent
         virtual bool isActive() const = 0;
         virtual bool isInactive() const = 0;
         virtual bool isErrored() const = 0;
+        virtual bool isDead() const = 0;
         virtual bool isSequentialDownload() const = 0;
         virtual bool hasFirstLastPiecePriority() const = 0;
         virtual TorrentState state() const = 0;

@@ -151,6 +151,7 @@ namespace BitTorrent
         bool isActive() const override;
         bool isInactive() const override;
         bool isErrored() const override;
+        bool isDead() const override;
         bool isSequentialDownload() const override;
         bool hasFirstLastPiecePriority() const override;
         TorrentState state() const override;
@@ -254,6 +255,7 @@ namespace BitTorrent
         void saveResumeData(lt::resume_data_flags_t flags = {});
         void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
+        void updateHealthStatus();
         TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo);
 
     private:
@@ -306,6 +308,7 @@ namespace BitTorrent
         lt::session *m_nativeSession = nullptr;
         lt::torrent_handle m_nativeHandle;
         mutable lt::torrent_status m_nativeStatus;
+        bool m_isDead = false;
         TorrentState m_state = TorrentState::Unknown;
         TorrentInfo m_torrentInfo;
         PathList m_filePaths;

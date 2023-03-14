@@ -1002,6 +1002,11 @@ bool TorrentImpl::isErrored() const
             || (m_state == TorrentState::Error));
 }
 
+bool TorrentImpl::isDead() const
+{
+    return m_isDead;
+}
+
 bool TorrentImpl::isFinished() const
 {
     return ((m_nativeStatus.state == lt::torrent_status::finished)
@@ -1567,6 +1572,17 @@ void TorrentImpl::applyFirstLastPiecePriority(const bool enabled)
 void TorrentImpl::fileSearchFinished(const Path &savePath, const PathList &fileNames)
 {
     endReceivedMetadataHandling(savePath, fileNames);
+}
+
+void TorrentImpl::updateHealthStatus()
+{
+    const bool hasNoWorkingTracker = std::all_of(m_trackerEntries.cbegin(), m_trackerEntries.cend()
+            , [](const TrackerEntry &trackerEntry)
+    {
+        return (trackerEntry.status == TrackerEntry::Status::NotWorking);
+    });
+
+    m_isDead = hasNoWorkingTracker && isDHTDisabled() && isPEXDisabled() && isLSDDisabled();
 }
 
 TrackerEntry TorrentImpl::updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo)
