@@ -34,10 +34,10 @@
 #include <QTreeView>
 
 #include "base/bittorrent/infohash.h"
+#include "transferlistmodel.h"
 
 class MainWindow;
 class Path;
-class TransferListModel;
 class TransferListSortModel;
 
 namespace BitTorrent
@@ -92,7 +92,7 @@ public slots:
     void setTorrentOptions();
     void previewSelectedTorrents();
     void hideQueuePosColumn(bool hide);
-    void applyNameFilter(const QString &name);
+    void applyFilter(const QString &name, const TransferListModel::Column &type);
     void applyStatusFilter(int f);
     void applyCategoryFilter(const QString &category);
     void applyTagFilter(const QString &tag);

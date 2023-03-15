@@ -39,6 +39,7 @@
 #include "windowstate.h"
 
 class QCloseEvent;
+class QComboBox;
 class QFileSystemWatcher;
 class QSplitter;
 class QTabWidget;
@@ -194,6 +195,7 @@ private:
     void createTorrentTriggered(const Path &path);
     void showStatusBar(bool show);
     void showFiltersSidebar(bool show);
+    void applyTransferListFilter();
 
     Ui::MainWindow *m_ui = nullptr;
 
@@ -219,6 +221,7 @@ private:
     bool m_unlockDlgShowing = false;
     LineEdit *m_searchFilter = nullptr;
     QAction *m_searchFilterAction = nullptr;
+    QComboBox *m_filterColumnComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;

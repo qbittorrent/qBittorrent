@@ -143,3 +143,5 @@ private:
     QIcon m_stalledUPIcon;
     QIcon m_uploadingIcon;
 };
+
+Q_DECLARE_METATYPE(TransferListModel::Column)
