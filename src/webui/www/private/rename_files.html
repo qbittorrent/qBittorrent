@@ -68,8 +68,10 @@
         }
 
         // Register keyboard events to modal window
+        // https://github.com/qbittorrent/qBittorrent/pull/18687#discussion_r1135045726
+        var keyboard;
         if (!keyboard) {
-            var keyboard = new Keyboard({
+            keyboard = new Keyboard({
                 defaultEventType: 'keydown',
                 events: {
                     'Escape': function(event) {

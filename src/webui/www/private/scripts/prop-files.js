@@ -564,7 +564,7 @@ window.qBittorrent.PropFiles = (function() {
     };
 
     const multiFileRename = function(hash) {
-        const win = new MochaUI.Window({
+        new MochaUI.Window({
             id: 'multiRenamePage',
             title: "QBT_TR(Renaming)QBT_TR[CONTEXT=TorrentContentTreeView]",
             data: { hash: hash, selectedRows: torrentFilesTable.selectedRows },

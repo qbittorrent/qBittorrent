@@ -4,6 +4,7 @@ on: [pull_request, push]
 
 permissions:
   actions: write
+  security-events: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
@@ -65,8 +66,16 @@ jobs:
           cmake --build build
           sudo cmake --install build
 
+      # to avoid scanning 3rdparty codebases, initialize it just before building qbt
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v2
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
+        with:
+          config-file: ./.github/workflows/helper/codeql/cpp.yaml
+          languages: cpp
+
       - name: Build qBittorrent (Qt5)
-        if: ${{ startsWith(matrix.qt_version, 5) }}
+        if: startsWith(matrix.qt_version, 5)
         run: |
           CXXFLAGS="$CXXFLAGS -Werror -Wno-error=deprecated-declarations" \
           LDFLAGS="$LDFLAGS -gz" \
@@ -85,7 +94,7 @@ jobs:
           DESTDIR="qbittorrent" cmake --install build
 
       - name: Build qBittorrent (Qt6)
-        if: ${{ startsWith(matrix.qt_version, 6) }}
+        if: startsWith(matrix.qt_version, 6)
         run: |
           CXXFLAGS="$CXXFLAGS -Werror" \
           LDFLAGS="$LDFLAGS -gz" \
@@ -103,6 +112,10 @@ jobs:
           cmake --build build
           cmake --build build --target check
           DESTDIR="qbittorrent" cmake --install build
+
+      - name: Run CodeQL analysis
+        uses: github/codeql-action/analyze@v2
+        if: startsWith(matrix.libt_version, 2) && (matrix.qbt_gui == 'GUI=ON') && startsWith(matrix.qt_version, 6)
 
       - name: Prepare build artifacts
         run: |

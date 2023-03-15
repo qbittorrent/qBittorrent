@@ -1,0 +1,11 @@
+name: "CodeQL config for Javascript"
+
+paths-ignore:
+  - "**/lib/*"
+
+queries:
+  - uses: security-and-quality
+
+query-filters:
+  - exclude:
+      id: js/superfluous-trailing-arguments
