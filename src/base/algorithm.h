@@ -63,4 +63,11 @@ namespace Algorithm
         while (it != set.end())
             it = (p(*it) ? set.erase(it) : ++it);
     }
+
+    template <typename List>
+    List sorted(List list)
+    {
+        list.sort();
+        return list;
+    }
 }
