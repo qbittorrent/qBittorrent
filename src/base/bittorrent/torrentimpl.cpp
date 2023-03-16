@@ -1841,25 +1841,24 @@ void TorrentImpl::handleTorrentFinishedAlert(const lt::torrent_finished_alert *p
 
     m_statusUpdatedTriggers.enqueue([this]()
     {
-        m_hasSeedStatus = true;
-
         adjustStorageLocation();
         manageIncompleteFiles();
 
         m_session->handleTorrentNeedSaveResumeData(this);
 
         const bool recheckTorrentsOnCompletion = Preferences::instance()->recheckTorrentsOnCompletion();
-        if (isMoveInProgress() || (m_renameCount > 0))
+        if (recheckTorrentsOnCompletion && m_unchecked)
         {
-            if (recheckTorrentsOnCompletion)
-                m_moveFinishedTriggers.enqueue([this]() { forceRecheck(); });
-            m_moveFinishedTriggers.enqueue([this]() { m_session->handleTorrentFinished(this); });
+            forceRecheck();
         }
         else
         {
-            if (recheckTorrentsOnCompletion && m_unchecked)
-                forceRecheck();
-            m_session->handleTorrentFinished(this);
+            m_hasSeedStatus = true;
+
+            if (isMoveInProgress() || (m_renameCount > 0))
+                m_moveFinishedTriggers.enqueue([this]() { m_session->handleTorrentFinished(this); });
+            else
+                m_session->handleTorrentFinished(this);
         }
     });
 }
