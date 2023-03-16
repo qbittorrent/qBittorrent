@@ -39,22 +39,7 @@
 #include <QString>
 
 #include "base/pathfwd.h"
-
-enum class ColorMode
-{
-    Light,
-    Dark
-};
-
-class UIThemeSource
-{
-public:
-    virtual ~UIThemeSource() = default;
-
-    virtual QColor getColor(const QString &colorId, const ColorMode colorMode) const = 0;
-    virtual Path getIconPath(const QString &iconId, const ColorMode colorMode) const = 0;
-    virtual QByteArray readStyleSheet() = 0;
-};
+#include "uithemesource.h"
 
 class UIThemeManager final : public QObject
 {

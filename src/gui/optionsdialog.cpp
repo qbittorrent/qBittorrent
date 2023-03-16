@@ -63,6 +63,7 @@
 #include "ipsubnetwhitelistoptionsdialog.h"
 #include "rss/automatedrssdownloader.h"
 #include "ui_optionsdialog.h"
+#include "uithemedialog.h"
 #include "uithememanager.h"
 #include "utils.h"
 #include "watchedfolderoptionsdialog.h"
@@ -322,6 +323,18 @@ void OptionsDialog::loadBehaviorTabOptions()
 #endif
     connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->customThemeFilePath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
+
+    m_ui->buttonCustomizeUITheme->setEnabled(!m_ui->checkUseCustomTheme->isChecked());
+    connect(m_ui->checkUseCustomTheme, &QGroupBox::toggled, this, [this]
+    {
+        m_ui->buttonCustomizeUITheme->setEnabled(!m_ui->checkUseCustomTheme->isChecked());
+    });
+    connect(m_ui->buttonCustomizeUITheme, &QPushButton::clicked, this, [this]
+    {
+        auto dialog = new UIThemeDialog(this);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        dialog->open();
+    });
 
     connect(m_ui->confirmDeletion, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkAltRowColors, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);

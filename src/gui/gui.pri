@@ -80,7 +80,10 @@ HEADERS += \
     $$PWD/transferlistwidget.h \
     $$PWD/tristateaction.h \
     $$PWD/tristatewidget.h \
+    $$PWD/uithemecommon.h \
+    $$PWD/uithemedialog.h \
     $$PWD/uithememanager.h \
+    $$PWD/uithemesource.h \
     $$PWD/utils.h \
     $$PWD/watchedfolderoptionsdialog.h \
     $$PWD/watchedfoldersmodel.h \
@@ -164,7 +167,9 @@ SOURCES += \
     $$PWD/transferlistwidget.cpp \
     $$PWD/tristateaction.cpp \
     $$PWD/tristatewidget.cpp \
+    $$PWD/uithemedialog.cpp \
     $$PWD/uithememanager.cpp \
+    $$PWD/uithemesource.cpp \
     $$PWD/utils.cpp \
     $$PWD/watchedfolderoptionsdialog.cpp \
     $$PWD/watchedfoldersmodel.cpp
@@ -198,6 +203,7 @@ FORMS += \
     $$PWD/torrentcreatordialog.ui \
     $$PWD/torrentoptionsdialog.ui \
     $$PWD/trackerentriesdialog.ui \
+    $$PWD/uithemedialog.ui \
     $$PWD/watchedfolderoptionsdialog.ui
 
 RESOURCES += $$PWD/about.qrc

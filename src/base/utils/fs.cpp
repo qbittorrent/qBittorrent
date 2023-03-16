@@ -292,6 +292,12 @@ bool Utils::Fs::isNetworkFileSystem(const Path &path)
 
 bool Utils::Fs::copyFile(const Path &from, const Path &to)
 {
+    if (!from.exists())
+        return false;
+
+    if (!mkpath(to.parentPath()))
+        return false;
+
     return QFile::copy(from.data(), to.data());
 }
 

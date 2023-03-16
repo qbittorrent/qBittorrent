@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>893</height>
+             <width>504</width>
+             <height>1064</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -133,7 +133,7 @@
                <string>Interface</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_81">
-               <item row="0" column="0" colspan="2">
+               <item row="0" column="0" colspan="3">
                 <widget class="QLabel" name="label_15">
                  <property name="font">
                   <font>
@@ -207,6 +207,13 @@
                 <widget class="QCheckBox" name="checkUseSystemIcon">
                  <property name="text">
                   <string>Use icons from system theme</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QPushButton" name="buttonCustomizeUITheme">
+                 <property name="text">
+                  <string>Customize UI Theme...</string>
                  </property>
                 </widget>
                </item>
@@ -778,8 +785,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>591</width>
-             <height>1138</height>
+             <width>539</width>
+             <height>1457</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1565,8 +1572,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>745</height>
+             <width>377</width>
+             <height>756</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -1800,7 +1807,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item>
-                  <widget class="QComboBox" name="comboProxyType" />
+                  <widget class="QComboBox" name="comboProxyType"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyIP">
@@ -1810,7 +1817,7 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="textProxyIP" />
+                  <widget class="QLineEdit" name="textProxyIP"/>
                  </item>
                  <item>
                   <widget class="QLabel" name="lblProxyPort">
@@ -2056,8 +2063,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>302</width>
+             <height>408</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2393,8 +2400,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>513</width>
-             <height>679</height>
+             <width>413</width>
+             <height>693</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -2913,8 +2920,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>516</width>
-             <height>525</height>
+             <width>336</width>
+             <height>391</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -3083,8 +3090,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>501</width>
-             <height>636</height>
+             <width>382</width>
+             <height>1045</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">

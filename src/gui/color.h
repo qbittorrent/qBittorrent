@@ -28,6 +28,8 @@
 
 #pragma once
 
+#include <QColor>
+
 namespace Color
 {
     /*
