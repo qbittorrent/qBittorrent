@@ -41,6 +41,7 @@
 class QCloseEvent;
 class QComboBox;
 class QFileSystemWatcher;
+class QLabel;
 class QSplitter;
 class QTabWidget;
 class QTimer;
@@ -221,6 +222,7 @@ private:
     bool m_unlockDlgShowing = false;
     LineEdit *m_searchFilter = nullptr;
     QAction *m_searchFilterAction = nullptr;
+    QLabel *m_filterLabel = nullptr;
     QComboBox *m_filterColumnComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;

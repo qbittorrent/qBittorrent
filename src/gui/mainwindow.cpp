@@ -197,11 +197,11 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
     m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
     auto *filterColumnWidget = new QWidget(this);
-    auto *filterLabel = new QLabel(tr("Filter by:"));
-    filterLabel->setMargin(7);
+    m_filterLabel = new QLabel(tr("Filter by:"));
+    m_filterLabel->setMargin(7);
     m_filterColumnComboBox = new QComboBox(this);
     QHBoxLayout *filterColumnLayout = new QHBoxLayout(this);
-    filterColumnLayout->addWidget(filterLabel);
+    filterColumnLayout->addWidget(m_filterLabel);
     filterColumnLayout->addWidget(m_filterColumnComboBox);
     filterColumnWidget->setLayout(filterColumnLayout);
     m_ui->toolBar->insertWidget(m_ui->actionLock, filterColumnWidget);
@@ -740,9 +740,13 @@ void MainWindow::tabChanged(int newTab)
         qDebug("Changed tab to transfer list, refreshing the list");
         m_propertiesWidget->loadDynamicData();
         m_searchFilterAction->setVisible(true);
+        m_filterLabel->setVisible(true);
+        m_filterColumnComboBox->setVisible(true);
         return;
     }
     m_searchFilterAction->setVisible(false);
+    m_filterLabel->setVisible(false);
+    m_filterColumnComboBox->setVisible(false);
 
     if (m_tabs->currentWidget() == m_searchWidget)
     {
