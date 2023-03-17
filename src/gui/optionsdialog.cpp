@@ -299,17 +299,18 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
     m_ui->checkPreventFromSuspendWhenSeeding->setChecked(pref->preventFromSuspendWhenSeeding());
 
-    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
+    const bool fileLogEnabled = app()->isFileLoggerEnabled();
+    m_ui->checkFileLog->setChecked(fileLogEnabled);
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
     const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
-    m_ui->spinFileLogSize->setEnabled(fileLogBackup);
+    m_ui->spinFileLogSize->setEnabled(fileLogEnabled && fileLogBackup);
     const bool fileLogDelete = app()->isFileLoggerDeleteOld();
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
-    m_ui->spinFileLogAge->setEnabled(fileLogDelete);
-    m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
+    m_ui->spinFileLogAge->setEnabled(fileLogEnabled && fileLogDelete);
+    m_ui->comboFileLogAgeType->setEnabled(fileLogEnabled && fileLogDelete);
     m_ui->spinFileLogSize->setValue(app()->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app()->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app()->fileLoggerAgeType());
@@ -370,7 +371,14 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
 
-    connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkFileLog, &QGroupBox::toggled, this, [this](const bool checked)
+    {
+        m_ui->spinFileLogSize->setEnabled(checked && m_ui->checkFileLogBackup->isChecked());
+        const bool bothChecked = checked && m_ui->checkFileLogDelete->isChecked();
+        m_ui->spinFileLogAge->setEnabled(bothChecked);
+        m_ui->comboFileLogAgeType->setEnabled(bothChecked);
+        enableApplyButton();
+    });
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkFileLogBackup, &QAbstractButton::toggled, m_ui->spinFileLogSize, &QWidget::setEnabled);
     connect(m_ui->checkFileLogBackup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
