@@ -125,7 +125,7 @@ namespace std
 {
     uint qHash(const std::string &key, uint seed = 0)
     {
-        return qHash(QByteArray::fromRawData(key.data(), static_cast<int>(key.length())), seed);
+        return ::qHash(std::hash<std::string> {}(key), seed);
     }
 }
 
