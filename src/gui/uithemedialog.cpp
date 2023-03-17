@@ -50,6 +50,8 @@
 
 #include "ui_uithemedialog.h"
 
+#define SETTINGS_KEY(name) u"GUI/UIThemeDialog/" name
+
 namespace
 {
     Path userConfigPath()
@@ -215,15 +217,20 @@ private:
 UIThemeDialog::UIThemeDialog(QWidget *parent)
     : QDialog(parent)
     , m_ui {new Ui::UIThemeDialog}
+    , m_storeDialogSize {SETTINGS_KEY(u"Size"_qs)}
 {
     m_ui->setupUi(this);
 
     loadColors();
     loadIcons();
+
+    if (const QSize dialogSize = m_storeDialogSize; dialogSize.isValid())
+        resize(dialogSize);
 }
 
 UIThemeDialog::~UIThemeDialog()
 {
+    m_storeDialogSize = size();
     delete m_ui;
 }
 
