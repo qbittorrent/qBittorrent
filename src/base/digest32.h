@@ -167,6 +167,6 @@ std::size_t qHash(const Digest32<N> &key, const std::size_t seed = 0)
 template <int N>
 uint qHash(const Digest32<N> &key, const uint seed = 0)
 {
-    return static_cast<uint>((std::hash<typename Digest32<N>::UnderlyingType> {})(key)) ^ seed;
+    return ::qHash(std::hash<typename Digest32<N>::UnderlyingType> {}(key), seed);
 }
 #endif
