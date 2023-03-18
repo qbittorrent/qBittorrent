@@ -485,15 +485,6 @@ QVariant TorrentContentModel::headerData(int section, Qt::Orientation orientatio
     case Qt::DisplayRole:
         return m_rootItem->displayData(section);
 
-    case Qt::TextAlignmentRole:
-        if ((section == TorrentContentModelItem::COL_SIZE)
-            || (section == TorrentContentModelItem::COL_REMAINING))
-        {
-            return QVariant {Qt::AlignRight | Qt::AlignVCenter};
-        }
-
-        return {};
-
     default:
         return {};
     }
