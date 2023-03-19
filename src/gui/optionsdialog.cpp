@@ -299,7 +299,6 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
     m_ui->checkPreventFromSuspendWhenSeeding->setChecked(pref->preventFromSuspendWhenSeeding());
 
-    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
@@ -313,6 +312,8 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->spinFileLogSize->setValue(app()->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app()->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app()->fileLoggerAgeType());
+    // Groupbox's check state  must be initialized after some of its children if they are manually enabled/disabled
+    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
 
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
@@ -792,13 +793,13 @@ void OptionsDialog::loadConnectionTabOptions()
 
     m_ui->textProxyIP->setText(proxyConf.ip);
     m_ui->spinProxyPort->setValue(proxyConf.port);
-    m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
+    m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
-    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
     m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
 
