@@ -190,24 +190,28 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     hSplitter->setFrameShape(QFrame::NoFrame);
 
     // Torrent filter
-    m_searchFilter = new LineEdit(this);
-    m_searchFilter->setPlaceholderText(tr("Filter torrents..."));
-    m_searchFilter->setFixedWidth(200);
-    m_searchFilter->setContextMenuPolicy(Qt::CustomContextMenu);
-    connect(m_searchFilter, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
-    m_searchFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_searchFilter);
-    auto *filterColumnWidget = new QWidget(this);
-    auto *filterLabel = new QLabel(tr("Filter by:"));
-    filterLabel->setMargin(7);
-    m_filterColumnComboBox = new QComboBox(this);
-    QHBoxLayout *filterColumnLayout = new QHBoxLayout(this);
-    filterColumnLayout->addWidget(filterLabel);
-    filterColumnLayout->addWidget(m_filterColumnComboBox);
-    filterColumnWidget->setLayout(filterColumnLayout);
-    m_ui->toolBar->insertWidget(m_ui->actionLock, filterColumnWidget);
+    m_columnFilterEdit = new LineEdit;
+    m_columnFilterEdit->setPlaceholderText(tr("Filter torrents..."));
+    m_columnFilterEdit->setFixedWidth(200);
+    m_columnFilterEdit->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_columnFilterEdit, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
+    auto *columnFilterLabel = new QLabel(tr("Filter by:"));
+    m_columnFilterComboBox = new QComboBox;
+    QHBoxLayout *columnFilterLayout = new QHBoxLayout(m_columnFilterWidget);
+    columnFilterLayout->setContentsMargins(0, 0, 0, 0);
+    auto *columnFilterSpacer = new QWidget(this);
+    columnFilterSpacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+    columnFilterLayout->addWidget(columnFilterSpacer);
+    columnFilterLayout->addWidget(m_columnFilterEdit);
+    columnFilterLayout->addWidget(columnFilterLabel, 0);
+    columnFilterLayout->addWidget(m_columnFilterComboBox, 0);
+    m_columnFilterWidget = new QWidget(this);
+    m_columnFilterWidget->setLayout(columnFilterLayout);
+    m_columnFilterAction = m_ui->toolBar->insertWidget(m_ui->actionLock, m_columnFilterWidget);
+
     auto *spacer = new QWidget(this);
     spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
-    m_ui->toolBar->insertWidget(m_searchFilterAction, spacer);
+    m_ui->toolBar->insertWidget(m_columnFilterAction, spacer);
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(hSplitter, this);
@@ -228,10 +232,10 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     for (const TransferListModel::Column type : filterTypes)
     {
         const QString typeName = m_transferListWidget->getSourceModel()->headerData(type, Qt::Horizontal, Qt::DisplayRole).value<QString>();
-        m_filterColumnComboBox->addItem(typeName, type);
+        m_columnFilterComboBox->addItem(typeName, type);
     }
-    connect(m_filterColumnComboBox, &QComboBox::currentIndexChanged, this, &MainWindow::applyTransferListFilter);
-    connect(m_searchFilter, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
+    connect(m_columnFilterComboBox, &QComboBox::currentIndexChanged, this, &MainWindow::applyTransferListFilter);
+    connect(m_columnFilterEdit, &LineEdit::textChanged, this, &MainWindow::applyTransferListFilter);
     connect(hSplitter, &QSplitter::splitterMoved, this, &MainWindow::saveSettings);
     connect(m_splitter, &QSplitter::splitterMoved, this, &MainWindow::saveSplitterSettings);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::trackersChanged, m_propertiesWidget, &PropertiesWidget::loadTrackers);
@@ -679,7 +683,7 @@ void MainWindow::showFilterContextMenu()
 {
     const Preferences *pref = Preferences::instance();
 
-    QMenu *menu = m_searchFilter->createStandardContextMenu();
+    QMenu *menu = m_columnFilterEdit->createStandardContextMenu();
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->addSeparator();
 
@@ -716,8 +720,8 @@ void MainWindow::displaySearchTab(bool enable)
 
 void MainWindow::focusSearchFilter()
 {
-    m_searchFilter->setFocus();
-    m_searchFilter->selectAll();
+    m_columnFilterEdit->setFocus();
+    m_columnFilterEdit->selectAll();
 }
 
 void MainWindow::updateNbTorrents()
@@ -739,10 +743,10 @@ void MainWindow::tabChanged(int newTab)
     {
         qDebug("Changed tab to transfer list, refreshing the list");
         m_propertiesWidget->loadDynamicData();
-        m_searchFilterAction->setVisible(true);
+        m_columnFilterAction->setVisible(true);
         return;
     }
-    m_searchFilterAction->setVisible(false);
+    m_columnFilterAction->setVisible(false);
 
     if (m_tabs->currentWidget() == m_searchWidget)
     {
@@ -1438,7 +1442,7 @@ void MainWindow::loadPreferences()
     else
     {
         // Clear search filter before hiding the top toolbar
-        m_searchFilter->clear();
+        m_columnFilterEdit->clear();
         m_ui->toolBar->setVisible(false);
     }
 
@@ -1936,7 +1940,7 @@ void MainWindow::updatePowerManagementState()
 
 void MainWindow::applyTransferListFilter()
 {
-    m_transferListWidget->applyFilter(m_searchFilter->text(), m_filterColumnComboBox->currentData().value<TransferListModel::Column>());
+    m_transferListWidget->applyFilter(m_columnFilterEdit->text(), m_columnFilterComboBox->currentData().value<TransferListModel::Column>());
 }
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
