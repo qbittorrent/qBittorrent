@@ -299,21 +299,21 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkPreventFromSuspendWhenDownloading->setChecked(pref->preventFromSuspendWhenDownloading());
     m_ui->checkPreventFromSuspendWhenSeeding->setChecked(pref->preventFromSuspendWhenSeeding());
 
-    const bool fileLogEnabled = app()->isFileLoggerEnabled();
-    m_ui->checkFileLog->setChecked(fileLogEnabled);
     m_ui->textFileLogPath->setDialogCaption(tr("Choose a save directory"));
     m_ui->textFileLogPath->setMode(FileSystemPathEdit::Mode::DirectorySave);
     m_ui->textFileLogPath->setSelectedPath(app()->fileLoggerPath());
     const bool fileLogBackup = app()->isFileLoggerBackup();
     m_ui->checkFileLogBackup->setChecked(fileLogBackup);
-    m_ui->spinFileLogSize->setEnabled(fileLogEnabled && fileLogBackup);
+    m_ui->spinFileLogSize->setEnabled(fileLogBackup);
     const bool fileLogDelete = app()->isFileLoggerDeleteOld();
     m_ui->checkFileLogDelete->setChecked(fileLogDelete);
-    m_ui->spinFileLogAge->setEnabled(fileLogEnabled && fileLogDelete);
-    m_ui->comboFileLogAgeType->setEnabled(fileLogEnabled && fileLogDelete);
+    m_ui->spinFileLogAge->setEnabled(fileLogDelete);
+    m_ui->comboFileLogAgeType->setEnabled(fileLogDelete);
     m_ui->spinFileLogSize->setValue(app()->fileLoggerMaxSize() / 1024);
     m_ui->spinFileLogAge->setValue(app()->fileLoggerAge());
     m_ui->comboFileLogAgeType->setCurrentIndex(app()->fileLoggerAgeType());
+    // Groupbox's check state  must be initialized after some of its children if they are manually enabled/disabled
+    m_ui->checkFileLog->setChecked(app()->isFileLoggerEnabled());
 
     m_ui->checkBoxPerformanceWarning->setChecked(session->isPerformanceWarningEnabled());
 
@@ -371,14 +371,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
 
-    connect(m_ui->checkFileLog, &QGroupBox::toggled, this, [this](const bool checked)
-    {
-        m_ui->spinFileLogSize->setEnabled(checked && m_ui->checkFileLogBackup->isChecked());
-        const bool bothChecked = checked && m_ui->checkFileLogDelete->isChecked();
-        m_ui->spinFileLogAge->setEnabled(bothChecked);
-        m_ui->comboFileLogAgeType->setEnabled(bothChecked);
-        enableApplyButton();
-    });
+    connect(m_ui->checkFileLog, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->textFileLogPath, &FileSystemPathEdit::selectedPathChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->checkFileLogBackup, &QAbstractButton::toggled, m_ui->spinFileLogSize, &QWidget::setEnabled);
     connect(m_ui->checkFileLogBackup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -800,13 +793,13 @@ void OptionsDialog::loadConnectionTabOptions()
 
     m_ui->textProxyIP->setText(proxyConf.ip);
     m_ui->spinProxyPort->setValue(proxyConf.port);
-    m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->textProxyUsername->setText(proxyConf.username);
     m_ui->textProxyPassword->setText(proxyConf.password);
+    m_ui->checkProxyAuth->setChecked(proxyConf.authEnabled);
     m_ui->checkProxyHostnameLookup->setChecked(proxyConf.hostnameLookupEnabled);
 
-    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyPeerConnections->setChecked(session->isProxyPeerConnectionsEnabled());
+    m_ui->checkProxyBitTorrent->setChecked(Preferences::instance()->useProxyForBT());
     m_ui->checkProxyRSS->setChecked(Preferences::instance()->useProxyForRSS());
     m_ui->checkProxyMisc->setChecked(Preferences::instance()->useProxyForGeneralPurposes());
 
