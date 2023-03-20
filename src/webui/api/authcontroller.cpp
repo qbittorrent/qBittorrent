@@ -68,6 +68,20 @@ void AuthController::loginAction()
 
     const QString username {pref->getWebUiUsername()};
     const QByteArray secret {pref->getWebUIPassword()};
+    if (!m_sessionManager->isLocalClient()
+        && (username == u"admin"_qs)
+        && (secret == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")))
+    {
+        if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
+            increaseFailedAttempts();
+        LogMsg(tr("WebAPI login failure. Reason: Remote connection with the default credentials is prohibited.")
+               , Log::WARNING);
+        throw APIError(APIErrorType::AccessDenied
+                       , tr("Remote connection with the default credentials is prohibited. Change the default credentials by connecting from %1."
+                          , "Remote connection with the default credentials is prohibited. Change the default credentials by connecting from localhost.")
+                           .arg(u"localhost"_qs));
+    }
+
     const bool usernameEqual = Utils::Password::slowEquals(usernameFromWeb.toUtf8(), username.toUtf8());
     const bool passwordEqual = Utils::Password::PBKDF2::verify(secret, passwordFromWeb);
 

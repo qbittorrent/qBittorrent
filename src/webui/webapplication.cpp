@@ -586,6 +586,11 @@ QString WebApplication::clientId() const
     return m_clientAddress.toString();
 }
 
+bool WebApplication::isLocalClient() const
+{
+    return Utils::Net::isLoopbackAddress(m_clientAddress);
+}
+
 void WebApplication::sessionInitialize()
 {
     Q_ASSERT(!m_currentSession);
@@ -638,7 +643,7 @@ QString WebApplication::generateSid() const
 
 bool WebApplication::isAuthNeeded()
 {
-    if (!m_isLocalAuthEnabled && Utils::Net::isLoopbackAddress(m_clientAddress))
+    if (!m_isLocalAuthEnabled && isLocalClient())
         return false;
     if (m_isAuthSubnetWhitelistEnabled && Utils::Net::isIPInSubnets(m_clientAddress, m_authSubnetWhitelist))
         return false;

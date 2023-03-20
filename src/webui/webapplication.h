@@ -98,6 +98,7 @@ public:
     Http::Response processRequest(const Http::Request &request, const Http::Environment &env) override;
 
     QString clientId() const override;
+    bool isLocalClient() const override;
     WebSession *session() override;
     void sessionStart() override;
     void sessionEnd() override;

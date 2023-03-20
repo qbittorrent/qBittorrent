@@ -39,16 +39,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function submitLoginForm() {
     const errorMsgElement = document.getElementById('error_msg');
+    errorMsgElement.textContent = "";
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'api/v2/auth/login', true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded; charset=UTF-8');
     xhr.addEventListener('readystatechange', function() {
         if (xhr.readyState === 4) { // DONE state
-            if ((xhr.status === 200) && (xhr.responseText === "Ok."))
-                location.reload(true);
-            else
-                errorMsgElement.textContent = 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]';
+            if (xhr.status === 200) {
+                if (xhr.responseText === "Ok.")
+                    location.reload(true);
+                else
+                    errorMsgElement.textContent = 'QBT_TR(Invalid Username or Password.)QBT_TR[CONTEXT=HttpServer]';
+            }
+            else if ((xhr.status === 403) && xhr.responseText) {
+                errorMsgElement.textContent = xhr.responseText;
+            }
+            else {
+                errorMsgElement.textContent = 'QBT_TR(Generic login error.)QBT_TR[CONTEXT=HttpServer]';
+            }
         }
     });
     xhr.addEventListener('error', function() {

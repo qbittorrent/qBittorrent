@@ -42,6 +42,7 @@ struct ISessionManager
 {
     virtual ~ISessionManager() = default;
     virtual QString clientId() const = 0;
+    virtual bool isLocalClient() const = 0;
     virtual ISession *session() = 0;
     virtual void sessionStart() = 0;
     virtual void sessionEnd() = 0;
