@@ -219,9 +219,10 @@ private:
     bool m_forceExit = false;
     bool m_uiLocked = false;
     bool m_unlockDlgShowing = false;
-    LineEdit *m_searchFilter = nullptr;
-    QAction *m_searchFilterAction = nullptr;
-    QComboBox *m_filterColumnComboBox = nullptr;
+    QWidget *m_columnFilterWidget = nullptr;
+    LineEdit *m_columnFilterEdit = nullptr;
+    QAction *m_columnFilterAction = nullptr;
+    QComboBox *m_columnFilterComboBox = nullptr;
     // Widgets
     QAction *m_queueSeparator = nullptr;
     QAction *m_queueSeparatorMenu = nullptr;

@@ -19,7 +19,7 @@ class LineEdit final : public QLineEdit
     Q_DISABLE_COPY_MOVE(LineEdit)
 
 public:
-    LineEdit(QWidget *parent);
+    LineEdit(QWidget *parent = nullptr);
 
 protected:
     void resizeEvent(QResizeEvent *e) override;
