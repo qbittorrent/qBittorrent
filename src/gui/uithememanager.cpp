@@ -121,7 +121,7 @@ QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QStr
     if (m_useSystemIcons)
     {
         auto icon = QIcon::fromTheme(iconId);
-        if (icon.name() != iconId)
+        if (icon.isNull() || icon.availableSizes().isEmpty())
             icon = QIcon::fromTheme(fallback, QIcon(m_themeSource->getIconPath(iconId, colorMode).data()));
         return icon;
     }
@@ -173,36 +173,6 @@ QColor UIThemeManager::getColor(const QString &id) const
 
     return color;
 }
-
-#ifndef Q_OS_MACOS
-QIcon UIThemeManager::getSystrayIcon() const
-{
-    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
-    switch (style)
-    {
-#if defined(Q_OS_UNIX)
-    case TrayIcon::Style::Normal:
-        return QIcon::fromTheme(u"qbittorrent-tray"_qs);
-    case TrayIcon::Style::MonoDark:
-        return QIcon::fromTheme(u"qbittorrent-tray-dark"_qs);
-    case TrayIcon::Style::MonoLight:
-        return QIcon::fromTheme(u"qbittorrent-tray-light"_qs);
-#else
-    case TrayIcon::Style::Normal:
-        return getIcon(u"qbittorrent-tray"_qs);
-    case TrayIcon::Style::MonoDark:
-        return getIcon(u"qbittorrent-tray-dark"_qs);
-    case TrayIcon::Style::MonoLight:
-        return getIcon(u"qbittorrent-tray-light"_qs);
-#endif
-    default:
-        break;
-    }
-
-    // As a failsafe in case the enum is invalid
-    return getIcon(u"qbittorrent-tray"_qs);
-}
-#endif
 
 void UIThemeManager::applyPalette() const
 {

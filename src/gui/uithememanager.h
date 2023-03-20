@@ -57,10 +57,6 @@ public:
 
     QColor getColor(const QString &id) const;
 
-#ifndef Q_OS_MACOS
-    QIcon getSystrayIcon() const;
-#endif
-
 private:
     UIThemeManager(); // singleton class
 

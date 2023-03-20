@@ -38,7 +38,6 @@
 #include <QSystemTrayIcon>
 #endif
 
-#include "base/logger.h"
 #include "base/preferences.h"
 #include "uithememanager.h"
 
@@ -243,7 +242,7 @@ void DesktopIntegration::onPreferencesChanged()
         if (m_systrayIcon)
         {
             // Reload systray icon
-            m_systrayIcon->setIcon(UIThemeManager::instance()->getSystrayIcon());
+            m_systrayIcon->setIcon(getSystrayIcon());
         }
         else
         {
@@ -264,7 +263,7 @@ void DesktopIntegration::createTrayIcon()
 {
     Q_ASSERT(!m_systrayIcon);
 
-    m_systrayIcon = new QSystemTrayIcon(UIThemeManager::instance()->getSystrayIcon(), this);
+    m_systrayIcon = new QSystemTrayIcon(getSystrayIcon(), this);
 
     m_systrayIcon->setToolTip(m_toolTip);
 
@@ -283,5 +282,22 @@ void DesktopIntegration::createTrayIcon()
 
     m_systrayIcon->show();
     emit stateChanged();
+}
+
+QIcon DesktopIntegration::getSystrayIcon() const
+{
+    const TrayIcon::Style style = Preferences::instance()->trayIconStyle();
+    switch (style)
+    {
+    default:
+    case TrayIcon::Style::Normal:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray"_qs);
+
+    case TrayIcon::Style::MonoDark:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-dark"_qs);
+
+    case TrayIcon::Style::MonoLight:
+        return UIThemeManager::instance()->getIcon(u"qbittorrent-tray-light"_qs);
+    }
 }
 #endif // Q_OS_MACOS

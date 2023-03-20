@@ -78,6 +78,7 @@ private:
     void onPreferencesChanged();
 #ifndef Q_OS_MACOS
     void createTrayIcon();
+    QIcon getSystrayIcon() const;
 #endif // Q_OS_MACOS
 
     CachedSettingValue<bool> m_storeNotificationEnabled;
