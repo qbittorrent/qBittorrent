@@ -520,16 +520,12 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_requestQueueSize(BITTORRENT_SESSION_KEY(u"RequestQueueSize"_qs), 500)
     , m_isExcludedFileNamesEnabled(BITTORRENT_KEY(u"ExcludedFileNamesEnabled"_qs), false)
     , m_excludedFileNames(BITTORRENT_SESSION_KEY(u"ExcludedFileNames"_qs))
-    , m_bannedIPs(u"State/BannedIPs"_qs
-                  , QStringList()
-                  , [](const QStringList &value)
-                        {
-                            QStringList tmp = value;
-                            tmp.sort();
-                            return tmp;
-                        }
-                 )
+    , m_bannedIPs(u"State/BannedIPs"_qs, QStringList(), Algorithm::sorted<QStringList>)
     , m_resumeDataStorageType(BITTORRENT_SESSION_KEY(u"ResumeDataStorageType"_qs), ResumeDataStorageType::Legacy)
+    , m_isI2PEnabled {BITTORRENT_SESSION_KEY(u"I2P/Enabled"_qs), false}
+    , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_qs), u"127.0.0.1"_qs}
+    , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_qs), 7656}
+    , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_qs), false}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -1629,6 +1625,20 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     }
 
     settingsPack.set_int(lt::settings_pack::active_checking, maxActiveCheckingTorrents());
+
+    // I2P
+    if (isI2PEnabled())
+    {
+        settingsPack.set_str(lt::settings_pack::i2p_hostname, I2PAddress().toStdString());
+        settingsPack.set_int(lt::settings_pack::i2p_port, I2PPort());
+        settingsPack.set_bool(lt::settings_pack::allow_i2p_mixed, I2PMixedMode());
+    }
+    else
+    {
+        settingsPack.set_str(lt::settings_pack::i2p_hostname, "");
+        settingsPack.set_int(lt::settings_pack::i2p_port, 0);
+        settingsPack.set_bool(lt::settings_pack::allow_i2p_mixed, false);
+    }
 
     // proxy
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
@@ -3531,6 +3541,62 @@ void SessionImpl::setMaxActiveCheckingTorrents(const int val)
 
     m_maxActiveCheckingTorrents = val;
     configureDeferred();
+}
+
+bool SessionImpl::isI2PEnabled() const
+{
+    return m_isI2PEnabled;
+}
+
+void SessionImpl::setI2PEnabled(const bool enabled)
+{
+    if (m_isI2PEnabled != enabled)
+    {
+        m_isI2PEnabled = enabled;
+        configureDeferred();
+    }
+}
+
+QString SessionImpl::I2PAddress() const
+{
+    return m_I2PAddress;
+}
+
+void SessionImpl::setI2PAddress(const QString &address)
+{
+    if (m_I2PAddress != address)
+    {
+        m_I2PAddress = address;
+        configureDeferred();
+    }
+}
+
+int SessionImpl::I2PPort() const
+{
+    return m_I2PPort;
+}
+
+void SessionImpl::setI2PPort(int port)
+{
+    if (m_I2PPort != port)
+    {
+        m_I2PPort = port;
+        configureDeferred();
+    }
+}
+
+bool SessionImpl::I2PMixedMode() const
+{
+    return m_I2PMixedMode;
+}
+
+void SessionImpl::setI2PMixedMode(const bool enabled)
+{
+    if (m_I2PMixedMode != enabled)
+    {
+        m_I2PMixedMode = enabled;
+        configureDeferred();
+    }
 }
 
 bool SessionImpl::isProxyPeerConnectionsEnabled() const

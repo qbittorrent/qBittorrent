@@ -237,6 +237,14 @@ namespace BitTorrent
         void setEncryption(int state) override;
         int maxActiveCheckingTorrents() const override;
         void setMaxActiveCheckingTorrents(int val) override;
+        bool isI2PEnabled() const override;
+        void setI2PEnabled(bool enabled) override;
+        QString I2PAddress() const override;
+        void setI2PAddress(const QString &address) override;
+        int I2PPort() const override;
+        void setI2PPort(int port) override;
+        bool I2PMixedMode() const override;
+        void setI2PMixedMode(bool enabled) override;
         bool isProxyPeerConnectionsEnabled() const override;
         void setProxyPeerConnectionsEnabled(bool enabled) override;
         ChokingAlgorithm chokingAlgorithm() const override;
@@ -675,6 +683,10 @@ namespace BitTorrent
         CachedSettingValue<QStringList> m_excludedFileNames;
         CachedSettingValue<QStringList> m_bannedIPs;
         CachedSettingValue<ResumeDataStorageType> m_resumeDataStorageType;
+        CachedSettingValue<bool> m_isI2PEnabled;
+        CachedSettingValue<QString> m_I2PAddress;
+        CachedSettingValue<int> m_I2PPort;
+        CachedSettingValue<bool> m_I2PMixedMode;
 
         bool m_isRestored = false;
 
