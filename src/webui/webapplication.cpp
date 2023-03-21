@@ -560,7 +560,7 @@ Http::Response WebApplication::processRequest(const Http::Request &request, cons
         if ((m_isCSRFProtectionEnabled && isCrossSiteRequest(m_request))
             || (m_isHostHeaderValidationEnabled && !validateHostHeader(m_domainList)))
         {
-            throw UnauthorizedHTTPError();
+            throw UnauthorizedHTTPError(u"Unauthorized access to an unknown host different from qBittorrent Web UI"_qs);
         }
 
         // reverse proxy resolve client address
