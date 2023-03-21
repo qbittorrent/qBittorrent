@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2021  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -100,9 +101,18 @@ public:
         return (BaseType::erase(value) > 0);
     }
 
-    ThisType &unite(const ThisType &other)
+    template <typename Set>
+    ThisType &unite(const Set &other)
     {
         BaseType::insert(other.cbegin(), other.cend());
         return *this;
+    }
+
+    template <typename Set>
+    ThisType united(const Set &other) const
+    {
+        ThisType result = *this;
+        result.unite(other);
+        return result;
     }
 };

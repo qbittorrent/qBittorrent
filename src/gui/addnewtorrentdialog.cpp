@@ -60,6 +60,7 @@
 #include "base/utils/misc.h"
 #include "lineedit.h"
 #include "raisedmessagebox.h"
+#include "torrenttagsdialog.h"
 #include "ui_addnewtorrentdialog.h"
 #include "uithememanager.h"
 
@@ -368,9 +369,22 @@ AddNewTorrentDialog::AddNewTorrentDialog(const BitTorrent::AddTorrentParams &inP
 
     for (const QString &category : asConst(categories))
     {
-        if (category != defaultCategory && category != m_torrentParams.category)
+        if ((category != defaultCategory) && (category != m_torrentParams.category))
             m_ui->categoryComboBox->addItem(category);
     }
+
+    m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_qs));
+    connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
+    {
+        auto *dlg = new TorrentTagsDialog(m_torrentParams.tags, this);
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
+        {
+            m_torrentParams.tags = dlg->tags();
+            m_ui->tagsLineEdit->setText(m_torrentParams.tags.join(u", "_qs));
+        });
+        dlg->open();
+    });
 
     // Torrent content filtering
     m_filterLine->setPlaceholderText(tr("Filter files..."));

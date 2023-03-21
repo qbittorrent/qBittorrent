@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2022  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
@@ -26,6 +27,7 @@
  * exception statement from your version.
  */
 
+#include <QSet>
 #include <QTest>
 
 #include "base/global.h"
@@ -114,16 +116,34 @@ private slots:
     {
         const OrderedSet<QString> newData1 {u"z"_qs};
         const OrderedSet<QString> newData2 {u"y"_qs};
+        const QSet<QString> newData3 {u"c"_qs, u"d"_qs, u"e"_qs};
 
         OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
         set.unite(newData1);
         QCOMPARE(set.join(u","_qs), u"a,b,c,z"_qs);
         set.unite(newData2);
         QCOMPARE(set.join(u","_qs), u"a,b,c,y,z"_qs);
+        set.unite(newData3);
+        QCOMPARE(set.join(u","_qs), u"a,b,c,d,e,y,z"_qs);
 
         OrderedSet<QString> emptySet;
-        emptySet.unite(newData1).unite(newData2);
-        QCOMPARE(emptySet.join(u","_qs), u"y,z"_qs);
+        emptySet.unite(newData1).unite(newData2).unite(newData3);
+        QCOMPARE(emptySet.join(u","_qs), u"c,d,e,y,z"_qs);
+    }
+
+    void testUnited() const
+    {
+        const OrderedSet<QString> newData1 {u"z"_qs};
+        const OrderedSet<QString> newData2 {u"y"_qs};
+        const QSet<QString> newData3 {u"c"_qs, u"d"_qs, u"e"_qs};
+
+        OrderedSet<QString> set {u"a"_qs, u"b"_qs, u"c"_qs};
+
+        QCOMPARE(set.united(newData1).join(u","_qs), u"a,b,c,z"_qs);
+        QCOMPARE(set.united(newData2).join(u","_qs), u"a,b,c,y"_qs);
+        QCOMPARE(set.united(newData3).join(u","_qs), u"a,b,c,d,e"_qs);
+
+        QCOMPARE(OrderedSet<QString>().united(newData1).united(newData2).united(newData3).join(u","_qs), u"c,d,e,y,z"_qs);
     }
 };
 

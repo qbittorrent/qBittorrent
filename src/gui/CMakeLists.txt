@@ -36,6 +36,7 @@ qt_wrap_ui(UI_HEADERS
     torrentcategorydialog.ui
     torrentcreatordialog.ui
     torrentoptionsdialog.ui
+    torrenttagsdialog.ui
     trackerentriesdialog.ui
     uithemedialog.ui
     watchedfolderoptionsdialog.ui
@@ -58,6 +59,7 @@ add_library(qbt_gui STATIC
     desktopintegration.h
     downloadfromurldialog.h
     executionlogwidget.h
+    flowlayout.h
     fspathedit.h
     fspathedit_p.h
     guiapplicationcomponent.h
@@ -114,6 +116,7 @@ add_library(qbt_gui STATIC
     torrentcontentwidget.h
     torrentcreatordialog.h
     torrentoptionsdialog.h
+    torrenttagsdialog.h
     trackerentriesdialog.h
     transferlistdelegate.h
     transferlistfilterswidget.h
@@ -146,6 +149,7 @@ add_library(qbt_gui STATIC
     desktopintegration.cpp
     downloadfromurldialog.cpp
     executionlogwidget.cpp
+    flowlayout.cpp
     fspathedit.cpp
     fspathedit_p.cpp
     guiapplicationcomponent.cpp
@@ -201,6 +205,7 @@ add_library(qbt_gui STATIC
     torrentcontentwidget.cpp
     torrentcreatordialog.cpp
     torrentoptionsdialog.cpp
+    torrenttagsdialog.cpp
     trackerentriesdialog.cpp
     transferlistdelegate.cpp
     transferlistfilterswidget.cpp
