@@ -430,12 +430,12 @@ window.addEvent('load', function() {
         categoryList.empty();
 
         const create_link = function(hash, text, count) {
-            let display_name = text
-            let margin_left = 0
+            let display_name = text;
+            let margin_left = 0;
             if (useSubcategories) {
-                const category_path = text.split("/")
-                display_name = category_path[category_path.length - 1]
-                margin_left = (category_path.length - 1) * 20
+                const category_path = text.split("/");
+                display_name = category_path[category_path.length - 1];
+                margin_left = (category_path.length - 1) * 20;
             }
 
             const html = '<a href="#" style="margin-left: ' + margin_left + 'px" onclick="setCategoryFilter(' + hash + ');return false;">'
@@ -840,8 +840,8 @@ window.addEvent('load', function() {
         }
 
         if (useSubcategories != serverState.use_subcategories) {
-            useSubcategories = serverState.use_subcategories
-            updateCategoryList()
+            useSubcategories = serverState.use_subcategories;
+            updateCategoryList();
         }
 
         serverSyncMainDataInterval = Math.max(serverState.refresh_interval, 500);
