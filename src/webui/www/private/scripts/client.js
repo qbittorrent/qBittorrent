@@ -464,11 +464,20 @@ window.addEvent('load', function() {
         });
         sortedCategories.sort();
 
-        Object.each(sortedCategories, function(categoryName) {
+        for (let i = 0; i < sortedCategories.length; ++i) {
+            const categoryName = sortedCategories[i];
             const categoryHash = genHash(categoryName);
-            const categoryCount = category_list[categoryHash].torrents.length;
+            let categoryCount = category_list[categoryHash].torrents.length;
+
+            if (useSubcategories) {
+                for (let j = i + 1; j < sortedCategories.length && sortedCategories[j].startsWith(categoryName + "/"); ++j) {
+                    const hash = genHash(sortedCategories[j]);
+                    categoryCount += category_list[hash].torrents.length;
+                }
+            }
+
             categoryList.appendChild(create_link(categoryHash, categoryName, categoryCount));
-        });
+        }
 
         highlightSelectedCategory();
     };
