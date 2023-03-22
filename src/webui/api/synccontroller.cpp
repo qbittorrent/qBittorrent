@@ -61,6 +61,7 @@ namespace
     const QString KEY_SYNC_MAINDATA_QUEUEING = u"queueing"_qs;
     const QString KEY_SYNC_MAINDATA_REFRESH_INTERVAL = u"refresh_interval"_qs;
     const QString KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS = u"use_alt_speed_limits"_qs;
+    const QString KEY_SYNC_MAINDATA_USE_SUBCATEGORIES = u"use_subcategories"_qs;
 
     // Sync torrent peers keys
     const QString KEY_SYNC_TORRENT_PEERS_SHOW_FLAGS = u"show_flags"_qs;
@@ -549,6 +550,7 @@ void SyncController::makeMaindataSnapshot()
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
+    m_maindataSnapshot.serverState[KEY_SYNC_MAINDATA_USE_SUBCATEGORIES] = session->isSubcategoriesEnabled();
 }
 
 QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fullUpdate)
@@ -657,6 +659,7 @@ QJsonObject SyncController::generateMaindataSyncData(const int id, const bool fu
     serverState[KEY_SYNC_MAINDATA_QUEUEING] = session->isQueueingSystemEnabled();
     serverState[KEY_SYNC_MAINDATA_USE_ALT_SPEED_LIMITS] = session->isAltGlobalSpeedLimitEnabled();
     serverState[KEY_SYNC_MAINDATA_REFRESH_INTERVAL] = session->refreshInterval();
+    serverState[KEY_SYNC_MAINDATA_USE_SUBCATEGORIES] = session->isSubcategoriesEnabled();
     processMap(m_maindataSnapshot.serverState, serverState, m_maindataSyncBuf.serverState);
     m_maindataSnapshot.serverState = serverState;
 

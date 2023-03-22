@@ -33,6 +33,7 @@ let alternativeSpeedLimits = false;
 let queueing_enabled = true;
 let serverSyncMainDataInterval = 1500;
 let customSyncMainDataInterval = null;
+let useSubcategories = true;
 let searchTabInitialized = false;
 let rssTabInitialized = false;
 let logTabInitialized = false;
@@ -429,9 +430,17 @@ window.addEvent('load', function() {
         categoryList.empty();
 
         const create_link = function(hash, text, count) {
-            const html = '<a href="#" onclick="setCategoryFilter(' + hash + ');return false;">'
+            let display_name = text
+            let margin_left = 0
+            if (useSubcategories) {
+                const category_path = text.split("/")
+                display_name = category_path[category_path.length - 1]
+                margin_left = (category_path.length - 1) * 20
+            }
+
+            const html = '<a href="#" style="margin-left: ' + margin_left + 'px" onclick="setCategoryFilter(' + hash + ');return false;">'
                 + '<img src="images/view-categories.svg"/>'
-                + window.qBittorrent.Misc.escapeHtml(text) + ' (' + count + ')' + '</a>';
+                + window.qBittorrent.Misc.escapeHtml(display_name) + ' (' + count + ')' + '</a>';
             const el = new Element('li', {
                 id: hash,
                 html: html
@@ -819,6 +828,11 @@ window.addEvent('load', function() {
         if (alternativeSpeedLimits != serverState.use_alt_speed_limits) {
             alternativeSpeedLimits = serverState.use_alt_speed_limits;
             updateAltSpeedIcon(alternativeSpeedLimits);
+        }
+
+        if (useSubcategories != serverState.use_subcategories) {
+            useSubcategories = serverState.use_subcategories
+            updateCategoryList()
         }
 
         serverSyncMainDataInterval = Math.max(serverState.refresh_interval, 500);
