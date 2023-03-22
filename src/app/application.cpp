@@ -98,6 +98,8 @@
 #include "gui/uithememanager.h"
 #include "gui/utils.h"
 #include "gui/windowstate.h"
+#else
+#include "base/utils/password.h"
 #endif // DISABLE_GUI
 
 #ifndef DISABLE_WEBUI
@@ -898,7 +900,7 @@ try
                 + tr("To control qBittorrent, access the WebUI at: %1").arg(url);
         printf("%s\n", qUtf8Printable(mesg));
 
-        if (pref->getWebUIPassword() == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ=="))
+        if (pref->getWebUIPassword() == Utils::Password::defaultPassword)
         {
             const QString warning = tr("The Web UI administrator username is: %1").arg(pref->getWebUiUsername()) + u'\n'
                     + tr("The Web UI administrator password has not been changed from the default: %1").arg(u"adminadmin"_qs) + u'\n'

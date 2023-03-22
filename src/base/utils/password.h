@@ -28,11 +28,13 @@
 
 #pragma once
 
-class QByteArray;
+#include  <QByteArray>
+
 class QString;
 
 namespace Utils::Password
 {
+    inline const QByteArray defaultPassword = QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==");
     // Implements constant-time comparison to protect against timing attacks
     // Taken from https://crackstation.net/hashing-security.htm
     bool slowEquals(const QByteArray &a, const QByteArray &b);

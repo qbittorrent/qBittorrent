@@ -70,7 +70,7 @@ void AuthController::loginAction()
     const QByteArray secret {pref->getWebUIPassword()};
     if (!m_sessionManager->isLocalClient()
         && (username == u"admin"_qs)
-        && (secret == QByteArrayLiteral("ARQ77eY1NUZaQsuDHbIMCA==:0WMRkYTUWVT9wVvdDtHAjU9b3b7uB8NR1Gur2hmQCvCDpm39Q+PsJRJPaCU51dEiz+dTzh8qbPsL8WkFljQYFQ==")))
+        && (secret == Utils::Password::defaultPassword))
     {
         if (Preferences::instance()->getWebUIMaxAuthFailCount() > 0)
             increaseFailedAttempts();
