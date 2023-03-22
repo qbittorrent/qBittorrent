@@ -33,6 +33,7 @@
 #include <QtGlobal>
 #include <QByteArray>
 #include <QHash>
+#include <QMetaType>
 #include <QSharedData>
 #include <QSharedDataPointer>
 #include <QString>
@@ -136,6 +137,12 @@ private:
     UnderlyingType m_nativeDigest;
     mutable QString m_hashString;
 };
+
+using SHA1Hash = Digest32<160>;
+using SHA256Hash = Digest32<256>;
+
+Q_DECLARE_METATYPE(SHA1Hash)
+Q_DECLARE_METATYPE(SHA256Hash)
 
 template <int N>
 bool operator==(const Digest32<N> &left, const Digest32<N> &right)

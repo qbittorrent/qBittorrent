@@ -1,5 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -29,10 +30,12 @@
 #pragma once
 
 #include <QHash>
+#include <QHostAddress>
 #include <QSet>
 #include <QTreeView>
 
-class QHostAddress;
+#include "base/bittorrent/peerid.h"
+
 class QStandardItem;
 class QStandardItemModel;
 
@@ -74,7 +77,6 @@ public:
         TOT_UP,
         RELEVANCE,
         DOWNLOADING_PIECE,
-        IP_HIDDEN,
 
         COL_COUNT
     };
@@ -107,8 +109,14 @@ private:
     PeerListSortModel *m_proxyModel = nullptr;
     PropertiesWidget *m_properties = nullptr;
     Net::ReverseResolution *m_resolver = nullptr;
-    QHash<PeerEndpoint, QStandardItem *> m_peerItems;
-    QList<QStandardItem *> m_I2PPeerItems;
-    QHash<QHostAddress, QSet<QStandardItem *>> m_itemsByIP;  // must be kept in sync with `m_peerItems`
+
+    struct PeerItemWrapper
+    {
+        QStandardItem *item;
+        QHostAddress ip;
+    };
+
+    QHash<BitTorrent::PeerID, PeerItemWrapper> m_peerItems;
+    QHash<QHostAddress, QSet<QStandardItem *>> m_peerItemsByIP;
     bool m_resolveCountries;
 };

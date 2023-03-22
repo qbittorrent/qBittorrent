@@ -32,6 +32,8 @@
 
 #include <QCoreApplication>
 
+#include "peerid.h"
+
 class QBitArray;
 
 namespace BitTorrent
@@ -75,6 +77,7 @@ namespace BitTorrent
         bool isRC4Encrypted() const;
         bool isPlaintextEncrypted() const;
 
+        PeerID id() const;
         PeerAddress address() const;
         QString client() const;
         QString peerIdClient() const;

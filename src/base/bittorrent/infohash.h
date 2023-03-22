@@ -33,15 +33,8 @@
 #endif
 
 #include <QtGlobal>
-#include <QMetaType>
 
 #include "base/digest32.h"
-
-using SHA1Hash = Digest32<160>;
-using SHA256Hash = Digest32<256>;
-
-Q_DECLARE_METATYPE(SHA1Hash)
-Q_DECLARE_METATYPE(SHA256Hash)
 
 namespace BitTorrent
 {

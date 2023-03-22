@@ -61,7 +61,7 @@ bool PeerInfo::fromLSD() const
 
 QString PeerInfo::country() const
 {
-    if (m_country.isEmpty())
+    if (m_country.isEmpty() && !useI2PSocket())
         m_country = Net::GeoIPManager::instance()->lookup(address().ip);
     return m_country;
 }
@@ -164,6 +164,11 @@ bool PeerInfo::isRC4Encrypted() const
 bool PeerInfo::isPlaintextEncrypted() const
 {
     return static_cast<bool>(m_nativeInfo.flags & lt::peer_info::plaintext_encrypted);
+}
+
+PeerID PeerInfo::id() const
+{
+    return m_nativeInfo.pid;
 }
 
 PeerAddress PeerInfo::address() const

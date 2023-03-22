@@ -25,6 +25,7 @@ HEADERS += \
     $$PWD/bittorrent/nativesessionextension.h \
     $$PWD/bittorrent/nativetorrentextension.h \
     $$PWD/bittorrent/peeraddress.h \
+    $$PWD/bittorrent/peerid.h \
     $$PWD/bittorrent/peerinfo.h \
     $$PWD/bittorrent/portforwarderimpl.h \
     $$PWD/bittorrent/resumedatastorage.h \
