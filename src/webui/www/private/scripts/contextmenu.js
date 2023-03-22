@@ -517,10 +517,17 @@ window.qBittorrent.ContextMenu = (function() {
             if ((id != CATEGORIES_ALL) && (id != CATEGORIES_UNCATEGORIZED)) {
                 this.showItem('editCategory');
                 this.showItem('deleteCategory');
+                if (useSubcategories) {
+                    this.showItem('createSubcategory');
+                }
+                else {
+                    this.hideItem('createSubcategory');
+                }
             }
             else {
                 this.hideItem('editCategory');
                 this.hideItem('deleteCategory');
+                this.hideItem('createSubcategory');
             }
         }
     });
