@@ -15,6 +15,7 @@ set(testFiles
     testorderedset.cpp
     testpath.cpp
     testutilscompare.cpp
+    testutilsbytearray.cpp
     testutilsgzip.cpp
     testutilsstring.cpp
     testutilsversion.cpp
