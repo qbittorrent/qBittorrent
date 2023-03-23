@@ -607,7 +607,7 @@ const initializeWindows = function() {
 
     createSubcategoryFN = function(categoryHash) {
         const action = "createSubcategory";
-        const categoryName = category_list[categoryHash].name + "/"
+        const categoryName = category_list[categoryHash].name + "/";
         new MochaUI.Window({
             id: 'newSubcategoryPage',
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
