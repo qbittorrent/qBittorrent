@@ -393,6 +393,7 @@ void PeerListWidget::copySelectedPeers()
 void PeerListWidget::clear()
 {
     m_peerItems.clear();
+    m_I2PPeerItems.clear();
     m_itemsByIP.clear();
     const int nbrows = m_listModel->rowCount();
     if (nbrows > 0)
