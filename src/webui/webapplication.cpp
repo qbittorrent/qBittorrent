@@ -311,6 +311,9 @@ void WebApplication::doProcessRequest()
             throw MethodNotAllowedHTTPError();
     }
 
+    if (session() && session()->isRestricted() && !isRestrictedAPI(scope, action))
+        throw ForbiddenHTTPError(u"You must change the default credentials before being able to use the Web API unrestricted."_qs);
+
     DataMap data;
     for (const Http::UploadedFile &torrent : request().files)
         data[torrent.filename] = torrent.data;
@@ -617,7 +620,7 @@ void WebApplication::sessionInitialize()
     }
 
     if (!m_currentSession && !isAuthNeeded())
-        sessionStart();
+        sessionStart(false);
 }
 
 QString WebApplication::generateSid() const
@@ -650,7 +653,27 @@ bool WebApplication::isPublicAPI(const QString &scope, const QString &action) co
     return m_publicAPIs.contains(u"%1/%2"_qs.arg(scope, action));
 }
 
-void WebApplication::sessionStart()
+bool WebApplication::isRestrictedAPI(const QString &scope, const QString &action) const
+{
+    // Proof-of-concept code
+    // It should be generalized if approved
+    if (scope == u"app"_qs && action == u"setPreferences"_qs)
+    {
+        const QVariantHash m = QJsonDocument::fromJson(m_params[u"json"_qs].toUtf8()).toVariant().toHash();
+        QVariantHash::ConstIterator it;
+        const auto hasKey = [&it, &m](const QString &key) -> bool
+        {
+            it = m.find(key);
+            return (it != m.constEnd());
+        };
+
+        return (hasKey(u"web_ui_username"_qs) || hasKey(u"web_ui_password"_qs));
+    }
+
+    return false;
+}
+
+void WebApplication::sessionStart(bool restrictedAccess)
 {
     Q_ASSERT(!m_currentSession);
 
@@ -667,6 +690,7 @@ void WebApplication::sessionStart()
     });
 
     m_currentSession = new WebSession(generateSid(), app());
+    m_currentSession->setRestricted(restrictedAccess);
     m_currentSession->registerAPIController<AppController>(u"app"_qs);
     m_currentSession->registerAPIController<LogController>(u"log"_qs);
     m_currentSession->registerAPIController<RSSController>(u"rss"_qs);
@@ -841,6 +865,16 @@ bool WebSession::hasExpired(const qint64 seconds) const
 void WebSession::updateTimestamp()
 {
     m_timer.start();
+}
+
+bool WebSession::isRestricted() const
+{
+    return m_restricted;
+}
+
+void WebSession::setRestricted(bool restricted)
+{
+    m_restricted = restricted;
 }
 
 APIController *WebSession::getAPIController(const QString &scope) const

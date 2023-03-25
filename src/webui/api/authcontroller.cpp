@@ -75,7 +75,9 @@ void AuthController::loginAction()
     {
         m_clientFailedLogins.remove(clientAddr);
 
-        m_sessionManager->sessionStart();
+        const bool restricted = (Utils::Password::slowEquals(usernameFromWeb.toUtf8(), u"admin"_qs.toUtf8())
+                                 && Utils::Password::slowEquals(passwordFromWeb.toUtf8(), u"adminadmin"_qs.toUtf8()));
+        m_sessionManager->sessionStart(restricted);
         setResult(u"Ok."_qs);
         LogMsg(tr("WebAPI login success. IP: %1").arg(clientAddr));
     }

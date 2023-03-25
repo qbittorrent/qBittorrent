@@ -747,9 +747,19 @@ void AppController::setPreferencesAction()
         pref->setWebUIHttpsKeyPath(Path(it.value().toString()));
     // Authentication
     if (hasKey(u"web_ui_username"_qs))
-        pref->setWebUiUsername(it.value().toString());
+    {
+        const QString username = it.value().toString();
+        pref->setWebUiUsername(username);
+        if (!username.isEmpty() && (username != u"admin"_qs))
+            static_cast<WebSession*>(parent())->setRestricted(false);
+    }
     if (hasKey(u"web_ui_password"_qs))
+    {
+        const QString password = it.value().toString();
         pref->setWebUIPassword(Utils::Password::PBKDF2::generate(it.value().toByteArray()));
+        if (const QString password = it.value().toString(); !password.isEmpty() && (password != u"adminadmin"_qs))
+            static_cast<WebSession*>(parent())->setRestricted(false);
+    }
     if (hasKey(u"bypass_local_auth"_qs))
         pref->setWebUiLocalAuthEnabled(!it.value().toBool());
     if (hasKey(u"bypass_auth_subnet_whitelist_enabled"_qs))

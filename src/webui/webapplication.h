@@ -67,6 +67,8 @@ public:
 
     bool hasExpired(qint64 seconds) const;
     void updateTimestamp();
+    bool isRestricted() const;
+    void setRestricted(bool restricted);
 
     template <typename T>
     void registerAPIController(const QString &scope)
@@ -78,6 +80,7 @@ public:
     APIController *getAPIController(const QString &scope) const;
 
 private:
+    bool m_restricted = true;
     const QString m_sid;
     QElapsedTimer m_timer;  // timestamp
     QMap<QString, APIController *> m_apiControllers;
@@ -99,7 +102,7 @@ public:
 
     QString clientId() const override;
     WebSession *session() override;
-    void sessionStart() override;
+    void sessionStart(bool restrictedAccess) override;
     void sessionEnd() override;
 
     const Http::Request &request() const;
@@ -121,6 +124,7 @@ private:
     void sessionInitialize();
     bool isAuthNeeded();
     bool isPublicAPI(const QString &scope, const QString &action) const;
+    bool isRestrictedAPI(const QString &scope, const QString &action) const;
 
     bool isCrossSiteRequest(const Http::Request &request) const;
     bool validateHostHeader(const QStringList &domains) const;
