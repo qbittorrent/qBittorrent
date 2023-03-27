@@ -233,6 +233,8 @@ namespace BitTorrent
         void setPerformanceWarningEnabled(bool enable) override;
         int saveResumeDataInterval() const override;
         void setSaveResumeDataInterval(int value) override;
+        int shutdownTimeout() const override;
+        void setShutdownTimeout(int value) override;
         int port() const override;
         void setPort(int port) override;
         bool isSSLEnabled() const override;
@@ -688,6 +690,7 @@ namespace BitTorrent
         CachedSettingValue<bool> m_isBandwidthSchedulerEnabled;
         CachedSettingValue<bool> m_isPerformanceWarningEnabled;
         CachedSettingValue<int> m_saveResumeDataInterval;
+        CachedSettingValue<int> m_shutdownTimeout;
         CachedSettingValue<int> m_port;
         CachedSettingValue<bool> m_sslEnabled;
         CachedSettingValue<int> m_sslPort;
