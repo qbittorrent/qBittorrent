@@ -58,6 +58,7 @@
 #include <libtorrent/session_status.hpp>
 #include <libtorrent/torrent_info.hpp>
 
+#include <QDeadlineTimer>
 #include <QDebug>
 #include <QDir>
 #include <QFile>
@@ -605,6 +606,8 @@ SessionImpl::~SessionImpl()
 {
     m_nativeSession->pause();
 
+    QDeadlineTimer shutdownDeadlineTimer {5s};
+
     if (m_torrentsQueueChanged)
     {
         m_nativeSession->post_torrent_updates({});
@@ -631,8 +634,21 @@ SessionImpl::~SessionImpl()
     m_asyncWorker->clear();
     m_asyncWorker->waitForDone();
 
-    qDebug("Deleting libtorrent session...");
+    auto *nativeSessionProxy = new lt::session_proxy(m_nativeSession->abort());
     delete m_nativeSession;
+
+    qDebug("Deleting resume data storage...");
+    delete m_resumeDataStorage;
+
+    auto *sessionTerminateThread = QThread::create([nativeSessionProxy]()
+    {
+        qDebug("Deleting libtorrent session...");
+        delete nativeSessionProxy;
+        qDebug("libtorrent session is deleted.");
+    });
+    connect(sessionTerminateThread, &QThread::finished, sessionTerminateThread, &QObject::deleteLater);
+    sessionTerminateThread->start();
+    sessionTerminateThread->wait(shutdownDeadlineTimer);
 }
 
 bool SessionImpl::isDHTEnabled() const
