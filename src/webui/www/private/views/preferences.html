@@ -20,13 +20,13 @@
             <tr>
                 <td><input type="checkbox" id="filelog_backup_checkbox" onclick="qBittorrent.Preferences.updateFileLogBackupEnabled();" /></td>
                 <td><label for="filelog_backup_checkbox">QBT_TR(Backup the log file after:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                <td><input id="filelog_max_size_input" type=number min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><input id="filelog_max_size_input" type="number" min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="filelog_delete_old_checkbox" onclick="qBittorrent.Preferences.updateFileLogDeleteEnabled();" /></td>
                 <td><label for="filelog_delete_old_checkbox">QBT_TR(Delete backup logs older than:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td>
-                    <input type=number min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />
+                    <input type="number" min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />
                     <select id="filelog_age_type_select">
                         <option value="0">QBT_TR(days)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1" selected>QBT_TR(months)QBT_TR[CONTEXT=OptionsDialog]</option>
