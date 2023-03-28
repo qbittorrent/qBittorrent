@@ -164,11 +164,6 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     const bool isSequentialService = m_sequentialServices.contains(id);
 
     auto downloadHandler = new DownloadHandlerImpl(this, downloadRequest, useProxy);
-    connect(downloadHandler, &DownloadHandler::finished, this
-            , [this, downloadHandler]
-    {
-        handleDownloadFinished(downloadHandler);
-    });
     connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
     connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
     {
@@ -270,9 +265,6 @@ void Net::DownloadManager::applyProxySettings()
 
 void Net::DownloadManager::handleDownloadFinished(DownloadHandlerImpl *finishedHandler)
 {
-    // QNetworkReply::url() may be different from that of the original request
-    // so we need QNetworkRequest::url() to properly process Sequential Services
-    // in the case when the redirection occurred.
     const ServiceID id = ServiceID::fromURL(finishedHandler->url());
     const auto waitingJobsIter = m_waitingJobs.find(id);
     if ((waitingJobsIter == m_waitingJobs.end()) || waitingJobsIter.value().isEmpty())
@@ -311,7 +303,12 @@ void Net::DownloadManager::processRequest(DownloadHandlerImpl *downloadHandler)
     // Qt doesn't support Magnet protocol so we need to handle redirections manually
     request.setAttribute(QNetworkRequest::RedirectPolicyAttribute, QNetworkRequest::ManualRedirectPolicy);
 
-    downloadHandler->assignNetworkReply(m_networkManager->get(request));
+    QNetworkReply *reply = m_networkManager->get(request);
+    connect(reply, &QNetworkReply::finished, this, [this, downloadHandler]
+    {
+        handleDownloadFinished(downloadHandler);
+    });
+    downloadHandler->assignNetworkReply(reply);
 }
 
 Net::DownloadRequest::DownloadRequest(const QString &url)
