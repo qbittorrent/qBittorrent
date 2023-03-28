@@ -89,11 +89,11 @@
             QBT_TR(Fetching of RSS feeds is disabled now! You can enable it in application settings.)QBT_TR[CONTEXT=RSSWidget]
         </div>
         <div id="rssButtonBar">
-            <button id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</button>
-            <button id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="newSubscriptionButton" onclick="qBittorrent.Rss.addRSSFeed()">QBT_TR(New subscription)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="markReadButton" onclick="qBittorrent.Rss.markSelectedAsRead()">QBT_TR(Mark items read)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="updateAllButton" onclick="qBittorrent.Rss.refreshAllFeeds()">QBT_TR(Update all)QBT_TR[CONTEXT=RSSWidget]</button>
 
-            <button id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]</button>
+            <button type="button" id="rssDownloaderButton" class="alignRight" onclick="qBittorrent.Rss.openRssDownloader()">QBT_TR(RSS Downloader...)QBT_TR[CONTEXT=RSSWidget]</button>
         </div>
     </div>
     <div id="rssContentView">

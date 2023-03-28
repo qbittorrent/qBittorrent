@@ -83,7 +83,7 @@
             <input type="text" id="searchPattern" class="searchInputField" placeholder="QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]" autocorrect="off" autocomplete="off" autocapitalize="none" />
             <select id="categorySelect" class="searchInputField" onchange="qBittorrent.Search.categorySelected()"></select>
             <select id="pluginsSelect" class="searchInputField" onchange="qBittorrent.Search.pluginSelected()"></select>
-            <button id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+            <button type="button" id="startSearchButton" class="searchInputField" onclick="qBittorrent.Search.startStopSearch()">QBT_TR(Search)QBT_TR[CONTEXT=SearchEngineWidget]</button>
         </div>
     </div>
 
@@ -167,7 +167,7 @@
     </div>
 
     <div style="height: 30px; padding-top: 10px;">
-        <button id="manageSearchPlugins" onclick="qBittorrent.Search.manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
+        <button type="button" id="manageSearchPlugins" onclick="qBittorrent.Search.manageSearchPlugins()">QBT_TR(Search plugins...)QBT_TR[CONTEXT=SearchEngineWidget]</button>
     </div>
 </div>
 
