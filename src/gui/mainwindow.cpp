@@ -1927,7 +1927,7 @@ void MainWindow::updatePowerManagementState()
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
     const bool hasUnfinishedTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
     {
-        return (!torrent->isFinished() && !torrent->isMoving() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
+        return (!torrent->isFinished() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata()) || torrent->isMoving();
     });
     const bool hasRunningSeed = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
     {
