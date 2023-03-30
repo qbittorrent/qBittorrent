@@ -20,13 +20,13 @@
             <tr>
                 <td><input type="checkbox" id="filelog_backup_checkbox" onclick="qBittorrent.Preferences.updateFileLogBackupEnabled();" /></td>
                 <td><label for="filelog_backup_checkbox">QBT_TR(Backup the log file after:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
-                <td><input id="filelog_max_size_input" type=number min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
+                <td><input id="filelog_max_size_input" type="number" min="1" max="1024000" value="65" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]</td>
             </tr>
             <tr>
                 <td><input type="checkbox" id="filelog_delete_old_checkbox" onclick="qBittorrent.Preferences.updateFileLogDeleteEnabled();" /></td>
                 <td><label for="filelog_delete_old_checkbox">QBT_TR(Delete backup logs older than:)QBT_TR[CONTEXT=OptionsDialog]</label></td>
                 <td>
-                    <input type=number min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />
+                    <input type="number" min="1" max="365" value="6" id="filelog_age_input" onchange="qBittorrent.Preferences.numberInputLimiter(this);" />
                     <select id="filelog_age_type_select">
                         <option value="0">QBT_TR(days)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1" selected>QBT_TR(months)QBT_TR[CONTEXT=OptionsDialog]</option>
@@ -303,7 +303,7 @@
         <div class="formRow">
             <label for="port_value">QBT_TR(Port used for incoming connections:)QBT_TR[CONTEXT=OptionsDialog]</label>
             <input type="text" id="port_value" style="width: 4em;" title="QBT_TR(Set to 0 to let your system pick an unused port)QBT_TR[CONTEXT=OptionsDialog]" />
-            <button style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
+            <button type="button" style="margin-left: 1em;" onclick="qBittorrent.Preferences.generateRandomPort();">QBT_TR(Random)QBT_TR[CONTEXT=OptionsDialog]</button>
         </div>
         <div class="formRow">
             <input type="checkbox" id="upnp_checkbox" />
@@ -707,7 +707,7 @@
             <input type="checkbox" id="enable_auto_downloading_rss_torrents_checkbox" />
             <label for="enable_auto_downloading_rss_torrents_checkbox">QBT_TR(Enable auto downloading of RSS torrents)QBT_TR[CONTEXT=OptionsDialog]</label>
         </div>
-        <button style="margin: 0 1em; width: calc(100% - 2.2em)" onclick="window.qBittorrent.Rss.openRssDownloader();">QBT_TR(Edit auto downloading rules...)QBT_TR[CONTEXT=OptionsDialog]</button>
+        <button type="button" style="margin: 0 1em; width: calc(100% - 2.2em)" onclick="window.qBittorrent.Rss.openRssDownloader();">QBT_TR(Edit auto downloading rules...)QBT_TR[CONTEXT=OptionsDialog]</button>
     </fieldset>
 
     <fieldset class="settings">
@@ -940,7 +940,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
+                    <label for="memoryWorkingSetLimit">QBT_TR(Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://wikipedia.org/wiki/Working_set" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="memoryWorkingSetLimit" style="width: 15em;" title="QBT_TR(This option is less effective on Linux)QBT_TR[CONTEXT=OptionsDialog]">&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
@@ -1043,7 +1043,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="hashingThreads">QBT_TR(Hashing threads (requires libtorrent >= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#hashing_threads" target="_blank">(?)</a></label>
+                    <label for="hashingThreads">QBT_TR(Hashing threads (requires libtorrent &gt;= 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#hashing_threads" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="hashingThreads" style="width: 15em;" />
@@ -1067,7 +1067,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="diskCache">QBT_TR(Disk cache (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
+                    <label for="diskCache">QBT_TR(Disk cache (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCache" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(MiB)QBT_TR[CONTEXT=OptionsDialog]
@@ -1075,7 +1075,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
+                    <label for="diskCacheExpiryInterval">QBT_TR(Disk cache expiry interval (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#cache_expiry" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="diskCacheExpiryInterval" style="width: 15em;">&nbsp;&nbsp;QBT_TR(s)QBT_TR[CONTEXT=OptionsDialog]
@@ -1091,7 +1091,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="diskIOType">QBT_TR(Disk IO type (libtorrent >= 2.0; requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor" target="_blank">(?)</a></label>
+                    <label for="diskIOType">QBT_TR(Disk IO type (libtorrent &gt;= 2.0; requires restart):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/single-page-ref.html#default-disk-io-constructor" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <select id="diskIOType" style="width: 15em;">
@@ -1120,13 +1120,13 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <select id="diskIOWriteMode" style="width: 15em;">
                         <option value="0">QBT_TR(Disable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
                         <option value="1">QBT_TR(Enable OS cache)QBT_TR[CONTEXT=OptionsDialog]</option>
-                        <option value="2">QBT_TR(Write-through (requires libtorrent >= 2.0.6))QBT_TR[CONTEXT=OptionsDialog]</option>
+                        <option value="2">QBT_TR(Write-through (requires libtorrent &gt;= 2.0.6))QBT_TR[CONTEXT=OptionsDialog]</option>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads & writes (requires libtorrent < 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
+                    <label for="coalesceReadsAndWrites">QBT_TR(Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#coalesce_reads" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="checkbox" id="coalesceReadsAndWrites" />

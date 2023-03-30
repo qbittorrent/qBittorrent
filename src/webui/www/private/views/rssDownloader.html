@@ -136,8 +136,8 @@
     <div id="leftRssDownloaderColumn">
         <div id="topMenuBar">
             <b id="rulesTableDesc">QBT_TR(Download Rules)QBT_TR[CONTEXT=AutomatedRssDownloader]</b>
-            <button id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
-            <button id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
+            <button type="button" id="newRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.addRule()"></button>
+            <button type="button" id="deleteRuleButton" class="imageButton" onclick="qBittorrent.RssDownloader.removeSelectedRule()"></button>
         </div>
         <div id="rulesTable">
             <div id="rulesSelectionCheckBoxList">
@@ -285,7 +285,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
                 </div>
             </div>
         </fieldset>
-        <button disabled id="saveButton" onclick="qBittorrent.RssDownloader.saveSettings()">
+        <button disabled type="button" id="saveButton" onclick="qBittorrent.RssDownloader.saveSettings()">
             QBT_TR(Save)QBT_TR[CONTEXT=HttpServer]
         </button>
     </div>

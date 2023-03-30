@@ -94,7 +94,7 @@
             </select>
 
             <input type="text" id="filterTextInput" onkeyup="window.qBittorrent.Log.filterTextChanged()" placeholder="QBT_TR(Filter logs)QBT_TR[CONTEXT=ExecutionLogWidget]" autocomplete="off" autocorrect="off" autocapitalize="none" />
-            <button title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
+            <button type="button" title="Clear input" onclick="javascript:document.querySelector('#filterTextInput').value='';window.qBittorrent.Log.filterTextChanged();">QBT_TR(Clear)QBT_TR[CONTEXT=ExecutionLogWidget]</button>
         </div>
 
         <div id="logFilterSummary">
