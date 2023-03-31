@@ -152,6 +152,8 @@ jobs:
           copy "${{ env.Qt6_DIR }}/plugins/sqldrivers/qsqlite.dll" upload/plugins/sqldrivers
           mkdir upload/plugins/styles
           copy "${{ env.Qt6_DIR }}/plugins/styles/qwindowsvistastyle.dll" upload/plugins/styles
+          mkdir upload/plugins/tls
+          copy "${{ env.Qt6_DIR }}/plugins/tls/qschannelbackend.dll" upload/plugins/tls
           # cmake additionals
           mkdir upload/cmake
           copy build/compile_commands.json upload/cmake
