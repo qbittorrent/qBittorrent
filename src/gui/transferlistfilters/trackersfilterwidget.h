@@ -30,45 +30,64 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QFrame>
 #include <QHash>
 
-#include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
+#include "base/path.h"
+#include "basefilterwidget.h"
 
-class CategoryFilterWidget;
-class StatusFilterWidget;
-class TagFilterWidget;
-class TrackersFilterWidget;
 class TransferListWidget;
 
-class TransferListFiltersWidget final : public QFrame
+namespace Net
+{
+    struct DownloadResult;
+}
+
+class TrackersFilterWidget final : public BaseFilterWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
+    Q_DISABLE_COPY_MOVE(TrackersFilterWidget)
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);
+    TrackersFilterWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
+    ~TrackersFilterWidget() override;
 
-public slots:
     void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
     void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
     void refreshTrackers(const BitTorrent::Torrent *torrent);
     void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
+    void handleTrackerEntriesUpdated(const BitTorrent::Torrent *torrent
             , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
+    void setDownloadTrackerFavicon(bool value);
 
 private slots:
-    void onCategoryFilterStateChanged(bool enabled);
-    void onTagFilterStateChanged(bool enabled);
+    void handleFavicoDownloadFinished(const Net::DownloadResult &result);
 
 private:
-    void toggleCategoryFilter(bool enabled);
-    void toggleTagFilter(bool enabled);
+    // These 4 methods are virtual slots in the base class.
+    // No need to redeclare them here as slots.
+    void showMenu() override;
+    void applyFilter(int row) override;
+    void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent) override;
 
-    TransferListWidget *m_transferList = nullptr;
-    TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    CategoryFilterWidget *m_categoryFilterWidget = nullptr;
-    TagFilterWidget *m_tagFilterWidget = nullptr;
+    void addItems(const QString &trackerURL, const QVector<BitTorrent::TorrentID> &torrents);
+    void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);
+    QString trackerFromRow(int row) const;
+    int rowFromTracker(const QString &tracker) const;
+    QSet<BitTorrent::TorrentID> getTorrentIDs(int row) const;
+    void downloadFavicon(const QString &url);
+
+    struct TrackerData
+    {
+        QSet<BitTorrent::TorrentID> torrents;
+        QListWidgetItem *item = nullptr;
+    };
+
+    QHash<QString, TrackerData> m_trackers;   // <tracker host, tracker data>
+    QHash<BitTorrent::TorrentID, QSet<QString>> m_errors;  // <torrent ID, tracker hosts>
+    QHash<BitTorrent::TorrentID, QSet<QString>> m_warnings;  // <torrent ID, tracker hosts>
+    PathList m_iconPaths;
+    int m_totalTorrents = 0;
+    bool m_downloadTrackerFavicon = false;
 };
