@@ -245,6 +245,8 @@ void OptionsDialog::loadBehaviorTabOptions()
         actionSeeding = OPEN_DEST;
     m_ui->actionTorrentFnOnDblClBox->setCurrentIndex(m_ui->actionTorrentFnOnDblClBox->findData(actionSeeding));
 
+    m_ui->checkBoxHideZeroStatusFilters->setChecked(pref->getHideZeroStatusFilters());
+
 #ifndef Q_OS_WIN
     m_ui->checkStartup->setVisible(false);
 #endif
@@ -344,6 +346,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->comboHideZero, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentDlOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
     connect(m_ui->actionTorrentFnOnDblClBox, qComboBoxCurrentIndexChanged, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkBoxHideZeroStatusFilters, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 
 #ifdef Q_OS_WIN
     connect(m_ui->checkStartup, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -416,6 +419,8 @@ void OptionsDialog::saveBehaviorTabOptions() const
 
     pref->setActionOnDblClOnTorrentDl(m_ui->actionTorrentDlOnDblClBox->currentData().toInt());
     pref->setActionOnDblClOnTorrentFn(m_ui->actionTorrentFnOnDblClBox->currentData().toInt());
+
+    pref->setHideZeroStatusFilters(m_ui->checkBoxHideZeroStatusFilters->isChecked());
 
     pref->setSplashScreenDisabled(isSplashScreenDisabled());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());

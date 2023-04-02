@@ -46,10 +46,9 @@ public:
     StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
     ~StatusFilterWidget() override;
 
-private slots:
-    void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents);
-
 private:
+    QSize sizeHint() const override;
+
     // These 4 methods are virtual slots in the base class.
     // No need to redeclare them here as slots.
     void showMenu() override;
@@ -57,9 +56,12 @@ private:
     void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
     void torrentAboutToBeDeleted(BitTorrent::Torrent *const) override;
 
-    void populate();
+    void configure();
+
+    void update(const QVector<BitTorrent::Torrent *> torrents);
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
+    void hideZeroItems();
 
     using TorrentFilterBitset = std::bitset<32>;  // approximated size, this should be the number of TorrentFilter::Type elements
     QHash<const BitTorrent::Torrent *, TorrentFilterBitset> m_torrentsStatus;

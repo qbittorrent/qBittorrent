@@ -86,14 +86,21 @@ StatusFilterWidget::StatusFilterWidget(QWidget *parent, TransferListWidget *tran
     errored->setData(Qt::DisplayRole, tr("Errored (0)"));
     errored->setData(Qt::DecorationRole, UIThemeManager::instance()->getIcon(u"error"_qs));
 
-    const Preferences *const pref = Preferences::instance();
-    setCurrentRow(pref->getTransSelFilter(), QItemSelectionModel::SelectCurrent);
-    toggleFilter(pref->getStatusFilterState());
-
-    populate();
-
+    const QVector<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
+    update(torrents);
     connect(BitTorrent::Session::instance(), &BitTorrent::Session::torrentsUpdated
-            , this, &StatusFilterWidget::handleTorrentsUpdated);
+            , this, &StatusFilterWidget::update);
+
+    const Preferences *const pref = Preferences::instance();
+    connect(pref, &Preferences::changed, this, &StatusFilterWidget::configure);
+
+    const int storedRow = pref->getTransSelFilter();
+    if (item((storedRow < count()) ? storedRow : 0)->isHidden())
+        setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
+    else
+        setCurrentRow(storedRow, QItemSelectionModel::SelectCurrent);
+
+    toggleFilter(pref->getStatusFilterState());
 }
 
 StatusFilterWidget::~StatusFilterWidget()
@@ -101,15 +108,20 @@ StatusFilterWidget::~StatusFilterWidget()
     Preferences::instance()->setTransSelFilter(currentRow());
 }
 
-void StatusFilterWidget::populate()
+QSize StatusFilterWidget::sizeHint() const
 {
-    m_torrentsStatus.clear();
+    int numVisibleItems = 0;
+    for (int i = 0; i < count(); ++i)
+    {
+        if (!item(i)->isHidden())
+            ++numVisibleItems;
+    }
 
-    const QVector<BitTorrent::Torrent *> torrents = BitTorrent::Session::instance()->torrents();
-    for (const BitTorrent::Torrent *torrent : torrents)
-        updateTorrentStatus(torrent);
-
-    updateTexts();
+    return {
+        // Width should be exactly the width of the content
+        sizeHintForColumn(0),
+        // Height should be exactly the height of the content
+        static_cast<int>((sizeHintForRow(0) + 2 * spacing()) * (numVisibleItems + 0.5))};
 }
 
 void StatusFilterWidget::updateTorrentStatus(const BitTorrent::Torrent *torrent)
@@ -167,12 +179,38 @@ void StatusFilterWidget::updateTexts()
     item(TorrentFilter::Errored)->setData(Qt::DisplayRole, tr("Errored (%1)").arg(m_nbErrored));
 }
 
-void StatusFilterWidget::handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> torrents)
+void StatusFilterWidget::hideZeroItems()
+{
+    item(TorrentFilter::Downloading)->setHidden(m_nbDownloading == 0);
+    item(TorrentFilter::Seeding)->setHidden(m_nbSeeding == 0);
+    item(TorrentFilter::Completed)->setHidden(m_nbCompleted == 0);
+    item(TorrentFilter::Resumed)->setHidden(m_nbResumed == 0);
+    item(TorrentFilter::Paused)->setHidden(m_nbPaused == 0);
+    item(TorrentFilter::Active)->setHidden(m_nbActive == 0);
+    item(TorrentFilter::Inactive)->setHidden(m_nbInactive == 0);
+    item(TorrentFilter::Stalled)->setHidden(m_nbStalled == 0);
+    item(TorrentFilter::StalledUploading)->setHidden(m_nbStalledUploading == 0);
+    item(TorrentFilter::StalledDownloading)->setHidden(m_nbStalledDownloading == 0);
+    item(TorrentFilter::Checking)->setHidden(m_nbChecking == 0);
+    item(TorrentFilter::Moving)->setHidden(m_nbMoving == 0);
+    item(TorrentFilter::Errored)->setHidden(m_nbErrored == 0);
+
+    if (currentItem() && currentItem()->isHidden())
+        setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
+}
+
+void StatusFilterWidget::update(const QVector<BitTorrent::Torrent *> torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
         updateTorrentStatus(torrent);
 
     updateTexts();
+
+    if (Preferences::instance()->getHideZeroStatusFilters())
+    {
+        hideZeroItems();
+        updateGeometry();
+    }
 }
 
 void StatusFilterWidget::showMenu()
@@ -235,4 +273,19 @@ void StatusFilterWidget::torrentAboutToBeDeleted(BitTorrent::Torrent *const torr
     m_nbStalled = m_nbStalledUploading + m_nbStalledDownloading;
 
     updateTexts();
+}
+
+void StatusFilterWidget::configure()
+{
+    if (Preferences::instance()->getHideZeroStatusFilters())
+    {
+        hideZeroItems();
+    }
+    else
+    {
+        for (int i = 0; i < count(); ++i)
+            item(i)->setHidden(false);
+    }
+
+    updateGeometry();
 }

@@ -1551,6 +1551,16 @@ void Preferences::setTransSelFilter(const int index)
     setValue(u"TransferListFilters/selectedFilterIndex"_qs, index);
 }
 
+bool Preferences::getHideZeroStatusFilters() const
+{
+    return value<bool>(u"TransferListFilters/HideZeroStatusFilters"_qs, false);
+}
+
+void Preferences::setHideZeroStatusFilters(const bool hide)
+{
+    setValue(u"TransferListFilters/HideZeroStatusFilters"_qs, hide);
+}
+
 QByteArray Preferences::getTransHeaderState() const
 {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
