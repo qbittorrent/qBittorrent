@@ -135,6 +135,10 @@
                 </td>
             </tr>
         </table>
+        <div class="formRow">
+            <input type="checkbox" id="use_subcategories_checkbox" />
+            <label for="use_subcategories_checkbox">QBT_TR(Use Subcategories)QBT_TR[CONTEXT=OptionsDialog]</label>
+        </div>
         <table>
             <tr>
                 <td>
@@ -1844,6 +1848,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('torrent_changed_tmm_combobox').setProperty('value', pref.torrent_changed_tmm_enabled);
                         $('save_path_changed_tmm_combobox').setProperty('value', pref.save_path_changed_tmm_enabled);
                         $('category_changed_tmm_combobox').setProperty('value', pref.category_changed_tmm_enabled);
+                        $('use_subcategories_checkbox').setProperty('checked', pref.use_subcategories);
                         $('savepath_text').setProperty('value', pref.save_path);
                         $('temppath_checkbox').setProperty('checked', pref.temp_path_enabled);
                         $('temppath_text').setProperty('value', pref.temp_path);
@@ -2199,6 +2204,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('torrent_changed_tmm_enabled', $('torrent_changed_tmm_combobox').getProperty('value'));
             settings.set('save_path_changed_tmm_enabled', $('save_path_changed_tmm_combobox').getProperty('value'));
             settings.set('category_changed_tmm_enabled', $('category_changed_tmm_combobox').getProperty('value'));
+            settings.set('use_subcategories', $('use_subcategories_checkbox').getProperty('checked'));
             settings.set('save_path', $('savepath_text').getProperty('value'));
             settings.set('temp_path_enabled', $('temppath_checkbox').getProperty('checked'));
             settings.set('temp_path', $('temppath_text').getProperty('value'));

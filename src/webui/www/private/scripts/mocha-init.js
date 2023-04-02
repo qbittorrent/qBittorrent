@@ -66,6 +66,7 @@ let renameFilesFN = function() {};
 let torrentNewCategoryFN = function() {};
 let torrentSetCategoryFN = function() {};
 let createCategoryFN = function() {};
+let createSubcategoryFN = function() {};
 let editCategoryFN = function() {};
 let removeCategoryFN = function() {};
 let deleteUnusedCategoriesFN = function() {};
@@ -593,6 +594,25 @@ const initializeWindows = function() {
             title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
             loadMethod: 'iframe',
             contentURL: new URI("newcategory.html").setData("action", action).toString(),
+            scrollbars: false,
+            resizable: true,
+            maximizable: false,
+            paddingVertical: 0,
+            paddingHorizontal: 0,
+            width: 400,
+            height: 150
+        });
+        updateMainData();
+    };
+
+    createSubcategoryFN = function(categoryHash) {
+        const action = "createSubcategory";
+        const categoryName = category_list[categoryHash].name + "/";
+        new MochaUI.Window({
+            id: 'newSubcategoryPage',
+            title: "QBT_TR(New Category)QBT_TR[CONTEXT=CategoryFilterWidget]",
+            loadMethod: 'iframe',
+            contentURL: new URI("newcategory.html").setData("action", action).setData("categoryName", categoryName).toString(),
             scrollbars: false,
             resizable: true,
             maximizable: false,

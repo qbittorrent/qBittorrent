@@ -1383,8 +1383,16 @@ window.qBittorrent.DynamicTable = (function() {
                             return false;
                         break; // do nothing
                     default:
-                        if (categoryHashInt !== genHash(row['full_data'].category))
-                            return false;
+                        if (!useSubcategories) {
+                            if (categoryHashInt !== genHash(row['full_data'].category))
+                                return false;
+                        }
+                        else {
+                            const selectedCategoryName = category_list[categoryHash].name + "/";
+                            const torrentCategoryName = row['full_data'].category + "/";
+                            if (!torrentCategoryName.startsWith(selectedCategoryName))
+                                return false;
+                        }
                 }
             }
 
