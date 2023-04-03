@@ -16,6 +16,7 @@ HEADERS += \
     $$PWD/desktopintegration.h \
     $$PWD/downloadfromurldialog.h \
     $$PWD/executionlogwidget.h \
+    $$PWD/flowlayout.h \
     $$PWD/fspathedit.h \
     $$PWD/fspathedit_p.h \
     $$PWD/guiapplicationcomponent.h \
@@ -72,6 +73,7 @@ HEADERS += \
     $$PWD/torrentcontentwidget.h \
     $$PWD/torrentcreatordialog.h \
     $$PWD/torrentoptionsdialog.h \
+    $$PWD/torrenttagsdialog.h \
     $$PWD/trackerentriesdialog.h \
     $$PWD/transferlistdelegate.h \
     $$PWD/transferlistfilterswidget.h \
@@ -104,6 +106,7 @@ SOURCES += \
     $$PWD/desktopintegration.cpp \
     $$PWD/downloadfromurldialog.cpp \
     $$PWD/executionlogwidget.cpp \
+    $$PWD/flowlayout.cpp \
     $$PWD/fspathedit.cpp \
     $$PWD/fspathedit_p.cpp \
     $$PWD/guiapplicationcomponent.cpp \
@@ -159,6 +162,7 @@ SOURCES += \
     $$PWD/torrentcontentwidget.cpp \
     $$PWD/torrentcreatordialog.cpp \
     $$PWD/torrentoptionsdialog.cpp \
+    $$PWD/torrenttagsdialog.cpp \
     $$PWD/trackerentriesdialog.cpp \
     $$PWD/transferlistdelegate.cpp \
     $$PWD/transferlistfilterswidget.cpp \
@@ -202,6 +206,7 @@ FORMS += \
     $$PWD/torrentcategorydialog.ui \
     $$PWD/torrentcreatordialog.ui \
     $$PWD/torrentoptionsdialog.ui \
+    $$PWD/torrenttagsdialog.ui \
     $$PWD/trackerentriesdialog.ui \
     $$PWD/uithemedialog.ui \
     $$PWD/watchedfolderoptionsdialog.ui
