@@ -382,6 +382,8 @@ public:
     bool getTrackerFilterState() const;
     int getTransSelFilter() const;
     void setTransSelFilter(int index);
+    bool getHideZeroStatusFilters() const;
+    void setHideZeroStatusFilters(bool hide);
     QByteArray getTransHeaderState() const;
     void setTransHeaderState(const QByteArray &state);
     bool getRegexAsFilteringPatternForTransferList() const;

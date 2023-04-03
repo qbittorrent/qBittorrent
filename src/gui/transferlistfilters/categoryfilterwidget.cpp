@@ -32,11 +32,11 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
+#include "gui/torrentcategorydialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "categoryfiltermodel.h"
 #include "categoryfilterproxymodel.h"
-#include "torrentcategorydialog.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 namespace
 {

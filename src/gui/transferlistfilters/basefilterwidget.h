@@ -30,45 +30,34 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QFrame>
-#include <QHash>
+#include <QListWidget>
 
 #include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
 
-class CategoryFilterWidget;
-class StatusFilterWidget;
-class TagFilterWidget;
-class TrackersFilterWidget;
 class TransferListWidget;
 
-class TransferListFiltersWidget final : public QFrame
+class BaseFilterWidget : public QListWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
+    Q_DISABLE_COPY_MOVE(BaseFilterWidget)
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);
+    BaseFilterWidget(QWidget *parent, TransferListWidget *transferList);
+
+    QSize sizeHint() const override;
+    QSize minimumSizeHint() const override;
+
+    TransferListWidget *transferList() const;
 
 public slots:
-    void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
+    void toggleFilter(bool checked);
 
 private slots:
-    void onCategoryFilterStateChanged(bool enabled);
-    void onTagFilterStateChanged(bool enabled);
+    virtual void showMenu() = 0;
+    virtual void applyFilter(int row) = 0;
+    virtual void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) = 0;
+    virtual void torrentAboutToBeDeleted(BitTorrent::Torrent *const) = 0;
 
 private:
-    void toggleCategoryFilter(bool enabled);
-    void toggleTagFilter(bool enabled);
-
     TransferListWidget *m_transferList = nullptr;
-    TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    CategoryFilterWidget *m_categoryFilterWidget = nullptr;
-    TagFilterWidget *m_tagFilterWidget = nullptr;
 };

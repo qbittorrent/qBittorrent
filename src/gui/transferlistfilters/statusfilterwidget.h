@@ -29,46 +29,53 @@
 
 #pragma once
 
+#include <bitset>
+
 #include <QtContainerFwd>
-#include <QFrame>
 #include <QHash>
 
-#include "base/bittorrent/torrent.h"
-#include "base/bittorrent/trackerentry.h"
+#include "base/torrentfilter.h"
+#include "basefilterwidget.h"
 
-class CategoryFilterWidget;
-class StatusFilterWidget;
-class TagFilterWidget;
-class TrackersFilterWidget;
-class TransferListWidget;
-
-class TransferListFiltersWidget final : public QFrame
+class StatusFilterWidget final : public BaseFilterWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
+    Q_DISABLE_COPY_MOVE(StatusFilterWidget)
 
 public:
-    TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, bool downloadFavicon);
-    void setDownloadTrackerFavicon(bool value);
-
-public slots:
-    void addTrackers(const BitTorrent::Torrent *torrent, const QVector<BitTorrent::TrackerEntry> &trackers);
-    void removeTrackers(const BitTorrent::Torrent *torrent, const QStringList &trackers);
-    void refreshTrackers(const BitTorrent::Torrent *torrent);
-    void changeTrackerless(const BitTorrent::Torrent *torrent, bool trackerless);
-    void trackerEntriesUpdated(const BitTorrent::Torrent *torrent
-            , const QHash<QString, BitTorrent::TrackerEntry> &updatedTrackerEntries);
-
-private slots:
-    void onCategoryFilterStateChanged(bool enabled);
-    void onTagFilterStateChanged(bool enabled);
+    StatusFilterWidget(QWidget *parent, TransferListWidget *transferList);
+    ~StatusFilterWidget() override;
 
 private:
-    void toggleCategoryFilter(bool enabled);
-    void toggleTagFilter(bool enabled);
+    QSize sizeHint() const override;
 
-    TransferListWidget *m_transferList = nullptr;
-    TrackersFilterWidget *m_trackersFilterWidget = nullptr;
-    CategoryFilterWidget *m_categoryFilterWidget = nullptr;
-    TagFilterWidget *m_tagFilterWidget = nullptr;
+    // These 4 methods are virtual slots in the base class.
+    // No need to redeclare them here as slots.
+    void showMenu() override;
+    void applyFilter(int row) override;
+    void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *const) override;
+
+    void configure();
+
+    void update(const QVector<BitTorrent::Torrent *> torrents);
+    void updateTorrentStatus(const BitTorrent::Torrent *torrent);
+    void updateTexts();
+    void hideZeroItems();
+
+    using TorrentFilterBitset = std::bitset<32>;  // approximated size, this should be the number of TorrentFilter::Type elements
+    QHash<const BitTorrent::Torrent *, TorrentFilterBitset> m_torrentsStatus;
+    int m_nbDownloading = 0;
+    int m_nbSeeding = 0;
+    int m_nbCompleted = 0;
+    int m_nbResumed = 0;
+    int m_nbPaused = 0;
+    int m_nbActive = 0;
+    int m_nbInactive = 0;
+    int m_nbStalled = 0;
+    int m_nbStalledUploading = 0;
+    int m_nbStalledDownloading = 0;
+    int m_nbChecking = 0;
+    int m_nbMoving = 0;
+    int m_nbErrored = 0;
 };

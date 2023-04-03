@@ -33,11 +33,11 @@
 
 #include "base/bittorrent/session.h"
 #include "base/global.h"
-#include "autoexpandabledialog.h"
+#include "gui/autoexpandabledialog.h"
+#include "gui/uithememanager.h"
+#include "gui/utils.h"
 #include "tagfiltermodel.h"
 #include "tagfilterproxymodel.h"
-#include "uithememanager.h"
-#include "utils.h"
 
 namespace
 {

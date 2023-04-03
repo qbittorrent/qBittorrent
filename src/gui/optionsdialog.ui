@@ -384,6 +384,13 @@
                  </layout>
                 </widget>
                </item>
+               <item>
+                <widget class="QCheckBox" name="checkBoxHideZeroStatusFilters">
+                 <property name="text">
+                  <string>Auto hide zero status filters</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -3761,6 +3768,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</string>
   <tabstop>checkAltRowColors</tabstop>
   <tabstop>actionTorrentDlOnDblClBox</tabstop>
   <tabstop>actionTorrentFnOnDblClBox</tabstop>
+  <tabstop>checkBoxHideZeroStatusFilters</tabstop>
   <tabstop>checkStartup</tabstop>
   <tabstop>checkShowSplash</tabstop>
   <tabstop>windowStateComboBox</tabstop>
