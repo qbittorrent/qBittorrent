@@ -5239,8 +5239,11 @@ void SessionImpl::handleTorrentDeletedAlert(const lt::torrent_deleted_alert *p)
 #endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(id);
-
     if (removingTorrentDataIter == m_removingTorrents.end())
+        return;
+
+    // torrent_deleted_alert can also be posted due to deletion of partfile. Ignore it in such a case.
+    if (removingTorrentDataIter->deleteOption == DeleteTorrent)
         return;
 
     Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
@@ -5257,7 +5260,6 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
 #endif
 
     const auto removingTorrentDataIter = m_removingTorrents.find(id);
-
     if (removingTorrentDataIter == m_removingTorrents.end())
         return;
 
@@ -5267,7 +5269,7 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
         // so we remove the directory ourselves
         Utils::Fs::smartRemoveEmptyFolderTree(removingTorrentDataIter->pathToRemove);
 
-        LogMsg(tr("Removed torrent but failed to delete its content. Torrent: \"%1\". Error: \"%2\"")
+        LogMsg(tr("Removed torrent but failed to delete its content and/or partfile. Torrent: \"%1\". Error: \"%2\"")
                 .arg(removingTorrentDataIter->name, QString::fromLocal8Bit(p->error.message().c_str()))
             , Log::WARNING);
     }
@@ -5275,6 +5277,7 @@ void SessionImpl::handleTorrentDeleteFailedAlert(const lt::torrent_delete_failed
     {
         LogMsg(tr("Removed torrent. Torrent: \"%1\"").arg(removingTorrentDataIter->name));
     }
+
     m_removingTorrents.erase(removingTorrentDataIter);
 }
 
