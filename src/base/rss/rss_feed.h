@@ -91,6 +91,7 @@ namespace RSS
         void iconLoaded(Feed *feed = nullptr);
         void titleChanged(Feed *feed = nullptr);
         void stateChanged(Feed *feed = nullptr);
+        void urlChanged(const QString &oldURL);
 
     private slots:
         void handleSessionProcessingEnabledChanged(bool enabled);
@@ -113,12 +114,13 @@ namespace RSS
         void decreaseUnreadCount();
         void downloadIcon();
         int updateArticles(const QList<QVariantHash> &loadedArticles);
+        void setURL(const QString &url);
 
         Session *m_session = nullptr;
         Private::Parser *m_parser = nullptr;
         Private::FeedSerializer *m_serializer = nullptr;
         const QUuid m_uid;
-        const QString m_url;
+        QString m_url;
         QString m_title;
         QString m_lastBuildDate;
         bool m_hasError = false;

@@ -164,6 +164,22 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
     return {};
 }
 
+nonstd::expected<void, QString> Session::setFeedURL(Feed *feed, const QString &url)
+{
+    Q_ASSERT(feed);
+
+    if (url == feed->url())
+        return {};
+
+    if (m_feedsByURL.contains(url))
+        return nonstd::make_unexpected(tr("RSS feed with given URL already exists: %1.").arg(url));
+
+    m_feedsByURL[url] = m_feedsByURL.take(feed->url());
+    feed->setURL(url);
+
+    return {};
+}
+
 nonstd::expected<void, QString> Session::moveItem(const QString &itemPath, const QString &destPath)
 {
     if (itemPath.isEmpty())
@@ -409,6 +425,10 @@ void Session::addItem(Item *item, Folder *destFolder)
         connect(feed, &Feed::titleChanged, this, &Session::handleFeedTitleChanged);
         connect(feed, &Feed::iconLoaded, this, &Session::feedIconLoaded);
         connect(feed, &Feed::stateChanged, this, &Session::feedStateChanged);
+        connect(feed, &Feed::urlChanged, this, [this, feed](const QString &oldURL)
+        {
+            emit feedURLChanged(feed, oldURL);
+        });
         m_feedsByUID[feed->uid()] = feed;
         m_feedsByURL[feed->url()] = feed;
     }
