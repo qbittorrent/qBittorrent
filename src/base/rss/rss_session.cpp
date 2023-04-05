@@ -156,10 +156,11 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
         return result.get_unexpected();
 
     const auto destFolder = result.value();
-    addItem(new Feed(generateUID(), url, path, this), destFolder);
+    auto *feed = new Feed(generateUID(), url, path, this);
+    addItem(feed, destFolder);
     store();
     if (isProcessingEnabled())
-        feedByURL(url)->refresh();
+        feed->refresh();
 
     return {};
 }
@@ -176,6 +177,9 @@ nonstd::expected<void, QString> Session::setFeedURL(Feed *feed, const QString &u
 
     m_feedsByURL[url] = m_feedsByURL.take(feed->url());
     feed->setURL(url);
+    store();
+    if (isProcessingEnabled())
+        feed->refresh();
 
     return {};
 }
