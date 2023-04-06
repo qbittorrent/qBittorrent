@@ -440,6 +440,12 @@ void Session::addItem(Item *item, Folder *destFolder)
         connect(feed, &Feed::stateChanged, this, &Session::feedStateChanged);
         connect(feed, &Feed::urlChanged, this, [this, feed](const QString &oldURL)
         {
+            if (feed->name() == oldURL)
+            {
+                // If feed still use an URL as a name trying to rename it to match new URL...
+                moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
+            }
+
             emit feedURLChanged(feed, oldURL);
         });
         m_feedsByUID[feed->uid()] = feed;
@@ -535,9 +541,11 @@ void Session::handleItemAboutToBeDestroyed(Item *item)
 void Session::handleFeedTitleChanged(Feed *feed)
 {
     if (feed->name() == feed->url())
+    {
         // Now we have something better than a URL.
         // Trying to rename feed...
         moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+    }
 }
 
 QUuid Session::generateUID() const
