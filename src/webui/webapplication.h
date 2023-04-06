@@ -148,6 +148,7 @@ private:
         {{u"auth"_qs, u"login"_qs}, Http::METHOD_POST},
         {{u"auth"_qs, u"logout"_qs}, Http::METHOD_POST},
         {{u"rss"_qs, u"addFeed"_qs}, Http::METHOD_POST},
+        {{u"rss"_qs, u"setFeedURL"_qs}, Http::METHOD_POST},
         {{u"rss"_qs, u"addFolder"_qs}, Http::METHOD_POST},
         {{u"rss"_qs, u"markAsRead"_qs}, Http::METHOD_POST},
         {{u"rss"_qs, u"moveItem"_qs}, Http::METHOD_POST},

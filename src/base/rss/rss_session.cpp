@@ -165,6 +165,15 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
     return {};
 }
 
+nonstd::expected<void, QString> Session::setFeedURL(const QString &path, const QString &url)
+{
+    auto *feed = qobject_cast<Feed *>(m_itemsByPath.value(path));
+    if (!feed)
+        return nonstd::make_unexpected(tr("Feed doesn't exist: %1.").arg(path));
+
+    return setFeedURL(feed, url);
+}
+
 nonstd::expected<void, QString> Session::setFeedURL(Feed *feed, const QString &url)
 {
     Q_ASSERT(feed);

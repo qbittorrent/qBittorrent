@@ -66,6 +66,17 @@ void RSSController::addFeedAction()
         throw APIError(APIErrorType::Conflict, result.error());
 }
 
+void RSSController::setFeedURLAction()
+{
+    requireParams({u"path"_qs, u"url"_qs});
+
+    const QString path = params()[u"path"_qs].trimmed();
+    const QString url = params()[u"url"_qs].trimmed();
+    const nonstd::expected<void, QString> result = RSS::Session::instance()->setFeedURL(path, url);
+    if (!result)
+        throw APIError(APIErrorType::Conflict, result.error());
+}
+
 void RSSController::removeItemAction()
 {
     requireParams({u"path"_qs});
