@@ -455,6 +455,13 @@ Path Feed::iconPath() const
     return m_iconPath;
 }
 
+void Feed::setURL(const QString &url)
+{
+    const QString oldURL = m_url;
+    m_url = url;
+    emit urlChanged(oldURL);
+}
+
 QJsonValue Feed::toJsonValue(const bool withData) const
 {
     QJsonObject jsonObj;

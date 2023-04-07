@@ -116,6 +116,8 @@ namespace RSS
 
         nonstd::expected<void, QString> addFolder(const QString &path);
         nonstd::expected<void, QString> addFeed(const QString &url, const QString &path);
+        nonstd::expected<void, QString> setFeedURL(const QString &path, const QString &url);
+        nonstd::expected<void, QString> setFeedURL(Feed *feed, const QString &url);
         nonstd::expected<void, QString> moveItem(const QString &itemPath, const QString &destPath);
         nonstd::expected<void, QString> moveItem(Item *item, const QString &destPath);
         nonstd::expected<void, QString> removeItem(const QString &itemPath);
@@ -138,6 +140,7 @@ namespace RSS
         void itemAboutToBeRemoved(Item *item);
         void feedIconLoaded(Feed *feed);
         void feedStateChanged(Feed *feed);
+        void feedURLChanged(Feed *feed, const QString &oldURL);
 
     private slots:
         void handleItemAboutToBeDestroyed(Item *item);

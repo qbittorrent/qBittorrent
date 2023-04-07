@@ -156,10 +156,39 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
         return result.get_unexpected();
 
     const auto destFolder = result.value();
-    addItem(new Feed(generateUID(), url, path, this), destFolder);
+    auto *feed = new Feed(generateUID(), url, path, this);
+    addItem(feed, destFolder);
     store();
     if (isProcessingEnabled())
-        feedByURL(url)->refresh();
+        feed->refresh();
+
+    return {};
+}
+
+nonstd::expected<void, QString> Session::setFeedURL(const QString &path, const QString &url)
+{
+    auto *feed = qobject_cast<Feed *>(m_itemsByPath.value(path));
+    if (!feed)
+        return nonstd::make_unexpected(tr("Feed doesn't exist: %1.").arg(path));
+
+    return setFeedURL(feed, url);
+}
+
+nonstd::expected<void, QString> Session::setFeedURL(Feed *feed, const QString &url)
+{
+    Q_ASSERT(feed);
+
+    if (url == feed->url())
+        return {};
+
+    if (m_feedsByURL.contains(url))
+        return nonstd::make_unexpected(tr("RSS feed with given URL already exists: %1.").arg(url));
+
+    m_feedsByURL[url] = m_feedsByURL.take(feed->url());
+    feed->setURL(url);
+    store();
+    if (isProcessingEnabled())
+        feed->refresh();
 
     return {};
 }
@@ -409,6 +438,16 @@ void Session::addItem(Item *item, Folder *destFolder)
         connect(feed, &Feed::titleChanged, this, &Session::handleFeedTitleChanged);
         connect(feed, &Feed::iconLoaded, this, &Session::feedIconLoaded);
         connect(feed, &Feed::stateChanged, this, &Session::feedStateChanged);
+        connect(feed, &Feed::urlChanged, this, [this, feed](const QString &oldURL)
+        {
+            if (feed->name() == oldURL)
+            {
+                // If feed still use an URL as a name trying to rename it to match new URL...
+                moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->url()));
+            }
+
+            emit feedURLChanged(feed, oldURL);
+        });
         m_feedsByUID[feed->uid()] = feed;
         m_feedsByURL[feed->url()] = feed;
     }
@@ -502,9 +541,11 @@ void Session::handleItemAboutToBeDestroyed(Item *item)
 void Session::handleFeedTitleChanged(Feed *feed)
 {
     if (feed->name() == feed->url())
+    {
         // Now we have something better than a URL.
         // Trying to rename feed...
         moveItem(feed, Item::joinPath(Item::parentPath(feed->path()), feed->title()));
+    }
 }
 
 QUuid Session::generateUID() const

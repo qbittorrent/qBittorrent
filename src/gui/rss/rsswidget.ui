@@ -197,6 +197,14 @@
     <string>New folder...</string>
    </property>
   </action>
+  <action name="actionEditFeedURL">
+   <property name="text">
+    <string>Edit feed URL...</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit feed URL</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

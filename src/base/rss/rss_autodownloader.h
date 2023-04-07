@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -113,6 +113,7 @@ namespace RSS
         void handleTorrentDownloadFinished(const QString &url);
         void handleTorrentDownloadFailed(const QString &url);
         void handleNewArticle(const Article *article);
+        void handleFeedURLChanged(Feed *feed, const QString &oldURL);
 
     private:
         void timerEvent(QTimerEvent *event) override;
