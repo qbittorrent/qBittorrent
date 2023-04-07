@@ -1,0 +1,297 @@
+/*
+ * Bittorrent Client using Qt and libtorrent.
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *
+ * In addition, as a special exception, the copyright holders give permission to
+ * link this program with the OpenSSL project's "OpenSSL" library (or with
+ * modified versions of it that use the same license as the "OpenSSL" library),
+ * and distribute the linked executables. You must obey the GNU General Public
+ * License in all respects for all of the code used other than "OpenSSL".  If you
+ * modify file(s), you may extend this exception to your version of the file(s),
+ * but you are not obligated to do so. If you do not wish to do so, delete this
+ * exception statement from your version.
+ */
+
+#include "addtorrentparamswidget.h"
+
+#include <QVariant>
+
+#include "base/bittorrent/session.h"
+#include "base/bittorrent/torrent.h"
+#include "base/utils/compare.h"
+#include "fspathedit.h"
+#include "torrenttagsdialog.h"
+#include "ui_addtorrentparamswidget.h"
+
+AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams, QWidget *parent)
+    : QWidget(parent)
+    , m_ui {new Ui::AddTorrentParamsWidget}
+    , m_addTorrentParams {std::move(addTorrentParams)}
+{
+    m_ui->setupUi(this);
+
+    m_ui->savePathEdit->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->savePathEdit->setDialogCaption(tr("Choose save path"));
+    m_ui->savePathEdit->setPlaceholder(Path(u"Default"_qs));
+
+    m_ui->downloadPathEdit->setMode(FileSystemPathEdit::Mode::DirectorySave);
+    m_ui->downloadPathEdit->setDialogCaption(tr("Choose save path"));
+
+    m_ui->useDownloadPathComboBox->addItem(tr("Default"));
+    m_ui->useDownloadPathComboBox->addItem(tr("Yes"), true);
+    m_ui->useDownloadPathComboBox->addItem(tr("No"), false);
+
+    m_ui->comboTTM->addItem(tr("Default"));
+    m_ui->comboTTM->addItem(tr("Manual"), false);
+    m_ui->comboTTM->addItem(tr("Automatic"), true);
+
+    m_ui->contentLayoutComboBox->addItem(tr("Default"));
+    m_ui->contentLayoutComboBox->addItem(tr("Original"), QVariant::fromValue(BitTorrent::TorrentContentLayout::Original));
+    m_ui->contentLayoutComboBox->addItem(tr("Create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::Subfolder));
+    m_ui->contentLayoutComboBox->addItem(tr("Don't create subfolder"), QVariant::fromValue(BitTorrent::TorrentContentLayout::NoSubfolder));
+
+    m_ui->stopConditionComboBox->addItem(tr("Default"));
+    m_ui->stopConditionComboBox->addItem(tr("None"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::None));
+    m_ui->stopConditionComboBox->addItem(tr("Metadata received"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::MetadataReceived));
+    m_ui->stopConditionComboBox->addItem(tr("Files checked"), QVariant::fromValue(BitTorrent::Torrent::StopCondition::FilesChecked));
+
+    m_ui->startTorrentComboBox->addItem(tr("Default"));
+    m_ui->startTorrentComboBox->addItem(tr("Yes"), true);
+    m_ui->startTorrentComboBox->addItem(tr("No"), false);
+
+    m_ui->skipCheckingComboBox->addItem(tr("Yes"), true);
+    m_ui->skipCheckingComboBox->addItem(tr("No"), false);
+
+    m_ui->addToQueueTopComboBox->addItem(tr("Default"));
+    m_ui->addToQueueTopComboBox->addItem(tr("Yes"), true);
+    m_ui->addToQueueTopComboBox->addItem(tr("No"), false);
+
+    connect(m_ui->tagsEditButton, &QAbstractButton::clicked, this, [this]
+    {
+        auto *dlg = new TorrentTagsDialog(m_addTorrentParams.tags, this);
+        dlg->setAttribute(Qt::WA_DeleteOnClose);
+        connect(dlg, &TorrentTagsDialog::accepted, this, [this, dlg]
+        {
+            m_addTorrentParams.tags = dlg->tags();
+            m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_qs));
+        });
+        dlg->open();
+    });
+
+    populate();
+}
+
+AddTorrentParamsWidget::~AddTorrentParamsWidget()
+{
+    delete m_ui;
+}
+
+void AddTorrentParamsWidget::setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams)
+{
+    m_addTorrentParams = std::move(addTorrentParams);
+    populate();
+}
+
+BitTorrent::AddTorrentParams AddTorrentParamsWidget::addTorrentParams() const
+{
+    return m_addTorrentParams;
+}
+
+void AddTorrentParamsWidget::populate()
+{
+    m_ui->comboTTM->disconnect(this);
+    m_ui->comboTTM->setCurrentIndex(m_addTorrentParams.useAutoTMM
+            ? m_ui->comboTTM->findData(*m_addTorrentParams.useAutoTMM) : 0);
+    connect(m_ui->comboTTM, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->comboTTM->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.useAutoTMM = std::nullopt;
+        else
+            m_addTorrentParams.useAutoTMM = data.toBool();
+
+        populateSavePathOptions();
+    });
+
+    m_ui->categoryComboBox->disconnect(this);
+    m_ui->categoryComboBox->clear();
+    QStringList categories = BitTorrent::Session::instance()->categories();
+    std::sort(categories.begin(), categories.end(), Utils::Compare::NaturalLessThan<Qt::CaseInsensitive>());
+    if (!m_addTorrentParams.category.isEmpty())
+        m_ui->categoryComboBox->addItem(m_addTorrentParams.category);
+    m_ui->categoryComboBox->addItem(u""_qs);
+    for (const QString &category : asConst(categories))
+    {
+        if (category != m_addTorrentParams.category)
+            m_ui->categoryComboBox->addItem(category);
+    }
+    connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        m_addTorrentParams.category = m_ui->categoryComboBox->currentText();
+        loadCategorySavePathOptions();
+    });
+
+    m_ui->savePathEdit->disconnect(this);
+    m_ui->downloadPathEdit->disconnect(this);
+    m_ui->useDownloadPathComboBox->disconnect(this);
+
+    populateSavePathOptions();
+
+    connect(m_ui->savePathEdit, &FileSystemPathLineEdit::selectedPathChanged, this, [this]
+    {
+        m_addTorrentParams.savePath = m_ui->savePathEdit->selectedPath();
+    });
+    connect(m_ui->downloadPathEdit, &FileSystemPathLineEdit::selectedPathChanged, this, [this]
+    {
+        m_addTorrentParams.downloadPath = m_ui->downloadPathEdit->selectedPath();
+    });
+    connect(m_ui->useDownloadPathComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->useDownloadPathComboBox->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.useDownloadPath = std::nullopt;
+        else
+            m_addTorrentParams.useDownloadPath = data.toBool();
+
+        populateDownloadPathEdit();
+    });
+
+    m_ui->contentLayoutComboBox->disconnect(this);
+    m_ui->contentLayoutComboBox->setCurrentIndex(m_addTorrentParams.contentLayout
+            ? m_ui->contentLayoutComboBox->findData(QVariant::fromValue(*m_addTorrentParams.contentLayout)) : 0);
+    connect(m_ui->contentLayoutComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->contentLayoutComboBox->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.contentLayout = std::nullopt;
+        else
+            m_addTorrentParams.contentLayout = data.value<BitTorrent::TorrentContentLayout>();
+    });
+
+    m_ui->stopConditionComboBox->disconnect(this);
+    m_ui->stopConditionComboBox->setCurrentIndex(m_addTorrentParams.stopCondition
+            ? m_ui->stopConditionComboBox->findData(QVariant::fromValue(*m_addTorrentParams.stopCondition)) : 0);
+    connect(m_ui->stopConditionComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->stopConditionComboBox->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.stopCondition = std::nullopt;
+        else
+            m_addTorrentParams.stopCondition = data.value<BitTorrent::Torrent::StopCondition>();
+    });
+
+    m_ui->tagsLineEdit->setText(m_addTorrentParams.tags.join(u", "_qs));
+
+    m_ui->startTorrentComboBox->disconnect(this);
+    m_ui->startTorrentComboBox->setCurrentIndex(m_addTorrentParams.addPaused
+            ? m_ui->startTorrentComboBox->findData(!*m_addTorrentParams.addPaused) : 0);
+    connect(m_ui->startTorrentComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->startTorrentComboBox->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.addPaused = std::nullopt;
+        else
+            m_addTorrentParams.addPaused = !data.toBool();
+    });
+
+    m_ui->skipCheckingComboBox->disconnect(this);
+    m_ui->skipCheckingComboBox->setCurrentIndex(m_ui->skipCheckingComboBox->findData(m_addTorrentParams.skipChecking));
+    connect(m_ui->skipCheckingComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->skipCheckingComboBox->currentData();
+        m_addTorrentParams.skipChecking = data.toBool();
+    });
+
+    m_ui->addToQueueTopComboBox->disconnect(this);
+    m_ui->addToQueueTopComboBox->setCurrentIndex(m_addTorrentParams.addToQueueTop
+            ? m_ui->addToQueueTopComboBox->findData(*m_addTorrentParams.addToQueueTop) : 0);
+    connect(m_ui->addToQueueTopComboBox, &QComboBox::currentIndexChanged, this, [this]
+    {
+        const QVariant data = m_ui->addToQueueTopComboBox->currentData();
+        if (!data.isValid())
+            m_addTorrentParams.addToQueueTop = std::nullopt;
+        else
+            m_addTorrentParams.addToQueueTop = data.toBool();
+    });
+}
+
+void AddTorrentParamsWidget::loadCustomSavePathOptions()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+
+    const Path defaultSavePath = btSession->savePath();
+    m_ui->savePathEdit->setSelectedPath(!m_addTorrentParams.savePath.isEmpty() ? m_addTorrentParams.savePath : defaultSavePath);
+
+    m_ui->useDownloadPathComboBox->setCurrentIndex(m_addTorrentParams.useDownloadPath
+            ? m_ui->useDownloadPathComboBox->findData(*m_addTorrentParams.useDownloadPath) : 0);
+
+    populateDownloadPathEdit();
+}
+
+void AddTorrentParamsWidget::loadCategorySavePathOptions()
+{
+    const auto *btSession = BitTorrent::Session::instance();
+
+    const Path savePath = btSession->categorySavePath(m_addTorrentParams.category);
+    m_ui->savePathEdit->setSelectedPath(savePath);
+
+    const Path downloadPath = btSession->categoryDownloadPath(m_addTorrentParams.category);
+    m_ui->downloadPathEdit->setSelectedPath(downloadPath);
+
+    m_ui->useDownloadPathComboBox->setCurrentIndex(m_ui->useDownloadPathComboBox->findData(!downloadPath.isEmpty()));
+}
+
+void AddTorrentParamsWidget::populateDownloadPathEdit()
+{
+    if (m_addTorrentParams.useDownloadPath.value_or(true))
+    {
+        m_ui->downloadPathEdit->setPlaceholder(Path(u"Default"_qs));
+        m_ui->downloadPathEdit->setSelectedPath(m_addTorrentParams.downloadPath);
+
+        m_ui->downloadPathEdit->blockSignals(false);
+        m_ui->downloadPathEdit->setEnabled(true);
+    }
+    else
+    {
+        m_ui->downloadPathEdit->setEnabled(false);
+        m_ui->downloadPathEdit->blockSignals(true);
+
+        m_ui->downloadPathEdit->setPlaceholder(Path());
+        m_ui->downloadPathEdit->setSelectedPath(Path());
+    }
+}
+
+void AddTorrentParamsWidget::populateSavePathOptions()
+{
+    if (m_addTorrentParams.useAutoTMM.value_or(false))
+    {
+        m_ui->groupBoxSavePath->setEnabled(false);
+        m_ui->savePathEdit->blockSignals(true);
+        m_ui->downloadPathEdit->blockSignals(true);
+        m_ui->useDownloadPathComboBox->blockSignals(true);
+
+        loadCategorySavePathOptions();
+    }
+    else
+    {
+        loadCustomSavePathOptions();
+
+        m_ui->groupBoxSavePath->setEnabled(true);
+        m_ui->savePathEdit->blockSignals(false);
+        m_ui->useDownloadPathComboBox->blockSignals(false);
+    }
+}
