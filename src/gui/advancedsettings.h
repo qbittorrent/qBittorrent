@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015
+ * Copyright (C) 2015 qBittorrent project
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -34,6 +34,7 @@
 #include <QSpinBox>
 #include <QTableWidget>
 
+#include "gui/desktopintegration.h"
 #include "guiapplicationcomponent.h"
 
 class AdvancedSettings final : public QTableWidget, public GUIApplicationComponent
@@ -51,11 +52,15 @@ signals:
     void settingsChanged();
 
 private slots:
+    void updateInterfaceAddressCombo();
+
 #ifndef QBT_USES_LIBTORRENT2
     void updateCacheSpinSuffix(int value);
 #endif
-    void updateSaveResumeDataIntervalSuffix(int value);
-    void updateInterfaceAddressCombo();
+
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+    void updateNotificationTimeoutSuffix(int value);
+#endif
 
 private:
     void loadAdvancedSettings();
@@ -93,7 +98,7 @@ private:
     QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
     QSpinBox m_spinBoxNotificationTimeout;
 #endif
 };
