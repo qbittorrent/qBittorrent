@@ -364,6 +364,10 @@ void AppController::preferencesAction()
     data[u"send_buffer_watermark_factor"_qs] = session->sendBufferWatermarkFactor();
     // Outgoing connections per second
     data[u"connection_speed"_qs] = session->connectionSpeed();
+    // Socket send buffer size
+    data[u"socket_send_buffer_size"_qs] = session->socketSendBufferSize();
+    // Socket receive buffer size
+    data[u"socket_receive_buffer_size"_qs] = session->socketReceiveBufferSize();
     // Socket listen backlog size
     data[u"socket_backlog_size"_qs] = session->socketBacklogSize();
     // Outgoing ports
@@ -911,6 +915,12 @@ void AppController::setPreferencesAction()
     // Outgoing connections per second
     if (hasKey(u"connection_speed"_qs))
         session->setConnectionSpeed(it.value().toInt());
+    // Socket send buffer size
+    if (hasKey(u"socket_send_buffer_size"_qs))
+        session->setSocketSendBufferSize(it.value().toInt());
+    // Socket receive buffer size
+    if (hasKey(u"socket_receive_buffer_size"_qs))
+        session->setSocketReceiveBufferSize(it.value().toInt());
     // Socket listen backlog size
     if (hasKey(u"socket_backlog_size"_qs))
         session->setSocketBacklogSize(it.value().toInt());

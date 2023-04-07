@@ -436,6 +436,8 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_sendBufferLowWatermark(BITTORRENT_SESSION_KEY(u"SendBufferLowWatermark"_qs), 10)
     , m_sendBufferWatermarkFactor(BITTORRENT_SESSION_KEY(u"SendBufferWatermarkFactor"_qs), 50)
     , m_connectionSpeed(BITTORRENT_SESSION_KEY(u"ConnectionSpeed"_qs), 30)
+    , m_socketSendBufferSize(BITTORRENT_SESSION_KEY(u"SocketSendBufferSize"_qs), 0)
+    , m_socketReceiveBufferSize(BITTORRENT_SESSION_KEY(u"SocketReceiveBufferSize"_qs), 0)
     , m_socketBacklogSize(BITTORRENT_SESSION_KEY(u"SocketBacklogSize"_qs), 30)
     , m_isAnonymousModeEnabled(BITTORRENT_SESSION_KEY(u"AnonymousModeEnabled"_qs), false)
     , m_isQueueingEnabled(BITTORRENT_SESSION_KEY(u"QueueingSystemEnabled"_qs), false)
@@ -1599,6 +1601,8 @@ lt::settings_pack SessionImpl::loadLTSettings() const
 
     // from libtorrent doc:
     // It will not take affect until the listen_interfaces settings is updated
+    settingsPack.set_int(lt::settings_pack::send_socket_buffer_size, socketSendBufferSize());
+    settingsPack.set_int(lt::settings_pack::recv_socket_buffer_size, socketReceiveBufferSize());
     settingsPack.set_int(lt::settings_pack::listen_queue_size, socketBacklogSize());
 
     applyNetworkInterfacesSettings(settingsPack);
@@ -4178,6 +4182,34 @@ void SessionImpl::setConnectionSpeed(const int value)
     if (value == m_connectionSpeed) return;
 
     m_connectionSpeed = value;
+    configureDeferred();
+}
+
+int SessionImpl::socketSendBufferSize() const
+{
+    return m_socketSendBufferSize;
+}
+
+void SessionImpl::setSocketSendBufferSize(const int value)
+{
+    if (value == m_socketSendBufferSize)
+        return;
+
+    m_socketSendBufferSize = value;
+    configureDeferred();
+}
+
+int SessionImpl::socketReceiveBufferSize() const
+{
+    return m_socketReceiveBufferSize;
+}
+
+void SessionImpl::setSocketReceiveBufferSize(const int value)
+{
+    if (value == m_socketReceiveBufferSize)
+        return;
+
+    m_socketReceiveBufferSize = value;
     configureDeferred();
 }
 

@@ -305,6 +305,10 @@ namespace BitTorrent
         void setSendBufferWatermarkFactor(int value) override;
         int connectionSpeed() const override;
         void setConnectionSpeed(int value) override;
+        int socketSendBufferSize() const override;
+        void setSocketSendBufferSize(int value) override;
+        int socketReceiveBufferSize() const override;
+        void setSocketReceiveBufferSize(int value) override;
         int socketBacklogSize() const override;
         void setSocketBacklogSize(int value) override;
         bool isAnonymousModeEnabled() const override;
@@ -601,6 +605,8 @@ namespace BitTorrent
         CachedSettingValue<int> m_sendBufferLowWatermark;
         CachedSettingValue<int> m_sendBufferWatermarkFactor;
         CachedSettingValue<int> m_connectionSpeed;
+        CachedSettingValue<int> m_socketSendBufferSize;
+        CachedSettingValue<int> m_socketReceiveBufferSize;
         CachedSettingValue<int> m_socketBacklogSize;
         CachedSettingValue<bool> m_isAnonymousModeEnabled;
         CachedSettingValue<bool> m_isQueueingEnabled;
