@@ -231,9 +231,9 @@ void AdvancedSettings::saveAdvancedSettings() const
     // Outgoing connections per second
     session->setConnectionSpeed(m_spinBoxConnectionSpeed.value());
     // Socket send buffer size
-    session->setSocketSendBufferSize(m_spinBoxSocketSendBufferSize.value());
+    session->setSocketSendBufferSize(m_spinBoxSocketSendBufferSize.value() * 1024);
     // Socket receive buffer size
-    session->setSocketReceiveBufferSize(m_spinBoxSocketReceiveBufferSize.value());
+    session->setSocketReceiveBufferSize(m_spinBoxSocketReceiveBufferSize.value() * 1024);
     // Socket listen backlog size
     session->setSocketBacklogSize(m_spinBoxSocketBacklogSize.value());
     // Save resume data interval
@@ -506,7 +506,7 @@ void AdvancedSettings::loadAdvancedSettings()
 #endif
     // Disk queue size
     m_spinBoxDiskQueueSize.setMinimum(1);
-    m_spinBoxDiskQueueSize.setMaximum(std::numeric_limits<int>::max());
+    m_spinBoxDiskQueueSize.setMaximum(std::numeric_limits<int>::max() / 1024);
     m_spinBoxDiskQueueSize.setValue(session->diskQueueSize() / 1024);
     m_spinBoxDiskQueueSize.setSuffix(tr(" KiB"));
     addRow(DISK_QUEUE_SIZE, (tr("Disk queue size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_queued_disk_bytes", u"(?)"))
@@ -575,17 +575,17 @@ void AdvancedSettings::loadAdvancedSettings()
             , &m_spinBoxConnectionSpeed);
     // Socket send buffer size
     m_spinBoxSocketSendBufferSize.setMinimum(0);
-    m_spinBoxSocketSendBufferSize.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSocketSendBufferSize.setValue(session->socketSendBufferSize());
-    m_spinBoxSocketSendBufferSize.setSuffix(tr(" Bytes"));
+    m_spinBoxSocketSendBufferSize.setMaximum(std::numeric_limits<int>::max() / 1024);
+    m_spinBoxSocketSendBufferSize.setValue(session->socketSendBufferSize() / 1024);
+    m_spinBoxSocketSendBufferSize.setSuffix(tr(" KiB"));
     m_spinBoxSocketSendBufferSize.setSpecialValueText(tr("System default"));
     addRow(SOCKET_SEND_BUFFER_SIZE, (tr("Socket send buffer size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#send_socket_buffer_size", u"(?)"))
             , &m_spinBoxSocketSendBufferSize);
     // Socket receive buffer size
     m_spinBoxSocketReceiveBufferSize.setMinimum(0);
-    m_spinBoxSocketReceiveBufferSize.setMaximum(std::numeric_limits<int>::max());
-    m_spinBoxSocketReceiveBufferSize.setValue(session->socketReceiveBufferSize());
-    m_spinBoxSocketReceiveBufferSize.setSuffix(tr(" Bytes"));
+    m_spinBoxSocketReceiveBufferSize.setMaximum(std::numeric_limits<int>::max() / 1024);
+    m_spinBoxSocketReceiveBufferSize.setValue(session->socketReceiveBufferSize() / 1024);
+    m_spinBoxSocketReceiveBufferSize.setSuffix(tr(" KiB"));
     m_spinBoxSocketReceiveBufferSize.setSpecialValueText(tr("System default"));
     addRow(SOCKET_RECEIVE_BUFFER_SIZE, (tr("Socket receive buffer size") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#recv_socket_buffer_size", u"(?)"))
             , &m_spinBoxSocketReceiveBufferSize);
