@@ -40,6 +40,7 @@
 #include "base/preferences.h"
 #include "base/unicodestrings.h"
 #include "gui/addnewtorrentdialog.h"
+#include "gui/desktopintegration.h"
 #include "gui/mainwindow.h"
 #include "interfaces/iguiapplication.h"
 
@@ -82,7 +83,7 @@ namespace
         RESOLVE_COUNTRIES,
         PROGRAM_NOTIFICATIONS,
         TORRENT_ADDED_NOTIFICATIONS,
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
         NOTIFICATION_TIMEOUT,
 #endif
         CONFIRM_REMOVE_ALL_TAGS,
@@ -282,7 +283,7 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setStopTrackerTimeout(m_spinBoxStopTrackerTimeout.value());
     // Program notification
     app()->desktopIntegration()->setNotificationsEnabled(m_checkBoxProgramNotifications.isChecked());
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     app()->desktopIntegration()->setNotificationTimeout(m_spinBoxNotificationTimeout.value());
 #endif
     app()->setTorrentAddedNotificationsEnabled(m_checkBoxTorrentAddedNotifications.isChecked());
@@ -332,7 +333,7 @@ void AdvancedSettings::updateCacheSpinSuffix(const int value)
 }
 #endif
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 void AdvancedSettings::updateNotificationTimeoutSuffix(const int value)
 {
     if (value == 0)
@@ -728,7 +729,7 @@ void AdvancedSettings::loadAdvancedSettings()
     // Torrent added notifications
     m_checkBoxTorrentAddedNotifications.setChecked(app()->isTorrentAddedNotificationsEnabled());
     addRow(TORRENT_ADDED_NOTIFICATIONS, tr("Display notifications for added torrents"), &m_checkBoxTorrentAddedNotifications);
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     // Notification timeout
     m_spinBoxNotificationTimeout.setMinimum(-1);
     m_spinBoxNotificationTimeout.setMaximum(std::numeric_limits<int>::max());

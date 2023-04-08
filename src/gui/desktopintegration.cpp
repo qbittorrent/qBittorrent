@@ -45,7 +45,7 @@
 #include "macutilities.h"
 #endif
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 #include "notifications/dbusnotifier.h"
 #endif
 
@@ -75,7 +75,7 @@ using namespace std::chrono_literals;
 DesktopIntegration::DesktopIntegration(QObject *parent)
     : QObject(parent)
     , m_storeNotificationEnabled {NOTIFICATIONS_SETTINGS_KEY(u"Enabled"_qs), true}
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_qs), -1}
 #endif
 {
@@ -86,7 +86,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     if (Preferences::instance()->systemTrayEnabled())
         createTrayIcon();
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     if (isNotificationsEnabled())
     {
         m_notifier = new DBusNotifier(this);
@@ -187,7 +187,7 @@ void DesktopIntegration::setNotificationsEnabled(const bool value)
 
     m_storeNotificationEnabled = value;
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     if (value)
     {
         m_notifier = new DBusNotifier(this);
@@ -203,14 +203,14 @@ void DesktopIntegration::setNotificationsEnabled(const bool value)
 
 int DesktopIntegration::notificationTimeout() const
 {
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     return m_storeNotificationTimeOut;
 #else
     return 5000;
 #endif
 }
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 void DesktopIntegration::setNotificationTimeout(const int value)
 {
     m_storeNotificationTimeOut = value;
@@ -225,7 +225,7 @@ void DesktopIntegration::showNotification(const QString &title, const QString &m
 #ifdef Q_OS_MACOS
     MacUtils::displayNotification(title, msg);
 #else
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     m_notifier->showMessage(title, msg, notificationTimeout());
 #else
     if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
@@ -276,7 +276,7 @@ void DesktopIntegration::createTrayIcon()
         if (reason == QSystemTrayIcon::Trigger)
             emit activationRequested();
     });
-#ifndef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifndef QBT_USES_DBUS
     connect(m_systrayIcon, &QSystemTrayIcon::messageClicked, this, &DesktopIntegration::notificationClicked);
 #endif
 

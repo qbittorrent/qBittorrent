@@ -165,7 +165,7 @@ AS_CASE(["x$enable_qt_dbus"],
                FIND_QTDBUS()
                AS_IF([test "x$HAVE_QTDBUS" = "xfalse"],
                      [AC_MSG_ERROR([Could not find QtDBus])],
-                     [QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"]
+                     [QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_DBUS"]
                     )],
         ["xno"],
               [AC_MSG_RESULT([no])

@@ -359,7 +359,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     autoShutdownGroup->addAction(m_ui->actionAutoShutdown);
     autoShutdownGroup->addAction(m_ui->actionAutoSuspend);
     autoShutdownGroup->addAction(m_ui->actionAutoHibernate);
-#if (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS)) || defined(QT_DBUS_LIB)
+#if (!defined(Q_OS_UNIX) || defined(Q_OS_MACOS)) || defined(QBT_USES_DBUS)
     m_ui->actionAutoShutdown->setChecked(pref->shutdownWhenDownloadsComplete());
     m_ui->actionAutoSuspend->setChecked(pref->suspendWhenDownloadsComplete());
     m_ui->actionAutoHibernate->setChecked(pref->hibernateWhenDownloadsComplete());
