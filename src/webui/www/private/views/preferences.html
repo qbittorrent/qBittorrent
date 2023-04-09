@@ -1189,7 +1189,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="socketSendBufferSize">QBT_TR(Socket send buffer size [0: system default]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#send_socket_buffer_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="text" id="socketSendBufferSize" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(Bytes)QBT_TR[CONTEXT=OptionsDialog]
+                    <input type="text" id="socketSendBufferSize" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
             <tr>
@@ -1197,7 +1197,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                     <label for="socketReceiveBufferSize">QBT_TR(Socket receive buffer size [0: system default]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#recv_socket_buffer_size" target="_blank">(?)</a></label>
                 </td>
                 <td>
-                    <input type="text" id="socketReceiveBufferSize" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(Bytes)QBT_TR[CONTEXT=OptionsDialog]
+                    <input type="text" id="socketReceiveBufferSize" style="width: 15em;" />&nbsp;&nbsp;QBT_TR(KiB)QBT_TR[CONTEXT=OptionsDialog]
                 </td>
             </tr>
             <tr>
@@ -1210,7 +1210,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="outgoingPortsMin">QBT_TR(Outgoing ports (Min) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
+                    <label for="outgoingPortsMin">QBT_TR(Outgoing ports (Min) [0: disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="outgoingPortsMin" style="width: 15em;" />
@@ -1218,7 +1218,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="outgoingPortsMax">QBT_TR(Outgoing ports (Max) [0: Disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
+                    <label for="outgoingPortsMax">QBT_TR(Outgoing ports (Max) [0: disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#outgoing_port" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="outgoingPortsMax" style="width: 15em;" />
@@ -1226,7 +1226,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="UPnPLeaseDuration">QBT_TR(UPnP lease duration [0: Permanent lease]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration" target="_blank">(?)</a></label>
+                    <label for="UPnPLeaseDuration">QBT_TR(UPnP lease duration [0: permanent lease]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#upnp_lease_duration" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="UPnPLeaseDuration" style="width: 15em;" />
@@ -1348,7 +1348,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             </tr>
             <tr>
                 <td>
-                    <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
+                    <label for="stopTrackerTimeout">QBT_TR(Stop tracker timeout [0: disabled]:)QBT_TR[CONTEXT=OptionsDialog]&nbsp;<a href="https://www.libtorrent.org/reference-Settings.html#stop_tracker_timeout" target="_blank">(?)</a></label>
                 </td>
                 <td>
                     <input type="text" id="stopTrackerTimeout" style="width: 15em;" />
@@ -2161,8 +2161,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
                         $('sendBufferLowWatermark').setProperty('value', pref.send_buffer_low_watermark);
                         $('sendBufferWatermarkFactor').setProperty('value', pref.send_buffer_watermark_factor);
                         $('connectionSpeed').setProperty('value', pref.connection_speed);
-                        $('socketSendBufferSize').setProperty('value', pref.socket_send_buffer_size);
-                        $('socketReceiveBufferSize').setProperty('value', pref.socket_receive_buffer_size);
+                        $('socketSendBufferSize').setProperty('value', (pref.socket_send_buffer_size / 1024));
+                        $('socketReceiveBufferSize').setProperty('value', (pref.socket_receive_buffer_size / 1024));
                         $('socketBacklogSize').setProperty('value', pref.socket_backlog_size);
                         $('outgoingPortsMin').setProperty('value', pref.outgoing_ports_min);
                         $('outgoingPortsMax').setProperty('value', pref.outgoing_ports_max);
@@ -2578,8 +2578,8 @@ Use ';' to split multiple entries. Can use wildcard '*'.)QBT_TR[CONTEXT=OptionsD
             settings.set('send_buffer_low_watermark', $('sendBufferLowWatermark').getProperty('value'));
             settings.set('send_buffer_watermark_factor', $('sendBufferWatermarkFactor').getProperty('value'));
             settings.set('connection_speed', $('connectionSpeed').getProperty('value'));
-            settings.set('socket_send_buffer_size', $('socketSendBufferSize').getProperty('value'));
-            settings.set('socket_receive_buffer_size', $('socketReceiveBufferSize').getProperty('value'));
+            settings.set('socket_send_buffer_size', ($('socketSendBufferSize').getProperty('value') * 1024));
+            settings.set('socket_receive_buffer_size', ($('socketReceiveBufferSize').getProperty('value') * 1024));
             settings.set('socket_backlog_size', $('socketBacklogSize').getProperty('value'));
             settings.set('outgoing_ports_min', $('outgoingPortsMin').getProperty('value'));
             settings.set('outgoing_ports_max', $('outgoingPortsMax').getProperty('value'));
