@@ -61,7 +61,7 @@
 #include <QSysInfo>
 #include <QVector>
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
+#ifdef QBT_USES_DBUS
 #include <QDBusInterface>
 #endif
 
@@ -188,7 +188,7 @@ void Utils::Misc::shutdownComputer(const ShutdownDialogAction &action)
 
     AEDisposeDesc(&eventReply);
 
-#elif (defined(Q_OS_UNIX) && defined(QT_DBUS_LIB))
+#elif defined(QBT_USES_DBUS)
     // Use dbus to power off / suspend the system
     if (action != ShutdownDialogAction::Shutdown)
     {

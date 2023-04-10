@@ -5649,7 +5649,7 @@ fi
 then :
   as_fn_error $? "Could not find QtDBus" "$LINENO" 5
 else $as_nop
-  QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus"
+  QBT_ADD_CONFIG="$QBT_ADD_CONFIG dbus" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_DBUS"
 
 fi ;; #(
   "xno") :

@@ -37,8 +37,7 @@ class QMenu;
 #ifndef Q_OS_MACOS
 class QSystemTrayIcon;
 #endif
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && defined(QT_DBUS_LIB)
-#define QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
 class DBusNotifier;
 #endif
 
@@ -63,7 +62,7 @@ public:
     void setNotificationsEnabled(bool value);
 
     int notificationTimeout() const;
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     void setNotificationTimeout(const int value);
 #endif
 
@@ -88,7 +87,7 @@ private:
 #ifndef Q_OS_MACOS
     QSystemTrayIcon *m_systrayIcon = nullptr;
 #endif
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     CachedSettingValue<int> m_storeNotificationTimeOut;
     DBusNotifier *m_notifier = nullptr;
 #endif

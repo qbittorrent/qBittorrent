@@ -34,7 +34,6 @@
 #include <QSpinBox>
 #include <QTableWidget>
 
-#include "gui/desktopintegration.h"
 #include "guiapplicationcomponent.h"
 
 class AdvancedSettings final : public QTableWidget, public GUIApplicationComponent
@@ -58,7 +57,7 @@ private slots:
     void updateCacheSpinSuffix(int value);
 #endif
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     void updateNotificationTimeoutSuffix(int value);
 #endif
 
@@ -98,7 +97,7 @@ private:
     QCheckBox m_checkBoxIconsInMenusEnabled;
 #endif
 
-#ifdef QBT_USES_CUSTOMDBUSNOTIFICATIONS
+#ifdef QBT_USES_DBUS
     QSpinBox m_spinBoxNotificationTimeout;
 #endif
 };

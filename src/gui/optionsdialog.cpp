@@ -369,7 +369,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkProgramUpdates, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
 #endif
 
-#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QT_DBUS_LIB)
+#if (defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)) && !defined(QBT_USES_DBUS)
     m_ui->checkPreventFromSuspendWhenDownloading->setDisabled(true);
     m_ui->checkPreventFromSuspendWhenSeeding->setDisabled(true);
 #endif
