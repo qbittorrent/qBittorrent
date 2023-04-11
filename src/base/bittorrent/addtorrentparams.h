@@ -70,6 +70,8 @@ namespace BitTorrent
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
     };
 
+    bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs);
+
     AddTorrentParams parseAddTorrentParams(const QJsonObject &jsonObj);
     QJsonObject serializeAddTorrentParams(const AddTorrentParams &params);
 }

@@ -43,7 +43,7 @@ class AddTorrentParamsWidget final : public QWidget
     Q_DISABLE_COPY_MOVE(AddTorrentParamsWidget)
 
 public:
-    explicit AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams, QWidget *parent = nullptr);
+    explicit AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams = {}, QWidget *parent = nullptr);
     ~AddTorrentParamsWidget() override;
 
     void setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams);

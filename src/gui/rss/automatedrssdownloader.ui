@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>818</width>
-    <height>571</height>
+    <height>588</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>RSS Downloader</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_4">
    <item>
     <widget class="QLabel" name="labelWarn">
      <property name="font">
@@ -33,7 +33,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QSplitter" name="hsplitter">
+    <widget class="QSplitter" name="mainSplitter">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
        <horstretch>0</horstretch>
@@ -43,15 +43,14 @@
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="QWidget" name="layoutWidget">
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+     <widget class="QWidget" name="ruleListLayoutWidget">
+      <layout class="QVBoxLayout" name="ruleListLayout">
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <layout class="QHBoxLayout" name="ruleListHeaderLayout">
          <item>
-          <widget class="QLabel" name="label">
+          <widget class="QLabel" name="ruleListLabel">
            <property name="font">
             <font>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -99,7 +98,7 @@
         </layout>
        </item>
        <item>
-        <widget class="QListWidget" name="listRules">
+        <widget class="QListWidget" name="ruleList">
          <property name="contextMenuPolicy">
           <enum>Qt::CustomContextMenu</enum>
          </property>
@@ -107,313 +106,240 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget1">
-      <layout class="QVBoxLayout" name="verticalLayout_4">
-       <item>
-        <widget class="QGroupBox" name="ruleDefBox">
-         <property name="title">
-          <string>Rule Definition</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
-           <widget class="QCheckBox" name="checkRegex">
-            <property name="text">
-             <string>Use Regular Expressions</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QGridLayout" name="gridLayout">
-            <item row="0" column="0">
-             <widget class="QLabel" name="label_4">
-              <property name="text">
-               <string>Must Contain:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QLabel" name="label_5">
-              <property name="text">
-               <string>Must Not Contain:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="0">
-             <widget class="QLabel" name="lblEFilter">
-              <property name="text">
-               <string>Episode Filter:</string>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="lblEFilterStat">
-              <property name="maximumSize">
-               <size>
-                <width>18</width>
-                <height>18</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="2">
-             <widget class="QLabel" name="labelMustNotStat">
-              <property name="maximumSize">
-               <size>
-                <width>18</width>
-                <height>18</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="1">
-             <widget class="QLineEdit" name="lineContains"/>
-            </item>
-            <item row="0" column="2">
-             <widget class="QLabel" name="labelMustStat">
-              <property name="maximumSize">
-               <size>
-                <width>18</width>
-                <height>18</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="2" column="2">
-             <widget class="QLabel" name="labelEpFilterStat">
-              <property name="maximumSize">
-               <size>
-                <width>18</width>
-                <height>18</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="1">
-             <widget class="QLineEdit" name="lineNotContains"/>
-            </item>
-            <item row="2" column="1">
-             <widget class="QLineEdit" name="lineEFilter"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkSmart">
-            <property name="toolTip">
-             <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
-Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
-            </property>
-            <property name="text">
-             <string>Use Smart Episode Filter</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_3">
-            <item>
-             <widget class="QLabel" name="label_7">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Category:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboCategory">
-              <property name="editable">
-               <bool>false</bool>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QToolButton" name="addCategoryBtn"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QCheckBox" name="checkBoxSaveDiffDir">
-            <property name="text">
-             <string>Save to a Different Directory</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label_6">
-              <property name="enabled">
-               <bool>false</bool>
-              </property>
-              <property name="text">
-               <string>Save to:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="FileSystemPathLineEdit" name="lineSavePath" native="true"/>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_8">
-            <item>
-             <widget class="QLabel" name="lblIgnoreDays">
-              <property name="text">
-               <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QSpinBox" name="spinIgnorePeriod">
-              <property name="enabled">
-               <bool>true</bool>
-              </property>
-              <property name="specialValueText">
-               <string>Disabled</string>
-              </property>
-              <property name="suffix">
-               <string> days</string>
-              </property>
-              <property name="minimum">
-               <number>0</number>
-              </property>
-              <property name="maximum">
-               <number>365</number>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QLabel" name="lblLastMatch">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_9">
-            <item>
-             <widget class="QLabel" name="lblAddPaused">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Add Paused:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboAddPaused">
-              <item>
-               <property name="text">
-                <string>Use global settings</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Always</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Never</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_10">
-            <item>
-             <widget class="QLabel" name="lblContentLayout">
-              <property name="sizePolicy">
-               <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-                <horstretch>0</horstretch>
-                <verstretch>0</verstretch>
-               </sizepolicy>
-              </property>
-              <property name="text">
-               <string>Torrent content layout:</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QComboBox" name="comboContentLayout">
-              <item>
-               <property name="text">
-                <string>Use global settings</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Original</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Create subfolder</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Don't create subfolder</string>
-               </property>
-              </item>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
+     <widget class="QSplitter" name="ruleDefSplitter">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QScrollArea" name="ruleScrollArea">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOn</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="widgetResizable">
+        <bool>true</bool>
+       </property>
+       <widget class="QWidget" name="scrollAreaWidgetContents">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>329</width>
+          <height>243</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0,0,0,1">
          <item>
-          <widget class="QLabel" name="lblListFeeds">
-           <property name="font">
-            <font>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
+          <widget class="QCheckBox" name="checkRegex">
            <property name="text">
-            <string>Apply Rule to Feeds:</string>
+            <string>Use Regular Expressions</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QListWidget" name="listFeeds"/>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="labelMustContain">
+             <property name="text">
+              <string>Must Contain:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="labelMustNotContain">
+             <property name="text">
+              <string>Must Not Contain:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="lblEFilter">
+             <property name="text">
+              <string>Episode Filter:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="lblEFilterStat">
+             <property name="maximumSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="labelMustNotStat">
+             <property name="maximumSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineContains"/>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="labelMustStat">
+             <property name="maximumSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QLabel" name="labelEpFilterStat">
+             <property name="maximumSize">
+              <size>
+               <width>18</width>
+               <height>18</height>
+              </size>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineNotContains"/>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEFilter"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkSmart">
+           <property name="toolTip">
+            <string>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
+Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</string>
+           </property>
+           <property name="text">
+            <string>Use Smart Episode Filter</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="ignorePeriodLayout">
+           <item>
+            <widget class="QLabel" name="lblIgnoreDays">
+             <property name="text">
+              <string extracomment="... X days">Ignore Subsequent Matches for (0 to Disable)</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinIgnorePeriod">
+             <property name="enabled">
+              <bool>true</bool>
+             </property>
+             <property name="specialValueText">
+              <string>Disabled</string>
+             </property>
+             <property name="suffix">
+              <string> days</string>
+             </property>
+             <property name="minimum">
+              <number>0</number>
+             </property>
+             <property name="maximum">
+              <number>365</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="lblLastMatch">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="torrentParametersGroupBox">
+           <property name="title">
+            <string>Torrent parameters</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>0</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
-       </item>
-      </layout>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="lblListFeeds">
+          <property name="font">
+           <font>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Apply Rule to Feeds:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listFeeds"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
-     <widget class="QWidget" name="layoutWidget2">
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+     <widget class="QWidget" name="matchingArticlesLayoutWidget">
+      <layout class="QVBoxLayout" name="matchingArticlesLayout">
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="matchingArticlesLabel">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -423,7 +349,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
         </widget>
        </item>
        <item>
-        <widget class="QTreeWidget" name="treeMatchingArticles">
+        <widget class="QTreeWidget" name="matchingArticlesTree">
          <attribute name="headerVisible">
           <bool>false</bool>
          </attribute>
@@ -439,7 +365,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="buttonsLayout">
      <item>
       <widget class="QPushButton" name="importBtn">
        <property name="enabled">
@@ -474,31 +400,17 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>FileSystemPathLineEdit</class>
-   <extends>QWidget</extends>
-   <header>gui/fspathedit.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>renameRuleBtn</tabstop>
   <tabstop>removeRuleBtn</tabstop>
   <tabstop>addRuleBtn</tabstop>
-  <tabstop>listRules</tabstop>
-  <tabstop>checkRegex</tabstop>
-  <tabstop>checkSmart</tabstop>
+  <tabstop>ruleList</tabstop>
   <tabstop>lineContains</tabstop>
   <tabstop>lineNotContains</tabstop>
   <tabstop>lineEFilter</tabstop>
-  <tabstop>comboCategory</tabstop>
-  <tabstop>checkBoxSaveDiffDir</tabstop>
-  <tabstop>lineSavePath</tabstop>
   <tabstop>spinIgnorePeriod</tabstop>
-  <tabstop>comboAddPaused</tabstop>
-  <tabstop>comboContentLayout</tabstop>
   <tabstop>listFeeds</tabstop>
-  <tabstop>treeMatchingArticles</tabstop>
+  <tabstop>matchingArticlesTree</tabstop>
   <tabstop>importBtn</tabstop>
   <tabstop>exportBtn</tabstop>
  </tabstops>
@@ -533,38 +445,6 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxSaveDiffDir</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_6</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>304</x>
-     <y>171</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>377</x>
-     <y>205</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBoxSaveDiffDir</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>lineSavePath</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>474</x>
-     <y>174</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>476</x>
-     <y>204</y>
     </hint>
    </hints>
   </connection>

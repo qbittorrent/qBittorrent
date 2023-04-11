@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -35,7 +35,7 @@
 #include <QVariant>
 
 #include "base/global.h"
-#include "base/bittorrent/torrentcontentlayout.h"
+#include "base/bittorrent/addtorrentparams.h"
 #include "base/pathfwd.h"
 
 class QDateTime;
@@ -81,14 +81,8 @@ namespace RSS
         QStringList previouslyMatchedEpisodes() const;
         void setPreviouslyMatchedEpisodes(const QStringList &previouslyMatchedEpisodes);
 
-        Path savePath() const;
-        void setSavePath(const Path &savePath);
-        std::optional<bool> addPaused() const;
-        void setAddPaused(std::optional<bool> addPaused);
-        std::optional<BitTorrent::TorrentContentLayout> torrentContentLayout() const;
-        void setTorrentContentLayout(std::optional<BitTorrent::TorrentContentLayout> contentLayout);
-        QString assignedCategory() const;
-        void setCategory(const QString &category);
+        BitTorrent::AddTorrentParams addTorrentParams() const;
+        void setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams);
 
         bool matches(const QVariantHash &articleData) const;
         bool accepts(const QVariantHash &articleData);

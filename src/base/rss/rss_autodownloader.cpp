@@ -430,15 +430,8 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
         m_dirty = true;
         storeDeferred();
 
-        BitTorrent::AddTorrentParams params;
-        params.savePath = rule.savePath();
-        params.category = rule.assignedCategory();
-        params.addPaused = rule.addPaused();
-        params.contentLayout = rule.torrentContentLayout();
-        if (!rule.savePath().isEmpty())
-            params.useAutoTMM = false;
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
-        BitTorrent::Session::instance()->addTorrent(torrentURL, params);
+        BitTorrent::Session::instance()->addTorrent(torrentURL, rule.addTorrentParams());
 
         if (BitTorrent::MagnetUri(torrentURL).isValid())
         {
