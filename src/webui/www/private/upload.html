@@ -8,15 +8,6 @@
     <link rel="stylesheet" href="css/Window.css?v=${CACHEID}" type="text/css" />
     <script src="scripts/lib/MooTools-Core-1.6.0-compat-compressed.js"></script>
     <script src="scripts/download.js?v=${CACHEID}"></script>
-    <script>
-        'use strict';
-
-        window.addEvent('domready', function() {
-            if (Browser.platform == 'ios') {
-                $('fileselect').accept = "";
-            }
-        });
-    </script>
 </head>
 
 <body>
@@ -175,6 +166,10 @@
             if (submitted)
                 window.parent.closeWindows();
         });
+
+        if (Browser.platform == 'ios') {
+            $('fileselect').accept = ".torrent";
+        }
     </script>
     <div id="upload_spinner" class="mochaSpinner"></div>
 </body>
