@@ -33,6 +33,7 @@
 #include "base/bittorrent/session.h"
 #include "base/bittorrent/torrent.h"
 #include "base/utils/compare.h"
+#include "flowlayout.h"
 #include "fspathedit.h"
 #include "torrenttagsdialog.h"
 #include "ui_addtorrentparamswidget.h"
@@ -91,6 +92,14 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
         });
         dlg->open();
     });
+
+    auto *miscParamsLayout = new FlowLayout(m_ui->miscParamsWidget);
+    miscParamsLayout->setContentsMargins(0, 0, 0, 0);
+    miscParamsLayout->addWidget(m_ui->contentLayoutWidget);
+    miscParamsLayout->addWidget(m_ui->skipCheckingWidget);
+    miscParamsLayout->addWidget(m_ui->startTorrentWidget);
+    miscParamsLayout->addWidget(m_ui->stopConditionWidget);
+    miscParamsLayout->addWidget(m_ui->addToQueueTopWidget);
 
     populate();
 }
