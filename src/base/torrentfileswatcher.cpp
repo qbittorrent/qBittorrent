@@ -36,10 +36,8 @@
 #include <QDirIterator>
 #include <QFile>
 #include <QFileSystemWatcher>
-#include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-#include <QJsonValue>
 #include <QSet>
 #include <QThread>
 #include <QTimer>
@@ -70,124 +68,12 @@ const QString CONF_FILE_NAME = u"watched_folders.json"_qs;
 const QString OPTION_ADDTORRENTPARAMS = u"add_torrent_params"_qs;
 const QString OPTION_RECURSIVE = u"recursive"_qs;
 
-const QString PARAM_CATEGORY = u"category"_qs;
-const QString PARAM_TAGS = u"tags"_qs;
-const QString PARAM_SAVEPATH = u"save_path"_qs;
-const QString PARAM_USEDOWNLOADPATH = u"use_download_path"_qs;
-const QString PARAM_DOWNLOADPATH = u"download_path"_qs;
-const QString PARAM_OPERATINGMODE = u"operating_mode"_qs;
-const QString PARAM_QUEUETOP = u"add_to_top_of_queue"_qs;
-const QString PARAM_STOPPED = u"stopped"_qs;
-const QString PARAM_SKIPCHECKING = u"skip_checking"_qs;
-const QString PARAM_CONTENTLAYOUT = u"content_layout"_qs;
-const QString PARAM_AUTOTMM = u"use_auto_tmm"_qs;
-const QString PARAM_UPLOADLIMIT = u"upload_limit"_qs;
-const QString PARAM_DOWNLOADLIMIT = u"download_limit"_qs;
-const QString PARAM_SEEDINGTIMELIMIT = u"seeding_time_limit"_qs;
-const QString PARAM_RATIOLIMIT = u"ratio_limit"_qs;
-
 namespace
 {
-    TagSet parseTagSet(const QJsonArray &jsonArr)
-    {
-        TagSet tags;
-        for (const QJsonValue &jsonVal : jsonArr)
-            tags.insert(jsonVal.toString());
-
-        return tags;
-    }
-
-    QJsonArray serializeTagSet(const TagSet &tags)
-    {
-        QJsonArray arr;
-        for (const QString &tag : tags)
-            arr.append(tag);
-
-        return arr;
-    }
-
-    std::optional<bool> getOptionalBool(const QJsonObject &jsonObj, const QString &key)
-    {
-        const QJsonValue jsonVal = jsonObj.value(key);
-        if (jsonVal.isUndefined() || jsonVal.isNull())
-            return std::nullopt;
-
-        return jsonVal.toBool();
-    }
-
-    template <typename Enum>
-    std::optional<Enum> getOptionalEnum(const QJsonObject &jsonObj, const QString &key)
-    {
-        const QJsonValue jsonVal = jsonObj.value(key);
-        if (jsonVal.isUndefined() || jsonVal.isNull())
-            return std::nullopt;
-
-        return Utils::String::toEnum<Enum>(jsonVal.toString(), {});
-    }
-
-    template <typename Enum>
-    Enum getEnum(const QJsonObject &jsonObj, const QString &key)
-    {
-        const QJsonValue jsonVal = jsonObj.value(key);
-        return Utils::String::toEnum<Enum>(jsonVal.toString(), {});
-    }
-
-    BitTorrent::AddTorrentParams parseAddTorrentParams(const QJsonObject &jsonObj)
-    {
-        BitTorrent::AddTorrentParams params;
-        params.category = jsonObj.value(PARAM_CATEGORY).toString();
-        params.tags = parseTagSet(jsonObj.value(PARAM_TAGS).toArray());
-        params.savePath = Path(jsonObj.value(PARAM_SAVEPATH).toString());
-        params.useDownloadPath = getOptionalBool(jsonObj, PARAM_USEDOWNLOADPATH);
-        params.downloadPath = Path(jsonObj.value(PARAM_DOWNLOADPATH).toString());
-        params.addForced = (getEnum<BitTorrent::TorrentOperatingMode>(jsonObj, PARAM_OPERATINGMODE) == BitTorrent::TorrentOperatingMode::Forced);
-        params.addToQueueTop = getOptionalBool(jsonObj, PARAM_QUEUETOP);
-        params.addPaused = getOptionalBool(jsonObj, PARAM_STOPPED);
-        params.skipChecking = jsonObj.value(PARAM_SKIPCHECKING).toBool();
-        params.contentLayout = getOptionalEnum<BitTorrent::TorrentContentLayout>(jsonObj, PARAM_CONTENTLAYOUT);
-        params.useAutoTMM = getOptionalBool(jsonObj, PARAM_AUTOTMM);
-        params.uploadLimit = jsonObj.value(PARAM_UPLOADLIMIT).toInt(-1);
-        params.downloadLimit = jsonObj.value(PARAM_DOWNLOADLIMIT).toInt(-1);
-        params.seedingTimeLimit = jsonObj.value(PARAM_SEEDINGTIMELIMIT).toInt(BitTorrent::Torrent::USE_GLOBAL_SEEDING_TIME);
-        params.ratioLimit = jsonObj.value(PARAM_RATIOLIMIT).toDouble(BitTorrent::Torrent::USE_GLOBAL_RATIO);
-
-        return params;
-    }
-
-    QJsonObject serializeAddTorrentParams(const BitTorrent::AddTorrentParams &params)
-    {
-        QJsonObject jsonObj {
-            {PARAM_CATEGORY, params.category},
-            {PARAM_TAGS, serializeTagSet(params.tags)},
-            {PARAM_SAVEPATH, params.savePath.data()},
-            {PARAM_DOWNLOADPATH, params.downloadPath.data()},
-            {PARAM_OPERATINGMODE, Utils::String::fromEnum(params.addForced
-                ? BitTorrent::TorrentOperatingMode::Forced : BitTorrent::TorrentOperatingMode::AutoManaged)},
-            {PARAM_SKIPCHECKING, params.skipChecking},
-            {PARAM_UPLOADLIMIT, params.uploadLimit},
-            {PARAM_DOWNLOADLIMIT, params.downloadLimit},
-            {PARAM_SEEDINGTIMELIMIT, params.seedingTimeLimit},
-            {PARAM_RATIOLIMIT, params.ratioLimit}
-        };
-
-        if (params.addToQueueTop)
-            jsonObj[PARAM_QUEUETOP] = *params.addToQueueTop;
-        if (params.addPaused)
-            jsonObj[PARAM_STOPPED] = *params.addPaused;
-        if (params.contentLayout)
-            jsonObj[PARAM_CONTENTLAYOUT] = Utils::String::fromEnum(*params.contentLayout);
-        if (params.useAutoTMM)
-            jsonObj[PARAM_AUTOTMM] = *params.useAutoTMM;
-        if (params.useDownloadPath)
-            jsonObj[PARAM_USEDOWNLOADPATH] = *params.useDownloadPath;
-
-        return jsonObj;
-    }
-
     TorrentFilesWatcher::WatchedFolderOptions parseWatchedFolderOptions(const QJsonObject &jsonObj)
     {
         TorrentFilesWatcher::WatchedFolderOptions options;
-        options.addTorrentParams = parseAddTorrentParams(jsonObj.value(OPTION_ADDTORRENTPARAMS).toObject());
+        options.addTorrentParams = BitTorrent::parseAddTorrentParams(jsonObj.value(OPTION_ADDTORRENTPARAMS).toObject());
         options.recursive = jsonObj.value(OPTION_RECURSIVE).toBool();
 
         return options;
@@ -195,10 +81,8 @@ namespace
 
     QJsonObject serializeWatchedFolderOptions(const TorrentFilesWatcher::WatchedFolderOptions &options)
     {
-        return {
-            {OPTION_ADDTORRENTPARAMS, serializeAddTorrentParams(options.addTorrentParams)},
-            {OPTION_RECURSIVE, options.recursive}
-        };
+        return {{OPTION_ADDTORRENTPARAMS, BitTorrent::serializeAddTorrentParams(options.addTorrentParams)},
+                {OPTION_RECURSIVE, options.recursive}};
     }
 }
 
