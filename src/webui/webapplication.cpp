@@ -683,7 +683,7 @@ void WebApplication::sessionStart()
     QByteArray cookieRawForm = cookie.toRawForm();
     if (m_isCSRFProtectionEnabled)
         cookieRawForm.append("; SameSite=Strict");
-    else
+    else if (cookie.isSecure())
         cookieRawForm.append("; SameSite=None");
     setHeader({Http::HEADER_SET_COOKIE, QString::fromLatin1(cookieRawForm)});
 }
