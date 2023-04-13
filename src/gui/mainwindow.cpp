@@ -1918,7 +1918,7 @@ void MainWindow::updatePowerManagementState()
     const bool preventFromSuspendWhenSeeding = Preferences::instance()->preventFromSuspendWhenSeeding();
 
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-   const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
+    const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
     {
         if (preventFromSuspendWhenDownloading && (!torrent->isFinished() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata()))
             return true;
