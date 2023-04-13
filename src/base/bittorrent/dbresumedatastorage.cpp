@@ -773,6 +773,7 @@ namespace
             DB_COLUMN_CATEGORY,
             DB_COLUMN_TAGS,
             DB_COLUMN_TARGET_SAVE_PATH,
+            DB_COLUMN_DOWNLOAD_PATH,
             DB_COLUMN_CONTENT_LAYOUT,
             DB_COLUMN_RATIO_LIMIT,
             DB_COLUMN_SEEDING_TIME_LIMIT,
@@ -830,7 +831,7 @@ namespace
             query.bindValue(DB_COLUMN_NAME.placeholder, m_resumeData.name);
             query.bindValue(DB_COLUMN_CATEGORY.placeholder, m_resumeData.category);
             query.bindValue(DB_COLUMN_TAGS.placeholder, (m_resumeData.tags.isEmpty()
-                                                         ? QVariant(QVariant::String) : m_resumeData.tags.join(u","_qs)));
+                    ? QVariant(QVariant::String) : m_resumeData.tags.join(u","_qs)));
             query.bindValue(DB_COLUMN_CONTENT_LAYOUT.placeholder, Utils::String::fromEnum(m_resumeData.contentLayout));
             query.bindValue(DB_COLUMN_RATIO_LIMIT.placeholder, static_cast<int>(m_resumeData.ratioLimit * 1000));
             query.bindValue(DB_COLUMN_SEEDING_TIME_LIMIT.placeholder, m_resumeData.seedingTimeLimit);
