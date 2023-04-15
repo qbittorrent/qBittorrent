@@ -87,6 +87,7 @@ namespace BitTorrent
     struct LoadTorrentParams;
 
     enum class MoveStorageMode;
+    enum class MoveStorageContext;
 
     struct SessionMetricIndices
     {
@@ -439,7 +440,7 @@ namespace BitTorrent
         void handleTorrentResumeDataReady(TorrentImpl *const torrent, const LoadTorrentParams &data);
         void handleTorrentInfoHashChanged(TorrentImpl *torrent, const InfoHash &prevInfoHash);
 
-        bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode);
+        bool addMoveTorrentStorageJob(TorrentImpl *torrent, const Path &newPath, MoveStorageMode mode, MoveStorageContext context);
 
         void findIncompleteFiles(const TorrentInfo &torrentInfo, const Path &savePath
                                  , const Path &downloadPath, const PathList &filePaths = {}) const;
@@ -482,6 +483,7 @@ namespace BitTorrent
             lt::torrent_handle torrentHandle;
             Path path;
             MoveStorageMode mode;
+            MoveStorageContext context;
         };
 
         struct RemovingTorrentData

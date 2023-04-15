@@ -431,12 +431,16 @@ void TorrentImpl::setSavePath(const Path &path)
     if (resolvedPath == savePath())
         return;
 
-    m_savePath = resolvedPath;
-
-    m_session->handleTorrentNeedSaveResumeData(this);
-
     if (isFinished() || m_hasFinishedStatus || downloadPath().isEmpty())
-        moveStorage(savePath(), MoveStorageMode::KeepExistingFiles);
+    {
+        moveStorage(resolvedPath, MoveStorageContext::ChangeSavePath);
+    }
+    else
+    {
+        m_savePath = resolvedPath;
+        m_session->handleTorrentSavePathChanged(this);
+        m_session->handleTorrentNeedSaveResumeData(this);
+    }
 }
 
 Path TorrentImpl::downloadPath() const
@@ -454,13 +458,17 @@ void TorrentImpl::setDownloadPath(const Path &path)
     if (resolvedPath == m_downloadPath)
         return;
 
-    m_downloadPath = resolvedPath;
-
-    m_session->handleTorrentNeedSaveResumeData(this);
-
     const bool isIncomplete = !(isFinished() || m_hasFinishedStatus);
     if (isIncomplete)
-        moveStorage((m_downloadPath.isEmpty() ? savePath() : m_downloadPath), MoveStorageMode::KeepExistingFiles);
+    {
+        moveStorage((resolvedPath.isEmpty() ? savePath() : resolvedPath), MoveStorageContext::ChangeDownloadPath);
+    }
+    else
+    {
+        m_downloadPath = resolvedPath;
+        m_session->handleTorrentSavePathChanged(this);
+        m_session->handleTorrentNeedSaveResumeData(this);
+    }
 }
 
 Path TorrentImpl::rootPath() const
@@ -1754,7 +1762,7 @@ void TorrentImpl::resume(const TorrentOperatingMode mode)
     }
 }
 
-void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
+void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageContext context)
 {
     if (!hasMetadata())
     {
@@ -1762,7 +1770,9 @@ void TorrentImpl::moveStorage(const Path &newPath, const MoveStorageMode mode)
         return;
     }
 
-    if (m_session->addMoveTorrentStorageJob(this, newPath, mode))
+    const auto mode = (context == MoveStorageContext::AdjustCurrentLocation)
+            ? MoveStorageMode::Overwrite : MoveStorageMode::KeepExistingFiles;
+    if (m_session->addMoveTorrentStorageJob(this, newPath, mode, context))
     {
         m_storageIsMoving = true;
         updateState();
@@ -1784,16 +1794,17 @@ void TorrentImpl::handleStateUpdate(const lt::torrent_status &nativeStatus)
     updateStatus(nativeStatus);
 }
 
-void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const bool hasOutstandingJob)
+void TorrentImpl::handleMoveStorageJobFinished(const Path &path, const MoveStorageContext context, const bool hasOutstandingJob)
 {
-    m_session->handleTorrentNeedSaveResumeData(this);
+    if (context == MoveStorageContext::ChangeSavePath)
+        m_savePath = path;
+    else if (context == MoveStorageContext::ChangeDownloadPath)
+        m_downloadPath = path;
     m_storageIsMoving = hasOutstandingJob;
+    m_nativeStatus.save_path = path.toString().toStdString();
 
-    if (actualStorageLocation() != path)
-    {
-        m_nativeStatus.save_path = path.toString().toStdString();
-        m_session->handleTorrentSavePathChanged(this);
-    }
+    m_session->handleTorrentSavePathChanged(this);
+    m_session->handleTorrentNeedSaveResumeData(this);
 
     if (!m_storageIsMoving)
     {
@@ -2221,7 +2232,7 @@ void TorrentImpl::adjustStorageLocation()
     const Path targetPath = ((isFinished() || m_hasFinishedStatus || downloadPath.isEmpty()) ? savePath() : downloadPath);
 
     if ((targetPath != actualStorageLocation()) || isMoveInProgress())
-        moveStorage(targetPath, MoveStorageMode::Overwrite);
+        moveStorage(targetPath, MoveStorageContext::AdjustCurrentLocation);
 }
 
 void TorrentImpl::doRenameFile(int index, const Path &path)
