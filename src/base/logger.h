@@ -35,7 +35,7 @@
 #include <QString>
 #include <QtContainerFwd>
 
-const int MAX_LOG_MESSAGES = 20000;
+inline const int MAX_LOG_MESSAGES = 20000;
 
 namespace Log
 {
