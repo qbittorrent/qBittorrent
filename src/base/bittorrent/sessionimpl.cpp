@@ -2567,7 +2567,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     loadTorrentParams.operatingMode = (addTorrentParams.addForced ? TorrentOperatingMode::Forced : TorrentOperatingMode::AutoManaged);
     loadTorrentParams.stopped = addTorrentParams.addPaused.value_or(isAddTorrentPaused());
     loadTorrentParams.stopCondition = addTorrentParams.stopCondition.value_or(torrentStopCondition());
-    loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(false);
+    loadTorrentParams.addToQueueTop = addTorrentParams.addToQueueTop.value_or(isAddTorrentToQueueTop());
     loadTorrentParams.ratioLimit = addTorrentParams.ratioLimit;
     loadTorrentParams.seedingTimeLimit = addTorrentParams.seedingTimeLimit;
 
