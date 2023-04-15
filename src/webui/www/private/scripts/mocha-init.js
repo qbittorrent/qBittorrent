@@ -1004,7 +1004,7 @@ const initializeWindows = function() {
         return torrentsTable.selectedRowsIds().join("\n");
     };
 
-    exportTorrentFN = function() {
+    exportTorrentFN = async function() {
         const hashes = torrentsTable.selectedRowsIds();
         for (const hash of hashes) {
             const row = torrentsTable.rows.get(hash);
@@ -1022,6 +1022,9 @@ const initializeWindows = function() {
             document.body.appendChild(element);
             element.click();
             document.body.removeChild(element);
+
+            // https://stackoverflow.com/questions/53560991/automatic-file-downloads-limited-to-10-files-on-chrome-browser
+            await window.qBittorrent.Misc.sleep(200);
         }
     };
 
