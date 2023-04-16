@@ -311,9 +311,11 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
 
     connect(m_ui->actionManageCookies, &QAction::triggered, this, &MainWindow::manageCookies);
 
+    // Initialise system sleep inhibition timer
     m_pwr = new PowerManagement(this);
     m_preventTimer = new QTimer(this);
     connect(m_preventTimer, &QTimer::timeout, this, &MainWindow::updatePowerManagementState);
+    m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
 
     // Configure BT session according to options
     loadPreferences();
@@ -1448,19 +1450,7 @@ void MainWindow::loadPreferences()
 
     showStatusBar(pref->isStatusbarDisplayed());
 
-    if (pref->preventFromSuspendWhenDownloading() || pref->preventFromSuspendWhenSeeding())
-    {
-        if (!m_preventTimer->isActive())
-        {
-            updatePowerManagementState();
-            m_preventTimer->start(PREVENT_SUSPEND_INTERVAL);
-        }
-    }
-    else
-    {
-        m_preventTimer->stop();
-        m_pwr->setActivityState(false);
-    }
+    updatePowerManagementState();
 
     m_transferListWidget->setAlternatingRowColors(pref->useAlternatingRowColors());
     m_propertiesWidget->getFilesList()->setAlternatingRowColors(pref->useAlternatingRowColors());
@@ -1924,17 +1914,20 @@ void MainWindow::on_actionAutoShutdown_toggled(bool enabled)
 
 void MainWindow::updatePowerManagementState()
 {
+    const bool preventFromSuspendWhenDownloading = Preferences::instance()->preventFromSuspendWhenDownloading();
+    const bool preventFromSuspendWhenSeeding = Preferences::instance()->preventFromSuspendWhenSeeding();
+
     const QVector<BitTorrent::Torrent *> allTorrents = BitTorrent::Session::instance()->torrents();
-    const bool hasUnfinishedTorrents = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
+    const bool inhibitSuspend = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [&](const BitTorrent::Torrent *torrent)
     {
-        return (!torrent->isFinished() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata());
+        if (preventFromSuspendWhenDownloading && (!torrent->isFinished() && !torrent->isPaused() && !torrent->isErrored() && torrent->hasMetadata()))
+            return true;
+
+        if (preventFromSuspendWhenSeeding && (torrent->isFinished() && !torrent->isPaused()))
+            return true;
+
+        return torrent->isMoving();
     });
-    const bool hasRunningSeed = std::any_of(allTorrents.cbegin(), allTorrents.cend(), [](const BitTorrent::Torrent *torrent)
-    {
-        return (torrent->isFinished() && !torrent->isPaused());
-    });
-    const bool inhibitSuspend = (Preferences::instance()->preventFromSuspendWhenDownloading() && hasUnfinishedTorrents)
-                             || (Preferences::instance()->preventFromSuspendWhenSeeding() && hasRunningSeed);
     m_pwr->setActivityState(inhibitSuspend);
 }
 
