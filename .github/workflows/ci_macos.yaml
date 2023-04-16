@@ -19,10 +19,10 @@ jobs:
       matrix:
         libt_version: ["2.0.8", "1.2.18"]
         qbt_gui: ["GUI=ON", "GUI=OFF"]
-        qt_version: ["5.15.2", "6.4.0"]
+        qt_version: ["5.15.2", "6.5.0"]
         exclude:
           - libt_version: "1.2.18"
-            qt_version: "6.4.0"
+            qt_version: "6.5.0"
 
     env:
       boost_path: "${{ github.workspace }}/../boost"
@@ -52,7 +52,7 @@ jobs:
           curl \
             -L \
             -o "${{ runner.temp }}/boost.tar.bz2" \
-            "https://boostorg.jfrog.io/artifactory/main/release/1.81.0/source/boost_1_81_0.tar.bz2"
+            "https://boostorg.jfrog.io/artifactory/main/release/1.82.0/source/boost_1_82_0.tar.bz2"
           tar -xf "${{ runner.temp }}/boost.tar.bz2" -C "${{ github.workspace }}/.."
           mv "${{ github.workspace }}/.."/boost_* "${{ env.boost_path }}"
 
