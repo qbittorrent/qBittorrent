@@ -1009,7 +1009,7 @@ const initializeWindows = function() {
         for (const hash of hashes) {
             const row = torrentsTable.rows.get(hash);
             if (!row)
-                return;
+                continue;
 
             const name = row.full_data.name;
             const url = new URI("api/v2/torrents/export");
@@ -1018,7 +1018,7 @@ const initializeWindows = function() {
             // download response to file
             const element = document.createElement("a");
             element.setAttribute("href", url);
-            element.setAttribute("download", name + ".torrent");
+            element.setAttribute("download", (name + ".torrent"));
             document.body.appendChild(element);
             element.click();
             document.body.removeChild(element);
