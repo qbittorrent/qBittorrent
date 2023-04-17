@@ -151,7 +151,13 @@ void AddTorrentParamsWidget::populate()
     connect(m_ui->categoryComboBox, &QComboBox::currentIndexChanged, this, [this]
     {
         m_addTorrentParams.category = m_ui->categoryComboBox->currentText();
-        loadCategorySavePathOptions();
+
+        const auto *btSession = BitTorrent::Session::instance();
+        const bool useAutoTMM = m_addTorrentParams.useAutoTMM.value_or(!btSession->isAutoTMMDisabledByDefault());
+        if (useAutoTMM)
+            loadCategorySavePathOptions();
+        else
+            loadCustomSavePathOptions();
     });
 
     m_ui->savePathEdit->disconnect(this);
@@ -241,9 +247,13 @@ void AddTorrentParamsWidget::populate()
 void AddTorrentParamsWidget::loadCustomSavePathOptions()
 {
     const auto *btSession = BitTorrent::Session::instance();
+    const bool useCategoryPaths = btSession->useCategoryPathsInManualMode();
 
-    const Path defaultSavePath = btSession->savePath();
-    m_ui->savePathEdit->setSelectedPath(!m_addTorrentParams.savePath.isEmpty() ? m_addTorrentParams.savePath : defaultSavePath);
+    const Path categorySavePath = btSession->categorySavePath(m_addTorrentParams.category);
+    const Path defaultSavePath = (useCategoryPaths && !categorySavePath.isEmpty())
+            ? categorySavePath : btSession->savePath();
+    m_ui->savePathEdit->setPlaceholder(defaultSavePath);
+    m_ui->savePathEdit->setSelectedPath(m_addTorrentParams.savePath);
 
     m_ui->useDownloadPathComboBox->setCurrentIndex(m_addTorrentParams.useDownloadPath
             ? m_ui->useDownloadPathComboBox->findData(*m_addTorrentParams.useDownloadPath) : 0);
@@ -256,51 +266,132 @@ void AddTorrentParamsWidget::loadCategorySavePathOptions()
     const auto *btSession = BitTorrent::Session::instance();
 
     const Path savePath = btSession->categorySavePath(m_addTorrentParams.category);
-    m_ui->savePathEdit->setSelectedPath(savePath);
+    m_ui->savePathEdit->setPlaceholder(savePath);
 
     const Path downloadPath = btSession->categoryDownloadPath(m_addTorrentParams.category);
-    m_ui->downloadPathEdit->setSelectedPath(downloadPath);
+    m_ui->downloadPathEdit->setPlaceholder(downloadPath);
 
-    m_ui->useDownloadPathComboBox->setCurrentIndex(m_ui->useDownloadPathComboBox->findData(!downloadPath.isEmpty()));
+    const bool useAutoTMM = m_addTorrentParams.useAutoTMM.value_or(!btSession->isAutoTMMDisabledByDefault());
+    if (useAutoTMM)
+    {
+        const auto downloadPathOption = btSession->categoryOptions(m_addTorrentParams.category).downloadPath;
+        m_ui->useDownloadPathComboBox->setCurrentIndex(downloadPathOption.has_value()
+                ? m_ui->useDownloadPathComboBox->findData(downloadPathOption->enabled) : 0);
+    }
 }
 
 void AddTorrentParamsWidget::populateDownloadPathEdit()
 {
-    if (m_addTorrentParams.useDownloadPath.value_or(true))
-    {
-        m_ui->downloadPathEdit->setPlaceholder(Path(u"Default"_qs));
-        m_ui->downloadPathEdit->setSelectedPath(m_addTorrentParams.downloadPath);
+    const auto *btSession = BitTorrent::Session::instance();
+    const bool useCategoryPaths = btSession->useCategoryPathsInManualMode();
 
-        m_ui->downloadPathEdit->blockSignals(false);
-        m_ui->downloadPathEdit->setEnabled(true);
+    const Path categoryDownloadPath = btSession->categoryDownloadPath(m_addTorrentParams.category);
+    const Path defaultDownloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
+            ? categoryDownloadPath : btSession->downloadPath();
+
+    if (!m_addTorrentParams.useDownloadPath.has_value())
+    {
+        // Default "Download path" settings
+
+        m_ui->downloadPathEdit->setEnabled(false);
+        m_ui->downloadPathEdit->blockSignals(true);
+        m_ui->downloadPathEdit->setSelectedPath(Path());
+
+        const bool useDownloadPath = btSession->isDownloadPathEnabled();
+        m_ui->downloadPathEdit->setPlaceholder(useDownloadPath ? defaultDownloadPath : Path());
     }
     else
     {
-        m_ui->downloadPathEdit->setEnabled(false);
-        m_ui->downloadPathEdit->blockSignals(true);
+        // Overridden "Download path" settings
 
-        m_ui->downloadPathEdit->setPlaceholder(Path());
-        m_ui->downloadPathEdit->setSelectedPath(Path());
+        const bool useDownloadPath = m_addTorrentParams.useDownloadPath.value();
+        if (useDownloadPath)
+        {
+            m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath);
+            m_ui->downloadPathEdit->setSelectedPath(m_addTorrentParams.downloadPath);
+
+            m_ui->downloadPathEdit->blockSignals(false);
+            m_ui->downloadPathEdit->setEnabled(true);
+        }
+        else
+        {
+            m_ui->downloadPathEdit->setEnabled(false);
+            m_ui->downloadPathEdit->blockSignals(true);
+
+            m_ui->downloadPathEdit->setPlaceholder(Path());
+            m_ui->downloadPathEdit->setSelectedPath(Path());
+        }
     }
 }
 
 void AddTorrentParamsWidget::populateSavePathOptions()
 {
-    if (m_addTorrentParams.useAutoTMM.value_or(false))
+    if (!m_addTorrentParams.useAutoTMM.has_value())
     {
+        // Default TMM settings
+
         m_ui->groupBoxSavePath->setEnabled(false);
         m_ui->savePathEdit->blockSignals(true);
+        m_ui->savePathEdit->setSelectedPath(Path());
         m_ui->downloadPathEdit->blockSignals(true);
         m_ui->useDownloadPathComboBox->blockSignals(true);
+        m_ui->downloadPathEdit->setSelectedPath(Path());
 
-        loadCategorySavePathOptions();
+        const auto *btSession = BitTorrent::Session::instance();
+        const bool useAutoTMM = !btSession->isAutoTMMDisabledByDefault();
+
+        if (useAutoTMM)
+        {
+            loadCategorySavePathOptions();
+        }
+        else
+        {
+            const bool useCategoryPaths = btSession->useCategoryPathsInManualMode();
+
+            const Path categorySavePath = btSession->categorySavePath(m_addTorrentParams.category);
+            Q_ASSERT(!categorySavePath.isEmpty());
+            const Path defaultSavePath = (useCategoryPaths && Q_LIKELY(!categorySavePath.isEmpty()))
+                    ? categorySavePath : btSession->savePath();
+            m_ui->savePathEdit->setPlaceholder(defaultSavePath);
+
+            const bool useDownloadPath = btSession->isDownloadPathEnabled();
+            m_ui->useDownloadPathComboBox->setCurrentIndex(0);
+            if (useDownloadPath)
+            {
+                const Path categoryDownloadPath = btSession->categoryDownloadPath(m_addTorrentParams.category);
+                const Path defaultDownloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
+                        ? categoryDownloadPath : btSession->downloadPath();
+                m_ui->downloadPathEdit->setPlaceholder(defaultDownloadPath);
+            }
+            else
+            {
+                m_ui->downloadPathEdit->setPlaceholder(Path());
+            }
+        }
     }
     else
     {
-        loadCustomSavePathOptions();
+        // Overridden TMM settings
 
-        m_ui->groupBoxSavePath->setEnabled(true);
-        m_ui->savePathEdit->blockSignals(false);
-        m_ui->useDownloadPathComboBox->blockSignals(false);
+        const bool useAutoTMM = m_addTorrentParams.useAutoTMM.value();
+        if (useAutoTMM)
+        {
+            m_ui->groupBoxSavePath->setEnabled(false);
+            m_ui->savePathEdit->blockSignals(true);
+            m_ui->savePathEdit->setSelectedPath(Path());
+            m_ui->downloadPathEdit->blockSignals(true);
+            m_ui->useDownloadPathComboBox->blockSignals(true);
+            m_ui->downloadPathEdit->setSelectedPath(Path());
+
+            loadCategorySavePathOptions();
+        }
+        else
+        {
+            loadCustomSavePathOptions();
+
+            m_ui->groupBoxSavePath->setEnabled(true);
+            m_ui->savePathEdit->blockSignals(false);
+            m_ui->useDownloadPathComboBox->blockSignals(false);
+        }
     }
 }

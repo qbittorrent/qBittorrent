@@ -2560,7 +2560,6 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     LoadTorrentParams loadTorrentParams;
 
     loadTorrentParams.name = addTorrentParams.name;
-    loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
     loadTorrentParams.firstLastPiecePriority = addTorrentParams.firstLastPiecePriority;
     loadTorrentParams.hasFinishedStatus = addTorrentParams.skipChecking; // do not react on 'torrent_finished_alert' when skipping
     loadTorrentParams.contentLayout = addTorrentParams.contentLayout.value_or(torrentContentLayout());
@@ -2577,29 +2576,78 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     else
         loadTorrentParams.category = category;
 
-    if (!loadTorrentParams.useAutoTMM)
+    if (!addTorrentParams.useAutoTMM.has_value())
     {
-        if (addTorrentParams.savePath.isAbsolute())
-        {
-            loadTorrentParams.savePath = addTorrentParams.savePath;
-        }
-        else
-        {
-            const Path basePath = useCategoryPathsInManualMode() ? categorySavePath(loadTorrentParams.category) : savePath();
-            loadTorrentParams.savePath = basePath / addTorrentParams.savePath;
-        }
+        // Default TMM settings
 
-        const bool useDownloadPath = addTorrentParams.useDownloadPath.value_or(isDownloadPathEnabled());
-        if (useDownloadPath)
+        loadTorrentParams.useAutoTMM = !isAutoTMMDisabledByDefault();
+
+        if (!loadTorrentParams.useAutoTMM)
         {
-            if (addTorrentParams.downloadPath.isAbsolute())
+            const bool useCategoryPaths = useCategoryPathsInManualMode();
+            const Path categorySavePath = this->categorySavePath(loadTorrentParams.category);
+            Q_ASSERT(!categorySavePath.isEmpty());
+            loadTorrentParams.savePath = (useCategoryPaths && Q_LIKELY(!categorySavePath.isEmpty()))
+                    ? categorySavePath : savePath();
+
+            if (isDownloadPathEnabled())
             {
-                loadTorrentParams.downloadPath = addTorrentParams.downloadPath;
+                const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
+                loadTorrentParams.downloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
+                        ? categoryDownloadPath : downloadPath();
+            }
+        }
+    }
+    else
+    {
+        // Overridden TMM settings
+
+        loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value();
+
+        if (!loadTorrentParams.useAutoTMM)
+        {
+            if (addTorrentParams.savePath.isAbsolute())
+            {
+                loadTorrentParams.savePath = addTorrentParams.savePath;
             }
             else
             {
-                const Path basePath = useCategoryPathsInManualMode() ? categoryDownloadPath(loadTorrentParams.category) : downloadPath();
-                loadTorrentParams.downloadPath = basePath / addTorrentParams.downloadPath;
+                const bool useCategoryPaths = useCategoryPathsInManualMode();
+                const Path categorySavePath = this->categorySavePath(loadTorrentParams.category);
+                Q_ASSERT(!categorySavePath.isEmpty());
+                const Path basePath = (useCategoryPaths && Q_LIKELY(!categorySavePath.isEmpty()))
+                        ? categorySavePath : savePath();
+                loadTorrentParams.savePath = basePath / addTorrentParams.savePath;
+            }
+
+            if (!addTorrentParams.useDownloadPath.has_value())
+            {
+                // Default "Download path" settings
+
+                if (isDownloadPathEnabled())
+                {
+                    const bool useCategoryPaths = useCategoryPathsInManualMode();
+                    const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
+                    loadTorrentParams.downloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
+                            ? categoryDownloadPath : downloadPath();
+                }
+            }
+            else if (addTorrentParams.useDownloadPath.value())
+            {
+                // Overridden "Download path" settings
+
+                if (addTorrentParams.downloadPath.isAbsolute())
+                {
+                    loadTorrentParams.downloadPath = addTorrentParams.downloadPath;
+                }
+                else
+                {
+                    const bool useCategoryPaths = useCategoryPathsInManualMode();
+                    const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
+                    const Path basePath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
+                            ? categoryDownloadPath : downloadPath();
+                    loadTorrentParams.downloadPath = basePath / addTorrentParams.downloadPath;
+                }
             }
         }
     }
