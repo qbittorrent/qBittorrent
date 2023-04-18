@@ -44,6 +44,7 @@ window.qBittorrent.Misc = (function() {
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
+            sleep: sleep,
             MAX_ETA: 8640000
         };
     };
@@ -215,6 +216,12 @@ window.qBittorrent.Misc = (function() {
 
             const textContainsTerm = (textToSearch.indexOf(term) !== -1);
             return isTermExcluded ? !textContainsTerm : textContainsTerm;
+        });
+    };
+
+    const sleep = (ms) => {
+        return new Promise((resolve) => {
+            setTimeout(resolve, ms);
         });
     };
 

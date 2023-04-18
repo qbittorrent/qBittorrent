@@ -627,6 +627,7 @@ void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const L
         DB_COLUMN_CATEGORY,
         DB_COLUMN_TAGS,
         DB_COLUMN_TARGET_SAVE_PATH,
+        DB_COLUMN_DOWNLOAD_PATH,
         DB_COLUMN_CONTENT_LAYOUT,
         DB_COLUMN_RATIO_LIMIT,
         DB_COLUMN_SEEDING_TIME_LIMIT,

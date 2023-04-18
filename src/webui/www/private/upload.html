@@ -158,6 +158,10 @@
             if (submitted)
                 window.parent.closeWindows();
         });
+
+        if (Browser.platform === 'ios') {
+            $('fileselect').accept = ".torrent";
+        }
     </script>
     <div id="upload_spinner" class="mochaSpinner"></div>
 </body>
