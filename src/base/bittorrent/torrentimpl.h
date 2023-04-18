@@ -68,6 +68,13 @@ namespace BitTorrent
         Overwrite
     };
 
+    enum class MoveStorageContext
+    {
+        AdjustCurrentLocation,
+        ChangeSavePath,
+        ChangeDownloadPath
+    };
+
     enum class MaintenanceJob
     {
         None,
@@ -252,7 +259,7 @@ namespace BitTorrent
         void handleCategoryOptionsChanged();
         void handleAppendExtensionToggled();
         void saveResumeData(lt::resume_data_flags_t flags = {});
-        void handleMoveStorageJobFinished(const Path &path, bool hasOutstandingJob);
+        void handleMoveStorageJobFinished(const Path &path, MoveStorageContext context, bool hasOutstandingJob);
         void fileSearchFinished(const Path &savePath, const PathList &fileNames);
         TrackerEntry updateTrackerEntry(const lt::announce_entry &announceEntry, const QMap<TrackerEntry::Endpoint, int> &updateInfo);
 
@@ -289,7 +296,7 @@ namespace BitTorrent
         Path wantedActualPath(int index, const Path &path) const;
         void adjustStorageLocation();
         void doRenameFile(int index, const Path &path);
-        void moveStorage(const Path &newPath, MoveStorageMode mode);
+        void moveStorage(const Path &newPath, MoveStorageContext context);
         void manageIncompleteFiles();
         void applyFirstLastPiecePriority(bool enabled);
 
