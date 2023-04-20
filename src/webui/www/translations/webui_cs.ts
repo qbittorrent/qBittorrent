@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>Žádná</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>Odstranit torrenty</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1218,7 +1226,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Odchozí porty (Min) [0: Vypnuto]</translation>
+        <translation type="vanished">Odchozí porty (Min) [0: Vypnuto]</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1242,7 +1250,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Odchozí porty (Max) [0: Vypnuto]</translation>
+        <translation type="vanished">Odchozí porty (Max) [0: Vypnuto]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1322,7 +1330,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Stop časový limit  trackeru:</translation>
+        <translation type="vanished">Stop časový limit  trackeru:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1334,7 +1342,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>Trvání UPnP pronájmu [0: trvalý pronájem]:</translation>
+        <translation type="vanished">Trvání UPnP pronájmu [0: trvalý pronájem]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1354,11 +1362,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Hashovací vlákna (vyžaduje libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Hashovací vlákna (vyžaduje libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Sloučení čtení &amp; zápisů (vyžaduje libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Sloučení čtení &amp; zápisů (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1426,11 +1434,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Disková cache (vyžaduje libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Disková cache (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Interval vypršení diskové cache (vyžaduje libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Interval vypršení diskové cache (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,11 +1546,11 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>Disk IO typ (libtorrent &gt;= 2.0; vyžaduje restart):</translation>
+        <translation type="vanished">Disk IO typ (libtorrent &gt;= 2.0; vyžaduje restart):</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation>Write-through (vyžaduje libtorrent &gt;= 2.0.6)</translation>
+        <translation type="vanished">Write-through (vyžaduje libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1578,7 +1586,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation>Limit využití fyzické paměti (RAM) (vyžaduje libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Limit využití fyzické paměti (RAM) (vyžaduje libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1718,6 +1726,66 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2672,6 +2740,10 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     <message>
         <source>Trackers</source>
         <translation>Trackery</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

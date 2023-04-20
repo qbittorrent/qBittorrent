@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>Aucun</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>Retirer les torrents</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1218,7 +1226,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Ports sortants (Min) [0: Désactivé] :</translation>
+        <translation type="vanished">Ports sortants (Min) [0: Désactivé] :</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1242,7 +1250,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Ports sortants (Max) [0: Désactivé] :</translation>
+        <translation type="vanished">Ports sortants (Max) [0: Désactivé] :</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1322,7 +1330,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Délai d'expiration avant l'arrêt du tracker :</translation>
+        <translation type="vanished">Délai d'expiration avant l'arrêt du tracker :</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1334,7 +1342,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>Durée du bail UPnP [0: Bail permanent] :</translation>
+        <translation type="vanished">Durée du bail UPnP [0: Bail permanent] :</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1354,11 +1362,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Fils de hachage (requiert libtorrent &gt;= 2.0) :</translation>
+        <translation type="vanished">Fils de hachage (requiert libtorrent &gt;= 2.0) :</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Fusionner lectures et écritures (nécessite libtorrent &lt; 2.0) :</translation>
+        <translation type="vanished">Fusionner lectures et écritures (nécessite libtorrent &lt; 2.0) :</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1426,11 +1434,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Cache du disque (requiert libtorrent &lt; 2.0) :</translation>
+        <translation type="vanished">Cache du disque (requiert libtorrent &lt; 2.0) :</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Intervalle d'expiration du cache du disque (requiert libtorrent &lt; 2.0) :</translation>
+        <translation type="vanished">Intervalle d'expiration du cache du disque (requiert libtorrent &lt; 2.0) :</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,11 +1546,11 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>Type d'E/S du disque (libtorrent &gt;= 2.0; redémarrage requis) :</translation>
+        <translation type="vanished">Type d'E/S du disque (libtorrent &gt;= 2.0; redémarrage requis) :</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation>Double écriture (requiert libtorrent &gt;= 2.0.6)</translation>
+        <translation type="vanished">Double écriture (requiert libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1578,7 +1586,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation>Limite d'utilisation de la mémoire vive (RAM) (appliquée si libtorrent &gt;= 2.0) :</translation>
+        <translation type="vanished">Limite d'utilisation de la mémoire vive (RAM) (appliquée si libtorrent &gt;= 2.0) :</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1717,6 +1725,66 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2671,6 +2739,10 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Trackers</source>
         <translation>Trackers</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

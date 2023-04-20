@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>Niciuna</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>Elimină torente</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1217,10 +1225,6 @@
         <translation>Secțiunea libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Reverifică torentele la încheiere:</translation>
     </message>
@@ -1239,10 +1243,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Elimină torentul</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1322,7 +1322,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Oprește expirarea urmăritorului:</translation>
+        <translation type="vanished">Oprește expirarea urmăritorului:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1331,10 +1331,6 @@
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Activează fanionul de securitate pentru cookie (necesită HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1351,14 +1347,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Activează preluarea fluxurilor RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1423,14 +1411,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>Filtru RSS Smart Episode</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1537,14 +1517,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation type="unfinished" />
     </message>
@@ -1575,10 +1547,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Interval de împrospătare:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="unfinished" />
     </message>
     <message>
         <source>ms</source>
@@ -1714,6 +1682,66 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2668,6 +2696,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Trackers</source>
         <translation>Urmăritoare</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

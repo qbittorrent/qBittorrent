@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>Heç nə</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>Torrentləri silin</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1218,7 +1226,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Xarici portlar (Ən az) [0: Söndürülüb]</translation>
+        <translation type="vanished">Xarici portlar (Ən az) [0: Söndürülüb]</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1242,7 +1250,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Çıxış portları (Ən çox) [0: Söndürülüb]</translation>
+        <translation type="vanished">Çıxış portları (Ən çox) [0: Söndürülüb]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1322,7 +1330,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>İzləyici boşdayanmasını dayandırmaq:</translation>
+        <translation type="vanished">İzləyici boşdayanmasını dayandırmaq:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1334,7 +1342,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>UPnP icarə müddəti [0: Daimi icarə]:</translation>
+        <translation type="vanished">UPnP icarə müddəti [0: Daimi icarə]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1354,11 +1362,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Heşləmə axını (libtorrent &gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Heşləmə axını (libtorrent &gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Oxuma və yazma əməllərini birləşdirmək (libtorrnet &lt; 2.0 tələb olunur)</translation>
+        <translation type="vanished">Oxuma və yazma əməllərini birləşdirmək (libtorrnet &lt; 2.0 tələb olunur)</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1426,11 +1434,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Disk keşi ( libtorrent &lt; 2.0 tələb olunur):</translation>
+        <translation type="vanished">Disk keşi ( libtorrent &lt; 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Disk keçinin son istifadə intervalı (libtorrent &gt;= 2.0 tələb olunur):</translation>
+        <translation type="vanished">Disk keçinin son istifadə intervalı (libtorrent &gt;= 2.0 tələb olunur):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,11 +1546,11 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>Disk giriş/çıxış növü (libtorrent &gt;= 2.0; yenidən başladılmalıdır)</translation>
+        <translation type="vanished">Disk giriş/çıxış növü (libtorrent &gt;= 2.0; yenidən başladılmalıdır)</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation>Başdan sona yazmaq (libtorrent &gt;= 2.0.6 tələb olunur)</translation>
+        <translation type="vanished">Başdan sona yazmaq (libtorrent &gt;= 2.0.6 tələb olunur)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1578,7 +1586,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation>Fiziki yaddaşın (RAM) istifadə həddi (libtorrent  &gt;= 2.0.6 olarsa tətbiq edilir):</translation>
+        <translation type="vanished">Fiziki yaddaşın (RAM) istifadə həddi (libtorrent  &gt;= 2.0.6 olarsa tətbiq edilir):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1718,6 +1726,66 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2672,6 +2740,10 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Trackers</source>
         <translation>İzləyicilər</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

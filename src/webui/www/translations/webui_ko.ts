@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>없음</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>토렌트 제거하기</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1218,7 +1226,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>나가는 포트 (최소) [0: 비활성화됨]:</translation>
+        <translation type="vanished">나가는 포트 (최소) [0: 비활성화됨]:</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1242,7 +1250,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>나가는 포트 (최대) [0: 비활성화됨]:</translation>
+        <translation type="vanished">나가는 포트 (최대) [0: 비활성화됨]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1322,7 +1330,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>중지 트래커 만료시간:</translation>
+        <translation type="vanished">중지 트래커 만료시간:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1334,7 +1342,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>UPnP 임대 기간 [0: 영구 임대]</translation>
+        <translation type="vanished">UPnP 임대 기간 [0: 영구 임대]</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1354,11 +1362,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>해싱 쓰레드(libtorrent &gt;= 2.0 필요):</translation>
+        <translation type="vanished">해싱 쓰레드(libtorrent &gt;= 2.0 필요):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>통합 읽기/쓰기(libtorrent &lt; 2.0 필요)</translation>
+        <translation type="vanished">통합 읽기/쓰기(libtorrent &lt; 2.0 필요)</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1426,11 +1434,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>디스크 캐시(libtorrent &lt; 2.0 필요)</translation>
+        <translation type="vanished">디스크 캐시(libtorrent &lt; 2.0 필요)</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>디스크 캐시 만료 간격 (libtorrent &lt; 2.0 필요)</translation>
+        <translation type="vanished">디스크 캐시 만료 간격 (libtorrent &lt; 2.0 필요)</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,11 +1546,11 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>디스크 IO 유형 (libtorrent &gt;= 2.0; 다시 시작 필요):</translation>
+        <translation type="vanished">디스크 IO 유형 (libtorrent &gt;= 2.0; 다시 시작 필요):</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation>연속 기입 (libtorrent &gt;= 2.0.6 필요)</translation>
+        <translation type="vanished">연속 기입 (libtorrent &gt;= 2.0.6 필요)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1578,7 +1586,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation>물리 메모리(RAM) 사용 제한 (libtorrent &gt;= 2.0인 경우 적용됨):</translation>
+        <translation type="vanished">물리 메모리(RAM) 사용 제한 (libtorrent &gt;= 2.0인 경우 적용됨):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1718,6 +1726,66 @@ DNS 재결합 공격을 방어하기 위해
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2672,6 +2740,10 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Trackers</source>
         <translation>트래커</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

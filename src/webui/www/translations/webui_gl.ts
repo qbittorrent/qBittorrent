@@ -66,6 +66,10 @@
         <source>None</source>
         <translation type="unfinished" />
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -110,6 +114,10 @@
     </message>
     <message>
         <source>Remove torrents</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add subcategory...</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -1219,7 +1227,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Portos de saída (mín) [0: Desactivado]:</translation>
+        <translation type="vanished">Portos de saída (mín) [0: Desactivado]:</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1243,7 +1251,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Portos de saída (máx) [0: Desactivado]:</translation>
+        <translation type="vanished">Portos de saída (máx) [0: Desactivado]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1323,7 +1331,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Deter o tempo de espera do rastreador:</translation>
+        <translation type="vanished">Deter o tempo de espera do rastreador:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1335,7 +1343,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>Duración da concesión UPnP [0: Concesión permanente]:</translation>
+        <translation type="vanished">Duración da concesión UPnP [0: Concesión permanente]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1355,11 +1363,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Fíos hash (require libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Fíos hash (require libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Coalesce lecturas e escrituras (require libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Coalesce lecturas e escrituras (require libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1427,11 +1435,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Caché do disco (requires libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Caché do disco (requires libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Intervalo de caducidade da caché do disco (requires libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Intervalo de caducidade da caché do disco (requires libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,14 +1546,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation type="unfinished" />
     </message>
@@ -1575,10 +1575,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
         <translation type="unfinished" />
     </message>
     <message>
@@ -1719,6 +1715,66 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2673,6 +2729,10 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     <message>
         <source>Trackers</source>
         <translation>Localizadores</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>

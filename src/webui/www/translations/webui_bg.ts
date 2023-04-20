@@ -66,6 +66,10 @@
         <source>None</source>
         <translation>Няма</translation>
     </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
 </context>
 <context>
     <name>CategoryFilterModel</name>
@@ -111,6 +115,10 @@
     <message>
         <source>Remove torrents</source>
         <translation>Премахни торенти</translation>
+    </message>
+    <message>
+        <source>Add subcategory...</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -1219,7 +1227,7 @@
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation>Изходен порт (Мин) [0: Изключен]:</translation>
+        <translation type="vanished">Изходен порт (Мин) [0: Изключен]:</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1243,7 +1251,7 @@
     </message>
     <message>
         <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation>Изходен порт (Макс) [0: Изключен]:</translation>
+        <translation type="vanished">Изходен порт (Макс) [0: Изключен]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1323,7 +1331,7 @@
     </message>
     <message>
         <source>Stop tracker timeout:</source>
-        <translation>Спиране изтичащото време на тракера:</translation>
+        <translation type="vanished">Спиране изтичащото време на тракера:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1335,7 +1343,7 @@
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation>Продължителност на наема на UPnP [0: Постоянен наем]:</translation>
+        <translation type="vanished">Продължителност на наема на UPnP [0: Постоянен наем]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1355,11 +1363,11 @@
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation>Хеширащи нишки (изисква libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Хеширащи нишки (изисква libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation>Обединяване на записванията и прочитанията (изисква libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Обединяване на записванията и прочитанията (изисква libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1427,11 +1435,11 @@
     </message>
     <message>
         <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation>Дисков кеш (изисква  libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Дисков кеш (изисква  libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation>Продължителност на дисковия кеш (изисква libtorrent &lt; 2.0):</translation>
+        <translation type="vanished">Продължителност на дисковия кеш (изисква libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1539,11 +1547,11 @@
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation>Диск ВИ тип (libtorrent &gt;= 2.0; изисква рестарт):</translation>
+        <translation type="vanished">Диск ВИ тип (libtorrent &gt;= 2.0; изисква рестарт):</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation>Пиши-през (изисква libtorrent &gt;= 2.0.6)</translation>
+        <translation type="vanished">Пиши-през (изисква libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1579,7 +1587,7 @@
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation>Предел на потребление на физическа памет (RAM) (приложено, ако libtorrent &gt;= 2.0):</translation>
+        <translation type="vanished">Предел на потребление на физическа памет (RAM) (приложено, ако libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1715,6 +1723,66 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket send buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Max) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Socket receive buffer size [0: system default]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Use Subcategories</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Add to top of queue</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Stop tracker timeout [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Outgoing ports (Min) [0: disabled]:</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
+        <translation type="unfinished" />
+    </message>
+    <message>
+        <source>UPnP lease duration [0: permanent lease]:</source>
         <translation type="unfinished" />
     </message>
 </context>
@@ -2669,6 +2737,10 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Trackers</source>
         <translation>Тракери</translation>
+    </message>
+    <message>
+        <source>Collapse/expand</source>
+        <translation type="unfinished" />
     </message>
 </context>
 <context>
