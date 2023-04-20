@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Napló</translation>
+        <translation type="vanished">Napló</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Napló</translation>
+        <translation type="vanished">Napló</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Nincs)</translation>
+        <translation>(Nincs)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Csak a torrentekhez használjon proxyt</translation>
+        <translation>Csak a torrentekhez használjon proxyt</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1672,54 +1672,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Fastresume files</source>
         <translation>Gyors-folytatás fájlok</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2023,66 +1975,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Progress:</source>
         <translation>Folyamat:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2559,14 +2451,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>Add trackers...</source>
         <translation>Trackerek hozzáadása...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2860,14 +2744,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
     <message>
         <source>Remove</source>
         <translation>Eltávolítás</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3412,10 +3288,6 @@ Használja a ';' karaktert az elválasztásra, ha több is van. A '*' helyettes�
         <source>New name:</source>
         <translation>Új név:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3799,135 +3671,135 @@ Támogatja a formátumokat: S01E01, 1x1, 2017.12.31 és 31.12.2017. (A dátumfor
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>Általános</translation>
+        <translation type="vanished">Általános</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Tiltott</translation>
+        <translation type="vanished">Tiltott</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Ismeretlen</translation>
+        <translation type="vanished">Ismeretlen</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Összes</translation>
+        <translation type="vanished">Összes</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>megjelenítve</translation>
+        <translation type="vanished">megjelenítve</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Másolás</translation>
+        <translation type="vanished">Másolás</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Összes kiválasztása</translation>
+        <translation type="vanished">Összes kiválasztása</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Napló típusa</translation>
+        <translation type="vanished">Napló típusa</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Törlés</translation>
+        <translation type="vanished">Törlés</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Figyelmeztetés</translation>
+        <translation type="vanished">Figyelmeztetés</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Információs üzenetek</translation>
+        <translation type="vanished">Információs üzenetek</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Figyelmeztető üzenetek</translation>
+        <translation type="vanished">Figyelmeztető üzenetek</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Napló szűrése</translation>
+        <translation type="vanished">Napló szűrése</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Tiltott IP címek</translation>
+        <translation type="vanished">Tiltott IP címek</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>/</translation>
+        <translation type="vanished">/</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Állapot</translation>
+        <translation type="vanished">Állapot</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>Időbélyeg</translation>
+        <translation type="vanished">Időbélyeg</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>Összes törlése</translation>
+        <translation type="vanished">Összes törlése</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Üzenet</translation>
+        <translation type="vanished">Üzenet</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Naplózási szintek:</translation>
+        <translation type="vanished">Naplózási szintek:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Indok</translation>
+        <translation type="vanished">Indok</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>elem</translation>
+        <translation type="vanished">elem</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>Kitiltva</translation>
+        <translation type="vanished">Kitiltva</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Normál üzenetek</translation>
+        <translation type="vanished">Normál üzenetek</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>Kritikus</translation>
+        <translation type="vanished">Kritikus</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Kritikus üzenetek</translation>
+        <translation type="vanished">Kritikus üzenetek</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normál</translation>
+        <translation type="vanished">Normál</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>elem</translation>
+        <translation type="vanished">elem</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Találatok</translation>
+        <translation type="vanished">Találatok</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="vanished">Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Válasszon naplózási szintet...</translation>
+        <translation type="vanished">Válasszon naplózási szintet...</translation>
     </message>
 </context>
 </TS>

@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Journal d'exécution</translation>
+        <translation type="vanished">Journal d'exécution</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Journal</translation>
+        <translation type="vanished">Journal</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Aucun)</translation>
+        <translation>(Aucun)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Utiliser le proxy seulement pour les torrents</translation>
+        <translation>Utiliser le proxy seulement pour les torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,54 +1671,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Fastresume files</source>
         <translation>Fichiers de reprise rapide</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2022,66 +1974,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Progress:</source>
         <translation>Progression :</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2558,14 +2450,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>Add trackers...</source>
         <translation>Ajouter des trackers...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2859,14 +2743,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Remove</source>
         <translation>Retirer</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3411,10 +3287,6 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
         <source>New name:</source>
         <translation>Nouveau nom :</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3798,135 +3670,135 @@ Les formats supportés : S01E01, 1x1, 2017.12.31 et 31.12.2017 (les formats date
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>Général</translation>
+        <translation type="vanished">Général</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Bloquées</translation>
+        <translation type="vanished">Bloquées</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Inconnue</translation>
+        <translation type="vanished">Inconnue</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Toutes</translation>
+        <translation type="vanished">Toutes</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>affiche</translation>
+        <translation type="vanished">affiche</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copier</translation>
+        <translation type="vanished">Copier</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Tout sélectionner</translation>
+        <translation type="vanished">Tout sélectionner</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>Identifiant</translation>
+        <translation type="vanished">Identifiant</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Type de journal</translation>
+        <translation type="vanished">Type de journal</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Effacer</translation>
+        <translation type="vanished">Effacer</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Avertissement</translation>
+        <translation type="vanished">Avertissement</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Messages d'information</translation>
+        <translation type="vanished">Messages d'information</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Messages d'avertissement</translation>
+        <translation type="vanished">Messages d'avertissement</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Journaux des filtres</translation>
+        <translation type="vanished">Journaux des filtres</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>IPs bloquées</translation>
+        <translation type="vanished">IPs bloquées</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>sur</translation>
+        <translation type="vanished">sur</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>États</translation>
+        <translation type="vanished">États</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>Horodatage</translation>
+        <translation type="vanished">Horodatage</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>Effacer tout</translation>
+        <translation type="vanished">Effacer tout</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Message</translation>
+        <translation type="vanished">Message</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Niveaux de journalisation :</translation>
+        <translation type="vanished">Niveaux de journalisation :</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Raison</translation>
+        <translation type="vanished">Raison</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>item</translation>
+        <translation type="vanished">item</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>Bannis</translation>
+        <translation type="vanished">Bannis</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Messages normaux</translation>
+        <translation type="vanished">Messages normaux</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>Critiques</translation>
+        <translation type="vanished">Critiques</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Messages critiques</translation>
+        <translation type="vanished">Messages critiques</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normaux</translation>
+        <translation type="vanished">Normaux</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>items</translation>
+        <translation type="vanished">items</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Résultats</translation>
+        <translation type="vanished">Résultats</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="vanished">Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Choisissez un niveau de journalisation...</translation>
+        <translation type="vanished">Choisissez un niveau de journalisation...</translation>
     </message>
 </context>
 </TS>

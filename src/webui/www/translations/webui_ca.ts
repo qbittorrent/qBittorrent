@@ -614,11 +614,11 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Registre d'execució</translation>
+        <translation type="vanished">Registre d'execució</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Registre</translation>
+        <translation type="vanished">Registre</translation>
     </message>
 </context>
 <context>
@@ -793,7 +793,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Cap)</translation>
+        <translation>(Cap)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -821,7 +821,7 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Utilitza el servidor intermediari només per als torrents</translation>
+        <translation>Utilitza el servidor intermediari només per als torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1673,54 +1673,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Fastresume files</source>
         <translation>Fitxers de represa ràpida</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2024,66 +1976,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Progress:</source>
         <translation>Progrés:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2560,14 +2452,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>Add trackers...</source>
         <translation>Afegeix rastrejadors...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2861,14 +2745,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Remove</source>
         <translation>Suprimeix</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3413,10 +3289,6 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
         <source>New name:</source>
         <translation>Nom nou:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3800,135 +3672,135 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation type="vanished">General</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Blocat</translation>
+        <translation type="vanished">Blocat</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Desconegut</translation>
+        <translation type="vanished">Desconegut</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Tot</translation>
+        <translation type="vanished">Tot</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>es mostren</translation>
+        <translation type="vanished">es mostren</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copia</translation>
+        <translation type="vanished">Copia</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Selecciona-ho tot</translation>
+        <translation type="vanished">Selecciona-ho tot</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Tipus de registre</translation>
+        <translation type="vanished">Tipus de registre</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Neteja</translation>
+        <translation type="vanished">Neteja</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Avís</translation>
+        <translation type="vanished">Avís</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Missatges informatius</translation>
+        <translation type="vanished">Missatges informatius</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Missatges d'advertència</translation>
+        <translation type="vanished">Missatges d'advertència</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Filtra els registres</translation>
+        <translation type="vanished">Filtra els registres</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>IP blocades</translation>
+        <translation type="vanished">IP blocades</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>fora de</translation>
+        <translation type="vanished">fora de</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Estat</translation>
+        <translation type="vanished">Estat</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>Segell de temps</translation>
+        <translation type="vanished">Segell de temps</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>Neteja-ho tot</translation>
+        <translation type="vanished">Neteja-ho tot</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Missatge</translation>
+        <translation type="vanished">Missatge</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Nivells de registre:</translation>
+        <translation type="vanished">Nivells de registre:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Raó</translation>
+        <translation type="vanished">Raó</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>element</translation>
+        <translation type="vanished">element</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>Bandejat</translation>
+        <translation type="vanished">Bandejat</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Missatges normals</translation>
+        <translation type="vanished">Missatges normals</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>Crítics</translation>
+        <translation type="vanished">Crítics</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Missatges crítics</translation>
+        <translation type="vanished">Missatges crítics</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normals</translation>
+        <translation type="vanished">Normals</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>elements</translation>
+        <translation type="vanished">elements</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Resultats</translation>
+        <translation type="vanished">Resultats</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Informació</translation>
+        <translation type="vanished">Informació</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Trieu un nivell de registre...</translation>
+        <translation type="vanished">Trieu un nivell de registre...</translation>
     </message>
 </context>
 </TS>

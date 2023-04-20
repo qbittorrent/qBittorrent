@@ -613,11 +613,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Toimingute logi</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Toimingute logi</translation>
     </message>
 </context>
 <context>
@@ -792,7 +788,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Puudub)</translation>
+        <translation>(Puudub)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +816,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Kasuta proxy't ainult torrentitel</translation>
+        <translation>Kasuta proxy't ainult torrentitel</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1668,54 +1664,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Fastresume files</source>
         <translation type="unfinished" />
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2019,66 +1967,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Progress:</source>
         <translation>Edenemine:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2555,14 +2443,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Add trackers...</source>
         <translation>Lisa jälitajaid...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2856,14 +2736,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove</source>
         <translation>Eemalda</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3408,10 +3280,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>New name:</source>
         <translation>Uus nimi:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3794,136 +3662,56 @@ Toetab formaate: S01E01, 1x1, 2017.12.31 ja 31.12.2017 (kuupäevade formaate toe
 <context>
     <name>ExecutionLogWidget</name>
     <message>
-        <source>General</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
         <source>All</source>
-        <translation>Kõik</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Kõik</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopeeri</translation>
+        <translation type="vanished">Kopeeri</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Vali kõik</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Vali kõik</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Logi tüüp</translation>
+        <translation type="vanished">Logi tüüp</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Tühjenda</translation>
+        <translation type="vanished">Tühjenda</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Hoiatus</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Hoiatus</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Filtreeri logid</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Filtreeri logid</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Logi tasemed:</translation>
+        <translation type="vanished">Logi tasemed:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Selgitus</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Selgitus</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Tava teavitused</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Tava teavitused</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Kriitilised teavitused</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Kriitilised teavitused</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Tulemused</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Tulemused</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Vali logi tase...</translation>
+        <translation type="vanished">Vali logi tase...</translation>
     </message>
 </context>
 </TS>

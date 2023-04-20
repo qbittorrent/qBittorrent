@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>执行日志</translation>
+        <translation type="vanished">执行日志</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>日志</translation>
+        <translation type="vanished">日志</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(无)</translation>
+        <translation>(无)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">只对 torrent 使用代理</translation>
+        <translation>只对 torrent 使用代理</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1672,54 +1672,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Fastresume files</source>
         <translation>快速恢复文件</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2023,66 +1975,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Progress:</source>
         <translation>进度：</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2559,14 +2451,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Add trackers...</source>
         <translation>添加 trackers...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2860,14 +2744,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove</source>
         <translation>移除</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3412,10 +3288,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>New name:</source>
         <translation>新名称：</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3799,135 +3671,135 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>常规</translation>
+        <translation type="vanished">常规</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>被封禁</translation>
+        <translation type="vanished">被封禁</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>未知</translation>
+        <translation type="vanished">未知</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>全部</translation>
+        <translation type="vanished">全部</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>显示</translation>
+        <translation type="vanished">显示</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>复制</translation>
+        <translation type="vanished">复制</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>全选</translation>
+        <translation type="vanished">全选</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation type="vanished">ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>日志类型</translation>
+        <translation type="vanished">日志类型</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>清空</translation>
+        <translation type="vanished">清空</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>警告</translation>
+        <translation type="vanished">警告</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>通知信息</translation>
+        <translation type="vanished">通知信息</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>警告信息</translation>
+        <translation type="vanished">警告信息</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>过滤日志</translation>
+        <translation type="vanished">过滤日志</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>被拦截的 IP</translation>
+        <translation type="vanished">被拦截的 IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>中的</translation>
+        <translation type="vanished">中的</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>状态</translation>
+        <translation type="vanished">状态</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>时间戳</translation>
+        <translation type="vanished">时间戳</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>清除全部</translation>
+        <translation type="vanished">清除全部</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>信息</translation>
+        <translation type="vanished">信息</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>日志级别：</translation>
+        <translation type="vanished">日志级别：</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>理由</translation>
+        <translation type="vanished">理由</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>项目</translation>
+        <translation type="vanished">项目</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>已封锁</translation>
+        <translation type="vanished">已封锁</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>一般消息</translation>
+        <translation type="vanished">一般消息</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>关键</translation>
+        <translation type="vanished">关键</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>关键信息</translation>
+        <translation type="vanished">关键信息</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>一般</translation>
+        <translation type="vanished">一般</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>项目</translation>
+        <translation type="vanished">项目</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>结果</translation>
+        <translation type="vanished">结果</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>信息</translation>
+        <translation type="vanished">信息</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>选择日志级别...</translation>
+        <translation type="vanished">选择日志级别...</translation>
     </message>
 </context>
 </TS>

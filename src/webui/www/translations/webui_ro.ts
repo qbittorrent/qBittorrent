@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Jurnal de execuție</translation>
+        <translation type="vanished">Jurnal de execuție</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Jurnal</translation>
+        <translation type="vanished">Jurnal</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Niciunul)</translation>
+        <translation>(Niciunul)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Utilizează proxy doar pentru torrente</translation>
+        <translation>Utilizează proxy doar pentru torrente</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1668,54 +1668,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Fastresume files</source>
         <translation type="unfinished" />
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2019,66 +1971,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Progress:</source>
         <translation>Progres:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2555,14 +2447,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Add trackers...</source>
         <translation>Adaugă urmăritoare…</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2856,14 +2740,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove</source>
         <translation>Elimină</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3408,10 +3284,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>New name:</source>
         <translation>Denumire nouă:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3795,135 +3667,63 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>Generale</translation>
+        <translation type="vanished">Generale</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Blocat</translation>
+        <translation type="vanished">Blocat</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Necunoscut</translation>
+        <translation type="vanished">Necunoscut</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Toate</translation>
+        <translation type="vanished">Toate</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>se arată</translation>
+        <translation type="vanished">se arată</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Copiază</translation>
+        <translation type="vanished">Copiază</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Selectează tot</translation>
+        <translation type="vanished">Selectează tot</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>Id.</translation>
+        <translation type="vanished">Id.</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Tip jurnal</translation>
+        <translation type="vanished">Tip jurnal</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Curăță</translation>
+        <translation type="vanished">Curăță</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Avertisment</translation>
+        <translation type="vanished">Avertisment</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Mesaje informative</translation>
+        <translation type="vanished">Mesaje informative</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Mesaje de avertizare</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Mesaje de avertizare</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>din</translation>
+        <translation type="vanished">din</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Stare</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation type="vanished">Stare</translation>
     </message>
 </context>
 </TS>

@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Çalıştırma Günlüğü</translation>
+        <translation type="vanished">Çalıştırma Günlüğü</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Günlük</translation>
+        <translation type="vanished">Günlük</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(Yok)</translation>
+        <translation>(Yok)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Sadece torrent'ler için proksi kullan</translation>
+        <translation>Sadece torrent'ler için proksi kullan</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1672,54 +1672,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Fastresume files</source>
         <translation>Hızlı devam dosyaları</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2023,66 +1975,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Progress:</source>
         <translation>İlerleme:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2559,14 +2451,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>Add trackers...</source>
         <translation>İzleyicileri ekle...</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2860,14 +2744,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Remove</source>
         <translation>Kaldır</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3412,10 +3288,6 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
         <source>New name:</source>
         <translation>Yeni adı:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3799,135 +3671,135 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>Genel</translation>
+        <translation type="vanished">Genel</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Engellenmiş</translation>
+        <translation type="vanished">Engellenmiş</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Bilinmiyor</translation>
+        <translation type="vanished">Bilinmiyor</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Tümü</translation>
+        <translation type="vanished">Tümü</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>gösterilen</translation>
+        <translation type="vanished">gösterilen</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopyala</translation>
+        <translation type="vanished">Kopyala</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Tümünü Seç</translation>
+        <translation type="vanished">Tümünü Seç</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>Kimlik</translation>
+        <translation type="vanished">Kimlik</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Günlük Türü</translation>
+        <translation type="vanished">Günlük Türü</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Temizle</translation>
+        <translation type="vanished">Temizle</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Uyarı</translation>
+        <translation type="vanished">Uyarı</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Bilgi İletileri</translation>
+        <translation type="vanished">Bilgi İletileri</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Uyarı İletileri</translation>
+        <translation type="vanished">Uyarı İletileri</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Günlükleri süz</translation>
+        <translation type="vanished">Günlükleri süz</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Engellenen IP'ler</translation>
+        <translation type="vanished">Engellenen IP'ler</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>/</translation>
+        <translation type="vanished">/</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Durum</translation>
+        <translation type="vanished">Durum</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>Zaman Damgası</translation>
+        <translation type="vanished">Zaman Damgası</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>Tümünü Temizle</translation>
+        <translation type="vanished">Tümünü Temizle</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>İleti</translation>
+        <translation type="vanished">İleti</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Günlük Seviyeleri:</translation>
+        <translation type="vanished">Günlük Seviyeleri:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Sebep</translation>
+        <translation type="vanished">Sebep</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>öğe</translation>
+        <translation type="vanished">öğe</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP</translation>
+        <translation type="vanished">IP</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>Yasaklı</translation>
+        <translation type="vanished">Yasaklı</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Normal İletiler</translation>
+        <translation type="vanished">Normal İletiler</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>Önemli</translation>
+        <translation type="vanished">Önemli</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Önemli İletiler</translation>
+        <translation type="vanished">Önemli İletiler</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Normal</translation>
+        <translation type="vanished">Normal</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>öğe</translation>
+        <translation type="vanished">öğe</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Sonuçlar</translation>
+        <translation type="vanished">Sonuçlar</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Bilgi</translation>
+        <translation type="vanished">Bilgi</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Bir günlük seviyesi seçin...</translation>
+        <translation type="vanished">Bir günlük seviyesi seçin...</translation>
     </message>
 </context>
 </TS>

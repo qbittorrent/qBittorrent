@@ -613,11 +613,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation>Журнал работы</translation>
+        <translation type="vanished">Журнал работы</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation>Журнал</translation>
+        <translation type="vanished">Журнал</translation>
     </message>
 </context>
 <context>
@@ -792,7 +792,7 @@
     </message>
     <message>
         <source>(None)</source>
-        <translation type="vanished">(нет)</translation>
+        <translation>(нет)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -820,7 +820,7 @@
     </message>
     <message>
         <source>Use proxy only for torrents</source>
-        <translation type="vanished">Использовать прокси только для торрентов</translation>
+        <translation>Использовать прокси только для торрентов</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1672,54 +1672,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Fastresume files</source>
         <translation>Файлы быстрого возобновления</translation>
     </message>
-    <message>
-        <source>Backup the log file after:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>days</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Log file</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Behavior</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>years</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Save path:</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>months</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>PeerListWidget</name>
@@ -2023,66 +1975,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Progress:</source>
         <translation>Прогресс:</translation>
-    </message>
-    <message>
-        <source>Use regular expressions</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Filename + Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Enumerate Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Match all occurences</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Toggle Selection</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replacement Input</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Extension</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Replace All</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Include folders</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Search Files</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Case sensitive</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -2559,14 +2451,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>Add trackers...</source>
         <translation>Добавить трекеры…</translation>
     </message>
-    <message>
-        <source>Renamed</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Original</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>TrackersAdditionDialog</name>
@@ -2860,14 +2744,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Remove</source>
         <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>Rename Files...</source>
-        <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Renaming</source>
-        <translation type="unfinished" />
     </message>
 </context>
 <context>
@@ -3412,10 +3288,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <source>New name:</source>
         <translation>Новое имя:</translation>
     </message>
-    <message>
-        <source>Renaming)</source>
-        <translation type="unfinished" />
-    </message>
 </context>
 <context>
     <name>RSSWidget</name>
@@ -3799,135 +3671,135 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation>Главное</translation>
+        <translation type="vanished">Главное</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation>Запрещённое</translation>
+        <translation type="vanished">Запрещённое</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Неизвестное</translation>
+        <translation type="vanished">Неизвестное</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Все</translation>
+        <translation type="vanished">Все</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation>отображается</translation>
+        <translation type="vanished">отображается</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Копировать</translation>
+        <translation type="vanished">Копировать</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation>Выбрать все</translation>
+        <translation type="vanished">Выбрать все</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation>ИД</translation>
+        <translation type="vanished">ИД</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation>Тип журнала</translation>
+        <translation type="vanished">Тип журнала</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Очистить</translation>
+        <translation type="vanished">Очистить</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Предупреждение</translation>
+        <translation type="vanished">Предупреждение</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation>Информационные сообщения</translation>
+        <translation type="vanished">Информационные сообщения</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation>Предупреждения</translation>
+        <translation type="vanished">Предупреждения</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation>Фильтр журналов</translation>
+        <translation type="vanished">Фильтр журналов</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation>Запрещённые IP</translation>
+        <translation type="vanished">Запрещённые IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation>из</translation>
+        <translation type="vanished">из</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation>Статус</translation>
+        <translation type="vanished">Статус</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation>Метка времени</translation>
+        <translation type="vanished">Метка времени</translation>
     </message>
     <message>
         <source>Clear All</source>
-        <translation>Очистить все</translation>
+        <translation type="vanished">Очистить все</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Сообщение</translation>
+        <translation type="vanished">Сообщение</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation>Уровни журнала:</translation>
+        <translation type="vanished">Уровни журнала:</translation>
     </message>
     <message>
         <source>Reason</source>
-        <translation>Причина</translation>
+        <translation type="vanished">Причина</translation>
     </message>
     <message>
         <source>item</source>
-        <translation>запись</translation>
+        <translation type="vanished">запись</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation>IP-адрес</translation>
+        <translation type="vanished">IP-адрес</translation>
     </message>
     <message>
         <source>Banned</source>
-        <translation>Запрещённое</translation>
+        <translation type="vanished">Запрещённое</translation>
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation>Обычные сообщения</translation>
+        <translation type="vanished">Обычные сообщения</translation>
     </message>
     <message>
         <source>Critical</source>
-        <translation>Важные</translation>
+        <translation type="vanished">Важные</translation>
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation>Важные сообщения</translation>
+        <translation type="vanished">Важные сообщения</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation>Обычные</translation>
+        <translation type="vanished">Обычные</translation>
     </message>
     <message>
         <source>items</source>
-        <translation>записи</translation>
+        <translation type="vanished">записи</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation>Результаты</translation>
+        <translation type="vanished">Результаты</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation>Информационный</translation>
+        <translation type="vanished">Информационный</translation>
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation>Выберите уровень журнала…</translation>
+        <translation type="vanished">Выберите уровень журнала…</translation>
     </message>
 </context>
 </TS>
