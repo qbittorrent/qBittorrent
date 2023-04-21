@@ -3,7 +3,7 @@ repos:
     hooks:
       - id: check-translation-tag
         name: Check newline characters in <translation> tag
-        entry: .github/workflows/check_translation_tag.py
+        entry: .github/workflows/helper/pre-commit/check_translation_tag.py
         language: script
         exclude: |
           (?x)^(
