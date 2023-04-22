@@ -207,44 +207,6 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="skipCheckingWidget" native="true">
-      <property name="geometry">
-       <rect>
-        <x>9</x>
-        <y>37</y>
-        <width>164</width>
-        <height>22</height>
-       </rect>
-      </property>
-      <layout class="QHBoxLayout" name="skipCheckingLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>2</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QLabel" name="skipCheckingLabel">
-         <property name="text">
-          <string>Skip hash check:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="skipCheckingComboBox">
-         <property name="currentIndex">
-          <number>-1</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
      <widget class="QWidget" name="contentLayoutWidget" native="true">
       <property name="geometry">
        <rect>
@@ -358,6 +320,19 @@
         </widget>
        </item>
       </layout>
+     </widget>
+     <widget class="QCheckBox" name="skipCheckingCheckBox">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>83</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Skip hash check</string>
+      </property>
      </widget>
     </widget>
    </item>

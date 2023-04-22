@@ -74,9 +74,6 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
     m_ui->startTorrentComboBox->addItem(tr("Yes"), true);
     m_ui->startTorrentComboBox->addItem(tr("No"), false);
 
-    m_ui->skipCheckingComboBox->addItem(tr("Yes"), true);
-    m_ui->skipCheckingComboBox->addItem(tr("No"), false);
-
     m_ui->addToQueueTopComboBox->addItem(tr("Default"));
     m_ui->addToQueueTopComboBox->addItem(tr("Yes"), true);
     m_ui->addToQueueTopComboBox->addItem(tr("No"), false);
@@ -96,7 +93,8 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
     auto *miscParamsLayout = new FlowLayout(m_ui->miscParamsWidget);
     miscParamsLayout->setContentsMargins(0, 0, 0, 0);
     miscParamsLayout->addWidget(m_ui->contentLayoutWidget);
-    miscParamsLayout->addWidget(m_ui->skipCheckingWidget);
+    miscParamsLayout->addWidget(m_ui->skipCheckingCheckBox);
+    miscParamsLayout->setAlignment(m_ui->skipCheckingCheckBox, Qt::AlignVCenter);
     miscParamsLayout->addWidget(m_ui->startTorrentWidget);
     miscParamsLayout->addWidget(m_ui->stopConditionWidget);
     miscParamsLayout->addWidget(m_ui->addToQueueTopWidget);
@@ -223,12 +221,11 @@ void AddTorrentParamsWidget::populate()
             m_addTorrentParams.addPaused = !data.toBool();
     });
 
-    m_ui->skipCheckingComboBox->disconnect(this);
-    m_ui->skipCheckingComboBox->setCurrentIndex(m_ui->skipCheckingComboBox->findData(m_addTorrentParams.skipChecking));
-    connect(m_ui->skipCheckingComboBox, &QComboBox::currentIndexChanged, this, [this]
+    m_ui->skipCheckingCheckBox->disconnect(this);
+    m_ui->skipCheckingCheckBox->setChecked(m_addTorrentParams.skipChecking);
+    connect(m_ui->skipCheckingCheckBox, &QCheckBox::toggled, this, [this]
     {
-        const QVariant data = m_ui->skipCheckingComboBox->currentData();
-        m_addTorrentParams.skipChecking = data.toBool();
+        m_addTorrentParams.skipChecking = m_ui->skipCheckingCheckBox->isChecked();
     });
 
     m_ui->addToQueueTopComboBox->disconnect(this);
