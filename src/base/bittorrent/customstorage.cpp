@@ -120,7 +120,11 @@ void CustomDiskIOThread::async_move_storage(lt::storage_index_t storage, std::st
     m_nativeDiskIO->async_move_storage(storage, path, flags
                                        , [=, handler = std::move(handler)](lt::status_t status, const std::string &path, const lt::storage_error &error)
     {
+#if LIBTORRENT_VERSION_NUM < 20100
         if ((status != lt::status_t::fatal_disk_error) && (status != lt::status_t::file_exist))
+#else
+        if ((status != lt::disk_status::fatal_disk_error) && (status != lt::disk_status::file_exist))
+#endif
             m_storageData[storage].savePath = newSavePath;
 
         handler(status, path, error);
