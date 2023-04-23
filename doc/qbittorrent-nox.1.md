@@ -38,4 +38,4 @@ the default account user name is "admin" with "adminadmin" as a password.
 
 
 # BUGS
-If you find a bug, please report it at http://bugs.qbittorrent.org
+If you find a bug, please report it at https://bugs.qbittorrent.org
