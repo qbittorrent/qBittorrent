@@ -52,6 +52,18 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QLabel" name="defaultsNoteLabel">
+        <property name="font">
+         <font>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string>Note: the current defaults are displayed for reference.</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="FileSystemPathLineEdit" name="savePathEdit" native="true"/>
       </item>
       <item>
@@ -113,7 +125,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_7">
+      <spacer name="categorySpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

@@ -52,9 +52,12 @@ public:
 private:
     void populate();
     void loadCustomSavePathOptions();
+    void loadCustomDownloadPath();
     void loadCategorySavePathOptions();
+    void populateDefaultPaths();
+    void populateDefaultDownloadPath();
     void populateSavePathOptions();
-    void populateDownloadPathEdit();
+
 
     Ui::AddTorrentParamsWidget *m_ui;
     BitTorrent::AddTorrentParams m_addTorrentParams;

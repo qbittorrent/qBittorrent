@@ -759,11 +759,13 @@ void SessionImpl::setFinishedTorrentExportDirectory(const Path &path)
 
 Path SessionImpl::savePath() const
 {
+    // TODO: Make sure it is always non-empty
     return m_savePath;
 }
 
 Path SessionImpl::downloadPath() const
 {
+    // TODO: Make sure it is always non-empty
     return m_downloadPath;
 }
 
@@ -941,6 +943,21 @@ bool SessionImpl::useCategoryPathsInManualMode() const
 void SessionImpl::setUseCategoryPathsInManualMode(const bool value)
 {
     m_useCategoryPathsInManualMode = value;
+}
+
+Path SessionImpl::suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const
+{
+    const bool useCategoryPaths = useAutoTMM.value_or(!isAutoTMMDisabledByDefault()) || useCategoryPathsInManualMode();
+    const auto path = (useCategoryPaths ? categorySavePath(categoryName) : savePath());
+    return path;
+}
+
+Path SessionImpl::suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const
+{
+    const bool useCategoryPaths = useAutoTMM.value_or(!isAutoTMMDisabledByDefault()) || useCategoryPathsInManualMode();
+    const auto categoryDownloadPath = this->categoryDownloadPath(categoryName);
+    const auto path = ((useCategoryPaths && !categoryDownloadPath.isEmpty()) ? categoryDownloadPath : downloadPath());
+    return path;
 }
 
 QSet<QString> SessionImpl::tags() const
@@ -2576,61 +2593,39 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
     else
         loadTorrentParams.category = category;
 
+    const auto defaultSavePath = suggestedSavePath(loadTorrentParams.category, addTorrentParams.useAutoTMM);
+    const auto defaultDownloadPath = suggestedDownloadPath(loadTorrentParams.category, addTorrentParams.useAutoTMM);
+
+    loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value_or(!isAutoTMMDisabledByDefault());
+
     if (!addTorrentParams.useAutoTMM.has_value())
     {
         // Default TMM settings
 
-        loadTorrentParams.useAutoTMM = !isAutoTMMDisabledByDefault();
-
         if (!loadTorrentParams.useAutoTMM)
         {
-            const bool useCategoryPaths = useCategoryPathsInManualMode();
-            const Path categorySavePath = this->categorySavePath(loadTorrentParams.category);
-            Q_ASSERT(!categorySavePath.isEmpty());
-            loadTorrentParams.savePath = (useCategoryPaths && Q_LIKELY(!categorySavePath.isEmpty()))
-                    ? categorySavePath : savePath();
-
+            loadTorrentParams.savePath = defaultSavePath;
             if (isDownloadPathEnabled())
-            {
-                const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
-                loadTorrentParams.downloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
-                        ? categoryDownloadPath : downloadPath();
-            }
+                loadTorrentParams.downloadPath = (!defaultDownloadPath.isEmpty() ? defaultDownloadPath : downloadPath());
         }
     }
     else
     {
         // Overridden TMM settings
 
-        loadTorrentParams.useAutoTMM = addTorrentParams.useAutoTMM.value();
-
         if (!loadTorrentParams.useAutoTMM)
         {
             if (addTorrentParams.savePath.isAbsolute())
-            {
                 loadTorrentParams.savePath = addTorrentParams.savePath;
-            }
             else
-            {
-                const bool useCategoryPaths = useCategoryPathsInManualMode();
-                const Path categorySavePath = this->categorySavePath(loadTorrentParams.category);
-                Q_ASSERT(!categorySavePath.isEmpty());
-                const Path basePath = (useCategoryPaths && Q_LIKELY(!categorySavePath.isEmpty()))
-                        ? categorySavePath : savePath();
-                loadTorrentParams.savePath = basePath / addTorrentParams.savePath;
-            }
+                loadTorrentParams.savePath = defaultSavePath / addTorrentParams.savePath;
 
             if (!addTorrentParams.useDownloadPath.has_value())
             {
                 // Default "Download path" settings
 
                 if (isDownloadPathEnabled())
-                {
-                    const bool useCategoryPaths = useCategoryPathsInManualMode();
-                    const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
-                    loadTorrentParams.downloadPath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
-                            ? categoryDownloadPath : downloadPath();
-                }
+                    loadTorrentParams.downloadPath = (!defaultDownloadPath.isEmpty() ? defaultDownloadPath : downloadPath());
             }
             else if (addTorrentParams.useDownloadPath.value())
             {
@@ -2642,10 +2637,7 @@ LoadTorrentParams SessionImpl::initLoadTorrentParams(const AddTorrentParams &add
                 }
                 else
                 {
-                    const bool useCategoryPaths = useCategoryPathsInManualMode();
-                    const Path categoryDownloadPath = this->categoryDownloadPath(loadTorrentParams.category);
-                    const Path basePath = (useCategoryPaths && !categoryDownloadPath.isEmpty())
-                            ? categoryDownloadPath : downloadPath();
+                    const Path basePath = (!defaultDownloadPath.isEmpty() ? defaultDownloadPath : downloadPath());
                     loadTorrentParams.downloadPath = basePath / addTorrentParams.downloadPath;
                 }
             }
