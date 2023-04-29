@@ -56,6 +56,7 @@ public:
 private:
     int doLayout(const QRect &rect, bool testOnly) const;
     int smartSpacing(QStyle::PixelMetric pm) const;
+    void applyItemsGeometry(const QHash<QLayoutItem *, QPoint> &items, int lineHeight) const;
 
     QList<QLayoutItem *> m_itemList;
     int m_hSpace;

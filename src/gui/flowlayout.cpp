@@ -29,6 +29,7 @@
 
 #include "flowlayout.h"
 
+#include <QHash>
 #include <QWidget>
 
 #include "base/global.h"
@@ -142,6 +143,7 @@ int FlowLayout::doLayout(const QRect &rect, const bool testOnly) const
     int y = effectiveRect.y();
     int lineHeight = 0;
 
+    QHash<QLayoutItem *, QPoint> lineItems;
     for (QLayoutItem *item : asConst(m_itemList))
     {
         const QWidget *wid = item->widget();
@@ -163,6 +165,12 @@ int FlowLayout::doLayout(const QRect &rect, const bool testOnly) const
         int nextX = x + item->sizeHint().width() + spaceX;
         if (((nextX - spaceX) > effectiveRect.right()) && (lineHeight > 0))
         {
+            if (!testOnly)
+            {
+                applyItemsGeometry(lineItems, lineHeight);
+                lineItems.clear();
+            }
+
             x = effectiveRect.x();
             y = y + lineHeight + spaceY;
             nextX = x + item->sizeHint().width() + spaceX;
@@ -170,11 +178,14 @@ int FlowLayout::doLayout(const QRect &rect, const bool testOnly) const
         }
 
         if (!testOnly)
-            item->setGeometry(QRect(QPoint(x, y), item->sizeHint()));
+            lineItems[item] = QPoint(x, y);
 
         x = nextX;
         lineHeight = std::max(lineHeight, item->sizeHint().height());
     }
+
+    if (!testOnly)
+        applyItemsGeometry(lineItems, lineHeight);
 
     return y + lineHeight - rect.y() + bottom;
 }
@@ -192,4 +203,21 @@ int FlowLayout::smartSpacing(const QStyle::PixelMetric pm) const
     }
 
     return static_cast<QLayout *>(parent)->spacing();
+}
+
+void FlowLayout::applyItemsGeometry(const QHash<QLayoutItem *, QPoint> &items, const int lineHeight) const
+{
+    for (auto it = items.cbegin(); it != items.cend(); ++it)
+    {
+        QLayoutItem *item = it.key();
+        QPoint point = it.value();
+
+        const auto alignment = item->alignment();
+        const int vSpace = lineHeight - item->sizeHint().height();
+        if (alignment & Qt::AlignVCenter)
+            point.ry() += vSpace / 2;
+        else if (alignment & Qt::AlignBottom)
+            point.ry() += vSpace;
+        item->setGeometry(QRect(point, item->sizeHint()));
+    }
 }
