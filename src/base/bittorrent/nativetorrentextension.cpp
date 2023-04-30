@@ -44,7 +44,7 @@ NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrent
 
     if (m_data)
     {
-        m_data->status = m_torrentHandle.status({});
+        m_data->status = m_torrentHandle.status();
         m_data->trackers = m_torrentHandle.trackers();
         m_data->urlSeeds = m_torrentHandle.url_seeds();
     }
