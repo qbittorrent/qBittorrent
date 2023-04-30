@@ -453,6 +453,7 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     };
 
     const QString logMsg = tr("Running external program. Torrent: \"%1\". Command: `%2`");
+    const QString logMsgError = tr("Failed to run external program. Torrent: \"%1\". Command: `%2`");
 
     // The processing sequenece is different for Windows and other OS, this is intentional
 #if defined(Q_OS_WIN)
@@ -471,8 +472,6 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
     QStringList argList;
     for (int i = 1; i < argCount; ++i)
         argList += QString::fromWCharArray(args[i]);
-
-    LogMsg(logMsg.arg(torrent->name(), program));
 
     QProcess proc;
     proc.setProgram(QString::fromWCharArray(args[0]));
@@ -498,7 +497,11 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
         args->startupInfo->hStdOutput = nullptr;
         args->startupInfo->hStdError = nullptr;
     });
-    proc.startDetached();
+
+    if (proc.startDetached())
+        LogMsg(logMsg.arg(torrent->name(), program));
+    else
+        LogMsg(logMsgError.arg(torrent->name(), program));
 #else // Q_OS_WIN
     QStringList args = Utils::String::splitCommand(programTemplate);
 
@@ -514,11 +517,21 @@ void Application::runExternalProgram(const QString &programTemplate, const BitTo
         arg = replaceVariables(arg);
     }
 
-    // show intended command in log
-    LogMsg(logMsg.arg(torrent->name(), replaceVariables(programTemplate)));
-
     const QString command = args.takeFirst();
-    QProcess::startDetached(command, args);
+    QProcess proc;
+    proc.setProgram(command);
+    proc.setArguments(args);
+
+    if (proc.startDetached())
+    {
+        // show intended command in log
+        LogMsg(logMsg.arg(torrent->name(), replaceVariables(programTemplate)));
+    }
+    else
+    {
+        // show intended command in log
+        LogMsg(logMsgError.arg(torrent->name(), replaceVariables(programTemplate)));
+    }
 #endif
 }
 
@@ -732,7 +745,7 @@ try
     actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_qs));
     actionExit->setMenuRole(QAction::QuitRole);
     actionExit->setShortcut(Qt::CTRL | Qt::Key_Q);
-    connect(actionExit, &QAction::triggered, this, [this]()
+    connect(actionExit, &QAction::triggered, this, []
     {
         QApplication::exit();
     });
