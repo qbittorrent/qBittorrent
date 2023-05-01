@@ -1435,27 +1435,29 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
     }
 
     context->deleteLater();
-
-    m_nativeSession->resume();
-    if (m_refreshEnqueued)
-        m_refreshEnqueued = false;
-    else
-        enqueueRefresh();
-
-    m_statisticsLastUpdateTimer.start();
-
-    // Regular saving of fastresume data
-    connect(m_resumeDataTimer, &QTimer::timeout, this, &SessionImpl::generateResumeData);
-    const int saveInterval = saveResumeDataInterval();
-    if (saveInterval > 0)
+    connect(context, &QObject::destroyed, this, [this]
     {
-        m_resumeDataTimer->setInterval(std::chrono::minutes(saveInterval));
-        m_resumeDataTimer->start();
-    }
+        m_nativeSession->resume();
+        if (m_refreshEnqueued)
+            m_refreshEnqueued = false;
+        else
+            enqueueRefresh();
 
-    m_isRestored = true;
-    emit startupProgressUpdated(100);
-    emit restored();
+        m_statisticsLastUpdateTimer.start();
+
+        // Regular saving of fastresume data
+        connect(m_resumeDataTimer, &QTimer::timeout, this, &SessionImpl::generateResumeData);
+        const int saveInterval = saveResumeDataInterval();
+        if (saveInterval > 0)
+        {
+            m_resumeDataTimer->setInterval(std::chrono::minutes(saveInterval));
+            m_resumeDataTimer->start();
+        }
+
+        m_isRestored = true;
+        emit startupProgressUpdated(100);
+        emit restored();
+    });
 }
 
 void SessionImpl::initializeNativeSession()
