@@ -91,35 +91,24 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     Preferences *const pref = Preferences::instance();
 
     // Construct lists
-    auto *vLayout = new QVBoxLayout(this);
-    auto *scroll = new QScrollArea(this);
-    QFrame *frame = new QFrame(scroll);
+    auto *frame = new QFrame;
     auto *frameLayout = new QVBoxLayout(frame);
-    QFont font;
-    font.setBold(true);
-    font.setCapitalization(QFont::AllUppercase);
-
-    scroll->setWidgetResizable(true);
-    scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    setStyleSheet(u"QFrame {background: transparent;}"_qs);
-    scroll->setStyleSheet(u"QFrame {border: none;}"_qs);
-    vLayout->setContentsMargins(0, 0, 0, 0);
     frameLayout->setContentsMargins(0, 2, 0, 0);
     frameLayout->setSpacing(2);
     frameLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
-    frame->setLayout(frameLayout);
-    scroll->setWidget(frame);
-    vLayout->addWidget(scroll);
-    setLayout(vLayout);
+    QFont font;
+    font.setBold(true);
+    font.setCapitalization(QFont::AllUppercase);
 
     QCheckBox *statusLabel = new ArrowCheckBox(tr("Status"), this);
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
+    connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
     frameLayout->addWidget(statusLabel);
 
     auto *statusFilters = new StatusFilterWidget(this, transferList);
+    connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
     frameLayout->addWidget(statusFilters);
 
     QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
@@ -162,15 +151,22 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
+    connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
     frameLayout->addWidget(trackerLabel);
 
     m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
+    connect(trackerLabel, &QCheckBox::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
     frameLayout->addWidget(m_trackersFilterWidget);
 
-    connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
-    connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
-    connect(trackerLabel, &QCheckBox::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
-    connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
+    auto *scroll = new QScrollArea(this);
+    scroll->setWidgetResizable(true);
+    scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scroll->setFrameShape(QFrame::NoFrame);
+    scroll->setWidget(frame);
+
+    auto *vLayout = new QVBoxLayout(this);
+    vLayout->setContentsMargins(0, 0, 0, 0);
+    vLayout->addWidget(scroll);
 }
 
 void TransferListFiltersWidget::setDownloadTrackerFavicon(bool value)
