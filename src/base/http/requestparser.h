@@ -57,7 +57,7 @@ namespace Http
         static const long MAX_CONTENT_SIZE = 64 * 1024 * 1024;  // 64 MB
 
     private:
-        RequestParser();
+        RequestParser() = default;
 
         ParseResult doParse(const QByteArray &data);
         bool parseStartLines(QStringView data);

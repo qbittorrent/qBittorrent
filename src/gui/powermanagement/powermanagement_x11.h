@@ -39,7 +39,7 @@ class PowerManagementInhibitor : public QObject
 
 public:
     PowerManagementInhibitor(QObject *parent = nullptr);
-    virtual ~PowerManagementInhibitor();
+    virtual ~PowerManagementInhibitor() = default;
 
     void requestIdle();
     void requestBusy();

@@ -51,10 +51,6 @@ PowerManagementInhibitor::PowerManagementInhibitor(QObject *parent)
     m_useGSM = false;
 }
 
-PowerManagementInhibitor::~PowerManagementInhibitor()
-{
-}
-
 void PowerManagementInhibitor::requestIdle()
 {
     m_intendedState = Idle;

@@ -208,12 +208,9 @@ AutoDownloadRule::AutoDownloadRule(const QString &name)
     setName(name);
 }
 
-AutoDownloadRule::AutoDownloadRule(const AutoDownloadRule &other)
-    : m_dataPtr(other.m_dataPtr)
-{
-}
+AutoDownloadRule::AutoDownloadRule(const AutoDownloadRule &other) = default;
 
-AutoDownloadRule::~AutoDownloadRule() {}
+AutoDownloadRule::~AutoDownloadRule() = default;
 
 QRegularExpression AutoDownloadRule::cachedRegex(const QString &expression, const bool isRegex) const
 {

@@ -37,7 +37,7 @@ namespace Http
     class IRequestHandler
     {
     public:
-        virtual ~IRequestHandler() {}
+        virtual ~IRequestHandler() = default;
         virtual Response processRequest(const Request &request, const Environment &env) = 0;
     };
 }

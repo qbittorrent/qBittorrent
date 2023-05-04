@@ -338,7 +338,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     // == END UPGRADE CODE ==
 }
 
-TorrentImpl::~TorrentImpl() {}
+TorrentImpl::~TorrentImpl() = default;
 
 bool TorrentImpl::isValid() const
 {

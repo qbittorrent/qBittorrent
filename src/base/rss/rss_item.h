@@ -76,7 +76,7 @@ namespace RSS
 
     protected:
         explicit Item(const QString &path);
-        ~Item() override;
+        ~Item() override = default;
 
         virtual void cleanup() = 0;
 

@@ -45,8 +45,6 @@ Item::Item(const QString &path)
 {
 }
 
-Item::~Item() {}
-
 void Item::setPath(const QString &path)
 {
     if (path != m_path)

@@ -66,12 +66,6 @@ TorrentInfo::TorrentInfo(const lt::torrent_info &nativeInfo)
     }
 }
 
-TorrentInfo::TorrentInfo(const TorrentInfo &other)
-    : m_nativeInfo {other.m_nativeInfo}
-    , m_nativeIndexes {other.m_nativeIndexes}
-{
-}
-
 TorrentInfo &TorrentInfo::operator=(const TorrentInfo &other)
 {
     if (this != &other)

@@ -75,10 +75,6 @@ namespace
     }
 }
 
-RequestParser::RequestParser()
-{
-}
-
 RequestParser::ParseResult RequestParser::parse(const QByteArray &data)
 {
     // Warning! Header names are converted to lowercase

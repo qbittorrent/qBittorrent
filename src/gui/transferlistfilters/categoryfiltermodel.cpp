@@ -38,9 +38,7 @@
 class CategoryModelItem
 {
 public:
-    CategoryModelItem()
-    {
-    }
+    CategoryModelItem() = default;
 
     CategoryModelItem(CategoryModelItem *parent, QString categoryName, int torrentsCount = 0)
         : m_parent(nullptr)

@@ -36,8 +36,6 @@ IconProvider::IconProvider(QObject *parent)
 {
 }
 
-IconProvider::~IconProvider() {}
-
 void IconProvider::initInstance()
 {
     if (!m_instance)
