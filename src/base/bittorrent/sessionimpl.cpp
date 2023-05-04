@@ -4986,7 +4986,7 @@ void SessionImpl::upgradeCategories()
     const auto legacyCategories = SettingValue<QVariantMap>(u"BitTorrent/Session/Categories"_qs).get();
     for (auto it = legacyCategories.cbegin(); it != legacyCategories.cend(); ++it)
     {
-        const QString categoryName = it.key();
+        const QString &categoryName = it.key();
         CategoryOptions categoryOptions;
         categoryOptions.savePath = Path(it.value().toString());
         m_categories[categoryName] = categoryOptions;

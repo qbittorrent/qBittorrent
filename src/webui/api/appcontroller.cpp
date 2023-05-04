@@ -149,7 +149,7 @@ void AppController::preferencesAction()
     QJsonObject nativeDirs;
     for (auto i = watchedFolders.cbegin(); i != watchedFolders.cend(); ++i)
     {
-        const Path watchedFolder = i.key();
+        const Path &watchedFolder = i.key();
         const BitTorrent::AddTorrentParams params = i.value().addTorrentParams;
         if (params.savePath.isEmpty())
             nativeDirs.insert(watchedFolder.toString(), 1);

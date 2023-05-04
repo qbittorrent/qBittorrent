@@ -58,7 +58,7 @@ private:
 
     void configure();
 
-    void update(QVector<BitTorrent::Torrent *> torrents);
+    void update(const QVector<BitTorrent::Torrent *> &torrents);
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
     void hideZeroItems();

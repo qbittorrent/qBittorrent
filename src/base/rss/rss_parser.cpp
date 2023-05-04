@@ -541,7 +541,7 @@ namespace
 
 const int PARSINGRESULT_TYPEID = qRegisterMetaType<RSS::Private::ParsingResult>();
 
-RSS::Private::Parser::Parser(const QString lastBuildDate)
+RSS::Private::Parser::Parser(const QString &lastBuildDate)
 {
     m_result.lastBuildDate = lastBuildDate;
 }

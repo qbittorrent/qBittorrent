@@ -162,7 +162,7 @@ void Smtp::sendMail(const QString &from, const QString &to, const QString &subje
 
     // Connect to SMTP server
     const QStringList serverEndpoint = pref->getMailNotificationSMTP().split(u':');
-    const QString serverAddress = serverEndpoint[0];
+    const QString &serverAddress = serverEndpoint[0];
     const std::optional<int> serverPort = Utils::String::parseInt(serverEndpoint.value(1));
 
 #ifndef QT_NO_OPENSSL

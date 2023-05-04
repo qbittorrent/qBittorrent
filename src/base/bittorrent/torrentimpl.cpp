@@ -1632,7 +1632,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     {
         const auto nativeIndex = nativeIndexes.at(i);
 
-        const Path actualFilePath = fileNames.at(i);
+        const Path &actualFilePath = fileNames.at(i);
         p.renamed_files[nativeIndex] = actualFilePath.toString().toStdString();
 
         const Path filePath = actualFilePath.removedExtension(QB_EXT);

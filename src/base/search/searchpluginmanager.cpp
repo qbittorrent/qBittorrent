@@ -609,7 +609,7 @@ void SearchPluginManager::parseVersionInfo(const QByteArray &info)
     }
 }
 
-bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const PluginVersion newVersion) const
+bool SearchPluginManager::isUpdateNeeded(const QString &pluginName, const PluginVersion &newVersion) const
 {
     const PluginInfo *plugin = pluginInfo(pluginName);
     if (!plugin) return true;

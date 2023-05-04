@@ -53,7 +53,7 @@ namespace RSS::Private
         Q_DISABLE_COPY_MOVE(Parser)
 
     public:
-        explicit Parser(QString lastBuildDate);
+        explicit Parser(const QString &lastBuildDate);
         void parse(const QByteArray &feedData);
 
     signals:
