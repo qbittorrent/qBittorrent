@@ -41,8 +41,7 @@ public:
     CategoryModelItem() = default;
 
     CategoryModelItem(CategoryModelItem *parent, QString categoryName, int torrentsCount = 0)
-        : m_parent(nullptr)
-        , m_name(categoryName)
+        : m_name(categoryName)
         , m_torrentsCount(torrentsCount)
     {
         if (parent)

@@ -62,8 +62,7 @@ TorrentFilter::TorrentFilter(const Type type, const std::optional<TorrentIDSet> 
 
 TorrentFilter::TorrentFilter(const QString &filter, const std::optional<TorrentIDSet> &idSet
                              , const std::optional<QString> &category, const std::optional<QString> &tag)
-    : m_type(All)
-    , m_category(category)
+    : m_category(category)
     , m_tag(tag)
     , m_idSet(idSet)
 {

@@ -58,8 +58,7 @@
 #define NB_STICKY_ITEM 3
 
 TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
-    : QTreeWidget()
-    , m_properties(properties)
+    : m_properties(properties)
 {
     // Set header
     // Must be set before calling loadSettings() otherwise the header is reset on restart

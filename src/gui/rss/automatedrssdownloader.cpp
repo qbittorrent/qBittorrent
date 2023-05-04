@@ -64,7 +64,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_formatFilterJSON(u"%1 (*%2)"_qs.arg(tr("Rules"), EXT_JSON))
     , m_formatFilterLegacy(u"%1 (*%2)"_qs.arg(tr("Rules (legacy)"), EXT_LEGACY))
     , m_ui(new Ui::AutomatedRssDownloader)
-    , m_currentRuleItem(nullptr)
     , m_storeDialogSize {u"RssFeedDownloader/geometrySize"_qs}
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     , m_storeHSplitterSize {u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_qs}

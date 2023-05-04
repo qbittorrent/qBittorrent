@@ -152,8 +152,6 @@ Private::FileLineEdit::FileLineEdit(QWidget *parent)
     : QLineEdit {parent}
     , m_completerModel {new QFileSystemModel(this)}
     , m_completer {new QCompleter(this)}
-    , m_browseAction {nullptr}
-    , m_warningAction {nullptr}
 {
     m_iconProvider.setOptions(QFileIconProvider::DontUseCustomDirectoryIcons);
 

@@ -59,7 +59,6 @@ FileGuard::~FileGuard()
 TorrentFileGuard::TorrentFileGuard(const Path &path, const TorrentFileGuard::AutoDeleteMode mode)
     : FileGuard {mode != Never ? path : Path()}
     , m_mode {mode}
-    , m_wasAdded {false}
 {
 }
 
