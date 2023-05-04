@@ -54,8 +54,8 @@ class UIThemeSource
 public:
     virtual ~UIThemeSource() = default;
 
-    virtual QColor getColor(const QString &colorId, const ColorMode colorMode) const = 0;
-    virtual Path getIconPath(const QString &iconId, const ColorMode colorMode) const = 0;
+    virtual QColor getColor(const QString &colorId, ColorMode colorMode) const = 0;
+    virtual Path getIconPath(const QString &iconId, ColorMode colorMode) const = 0;
     virtual QByteArray readStyleSheet() = 0;
 };
 
@@ -65,8 +65,8 @@ public:
     DefaultThemeSource();
 
     QByteArray readStyleSheet() override;
-    QColor getColor(const QString &colorId, const ColorMode colorMode) const override;
-    Path getIconPath(const QString &iconId, const ColorMode colorMode) const override;
+    QColor getColor(const QString &colorId, ColorMode colorMode) const override;
+    Path getIconPath(const QString &iconId, ColorMode colorMode) const override;
 
 private:
     void loadColors();
@@ -79,8 +79,8 @@ private:
 class CustomThemeSource : public UIThemeSource
 {
 public:
-    QColor getColor(const QString &colorId, const ColorMode colorMode) const override;
-    Path getIconPath(const QString &iconId, const ColorMode colorMode) const override;
+    QColor getColor(const QString &colorId, ColorMode colorMode) const override;
+    Path getIconPath(const QString &iconId, ColorMode colorMode) const override;
     QByteArray readStyleSheet() override;
 
 protected:

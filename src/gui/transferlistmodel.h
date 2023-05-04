@@ -107,15 +107,15 @@ public:
 
 private slots:
     void addTorrents(const QVector<BitTorrent::Torrent *> &torrents);
-    void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
-    void handleTorrentStatusUpdated(BitTorrent::Torrent *const torrent);
+    void handleTorrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
+    void handleTorrentStatusUpdated(BitTorrent::Torrent *torrent);
     void handleTorrentsUpdated(const QVector<BitTorrent::Torrent *> &torrents);
 
 private:
     void configure();
     QString displayValue(const BitTorrent::Torrent *torrent, int column) const;
     QVariant internalValue(const BitTorrent::Torrent *torrent, int column, bool alt) const;
-    QIcon getIconByState(const BitTorrent::TorrentState state) const;
+    QIcon getIconByState(BitTorrent::TorrentState state) const;
 
     QList<BitTorrent::Torrent *> m_torrentList;  // maps row number to torrent handle
     QHash<BitTorrent::Torrent *, int> m_torrentMap;  // maps torrent handle to row number

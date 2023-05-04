@@ -74,7 +74,7 @@ namespace BitTorrent
         void create(const TorrentCreatorParams &params);
 
 #ifdef QBT_USES_LIBTORRENT2
-        static int calculateTotalPieces(const Path &inputPath, const int pieceSize, const TorrentFormat torrentFormat);
+        static int calculateTotalPieces(const Path &inputPath, int pieceSize, TorrentFormat torrentFormat);
 #else
         static int calculateTotalPieces(const Path &inputPath
             , const int pieceSize, const bool isAlignmentOptimized, int paddedFileSizeLimit);

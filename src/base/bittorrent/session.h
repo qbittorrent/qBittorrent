@@ -400,7 +400,7 @@ namespace BitTorrent
         virtual bool isTrackerFilteringEnabled() const = 0;
         virtual void setTrackerFilteringEnabled(bool enabled) = 0;
         virtual bool isExcludedFileNamesEnabled() const = 0;
-        virtual void setExcludedFileNamesEnabled(const bool enabled) = 0;
+        virtual void setExcludedFileNamesEnabled(bool enabled) = 0;
         virtual QStringList excludedFileNames() const = 0;
         virtual void setExcludedFileNames(const QStringList &newList) = 0;
         virtual bool isFilenameExcluded(const QString &fileName) const = 0;

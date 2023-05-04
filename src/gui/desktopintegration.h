@@ -63,7 +63,7 @@ public:
 
     int notificationTimeout() const;
 #ifdef QBT_USES_DBUS
-    void setNotificationTimeout(const int value);
+    void setNotificationTimeout(int value);
 #endif
 
     void showNotification(const QString &title, const QString &msg) const;

@@ -76,16 +76,16 @@ public:
 
 public slots:
     void setVisibility(bool visible);
-    void loadTorrentInfos(BitTorrent::Torrent *const torrent);
+    void loadTorrentInfos(BitTorrent::Torrent *torrent);
     void loadDynamicData();
     void clear();
     void readSettings();
     void saveSettings();
     void reloadPreferences();
-    void loadTrackers(BitTorrent::Torrent *const torrent);
+    void loadTrackers(BitTorrent::Torrent *torrent);
 
 protected slots:
-    void updateTorrentInfos(BitTorrent::Torrent *const torrent);
+    void updateTorrentInfos(BitTorrent::Torrent *torrent);
     void loadUrlSeeds();
     void askWebSeed();
     void deleteSelectedUrlSeeds();
@@ -97,7 +97,7 @@ protected slots:
 
 private slots:
     void configure();
-    void updateSavePath(BitTorrent::Torrent *const torrent);
+    void updateSavePath(BitTorrent::Torrent *torrent);
 
 private:
     QPushButton *getButtonFromIndex(int index);
