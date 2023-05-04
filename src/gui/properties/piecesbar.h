@@ -55,7 +55,7 @@ public:
     virtual void clear();
 
     // QObject interface
-    virtual bool event(QEvent *e) override;
+    bool event(QEvent *e) override;
 
 protected:
     // QWidget interface
