@@ -123,7 +123,7 @@ FeedListWidget::FeedListWidget(QWidget *parent)
 
 void FeedListWidget::handleItemAdded(RSS::Item *rssItem)
 {
-    auto parentItem = m_rssToTreeItemMapping.value(
+    auto *parentItem = m_rssToTreeItemMapping.value(
                 RSS::Session::instance()->itemByPath(RSS::Item::parentPath(rssItem->path())));
     createItem(rssItem, parentItem);
 }
@@ -264,7 +264,7 @@ void FeedListWidget::dropEvent(QDropEvent *event)
     // move as much items as possible
     for (QTreeWidgetItem *srcItem : asConst(selectedItems()))
     {
-        auto rssItem = getRSSItem(srcItem);
+        auto *rssItem = getRSSItem(srcItem);
         RSS::Session::instance()->moveItem(rssItem, RSS::Item::joinPath(destFolder->path(), rssItem->name()));
     }
 
@@ -281,7 +281,7 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
     m_rssToTreeItemMapping[rssItem] = item;
 
     QIcon icon;
-    if (auto feed = qobject_cast<RSS::Feed *>(rssItem))
+    if (auto *feed = qobject_cast<RSS::Feed *>(rssItem))
         icon = rssFeedIcon(feed);
     else
         icon = UIThemeManager::instance()->getIcon(u"directory"_qs);
@@ -299,11 +299,11 @@ QTreeWidgetItem *FeedListWidget::createItem(RSS::Item *rssItem, QTreeWidgetItem 
 
 void FeedListWidget::fill(QTreeWidgetItem *parent, RSS::Folder *rssParent)
 {
-    for (const auto rssItem : asConst(rssParent->items()))
+    for (auto *rssItem : asConst(rssParent->items()))
     {
         QTreeWidgetItem *item = createItem(rssItem, parent);
         // Recursive call if this is a folder.
-        if (auto folder = qobject_cast<RSS::Folder *>(rssItem))
+        if (auto *folder = qobject_cast<RSS::Folder *>(rssItem))
             fill(item, folder);
     }
 }

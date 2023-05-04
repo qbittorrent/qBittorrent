@@ -204,7 +204,7 @@ QVariant CategoryFilterModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid()) return {};
 
-    auto item = static_cast<const CategoryModelItem *>(index.internalPointer());
+    const auto *item = static_cast<const CategoryModelItem *>(index.internalPointer());
 
     if ((index.column() == 0) && (role == Qt::DecorationRole))
     {
@@ -248,7 +248,7 @@ QModelIndex CategoryFilterModel::index(int row, int column, const QModelIndex &p
     if (parent.isValid() && (parent.column() != 0))
         return {};
 
-    auto parentItem = parent.isValid() ? static_cast<CategoryModelItem *>(parent.internalPointer())
+    auto *parentItem = parent.isValid() ? static_cast<CategoryModelItem *>(parent.internalPointer())
                                        : m_rootItem;
     if (row < parentItem->childCount())
         return createIndex(row, column, parentItem->childAt(row));
@@ -261,7 +261,7 @@ QModelIndex CategoryFilterModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return {};
 
-    auto item = static_cast<CategoryModelItem *>(index.internalPointer());
+    auto *item = static_cast<CategoryModelItem *>(index.internalPointer());
     if (!item) return {};
 
     return this->index(item->parent());
@@ -275,7 +275,7 @@ int CategoryFilterModel::rowCount(const QModelIndex &parent) const
     if (!parent.isValid())
         return m_rootItem->childCount();
 
-    auto item = static_cast<CategoryModelItem *>(parent.internalPointer());
+    auto *item = static_cast<CategoryModelItem *>(parent.internalPointer());
     if (!item) return 0;
 
     return item->childCount();
@@ -319,7 +319,7 @@ void CategoryFilterModel::categoryAdded(const QString &categoryName)
 
 void CategoryFilterModel::categoryRemoved(const QString &categoryName)
 {
-    auto item = findItem(categoryName);
+    auto *item = findItem(categoryName);
     if (item)
     {
         QModelIndex i = index(item);
@@ -354,7 +354,7 @@ void CategoryFilterModel::torrentCategoryChanged(BitTorrent::Torrent *const torr
 {
     QModelIndex i;
 
-    auto item = findItem(oldCategory);
+    auto *item = findItem(oldCategory);
     Q_ASSERT(item);
 
     item->decreaseTorrentsCount();

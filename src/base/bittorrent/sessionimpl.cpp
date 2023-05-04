@@ -1651,7 +1651,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
     if (Preferences::instance()->useProxyForBT())
     {
-        const auto proxyManager = Net::ProxyConfigurationManager::instance();
+        const auto *proxyManager = Net::ProxyConfigurationManager::instance();
         const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
         switch (proxyConfig.type)
@@ -5229,7 +5229,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         if (a->type() != lt::add_torrent_alert::alert_type)
             continue;
 
-        auto alert = static_cast<const lt::add_torrent_alert *>(a);
+        const auto *alert = static_cast<const lt::add_torrent_alert *>(a);
         if (alert->error)
         {
             const QString msg = QString::fromStdString(alert->message());

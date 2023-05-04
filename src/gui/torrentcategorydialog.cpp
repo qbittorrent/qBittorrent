@@ -108,7 +108,7 @@ void TorrentCategoryDialog::editCategory(QWidget *parent, const QString &categor
 
     Q_ASSERT(Session::instance()->categories().contains(categoryName));
 
-    auto dialog = new TorrentCategoryDialog(parent);
+    auto *dialog = new TorrentCategoryDialog(parent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->setCategoryNameEditable(false);
     dialog->setCategoryName(categoryName);

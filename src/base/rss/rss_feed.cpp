@@ -345,7 +345,7 @@ bool Feed::addArticle(const QVariantHash &articleData)
 
 void Feed::removeOldestArticle()
 {
-    auto oldestArticle = m_articlesByDate.last();
+    auto *oldestArticle = m_articlesByDate.last();
     emit articleAboutToBeRemoved(oldestArticle);
 
     m_articles.remove(oldestArticle->guid());

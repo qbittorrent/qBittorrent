@@ -1279,7 +1279,7 @@ void TorrentsController::removeCategoriesAction()
 
 void TorrentsController::categoriesAction()
 {
-    const auto session = BitTorrent::Session::instance();
+    const auto *session = BitTorrent::Session::instance();
 
     QJsonObject categories;
     const QStringList categoriesList = session->categories();

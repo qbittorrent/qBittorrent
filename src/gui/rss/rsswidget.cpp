@@ -203,7 +203,7 @@ void RSSWidget::displayItemsListMenu()
     bool hasLink = false;
     for (const QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
+        auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         if (!article->torrentUrl().isEmpty())
@@ -364,7 +364,7 @@ void RSSWidget::downloadSelectedTorrents()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
+        auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
@@ -385,7 +385,7 @@ void RSSWidget::openSelectedArticlesUrls()
 {
     for (QListWidgetItem *item : asConst(m_articleListWidget->selectedItems()))
     {
-        auto article = item->data(Qt::UserRole).value<RSS::Article *>();
+        auto *article = item->data(Qt::UserRole).value<RSS::Article *>();
         Q_ASSERT(article);
 
         // Mark as read
@@ -467,7 +467,7 @@ void RSSWidget::copySelectedFeedsURL()
     QStringList URLs;
     for (QTreeWidgetItem *item : asConst(m_feedListWidget->selectedItems()))
     {
-        if (auto feed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item)))
+        if (auto *feed = qobject_cast<RSS::Feed *>(m_feedListWidget->getRSSItem(item)))
             URLs << feed->url();
     }
     qApp->clipboard()->setText(URLs.join(u'\n'));
@@ -496,14 +496,14 @@ void RSSWidget::handleCurrentArticleItemChanged(QListWidgetItem *currentItem, QL
 
     if (previousItem)
     {
-        auto article = m_articleListWidget->getRSSArticle(previousItem);
+        auto *article = m_articleListWidget->getRSSArticle(previousItem);
         Q_ASSERT(article);
         article->markAsRead();
     }
 
     if (!currentItem) return;
 
-    auto article = m_articleListWidget->getRSSArticle(currentItem);
+    auto *article = m_articleListWidget->getRSSArticle(currentItem);
     Q_ASSERT(article);
 
     const QString highlightedBaseColor = m_ui->textBrowser->palette().color(QPalette::Highlight).name();

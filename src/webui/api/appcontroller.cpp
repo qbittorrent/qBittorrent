@@ -616,7 +616,7 @@ void AppController::setPreferencesAction()
         session->setMaxUploadsPerTorrent(it.value().toInt());
 
     // Proxy Server
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (hasKey(u"proxy_type"_qs))
         proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::HTTP);

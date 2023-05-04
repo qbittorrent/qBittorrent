@@ -208,7 +208,7 @@ void Net::DownloadHandlerImpl::handleRedirection(const QUrl &newUrl)
         return;
     }
 
-    auto redirected = static_cast<DownloadHandlerImpl *>(
+    auto *redirected = static_cast<DownloadHandlerImpl *>(
             m_manager->download(DownloadRequest(m_downloadRequest).url(newUrlString), useProxy()));
     redirected->m_redirectionCount = m_redirectionCount + 1;
     connect(redirected, &DownloadHandlerImpl::finished, this, [this](const DownloadResult &result)

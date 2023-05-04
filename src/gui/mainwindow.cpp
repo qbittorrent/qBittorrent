@@ -942,7 +942,7 @@ void MainWindow::askRecursiveTorrentDownloadConfirmation(const BitTorrent::Torre
 
 void MainWindow::on_actionSetGlobalSpeedLimits_triggered()
 {
-    auto dialog = new SpeedLimitDialog {this};
+    auto *dialog = new SpeedLimitDialog {this};
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
 }

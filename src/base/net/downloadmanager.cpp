@@ -163,7 +163,7 @@ Net::DownloadHandler *Net::DownloadManager::download(const DownloadRequest &down
     const ServiceID id = ServiceID::fromURL(downloadRequest.url());
     const bool isSequentialService = m_sequentialServices.contains(id);
 
-    auto downloadHandler = new DownloadHandlerImpl(this, downloadRequest, useProxy);
+    auto *downloadHandler = new DownloadHandlerImpl(this, downloadRequest, useProxy);
     connect(downloadHandler, &DownloadHandler::finished, downloadHandler, &QObject::deleteLater);
     connect(downloadHandler, &QObject::destroyed, this, [this, id, downloadHandler]()
     {
@@ -274,7 +274,7 @@ void Net::DownloadManager::handleDownloadFinished(DownloadHandlerImpl *finishedH
         return;
     }
 
-    auto handler = waitingJobsIter.value().dequeue();
+    auto *handler = waitingJobsIter.value().dequeue();
     qDebug("Downloading %s...", qUtf8Printable(handler->url()));
     processRequest(handler);
     handler->disconnect(this);

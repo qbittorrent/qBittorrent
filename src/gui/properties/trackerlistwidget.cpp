@@ -437,7 +437,7 @@ void TrackerListWidget::openAddTrackersDialog()
     if (!torrent)
         return;
 
-    const auto dialog = new TrackersAdditionDialog(this, torrent);
+    auto *dialog = new TrackersAdditionDialog(this, torrent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
 }

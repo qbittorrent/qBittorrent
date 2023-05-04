@@ -100,7 +100,7 @@ Session::Session()
     // Remove legacy/corrupted settings
     // (at least on Windows, QSettings is case-insensitive and it can get
     // confused when asked about settings that differ only in their case)
-    auto settingsStorage = SettingsStorage::instance();
+    auto *settingsStorage = SettingsStorage::instance();
     settingsStorage->removeValue(u"Rss/streamList"_qs);
     settingsStorage->removeValue(u"Rss/streamAlias"_qs);
     settingsStorage->removeValue(u"Rss/open_folders"_qs);
@@ -140,7 +140,7 @@ nonstd::expected<void, QString> Session::addFolder(const QString &path)
     if (!result)
         return result.get_unexpected();
 
-    const auto destFolder = result.value();
+    auto *destFolder = result.value();
     addItem(new Folder(path), destFolder);
     store();
     return {};
@@ -155,7 +155,7 @@ nonstd::expected<void, QString> Session::addFeed(const QString &url, const QStri
     if (!result)
         return result.get_unexpected();
 
-    const auto destFolder = result.value();
+    auto *destFolder = result.value();
     auto *feed = new Feed(generateUID(), url, path, this);
     addItem(feed, destFolder);
     store();
@@ -198,7 +198,7 @@ nonstd::expected<void, QString> Session::moveItem(const QString &itemPath, const
     if (itemPath.isEmpty())
         return nonstd::make_unexpected(tr("Cannot move root folder."));
 
-    auto item = m_itemsByPath.value(itemPath);
+    auto *item = m_itemsByPath.value(itemPath);
     if (!item)
         return nonstd::make_unexpected(tr("Item doesn't exist: %1.").arg(itemPath));
 
@@ -214,11 +214,11 @@ nonstd::expected<void, QString> Session::moveItem(Item *item, const QString &des
     if (!result)
         return result.get_unexpected();
 
-    const auto destFolder = result.value();
+    auto *destFolder = result.value();
     if (static_cast<Item *>(destFolder) == item)
         return nonstd::make_unexpected(tr("Couldn't move folder into itself."));
 
-    auto srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
+    auto *srcFolder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
     if (srcFolder != destFolder)
     {
         srcFolder->removeItem(item);
@@ -242,7 +242,7 @@ nonstd::expected<void, QString> Session::removeItem(const QString &itemPath)
     emit itemAboutToBeRemoved(item);
     item->cleanup();
 
-    auto folder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
+    auto *folder = static_cast<Folder *>(m_itemsByPath.value(Item::parentPath(item->path())));
     folder->removeItem(item);
     delete item;
     store();
@@ -410,7 +410,7 @@ nonstd::expected<Folder *, QString> Session::prepareItemDest(const QString &path
         return nonstd::make_unexpected(tr("RSS item with given path already exists: %1.").arg(path));
 
     const QString destFolderPath = Item::parentPath(path);
-    const auto destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
+    auto *destFolder = qobject_cast<Folder *>(m_itemsByPath.value(destFolderPath));
     if (!destFolder)
         return nonstd::make_unexpected(tr("Parent folder doesn't exist: %1.").arg(destFolderPath));
 
@@ -419,21 +419,21 @@ nonstd::expected<Folder *, QString> Session::prepareItemDest(const QString &path
 
 Folder *Session::addSubfolder(const QString &name, Folder *parentFolder)
 {
-    auto folder = new Folder(Item::joinPath(parentFolder->path(), name));
+    auto *folder = new Folder(Item::joinPath(parentFolder->path(), name));
     addItem(folder, parentFolder);
     return folder;
 }
 
 Feed *Session::addFeedToFolder(const QUuid &uid, const QString &url, const QString &name, Folder *parentFolder)
 {
-    auto feed = new Feed(uid, url, Item::joinPath(parentFolder->path(), name), this);
+    auto *feed = new Feed(uid, url, Item::joinPath(parentFolder->path(), name), this);
     addItem(feed, parentFolder);
     return feed;
 }
 
 void Session::addItem(Item *item, Folder *destFolder)
 {
-    if (auto feed = qobject_cast<Feed *>(item))
+    if (auto *feed = qobject_cast<Feed *>(item))
     {
         connect(feed, &Feed::titleChanged, this, &Session::handleFeedTitleChanged);
         connect(feed, &Feed::iconLoaded, this, &Session::feedIconLoaded);
@@ -530,7 +530,7 @@ QThread *Session::workingThread() const
 void Session::handleItemAboutToBeDestroyed(Item *item)
 {
     m_itemsByPath.remove(item->path());
-    auto feed = qobject_cast<Feed *>(item);
+    auto *feed = qobject_cast<Feed *>(item);
     if (feed)
     {
         m_feedsByUID.remove(feed->uid());
