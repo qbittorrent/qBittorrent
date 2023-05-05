@@ -484,9 +484,9 @@ int FilterParserThread::parseP2BFilterFile()
     char buf[7];
     unsigned char version;
     if (!stream.readRawData(buf, sizeof(buf))
-        || memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7)
+        || (memcmp(buf, "\xFF\xFF\xFF\xFFP2B", 7) != 0)
         || !stream.readRawData(reinterpret_cast<char*>(&version), sizeof(version)))
-        {
+    {
         LogMsg(tr("Parsing Error: The filter file is not a valid PeerGuardian P2B file."), Log::CRITICAL);
         return ruleCount;
     }

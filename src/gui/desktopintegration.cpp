@@ -100,8 +100,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
 
 DesktopIntegration::~DesktopIntegration()
 {
-    if (m_menu)
-        delete m_menu;
+    delete m_menu;
 }
 
 bool DesktopIntegration::isActive() const

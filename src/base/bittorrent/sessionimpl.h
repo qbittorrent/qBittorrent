@@ -380,7 +380,7 @@ namespace BitTorrent
         bool isExcludedFileNamesEnabled() const override;
         void setExcludedFileNamesEnabled(bool enabled) override;
         QStringList excludedFileNames() const override;
-        void setExcludedFileNames(const QStringList &newList) override;
+        void setExcludedFileNames(const QStringList &excludedFileNames) override;
         bool isFilenameExcluded(const QString &fileName) const override;
         QStringList bannedIPs() const override;
         void setBannedIPs(const QStringList &newList) override;
