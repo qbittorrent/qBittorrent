@@ -734,7 +734,13 @@ qreal TorrentImpl::progress() const
         return 1.;
 
     const qreal progress = static_cast<qreal>(m_nativeStatus.total_wanted_done) / m_nativeStatus.total_wanted;
-    Q_ASSERT((progress >= 0.f) && (progress <= 1.f));
+    if ((progress < 0.f) || (progress > 1.f))
+    {
+        LogMsg(tr("Unexpected data detected. Torrent: %1. Data: total_wanted=%2 total_wanted_done=%3.")
+                .arg(name(), QString::number(m_nativeStatus.total_wanted), QString::number(m_nativeStatus.total_wanted_done))
+                , Log::WARNING);
+    }
+
     return progress;
 }
 

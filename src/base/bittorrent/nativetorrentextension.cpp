@@ -36,18 +36,11 @@ NativeTorrentExtension::NativeTorrentExtension(const lt::torrent_handle &torrent
 {
     // NOTE: `data` may not exist if a torrent is added behind the scenes to download metadata
 
-#ifdef QBT_USES_LIBTORRENT2
-    // libtorrent < 2.0.7 has a bug that add_torrent_alert is posted too early
-    // (before torrent is fully initialized and torrent extensions are created)
-    // so we have to fill "extension data" in add_torrent_alert handler and
-    // we have it already filled at this point
-
     if (m_data)
     {
-        m_data->status = m_torrentHandle.status({});
+        m_data->status = m_torrentHandle.status();
         m_data->trackers = m_torrentHandle.trackers();
     }
-#endif
 
     on_state(m_data ? m_data->status.state : m_torrentHandle.status({}).state);
 }
