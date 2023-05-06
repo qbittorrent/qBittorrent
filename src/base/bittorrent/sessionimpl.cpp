@@ -72,7 +72,6 @@
 #endif
 #include <QNetworkInterface>
 #include <QRegularExpression>
-#include <QScopeGuard>
 #include <QString>
 #include <QThread>
 #include <QThreadPool>
