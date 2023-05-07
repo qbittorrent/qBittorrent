@@ -47,7 +47,7 @@ class PowerManagement : public QObject
 
 public:
   PowerManagement(QObject *parent = nullptr);
-  virtual ~PowerManagement();
+  virtual ~PowerManagement() = default;
 
   void setActivityState(bool busy);
 

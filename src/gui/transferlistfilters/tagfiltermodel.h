@@ -61,10 +61,10 @@ public:
 private slots:
     void tagAdded(const QString &tag);
     void tagRemoved(const QString &tag);
-    void torrentTagAdded(BitTorrent::Torrent *const torrent, const QString &tag);
-    void torrentTagRemoved(BitTorrent::Torrent *const, const QString &tag);
+    void torrentTagAdded(BitTorrent::Torrent *torrent, const QString &tag);
+    void torrentTagRemoved(BitTorrent::Torrent *, const QString &tag);
     void torrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents);
-    void torrentAboutToBeRemoved(BitTorrent::Torrent *const torrent);
+    void torrentAboutToBeRemoved(BitTorrent::Torrent *torrent);
 
 private:
     static QString tagDisplayName(const QString &tag);

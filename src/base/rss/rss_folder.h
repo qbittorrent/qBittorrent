@@ -46,7 +46,7 @@ namespace RSS
 
         friend class Session;
 
-        explicit Folder(const QString &path = u""_qs);
+        explicit Folder(const QString &path = {});
         ~Folder() override;
 
     public:

@@ -208,7 +208,7 @@ void TagFilterWidget::removeTag()
 
 void TagFilterWidget::removeUnusedTags()
 {
-    auto session = BitTorrent::Session::instance();
+    auto *session = BitTorrent::Session::instance();
     for (const QString &tag : asConst(session->tags()))
         if (model()->data(static_cast<TagFilterProxyModel *>(model())->index(tag), Qt::UserRole) == 0)
             session->removeTag(tag);

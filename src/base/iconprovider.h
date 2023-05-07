@@ -48,7 +48,7 @@ public:
 
 protected:
     explicit IconProvider(QObject *parent = nullptr);
-    ~IconProvider();
+    ~IconProvider() = default;
 
     static IconProvider *m_instance;
 };

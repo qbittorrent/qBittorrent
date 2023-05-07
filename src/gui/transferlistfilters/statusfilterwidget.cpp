@@ -199,7 +199,7 @@ void StatusFilterWidget::hideZeroItems()
         setCurrentRow(TorrentFilter::All, QItemSelectionModel::SelectCurrent);
 }
 
-void StatusFilterWidget::update(const QVector<BitTorrent::Torrent *> torrents)
+void StatusFilterWidget::update(const QVector<BitTorrent::Torrent *> &torrents)
 {
     for (const BitTorrent::Torrent *torrent : torrents)
         updateTorrentStatus(torrent);

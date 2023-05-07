@@ -116,9 +116,9 @@ Path Private::DefaultProfile::downloadLocation() const
 std::unique_ptr<QSettings> Private::DefaultProfile::applicationSettings(const QString &name) const
 {
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
-    return std::unique_ptr<QSettings>(new QSettings(QSettings::IniFormat, QSettings::UserScope, profileName(), name));
+    return std::make_unique<QSettings>(QSettings::IniFormat, QSettings::UserScope, profileName(), name);
 #else
-    return std::unique_ptr<QSettings>(new QSettings(profileName(), name));
+    return std::make_unique<QSettings>(profileName(), name);
 #endif
 }
 

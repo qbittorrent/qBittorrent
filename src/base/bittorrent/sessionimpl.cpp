@@ -72,7 +72,6 @@
 #endif
 #include <QNetworkInterface>
 #include <QRegularExpression>
-#include <QScopeGuard>
 #include <QString>
 #include <QThread>
 #include <QThreadPool>
@@ -1651,7 +1650,7 @@ lt::settings_pack SessionImpl::loadLTSettings() const
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
     if (Preferences::instance()->useProxyForBT())
     {
-        const auto proxyManager = Net::ProxyConfigurationManager::instance();
+        const auto *proxyManager = Net::ProxyConfigurationManager::instance();
         const Net::ProxyConfiguration proxyConfig = proxyManager->proxyConfiguration();
 
         switch (proxyConfig.type)
@@ -4986,7 +4985,7 @@ void SessionImpl::upgradeCategories()
     const auto legacyCategories = SettingValue<QVariantMap>(u"BitTorrent/Session/Categories"_qs).get();
     for (auto it = legacyCategories.cbegin(); it != legacyCategories.cend(); ++it)
     {
-        const QString categoryName = it.key();
+        const QString &categoryName = it.key();
         CategoryOptions categoryOptions;
         categoryOptions.savePath = Path(it.value().toString());
         m_categories[categoryName] = categoryOptions;
@@ -5229,7 +5228,7 @@ void SessionImpl::handleAddTorrentAlerts(const std::vector<lt::alert *> &alerts)
         if (a->type() != lt::add_torrent_alert::alert_type)
             continue;
 
-        auto alert = static_cast<const lt::add_torrent_alert *>(a);
+        const auto *alert = static_cast<const lt::add_torrent_alert *>(a);
         if (alert->error)
         {
             const QString msg = QString::fromStdString(alert->message());

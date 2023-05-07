@@ -53,7 +53,7 @@ namespace Utils::IO
         using pointer = void;
         using reference = void;
 
-        explicit FileDeviceOutputIterator(QFileDevice &device, const int bufferSize = (4 * 1024));
+        explicit FileDeviceOutputIterator(QFileDevice &device, int bufferSize = (4 * 1024));
         FileDeviceOutputIterator(const FileDeviceOutputIterator &other) = default;
         ~FileDeviceOutputIterator();
 

@@ -49,7 +49,7 @@ namespace RSS
     class AutoDownloadRule
     {
     public:
-        explicit AutoDownloadRule(const QString &name = u""_qs);
+        explicit AutoDownloadRule(const QString &name = {});
         AutoDownloadRule(const AutoDownloadRule &other);
         ~AutoDownloadRule();
 
@@ -96,7 +96,7 @@ namespace RSS
         friend bool operator==(const AutoDownloadRule &left, const AutoDownloadRule &right);
 
         QJsonObject toJsonObject() const;
-        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = u""_qs);
+        static AutoDownloadRule fromJsonObject(const QJsonObject &jsonObj, const QString &name = {});
 
         QVariantHash toLegacyDict() const;
         static AutoDownloadRule fromLegacyDict(const QVariantHash &dict);

@@ -459,7 +459,7 @@ int SearchJobWidget::visibleColumnsCount() const
 
 void SearchJobWidget::displayColumnHeaderMenu()
 {
-    auto menu = new QMenu(this);
+    auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
     menu->setToolTipsVisible(true);

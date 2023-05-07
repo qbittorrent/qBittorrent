@@ -50,10 +50,6 @@ PowerManagement::PowerManagement(QObject *parent)
 #endif
 }
 
-PowerManagement::~PowerManagement()
-{
-}
-
 void PowerManagement::setActivityState(const bool busy)
 {
     if (busy)

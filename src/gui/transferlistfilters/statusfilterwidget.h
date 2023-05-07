@@ -54,11 +54,11 @@ private:
     void showMenu() override;
     void applyFilter(int row) override;
     void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
-    void torrentAboutToBeDeleted(BitTorrent::Torrent *const) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *) override;
 
     void configure();
 
-    void update(const QVector<BitTorrent::Torrent *> torrents);
+    void update(const QVector<BitTorrent::Torrent *> &torrents);
     void updateTorrentStatus(const BitTorrent::Torrent *torrent);
     void updateTexts();
     void hideZeroItems();

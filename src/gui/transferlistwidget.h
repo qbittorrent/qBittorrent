@@ -102,7 +102,7 @@ public slots:
     void renameSelectedTorrent();
 
 signals:
-    void currentTorrentChanged(BitTorrent::Torrent *const torrent);
+    void currentTorrentChanged(BitTorrent::Torrent *torrent);
 
 private slots:
     void torrentDoubleClicked();

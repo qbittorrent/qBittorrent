@@ -98,7 +98,7 @@ namespace
         QString firstTrackerMessage;
         QString firstErrorMessage;
 #ifdef QBT_USES_LIBTORRENT2
-        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size() * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1));
+        const auto numEndpoints = static_cast<qsizetype>(nativeEntry.endpoints.size()) * ((hashes.has_v1() && hashes.has_v2()) ? 2 : 1);
         for (const lt::announce_endpoint &endpoint : nativeEntry.endpoints)
         {
             for (const auto protocolVersion : {lt::protocol_version::V1, lt::protocol_version::V2})
@@ -338,7 +338,7 @@ TorrentImpl::TorrentImpl(SessionImpl *session, lt::session *nativeSession
     // == END UPGRADE CODE ==
 }
 
-TorrentImpl::~TorrentImpl() {}
+TorrentImpl::~TorrentImpl() = default;
 
 bool TorrentImpl::isValid() const
 {
@@ -1632,7 +1632,7 @@ void TorrentImpl::endReceivedMetadataHandling(const Path &savePath, const PathLi
     {
         const auto nativeIndex = nativeIndexes.at(i);
 
-        const Path actualFilePath = fileNames.at(i);
+        const Path &actualFilePath = fileNames.at(i);
         p.renamed_files[nativeIndex] = actualFilePath.toString().toStdString();
 
         const Path filePath = actualFilePath.removedExtension(QB_EXT);

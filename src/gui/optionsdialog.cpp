@@ -334,7 +334,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     });
     connect(m_ui->buttonCustomizeUITheme, &QPushButton::clicked, this, [this]
     {
-        auto dialog = new UIThemeDialog(this);
+        auto *dialog = new UIThemeDialog(this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->open();
     });
@@ -698,7 +698,7 @@ void OptionsDialog::saveDownloadsTabOptions() const
     session->setTorrentExportDirectory(getTorrentExportDir());
     session->setFinishedTorrentExportDirectory(getFinishedTorrentExportDir());
 
-    auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+    auto *watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
     watchedFoldersModel->apply();
 
     session->setExcludedFileNamesEnabled(m_ui->groupExcludedFileNames->isChecked());
@@ -882,7 +882,7 @@ void OptionsDialog::saveConnectionTabOptions() const
     session->setI2PPort(m_ui->spinI2PPort->value());
     session->setI2PMixedMode(m_ui->checkI2PMixed->isChecked());
 
-    auto proxyConfigManager = Net::ProxyConfigurationManager::instance();
+    auto *proxyConfigManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf;
     proxyConf.type = getProxyType();
     proxyConf.ip = getProxyIp();
@@ -1668,13 +1668,13 @@ void OptionsDialog::on_addWatchedFolderButton_clicked()
     if (dir.isEmpty())
         return;
 
-    auto dialog = new WatchedFolderOptionsDialog({}, this);
+    auto *dialog = new WatchedFolderOptionsDialog({}, this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, dir, pref]()
     {
         try
         {
-            auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+            auto *watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
             watchedFoldersModel->addFolder(dir, dialog->watchedFolderOptions());
 
             pref->setScanDirsLastPath(dir);
@@ -1722,8 +1722,8 @@ void OptionsDialog::editWatchedFolderOptions(const QModelIndex &index)
     if (!index.isValid())
         return;
 
-    auto watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
-    auto dialog = new WatchedFolderOptionsDialog(watchedFoldersModel->folderOptions(index.row()), this);
+    auto *watchedFoldersModel = static_cast<WatchedFoldersModel *>(m_ui->scanFoldersView->model());
+    auto *dialog = new WatchedFolderOptionsDialog(watchedFoldersModel->folderOptions(index.row()), this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, [this, dialog, index, watchedFoldersModel]()
     {
@@ -1880,7 +1880,7 @@ bool OptionsDialog::schedTimesOk()
 
 void OptionsDialog::on_banListButton_clicked()
 {
-    auto dialog = new BanListOptionsDialog(this);
+    auto *dialog = new BanListOptionsDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();
@@ -1888,7 +1888,7 @@ void OptionsDialog::on_banListButton_clicked()
 
 void OptionsDialog::on_IPSubnetWhitelistButton_clicked()
 {
-    auto dialog = new IPSubnetWhitelistOptionsDialog(this);
+    auto *dialog = new IPSubnetWhitelistOptionsDialog(this);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     connect(dialog, &QDialog::accepted, this, &OptionsDialog::enableApplyButton);
     dialog->open();

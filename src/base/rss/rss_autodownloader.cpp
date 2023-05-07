@@ -382,13 +382,13 @@ void AutoDownloader::handleFeedURLChanged(Feed *feed, const QString &oldURL)
         }
     }
 
-    for (QSharedPointer<ProcessingJob> job : asConst(m_processingQueue))
+    for (const QSharedPointer<ProcessingJob> &job : asConst(m_processingQueue))
     {
         if (job->feedURL == oldURL)
             job->feedURL = feed->url();
     }
 
-    for (QSharedPointer<ProcessingJob> job : asConst(m_waitingJobs))
+    for (const QSharedPointer<ProcessingJob> &job : asConst(m_waitingJobs))
     {
         if (job->feedURL == oldURL)
             job->feedURL = feed->url();

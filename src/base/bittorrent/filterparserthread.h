@@ -55,8 +55,8 @@ protected:
     void run() override;
 
 private:
-    int findAndNullDelimiter(char *const data, char delimiter, int start, int end, bool reverse = false);
-    int trim(char *const data, int start, int end);
+    int findAndNullDelimiter(char *data, char delimiter, int start, int end, bool reverse = false);
+    int trim(char *data, int start, int end);
     int parseDATFilterFile();
     int parseP2PFilterFile();
     int getlineInStream(QDataStream &stream, std::string &name, char delim);

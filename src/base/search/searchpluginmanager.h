@@ -80,7 +80,7 @@ public:
     void updatePlugin(const QString &name);
     void installPlugin(const QString &source);
     bool uninstallPlugin(const QString &name);
-    static void updateIconPath(PluginInfo *const plugin);
+    static void updateIconPath(PluginInfo *plugin);
     void checkForUpdates();
 
     SearchHandler *startSearch(const QString &pattern, const QString &category, const QStringList &usedPlugins);
@@ -109,7 +109,7 @@ private:
     void updateNova();
     void parseVersionInfo(const QByteArray &info);
     void installPlugin_impl(const QString &name, const Path &path);
-    bool isUpdateNeeded(const QString &pluginName, PluginVersion newVersion) const;
+    bool isUpdateNeeded(const QString &pluginName, const PluginVersion &newVersion) const;
 
     void versionInfoDownloadFinished(const Net::DownloadResult &result);
     void pluginDownloadFinished(const Net::DownloadResult &result);

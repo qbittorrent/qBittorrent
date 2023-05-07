@@ -69,7 +69,7 @@ private:
     void showMenu() override;
     void applyFilter(int row) override;
     void handleTorrentsLoaded(const QVector<BitTorrent::Torrent *> &torrents) override;
-    void torrentAboutToBeDeleted(BitTorrent::Torrent *const torrent) override;
+    void torrentAboutToBeDeleted(BitTorrent::Torrent *torrent) override;
 
     void addItems(const QString &trackerURL, const QVector<BitTorrent::TorrentID> &torrents);
     void removeItem(const QString &trackerURL, const BitTorrent::TorrentID &id);

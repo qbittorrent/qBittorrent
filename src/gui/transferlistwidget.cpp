@@ -335,7 +335,7 @@ void TransferListWidget::setSelectedTorrentsLocation()
 
     const Path oldLocation = torrents[0]->savePath();
 
-    auto fileDialog = new QFileDialog(this, tr("Choose save path"), oldLocation.data());
+    auto *fileDialog = new QFileDialog(this, tr("Choose save path"), oldLocation.data());
     fileDialog->setAttribute(Qt::WA_DeleteOnClose);
     fileDialog->setFileMode(QFileDialog::Directory);
     fileDialog->setOptions(QFileDialog::DontConfirmOverwrite | QFileDialog::ShowDirsOnly | QFileDialog::HideNameFilterDetails);
@@ -616,7 +616,7 @@ void TransferListWidget::setTorrentOptions()
     const QVector<BitTorrent::Torrent *> selectedTorrents = getSelectedTorrents();
     if (selectedTorrents.empty()) return;
 
-    auto dialog = new TorrentOptionsDialog {this, selectedTorrents};
+    auto *dialog = new TorrentOptionsDialog {this, selectedTorrents};
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
 }
@@ -654,7 +654,7 @@ int TransferListWidget::visibleColumnsCount() const
 // hide/show columns menu
 void TransferListWidget::displayColumnHeaderMenu()
 {
-    auto menu = new QMenu(this);
+    auto *menu = new QMenu(this);
     menu->setAttribute(Qt::WA_DeleteOnClose);
     menu->setTitle(tr("Column visibility"));
     menu->setToolTipsVisible(true);
@@ -767,7 +767,7 @@ void TransferListWidget::editTorrentTrackers()
         }
     }
 
-    auto trackerDialog = new TrackerEntriesDialog(this);
+    auto *trackerDialog = new TrackerEntriesDialog(this);
     trackerDialog->setAttribute(Qt::WA_DeleteOnClose);
     trackerDialog->setTrackers(commonTrackers);
 
@@ -785,7 +785,7 @@ void TransferListWidget::exportTorrent()
     if (getSelectedTorrents().isEmpty())
         return;
 
-    auto fileDialog = new QFileDialog(this, tr("Choose folder to save exported .torrent files"));
+    auto *fileDialog = new QFileDialog(this, tr("Choose folder to save exported .torrent files"));
     fileDialog->setAttribute(Qt::WA_DeleteOnClose);
     fileDialog->setFileMode(QFileDialog::Directory);
     fileDialog->setOptions(QFileDialog::ShowDirsOnly);

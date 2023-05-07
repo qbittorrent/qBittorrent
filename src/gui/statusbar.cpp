@@ -255,7 +255,7 @@ void StatusBar::updateAltSpeedsBtn(bool alternative)
 
 void StatusBar::capSpeed()
 {
-    auto dialog = new SpeedLimitDialog {parentWidget()};
+    auto *dialog = new SpeedLimitDialog {parentWidget()};
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
 }

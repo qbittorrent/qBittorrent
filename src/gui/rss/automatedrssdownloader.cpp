@@ -64,7 +64,6 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     , m_formatFilterJSON(u"%1 (*%2)"_qs.arg(tr("Rules"), EXT_JSON))
     , m_formatFilterLegacy(u"%1 (*%2)"_qs.arg(tr("Rules (legacy)"), EXT_LEGACY))
     , m_ui(new Ui::AutomatedRssDownloader)
-    , m_currentRuleItem(nullptr)
     , m_storeDialogSize {u"RssFeedDownloader/geometrySize"_qs}
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     , m_storeHSplitterSize {u"GUI/Qt6/RSSFeedDownloader/HSplitterSizes"_qs}
@@ -193,7 +192,7 @@ void AutomatedRssDownloader::loadFeedList()
 {
     const QSignalBlocker feedListSignalBlocker(m_ui->listFeeds);
 
-    for (const auto feed : asConst(RSS::Session::instance()->feeds()))
+    for (const auto *feed : asConst(RSS::Session::instance()->feeds()))
     {
         QListWidgetItem *item = new QListWidgetItem(feed->name(), m_ui->listFeeds);
         item->setData(Qt::UserRole, feed->url());
@@ -637,11 +636,11 @@ void AutomatedRssDownloader::updateMatchingArticles()
                                        : RSS::AutoDownloader::instance()->ruleByName(ruleItem->text()));
         for (const QString &feedURL : asConst(rule.feedURLs()))
         {
-            auto feed = RSS::Session::instance()->feedByURL(feedURL);
+            auto *feed = RSS::Session::instance()->feedByURL(feedURL);
             if (!feed) continue; // feed doesn't exist
 
             QStringList matchingArticles;
-            for (const auto article : asConst(feed->articles()))
+            for (const auto *article : asConst(feed->articles()))
                 if (rule.matches(article->data()))
                     matchingArticles << article->title();
             if (!matchingArticles.isEmpty())
@@ -854,7 +853,7 @@ void AutomatedRssDownloader::handleRuleAdded(const QString &ruleName)
 
 void AutomatedRssDownloader::handleRuleRenamed(const QString &ruleName, const QString &oldRuleName)
 {
-    auto item = m_itemsByRuleName.take(oldRuleName);
+    auto *item = m_itemsByRuleName.take(oldRuleName);
     m_itemsByRuleName.insert(ruleName, item);
     if (m_currentRule.name() == oldRuleName)
         m_currentRule.setName(ruleName);
@@ -863,7 +862,7 @@ void AutomatedRssDownloader::handleRuleRenamed(const QString &ruleName, const QS
 
 void AutomatedRssDownloader::handleRuleChanged(const QString &ruleName)
 {
-    auto item = m_itemsByRuleName.value(ruleName);
+    auto *item = m_itemsByRuleName.value(ruleName);
     if (item && (item != m_currentRuleItem))
         item->setCheckState(RSS::AutoDownloader::instance()->ruleByName(ruleName).isEnabled() ? Qt::Checked : Qt::Unchecked);
 }

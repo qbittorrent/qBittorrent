@@ -124,7 +124,7 @@ private:
 
     void showColorDialog()
     {
-        auto dialog = new QColorDialog(m_currentColor, this);
+        auto *dialog = new QColorDialog(m_currentColor, this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         connect(dialog, &QDialog::accepted, this, [this, dialog]
         {

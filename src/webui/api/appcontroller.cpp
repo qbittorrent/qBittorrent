@@ -149,7 +149,7 @@ void AppController::preferencesAction()
     QJsonObject nativeDirs;
     for (auto i = watchedFolders.cbegin(); i != watchedFolders.cend(); ++i)
     {
-        const Path watchedFolder = i.key();
+        const Path &watchedFolder = i.key();
         const BitTorrent::AddTorrentParams params = i.value().addTorrentParams;
         if (params.savePath.isEmpty())
             nativeDirs.insert(watchedFolder.toString(), 1);
@@ -616,7 +616,7 @@ void AppController::setPreferencesAction()
         session->setMaxUploadsPerTorrent(it.value().toInt());
 
     // Proxy Server
-    auto proxyManager = Net::ProxyConfigurationManager::instance();
+    auto *proxyManager = Net::ProxyConfigurationManager::instance();
     Net::ProxyConfiguration proxyConf = proxyManager->proxyConfiguration();
     if (hasKey(u"proxy_type"_qs))
         proxyConf.type = Utils::String::toEnum(it.value().toString(), Net::ProxyType::HTTP);

@@ -831,7 +831,7 @@ void AdvancedSettings::loadAdvancedSettings()
 template <typename T>
 void AdvancedSettings::addRow(const int row, const QString &text, T *widget)
 {
-    auto label = new QLabel(text);
+    auto *label = new QLabel(text);
     label->setOpenExternalLinks(true);
 
     setCellWidget(row, PROPERTY, label);

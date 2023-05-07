@@ -45,7 +45,7 @@ public:
 
     Digest32() = default;
     Digest32(const Digest32 &other) = default;
-    Digest32(Digest32 &&other) = default;
+    Digest32(Digest32 &&other) noexcept = default;
 
     Digest32(const UnderlyingType &nativeDigest)
         : m_dataPtr {new Data(nativeDigest)}
@@ -63,7 +63,7 @@ public:
     }
 
     Digest32 &operator=(const Digest32 &other) = default;
-    Digest32 &operator=(Digest32 &&other) = default;
+    Digest32 &operator=(Digest32 &&other) noexcept = default;
 
     operator UnderlyingType() const
     {

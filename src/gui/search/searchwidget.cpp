@@ -144,7 +144,7 @@ SearchWidget::SearchWidget(IGUIApplication *app, MainWindow *mainWindow)
     connect(m_ui->selectPlugin, qOverload<int>(&QComboBox::currentIndexChanged)
             , this, &SearchWidget::fillCatCombobox);
 
-    const auto focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
+    const auto *focusSearchHotkey = new QShortcut(QKeySequence::Find, this);
     connect(focusSearchHotkey, &QShortcut::activated, this, &SearchWidget::toggleFocusBetweenLineEdits);
 }
 
@@ -156,7 +156,7 @@ bool SearchWidget::eventFilter(QObject *object, QEvent *event)
         if (event->type() != QEvent::MouseButtonRelease)
             return false;
 
-        const auto mouseEvent = static_cast<QMouseEvent *>(event);
+        const auto *mouseEvent = static_cast<QMouseEvent *>(event);
         const int tabIndex = m_ui->tabWidget->tabBar()->tabAt(mouseEvent->pos());
         if ((mouseEvent->button() == Qt::MiddleButton) && (tabIndex >= 0))
         {

@@ -171,7 +171,7 @@ void CustomDiskIOThread::async_set_file_priority(lt::storage_index_t storage, lt
                                                  , std::function<void (const lt::storage_error &, lt::aux::vector<lt::download_priority_t, lt::file_index_t>)> handler)
 {
     m_nativeDiskIO->async_set_file_priority(storage, priorities
-                                            , [=, handler = std::move(handler)](const lt::storage_error &error, lt::aux::vector<lt::download_priority_t, lt::file_index_t> priorities)
+                                            , [=, handler = std::move(handler)](const lt::storage_error &error, const lt::aux::vector<lt::download_priority_t, lt::file_index_t> &priorities)
     {
         m_storageData[storage].filePriorities = priorities;
         handler(error, priorities);

@@ -71,11 +71,11 @@ void ArticleListWidget::setRSSItem(RSS::Item *rssItem, bool unreadOnly)
         connect(m_rssItem, &RSS::Item::articleRead, this, &ArticleListWidget::handleArticleRead);
         connect(m_rssItem, &RSS::Item::articleAboutToBeRemoved, this, &ArticleListWidget::handleArticleAboutToBeRemoved);
 
-        for (const auto article : asConst(rssItem->articles()))
+        for (auto *article : asConst(rssItem->articles()))
         {
             if (!(m_unreadOnly && article->isRead()))
             {
-                auto item = createItem(article);
+                auto *item = createItem(article);
                 addItem(item);
                 m_rssArticleToListItemMapping.insert(article, item);
             }
@@ -89,7 +89,7 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 {
     if (!(m_unreadOnly && rssArticle->isRead()))
     {
-        auto item = createItem(rssArticle);
+        auto *item = createItem(rssArticle);
         insertItem(0, item);
         m_rssArticleToListItemMapping.insert(rssArticle, item);
     }
@@ -99,7 +99,7 @@ void ArticleListWidget::handleArticleAdded(RSS::Article *rssArticle)
 
 void ArticleListWidget::handleArticleRead(RSS::Article *rssArticle)
 {
-    auto item = mapRSSArticle(rssArticle);
+    auto *item = mapRSSArticle(rssArticle);
     if (!item) return;
 
     const QBrush foregroundBrush {UIThemeManager::instance()->getColor(u"RSS.ReadArticle"_qs)};

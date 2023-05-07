@@ -253,7 +253,7 @@ public:
     void setUILocked(bool locked);
 
     bool isAutoRunOnTorrentAddedEnabled() const;
-    void setAutoRunOnTorrentAddedEnabled(const bool enabled);
+    void setAutoRunOnTorrentAddedEnabled(bool enabled);
     QString getAutoRunOnTorrentAddedProgram() const;
     void setAutoRunOnTorrentAddedProgram(const QString &program);
     bool isAutoRunOnTorrentFinishedEnabled() const;

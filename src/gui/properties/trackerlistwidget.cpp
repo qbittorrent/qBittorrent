@@ -58,8 +58,7 @@
 #define NB_STICKY_ITEM 3
 
 TrackerListWidget::TrackerListWidget(PropertiesWidget *properties)
-    : QTreeWidget()
-    , m_properties(properties)
+    : m_properties(properties)
 {
     // Set header
     // Must be set before calling loadSettings() otherwise the header is reset on restart
@@ -438,7 +437,7 @@ void TrackerListWidget::openAddTrackersDialog()
     if (!torrent)
         return;
 
-    const auto dialog = new TrackersAdditionDialog(this, torrent);
+    auto *dialog = new TrackersAdditionDialog(this, torrent);
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     dialog->open();
 }

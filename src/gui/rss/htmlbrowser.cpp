@@ -54,10 +54,6 @@ HtmlBrowser::HtmlBrowser(QWidget *parent)
     connect(m_netManager, &QNetworkAccessManager::finished, this, &HtmlBrowser::resourceLoaded);
 }
 
-HtmlBrowser::~HtmlBrowser()
-{
-}
-
 QVariant HtmlBrowser::loadResource(int type, const QUrl &name)
 {
     if (type == QTextDocument::ImageResource)

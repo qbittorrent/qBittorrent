@@ -54,7 +54,7 @@ class TrackersAdditionDialog : public QDialog
     Q_DISABLE_COPY_MOVE(TrackersAdditionDialog)
 
 public:
-    TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *const torrent);
+    TrackersAdditionDialog(QWidget *parent, BitTorrent::Torrent *torrent);
     ~TrackersAdditionDialog();
 
 private slots:
