@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -169,6 +169,9 @@ namespace BitTorrent
         virtual void setSubcategoriesEnabled(bool value) = 0;
         virtual bool useCategoryPathsInManualMode() const = 0;
         virtual void setUseCategoryPathsInManualMode(bool value) = 0;
+
+        virtual Path suggestedSavePath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
+        virtual Path suggestedDownloadPath(const QString &categoryName, std::optional<bool> useAutoTMM) const = 0;
 
         static bool isValidTag(const QString &tag);
         virtual QSet<QString> tags() const = 0;

@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2017  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2017-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2010  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -101,22 +101,24 @@ namespace
     }
 }
 
-const QString Str_Name = u"name"_qs;
-const QString Str_Enabled = u"enabled"_qs;
-const QString Str_UseRegex = u"useRegex"_qs;
-const QString Str_MustContain = u"mustContain"_qs;
-const QString Str_MustNotContain = u"mustNotContain"_qs;
-const QString Str_EpisodeFilter = u"episodeFilter"_qs;
-const QString Str_AffectedFeeds = u"affectedFeeds"_qs;
-const QString Str_SavePath = u"savePath"_qs;
-const QString Str_AssignedCategory = u"assignedCategory"_qs;
-const QString Str_LastMatch = u"lastMatch"_qs;
-const QString Str_IgnoreDays = u"ignoreDays"_qs;
-const QString Str_AddPaused = u"addPaused"_qs;
-const QString Str_CreateSubfolder = u"createSubfolder"_qs;
-const QString Str_ContentLayout = u"torrentContentLayout"_qs;
-const QString Str_SmartFilter = u"smartFilter"_qs;
-const QString Str_PreviouslyMatched = u"previouslyMatchedEpisodes"_qs;
+const QString S_NAME = u"name"_qs;
+const QString S_ENABLED = u"enabled"_qs;
+const QString S_USE_REGEX = u"useRegex"_qs;
+const QString S_MUST_CONTAIN = u"mustContain"_qs;
+const QString S_MUST_NOT_CONTAIN = u"mustNotContain"_qs;
+const QString S_EPISODE_FILTER = u"episodeFilter"_qs;
+const QString S_AFFECTED_FEEDS = u"affectedFeeds"_qs;
+const QString S_LAST_MATCH = u"lastMatch"_qs;
+const QString S_IGNORE_DAYS = u"ignoreDays"_qs;
+const QString S_SMART_FILTER = u"smartFilter"_qs;
+const QString S_PREVIOUSLY_MATCHED = u"previouslyMatchedEpisodes"_qs;
+
+const QString S_SAVE_PATH = u"savePath"_qs;
+const QString S_ASSIGNED_CATEGORY = u"assignedCategory"_qs;
+const QString S_ADD_PAUSED = u"addPaused"_qs;
+const QString S_CONTENT_LAYOUT = u"torrentContentLayout"_qs;
+
+const QString S_TORRENT_PARAMS = u"torrentParams"_qs;
 
 namespace RSS
 {
@@ -133,10 +135,7 @@ namespace RSS
         int ignoreDays = 0;
         QDateTime lastMatch;
 
-        Path savePath;
-        QString category;
-        std::optional<bool> addPaused;
-        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+        BitTorrent::AddTorrentParams addTorrentParams;
 
         bool smartFilter = false;
         QStringList previouslyMatchedEpisodes;
@@ -155,11 +154,8 @@ namespace RSS
                     && (left.useRegex == right.useRegex)
                     && (left.ignoreDays == right.ignoreDays)
                     && (left.lastMatch == right.lastMatch)
-                    && (left.savePath == right.savePath)
-                    && (left.category == right.category)
-                    && (left.addPaused == right.addPaused)
-                    && (left.contentLayout == right.contentLayout)
-                    && (left.smartFilter == right.smartFilter);
+                    && (left.smartFilter == right.smartFilter)
+                    && (left.addTorrentParams == right.addTorrentParams);
         }
     };
 
@@ -458,64 +454,45 @@ AutoDownloadRule &AutoDownloadRule::operator=(const AutoDownloadRule &other)
 
 QJsonObject AutoDownloadRule::toJsonObject() const
 {
-    return {{Str_Enabled, isEnabled()}
-        , {Str_UseRegex, useRegex()}
-        , {Str_MustContain, mustContain()}
-        , {Str_MustNotContain, mustNotContain()}
-        , {Str_EpisodeFilter, episodeFilter()}
-        , {Str_AffectedFeeds, QJsonArray::fromStringList(feedURLs())}
-        , {Str_SavePath, savePath().toString()}
-        , {Str_AssignedCategory, assignedCategory()}
-        , {Str_LastMatch, lastMatch().toString(Qt::RFC2822Date)}
-        , {Str_IgnoreDays, ignoreDays()}
-        , {Str_AddPaused, toJsonValue(addPaused())}
-        , {Str_ContentLayout, contentLayoutToJsonValue(torrentContentLayout())}
-        , {Str_SmartFilter, useSmartFilter()}
-        , {Str_PreviouslyMatched, QJsonArray::fromStringList(previouslyMatchedEpisodes())}};
+    const BitTorrent::AddTorrentParams &addTorrentParams = m_dataPtr->addTorrentParams;
+
+    return {{S_ENABLED, isEnabled()}
+        , {S_USE_REGEX, useRegex()}
+        , {S_MUST_CONTAIN, mustContain()}
+        , {S_MUST_NOT_CONTAIN, mustNotContain()}
+        , {S_EPISODE_FILTER, episodeFilter()}
+        , {S_AFFECTED_FEEDS, QJsonArray::fromStringList(feedURLs())}
+        , {S_LAST_MATCH, lastMatch().toString(Qt::RFC2822Date)}
+        , {S_IGNORE_DAYS, ignoreDays()}
+        , {S_SMART_FILTER, useSmartFilter()}
+        , {S_PREVIOUSLY_MATCHED, QJsonArray::fromStringList(previouslyMatchedEpisodes())}
+
+        // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.6.x.
+        // === BEGIN DEPRECATED CODE === //
+        , {S_ADD_PAUSED, toJsonValue(addTorrentParams.addPaused)}
+        , {S_CONTENT_LAYOUT, contentLayoutToJsonValue(addTorrentParams.contentLayout)}
+        , {S_SAVE_PATH, addTorrentParams.savePath.toString()}
+        , {S_ASSIGNED_CATEGORY, addTorrentParams.category}
+        // === END DEPRECATED CODE === //
+
+        , {S_TORRENT_PARAMS, BitTorrent::serializeAddTorrentParams(addTorrentParams)}
+    };
 }
 
 AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, const QString &name)
 {
-    AutoDownloadRule rule(name.isEmpty() ? jsonObj.value(Str_Name).toString() : name);
+    AutoDownloadRule rule {(name.isEmpty() ? jsonObj.value(S_NAME).toString() : name)};
 
-    rule.setUseRegex(jsonObj.value(Str_UseRegex).toBool(false));
-    rule.setMustContain(jsonObj.value(Str_MustContain).toString());
-    rule.setMustNotContain(jsonObj.value(Str_MustNotContain).toString());
-    rule.setEpisodeFilter(jsonObj.value(Str_EpisodeFilter).toString());
-    rule.setEnabled(jsonObj.value(Str_Enabled).toBool(true));
-    rule.setSavePath(Path(jsonObj.value(Str_SavePath).toString()));
-    rule.setCategory(jsonObj.value(Str_AssignedCategory).toString());
-    rule.setAddPaused(toOptionalBool(jsonObj.value(Str_AddPaused)));
+    rule.setUseRegex(jsonObj.value(S_USE_REGEX).toBool(false));
+    rule.setMustContain(jsonObj.value(S_MUST_CONTAIN).toString());
+    rule.setMustNotContain(jsonObj.value(S_MUST_NOT_CONTAIN).toString());
+    rule.setEpisodeFilter(jsonObj.value(S_EPISODE_FILTER).toString());
+    rule.setEnabled(jsonObj.value(S_ENABLED).toBool(true));
+    rule.setLastMatch(QDateTime::fromString(jsonObj.value(S_LAST_MATCH).toString(), Qt::RFC2822Date));
+    rule.setIgnoreDays(jsonObj.value(S_IGNORE_DAYS).toInt());
+    rule.setUseSmartFilter(jsonObj.value(S_SMART_FILTER).toBool(false));
 
-    // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.4.x.
-    // === BEGIN DEPRECATED CODE === //
-    if (jsonObj.contains(Str_ContentLayout))
-    {
-        rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
-    }
-    else
-    {
-        const std::optional<bool> createSubfolder = toOptionalBool(jsonObj.value(Str_CreateSubfolder));
-        std::optional<BitTorrent::TorrentContentLayout> contentLayout;
-        if (createSubfolder.has_value())
-        {
-            contentLayout = (*createSubfolder
-                             ? BitTorrent::TorrentContentLayout::Original
-                             : BitTorrent::TorrentContentLayout::NoSubfolder);
-        }
-
-        rule.setTorrentContentLayout(contentLayout);
-    }
-    // === END DEPRECATED CODE === //
-    // === BEGIN REPLACEMENT CODE === //
-//    rule.setTorrentContentLayout(jsonValueToContentLayout(jsonObj.value(Str_ContentLayout)));
-    // === END REPLACEMENT CODE === //
-
-    rule.setLastMatch(QDateTime::fromString(jsonObj.value(Str_LastMatch).toString(), Qt::RFC2822Date));
-    rule.setIgnoreDays(jsonObj.value(Str_IgnoreDays).toInt());
-    rule.setUseSmartFilter(jsonObj.value(Str_SmartFilter).toBool(false));
-
-    const QJsonValue feedsVal = jsonObj.value(Str_AffectedFeeds);
+    const QJsonValue feedsVal = jsonObj.value(S_AFFECTED_FEEDS);
     QStringList feedURLs;
     if (feedsVal.isString())
         feedURLs << feedsVal.toString();
@@ -523,7 +500,7 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
         feedURLs << urlVal.toString();
     rule.setFeedURLs(feedURLs);
 
-    const QJsonValue previouslyMatchedVal = jsonObj.value(Str_PreviouslyMatched);
+    const QJsonValue previouslyMatchedVal = jsonObj.value(S_PREVIOUSLY_MATCHED);
     QStringList previouslyMatched;
     if (previouslyMatchedVal.isString())
     {
@@ -536,20 +513,61 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
     }
     rule.setPreviouslyMatchedEpisodes(previouslyMatched);
 
+    // TODO: The following code is deprecated. Replace with the commented one after several releases in 4.6.x.
+    // === BEGIN DEPRECATED CODE === //
+    BitTorrent::AddTorrentParams addTorrentParams;
+    if (auto it = jsonObj.find(S_TORRENT_PARAMS); it != jsonObj.end())
+    {
+        addTorrentParams = BitTorrent::parseAddTorrentParams(it->toObject());
+    }
+    else
+    {
+        addTorrentParams.savePath = Path(jsonObj.value(S_SAVE_PATH).toString());
+        addTorrentParams.category = jsonObj.value(S_ASSIGNED_CATEGORY).toString();
+        addTorrentParams.addPaused = toOptionalBool(jsonObj.value(S_ADD_PAUSED));
+        if (!addTorrentParams.savePath.isEmpty())
+            addTorrentParams.useAutoTMM = false;
+
+        if (jsonObj.contains(S_CONTENT_LAYOUT))
+        {
+            addTorrentParams.contentLayout = jsonValueToContentLayout(jsonObj.value(S_CONTENT_LAYOUT));
+        }
+        else
+        {
+            const std::optional<bool> createSubfolder = toOptionalBool(jsonObj.value(u"createSubfolder"));
+            std::optional<BitTorrent::TorrentContentLayout> contentLayout;
+            if (createSubfolder.has_value())
+            {
+                contentLayout = (*createSubfolder
+                        ? BitTorrent::TorrentContentLayout::Original
+                        : BitTorrent::TorrentContentLayout::NoSubfolder);
+            }
+
+            addTorrentParams.contentLayout = contentLayout;
+        }
+    }
+    rule.setAddTorrentParams(addTorrentParams);
+    // === END DEPRECATED CODE === //
+    // === BEGIN REPLACEMENT CODE === //
+    //    rule.setAddTorrentParams(BitTorrent::parseAddTorrentParams(jsonObj.value(S_TORRENT_PARAMS).object()));
+    // === END REPLACEMENT CODE === //
+
     return rule;
 }
 
 QVariantHash AutoDownloadRule::toLegacyDict() const
 {
+    const BitTorrent::AddTorrentParams &addTorrentParams = m_dataPtr->addTorrentParams;
+
     return {{u"name"_qs, name()},
         {u"must_contain"_qs, mustContain()},
         {u"must_not_contain"_qs, mustNotContain()},
-        {u"save_path"_qs, savePath().toString()},
+        {u"save_path"_qs, addTorrentParams.savePath.toString()},
         {u"affected_feeds"_qs, feedURLs()},
         {u"enabled"_qs, isEnabled()},
-        {u"category_assigned"_qs, assignedCategory()},
+        {u"category_assigned"_qs, addTorrentParams.category},
         {u"use_regex"_qs, useRegex()},
-        {u"add_paused"_qs, toAddPausedLegacy(addPaused())},
+        {u"add_paused"_qs, toAddPausedLegacy(addTorrentParams.addPaused)},
         {u"episode_filter"_qs, episodeFilter()},
         {u"last_match"_qs, lastMatch()},
         {u"ignore_days"_qs, ignoreDays()}};
@@ -557,7 +575,14 @@ QVariantHash AutoDownloadRule::toLegacyDict() const
 
 AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
 {
-    AutoDownloadRule rule(dict.value(u"name"_qs).toString());
+    BitTorrent::AddTorrentParams addTorrentParams;
+    addTorrentParams.savePath = Path(dict.value(u"save_path"_qs).toString());
+    addTorrentParams.category = dict.value(u"category_assigned"_qs).toString();
+    addTorrentParams.addPaused = addPausedLegacyToOptionalBool(dict.value(u"add_paused"_qs).toInt());
+    if (!addTorrentParams.savePath.isEmpty())
+        addTorrentParams.useAutoTMM = false;
+
+    AutoDownloadRule rule {dict.value(u"name"_qs).toString()};
 
     rule.setUseRegex(dict.value(u"use_regex"_qs, false).toBool());
     rule.setMustContain(dict.value(u"must_contain"_qs).toString());
@@ -565,11 +590,9 @@ AutoDownloadRule AutoDownloadRule::fromLegacyDict(const QVariantHash &dict)
     rule.setEpisodeFilter(dict.value(u"episode_filter"_qs).toString());
     rule.setFeedURLs(dict.value(u"affected_feeds"_qs).toStringList());
     rule.setEnabled(dict.value(u"enabled"_qs, false).toBool());
-    rule.setSavePath(Path(dict.value(u"save_path"_qs).toString()));
-    rule.setCategory(dict.value(u"category_assigned"_qs).toString());
-    rule.setAddPaused(addPausedLegacyToOptionalBool(dict.value(u"add_paused"_qs).toInt()));
     rule.setLastMatch(dict.value(u"last_match"_qs).toDateTime());
     rule.setIgnoreDays(dict.value(u"ignore_days"_qs).toInt());
+    rule.setAddTorrentParams(addTorrentParams);
 
     return rule;
 }
@@ -622,44 +645,14 @@ void AutoDownloadRule::setName(const QString &name)
     m_dataPtr->name = name;
 }
 
-Path AutoDownloadRule::savePath() const
+BitTorrent::AddTorrentParams AutoDownloadRule::addTorrentParams() const
 {
-    return m_dataPtr->savePath;
+    return m_dataPtr->addTorrentParams;
 }
 
-void AutoDownloadRule::setSavePath(const Path &savePath)
+void AutoDownloadRule::setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams)
 {
-    m_dataPtr->savePath = savePath;
-}
-
-std::optional<bool> AutoDownloadRule::addPaused() const
-{
-    return m_dataPtr->addPaused;
-}
-
-void AutoDownloadRule::setAddPaused(const std::optional<bool> addPaused)
-{
-    m_dataPtr->addPaused = addPaused;
-}
-
-std::optional<BitTorrent::TorrentContentLayout> AutoDownloadRule::torrentContentLayout() const
-{
-    return m_dataPtr->contentLayout;
-}
-
-void AutoDownloadRule::setTorrentContentLayout(const std::optional<BitTorrent::TorrentContentLayout> contentLayout)
-{
-    m_dataPtr->contentLayout = contentLayout;
-}
-
-QString AutoDownloadRule::assignedCategory() const
-{
-    return m_dataPtr->category;
-}
-
-void AutoDownloadRule::setCategory(const QString &category)
-{
-    m_dataPtr->category = category;
+    m_dataPtr->addTorrentParams = std::move(addTorrentParams);
 }
 
 bool AutoDownloadRule::isEnabled() const

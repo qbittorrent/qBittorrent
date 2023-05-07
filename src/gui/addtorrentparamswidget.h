@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2021-2023  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -28,37 +28,37 @@
 
 #pragma once
 
-#include <QDialog>
+#include <QWidget>
 
-#include "base/settingvalue.h"
-#include "base/torrentfileswatcher.h"
+#include "base/bittorrent/addtorrentparams.h"
 
 namespace Ui
 {
-    class WatchedFolderOptionsDialog;
+    class AddTorrentParamsWidget;
 }
 
-class AddTorrentParamsWidget;
-
-class WatchedFolderOptionsDialog final : public QDialog
+class AddTorrentParamsWidget final : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY_MOVE(WatchedFolderOptionsDialog)
+    Q_DISABLE_COPY_MOVE(AddTorrentParamsWidget)
 
 public:
-    explicit WatchedFolderOptionsDialog(const TorrentFilesWatcher::WatchedFolderOptions &watchedFolderOptions, QWidget *parent);
-    ~WatchedFolderOptionsDialog() override;
+    explicit AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams = {}, QWidget *parent = nullptr);
+    ~AddTorrentParamsWidget() override;
 
-    TorrentFilesWatcher::WatchedFolderOptions watchedFolderOptions() const;
+    void setAddTorrentParams(BitTorrent::AddTorrentParams addTorrentParams);
+    BitTorrent::AddTorrentParams addTorrentParams() const;
 
 private:
-    void populateSavePaths();
-    void loadState();
-    void saveState();
-    void onTMMChanged(int index);
-    void onCategoryChanged(int index);
+    void populate();
+    void loadCustomSavePathOptions();
+    void loadCustomDownloadPath();
+    void loadCategorySavePathOptions();
+    void populateDefaultPaths();
+    void populateDefaultDownloadPath();
+    void populateSavePathOptions();
 
-    Ui::WatchedFolderOptionsDialog *m_ui = nullptr;
-    AddTorrentParamsWidget *m_addTorrentParamsWidget = nullptr;
-    SettingValue<QSize> m_storeDialogSize;
+
+    Ui::AddTorrentParamsWidget *m_ui;
+    BitTorrent::AddTorrentParams m_addTorrentParams;
 };

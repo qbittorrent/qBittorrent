@@ -165,7 +165,7 @@ void FileSystemPathEdit::FileSystemPathEditPrivate::modeChanged()
 {
     m_editor->completeDirectoriesOnly((m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));
 
-    m_validator->setExistingOnly(m_mode != FileSystemPathEdit::Mode::FileSave);
+    m_validator->setExistingOnly((m_mode == FileSystemPathEdit::Mode::FileOpen) || (m_mode == FileSystemPathEdit::Mode::DirectoryOpen));
     m_validator->setDirectoriesOnly((m_mode == FileSystemPathEdit::Mode::DirectoryOpen) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));
     m_validator->setCheckReadPermission((m_mode == FileSystemPathEdit::Mode::FileOpen) || (m_mode == FileSystemPathEdit::Mode::DirectoryOpen));
     m_validator->setCheckWritePermission((m_mode == FileSystemPathEdit::Mode::FileSave) || (m_mode == FileSystemPathEdit::Mode::DirectorySave));

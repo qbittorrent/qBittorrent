@@ -102,8 +102,8 @@ Private::FileSystemPathValidator::testPath(const Path &path) const
     // `QFileInfo` will cache the query results and avoid exessive querying to filesystem
     const QFileInfo info {path.data()};
 
-    if (existingOnly() && !info.exists())
-        return TestResult::DoesNotExist;
+    if (!info.exists())
+        return existingOnly() ? TestResult::DoesNotExist : TestResult::OK;
 
     if (directoriesOnly())
     {

@@ -3,6 +3,7 @@ INCLUDEPATH += $$PWD
 HEADERS += \
     $$PWD/aboutdialog.h \
     $$PWD/addnewtorrentdialog.h \
+    $$PWD/addtorrentparamswidget.h \
     $$PWD/advancedsettings.h \
     $$PWD/autoexpandabledialog.h \
     $$PWD/banlistoptionsdialog.h \
@@ -97,6 +98,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/aboutdialog.cpp \
     $$PWD/addnewtorrentdialog.cpp \
+    $$PWD/addtorrentparamswidget.cpp \
     $$PWD/advancedsettings.cpp \
     $$PWD/autoexpandabledialog.cpp \
     $$PWD/banlistoptionsdialog.cpp \
@@ -187,6 +189,7 @@ SOURCES += \
 FORMS += \
     $$PWD/aboutdialog.ui \
     $$PWD/addnewtorrentdialog.ui \
+    $$PWD/addtorrentparamswidget.ui \
     $$PWD/autoexpandabledialog.ui \
     $$PWD/banlistoptionsdialog.ui \
     $$PWD/cookiesdialog.ui \

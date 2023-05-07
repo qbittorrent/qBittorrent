@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,6 +39,8 @@
 #include "torrent.h"
 #include "torrentcontentlayout.h"
 
+class QJsonObject;
+
 namespace BitTorrent
 {
     enum class DownloadPriority;
@@ -67,6 +69,11 @@ namespace BitTorrent
         int seedingTimeLimit = Torrent::USE_GLOBAL_SEEDING_TIME;
         qreal ratioLimit = Torrent::USE_GLOBAL_RATIO;
     };
+
+    bool operator==(const AddTorrentParams &lhs, const AddTorrentParams &rhs);
+
+    AddTorrentParams parseAddTorrentParams(const QJsonObject &jsonObj);
+    QJsonObject serializeAddTorrentParams(const AddTorrentParams &params);
 }
 
 Q_DECLARE_METATYPE(BitTorrent::AddTorrentParams)

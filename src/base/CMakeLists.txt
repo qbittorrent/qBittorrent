@@ -110,6 +110,7 @@ add_library(qbt_base STATIC
     applicationcomponent.cpp
     asyncfilestorage.cpp
     bittorrent/abstractfilestorage.cpp
+    bittorrent/addtorrentparams.cpp
     bittorrent/bandwidthscheduler.cpp
     bittorrent/bencoderesumedatastorage.cpp
     bittorrent/categoryoptions.cpp

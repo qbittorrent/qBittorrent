@@ -110,6 +110,7 @@ SOURCES += \
     $$PWD/applicationcomponent.cpp \
     $$PWD/asyncfilestorage.cpp \
     $$PWD/bittorrent/abstractfilestorage.cpp \
+    $$PWD/bittorrent/addtorrentparams.cpp \
     $$PWD/bittorrent/bandwidthscheduler.cpp \
     $$PWD/bittorrent/bencoderesumedatastorage.cpp \
     $$PWD/bittorrent/categoryoptions.cpp \

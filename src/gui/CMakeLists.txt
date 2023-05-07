@@ -11,6 +11,7 @@ endif()
 qt_wrap_ui(UI_HEADERS
     aboutdialog.ui
     addnewtorrentdialog.ui
+    addtorrentparamswidget.ui
     autoexpandabledialog.ui
     banlistoptionsdialog.ui
     cookiesdialog.ui
@@ -46,6 +47,7 @@ add_library(qbt_gui STATIC
     # headers
     aboutdialog.h
     addnewtorrentdialog.h
+    addtorrentparamswidget.h
     advancedsettings.h
     autoexpandabledialog.h
     banlistoptionsdialog.h
@@ -140,6 +142,7 @@ add_library(qbt_gui STATIC
     # sources
     aboutdialog.cpp
     addnewtorrentdialog.cpp
+    addtorrentparamswidget.cpp
     advancedsettings.cpp
     autoexpandabledialog.cpp
     banlistoptionsdialog.cpp
