@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -38,6 +38,7 @@
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QtContainerFwd>
+#include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QPointer>
@@ -769,6 +770,9 @@ namespace BitTorrent
         // ever required, synchronization should also be provided.
         bool m_isPortMappingEnabled = false;
         QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
+
+        QTimer *m_wakeupCheckTimer = nullptr;
+        QDateTime m_wakeupCheckTimestamp;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();
