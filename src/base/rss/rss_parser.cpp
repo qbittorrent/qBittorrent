@@ -723,13 +723,16 @@ void RSS::Private::Parser::parseAtomArticle(QXmlStreamReader &xml)
                                 : xml.attributes().value(u"href"_qs).toString());
 
                 if (link.startsWith(u"magnet:", Qt::CaseInsensitive))
+                {
                     article[Article::KeyTorrentURL] = link; // magnet link instead of a news URL
+                }
                 else
+                {
                     // Atom feeds can have relative links, work around this and
                     // take the stress of figuring article full URI from UI
                     // Assemble full URI
                     article[Article::KeyLink] = (m_baseUrl.isEmpty() ? link : m_baseUrl + link);
-
+                }
             }
             else if ((name == u"summary") || (name == u"content"))
             {

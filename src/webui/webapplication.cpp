@@ -730,9 +730,11 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     {
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), originValue);
         if (isInvalid)
+        {
             LogMsg(tr("WebUI: Origin header & Target origin mismatch! Source IP: '%1'. Origin header: '%2'. Target origin: '%3'")
                    .arg(m_env.clientAddress.toString(), originValue, targetOrigin)
                    , Log::WARNING);
+        }
         return isInvalid;
     }
 
@@ -740,9 +742,11 @@ bool WebApplication::isCrossSiteRequest(const Http::Request &request) const
     {
         const bool isInvalid = !isSameOrigin(urlFromHostHeader(targetOrigin), refererValue);
         if (isInvalid)
+        {
             LogMsg(tr("WebUI: Referer header & Target origin mismatch! Source IP: '%1'. Referer header: '%2'. Target origin: '%3'")
                    .arg(m_env.clientAddress.toString(), refererValue, targetOrigin)
                    , Log::WARNING);
+        }
         return isInvalid;
     }
 
