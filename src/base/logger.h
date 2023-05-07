@@ -51,17 +51,17 @@ namespace Log
 
     struct Msg
     {
-        int id;
-        MsgType type;
-        qint64 timestamp;
+        int id = -1;
+        MsgType type = ALL;
+        qint64 timestamp = -1;
         QString message;
     };
 
     struct Peer
     {
-        int id;
-        bool blocked;
-        qint64 timestamp;
+        int id = -1;
+        bool blocked = false;
+        qint64 timestamp = -1;
         QString ip;
         QString reason;
     };

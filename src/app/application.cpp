@@ -224,7 +224,6 @@ namespace
 
 Application::Application(int &argc, char **argv)
     : BaseApplication(argc, argv)
-    , m_shutdownAct(ShutdownDialogAction::Exit)
     , m_commandLineArgs(parseCommandLine(Application::arguments()))
     , m_storeFileLoggerEnabled(FILELOGGER_SETTINGS_KEY(u"Enabled"_qs))
     , m_storeFileLoggerBackup(FILELOGGER_SETTINGS_KEY(u"Backup"_qs))

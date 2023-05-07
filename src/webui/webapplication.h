@@ -222,21 +222,21 @@ private:
     bool m_translationFileLoaded = false;
 
     AuthController *m_authController = nullptr;
-    bool m_isLocalAuthEnabled;
-    bool m_isAuthSubnetWhitelistEnabled;
+    bool m_isLocalAuthEnabled = false;
+    bool m_isAuthSubnetWhitelistEnabled = false;
     QVector<Utils::Net::Subnet> m_authSubnetWhitelist;
-    int m_sessionTimeout;
+    int m_sessionTimeout = 0;
     QString m_sessionCookieName;
 
     // security related
     QStringList m_domainList;
-    bool m_isCSRFProtectionEnabled;
-    bool m_isSecureCookieEnabled;
-    bool m_isHostHeaderValidationEnabled;
-    bool m_isHttpsEnabled;
+    bool m_isCSRFProtectionEnabled = true;
+    bool m_isSecureCookieEnabled = true;
+    bool m_isHostHeaderValidationEnabled = true;
+    bool m_isHttpsEnabled = false;
 
     // Reverse proxy
-    bool m_isReverseProxySupportEnabled;
+    bool m_isReverseProxySupportEnabled = false;
     QVector<Utils::Net::Subnet> m_trustedReverseProxyList;
     QHostAddress m_clientAddress;
 

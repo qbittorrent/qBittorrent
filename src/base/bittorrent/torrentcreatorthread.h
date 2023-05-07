@@ -46,14 +46,14 @@ namespace BitTorrent
 
     struct TorrentCreatorParams
     {
-        bool isPrivate;
+        bool isPrivate = false;
 #ifdef QBT_USES_LIBTORRENT2
-        TorrentFormat torrentFormat;
+        TorrentFormat torrentFormat = TorrentFormat::Hybrid;
 #else
         bool isAlignmentOptimized;
         int paddedFileSizeLimit;
 #endif
-        int pieceSize;
+        int pieceSize = 0;
         Path inputPath;
         Path savePath;
         QString comment;

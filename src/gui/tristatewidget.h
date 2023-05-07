@@ -55,7 +55,7 @@ private:
 
     void toggleCheckState();
 
-    bool m_closeOnInteraction;
-    Qt::CheckState m_checkState;
+    bool m_closeOnInteraction = true;
+    Qt::CheckState m_checkState = Qt::Unchecked;
     const QString m_text;
 };

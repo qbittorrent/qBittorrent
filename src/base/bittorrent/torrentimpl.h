@@ -84,7 +84,7 @@ namespace BitTorrent
     struct FileErrorInfo
     {
         lt::error_code error;
-        lt::operation_t operation;
+        lt::operation_t operation = lt::operation_t::unknown;
     };
 
     class TorrentImpl final : public Torrent

@@ -52,6 +52,6 @@ public:
 private:
     void addNewTag();
 
-    Ui::TorrentTagsDialog *m_ui;
+    Ui::TorrentTagsDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 };

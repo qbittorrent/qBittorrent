@@ -42,9 +42,9 @@ struct SearchResult
 {
     QString fileName;
     QString fileUrl;
-    qlonglong fileSize;
-    qlonglong nbSeeders;
-    qlonglong nbLeechers;
+    qlonglong fileSize = 0;
+    qlonglong nbSeeders = 0;
+    qlonglong nbLeechers = 0;
     QString siteUrl;
     QString descrLink;
 };

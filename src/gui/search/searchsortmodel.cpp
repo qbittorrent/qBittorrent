@@ -32,13 +32,6 @@
 
 SearchSortModel::SearchSortModel(QObject *parent)
     : base(parent)
-    , m_isNameFilterEnabled(false)
-    , m_minSeeds(0)
-    , m_maxSeeds(-1)
-    , m_minLeeches(0)
-    , m_maxLeeches(-1)
-    , m_minSize(0)
-    , m_maxSize(-1)
 {
     setSortRole(UnderlyingDataRole);
     setFilterRole(UnderlyingDataRole);

@@ -72,6 +72,6 @@ private:
     QModelIndex index(CategoryModelItem *item) const;
     CategoryModelItem *findItem(const QString &fullName) const;
 
-    bool m_isSubcategoriesEnabled;
+    bool m_isSubcategoriesEnabled = false;
     CategoryModelItem *m_rootItem = nullptr;
 };

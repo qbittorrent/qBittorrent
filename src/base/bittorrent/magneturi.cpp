@@ -75,8 +75,7 @@ using namespace BitTorrent;
 const int magnetUriId = qRegisterMetaType<MagnetUri>();
 
 MagnetUri::MagnetUri(const QString &source)
-    : m_valid(false)
-    , m_url(source)
+    : m_url(source)
 {
     if (source.isEmpty()) return;
 

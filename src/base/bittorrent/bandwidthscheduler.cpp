@@ -41,7 +41,6 @@ using namespace std::chrono_literals;
 
 BandwidthScheduler::BandwidthScheduler(QObject *parent)
     : QObject(parent)
-    , m_lastAlternative(false)
 {
     connect(&m_timer, &QTimer::timeout, this, &BandwidthScheduler::onTimeout);
 }

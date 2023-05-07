@@ -52,7 +52,7 @@ struct PluginInfo
     QString url;
     QStringList supportedCategories;
     Path iconPath;
-    bool enabled;
+    bool enabled = false;
 };
 
 class SearchDownloadHandler;

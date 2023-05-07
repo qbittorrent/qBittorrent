@@ -139,5 +139,5 @@ private:
     Averager *m_currentAverager {&m_averager5Min};
 
     QMap<GraphID, GraphProperties> m_properties;
-    milliseconds m_currentMaxDuration;
+    milliseconds m_currentMaxDuration {0};
 };
