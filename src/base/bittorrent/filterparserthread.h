@@ -62,7 +62,7 @@ private:
     int getlineInStream(QDataStream &stream, std::string &name, char delim);
     int parseP2BFilterFile();
 
-    bool m_abort;
+    bool m_abort = false;
     Path m_filePath;
     lt::ip_filter m_filter;
 };

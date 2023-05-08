@@ -40,7 +40,7 @@ class CategoryModelItem
 public:
     CategoryModelItem() = default;
 
-    CategoryModelItem(CategoryModelItem *parent, QString categoryName, int torrentsCount = 0)
+    CategoryModelItem(CategoryModelItem *parent, const QString &categoryName, const int torrentsCount = 0)
         : m_name(categoryName)
         , m_torrentsCount(torrentsCount)
     {

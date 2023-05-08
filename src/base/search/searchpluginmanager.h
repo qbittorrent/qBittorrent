@@ -52,7 +52,7 @@ struct PluginInfo
     QString url;
     QStringList supportedCategories;
     Path iconPath;
-    bool enabled;
+    bool enabled = false;
 };
 
 class SearchDownloadHandler;
@@ -88,7 +88,7 @@ public:
 
     static PluginVersion getPluginVersion(const Path &filePath);
     static QString categoryFullName(const QString &categoryName);
-    QString pluginFullName(const QString &pluginName);
+    QString pluginFullName(const QString &pluginName) const;
     static Path pluginsLocation();
     static Path engineLocation();
 

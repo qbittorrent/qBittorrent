@@ -173,7 +173,7 @@ private:
     ApplicationInstanceManager *m_instanceManager = nullptr;
     QAtomicInt m_isCleanupRun;
     bool m_isProcessingParamsAllowed = false;
-    ShutdownDialogAction m_shutdownAct;
+    ShutdownDialogAction m_shutdownAct = ShutdownDialogAction::Exit;
     QBtCommandLineParameters m_commandLineArgs;
 
     // FileLog

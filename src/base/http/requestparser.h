@@ -47,9 +47,9 @@ namespace Http
         struct ParseResult
         {
             // when `status != ParseStatus::OK`, `request` & `frameSize` are undefined
-            ParseStatus status;
+            ParseStatus status = ParseStatus::BadRequest;
             Request request;
-            long frameSize;  // http request frame size (bytes)
+            long frameSize = 0;  // http request frame size (bytes)
         };
 
         static ParseResult parse(const QByteArray &data);

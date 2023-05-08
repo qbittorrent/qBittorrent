@@ -38,8 +38,6 @@
 
 TriStateWidget::TriStateWidget(const QString &text, QWidget *parent)
     : QWidget {parent}
-    , m_closeOnInteraction {true}
-    , m_checkState {Qt::Unchecked}
     , m_text {text}
 {
     setMouseTracking(true);  // for visual effects via mouse navigation

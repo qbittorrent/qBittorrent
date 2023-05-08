@@ -243,15 +243,12 @@ void FeedListWidget::dragMoveEvent(QDragMoveEvent *event)
     QTreeWidget::dragMoveEvent(event);
 
     QTreeWidgetItem *item = itemAt(event->pos());
-    // Prohibit dropping onto global unread counter
-    if (item == m_unreadStickyItem)
+    if ((item == m_unreadStickyItem)  // Prohibit dropping onto global unread counter
+        || selectedItems().contains(m_unreadStickyItem)  // Prohibit dragging of global unread counter
+        || (item && isFeed(item)))  // Prohibit dropping onto feeds
+    {
         event->ignore();
-    // Prohibit dragging of global unread counter
-    else if (selectedItems().contains(m_unreadStickyItem))
-        event->ignore();
-    // Prohibit dropping onto feeds
-    else if (item && isFeed(item))
-        event->ignore();
+    }
 }
 
 void FeedListWidget::dropEvent(QDropEvent *event)

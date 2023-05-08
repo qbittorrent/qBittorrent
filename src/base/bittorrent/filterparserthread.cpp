@@ -89,7 +89,7 @@ namespace
         }
 
     private:
-        lt::address_v4::bytes_type m_buf;
+        lt::address_v4::bytes_type m_buf {};
     };
 
     bool parseIPAddress(const char *data, lt::address &address)
@@ -111,7 +111,6 @@ namespace
 
 FilterParserThread::FilterParserThread(QObject *parent)
     : QThread(parent)
-    , m_abort(false)
 {
 }
 

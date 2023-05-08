@@ -198,13 +198,15 @@ namespace
 
         int value(const QString &arg) const
         {
-            QString val = StringOption::value(arg);
+            const QString val = StringOption::value(arg);
             bool ok = false;
-            int res = val.toInt(&ok);
+            const int res = val.toInt(&ok);
             if (!ok)
+            {
                 throw CommandLineParameterError(QObject::tr("Parameter '%1' must follow syntax '%1=%2'",
                                                             "e.g. Parameter '--webui-port' must follow syntax '--webui-port=<value>'")
                                                 .arg(fullParameter(), u"<integer value>"_qs));
+            }
             return res;
         }
 

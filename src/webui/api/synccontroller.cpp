@@ -331,17 +331,23 @@ namespace
             for (const QVariant &item : data)
             {
                 if (!prevData.contains(item))
+                {
                     // new list item found - append it to syncData
                     syncData.append(item);
+                }
                 else
+                {
                     // unchanged list item found - remove it from prevData
                     prevData.removeOne(item);
+                }
             }
 
             if (!prevData.isEmpty())
+            {
                 // prevData contains only items that are missing now -
                 // put them in removedItems
                 removedItems = prevData;
+            }
         }
     }
 

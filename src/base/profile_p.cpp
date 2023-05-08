@@ -177,7 +177,7 @@ std::unique_ptr<QSettings> Private::CustomProfile::applicationSettings(const QSt
     const auto CONF_FILE_EXTENSION = u".conf"_qs;
 #endif
     const Path settingsFilePath = configLocation() / Path(name + CONF_FILE_EXTENSION);
-    return std::unique_ptr<QSettings>(new QSettings(settingsFilePath.data(), QSettings::IniFormat));
+    return std::make_unique<QSettings>(settingsFilePath.data(), QSettings::IniFormat);
 }
 
 Path Private::NoConvertConverter::fromPortablePath(const Path &portablePath) const

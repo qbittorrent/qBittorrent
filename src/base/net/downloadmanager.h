@@ -103,7 +103,7 @@ namespace Net
     struct DownloadResult
     {
         QString url;
-        DownloadStatus status;
+        DownloadStatus status = DownloadStatus::Failed;
         QString errorString;
         QByteArray data;
         Path filePath;

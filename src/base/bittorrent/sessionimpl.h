@@ -485,15 +485,15 @@ namespace BitTorrent
         {
             lt::torrent_handle torrentHandle;
             Path path;
-            MoveStorageMode mode;
-            MoveStorageContext context;
+            MoveStorageMode mode {};
+            MoveStorageContext context {};
         };
 
         struct RemovingTorrentData
         {
             QString name;
             Path pathToRemove;
-            DeleteOption deleteOption;
+            DeleteOption deleteOption {};
         };
 
         explicit SessionImpl(QObject *parent = nullptr);

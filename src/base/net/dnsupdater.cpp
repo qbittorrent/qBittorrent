@@ -44,8 +44,6 @@ const std::chrono::seconds IP_CHECK_INTERVAL = 30min;
 
 DNSUpdater::DNSUpdater(QObject *parent)
     : QObject(parent)
-    , m_state(OK)
-    , m_service(DNS::Service::None)
 {
     updateCredentials();
 

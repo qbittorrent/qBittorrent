@@ -60,7 +60,7 @@ private:
     bool storeColors();
     bool storeIcons();
 
-    Ui::UIThemeDialog *m_ui;
+    Ui::UIThemeDialog *m_ui = nullptr;
     SettingValue<QSize> m_storeDialogSize;
 
     DefaultThemeSource m_defaultThemeSource;

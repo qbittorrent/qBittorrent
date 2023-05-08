@@ -366,7 +366,7 @@ QString SearchPluginManager::categoryFullName(const QString &categoryName)
     return categoryTable.value(categoryName);
 }
 
-QString SearchPluginManager::pluginFullName(const QString &pluginName)
+QString SearchPluginManager::pluginFullName(const QString &pluginName) const
 {
     return pluginInfo(pluginName) ? pluginInfo(pluginName)->fullName : QString();
 }
