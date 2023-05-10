@@ -85,17 +85,19 @@ namespace
 }
 
 TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferListWidget *transferList, const bool downloadFavicon)
-    : QFrame(parent)
-    , m_transferList(transferList)
+    : QWidget(parent)
+    , m_transferList {transferList}
 {
+    setBackgroundRole(QPalette::Base);
+
     Preferences *const pref = Preferences::instance();
 
     // Construct lists
-    auto *frame = new QFrame;
-    auto *frameLayout = new QVBoxLayout(frame);
-    frameLayout->setContentsMargins(0, 2, 0, 0);
-    frameLayout->setSpacing(2);
-    frameLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
+    auto *mainWidget = new QWidget;
+    auto *mainWidgetLayout = new QVBoxLayout(mainWidget);
+    mainWidgetLayout->setContentsMargins(0, 2, 0, 0);
+    mainWidgetLayout->setSpacing(2);
+    mainWidgetLayout->setAlignment(Qt::AlignLeft | Qt::AlignTop);
 
     QFont font;
     font.setBold(true);
@@ -105,18 +107,18 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     statusLabel->setChecked(pref->getStatusFilterState());
     statusLabel->setFont(font);
     connect(statusLabel, &QCheckBox::toggled, pref, &Preferences::setStatusFilterState);
-    frameLayout->addWidget(statusLabel);
+    mainWidgetLayout->addWidget(statusLabel);
 
     auto *statusFilters = new StatusFilterWidget(this, transferList);
     connect(statusLabel, &QCheckBox::toggled, statusFilters, &StatusFilterWidget::toggleFilter);
-    frameLayout->addWidget(statusFilters);
+    mainWidgetLayout->addWidget(statusFilters);
 
     QCheckBox *categoryLabel = new ArrowCheckBox(tr("Categories"), this);
     categoryLabel->setChecked(pref->getCategoryFilterState());
     categoryLabel->setFont(font);
     connect(categoryLabel, &QCheckBox::toggled, this
             , &TransferListFiltersWidget::onCategoryFilterStateChanged);
-    frameLayout->addWidget(categoryLabel);
+    mainWidgetLayout->addWidget(categoryLabel);
 
     m_categoryFilterWidget = new CategoryFilterWidget(this);
     connect(m_categoryFilterWidget, &CategoryFilterWidget::actionDeleteTorrentsTriggered
@@ -128,13 +130,13 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(m_categoryFilterWidget, &CategoryFilterWidget::categoryChanged
             , transferList, &TransferListWidget::applyCategoryFilter);
     toggleCategoryFilter(pref->getCategoryFilterState());
-    frameLayout->addWidget(m_categoryFilterWidget);
+    mainWidgetLayout->addWidget(m_categoryFilterWidget);
 
     QCheckBox *tagsLabel = new ArrowCheckBox(tr("Tags"), this);
     tagsLabel->setChecked(pref->getTagFilterState());
     tagsLabel->setFont(font);
     connect(tagsLabel, &QCheckBox::toggled, this, &TransferListFiltersWidget::onTagFilterStateChanged);
-    frameLayout->addWidget(tagsLabel);
+    mainWidgetLayout->addWidget(tagsLabel);
 
     m_tagFilterWidget = new TagFilterWidget(this);
     connect(m_tagFilterWidget, &TagFilterWidget::actionDeleteTorrentsTriggered
@@ -146,23 +148,23 @@ TransferListFiltersWidget::TransferListFiltersWidget(QWidget *parent, TransferLi
     connect(m_tagFilterWidget, &TagFilterWidget::tagChanged
             , transferList, &TransferListWidget::applyTagFilter);
     toggleTagFilter(pref->getTagFilterState());
-    frameLayout->addWidget(m_tagFilterWidget);
+    mainWidgetLayout->addWidget(m_tagFilterWidget);
 
     QCheckBox *trackerLabel = new ArrowCheckBox(tr("Trackers"), this);
     trackerLabel->setChecked(pref->getTrackerFilterState());
     trackerLabel->setFont(font);
     connect(trackerLabel, &QCheckBox::toggled, pref, &Preferences::setTrackerFilterState);
-    frameLayout->addWidget(trackerLabel);
+    mainWidgetLayout->addWidget(trackerLabel);
 
     m_trackersFilterWidget = new TrackersFilterWidget(this, transferList, downloadFavicon);
     connect(trackerLabel, &QCheckBox::toggled, m_trackersFilterWidget, &TrackersFilterWidget::toggleFilter);
-    frameLayout->addWidget(m_trackersFilterWidget);
+    mainWidgetLayout->addWidget(m_trackersFilterWidget);
 
     auto *scroll = new QScrollArea(this);
     scroll->setWidgetResizable(true);
     scroll->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     scroll->setFrameShape(QFrame::NoFrame);
-    scroll->setWidget(frame);
+    scroll->setWidget(mainWidget);
 
     auto *vLayout = new QVBoxLayout(this);
     vLayout->setContentsMargins(0, 0, 0, 0);

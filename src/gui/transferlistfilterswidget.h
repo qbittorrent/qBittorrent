@@ -30,8 +30,8 @@
 #pragma once
 
 #include <QtContainerFwd>
-#include <QFrame>
 #include <QHash>
+#include <QWidget>
 
 #include "base/bittorrent/torrent.h"
 #include "base/bittorrent/trackerentry.h"
@@ -42,7 +42,7 @@ class TagFilterWidget;
 class TrackersFilterWidget;
 class TransferListWidget;
 
-class TransferListFiltersWidget final : public QFrame
+class TransferListFiltersWidget final : public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(TransferListFiltersWidget)
