@@ -38,6 +38,7 @@
 #include <libtorrent/torrent_handle.hpp>
 
 #include <QtContainerFwd>
+#include <QDateTime>
 #include <QElapsedTimer>
 #include <QHash>
 #include <QPointer>
@@ -772,6 +773,9 @@ namespace BitTorrent
         // ever required, synchronization should also be provided.
         bool m_isPortMappingEnabled = false;
         QHash<quint16, std::vector<lt::port_mapping_t>> m_mappedPorts;
+
+        QTimer *m_wakeupCheckTimer = nullptr;
+        QDateTime m_wakeupCheckTimestamp;
 
         friend void Session::initInstance();
         friend void Session::freeInstance();

@@ -1470,6 +1470,21 @@ void SessionImpl::endStartup(ResumeSessionContext *context)
             m_resumeDataTimer->start();
         }
 
+        m_wakeupCheckTimer = new QTimer(this);
+        connect(m_wakeupCheckTimer, &QTimer::timeout, this, [this]
+        {
+            const auto now = QDateTime::currentDateTime();
+            if (m_wakeupCheckTimestamp.secsTo(now) > 100)
+            {
+                LogMsg(tr("System wake-up event detected. Re-announcing to all the trackers..."));
+                reannounceToAllTrackers();
+            }
+
+            m_wakeupCheckTimestamp = QDateTime::currentDateTime();
+        });
+        m_wakeupCheckTimestamp = QDateTime::currentDateTime();
+        m_wakeupCheckTimer->start(30s);
+
         m_isRestored = true;
         emit startupProgressUpdated(100);
         emit restored();
