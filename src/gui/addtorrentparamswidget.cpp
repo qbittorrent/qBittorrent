@@ -48,12 +48,28 @@ namespace
         Q_ASSERT(data.userType() == QMetaType::Bool);
         return data.toBool();
     }
+
+    BitTorrent::AddTorrentParams cleanParams(BitTorrent::AddTorrentParams params)
+    {
+        if (!params.useAutoTMM.has_value() || params.useAutoTMM.value())
+        {
+            params.savePath = Path();
+            params.downloadPath = Path();
+            params.useDownloadPath = std::nullopt;
+        }
+
+        if (!params.useDownloadPath.has_value() || !params.useDownloadPath.value())
+        {
+            params.downloadPath = Path();
+        }
+
+        return params;
+    }
 }
 
 AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addTorrentParams, QWidget *parent)
     : QWidget(parent)
     , m_ui {new Ui::AddTorrentParamsWidget}
-    , m_addTorrentParams {std::move(addTorrentParams)}
 {
     m_ui->setupUi(this);
 
@@ -110,7 +126,7 @@ AddTorrentParamsWidget::AddTorrentParamsWidget(BitTorrent::AddTorrentParams addT
     miscParamsLayout->addWidget(m_ui->stopConditionWidget);
     miscParamsLayout->addWidget(m_ui->addToQueueTopWidget);
 
-    populate();
+    setAddTorrentParams(std::move(addTorrentParams));
 }
 
 AddTorrentParamsWidget::~AddTorrentParamsWidget()
@@ -126,7 +142,7 @@ void AddTorrentParamsWidget::setAddTorrentParams(BitTorrent::AddTorrentParams ad
 
 BitTorrent::AddTorrentParams AddTorrentParamsWidget::addTorrentParams() const
 {
-    return m_addTorrentParams;
+    return cleanParams(m_addTorrentParams);
 }
 
 void AddTorrentParamsWidget::populate()

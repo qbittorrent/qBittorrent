@@ -860,6 +860,16 @@ void AddNewTorrentDialog::accept()
             m_torrentParams.downloadPath = downloadPath;
             updatePathHistory(KEY_DOWNLOADPATHHISTORY, downloadPath, savePathHistoryLength());
         }
+        else
+        {
+            m_torrentParams.downloadPath = Path();
+        }
+    }
+    else
+    {
+        m_torrentParams.savePath = Path();
+        m_torrentParams.downloadPath = Path();
+        m_torrentParams.useDownloadPath = std::nullopt;
     }
 
     setEnabled(!m_ui->checkBoxNeverShow->isChecked());
