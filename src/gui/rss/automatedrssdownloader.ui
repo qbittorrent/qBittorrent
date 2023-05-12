@@ -134,11 +134,38 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>329</width>
-          <height>243</height>
+          <width>370</width>
+          <height>277</height>
          </rect>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0,0,0,1">
+        <layout class="QVBoxLayout" name="verticalLayout_8" stretch="0,0,0,0,0,0,0,1">
+         <item>
+          <layout class="QHBoxLayout" name="priorityLayout">
+           <item>
+            <widget class="QLabel" name="priorityLabel">
+             <property name="text">
+              <string>Priority:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="prioritySpinBox"/>
+           </item>
+           <item>
+            <spacer name="prioritySpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
          <item>
           <widget class="QCheckBox" name="checkRegex">
            <property name="text">

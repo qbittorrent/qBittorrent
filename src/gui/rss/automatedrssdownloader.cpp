@@ -78,6 +78,9 @@ AutomatedRssDownloader::AutomatedRssDownloader(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->torrentParametersGroupBox->layout()->addWidget(m_addTorrentParamsWidget);
 
+    m_ui->prioritySpinBox->setMinimum(std::numeric_limits<int>::min());
+    m_ui->prioritySpinBox->setMaximum(std::numeric_limits<int>::max());
+
     connect(m_ui->addRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onAddRuleBtnClicked);
     connect(m_ui->removeRuleBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onRemoveRuleBtnClicked);
     connect(m_ui->exportBtn, &QPushButton::clicked, this, &AutomatedRssDownloader::onExportBtnClicked);
@@ -281,6 +284,8 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
     {
         m_currentRule = RSS::AutoDownloader::instance()->ruleByName(m_currentRuleItem->text());
 
+        m_ui->prioritySpinBox->setValue(m_currentRule.priority());
+
         m_addTorrentParamsWidget->setAddTorrentParams(m_currentRule.addTorrentParams());
 
         m_ui->lineContains->setText(m_currentRule.mustContain());
@@ -324,6 +329,7 @@ void AutomatedRssDownloader::updateRuleDefinitionBox()
 void AutomatedRssDownloader::clearRuleDefinitionBox()
 {
     m_addTorrentParamsWidget->setAddTorrentParams({});
+    m_ui->prioritySpinBox->setValue(0);
     m_ui->lineContains->clear();
     m_ui->lineNotContains->clear();
     m_ui->lineEFilter->clear();
@@ -342,6 +348,7 @@ void AutomatedRssDownloader::updateEditedRule()
         return;
 
     m_currentRule.setEnabled(m_currentRuleItem->checkState() != Qt::Unchecked);
+    m_currentRule.setPriority(m_ui->prioritySpinBox->value());
     m_currentRule.setUseRegex(m_ui->checkRegex->isChecked());
     m_currentRule.setUseSmartFilter(m_ui->checkSmart->isChecked());
     m_currentRule.setMustContain(m_ui->lineContains->text());
@@ -357,7 +364,7 @@ void AutomatedRssDownloader::saveEditedRule()
     if (!m_currentRuleItem || !m_ui->ruleScrollArea->isEnabled()) return;
 
     updateEditedRule();
-    RSS::AutoDownloader::instance()->insertRule(m_currentRule);
+    RSS::AutoDownloader::instance()->setRule(m_currentRule);
 }
 
 void AutomatedRssDownloader::onAddRuleBtnClicked()
@@ -377,7 +384,7 @@ void AutomatedRssDownloader::onAddRuleBtnClicked()
         return;
     }
 
-    RSS::AutoDownloader::instance()->insertRule(RSS::AutoDownloadRule(ruleName));
+    RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule(ruleName));
 }
 
 void AutomatedRssDownloader::onRemoveRuleBtnClicked()
@@ -580,7 +587,7 @@ void AutomatedRssDownloader::handleFeedCheckStateChange(QListWidgetItem *feedIte
 
         rule.setFeedURLs(affectedFeeds);
         if (ruleItem != m_currentRuleItem)
-            RSS::AutoDownloader::instance()->insertRule(rule);
+            RSS::AutoDownloader::instance()->setRule(rule);
         else
             m_currentRule = rule;
     }

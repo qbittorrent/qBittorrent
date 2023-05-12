@@ -150,7 +150,7 @@ void RSSController::setRuleAction()
     const QByteArray ruleDef {params()[u"ruleDef"_qs].trimmed().toUtf8()};
 
     const auto jsonObj = QJsonDocument::fromJson(ruleDef).object();
-    RSS::AutoDownloader::instance()->insertRule(RSS::AutoDownloadRule::fromJsonObject(jsonObj, ruleName));
+    RSS::AutoDownloader::instance()->setRule(RSS::AutoDownloadRule::fromJsonObject(jsonObj, ruleName));
 }
 
 void RSSController::renameRuleAction()
