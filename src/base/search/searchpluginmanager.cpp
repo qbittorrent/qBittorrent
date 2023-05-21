@@ -509,7 +509,12 @@ void SearchPluginManager::update()
     QProcess nova;
     nova.setProcessEnvironment(QProcessEnvironment::systemEnvironment());
 
-    const QStringList params {(engineLocation() / Path(u"/nova2.py"_qs)).toString(), u"--capabilities"_qs};
+    const QStringList params
+    {
+        Utils::ForeignApps::PYTHON_ISOLATE_MODE_FLAG,
+        (engineLocation() / Path(u"/nova2.py"_qs)).toString(),
+        u"--capabilities"_qs
+    };
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 

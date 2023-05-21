@@ -1,4 +1,4 @@
-#VERSION: 1.22
+#VERSION: 1.23
 
 # Author:
 #  Christophe DUMEZ (chris@qbittorrent.org)
@@ -27,9 +27,17 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-import sys
-import os
 import glob
+import importlib
+import os
+import pathlib
+import sys
+
+# qbt tend to run this script in 'isolate mode' so append the current path manually
+current_path = str(pathlib.Path(__file__).parent.resolve())
+if current_path not in sys.path:
+    sys.path.append(current_path)
+
 from helpers import download_file
 
 supported_engines = dict()
@@ -42,8 +50,10 @@ for engine in engines:
     if e.startswith('_'):
         continue
     try:
-        exec("from engines.%s import %s" % (e, e))
-        exec("engine_url = %s.url" % e)
+        module = importlib.import_module("engines." + e)
+        engine_class = getattr(module, e)
+        globals()[e] = engine_class
+        engine_url = getattr(engine_class, 'url')
         supported_engines[engine_url] = e
     except Exception:
         pass
@@ -53,9 +63,9 @@ if __name__ == '__main__':
         raise SystemExit('./nova2dl.py engine_url download_parameter')
     engine_url = sys.argv[1].strip()
     download_param = sys.argv[2].strip()
-    if engine_url not in list(supported_engines.keys()):
+    if engine_url not in supported_engines.keys():
         raise SystemExit('./nova2dl.py: this engine_url was not recognized')
-    exec("engine = %s()" % supported_engines[engine_url])
+    engine = globals()[supported_engines[engine_url]]()
     if hasattr(engine, 'download_torrent'):
         engine.download_torrent(download_param)
     else:
