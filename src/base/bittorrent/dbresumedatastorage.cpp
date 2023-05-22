@@ -703,8 +703,8 @@ void BitTorrent::DBResumeDataStorage::Worker::run()
 
 void DBResumeDataStorage::Worker::requestInterruption()
 {
-    m_waitCondition.wakeAll();
     QThread::requestInterruption();
+    m_waitCondition.wakeAll();
 }
 
 void BitTorrent::DBResumeDataStorage::Worker::store(const TorrentID &id, const LoadTorrentParams &resumeData)
