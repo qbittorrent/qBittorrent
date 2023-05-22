@@ -29,6 +29,8 @@
 
 #include "programupdater.h"
 
+#include <QtGlobal>
+
 #if defined(Q_OS_WIN)
 #include <Windows.h>
 #include <versionhelpers.h>  // must follow after Windows.h
