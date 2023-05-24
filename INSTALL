@@ -5,7 +5,7 @@ qBittorrent - A BitTorrent client in C++ / Qt
 
   - Boost >= 1.71
 
-  - libtorrent-rasterbar 1.2.18 - 1.2.x || 2.0.8 - 2.0.x
+  - libtorrent-rasterbar 1.2.19 - 1.2.x || 2.0.9 - 2.0.x
       * By Arvid Norberg, https://www.libtorrent.org/
       * Be careful: another library (the one used by rTorrent) uses a similar name
 
