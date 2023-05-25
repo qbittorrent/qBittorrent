@@ -60,6 +60,7 @@ jobs:
           cmake \
             -B build \
             -G "Ninja" \
+            -DBUILD_SHARED_LIBS=OFF \
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
             -Ddeprecated-functions=OFF
