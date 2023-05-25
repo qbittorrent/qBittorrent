@@ -188,10 +188,10 @@ m4_define([DETECT_BOOST_VERSION_PROGRAM],
                      [[(void) ((void)sizeof(char[1 - 2*!!((BOOST_VERSION) < ($1))]));]])])
 
 PKG_CHECK_MODULES(libtorrent,
-                  [libtorrent-rasterbar >= 2.0.8],
+                  [libtorrent-rasterbar >= 2.0.9],
                   [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS" QBT_ADD_DEFINES="$QBT_ADD_DEFINES QBT_USES_LIBTORRENT2"],
                   [PKG_CHECK_MODULES(libtorrent,
-                                     [libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2],
+                                     [libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2],
                                      [CXXFLAGS="$libtorrent_CFLAGS $CXXFLAGS" LIBS="$libtorrent_LIBS $LIBS"])])
 
 PKG_CHECK_MODULES(openssl,

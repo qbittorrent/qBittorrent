@@ -6024,19 +6024,19 @@ LDFLAGS="$BOOST_LDFLAGS $LDFLAGS"
 
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 2.0.8" >&5
-printf %s "checking for libtorrent-rasterbar >= 2.0.8... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 2.0.9" >&5
+printf %s "checking for libtorrent-rasterbar >= 2.0.9... " >&6; }
 
 if test -n "$libtorrent_CFLAGS"; then
     pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.8\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.8") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.9\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.9") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 2.0.8" 2>/dev/null`
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 2.0.9" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6048,12 +6048,12 @@ if test -n "$libtorrent_LIBS"; then
     pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.8\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.8") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 2.0.9\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 2.0.9") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 2.0.8" 2>/dev/null`
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 2.0.9" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6074,28 +6074,28 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.8" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.9" 2>&1`
         else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.8" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 2.0.9" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$libtorrent_PKG_ERRORS" >&5
 
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" >&5
-printf %s "checking for libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" >&5
+printf %s "checking for libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2... " >&6; }
 
 if test -n "$libtorrent_CFLAGS"; then
     pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>/dev/null`
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6107,12 +6107,12 @@ if test -n "$libtorrent_LIBS"; then
     pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>/dev/null`
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6133,14 +6133,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>&1`
         else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$libtorrent_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2) were not met:
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2) were not met:
 
 $libtorrent_PKG_ERRORS
 
@@ -6177,19 +6177,19 @@ elif test $pkg_failed = untried; then
 printf "%s\n" "no" >&6; }
 
 pkg_failed=no
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" >&5
-printf %s "checking for libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2... " >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" >&5
+printf %s "checking for libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2... " >&6; }
 
 if test -n "$libtorrent_CFLAGS"; then
     pkg_cv_libtorrent_CFLAGS="$libtorrent_CFLAGS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>/dev/null`
+  pkg_cv_libtorrent_CFLAGS=`$PKG_CONFIG --cflags "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6201,12 +6201,12 @@ if test -n "$libtorrent_LIBS"; then
     pkg_cv_libtorrent_LIBS="$libtorrent_LIBS"
  elif test -n "$PKG_CONFIG"; then
     if test -n "$PKG_CONFIG" && \
-    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2") 2>&5
+    { { printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2") 2>&5
   ac_status=$?
   printf "%s\n" "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
   test $ac_status = 0; }; then
-  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>/dev/null`
+  pkg_cv_libtorrent_LIBS=`$PKG_CONFIG --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes
 else
   pkg_failed=yes
@@ -6227,14 +6227,14 @@ else
         _pkg_short_errors_supported=no
 fi
         if test $_pkg_short_errors_supported = yes; then
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>&1`
         else
-	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2" 2>&1`
+	        libtorrent_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2" 2>&1`
         fi
 	# Put the nasty error message in config.log where it belongs
 	echo "$libtorrent_PKG_ERRORS" >&5
 
-	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.18 libtorrent-rasterbar < 2) were not met:
+	as_fn_error $? "Package requirements (libtorrent-rasterbar >= 1.2.19 libtorrent-rasterbar < 2) were not met:
 
 $libtorrent_PKG_ERRORS
 
