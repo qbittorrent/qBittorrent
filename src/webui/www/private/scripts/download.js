@@ -124,7 +124,7 @@ window.qBittorrent.Download = (function() {
                 const category = categories[categoryName];
                 let savePath = defaultSavePath;
                 if (category !== undefined)
-                    savePath = (category['savePath'] !== "") ? category['savePath'] : (defaultSavePath + categoryName);
+                    savePath = (category['savePath'] !== "") ? category['savePath'] : `${defaultSavePath}/${categoryName}`;
                 $('savepath').value = savePath;
             }
         }
