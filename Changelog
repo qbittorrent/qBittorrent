@@ -1,3 +1,16 @@
+Sun May 28 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.3
+    - BUGFIX: Correctly check if database needs to be updated (glassez)
+    - BUGFIX: Prevent incorrect log message about torrent content deletion (glassez)
+    - BUGFIX: Improve finished torrent handling (glassez)
+    - BUGFIX: Correctly initialize group box children as disabled in Preferences (thalieht)
+    - BUGFIX: Don't miss saving "download path" in SQLite storage (glassez)
+    - BUGFIX: Improve logging of running external program (glassez)
+    - WEBUI: Disable UPnP for web UI by default (glassez)
+    - WEBUI: Use workaround for IOS file picker (DivineHawk)
+    - WEBUI: Work around Chrome download limit (Chocobo1)
+    - WEBUI: Improve 'exporting torrent' behavior (Chocobo1)
+    - WINDOWS: NSIS: Add Slovak translation (Christian Danížek)
+
 Tue Feb 28 2023 - sledgehammer999 <sledgehammer999@qbittorrent.org> - v4.5.2
     - BUGFIX: Don't unexpectedly activate queued torrents when prefetching metadata for added magnets (glassez)
     - BUGFIX: Update the cached torrent state once recheck is started (glassez)
