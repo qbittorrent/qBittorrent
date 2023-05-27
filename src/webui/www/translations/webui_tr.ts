@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Tüm torrent'leri duraklatmak ister misiniz?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Çalıştırma Günlüğü</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Günlük</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Türü:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Yok)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Kişi bağlantıları için proksi kullan</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Sadece torrent'ler için proksi kullan</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ sunucusu tarafından kullanılan etki alanı adlarına eklemelisiniz.
     <message>
         <source>Fastresume files</source>
         <translation>Hızlı devam dosyaları</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Yok)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Sadece torrent'ler için proksi kullan</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Desteklenen biçimler: S01E01, 1x1, 2017.12.31 ve 31.12.2017 (Tarih biçimleri d
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Genel</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Engellenmiş</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Bilinmiyor</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Tümü</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">gösterilen</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopyala</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Tümünü Seç</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">Kimlik</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Günlük Türü</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Temizle</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Uyarı</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Bilgi İletileri</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Uyarı İletileri</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Günlükleri süz</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Engellenen IP'ler</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">/</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Durum</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Zaman Damgası</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Tümünü Temizle</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">İleti</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Günlük Seviyeleri:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Sebep</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">öğe</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Yasaklı</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Normal İletiler</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Önemli</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Önemli İletiler</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">öğe</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Sonuçlar</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Bilgi</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Bir günlük seviyesi seçin...</translation>
-    </message>
-</context>
+    </context>
 </TS>

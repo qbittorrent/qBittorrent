@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>您想要暫停所有 torrents 嗎？</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">執行紀錄檔</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">紀錄檔</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>類型：</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(無)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>使用代理伺服器來連線下載者</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>只對 torrent 使用代理伺服器</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Fastresume files</source>
         <translation>快速復原檔案</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(無)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>只對 torrent 使用代理伺服器</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">一般</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">已封鎖</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">未知</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">全部</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">正在顯示</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">複製</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">選取全部</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">紀錄檔類型</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">清除</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">警告</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">資訊訊息</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">警告訊息</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">過濾紀錄檔</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">已封鎖的 IP</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">中的</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">狀態</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">時間戳</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">清除全部</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">訊息</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">紀錄檔層級：</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">理由</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">項目</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">已封鎖</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">一般訊息</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">重要</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">重要訊息</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">一般</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">項目</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">結果</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">資訊</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">選擇紀錄檔層級……</translation>
-    </message>
-</context>
+    </context>
 </TS>

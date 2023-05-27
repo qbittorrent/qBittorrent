@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Wilt u alle torrents pauzeren?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Uitvoeringslog</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Log</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Type:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Geen)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Proxy gebruiken voor peer-verbindingen</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Proxy alleen voor torrents gebruiken</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ Gebruik ';' om meerdere items te splitsen. Jokerteken '*' kan gebruikt worden.</
     <message>
         <source>Fastresume files</source>
         <translation>Bestanden voor snel hervatten</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Geen)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Proxy alleen voor torrents gebruiken</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Ondersteunt de formaten:  S01E01, 1x1, 2017.12.31 en 31.12.2017 (datumformaten o
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Algemeen</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Geblokkeerd</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Onbekend</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Alle</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">weergeven van</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopiëren</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Alles selecteren</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Type log</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Wissen</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Waarschuwing</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Informatieberichten</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Waarschuwingsberichten</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Logs filteren</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Geblokkeerde IP's</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">van</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Status</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Tijdstempel</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Alles wissen</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Bericht</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Log-niveaus:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Reden</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">Item</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Verbannen</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Normale berichten</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Kritiek</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Kritieke berichten</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normaal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">Items</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Resultaten</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Info</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Logniveau kiezen...</translation>
-    </message>
-</context>
+    </context>
 </TS>

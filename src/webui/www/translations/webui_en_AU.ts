@@ -117,7 +117,7 @@
     <name>HttpServer</name>
     <message>
         <source>Exit qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>Exit qBittorrent</translation>
     </message>
     <message>
         <source>Only one link per line</source>
@@ -169,7 +169,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Unknown</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -201,7 +201,7 @@
     </message>
     <message>
         <source>Login</source>
-        <translation type="unfinished" />
+        <translation>Login</translation>
     </message>
     <message>
         <source>Apply</source>
@@ -218,7 +218,7 @@
     </message>
     <message>
         <source>Save files to location:</source>
-        <translation type="unfinished" />
+        <translation>Save files to location:</translation>
     </message>
     <message>
         <source>Cookie:</source>
@@ -333,7 +333,7 @@
     </message>
     <message>
         <source>Saving Management</source>
-        <translation type="unfinished" />
+        <translation>Saving Management</translation>
     </message>
     <message>
         <source>Download rate threshold must be greater than 0.</source>
@@ -345,7 +345,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Open documentation</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Original author</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>Statistics</translation>
     </message>
     <message>
         <source>About</source>
@@ -497,7 +497,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Search Engine</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -585,7 +585,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS Reader</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -597,7 +597,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancel</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -640,27 +640,27 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished" />
+        <translation>Language</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished" />
+        <translation>User Interface Language:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
-        <translation type="unfinished" />
+        <translation>E-mail notification upon download completion</translation>
     </message>
     <message>
         <source>IP Filtering</source>
-        <translation type="unfinished" />
+        <translation>IP Filtering</translation>
     </message>
     <message>
         <source>Schedule the use of alternative rate limits</source>
-        <translation type="unfinished" />
+        <translation>Schedule the use of alternative rate limits</translation>
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished" />
+        <translation>Torrent Queueing</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
@@ -680,7 +680,7 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation type="unfinished" />
+        <translation>Use HTTPS instead of HTTP</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
@@ -692,7 +692,7 @@
     </message>
     <message>
         <source>Update my dynamic domain name</source>
-        <translation type="unfinished" />
+        <translation>Update my dynamic domain name</translation>
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
@@ -783,10 +783,6 @@
         <translation>Type:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(None)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -809,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Use proxy for peer connections</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Use proxy only for torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1002,7 +994,7 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes</translation>
     </message>
     <message>
         <source>KiB/s</source>
@@ -1050,7 +1042,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Do not start the download automatically</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1174,7 +1166,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Any interface</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1198,7 +1190,7 @@
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent Section</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1206,7 +1198,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>libtorrent Section</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
@@ -1274,7 +1266,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1286,7 +1278,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1362,7 +1354,7 @@
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Network interface:</source>
@@ -1438,7 +1430,7 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Create subfolder</translation>
     </message>
     <message>
         <source>Original</source>
@@ -1562,7 +1554,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Enable OS cache</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1663,6 +1655,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Fastresume files</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(None)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Use proxy only for torrents</translation>
     </message>
 </context>
 <context>
@@ -1767,11 +1767,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Mixed</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Do not download</translation>
     </message>
 </context>
 <context>
@@ -1950,7 +1950,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (seeded for %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -1962,7 +1962,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -1989,7 +1989,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Other...</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -2082,7 +2082,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>All (0)</source>
         <comment>this is for the status filter</comment>
-        <translation type="unfinished" />
+        <translation>All (0)</translation>
     </message>
     <message>
         <source>Downloading (0)</source>
@@ -2118,7 +2118,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>All (%1)</translation>
     </message>
     <message>
         <source>Downloading (%1)</source>
@@ -2242,11 +2242,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Category</source>
-        <translation type="unfinished" />
+        <translation>Category</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Tags</translation>
     </message>
     <message>
         <source>Added On</source>
@@ -2275,12 +2275,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Downloaded</source>
         <comment>Amount of data downloaded (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Downloaded</translation>
     </message>
     <message>
         <source>Uploaded</source>
         <comment>Amount of data uploaded (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Uploaded</translation>
     </message>
     <message>
         <source>Session Download</source>
@@ -2295,7 +2295,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Remaining</source>
         <comment>Amount of data left to download (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Remaining</translation>
     </message>
     <message>
         <source>Time Active</source>
@@ -2310,7 +2310,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Completed</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -2334,7 +2334,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Availability</translation>
     </message>
 </context>
 <context>
@@ -2357,35 +2357,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished" />
+        <translation>Tracker URL:</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Updating...</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Working</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Disabled</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished" />
+        <translation>Not contacted yet</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>Seeds</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Not working</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
@@ -2397,7 +2397,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished" />
+        <translation>Tracker editing</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2405,15 +2405,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Remove tracker</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Remaining</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Availability</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2421,15 +2421,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Download Priority</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progress</translation>
     </message>
     <message>
         <source>Total Size</source>
@@ -2468,7 +2468,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Completed</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2480,11 +2480,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Seeding</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Queued</translation>
     </message>
     <message>
         <source>Errored</source>
@@ -2500,7 +2500,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Checking</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2508,7 +2508,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>Queued for checking</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2520,11 +2520,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Stalled</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (seeded for %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -2543,7 +2543,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Tags</source>
-        <translation type="unfinished" />
+        <translation>Tags</translation>
     </message>
     <message>
         <source>Trackers</source>
@@ -2679,7 +2679,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Save path</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2695,19 +2695,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet link</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Remove All</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copy</translation>
     </message>
     <message>
         <source>Queue</source>
@@ -2762,7 +2762,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutes</translation>
     </message>
 </context>
 <context>
@@ -2863,7 +2863,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2877,7 +2877,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancel</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2900,31 +2900,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Seeds:</translation>
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>All plug-ins</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Size:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Stop</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Search</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Search plug-ins...</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>All categories</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -2940,7 +2940,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Only enabled</source>
-        <translation type="unfinished" />
+        <translation>Only enabled</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2960,11 +2960,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>to</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Results</translation>
     </message>
     <message>
         <source>showing</source>
@@ -2983,7 +2983,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>Uninstall</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -2995,7 +2995,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>Close</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
@@ -3003,7 +3003,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Enabled</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -3011,49 +3011,49 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>Check for updates</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>Search plug-ins</translation>
     </message>
 </context>
 <context>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Size</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Leechers</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Search engine</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>Seeders</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>URL</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Enabled</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3061,18 +3061,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Yes</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>No</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancel</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3107,7 +3107,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Pause torrents</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3134,7 +3134,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>All</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -3149,7 +3149,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>About</translation>
     </message>
     <message>
         <source>Forum:</source>
@@ -3157,11 +3157,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Current maintainer</translation>
     </message>
     <message>
         <source>Home Page:</source>
@@ -3169,7 +3169,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Greece</translation>
     </message>
     <message>
         <source>Special Thanks</source>
@@ -3181,11 +3181,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Name:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>About qBittorrent</translation>
     </message>
     <message>
         <source>License</source>
@@ -3217,7 +3217,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>France</translation>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
@@ -3232,7 +3232,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>All addresses</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
@@ -3247,15 +3247,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Copy</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Download</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Name</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3278,7 +3278,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>New name:</translation>
     </message>
 </context>
 <context>
@@ -3293,11 +3293,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished" />
+        <translation>Please choose a folder name</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation>New feed name:</translation>
     </message>
     <message>
         <source>Update all</source>
@@ -3321,7 +3321,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished" />
+        <translation>Copy feed URL</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
@@ -3333,7 +3333,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Rename...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3349,11 +3349,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Update</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Folder name:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3456,7 +3456,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>An expression with an empty %1 clause (e.g. %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3524,7 +3524,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> will match 2, 5, 8 through 15, 30 and onward episodes of season one</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3613,7 +3613,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Create subfolder</translation>
     </message>
     <message>
         <source>Original</source>
@@ -3632,7 +3632,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>All (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>

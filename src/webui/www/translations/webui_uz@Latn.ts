@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS language="uz@Latn" version="2.1">
+<TS version="2.1" language="uz@Latn">
 <context>
     <name>AboutDlg</name>
     <message>
@@ -12,7 +12,7 @@
     <name>AddNewTorrentDialog</name>
     <message>
         <source>Category:</source>
-        <translation type="unfinished" />
+        <translation>Toifa:</translation>
     </message>
     <message>
         <source>Start torrent</source>
@@ -24,31 +24,31 @@
     </message>
     <message>
         <source>Torrent Management Mode:</source>
-        <translation type="unfinished" />
+        <translation>Torrent boshqaruvi rejimi</translation>
     </message>
     <message>
         <source>Content layout:</source>
-        <translation type="unfinished" />
+        <translation>Kontent maketi:</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Asli</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratish</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratilmasin</translation>
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Mustaqil</translation>
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Avtomatik</translation>
     </message>
     <message>
         <source>Metadata received</source>
@@ -71,7 +71,7 @@
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Hammasini</translation>
     </message>
     <message>
         <source>Uncategorized</source>
@@ -94,11 +94,11 @@
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished">Torrentlarni davomlash</translation>
+        <translation>Torrentlarni davomlash</translation>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished">Torrentlarni pauza qilish</translation>
+        <translation>Torrentlarni pauza qilish</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -180,10 +180,6 @@
         <translation type="unfinished" />
     </message>
     <message>
-        <source>The port used for incoming connections must be between 1 and 65535.</source>
-        <translation type="vanished">Kiruvchi ulanishlar uchun ishlatiladigan port 1 bilan 65535 oralig‘ida bo‘lishi kerak.</translation>
-    </message>
-    <message>
         <source>The port used for the Web UI must be between 1 and 65535.</source>
         <translation>Veb interfeysi uchun ishlatiladigan port 1 bilan 65535 oralig‘ida bo‘lishi kerak.</translation>
     </message>
@@ -208,10 +204,6 @@
         <translation>Kirish</translation>
     </message>
     <message>
-        <source>Original authors</source>
-        <translation type="vanished">Original mualliflar</translation>
-    </message>
-    <message>
         <source>Apply</source>
         <translation>Qo‘llash</translation>
     </message>
@@ -222,7 +214,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>Torrentlarni yuklash</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -231,10 +223,6 @@
     <message>
         <source>Cookie:</source>
         <translation>Kuki:</translation>
-    </message>
-    <message>
-        <source>Type folder here</source>
-        <translation type="vanished">Jildni kiriting</translation>
     </message>
     <message>
         <source>More information</source>
@@ -259,11 +247,6 @@
     <message>
         <source>Rename torrent</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>Other...</source>
-        <comment>Save Files to: Watch Folder / Default Folder / Other...</comment>
-        <translation type="vanished">Boshqa...</translation>
     </message>
     <message>
         <source>Monday</source>
@@ -313,20 +296,12 @@
         <translation>Qurilmadagi torrentni yuklash</translation>
     </message>
     <message>
-        <source>Are you sure you want to delete the selected torrents from the transfer list?</source>
-        <translation type="vanished">Haqiqatan ham tanlangan torrentlarni oldi-berdi ro‘yxatidan o‘chirib tashlamoqchimisiz?</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Saqlash</translation>
     </message>
     <message>
         <source>qBittorrent client is not reachable</source>
         <translation>qBittorrent mijozini ochib bo‘lmaydi</translation>
-    </message>
-    <message>
-        <source>qBittorrent has been shutdown.</source>
-        <translation type="vanished">qBittorrent yopib qo‘yildi.</translation>
     </message>
     <message>
         <source>Global number of upload slots limit must be greater than 0 or disabled.</source>
@@ -346,7 +321,7 @@
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished" />
+        <translation>Tahrir</translation>
     </message>
     <message>
         <source>Free space: %1</source>
@@ -370,7 +345,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>Qoʻllanmani ochish</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -406,7 +381,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Asl muallifi:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -444,22 +419,6 @@
         <translation>Davomlash</translation>
     </message>
     <message>
-        <source>Minimum Priority</source>
-        <translation type="vanished">Minimal dolzarblik</translation>
-    </message>
-    <message>
-        <source>Top Priority</source>
-        <translation type="vanished">Yuqori dolzarblik</translation>
-    </message>
-    <message>
-        <source>Decrease Priority</source>
-        <translation type="vanished">Dolzarblikni pasaytirish</translation>
-    </message>
-    <message>
-        <source>Increase Priority</source>
-        <translation type="vanished">Dolzarblikni oshirish</translation>
-    </message>
-    <message>
         <source>Top Toolbar</source>
         <translation>Yuqoridagi uskunalar majmuasi</translation>
     </message>
@@ -490,10 +449,6 @@
     <message>
         <source>Pause</source>
         <translation>Pauza qilish</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="vanished">O‘chirib tashlash</translation>
     </message>
     <message>
         <source>Pause All</source>
@@ -546,15 +501,15 @@
     </message>
     <message>
         <source>Filter torrent list...</source>
-        <translation type="unfinished" />
+        <translation>Torrent ro‘yxatini filtrlash...</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Qidiruv</translation>
     </message>
     <message>
         <source>Transfers</source>
-        <translation type="unfinished" />
+        <translation>Oldi-berdilar</translation>
     </message>
     <message>
         <source>Move up in the queue</source>
@@ -685,7 +640,7 @@
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished" />
+        <translation>Til</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
@@ -895,7 +850,7 @@
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>Har kuni</translation>
     </message>
     <message>
         <source>Weekdays</source>
@@ -1031,7 +986,7 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>Veb interfeysidagi foydalanuvchi ismi kamida 3 ta belgidan iborat bo‘lishi kerak.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
@@ -1071,7 +1026,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Avtomatik</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1143,7 +1098,7 @@
     </message>
     <message>
         <source>Manual</source>
-        <translation type="unfinished" />
+        <translation>Mustaqil</translation>
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
@@ -1211,7 +1166,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Har qanday interfeys</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1431,7 +1386,7 @@
     </message>
     <message>
         <source> min</source>
-        <translation type="unfinished" />
+        <translation>daq</translation>
     </message>
     <message>
         <source>Peer turnover disconnect interval:</source>
@@ -1475,15 +1430,15 @@
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratish</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Asli</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratilmasin</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
@@ -1599,7 +1554,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>OT keshi ishga tushirilsin</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1812,7 +1767,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Yuklab olinmasin</translation>
     </message>
 </context>
 <context>
@@ -1971,15 +1926,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Yuklab olish cheklovi:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Yuklash cheklovi:</translation>
     </message>
     <message>
         <source>Priority</source>
-        <translation type="unfinished" />
+        <translation>Dolzarblik</translation>
     </message>
     <message>
         <source>Filter files...</source>
@@ -1987,7 +1942,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Nomini o‘zgartirish...</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2003,7 +1958,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Noaniq</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -2030,11 +1985,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Boshqa...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Jildni kiriting</translation>
     </message>
 </context>
 <context>
@@ -2048,7 +2003,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>StatsDialog</name>
     <message>
         <source>Statistics</source>
-        <translation type="unfinished" />
+        <translation>Statistika</translation>
     </message>
     <message>
         <source>User statistics</source>
@@ -2418,7 +2373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Noaniq</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2505,11 +2460,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>Pauzada</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>Tugallangan</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2521,7 +2476,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Tarqatilmoqda</translation>
     </message>
     <message>
         <source>Queued</source>
@@ -2553,7 +2508,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>Yuklab olinmoqda</translation>
     </message>
     <message>
         <source>Checking resume data</source>
@@ -2608,7 +2563,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Resume</source>
         <comment>Resume/start the torrent</comment>
-        <translation type="unfinished" />
+        <translation>Davomlash</translation>
     </message>
     <message>
         <source>Force Resume</source>
@@ -2618,7 +2573,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Pause</source>
         <comment>Pause the torrent</comment>
-        <translation type="unfinished" />
+        <translation>Pauza qilish</translation>
     </message>
     <message>
         <source>Limit share ratio...</source>
@@ -2679,10 +2634,6 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
         <translation type="unfinished" />
     </message>
     <message>
-        <source>Priority</source>
-        <translation type="vanished">Dolzarblik</translation>
-    </message>
-    <message>
         <source>Force recheck</source>
         <translation type="unfinished" />
     </message>
@@ -2740,7 +2691,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet havola</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2752,7 +2703,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Nusxalash</translation>
     </message>
     <message>
         <source>Queue</source>
@@ -2953,7 +2904,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Hajmi:</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -2961,7 +2912,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Qidiruv</translation>
     </message>
     <message>
         <source>Search plugins...</source>
@@ -3005,7 +2956,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>qayerga</translation>
     </message>
     <message>
         <source>Results</source>
@@ -3106,11 +3057,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Ha</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Yo‘q</translation>
     </message>
 </context>
 <context>
@@ -3152,11 +3103,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentlarni pauza qilish</translation>
     </message>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentlarni davomlash</translation>
     </message>
     <message>
         <source>Remove unused tags</source>
@@ -3179,7 +3130,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Hammasini</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -3190,67 +3141,67 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>AboutDialog</name>
     <message>
         <source>Bug Tracker:</source>
-        <translation type="unfinished" />
+        <translation>Xatolar trekeri:</translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished" />
+        <translation>Haqida</translation>
     </message>
     <message>
         <source>Forum:</source>
-        <translation type="unfinished" />
+        <translation>Forum:</translation>
     </message>
     <message>
         <source>E-mail:</source>
-        <translation type="unfinished" />
+        <translation>E-mail:</translation>
     </message>
     <message>
         <source>Current maintainer</source>
-        <translation type="unfinished" />
+        <translation>Joriy tarjimon</translation>
     </message>
     <message>
         <source>Home Page:</source>
-        <translation type="unfinished" />
+        <translation>Bosh sahifa:</translation>
     </message>
     <message>
         <source>Greece</source>
-        <translation type="unfinished" />
+        <translation>Gretsiya</translation>
     </message>
     <message>
         <source>Special Thanks</source>
-        <translation type="unfinished" />
+        <translation>Alohida minnatdorchilik</translation>
     </message>
     <message>
         <source>An advanced BitTorrent client programmed in C++, based on Qt toolkit and libtorrent-rasterbar.</source>
-        <translation type="unfinished" />
+        <translation>C++ tilida Qt tulkit va libtorrent-rasterbar kutubxonalari asosida ishlab chiqilgan kengaytirilgan BitTorrent mijoz dasturi.</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished" />
+        <translation>Nomi:</translation>
     </message>
     <message>
         <source>About qBittorrent</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent haqida</translation>
     </message>
     <message>
         <source>License</source>
-        <translation type="unfinished" />
+        <translation>Litsenziya</translation>
     </message>
     <message>
         <source>Translators</source>
-        <translation type="unfinished" />
+        <translation>Tarjimonlar</translation>
     </message>
     <message>
         <source>qBittorrent was built with the following libraries:</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent quyidagi kutubxonalar asosida ishlab chiqilgan:</translation>
     </message>
     <message>
         <source>Nationality:</source>
-        <translation type="unfinished" />
+        <translation>Millati:</translation>
     </message>
     <message>
         <source>Software Used</source>
-        <translation type="unfinished" />
+        <translation>Foydalanilgan dasturlar</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
@@ -3262,7 +3213,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>France</source>
-        <translation type="unfinished" />
+        <translation>Fransiya</translation>
     </message>
     <message>
         <source>qBittorrent Mascot</source>
@@ -3277,26 +3228,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Barcha manzillar</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Barcha IPv6 manzillar</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Barcha IPv4 manzillar</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Nusxalash</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Yuklab olish</translation>
     </message>
     <message>
         <source>Name</source>
@@ -3323,7 +3274,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Yangi nomi:</translation>
     </message>
 </context>
 <context>
@@ -3350,7 +3301,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>O‘chirib tashlash</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
@@ -3378,7 +3329,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Nomini o‘zgartirish...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3429,11 +3380,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>AutomatedRssDownloader</name>
     <message>
         <source>Download Rules</source>
-        <translation type="unfinished" />
+        <translation>Yuklab olish qoidalari</translation>
     </message>
     <message>
         <source>Matching RSS Articles</source>
-        <translation type="unfinished" />
+        <translation>RSS maqolalari mosligini aniqlash</translation>
     </message>
     <message>
         <source>* to match zero or more of any characters</source>
@@ -3445,7 +3396,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Episode filter rules: </source>
-        <translation type="unfinished" />
+        <translation>Qism filtri qoidalari:</translation>
     </message>
     <message>
         <source>Auto downloading of RSS torrents is disabled now! You can enable it in application settings.</source>
@@ -3453,23 +3404,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rule Definition</source>
-        <translation type="unfinished" />
+        <translation>Qoida ta’rifi</translation>
     </message>
     <message>
         <source>Save to:</source>
-        <translation type="unfinished" />
+        <translation>Bu joyga saqlash:</translation>
     </message>
     <message>
         <source>Use Regular Expressions</source>
-        <translation type="unfinished" />
+        <translation>Muntazam ifodalar ishlatish</translation>
     </message>
     <message>
         <source>New rule name</source>
-        <translation type="unfinished" />
+        <translation>Yangi qoida nomi</translation>
     </message>
     <message>
         <source>Filter must end with semicolon</source>
-        <translation type="unfinished" />
+        <translation>Filtr oxirida nuqta-vergul qo‘yilishi shart</translation>
     </message>
     <message>
         <source>? to match any single character</source>
@@ -3477,7 +3428,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Matches articles based on episode filter.</source>
-        <translation type="unfinished" />
+        <translation>Qism filtriga asoslangan maqolalar mosligini aniqlaydi.</translation>
     </message>
     <message>
         <source>Assign Category:</source>
@@ -3505,11 +3456,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: </source>
-        <translation type="unfinished" />
+        <translation>Misol:</translation>
     </message>
     <message>
         <source>Add new rule...</source>
-        <translation type="unfinished" />
+        <translation>Yangi qoida qo‘shish...</translation>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
@@ -3517,7 +3468,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Must Contain:</source>
-        <translation type="unfinished" />
+        <translation>Tarkibida bu bo‘lishi shart:</translation>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
@@ -3525,43 +3476,43 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save to a Different Directory</source>
-        <translation type="unfinished" />
+        <translation>Boshqa jildga saqlash</translation>
     </message>
     <message>
         <source>Must Not Contain:</source>
-        <translation type="unfinished" />
+        <translation>Tarkibida bu bo‘lmasligi shart:</translation>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Bitta son: &lt;b&gt;1x25;&lt;/b&gt; birinchi faslning 25-qismiga mos keladi</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Qismlar uchun uch xildagi miqyos qo‘llanadi:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
-        <translation type="unfinished" />
+        <translation>Haqiqatan ham tanlangan yuklab olish qoidalarini o‘chirib tashlamoqchimisiz?</translation>
     </message>
     <message>
         <source>Use global settings</source>
-        <translation type="unfinished" />
+        <translation>Global sozlamalar ishlatish</translation>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Normal miqyos &lt;b&gt;1x25-40;&lt;/b&gt; birinchi faslning 25-40 qismlariga mos keladi</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
-        <translation type="unfinished" />
+        <translation>Yangi qoida nomini kiriting</translation>
     </message>
     <message>
         <source>Rule renaming</source>
-        <translation type="unfinished" />
+        <translation>Qoida ismini o‘zgartirish</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="unfinished" />
+        <translation>Har doim</translation>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
@@ -3569,19 +3520,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> birinchi faslning 2, 5, 8-15, 30 va undan keyingi qismlariga mos keladi</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Qoidani o‘chirib tashlashni tasdiqlash</translation>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Oxirgi marta %1 kun oldin mos kelgan</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
-        <translation type="unfinished" />
+        <translation>Qism filtri:</translation>
     </message>
     <message>
         <source>Rss Downloader</source>
@@ -3589,19 +3540,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
-        <translation type="unfinished" />
+        <translation>Fasl raqamiga nol bo‘lmagan qiymat kiritish shart</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>Hech qachon</translation>
     </message>
     <message>
         <source>Apply Rule to Feeds:</source>
-        <translation type="unfinished" />
+        <translation>Qoidani tasmalarga qo‘llash:</translation>
     </message>
     <message>
         <source> days</source>
-        <translation type="unfinished" />
+        <translation>kun</translation>
     </message>
     <message>
         <source>Use Smart Episode Filter</source>
@@ -3613,11 +3564,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add Paused:</source>
-        <translation type="unfinished" />
+        <translation>Pauzadagini qo‘shish:</translation>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Yangi yuklab olish qoidasi uchun nom kiriting</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
@@ -3629,19 +3580,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Delete rule</source>
-        <translation type="unfinished" />
+        <translation>Qoidani o‘chirib tashlash</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Hosilaviy mosliklar hisobga olinmasin (0: o‘chirib qo‘yish)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
-        <translation type="unfinished" />
+        <translation>Qoida nomini o‘zgartirish...</translation>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>Oxirgi mos kelish sanasi noma’lum</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
@@ -3658,26 +3609,26 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratish</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Asli</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Quyi jild yaratilmasin</translation>
     </message>
 </context>
 <context>
     <name>TrackerFiltersList</name>
     <message>
         <source>Resume torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentlarni davomlash</translation>
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Hammasi (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3685,7 +3636,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Torrentlarni pauza qilish</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -3696,11 +3647,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>FeedListWidget</name>
     <message>
         <source>RSS feeds</source>
-        <translation type="unfinished" />
+        <translation>RSS tasmalari</translation>
     </message>
     <message>
         <source>Unread</source>
-        <translation type="unfinished" />
+        <translation>O‘qilmagan</translation>
     </message>
 </context>
 <context>

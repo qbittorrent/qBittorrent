@@ -611,10 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Sollen alle Torrents angehalten werden?</translation>
     </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Log</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -787,10 +783,6 @@
         <translation>Typ:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Keiner)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -813,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Proxy für Peer-Verbindungen verwenden</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Proxy nur für Torrents verwenden</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1660,15 +1648,23 @@ Platzhalter '*' kann verwendet werden.</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite-Datenbank (experimentell)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Speichertyp der Fortsetzungsdaten (Programmneustart erforderlich):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Fastresume Dateien</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Keiner)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Proxy nur für Torrents verwenden</translation>
     </message>
 </context>
 <context>
@@ -3667,113 +3663,5 @@ Er unterstützt die Formate: S01E01, 1x1, 2017.12.31 und 31.12.2017 (Datums-Form
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Blockiert</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Unbekannt</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Alle</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopieren</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Alle auswählen</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Leeren</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Warnung</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Infonachricht</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Warnnachricht</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Logs filtern</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Blockierte IPs</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Status</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Alle leeren</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Nachricht</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Grund</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">item</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Verbannt</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Normale Nachricht</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Kritisch</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Kritische Nachricht</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">items</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Ergebnisse</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Info</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Wähle ein Log Level...</translation>
-    </message>
-</context>
+    </context>
 </TS>

@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Doriți să întrerupeți toate torentele?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Jurnal de execuție</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Jurnal</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Tip:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Niciunul)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Utilizează proxy pentru conexiuni la parteneri</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Utilizează proxy doar pentru torrente</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1258,7 +1242,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Proporțional cu partenerii (limitează protocolul TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1286,7 +1270,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Round-robin</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1458,7 +1442,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Tip de serviciu (ToS) pentru conexiunile spre parteneri</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1498,7 +1482,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Setează ca 0 pentru a lăsa sistemul să folosească un port neutilizat.</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1522,7 +1506,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Fișiere mapate în memorie</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1530,11 +1514,11 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Compatibil cu standardul POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Această opțiune are mai puțin efect pe Linux</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
@@ -1546,7 +1530,7 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Controlează intervalul de actualizare al stării interne care la rândul său va afecta actualizările interfeței grafice</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1554,7 +1538,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Dezactivează prestocarea (cache-ul) sistemului</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1666,7 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Reia rapid fișierele</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Niciunul)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Utilizează proxy doar pentru torrente</translation>
     </message>
 </context>
 <context>
@@ -2528,7 +2520,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (contribuit pentru %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -3665,65 +3657,5 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Generale</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Blocat</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Necunoscut</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Toate</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">se arată</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copiază</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Selectează tot</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">Id.</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Tip jurnal</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Curăță</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Avertisment</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Mesaje informative</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Mesaje de avertizare</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">din</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Stare</translation>
-    </message>
-</context>
+    </context>
 </TS>

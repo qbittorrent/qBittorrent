@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Vil du sette alle torrenter på pause?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Utførelseslogg</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Logg</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Type:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Ingen)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Bruk mellomtjener for likemannstilkoblinger</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Bruk mellomtjener kun for torrenter</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ Bruk ";" for å splitte flerfoldige oppføringer. Jokertegnet "*" kan brukes.</t
     <message>
         <source>Fastresume files</source>
         <translation>Filer for rask gjenopptakelse</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Ingen)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Bruk mellomtjener kun for torrenter</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Støtter de følgende formatene: S01E01, 1x1, 2017.12.31, og 31.12.2017 (Datofor
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Generelt</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Blokkert</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Ukjent</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Alle</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">viser</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopier</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Velg alle</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Loggtype</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Fjern</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Advarsel</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Informasjonsmeldinger</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Advarselsmeldinger</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Filtrer logger</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Blokkerte IP-er</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">av</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Status</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Tidsmerke</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Fjern alle</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Melding</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Loggnivåer:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Årsak</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">element</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Bannlyst</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Normale meldinger</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Kritisk</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Kritiske meldinger</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">elementer</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Resultater</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Info</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Velg loggnivå …</translation>
-    </message>
-</context>
+    </context>
 </TS>

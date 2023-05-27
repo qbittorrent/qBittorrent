@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Хотите приостановить все торренты?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Журнал работы</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Журнал</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Тип:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(нет)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Использовать прокси для соединения с пирами</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Использовать прокси только для торрентов</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Fastresume files</source>
         <translation>Файлы быстрого возобновления</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(нет)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Использовать прокси только для торрентов</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Главное</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Запрещённое</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Неизвестное</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Все</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">отображается</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Копировать</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Выбрать все</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ИД</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Тип журнала</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Очистить</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Предупреждение</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Информационные сообщения</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Предупреждения</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Фильтр журналов</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Запрещённые IP</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">из</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Статус</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Метка времени</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Очистить все</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Сообщение</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Уровни журнала:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Причина</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">запись</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP-адрес</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Запрещённое</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Обычные сообщения</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Важные</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Важные сообщения</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Обычные</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">записи</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Результаты</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Информационный</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Выберите уровень журнала…</translation>
-    </message>
-</context>
+    </context>
 </TS>

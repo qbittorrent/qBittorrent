@@ -784,10 +784,6 @@
         <translation>Тип:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Без)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -810,10 +806,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Използвайте прокси за свързване между участниците</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Използване на прокси само за торентите</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1651,7 +1643,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite база данни (експериментално)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1659,7 +1651,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Бързо възобновяване на файлове</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Без)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Използване на прокси само за торентите</translation>
     </message>
 </context>
 <context>

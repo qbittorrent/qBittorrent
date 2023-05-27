@@ -598,11 +598,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Cancelar</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Eliminar</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -784,10 +784,6 @@ Non use caracteres especiais no nome da categoría.</translation>
         <translation>Tipo:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Ningún)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -810,10 +806,6 @@ Non use caracteres especiais no nome da categoría.</translation>
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Usar o proxy para conexións cos pares</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Usar o proxy só para torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1515,7 +1507,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Ficheiros cargados en memoria</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1523,11 +1515,11 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Compatible coa POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Esta opción é menos importante en Linux</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
@@ -1539,7 +1531,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Controla a frecuencia de actualización do estado interno, o que afecta a frecuencia de actualización da interface</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1547,7 +1539,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Desactivar a caché do SO</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1563,7 +1555,7 @@ Non use caracteres especiais no nome da categoría.</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Activar a caché do SO</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1651,11 +1643,11 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Exemplo: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>Base de datos SQLite (experimental)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1663,7 +1655,15 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Ficheiros de continuación rápida</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Ningún)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Usar o proxy só para torrents</translation>
     </message>
 </context>
 <context>
@@ -2434,7 +2434,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Tamaño total</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2736,7 +2736,7 @@ Usar «;» para dividir entradas múltiples. Pode usar o comodín «*».</transl
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Eliminar</translation>
     </message>
 </context>
 <context>

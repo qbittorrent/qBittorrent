@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Bạn có muốn tạm dừng tất cả các torrent?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Nhật Ký Thực Thi</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Nhật ký</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Loại:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Trống)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Sử dụng proxy cho các kết nối ngang hàng</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Chỉ sử dụng proxy cho torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1162,7 +1146,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Chống leech</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1282,11 +1266,11 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Round-robin</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1294,7 +1278,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1530,7 +1514,7 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Chuẩn POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
@@ -1666,11 +1650,19 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Kiểu lưu trữ dữ liệu tiếp tục (cần khởi động lại)</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Tệp fastresume</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Trống)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Chỉ sử dụng proxy cho torrent</translation>
     </message>
 </context>
 <context>
@@ -1753,7 +1745,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Máy khách từ ID Ngang hàng</translation>
     </message>
 </context>
 <context>
@@ -3038,7 +3030,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Người leech</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3669,77 +3661,5 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Không rõ</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Tất cả</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Sao chép</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Chọn Tất Cả</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Loại Nhật Ký</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Cảnh báo</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Lọc nhật ký</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">IP bị chặn</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Trạng thái</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Dấu thời gian</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Lý do</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">mục</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Bị cấm</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Thông Báo Quan Trọng</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Bình thường</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">mục</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Kết quả</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Thông tin</translation>
-    </message>
-</context>
+    </context>
 </TS>

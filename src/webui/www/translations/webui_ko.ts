@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>모든 토렌트를 일시 정지하시겠습니까?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">실행 로그</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">로그</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>유형:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(없음)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>피어 연결에 프록시 사용하기</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>토렌트에 프록시만 사용하기</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ DNS 재결합 공격을 방어하기 위해
     <message>
         <source>Fastresume files</source>
         <translation>Fastresume 파일</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(없음)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>토렌트에 프록시만 사용하기</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">일반</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">차단됨</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">알 수 없음</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">모두</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">보여주기</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">복사하기</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">모두 선택하기</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">로그 유형</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">지우기</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">경고</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">정보 메시지</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">경고 메시지</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">필터 로그</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">차단된 IP</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">벗어남</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">상태</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">타임스탬프</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">모두 지우기</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">메시지</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">로그 레벨:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">원인</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">항목</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">금지됨</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">정상 메시지</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">중요</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">중요 메시지</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">정상</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">항목들</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">결과</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">정보</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">로그 레벨 선정하기...</translation>
-    </message>
-</context>
+    </context>
 </TS>

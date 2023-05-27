@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Você gostaria de pausar todos os torrents?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Registro de execução</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Registro</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Tipo:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Nenhum)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Usar proxy pra conexões com os peers</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Usar proxy só pra torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ Use ';' pra dividir múltiplas entradas. Pode usar o wildcard '*'.</translation>
     <message>
         <source>Fastresume files</source>
         <translation>Arquivos de retomada rápida</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Nenhum)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Usar proxy só pra torrents</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Suporta os formatos: S01E01, 1x1, 2017.12.31 e 31.12.2017 (Os formatos de data t
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Geral</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Bloqueado</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Desconhecido</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Todos</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">mostrando</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copiar</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Selecionar todos</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Tipo de registro</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Limpar</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Aviso</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Mensagens de informação</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Mensagens de aviso</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Filtrar registros</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">IPs bloqueados</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">de</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Status</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Carimbo de data/hora</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Limpar todos</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Mensagem</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Níveis de registro</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Motivo</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">item</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Banido</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Mensagens normais</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Crítico</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Mensagens críticas</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">itens</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Resultados</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Informação</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Escolha um nível de registro...</translation>
-    </message>
-</context>
+    </context>
 </TS>

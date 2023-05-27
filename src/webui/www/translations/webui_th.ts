@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลรับ Metadata</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>ไฟล์ตรวจสอบแล้ว</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>เงื่อนไขการหยุด</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>ไม่มี</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>ลบทอเร้นต์</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>ผู้พัฒนาโปรแกรมเริ่มแรก</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -597,19 +597,19 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>ยกเลิก</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>ลบ</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>ต้องการดำเนินการต่อทุกทอเร้นต์?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>ต้องการหยุดชั่วคราวทุกทอเร้นต์?</translation>
     </message>
 </context>
 <context>
@@ -781,10 +781,6 @@
     <message>
         <source>Type:</source>
         <translation type="unfinished" />
-    </message>
-    <message>
-        <source>(None)</source>
-        <translation>(ไม่มี)</translation>
     </message>
     <message>
         <source>SOCKS4</source>
@@ -1126,7 +1122,7 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>อัตราการอัพโหลด</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
@@ -1142,7 +1138,7 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>เสนอ TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
@@ -1150,7 +1146,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>ต่อต้าน-leech</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1170,7 +1166,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>ทุก ๆ หน้าตา</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1194,7 +1190,7 @@
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>ส่วนของ qBittorrent</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1202,7 +1198,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>ส่วน libtorrent</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: Disabled]:</source>
@@ -1246,11 +1242,11 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>สัดส่วนเพียร์ (ควบคุมปริมาณ TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>สล็อตคงที่</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1270,11 +1266,11 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>กิบิไบต์</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>รอบ-โรบิน</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1282,7 +1278,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>เมบิไบต์</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1446,7 +1442,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>ประเภทของบริการ (ToS) สำหรับการเชื่อมต่อกับเพียร์</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1514,7 +1510,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>ค่าเริ่มต้น</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1522,7 +1518,7 @@
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>ตัวเลือกนี้มีผลน้อยบนระบบลีนุกซ์</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
@@ -1542,7 +1538,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>ยกเลิกแคชระบบปฏิบัติการ</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1558,7 +1554,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งาน OS แคช</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1614,7 +1610,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>ไฟล์ตรวจสอบแล้ว</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1630,7 +1626,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>ข้อมูลรับ Metadata</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1638,15 +1634,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>ไม่มี</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>ตัวอย่าง: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>ฐานข้อมูล SQLite (ทดลอง)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1654,7 +1650,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>ไฟล์ประวัติด่วน</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(ไม่มี)</translation>
     </message>
     <message>
         <source>Use proxy only for torrents</source>
@@ -1763,11 +1763,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>ผสม</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>ไม่โหลด</translation>
     </message>
 </context>
 <context>
@@ -1898,7 +1898,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished" />
+        <translation>ไม่เลย</translation>
     </message>
     <message>
         <source>%1 x %2 (have %3)</source>
@@ -1946,7 +1946,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (ส่งต่อสำหรับ %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -1958,7 +1958,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>ไม่สามารถใช้ได้</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -1996,7 +1996,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SpeedLimitDialog</name>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>กิบิไบต์/วินาที</translation>
     </message>
 </context>
 <context>
@@ -2031,7 +2031,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished" />
+        <translation>เวลาดาวน์โหลดทั้งหมด:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -2039,7 +2039,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>เวลาอัปโหลดทั้งหมด:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
@@ -2047,7 +2047,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Performance statistics</source>
-        <translation type="unfinished" />
+        <translation>สถิติการใช้งาน</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
@@ -2330,7 +2330,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>พร้อมใช้งาน</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2373,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>ไม่สามารถใช้ได้</translation>
     </message>
     <message>
         <source>Seeds</source>
@@ -2405,11 +2405,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>ที่เหลืออยู่</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>พร้อมใช้งาน</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2417,23 +2417,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>ลำดับความสำคัญการดาวน์โหลด</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>กระบวนการ</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>ขนาดรวม</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>เวลาที่ใช้ดาวน์โหลด</translation>
     </message>
     <message>
         <source>Add trackers...</source>
@@ -2456,51 +2456,51 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished" />
+        <translation>%1 ที่แล้ว</translation>
     </message>
     <message>
         <source>Paused</source>
-        <translation type="unfinished" />
+        <translation>หยุดชั่วคราว</translation>
     </message>
     <message>
         <source>Completed</source>
-        <translation type="unfinished" />
+        <translation>เสร็จสมบูรณ์</translation>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>การเคลื่อนย้าย</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] กำลังส่ง</translation>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>กำลังส่ง</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>คิว</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>ผิดพลาด</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] กำลังดาวน์โหลด</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>กำลังดาวน์โหลดข้อมูลเมตา</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>กำลังตรวจสอบ</translation>
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>ไม่มีไฟล์</translation>
     </message>
     <message>
         <source>Queued for checking</source>
@@ -2508,23 +2508,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading</source>
-        <translation type="unfinished" />
+        <translation>กำลังดาวน์โหลด</translation>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>ตรวจสอบข้อมูลต่อ</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>ทำให้หยุด</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (ส่งต่อสำหรับ %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] กำลังดาวน์โหลดข้อมูลเมตา</translation>
     </message>
 </context>
 <context>
@@ -2651,7 +2651,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New Category</source>
-        <translation type="unfinished" />
+        <translation>หมวดหมู่ใหม่</translation>
     </message>
     <message>
         <source>Location</source>
@@ -2663,7 +2663,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Set location</source>
-        <translation type="unfinished" />
+        <translation>กำหนดตำแหน่ง</translation>
     </message>
     <message>
         <source>Force reannounce</source>
@@ -2675,7 +2675,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>บันทึกเส้นทาง</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2695,7 +2695,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>ลบทั้งหมด</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2711,7 +2711,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>เพิ่ม...</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -2731,7 +2731,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>ลบ</translation>
     </message>
 </context>
 <context>
@@ -2859,7 +2859,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1 ปี %2 วัน</translation>
     </message>
 </context>
 <context>
@@ -2873,7 +2873,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>ยกเลิก</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -2896,35 +2896,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>ผู้ส่ง:</translation>
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>ปลั๊กอินทั้งหมด</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>ขนาด:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>หยุด</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>ค้นหา</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>ค้นหาปลั๊กอิน...</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>ทุกประเภท</translation>
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>ค้นหาใน:</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2948,7 +2948,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>ระวัง</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -2979,7 +2979,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>PluginSelectDlg</name>
     <message>
         <source>Uninstall</source>
-        <translation type="unfinished" />
+        <translation>ถอนการติดตั้ง</translation>
     </message>
     <message>
         <source>Install new plugin</source>
@@ -2991,7 +2991,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>ปิด</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
@@ -2999,7 +2999,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งาน</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -3007,26 +3007,26 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Check for updates</source>
-        <translation type="unfinished" />
+        <translation>ตรวจสอบอัพเดต</translation>
     </message>
     <message>
         <source>Search plugins</source>
-        <translation type="unfinished" />
+        <translation>ค้นหาปลักอิน</translation>
     </message>
 </context>
 <context>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>ขนาด</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>ผู้รับ</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3034,41 +3034,41 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>ผู้ส่ง</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>ชื่อ</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>Url</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>เปิดใช้งาน</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>เวอร์ชั่น</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>ใช่</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>ไม่</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>ยกเลิก</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3123,7 +3123,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>ลบทอเร้นต์</translation>
     </message>
 </context>
 <context>
@@ -3228,15 +3228,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>ที่อยู่ทั้งหมด</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>ที่อยู่ IPv6 ทั้งหมด</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>ที่อยู่ IPv4 ทั้งหมด</translation>
     </message>
 </context>
 <context>
@@ -3361,7 +3361,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>ยืนยันการลบ</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
@@ -3452,7 +3452,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>การแสดงออกด้วยความว่างเปล่า %1 clause (เช่น %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3520,7 +3520,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation>จะตรงกัน 2, 5, 8 ผ่าน 15, 30 และตอนต่อไปของซีซันที่หนึ่ง</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3629,7 +3629,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>ทั้งหมด (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3641,7 +3641,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>ลบทอเร้นต์</translation>
     </message>
 </context>
 <context>

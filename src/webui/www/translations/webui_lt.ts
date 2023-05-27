@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Gauti metaduomenys</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Failų patikrinta</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Sustabdymo sąlyga:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Nė vienas</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Pašalinti torentai</translation>
     </message>
 </context>
 <context>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Pradinis autorius</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -597,11 +597,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Atšaukti</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Šalinti</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -783,10 +783,6 @@
         <translation>Tipas:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(jokio)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -809,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Naudoti įgaliotąjį serverį susijungimams su siuntėjais</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Naudoti įgaliotąjį serverį tik torentams</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1142,7 +1134,7 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>Įgalinti super atidavimą torentui</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
@@ -1186,7 +1178,7 @@
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>Greičiausias išsiuntimas</translation>
     </message>
     <message>
         <source>Pause torrent</source>
@@ -1250,11 +1242,11 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Proporcionalus siuntėjams (uždusina TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>Fiksuoti prisijungimai</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1278,7 +1270,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Ratelio algoritmas</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1310,7 +1302,7 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>draudimas:</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1318,11 +1310,11 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Uždrausti klientą po nuoseklių nesėkmių:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>Įgalinti slapukų saugos žymą (reikalingas HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
@@ -1430,11 +1422,11 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Peer ryšio protokolas:</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent turinio išdėstymas:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -1450,7 +1442,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Paslaugos tipas (ToS), skirtas ryšiams su partneriais</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1502,7 +1494,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>Registruoti našumo įspėjimus</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1514,7 +1506,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Atmintyje susieti failai</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1522,11 +1514,11 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Suderinamas su POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Ši parinktis yra mažiau efektyvi Linux</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
@@ -1538,7 +1530,7 @@
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Jis valdo vidinės būsenos atnaujinimo intervalą, kuris savo ruožtu turės įtakos vartotojo sąsajos naujinimams</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1546,7 +1538,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Išjungti OS talpyklą</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1562,7 +1554,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Įgalinti operacinės sistemos spartinančiąją atmintinę</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1624,7 +1616,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Failų patikrinta</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1640,7 +1632,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metaduomenys gauti</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1648,15 +1640,15 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Nė vienas</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Pavyzdys: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite duomenų bazė (eksperimentinė)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1664,7 +1656,15 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Fastresume failas</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(jokio)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Naudoti įgaliotąjį serverį tik torentams</translation>
     </message>
 </context>
 <context>
@@ -1769,11 +1769,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Įvairi</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Nesiųsti</translation>
     </message>
 </context>
 <context>
@@ -1952,7 +1952,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (skleidžiama jau %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -1964,7 +1964,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>Nėra</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -1991,11 +1991,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Kita...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Čia įveskite aplanką</translation>
     </message>
 </context>
 <context>
@@ -2411,11 +2411,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Liko</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>Prieinamumas</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2423,7 +2423,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Atsiuntimo svarba</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2435,7 +2435,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Bendras dydis</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2526,11 +2526,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (skleidžiama jau %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[P] Atsiunčiami metaduomenys</translation>
     </message>
 </context>
 <context>
@@ -2701,7 +2701,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>Šalinti visas</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2737,7 +2737,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Šalinti</translation>
     </message>
 </context>
 <context>
@@ -2778,7 +2778,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Pašalinti torentą(us)</translation>
     </message>
 </context>
 <context>
@@ -2865,7 +2865,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1y %2d</translation>
     </message>
 </context>
 <context>
@@ -2954,7 +2954,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Įspėjimas</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -2962,11 +2962,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>iki</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezultatai</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3074,7 +3074,7 @@ pakaitos simbolį "*".</translation>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Atšaukti</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3129,7 +3129,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Pašalinti torentai</translation>
     </message>
 </context>
 <context>
@@ -3211,7 +3211,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>The free IP to Country Lite database by DB-IP is used for resolving the countries of peers. The database is licensed under the Creative Commons Attribution 4.0 International License</source>
-        <translation type="unfinished" />
+        <translation>Laisvas Šalių Lite IP duomenų bazėje pagal DB-IP naudojamas šalių sprendimui dėl partnerių.  Duomenų bazė yra licencijuota pagal Creative Commons Attribution 4.0 tarptautinę licenciją</translation>
     </message>
     <message>
         <source>Authors</source>
@@ -3238,11 +3238,11 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>Visi IPv6 adresai</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>Visi IPv4 adresai</translation>
     </message>
 </context>
 <context>
@@ -3458,7 +3458,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>Reiškinys su tuščia %1 sąlyga (pvz., %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3526,7 +3526,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> atitiks pirmojo sezono 2, 5, nuo 8 iki 15, 30 ir tolesnius epizodus</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3590,7 +3590,7 @@ pakaitos simbolį "*".</translation>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Ignoruoti paskesnes atitiktis (0, kad išjungti)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3607,11 +3607,12 @@ pakaitos simbolį "*".</translation>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation type="unfinished" />
+        <translation>Išmanusis serijos filtras patikrins serijos numerį, kad būtų išvengta dublikatų atsisiuntimo.
+Palaiko formatus: S01E01, 1x1, 2017.12.31 ir 31.12.2017 (Datos formatai taip pat palaiko – kaip skyriklį)</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torento turinio išdėstymas:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -3619,7 +3620,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originalas</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3634,7 +3635,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Visi (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3646,7 +3647,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Pašalinti torentai</translation>
     </message>
 </context>
 <context>

@@ -597,7 +597,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Atsaukt</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -783,10 +783,6 @@
         <translation>Lītuot:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Nivīnu)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -809,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Lītuot vidinīkserveri kūplītuotuoju salaidumim</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Lītuot vidinīkserveri tikai torrentim</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1562,7 +1554,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Lītuot sistemys vydatguodu</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1646,7 +1638,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Pīvadums: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1659,6 +1651,14 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Fastresume files</source>
         <translation type="unfinished" />
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Nivīnu)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Lītuot vidinīkserveri tikai torrentim</translation>
     </message>
 </context>
 <context>
@@ -2429,7 +2429,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Kūpeigais lelums</translation>
     </message>
     <message>
         <source>Times Downloaded</source>

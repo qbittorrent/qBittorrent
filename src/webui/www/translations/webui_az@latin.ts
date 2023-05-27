@@ -611,14 +611,6 @@
         <source>Would you like to pause all torrents?</source>
         <translation>Bütün torrenlərə fasilə verilsin?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">İcra jurnalı</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Jurnal</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -791,10 +783,6 @@
         <translation>Növ:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Heç nə)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -817,10 +805,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Proksi serveri iştirakçı bağlantıları üçün istifadə etmək</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Proksini yalnız torrentlər üçün istifadə etmək</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1671,6 +1655,14 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     <message>
         <source>Fastresume files</source>
         <translation>Cəld davametdirmə faylları</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Heç nə)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Proksini yalnız torrentlər üçün istifadə etmək</translation>
     </message>
 </context>
 <context>
@@ -3669,137 +3661,5 @@ Bu formatlar dəstəklənir: S01E01, 1x1, 2017.12.31 və 31.12.2017 (Həmçinin 
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">Əsas</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Əngəllənmiş</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Naməlum</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Hamısı</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">göstərərək</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Kopyalayın</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Hamısını seçin</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Jurnalın növü</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Təmizləmək</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Xəbərdarlıq</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Məlumat bildirişləri</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Xəbərdarlıq bildirişlər</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Jurnalı süzgəclə</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">Əngələnmiş İP-lər</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">kənarnda</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Vəziyyəti</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Vaxt möhürü</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Hamısını təmizlə</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">İsmarıc</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Jurnallama səviyyələri:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Səbəb:</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">element</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Qadağan olunmuş</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Adi ismarıclar</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Ciddi</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Ciddi ismarıclar</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normal</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">elementlər</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Nəticələr</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Məlumat</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Jurnallama səviyyəsini seçin...</translation>
-    </message>
-</context>
+    </context>
 </TS>

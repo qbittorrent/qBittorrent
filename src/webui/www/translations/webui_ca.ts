@@ -612,14 +612,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <source>Would you like to pause all torrents?</source>
         <translation>Voleu interrompre tots els torrents?</translation>
     </message>
-    <message>
-        <source>Execution Log</source>
-        <translation type="vanished">Registre d'execució</translation>
-    </message>
-    <message>
-        <source>Log</source>
-        <translation type="vanished">Registre</translation>
-    </message>
 </context>
 <context>
     <name>OptionsDialog</name>
@@ -792,10 +784,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
         <translation>Tipus:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation>(Cap)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -818,10 +806,6 @@ Si us plau, no useu cap caràcter especial al nom de la categoria.</translation>
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Usa un servidor intermediari per a connexions d'igual a igual</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation>Utilitza el servidor intermediari només per als torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1672,6 +1656,14 @@ Useu ";" per separar les entrades. Podeu usar el comodí "*".</translation>
     <message>
         <source>Fastresume files</source>
         <translation>Fitxers de represa ràpida</translation>
+    </message>
+    <message>
+        <source>(None)</source>
+        <translation>(Cap)</translation>
+    </message>
+    <message>
+        <source>Use proxy only for torrents</source>
+        <translation>Utilitza el servidor intermediari només per als torrents</translation>
     </message>
 </context>
 <context>
@@ -3670,137 +3662,5 @@ Admet els formats S01E01, 1x1, 2017.12.31 i 31.12.2017 (Els formats de data tamb
 </context>
 <context>
     <name>ExecutionLogWidget</name>
-    <message>
-        <source>General</source>
-        <translation type="vanished">General</translation>
-    </message>
-    <message>
-        <source>Blocked</source>
-        <translation type="vanished">Blocat</translation>
-    </message>
-    <message>
-        <source>Unknown</source>
-        <translation type="vanished">Desconegut</translation>
-    </message>
-    <message>
-        <source>All</source>
-        <translation type="vanished">Tot</translation>
-    </message>
-    <message>
-        <source>showing</source>
-        <translation type="vanished">es mostren</translation>
-    </message>
-    <message>
-        <source>Copy</source>
-        <translation type="vanished">Copia</translation>
-    </message>
-    <message>
-        <source>Select All</source>
-        <translation type="vanished">Selecciona-ho tot</translation>
-    </message>
-    <message>
-        <source>ID</source>
-        <translation type="vanished">ID</translation>
-    </message>
-    <message>
-        <source>Log Type</source>
-        <translation type="vanished">Tipus de registre</translation>
-    </message>
-    <message>
-        <source>Clear</source>
-        <translation type="vanished">Neteja</translation>
-    </message>
-    <message>
-        <source>Warning</source>
-        <translation type="vanished">Avís</translation>
-    </message>
-    <message>
-        <source>Information Messages</source>
-        <translation type="vanished">Missatges informatius</translation>
-    </message>
-    <message>
-        <source>Warning Messages</source>
-        <translation type="vanished">Missatges d'advertència</translation>
-    </message>
-    <message>
-        <source>Filter logs</source>
-        <translation type="vanished">Filtra els registres</translation>
-    </message>
-    <message>
-        <source>Blocked IPs</source>
-        <translation type="vanished">IP blocades</translation>
-    </message>
-    <message>
-        <source>out of</source>
-        <translation type="vanished">fora de</translation>
-    </message>
-    <message>
-        <source>Status</source>
-        <translation type="vanished">Estat</translation>
-    </message>
-    <message>
-        <source>Timestamp</source>
-        <translation type="vanished">Segell de temps</translation>
-    </message>
-    <message>
-        <source>Clear All</source>
-        <translation type="vanished">Neteja-ho tot</translation>
-    </message>
-    <message>
-        <source>Message</source>
-        <translation type="vanished">Missatge</translation>
-    </message>
-    <message>
-        <source>Log Levels:</source>
-        <translation type="vanished">Nivells de registre:</translation>
-    </message>
-    <message>
-        <source>Reason</source>
-        <translation type="vanished">Raó</translation>
-    </message>
-    <message>
-        <source>item</source>
-        <translation type="vanished">element</translation>
-    </message>
-    <message>
-        <source>IP</source>
-        <translation type="vanished">IP</translation>
-    </message>
-    <message>
-        <source>Banned</source>
-        <translation type="vanished">Bandejat</translation>
-    </message>
-    <message>
-        <source>Normal Messages</source>
-        <translation type="vanished">Missatges normals</translation>
-    </message>
-    <message>
-        <source>Critical</source>
-        <translation type="vanished">Crítics</translation>
-    </message>
-    <message>
-        <source>Critical Messages</source>
-        <translation type="vanished">Missatges crítics</translation>
-    </message>
-    <message>
-        <source>Normal</source>
-        <translation type="vanished">Normals</translation>
-    </message>
-    <message>
-        <source>items</source>
-        <translation type="vanished">elements</translation>
-    </message>
-    <message>
-        <source>Results</source>
-        <translation type="vanished">Resultats</translation>
-    </message>
-    <message>
-        <source>Info</source>
-        <translation type="vanished">Informació</translation>
-    </message>
-    <message>
-        <source>Choose a log level...</source>
-        <translation type="vanished">Trieu un nivell de registre...</translation>
-    </message>
-</context>
+    </context>
 </TS>
