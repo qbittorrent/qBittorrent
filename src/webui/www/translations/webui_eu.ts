@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Gehitu azpikategoria...</translation>
     </message>
 </context>
 <context>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Ezeztatu</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Kendu</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Ekintza Oharra</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>Mota:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Bat ere ez)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Erabili proxya hartzaile elkarketetarako</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Erabili proxya torrententzat bakarrik</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent Atala</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Irteerako atakak (Min) [0: Ezgaituta]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Berregiaztatu torrentak osatutakoan:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Kendu torrenta</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Irteerako atakak (Max) [0: Ezgaituta]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>Kanporatu honegatik:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Jarraitzailearen denbora-muga gelditzeko:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Kanporatu bezeroa hutsegite jarraien ondoren:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Gaitu cookie Secure ikurra (HTTPS behar du)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">UPnP esleipen iraupena [0: Esleipen iraunkorra]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,10 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Gaitu RSS jarioak lortzea</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Hariak hasheatzea (libtorrent &gt;= 2.0 behar du):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1427,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS atal iragazki adimendua</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Disko-katxea (libtorrent &lt; 2.0 behar du):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Diskoaren katxearen iraungitze-tartea (libtorrent &lt; 2.0 behar du):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1566,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Gaitu SE katxea</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1650,11 +1614,11 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Adibidea: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite datu-basea (esperimentala)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1666,23 +1630,23 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Babeskopiatu ohar agiria ondoren:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>egun</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Ohar agiria</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Jokabidea</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Ezabatu zaharragoak diren babeskopia oharrak:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1690,15 +1654,15 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>urte</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Gordetze helburua:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>hilabete</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1742,7 +1706,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Erabili Azpikategoriak</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2078,7 +2042,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Erabili adierazpen arruntak</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2617,7 +2581,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Jatorrizkoa</translation>
     </message>
 </context>
 <context>
@@ -2915,7 +2879,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Kendu</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2923,7 +2887,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Berrizendapena</translation>
     </message>
 </context>
 <context>
@@ -3152,7 +3116,7 @@ Erabili ';' sarrera ugari banantzeko. '*' ordez-hizkia erabili daiteke.</transla
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Emaitzak</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3855,7 +3819,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Orokorra</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3863,11 +3827,11 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Ezezaguna</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Guztiak</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3875,11 +3839,11 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopiatu</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Hautatu Denak</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3891,19 +3855,19 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Garbitu</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Kontuz</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Argibide Mezuak</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Kontuz Mezuak</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3911,15 +3875,15 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Blokeatutako IP-ak</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>kanpo -&gt;</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Egoera</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3931,7 +3895,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Mezua</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3947,7 +3911,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP-a</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3955,7 +3919,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Mezu Arruntak</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3963,11 +3927,11 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Larrialdi Mezuak</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Arrunta</translation>
     </message>
     <message>
         <source>items</source>
@@ -3975,7 +3939,7 @@ Sostengatutako heuskarriak: S01E01, 1x1, 2017.12.31 eta 31.12.2017 (Data heuskar
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Emaitzak</translation>
     </message>
     <message>
         <source>Info</source>

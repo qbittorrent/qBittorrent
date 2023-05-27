@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>新增至佇列頂部</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>新增子分類…</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>類型：</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(無)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>使用代理伺服器來連線下載者</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">只對 torrent 使用代理伺服器</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent 小節</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">連出埠（最小）[0：停用]：</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>完成後重新檢查 torrent：</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>移除 torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">連出埠（最大）[0：停用]：</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>封鎖：</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">停止追蹤器逾時：</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>連續失敗後封鎖客戶端：</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>啟用 cookie 安全旗標（需要 HTTPS）</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">UPnP 租約期限 [0：永久租約]：</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>啟用抓取 RSS feed</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">雜湊執行緒（需要 libtorrent &gt;= 2.0）：</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">合併讀寫（需要 libtorrent &lt; 2.0）：</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS 智慧型章節過濾器</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">磁碟快取（需要 libtorrent &lt; 2.0）：</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">磁碟快取過期間隔（需要 libtorrent &lt; 2.0）：</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1545,14 +1505,6 @@
         <translation>這個選項在 Linux 上沒那麼有效</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">磁碟 IO 類型 (libtorrent &gt;= 2.0；需要重新啟動)：</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">連續寫入 (需要 libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>其控制內部狀態更新間隔，進而影響使用者介面更新</translation>
     </message>
@@ -1583,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>重新整理間隔</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">實體記憶體 (RAM) 使用限制 (僅適用於 libtorrent &gt;= 2.0)：</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1682,111 +1630,111 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>備份記錄檔，每滿：</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>天</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>紀錄檔</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>行為</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>刪除早於指定時間的備份紀錄檔：</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>對 BitTorrent 使用代理伺服器</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>年</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>儲存路徑：</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>月</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>重新命名多重重新命名設定</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>對一般目的使用代理伺服器</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>對 RSS 使用代理伺服器</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>磁碟快取過期間隔（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>實體記憶體 (RAM) 使用限制（僅適用於 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>磁碟快娶（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>插座傳送緩衝大小 [0：系統預設值]：</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>合併讀寫（需要 libtorrent &amp;lt; 2.0）：</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>連出埠（最大）[0：停用]：</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>插座接收緩衝大小 [0：系統預設值]：</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>使用子分類</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>磁碟 IO 類型（libtorrent &amp;gt;= 2.0；需要重新啟動）：</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>新增至佇列頂部</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>連續寫入（需要 libtorrent &amp;gt;= 2.0.6）</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>停止追蹤器逾時 [0：停用]：</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>連出埠（最小）[0：停用]：</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>雜湊執行緒（需要 libtorrent &amp;gt;= 2.0）：</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP 租約期限 [0：永久租約]：</translation>
     </message>
 </context>
 <context>
@@ -2094,63 +2042,63 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>使用正規表示式</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>檔案名稱</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>檔案名稱 + 副檔名</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>列舉檔案</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>重新命名失敗：檔案或資料已存在</translation>
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation type="unfinished" />
+        <translation>符合所有出現的</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>切換選取</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>取代輸入</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>取代</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>副檔名</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>取代全部</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>包含檔案</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>包含資料夾</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>搜尋檔案</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>區分大小寫</translation>
     </message>
 </context>
 <context>
@@ -2629,11 +2577,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>已重新命名</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原始</translation>
     </message>
 </context>
 <context>
@@ -2743,7 +2691,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>折疊/展開</translation>
     </message>
 </context>
 <context>
@@ -2935,11 +2883,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>重新命名檔案……</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>重新命名</translation>
     </message>
 </context>
 <context>
@@ -3486,7 +3434,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation>重新命名)</translation>
     </message>
 </context>
 <context>

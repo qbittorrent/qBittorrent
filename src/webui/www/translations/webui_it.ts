@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi in cima alla coda</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi sottocategoria...</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Tipo:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Nessuno)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Usa il proxy per le connessioni ai nodi</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Usa il proxy solo per i torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>Sezione libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Porte in uscita (min) [0: disabilitato]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Ricontrolla torrent quando completato:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Rimuovi torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Porte in uscita (max) [0:disabilitato]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>ban per:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Stop timeout tracker:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Ban client dopo fallimenti consecutivi:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Abilita flag cookie sicuro (richiede HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Durata lease UPNP [0: lease permanente]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Abilita recupero dei feed RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Hashing dei thread (richiede libtorrent&gt; = 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Letture e scritture Coalesce (richiede libtorrent &lt;2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS filtro intelligenti episodi</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Cache disco (richiede libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Intervallo scadenza cache disco (richiede libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1545,14 +1505,6 @@
         <translation>Questa opzione è meno efficace su Linux</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Tipo di I/O del disco (libtorrent &gt;= 2.0; richiede il riavvio):</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">Write-through (richiede libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Controlla l'intervallo di aggiornamento dello stato interno che a sua volta influenzerà gli aggiornamenti dell'interfaccia utente</translation>
     </message>
@@ -1583,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Intervallo aggiornamento:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Limite uso memoria fisica (RAM) (applicato se libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1684,111 +1632,111 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Backup del registro dopo:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>giorni</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>File registro</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Comportamento</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Elimina i backup del registro più vecchi di:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Usa proxy per scopi BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>anni</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Percorso salvataggio:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>mesi</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Ricorda impostazioni ridenominazione multipla</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Usa proxy per scopi generali</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Usa proxy per scopi RSS</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Intervallo scadenza cache disco (richiede libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Limite uso memoria fisica (RAM) (applicato se libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Cache disco (richiede libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Dimensione buffer invio socket [0: predefinita sistema]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Coalizione letture e scritture (richiede libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Porte uscita (max) [0: disabilitate]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Dimensione buffer ricezione socket [0: predefinita sistema]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Usa sottocategorie</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Tipo I/O disco (libtorrent &gt;= 2.0; richiede il riavvio):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Aggiungi in cima alla coda</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Write-through (richiede libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Timeout stop tracker [0: disattivato]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Porte uscita (min) [0: disabilitate]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Thread hashing (richiede libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Durata lease UPnP [0: lease permanente]:</translation>
     </message>
 </context>
 <context>
@@ -2080,11 +2028,11 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation>Info hash v2</translation>
+        <translation>Info hash v2:</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation>Info hash v1</translation>
+        <translation>Info hash v1:</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2096,63 +2044,63 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Usa espressioni regolari</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Nome file</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Nome file + estensione</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Enumera file</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Rinomina fallita: il file o la cartella esiste già</translation>
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation type="unfinished" />
+        <translation>Verifica tutte le occorrenze</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Attiva/disattiva selezione</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Sostituzione input</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Sostituisci</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Estensione</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Sostituisci tutto</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Includi file</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Includi cartelle</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Cerca file</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Controlla maiuscolo/minuscolo</translation>
     </message>
 </context>
 <context>
@@ -2631,11 +2579,11 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Rinominato</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originale</translation>
     </message>
 </context>
 <context>
@@ -2745,7 +2693,7 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Comprimi/espandi</translation>
     </message>
 </context>
 <context>
@@ -2937,11 +2885,11 @@ Usa ';' per dividere più voci.</translation>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Rinomina file...</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Rinomina</translation>
     </message>
 </context>
 <context>
@@ -3489,7 +3437,7 @@ Il database è concesso in licenza con la licenza internazionale Creative Common
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation>rinomina)</translation>
     </message>
 </context>
 <context>

@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Tambah subkategori...</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Pengarang asal</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -605,7 +605,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Batal</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Log Pelakuan</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>Jenis:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Tiada)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Guna proksi untuk sambungan rakan</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Guna proksi hanya untuk torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>Seksyen libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Port keluar (Min) [0: Dilumpuhkan]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Semak semula torrent seusai lengkap:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Buang torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Port keluar (Max) [0: Dilumpuhkan]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>sekat dalam tempoh:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Henti had masa tamat penjejak:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Sekat klien selepas kegagalan berturutan:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Benarkan bendera Keselamatan kuki (perlu HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Jangkamasa tempoh sewa UPnP [0: Sewa kekal]</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,10 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Benarkan peroleh suapan RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Rajutan cincangan (perlu libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1558,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Benarkan cache OS</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1642,7 +1614,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Contoh: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1658,23 +1630,23 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Sandar fail log selepas:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>hari</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Fail log</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Kelakuan</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Padam log sandar lebih tua dari:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1682,15 +1654,15 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>tahun</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Laluan simpan:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>bulan</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1734,7 +1706,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Guna Subkategori</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2062,7 +2034,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>T/A</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -2070,7 +2042,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Guna ungkapan nalar</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2593,7 +2565,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Jumlah Saiz</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2609,7 +2581,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Asal</translation>
     </message>
 </context>
 <context>
@@ -2915,7 +2887,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Penamaan semula</translation>
     </message>
 </context>
 <context>
@@ -3140,7 +3112,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>hingga</translation>
     </message>
     <message>
         <source>Results</source>
@@ -3640,7 +3612,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>Satu ungkapan dengan klausa %1 kosong (seperti %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3708,7 +3680,7 @@ Guna ';' untuk asingkan masukan berbilang. Boleh guna kad liar '*'.</translation
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation>akan padankan 2, 5, 8 menerusi 15, 30 dan episod seterusnya bagi musim pertama</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3793,19 +3765,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Bentangan kandungan torrent:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Cipta subfolder</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Asal</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>Jangan cipta subfolder</translation>
     </message>
 </context>
 <context>
@@ -3816,7 +3788,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Semua (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3846,7 +3818,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Am</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3854,11 +3826,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Tidak diketahui</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Semua</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3866,11 +3838,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Salin</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Pilih Semua</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3882,19 +3854,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Kosongkan</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Amaran</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesej Maklumat</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesej Amaran</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3902,15 +3874,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>IP Disekat</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>luar dari</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Status</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3922,7 +3894,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Mesej</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3938,7 +3910,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3946,7 +3918,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesesj Biasa</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3954,11 +3926,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesej Kritikal</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Biasa</translation>
     </message>
     <message>
         <source>items</source>

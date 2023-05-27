@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Thêm vào đầu hàng đợi</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Thêm danh mục con...</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Loại:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Trống)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Sử dụng proxy cho các kết nối ngang hàng</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Chỉ sử dụng proxy cho torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1170,7 +1162,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Chống leech</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1225,10 +1217,6 @@
         <translation>Phần libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Cổng đi (Tối thiểu) [0: Đã tắt]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Kiểm tra lại torrent khi hoàn thành:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Xóa torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Cổng đi (Tối đa) [0: Đã tắt]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1290,11 +1274,11 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Round-robin</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1302,7 +1286,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1329,20 +1313,12 @@
         <translation>cấm:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Dừng thời gian chờ máy theo dõi:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Cấm máy khách sau những lần thất bại liên tiếp:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Bật cờ bảo mật cookie (yêu cầu HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Thời hạn thuê UPnP [0: thuê vĩnh viễn]</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Bật tìm nạp nguồn cấp RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Băm chuỗi (yêu cầu libtorrent&gt; = 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Liên kết lại đọc và ghi (yêu cầu libtorrent &lt;2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>Bộ Lọc Tập Thông Minh RSS</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Bộ nhớ cache trên đĩa (yêu cầu libtorrent &lt;2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Khoảng thời gian hết hạn bộ nhớ cache trên đĩa (yêu cầu libtorrent &lt;2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1538,15 +1498,11 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Chuẩn POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
         <translation>Tùy chọn này kém hiệu quả trên Linux</translation>
-    </message>
-    <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Loại IO đĩa (libtorrent&gt;= 2.0; buộc khởi động lại):</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1579,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Khoảng thời gian làm mới:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Giới hạn sử dụng bộ nhớ vật lý (RAM) (áp dụng nếu libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1670,71 +1622,71 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Kiểu lưu trữ dữ liệu tiếp tục (cần khởi động lại)</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Tệp fastresume</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Sao lưu tệp nhật ký sau:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>ngày</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Tệp nhật ký</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Hành vi</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Xóa nhật ký sao lưu cũ hơn:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng proxy cho mục đích BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>năm</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Đường dẫn lưu:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>tháng</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Ghi nhớ cài đặt Đổi Tên Nhiều</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng proxy cho các mục đích chung</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng proxy cho mục đích RSS</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Khoảng thời gian hết hạn bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Giới hạn sử dụng bộ nhớ vật lý (RAM) (áp dụng nếu libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Bộ đệm đĩa (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1742,7 +1694,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Kết hợp đọc &amp;amp; ghi (yêu cầu libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
@@ -1754,15 +1706,15 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng các danh mục phụ</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Kiểu IO Ổ Đĩa (libtorrent &amp;gt;= 2.0; buộc khởi chạy lại):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Thêm vào đầu hàng đợi</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -1865,7 +1817,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Máy khách từ ID Ngang hàng</translation>
     </message>
 </context>
 <context>
@@ -2090,31 +2042,31 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Sử dụng biểu thức chính quy</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Tên tệp</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Tên tệp + Phần mở rộng</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Liệt Kê Tập Tin</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Đổi tên không thành công: tệp hoặc thư mục đã tồn tại</translation>
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation type="unfinished" />
+        <translation>Phù hợp với tất cả các lần xuất hiện</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Chuyển Đổi Lựa Chọn</translation>
     </message>
     <message>
         <source>Replacement Input</source>
@@ -2122,27 +2074,27 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Thay thế</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Mở rộng</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Thay thế tất cả</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Bao gồm các tệp</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Bao gồm các thư mục</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Tìm Tập Tin</translation>
     </message>
     <message>
         <source>Case sensitive</source>
@@ -2625,11 +2577,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Đã đổi tên</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Gốc</translation>
     </message>
 </context>
 <context>
@@ -2739,7 +2691,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Thu gọn/mở rộng</translation>
     </message>
 </context>
 <context>
@@ -2931,11 +2883,11 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Đổi tên tệp...</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Đổi tên</translation>
     </message>
 </context>
 <context>
@@ -3230,7 +3182,7 @@ Sử dụng ';' để chia nhiều mục nhập. Có thể sử dụng ký tự 
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Người leech</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3867,11 +3819,11 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Tổng quan</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Bị chặn</translation>
     </message>
     <message>
         <source>Unknown</source>
@@ -3883,7 +3835,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>hiển thị</translation>
     </message>
     <message>
         <source>Copy</source>
@@ -3903,7 +3855,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Làm sạch</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -3911,11 +3863,11 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Thông Báo Thông Tin</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Thông Báo Cảnh Báo</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3939,15 +3891,15 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Làm Sạch Tất Cả</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Thông báo</translation>
     </message>
     <message>
         <source>Log Levels:</source>
-        <translation type="unfinished" />
+        <translation>Cấp Độ Nhật Ký:</translation>
     </message>
     <message>
         <source>Reason</source>
@@ -3959,7 +3911,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3967,7 +3919,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Thông báo Bình thường</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3995,7 +3947,7 @@ Hỗ trợ định dạng: S01E01, 1x1, 2017.12.31 và 31.12.2017 (Hỗ trợ đ
     </message>
     <message>
         <source>Choose a log level...</source>
-        <translation type="unfinished" />
+        <translation>Chọn cấp độ nhật ký...</translation>
     </message>
 </context>
 </TS>

@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Дадаць падкатэгорыю...</translation>
     </message>
 </context>
 <context>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Журнал выканання</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>Тып:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Няма)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Выкарыстоўваць проксі для злучэння з пірамі</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Выкарыстоўваць проксі толькі для торэнтаў</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1170,7 +1162,7 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>Анты-ліч</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
@@ -1258,7 +1250,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Прапарцыянальна пірам (рэгулюе TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1418,7 +1410,7 @@
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Змесціва торэнта:</translation>
     </message>
     <message>
         <source>Create subfolder</source>
@@ -1538,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Уключыць кэш OS</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1590,7 +1582,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Файлы правераны</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1606,7 +1598,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Метададзеныя атрыманы</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1614,15 +1606,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Нічога</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Узор: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>База дадзеных SQLite (эксперыментальная)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1630,15 +1622,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Хуткае аднаўленне файлаў</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Ствараць рэзервоваю копію пасля:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>дні/дзён</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1646,11 +1638,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Паводзіны</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Выдаляць рэзервовыя копіі старэйшыя за:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1658,15 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>год/гады</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Шлях захавання:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>месяц/месяцы</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1710,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Выкарыстоўваць падкатэгорыі</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2026,7 +2018,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (раздаецца %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -2046,7 +2038,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Выкарыстоўваць рэгулярныя выразы</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2585,7 +2577,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Арыгінал</translation>
     </message>
 </context>
 <context>
@@ -2883,7 +2875,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Выдаліць</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2891,7 +2883,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Перайменаванне</translation>
     </message>
 </context>
 <context>
@@ -3019,7 +3011,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1 г. %2 дз.</translation>
     </message>
 </context>
 <context>
@@ -3186,7 +3178,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Спампоўваюць</translation>
     </message>
     <message>
         <source>Search engine</source>
@@ -3684,7 +3676,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> распазнае 2, 5, з 8 па 15, 30 і далейшыя выпускі першага сезону</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3823,7 +3815,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Агульныя звесткі</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3831,11 +3823,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Невядомы</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Усе</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3843,11 +3835,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Капіяваць</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Выбраць Усё</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3859,19 +3851,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Ачысціць</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Увага</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Інфармацыйныя паведамленні</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Папярэджанні</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3879,15 +3871,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Забароненыя IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>з</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Стан</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3899,7 +3891,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Паведамленне</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3915,7 +3907,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3923,7 +3915,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Звычайныя паведамленні</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3931,11 +3923,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Крытычныя паведамленні</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Звычайны</translation>
     </message>
     <message>
         <source>items</source>
@@ -3943,7 +3935,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Вынікі</translation>
     </message>
     <message>
         <source>Info</source>

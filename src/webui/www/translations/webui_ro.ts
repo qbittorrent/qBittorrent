@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Adăugare subcategorie...</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Tip:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Niciunul)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Utilizează proxy pentru conexiuni la parteneri</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Utilizează proxy doar pentru torrente</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1258,7 +1250,7 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>Proporțional cu partenerii (limitează protocolul TCP)</translation>
     </message>
     <message>
         <source>Fixed slots</source>
@@ -1286,7 +1278,7 @@
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>Round-robin</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1319,10 +1311,6 @@
     <message>
         <source>ban for:</source>
         <translation>interzice pentru:</translation>
-    </message>
-    <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Oprește expirarea urmăritorului:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1438,7 +1426,7 @@
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>Tip de serviciu (ToS) pentru conexiunile spre parteneri</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1478,7 +1466,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Setează ca 0 pentru a lăsa sistemul să folosească un port neutilizat.</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1502,7 +1490,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Fișiere mapate în memorie</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1510,15 +1498,15 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>Compatibil cu standardul POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Această opțiune are mai puțin efect pe Linux</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>Controlează intervalul de actualizare al stării interne care la rândul său va afecta actualizările interfeței grafice</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1526,7 +1514,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Dezactivează prestocarea (cache-ul) sistemului</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1634,27 +1622,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Reia rapid fișierele</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Fă o copie de rezervă a fișierului jurnal după:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>zile</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Fișier jurnal</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Comportament</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Șterge copiile de rezervă ale fișierului jurnal mai vechi decât:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1662,15 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>ani</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Cale de salvare:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>luni</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1714,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Utilizează subcategoriile</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2050,7 +2038,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Folosește expresii regulate</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2589,7 +2577,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
 </context>
 <context>
@@ -2672,7 +2660,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (contribuit pentru %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -2895,7 +2883,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Se redenumește</translation>
     </message>
 </context>
 <context>
@@ -3883,7 +3871,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Adrese IP blocate</translation>
     </message>
     <message>
         <source>out of</source>
@@ -3903,7 +3891,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Mesaj</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3919,7 +3907,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3927,7 +3915,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesaje normale</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3935,11 +3923,11 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Mesaje critice</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normală</translation>
     </message>
     <message>
         <source>items</source>
@@ -3947,7 +3935,7 @@ Recunoaște formatele: S01E01, 1x1, 2017.12.31 si 31.12.2017 (Formatele pentru d
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezulatate</translation>
     </message>
     <message>
         <source>Info</source>

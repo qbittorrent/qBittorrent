@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Ajouter en haut de la file d'attente</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Ajouter une sous-catégorie...</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Type :</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Aucun)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Utiliser le proxy pour se connecter aux pairs</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Utiliser le proxy seulement pour les torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>Section libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Ports sortants (Min) [0: Désactivé] :</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Revérifier les torrents à la fin :</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Retirer le torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Ports sortants (Max) [0: Désactivé] :</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>Banni pour :</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Délai d'expiration avant l'arrêt du tracker :</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Bannir le client suite à des échecs consécutifs :</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Activer l'indicateur de sécurité des cookies (nécessite HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Durée du bail UPnP [0: Bail permanent] :</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Active la réception de flux RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Fils de hachage (requiert libtorrent &gt;= 2.0) :</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Fusionner lectures et écritures (nécessite libtorrent &lt; 2.0) :</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>Filtre d'épisodes intelligent par RSS</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Cache du disque (requiert libtorrent &lt; 2.0) :</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Intervalle d'expiration du cache du disque (requiert libtorrent &lt; 2.0) :</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1545,14 +1505,6 @@
         <translation>Cette option est moins efficace sous Linux</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Type d'E/S du disque (libtorrent &gt;= 2.0; redémarrage requis) :</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">Double écriture (requiert libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Ceci contrôle l'intervalle de mise à jour de l'état interne qui, à son tour, affectera les mises à jour de l'IU</translation>
     </message>
@@ -1583,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Intervalle d'actualisation</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Limite d'utilisation de la mémoire vive (RAM) (appliquée si libtorrent &gt;= 2.0) :</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1681,111 +1629,111 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Sauvegarder le fichier journal après :</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>jours</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Fichier journal</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Comportement</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Supprimer les journaux sauvegardés antérieurs à :</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Utiliser un proxy à des fins BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>années</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Répertoire de destination :</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>mois</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Mémoriser les paramètres de multi-renommage</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Utiliser un proxy à des fins générales</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Utiliser un proxy à des fins RSS</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Intervalle d'expiration du cache disque (nécessite libtorrent &amp;lt; 2.0): </translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Limite d'utilisation de la mémoire physique (RAM) (appliqué si libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Cache disque (nécessite libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Taille du cache d'envoi au socket [0: valeur par défaut]</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Fusionner lectures &amp;amp; écritures (nécessite libtorrent &amp;lt; 2.0) :</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Ports de sortie (Maxi) [0: désactivé]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Taille du cache de réception du socket [0: valeur par défaut]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Utiliser les sous-catégories</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Type d'E/S du disque (libtorrent &gt;= 2.0; redémarrage requis):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Ajouter en haut de la file d'attente</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Double écriture (requiert libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Timeout lors de l’arrêt du tracker [0: désactivé]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Ports de sortie (Mini) [0: désactivé]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Fils de hachage (requiert libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Durée de l'allocation UPnP [0: allocation permanente]:</translation>
     </message>
 </context>
 <context>
@@ -1937,7 +1885,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>ETA:</source>
-        <translation>Temps restant :</translation>
+        <translation>Temps restant  estimé :</translation>
     </message>
     <message>
         <source>Uploaded:</source>
@@ -2093,63 +2041,63 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Utiliser les expressions régulières</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Nom de fichier</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Nom de fichier + extension</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Énumérer les fichiers</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Échec du renommage : le fichier ou le dossier existe déjà</translation>
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation type="unfinished" />
+        <translation>Faire correspondre toutes les occurrences</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Basculer la sélection</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Entrée de remplacement</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Remplacer</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Extension</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Remplacer tout</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Inclure les fichiers</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Inclure les dossiers</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Rechercher des fichiers</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Sensible à la casse</translation>
     </message>
 </context>
 <context>
@@ -2281,7 +2229,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Resumed (0)</source>
-        <translation>En cours (0)</translation>
+        <translation>Repris (0)</translation>
     </message>
     <message>
         <source>Paused (0)</source>
@@ -2321,7 +2269,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Resumed (%1)</source>
-        <translation>En cours (%1)</translation>
+        <translation>Repris (%1)</translation>
     </message>
     <message>
         <source>Active (%1)</source>
@@ -2337,27 +2285,27 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation>Bloqués en envoi (%1)</translation>
+        <translation>En attente d’envoi (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation>Bloqués en téléchargement (%1)</translation>
+        <translation>En attente de téléchargement (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation>Bloqué en téléchargement (0)</translation>
+        <translation>En attente de téléchargement (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation>Bloqué (0)</translation>
+        <translation>En attente (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation>Bloqué en envoi (0)</translation>
+        <translation>En attente d’envoi (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation>Bloqués (%1)</translation>
+        <translation>En attente (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
@@ -2628,11 +2576,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Renommé</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
 </context>
 <context>
@@ -2711,7 +2659,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Stalled</source>
-        <translation>Bloqué</translation>
+        <translation>En attente</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -2742,7 +2690,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Réduire/Développer </translation>
     </message>
 </context>
 <context>
@@ -2934,11 +2882,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Renommer les fichiers…</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Renommage</translation>
     </message>
 </context>
 <context>
@@ -3485,7 +3433,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation>Renommage)</translation>
     </message>
 </context>
 <context>

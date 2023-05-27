@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>(כלום)</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>הוסף תת־קטגוריה…</translation>
     </message>
 </context>
 <context>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>דוח ביצוע</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>סוג:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(כלום)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>השתמש בייפוי כוח עבור חיבורי עמיתים</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">השתמש בייפוי כוח רק לטורנטים</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>קטע libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">פתחות יוצאות (מיזער) [0: מושבת]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>בדוק מחדש טורנטים בעת השלמה:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>הסר טורנט</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">פתחות יוצאות (מרב) [0: מושבת]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>החרם למשך:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">עצור פסק זמן של גששים:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>החרם לקוח לאחר כישלונות רצופים:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>אפשר דגל של עוגייה מאובטחת (דורש HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">משך חכירת UPnP [0: חכירה קבועה]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>אפשר משיכת הזנות RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">תהליכוני גיבוב (דורש libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">לכד קריאות וכתיבות (דורש libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>מסנן פרקים חכם RSS</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">מטמון דיסק (דורש libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">מרווח תפוגת מטמון דיסק (דורש libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1545,10 +1505,6 @@
         <translation>אפשרות זו פחות יעילה על Linux</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">סוג ק/פ של דיסק (libtorrent &gt;= 2.0; דורש הפעלה מחדש):</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation type="unfinished" />
     </message>
@@ -1558,7 +1514,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>השבת מטמון OS</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1654,15 +1610,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>(כלום)</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>דוגמה: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>מסד נתונים SQLite (ניסיוני)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1670,27 +1626,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>קבצי המשכה מהירה</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>גבה את קובץ היומן לאחר:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>ימים</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>קובץ יומן אירועים</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>התנהגות</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>מחק יומני גיבוי שישנים יותר מן:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1698,15 +1654,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>שנים</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>נתיב שמירה:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>חודשים</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1750,7 +1706,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>השתמש בתת־קטגוריות</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2086,7 +2042,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>השתמש בביטויים רגולריים</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2625,7 +2581,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>מקורי</translation>
     </message>
 </context>
 <context>
@@ -2931,7 +2887,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>משנה שם</translation>
     </message>
 </context>
 <context>
@@ -3863,7 +3819,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>כללי</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3871,23 +3827,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>לא ידוע</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>הכול</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>מראה</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>העתק</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>בחר הכול</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3899,19 +3855,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>נקה</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>אזהרה</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>הודעות מידע</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>הודעות אזהרה</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3919,15 +3875,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>כתובות IP חסומות</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>מתוך</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>מעמד</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3939,7 +3895,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>הודעה</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3955,7 +3911,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3963,7 +3919,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>הודעות רגילות</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3971,11 +3927,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>הודעות חשובות</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>רגיל</translation>
     </message>
     <message>
         <source>items</source>
@@ -3983,7 +3939,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>תוצאות</translation>
     </message>
     <message>
         <source>Info</source>

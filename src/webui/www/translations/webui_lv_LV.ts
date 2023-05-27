@@ -52,15 +52,15 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadati ielādēti</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Faili pārbaudīti</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Apturēšanas nosacījumi:</translation>
     </message>
     <message>
         <source>None</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta augšā</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Pievienot apakškategoriju...</translation>
     </message>
 </context>
 <context>
@@ -613,19 +613,19 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Vai vēlies atsākt visus torrentus?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Vai vēlies apturēt visus torrentus?</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Reģistrs</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Reģistrs</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Lietot:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Nevienu)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Izmantot starpniekserveri koplietotāju savienojumiem</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Lietot starpniekserveri tikai torrentiem</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent sadaļa</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Izejošie porti (Min) [0: Atslēgts]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Pārbaudīt torrentus pēc ielādes pabeigšanas:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Dzēst torrentu</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Izejošie porti (Maks.) [0: Atslēgts]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>liegt piekļuvi uz:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Atcelt trakeru noildzi:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Liegt piekļuvi pēc atkārtotiem mēģinājumiem:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Ieslēgt sīkdatņu Secure Flag (nepieciešams HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">UPnP nomas periods [0: Pastāvīgs]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Ieslēgt RSS kanālu nolasīšanu</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Plūsmu jaukšana (nepieciešams libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Apvienot lasīšanas un rakstīšanas darbības (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS viedais epizožu filtrs</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Diska kešatmiņa (nepieciešams libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Diska kešatmiņas derīguma intervāls (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1522,7 +1482,7 @@
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
-        <translation type="unfinished" />
+        <translation>Atļautais neapstrādāto pieprasījumu skaits vienam koplietotājam:</translation>
     </message>
     <message>
         <source>Max active checking torrents:</source>
@@ -1530,7 +1490,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Atmiņas kartētie faili</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1542,7 +1502,7 @@
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Šī iespēja īsti labi nestrādā uz Linux sistēmas</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1550,7 +1510,7 @@
     </message>
     <message>
         <source>Disk IO read mode:</source>
-        <translation type="unfinished" />
+        <translation>Diska Ievades/Izvades lasīšana:</translation>
     </message>
     <message>
         <source>Disable OS cache</source>
@@ -1558,15 +1518,15 @@
     </message>
     <message>
         <source>Disk IO write mode:</source>
-        <translation type="unfinished" />
+        <translation>Diska Ievades/Izvades rakstīšana:</translation>
     </message>
     <message>
         <source>Use piece extent affinity:</source>
-        <translation type="unfinished" />
+        <translation>Izmantot līdzīgu daļiņu grupēšanu:</translation>
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>Atļautais kopējais HTTP trakeru skaits:</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
@@ -1574,7 +1534,7 @@
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Atsvaidzināšanas intervāls:</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1582,11 +1542,11 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Neiekļaujamo failu nosaukumi</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>Atbalsts starptautisko domēnu vārdiem (IDN):</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
@@ -1614,7 +1574,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>Norādiet apgriezto starpniekserveru IP adreses (vai apakštīklus, piem. 0.0.0.0/24), lai izmantotu klienta pārsūtīto adresi (X-Forwarded-For atribūts), izmantojiet ";", lai atdalītu ierakstus. </translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
@@ -1626,27 +1586,27 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Faili pārbaudīti</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
-        <translation type="unfinished" />
+        <translation>Ieslēgt porta pāradresāciju iebūvētajam trakerim:</translation>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>Ja atzīmēts, arī datoru nosaukumu noteikšanai izmantos starpniekserveri.</translation>
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
-        <translation type="unfinished" />
+        <translation>Izmantot starpniekserveri datora nosaukumu noteikšanai</translation>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Metadati ielādēti</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Torrenta apstādināšanas nosacījumi:</translation>
     </message>
     <message>
         <source>None</source>
@@ -1654,39 +1614,39 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Piemērs: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite datubāze (eksperimentāla)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Atsākšanas datu krātuves veids (nepieciešams restarts):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Ātri-atsākt failus</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Izveidot reģistra kopiju ik pēc: </translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>dienām</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Reģistra fails</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Uzvedība</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Dzēst reģistra kopijas vecākas par: </translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1694,15 +1654,15 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>gadiem</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Saglabāšanas vieta:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>mēnešiem</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1714,19 +1674,19 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Izmantot starpniekserveri RSS kanāliem</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Diska kešatmiņas derīguma intervāls (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Fiziskās atmiņas (RAM) izmantošanas robeža (pielāgota, ja libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Diska kešatmiņa (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
@@ -1734,11 +1694,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Apvienot lasīšanas un rakstīšanas darbības (nepieciešams libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Izejošie porti (Maks.) [0: Atslēgts]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
@@ -1746,35 +1706,35 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Lietot apakškategorijas</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Diska Ievades/Izvades tips (libtorrent &gt;= 2.0; nepieciešama pārstartēšana):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Novietot saraksta augšā</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Pārrakstīšana (nepieciešams libtorrent &gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Atcelt trakeru noildzi [0: atslēgta]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Izejošie porti (Min) [0: Atslēgts]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Plūsmu jaukšana (nepieciešams libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>UPnP nomas ilgums [0: neierobežots]:</translation>
     </message>
 </context>
 <context>
@@ -1857,7 +1817,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Koplietotāja klienta ID</translation>
     </message>
 </context>
 <context>
@@ -2082,23 +2042,23 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Lietot Regulārās izteiksmes</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Faila nosaukums</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Faila nosaukums + Galotne</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Sanumurēt failus</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēšana neizdevās: tāds fails vai mape jau pastāv</translation>
     </message>
     <message>
         <source>Match all occurences</source>
@@ -2114,7 +2074,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Aizvietot</translation>
     </message>
     <message>
         <source>Extension</source>
@@ -2122,23 +2082,23 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Aizvietot visus</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Iekļaut failus</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Iekļaut mapes</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Meklēt failus</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Reģistrjūtīgs</translation>
     </message>
 </context>
 <context>
@@ -2617,11 +2577,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēti</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Oriģinālais</translation>
     </message>
 </context>
 <context>
@@ -2731,7 +2691,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Samazināt/Paplašināt</translation>
     </message>
 </context>
 <context>
@@ -2923,11 +2883,11 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēt failus...</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvēšana</translation>
     </message>
 </context>
 <context>
@@ -3164,7 +3124,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation type="unfinished" />
+        <translation>Spiediet uz "Meklētāju spraudņi..." pogas loga apakšā, lai uzinstalētu spraudņus.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -3474,7 +3434,7 @@ Izmantojiet ';' lai atdalītu vairākus vārdus. Varat izmantot vietturi '*'.</t
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation>Pārdēvē</translation>
     </message>
 </context>
 <context>
@@ -3859,7 +3819,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Vispārīgi</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3867,27 +3827,27 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Nezināms</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Visi</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>parādīti</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopēt</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Izvēlēties visus</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
@@ -3895,19 +3855,19 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Notīrīt</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Uzmanību</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Informatīvi ziņojumi</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Brīdinājumu ziņojumi</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3915,15 +3875,15 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Bloķētās IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>no</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stāvoklis</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3931,11 +3891,11 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Clear All</source>
-        <translation type="unfinished" />
+        <translation>Nodzēst visu</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Ziņojums</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3951,7 +3911,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3959,7 +3919,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Parasti ziņojumi</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3967,11 +3927,11 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Kritiski ziņojumi</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normāla</translation>
     </message>
     <message>
         <source>items</source>
@@ -3979,7 +3939,7 @@ Atbalsta formātus: S01E01, 1x1, 2017.12.31 un 31.12.2017 (Datumu formātos kā 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezultāti</translation>
     </message>
     <message>
         <source>Info</source>

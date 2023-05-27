@@ -52,23 +52,23 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>تم استلام البيانات الوصفية</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>تم فحص الملف</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>شرط التوقف:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>بدون</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>إضافة لأعلى القائمة</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>إضافة تصنيف فرعي...</translation>
     </message>
 </context>
 <context>
@@ -393,7 +393,7 @@
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>هل أنت متأكد من رغبتك بإزالة ملفات التورنت المحدَّدة من قائمة النقل؟</translation>
     </message>
 </context>
 <context>
@@ -605,27 +605,27 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>إلغاء</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>إزالة</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>هل ترغب في استئناف جميع ملفات التورنت؟</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>هل ترغب في إيقاف جميع ملفات التورنت مؤقتًا؟</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>السجل</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>السجل</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>النوع:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(لا شيء)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>استخدام البروكسي على اتصالات القرناء</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">استخدم البروكسي للتورنتات فقط</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>قسم libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">منافذ الخروج (دقيقة) [0: معطلة]</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>أعد فحص التورنتات عند الانتهاء:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>إزالة التورنت</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">منافذ الخروج (الأقصى) [0: معطلة] </translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>حظر لـ:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">إيقاف مهلة المتتبع:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>حظر العميل بعد إخفاقات متتالية:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>تمكين علامة تأمين ملفات تعريف الارتباط (يتطلب HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">مدة تأجير UPnP [0: يعني إيجار دائم]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>تفعيل جلب تغذيات RSS</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">تجزئة المواضيع (يتطلب libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">يقرأ ويكتب الاندماج (يتطلب libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS مُصفّي الحلقات الذكي</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">ذاكرة التخزين المؤقت على القرص (يتطلب libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">فترة انتهاء صلاحية ذاكرة التخزين المؤقت على القرص (يتطلب libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1534,7 +1494,7 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>إهمال</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
@@ -1570,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>مكّن النظام من خاصية الـcache</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1626,7 +1586,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>تم فحص الملف</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1642,7 +1602,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>تم استلام البيانات الوصفية</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1650,15 +1610,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>بدون</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>مثال: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>قاعدة بيانات SQLite (تجريبية)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1666,15 +1626,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>ملفات Fastresume</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>قم بعمل نسخة احتياطية من ملف السجل بعد:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>أيام</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1682,11 +1642,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>السلوك</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>حذف سجلات النسخ الاحتياطي الأقدم من:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1694,15 +1654,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>أعوام</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>مسار الحفظ:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>شهور</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1746,7 +1706,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>استخدام تصنيفات فرعية</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -1754,7 +1714,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>إضافة لأعلى القائمة</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -2082,7 +2042,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>استخدام التعبيرات العادية</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2605,7 +2565,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>الحجم الكلي</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2621,7 +2581,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>الأصلي</translation>
     </message>
 </context>
 <context>
@@ -2919,7 +2879,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>إزالة</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2927,7 +2887,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>إعادة التسمية</translation>
     </message>
 </context>
 <context>
@@ -3859,7 +3819,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>عام</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3867,23 +3827,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>غير معروف</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>الكل</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>عرض</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>نسخ</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>اختيار الكل</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3895,19 +3855,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>مسح</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>تحذير</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>رسائل معلومات</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>رسائل تحذيرية</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3915,15 +3875,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>آي بي محظورة</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>بعيد عن</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>الحالة</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3935,7 +3895,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>الرسالة</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3951,7 +3911,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>اي بي</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3959,7 +3919,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>رسائل عادية</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3967,11 +3927,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>رسائل حرجة</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>عادي</translation>
     </message>
     <message>
         <source>items</source>
@@ -3979,7 +3939,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>النتائج</translation>
     </message>
     <message>
         <source>Info</source>

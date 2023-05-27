@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Добавяне подкатегория...</translation>
     </message>
 </context>
 <context>
@@ -622,7 +622,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Изпълнение на Запис</translation>
     </message>
     <message>
         <source>Log</source>
@@ -800,10 +800,6 @@
         <translation>Тип:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Без)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -826,10 +822,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Използвайте прокси за свързване между участниците</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Използване на прокси само за торентите</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1226,10 +1218,6 @@
         <translation>libtorrent Раздел</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Изходен порт (Мин) [0: Изключен]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Провери торентите при завършване:</translation>
     </message>
@@ -1248,10 +1236,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Премахни торент</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Изходен порт (Макс) [0: Изключен]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1330,20 +1314,12 @@
         <translation>банни за:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Спиране изтичащото време на тракера:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Банни клиент след последователни провали:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Разреши флаг за сигурност на бисквитка (изисква HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Продължителност на наема на UPnP [0: Постоянен наем]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1360,14 +1336,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Включване получаването от RSS канали</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Хеширащи нишки (изисква libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Обединяване на записванията и прочитанията (изисква libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1432,14 +1400,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS Разумен Филтър на Епизоди</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Дисков кеш (изисква  libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Продължителност на дисковия кеш (изисква libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1546,14 +1506,6 @@
         <translation>Тази опция е по-малко ефективна на Линукс</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Диск ВИ тип (libtorrent &gt;= 2.0; изисква рестарт):</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">Пиши-през (изисква libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Контролира интервала на обновяване на вътрешното състояние, което от своя страна засяга опреснявания на ПИ</translation>
     </message>
@@ -1584,10 +1536,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Интервал на опресняване:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Предел на потребление на физическа памет (RAM) (приложено, ако libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1667,7 +1615,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite база данни (експериментално)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1675,27 +1623,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Бързо възобновяване на файлове</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Резервно копие на лог файла след:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>дни</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Лог файл</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Поведение</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Изтриване на резервните копия на лог файловете по-стари от:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1703,15 +1651,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>години</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Местоположение за запис:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>месеци</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1755,7 +1703,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Използване на Под-категории</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2091,7 +2039,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Ползване на регулярни изрази</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2630,7 +2578,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Оригинал</translation>
     </message>
 </context>
 <context>
@@ -2936,7 +2884,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Преименуване</translation>
     </message>
 </context>
 <context>
@@ -3868,7 +3816,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Общи</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3876,23 +3824,23 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Неизвестен</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Всички</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>показване</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Копирай</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation> Избери всички</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3904,19 +3852,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Изчистване</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Предупреждение</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Информационни Съобщения</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Предупредителни Съобщения</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3924,15 +3872,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Блокирани IP-та</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>от</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Състояние</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3944,7 +3892,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Съобщение</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3960,7 +3908,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3968,7 +3916,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Нормални Съобщения</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3976,11 +3924,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Критични Съобщения</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Нормален</translation>
     </message>
     <message>
         <source>items</source>
@@ -3988,7 +3936,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Резултати</translation>
     </message>
     <message>
         <source>Info</source>

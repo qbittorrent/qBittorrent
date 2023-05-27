@@ -52,15 +52,15 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>मेटाडाटा प्राप्त </translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>फाइलों का जांचा हुआ</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>रोकने की स्थिति</translation>
     </message>
     <message>
         <source>None</source>
@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>कतार में सबसे ऊपर रखा</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>उपश्रेणी जोड़े…</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>मूल निर्माता</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>रद्द करें</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>हटायें</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>निष्पादन वृतांत</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>प्रकार:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(कोई नहीं)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>सहकर्मी कनेक्शनों के लिए प्रॉक्सी का उपयोग करें</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">प्रॉक्सी का उपयोग केवल टाॅरेंटों के लिए करें</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent खंड</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">जावक पोर्ट (न्यूनतम) [0: निष्क्रिय]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>पूर्ण होने पर टाॅरेंट पुनः जाँचें:</translation>
     </message>
@@ -1249,10 +1237,6 @@
         <translation>टौरेंट को हटायें</translation>
     </message>
     <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">जावक पोर्ट (अधिकतम) [0: निष्क्रिय]:</translation>
-    </message>
-    <message>
         <source>Asynchronous I/O threads:</source>
         <translation type="unfinished" />
     </message>
@@ -1270,7 +1254,7 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>निश्चित स्लॉट</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1546,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>OS कैश चालू करें</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1598,7 +1582,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>फाइलों का जांचा हुआ</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1614,7 +1598,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>मेटाडाटा प्राप्त </translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
@@ -1626,7 +1610,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>उदहारण : 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1642,11 +1626,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>के बाद लॉग फाइल का बैकअप लें :</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>दिन</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1654,11 +1638,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>व्यवहार</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>इससे पुरानी बैकअप लॉग फाइलों को मिटा दें :</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1666,15 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>वर्ष</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>संचय पथ :</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>माह</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1718,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>उपश्रेणियाँ प्रयोग करें</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -1726,7 +1710,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>कतार में सबसे ऊपर रखा</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -2054,7 +2038,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>रेगुलर एक्सप्रेसन्स का प्रयोग करें</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2577,7 +2561,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>कुल आकर</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2593,7 +2577,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>मूल</translation>
     </message>
 </context>
 <context>
@@ -2891,7 +2875,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>हटायें</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2899,7 +2883,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>पुनः नामकरण</translation>
     </message>
 </context>
 <context>
@@ -3128,7 +3112,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>परिणाम</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3624,7 +3608,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>रिक्त %1 वाक्यांश वाली एक अभिव्यंजना (उदाहरण - %2) </translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3831,7 +3815,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>सामान्य</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3839,11 +3823,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>अज्ञात</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>सभी</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3851,11 +3835,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>प्रतिलिपि बनाए</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>सभी चुनें</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3867,19 +3851,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>साफ करें</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>चेतावनी</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>सूचना सन्देश</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>चेतावनी सन्देश</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3887,15 +3871,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>प्रतिबंधित आईपी</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>में से</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>स्थिति</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3907,7 +3891,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>संदेश</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3923,7 +3907,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>आई पी</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3931,7 +3915,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>सामान्य सन्देश</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3939,11 +3923,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>जोखिम सन्देश</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>सामान्य</translation>
     </message>
     <message>
         <source>items</source>
@@ -3951,7 +3935,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>परिणाम</translation>
     </message>
     <message>
         <source>Info</source>

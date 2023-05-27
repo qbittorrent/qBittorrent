@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>ქვეკატეგორიის დამატება...</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>ნამდვილი ავტორი</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>გაუქმება</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>წაშლა</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>გაშვების ჟურნალი</translation>
     </message>
     <message>
         <source>Log</source>
@@ -760,7 +760,7 @@
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished" />
+        <translation>მოსამსენი პორტი</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
@@ -768,7 +768,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation type="unfinished" />
+        <translation>UPnP / NAT-PMP-ს გამოყენება ჩემი როუტერიდან პორტის გადამისამართებისთვის</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -799,10 +799,6 @@
         <translation>ტიპი:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(არცერთი)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Proxy-ს გამოყენება პირის კავშირებისთვის</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Proxy-ს გამოყენება მარტო ტორენტებისთვის</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -890,7 +882,7 @@
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
-        <translation type="unfinished" />
+        <translation>შეფარდების ლიმიტის მორგება ზედა ტრანსფერებზე</translation>
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
@@ -1362,7 +1354,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS წამკითხველი</translation>
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
@@ -1382,7 +1374,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>სტატიების მაქს. რაოდენობა ერთი არხიდან:</translation>
     </message>
     <message>
         <source> min</source>
@@ -1538,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>OS ქეშის ჩართვა</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1622,7 +1614,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite მონაცემთა ბაზა (ექსპერიმენტალური)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1630,7 +1622,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Fastresume ფაილები</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1638,7 +1630,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>დღე</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1646,7 +1638,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>ქცევა</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
@@ -1658,15 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>წელი</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>შენახვის დირექტორია:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>თვე</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1710,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>სუბკატეგორიების გამოყენება</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2026,7 +2018,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (სიდირდება %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -2046,7 +2038,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>სტანდარტული გამოსახულებების გამოყენება</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2470,7 +2462,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>ხელმისაწვდომია</translation>
     </message>
 </context>
 <context>
@@ -2505,7 +2497,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>გამორთულია</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2545,11 +2537,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>დარჩა</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>ხელმისაწვდომია</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2557,7 +2549,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>ჩამოტვირთვის პრიორიტეტი</translation>
     </message>
     <message>
         <source>Name</source>
@@ -2565,11 +2557,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>პროგრესი</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>მთლიანი ზომა</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2585,7 +2577,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>ორიგინალი</translation>
     </message>
 </context>
 <context>
@@ -2628,11 +2620,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>რიგშია</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>შეცდომა</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
@@ -2640,7 +2632,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>მეტამონაცემების ჩამოტვირთვა</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2664,11 +2656,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>გაჩერებულია</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (სიდირდება %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -2783,7 +2775,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
+        <translation>ჩამოყრა</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -2883,7 +2875,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>წაშლა</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2891,7 +2883,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>დარჩენილია</translation>
     </message>
 </context>
 <context>
@@ -3116,11 +3108,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>მდე</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>შედეგები</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3151,15 +3143,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Close</source>
-        <translation type="unfinished" />
+        <translation>დახურვა</translation>
     </message>
     <message>
         <source>Installed search plugins:</source>
-        <translation type="unfinished" />
+        <translation>დაყენებული საძიებო პლაგინები:</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>ჩართული</translation>
     </message>
     <message>
         <source>Warning: Be sure to comply with your country's copyright laws when downloading torrents from any of these search engines.</source>
@@ -3209,7 +3201,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>ჩართული</translation>
     </message>
     <message>
         <source>Version</source>
@@ -3240,7 +3232,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>ოკ</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3388,7 +3380,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>ყველა მისამართები</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
@@ -3449,7 +3441,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished" />
+        <translation>გთხოვთ აირჩიეთ ახალი სახელი ამ RSS არხისთვის</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
@@ -3457,7 +3449,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation>არხის ახალი სახელი:</translation>
     </message>
     <message>
         <source>Update all</source>
@@ -3469,19 +3461,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished" />
+        <translation>RSS ჩამომტვირთავი...</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished" />
+        <translation>ელემენტის წაკითხულად მონიშვნა</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished" />
+        <translation>ყველა არხის განახლება</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
-        <translation type="unfinished" />
+        <translation>არხის ბმილის კოპირება</translation>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
@@ -3489,7 +3481,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation>სიახლეების ბმულის გახსნა</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -3505,7 +3497,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation>ახალი ხელმოწერა</translation>
     </message>
     <message>
         <source>Update</source>
@@ -3533,7 +3525,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>ახალი ხელმოწერა...</translation>
     </message>
     <message>
         <source>Download torrent</source>
@@ -3822,7 +3814,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>მთავარი</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3830,11 +3822,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>უცნობია</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>ყველა</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3842,11 +3834,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>ასლი</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>ყველას არჩევა</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3858,7 +3850,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>წაშლა</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -3866,11 +3858,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>ინფორმაციული შეტყობინებები</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>გასაფრთხილებელი შეტყობინებები</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3878,7 +3870,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>დაბლოკირებული IP მისამართები</translation>
     </message>
     <message>
         <source>out of</source>
@@ -3886,7 +3878,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>სტატუსი</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3898,7 +3890,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>შეტყობინება</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3914,7 +3906,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3922,7 +3914,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>ჩვეულებრივი შეტყობინებები</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3930,11 +3922,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>კრიტირული შეტყობინებები</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>ჩვეულებრივი</translation>
     </message>
     <message>
         <source>items</source>
@@ -3942,7 +3934,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>შედეგები</translation>
     </message>
     <message>
         <source>Info</source>

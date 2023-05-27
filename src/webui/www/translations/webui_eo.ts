@@ -75,7 +75,7 @@
     <name>CategoryFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Ĉio</translation>
     </message>
     <message>
         <source>Uncategorized</source>
@@ -102,7 +102,7 @@
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Paŭzigi la torentojn</translation>
     </message>
     <message>
         <source>New Category</source>
@@ -177,7 +177,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Nekonata</translation>
     </message>
     <message>
         <source>Share ratio limit must be between 0 and 9998.</source>
@@ -222,7 +222,7 @@
     <message>
         <source>Upload Torrents</source>
         <comment>Upload torrent files to qBittorent using WebUI</comment>
-        <translation type="unfinished" />
+        <translation>Alŝuti Torentojn</translation>
     </message>
     <message>
         <source>Save files to location:</source>
@@ -381,7 +381,7 @@
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>Bone</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Originala aŭtoro</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -505,7 +505,7 @@
     </message>
     <message>
         <source>Search Engine</source>
-        <translation type="unfinished" />
+        <translation>Serĉilo</translation>
     </message>
     <message>
         <source>Filter torrent list...</source>
@@ -605,7 +605,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Nuligi</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -632,35 +632,35 @@
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation type="unfinished" />
+        <translation>Opcioj</translation>
     </message>
     <message>
         <source>Downloads</source>
-        <translation type="unfinished" />
+        <translation>Elŝutoj</translation>
     </message>
     <message>
         <source>Connection</source>
-        <translation type="unfinished" />
+        <translation>Konekto</translation>
     </message>
     <message>
         <source>Speed</source>
-        <translation type="unfinished" />
+        <translation>Rapido</translation>
     </message>
     <message>
         <source>BitTorrent</source>
-        <translation type="unfinished" />
+        <translation>BitTorrent</translation>
     </message>
     <message>
         <source>Web UI</source>
-        <translation type="unfinished" />
+        <translation>TTT-UI</translation>
     </message>
     <message>
         <source>Language</source>
-        <translation type="unfinished" />
+        <translation>Lingvo</translation>
     </message>
     <message>
         <source>User Interface Language:</source>
-        <translation type="unfinished" />
+        <translation>Fasada Lingvo:</translation>
     </message>
     <message>
         <source>Email notification upon download completion</source>
@@ -676,11 +676,11 @@
     </message>
     <message>
         <source>Torrent Queueing</source>
-        <translation type="unfinished" />
+        <translation>Torent-envicigado</translation>
     </message>
     <message>
         <source>Automatically add these trackers to new downloads:</source>
-        <translation type="unfinished" />
+        <translation>Aŭtomate aldoni tiujn spurilojn al novaj elŝutoj:</translation>
     </message>
     <message>
         <source>Web User Interface (Remote control)</source>
@@ -696,7 +696,7 @@
     </message>
     <message>
         <source>Use HTTPS instead of HTTP</source>
-        <translation type="unfinished" />
+        <translation>Uzi la HTTPS-protokolon anstataŭ la HTTP-protokolon</translation>
     </message>
     <message>
         <source>Bypass authentication for clients on localhost</source>
@@ -712,11 +712,11 @@
     </message>
     <message>
         <source>Keep incomplete torrents in:</source>
-        <translation type="unfinished" />
+        <translation>Enmemorigi malfinitajn torentojn en:</translation>
     </message>
     <message>
         <source>Copy .torrent files to:</source>
-        <translation type="unfinished" />
+        <translation>Kopii .torrent-dosierojn al:</translation>
     </message>
     <message>
         <source>Copy .torrent files for finished downloads to:</source>
@@ -728,15 +728,15 @@
     </message>
     <message>
         <source>Append .!qB extension to incomplete files</source>
-        <translation type="unfinished" />
+        <translation>Aldonu finaĵon .!qB al mankohavaj dosieroj</translation>
     </message>
     <message>
         <source>Automatically add torrents from:</source>
-        <translation type="unfinished" />
+        <translation>Aŭtomate aldoni torentojn de:</translation>
     </message>
     <message>
         <source>SMTP server:</source>
-        <translation type="unfinished" />
+        <translation>SMTP-servilo:</translation>
     </message>
     <message>
         <source>This server requires a secure connection (SSL)</source>
@@ -744,15 +744,15 @@
     </message>
     <message>
         <source>Authentication</source>
-        <translation type="unfinished" />
+        <translation>Aŭtentigo</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished" />
+        <translation>Uzantnomo:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished" />
+        <translation>Pasvorto:</translation>
     </message>
     <message>
         <source>TCP and μTP</source>
@@ -760,11 +760,11 @@
     </message>
     <message>
         <source>Listening Port</source>
-        <translation type="unfinished" />
+        <translation>Aŭskultpordo</translation>
     </message>
     <message>
         <source>Port used for incoming connections:</source>
-        <translation type="unfinished" />
+        <translation>Pordo uzata por alvenantaj konektoj:</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
@@ -772,19 +772,19 @@
     </message>
     <message>
         <source>Connections Limits</source>
-        <translation type="unfinished" />
+        <translation>Konektaj Limoj</translation>
     </message>
     <message>
         <source>Maximum number of connections per torrent:</source>
-        <translation type="unfinished" />
+        <translation>Maksimuma nombro da konektoj por torento:</translation>
     </message>
     <message>
         <source>Global maximum number of connections:</source>
-        <translation type="unfinished" />
+        <translation>Malloka maksimuma nombro da konektoj:</translation>
     </message>
     <message>
         <source>Maximum number of upload slots per torrent:</source>
-        <translation type="unfinished" />
+        <translation>Maksimuma nombro da alŝutkonektoj por torento:</translation>
     </message>
     <message>
         <source>Global maximum number of upload slots:</source>
@@ -792,39 +792,39 @@
     </message>
     <message>
         <source>Proxy Server</source>
-        <translation type="unfinished" />
+        <translation>Prokura Servilo</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished" />
+        <translation>Tipo:</translation>
     </message>
     <message>
         <source>SOCKS4</source>
-        <translation type="unfinished" />
+        <translation>SOCKS4</translation>
     </message>
     <message>
         <source>SOCKS5</source>
-        <translation type="unfinished" />
+        <translation>SOCKS5</translation>
     </message>
     <message>
         <source>HTTP</source>
-        <translation type="unfinished" />
+        <translation>HTTP</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished" />
+        <translation>Gastigo:</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished" />
+        <translation>Pordo:</translation>
     </message>
     <message>
         <source>Use proxy for peer connections</source>
-        <translation type="unfinished" />
+        <translation>Uzi prokurilon por samtavolaj konektoj</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation type="unfinished" />
+        <translation>Filtri la dosierindikon (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
@@ -832,53 +832,53 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation type="unfinished" />
+        <translation>Apliki al spuriloj</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Mallokaj rapidlimoj</translation>
     </message>
     <message>
         <source>Upload:</source>
-        <translation type="unfinished" />
+        <translation>Alŝuta:</translation>
     </message>
     <message>
         <source>Download:</source>
-        <translation type="unfinished" />
+        <translation>Elŝuti</translation>
     </message>
     <message>
         <source>Alternative Rate Limits</source>
-        <translation type="unfinished" />
+        <translation>Alternativaj rapidlimoj</translation>
     </message>
     <message>
         <source>From:</source>
         <extracomment>from (time1 to time2)</extracomment>
-        <translation type="unfinished" />
+        <translation>De:</translation>
     </message>
     <message>
         <source>To:</source>
         <extracomment>time1 to time2</extracomment>
-        <translation type="unfinished" />
+        <translation>Al:</translation>
     </message>
     <message>
         <source>When:</source>
-        <translation type="unfinished" />
+        <translation>Kiam:</translation>
     </message>
     <message>
         <source>Every day</source>
-        <translation type="unfinished" />
+        <translation>Ĉiutage</translation>
     </message>
     <message>
         <source>Weekdays</source>
-        <translation type="unfinished" />
+        <translation>Laborsemajne</translation>
     </message>
     <message>
         <source>Weekends</source>
-        <translation type="unfinished" />
+        <translation>Semajnfine</translation>
     </message>
     <message>
         <source>Rate Limits Settings</source>
-        <translation type="unfinished" />
+        <translation>Rapidlimaj agordoj</translation>
     </message>
     <message>
         <source>Apply rate limit to transport overhead</source>
@@ -886,79 +886,79 @@
     </message>
     <message>
         <source>Apply rate limit to µTP protocol</source>
-        <translation type="unfinished" />
+        <translation>Apliki la rapidlimon al la µTP-protokolo</translation>
     </message>
     <message>
         <source>Privacy</source>
-        <translation type="unfinished" />
+        <translation>Privateco</translation>
     </message>
     <message>
         <source>Enable DHT (decentralized network) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Trovi pli samtavolanojn per DHT (malcentra reto)</translation>
     </message>
     <message>
         <source>Enable Peer Exchange (PeX) to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Trovi pli samtavolanojn per Peer Exchange (PeX)</translation>
     </message>
     <message>
         <source>Enable Local Peer Discovery to find more peers</source>
-        <translation type="unfinished" />
+        <translation>Trovi pli samtavolanojn per Local Peer Discovery</translation>
     </message>
     <message>
         <source>Encryption mode:</source>
-        <translation type="unfinished" />
+        <translation>Ĉifroreĝimo:</translation>
     </message>
     <message>
         <source>Require encryption</source>
-        <translation type="unfinished" />
+        <translation>Neprigi ĉifradon</translation>
     </message>
     <message>
         <source>Disable encryption</source>
-        <translation type="unfinished" />
+        <translation>Malebligi ĉifradon</translation>
     </message>
     <message>
         <source>Enable anonymous mode</source>
-        <translation type="unfinished" />
+        <translation>Ebligi la sennoman modon</translation>
     </message>
     <message>
         <source>Maximum active downloads:</source>
-        <translation type="unfinished" />
+        <translation>Maksimumaj aktivaj elŝutoj:</translation>
     </message>
     <message>
         <source>Maximum active uploads:</source>
-        <translation type="unfinished" />
+        <translation>Maksimumaj aktivaj elŝutoj:</translation>
     </message>
     <message>
         <source>Maximum active torrents:</source>
-        <translation type="unfinished" />
+        <translation>Maksimumaj aktivaj torentoj:</translation>
     </message>
     <message>
         <source>Do not count slow torrents in these limits</source>
-        <translation type="unfinished" />
+        <translation>Ne inkluzivi malrapidajn torentojn en tiuj limoj</translation>
     </message>
     <message>
         <source>then</source>
-        <translation type="unfinished" />
+        <translation>poste</translation>
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation type="unfinished" />
+        <translation>Plusendi la pordon de mia enkursigilo per UPnP / NAT-PMP</translation>
     </message>
     <message>
         <source>Certificate:</source>
-        <translation type="unfinished" />
+        <translation>Atestilo:</translation>
     </message>
     <message>
         <source>Key:</source>
-        <translation type="unfinished" />
+        <translation>Ŝlosilo:</translation>
     </message>
     <message>
         <source>Register</source>
-        <translation type="unfinished" />
+        <translation>Registri</translation>
     </message>
     <message>
         <source>Domain name:</source>
-        <translation type="unfinished" />
+        <translation>Domajna nomo:</translation>
     </message>
     <message>
         <source>Supported parameters (case sensitive):</source>
@@ -966,7 +966,7 @@
     </message>
     <message>
         <source>%N: Torrent name</source>
-        <translation type="unfinished" />
+        <translation>%N: Torenta nomo</translation>
     </message>
     <message>
         <source>%L: Category</source>
@@ -982,19 +982,19 @@
     </message>
     <message>
         <source>%D: Save path</source>
-        <translation type="unfinished" />
+        <translation>%D: Konserva dosierindiko</translation>
     </message>
     <message>
         <source>%C: Number of files</source>
-        <translation type="unfinished" />
+        <translation>%C: Nombro de dosieroj</translation>
     </message>
     <message>
         <source>%Z: Torrent size (bytes)</source>
-        <translation type="unfinished" />
+        <translation>%Z: Grando de la torento (bitoj)</translation>
     </message>
     <message>
         <source>%T: Current tracker</source>
-        <translation type="unfinished" />
+        <translation>%T: Aktuala spurilo</translation>
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
@@ -1002,7 +1002,7 @@
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
-        <translation type="unfinished" />
+        <translation>La uzantnomo por TTT-UI nepras esti almenaŭ 3 signojn longa.</translation>
     </message>
     <message>
         <source>The Web UI password must be at least 6 characters long.</source>
@@ -1010,11 +1010,11 @@
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutoj</translation>
     </message>
     <message>
         <source>KiB/s</source>
-        <translation type="unfinished" />
+        <translation>KiB/s</translation>
     </message>
     <message>
         <source>Enable clickjacking protection</source>
@@ -1042,7 +1042,7 @@
     </message>
     <message>
         <source>Automatic</source>
-        <translation type="unfinished" />
+        <translation>Aŭtomata</translation>
     </message>
     <message>
         <source>Use alternative Web UI</source>
@@ -1058,7 +1058,7 @@
     </message>
     <message>
         <source>Do not start the download automatically</source>
-        <translation type="unfinished" />
+        <translation>Ne komenci la elŝuton aŭtomate</translation>
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
@@ -1074,7 +1074,7 @@
     </message>
     <message>
         <source>Apply rate limit to peers on LAN</source>
-        <translation type="unfinished" />
+        <translation>Apliki la rapidlimon al samtavolanoj en loka reto.</translation>
     </message>
     <message>
         <source>0 means unlimited</source>
@@ -1126,11 +1126,11 @@
     </message>
     <message>
         <source>When adding a torrent</source>
-        <translation type="unfinished" />
+        <translation>Aldonante torenton</translation>
     </message>
     <message>
         <source>Info: The password is saved unencrypted</source>
-        <translation type="unfinished" />
+        <translation>Informo: La pasvorto estas konservita senĉifrite</translation>
     </message>
     <message>
         <source>μTP-TCP mixed mode algorithm:</source>
@@ -1154,7 +1154,7 @@
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>Preferi TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
@@ -1182,7 +1182,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>Iu ajn interfaco</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1258,7 +1258,7 @@
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="unfinished" />
+        <translation>Speciala</translation>
     </message>
     <message>
         <source>min</source>
@@ -1274,7 +1274,7 @@
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
@@ -1286,7 +1286,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1374,7 +1374,7 @@
     </message>
     <message>
         <source>Maximum number of articles per feed:</source>
-        <translation type="unfinished" />
+        <translation>Maksimuma nombro da artikoloj por fluo:</translation>
     </message>
     <message>
         <source> min</source>
@@ -1434,7 +1434,7 @@
     </message>
     <message>
         <source>Random</source>
-        <translation type="unfinished" />
+        <translation>Hazarda</translation>
     </message>
     <message>
         <source>%K: Torrent ID</source>
@@ -1530,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Ebligi operaciuman kaŝmemoron</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1622,7 +1622,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Rapidreaktivigi dosierojn</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
@@ -1638,7 +1638,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Konduto</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
@@ -1835,11 +1835,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>Miksita</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>Ne elŝuti</translation>
     </message>
 </context>
 <context>
@@ -1998,11 +1998,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download limit:</source>
-        <translation type="unfinished" />
+        <translation>Elŝutlimo:</translation>
     </message>
     <message>
         <source>Upload limit:</source>
-        <translation type="unfinished" />
+        <translation>Alŝutlimo:</translation>
     </message>
     <message>
         <source>Priority</source>
@@ -2018,7 +2018,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (fontsendis dum %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -2030,7 +2030,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -2117,7 +2117,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Alia...</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -2485,39 +2485,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished" />
+        <translation>Spurila URL-adreso:</translation>
     </message>
     <message>
         <source>Updating...</source>
-        <translation type="unfinished" />
+        <translation>Ĝisdatiĝante...</translation>
     </message>
     <message>
         <source>Working</source>
-        <translation type="unfinished" />
+        <translation>Funkciante</translation>
     </message>
     <message>
         <source>Disabled</source>
-        <translation type="unfinished" />
+        <translation>Malebligita</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
-        <translation type="unfinished" />
+        <translation>Ne jam kontaktiĝis</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>N/A</translation>
     </message>
     <message>
         <source>Seeds</source>
-        <translation type="unfinished" />
+        <translation>Fontoj</translation>
     </message>
     <message>
         <source>Not working</source>
-        <translation type="unfinished" />
+        <translation>Nefunkciante</translation>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation type="unfinished" />
+        <translation>Kopii la spurilan URL-adreson:</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
@@ -2525,7 +2525,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished" />
+        <translation>Spuril-redaktado</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2533,11 +2533,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove tracker</source>
-        <translation type="unfinished" />
+        <translation>Forigi la spurilon</translation>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>Restanta</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2549,19 +2549,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>Elŝut-prioritato</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>Progreso</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Tuta grando</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2616,27 +2616,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Seeding</source>
-        <translation type="unfinished" />
+        <translation>Fontsendanta</translation>
     </message>
     <message>
         <source>Queued</source>
-        <translation type="unfinished" />
+        <translation>Enviciĝita</translation>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Erarinta</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] Elŝutanta</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Elŝutanta metadatenojn</translation>
     </message>
     <message>
         <source>Checking</source>
-        <translation type="unfinished" />
+        <translation>Kontrolate</translation>
     </message>
     <message>
         <source>Missing Files</source>
@@ -2644,7 +2644,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Queued for checking</source>
-        <translation type="unfinished" />
+        <translation>Enviciĝita por kontrolado</translation>
     </message>
     <message>
         <source>Downloading</source>
@@ -2652,15 +2652,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Kontrolante reaktivigajn datenojn</translation>
     </message>
     <message>
         <source>Stalled</source>
-        <translation type="unfinished" />
+        <translation>Haltigita</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (fontsendis dum %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -2770,12 +2770,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>New...</source>
         <comment>New category...</comment>
-        <translation type="unfinished" />
+        <translation>Nova...</translation>
     </message>
     <message>
         <source>Reset</source>
         <comment>Reset category</comment>
-        <translation type="unfinished" />
+        <translation>Vakigi</translation>
     </message>
     <message>
         <source>Force recheck</source>
@@ -2819,7 +2819,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Save path</source>
-        <translation type="unfinished" />
+        <translation>Konserva dosierindiko</translation>
     </message>
     <message>
         <source>Comma-separated tags:</source>
@@ -2835,7 +2835,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>Magnet-ligilo</translation>
     </message>
     <message>
         <source>Remove All</source>
@@ -2843,11 +2843,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopii</translation>
     </message>
     <message>
         <source>Queue</source>
@@ -2910,7 +2910,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>minutes</source>
-        <translation type="unfinished" />
+        <translation>minutoj</translation>
     </message>
 </context>
 <context>
@@ -3025,7 +3025,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>PluginSourceDlg</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Nuligi</translation>
     </message>
     <message>
         <source>Plugin path:</source>
@@ -3048,31 +3048,31 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchEngineWidget</name>
     <message>
         <source>Seeds:</source>
-        <translation type="unfinished" />
+        <translation>Fontsendantoj:</translation>
     </message>
     <message>
         <source>All plugins</source>
-        <translation type="unfinished" />
+        <translation>Ĉiuj kromprogramoj</translation>
     </message>
     <message>
         <source>Size:</source>
-        <translation type="unfinished" />
+        <translation>Grando:</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Halti</translation>
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished" />
+        <translation>Serĉi</translation>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Serĉilaj kromprogramoj...</translation>
     </message>
     <message>
         <source>All categories</source>
-        <translation type="unfinished" />
+        <translation>Ĉiuj kategorioj</translation>
     </message>
     <message>
         <source>Search in:</source>
@@ -3108,11 +3108,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>al</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezultoj</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3170,61 +3170,61 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchResultsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished" />
+        <translation>Grando</translation>
     </message>
     <message>
         <source>Leechers</source>
-        <translation type="unfinished" />
+        <translation>Ricevantoj</translation>
     </message>
     <message>
         <source>Search engine</source>
-        <translation type="unfinished" />
+        <translation>Serĉilo</translation>
     </message>
     <message>
         <source>Seeders</source>
-        <translation type="unfinished" />
+        <translation>Fontoj</translation>
     </message>
 </context>
 <context>
     <name>SearchPluginsTable</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Url</source>
-        <translation type="unfinished" />
+        <translation>URL-adreso</translation>
     </message>
     <message>
         <source>Enabled</source>
-        <translation type="unfinished" />
+        <translation>Ebligita</translation>
     </message>
     <message>
         <source>Version</source>
-        <translation type="unfinished" />
+        <translation>Versio</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>Jes</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>Ne</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Nuligi</translation>
     </message>
     <message>
         <source>Add Peers</source>
-        <translation type="unfinished" />
+        <translation>Aldonu Samtavolanojn</translation>
     </message>
     <message>
         <source>List of peers to add (one IP per line):</source>
@@ -3236,7 +3236,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Aranĝo: IPv4:pordo / [IPv6]:pordo</translation>
     </message>
 </context>
 <context>
@@ -3255,7 +3255,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Pause torrents</source>
-        <translation type="unfinished" />
+        <translation>Paŭzigi la torentojn</translation>
     </message>
     <message>
         <source>Resume torrents</source>
@@ -3282,7 +3282,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>TagFilterModel</name>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Ĉio</translation>
     </message>
     <message>
         <source>Untagged</source>
@@ -3380,7 +3380,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>Ĉiuj adresoj</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
@@ -3395,15 +3395,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopii</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>Elŝuti</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>Nomo</translation>
     </message>
     <message>
         <source>Description page URL</source>
@@ -3426,7 +3426,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>Nova nomo:</translation>
     </message>
     <message>
         <source>Renaming)</source>
@@ -3437,39 +3437,39 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>RSSWidget</name>
     <message>
         <source>Date: </source>
-        <translation type="unfinished" />
+        <translation>Dato:</translation>
     </message>
     <message>
         <source>Please choose a new name for this RSS feed</source>
-        <translation type="unfinished" />
+        <translation>Bonvolu elekti novan nomon por tiu RSS-fluo</translation>
     </message>
     <message>
         <source>Please choose a folder name</source>
-        <translation type="unfinished" />
+        <translation>Bonvolu elekti dosierujo-nomon</translation>
     </message>
     <message>
         <source>New feed name:</source>
-        <translation type="unfinished" />
+        <translation>Nova flunomo:</translation>
     </message>
     <message>
         <source>Update all</source>
-        <translation type="unfinished" />
+        <translation>Ĝisdatigi ĉion</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished" />
+        <translation>Forigu</translation>
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation type="unfinished" />
+        <translation>RSS-elŝutilo...</translation>
     </message>
     <message>
         <source>Mark items read</source>
-        <translation type="unfinished" />
+        <translation>Marki elementojn kiel legitaj</translation>
     </message>
     <message>
         <source>Update all feeds</source>
-        <translation type="unfinished" />
+        <translation>Ĝisdatigi ĉiujn fluojn</translation>
     </message>
     <message>
         <source>Copy feed URL</source>
@@ -3477,15 +3477,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished" />
+        <translation>Torentoj: (duoble alklaki por elŝuti)</translation>
     </message>
     <message>
         <source>Open news URL</source>
-        <translation type="unfinished" />
+        <translation>Malfermi novaĵan URL-adreson</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation type="unfinished" />
+        <translation>Renomi...</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3493,19 +3493,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>New folder...</source>
-        <translation type="unfinished" />
+        <translation>Nova dosierujo...</translation>
     </message>
     <message>
         <source>New subscription</source>
-        <translation type="unfinished" />
+        <translation>Nova abono</translation>
     </message>
     <message>
         <source>Update</source>
-        <translation type="unfinished" />
+        <translation>Ĝisdatigi</translation>
     </message>
     <message>
         <source>Folder name:</source>
-        <translation type="unfinished" />
+        <translation>Dosierujo-nomo:</translation>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
@@ -3517,19 +3517,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Deletion confirmation</source>
-        <translation type="unfinished" />
+        <translation>Foriga konfirmado</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Ĉu vi certas, ke vi volas forigi la elektitajn RSS-fluojn?</translation>
     </message>
     <message>
         <source>New subscription...</source>
-        <translation type="unfinished" />
+        <translation>Nova abono...</translation>
     </message>
     <message>
         <source>Download torrent</source>
-        <translation type="unfinished" />
+        <translation>Elŝuti la torenton</translation>
     </message>
 </context>
 <context>
@@ -3784,7 +3784,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Ĉio (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3814,7 +3814,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Ĝenerala</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3822,11 +3822,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Nekonata</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Ĉio</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3834,11 +3834,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopii</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Elekti cion</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3850,7 +3850,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Vakigi</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -3870,7 +3870,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Blokitaj IP-adresoj</translation>
     </message>
     <message>
         <source>out of</source>
@@ -3878,7 +3878,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stato</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3890,7 +3890,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Mesaĝo</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3906,7 +3906,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP-adreso</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3926,7 +3926,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normala</translation>
     </message>
     <message>
         <source>items</source>
@@ -3934,7 +3934,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Rezultoj</translation>
     </message>
     <message>
         <source>Info</source>

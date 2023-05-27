@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Pīlikt zamkategoreju...</translation>
     </message>
 </context>
 <context>
@@ -605,7 +605,7 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Atsaukt</translation>
     </message>
     <message>
         <source>Remove</source>
@@ -799,10 +799,6 @@
         <translation>Lītuot:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Nivīnu)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Lītuot vidinīkserveri kūplītuotuoju salaidumim</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Lītuot vidinīkserveri tikai torrentim</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent izdola</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Izīmūšie porti (Min) [0: Nūgrīzts]</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Atkuortuotai puorsavērt torrentus piec atsasyuteišonas dabeigšonas:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Nūjimt torrentu</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Izīmūšie porti (Max) [0: Nūgrīzts]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1417,14 +1401,6 @@
         <translation>RSS Gudrais epizozu fiļtrys</translation>
     </message>
     <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Cītdiska vydatguods (vajadzeigs libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Cītdiska vydatguoda dereiguma iņtervals (vajadzeigs libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
         <source>Validate HTTPS tracker certificate:</source>
         <translation type="unfinished" />
     </message>
@@ -1554,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Lītuot sistemys vydatguodu</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1634,7 +1610,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Pīvadums: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
@@ -1654,7 +1630,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>dīnu</translation>
     </message>
     <message>
         <source>Log file</source>
@@ -1662,7 +1638,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Izavedīņs</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
@@ -1674,15 +1650,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>godim</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Izglobuošonas vīta:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>mienešīm</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1726,7 +1702,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Lītuot zamkategorejas</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2062,7 +2038,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Lītuot Reguļaras izsaceibas</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2585,7 +2561,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Kūpeigais lelums</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2907,7 +2883,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Puorsaukšona</translation>
     </message>
 </context>
 <context>
@@ -3839,7 +3815,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Vyscaureigi</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3847,11 +3823,11 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Nazynoms</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Vysys</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3859,11 +3835,11 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Puorspīst</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Izlaseit vysys</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3879,7 +3855,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Viereibu</translation>
     </message>
     <message>
         <source>Information Messages</source>
@@ -3895,15 +3871,15 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Nūblokētās IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>nu</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Statuss</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3915,7 +3891,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Viestejums</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3931,7 +3907,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3951,7 +3927,7 @@ Formats: S01E01, 1x1, 2017.12.31 i 31.12.2017 (Datam škiramsimbola "." vītā v
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Norma</translation>
     </message>
     <message>
         <source>items</source>

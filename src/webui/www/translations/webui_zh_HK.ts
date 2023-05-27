@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>收到的元資料</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>已檢查的檔案</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>停止條件：</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>無</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
@@ -114,11 +114,11 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除多個Torrent</translation>
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>加入子分類…</translation>
     </message>
 </context>
 <context>
@@ -353,7 +353,7 @@
     </message>
     <message>
         <source>Open documentation</source>
-        <translation type="unfinished" />
+        <translation>網上說明</translation>
     </message>
     <message>
         <source>Register to handle magnet links...</source>
@@ -365,23 +365,23 @@
     </message>
     <message>
         <source>JavaScript Required! You must enable JavaScript for the Web UI to work properly</source>
-        <translation type="unfinished" />
+        <translation>需要 JavaScript！您必須啟用 JavaScript 才可讓 WebUI 正常運作</translation>
     </message>
     <message>
         <source>Name cannot be empty</source>
-        <translation type="unfinished" />
+        <translation>名稱不可留空</translation>
     </message>
     <message>
         <source>Name is unchanged</source>
-        <translation type="unfinished" />
+        <translation>名稱未變更</translation>
     </message>
     <message>
         <source>Failed to update name</source>
-        <translation type="unfinished" />
+        <translation>更新名稱失敗</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="unfinished" />
+        <translation>確定</translation>
     </message>
     <message>
         <source>The port used for incoming connections must be between 0 and 65535.</source>
@@ -389,11 +389,11 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>原作者</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
-        <translation type="unfinished" />
+        <translation>你肯定要從傳輸清單中清除所選Torrent?</translation>
     </message>
 </context>
 <context>
@@ -521,39 +521,39 @@
     </message>
     <message>
         <source>Move up in the queue</source>
-        <translation type="unfinished" />
+        <translation>在佇列中向上移動</translation>
     </message>
     <message>
         <source>Move Up Queue</source>
-        <translation type="unfinished" />
+        <translation>向上移動佇列</translation>
     </message>
     <message>
         <source>Bottom of Queue</source>
-        <translation type="unfinished" />
+        <translation>佇列底部</translation>
     </message>
     <message>
         <source>Move to the bottom of the queue</source>
-        <translation type="unfinished" />
+        <translation>移動到佇列底部</translation>
     </message>
     <message>
         <source>Top of Queue</source>
-        <translation type="unfinished" />
+        <translation>佇列頂部</translation>
     </message>
     <message>
         <source>Move Down Queue</source>
-        <translation type="unfinished" />
+        <translation>向下移動佇列</translation>
     </message>
     <message>
         <source>Move down in the queue</source>
-        <translation type="unfinished" />
+        <translation>在佇列中向下移動</translation>
     </message>
     <message>
         <source>Move to the top of the queue</source>
-        <translation type="unfinished" />
+        <translation>移動到佇列頂部</translation>
     </message>
     <message>
         <source>Your browser does not support this feature</source>
-        <translation type="unfinished" />
+        <translation>您的瀏覽器不支援此功能</translation>
     </message>
     <message>
         <source>To use this feature, the WebUI needs to be accessed over HTTPS</source>
@@ -561,11 +561,11 @@
     </message>
     <message>
         <source>Connection status: Firewalled</source>
-        <translation type="unfinished" />
+        <translation>連線狀態：已有防火牆保護</translation>
     </message>
     <message>
         <source>Connection status: Connected</source>
-        <translation type="unfinished" />
+        <translation>連線狀態：已連線</translation>
     </message>
     <message>
         <source>Alternative speed limits: Off</source>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <source>Connection status</source>
-        <translation type="unfinished" />
+        <translation>連線狀態</translation>
     </message>
     <message>
         <source>Alternative speed limits: On</source>
@@ -589,39 +589,39 @@
     </message>
     <message>
         <source>Connection status: Disconnected</source>
-        <translation type="unfinished" />
+        <translation>連線狀態：已斷線</translation>
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS閱讀器</translation>
     </message>
     <message>
         <source>RSS</source>
-        <translation type="unfinished" />
+        <translation>RSS</translation>
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>過濾器側邊欄</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>取消</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>移除</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>您想要繼續所有 torrents 嗎？</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>您想要暫停所有 torrents 嗎？</translation>
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>執行日誌</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>類型：</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">（無）</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>使用代理伺服器來連接同路人</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">代理伺服器僅用於Torrent</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1146,11 +1138,11 @@
     </message>
     <message>
         <source>Upload rate based</source>
-        <translation type="unfinished" />
+        <translation>基於上載速度</translation>
     </message>
     <message>
         <source>%G: Tags (separated by comma)</source>
-        <translation type="unfinished" />
+        <translation>%G：標籤（以逗號分隔）</translation>
     </message>
     <message>
         <source>Socket backlog size:</source>
@@ -1158,11 +1150,11 @@
     </message>
     <message>
         <source>Enable super seeding for torrent</source>
-        <translation type="unfinished" />
+        <translation>為 torrent 啟用超級做種</translation>
     </message>
     <message>
         <source>Prefer TCP</source>
-        <translation type="unfinished" />
+        <translation>傾向使用TCP</translation>
     </message>
     <message>
         <source>Outstanding memory when checking torrents:</source>
@@ -1170,15 +1162,15 @@
     </message>
     <message>
         <source>Anti-leech</source>
-        <translation type="unfinished" />
+        <translation>反依附</translation>
     </message>
     <message>
         <source>When ratio reaches</source>
-        <translation type="unfinished" />
+        <translation>當分享率達到</translation>
     </message>
     <message>
         <source>When seeding time reaches</source>
-        <translation type="unfinished" />
+        <translation>當做種時間達到</translation>
     </message>
     <message>
         <source>Allow multiple connections from the same IP address:</source>
@@ -1190,7 +1182,7 @@
     </message>
     <message>
         <source>Any interface</source>
-        <translation type="unfinished" />
+        <translation>任何介面</translation>
     </message>
     <message>
         <source>Always announce to all tiers:</source>
@@ -1202,19 +1194,19 @@
     </message>
     <message>
         <source>Fastest upload</source>
-        <translation type="unfinished" />
+        <translation>最快上載</translation>
     </message>
     <message>
         <source>Pause torrent</source>
-        <translation type="unfinished" />
+        <translation>暫停 torrent</translation>
     </message>
     <message>
         <source>Remove torrent and its files</source>
-        <translation type="unfinished" />
+        <translation>移除 torrent 與其檔案</translation>
     </message>
     <message>
         <source>qBittorrent Section</source>
-        <translation type="unfinished" />
+        <translation>qBittorrent部份</translation>
     </message>
     <message>
         <source>Send buffer watermark factor:</source>
@@ -1222,7 +1214,7 @@
     </message>
     <message>
         <source>libtorrent Section</source>
-        <translation type="unfinished" />
+        <translation>libtorrent部份</translation>
     </message>
     <message>
         <source>Recheck torrents on completion:</source>
@@ -1230,7 +1222,7 @@
     </message>
     <message>
         <source>Allow encryption</source>
-        <translation type="unfinished" />
+        <translation>允許加密</translation>
     </message>
     <message>
         <source>Send upload piece suggestions:</source>
@@ -1242,7 +1234,7 @@
     </message>
     <message>
         <source>Remove torrent</source>
-        <translation type="unfinished" />
+        <translation>移除 torrent</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1250,7 +1242,7 @@
     </message>
     <message>
         <source>s</source>
-        <translation type="unfinished" />
+        <translation>秒</translation>
     </message>
     <message>
         <source>Send buffer watermark:</source>
@@ -1258,11 +1250,11 @@
     </message>
     <message>
         <source>Peer proportional (throttles TCP)</source>
-        <translation type="unfinished" />
+        <translation>同路人按比例（抑制TCP）</translation>
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation type="unfinished" />
+        <translation>固定通道</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1278,15 +1270,15 @@
     </message>
     <message>
         <source>Seeding Limits</source>
-        <translation type="unfinished" />
+        <translation>做種限制</translation>
     </message>
     <message>
         <source>KiB</source>
-        <translation type="unfinished" />
+        <translation>KiB</translation>
     </message>
     <message>
         <source>Round-robin</source>
-        <translation type="unfinished" />
+        <translation>輪流上載</translation>
     </message>
     <message>
         <source>Upload slots behavior:</source>
@@ -1294,7 +1286,7 @@
     </message>
     <message>
         <source>MiB</source>
-        <translation type="unfinished" />
+        <translation>MiB</translation>
     </message>
     <message>
         <source>Send buffer low watermark:</source>
@@ -1310,7 +1302,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>工作階段逾時：</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1318,23 +1310,23 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>封鎖：</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>連續失敗後封鎖用戶端：</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>啟用 cookie 安全旗標（需要 HTTPS）</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation>標頭：鍵值對，一行一個</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished" />
+        <translation>新增自訂 HTTP 標頭</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1358,7 +1350,7 @@
     </message>
     <message>
         <source>Network interface:</source>
-        <translation type="unfinished" />
+        <translation>網路介面：</translation>
     </message>
     <message>
         <source>RSS Reader</source>
@@ -1414,27 +1406,27 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>下載者連線協定：</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 內容佈局：</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>建立子資料夾</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原版</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>不要建立子資料夾</translation>
     </message>
     <message>
         <source>Type of service (ToS) for connections to peers</source>
-        <translation type="unfinished" />
+        <translation>與 peers 連線的服務類型 (ToS)</translation>
     </message>
     <message>
         <source>Outgoing connections per second:</source>
@@ -1454,11 +1446,11 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>受信任的代理伺服器清單：</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
-        <translation type="unfinished" />
+        <translation>啟用反向代理支援</translation>
     </message>
     <message>
         <source>%J: Info hash v2</source>
@@ -1474,7 +1466,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>設定為 0 讓您的系統挑選未使用的通訊埠</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1486,7 +1478,7 @@
     </message>
     <message>
         <source>Log performance warnings</source>
-        <translation type="unfinished" />
+        <translation>記錄效能警告</translation>
     </message>
     <message>
         <source>Maximum outstanding requests to a single peer:</source>
@@ -1498,23 +1490,23 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>記憶體對映檔案</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished" />
+        <translation>預設</translation>
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>遵循 POSIX</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>這個選項在 Linux 上沒那麼有效</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
-        <translation type="unfinished" />
+        <translation>控制內部狀態更新間隔，進而影響使用者界面更新</translation>
     </message>
     <message>
         <source>Disk IO read mode:</source>
@@ -1522,7 +1514,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>停用作業系統快取</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1534,31 +1526,31 @@
     </message>
     <message>
         <source>Max concurrent HTTP announces:</source>
-        <translation type="unfinished" />
+        <translation>最大並行 HTTP 宣佈：</translation>
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>啟用作業系統快存</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>更新間距:</translation>
     </message>
     <message>
         <source>ms</source>
-        <translation type="unfinished" />
+        <translation>毫秒</translation>
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>排除的檔案名稱</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
-        <translation type="unfinished" />
+        <translation>支援國際化域名 (IDN)：</translation>
     </message>
     <message>
         <source>Run external program on torrent finished</source>
-        <translation type="unfinished" />
+        <translation>當 torrent 下載結束時執行外部程式</translation>
     </message>
     <message>
         <source>Whitelist for filtering HTTP Host header values.
@@ -1574,27 +1566,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program on torrent added</source>
-        <translation type="unfinished" />
+        <translation>當新增 torrent 時執行外部程式</translation>
     </message>
     <message>
         <source>HTTPS certificate should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS 憑證不可留空</translation>
     </message>
     <message>
         <source>Specify reverse proxy IPs (or subnets, e.g. 0.0.0.0/24) in order to use forwarded client address (X-Forwarded-For header). Use ';' to split multiple entries.</source>
-        <translation type="unfinished" />
+        <translation>指定反向代理 IP（或子網路，例如 0.0.0.0/24）以使用轉發的客戶端位置（X-Forwarded-For 標頭）。使用 ';' 來分隔多個項目。</translation>
     </message>
     <message>
         <source>HTTPS key should not be empty</source>
-        <translation type="unfinished" />
+        <translation>HTTPS 金鑰不可留空</translation>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>執行外部程式</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>已檢查的檔案</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1602,7 +1594,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>若勾選，主機名稱查詢將會透過代理伺服器完成。</translation>
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
@@ -1610,23 +1602,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>收到的元資料</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 停止條件：</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>無</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>例如：172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite 資料庫（實驗性）</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1634,27 +1626,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>快速復原檔案</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>備份日誌檔，每滿</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>天</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>備份執行日誌</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>起行</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>只保存備份日誌：</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1662,15 +1654,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>年</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>儲存路徑：</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>月</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1714,7 +1706,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>使用子分類</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -1809,7 +1801,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to permanently ban the selected peers?</source>
-        <translation type="unfinished" />
+        <translation>您確定要永遠封鎖所選的 Peers 嗎？</translation>
     </message>
     <message>
         <source>Copy IP:port</source>
@@ -1817,15 +1809,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Country/Region</source>
-        <translation type="unfinished" />
+        <translation>國家／區域</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>新增 Peers...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
-        <translation type="unfinished" />
+        <translation>Peer ID 客戶端</translation>
     </message>
 </context>
 <context>
@@ -1847,11 +1839,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Mixed</source>
-        <translation type="unfinished" />
+        <translation>混合</translation>
     </message>
     <message>
         <source>Do not download</source>
-        <translation type="unfinished" />
+        <translation>不要下載</translation>
     </message>
 </context>
 <context>
@@ -2030,15 +2022,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1（已做種 %2）</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
-        <translation type="unfinished" />
+        <translation>資訊雜湊值 v2：</translation>
     </message>
     <message>
         <source>Info Hash v1:</source>
-        <translation type="unfinished" />
+        <translation>資訊雜湊值 v1：</translation>
     </message>
     <message>
         <source>N/A</source>
@@ -2050,7 +2042,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>使用正規表示法</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2129,11 +2121,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>其他…</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>在此輸入資料夾</translation>
     </message>
 </context>
 <context>
@@ -2294,35 +2286,35 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stalled Uploading (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止上傳 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止下載 (%1)</translation>
     </message>
     <message>
         <source>Stalled Downloading (0)</source>
-        <translation type="unfinished" />
+        <translation>停止下載 (0)</translation>
     </message>
     <message>
         <source>Stalled (0)</source>
-        <translation type="unfinished" />
+        <translation>停止 (0)</translation>
     </message>
     <message>
         <source>Stalled Uploading (0)</source>
-        <translation type="unfinished" />
+        <translation>停止上傳 (0)</translation>
     </message>
     <message>
         <source>Stalled (%1)</source>
-        <translation type="unfinished" />
+        <translation>停止 (%1)</translation>
     </message>
     <message>
         <source>Checking (%1)</source>
-        <translation type="unfinished" />
+        <translation>正在檢查 (%1)</translation>
     </message>
     <message>
         <source>Checking (0)</source>
-        <translation type="unfinished" />
+        <translation>正在檢查 (0)</translation>
     </message>
 </context>
 <context>
@@ -2474,7 +2466,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>可得性</translation>
     </message>
 </context>
 <context>
@@ -2549,11 +2541,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remaining</source>
-        <translation type="unfinished" />
+        <translation>剩餘</translation>
     </message>
     <message>
         <source>Availability</source>
-        <translation type="unfinished" />
+        <translation>可得性</translation>
     </message>
     <message>
         <source>Tier</source>
@@ -2561,27 +2553,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Download Priority</source>
-        <translation type="unfinished" />
+        <translation>下載優先權</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation type="unfinished" />
+        <translation>進度</translation>
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>總大小</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>下載次數</translation>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>新增追蹤者…</translation>
     </message>
     <message>
         <source>Renamed</source>
@@ -2589,7 +2581,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原版</translation>
     </message>
 </context>
 <context>
@@ -2600,7 +2592,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>新增追蹤者</translation>
     </message>
 </context>
 <context>
@@ -2672,11 +2664,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1（已做種 %2）</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] 正在下載詮釋資料</translation>
     </message>
 </context>
 <context>
@@ -2847,27 +2839,27 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Magnet link</source>
-        <translation type="unfinished" />
+        <translation>磁性連結</translation>
     </message>
     <message>
         <source>Remove All</source>
-        <translation type="unfinished" />
+        <translation>清除全部</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>複製</translation>
     </message>
     <message>
         <source>Queue</source>
-        <translation type="unfinished" />
+        <translation>佇列</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished" />
+        <translation>新增……</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -2883,11 +2875,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Export .torrent</source>
-        <translation type="unfinished" />
+        <translation>匯出 .torrent</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>移除</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2895,7 +2887,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>正在重新命名</translation>
     </message>
 </context>
 <context>
@@ -2932,11 +2924,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>同時永久刪除檔案</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>移除 Torrent(s)</translation>
     </message>
 </context>
 <context>
@@ -3023,7 +3015,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1 年 %2 日</translation>
     </message>
 </context>
 <context>
@@ -3112,7 +3104,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>警告</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -3120,11 +3112,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>到</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>結果</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3221,18 +3213,18 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="unfinished" />
+        <translation>是</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="unfinished" />
+        <translation>否</translation>
     </message>
 </context>
 <context>
     <name>PeersAdditionDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>取消</translation>
     </message>
     <message>
         <source>Add Peers</source>
@@ -3244,7 +3236,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ok</source>
-        <translation type="unfinished" />
+        <translation>確定</translation>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
@@ -3287,7 +3279,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
@@ -3392,53 +3384,53 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>OptionDialog</name>
     <message>
         <source>All addresses</source>
-        <translation type="unfinished" />
+        <translation>全部位址</translation>
     </message>
     <message>
         <source>All IPv6 addresses</source>
-        <translation type="unfinished" />
+        <translation>所有 IPv6 位址</translation>
     </message>
     <message>
         <source>All IPv4 addresses</source>
-        <translation type="unfinished" />
+        <translation>所有 IPv4 位址</translation>
     </message>
 </context>
 <context>
     <name>SearchJobWidget</name>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>複製</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="unfinished" />
+        <translation>下載</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished" />
+        <translation>名稱</translation>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>描述頁面的 URL</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>開啟描述頁面</translation>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>下載連結</translation>
     </message>
 </context>
 <context>
     <name>TorrentContentTreeView</name>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>正在重新命名</translation>
     </message>
     <message>
         <source>New name:</source>
-        <translation type="unfinished" />
+        <translation>新名稱：</translation>
     </message>
     <message>
         <source>Renaming)</source>
@@ -3620,7 +3612,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>帶有空白從屬句「%1」的表示法（例如：%2）</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3688,7 +3680,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation>相符第1季的第2、第5、第8至15，以及由第30集起的往後分集</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3704,7 +3696,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rss Downloader</source>
-        <translation type="unfinished" />
+        <translation>RSS 下載器</translation>
     </message>
     <message>
         <source>Season number is a mandatory non-zero value</source>
@@ -3752,7 +3744,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>忽略後續符合（0 以停用）</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3774,19 +3766,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Torrent content layout:</source>
-        <translation type="unfinished" />
+        <translation>Torrent 內容佈局：</translation>
     </message>
     <message>
         <source>Create subfolder</source>
-        <translation type="unfinished" />
+        <translation>建立子資料夾</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>原始</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
-        <translation type="unfinished" />
+        <translation>不要建立子資料夾</translation>
     </message>
 </context>
 <context>
@@ -3797,7 +3789,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>全部（%1）</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3809,7 +3801,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>移除 torrents</translation>
     </message>
 </context>
 <context>
@@ -3827,7 +3819,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>一般</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3835,11 +3827,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>未知</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>全部</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3847,11 +3839,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>複製</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>選取全部</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3863,19 +3855,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>清除</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>警告</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>資訊訊息</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>警告訊息</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3883,15 +3875,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>被封鎖的IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>其中</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>狀態</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3903,7 +3895,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>訊息</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3919,7 +3911,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3927,7 +3919,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>一般訊息</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3935,11 +3927,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>重要訊息</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>一般</translation>
     </message>
     <message>
         <source>items</source>
@@ -3947,7 +3939,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>結果</translation>
     </message>
     <message>
         <source>Info</source>

@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Tilføj underkategori...</translation>
     </message>
 </context>
 <context>
@@ -389,7 +389,7 @@
     </message>
     <message>
         <source>Original author</source>
-        <translation type="unfinished" />
+        <translation>Oprindelig forfatter</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected torrents from the transfer list?</source>
@@ -593,7 +593,7 @@
     </message>
     <message>
         <source>RSS Reader</source>
-        <translation type="unfinished" />
+        <translation>RSS-læser</translation>
     </message>
     <message>
         <source>RSS</source>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished" />
+        <translation>Annuller</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Fjern</translation>
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
@@ -621,7 +621,7 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Eksekveringslog</translation>
     </message>
     <message>
         <source>Log</source>
@@ -799,10 +799,6 @@
         <translation>Type:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(Ingen)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Brug proxy til modpartsforbindelser</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Brug kun proxy til torrents</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>libtorrent-sektion</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Udgående porte (Min.) [0: Deaktiveret]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Gentjek torrents når de er færdige:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Fjern torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Udgående porte (Maks.) [0: Deaktiveret]:</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1434,7 +1418,7 @@
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -1518,7 +1502,7 @@
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Denne funktion er mindre effektiv på Linux</translation>
     </message>
     <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
@@ -1530,7 +1514,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Deaktivere OS cache</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1546,7 +1530,7 @@
     </message>
     <message>
         <source>Enable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Aktivér OS-mellemlager</translation>
     </message>
     <message>
         <source>Refresh interval:</source>
@@ -1630,11 +1614,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Eksempel: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite database (eksperimental)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1646,23 +1630,23 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Sikkerhedskopiér logfilen efter:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>dage</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Log fil</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Opførsel</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Slet sikkerhedskopieret logge som er ældre end:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
@@ -1670,15 +1654,15 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>år</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Gemmesti:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>måneder</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1722,7 +1706,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Brug underkategorier</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -2038,7 +2022,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (seedet i %2)</translation>
     </message>
     <message>
         <source>Info Hash v2:</source>
@@ -2050,7 +2034,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>N/A</source>
-        <translation type="unfinished" />
+        <translation>-</translation>
     </message>
     <message>
         <source>Progress:</source>
@@ -2058,7 +2042,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Brug regulære udtryk</translation>
     </message>
     <message>
         <source>Filename</source>
@@ -2137,11 +2121,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Other...</source>
-        <translation type="unfinished" />
+        <translation>Andet...</translation>
     </message>
     <message>
         <source>Type folder here</source>
-        <translation type="unfinished" />
+        <translation>Skriv mappe her</translation>
     </message>
 </context>
 <context>
@@ -2581,7 +2565,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Total Size</source>
-        <translation type="unfinished" />
+        <translation>Samlet størrelse</translation>
     </message>
     <message>
         <source>Times Downloaded</source>
@@ -2597,7 +2581,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
 </context>
 <context>
@@ -2680,7 +2664,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
-        <translation type="unfinished" />
+        <translation>%1 (seedet i %2)</translation>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
@@ -2895,7 +2879,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Remove</source>
-        <translation type="unfinished" />
+        <translation>Fjern</translation>
     </message>
     <message>
         <source>Rename Files...</source>
@@ -2903,7 +2887,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Omdøber</translation>
     </message>
 </context>
 <context>
@@ -3031,7 +3015,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1å %2d</translation>
     </message>
 </context>
 <context>
@@ -3120,7 +3104,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Advarsel</translation>
     </message>
     <message>
         <source>Increase window width to display additional filters</source>
@@ -3128,11 +3112,11 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished" />
+        <translation>til</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultater</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3628,7 +3612,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>An expression with an empty %1 clause (e.g. %2)</source>
-        <translation type="unfinished" />
+        <translation>Et udtryk med et tomt %1-klausul (f.eks. %2)</translation>
     </message>
     <message>
         <source>Example: </source>
@@ -3696,7 +3680,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
-        <translation type="unfinished" />
+        <translation> matcher episode 2, 5, 8 op til 15, 30 og videre for sæson 1</translation>
     </message>
     <message>
         <source>Rule deletion confirmation</source>
@@ -3760,7 +3744,7 @@ Brug ';' til af adskille flere indtastninger. Jokertegnet '*' kan bruges.</trans
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Ignorer efterfølgende match for (0 for at deaktivere)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3789,7 +3773,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Original</translation>
     </message>
     <message>
         <source>Don't create subfolder</source>
@@ -3804,7 +3788,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>All (%1)</source>
-        <translation type="unfinished" />
+        <translation>Alle (%1)</translation>
     </message>
     <message>
         <source>Trackerless (%1)</source>
@@ -3834,7 +3818,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Generelt</translation>
     </message>
     <message>
         <source>Blocked</source>
@@ -3842,11 +3826,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Ukendt</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Alle</translation>
     </message>
     <message>
         <source>showing</source>
@@ -3854,11 +3838,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopiér</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Vælg alt</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3870,19 +3854,19 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Ryd</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Advarsel</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Informationsmeddelelser</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Advarselsmeddelelser</translation>
     </message>
     <message>
         <source>Filter logs</source>
@@ -3890,15 +3874,15 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Blokerede IP'er</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>ud af</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Status</translation>
     </message>
     <message>
         <source>Timestamp</source>
@@ -3910,7 +3894,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Meddelelse</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3926,7 +3910,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3934,7 +3918,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Normale meddelelser</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3942,11 +3926,11 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Kritiske meddelelser</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normal</translation>
     </message>
     <message>
         <source>items</source>
@@ -3954,7 +3938,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Resultater</translation>
     </message>
     <message>
         <source>Info</source>

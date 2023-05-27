@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Přidat na začátek fronty</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Přidat podkategorii</translation>
     </message>
 </context>
 <context>
@@ -621,11 +621,11 @@
     </message>
     <message>
         <source>Execution Log</source>
-        <translation type="unfinished" />
+        <translation>Záznamy programu (Log)</translation>
     </message>
     <message>
         <source>Log</source>
-        <translation type="unfinished" />
+        <translation>Log</translation>
     </message>
 </context>
 <context>
@@ -799,10 +799,6 @@
         <translation>Typ:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(žádný)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -825,10 +821,6 @@
     <message>
         <source>Use proxy for peer connections</source>
         <translation>Použít proxy pro připojení k peerům</translation>
-    </message>
-    <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Použít proxy pouze pro torrenty</translation>
     </message>
     <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
@@ -1225,10 +1217,6 @@
         <translation>Sekce libtorrentu</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Odchozí porty (Min) [0: Vypnuto]</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Při dokončení překontrolovat torrenty:</translation>
     </message>
@@ -1247,10 +1235,6 @@
     <message>
         <source>Remove torrent</source>
         <translation>Odstranit torrent</translation>
-    </message>
-    <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Odchozí porty (Max) [0: Vypnuto]</translation>
     </message>
     <message>
         <source>Asynchronous I/O threads:</source>
@@ -1329,20 +1313,12 @@
         <translation>ban pro:</translation>
     </message>
     <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Stop časový limit  trackeru:</translation>
-    </message>
-    <message>
         <source>Ban client after consecutive failures:</source>
         <translation>Banovat klienta po sousledných selháních:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Povolit příznak zabezpečení souborů cookie (vyžaduje HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Trvání UPnP pronájmu [0: trvalý pronájem]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Povolit načítání RSS feedů</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Hashovací vlákna (vyžaduje libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Sloučení čtení &amp; zápisů (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1431,14 +1399,6 @@
     <message>
         <source>RSS Smart Episode Filter</source>
         <translation>RSS inteligentní filtr epizod</translation>
-    </message>
-    <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Disková cache (vyžaduje libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Interval vypršení diskové cache (vyžaduje libtorrent &lt; 2.0):</translation>
     </message>
     <message>
         <source>Validate HTTPS tracker certificate:</source>
@@ -1545,14 +1505,6 @@
         <translation>Tato volba je na Linuxu méně efektivní</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Disk IO typ (libtorrent &gt;= 2.0; vyžaduje restart):</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">Write-through (vyžaduje libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Řídí interval aktualizace vnitřního stavu, který zase ovlivní aktualizace uživatelského rozhraní</translation>
     </message>
@@ -1583,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Interval obnovení:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Limit využití fyzické paměti (RAM) (vyžaduje libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1670,51 +1618,51 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>SQLite databáze (experimental)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Obnovit typ úložného prostoru (vyžaduje restart):</translation>
     </message>
     <message>
         <source>Fastresume files</source>
-        <translation type="unfinished" />
+        <translation>Soubory rychlého obnovení</translation>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Zálohovat log soubor po:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>dnů</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Soubor logu</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Vlastnosti</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Smazat log soubor starší než:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Použít proxy pro účely BitTorrent</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>roky</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Uložit do:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>měsíců</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
@@ -1722,11 +1670,11 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Použít proxy pro obecné účely</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Použít proxy pro účely RSS</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
@@ -1758,7 +1706,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Použít podkategorie</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
@@ -1766,7 +1714,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>Přidat na začátek fronty</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
@@ -2094,15 +2042,15 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Použijte regulární výrazy</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Název souboru</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Název souboru + přípona</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
@@ -2633,7 +2581,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Originál</translation>
     </message>
 </context>
 <context>
@@ -2939,7 +2887,7 @@ Použijte ';' pro oddělení více položek. Můžete použít masku '*'.</trans
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Přejmenování</translation>
     </message>
 </context>
 <context>
@@ -3871,75 +3819,75 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     <name>ExecutionLogWidget</name>
     <message>
         <source>General</source>
-        <translation type="unfinished" />
+        <translation>Obecné</translation>
     </message>
     <message>
         <source>Blocked</source>
-        <translation type="unfinished" />
+        <translation>Zablokováno</translation>
     </message>
     <message>
         <source>Unknown</source>
-        <translation type="unfinished" />
+        <translation>Neznámá</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished" />
+        <translation>Vše</translation>
     </message>
     <message>
         <source>showing</source>
-        <translation type="unfinished" />
+        <translation>zobrazeno</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished" />
+        <translation>Kopírovat</translation>
     </message>
     <message>
         <source>Select All</source>
-        <translation type="unfinished" />
+        <translation>Vybrat vše</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished" />
+        <translation>ID</translation>
     </message>
     <message>
         <source>Log Type</source>
-        <translation type="unfinished" />
+        <translation>Typ logu</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished" />
+        <translation>Vymazat</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished" />
+        <translation>Varování</translation>
     </message>
     <message>
         <source>Information Messages</source>
-        <translation type="unfinished" />
+        <translation>Informační sdělení</translation>
     </message>
     <message>
         <source>Warning Messages</source>
-        <translation type="unfinished" />
+        <translation>Varovná sdělení</translation>
     </message>
     <message>
         <source>Filter logs</source>
-        <translation type="unfinished" />
+        <translation>Filtrování logů</translation>
     </message>
     <message>
         <source>Blocked IPs</source>
-        <translation type="unfinished" />
+        <translation>Blokované IP</translation>
     </message>
     <message>
         <source>out of</source>
-        <translation type="unfinished" />
+        <translation>mimo</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished" />
+        <translation>Stav</translation>
     </message>
     <message>
         <source>Timestamp</source>
-        <translation type="unfinished" />
+        <translation>Časové razítko</translation>
     </message>
     <message>
         <source>Clear All</source>
@@ -3947,7 +3895,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished" />
+        <translation>Zpráva</translation>
     </message>
     <message>
         <source>Log Levels:</source>
@@ -3959,11 +3907,11 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>item</source>
-        <translation type="unfinished" />
+        <translation>položka</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation type="unfinished" />
+        <translation>IP</translation>
     </message>
     <message>
         <source>Banned</source>
@@ -3971,7 +3919,7 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Normal Messages</source>
-        <translation type="unfinished" />
+        <translation>Normální sdělení</translation>
     </message>
     <message>
         <source>Critical</source>
@@ -3979,23 +3927,23 @@ Podporuje formáty: S01E01, 1x1, 2017.12.31 a 31.12.2017 (Formáty dat také pod
     </message>
     <message>
         <source>Critical Messages</source>
-        <translation type="unfinished" />
+        <translation>Kritická sdělení</translation>
     </message>
     <message>
         <source>Normal</source>
-        <translation type="unfinished" />
+        <translation>Normální</translation>
     </message>
     <message>
         <source>items</source>
-        <translation type="unfinished" />
+        <translation>položky</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished" />
+        <translation>Výsledky</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished" />
+        <translation>Info</translation>
     </message>
     <message>
         <source>Choose a log level...</source>

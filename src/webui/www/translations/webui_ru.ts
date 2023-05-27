@@ -68,7 +68,7 @@
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>В начало очереди</translation>
     </message>
 </context>
 <context>
@@ -118,7 +118,7 @@
     </message>
     <message>
         <source>Add subcategory...</source>
-        <translation type="unfinished" />
+        <translation>Добавить подкатегорию…</translation>
     </message>
 </context>
 <context>
@@ -337,7 +337,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer must be greater than 0.</source>
-        <translation>Таймер бездействия торрента должен быть больше 0.</translation>
+        <translation>Время бездействия торрента должно быть больше 0.</translation>
     </message>
     <message>
         <source>Saving Management</source>
@@ -768,7 +768,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Пробрасывать порты с помощью UPnP/NAT-PMP в моём роутере</translation>
+        <translation>Пробрасывать порты с помощью UPnP/NAT-PMP в вашем роутере</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -799,10 +799,6 @@
         <translation>Тип:</translation>
     </message>
     <message>
-        <source>(None)</source>
-        <translation type="vanished">(нет)</translation>
-    </message>
-    <message>
         <source>SOCKS4</source>
         <translation>SOCKS4</translation>
     </message>
@@ -827,12 +823,8 @@
         <translation>Использовать прокси для соединения с пирами</translation>
     </message>
     <message>
-        <source>Use proxy only for torrents</source>
-        <translation type="vanished">Использовать прокси только для торрентов</translation>
-    </message>
-    <message>
         <source>Filter path (.dat, .p2p, .p2b):</source>
-        <translation>Путь к фильтрам (.dat, .p2p, .p2b):</translation>
+        <translation>Путь фильтров (.dat, .p2p, .p2b):</translation>
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
@@ -840,7 +832,7 @@
     </message>
     <message>
         <source>Apply to trackers</source>
-        <translation>Применить к трекерам</translation>
+        <translation>Применять к трекерам</translation>
     </message>
     <message>
         <source>Global Rate Limits</source>
@@ -1126,7 +1118,7 @@
     </message>
     <message>
         <source>Torrent inactivity timer:</source>
-        <translation>Таймер бездействия торрента:</translation>
+        <translation>Время бездействия торрента:</translation>
     </message>
     <message>
         <source>Default Torrent Management Mode:</source>
@@ -1225,10 +1217,6 @@
         <translation>Раздел libtorrent</translation>
     </message>
     <message>
-        <source>Outgoing ports (Min) [0: Disabled]:</source>
-        <translation type="vanished">Минимум исходящих портов [0: отключено]:</translation>
-    </message>
-    <message>
         <source>Recheck torrents on completion:</source>
         <translation>Перепроверять торренты по завершении:</translation>
     </message>
@@ -1249,10 +1237,6 @@
         <translation>Удалить торрент</translation>
     </message>
     <message>
-        <source>Outgoing ports (Max) [0: Disabled]:</source>
-        <translation type="vanished">Максимум исходящих портов [0: отключено]:</translation>
-    </message>
-    <message>
         <source>Asynchronous I/O threads:</source>
         <translation>Потоки асинхронного ввода-вывода:</translation>
     </message>
@@ -1270,7 +1254,7 @@
     </message>
     <message>
         <source>Fixed slots</source>
-        <translation>Фиксированные слоты</translation>
+        <translation>Постоянные слоты</translation>
     </message>
     <message>
         <source>Advanced</source>
@@ -1322,15 +1306,11 @@
     </message>
     <message>
         <source>Resolve peer countries:</source>
-        <translation>Определять страну пира:</translation>
+        <translation>Определять страны пиров:</translation>
     </message>
     <message>
         <source>ban for:</source>
         <translation>заблокировать на:</translation>
-    </message>
-    <message>
-        <source>Stop tracker timeout:</source>
-        <translation type="vanished">Тайм-аут остановки трекера:</translation>
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
@@ -1339,10 +1319,6 @@
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
         <translation>Включить защиту куки (требует HTTPS)</translation>
-    </message>
-    <message>
-        <source>UPnP lease duration [0: Permanent lease]:</source>
-        <translation type="vanished">Срок аренды UPnP [0: постоянный]:</translation>
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
@@ -1359,14 +1335,6 @@
     <message>
         <source>Enable fetching RSS feeds</source>
         <translation>Включить получение RSS-лент</translation>
-    </message>
-    <message>
-        <source>Hashing threads (requires libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Потоки хеширования (требует libtorrent &gt;= 2.0):</translation>
-    </message>
-    <message>
-        <source>Coalesce reads &amp; writes (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Совмещать операции чтения и записи (нужен libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>Peer turnover threshold percentage:</source>
@@ -1422,7 +1390,7 @@
     </message>
     <message>
         <source>Disallow connection to peers on privileged ports:</source>
-        <translation>Не соединяться с пирами по общеизвестным портам:</translation>
+        <translation>Не соединять к пирам по общеизвестным портам:</translation>
     </message>
     <message>
         <source>Enable auto downloading of RSS torrents</source>
@@ -1433,20 +1401,12 @@
         <translation>Умный фильтр эпизодов RSS</translation>
     </message>
     <message>
-        <source>Disk cache (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Кэш диска в памяти (требует libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
-        <source>Disk cache expiry interval (requires libtorrent &lt; 2.0):</source>
-        <translation type="vanished">Интервал очистки кэша диска (требует libtorrent &lt; 2.0):</translation>
-    </message>
-    <message>
         <source>Validate HTTPS tracker certificate:</source>
         <translation>Проверять сертификаты трекеров HTTPS:</translation>
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation>Протокол подключения к пирам:</translation>
+        <translation>Протокол подключения пиров:</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1482,7 +1442,7 @@
     </message>
     <message>
         <source>Reannounce to all trackers when IP or port changed:</source>
-        <translation>Переанонсировать на все трекеры по смене IP/порта:</translation>
+        <translation>Повторить анонс на все трекеры по смене IP/порта:</translation>
     </message>
     <message>
         <source>Trusted proxies list:</source>
@@ -1510,7 +1470,7 @@
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
-        <translation>Предотвращать серверную подделку запроса (SSRF):</translation>
+        <translation>Снижать серверную подделку запроса (SSRF):</translation>
     </message>
     <message>
         <source>Disk queue size:</source>
@@ -1545,14 +1505,6 @@
         <translation>Этот параметр менее эффективен в Linux</translation>
     </message>
     <message>
-        <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
-        <translation type="vanished">Тип ввода-вывода диска (libtorrent &gt;= 2.0; нужен перезапуск):</translation>
-    </message>
-    <message>
-        <source>Write-through (requires libtorrent &gt;= 2.0.6)</source>
-        <translation type="vanished">Сквозная запись (требует libtorrent &gt;= 2.0.6)</translation>
-    </message>
-    <message>
         <source>It controls the internal state update interval which in turn will affect UI updates</source>
         <translation>Управляет периодом обновления внутреннего состояния, влияющим на частоту обновления интерфейса</translation>
     </message>
@@ -1583,10 +1535,6 @@
     <message>
         <source>Refresh interval:</source>
         <translation>Интервал обновления:</translation>
-    </message>
-    <message>
-        <source>Physical memory (RAM) usage limit (applied if libtorrent &gt;= 2.0):</source>
-        <translation type="vanished">Предел виртуальной памяти (только для libtorrent &gt;= 2.0):</translation>
     </message>
     <message>
         <source>ms</source>
@@ -1682,111 +1630,111 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Backup the log file after:</source>
-        <translation type="unfinished" />
+        <translation>Создавать резервную копию после:</translation>
     </message>
     <message>
         <source>days</source>
-        <translation type="unfinished" />
+        <translation>дней</translation>
     </message>
     <message>
         <source>Log file</source>
-        <translation type="unfinished" />
+        <translation>Файл журнала</translation>
     </message>
     <message>
         <source>Behavior</source>
-        <translation type="unfinished" />
+        <translation>Поведение</translation>
     </message>
     <message>
         <source>Delete backup logs older than:</source>
-        <translation type="unfinished" />
+        <translation>Удалять резервные копии старше:</translation>
     </message>
     <message>
         <source>Use proxy for BitTorrent purposes</source>
-        <translation type="unfinished" />
+        <translation>Использовать прокси для работы БитТоррента</translation>
     </message>
     <message>
         <source>years</source>
-        <translation type="unfinished" />
+        <translation>года/лет</translation>
     </message>
     <message>
         <source>Save path:</source>
-        <translation type="unfinished" />
+        <translation>Путь сохранения:</translation>
     </message>
     <message>
         <source>months</source>
-        <translation type="unfinished" />
+        <translation>месяцев</translation>
     </message>
     <message>
         <source>Remember Multi-Rename settings</source>
-        <translation type="unfinished" />
+        <translation>Запомнить настройки множественного переименования</translation>
     </message>
     <message>
         <source>Use proxy for general purposes</source>
-        <translation type="unfinished" />
+        <translation>Использовать прокси для общей работы</translation>
     </message>
     <message>
         <source>Use proxy for RSS purposes</source>
-        <translation type="unfinished" />
+        <translation>Использовать прокси для работы RSS-лент</translation>
     </message>
     <message>
         <source>Disk cache expiry interval (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Интервал очистки кэша диска (требует libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Physical memory (RAM) usage limit (applied if libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Предел виртуальной памяти (только для libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>Disk cache (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Кэш диска в памяти (требует libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Socket send buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Размер буфера отправки сокета [0: стандарт системы]:</translation>
     </message>
     <message>
         <source>Coalesce reads &amp;amp; writes (requires libtorrent &amp;lt; 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Совмещать операции чтения и записи (нужен libtorrent &amp;lt; 2.0):</translation>
     </message>
     <message>
         <source>Outgoing ports (Max) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Максимум исходящих портов [0: отключено]:</translation>
     </message>
     <message>
         <source>Socket receive buffer size [0: system default]:</source>
-        <translation type="unfinished" />
+        <translation>Размер буфера получения сокета [0: стандарт системы]:</translation>
     </message>
     <message>
         <source>Use Subcategories</source>
-        <translation type="unfinished" />
+        <translation>Использовать подкатегории</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &amp;gt;= 2.0; requires restart):</source>
-        <translation type="unfinished" />
+        <translation>Тип ввода-вывода диска (libtorrent &amp;gt;= 2.0; нужен перезапуск):</translation>
     </message>
     <message>
         <source>Add to top of queue</source>
-        <translation type="unfinished" />
+        <translation>В начало очереди</translation>
     </message>
     <message>
         <source>Write-through (requires libtorrent &amp;gt;= 2.0.6)</source>
-        <translation type="unfinished" />
+        <translation>Сквозная запись (требует libtorrent &amp;gt;= 2.0.6)</translation>
     </message>
     <message>
         <source>Stop tracker timeout [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Тайм-аут остановки трекера [0: отключено]:</translation>
     </message>
     <message>
         <source>Outgoing ports (Min) [0: disabled]:</source>
-        <translation type="unfinished" />
+        <translation>Минимум исходящих портов [0: отключено]:</translation>
     </message>
     <message>
         <source>Hashing threads (requires libtorrent &amp;gt;= 2.0):</source>
-        <translation type="unfinished" />
+        <translation>Потоки хеширования (требует libtorrent &amp;gt;= 2.0):</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: permanent lease]:</source>
-        <translation type="unfinished" />
+        <translation>Срок аренды UPnP [0: постоянный]:</translation>
     </message>
 </context>
 <context>
@@ -2094,63 +2042,63 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Использовать регулярные выражения</translation>
     </message>
     <message>
         <source>Filename</source>
-        <translation type="unfinished" />
+        <translation>Имя файла</translation>
     </message>
     <message>
         <source>Filename + Extension</source>
-        <translation type="unfinished" />
+        <translation>Имя файла + расширение</translation>
     </message>
     <message>
         <source>Enumerate Files</source>
-        <translation type="unfinished" />
+        <translation>Перечислять файлы</translation>
     </message>
     <message>
         <source>Rename failed: file or folder already exists</source>
-        <translation type="unfinished" />
+        <translation>Ошибка переименования: файл или папка уже существует</translation>
     </message>
     <message>
         <source>Match all occurences</source>
-        <translation type="unfinished" />
+        <translation>Сопоставлять все вхождения</translation>
     </message>
     <message>
         <source>Toggle Selection</source>
-        <translation type="unfinished" />
+        <translation>Переключить выбор</translation>
     </message>
     <message>
         <source>Replacement Input</source>
-        <translation type="unfinished" />
+        <translation>Ввод замены</translation>
     </message>
     <message>
         <source>Replace</source>
-        <translation type="unfinished" />
+        <translation>Заменить</translation>
     </message>
     <message>
         <source>Extension</source>
-        <translation type="unfinished" />
+        <translation>Расширение</translation>
     </message>
     <message>
         <source>Replace All</source>
-        <translation type="unfinished" />
+        <translation>Заменить все</translation>
     </message>
     <message>
         <source>Include files</source>
-        <translation type="unfinished" />
+        <translation>Включить файлы</translation>
     </message>
     <message>
         <source>Include folders</source>
-        <translation type="unfinished" />
+        <translation>Включить папки</translation>
     </message>
     <message>
         <source>Search Files</source>
-        <translation type="unfinished" />
+        <translation>Поиск файлов</translation>
     </message>
     <message>
         <source>Case sensitive</source>
-        <translation type="unfinished" />
+        <translation>Чувствительный к регистру</translation>
     </message>
 </context>
 <context>
@@ -2553,7 +2501,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Disabled</source>
-        <translation>Отключён</translation>
+        <translation>Отключено</translation>
     </message>
     <message>
         <source>Not contacted yet</source>
@@ -2629,11 +2577,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renamed</source>
-        <translation type="unfinished" />
+        <translation>Переименовано</translation>
     </message>
     <message>
         <source>Original</source>
-        <translation type="unfinished" />
+        <translation>Исходное</translation>
     </message>
 </context>
 <context>
@@ -2743,7 +2691,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Collapse/expand</source>
-        <translation type="unfinished" />
+        <translation>Свернуть/развернуть</translation>
     </message>
 </context>
 <context>
@@ -2867,7 +2815,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Force reannounce</source>
-        <translation>Переанонсировать принудительно</translation>
+        <translation>Повторить анонс принудительно</translation>
     </message>
     <message>
         <source>Edit Category</source>
@@ -2935,11 +2883,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Rename Files...</source>
-        <translation type="unfinished" />
+        <translation>Переименовать файлы…</translation>
     </message>
     <message>
         <source>Renaming</source>
-        <translation type="unfinished" />
+        <translation>Переименование</translation>
     </message>
 </context>
 <context>
@@ -3486,7 +3434,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Renaming)</source>
-        <translation type="unfinished" />
+        <translation>Переименование)</translation>
     </message>
 </context>
 <context>
@@ -3796,7 +3744,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation>Игнорировать последующие совпадения (0: откл.)</translation>
+        <translation>Пропускать дальнейшие совпадения (0: откл.)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3813,7 +3761,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
 Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also support - as a separator)</source>
-        <translation>Умный фильтр проверит номера эпизодов, чтобы предотвратить загрузку повторов.
+        <translation>Умный фильтр проверяет номера эпизодов, чтобы предотвратить загрузку повторов.
 Поддерживает форматы: S01E01, 1x1, 2017.12.31 и 31.12.2017 (Форматы дат также принимают «-» в качестве разделителя)</translation>
     </message>
     <message>
