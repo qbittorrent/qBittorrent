@@ -191,10 +191,10 @@
         const init = () => {
             $('logLevelSelect').getElements('option').each((x) => {
                 if (selectedLogLevels.indexOf(x.value.toString()) !== -1) {
-                    x.setProperty('selected', true);
+                    x.selected = true;
                 }
                 else {
-                    x.removeProperty('selected');
+                    x.selected = false;
                 }
             });
 
