@@ -1122,7 +1122,22 @@ void Application::applyMemoryWorkingSetLimit() const
     if (::getrlimit(RLIMIT_RSS, &limit) != 0)
         return;
 
-    limit.rlim_cur = memoryWorkingSetLimit() * MiB;
+    const size_t newSize = memoryWorkingSetLimit() * MiB;
+    if (newSize > limit.rlim_max)
+    {
+        // try to raise the hard limit
+        rlimit newLimit = limit;
+        newLimit.rlim_max = newSize;
+        if (::setrlimit(RLIMIT_RSS, &newLimit) != 0)
+        {
+            const auto message = QString::fromLocal8Bit(strerror(errno));
+            LogMsg(tr("Failed to set physical memory (RAM) usage hard limit. Requested size: %1. System hard limit: %2. Error code: %3. Error message: \"%4\"")
+                .arg(QString::number(newSize), QString::number(limit.rlim_max), QString::number(errno), message), Log::WARNING);
+            return;
+        }
+    }
+
+    limit.rlim_cur = newSize;
     if (::setrlimit(RLIMIT_RSS, &limit) != 0)
     {
         const auto message = QString::fromLocal8Bit(strerror(errno));
