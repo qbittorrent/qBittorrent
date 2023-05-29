@@ -623,12 +623,12 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
         // Sort trackers by hostname
-        const sortedMap = new Map([...trackerList.entries()].sort((a, b) => {
-            const xHost = getHost(a[1].url.toLowerCase());
-            const yHost = getHost(b[1].url.toLowerCase());
-            if (xHost < yHost)
+        const sortedMap = new Map([...trackerList.entries()].sort((left, right) => {
+            const leftHost = getHost(left[1].url.toLowerCase());
+            const rightHost = getHost(right[1].url.toLowerCase());
+            if (leftHost < rightHost)
                 return -1;
-            if (xHost > yHost)
+            if (leftHost > rightHost)
                 return 1;
             return 0;
         }));
