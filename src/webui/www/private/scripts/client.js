@@ -622,8 +622,19 @@ window.addEvent('load', function() {
         }
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
-        for (const [hash, tracker] of trackerList)
+        // Sort trackers by hostname
+        const sortedMap = new Map([...trackerList.entries()].sort((a, b) => {
+            const xHost = getHost(a[1].url.toLowerCase());
+            const yHost = getHost(b[1].url.toLowerCase());
+            if (xHost < yHost)
+                return -1;
+            if (xHost > yHost)
+                return 1;
+            return 0;
+        }));
+        for (const [hash, tracker] of sortedMap) {
             trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
+        }
 
         highlightSelectedTracker();
     };
