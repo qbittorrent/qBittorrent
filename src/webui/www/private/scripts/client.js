@@ -134,12 +134,7 @@ function getHost(url) {
     }
 }
 
-
 function genHash(string) {
-    if (string.startsWith('http://') || string.startsWith('https://') || string.startsWith('udp://')) {
-       string = getHost(string);
-    }
-
     // origins:
     // https://stackoverflow.com/a/8831937
     // https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0
@@ -147,6 +142,15 @@ function genHash(string) {
     for (let i = 0; i < string.length; ++i)
         hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
     return hash;
+}
+
+function genHashHost(url) {
+    url = url.toLowerCase();
+    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('udp://')) {
+        url = getHost(url);
+    }
+
+    return genHash(url);
 }
 
 function getSyncMainDataInterval() {
@@ -729,7 +733,7 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const hash = genHash(tracker);
+                            const hash = genHashHost(tracker);
 
                             let merged_torrents = torrents;
                             if (trackerList.has(hash)) {
@@ -748,7 +752,7 @@ window.addEvent('load', function() {
                     if (response['trackers_removed']) {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
-                            const hash = genHash(tracker);
+                            const hash = genHashHost(tracker);
                             trackerList.delete(hash);
                         }
                         updateTrackers = true;
