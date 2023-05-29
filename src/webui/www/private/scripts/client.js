@@ -142,7 +142,6 @@ function getHost(url) {
         return host.split(/\./).slice(-2).join('.');
     }
     catch (error) {
-        console.error(error);
         return url;
     }
 }
