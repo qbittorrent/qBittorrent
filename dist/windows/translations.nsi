@@ -17,6 +17,7 @@
 !insertmacro MUI_LANGUAGE "Esperanto"
 !insertmacro MUI_LANGUAGE "Estonian"
 !insertmacro MUI_LANGUAGE "Farsi"
+!insertmacro MUI_LANGUAGE "Filipino"
 !insertmacro MUI_LANGUAGE "Finnish"
 !insertmacro MUI_LANGUAGE "French"
 !insertmacro MUI_LANGUAGE "Galician"
@@ -80,6 +81,7 @@
 !include esperanto.nsi
 !include estonian.nsi
 !include farsi.nsi
+!include filipino.nsi
 !include finnish.nsi
 !include french.nsi
 !include galician.nsi
