@@ -602,21 +602,6 @@ window.addEvent('load', function() {
             trackerFilterList.removeChild(trackerFilterList.firstChild);
 
         const createLink = function(hash, text, count) {
-            if (text.includes("http") || text.includes("udp")) {
-                let textArr = text.split(' ');
-                if (textArr && textArr.length == 2) {
-                    try {
-                        // https://example.com/announce (%1)
-                        // set text to only the host
-                        // the host contains port (like 127.0.0.1:8181), hostname does not
-                        text = getHost(textArr[0]) + ' ' + textArr[1];
-                    }
-                    catch (error) {
-                        // console.error(error);
-                    }
-                }
-            }
-
             const html = '<a href="#" onclick="setTrackerFilter(' + hash + ');return false;">'
                 + '<img src="images/trackers.svg"/>'
                 + window.qBittorrent.Misc.escapeHtml(text.replace("%1", count)) + '</a>';
@@ -638,7 +623,7 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
         for (const [hash, tracker] of trackerList)
-            trackerFilterList.appendChild(createLink(hash, tracker.url + ' (%1)', tracker.torrents.length));
+            trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
 
         highlightSelectedTracker();
     };
