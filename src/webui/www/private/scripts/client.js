@@ -95,17 +95,49 @@ const getShowFiltersSidebar = function() {
     return (show === null) || (show === 'true');
 };
 
+function isValidIpv4Address(ip) {
+    // Regular expression to validate IPv4 address format
+    const ipv4Regex = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+    return ipv4Regex.test(ip);
+}
+
+function isValidIpv6Address(ip) {
+    // Regular expression to validate IPv6 address format
+    const ipv6Regex = /^(?:[A-F0-9]{1,4}:){7}[A-F0-9]{1,4}$/i;
+    return ipv6Regex.test(ip);
+}
+
+// getHost emulate the GUI version `QString getHost(const QString &url)`
+function getHost(url) {
+    // We want the domain + tld. Subdomains should be disregarded
+    // If failed to parse the domain or IP address, original input should be returned
+
+    try {
+        const parsedUrl = new URL(url);
+        // host: "example.com:8443"
+        // hostname: "example.com"
+        const host = parsedUrl.hostname;
+        if (!host) {
+            return url;
+        }
+
+        // host is in IP format
+        if (isValidIpv4Address(host) || isValidIpv6Address(host)) {
+            return host;
+        }
+
+        return host.split(/\./).slice(-2).join('.');
+    }
+    catch (error) {
+        console.error(error);
+        return url;
+    }
+}
+
+
 function genHash(string) {
     if (string.startsWith('http://') || string.startsWith('https://') || string.startsWith('udp://')) {
-        try {
-            let maybeURL = new URL(string);
-            // host: "example.com:8443"
-            // hostname: "example.com"
-            string = maybeURL.host;
-        }
-        catch (error) {
-            console.error(error);
-        }
+       string = getHost(string);
     }
 
     // origins:
@@ -575,10 +607,9 @@ window.addEvent('load', function() {
                 if (textArr && textArr.length == 2) {
                     try {
                         // https://example.com/announce (%1)
-                        let u = new URL(textArr[0]);
                         // set text to only the host
                         // the host contains port (like 127.0.0.1:8181), hostname does not
-                        text = u.hostname + ' ' + textArr[1];
+                        text = getHost(textArr[0]) + ' ' + textArr[1];
                     }
                     catch (error) {
                         // console.error(error);
