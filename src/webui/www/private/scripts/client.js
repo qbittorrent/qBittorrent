@@ -578,7 +578,7 @@ window.addEvent('load', function() {
                         let u = new URL(textArr[0]);
                         // set text to only the host
                         // the host contains port (like 127.0.0.1:8181), hostname does not
-                        text = u.host + ' ' + textArr[1];
+                        text = u.hostname + ' ' + textArr[1];
                     }
                     catch (error) {
                         // console.error(error);
