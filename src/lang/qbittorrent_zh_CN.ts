@@ -1280,7 +1280,7 @@ Error: %2</source>
     <message>
         <location filename="../app/application.cpp" line="299"/>
         <source>Redundant command line flag detected: &quot;%1&quot;. Portable mode implies relative fastresume.</source>
-        <translation>检测到冗余的命令行参数：“％1”。便携模式使用基于相对路径的快速恢复文件。</translation>
+        <translation>检测到冗余的命令行参数：“%1”。便携模式使用基于相对路径的快速恢复文件。</translation>
     </message>
     <message>
         <location filename="../app/application.cpp" line="303"/>

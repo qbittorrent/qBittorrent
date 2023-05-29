@@ -2278,7 +2278,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3065"/>
         <source>Aborted saving resume data. Number of outstanding torrents: %1</source>
-        <translation>中止儲存還原資料。未完成的 torrent 數量：％1</translation>
+        <translation>中止儲存還原資料。未完成的 torrent 數量：%1</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="3178"/>
@@ -2396,7 +2396,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5059"/>
         <source>Failed to parse Categories configuration. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>解析分類設定失敗。檔案：「％1」。錯誤：「%2」</translation>
+        <translation>解析分類設定失敗。檔案：「%1」。錯誤：「%2」</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5066"/>
@@ -2452,7 +2452,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5626"/>
         <source>File error alert. Torrent: &quot;%1&quot;. File: &quot;%2&quot;. Reason: &quot;%3&quot;</source>
-        <translation>檔案錯誤警告。Torrent：「%1」。檔案：「%2」。理由：「％3」</translation>
+        <translation>檔案錯誤警告。Torrent：「%1」。檔案：「%2」。理由：「%3」</translation>
     </message>
     <message>
         <location filename="../base/bittorrent/sessionimpl.cpp" line="5637"/>
@@ -8257,7 +8257,7 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="84"/>
         <source>Couldn&apos;t save RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>無法儲存 RSS 工作階段資料。檔案：「%1」。錯誤：「％2」</translation>
+        <translation>無法儲存 RSS 工作階段資料。檔案：「%1」。錯誤：「%2」</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="152"/>
@@ -8294,12 +8294,12 @@ No further notices will be issued.</source>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="273"/>
         <source>Couldn&apos;t read RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>無法讀取 RSS 工作階段資料。檔案：「%1」。錯誤：「％2」</translation>
+        <translation>無法讀取 RSS 工作階段資料。檔案：「%1」。錯誤：「%2」</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="282"/>
         <source>Couldn&apos;t parse RSS session data. File: &quot;%1&quot;. Error: &quot;%2&quot;</source>
-        <translation>無法解析 RSS 工作階段資料。檔案：「%1」。錯誤：「％2」</translation>
+        <translation>無法解析 RSS 工作階段資料。檔案：「%1」。錯誤：「%2」</translation>
     </message>
     <message>
         <location filename="../base/rss/rss_session.cpp" line="289"/>
