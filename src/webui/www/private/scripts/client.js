@@ -742,6 +742,17 @@ window.addEvent('load', function() {
                             const torrents = response['trackers'][tracker];
                             const hash = genHash(getHost(tracker));
 
+                            // the reason why we need the merge here is because the web ui api returned trackers may have different url for the same tracker host.
+                            // for example, some private trackers use diff urls for each torrent from the same tracker host.
+                            // then we got the response of `trackers` from qBittorrent api will like:
+                            // {
+                            //     "trackers": {
+                            //         "https://example.com/announce?passkey=identify_info1": ["hash1"],
+                            //         "https://example.com/announce?passkey=identify_info2": ["hash2"],
+                            //         "https://example.com/announce?passkey=identify_info3": ["hash3"]
+                            //     }
+                            // }
+                            // after getHost(), those torrents all belongs to `example.com`
                             let merged_torrents = torrents;
                             if (trackerList.has(hash)) {
                                 merged_torrents = trackerList.get(hash).torrents.concat(torrents);
