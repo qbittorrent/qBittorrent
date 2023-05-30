@@ -125,8 +125,8 @@ function getHost(url) {
     // We want the domain + tld. Subdomains should be disregarded
     // If failed to parse the domain or IP address, original input should be returned
 
-    url = url.toLowerCase();
-    if (!(url.startsWith('http:') || url.startsWith('https:') || url.startsWith('udp:'))) {
+    const scheme = url.slice(0, 6).toLowerCase();
+    if (!(scheme.startsWith('http:') || scheme.startsWith('https:') || scheme.startsWith('udp:'))) {
         return url;
     }
 
@@ -144,6 +144,7 @@ function getHost(url) {
             return host;
         }
 
+        // TODO: support TLDs like .co.uk
         return host.split(/\./).slice(-2).join('.');
     }
     catch (error) {
