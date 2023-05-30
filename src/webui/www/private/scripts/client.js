@@ -125,6 +125,11 @@ function getHost(url) {
     // We want the domain + tld. Subdomains should be disregarded
     // If failed to parse the domain or IP address, original input should be returned
 
+    url = url.toLowerCase();
+    if (!(url.startsWith('http:') || url.startsWith('https:') || url.startsWith('udp:'))) {
+        return url;
+    }
+
     try {
         const parsedUrl = new URL(url);
         // host: "example.com:8443"
@@ -154,15 +159,6 @@ function genHash(string) {
     for (let i = 0; i < string.length; ++i)
         hash = ((Math.imul(hash, 31) + string.charCodeAt(i)) | 0);
     return hash;
-}
-
-function genHashHost(url) {
-    url = url.toLowerCase();
-    if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('udp://')) {
-        url = getHost(url);
-    }
-
-    return genHash(url);
 }
 
 function getSyncMainDataInterval() {
@@ -745,7 +741,7 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const hash = genHashHost(tracker);
+                            const hash = genHash(getHost(tracker));
 
                             let merged_torrents = torrents;
                             if (trackerList.has(hash)) {
@@ -764,7 +760,7 @@ window.addEvent('load', function() {
                     if (response['trackers_removed']) {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
-                            const hash = genHashHost(tracker);
+                            const hash = genHash(getHost(tracker));
                             trackerList.delete(hash);
                         }
                         updateTrackers = true;
