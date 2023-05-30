@@ -127,6 +127,8 @@ function getHost(url) {
     }
 
     try {
+        // hack: URL can not get hostname from udp protocol
+        url = url.replace('udp://', 'https://');
         const parsedUrl = new URL(url);
         // host: "example.com:8443"
         // hostname: "example.com"
