@@ -97,7 +97,7 @@ const getShowFiltersSidebar = function() {
 
 // v4 and v6 js regex credit https://github.com/sindresorhus/ip-regex/blob/3e220cae3eb66ecfdf4f7678bea7306ceaa41c76/index.js#LL7C1-L25C56
 // license MIT
-function isValidIpAddress(ip) {
+const isValidIpAddress = (() => {
     const v4 = '(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}';
     const v6segment = '[a-fA-F\\d]{1,4}';
 
@@ -113,8 +113,8 @@ function isValidIpAddress(ip) {
     replace(/\s*\/\/.*$/gm, '').replace(/\n/g, '').trim();
     const ipRegex = new RegExp(`(?:^${v4}$)|(?:^${v6}$)`);
 
-    return ipRegex.test(ip);
-}
+    return (ip) => ipRegex.test(ip);
+})();
 
 // getHost emulate the GUI version `QString getHost(const QString &url)`
 function getHost(url) {
