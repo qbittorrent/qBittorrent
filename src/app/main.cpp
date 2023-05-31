@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2014  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2014-2023  Vladimir Golovnev <glassez@yandex.ru>
  * Copyright (C) 2006  Christophe Dumez <chris@qbittorrent.org>
  *
  * This program is free software; you can redistribute it and/or
@@ -59,6 +59,10 @@
 #include <QSplashScreen>
 #include <QTimer>
 
+#ifdef Q_OS_WIN
+#include <QOperatingSystemVersion>
+#endif
+
 #ifdef QBT_STATIC_QT
 #include <QtPlugin>
 Q_IMPORT_PLUGIN(QICOPlugin)
@@ -104,7 +108,12 @@ int main(int argc, char *argv[])
 #endif
 
     // We must save it here because QApplication constructor may change it
-    bool isOneArg = (argc == 2);
+    const bool isOneArg = (argc == 2);
+
+#if !defined(DISABLE_GUI) && defined(Q_OS_WIN)
+    if (QOperatingSystemVersion::current() >= QOperatingSystemVersion::Windows10)
+        QApplication::setStyle(u"Fusion"_s);
+#endif
 
     // `app` must be declared out of try block to allow display message box in case of exception
     std::unique_ptr<Application> app;
