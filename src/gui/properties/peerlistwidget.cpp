@@ -121,7 +121,7 @@ PeerListWidget::PeerListWidget(PropertiesWidget *parent)
     // List Model
     m_listModel = new QStandardItemModel(0, PeerListColumns::COL_COUNT, this);
     m_listModel->setHeaderData(PeerListColumns::COUNTRY, Qt::Horizontal, tr("Country/Region")); // Country flag column
-    m_listModel->setHeaderData(PeerListColumns::IP, Qt::Horizontal, tr("IP"));
+    m_listModel->setHeaderData(PeerListColumns::IP, Qt::Horizontal, tr("IP/Address"));
     m_listModel->setHeaderData(PeerListColumns::PORT, Qt::Horizontal, tr("Port"));
     m_listModel->setHeaderData(PeerListColumns::FLAGS, Qt::Horizontal, tr("Flags"));
     m_listModel->setHeaderData(PeerListColumns::CONNECTION, Qt::Horizontal, tr("Connection"));
@@ -434,9 +434,6 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
         const bool hideZeroValues = Preferences::instance()->getHideZeroValues();
         for (const BitTorrent::PeerInfo &peer : peers)
         {
-            if (peer.address().ip.isNull())
-                continue;
-
             const PeerEndpoint peerEndpoint {peer.address(), peer.connectionType()};
 
             auto itemIter = m_peerItems.find(peerEndpoint);
@@ -448,7 +445,7 @@ void PeerListWidget::loadPeers(const BitTorrent::Torrent *torrent)
 
                 const bool useI2PSocket = peer.useI2PSocket();
 
-                const QString peerIPString = useI2PSocket ? tr("N/A") : peerEndpoint.address.ip.toString();
+                const QString peerIPString = useI2PSocket ? peer.I2PAddress() : peerEndpoint.address.ip.toString();
                 setModelData(m_listModel, row, PeerListColumns::IP, peerIPString, peerIPString, {}, peerIPString);
 
                 const QString peerIPHiddenString = useI2PSocket ? QString() : peerEndpoint.address.ip.toString();
