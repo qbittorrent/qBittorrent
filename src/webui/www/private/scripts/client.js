@@ -634,7 +634,7 @@ window.addEvent('load', function() {
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
         // Sort trackers by hostname
-        const sortedMap = new Map([...trackerList.entries()].sort((left, right) => {
+        const sortedList = [...trackerList.entries()].sort((left, right) => {
             const leftHost = getHost(left[1].url.toLowerCase());
             const rightHost = getHost(right[1].url.toLowerCase());
             if (leftHost < rightHost)
@@ -642,8 +642,8 @@ window.addEvent('load', function() {
             if (leftHost > rightHost)
                 return 1;
             return 0;
-        }));
-        for (const [hash, tracker] of sortedMap) {
+        });
+        for (const [hash, tracker] of sortedList) {
             trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
         }
 
