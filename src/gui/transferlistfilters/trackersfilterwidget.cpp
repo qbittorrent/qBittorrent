@@ -62,18 +62,14 @@ namespace
 
     QString getHost(const QString &url)
     {
-        // We want the domain + tld. Subdomains should be disregarded
-        // If failed to parse the domain or IP address, original input should be returned
+        // We want the hostname.
+        // If failed to parse the domain, original input should be returned
 
         const QString host = QUrl(url).host();
         if (host.isEmpty())
             return url;
 
-        // host is in IP format
-        if (!QHostAddress(host).isNull())
-            return host;
-
-        return host.section(u'.', -2, -1);
+        return host;
     }
 
     const QString NULL_HOST = u""_qs;
