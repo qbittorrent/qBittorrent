@@ -100,7 +100,7 @@ function getHost(url) {
     // We want the hostname.
     // If failed to parse the domain, original input should be returned
 
-    if (!/^(?:https*|udp):/i.test(url)) {
+    if (!/^(?:https?|udp):/i.test(url)) {
         return url;
     }
 
