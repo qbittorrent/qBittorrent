@@ -106,8 +106,8 @@ const isValidIpAddress = (() => {
 
 // getHost emulate the GUI version `QString getHost(const QString &url)`
 function getHost(url) {
-    // We want the domain + tld. Subdomains should be disregarded
-    // If failed to parse the domain or IP address, original input should be returned
+    // We want the hostname.
+    // If failed to parse the domain, original input should be returned
 
     const scheme = url.slice(0, 6).toLowerCase();
     if (!(scheme.startsWith('http:') || scheme.startsWith('https:') || scheme.startsWith('udp:'))) {
@@ -117,21 +117,14 @@ function getHost(url) {
     try {
         // hack: URL can not get hostname from udp protocol
         url = url.replace(/^udp:/, 'https:');
-        const parsedUrl = new URL(url);
         // host: "example.com:8443"
         // hostname: "example.com"
-        const host = parsedUrl.hostname;
+        const host = new URL(url).hostname;
         if (!host) {
             return url;
         }
 
-        // host is in IP format
-        if (isValidIpAddress(host)) {
-            return host;
-        }
-
-        // TODO: support TLDs like .co.uk
-        return host.split(/\./).slice(-2).join('.');
+        return host;
     }
     catch (error) {
         return url;
