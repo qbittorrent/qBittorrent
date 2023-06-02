@@ -41,6 +41,7 @@ window.qBittorrent.Misc = (function() {
             friendlyFloat: friendlyFloat,
             parseHtmlLinks: parseHtmlLinks,
             escapeHtml: escapeHtml,
+            naturalSortCollator: naturalSortCollator,
             safeTrim: safeTrim,
             toFixedPointString: toFixedPointString,
             containsAllTerms: containsAllTerms,
@@ -177,6 +178,8 @@ window.qBittorrent.Misc = (function() {
         div.remove();
         return escapedString;
     };
+
+    const naturalSortCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
     const safeTrim = function(value) {
         try {

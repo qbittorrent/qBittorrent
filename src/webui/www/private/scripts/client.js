@@ -623,16 +623,12 @@ window.addEvent('load', function() {
 
         // Sort trackers by hostname
         const sortedList = [...trackerList.entries()].sort((left, right) => {
-            const leftHost = getHost(left[1].url.toLowerCase());
-            const rightHost = getHost(right[1].url.toLowerCase());
-            if (leftHost < rightHost)
-                return -1;
-            if (leftHost > rightHost)
-                return 1;
-            return 0;
+            const leftHost = getHost(left[1].url);
+            const rightHost = getHost(right[1].url);
+            return window.qBittorrent.Misc.naturalSortCollator.compare(leftHost, rightHost);
         });
         for (const [hash, tracker] of sortedList) {
-            trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
+            trackerFilterList.appendChild(createLink(hash, (getHost(tracker.url) + ' (%1)'), tracker.torrents.length));
         }
 
         highlightSelectedTracker();
