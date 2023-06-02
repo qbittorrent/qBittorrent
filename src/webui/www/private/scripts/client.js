@@ -100,8 +100,7 @@ function getHost(url) {
     // We want the hostname.
     // If failed to parse the domain, original input should be returned
 
-    const scheme = url.slice(0, 6).toLowerCase();
-    if (!(scheme.startsWith('http:') || scheme.startsWith('https:') || scheme.startsWith('udp:'))) {
+    if (!/^(?:https*|udp):/.test(url)) {
         return url;
     }
 
