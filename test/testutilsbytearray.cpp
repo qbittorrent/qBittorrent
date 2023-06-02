@@ -1,7 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
  * Copyright (C) 2023  Vladimir Golovnev <glassez@yandex.ru>
- * Copyright (C) 2018  Mike Tzou (Chocobo1)
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -27,21 +26,29 @@
  * exception statement from your version.
  */
 
-#pragma once
+#include <QTest>
 
-#include <Qt>
-#include <QtContainerFwd>
+#include "base/global.h"
+#include "base/utils/bytearray.h"
 
-class QByteArray;
-
-namespace Utils::ByteArray
+class TestUtilsByteArray final : public QObject
 {
-    // Mimic QStringView(in).split(sep, behavior)
-    QVector<QByteArray> splitToViews(const QByteArray &in, const QByteArray &sep, Qt::SplitBehavior behavior = Qt::KeepEmptyParts);
+    Q_OBJECT
+    Q_DISABLE_COPY_MOVE(TestUtilsByteArray)
 
-    // Mimic QByteArray::mid(pos, len) but instead of returning a full-copy,
-    // we only return a partial view
-    const QByteArray midView(const QByteArray &in, int pos, int len = -1);
+public:
+    TestUtilsByteArray() = default;
 
-    QByteArray toBase32(const QByteArray &in);
-}
+private slots:
+    void testBase32Encode() const
+    {
+        QCOMPARE(Utils::ByteArray::toBase32(""), "");
+        QCOMPARE(Utils::ByteArray::toBase32("0123456789"), "GAYTEMZUGU3DOOBZ");
+        QCOMPARE(Utils::ByteArray::toBase32("ABCDE"), "IFBEGRCF");
+        QCOMPARE(Utils::ByteArray::toBase32("0000000000"), "GAYDAMBQGAYDAMBQ");
+        QCOMPARE(Utils::ByteArray::toBase32("1"), "GE======");
+    }
+};
+
+QTEST_APPLESS_MAIN(TestUtilsByteArray)
+#include "testutilsbytearray.moc"

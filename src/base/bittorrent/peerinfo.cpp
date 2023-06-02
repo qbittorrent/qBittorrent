@@ -1,6 +1,6 @@
 /*
  * Bittorrent Client using Qt and libtorrent.
- * Copyright (C) 2015-2022  Vladimir Golovnev <glassez@yandex.ru>
+ * Copyright (C) 2015-2023  Vladimir Golovnev <glassez@yandex.ru>
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -33,6 +33,7 @@
 #include "base/bittorrent/ltqbitarray.h"
 #include "base/net/geoipmanager.h"
 #include "base/unicodestrings.h"
+#include "base/utils/bytearray.h"
 #include "peeraddress.h"
 
 using namespace BitTorrent;
@@ -168,11 +169,31 @@ bool PeerInfo::isPlaintextEncrypted() const
 
 PeerAddress PeerInfo::address() const
 {
+    if (useI2PSocket())
+        return {};
+
     // fast path for platforms which boost.asio internal struct maps to `sockaddr`
     return {QHostAddress(m_nativeInfo.ip.data()), m_nativeInfo.ip.port()};
     // slow path for the others
     //return {QHostAddress(QString::fromStdString(m_nativeInfo.ip.address().to_string()))
     //    , m_nativeInfo.ip.port()};
+}
+
+QString PeerInfo::I2PAddress() const
+{
+    if (!useI2PSocket())
+        return {};
+
+#ifdef QBT_USES_LIBTORRENT2
+    if (m_I2PAddress.isEmpty())
+    {
+        const lt::sha256_hash destHash = m_nativeInfo.i2p_destination();
+        const QByteArray base32Dest = Utils::ByteArray::toBase32({destHash.data(), destHash.size()}).replace('=', "").toLower();
+        m_I2PAddress = QString::fromLatin1(base32Dest) + u".b32.i2p";
+    }
+#endif
+
+    return m_I2PAddress;
 }
 
 QString PeerInfo::client() const

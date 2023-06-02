@@ -37,8 +37,6 @@ install:
       RMDIR /S /Q "%CACHE_DIR%" & MKDIR "%CACHE_DIR%" &&
       appveyor DownloadFile "%QBT_LIB_URL%" -FileName "c:\qbt_lib.7z" && 7z x "c:\qbt_lib.7z" -o"%CACHE_DIR%" > nul &&
       COPY "c:\version_new" "%CACHE_DIR%\version")
-  # Qt stay compressed in cache
-  - 7z x "%CACHE_DIR%\qt5_64.7z" -o"c:\qbt" > nul
 
 before_build:
   # setup env
@@ -47,6 +45,7 @@ before_build:
   # setup project
   - COPY /Y "%CACHE_DIR%\conf.pri" "%REPO_DIR%"
   # workarounds
+  - MKDIR "c:\qbt"
   - MKLINK /J "c:\qbt\base" "%CACHE_DIR%\base"
 
 build_script:
@@ -69,8 +68,11 @@ after_build:
   - COPY src\release\qbittorrent.exe upload
   - COPY src\release\qbittorrent.pdb upload
   - COPY "%CACHE_DIR%\base\bin\libcrypto-1_1-x64.dll" upload
+  - COPY "%CACHE_DIR%\base\bin\libcrypto-1_1-x64.pdb" upload
   - COPY "%CACHE_DIR%\base\bin\libssl-1_1-x64.dll" upload
-  - COPY "%CACHE_DIR%\base\lib\torrent-rasterbar.dll" upload
+  - COPY "%CACHE_DIR%\base\bin\libssl-1_1-x64.pdb" upload
+  - COPY "%CACHE_DIR%\base\bin\torrent-rasterbar.dll" upload
+  - COPY "%CACHE_DIR%\base\bin\torrent-rasterbar.pdb" upload
   - COPY "%CACHE_DIR%\base\lib\zlib1.dll" upload
   - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Core.dll upload
   - COPY C:\Qt\5.15.2\msvc2019_64\bin\Qt5Gui.dll upload

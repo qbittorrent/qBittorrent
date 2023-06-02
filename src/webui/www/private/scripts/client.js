@@ -95,6 +95,49 @@ const getShowFiltersSidebar = function() {
     return (show === null) || (show === 'true');
 };
 
+const isValidIpAddress = (() => {
+    const v4 = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/([0-9]|[1-2][0-9]|3[0-2]))?$';
+    const v6segment = '[0-9A-Fa-f]{1,4}';
+    const v6 = `^\\s*(((${v6segment}:){7}(${v6segment}|:))|((${v6segment}:){6}(:${v6segment}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|((${v6segment}:){5}(((:${v6segment}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|((${v6segment}:){4}(((:${v6segment}){1,3})|((:${v6segment})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){3}(((:${v6segment}){1,4})|((:${v6segment}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){2}(((:${v6segment}){1,5})|((:${v6segment}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){1}(((:${v6segment}){1,6})|((:${v6segment}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:${v6segment}){1,7})|((:${v6segment}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*(\\/(\\d|\\d\\d|1[0-1]\\d|12[0-8]))?$`;
+    const ipRegex = new RegExp(`(?:^${v4}$)|(?:^${v6}$)`);
+
+    return (ip) => ipRegex.test(ip);
+})();
+
+// getHost emulate the GUI version `QString getHost(const QString &url)`
+function getHost(url) {
+    // We want the domain + tld. Subdomains should be disregarded
+    // If failed to parse the domain or IP address, original input should be returned
+
+    const scheme = url.slice(0, 6).toLowerCase();
+    if (!(scheme.startsWith('http:') || scheme.startsWith('https:') || scheme.startsWith('udp:'))) {
+        return url;
+    }
+
+    try {
+        // hack: URL can not get hostname from udp protocol
+        url = url.replace(/^udp:/, 'https:');
+        const parsedUrl = new URL(url);
+        // host: "example.com:8443"
+        // hostname: "example.com"
+        const host = parsedUrl.hostname;
+        if (!host) {
+            return url;
+        }
+
+        // host is in IP format
+        if (isValidIpAddress(host)) {
+            return host;
+        }
+
+        // TODO: support TLDs like .co.uk
+        return host.split(/\./).slice(-2).join('.');
+    }
+    catch (error) {
+        return url;
+    }
+}
+
 function genHash(string) {
     // origins:
     // https://stackoverflow.com/a/8831937
@@ -578,8 +621,19 @@ window.addEvent('load', function() {
         }
         trackerFilterList.appendChild(createLink(TRACKERS_TRACKERLESS, 'QBT_TR(Trackerless (%1))QBT_TR[CONTEXT=TrackerFiltersList]', trackerlessTorrentsCount));
 
-        for (const [hash, tracker] of trackerList)
-            trackerFilterList.appendChild(createLink(hash, tracker.url + ' (%1)', tracker.torrents.length));
+        // Sort trackers by hostname
+        const sortedList = [...trackerList.entries()].sort((left, right) => {
+            const leftHost = getHost(left[1].url.toLowerCase());
+            const rightHost = getHost(right[1].url.toLowerCase());
+            if (leftHost < rightHost)
+                return -1;
+            if (leftHost > rightHost)
+                return 1;
+            return 0;
+        });
+        for (const [hash, tracker] of sortedList) {
+            trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
+        }
 
         highlightSelectedTracker();
     };
@@ -674,10 +728,29 @@ window.addEvent('load', function() {
                     if (response['trackers']) {
                         for (const tracker in response['trackers']) {
                             const torrents = response['trackers'][tracker];
-                            const hash = genHash(tracker);
+                            const hash = genHash(getHost(tracker));
+
+                            // the reason why we need the merge here is because the web ui api returned trackers may have different url for the same tracker host.
+                            // for example, some private trackers use diff urls for each torrent from the same tracker host.
+                            // then we got the response of `trackers` from qBittorrent api will like:
+                            // {
+                            //     "trackers": {
+                            //         "https://example.com/announce?passkey=identify_info1": ["hash1"],
+                            //         "https://example.com/announce?passkey=identify_info2": ["hash2"],
+                            //         "https://example.com/announce?passkey=identify_info3": ["hash3"]
+                            //     }
+                            // }
+                            // after getHost(), those torrents all belongs to `example.com`
+                            let merged_torrents = torrents;
+                            if (trackerList.has(hash)) {
+                                merged_torrents = trackerList.get(hash).torrents.concat(torrents);
+                                // deduplicate is needed when the webui opens in multi tabs
+                                merged_torrents = merged_torrents.filter((item, pos) => merged_torrents.indexOf(item) === pos);
+                            }
+
                             trackerList.set(hash, {
                                 url: tracker,
-                                torrents: torrents
+                                torrents: merged_torrents
                             });
                         }
                         updateTrackers = true;
@@ -685,7 +758,7 @@ window.addEvent('load', function() {
                     if (response['trackers_removed']) {
                         for (let i = 0; i < response['trackers_removed'].length; ++i) {
                             const tracker = response['trackers_removed'][i];
-                            const hash = genHash(tracker);
+                            const hash = genHash(getHost(tracker));
                             trackerList.delete(hash);
                         }
                         updateTrackers = true;

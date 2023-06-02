@@ -199,6 +199,7 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
     // Torrent filter
     m_columnFilterEdit = new LineEdit;
     m_columnFilterEdit->setPlaceholderText(tr("Filter torrents..."));
+    m_columnFilterEdit->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
     m_columnFilterEdit->setFixedWidth(200);
     m_columnFilterEdit->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(m_columnFilterEdit, &QWidget::customContextMenuRequested, this, &MainWindow::showFilterContextMenu);
