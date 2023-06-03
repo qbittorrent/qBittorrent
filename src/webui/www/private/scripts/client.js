@@ -874,14 +874,17 @@ window.addEvent('load', function() {
             case 'connected':
                 $('connectionStatus').src = 'images/connected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
                 break;
             case 'firewalled':
                 $('connectionStatus').src = 'images/firewalled.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
                 break;
             default:
                 $('connectionStatus').src = 'images/disconnected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
                 break;
         }
 
@@ -924,10 +927,12 @@ window.addEvent('load', function() {
         if (enabled) {
             $('alternativeSpeedLimits').src = 'images/slow.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
         }
         else {
             $('alternativeSpeedLimits').src = 'images/slow_off.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
         }
     };
 
