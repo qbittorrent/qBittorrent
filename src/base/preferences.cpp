@@ -1224,6 +1224,16 @@ void Preferences::setConfirmRemoveAllTags(const bool enabled)
     setValue(u"Preferences/Advanced/confirmRemoveAllTags"_qs, enabled);
 }
 
+bool Preferences::confirmPauseAndResumeAll() const
+{
+    return value(u"GUI/ConfirmActions/PauseAndResumeAllTorrents"_qs, true);
+}
+
+void Preferences::setConfirmPauseAndResumeAll(const bool enabled)
+{
+    setValue(u"GUI/ConfirmActions/PauseAndResumeAllTorrents"_qs, enabled);
+}
+
 #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
