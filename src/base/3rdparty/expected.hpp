@@ -14,7 +14,7 @@
 
 #define expected_lite_MAJOR  0
 #define expected_lite_MINOR  6
-#define expected_lite_PATCH  2
+#define expected_lite_PATCH  3
 
 #define expected_lite_VERSION  expected_STRINGIFY(expected_lite_MAJOR) "." expected_STRINGIFY(expected_lite_MINOR) "." expected_STRINGIFY(expected_lite_PATCH)
 
@@ -405,7 +405,7 @@ struct is_nothrow_swappable
 };
 } // namespace detail
 
-// is [nothow] swappable:
+// is [nothrow] swappable:
 
 template< typename T >
 struct is_swappable : decltype( detail::is_swappable::test<T>(0) ){};
@@ -1002,11 +1002,12 @@ public:
 
     // x.x.5.2.4 Swap
 
+    template< typename U=E >
     nsel_REQUIRES_R( void,
-        std17::is_swappable<E>::value
+        std17::is_swappable<U>::value
     )
     swap( unexpected_type & other ) noexcept (
-        std17::is_nothrow_swappable<E>::value
+        std17::is_nothrow_swappable<U>::value
     )
     {
         using std::swap;
@@ -2164,22 +2165,30 @@ private:
 
 // x.x.4.6 expected<>: comparison operators
 
-template< typename T1, typename E1, typename T2, typename E2 >
+template< typename T1, typename E1, typename T2, typename E2
+    nsel_REQUIRES_T(
+        !std::is_void<T1>::value && !std::is_void<T2>::value
+    )
+>
 constexpr bool operator==( expected<T1,E1> const & x, expected<T2,E2> const & y )
 {
-    return bool(x) != bool(y) ? false : bool(x) == false ? x.error() == y.error() : *x == *y;
+    return bool(x) != bool(y) ? false : bool(x) ? *x == *y : x.error() == y.error();
+}
+
+template< typename T1, typename E1, typename T2, typename E2
+    nsel_REQUIRES_T(
+        std::is_void<T1>::value && std::is_void<T2>::value
+    )
+>
+constexpr bool operator==( expected<T1,E1> const & x, expected<T2,E2> const & y )
+{
+    return bool(x) != bool(y) ? false : bool(x) || static_cast<bool>( x.error() == y.error() );
 }
 
 template< typename T1, typename E1, typename T2, typename E2 >
 constexpr bool operator!=( expected<T1,E1> const & x, expected<T2,E2> const & y )
 {
     return !(x == y);
-}
-
-template< typename E1, typename E2 >
-constexpr bool operator==( expected<void,E1> const & x, expected<void,E1> const & y )
-{
-    return bool(x) != bool(y) ? false : bool(x) == false ? x.error() == y.error() : true;
 }
 
 #if nsel_P0323R <= 2
@@ -2212,13 +2221,21 @@ constexpr bool operator>=( expected<T,E> const & x, expected<T,E> const & y )
 
 // x.x.4.7 expected: comparison with T
 
-template< typename T1, typename E1, typename T2 >
+template< typename T1, typename E1, typename T2
+    nsel_REQUIRES_T(
+        !std::is_void<T1>::value
+    )
+>
 constexpr bool operator==( expected<T1,E1> const & x, T2 const & v )
 {
     return bool(x) ? *x == v : false;
 }
 
-template< typename T1, typename E1, typename T2 >
+template< typename T1, typename E1, typename T2
+    nsel_REQUIRES_T(
+        !std::is_void<T1>::value
+    )
+>
 constexpr bool operator==(T2 const & v, expected<T1,E1> const & x )
 {
     return bool(x) ? v == *x : false;

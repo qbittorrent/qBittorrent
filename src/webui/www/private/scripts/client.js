@@ -106,10 +106,10 @@ function getHost(url) {
 
     try {
         // hack: URL can not get hostname from udp protocol
-        url = url.replace(/^udp:/i, 'https:');
+        const parsedUrl = new URL(url.replace(/^udp:/i, 'https:'));
         // host: "example.com:8443"
         // hostname: "example.com"
-        const host = new URL(url).hostname;
+        const host = parsedUrl.hostname;
         if (!host) {
             return url;
         }
@@ -606,16 +606,12 @@ window.addEvent('load', function() {
 
         // Sort trackers by hostname
         const sortedList = [...trackerList.entries()].sort((left, right) => {
-            const leftHost = getHost(left[1].url.toLowerCase());
-            const rightHost = getHost(right[1].url.toLowerCase());
-            if (leftHost < rightHost)
-                return -1;
-            if (leftHost > rightHost)
-                return 1;
-            return 0;
+            const leftHost = getHost(left[1].url);
+            const rightHost = getHost(right[1].url);
+            return window.qBittorrent.Misc.naturalSortCollator.compare(leftHost, rightHost);
         });
         for (const [hash, tracker] of sortedList) {
-            trackerFilterList.appendChild(createLink(hash, getHost(tracker.url) + ' (%1)', tracker.torrents.length));
+            trackerFilterList.appendChild(createLink(hash, (getHost(tracker.url) + ' (%1)'), tracker.torrents.length));
         }
 
         highlightSelectedTracker();
@@ -857,14 +853,17 @@ window.addEvent('load', function() {
             case 'connected':
                 $('connectionStatus').src = 'images/connected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Connected)QBT_TR[CONTEXT=MainWindow]';
                 break;
             case 'firewalled':
                 $('connectionStatus').src = 'images/firewalled.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Firewalled)QBT_TR[CONTEXT=MainWindow]';
                 break;
             default:
                 $('connectionStatus').src = 'images/disconnected.svg';
                 $('connectionStatus').alt = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
+                $('connectionStatus').title = 'QBT_TR(Connection status: Disconnected)QBT_TR[CONTEXT=MainWindow]';
                 break;
         }
 
@@ -907,10 +906,12 @@ window.addEvent('load', function() {
         if (enabled) {
             $('alternativeSpeedLimits').src = 'images/slow.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: On)QBT_TR[CONTEXT=MainWindow]';
         }
         else {
             $('alternativeSpeedLimits').src = 'images/slow_off.svg';
             $('alternativeSpeedLimits').alt = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
+            $('alternativeSpeedLimits').title = 'QBT_TR(Alternative speed limits: Off)QBT_TR[CONTEXT=MainWindow]';
         }
     };
 
