@@ -500,7 +500,6 @@ void SearchPluginManager::updateNova()
     updateFile(Path(u"nova2.py"_qs), true);
     updateFile(Path(u"nova2dl.py"_qs), true);
     updateFile(Path(u"novaprinter.py"_qs), true);
-    updateFile(Path(u"sgmllib3.py"_qs), false);
     updateFile(Path(u"socks.py"_qs), false);
 }
 
