@@ -165,9 +165,7 @@ private:
 
 #ifndef DISABLE_GUI
     void createStartupProgressDialog();
-#ifdef Q_OS_MACOS
     bool event(QEvent *) override;
-#endif
 #endif
 
     ApplicationInstanceManager *m_instanceManager = nullptr;

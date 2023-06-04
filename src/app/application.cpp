@@ -54,6 +54,7 @@
 #include <QMessageBox>
 #include <QPixmapCache>
 #include <QProgressDialog>
+#include <QStyle>
 #ifdef Q_OS_WIN
 #include <QSessionManager>
 #include <QSharedMemory>
@@ -1003,9 +1004,9 @@ void Application::createStartupProgressDialog()
     });
 }
 
-#ifdef Q_OS_MACOS
 bool Application::event(QEvent *ev)
 {
+#ifdef Q_OS_MACOS
     if (ev->type() == QEvent::FileOpen)
     {
         QString path = static_cast<QFileOpenEvent *>(ev)->file();
@@ -1025,10 +1026,18 @@ bool Application::event(QEvent *ev)
 
         return true;
     }
+#endif // Q_OS_MACOS
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 1, 0))
+    if (ev->type() == QEvent::ApplicationPaletteChange)
+    {
+        // Workaround to force the widgets that have style sheet applied to use new palette
+        QApplication::setStyle(QApplication::style()->name());
+    }
+#endif
 
     return BaseApplication::event(ev);
 }
-#endif // Q_OS_MACOS
 #endif // DISABLE_GUI
 
 void Application::initializeTranslation()
