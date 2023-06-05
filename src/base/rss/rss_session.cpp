@@ -45,6 +45,7 @@
 #include "../profile.h"
 #include "../settingsstorage.h"
 #include "../utils/fs.h"
+#include "../utils/io.h"
 #include "rss_article.h"
 #include "rss_feed.h"
 #include "rss_folder.h"
@@ -261,33 +262,35 @@ Item *Session::itemByPath(const QString &path) const
 
 void Session::load()
 {
-    QFile itemsFile {(m_confFileStorage->storageDir() / Path(FEEDS_FILE_NAME)).data()};
-    if (!itemsFile.exists())
-    {
-        loadLegacy();
-        return;
-    }
+    const int fileMaxSize = 10 * 1024 * 1024;
+    const Path path = m_confFileStorage->storageDir() / Path(FEEDS_FILE_NAME);
 
-    if (!itemsFile.open(QFile::ReadOnly))
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
     {
-        LogMsg(tr("Couldn't read RSS session data. File: \"%1\". Error: \"%2\"")
-            .arg(itemsFile.fileName(), itemsFile.errorString()), Log::WARNING);
+        if (readResult.error().status == Utils::IO::ReadError::NotExist)
+        {
+            loadLegacy();
+            return;
+        }
+
+        LogMsg(tr("Failed to read RSS session data. %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
     QJsonParseError jsonError;
-    const QJsonDocument jsonDoc = QJsonDocument::fromJson(itemsFile.readAll(), &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
-        LogMsg(tr("Couldn't parse RSS session data. File: \"%1\". Error: \"%2\"")
-            .arg(itemsFile.fileName(), jsonError.errorString()), Log::WARNING);
+        LogMsg(tr("Failed to parse RSS session data. File: \"%1\". Error: \"%2\"")
+            .arg(path.toString(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isObject())
     {
-        LogMsg(tr("Couldn't load RSS session data. File: \"%1\". Error: Invalid data format.")
-            .arg(itemsFile.fileName()), Log::WARNING);
+        LogMsg(tr("Failed to load RSS session data. File: \"%1\". Error: \"Invalid data format.\"")
+            .arg(path.toString()), Log::WARNING);
         return;
     }
 

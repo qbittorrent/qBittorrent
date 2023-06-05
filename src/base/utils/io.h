@@ -33,6 +33,8 @@
 
 #include <libtorrent/fwd.hpp>
 
+#include <QIODevice>
+
 #include "base/3rdparty/expected.hpp"
 #include "base/pathfwd.h"
 
@@ -80,6 +82,23 @@ namespace Utils::IO
         std::shared_ptr<QByteArray> m_buffer;
         int m_bufferSize = 0;
     };
+
+    struct ReadError
+    {
+        enum Code
+        {
+            NotExist,
+            ExceedSize,
+            SizeMismatch
+        };
+
+        Code status = {};
+        QString message;
+    };
+
+    // TODO: define a specific type for `additionalMode`
+    // providing `size` is explicit and is strongly recommended
+    nonstd::expected<QByteArray, ReadError> readFile(const Path &path, qint64 size, QIODevice::OpenMode additionalMode = {});
 
     nonstd::expected<void, QString> saveToFile(const Path &path, const QByteArray &data);
     nonstd::expected<void, QString> saveToFile(const Path &path, const lt::entry &data);

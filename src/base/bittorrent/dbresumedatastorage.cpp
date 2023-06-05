@@ -41,7 +41,6 @@
 
 #include <QByteArray>
 #include <QDebug>
-#include <QFile>
 #include <QMutex>
 #include <QSet>
 #include <QSqlDatabase>

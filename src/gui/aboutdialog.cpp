@@ -28,11 +28,10 @@
 
 #include "aboutdialog.h"
 
-#include <QFile>
-
 #include "base/global.h"
 #include "base/path.h"
 #include "base/unicodestrings.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/version.h"
 #include "ui_aboutdialog.h"
@@ -75,27 +74,24 @@ AboutDialog::AboutDialog(QWidget *parent)
     m_ui->labelMascot->setPixmap(Utils::Gui::scaledPixmap(Path(u":/icons/mascot.png"_qs), this));
 
     // Thanks
-    QFile thanksfile(u":/thanks.html"_qs);
-    if (thanksfile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (const auto readResult = Utils::IO::readFile(Path(u":/thanks.html"_qs), -1, QIODevice::Text)
+        ; readResult)
     {
-        m_ui->textBrowserThanks->setHtml(QString::fromUtf8(thanksfile.readAll().constData()));
-        thanksfile.close();
+        m_ui->textBrowserThanks->setHtml(QString::fromUtf8(readResult.value()));
     }
 
     // Translation
-    QFile translatorsfile(u":/translators.html"_qs);
-    if (translatorsfile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (const auto readResult = Utils::IO::readFile(Path(u":/translators.html"_qs), -1, QIODevice::Text)
+        ; readResult)
     {
-        m_ui->textBrowserTranslation->setHtml(QString::fromUtf8(translatorsfile.readAll().constData()));
-        translatorsfile.close();
+        m_ui->textBrowserTranslation->setHtml(QString::fromUtf8(readResult.value()));
     }
 
     // License
-    QFile licensefile(u":/gpl.html"_qs);
-    if (licensefile.open(QIODevice::ReadOnly | QIODevice::Text))
+    if (const auto readResult = Utils::IO::readFile(Path(u":/gpl.html"_qs), -1, QIODevice::Text)
+        ; readResult)
     {
-        m_ui->textBrowserLicense->setHtml(QString::fromUtf8(licensefile.readAll().constData()));
-        licensefile.close();
+        m_ui->textBrowserLicense->setHtml(QString::fromUtf8(readResult.value()));
     }
 
     // Software Used

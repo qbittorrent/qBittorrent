@@ -33,7 +33,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <QDir>
-#include <QFile>
 #include <QFileInfo>
 #include <QJsonDocument>
 #include <QMimeDatabase>
@@ -48,6 +47,7 @@
 #include "base/preferences.h"
 #include "base/types.h"
 #include "base/utils/fs.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/random.h"
 #include "base/utils/string.h"
@@ -496,23 +496,32 @@ void WebApplication::sendFile(const Path &path)
         }
     }
 
-    QFile file {path.data()};
-    if (!file.open(QIODevice::ReadOnly))
+    const auto readResult = Utils::IO::readFile(path, MAX_ALLOWED_FILESIZE);
+    if (!readResult)
     {
-        qDebug("File %s was not found!", qUtf8Printable(path.toString()));
-        throw NotFoundHTTPError();
+        const QString message = tr("Web server error. %1").arg(readResult.error().message);
+
+        switch (readResult.error().status)
+        {
+        case Utils::IO::ReadError::NotExist:
+            qDebug("%s", qUtf8Printable(message));
+            // don't write log messages here to avoid exhausting the disk space
+            throw NotFoundHTTPError();
+
+        case Utils::IO::ReadError::ExceedSize:
+            qWarning("%s", qUtf8Printable(message));
+            LogMsg(message, Log::WARNING);
+            throw InternalServerErrorHTTPError(readResult.error().message);
+
+        case Utils::IO::ReadError::SizeMismatch:
+            LogMsg(message, Log::WARNING);
+            throw InternalServerErrorHTTPError(readResult.error().message);
+        }
+
+        throw InternalServerErrorHTTPError(tr("Web server error. Unknown error."));
     }
 
-    if (file.size() > MAX_ALLOWED_FILESIZE)
-    {
-        qWarning("%s: exceeded the maximum allowed file size!", qUtf8Printable(path.toString()));
-        throw InternalServerErrorHTTPError(tr("Exceeded the maximum allowed file size (%1)!")
-                                           .arg(Utils::Misc::friendlyUnit(MAX_ALLOWED_FILESIZE)));
-    }
-
-    QByteArray data {file.readAll()};
-    file.close();
-
+    QByteArray data = readResult.value();
     const QMimeType mimeType = QMimeDatabase().mimeTypeForFileNameAndData(path.data(), data);
     const bool isTranslatable = !m_isAltUIUsed && mimeType.inherits(u"text/plain"_qs);
 

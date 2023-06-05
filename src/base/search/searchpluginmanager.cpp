@@ -36,6 +36,7 @@
 #include <QDomDocument>
 #include <QDomElement>
 #include <QDomNode>
+#include <QFile>
 #include <QPointer>
 #include <QProcess>
 #include <QUrl>
@@ -517,7 +518,7 @@ void SearchPluginManager::update()
     nova.start(Utils::ForeignApps::pythonInfo().executableName, params, QIODevice::ReadOnly);
     nova.waitForFinished();
 
-    const auto capabilities = QString::fromUtf8(nova.readAll());
+    const auto capabilities = QString::fromUtf8(nova.readAllStandardOutput());
     QDomDocument xmlDoc;
     if (!xmlDoc.setContent(capabilities))
     {
@@ -629,13 +630,15 @@ Path SearchPluginManager::pluginPath(const QString &name)
 
 PluginVersion SearchPluginManager::getPluginVersion(const Path &filePath)
 {
+    const int lineMaxLength = 16;
+
     QFile pluginFile {filePath.data()};
     if (!pluginFile.open(QIODevice::ReadOnly | QIODevice::Text))
         return {};
 
     while (!pluginFile.atEnd())
     {
-        const auto line = QString::fromUtf8(pluginFile.readLine()).remove(u' ');
+        const auto line = QString::fromUtf8(pluginFile.readLine(lineMaxLength)).remove(u' ');
         if (!line.startsWith(u"#VERSION:", Qt::CaseInsensitive)) continue;
 
         const QString versionStr = line.mid(9);

@@ -46,7 +46,6 @@
 
 #include <QByteArray>
 #include <QDebug>
-#include <QFile>
 #include <QPointer>
 #include <QSet>
 #include <QStringList>

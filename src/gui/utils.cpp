@@ -177,10 +177,12 @@ void Utils::Gui::openFolderSelect(const Path &path)
     QObject::connect(thread, &QThread::finished, thread, &QObject::deleteLater);
     thread->start();
 #elif defined(Q_OS_UNIX) && !defined(Q_OS_MACOS)
+    const int lineMaxLength = 64;
+
     QProcess proc;
     proc.start(u"xdg-mime"_qs, {u"query"_qs, u"default"_qs, u"inode/directory"_qs});
     proc.waitForFinished();
-    const auto output = QString::fromLocal8Bit(proc.readLine().simplified());
+    const auto output = QString::fromLocal8Bit(proc.readLine(lineMaxLength).simplified());
     if ((output == u"dolphin.desktop") || (output == u"org.kde.dolphin.desktop"))
     {
         proc.startDetached(u"dolphin"_qs, {u"--select"_qs, path.toString()});
@@ -190,7 +192,7 @@ void Utils::Gui::openFolderSelect(const Path &path)
     {
         proc.start(u"nautilus"_qs, {u"--version"_qs});
         proc.waitForFinished();
-        const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine()).remove(QRegularExpression(u"[^0-9.]"_qs));
+        const auto nautilusVerStr = QString::fromLocal8Bit(proc.readLine(lineMaxLength)).remove(QRegularExpression(u"[^0-9.]"_qs));
         using NautilusVersion = Utils::Version<3>;
         if (NautilusVersion::fromString(nautilusVerStr, {1, 0, 0}) > NautilusVersion(3, 28, 0))
             proc.startDetached(u"nautilus"_qs, {(Fs::isDir(path) ? path.parentPath() : path).toString()});

@@ -30,7 +30,6 @@
 
 #include <QAction>
 #include <QDir>
-#include <QFile>
 #include <QHeaderView>
 #include <QMenu>
 #include <QMessageBox>
