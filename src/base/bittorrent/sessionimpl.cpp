@@ -528,10 +528,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_qs), u"127.0.0.1"_qs}
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_qs), 7656}
     , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_qs), false}
-    , m_I2PInboundQuantity(BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_qs), 3)
-    , m_I2POutboundQuantity(BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_qs), 3)
-    , m_I2PInboundLength(BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_qs), 3)
-    , m_I2POutboundLength(BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_qs), 3)
+    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_qs), 3}
+    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_qs), 3}
+    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_qs), 3}
+    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_qs), 3}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
