@@ -103,6 +103,7 @@ namespace
 
 const QString S_NAME = u"name"_qs;
 const QString S_ENABLED = u"enabled"_qs;
+const QString S_PRIORITY = u"priority"_qs;
 const QString S_USE_REGEX = u"useRegex"_qs;
 const QString S_MUST_CONTAIN = u"mustContain"_qs;
 const QString S_MUST_NOT_CONTAIN = u"mustNotContain"_qs;
@@ -126,6 +127,7 @@ namespace RSS
     {
         QString name;
         bool enabled = true;
+        int priority = 0;
 
         QStringList mustContain;
         QStringList mustNotContain;
@@ -147,6 +149,7 @@ namespace RSS
         {
             return (left.name == right.name)
                     && (left.enabled == right.enabled)
+                    && (left.priority == right.priority)
                     && (left.mustContain == right.mustContain)
                     && (left.mustNotContain == right.mustNotContain)
                     && (left.episodeFilter == right.episodeFilter)
@@ -457,6 +460,7 @@ QJsonObject AutoDownloadRule::toJsonObject() const
     const BitTorrent::AddTorrentParams &addTorrentParams = m_dataPtr->addTorrentParams;
 
     return {{S_ENABLED, isEnabled()}
+        , {S_PRIORITY, priority()}
         , {S_USE_REGEX, useRegex()}
         , {S_MUST_CONTAIN, mustContain()}
         , {S_MUST_NOT_CONTAIN, mustNotContain()}
@@ -483,11 +487,13 @@ AutoDownloadRule AutoDownloadRule::fromJsonObject(const QJsonObject &jsonObj, co
 {
     AutoDownloadRule rule {(name.isEmpty() ? jsonObj.value(S_NAME).toString() : name)};
 
+    rule.setEnabled(jsonObj.value(S_ENABLED).toBool(true));
+    rule.setPriority(jsonObj.value(S_PRIORITY).toInt(0));
+
     rule.setUseRegex(jsonObj.value(S_USE_REGEX).toBool(false));
     rule.setMustContain(jsonObj.value(S_MUST_CONTAIN).toString());
     rule.setMustNotContain(jsonObj.value(S_MUST_NOT_CONTAIN).toString());
     rule.setEpisodeFilter(jsonObj.value(S_EPISODE_FILTER).toString());
-    rule.setEnabled(jsonObj.value(S_ENABLED).toBool(true));
     rule.setLastMatch(QDateTime::fromString(jsonObj.value(S_LAST_MATCH).toString(), Qt::RFC2822Date));
     rule.setIgnoreDays(jsonObj.value(S_IGNORE_DAYS).toInt());
     rule.setUseSmartFilter(jsonObj.value(S_SMART_FILTER).toBool(false));
@@ -663,6 +669,16 @@ bool AutoDownloadRule::isEnabled() const
 void AutoDownloadRule::setEnabled(const bool enable)
 {
     m_dataPtr->enabled = enable;
+}
+
+int AutoDownloadRule::priority() const
+{
+    return m_dataPtr->priority;
+}
+
+void AutoDownloadRule::setPriority(const int value)
+{
+    m_dataPtr->priority = value;
 }
 
 QDateTime AutoDownloadRule::lastMatch() const

@@ -28,6 +28,8 @@
 
 #include "rss_autodownloader.h"
 
+#include <queue>
+
 #include <QDataStream>
 #include <QDebug>
 #include <QJsonDocument>
@@ -166,25 +168,27 @@ AutoDownloader *AutoDownloader::instance()
 
 bool AutoDownloader::hasRule(const QString &ruleName) const
 {
-    return m_rules.contains(ruleName);
+    return m_rulesByName.contains(ruleName);
 }
 
 AutoDownloadRule AutoDownloader::ruleByName(const QString &ruleName) const
 {
-    return m_rules.value(ruleName, AutoDownloadRule(u"Unknown Rule"_qs));
+    const auto index = m_rulesByName.value(ruleName, -1);
+    return m_rules.value(index, AutoDownloadRule(u"Unknown Rule"_qs));
 }
 
 QList<AutoDownloadRule> AutoDownloader::rules() const
 {
-    return m_rules.values();
+    return m_rules;
 }
 
-void AutoDownloader::insertRule(const AutoDownloadRule &rule)
+void AutoDownloader::setRule(const AutoDownloadRule &rule)
 {
     if (!hasRule(rule.name()))
     {
         // Insert new rule
         setRule_impl(rule);
+        sortRules();
         m_dirty = true;
         store();
         emit ruleAdded(rule.name());
@@ -194,6 +198,7 @@ void AutoDownloader::insertRule(const AutoDownloadRule &rule)
     {
         // Update existing rule
         setRule_impl(rule);
+        sortRules();
         m_dirty = true;
         storeDeferred();
         emit ruleChanged(rule.name());
@@ -203,12 +208,12 @@ void AutoDownloader::insertRule(const AutoDownloadRule &rule)
 
 bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleName)
 {
-    if (!hasRule(ruleName)) return false;
-    if (hasRule(newRuleName)) return false;
+    if (!hasRule(ruleName) || hasRule(newRuleName))
+        return false;
 
-    AutoDownloadRule rule = m_rules.take(ruleName);
-    rule.setName(newRuleName);
-    m_rules.insert(newRuleName, rule);
+    const auto index = m_rulesByName.take(ruleName);
+    m_rules[index].setName(newRuleName);
+    m_rulesByName.insert(newRuleName, index);
     m_dirty = true;
     store();
     emit ruleRenamed(newRuleName, ruleName);
@@ -217,13 +222,21 @@ bool AutoDownloader::renameRule(const QString &ruleName, const QString &newRuleN
 
 void AutoDownloader::removeRule(const QString &ruleName)
 {
-    if (m_rules.contains(ruleName))
+    if (!hasRule(ruleName))
+        return;
+
+    emit ruleAboutToBeRemoved(ruleName);
+
+    const auto index = m_rulesByName.take(ruleName);
+    m_rules.removeAt(index);
+    for (qsizetype i = index; i < m_rules.size(); ++i)
     {
-        emit ruleAboutToBeRemoved(ruleName);
-        m_rules.remove(ruleName);
-        m_dirty = true;
-        store();
+        const AutoDownloadRule &rule = m_rules[i];
+        m_rulesByName[rule.name()] = i;
     }
+
+    m_dirty = true;
+    store();
 }
 
 QByteArray AutoDownloader::exportRules(AutoDownloader::RulesFileFormat format) const
@@ -261,7 +274,7 @@ QByteArray AutoDownloader::exportRulesToJSONFormat() const
 void AutoDownloader::importRulesFromJSONFormat(const QByteArray &data)
 {
     for (const auto &rule : asConst(rulesFromJSON(data)))
-        insertRule(rule);
+        setRule(rule);
 }
 
 QByteArray AutoDownloader::exportRulesToLegacyFormat() const
@@ -288,7 +301,7 @@ void AutoDownloader::importRulesFromLegacyFormat(const QByteArray &data)
         throw ParsingError(tr("Invalid data format"));
 
     for (const QVariant &val : asConst(dict))
-        insertRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
+        setRule(AutoDownloadRule::fromLegacyDict(val.toHash()));
 }
 
 QStringList AutoDownloader::smartEpisodeFilters() const
@@ -399,7 +412,31 @@ void AutoDownloader::handleFeedURLChanged(Feed *feed, const QString &oldURL)
 
 void AutoDownloader::setRule_impl(const AutoDownloadRule &rule)
 {
-    m_rules.insert(rule.name(), rule);
+    const QString ruleName = rule.name();
+    const auto index = m_rulesByName.value(ruleName, -1);
+    if (index < 0)
+    {
+        m_rules.append(rule);
+        m_rulesByName[ruleName] = m_rules.size() - 1;
+    }
+    else
+    {
+        m_rules[index] = rule;
+    }
+}
+
+void AutoDownloader::sortRules()
+{
+    std::sort(m_rules.begin(), m_rules.end(), [](const AutoDownloadRule &lhs, const AutoDownloadRule &rhs)
+    {
+        return (lhs.priority() < rhs.priority());
+    });
+
+    for (qsizetype i = 0; i < m_rules.size(); ++i)
+    {
+        const AutoDownloadRule &rule = m_rules[i];
+        m_rulesByName[rule.name()] = i;
+    }
 }
 
 void AutoDownloader::addJobForArticle(const Article *article)
@@ -429,6 +466,9 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 
         m_dirty = true;
         storeDeferred();
+
+        LogMsg(tr("RSS article '%1' is accepted by rule '%2'. Trying to add torrent...")
+                .arg(job->articleData.value(Article::KeyTitle).toString(), rule.name()));
 
         const auto torrentURL = job->articleData.value(Article::KeyTorrentURL).toString();
         BitTorrent::Session::instance()->addTorrent(torrentURL, rule.addTorrentParams());
@@ -477,6 +517,7 @@ void AutoDownloader::loadRules(const QByteArray &data)
         const auto rules = rulesFromJSON(data);
         for (const auto &rule : rules)
             setRule_impl(rule);
+        sortRules();
     }
     catch (const ParsingError &error)
     {
@@ -493,7 +534,7 @@ void AutoDownloader::loadRulesLegacy()
     {
         const auto rule = AutoDownloadRule::fromLegacyDict(ruleVar.toHash());
         if (!rule.name().isEmpty())
-            insertRule(rule);
+            setRule(rule);
     }
 }
 

@@ -223,7 +223,6 @@ MainWindow::MainWindow(IGUIApplication *app, WindowState initialState)
 
     // Transfer List tab
     m_transferListWidget = new TransferListWidget(hSplitter, this);
-    // m_transferListWidget->setStyleSheet("QTreeView {border: none;}");  // borderless
     m_propertiesWidget = new PropertiesWidget(hSplitter);
     connect(m_transferListWidget, &TransferListWidget::currentTorrentChanged, m_propertiesWidget, &PropertiesWidget::loadTorrentInfos);
     hSplitter->addWidget(m_transferListWidget);

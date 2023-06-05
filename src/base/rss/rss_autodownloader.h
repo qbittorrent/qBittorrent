@@ -94,7 +94,7 @@ namespace RSS
         AutoDownloadRule ruleByName(const QString &ruleName) const;
         QList<AutoDownloadRule> rules() const;
 
-        void insertRule(const AutoDownloadRule &rule);
+        void setRule(const AutoDownloadRule &rule);
         bool renameRule(const QString &ruleName, const QString &newRuleName);
         void removeRule(const QString &ruleName);
 
@@ -118,6 +118,7 @@ namespace RSS
     private:
         void timerEvent(QTimerEvent *event) override;
         void setRule_impl(const AutoDownloadRule &rule);
+        void sortRules();
         void resetProcessingQueue();
         void startProcessing();
         void addJobForArticle(const Article *article);
@@ -141,7 +142,8 @@ namespace RSS
         QTimer *m_processingTimer = nullptr;
         Utils::Thread::UniquePtr m_ioThread;
         AsyncFileStorage *m_fileStorage = nullptr;
-        QHash<QString, AutoDownloadRule> m_rules;
+        QList<AutoDownloadRule> m_rules;
+        QHash<QString, qsizetype> m_rulesByName;
         QList<QSharedPointer<ProcessingJob>> m_processingQueue;
         QHash<QString, QSharedPointer<ProcessingJob>> m_waitingJobs;
         bool m_dirty = false;
