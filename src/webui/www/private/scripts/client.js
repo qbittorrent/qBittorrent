@@ -95,28 +95,18 @@ const getShowFiltersSidebar = function() {
     return (show === null) || (show === 'true');
 };
 
-const isValidIpAddress = (() => {
-    const v4 = '^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\\/([0-9]|[1-2][0-9]|3[0-2]))?$';
-    const v6segment = '[0-9A-Fa-f]{1,4}';
-    const v6 = `^\\s*(((${v6segment}:){7}(${v6segment}|:))|((${v6segment}:){6}(:${v6segment}|((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|((${v6segment}:){5}(((:${v6segment}){1,2})|:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3})|:))|((${v6segment}:){4}(((:${v6segment}){1,3})|((:${v6segment})?:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){3}(((:${v6segment}){1,4})|((:${v6segment}){0,2}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){2}(((:${v6segment}){1,5})|((:${v6segment}){0,3}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|((${v6segment}:){1}(((:${v6segment}){1,6})|((:${v6segment}){0,4}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:))|(:(((:${v6segment}){1,7})|((:${v6segment}){0,5}:((25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)(\\.(25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]?\\d)){3}))|:)))(%.+)?\\s*(\\/(\\d|\\d\\d|1[0-1]\\d|12[0-8]))?$`;
-    const ipRegex = new RegExp(`(?:^${v4}$)|(?:^${v6}$)`);
-
-    return (ip) => ipRegex.test(ip);
-})();
-
 // getHost emulate the GUI version `QString getHost(const QString &url)`
 function getHost(url) {
-    // We want the domain + tld. Subdomains should be disregarded
-    // If failed to parse the domain or IP address, original input should be returned
+    // We want the hostname.
+    // If failed to parse the domain, original input should be returned
 
-    const scheme = url.slice(0, 6).toLowerCase();
-    if (!(scheme.startsWith('http:') || scheme.startsWith('https:') || scheme.startsWith('udp:'))) {
+    if (!/^(?:https?|udp):/i.test(url)) {
         return url;
     }
 
     try {
         // hack: URL can not get hostname from udp protocol
-        const parsedUrl = new URL(url.replace(/^udp:/, 'https:'));
+        const parsedUrl = new URL(url.replace(/^udp:/i, 'https:'));
         // host: "example.com:8443"
         // hostname: "example.com"
         const host = parsedUrl.hostname;
@@ -124,13 +114,7 @@ function getHost(url) {
             return url;
         }
 
-        // host is in IP format
-        if (isValidIpAddress(host)) {
-            return host;
-        }
-
-        // TODO: support TLDs like .co.uk
-        return host.split(/\./).slice(-2).join('.');
+        return host;
     }
     catch (error) {
         return url;
