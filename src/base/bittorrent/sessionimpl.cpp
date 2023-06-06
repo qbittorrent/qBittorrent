@@ -528,6 +528,10 @@ SessionImpl::SessionImpl(QObject *parent)
     , m_I2PAddress {BITTORRENT_SESSION_KEY(u"I2P/Address"_qs), u"127.0.0.1"_qs}
     , m_I2PPort {BITTORRENT_SESSION_KEY(u"I2P/Port"_qs), 7656}
     , m_I2PMixedMode {BITTORRENT_SESSION_KEY(u"I2P/MixedMode"_qs), false}
+    , m_I2PInboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/InboundQuantity"_qs), 3}
+    , m_I2POutboundQuantity {BITTORRENT_SESSION_KEY(u"I2P/OutboundQuantity"_qs), 3}
+    , m_I2PInboundLength {BITTORRENT_SESSION_KEY(u"I2P/InboundLength"_qs), 3}
+    , m_I2POutboundLength {BITTORRENT_SESSION_KEY(u"I2P/OutboundLength"_qs), 3}
     , m_seedingLimitTimer {new QTimer(this)}
     , m_resumeDataTimer {new QTimer(this)}
     , m_ioThread {new QThread}
@@ -1677,6 +1681,14 @@ lt::settings_pack SessionImpl::loadLTSettings() const
         settingsPack.set_int(lt::settings_pack::i2p_port, 0);
         settingsPack.set_bool(lt::settings_pack::allow_i2p_mixed, false);
     }
+
+#ifdef QBT_USES_LIBTORRENT2
+    // I2P session options
+    settingsPack.set_int(lt::settings_pack::i2p_inbound_quantity, I2PInboundQuantity());
+    settingsPack.set_int(lt::settings_pack::i2p_outbound_quantity, I2POutboundQuantity());
+    settingsPack.set_int(lt::settings_pack::i2p_inbound_length, I2PInboundLength());
+    settingsPack.set_int(lt::settings_pack::i2p_outbound_length, I2POutboundLength());
+#endif
 
     // proxy
     settingsPack.set_int(lt::settings_pack::proxy_type, lt::settings_pack::none);
@@ -3638,6 +3650,62 @@ void SessionImpl::setI2PMixedMode(const bool enabled)
         m_I2PMixedMode = enabled;
         configureDeferred();
     }
+}
+
+int SessionImpl::I2PInboundQuantity() const
+{
+    return m_I2PInboundQuantity;
+}
+
+void SessionImpl::setI2PInboundQuantity(const int value)
+{
+    if (value == m_I2PInboundQuantity)
+        return;
+
+    m_I2PInboundQuantity = value;
+    configureDeferred();
+}
+
+int SessionImpl::I2POutboundQuantity() const
+{
+    return m_I2POutboundQuantity;
+}
+
+void SessionImpl::setI2POutboundQuantity(const int value)
+{
+    if (value == m_I2POutboundQuantity)
+        return;
+
+    m_I2POutboundQuantity = value;
+    configureDeferred();
+}
+
+int SessionImpl::I2PInboundLength() const
+{
+    return m_I2PInboundLength;
+}
+
+void SessionImpl::setI2PInboundLength(const int value)
+{
+    if (value == m_I2PInboundLength)
+        return;
+
+    m_I2PInboundLength = value;
+    configureDeferred();
+}
+
+int SessionImpl::I2POutboundLength() const
+{
+    return m_I2POutboundLength;
+}
+
+void SessionImpl::setI2POutboundLength(const int value)
+{
+    if (value == m_I2POutboundLength)
+        return;
+
+    m_I2POutboundLength = value;
+    configureDeferred();
 }
 
 bool SessionImpl::isProxyPeerConnectionsEnabled() const

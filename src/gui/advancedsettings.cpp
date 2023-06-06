@@ -153,6 +153,12 @@ namespace
         PEER_TURNOVER_CUTOFF,
         PEER_TURNOVER_INTERVAL,
         REQUEST_QUEUE_SIZE,
+#ifdef QBT_USES_LIBTORRENT2
+        I2P_INBOUND_QUANTITY,
+        I2P_OUTBOUND_QUANTITY,
+        I2P_INBOUND_LENGTH,
+        I2P_OUTBOUND_LENGTH,
+#endif
 
         ROW_COUNT
     };
@@ -319,6 +325,13 @@ void AdvancedSettings::saveAdvancedSettings() const
     session->setPeerTurnoverInterval(m_spinBoxPeerTurnoverInterval.value());
     // Maximum outstanding requests to a single peer
     session->setRequestQueueSize(m_spinBoxRequestQueueSize.value());
+#ifdef QBT_USES_LIBTORRENT2
+    // I2P session options
+    session->setI2PInboundQuantity(m_spinBoxI2PInboundQuantity.value());
+    session->setI2POutboundQuantity(m_spinBoxI2POutboundQuantity.value());
+    session->setI2PInboundLength(m_spinBoxI2PInboundLength.value());
+    session->setI2POutboundLength(m_spinBoxI2POutboundLength.value());
+#endif
 }
 
 #ifndef QBT_USES_LIBTORRENT2
@@ -826,6 +839,28 @@ void AdvancedSettings::loadAdvancedSettings()
     m_spinBoxRequestQueueSize.setValue(session->requestQueueSize());
     addRow(REQUEST_QUEUE_SIZE, (tr("Maximum outstanding requests to a single peer") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#max_out_request_queue", u"(?)"))
             , &m_spinBoxRequestQueueSize);
+#ifdef QBT_USES_LIBTORRENT2
+    m_spinBoxI2PInboundQuantity.setMinimum(1);
+    m_spinBoxI2PInboundQuantity.setMaximum(16);
+    m_spinBoxI2PInboundQuantity.setValue(session->I2PInboundQuantity());
+    addRow(I2P_INBOUND_QUANTITY, (tr("I2P inbound quantity") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_inbound_quantity", u"(?)"))
+        , &m_spinBoxI2PInboundQuantity);
+    m_spinBoxI2POutboundQuantity.setMinimum(1);
+    m_spinBoxI2POutboundQuantity.setMaximum(16);
+    m_spinBoxI2POutboundQuantity.setValue(session->I2POutboundQuantity());
+    addRow(I2P_OUTBOUND_QUANTITY, (tr("I2P outbound quantity") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_quantity", u"(?)"))
+        , &m_spinBoxI2POutboundQuantity);
+    m_spinBoxI2PInboundLength.setMinimum(0);
+    m_spinBoxI2PInboundLength.setMaximum(7);
+    m_spinBoxI2PInboundLength.setValue(session->I2PInboundLength());
+    addRow(I2P_INBOUND_LENGTH, (tr("I2P inbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_inbound_length", u"(?)"))
+        , &m_spinBoxI2PInboundLength);
+    m_spinBoxI2POutboundLength.setMinimum(0);
+    m_spinBoxI2POutboundLength.setMaximum(7);
+    m_spinBoxI2POutboundLength.setValue(session->I2POutboundLength());
+    addRow(I2P_OUTBOUND_LENGTH, (tr("I2P outbound length") + u' ' + makeLink(u"https://www.libtorrent.org/reference-Settings.html#i2p_outbound_length", u"(?)"))
+        , &m_spinBoxI2POutboundLength);
+#endif
 }
 
 template <typename T>

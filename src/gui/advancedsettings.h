@@ -85,7 +85,8 @@ private:
     QCheckBox m_checkBoxCoalesceRW;
 #else
     QComboBox m_comboBoxDiskIOType;
-    QSpinBox m_spinBoxMemoryWorkingSetLimit, m_spinBoxHashingThreads;
+    QSpinBox m_spinBoxMemoryWorkingSetLimit, m_spinBoxHashingThreads,
+             m_spinBoxI2PInboundQuantity, m_spinBoxI2POutboundQuantity, m_spinBoxI2PInboundLength, m_spinBoxI2POutboundLength;
 #endif
 
     // OS dependent settings
