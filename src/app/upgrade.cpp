@@ -29,6 +29,7 @@
 #include "upgrade.h"
 
 #include <QtGlobal>
+#include <QCoreApplication>
 #include <QMetaEnum>
 
 #include "base/bittorrent/torrentcontentlayout.h"
@@ -54,7 +55,7 @@ namespace
             SettingsStorage *settingsStorage {SettingsStorage::instance()};
             const auto oldData {settingsStorage->loadValue<QByteArray>(oldKey)};
             const auto newData {settingsStorage->loadValue<QString>(newKey)};
-            const QString errorMsgFormat {QObject::tr("Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
+            const QString errorMsgFormat {QCoreApplication::translate("Upgrade", "Migrate preferences failed: WebUI https, file: \"%1\", error: \"%2\"")};
 
             if (!newData.isEmpty() || oldData.isEmpty())
                 return;
@@ -69,7 +70,7 @@ namespace
             settingsStorage->storeValue(newKey, savePath);
             settingsStorage->removeValue(oldKey);
 
-            LogMsg(QObject::tr("Migrated preferences: WebUI https, exported data to file: \"%1\"").arg(savePath.toString())
+            LogMsg(QCoreApplication::translate("Upgrade", "Migrated preferences: WebUI https, exported data to file: \"%1\"").arg(savePath.toString())
                 , Log::INFO);
         };
 
@@ -161,7 +162,7 @@ namespace
                 settingsStorage->storeValue(key, Scheduler::Days::Sunday);
                 break;
             default:
-                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
                     .arg(key, QString::number(number)), Log::WARNING);
                 settingsStorage->removeValue(key);
                 break;
@@ -192,7 +193,7 @@ namespace
                 settingsStorage->storeValue(key, DNS::Service::NoIP);
                 break;
             default:
-                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
                     .arg(key, QString::number(number)), Log::WARNING);
                 settingsStorage->removeValue(key);
                 break;
@@ -223,7 +224,7 @@ namespace
                 settingsStorage->storeValue(key, TrayIcon::Style::MonoLight);
                 break;
             default:
-                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
                     .arg(key, QString::number(number)), Log::WARNING);
                 settingsStorage->removeValue(key);
                 break;
@@ -361,7 +362,7 @@ namespace
                 settingsStorage->storeValue(key, Net::ProxyType::SOCKS4);
                 break;
             default:
-                LogMsg(QObject::tr("Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
+                LogMsg(QCoreApplication::translate("Upgrade", "Invalid value found in configuration file, reverting it to default. Key: \"%1\". Invalid value: \"%2\".")
                            .arg(key, QString::number(number)), Log::WARNING);
                 settingsStorage->removeValue(key);
                 break;
