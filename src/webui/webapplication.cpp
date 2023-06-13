@@ -406,7 +406,10 @@ void WebApplication::configure()
     m_prebuiltHeaders.push_back({Http::HEADER_X_CONTENT_TYPE_OPTIONS, u"nosniff"_qs});
 
     if (!m_isAltUIUsed)
+    {
+        m_prebuiltHeaders.push_back({Http::HEADER_CROSS_ORIGIN_OPENER_POLICY, u"same-origin"_qs});
         m_prebuiltHeaders.push_back({Http::HEADER_REFERRER_POLICY, u"same-origin"_qs});
+    }
 
     const bool isClickjackingProtectionEnabled = pref->isWebUiClickjackingProtectionEnabled();
     if (isClickjackingProtectionEnabled)
