@@ -252,6 +252,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkStartMinimized->setChecked(pref->startMinimized());
     m_ui->checkProgramExitConfirm->setChecked(pref->confirmOnExit());
     m_ui->checkProgramAutoExitConfirm->setChecked(!pref->dontConfirmAutoExit());
+    m_ui->checkConfirmPauseAndResumeAll->setChecked(pref->confirmPauseAndResumeAll());
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
     m_ui->groupFileAssociation->setVisible(false);
@@ -334,6 +335,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     connect(m_ui->checkStartMinimized, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkProgramAutoExitConfirm, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
+    connect(m_ui->checkConfirmPauseAndResumeAll, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkShowSystray, &QGroupBox::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkMinimizeToSysTray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
     connect(m_ui->checkCloseToSystray, &QAbstractButton::toggled, this, &ThisType::enableApplyButton);
@@ -410,6 +412,7 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setStartMinimized(startMinimized());
     pref->setConfirmOnExit(m_ui->checkProgramExitConfirm->isChecked());
     pref->setDontConfirmAutoExit(!m_ui->checkProgramAutoExitConfirm->isChecked());
+    pref->setConfirmPauseAndResumeAll(m_ui->checkConfirmPauseAndResumeAll->isChecked());
 
 #ifdef Q_OS_WIN
     pref->setWinStartup(WinStartup());
