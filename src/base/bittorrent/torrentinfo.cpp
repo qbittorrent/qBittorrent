@@ -103,27 +103,19 @@ nonstd::expected<TorrentInfo, QString> TorrentInfo::load(const QByteArray &data)
 
 nonstd::expected<TorrentInfo, QString> TorrentInfo::loadFromFile(const Path &path) noexcept
 {
-    QFile file {path.data()};
-    if (!file.open(QIODevice::ReadOnly))
-        return nonstd::make_unexpected(file.errorString());
-
-    if (file.size() > MAX_TORRENT_SIZE)
-        return nonstd::make_unexpected(tr("File size exceeds max limit %1").arg(Utils::Misc::friendlyUnit(MAX_TORRENT_SIZE)));
-
     QByteArray data;
     try
     {
-        data = file.readAll();
+        const auto readResult = Utils::IO::readFile(path, MAX_TORRENT_SIZE);
+        if (!readResult)
+            return nonstd::make_unexpected(readResult.error().message);
+        data = readResult.value();
     }
     catch (const std::bad_alloc &e)
     {
-        return nonstd::make_unexpected(tr("Torrent file read error: %1").arg(QString::fromLocal8Bit(e.what())));
+        return nonstd::make_unexpected(tr("Failed to allocate memory when reading file. File: \"%1\". Error: \"%2\"")
+            .arg(path.toString(), QString::fromLocal8Bit(e.what())));
     }
-
-    if (data.size() != file.size())
-        return nonstd::make_unexpected(tr("Torrent file read error: size mismatch"));
-
-    file.close();
 
     return load(data);
 }

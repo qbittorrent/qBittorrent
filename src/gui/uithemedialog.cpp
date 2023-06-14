@@ -30,7 +30,6 @@
 
 #include <QColor>
 #include <QColorDialog>
-#include <QFile>
 #include <QFileDialog>
 #include <QJsonDocument>
 #include <QJsonObject>

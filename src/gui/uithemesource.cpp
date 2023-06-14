@@ -30,30 +30,17 @@
 
 #include "uithemesource.h"
 
-#include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>
 
 #include "base/global.h"
 #include "base/logger.h"
 #include "base/profile.h"
+#include "base/utils/io.h"
 
 namespace
 {
-    QByteArray readFile(const Path &filePath)
-    {
-        QFile file {filePath.data()};
-        if (!file.exists())
-            return {};
-
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text))
-            return file.readAll();
-
-        LogMsg(UIThemeSource::tr("UITheme - Failed to open \"%1\". Reason: %2")
-               .arg(filePath.filename(), file.errorString())
-               , Log::WARNING);
-        return {};
-    }
+    const qint64 FILE_MAX_SIZE = 1024 * 1024;
 
     QJsonObject parseThemeConfig(const QByteArray &data)
     {
@@ -165,7 +152,16 @@ Path DefaultThemeSource::getIconPath(const QString &iconId, const ColorMode colo
 
 void DefaultThemeSource::loadColors()
 {
-    const QByteArray configData = readFile(m_userPath / Path(CONFIG_FILE_NAME));
+    const auto readResult = Utils::IO::readFile((m_userPath / Path(CONFIG_FILE_NAME)), FILE_MAX_SIZE, QIODevice::Text);
+    if (!readResult)
+    {
+        if (readResult.error().status != Utils::IO::ReadError::NotExist)
+            LogMsg(tr("Failed to load default theme colors. %1").arg(readResult.error().message), Log::WARNING);
+
+        return;
+    }
+
+    const QByteArray configData = readResult.value();
     if (configData.isEmpty())
         return;
 
@@ -233,7 +229,16 @@ Path CustomThemeSource::getIconPath(const QString &iconId, const ColorMode color
 
 QByteArray CustomThemeSource::readStyleSheet()
 {
-    return readFile(themeRootPath() / Path(STYLESHEET_FILE_NAME));
+    const auto readResult = Utils::IO::readFile((themeRootPath() / Path(STYLESHEET_FILE_NAME)), FILE_MAX_SIZE, QIODevice::Text);
+    if (!readResult)
+    {
+        if (readResult.error().status != Utils::IO::ReadError::NotExist)
+            LogMsg(tr("Failed to load custom theme style sheet. %1").arg(readResult.error().message), Log::WARNING);
+
+        return {};
+    }
+
+    return readResult.value();
 }
 
 DefaultThemeSource *CustomThemeSource::defaultThemeSource() const
@@ -243,7 +248,16 @@ DefaultThemeSource *CustomThemeSource::defaultThemeSource() const
 
 void CustomThemeSource::loadColors()
 {
-    const QByteArray configData = readFile(themeRootPath() / Path(CONFIG_FILE_NAME));
+    const auto readResult = Utils::IO::readFile((themeRootPath() / Path(CONFIG_FILE_NAME)), FILE_MAX_SIZE, QIODevice::Text);
+    if (!readResult)
+    {
+        if (readResult.error().status != Utils::IO::ReadError::NotExist)
+            LogMsg(tr("Failed to load custom theme colors. %1").arg(readResult.error().message), Log::WARNING);
+
+        return;
+    }
+
+    const QByteArray configData = readResult.value();
     if (configData.isEmpty())
         return;
 

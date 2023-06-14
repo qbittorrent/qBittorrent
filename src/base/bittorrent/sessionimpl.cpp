@@ -60,7 +60,6 @@
 
 #include <QDebug>
 #include <QDir>
-#include <QFile>
 #include <QHostAddress>
 #include <QJsonArray>
 #include <QJsonDocument>
@@ -5101,8 +5100,8 @@ void SessionImpl::loadCategories()
 {
     m_categories.clear();
 
-    QFile confFile {(specialFolderLocation(SpecialFolder::Config) / CATEGORIES_FILE_NAME).data()};
-    if (!confFile.exists())
+    const Path path = specialFolderLocation(SpecialFolder::Config) / CATEGORIES_FILE_NAME;
+    if (!path.exists())
     {
         // TODO: Remove the following upgrade code in v4.5
         // == BEGIN UPGRADE CODE ==
@@ -5113,26 +5112,27 @@ void SessionImpl::loadCategories()
 //        return;
     }
 
-    if (!confFile.open(QFile::ReadOnly))
+    const int fileMaxSize = 1024 * 1024;
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
     {
-        LogMsg(tr("Failed to load Categories. File: \"%1\". Error: \"%2\"")
-               .arg(confFile.fileName(), confFile.errorString()), Log::CRITICAL);
+        LogMsg(tr("Failed to load Categories. %1").arg(readResult.error().message), Log::WARNING);
         return;
     }
 
     QJsonParseError jsonError;
-    const QJsonDocument jsonDoc = QJsonDocument::fromJson(confFile.readAll(), &jsonError);
+    const QJsonDocument jsonDoc = QJsonDocument::fromJson(readResult.value(), &jsonError);
     if (jsonError.error != QJsonParseError::NoError)
     {
         LogMsg(tr("Failed to parse Categories configuration. File: \"%1\". Error: \"%2\"")
-               .arg(confFile.fileName(), jsonError.errorString()), Log::WARNING);
+               .arg(path.toString(), jsonError.errorString()), Log::WARNING);
         return;
     }
 
     if (!jsonDoc.isObject())
     {
-        LogMsg(tr("Failed to load Categories configuration. File: \"%1\". Reason: invalid data format")
-               .arg(confFile.fileName()), Log::WARNING);
+        LogMsg(tr("Failed to load Categories configuration. File: \"%1\". Error: \"Invalid data format\"")
+               .arg(path.toString()), Log::WARNING);
         return;
     }
 

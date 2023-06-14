@@ -458,15 +458,16 @@ void AutomatedRssDownloader::onImportBtnClicked()
     const Path path {QFileDialog::getOpenFileName(
                     this, tr("Import RSS rules"), QDir::homePath()
                     , u"%1;;%2"_qs.arg(m_formatFilterJSON, m_formatFilterLegacy), &selectedFilter)};
-    if (!path.exists())
-        return;
 
-    QFile file {path.data()};
-    if (!file.open(QIODevice::ReadOnly))
+    const int fileMaxSize = 10 * 1024 * 1024;
+    const auto readResult = Utils::IO::readFile(path, fileMaxSize);
+    if (!readResult)
     {
-        QMessageBox::critical(
-                    this, tr("I/O Error")
-                    , tr("Failed to open the file. Reason: %1").arg(file.errorString()));
+        if (readResult.error().status == Utils::IO::ReadError::NotExist)
+            return;
+
+        QMessageBox::critical(this, tr("Import error")
+            , tr("Failed to read the file. %1").arg(readResult.error().message));
         return;
     }
 
@@ -479,13 +480,12 @@ void AutomatedRssDownloader::onImportBtnClicked()
 
     try
     {
-        RSS::AutoDownloader::instance()->importRules(file.readAll(),format);
+        RSS::AutoDownloader::instance()->importRules(readResult.value(), format);
     }
     catch (const RSS::ParsingError &error)
     {
-        QMessageBox::critical(
-                    this, tr("Import Error")
-                    , tr("Failed to import the selected rules file. Reason: %1").arg(error.message()));
+        QMessageBox::critical(this, tr("Import error")
+            , tr("Failed to import the selected rules file. Reason: %1").arg(error.message()));
     }
 }
 

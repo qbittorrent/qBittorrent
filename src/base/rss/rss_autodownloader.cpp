@@ -48,6 +48,7 @@
 #include "../logger.h"
 #include "../profile.h"
 #include "../utils/fs.h"
+#include "../utils/io.h"
 #include "rss_article.h"
 #include "rss_autodownloadrule.h"
 #include "rss_feed.h"
@@ -493,21 +494,21 @@ void AutoDownloader::processJob(const QSharedPointer<ProcessingJob> &job)
 
 void AutoDownloader::load()
 {
-    QFile rulesFile {(m_fileStorage->storageDir() / Path(RULES_FILE_NAME)).data()};
+    const qint64 maxFileSize = 10 * 1024 * 1024;
+    const auto readResult = Utils::IO::readFile((m_fileStorage->storageDir() / Path(RULES_FILE_NAME)), maxFileSize);
+    if (!readResult)
+    {
+        if (readResult.error().status == Utils::IO::ReadError::NotExist)
+        {
+            loadRulesLegacy();
+            return;
+        }
 
-    if (!rulesFile.exists())
-    {
-        loadRulesLegacy();
+        LogMsg((tr("Failed to read RSS AutoDownloader rules. %1").arg(readResult.error().message)), Log::WARNING);
+        return;
     }
-    else if (rulesFile.open(QFile::ReadOnly))
-    {
-        loadRules(rulesFile.readAll());
-    }
-    else
-    {
-        LogMsg(tr("Couldn't read RSS AutoDownloader rules from %1. Error: %2")
-                .arg(rulesFile.fileName(), rulesFile.errorString()), Log::CRITICAL);
-    }
+
+    loadRules(readResult.value());
 }
 
 void AutoDownloader::loadRules(const QByteArray &data)

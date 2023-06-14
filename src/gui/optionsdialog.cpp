@@ -52,6 +52,7 @@
 #include "base/rss/rss_session.h"
 #include "base/torrentfileguard.h"
 #include "base/torrentfileswatcher.h"
+#include "base/utils/io.h"
 #include "base/utils/misc.h"
 #include "base/utils/net.h"
 #include "base/utils/password.h"
@@ -1751,46 +1752,22 @@ Path OptionsDialog::getFilter() const
 #ifndef DISABLE_WEBUI
 void OptionsDialog::webUIHttpsCertChanged(const Path &path)
 {
-    const auto isCertFileValid = [&path]() -> bool
-    {
-        if (path.isEmpty())
-            return false;
-
-        QFile file {path.data()};
-        if (!file.open(QIODevice::ReadOnly))
-            return false;
-
-        if (!Utils::Net::isSSLCertificatesValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
-            return false;
-
-        return true;
-    };
+    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isCertValid = Utils::Net::isSSLCertificatesValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsCert->setSelectedPath(path);
     m_ui->lblSslCertStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isCertFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
+        (isCertValid ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 void OptionsDialog::webUIHttpsKeyChanged(const Path &path)
 {
-    const auto isKeyFileValid = [&path]() -> bool
-    {
-        if (path.isEmpty())
-            return false;
-
-        QFile file {path.data()};
-        if (!file.open(QIODevice::ReadOnly))
-            return false;
-
-        if (!Utils::Net::isSSLKeyValid(file.read(Utils::Net::MAX_SSL_FILE_SIZE)))
-            return false;
-
-        return true;
-    };
+    const auto readResult = Utils::IO::readFile(path, Utils::Net::MAX_SSL_FILE_SIZE);
+    const bool isKeyValid = Utils::Net::isSSLKeyValid(readResult.value_or(QByteArray()));
 
     m_ui->textWebUIHttpsKey->setSelectedPath(path);
     m_ui->lblSslKeyStatus->setPixmap(UIThemeManager::instance()->getScaledPixmap(
-        (isKeyFileValid() ? u"security-high"_qs : u"security-low"_qs), 24));
+        (isKeyValid ? u"security-high"_qs : u"security-low"_qs), 24));
 }
 
 bool OptionsDialog::isWebUiEnabled() const
