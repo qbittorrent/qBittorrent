@@ -28,6 +28,8 @@
 
 #include "utils.h"
 
+#include <QtGlobal>
+
 #ifdef Q_OS_WIN
 #include <Objbase.h>
 #include <Shlobj.h>
