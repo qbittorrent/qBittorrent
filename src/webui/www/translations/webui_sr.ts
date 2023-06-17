@@ -52,19 +52,19 @@
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Примљени метаподаци</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Проверени фајлови</translation>
     </message>
     <message>
         <source>Stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Услов престанка</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Никакав</translation>
     </message>
 </context>
 <context>
@@ -110,7 +110,7 @@
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Уклони торенте</translation>
     </message>
 </context>
 <context>
@@ -593,7 +593,7 @@
     </message>
     <message>
         <source>Filters Sidebar</source>
-        <translation type="unfinished" />
+        <translation>Бочна трака са филтерима</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -605,11 +605,11 @@
     </message>
     <message>
         <source>Would you like to resume all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Желите ли да наставите све торенте?</translation>
     </message>
     <message>
         <source>Would you like to pause all torrents?</source>
-        <translation type="unfinished" />
+        <translation>Желите ли да паузирате све торенте?</translation>
     </message>
 </context>
 <context>
@@ -982,7 +982,7 @@
     </message>
     <message>
         <source>Tip: Encapsulate parameter with quotation marks to avoid text being cut off at whitespace (e.g., "%N")</source>
-        <translation type="unfinished" />
+        <translation>Савет: окружите параметар знацима навода, да се текст не би одсецао због размака (нпр. "%N")</translation>
     </message>
     <message>
         <source>The Web UI username must be at least 3 characters long.</source>
@@ -1014,11 +1014,11 @@
     </message>
     <message>
         <source>Download rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Граница брзине преузимања:</translation>
     </message>
     <message>
         <source>Upload rate threshold:</source>
-        <translation type="unfinished" />
+        <translation>Граница брзине слања:</translation>
     </message>
     <message>
         <source>Change current password</source>
@@ -1034,11 +1034,11 @@
     </message>
     <message>
         <source>Default Save Path:</source>
-        <translation type="unfinished" />
+        <translation>Подразумевана путања чувања:</translation>
     </message>
     <message>
         <source>The alternative Web UI files location cannot be blank.</source>
-        <translation type="unfinished" />
+        <translation>Локација фајлова алтернативног веб интерфејса не може бити празна.</translation>
     </message>
     <message>
         <source>Do not start the download automatically</source>
@@ -1046,7 +1046,7 @@
     </message>
     <message>
         <source>Switch torrent to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Пребаци торент у мануелни режим</translation>
     </message>
     <message>
         <source>When Torrent Category changed:</source>
@@ -1090,7 +1090,7 @@
     </message>
     <message>
         <source>Switch affected torrents to Manual Mode</source>
-        <translation type="unfinished" />
+        <translation>Пребаци обухваћене торенте у мануелни режим</translation>
     </message>
     <message>
         <source>Files location:</source>
@@ -1294,7 +1294,7 @@
     </message>
     <message>
         <source>Session timeout:</source>
-        <translation type="unfinished" />
+        <translation>Тајмаут сесије:</translation>
     </message>
     <message>
         <source>Resolve peer countries:</source>
@@ -1302,7 +1302,7 @@
     </message>
     <message>
         <source>ban for:</source>
-        <translation type="unfinished" />
+        <translation>бан за:</translation>
     </message>
     <message>
         <source>Stop tracker timeout:</source>
@@ -1310,11 +1310,11 @@
     </message>
     <message>
         <source>Ban client after consecutive failures:</source>
-        <translation type="unfinished" />
+        <translation>Бануј клијента након узастопних неуспеха:</translation>
     </message>
     <message>
         <source>Enable cookie Secure flag (requires HTTPS)</source>
-        <translation type="unfinished" />
+        <translation>Омогући Secure заставицу колачића (захтева HTTPS)</translation>
     </message>
     <message>
         <source>UPnP lease duration [0: Permanent lease]:</source>
@@ -1322,11 +1322,11 @@
     </message>
     <message>
         <source>Header: value pairs, one per line</source>
-        <translation type="unfinished" />
+        <translation>Заглавље: парови вредности, један по реду</translation>
     </message>
     <message>
         <source>Add custom HTTP headers</source>
-        <translation type="unfinished" />
+        <translation>Додај прилагођена HTTP заглавља</translation>
     </message>
     <message>
         <source>Filters:</source>
@@ -1374,7 +1374,7 @@
     </message>
     <message>
         <source>Feeds refresh interval:</source>
-        <translation type="unfinished" />
+        <translation>Период освежавања фидова:</translation>
     </message>
     <message>
         <source>Peer turnover disconnect percentage:</source>
@@ -1422,7 +1422,7 @@
     </message>
     <message>
         <source>Peer connection protocol:</source>
-        <translation type="unfinished" />
+        <translation>Протокол конекције учесника:</translation>
     </message>
     <message>
         <source>Torrent content layout:</source>
@@ -1462,7 +1462,7 @@
     </message>
     <message>
         <source>Trusted proxies list:</source>
-        <translation type="unfinished" />
+        <translation>Списак поузданих проксија:</translation>
     </message>
     <message>
         <source>Enable reverse proxy support</source>
@@ -1482,7 +1482,7 @@
     </message>
     <message>
         <source>Set to 0 to let your system pick an unused port</source>
-        <translation type="unfinished" />
+        <translation>Подесите на 0 да би систем сам изабрао слободан порт</translation>
     </message>
     <message>
         <source>Server-side request forgery (SSRF) mitigation:</source>
@@ -1506,7 +1506,7 @@
     </message>
     <message>
         <source>Memory mapped files</source>
-        <translation type="unfinished" />
+        <translation>Фајлови мапирани у меморији</translation>
     </message>
     <message>
         <source>Default</source>
@@ -1514,11 +1514,11 @@
     </message>
     <message>
         <source>POSIX-compliant</source>
-        <translation type="unfinished" />
+        <translation>POSIX-усаглашен</translation>
     </message>
     <message>
         <source>This option is less effective on Linux</source>
-        <translation type="unfinished" />
+        <translation>Ова опција није толико ефективна на Linux-у</translation>
     </message>
     <message>
         <source>Disk IO type (libtorrent &gt;= 2.0; requires restart):</source>
@@ -1538,7 +1538,7 @@
     </message>
     <message>
         <source>Disable OS cache</source>
-        <translation type="unfinished" />
+        <translation>Онемогући кеш ОС-а</translation>
     </message>
     <message>
         <source>Disk IO write mode:</source>
@@ -1570,7 +1570,7 @@
     </message>
     <message>
         <source>Excluded file names</source>
-        <translation type="unfinished" />
+        <translation>Изузета имена фајлова</translation>
     </message>
     <message>
         <source>Support internationalized domain name (IDN):</source>
@@ -1606,11 +1606,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Run external program</source>
-        <translation type="unfinished" />
+        <translation>Покрени екстерни програм</translation>
     </message>
     <message>
         <source>Files checked</source>
-        <translation type="unfinished" />
+        <translation>Проверени фајлови</translation>
     </message>
     <message>
         <source>Enable port forwarding for embedded tracker:</source>
@@ -1618,7 +1618,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>If checked, hostname lookups are done via the proxy.</source>
-        <translation type="unfinished" />
+        <translation>Ако је означено, провера имена домаћина се врши преко проксија.</translation>
     </message>
     <message>
         <source>Use proxy for hostname lookup</source>
@@ -1626,23 +1626,23 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Metadata received</source>
-        <translation type="unfinished" />
+        <translation>Примљени метаподаци</translation>
     </message>
     <message>
         <source>Torrent stop condition:</source>
-        <translation type="unfinished" />
+        <translation>Услов престанка торента:</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="unfinished" />
+        <translation>Никакав</translation>
     </message>
     <message>
         <source>Example: 172.17.32.0/24, fdff:ffff:c8::/40</source>
-        <translation type="unfinished" />
+        <translation>Пример: 172.17.32.0/24, fdff:ffff:c8::/40</translation>
     </message>
     <message>
         <source>SQLite database (experimental)</source>
-        <translation type="unfinished" />
+        <translation>База података SQLite (експериментално)</translation>
     </message>
     <message>
         <source>Resume data storage type (requires restart):</source>
@@ -1673,7 +1673,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Flags</source>
-        <translation type="unfinished" />
+        <translation>Заставе</translation>
     </message>
     <message>
         <source>Connection</source>
@@ -1712,7 +1712,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Relevance</source>
         <comment>i.e: How relevant this peer is to us. How many pieces it has that we don't.</comment>
-        <translation type="unfinished" />
+        <translation>Релевантност</translation>
     </message>
     <message>
         <source>Files</source>
@@ -1737,7 +1737,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation type="unfinished" />
+        <translation>Додај учеснике...</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -1938,7 +1938,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Filter files...</source>
-        <translation type="unfinished" />
+        <translation>Филтрирај датотеке...</translation>
     </message>
     <message>
         <source>Rename...</source>
@@ -2019,19 +2019,19 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Average time in queue:</source>
-        <translation type="unfinished" />
+        <translation>Просечно времена у реду:</translation>
     </message>
     <message>
         <source>Connected peers:</source>
-        <translation type="unfinished" />
+        <translation>Повезано учесника:</translation>
     </message>
     <message>
         <source>All-time share ratio:</source>
-        <translation type="unfinished" />
+        <translation>Однос дељења за све време:</translation>
     </message>
     <message>
         <source>All-time download:</source>
-        <translation type="unfinished" />
+        <translation>Преузето за све време:</translation>
     </message>
     <message>
         <source>Session waste:</source>
@@ -2039,15 +2039,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>All-time upload:</source>
-        <translation type="unfinished" />
+        <translation>Послато за све време:</translation>
     </message>
     <message>
         <source>Total buffer size:</source>
-        <translation type="unfinished" />
+        <translation>Укупна величина бафера:</translation>
     </message>
     <message>
         <source>Performance statistics</source>
-        <translation type="unfinished" />
+        <translation>Статистика перформанси</translation>
     </message>
     <message>
         <source>Queued I/O jobs:</source>
@@ -2281,12 +2281,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Session Download</source>
         <comment>Amount of data downloaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Преузето за сесију</translation>
     </message>
     <message>
         <source>Session Upload</source>
         <comment>Amount of data uploaded since program open (e.g. in MB)</comment>
-        <translation type="unfinished" />
+        <translation>Послато за сесију</translation>
     </message>
     <message>
         <source>Remaining</source>
@@ -2311,12 +2311,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Ratio Limit</source>
         <comment>Upload share ratio limit</comment>
-        <translation type="unfinished" />
+        <translation>Лимит односа</translation>
     </message>
     <message>
         <source>Last Seen Complete</source>
         <comment>Indicates the time when the torrent was last seen complete/whole</comment>
-        <translation type="unfinished" />
+        <translation>Последњи пут виђен потпун</translation>
     </message>
     <message>
         <source>Last Activity</source>
@@ -2353,7 +2353,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tracker URL:</source>
-        <translation type="unfinished" />
+        <translation>URL трекера:</translation>
     </message>
     <message>
         <source>Updating...</source>
@@ -2385,15 +2385,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Copy tracker URL</source>
-        <translation type="unfinished" />
+        <translation>Копирај URL трекера</translation>
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation type="unfinished" />
+        <translation>Уреди URL трекера...</translation>
     </message>
     <message>
         <source>Tracker editing</source>
-        <translation type="unfinished" />
+        <translation>Уређивање трекера</translation>
     </message>
     <message>
         <source>Leeches</source>
@@ -2413,7 +2413,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Tier</source>
-        <translation type="unfinished" />
+        <translation>Ранг</translation>
     </message>
     <message>
         <source>Download Priority</source>
@@ -2433,11 +2433,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Times Downloaded</source>
-        <translation type="unfinished" />
+        <translation>Пута преузето</translation>
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation type="unfinished" />
+        <translation>Додај трекере...</translation>
     </message>
 </context>
 <context>
@@ -2448,7 +2448,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Add trackers</source>
-        <translation type="unfinished" />
+        <translation>Додај трекере</translation>
     </message>
 </context>
 <context>
@@ -2456,7 +2456,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>%1 ago</source>
         <comment>e.g.: 1h 20m ago</comment>
-        <translation type="unfinished" />
+        <translation>Пре %1</translation>
     </message>
     <message>
         <source>Paused</source>
@@ -2468,11 +2468,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Moving</source>
-        <translation type="unfinished" />
+        <translation>Премештање</translation>
     </message>
     <message>
         <source>[F] Seeding</source>
-        <translation type="unfinished" />
+        <translation>[F] Слање</translation>
     </message>
     <message>
         <source>Seeding</source>
@@ -2484,15 +2484,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Errored</source>
-        <translation type="unfinished" />
+        <translation>Грешка</translation>
     </message>
     <message>
         <source>[F] Downloading</source>
-        <translation type="unfinished" />
+        <translation>[F] Преузимање</translation>
     </message>
     <message>
         <source>Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>Преузимање метаподатака</translation>
     </message>
     <message>
         <source>Checking</source>
@@ -2500,7 +2500,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Missing Files</source>
-        <translation type="unfinished" />
+        <translation>Недостају фајлови</translation>
     </message>
     <message>
         <source>Queued for checking</source>
@@ -2512,7 +2512,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Checking resume data</source>
-        <translation type="unfinished" />
+        <translation>Провера података за настављање</translation>
     </message>
     <message>
         <source>Stalled</source>
@@ -2524,7 +2524,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation type="unfinished" />
+        <translation>[F] Преузимање метаподатака</translation>
     </message>
 </context>
 <context>
@@ -2617,7 +2617,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Automatic Torrent Management</source>
-        <translation type="unfinished" />
+        <translation>Аутоматски менеџмент торената</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2679,11 +2679,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Comma-separated tags:</source>
-        <translation type="unfinished" />
+        <translation>Ознаке одвојене зарезима:</translation>
     </message>
     <message>
         <source>Add Tags</source>
-        <translation type="unfinished" />
+        <translation>Додај ознаке</translation>
     </message>
     <message>
         <source>Tags</source>
@@ -2742,15 +2742,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Use global share limit</source>
-        <translation type="unfinished" />
+        <translation>Користи глобални лимит дељења</translation>
     </message>
     <message>
         <source>Set no share limit</source>
-        <translation type="unfinished" />
+        <translation>Не користи лимит дељења</translation>
     </message>
     <message>
         <source>Set share limit to</source>
-        <translation type="unfinished" />
+        <translation>Подеси лимит дељења на</translation>
     </message>
     <message>
         <source>ratio</source>
@@ -2768,11 +2768,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <name>confirmDeletionDlg</name>
     <message>
         <source>Also permanently delete the files</source>
-        <translation type="unfinished" />
+        <translation>Такође перманентно обриши фајлове</translation>
     </message>
     <message>
         <source>Remove torrent(s)</source>
-        <translation type="unfinished" />
+        <translation>Уклони торент(е)</translation>
     </message>
 </context>
 <context>
@@ -2859,7 +2859,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>%1y %2d</source>
-        <translation type="unfinished" />
+        <translation>%1г %2д</translation>
     </message>
 </context>
 <context>
@@ -2908,7 +2908,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished" />
+        <translation>Заустави</translation>
     </message>
     <message>
         <source>Search</source>
@@ -2916,7 +2916,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation type="unfinished" />
+        <translation>Додаци за претрагу...</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2924,7 +2924,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Search in:</source>
-        <translation type="unfinished" />
+        <translation>Претражи у:</translation>
     </message>
     <message>
         <source>Filter</source>
@@ -2932,11 +2932,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrent names only</source>
-        <translation type="unfinished" />
+        <translation>Само имена торената</translation>
     </message>
     <message>
         <source>Only enabled</source>
-        <translation type="unfinished" />
+        <translation>Само омогућено</translation>
     </message>
     <message>
         <source>out of</source>
@@ -2944,7 +2944,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Everywhere</source>
-        <translation type="unfinished" />
+        <translation>Свугде</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -3084,7 +3084,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Format: IPv4:port / [IPv6]:port</source>
-        <translation type="unfinished" />
+        <translation>Формат: IPv4:порт / [IPv6]:порт</translation>
     </message>
 </context>
 <context>
@@ -3123,7 +3123,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Уклони торенте</translation>
     </message>
 </context>
 <context>
@@ -3255,15 +3255,15 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Description page URL</source>
-        <translation type="unfinished" />
+        <translation>URL стране са описом</translation>
     </message>
     <message>
         <source>Open description page</source>
-        <translation type="unfinished" />
+        <translation>Отвори страну са описом</translation>
     </message>
     <message>
         <source>Download link</source>
-        <translation type="unfinished" />
+        <translation>Веза за преузимање</translation>
     </message>
 </context>
 <context>
@@ -3321,7 +3321,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Torrents: (double-click to download)</source>
-        <translation type="unfinished" />
+        <translation>Торенти: (двоклик да преузмете)</translation>
     </message>
     <message>
         <source>Open news URL</source>
@@ -3333,7 +3333,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Feed URL:</source>
-        <translation type="unfinished" />
+        <translation>URL фида:</translation>
     </message>
     <message>
         <source>New folder...</source>
@@ -3353,11 +3353,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Please type a RSS feed URL</source>
-        <translation type="unfinished" />
+        <translation>Молимо унесите URL RSS фида</translation>
     </message>
     <message>
         <source>Fetching of RSS feeds is disabled now! You can enable it in application settings.</source>
-        <translation type="unfinished" />
+        <translation>Доношење RSS фидова је сада онемогућено! Можете га омогућити у подешавањима апликације.</translation>
     </message>
     <message>
         <source>Deletion confirmation</source>
@@ -3365,7 +3365,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to delete the selected RSS feeds?</source>
-        <translation type="unfinished" />
+        <translation>Да ли сигурно желите да избришете изабране RSS фидове?</translation>
     </message>
     <message>
         <source>New subscription...</source>
@@ -3436,7 +3436,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Regex mode: use Perl-compatible regular expressions</source>
-        <translation type="unfinished" />
+        <translation>Regex режим: користи Perl-компатибилне регуларне изразе</translation>
     </message>
     <message>
         <source>| is used as OR operator</source>
@@ -3444,7 +3444,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Clear downloaded episodes</source>
-        <translation type="unfinished" />
+        <translation>Очисти преузете епизоде</translation>
     </message>
     <message>
         <source>Whitespaces count as AND operators (all words, any order)</source>
@@ -3464,7 +3464,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Are you sure you want to clear the list of downloaded episodes for the selected rule?</source>
-        <translation type="unfinished" />
+        <translation>Да ли сигурно желите да очистите списак преузетих епизода за изабрано правило?</translation>
     </message>
     <message>
         <source>Must Contain:</source>
@@ -3472,7 +3472,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Infinite range: &lt;b&gt;1x25-;&lt;/b&gt; matches episodes 25 and upward of season one, and all episodes of later seasons</source>
-        <translation type="unfinished" />
+        <translation>Бесконачан опсег: &lt;b&gt;1x25-;&lt;/b&gt; одговара епизодама 25 и више прве сезоне, и свим епизодама каснијих сезона</translation>
     </message>
     <message>
         <source>Save to a Different Directory</source>
@@ -3484,11 +3484,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Single number: &lt;b&gt;1x25;&lt;/b&gt; matches episode 25 of season one</source>
-        <translation type="unfinished" />
+        <translation>Један број: &lt;b&gt;1x25;&lt;/b&gt; одговара епизоди 25 прве сезоне</translation>
     </message>
     <message>
         <source>Three range types for episodes are supported: </source>
-        <translation type="unfinished" />
+        <translation>Три типа опсега су подржана за епизоде:</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the selected download rules?</source>
@@ -3500,7 +3500,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Normal range: &lt;b&gt;1x25-40;&lt;/b&gt; matches episodes 25 through 40 of season one</source>
-        <translation type="unfinished" />
+        <translation>Нормалан опсег: &lt;b&gt;1x25-40;&lt;/b&gt; одговара епизодама 25-40 прве сезоне</translation>
     </message>
     <message>
         <source>Please type the new rule name</source>
@@ -3516,7 +3516,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Episode number is a mandatory positive value</source>
-        <translation type="unfinished" />
+        <translation>Број епизоде је обавезна позитивна вредност</translation>
     </message>
     <message>
         <source> will match 2, 5, 8 through 15, 30 and onward episodes of season one</source>
@@ -3528,7 +3528,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Last Match: %1 days ago</source>
-        <translation type="unfinished" />
+        <translation>Последње подударање: пре %1 дана</translation>
     </message>
     <message>
         <source>Episode Filter:</source>
@@ -3568,7 +3568,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Please type the name of the new download rule.</source>
-        <translation type="unfinished" />
+        <translation>Молимо унесите име новог правила за преузимање.</translation>
     </message>
     <message>
         <source>Wildcard mode: you can use</source>
@@ -3584,7 +3584,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Ignore Subsequent Matches for (0 to Disable)</source>
-        <translation type="unfinished" />
+        <translation>Игнориши следећа подударања за (0 да онемогућите)</translation>
     </message>
     <message>
         <source>Rename rule...</source>
@@ -3592,11 +3592,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Last Match: Unknown</source>
-        <translation type="unfinished" />
+        <translation>Последње подударање: непознато</translation>
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation type="unfinished" />
+        <translation>Очисти преузете епизоде...</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
@@ -3641,7 +3641,7 @@ Supports the formats: S01E01, 1x1, 2017.12.31 and 31.12.2017 (Date formats also 
     </message>
     <message>
         <source>Remove torrents</source>
-        <translation type="unfinished" />
+        <translation>Уклони торенте</translation>
     </message>
 </context>
 <context>

@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Start torrent</source>
-        <translation>Έναρξη torrent</translation>
+        <translation>Εκκίνηση torrent</translation>
     </message>
     <message>
         <source>Skip hash check</source>

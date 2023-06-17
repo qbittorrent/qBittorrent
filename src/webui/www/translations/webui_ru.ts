@@ -1886,11 +1886,11 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>Added On:</source>
-        <translation>Дата добавления:</translation>
+        <translation>Добавлен:</translation>
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Дата завершения:</translation>
+        <translation>Завершён:</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -2238,7 +2238,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>ETA</source>
         <comment>i.e: Estimated Time of Arrival / Time left</comment>
-        <translation>Расчётное время</translation>
+        <translation>Расч. время</translation>
     </message>
     <message>
         <source>Category</source>
@@ -2251,12 +2251,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Added On</source>
         <comment>Torrent was added to transfer list on 01/01/2010 08:00</comment>
-        <translation>Дата добавления</translation>
+        <translation>Добавлен</translation>
     </message>
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Дата завершения</translation>
+        <translation>Завершён</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2325,12 +2325,12 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     <message>
         <source>Last Activity</source>
         <comment>Time passed since a chunk was downloaded/uploaded</comment>
-        <translation>Последняя активность</translation>
+        <translation>Послед. активность</translation>
     </message>
     <message>
         <source>Total Size</source>
         <comment>i.e. Size including unwanted data</comment>
-        <translation>Общий размер</translation>
+        <translation>Общ. размер</translation>
     </message>
     <message>
         <source>Availability</source>
@@ -2991,7 +2991,7 @@ Use ';' to split multiple entries. Can use wildcard '*'.</source>
     </message>
     <message>
         <source>You can get new search engine plugins here:</source>
-        <translation>Вы можете найти новые поисковые плагины здесь:</translation>
+        <translation>Вы можете получить новые поисковые плагины здесь:</translation>
     </message>
     <message>
         <source>Close</source>

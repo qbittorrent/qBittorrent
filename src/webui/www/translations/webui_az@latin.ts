@@ -2528,7 +2528,7 @@ serveri tərəfindən istifadə olunan domen adını göstərməlisiniz.
     </message>
     <message>
         <source>[F] Downloading metadata</source>
-        <translation>[F] Meta verilənləri endirilir</translation>
+        <translation>[F] Torrent verilənləri endirilir</translation>
     </message>
 </context>
 <context>

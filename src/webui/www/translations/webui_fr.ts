@@ -82,7 +82,7 @@
     <name>CategoryFilterWidget</name>
     <message>
         <source>Add category...</source>
-        <translation>Ajouter une catégorie...</translation>
+        <translation>Ajouter une catégorie…</translation>
     </message>
     <message>
         <source>Remove category</source>
@@ -106,7 +106,7 @@
     </message>
     <message>
         <source>Edit category...</source>
-        <translation>Modifier la catégorie...</translation>
+        <translation>Modifier la catégorie…</translation>
     </message>
     <message>
         <source>Remove torrents</source>
@@ -349,7 +349,7 @@
     </message>
     <message>
         <source>Register to handle magnet links...</source>
-        <translation>Associer aux liens magnets...</translation>
+        <translation>Associer aux liens magnets…</translation>
     </message>
     <message>
         <source>Unable to add peers. Please ensure you are adhering to the IP:port format.</source>
@@ -412,7 +412,7 @@
     </message>
     <message>
         <source>Options...</source>
-        <translation>Options...</translation>
+        <translation>Options…</translation>
     </message>
     <message>
         <source>Resume</source>
@@ -752,7 +752,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP port forwarding from my router</source>
-        <translation>Utiliser la redirection de port sur mon routeur via UPnP / NAT-PMP</translation>
+        <translation>Utiliser la redirection de port sur mon routeur via UPnP/NAT-PMP</translation>
     </message>
     <message>
         <source>Connections Limits</source>
@@ -812,7 +812,7 @@
     </message>
     <message>
         <source>Manually banned IP addresses...</source>
-        <translation>Adresses IP bannies manuellement...</translation>
+        <translation>Adresses IP bannies manuellement…</translation>
     </message>
     <message>
         <source>Apply to trackers</source>
@@ -926,7 +926,7 @@
     </message>
     <message>
         <source>Use UPnP / NAT-PMP to forward the port from my router</source>
-        <translation>Utiliser la redirection de port sur mon routeur via UPnP / NAT-PMP</translation>
+        <translation>Utiliser la redirection de port sur mon routeur via UPnP/NAT-PMP</translation>
     </message>
     <message>
         <source>Certificate:</source>
@@ -1366,11 +1366,11 @@
     </message>
     <message>
         <source>Edit auto downloading rules...</source>
-        <translation>Modifier les règles de téléchargement automatique...</translation>
+        <translation>Modifier les règles de téléchargement automatique…</translation>
     </message>
     <message>
         <source>Download REPACK/PROPER episodes</source>
-        <translation>Télécharger les épisodes REPACK / PROPER</translation>
+        <translation>Télécharger les épisodes REPACK/PROPER</translation>
     </message>
     <message>
         <source>Feeds refresh interval:</source>
@@ -1736,11 +1736,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Country/Region</source>
-        <translation>Pays / Région</translation>
+        <translation>Pays/Région</translation>
     </message>
     <message>
         <source>Add peers...</source>
-        <translation>Ajouter des pairs...</translation>
+        <translation>Ajouter des pairs…</translation>
     </message>
     <message>
         <source>Peer ID Client</source>
@@ -1889,7 +1889,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed On:</source>
-        <translation>Complété le :</translation>
+        <translation>Terminé le :</translation>
     </message>
     <message>
         <source>Created On:</source>
@@ -1941,11 +1941,11 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Filter files...</source>
-        <translation>Filtrer les fichiers...</translation>
+        <translation>Filtrer les fichiers…</translation>
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Renommer...</translation>
+        <translation>Renommer…</translation>
     </message>
     <message>
         <source>%1 (seeded for %2)</source>
@@ -1988,7 +1988,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Other...</source>
-        <translation>Autre...</translation>
+        <translation>Autre…</translation>
     </message>
     <message>
         <source>Type folder here</source>
@@ -2093,7 +2093,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed (0)</source>
-        <translation>Complétés (0)</translation>
+        <translation>Terminés (0)</translation>
     </message>
     <message>
         <source>Resumed (0)</source>
@@ -2129,7 +2129,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed (%1)</source>
-        <translation>Complétés (%1)</translation>
+        <translation>Terminés (%1)</translation>
     </message>
     <message>
         <source>Paused (%1)</source>
@@ -2255,7 +2255,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Completed On</source>
         <comment>Torrent was completed on 01/01/2010 08:00</comment>
-        <translation>Complété le</translation>
+        <translation>Terminé le</translation>
     </message>
     <message>
         <source>Tracker</source>
@@ -2309,7 +2309,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     <message>
         <source>Completed</source>
         <comment>Amount of data completed (e.g. in MB)</comment>
-        <translation>Complété</translation>
+        <translation>Terminé</translation>
     </message>
     <message>
         <source>Ratio Limit</source>
@@ -2360,7 +2360,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Updating...</source>
-        <translation>Mise à jour en cours...</translation>
+        <translation>Mise à jour en cours…</translation>
     </message>
     <message>
         <source>Working</source>
@@ -2392,7 +2392,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Edit tracker URL...</source>
-        <translation>Modifier l'URL du tracker...</translation>
+        <translation>Modifier l'URL du tracker…</translation>
     </message>
     <message>
         <source>Tracker editing</source>
@@ -2440,7 +2440,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add trackers...</source>
-        <translation>Ajouter des trackers...</translation>
+        <translation>Ajouter des trackers…</translation>
     </message>
 </context>
 <context>
@@ -2467,7 +2467,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Completed</source>
-        <translation>Complété</translation>
+        <translation>Terminé</translation>
     </message>
     <message>
         <source>Moving</source>
@@ -2612,7 +2612,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Set location...</source>
-        <translation>Chemin de sauvegarde…</translation>
+        <translation>Définir l’emplacement…</translation>
     </message>
     <message>
         <source>Download first and last pieces first</source>
@@ -2714,7 +2714,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add...</source>
-        <translation>Ajouter...</translation>
+        <translation>Ajouter…</translation>
     </message>
     <message>
         <source>Info hash v1</source>
@@ -2919,7 +2919,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Search plugins...</source>
-        <translation>Greffons de recherche...</translation>
+        <translation>Greffons de recherche…</translation>
     </message>
     <message>
         <source>All categories</source>
@@ -2971,7 +2971,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Click the "Search plugins..." button at the bottom right of the window to install some.</source>
-        <translation>Cliquez sur le bouton « Rechercher des greffons... » en bas à droite de la fenêtre pour en installer.</translation>
+        <translation>Cliquez sur le bouton « Rechercher des greffons… » en bas à droite de la fenêtre pour en installer.</translation>
     </message>
     <message>
         <source>There aren't any search plugins installed.</source>
@@ -3098,7 +3098,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Add tag...</source>
-        <translation>Ajouter une étiquette...</translation>
+        <translation>Ajouter une étiquette…</translation>
     </message>
     <message>
         <source>Tag:</source>
@@ -3308,7 +3308,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>RSS Downloader...</source>
-        <translation>Téléchargeur de RSS...</translation>
+        <translation>Téléchargeur de RSS…</translation>
     </message>
     <message>
         <source>Mark items read</source>
@@ -3332,7 +3332,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Rename...</source>
-        <translation>Renommer...</translation>
+        <translation>Renommer…</translation>
     </message>
     <message>
         <source>Feed URL:</source>
@@ -3340,7 +3340,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>New folder...</source>
-        <translation>Nouveau dossier...</translation>
+        <translation>Nouveau dossier…</translation>
     </message>
     <message>
         <source>New subscription</source>
@@ -3372,7 +3372,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>New subscription...</source>
-        <translation>Nouvel abonnement...</translation>
+        <translation>Nouvel abonnement…</translation>
     </message>
     <message>
         <source>Download torrent</source>
@@ -3599,7 +3599,7 @@ Utiliser ';' pour diviser plusieurs entrées. Le caractère générique '*' peut
     </message>
     <message>
         <source>Clear downloaded episodes...</source>
-        <translation>Effacer les épisodes téléchargés...</translation>
+        <translation>Effacer les épisodes téléchargés…</translation>
     </message>
     <message>
         <source>Smart Episode Filter will check the episode number to prevent downloading of duplicates.
